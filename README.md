@@ -21,3 +21,6 @@ Run the server with
 ```
 python runner.py
 ```
+## Alpha Survey Runner
+If you're looking for the Survey Runner code from the Alpha then it has been renamed to: alpha-eq-survey-runner 
+- https://github.com/ONSdigital/alpha-eq-survey-runner
