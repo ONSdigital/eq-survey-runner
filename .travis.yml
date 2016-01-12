@@ -8,3 +8,12 @@ install:
 # command to run tests
 script:
 - ./scripts/run_tests.sh
+
+# Front-end config
+# 
+# language: node_js
+# node_js:
+#   - "0.10"
+# before_script:
+#   - npm install -g gulp
+# script: gulp

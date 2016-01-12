@@ -53,3 +53,11 @@ venv
 
 # node
 node_modules/
+static/
+tests/results
+tests/coverage
+
+## OS X
+._*
+.Spotlight-V100
+.Trashes

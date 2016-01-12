@@ -1,0 +1,25 @@
+{
+  "parser"  : "babel-eslint",
+  "extends" : [
+    "standard"
+  ],
+  "ecmaFeatures": {
+    "modules": true,
+  },
+  "env": {
+    "browser" : true
+  },
+  "rules": {
+    "no-unused-vars" : [1],
+    "semi" : [2, "never"],
+    "space-before-function-paren": [2, "never"],
+    "no-alert": 0,
+    "quotes": [2, "single"],
+    "strict": [2, "never"],
+    "new-cap": [0],
+    "consistent-return": 0,
+    "no-underscore-dangle": 0,
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "space-before-blocks": [2, "always"]
+  }
+}
