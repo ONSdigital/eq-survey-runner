@@ -20,7 +20,6 @@ def create_app(config_name):
     application.jinja_env.add_extension('jinja2.ext.i18n')
     application.envdump = EnvironmentDump(application, '/environment')
 
-
     from .main import main as main_blueprint
     application.register_blueprint(main_blueprint)
     main_blueprint.config = application.config.copy()
