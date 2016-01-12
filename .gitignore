@@ -29,9 +29,6 @@ pip-log.txt
 
 *.log
 
-# Translations
-*.mo
-
 
 # Sphinx
 docs/_build
