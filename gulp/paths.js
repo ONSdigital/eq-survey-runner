@@ -2,7 +2,7 @@
  * Paths to project folders
  */
 
-export const paths = {
+const paths = {
   input: 'app/**/*',
   output: 'app/static/',
   scripts: {
@@ -32,3 +32,5 @@ export const paths = {
     results: 'tests/results/'
   }
 }
+
+export default paths

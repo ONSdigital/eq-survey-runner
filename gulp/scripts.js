@@ -4,7 +4,7 @@ import gutil from 'gulp-util'
 import eslint from 'gulp-eslint'
 import plumber from 'gulp-plumber'
 // import uglify from 'gulp-uglify'
-// import karma from 'gulp-karma'
+import karma from 'gulp-karma'
 import exorcist from 'exorcist'
 import browserify from 'browserify'
 import watchify from 'watchify'
@@ -39,14 +39,20 @@ export function bundle() {
     .pipe(browserSync.reload({stream: true}))
 }
 
-export const lint() => {
-  gulp.src(paths.scripts.input)
+export function lint() {
+  return gulp.src(paths.scripts.input)
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())
 }
 
-// Lint scripts
-gulp.task('lint:scripts', () => {
-
-})
+export function testScripts() {
+  return gulp.src([paths.test.input].concat([paths.test.spec]))
+    .pipe(plumber())
+    .pipe(karma({
+      configFile: paths.test.karma
+    }))
+    .on('error', (err) => {
+      throw err
+    })
+}
