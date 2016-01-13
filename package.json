@@ -2,7 +2,6 @@
   "name": "eq-survey-runner",
   "version": "1.0.0",
   "description": "ONS Digital eQ Survery Runner App",
-  "main": "./dist",
   "author": {
     "name": "ONS Digital",
     "url": "http://onsdigital.github.io/"

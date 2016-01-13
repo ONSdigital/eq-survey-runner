@@ -7,19 +7,7 @@ import tap from 'gulp-tap'
 import rename from 'gulp-rename'
 import header from 'gulp-header'
 import pkg from './package.json'
-import bs from 'browser-sync'
-import browserify from 'browserify'
-import watchify from 'watchify'
-import babelify from 'babelify'
-import source from 'vinyl-source-stream'
-import exorcist from 'exorcist'
 import size from 'gulp-size'
-
-// Scripts and tests
-import eslint from 'gulp-eslint'
-import uglify from 'gulp-uglify'
-import karma from 'gulp-karma'
-
 // Styles
 import sass from 'gulp-sass'
 import sassGlob from 'gulp-sass-glob'
@@ -33,42 +21,10 @@ import sourcemaps from 'gulp-sourcemaps'
 import svgmin from 'gulp-svgmin'
 import svgstore from 'gulp-svgstore'
 
-let browserSync = bs.create()
+import paths from './gulp/paths'
+import bundle from './gulp/scripts'
 
-/**
- * Paths to project folders
- */
-
-const paths = {
-  input: 'app/**/*',
-  output: 'app/static/',
-  scripts: {
-    input: 'app/js/*',
-    output: 'app/static/js/'
-  },
-  styles: {
-    input: 'app/sass/**/*.{scss,sass}',
-    output: 'app/static/css/'
-  },
-  templates: {
-    input: 'app/templates/**/*.html'
-  },
-  svgs: {
-    input: 'app/img/*',
-    output: 'app/static/img/'
-  },
-  images: {
-    input: 'app/img/*',
-    output: 'app/static/img/'
-  },
-  test: {
-    input: 'app/js/**/*.js',
-    karma: 'tests/karma.conf.js',
-    spec: 'tests/spec/**/*.js',
-    coverage: 'tests/coverage/',
-    results: 'tests/results/'
-  }
-}
+import browserSync from './gulp/bs'
 
 /**
  * Template for banner to add to file headers
@@ -170,14 +126,6 @@ gulp.task('build:images', ['clean:dist'], () => {
     .pipe(gulp.dest(paths.images.output))
 })
 
-// Lint scripts
-gulp.task('lint:scripts', () => {
-  gulp.src(paths.scripts.input)
-    .pipe(plumber())
-    .pipe(eslint())
-    .pipe(eslint.format())
-})
-
 // Remove pre-existing content from output and test folders
 gulp.task('clean:dist', () => {
   del.sync([
@@ -203,35 +151,6 @@ gulp.task('test:scripts', () => {
     .on('error', (err) => {
       throw err
     })
-})
-
-// Input file.
-watchify.args.debug = true
-const bundler = watchify(browserify('./app/js/app.js', watchify.args))
-
-// Babel transform
-bundler.transform(babelify.configure({
-  sourceMapRelative: './app/js'
-}), { presets: ['es2015'] })
-
-// On updates recompile
-bundler.on('update', bundle)
-
-function bundle() {
-  return bundler.bundle()
-    .on('error', function(err) {
-      gutil.log(err.message)
-      browserSync.notify('Browserify Error!')
-      this.emit('end')
-    })
-    .pipe(exorcist('./app/static/js/bundle.js.map'))
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./app/static/js'))
-    .pipe(browserSync.reload({stream: true}))
-}
-
-gulp.task('build:scripts', ['clean:dist'], () => {
-  bundle()
 })
 
 // Spin up livereload server and listen for file changes
@@ -282,3 +201,7 @@ gulp.task('test', [
   'default',
   'test:scripts'
 ])
+
+gulp.task('build:scripts', ['clean:dist'], () => {
+  bundle()
+})
