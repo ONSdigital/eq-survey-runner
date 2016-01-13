@@ -13,7 +13,7 @@ import flatten from 'gulp-flatten'
 import rename from 'gulp-rename'
 import size from 'gulp-size'
 
-import paths from './paths'
+import {paths} from './paths'
 import browserSync from './bs'
 
 export default function styles() {

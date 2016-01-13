@@ -4,7 +4,7 @@ import tap from 'gulp-tap'
 import size from 'gulp-size'
 import svgmin from 'gulp-svgmin'
 import svgstore from 'gulp-svgstore'
-import paths from './paths'
+import {paths} from './paths'
 
 // Generate SVG sprites
 export function svg() {

@@ -1,10 +1,11 @@
 import gulp from 'gulp'
 import del from 'del'
-import paths from './gulp/paths'
+import plumber from 'gulp-plumber'
+
+import {paths} from './gulp/paths'
 import {bundle, lint, testScripts} from './gulp/scripts'
 import {svg, images} from './gulp/images'
 import styles from './gulp/styles'
-
 import browserSync from './gulp/bs'
 
 // Process, lint, and minify Sass files
@@ -46,11 +47,11 @@ gulp.task('build:scripts', ['clean:dist'], () => {
   bundle()
 })
 
-// gulp.task('copy:dist', function() {
-//   gulp.src('app/*.html')
-//     .pipe(plumber())
-//     .pipe(gulp.dest(paths.output))
-// })
+gulp.task('copy:dist', function() {
+  gulp.src(paths.webfonts.input)
+    .pipe(plumber())
+    .pipe(gulp.dest(paths.webfonts.output))
+})
 
 // Lint scripts
 gulp.task('lint:scripts', () => {
@@ -78,7 +79,8 @@ gulp.task('compile', [
   'build:scripts',
   'build:styles',
   'build:images',
-  'build:svgs'
+  'build:svgs',
+  'copy:dist'
 ])
 
 /**

@@ -11,16 +11,16 @@ import watchify from 'watchify'
 import babelify from 'babelify'
 import source from 'vinyl-source-stream'
 
-import paths from './paths'
+import {paths, srcPath, distPath} from './paths'
 import browserSync from './bs'
 
 // Input file.
 watchify.args.debug = true
-const bundler = watchify(browserify('./app/js/app.js', watchify.args))
+const bundler = watchify(browserify(`.${srcPath}/js/app.js`, watchify.args))
 
 // Babel transform
 bundler.transform(babelify.configure({
-  sourceMapRelative: './app/js'
+  sourceMapRelative: `.${srcPath}/js`
 }), { presets: ['es2015'] })
 
 // On updates recompile
@@ -33,9 +33,9 @@ export function bundle() {
       browserSync.notify('Browserify Error!')
       this.emit('end')
     })
-    .pipe(exorcist('./app/static/js/bundle.js.map'))
+    .pipe(exorcist(`.${distPath}/js/bundle.js.map`))
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./app/static/js'))
+    .pipe(gulp.dest(`.${distPath}/js`))
     .pipe(browserSync.reload({stream: true}))
 }
 

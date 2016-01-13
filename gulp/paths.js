@@ -2,35 +2,40 @@
  * Paths to project folders
  */
 
-const paths = {
-  input: 'app/**/*',
-  output: 'app/static/',
+export const srcPath = 'app'
+export const distPath = srcPath + '/static'
+
+export const paths = {
+  input: srcPath + '/**/*',
+  output: distPath,
   scripts: {
-    input: 'app/js/*',
-    output: 'app/static/js/'
+    input: srcPath + '/js/*',
+    output: distPath + '/js/'
   },
   styles: {
-    input: 'app/sass/**/*.{scss,sass}',
-    output: 'app/static/css/'
+    input: srcPath + '/sass/**/*.{scss,sass}',
+    output: distPath + '/css/'
   },
   templates: {
-    input: 'app/templates/**/*.html'
+    input: srcPath + '/templates/**/*.html'
   },
   svgs: {
-    input: 'app/img/*',
-    output: 'app/static/img/'
+    input: srcPath + '/img/*',
+    output: distPath + '/img/'
   },
   images: {
-    input: 'app/img/*',
-    output: 'app/static/img/'
+    input: srcPath + '/img/*',
+    output: distPath + '/img/'
+  },
+  webfonts: {
+    input: srcPath + '/webfonts/**.{svg,woff,woff2,eot,ttf}',
+    output: distPath + '/webfonts/'
   },
   test: {
-    input: 'app/js/**/*.js',
+    input: srcPath + '/js/**/*.js',
     karma: 'tests/karma.conf.js',
     spec: 'tests/spec/**/*.js',
     coverage: 'tests/coverage/',
     results: 'tests/results/'
   }
 }
-
-export default paths
