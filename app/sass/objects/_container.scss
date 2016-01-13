@@ -1,0 +1,9 @@
+.container {
+	max-width: $grid-max-width;
+	margin: 0 auto;
+	padding: 0 $grid-gutters;
+	@include clearfix;
+	// @include ie8 {
+	// 	width: $responsive-value;
+	// }
+}

@@ -13,6 +13,7 @@ import watchify from 'watchify'
 import babelify from 'babelify'
 import source from 'vinyl-source-stream'
 import exorcist from 'exorcist'
+import size from 'gulp-size'
 
 // Scripts and tests
 import eslint from 'gulp-eslint'
@@ -21,9 +22,11 @@ import karma from 'gulp-karma'
 
 // Styles
 import sass from 'gulp-sass'
+import sassGlob from 'gulp-sass-glob'
 import minify from 'gulp-cssnano'
 import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
+import pxtorem from 'postcss-pxtorem'
 import sourcemaps from 'gulp-sourcemaps'
 
 // SVGs
@@ -86,18 +89,35 @@ let banner = {
 
 // Process, lint, and minify Sass files
 gulp.task('build:styles', () => {
-  gulp.src(paths.styles.input)
+  gulp
+    .src(paths.styles.input)
     .pipe(sourcemaps.init())
     .pipe(plumber())
+    .pipe(sassGlob())
     .pipe(sass({
+      errLogToConsole: true,
       outputStyle: 'expanded',
-      sourceComments: true,
-      onError: browserSync.notify
+      sourceComments: false,
+      onSuccess: function(msg) {
+        gutil.log('Done', gutil.colors.cyan(msg))
+      }
+    }).on('error', function(err) {
+      gutil.log(err.message.toString())
+      browserSync.notify('Browserify Error!')
+      this.emit('end')
     }))
     .pipe(flatten())
     .pipe(postcss([
       autoprefixer({
         browsers: ['last 1 version']
+      }),
+      pxtorem({
+        rootValue: 16,
+        propWhiteList: [],
+        selectorBlackList: [],
+        replace: false,
+        mediaQuery: true,
+        minPixelValue: 0
       })
     ]))
     .pipe(header(banner.full, {
@@ -116,6 +136,7 @@ gulp.task('build:styles', () => {
       pkg: pkg
     }))
     .pipe(sourcemaps.write('.'))
+    .pipe(size({'title': 'CSS (minified)'}))
     .pipe(gulp.dest(paths.styles.output))
     .pipe(browserSync.stream({once: true}))
 })
@@ -138,6 +159,7 @@ gulp.task('build:svgs', ['clean:dist'], () => {
       }
     }))
     .pipe(svgmin())
+    .pipe(size({'title': 'SVG'}))
     .pipe(gulp.dest(paths.svgs.output))
 })
 
@@ -182,13 +204,6 @@ gulp.task('test:scripts', () => {
       throw err
     })
 })
-
-// Copy distribution files to docs
-// gulp.task('copy:dist', ['compile', 'clean:docs'], () => {
-//   gulp.src(paths.output + '/**')
-//     .pipe(plumber())
-//     .pipe(gulp.dest(paths.docs.output + '/app/dist'))
-// })
 
 // Input file.
 watchify.args.debug = true

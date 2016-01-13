@@ -1,0 +1,15 @@
+$grid-bp: (
+  xs: 300px,
+  s: 500px,
+  m: 740px,
+  l: 980px,
+  xl: 1300px,
+  xxl: 1600px
+);
+
+$grid-max-width: 1300px;
+$grid-cols: 12;
+$grid-gutters: 20px;
+
+// breakpoint for fixed width content
+$grid-bp-fixed: map-get($grid-bp, m);

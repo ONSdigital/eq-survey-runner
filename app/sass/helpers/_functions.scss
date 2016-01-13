@@ -1,0 +1,7 @@
+@function ems($pxval, $base: $base-font-size) {
+	@return em($pxval, $base);
+}
+
+@function strip-unit($num) {
+	@return $num / ($num * 0 + 1);
+}
