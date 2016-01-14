@@ -11,7 +11,7 @@ const Server = karma.Server
 export function tests(done, watch) {
   const server = new Server({
     configFile: path.resolve('.') + '/' + paths.test.karma,
-    singleRun: true
+    singleRun: !watch
   }, function() {
     done()
   })

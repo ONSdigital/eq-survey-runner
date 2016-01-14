@@ -15,7 +15,7 @@
     "build": "gulp compile",
     "lint": "eslint . ./",
     "lint:fix": "npm run lint -- --fix",
-    "test": "gulp test"
+    "tests": "gulp test"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.3",

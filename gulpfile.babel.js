@@ -34,7 +34,6 @@ gulp.task('clean:test', () => {
   ])
 })
 
-// Run unit tests
 gulp.task('test:scripts', (done) => {
   tests(done, false)
 })
