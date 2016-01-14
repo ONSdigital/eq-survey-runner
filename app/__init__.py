@@ -13,7 +13,7 @@ EUROPE_LONDON = pytz.timezone("Europe/London")
 
 
 def create_app(config_name):
-    application = Flask(__name__)
+    application = Flask(__name__, static_url_path='/s')
     application.healthcheck = HealthCheck(application, '/healthcheck')
     application.babel = Babel(application)
     application.babel.localeselector(get_locale)
