@@ -41,7 +41,7 @@ gulp.task('test:scripts', (done) => {
 // Spin up livereload server and listen for file changes
 gulp.task('listen', () => {
   browserSync.init({
-    proxy: 'eq-survey-runner.dev:5000',
+    proxy: process.env.EQ_SURVEY_RUNNER_URL,
     browser: false
   })
   gulp.watch(paths.styles.input, ['build:styles']).on('change', browserSync.reload)
