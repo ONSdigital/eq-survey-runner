@@ -1,0 +1,75 @@
+@mixin fixed-width() {
+	@if not $responsive {
+		@content;
+	}
+}
+
+@mixin ie8 {
+	@if not $responsive {
+		.lt-ie9 & {
+			@content;
+		}
+	}
+}
+
+@mixin ie7 {
+	@if not $responsive {
+		.lt-ie8 & {
+			@content;
+		}
+	}
+}
+
+@function get-bp-width($name, $breakpoints: $grid-bp) {
+    @if map-has-key($breakpoints, $name) {
+      @return map-get($breakpoints, $name);
+    } @else {
+      @warn "Breakpoint #{$name} wasn't found in $breakpoints.";
+    }
+}
+
+@mixin mq($from: none, $to: none) {
+
+	@if $responsive {
+
+		@if $from == none {
+			@media only screen and (max-width: $to) {
+				@content;
+			}
+		}
+
+		@else if $to == none {
+			@media only screen and (min-width: $from) {
+				@content;
+			}
+		}
+
+		@else {
+			@media only screen and (min-width: $from) and (max-width: $to) {
+				@content;
+			}
+		}
+
+	} @else {
+
+		@if ($to == none) {
+			 @content;
+		}
+
+		@if ($to != none) and ($to < $grid-bp-fixed) {
+			 @content;
+		}
+
+	}
+}
+
+
+// @mixin retina() {
+// 	@if $responsive {
+// 		@content;
+// 	} @else {
+// 		@media print, (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dppx) {
+// 			@content;
+// 		}
+// 	}
+// }

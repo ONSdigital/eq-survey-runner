@@ -5,6 +5,9 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install -r requirements_for_test.txt
+  - . $HOME/.nvm/nvm.sh
+  - nvm install v5.2.0
+  - npm install
 # command to run tests
 script:
 - ./scripts/run_tests.sh

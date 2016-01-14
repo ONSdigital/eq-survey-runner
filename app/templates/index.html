@@ -1,10 +1,16 @@
-<html>
- <head>
-  <title>eQ - Survey Runner</title>
- </head>
- <body>
-   <h1>Hello World</h1>
-   <p>This is the eQ Survey Runner (or at least it will be)</p>
-   <p>If you want to know how I'm doing, you can <a href="/healthcheck">check my health</a>.</p>
- </body>
-</html>
+{% extends '_base.html' %}
+
+{% block content %}
+
+  <div class="container">
+    <h1>Hello World</h1>
+    <p>This is the eQ Survey Runner (or at least it will be)</p>
+    <p>If you want to know how I'm doing, you can <a href="/healthcheck">check my health</a>.</p>
+    <div class="grid">
+      <div class="grid__col s-4">A</div>
+      <div class="grid__col s-4">B</div>
+      <div class="grid__col s-4">C</div>
+    </div>
+  </div>
+
+{% endblock %}
