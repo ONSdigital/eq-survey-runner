@@ -31,6 +31,7 @@ py.test $@
 display_result $? 2 "Unit tests"
 
 # Run front end tests
+nvm install v5.2.0
 npm config set python python2.7
 npm install
 npm run tests
