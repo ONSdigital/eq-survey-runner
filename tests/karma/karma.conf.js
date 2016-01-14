@@ -1,12 +1,16 @@
 module.exports = function(config) {
+
+  var appDir = 'app/js'
+  var testDir = 'tests/karma'
+
   config.set({
 
     basePath: './../../',
     frameworks: ['browserify', 'mocha', 'chai-sinon', 'chai-as-promised', 'chai'],
 
     files: [
-      'app/js/**/*.js',
-      'tests/karma/spec/**/*.js'
+      appDir + '/**/*.js',
+      testDir + '/spec/**/*.js'
     ],
 
     preprocessors: {
@@ -20,7 +24,13 @@ module.exports = function(config) {
       paths: ['./node_modules', './app/js/']
     },
 
-    reporters: ['spec'],
-    browsers: ['PhantomJS']
+    reporters: ['spec', 'progress'],
+    browsers: ['PhantomJS'],
+
+    // optionally, configure the reporter
+    coverageReporter: {
+      type: 'html',
+      dir: testDir + '/coverage/'
+    }
   })
 }
