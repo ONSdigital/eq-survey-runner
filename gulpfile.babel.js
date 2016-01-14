@@ -3,10 +3,16 @@ import del from 'del'
 import plumber from 'gulp-plumber'
 
 import {paths} from './gulp/paths'
-import {bundle, lint, testScripts} from './gulp/scripts'
+import {bundle, lint} from './gulp/scripts'
+import {tests} from './gulp/tests'
 import {svg, images} from './gulp/images'
 import styles from './gulp/styles'
 import browserSync from './gulp/bs'
+
+// Process, lint, and minify Sass files
+gulp.task('build:styles', () => {
+  styles()
+})
 
 // Process, lint, and minify Sass files
 gulp.task('build:styles', () => {
@@ -29,8 +35,8 @@ gulp.task('clean:test', () => {
 })
 
 // Run unit tests
-gulp.task('test:scripts', () => {
-  testScripts()
+gulp.task('test:scripts', (done) => {
+  tests(done)
 })
 
 // Spin up livereload server and listen for file changes
@@ -45,6 +51,10 @@ gulp.task('listen', () => {
 
 gulp.task('build:scripts', ['clean:dist'], () => {
   bundle()
+})
+
+gulp.task('watch:scripts', ['clean:dist'], () => {
+  bundle(true)
 })
 
 gulp.task('copy:dist', function() {
@@ -92,7 +102,13 @@ gulp.task('default', [
 
 // Compile files and generate docs when something changes
 gulp.task('watch', [
-  'default',
+  'lint:scripts',
+  'clean:dist',
+  'watch:scripts',
+  'build:styles',
+  'build:images',
+  'build:svgs',
+  'copy:dist',
   'listen'
 ])
 

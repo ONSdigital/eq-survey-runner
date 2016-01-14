@@ -8,7 +8,7 @@ import {paths} from './paths'
 
 // Generate SVG sprites
 export function svg() {
-  return gulp.src(paths.svgs.input)
+  gulp.src(paths.svgs.input)
     .pipe(plumber())
     .pipe(tap((file, t) => {
       if (file.isDirectory()) {
@@ -29,7 +29,7 @@ export function svg() {
 }
 
 export function images() {
-  return gulp.src(paths.images.input)
+  gulp.src(paths.images.input)
     .pipe(plumber())
     .pipe(gulp.dest(paths.images.output))
 }

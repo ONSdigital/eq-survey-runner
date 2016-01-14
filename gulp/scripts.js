@@ -3,31 +3,32 @@ import gulp from 'gulp'
 import gutil from 'gulp-util'
 import eslint from 'gulp-eslint'
 import plumber from 'gulp-plumber'
-// import uglify from 'gulp-uglify'
-import karma from 'gulp-karma'
+import uglify from 'gulp-uglify'
 import exorcist from 'exorcist'
 import browserify from 'browserify'
 import watchify from 'watchify'
 import babelify from 'babelify'
 import source from 'vinyl-source-stream'
+import buffer from 'vinyl-buffer'
 
 import {paths, srcPath, distPath} from './paths'
 import browserSync from './bs'
 
-// Input file.
-watchify.args.debug = true
-const bundler = watchify(browserify(`./${srcPath}/js/app.js`, watchify.args))
+const b = browserify(Object.assign(watchify.args, {
+  entries: [`./${srcPath}/js/app.js`],
+  debug: true
+}))
 
-// Babel transform
-bundler.transform(babelify.configure({
-  sourceMapRelative: `./${srcPath}/js`
-}), { presets: ['es2015'] })
-
-// On updates recompile
-bundler.on('update', bundle)
-
-export function bundle() {
-  return bundler.bundle()
+export function bundle(watch) {
+  const bundler = watch ? watchify(b) : b
+  // On updates recompile
+  bundler.on('update', bundle)
+  bundler.on('log', gutil.log)
+  // Babel transform
+  bundler.transform(babelify.configure({
+    sourceMapRelative: `./${srcPath}/js`
+  }), { presets: ['es2015'] })
+  bundler.bundle()
     .on('error', function(err) {
       gutil.log(err.message)
       browserSync.notify('Browserify Error!')
@@ -35,24 +36,15 @@ export function bundle() {
     })
     .pipe(exorcist(`./${distPath}/js/bundle.js.map`))
     .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest(`./${distPath}/js`))
-    .pipe(browserSync.reload({stream: true}))
+    // .pipe(browserSync.reload({stream: true}))
 }
 
 export function lint() {
-  return gulp.src(paths.scripts.input)
+  gulp.src(paths.scripts.input)
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())
-}
-
-export function testScripts() {
-  return gulp.src([paths.test.input].concat([paths.test.spec]))
-    .pipe(plumber())
-    .pipe(karma({
-      configFile: paths.test.karma
-    }))
-    .on('error', (err) => {
-      throw err
-    })
 }

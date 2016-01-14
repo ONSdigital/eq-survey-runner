@@ -33,9 +33,9 @@ export const paths = {
   },
   test: {
     input: srcPath + '/js/**/*.js',
-    karma: 'tests/karma.conf.js',
-    spec: 'tests/spec/**/*.js',
-    coverage: 'tests/coverage/',
-    results: 'tests/results/'
+    karma: 'tests/karma/karma.conf.js',
+    spec: 'tests/karma/spec/**/*.js',
+    coverage: 'tests/karma/coverage/',
+    results: 'tests/karma/results/'
   }
 }

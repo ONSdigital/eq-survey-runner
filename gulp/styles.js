@@ -17,7 +17,7 @@ import {paths} from './paths'
 import browserSync from './bs'
 
 export default function styles() {
-  return gulp.src(paths.styles.input)
+  gulp.src(paths.styles.input)
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sassGlob())
