@@ -1,6 +1,7 @@
 $responsive: true;
 @import "vendor/**/*.scss";
 @import "vars/*.scss";
+@import "eq-sass";
 @import "helpers/*.scss";
 @import "scopes/*.scss";
 @import "objects/*.scss";
