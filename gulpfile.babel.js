@@ -36,7 +36,7 @@ gulp.task('clean:test', () => {
 
 // Run unit tests
 gulp.task('test:scripts', (done) => {
-  tests(done)
+  tests(done, false)
 })
 
 // Spin up livereload server and listen for file changes

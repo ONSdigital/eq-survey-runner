@@ -18,19 +18,36 @@ module.exports = function(config) {
       'tests/karma/spec/**/*.js': ['browserify']
     },
 
+    plugins: [
+      'karma-mocha-reporter',
+      'karma-browserify',
+      'karma-mocha',
+      'karma-chai-sinon',
+      'karma-chai-as-promised',
+      'karma-chai',
+      'karma-phantomjs-launcher'
+    ],
+
     browserify: {
       debug: true,
       transform: ['babelify'],
       paths: ['./node_modules', './app/js/']
     },
 
-    reporters: ['spec', 'progress'],
+    reporters: ['mocha'],
+
     browsers: ['PhantomJS'],
 
-    // optionally, configure the reporter
     coverageReporter: {
       type: 'html',
       dir: testDir + '/coverage/'
-    }
+    },
+
+    mochaReporter: {
+      output: 'full'
+    },
+
+    colors: true,
+    logLevel: config.LOG_INFO
   })
 }
