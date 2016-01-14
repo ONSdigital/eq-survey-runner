@@ -10,10 +10,10 @@ script:
 - ./scripts/run_tests.sh
 
 # Front-end config
-# 
-# language: node_js
-# node_js:
-#   - "0.10"
-# before_script:
-#   - npm install -g gulp
-# script: gulp
+#
+language: node_js
+node_js:
+- "5.2.0"
+
+before_script:
+- npm install -g gulp
