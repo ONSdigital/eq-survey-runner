@@ -16,12 +16,17 @@ Install dependencies using pip
 pip install -r requirements.txt
 ```
 
+If you need to run the tests:
+```
+pip install -r requirements_for_test.txt
+```
+
 Run the server with
 
 ```
-python runner.py
-```
+./scripts/run_app.sh
 
+```
 ---
 
 ### Front-end Toolkit
