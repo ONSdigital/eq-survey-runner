@@ -1,6 +1,7 @@
 // Styles
 import gulp from 'gulp'
 import gutil from 'gulp-util'
+import debug from 'gulp-debug'
 import plumber from 'gulp-plumber'
 import sass from 'gulp-sass'
 import sassGlob from 'gulp-sass-glob'
@@ -21,14 +22,20 @@ export default function styles() {
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sassGlob())
+    .pipe(debug({title: 'CSS:'}))
     .pipe(sass({
       errLogToConsole: true,
       outputStyle: 'expanded',
       sourceComments: false,
+      includePaths: [
+        './node_modules/eq-sass/'
+      ],
       onSuccess: function(msg) {
         gutil.log('Done', gutil.colors.cyan(msg))
       }
-    }).on('error', function(err) {
+    })
+    // .pipe(debug({title: 'CSS:'}))
+    .on('error', function(err) {
       gutil.log(err.message.toString())
       browserSync.notify('Browserify Error!')
       this.emit('end')

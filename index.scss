@@ -1,0 +1,10 @@
+$var: false;
+
+.hide {
+  display: none;
+}
+
+@mixin hide() {
+  display: none;
+  @content;
+}
