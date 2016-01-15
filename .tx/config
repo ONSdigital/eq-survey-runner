@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[eq-survey-runner.master]
+file_filter = app/translations/<lang>/LC_MESSAGES/messages.po
+source_file = app/translations/messages.pot
+source_lang = en
+type = PO
+

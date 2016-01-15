@@ -29,9 +29,6 @@ pip-log.txt
 
 *.log
 
-# Translations
-*.mo
-
 
 # Sphinx
 docs/_build
@@ -61,3 +58,8 @@ tests/coverage
 ._*
 .Spotlight-V100
 .Trashes
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

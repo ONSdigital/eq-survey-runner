@@ -1,0 +1,22 @@
+# intellij
+.idea/
+*.ipr
+*.iml
+*.iws
+
+.DS_Store
+
+# node
+node_modules/
+tests/results
+tests/coverage
+
+## OS X
+._*
+.Spotlight-V100
+.Trashes
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
