@@ -22,6 +22,36 @@ Run the server with
 python runner.py
 ```
 
+---
+
+### Front-end Toolkit
+
+The front-end toolkit uses nodejs, npm and gulp.
+
+Install nodejs `5.4.x`. Make sure npm is installed with `npm`.
+
+Install dependencies with:
+
+```
+npm install
+```
+
+Build the project with
+```
+npm run build
+```
+
+There are a few additional npm tasks:
+
+Command          | Task
+-----------------|----------------------
+`npm run build`  | Build the assets (js, css, img) into `/app/static`
+`npm run dev`    | Build assets and watch for changes. Runs Browsersync.
+`npm run test`   | Runs the test suite through Karma.
+`npm run lint`   | Lints the JS, reporting errors/warnings.
+
+---
+
 ## Deployment with elastic beanstalk
 
 You will need to install the EB CLI tools using PIP.
