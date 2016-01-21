@@ -1,9 +1,22 @@
 import os
 import markdown
 import yaml
-from flask import render_template, render_template_string, session
+from flask import render_template, render_template_string, session, request
 from .. import main
 from application import application
+from app.main import errors
+from app.authentication import jwt_decoder
+
+
+@main.before_request
+def authenticate():
+    try:
+        encrypted_token = request.args.get('token')
+        token = jwt_decoder.decode_token(encrypted_token)
+    except jwt_decoder.NoTokenException as e:
+        return errors.unauthorized(e)
+    except jwt_decoder.InvalidTokenException as e:
+        return errors.forbidden(e)
 
 
 @main.route('/', methods=['GET'])
