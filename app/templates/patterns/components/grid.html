@@ -1,0 +1,105 @@
+<h3 class="ptn-section-subtitle">Grid</h3>
+Using the grid
+
+The grid is written in a 'declarative' style meaning that column breakpoints are declared in the markup. There are six main (default) breakpoints, written in 't-shirt size' notation:
+
+Breakpoint	Screen min width
+xs	300px
+s	500px
+m	740px
+l	980px
+xl	1300px
+xxl	1600px
+Basic usage
+
+This example will give a two column grid on viewports above 740px:
+
+<div class="container">
+  <div class="grid">
+    <div class="grid__col m-6">
+      <p>Left column</p>
+    </div>
+    <div class="grid__col m-6">
+      <p>Right column</p>
+    </div>
+  </div>
+</div>
+Columns (.grid__col) are width: 100% by default with columns being defined at the various breakpoints with [breakpoint]-[columns] notation.
+
+Nesting
+
+Being percentage-based allows easy nesting of columns. In the example below, we can see a grid of two columns, one of which has a sub-grid of another two columns.
+
+<div class="grid">
+  <div class="grid__col s-6">
+    <p>This column is one-half at screen sizes above the small breakpoint. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui.</p>
+  </div>
+  <div class="grid__col s-6">
+    <p>This column is also one-half but has a sub-grid of another two columns of half-width.</p>
+    <div class="grid">
+      <div class="grid__col s-6">
+        <p>Donec id elit non mi porta gravida at eget metus.</p>
+      </div>
+      <div class="grid__col s-6">
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+      </div>
+    </div>
+  </div>
+</div>
+Reversible
+
+A reversed grid allows you change the source order of the markup and still keep a left-to-right layout. As you can see in the example below, the columns appear in the reverse order that they occur in the markup:
+
+<div class="grid  grid--reverse">
+  <div class="grid__col m-4">
+    <p>1st in the DOM</p>
+  </div>
+  <div class="grid__col m-8">
+    <p>2nd in the DOM</p>
+  </div>
+</div>
+Push/Pull
+
+Columns can be pushed or pulled in a particular direction at a specified breakpoint. To reset a push at a subsequent breakpoint, use the nopush feature. The following example shows three columns all pushed to the right by one column at the m breakpoint. At the l breakpoint, the first column has its push removed.
+
+<div class="grid">
+  <div class="grid__col m-3 m-push-3 l-nopush">
+    <p>Column</p>
+  </div>
+  <div class="grid__col m-3 m-push-3">
+    <p>Column</p>
+  </div>
+  <div class="grid__col m-3 m-push-3">
+    <p>Column</p>
+  </div>
+</div>
+Floats
+
+Columns can be collapsed together so that one column will wrap around another—this is useful for maintaing sensible line lengths. In the following example, the text wraps around the image at the m breakpoint and then switches to a two-column layout at the l breakpoint.
+
+Note: To wrap a left column around a right column, the right column must come first in the DOM and the grid--reverse modifier used to switch them around.
+
+<div class="grid grid--reverse">
+  <div class="grid__col m-3 m-fr">
+    <div class="avatar">
+      <img src="http://imgsrc.me/200x200/4EA6B8/f3f3f3" width="200" height="200" class="avatar__img">
+    </div>
+  </div>
+  <div class="grid__col m-12 l-3-4">
+    <div>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor.</div>
+  </div>
+</div>
+Flex
+
+NOTE: This is an experimental feature and may not work consistently across all browsers.
+
+The grid can make use of CSS3 capabilities of modern browsers to solve layout problems that were previously unsolvable with CSS alone. A good example of this the ability to have equal-height columns via Flexbox. Simply add .grid__flex to any children that are required to be full-height.
+
+<div class="grid  grid--flex">
+  <div class="grid__col grid__flex m-6">
+    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+  </div>
+  <div class="grid__col grid__flex m-6">
+    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum.</p>
+  </div>
+</div>

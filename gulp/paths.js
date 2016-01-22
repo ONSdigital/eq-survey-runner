@@ -20,11 +20,11 @@ export const paths = {
     input: srcPath + '/templates/**/*.html'
   },
   svgs: {
-    input: srcPath + '/img/*',
+    input: srcPath + '/img/*.svg',
     output: distPath + '/img/'
   },
   images: {
-    input: srcPath + '/img/*',
+    input: srcPath + '/img/**.{png,jpg,jpeg,gif}',
     output: distPath + '/img/'
   },
   webfonts: {

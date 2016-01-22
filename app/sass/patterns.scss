@@ -1,0 +1,80 @@
+$responsive: true;
+@import "vars/*.scss";
+@import "vendor/**/*.scss";
+@import "eq-sass";
+@import "helpers/*.scss";
+@import "scopes/*.scss";
+@import "objects/*.scss";
+@import "components/*.scss";
+@import "themes/*.scss";
+@import "utilities/*.scss";
+@import "hacks/*.scss";
+
+body {
+  font-family: $font-sans;
+  color: $color-text;
+}
+
+.ptn-header {
+  background: $color-light-grey;
+  padding: 15px 0;
+}
+
+.ptn-title {
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+  &:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: url("#{$static-dir}/img/eq.png") no-repeat left center;
+    width: 33.4px;
+    height: 37.8px;
+    background-size: 100%;
+    margin-right: 10px;
+  }
+}
+
+.ptn-nav {
+  margin: 0;
+  padding: 0;
+}
+
+.ptn-nav-list {
+  margin: 40px 0;
+  padding: 0;
+}
+
+.ptn-nav-item {
+  list-style: none;
+}
+
+.ptn-nav-link {
+  padding: 10px 0;
+  color: $color-text;
+  display: block;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.ptn-section {
+  padding: 20px 0;
+  border-bottom: 1px solid $color-light-grey;
+}
+
+.ptn-section-title {
+  font-size: 32px;
+  // border-bottom: 1px solid $color-light-grey;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  font-weight: 500;
+}
+
+.ptn-section-subtitle {
+  font-size: 26px;
+  font-weight: 500;
+}

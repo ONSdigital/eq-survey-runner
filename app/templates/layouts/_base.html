@@ -1,0 +1,20 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <title>{% block page_title %}{{ _('eQ - Survey Runner') }}{% endblock page_title %}</title>
+    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="apple-touch-icon.png" rel="apple-touch-icon">
+    {% block styles%}
+      <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+    {% endblock styles %}
+    {% endblock head%}
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
+  </body>
+</html>
