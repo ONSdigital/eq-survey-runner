@@ -13,7 +13,7 @@ export const paths = {
     output: distPath + '/js/'
   },
   styles: {
-    input: srcPath + '/sass/**/*.{scss,sass}',
+    input: srcPath + '/styles/**/*.{scss,sass}',
     output: distPath + '/css/'
   },
   templates: {
