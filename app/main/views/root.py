@@ -1,9 +1,9 @@
 import os
 import markdown
+import yaml
 
 from flask import render_template, session
 from .. import main
-import markdown
 
 @main.route('/', methods=['GET'])
 def root():
@@ -15,10 +15,11 @@ def patterns():
     for root, dirs, files in os.walk('app/templates/patterns/components/'):
         for file in files:
             if file.endswith(".md"):
-                f = open(os.path.join(root, file), 'r')
-                sections.append( {
-                  "title": file.replace(".md", " "),
-                  "content": markdown.markdown( f.read() )
-                })
+                with open(os.path.join(root, file), 'r') as f:
+                  front_matter, content = list(yaml.load_all(f))[:2]
+                  sections.append({
+                    "title": front_matter['title'],
+                    "content": markdown.markdown(content)
+                  })
 
     return render_template('patterns/index.html', sections=sections)

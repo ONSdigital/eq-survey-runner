@@ -1,3 +1,7 @@
+---
+title: Typography
+---
+
 <p>Nullam quis risus eget urna mollis ornare vel eu leo. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
 
 <h3 class="ptn-section-subtitle">Headings</h3>

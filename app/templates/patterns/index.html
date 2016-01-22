@@ -8,7 +8,7 @@
 
   <header class="ptn-header">
     <div class="container">
-      <h1 class="ptn-title">eQ Survery Runner Patterns</h1>
+      <h1 class="ptn-title"></h1>
     </div>
   </header>
 
@@ -20,7 +20,7 @@
             <ul class="ptn-nav-list">
               {% for section in sections %}
                 <li class="ptn-nav-item">
-                  <a href="#{{section}}" class="ptn-nav-link">{{section.title|capitalize}}</a>
+                  <a href="#{{section.title|lower}}" class="ptn-nav-link">{{section.title|capitalize}}</a>
                 </li>
               {% endfor %}
             </ul>
@@ -29,7 +29,8 @@
       </div>
       <div class="grid__col m-9">
         {% for section in sections %}
-          <section class="ptn-section" id="{{section}}">
+          <section class="ptn-section" id="{{section.title|lower}}">
+              <h2>{{section.title}}</h2>
               {{section.content|safe}}
           </section>
         {% endfor %}
