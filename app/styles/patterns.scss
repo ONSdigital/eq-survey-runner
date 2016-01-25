@@ -2,6 +2,7 @@ $responsive: true;
 @import "vars/*.scss";
 @import "vendor/**/*.scss";
 @import "eq-sass";
+@import "gfm.scss";
 @import "helpers/*.scss";
 @import "scopes/*.scss";
 @import "objects/*.scss";
@@ -77,4 +78,21 @@ body {
 .ptn-section-subtitle {
   font-size: 26px;
   font-weight: 500;
+}
+
+.ptn-grid {
+  background: lighten($color-light-blue, 20%);
+  padding: $grid-gutters $grid-gutters 0 $grid-gutters;
+  margin-bottom: $grid-gutters;
+}
+
+.ptn-col {
+  background: $color-light-blue;
+  padding: 7px;
+  margin-bottom: $grid-gutters;
+  color: $color-white;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  font-family: monospace;
 }

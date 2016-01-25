@@ -82,6 +82,7 @@
   },
   "dependencies": {
     "eq-sass": "^1.0.1",
+    "gfm.css": "^1.1.1",
     "postcss-pxtorem": "^3.3.1"
   }
 }

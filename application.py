@@ -3,14 +3,13 @@
 import os
 from app import create_app
 from flask.ext.script import Manager, Server
-from flaskext.markdown import Markdown
+
 
 application = create_app(
     os.getenv('SR_ENVIRONMENT') or 'development'
 )
 application.debug = True
 manager = Manager(application)
-Markdown(application, extensions=['py-gfm'])
 port = int(os.environ.get('PORT', 5000))
 manager.add_command("runserver", Server(host='0.0.0.0', port=port))
 

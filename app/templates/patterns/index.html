@@ -30,7 +30,7 @@
       <div class="grid__col m-9">
         {% for section in sections %}
           <section class="ptn-section" id="{{section.title|lower}}">
-            <h2 class="ptn-section-title">{{section.title}}</h2>
+            <h2 class="ptn-section-title">{{section.title|capitalize}}</h2>
             <div class="ptn-section-content">
               {{section.content|safe}}
             </div>
