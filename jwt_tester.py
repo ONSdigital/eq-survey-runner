@@ -41,10 +41,10 @@ class Encoder:
 
       encrypted_text = encryptor.update(padded_data) + encryptor.finalize()
 
-      return base64.b64encode(iv + encrypted_text)
+      return base64.urlsafe_b64encode(iv + encrypted_text)
 
   def decrypt(self, encrypted_token):
-      data = base64.b64decode(encrypted_token)
+      data = base64.urlsafe_b64decode(encrypted_token)
       encryption_iv = data[:16]
 
       cipher = Cipher(algorithms.AES(key), modes.CBC(encryption_iv), backend=backend)
@@ -62,13 +62,14 @@ if __name__ == '__main__':
 
     payload = {'user': 'jimmy'}
     encoded_token = encoder.encode(payload)
-    print ("Encoded Token: " + encoded_token)
+    print ("Encoded Token: " + encoded_token + "\n")
     encrypted_token = encoder.encrypt(encoded_token)
-    #print ("Encrypted Token: " + encrypted_token)
+
+    print ("Encrypted Token: " + encrypted_token + "\n")
 
     decrypted_token = encoder.decrypt(encrypted_token)
 
-    print ("Decrypted Token: " + decrypted_token)
+    print ("Decrypted Token: " + decrypted_token + "\n")
 
     decoded_token = encoder.decode(decrypted_token)
 

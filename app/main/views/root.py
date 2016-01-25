@@ -8,11 +8,25 @@ from app.main import errors
 from app.authentication.jwt_decoder import Decoder, NoTokenException, InvalidTokenException
 
 
-@main.before_request
+# TODO Put this back in
+# @main.before_request
 def authenticate():
     try:
         encrypted_token = request.args.get('token')
-        token = Decoder().decode_token(encrypted_token)
+        print ('Encrypted token ' + encrypted_token)
+        token = Decoder().decrypt_token(encrypted_token)
+        return token
+    except NoTokenException as e:
+        return errors.unauthorized(e)
+    except InvalidTokenException as e:
+        return errors.forbidden(e)
+
+
+def jwt_decode():
+    try:
+        signed_token = request.args.get('token')
+        token = Decoder().decode_jwt_token(signed_token)
+        return token
     except NoTokenException as e:
         return errors.unauthorized(e)
     except InvalidTokenException as e:
@@ -39,3 +53,21 @@ def patterns(pattern='index'):
                         'current': True if (title == pattern) else False
                     })
     return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern_name + '.html', title=pattern)
+
+@main.route('/signed', methods=['GET'])
+def jwt_signed():
+    jwt_decode()
+    return render_template('index.html')
+
+
+@main.route('/encrypted-shared-secret', methods=['GET'])
+def jwt_encrypted_shared_key():
+    authenticate()
+    return render_template('index.html')
+
+
+@main.route('/encrypted-key-exchange', methods=['GET'])
+def jwt_encrypted_key_exchange():
+    # TODO implement Key exchange
+    authenticate()
+    return render_template('index.html')
