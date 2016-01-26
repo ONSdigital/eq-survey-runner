@@ -1,5 +1,3 @@
-{% extends 'layouts/_base.html' %}
-
 {% block styles %}
   <link href="{{ url_for('static', filename='css/patterns.css') }}" rel="stylesheet">
 {% endblock styles %}
@@ -8,7 +6,7 @@
 
   <header class="ptn-header">
     <div class="container">
-      <h1 class="ptn-title"></h1>
+      <a href="/patterns/"><h1 class="ptn-title"></h1></a>
     </div>
   </header>
 
@@ -20,7 +18,7 @@
             <ul class="ptn-nav-list">
               {% for section in sections %}
                 <li class="ptn-nav-item">
-                  <a href="#{{section.title|lower}}" class="ptn-nav-link">{{section.title|capitalize}}</a>
+                  <a href="/patterns/{{section.title}}" class="ptn-nav-link">{{section.title|replace('-', ' ')|capitalize}}</a>
                 </li>
               {% endfor %}
             </ul>
@@ -28,14 +26,7 @@
         </div>
       </div>
       <div class="grid__col m-10">
-        {% for section in sections %}
-          <section class="ptn-section" id="{{section.title|lower}}">
-            <h2 class="ptn-section-title">{{section.title|capitalize}}</h2>
-            <div class="ptn-section-content">
-              {{section.content|safe}}
-            </div>
-          </section>
-        {% endfor %}
+        {% include pattern_include %}
       </div>
     </div>
   </div>
