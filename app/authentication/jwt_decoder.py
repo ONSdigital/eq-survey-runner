@@ -13,7 +13,7 @@ class Decoder:
     self.backend = default_backend()
     self.secret = 'sharedsecret1999'
 
-    with open("public.pem", "r") as key_file:
+    with open("rrm-public.pem", "r") as key_file:
       self.key = serialization.load_pem_public_key(
         key_file.read(),
         backend=default_backend()

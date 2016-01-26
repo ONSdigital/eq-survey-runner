@@ -10,7 +10,8 @@ import base64
 
 backend = default_backend()
 
-class Encoder:
+
+class Encoder (object):
   def __init__(self):
     with open("rrm-private.pem", "r") as key_file:
       self.rrm_privatekey = serialization.load_pem_private_key(
@@ -33,19 +34,16 @@ class Encoder:
     return jwt.encode(payload, self.rrm_privatekey, algorithm="RS256")
 
   def encrypt(self, text):
-      padder = padding.PKCS7(128).padder()
-      padded_data = padder.update(text) + padder.finalize()
-
       cipher = Cipher(algorithms.AES(self.cek), modes.GCM(self.iv), backend=backend)
       encryptor = cipher.encryptor()
 
       encryptor.authenticate_additional_data(self._get_additional_authenticated_data())
 
-      ciphertext = encryptor.update(padded_data) + encryptor.finalize()
+      ciphertext = encryptor.update(text) + encryptor.finalize()
       tag = encryptor.tag
 
-      encoded_ciphertext = base64.urlsafe_b64encode(ciphertext)
-      encoded_tag = base64.urlsafe_b64encode(tag)
+      encoded_ciphertext =  self._base_64_encode(ciphertext)
+      encoded_tag = self._base_64_encode(tag)
 
       # assemble result
       jwe = self._jwe_protected_header() + "." + self._encrypted_key() + "." + self._encode_iv() + "." + encoded_ciphertext + "." + encoded_tag
@@ -53,7 +51,7 @@ class Encoder:
       return jwe
 
   def _jwe_protected_header(self):
-        return base64.urlsafe_b64encode(unicode('{"alg":"RSA-OAEP","enc":"A256GCM"}', "utf-8"))
+        return  self._base_64_encode(unicode('{"alg":"RSA-OAEP","enc":"A256GCM"}', "utf-8"))
 
   def _encrypted_key(self):
         # initially encrypt using a shared secret, though this needs to be the survey runners public key eventually
@@ -65,16 +63,21 @@ class Encoder:
             label=None
           )
         )
-        return base64.urlsafe_b64encode(ciphertext)
+        return self._base_64_encode(ciphertext)
 
   def _encode_iv(self):
-        return base64.urlsafe_b64encode(self.iv)
+        return self._base_64_encode(self.iv)
 
   def _get_additional_authenticated_data(self):
         return str(self._jwe_protected_header())
 
+  def _base_64_encode(self, text):
+        # strip the trailing = as they are padding to make the result a multiple of 4
+        # the RFC does the same, as do other base64 libraries so this is a safe operation
+        return base64.urlsafe_b64encode(text).strip("=")
 
-class Decoder:
+
+class Decoder (object):
     def __init__(self):
         with open("rrm-public.pem", "r") as key_file:
             self.rrm_publickey = serialization.load_pem_public_key(
@@ -100,6 +103,7 @@ class Decoder:
 
         decrypted_key = self._decrypt_key(encrypted_key)
         iv = self._base64_decode(encoded_iv)
+        print("Encoded tag " + encoded_tag)
         tag = self._base64_decode(encoded_tag)
         cipher_text = self._base64_decode(encoded_ciphertext)
 
@@ -118,6 +122,12 @@ class Decoder:
         return key
 
     def _base64_decode(self, text):
+        # if the text is not a multiple of 4 pad with trailing =
+        # some base64 libraries don't pad data but Python is strict
+        # and will throw a incorrect padding error if we don't do this
+        if len(text) % 4 != 0:
+            while len(text) % 4 != 0:
+                text += "="
         return base64.urlsafe_b64decode(text)
 
     def _decrypt_ciphertext(self, cipher_text, iv, key, tag, jwe_protected_header):
@@ -125,11 +135,7 @@ class Decoder:
         decryptor = cipher.decryptor()
         decryptor.authenticate_additional_data(jwe_protected_header)
         decrypted_token = decryptor.update(cipher_text) + decryptor.finalize()
-
-        unpadder = padding.PKCS7(128).unpadder()
-        unpadded_data = unpadder.update(decrypted_token) + unpadder.finalize()
-
-        return unpadded_data
+        return decrypted_token
 
     def decode(self, token):
         token = jwt.decode(token, self.rrm_publickey)
@@ -139,19 +145,30 @@ class Decoder:
 if __name__ == '__main__':
 
     encoder = Encoder()
-    print ("Encoded JWE Header " + encoder._jwe_protected_header())
+    print("Encoded JWE Header " + encoder._jwe_protected_header())
 
     payload = {'user': 'jimmy'}
     encoded_token = encoder.encode(payload)
-    print ("Encoded Token: " + encoded_token + "\n")
+    print("Encoded Token: " + encoded_token + "\n")
 
     encrypted_token = encoder.encrypt(encoded_token)
-    print ("Encrypted Token: " + encrypted_token + "\n")
+    print("Encrypted Token: " + encrypted_token + "\n")
 
     decoder = Decoder()
     decrypted_token = decoder.decrypt(encrypted_token)
-    print ("Decrypted Token: " + decrypted_token + "\n")
+    print("Decrypted Token: " + decrypted_token + "\n")
 
     decoded_token = decoder.decode(decrypted_token)
-    print ("Decoded token: ", decoded_token)
+    print("Decoded token: ", decoded_token)
 
+    with open("jimmy.jwt", "r") as token_file:
+        encrypted_by_java = token_file.read().replace("\n", "")
+
+    print("Token file " + encrypted_by_java + "\n")
+
+    decoder = Decoder()
+    decrypted_java_token = decoder.decrypt(encrypted_by_java)
+    print ("Decrypted Token: " + decrypted_java_token + "\n")
+
+    decoded_java_token = decoder.decode(decrypted_java_token)
+    print ("Decoded token: ", decoded_java_token)

@@ -6,7 +6,7 @@ from .. import main
 from application import application
 from app.main import errors
 from app.authentication.jwt_decoder import Decoder, NoTokenException, InvalidTokenException
-
+import jwt
 
 # TODO Put this back in
 # @main.before_request
@@ -37,6 +37,9 @@ def jwt_decode():
 def root():
     return render_template('index.html')
 
+@main.route('/jwt', methods=['GET'])
+    # not signed jwt
+    return render_template('index.html')
 
 @main.route('/patterns/')
 @main.route('/patterns/<pattern>')
@@ -57,12 +60,6 @@ def patterns(pattern='index'):
 @main.route('/signed', methods=['GET'])
 def jwt_signed():
     jwt_decode()
-    return render_template('index.html')
-
-
-@main.route('/encrypted-shared-secret', methods=['GET'])
-def jwt_encrypted_shared_key():
-    authenticate()
     return render_template('index.html')
 
 
