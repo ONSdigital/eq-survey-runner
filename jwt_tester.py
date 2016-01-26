@@ -13,14 +13,14 @@ backend = default_backend()
 
 class Encoder (object):
   def __init__(self):
-    with open("rrm-private.pem", "r") as key_file:
+    with open("rrm-private.pem", "rb") as key_file:
       self.rrm_privatekey = serialization.load_pem_private_key(
         key_file.read(),
         password='digitaleq',
         backend=backend
       )
 
-    with open("sr-public.pem", "r") as key_file:
+    with open("sr-public.pem", "rb") as key_file:
       self.sr_publickey = serialization.load_pem_public_key(
         key_file.read(),
         backend=default_backend()
@@ -51,7 +51,7 @@ class Encoder (object):
       return jwe
 
   def _jwe_protected_header(self):
-        return  self._base_64_encode(unicode('{"alg":"RSA-OAEP","enc":"A256GCM"}', "utf-8"))
+        return  self._base_64_encode('{"alg":"RSA-OAEP","enc":"A256GCM"}')
 
   def _encrypted_key(self):
         # initially encrypt using a shared secret, though this needs to be the survey runners public key eventually
@@ -79,12 +79,12 @@ class Encoder (object):
 
 class Decoder (object):
     def __init__(self):
-        with open("rrm-public.pem", "r") as key_file:
+        with open("rrm-public.pem", "rb") as key_file:
             self.rrm_publickey = serialization.load_pem_public_key(
               key_file.read(),
               backend=default_backend()
             )
-        with open("sr-private.pem", "r") as key_file:
+        with open("sr-private.pem", "rb") as key_file:
             self.sr_privatekey = serialization.load_pem_private_key(
               key_file.read(),
               password='digitaleq',
