@@ -27,4 +27,4 @@ def patterns(pattern = "index"):
     else:
       template = 'patterns/components/' + pattern + '.html'
 
-    return render_template('patterns/index.html', sections=sections, pattern_include=template)
+    return render_template('patterns/index.html', sections=sections, pattern_include=template, title=pattern)
