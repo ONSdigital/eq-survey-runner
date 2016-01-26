@@ -1,10 +1,13 @@
 $responsive: true;
 @import "vars/*.scss";
+
+$grid-max-width: 1400px;
+
 @import "vendor/**/*.scss";
 @import "eq-sass";
 @import "gfm.scss";
 @import "helpers/*.scss";
-@import "scopes/*.scss";
+@import "base/*.scss";
 @import "objects/*.scss";
 @import "components/*.scss";
 @import "themes/*.scss";
@@ -81,18 +84,17 @@ body {
 }
 
 .ptn-grid {
-  background: lighten($color-light-blue, 20%);
+  background: $color-blue-40;
   padding: $grid-gutters $grid-gutters 0 $grid-gutters;
   margin-bottom: $grid-gutters;
 }
 
 .ptn-col {
-  background: $color-light-blue;
+  background: $color-blue-70;
   padding: 7px;
   margin-bottom: $grid-gutters;
   color: $color-white;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
-  font-family: monospace;
 }

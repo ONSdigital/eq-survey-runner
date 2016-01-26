@@ -16,10 +16,9 @@ def patterns():
         for file in files:
             if file.endswith(".html"):
               with open(os.path.join(root, file), 'r') as f:
-                front_matter, content = list(yaml.load_all(f))[:2]
                 sections.append({
-                  "title": front_matter['title'],
-                  "content": render_template_string(content)
+                  "title": file.replace('.html', ''),
+                  "content": render_template_string(f.read())
                 })
 
     return render_template('patterns/index.html', sections=sections)

@@ -1,9 +1,3 @@
----
-title: Grid
----
-
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
 {% macro grid(max) -%}
 <div class="ptn-grid">
   <div class="grid">
@@ -20,25 +14,136 @@ Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
   <pre>{{text}}</pre>
 {%- endmacro -%}
 
-<p>Our responsive grid system is comprised of twelve columns with 20px gutters, constrained within a 1200px container.</p>
-<h3>Grid Columns</h3>
+<p>Our responsive grid system is comprised of twelve columns fluid with fixed 20px gutters, constrained within a 1200px container.</p>
+<h3>Columns</h3>
 
-{% for j in [1, 2, 3, 4, 12] %}
+{% for j in [1, 2, 3, 4, 6] %}
   {{grid(j)}}
 {% endfor %}
 
 <h3>Markup</h3>
 
-The grid is constrained within a <code>.container</code> which gives the layout a maximum width.
+<p>
+  The grid is constrained within a <code>.container</code> which gives the layout a maximum width. The grid itself represented by a <code>.grid</code>, with columns as a <code>.grid__col</code>. The column widths are expressed in terms of x of 12, prefixed by a breakpoint to allow different layouts at varying screen sizes. The breakpoints are "mobile first" meaning that they will be full-width by default. The following example demonstrates a layout which has two columns on the 'm' breakpoint and above.
+</p>
 
 {% filter markdown %}
 ```html
 <div class="container">
   <div class="grid">
     <div class="grid__col m-6">
-      This will be 6 columns wide
+      <p>This will be 6 columns wide.</p>
+    </div>
+    <div class="grid__col m-6">
+      <p>This will be 6 columns wide.</p>
     </div>
   </div>
 </div>
 ```
+{% endfilter %}
+
+<h3>Breakpoints</h3>
+
+<p>These are a set of pre-configured breakpoints used by the grid.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Breakpoint</th>
+      <th>Screen min width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>xs</code>
+      </td>
+      <td>300px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>s</code>
+      </td>
+      <td>500px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>m</code>
+      </td>
+      <td>740px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>l</code>
+      </td>
+      <td>980px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>xl</code>
+      </td>
+      <td>1300px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>xxl</code>
+      </td>
+      <td>1600px</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Nesting</h3>
+
+<p>Grid can be nested indefinitely, with no extra markup or classes required.</p>
+
+<div class="ptn-grid">
+  <div class="grid">
+    <div class="grid__col m-3">
+      <div class="ptn-col">
+        <p>
+          This column is 3 cols wide.
+        </p>
+      </div>
+    </div>
+    <div class="grid__col m-9">
+      <div class="ptn-col">
+        <p>This is a parent column, 9 wide.</p>
+        <div class="ptn-grid">
+          <div class="grid">
+            <div class="grid__col m-6">
+              <div class="ptn-col">This will be 6 columns wide.</div>
+            </div>
+            <div class="grid__col m-6">
+              <div class="ptn-col">This will be 6 columns wide.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% filter markdown %}
+
+```html
+<div class="grid">
+  <div class="grid__col m-3">
+    <p>This column is 3 cols wide.</p>
+  </div>
+  <div class="grid__col m-9">
+    <p>This is a parent column, 9 wide.</p>
+    <div class="grid">
+      <div class="grid__col m-6">
+        This will be 6 columns wide.
+      </div>
+      <div class="grid__col m-6">
+        This will be 6 columns wide.
+      </div>
+    </div>
+  </div>
+</div>
+```
+
 {% endfilter %}
