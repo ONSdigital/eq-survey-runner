@@ -8,7 +8,13 @@ from app.main import errors
 from app.authentication.jwt_decoder import Decoder, NoTokenException, InvalidTokenException
 
 
-decoder = Decoder()
+with open("rrm-public.pem", "rb") as public_key_file:
+    rmm_public_key = public_key_file.read()
+
+with open("sr-private.pem", "rb") as private_key_file:
+    sr_private_key = private_key_file.read()
+
+decoder = Decoder(rmm_public_key, sr_private_key, "digitaleq")
 
 
 # TODO Put this back in
@@ -17,7 +23,7 @@ def jwt_decrypt():
     try:
         encrypted_token = request.args.get('token')
         print('Encrypted token ' + encrypted_token)
-        token = decoder.decrypt_token(encrypted_token)
+        token = decoder.decrypt_jwt_token(encrypted_token)
         print(token)
         return render_template('index.html')
     except NoTokenException as e:

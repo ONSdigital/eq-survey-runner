@@ -11,20 +11,16 @@ import jwt
 
 
 class Decoder (object):
-    def __init__(self):
-        self.backend = default_backend()
-        with open("rrm-public.pem", "rb") as key_file:
-            self.rrm_public_key = serialization.load_pem_public_key(
-                key_file.read(),
-                backend=self.backend
-            )
-
-        with open("sr-private.pem", "rb") as key_file:
-            self.sr_private_key = serialization.load_pem_private_key(
-                key_file.read(),
-                password=b'digitaleq',
-                backend=self.backend
-            )
+    def __init__(self, rrm_public_key, sr_private_key, sr_private_key_password=None):
+        self.rrm_public_key = serialization.load_pem_public_key(
+                    rrm_public_key,
+                    backend=default_backend()
+        )
+        self.sr_private_key = serialization.load_pem_private_key(
+                    sr_private_key,
+                    password=sr_private_key_password.encode(),
+                    backend=default_backend()
+        )
 
     def decode_jwt_token(self, token):
         try:
@@ -49,23 +45,29 @@ class Decoder (object):
         except jwt.DecodeError as e:
             raise InvalidTokenException(repr(e))
 
-    def decrypt_token(self, token):
-        tokens = token.split('.')
-        if len(tokens) != 5:
-            raise Exception
-        jwe_protected_header = tokens[0]
-        encrypted_key = tokens[1]
-        encoded_iv = tokens[2]
-        encoded_cipher_text = tokens[3]
-        encoded_tag = tokens[4]
+    def decrypt_jwt_token(self, token):
+        try:
+            if token:
+                tokens = token.split('.')
+                if len(tokens) != 5:
+                    raise InvalidTokenException("Incorrect size")
+                jwe_protected_header = tokens[0]
+                encrypted_key = tokens[1]
+                encoded_iv = tokens[2]
+                encoded_cipher_text = tokens[3]
+                encoded_tag = tokens[4]
 
-        decrypted_key = self._decrypt_key(encrypted_key)
-        iv = self._base64_decode(encoded_iv)
-        tag = self._base64_decode(encoded_tag)
-        cipher_text = self._base64_decode(encoded_cipher_text)
+                decrypted_key = self._decrypt_key(encrypted_key)
+                iv = self._base64_decode(encoded_iv)
+                tag = self._base64_decode(encoded_tag)
+                cipher_text = self._base64_decode(encoded_cipher_text)
 
-        signed_token = self._decrypt_cipher_text(cipher_text, iv, decrypted_key, tag, jwe_protected_header)
-        return self.decode_signed_jwt_token(signed_token)
+                signed_token = self._decrypt_cipher_text(cipher_text, iv, decrypted_key, tag, jwe_protected_header)
+                return self.decode_signed_jwt_token(signed_token)
+            else:
+                raise NoTokenException("JWT Missing")
+        except jwt.DecodeError as e:
+            raise InvalidTokenException(repr(e))
 
     def _decrypt_key(self, encrypted_key):
         decoded_key = self._base64_decode(encrypted_key)
@@ -73,7 +75,7 @@ class Decoder (object):
         return key
 
     def _decrypt_cipher_text(self, cipher_text, iv, key, tag, jwe_protected_header):
-        cipher = Cipher(algorithms.AES(key), modes.GCM(iv, tag), backend=self.backend)
+        cipher = Cipher(algorithms.AES(key), modes.GCM(iv, tag), backend=default_backend())
         decryptor = cipher.decryptor()
         decryptor.authenticate_additional_data(jwe_protected_header.encode())
         decrypted_token = decryptor.update(cipher_text) + decryptor.finalize()
