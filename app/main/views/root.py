@@ -8,14 +8,30 @@ from app.main import errors
 from app.authentication.jwt_decoder import Decoder, NoTokenException, InvalidTokenException
 
 
+decoder = Decoder()
+
+
 # TODO Put this back in
 # @main.before_request
-def authenticate():
+def jwt_decrypt():
     try:
         encrypted_token = request.args.get('token')
         print('Encrypted token ' + encrypted_token)
-        token = Decoder().decrypt_token(encrypted_token)
-        return token
+        token = decoder.decrypt_token(encrypted_token)
+        print(token)
+        return render_template('index.html')
+    except NoTokenException as e:
+        return errors.unauthorized(e)
+    except InvalidTokenException as e:
+        return errors.forbidden(e)
+
+
+def jwt_decode_signed():
+    try:
+        signed_token = request.args.get('token')
+        token = decoder.decode_signed_jwt_token(signed_token)
+        print(token)
+        return render_template('index.html')
     except NoTokenException as e:
         return errors.unauthorized(e)
     except InvalidTokenException as e:
@@ -24,9 +40,10 @@ def authenticate():
 
 def jwt_decode():
     try:
-        signed_token = request.args.get('token')
-        token = Decoder().decode_jwt_token(signed_token)
-        return token
+        token = request.args.get('token')
+        token = decoder.decode_jwt_token(token)
+        print(token)
+        return render_template('index.html')
     except NoTokenException as e:
         return errors.unauthorized(e)
     except InvalidTokenException as e:
@@ -40,22 +57,17 @@ def root():
 
 @main.route('/jwt', methods=['GET'])
 def jwt():
-    # TODO not signed jwt
-    return render_template('index.html')
+    return jwt_decode()
 
 
-@main.route('/signed', methods=['GET'])
+@main.route('/jwt_signed', methods=['GET'])
 def jwt_signed():
-    jwt_decode()
-    return render_template('index.html')
+    return jwt_decode_signed()
 
 
-@main.route('/encrypted-key-exchange', methods=['GET'])
+@main.route('/jwt_encrypted', methods=['GET'])
 def jwt_encrypted_key_exchange():
-    # TODO implement Key exchange
-    authenticate()
-    return render_template('index.html')
-
+    return jwt_decrypt()
 
 @main.route('/patterns/')
 @main.route('/patterns/<pattern>')

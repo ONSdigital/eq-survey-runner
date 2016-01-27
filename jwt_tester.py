@@ -76,7 +76,6 @@ class Decoder (object):
                 key_file.read(),
                 backend=default_backend()
             )
-            key_file.close()
 
         with open("sr-private.pem", "rb") as key_file:
             self.sr_privatekey = serialization.load_pem_private_key(
@@ -84,7 +83,6 @@ class Decoder (object):
                 password=b'digitaleq',
                 backend=backend
             )
-            key_file.close()
 
     def decrypt(self, token):
         tokens = token.decode().split('.')
