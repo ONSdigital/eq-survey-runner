@@ -1,0 +1,24 @@
+$color-white: #ffffff;
+$color-black: #2B2B2B;
+$color-grey: #b2b2b3;
+
+
+// brand
+
+$color-blue: #003d59;
+$color-green: #a8bd3a;
+$color-primary: $color-blue;
+$color-secondary: $color-green;
+
+$color-light-blue: tint($color-blue, 40);
+$color-dark-grey: #4f4f51;
+$color-light-grey: #F4F4F4;
+
+// assignment
+
+$color-selection: $color-secondary;
+$color-selection-text: $color-black;
+$color-text: $color-black;
+$color-links: $color-blue;
+$color-borders: $color-black;
+$color-placeholder: $color-dark-grey;

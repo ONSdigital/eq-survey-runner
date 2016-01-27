@@ -1,0 +1,32 @@
+@function ems($pxval, $base: $base-font-size) {
+	@return em($pxval, $base);
+}
+
+@function strip-unit($num) {
+	@return $num / ($num * 0 + 1);
+}
+
+/// Slightly lighten a color
+/// @access public
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// http://oddbird.net/2013/10/19/map-merge/
+// a map-set function (not included with Sass)
+@function map-set($map, $key, $value) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
+}

@@ -6,6 +6,7 @@ from flask import Flask, render_template
 from config import configs
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck, EnvironmentDump
+from flaskext.markdown import Markdown
 
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
@@ -19,6 +20,7 @@ def create_app(config_name):
     application.babel.localeselector(get_locale)
     application.jinja_env.add_extension('jinja2.ext.i18n')
     application.envdump = EnvironmentDump(application, '/environment')
+    application.markdown = Markdown(application, extensions=['gfm'])
 
     from .main import main as main_blueprint
     application.register_blueprint(main_blueprint)

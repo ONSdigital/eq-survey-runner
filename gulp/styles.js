@@ -28,7 +28,8 @@ export default function styles() {
       outputStyle: 'expanded',
       sourceComments: false,
       includePaths: [
-        './node_modules/eq-sass/'
+        './node_modules/eq-sass/',
+        './node_modules/gfm.css/source/'
       ],
       onSuccess: function(msg) {
         gutil.log('Done', gutil.colors.cyan(msg))
@@ -59,6 +60,7 @@ export default function styles() {
       suffix: '.min'
     }))
     .pipe(minify({
+      calc: false,
       discardComments: {
         removeAll: true
       }

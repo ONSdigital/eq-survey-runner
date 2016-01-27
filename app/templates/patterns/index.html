@@ -1,0 +1,37 @@
+
+{% block styles %}
+  <link href="{{ url_for('static', filename='css/patterns.css') }}" rel="stylesheet">
+{% endblock styles %}
+
+{% block content %}
+
+  <header class="ptn-header">
+    <div class="container">
+      <a href="/patterns/"><h1 class="ptn-title"></h1></a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <div class="grid__col m-3">
+        <div class="ptn-sidebar">
+          <nav class="ptn-nav">
+            <ul class="ptn-nav-list">
+              {% for section in sections %}
+                <li class="ptn-nav-item {{ 'is-active' if section.current }}">
+                  <a href="/patterns/{{section.title}}" class="ptn-nav-link">{{section.title|replace('-', ' ')|title}}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="grid__col m-9">
+        <div class="ptn-section">
+          <h1 class="ptn-section-title">{{title|replace('-', ' ')|title}}</h1>
+          {% include pattern_include %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

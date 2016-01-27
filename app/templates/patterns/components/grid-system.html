@@ -1,0 +1,187 @@
+{% macro grid(max) -%}
+<div class="ptn-grid">
+  <div class="grid">
+    {% for i in range(1, (max + 1)) %}
+      <div class="grid__col m-{{(12/max)|round|int}}">
+        <div class="ptn-col">1 of {{max}}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{%- endmacro %}
+
+{%- macro code(text) -%}
+  <pre>{{text}}</pre>
+{%- endmacro -%}
+
+<p>Our responsive grid system is comprised of twelve columns fluid with fixed 20px gutters, constrained within a 1200px container.</p>
+<h3>Columns</h3>
+
+{% for j in [1, 2, 3, 4, 6] %}
+  {{grid(j)}}
+{% endfor %}
+
+<h3>Markup</h3>
+
+<p>
+  The grid is constrained within a <code>.container</code> which gives the layout a maximum width. The grid itself represented by a <code>.grid</code>, with columns as a <code>.grid__col</code>. The column widths are expressed in terms of x of 12, prefixed by a breakpoint to allow different layouts at varying screen sizes. The breakpoints are "mobile first" meaning that they will be full-width by default. The following example demonstrates a layout which has two columns on the 'm' breakpoint and above.
+</p>
+
+{% filter markdown %}
+```html
+<div class="container">
+  <div class="grid">
+    <div class="grid__col m-6">
+      <p>This will be 6 columns wide.</p>
+    </div>
+    <div class="grid__col m-6">
+      <p>This will be 6 columns wide.</p>
+    </div>
+  </div>
+</div>
+```
+{% endfilter %}
+
+<h3>Breakpoints</h3>
+
+<p>These are a set of pre-configured breakpoints used by the grid.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Breakpoint</th>
+      <th>Screen min width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>xs</code>
+      </td>
+      <td>300px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>s</code>
+      </td>
+      <td>500px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>m</code>
+      </td>
+      <td>740px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>l</code>
+      </td>
+      <td>980px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>xl</code>
+      </td>
+      <td>1300px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>xxl</code>
+      </td>
+      <td>1600px</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Nesting</h3>
+
+<p>Grid can be nested indefinitely, with no extra markup or classes required.</p>
+
+<div class="ptn-grid">
+  <div class="grid">
+    <div class="grid__col m-3">
+      <div class="ptn-col">
+        <p>
+          This column is 3 cols wide.
+        </p>
+      </div>
+    </div>
+    <div class="grid__col m-9">
+      <div class="ptn-col">
+        <p>This is a parent column, 9 wide.</p>
+        <div class="ptn-grid">
+          <div class="grid">
+            <div class="grid__col m-6">
+              <div class="ptn-col">This will be 6 columns wide.</div>
+            </div>
+            <div class="grid__col m-6">
+              <div class="ptn-col">This will be 6 columns wide.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% filter markdown %}
+
+```html
+<div class="grid">
+  <div class="grid__col m-3">
+    <p>This column is 3 cols wide.</p>
+  </div>
+  <div class="grid__col m-9">
+    <p>This is a parent column, 9 wide.</p>
+    <div class="grid">
+      <div class="grid__col m-6">
+        This will be 6 columns wide.
+      </div>
+      <div class="grid__col m-6">
+        This will be 6 columns wide.
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+{% endfilter %}
+
+<h3>Reversible</h3>
+<p>
+  A reversed grid allows you change the source order of the markup and still keep a left-to-right layout. As you can see in the example below, the columns appear in the reverse order that they occur in the markup:
+</p>
+
+{% filter markdown %}
+
+```html
+<div class="grid  grid--reverse">
+  <div class="grid__col m-4">
+    <p>1st in the DOM</p>
+  </div>
+  <div class="grid__col m-8">
+    <p>2nd in the DOM</p>
+  </div>
+</div>
+```
+
+{% endfilter %}
+
+<h3>Push and Pull</h3>
+<p>Columns can be pushed or pulled in a particular direction at a specified breakpoint. To reset a push at a subsequent breakpoint, use the nopush feature. The following example shows three columns all pushed to the right by one column at the m breakpoint. At the l breakpoint, the first column has its push removed.</p>
+
+{% filter markdown %}
+
+```html
+<div class="grid  grid--reverse">
+  <div class="grid__col m-4">
+    <p>1st in the DOM</p>
+  </div>
+  <div class="grid__col m-8">
+    <p>2nd in the DOM</p>
+  </div>
+</div>
+```
+
+{% endfilter %}

@@ -4,12 +4,15 @@
     {% block head %}
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
-    <title>{% block page_title %}{{ _('eQ - Survey Runner') }}{% endblock %}</title>
+    <title>{% block page_title %}{{ _('eQ - Survey Runner') }}{% endblock page_title %}</title>
     <meta content="" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link href="apple-touch-icon.png" rel="apple-touch-icon">
-    <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
-    {% endblock %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    {% block styles%}
+      <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+    {% endblock styles %}
+    {% endblock head%}
   </head>
   <body>
     {% block content %}{% endblock %}

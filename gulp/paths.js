@@ -13,18 +13,18 @@ export const paths = {
     output: distPath + '/js/'
   },
   styles: {
-    input: srcPath + '/sass/**/*.{scss,sass}',
+    input: srcPath + '/styles/**/*.{scss,sass}',
     output: distPath + '/css/'
   },
   templates: {
     input: srcPath + '/templates/**/*.html'
   },
   svgs: {
-    input: srcPath + '/img/*',
+    input: srcPath + '/img/*.svg',
     output: distPath + '/img/'
   },
   images: {
-    input: srcPath + '/img/*',
+    input: srcPath + '/img/**.{png,jpg,jpeg,gif,ico}',
     output: distPath + '/img/'
   },
   webfonts: {
