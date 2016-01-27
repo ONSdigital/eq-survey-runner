@@ -147,3 +147,41 @@
 ```
 
 {% endfilter %}
+
+<h3>Reversible</h3>
+<p>
+  A reversed grid allows you change the source order of the markup and still keep a left-to-right layout. As you can see in the example below, the columns appear in the reverse order that they occur in the markup:
+</p>
+
+{% filter markdown %}
+
+```html
+<div class="grid  grid--reverse">
+  <div class="grid__col m-4">
+    <p>1st in the DOM</p>
+  </div>
+  <div class="grid__col m-8">
+    <p>2nd in the DOM</p>
+  </div>
+</div>
+```
+
+{% endfilter %}
+
+<h3>Push and Pull</h3>
+<p>Columns can be pushed or pulled in a particular direction at a specified breakpoint. To reset a push at a subsequent breakpoint, use the nopush feature. The following example shows three columns all pushed to the right by one column at the m breakpoint. At the l breakpoint, the first column has its push removed.</p>
+
+{% filter markdown %}
+
+```html
+<div class="grid  grid--reverse">
+  <div class="grid__col m-4">
+    <p>1st in the DOM</p>
+  </div>
+  <div class="grid__col m-8">
+    <p>2nd in the DOM</p>
+  </div>
+</div>
+```
+
+{% endfilter %}

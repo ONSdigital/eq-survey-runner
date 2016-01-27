@@ -81,7 +81,7 @@
     "watchify": "~3.7.0"
   },
   "dependencies": {
-    "eq-sass": "^1.0.1",
+    "eq-sass": "^1.0.7",
     "gfm.css": "^1.1.1",
     "postcss-pxtorem": "^3.3.1"
   }

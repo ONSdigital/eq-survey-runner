@@ -1,45 +1,16 @@
-//
-.u-blue { color: $color-blue; }
-.u-blue-90 { color: $color-blue-90; }
-.u-blue-80 { color: $color-blue-80; }
-.u-blue-70 { color: $color-blue-70; }
-.u-blue-60 { color: $color-blue-60; }
-.u-blue-50 { color: $color-blue-50; }
-.u-blue-40 { color: $color-blue-40; }
-.u-blue-30 { color: $color-blue-30; }
-.u-blue-20 { color: $color-blue-20; }
-.u-blue-10 { color: $color-blue-10; }
-
-.u-green { color: $color-green; }
-.u-green-90 { color: $color-green-90; }
-.u-green-80 { color: $color-green-80; }
-.u-green-70 { color: $color-green-70; }
-.u-green-60 { color: $color-green-60; }
-.u-green-50 { color: $color-green-50; }
-.u-green-40 { color: $color-green-40; }
-.u-green-30 { color: $color-green-30; }
-.u-green-20 { color: $color-green-20; }
-.u-green-10 { color: $color-green-10; }
-
-
-.u-bg-blue { background-color: $color-blue; }
-.u-bg-blue-90 { background-color: $color-blue-90; }
-.u-bg-blue-80 { background-color: $color-blue-80; }
-.u-bg-blue-70 { background-color: $color-blue-70; }
-.u-bg-blue-60 { background-color: $color-blue-60; }
-.u-bg-blue-50 { background-color: $color-blue-50; }
-.u-bg-blue-40 { background-color: $color-blue-40; }
-.u-bg-blue-30 { background-color: $color-blue-30; }
-.u-bg-blue-20 { background-color: $color-blue-20; }
-.u-bg-blue-10 { background-color: $color-blue-10; }
-
-.u-bg-green { background-color: $color-green; }
-.u-bg-green-90 { background-color: $color-green-90; }
-.u-bg-green-80 { background-color: $color-green-80; }
-.u-bg-green-70 { background-color: $color-green-70; }
-.u-bg-green-60 { background-color: $color-green-60; }
-.u-bg-green-50 { background-color: $color-green-50; }
-.u-bg-green-40 { background-color: $color-green-40; }
-.u-bg-green-30 { background-color: $color-green-30; }
-.u-bg-green-20 { background-color: $color-green-20; }
-.u-bg-green-10 { background-color: $color-green-10; }
+@each $label, $color in (blue: $color-blue, green: $color-green) {
+  .u-#{$label} {
+    color: $color;
+  }
+  .u-bg-#{$label} {
+    background-color: $color;
+  }
+  @for $tint from 1 through 10 {
+    .u-#{$label}-#{$tint*10} {
+      color: tint($color, $tint*10);
+    }
+    .u-bg-#{$label}-#{$tint*10} {
+      background-color: tint($color, $tint*10);
+    }
+  }
+}

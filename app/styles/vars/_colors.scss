@@ -6,31 +6,11 @@ $color-grey: #b2b2b3;
 // brand
 
 $color-blue: #003d59;
-$color-blue-90: #195069;
-$color-blue-80: #33647a;
-$color-blue-70: #4c778a;
-$color-blue-60: #668b9b;
-$color-blue-50: #7f9eac;
-$color-blue-40: #99b1bd;
-$color-blue-30: #b2c4cd;
-$color-blue-20: #ccd8de;
-$color-blue-10: #e5ebee;
-
 $color-green: #a8bd3a;
-$color-green-90: #b1c34d;
-$color-green-80: #b9ca61;
-$color-green-70: #c2d175;
-$color-green-60: #cbd789;
-$color-green-50: #d3de9c;
-$color-green-40: #dce5b0;
-$color-green-30: #e5ebc4;
-$color-green-20: #eef2d8;
-$color-green-10: #f6f8eb;
-
 $color-primary: $color-blue;
 $color-secondary: $color-green;
 
-$color-light-blue: $color-blue-10;
+$color-light-blue: tint($color-blue, 40);
 $color-dark-grey: #4f4f51;
 $color-light-grey: #F4F4F4;
 

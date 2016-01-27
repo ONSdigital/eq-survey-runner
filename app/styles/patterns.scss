@@ -54,6 +54,9 @@ body {
 
 .ptn-nav-item {
   list-style: none;
+  &.is-active {
+    font-weight: bold;
+  }
 }
 
 .ptn-nav-link {
@@ -84,13 +87,13 @@ body {
 }
 
 .ptn-grid {
-  background: $color-blue-20;
+  background: tint($color-blue, 80);
   padding: $grid-gutters $grid-gutters 0 $grid-gutters;
   margin-bottom: $grid-gutters;
 }
 
 .ptn-col {
-  background: $color-blue-50;
+  background: tint($color-blue, 50);
   padding: 7px;
   margin-bottom: $grid-gutters;
   color: $color-white;

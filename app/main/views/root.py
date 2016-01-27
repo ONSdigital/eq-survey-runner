@@ -11,20 +11,18 @@ def root():
 
 @main.route('/patterns/')
 @main.route('/patterns/<pattern>')
-def patterns(pattern = "index"):
+def patterns(pattern = 'index'):
     sections = []
+    pattern_name = 'grid-system' if (pattern == 'index') else pattern
 
     for root, dirs, files in os.walk('app/templates/patterns/components'):
         for file in files:
-            if file.endswith(".html"):
+            if file.endswith('.html'):
               with open(os.path.join(root, file), 'r') as f:
+                title = file.replace('.html', '')
                 sections.append({
-                  "title": file.replace('.html', ''),
+                  'title': title,
+                  'current': True if (title == pattern) else False
                 })
 
-    if pattern == "index":
-      template = 'patterns/components/grid-system.html'
-    else:
-      template = 'patterns/components/' + pattern + '.html'
-
-    return render_template('patterns/index.html', sections=sections, pattern_include=template, title=pattern)
+    return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern_name + '.html', title=pattern)
