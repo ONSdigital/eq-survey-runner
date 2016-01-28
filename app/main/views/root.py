@@ -6,8 +6,8 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 import os
 
-rrm_public_key_file = os.getenv('RRM_PUBLIC_KEY', './jwt-test-keys/rrm-public.pem')
-sr_private_key_file = os.getenv('SR_PRIVATE_KEY', './jwt-test-keys/sr-private.pem')
+rrm_public_key_file = os.getenv('EQ_RRM_PUBLIC_KEY', './jwt-test-keys/rrm-public.pem')
+sr_private_key_file = os.getenv('EQ_SR_PRIVATE_KEY', './jwt-test-keys/sr-private.pem')
 
 
 with open(rrm_public_key_file, "rb") as public_key_file:
