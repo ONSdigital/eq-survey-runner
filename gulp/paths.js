@@ -2,25 +2,29 @@
  * Paths to project folders
  */
 
-export const srcPath = 'app'
+export const srcPath = './app'
 export const distPath = srcPath + '/static'
 
 export const paths = {
   input: srcPath + '/**/*',
   output: distPath,
   scripts: {
+    dir: srcPath + '/js/',
     input: srcPath + '/js/*',
     output: distPath + '/js/'
   },
   styles: {
+    dir: srcPath + '/styles/',
     input: srcPath + '/styles/**/*.{scss,sass}',
     output: distPath + '/css/'
   },
   templates: {
+    dir: srcPath + '/templates/',
     input: srcPath + '/templates/**/*.html'
   },
   svgs: {
-    input: srcPath + '/img/*.svg',
+    dir: srcPath + '/img/',
+    input: srcPath + '/img/**/*.svg',
     output: distPath + '/img/'
   },
   images: {

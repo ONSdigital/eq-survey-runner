@@ -50,6 +50,7 @@
     "gulp-sass-glob": "0.0.8",
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-svg-sprite": "^1.2.19",
     "gulp-svgmin": "^1.1.2",
     "gulp-svgstore": "^5.0.2",
     "gulp-tap": "^0.1.3",

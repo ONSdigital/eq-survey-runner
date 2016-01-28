@@ -1,0 +1,22 @@
+<svg width="0" height="0" style="position:absolute">
+{{#shapes}}		{{{svg}}}
+{{/shapes}}
+</svg>
+
+  <div class="grid grid--gutterless">
+
+{{#shapes}}
+
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
+
+				<!-- {{name}} -->
+				<svg class="{{#selector.dimensions}}{{#last}}{{#classname}}{{raw}}{{/classname}}{{/last}}{{/selector.dimensions}}">
+					<use xlink:href="#{{name}}"></use>
+				</svg>
+
+			</div>
+
+		</div>
+{{/shapes}}
+    </div>
