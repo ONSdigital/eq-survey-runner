@@ -37,11 +37,13 @@ class Decoder (object):
     def decode_signed_jwt_token(self, signed_token):
         try:
             if signed_token:
-                token = jwt.decode(signed_token, self.rrm_public_key)
+                token = jwt.decode(signed_token, self.rrm_public_key, algorithms=['RS256'])
                 return token
             else:
                 raise NoTokenException("JWT Missing")
         except jwt.DecodeError as e:
+            raise InvalidTokenException(repr(e))
+        except jwt.exceptions.InvalidAlgorithmError as e:
             raise InvalidTokenException(repr(e))
 
     def decrypt_jwt_token(self, token):
