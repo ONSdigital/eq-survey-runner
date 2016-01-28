@@ -1,11 +1,9 @@
-import os
-import markdown
-import yaml
-from flask import render_template, render_template_string, session, request
+from flask import render_template, request
 from .. import main
-from application import application
 from app.main import errors
-from app.authentication.jwt_decoder import Decoder, NoTokenException, InvalidTokenException
+from app.authentication.jwt_decoder import Decoder
+from app.authentication.invalid_token_exception import InvalidTokenException
+from app.authentication.no_token_exception import NoTokenException
 import os
 
 rrm_public_key_file = os.getenv('RRM_PUBLIC_KEY', './jwt-test-keys/rrm-public.pem')
@@ -21,7 +19,6 @@ with open(sr_private_key_file, "rb") as private_key_file:
 decoder = Decoder(rmm_public_key, sr_private_key, "digitaleq")
 
 
-# TODO Put this back in
 # @main.before_request
 def jwt_decrypt():
     try:
@@ -75,6 +72,7 @@ def jwt_signed():
 @main.route('/jwt_encrypted', methods=['GET'])
 def jwt_encrypted_key_exchange():
     return jwt_decrypt()
+
 
 @main.route('/patterns/')
 @main.route('/patterns/<pattern>')
