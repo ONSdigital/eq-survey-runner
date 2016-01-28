@@ -13,13 +13,13 @@ import jwt
 class Decoder (object):
     def __init__(self, rrm_public_key, sr_private_key, sr_private_key_password=None):
         self.rrm_public_key = serialization.load_pem_public_key(
-                    rrm_public_key,
-                    backend=default_backend()
+            rrm_public_key,
+            backend=default_backend()
         )
         self.sr_private_key = serialization.load_pem_private_key(
-                    sr_private_key,
-                    password=sr_private_key_password.encode(),
-                    backend=default_backend()
+            sr_private_key,
+            password=sr_private_key_password.encode(),
+            backend=default_backend()
         )
 
     def decode_jwt_token(self, token):
@@ -38,7 +38,6 @@ class Decoder (object):
         try:
             if signed_token:
                 token = jwt.decode(signed_token, self.rrm_public_key)
-                print("JWT Token ", token)
                 return token
             else:
                 raise NoTokenException("JWT Missing")
@@ -90,4 +89,3 @@ class Decoder (object):
             while len(text) % 4 != 0:
                 text += "="
         return base64.urlsafe_b64decode(text)
-

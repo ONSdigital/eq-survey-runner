@@ -6,12 +6,16 @@ from .. import main
 from application import application
 from app.main import errors
 from app.authentication.jwt_decoder import Decoder, NoTokenException, InvalidTokenException
+import os
+
+rrm_public_key_file = os.getenv('RRM_PUBLIC_KEY', './jwt-test-keys/rrm-public.pem')
+sr_private_key_file = os.getenv('SR_PRIVATE_KEY', './jwt-test-keys/sr-private.pem')
 
 
-with open("rrm-public.pem", "rb") as public_key_file:
+with open(rrm_public_key_file, "rb") as public_key_file:
     rmm_public_key = public_key_file.read()
 
-with open("sr-private.pem", "rb") as private_key_file:
+with open(sr_private_key_file, "rb") as private_key_file:
     sr_private_key = private_key_file.read()
 
 decoder = Decoder(rmm_public_key, sr_private_key, "digitaleq")
@@ -22,9 +26,7 @@ decoder = Decoder(rmm_public_key, sr_private_key, "digitaleq")
 def jwt_decrypt():
     try:
         encrypted_token = request.args.get('token')
-        print('Encrypted token ' + encrypted_token)
         token = decoder.decrypt_jwt_token(encrypted_token)
-        print(token)
         return render_template('index.html')
     except NoTokenException as e:
         return errors.unauthorized(e)
@@ -36,7 +38,6 @@ def jwt_decode_signed():
     try:
         signed_token = request.args.get('token')
         token = decoder.decode_signed_jwt_token(signed_token)
-        print(token)
         return render_template('index.html')
     except NoTokenException as e:
         return errors.unauthorized(e)
