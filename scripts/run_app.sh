@@ -11,6 +11,6 @@ echo "Environment variables in use:"
 env | grep EQ_
 
 npm install
-npm run build
+npm run compile
 
 python application.py runserver

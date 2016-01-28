@@ -27,6 +27,11 @@ export function svg() {
           example: {
             template: `${paths.svgs.dir}/icons/tmpl.html`,
             dest: `../../../../${paths.templates.dir}/patterns/components/icons.html`
+          },
+          render: {
+            scss: {
+              dest: `../../../../${paths.styles.dir}/base/_sprite.scss`
+            }
           }
         }
       }

@@ -1,194 +1,3 @@
-
-<!--
-
-Sprite shape dimensions
-====================================================================================================
-You will need to set the sprite shape dimensions via CSS when you use them as inline SVG, otherwise
-they would become a huge 100% in size. You may use the following dimension classes for doing so.
-They might well be outsourced to an external stylesheet of course.
-
--->
-
-<style type="text/css">
-	.svg-icons--account-login-dims { width: 52px; height: 48.12px; }
-	.svg-icons--account-logout-dims { width: 52px; height: 48.12px; }
-	.svg-icons--action-redo-dims { width: 52px; height: 44.24px; }
-	.svg-icons--action-undo-dims { width: 52px; height: 43.53px; }
-	.svg-icons--align-center-dims { width: 52px; height: 47.29px; }
-	.svg-icons--align-left-dims { width: 52px; height: 47.29px; }
-	.svg-icons--align-right-dims { width: 52px; height: 47.29px; }
-	.svg-icons--arrow-bottom-dims { width: 41.33px; height: 52px; }
-	.svg-icons--arrow-circle-bottom-dims { width: 52px; height: 51.06px; }
-	.svg-icons--arrow-circle-left-dims { width: 52px; height: 51.06px; }
-	.svg-icons--arrow-circle-right-dims { width: 52px; height: 51.06px; }
-	.svg-icons--arrow-circle-top-dims { width: 52px; height: 51.06px; }
-	.svg-icons--arrow-left-dims { width: 52px; height: 40.36px; }
-	.svg-icons--arrow-right-dims { width: 52px; height: 40.36px; }
-	.svg-icons--arrow-thick-bottom-dims { width: 43.53px; height: 52px; }
-	.svg-icons--arrow-thick-left-dims { width: 52px; height: 43.53px; }
-	.svg-icons--arrow-thick-right-dims { width: 52px; height: 43.53px; }
-	.svg-icons--arrow-thick-top-dims { width: 45.21px; height: 52px; }
-	.svg-icons--arrow-top-dims { width: 41.33px; height: 52px; }
-	.svg-icons--audio-dims { width: 52px; height: 42.59px; }
-	.svg-icons--audio-spectrum-dims { width: 48.24px; height: 52px; }
-	.svg-icons--ban-dims { width: 52px; height: 52px; }
-	.svg-icons--bar-chart-dims { width: 52px; height: 48.24px; }
-	.svg-icons--bell-dims { width: 52px; height: 52px; }
-	.svg-icons--bold-dims { width: 52px; height: 52px; }
-	.svg-icons--bolt-dims { width: 40.36px; height: 52px; }
-	.svg-icons--book-dims { width: 47.29px; height: 52px; }
-	.svg-icons--bookmark-dims { width: 36px; height: 52px; }
-	.svg-icons--box-dims { width: 52px; height: 52px; }
-	.svg-icons--briefcase-dims { width: 52px; height: 52px; }
-	.svg-icons--british-pound-dims { width: 44.47px; height: 52px; }
-	.svg-icons--browser-dims { width: 52px; height: 52px; }
-	.svg-icons--brush-dims { width: 52px; height: 51.06px; }
-	.svg-icons--calculator-dims { width: 48.24px; height: 52px; }
-	.svg-icons--camera-slr-dims { width: 52px; height: 52px; }
-	.svg-icons--caret-bottom-dims { width: 52px; height: 36px; }
-	.svg-icons--caret-left-dims { width: 36px; height: 52px; }
-	.svg-icons--caret-right-dims { width: 36px; height: 52px; }
-	.svg-icons--caret-top-dims { width: 52px; height: 36.48px; }
-	.svg-icons--chat-dims { width: 52px; height: 49.09px; }
-	.svg-icons--check-dims { width: 52px; height: 45.41px; }
-	.svg-icons--chevron-bottom-dims { width: 52px; height: 42.59px; }
-	.svg-icons--chevron-left-dims { width: 42.59px; height: 52px; }
-	.svg-icons--chevron-right-dims { width: 42.59px; height: 52px; }
-	.svg-icons--chevron-top-dims { width: 52px; height: 42.59px; }
-	.svg-icons--circle-check-dims { width: 52px; height: 52px; }
-	.svg-icons--circle-x-dims { width: 52px; height: 52px; }
-	.svg-icons--clipboard-dims { width: 48.24px; height: 52px; }
-	.svg-icons--clock-dims { width: 52px; height: 52px; }
-	.svg-icons--code-dims { width: 52px; height: 44.47px; }
-	.svg-icons--cog-dims { width: 52px; height: 52px; }
-	.svg-icons--collapse-down-dims { width: 51.06px; height: 52px; }
-	.svg-icons--collapse-left-dims { width: 51.06px; height: 52px; }
-	.svg-icons--collapse-right-dims { width: 52px; height: 52px; }
-	.svg-icons--collapse-up-dims { width: 52px; height: 52px; }
-	.svg-icons--comment-square-dims { width: 52px; height: 52px; }
-	.svg-icons--compass-dims { width: 52px; height: 52px; }
-	.svg-icons--contrast-dims { width: 52px; height: 52px; }
-	.svg-icons--copywriting-dims { width: 52px; height: 52px; }
-	.svg-icons--credit-card-dims { width: 52px; height: 44.47px; }
-	.svg-icons--crop-dims { width: 52px; height: 52px; }
-	.svg-icons--dashboard-dims { width: 52px; height: 52px; }
-	.svg-icons--data-transfer-download-dims { width: 52px; height: 52px; }
-	.svg-icons--data-transfer-upload-dims { width: 52px; height: 52px; }
-	.svg-icons--delete-dims { width: 52px; height: 45.21px; }
-	.svg-icons--dial-dims { width: 52px; height: 45.21px; }
-	.svg-icons--document-dims { width: 48.24px; height: 52px; }
-	.svg-icons--double-quote-sans-left-dims { width: 52px; height: 44.47px; }
-	.svg-icons--double-quote-sans-right-dims { width: 52px; height: 44.47px; }
-	.svg-icons--double-quote-serif-left-dims { width: 52px; height: 44.47px; }
-	.svg-icons--double-quote-serif-right-dims { width: 52px; height: 44.47px; }
-	.svg-icons--droplet-dims { width: 43.77px; height: 52px; }
-	.svg-icons--eject-dims { width: 52px; height: 52px; }
-	.svg-icons--elevator-dims { width: 44.47px; height: 52px; }
-	.svg-icons--ellipses-dims { width: 52px; height: 29.41px; }
-	.svg-icons--envelope-closed-dims { width: 52px; height: 44.47px; }
-	.svg-icons--envelope-open-dims { width: 52px; height: 52px; }
-	.svg-icons--euro-dims { width: 51.06px; height: 52px; }
-	.svg-icons--external-link-dims { width: 51.06px; height: 52px; }
-	.svg-icons--eye-dims { width: 52px; height: 44.47px; }
-	.svg-icons--file-dims { width: 48.24px; height: 52px; }
-	.svg-icons--flag-dims { width: 52px; height: 52px; }
-	.svg-icons--flash-dims { width: 36.94px; height: 52px; }
-	.svg-icons--folder-dims { width: 52px; height: 52px; }
-	.svg-icons--fork-dims { width: 48.24px; height: 52px; }
-	.svg-icons--fullscreen-enter-dims { width: 52px; height: 52px; }
-	.svg-icons--fullscreen-exit-dims { width: 52px; height: 52px; }
-	.svg-icons--grid-four-up-dims { width: 50px; height: 50px; }
-	.svg-icons--grid-three-up-dims { width: 52px; height: 52px; }
-	.svg-icons--grid-two-up-dims { width: 52px; height: 52px; }
-	.svg-icons--hard-drive-dims { width: 47.29px; height: 52px; }
-	.svg-icons--heart-dims { width: 52px; height: 48.12px; }
-	.svg-icons--home-dims { width: 52px; height: 49.09px; }
-	.svg-icons--image-dims { width: 52px; height: 52px; }
-	.svg-icons--inbox-dims { width: 52px; height: 52px; }
-	.svg-icons--infinity-dims { width: 52px; height: 36.94px; }
-	.svg-icons--info-dims { width: 36.94px; height: 52px; }
-	.svg-icons--italic-dims { width: 48.24px; height: 52px; }
-	.svg-icons--justify-center-dims { width: 52px; height: 48.24px; }
-	.svg-icons--justify-left-dims { width: 52px; height: 48.24px; }
-	.svg-icons--justify-right-dims { width: 52px; height: 48.24px; }
-	.svg-icons--laptop-dims { width: 52px; height: 44.47px; }
-	.svg-icons--layers-dims { width: 52px; height: 52px; }
-	.svg-icons--link-broken-dims { width: 51.06px; height: 52px; }
-	.svg-icons--link-intact-dims { width: 51.06px; height: 52px; }
-	.svg-icons--list-dims { width: 52px; height: 48.24px; }
-	.svg-icons--location-dims { width: 52px; height: 52px; }
-	.svg-icons--lock-locked-dims { width: 46px; height: 50px; }
-	.svg-icons--lock-unlocked-dims { width: 44.47px; height: 52px; }
-	.svg-icons--loop-dims { width: 52px; height: 48.24px; }
-	.svg-icons--loop-circular-dims { width: 52px; height: 44.47px; }
-	.svg-icons--loop-square-dims { width: 52px; height: 52px; }
-	.svg-icons--magnifying-glass-dims { width: 52px; height: 52px; }
-	.svg-icons--map-marker-dims { width: 44.47px; height: 52px; }
-	.svg-icons--media-pause-dims { width: 46px; height: 46px; }
-	.svg-icons--media-play-dims { width: 45px; height: 46px; }
-	.svg-icons--media-record-dims { width: 45px; height: 46px; }
-	.svg-icons--menu-dims { width: 52px; height: 48.12px; }
-	.svg-icons--minus-dims { width: 52px; height: 28.47px; }
-	.svg-icons--monitor-dims { width: 52px; height: 52px; }
-	.svg-icons--move-dims { width: 50px; height: 50px; }
-	.svg-icons--paperclip-dims { width: 48.24px; height: 52px; }
-	.svg-icons--pencil-dims { width: 52px; height: 52px; }
-	.svg-icons--people-dims { width: 52px; height: 52px; }
-	.svg-icons--person-dims { width: 52px; height: 52px; }
-	.svg-icons--phone-dims { width: 40.71px; height: 52px; }
-	.svg-icons--pie-chart-dims { width: 52px; height: 52px; }
-	.svg-icons--pin-dims { width: 47.29px; height: 52px; }
-	.svg-icons--play-circle-dims { width: 52px; height: 52px; }
-	.svg-icons--plus-dims { width: 51.06px; height: 52px; }
-	.svg-icons--power-standby-dims { width: 47.29px; height: 52px; }
-	.svg-icons--print-dims { width: 52px; height: 52px; }
-	.svg-icons--project-dims { width: 52px; height: 48.24px; }
-	.svg-icons--question-mark-dims { width: 40.71px; height: 52px; }
-	.svg-icons--reload-dims { width: 52px; height: 52px; }
-	.svg-icons--resize-both-dims { width: 52px; height: 52px; }
-	.svg-icons--resize-height-dims { width: 40.71px; height: 52px; }
-	.svg-icons--resize-width-dims { width: 52px; height: 39.76px; }
-	.svg-icons--right-arrow-dims { width: 39.39px; height: 52px; }
-	.svg-icons--rss-dims { width: 52px; height: 52px; }
-	.svg-icons--rss-alt-dims { width: 52px; height: 52px; }
-	.svg-icons--share-dims { width: 52px; height: 48.12px; }
-	.svg-icons--share-boxed-dims { width: 52px; height: 48.24px; }
-	.svg-icons--signal-dims { width: 47.29px; height: 52px; }
-	.svg-icons--spreadsheet-dims { width: 52px; height: 48.12px; }
-	.svg-icons--star-dims { width: 52px; height: 52px; }
-	.svg-icons--tablet-dims { width: 48.24px; height: 52px; }
-	.svg-icons--tag-dims { width: 52px; height: 52px; }
-	.svg-icons--tags-dims { width: 52px; height: 39.76px; }
-	.svg-icons--target-dims { width: 52px; height: 52px; }
-	.svg-icons--task-dims { width: 52px; height: 47.29px; }
-	.svg-icons--text-dims { width: 52px; height: 52px; }
-	.svg-icons--thumb-down-dims { width: 50px; height: 49px; }
-	.svg-icons--thumb-up-dims { width: 50px; height: 50px; }
-	.svg-icons--transfer-dims { width: 52px; height: 47.29px; }
-	.svg-icons--trash-dims { width: 47.29px; height: 52px; }
-	.svg-icons--underline-dims { width: 47.29px; height: 52px; }
-	.svg-icons--warning-dims { width: 48.12px; height: 52px; }
-	.svg-icons--x-dims { width: 52px; height: 51.06px; }
-</style>
-<!--
-====================================================================================================
--->
-
-
-
-<!--
-
-Inline <symbol> SVG sprite
-====================================================================================================
-This is an inlined version of the generated SVG sprite. The single images may be <use>d everywhere
-below within this document. Please see
-
-	https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md#defs--symbol-mode
-
-for further details on how to create this embeddable sprite variant.
-
--->
-
 <svg width="0" height="0" style="position:absolute">
 		<symbol viewBox="-10.31 -10.31 53.63 49.63" id="icons--account-login"><title>account-login</title><path d="M12.295 0v4.098h16.393V24.59H12.295v4.098h20.492V-.002H12.295zm4.098 8.197v4.098H0v4.098h16.393v4.098l8.197-6.147-8.197-6.148z"/></symbol>
 		<symbol viewBox="-10.31 -10.31 53.63 49.63" id="icons--account-logout"><title>account-logout</title><path d="M12.23 0v4.098h16.393V24.59H12.23v4.098h20.492V-.002H12.23zM8.132 8.197l-8.197 6.148 8.197 6.148v-4.098h16.393v-4.098H8.132V8.2z"/></symbol>
@@ -351,1918 +160,1914 @@ for further details on how to create this embeddable sprite variant.
 		<symbol viewBox="-10.62 -10.62 55.25 54.25" id="icons--x"><title>x</title><path d="M6.713.213l-5.78 5.78 2.952 2.95 7.295 7.418-7.295 7.296-2.95 2.828 5.778 5.902 2.95-2.95 7.42-7.42 7.294 7.42 2.828 2.95 5.902-5.902-2.95-2.828-7.42-7.295 7.42-7.417 2.95-2.95-5.902-5.78-2.828 2.95-7.295 7.296-7.418-7.296-2.95-2.95z"/></symbol>
 </svg>
 
+  <div class="grid grid--gutterless">
 
 
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-      <div class="grid grid--gutterless">
+				<!-- icons--account-login -->
+				<svg class="svg-icons--account-login-dims">
+					<use xlink:href="#icons--account-login"></use>
+				</svg>
 
+			</div>
 
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--account-login -->
-						<svg class="svg-icons--account-login-dims">
-							<use xlink:href="#icons--account-login"></use>
-						</svg>
+				<!-- icons--account-logout -->
+				<svg class="svg-icons--account-logout-dims">
+					<use xlink:href="#icons--account-logout"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--account-logout -->
-						<svg class="svg-icons--account-logout-dims">
-							<use xlink:href="#icons--account-logout"></use>
-						</svg>
+				<!-- icons--action-redo -->
+				<svg class="svg-icons--action-redo-dims">
+					<use xlink:href="#icons--action-redo"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--action-redo -->
-						<svg class="svg-icons--action-redo-dims">
-							<use xlink:href="#icons--action-redo"></use>
-						</svg>
+				<!-- icons--action-undo -->
+				<svg class="svg-icons--action-undo-dims">
+					<use xlink:href="#icons--action-undo"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--action-undo -->
-						<svg class="svg-icons--action-undo-dims">
-							<use xlink:href="#icons--action-undo"></use>
-						</svg>
+				<!-- icons--align-center -->
+				<svg class="svg-icons--align-center-dims">
+					<use xlink:href="#icons--align-center"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--align-center -->
-						<svg class="svg-icons--align-center-dims">
-							<use xlink:href="#icons--align-center"></use>
-						</svg>
+				<!-- icons--align-left -->
+				<svg class="svg-icons--align-left-dims">
+					<use xlink:href="#icons--align-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--align-left -->
-						<svg class="svg-icons--align-left-dims">
-							<use xlink:href="#icons--align-left"></use>
-						</svg>
+				<!-- icons--align-right -->
+				<svg class="svg-icons--align-right-dims">
+					<use xlink:href="#icons--align-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--align-right -->
-						<svg class="svg-icons--align-right-dims">
-							<use xlink:href="#icons--align-right"></use>
-						</svg>
+				<!-- icons--arrow-bottom -->
+				<svg class="svg-icons--arrow-bottom-dims">
+					<use xlink:href="#icons--arrow-bottom"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-bottom -->
-						<svg class="svg-icons--arrow-bottom-dims">
-							<use xlink:href="#icons--arrow-bottom"></use>
-						</svg>
+				<!-- icons--arrow-circle-bottom -->
+				<svg class="svg-icons--arrow-circle-bottom-dims">
+					<use xlink:href="#icons--arrow-circle-bottom"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-circle-bottom -->
-						<svg class="svg-icons--arrow-circle-bottom-dims">
-							<use xlink:href="#icons--arrow-circle-bottom"></use>
-						</svg>
+				<!-- icons--arrow-circle-left -->
+				<svg class="svg-icons--arrow-circle-left-dims">
+					<use xlink:href="#icons--arrow-circle-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-circle-left -->
-						<svg class="svg-icons--arrow-circle-left-dims">
-							<use xlink:href="#icons--arrow-circle-left"></use>
-						</svg>
+				<!-- icons--arrow-circle-right -->
+				<svg class="svg-icons--arrow-circle-right-dims">
+					<use xlink:href="#icons--arrow-circle-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-circle-right -->
-						<svg class="svg-icons--arrow-circle-right-dims">
-							<use xlink:href="#icons--arrow-circle-right"></use>
-						</svg>
+				<!-- icons--arrow-circle-top -->
+				<svg class="svg-icons--arrow-circle-top-dims">
+					<use xlink:href="#icons--arrow-circle-top"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-circle-top -->
-						<svg class="svg-icons--arrow-circle-top-dims">
-							<use xlink:href="#icons--arrow-circle-top"></use>
-						</svg>
+				<!-- icons--arrow-left -->
+				<svg class="svg-icons--arrow-left-dims">
+					<use xlink:href="#icons--arrow-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-left -->
-						<svg class="svg-icons--arrow-left-dims">
-							<use xlink:href="#icons--arrow-left"></use>
-						</svg>
+				<!-- icons--arrow-right -->
+				<svg class="svg-icons--arrow-right-dims">
+					<use xlink:href="#icons--arrow-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-right -->
-						<svg class="svg-icons--arrow-right-dims">
-							<use xlink:href="#icons--arrow-right"></use>
-						</svg>
+				<!-- icons--arrow-thick-bottom -->
+				<svg class="svg-icons--arrow-thick-bottom-dims">
+					<use xlink:href="#icons--arrow-thick-bottom"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-thick-bottom -->
-						<svg class="svg-icons--arrow-thick-bottom-dims">
-							<use xlink:href="#icons--arrow-thick-bottom"></use>
-						</svg>
+				<!-- icons--arrow-thick-left -->
+				<svg class="svg-icons--arrow-thick-left-dims">
+					<use xlink:href="#icons--arrow-thick-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-thick-left -->
-						<svg class="svg-icons--arrow-thick-left-dims">
-							<use xlink:href="#icons--arrow-thick-left"></use>
-						</svg>
+				<!-- icons--arrow-thick-right -->
+				<svg class="svg-icons--arrow-thick-right-dims">
+					<use xlink:href="#icons--arrow-thick-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-thick-right -->
-						<svg class="svg-icons--arrow-thick-right-dims">
-							<use xlink:href="#icons--arrow-thick-right"></use>
-						</svg>
+				<!-- icons--arrow-thick-top -->
+				<svg class="svg-icons--arrow-thick-top-dims">
+					<use xlink:href="#icons--arrow-thick-top"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-thick-top -->
-						<svg class="svg-icons--arrow-thick-top-dims">
-							<use xlink:href="#icons--arrow-thick-top"></use>
-						</svg>
+				<!-- icons--arrow-top -->
+				<svg class="svg-icons--arrow-top-dims">
+					<use xlink:href="#icons--arrow-top"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--arrow-top -->
-						<svg class="svg-icons--arrow-top-dims">
-							<use xlink:href="#icons--arrow-top"></use>
-						</svg>
+				<!-- icons--audio -->
+				<svg class="svg-icons--audio-dims">
+					<use xlink:href="#icons--audio"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--audio -->
-						<svg class="svg-icons--audio-dims">
-							<use xlink:href="#icons--audio"></use>
-						</svg>
+				<!-- icons--audio-spectrum -->
+				<svg class="svg-icons--audio-spectrum-dims">
+					<use xlink:href="#icons--audio-spectrum"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--audio-spectrum -->
-						<svg class="svg-icons--audio-spectrum-dims">
-							<use xlink:href="#icons--audio-spectrum"></use>
-						</svg>
+				<!-- icons--ban -->
+				<svg class="svg-icons--ban-dims">
+					<use xlink:href="#icons--ban"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--ban -->
-						<svg class="svg-icons--ban-dims">
-							<use xlink:href="#icons--ban"></use>
-						</svg>
+				<!-- icons--bar-chart -->
+				<svg class="svg-icons--bar-chart-dims">
+					<use xlink:href="#icons--bar-chart"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--bar-chart -->
-						<svg class="svg-icons--bar-chart-dims">
-							<use xlink:href="#icons--bar-chart"></use>
-						</svg>
+				<!-- icons--bell -->
+				<svg class="svg-icons--bell-dims">
+					<use xlink:href="#icons--bell"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--bell -->
-						<svg class="svg-icons--bell-dims">
-							<use xlink:href="#icons--bell"></use>
-						</svg>
+				<!-- icons--bold -->
+				<svg class="svg-icons--bold-dims">
+					<use xlink:href="#icons--bold"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--bold -->
-						<svg class="svg-icons--bold-dims">
-							<use xlink:href="#icons--bold"></use>
-						</svg>
+				<!-- icons--bolt -->
+				<svg class="svg-icons--bolt-dims">
+					<use xlink:href="#icons--bolt"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--bolt -->
-						<svg class="svg-icons--bolt-dims">
-							<use xlink:href="#icons--bolt"></use>
-						</svg>
+				<!-- icons--book -->
+				<svg class="svg-icons--book-dims">
+					<use xlink:href="#icons--book"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--book -->
-						<svg class="svg-icons--book-dims">
-							<use xlink:href="#icons--book"></use>
-						</svg>
+				<!-- icons--bookmark -->
+				<svg class="svg-icons--bookmark-dims">
+					<use xlink:href="#icons--bookmark"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--bookmark -->
-						<svg class="svg-icons--bookmark-dims">
-							<use xlink:href="#icons--bookmark"></use>
-						</svg>
+				<!-- icons--box -->
+				<svg class="svg-icons--box-dims">
+					<use xlink:href="#icons--box"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--box -->
-						<svg class="svg-icons--box-dims">
-							<use xlink:href="#icons--box"></use>
-						</svg>
+				<!-- icons--briefcase -->
+				<svg class="svg-icons--briefcase-dims">
+					<use xlink:href="#icons--briefcase"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--briefcase -->
-						<svg class="svg-icons--briefcase-dims">
-							<use xlink:href="#icons--briefcase"></use>
-						</svg>
+				<!-- icons--british-pound -->
+				<svg class="svg-icons--british-pound-dims">
+					<use xlink:href="#icons--british-pound"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--british-pound -->
-						<svg class="svg-icons--british-pound-dims">
-							<use xlink:href="#icons--british-pound"></use>
-						</svg>
+				<!-- icons--browser -->
+				<svg class="svg-icons--browser-dims">
+					<use xlink:href="#icons--browser"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--browser -->
-						<svg class="svg-icons--browser-dims">
-							<use xlink:href="#icons--browser"></use>
-						</svg>
+				<!-- icons--brush -->
+				<svg class="svg-icons--brush-dims">
+					<use xlink:href="#icons--brush"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--brush -->
-						<svg class="svg-icons--brush-dims">
-							<use xlink:href="#icons--brush"></use>
-						</svg>
+				<!-- icons--calculator -->
+				<svg class="svg-icons--calculator-dims">
+					<use xlink:href="#icons--calculator"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--calculator -->
-						<svg class="svg-icons--calculator-dims">
-							<use xlink:href="#icons--calculator"></use>
-						</svg>
+				<!-- icons--camera-slr -->
+				<svg class="svg-icons--camera-slr-dims">
+					<use xlink:href="#icons--camera-slr"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--camera-slr -->
-						<svg class="svg-icons--camera-slr-dims">
-							<use xlink:href="#icons--camera-slr"></use>
-						</svg>
+				<!-- icons--caret-bottom -->
+				<svg class="svg-icons--caret-bottom-dims">
+					<use xlink:href="#icons--caret-bottom"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--caret-bottom -->
-						<svg class="svg-icons--caret-bottom-dims">
-							<use xlink:href="#icons--caret-bottom"></use>
-						</svg>
+				<!-- icons--caret-left -->
+				<svg class="svg-icons--caret-left-dims">
+					<use xlink:href="#icons--caret-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--caret-left -->
-						<svg class="svg-icons--caret-left-dims">
-							<use xlink:href="#icons--caret-left"></use>
-						</svg>
+				<!-- icons--caret-right -->
+				<svg class="svg-icons--caret-right-dims">
+					<use xlink:href="#icons--caret-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--caret-right -->
-						<svg class="svg-icons--caret-right-dims">
-							<use xlink:href="#icons--caret-right"></use>
-						</svg>
+				<!-- icons--caret-top -->
+				<svg class="svg-icons--caret-top-dims">
+					<use xlink:href="#icons--caret-top"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--caret-top -->
-						<svg class="svg-icons--caret-top-dims">
-							<use xlink:href="#icons--caret-top"></use>
-						</svg>
+				<!-- icons--chat -->
+				<svg class="svg-icons--chat-dims">
+					<use xlink:href="#icons--chat"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--chat -->
-						<svg class="svg-icons--chat-dims">
-							<use xlink:href="#icons--chat"></use>
-						</svg>
+				<!-- icons--check -->
+				<svg class="svg-icons--check-dims">
+					<use xlink:href="#icons--check"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--check -->
-						<svg class="svg-icons--check-dims">
-							<use xlink:href="#icons--check"></use>
-						</svg>
+				<!-- icons--chevron-bottom -->
+				<svg class="svg-icons--chevron-bottom-dims">
+					<use xlink:href="#icons--chevron-bottom"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--chevron-bottom -->
-						<svg class="svg-icons--chevron-bottom-dims">
-							<use xlink:href="#icons--chevron-bottom"></use>
-						</svg>
+				<!-- icons--chevron-left -->
+				<svg class="svg-icons--chevron-left-dims">
+					<use xlink:href="#icons--chevron-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--chevron-left -->
-						<svg class="svg-icons--chevron-left-dims">
-							<use xlink:href="#icons--chevron-left"></use>
-						</svg>
+				<!-- icons--chevron-right -->
+				<svg class="svg-icons--chevron-right-dims">
+					<use xlink:href="#icons--chevron-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--chevron-right -->
-						<svg class="svg-icons--chevron-right-dims">
-							<use xlink:href="#icons--chevron-right"></use>
-						</svg>
+				<!-- icons--chevron-top -->
+				<svg class="svg-icons--chevron-top-dims">
+					<use xlink:href="#icons--chevron-top"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--chevron-top -->
-						<svg class="svg-icons--chevron-top-dims">
-							<use xlink:href="#icons--chevron-top"></use>
-						</svg>
+				<!-- icons--circle-check -->
+				<svg class="svg-icons--circle-check-dims">
+					<use xlink:href="#icons--circle-check"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--circle-check -->
-						<svg class="svg-icons--circle-check-dims">
-							<use xlink:href="#icons--circle-check"></use>
-						</svg>
+				<!-- icons--circle-x -->
+				<svg class="svg-icons--circle-x-dims">
+					<use xlink:href="#icons--circle-x"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--circle-x -->
-						<svg class="svg-icons--circle-x-dims">
-							<use xlink:href="#icons--circle-x"></use>
-						</svg>
+				<!-- icons--clipboard -->
+				<svg class="svg-icons--clipboard-dims">
+					<use xlink:href="#icons--clipboard"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--clipboard -->
-						<svg class="svg-icons--clipboard-dims">
-							<use xlink:href="#icons--clipboard"></use>
-						</svg>
+				<!-- icons--clock -->
+				<svg class="svg-icons--clock-dims">
+					<use xlink:href="#icons--clock"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--clock -->
-						<svg class="svg-icons--clock-dims">
-							<use xlink:href="#icons--clock"></use>
-						</svg>
+				<!-- icons--code -->
+				<svg class="svg-icons--code-dims">
+					<use xlink:href="#icons--code"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--code -->
-						<svg class="svg-icons--code-dims">
-							<use xlink:href="#icons--code"></use>
-						</svg>
+				<!-- icons--cog -->
+				<svg class="svg-icons--cog-dims">
+					<use xlink:href="#icons--cog"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--cog -->
-						<svg class="svg-icons--cog-dims">
-							<use xlink:href="#icons--cog"></use>
-						</svg>
+				<!-- icons--collapse-down -->
+				<svg class="svg-icons--collapse-down-dims">
+					<use xlink:href="#icons--collapse-down"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--collapse-down -->
-						<svg class="svg-icons--collapse-down-dims">
-							<use xlink:href="#icons--collapse-down"></use>
-						</svg>
+				<!-- icons--collapse-left -->
+				<svg class="svg-icons--collapse-left-dims">
+					<use xlink:href="#icons--collapse-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--collapse-left -->
-						<svg class="svg-icons--collapse-left-dims">
-							<use xlink:href="#icons--collapse-left"></use>
-						</svg>
+				<!-- icons--collapse-right -->
+				<svg class="svg-icons--collapse-right-dims">
+					<use xlink:href="#icons--collapse-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--collapse-right -->
-						<svg class="svg-icons--collapse-right-dims">
-							<use xlink:href="#icons--collapse-right"></use>
-						</svg>
+				<!-- icons--collapse-up -->
+				<svg class="svg-icons--collapse-up-dims">
+					<use xlink:href="#icons--collapse-up"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--collapse-up -->
-						<svg class="svg-icons--collapse-up-dims">
-							<use xlink:href="#icons--collapse-up"></use>
-						</svg>
+				<!-- icons--comment-square -->
+				<svg class="svg-icons--comment-square-dims">
+					<use xlink:href="#icons--comment-square"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--comment-square -->
-						<svg class="svg-icons--comment-square-dims">
-							<use xlink:href="#icons--comment-square"></use>
-						</svg>
+				<!-- icons--compass -->
+				<svg class="svg-icons--compass-dims">
+					<use xlink:href="#icons--compass"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--compass -->
-						<svg class="svg-icons--compass-dims">
-							<use xlink:href="#icons--compass"></use>
-						</svg>
+				<!-- icons--contrast -->
+				<svg class="svg-icons--contrast-dims">
+					<use xlink:href="#icons--contrast"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--contrast -->
-						<svg class="svg-icons--contrast-dims">
-							<use xlink:href="#icons--contrast"></use>
-						</svg>
+				<!-- icons--copywriting -->
+				<svg class="svg-icons--copywriting-dims">
+					<use xlink:href="#icons--copywriting"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--copywriting -->
-						<svg class="svg-icons--copywriting-dims">
-							<use xlink:href="#icons--copywriting"></use>
-						</svg>
+				<!-- icons--credit-card -->
+				<svg class="svg-icons--credit-card-dims">
+					<use xlink:href="#icons--credit-card"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--credit-card -->
-						<svg class="svg-icons--credit-card-dims">
-							<use xlink:href="#icons--credit-card"></use>
-						</svg>
+				<!-- icons--crop -->
+				<svg class="svg-icons--crop-dims">
+					<use xlink:href="#icons--crop"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--crop -->
-						<svg class="svg-icons--crop-dims">
-							<use xlink:href="#icons--crop"></use>
-						</svg>
+				<!-- icons--dashboard -->
+				<svg class="svg-icons--dashboard-dims">
+					<use xlink:href="#icons--dashboard"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--dashboard -->
-						<svg class="svg-icons--dashboard-dims">
-							<use xlink:href="#icons--dashboard"></use>
-						</svg>
+				<!-- icons--data-transfer-download -->
+				<svg class="svg-icons--data-transfer-download-dims">
+					<use xlink:href="#icons--data-transfer-download"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--data-transfer-download -->
-						<svg class="svg-icons--data-transfer-download-dims">
-							<use xlink:href="#icons--data-transfer-download"></use>
-						</svg>
+				<!-- icons--data-transfer-upload -->
+				<svg class="svg-icons--data-transfer-upload-dims">
+					<use xlink:href="#icons--data-transfer-upload"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--data-transfer-upload -->
-						<svg class="svg-icons--data-transfer-upload-dims">
-							<use xlink:href="#icons--data-transfer-upload"></use>
-						</svg>
+				<!-- icons--delete -->
+				<svg class="svg-icons--delete-dims">
+					<use xlink:href="#icons--delete"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--delete -->
-						<svg class="svg-icons--delete-dims">
-							<use xlink:href="#icons--delete"></use>
-						</svg>
+				<!-- icons--dial -->
+				<svg class="svg-icons--dial-dims">
+					<use xlink:href="#icons--dial"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--dial -->
-						<svg class="svg-icons--dial-dims">
-							<use xlink:href="#icons--dial"></use>
-						</svg>
+				<!-- icons--document -->
+				<svg class="svg-icons--document-dims">
+					<use xlink:href="#icons--document"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--document -->
-						<svg class="svg-icons--document-dims">
-							<use xlink:href="#icons--document"></use>
-						</svg>
+				<!-- icons--double-quote-sans-left -->
+				<svg class="svg-icons--double-quote-sans-left-dims">
+					<use xlink:href="#icons--double-quote-sans-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--double-quote-sans-left -->
-						<svg class="svg-icons--double-quote-sans-left-dims">
-							<use xlink:href="#icons--double-quote-sans-left"></use>
-						</svg>
+				<!-- icons--double-quote-sans-right -->
+				<svg class="svg-icons--double-quote-sans-right-dims">
+					<use xlink:href="#icons--double-quote-sans-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--double-quote-sans-right -->
-						<svg class="svg-icons--double-quote-sans-right-dims">
-							<use xlink:href="#icons--double-quote-sans-right"></use>
-						</svg>
+				<!-- icons--double-quote-serif-left -->
+				<svg class="svg-icons--double-quote-serif-left-dims">
+					<use xlink:href="#icons--double-quote-serif-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--double-quote-serif-left -->
-						<svg class="svg-icons--double-quote-serif-left-dims">
-							<use xlink:href="#icons--double-quote-serif-left"></use>
-						</svg>
+				<!-- icons--double-quote-serif-right -->
+				<svg class="svg-icons--double-quote-serif-right-dims">
+					<use xlink:href="#icons--double-quote-serif-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--double-quote-serif-right -->
-						<svg class="svg-icons--double-quote-serif-right-dims">
-							<use xlink:href="#icons--double-quote-serif-right"></use>
-						</svg>
+				<!-- icons--droplet -->
+				<svg class="svg-icons--droplet-dims">
+					<use xlink:href="#icons--droplet"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--droplet -->
-						<svg class="svg-icons--droplet-dims">
-							<use xlink:href="#icons--droplet"></use>
-						</svg>
+				<!-- icons--eject -->
+				<svg class="svg-icons--eject-dims">
+					<use xlink:href="#icons--eject"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--eject -->
-						<svg class="svg-icons--eject-dims">
-							<use xlink:href="#icons--eject"></use>
-						</svg>
+				<!-- icons--elevator -->
+				<svg class="svg-icons--elevator-dims">
+					<use xlink:href="#icons--elevator"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--elevator -->
-						<svg class="svg-icons--elevator-dims">
-							<use xlink:href="#icons--elevator"></use>
-						</svg>
+				<!-- icons--ellipses -->
+				<svg class="svg-icons--ellipses-dims">
+					<use xlink:href="#icons--ellipses"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--ellipses -->
-						<svg class="svg-icons--ellipses-dims">
-							<use xlink:href="#icons--ellipses"></use>
-						</svg>
+				<!-- icons--envelope-closed -->
+				<svg class="svg-icons--envelope-closed-dims">
+					<use xlink:href="#icons--envelope-closed"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--envelope-closed -->
-						<svg class="svg-icons--envelope-closed-dims">
-							<use xlink:href="#icons--envelope-closed"></use>
-						</svg>
+				<!-- icons--envelope-open -->
+				<svg class="svg-icons--envelope-open-dims">
+					<use xlink:href="#icons--envelope-open"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--envelope-open -->
-						<svg class="svg-icons--envelope-open-dims">
-							<use xlink:href="#icons--envelope-open"></use>
-						</svg>
+				<!-- icons--euro -->
+				<svg class="svg-icons--euro-dims">
+					<use xlink:href="#icons--euro"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--euro -->
-						<svg class="svg-icons--euro-dims">
-							<use xlink:href="#icons--euro"></use>
-						</svg>
+				<!-- icons--external-link -->
+				<svg class="svg-icons--external-link-dims">
+					<use xlink:href="#icons--external-link"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--external-link -->
-						<svg class="svg-icons--external-link-dims">
-							<use xlink:href="#icons--external-link"></use>
-						</svg>
+				<!-- icons--eye -->
+				<svg class="svg-icons--eye-dims">
+					<use xlink:href="#icons--eye"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--eye -->
-						<svg class="svg-icons--eye-dims">
-							<use xlink:href="#icons--eye"></use>
-						</svg>
+				<!-- icons--file -->
+				<svg class="svg-icons--file-dims">
+					<use xlink:href="#icons--file"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--file -->
-						<svg class="svg-icons--file-dims">
-							<use xlink:href="#icons--file"></use>
-						</svg>
+				<!-- icons--flag -->
+				<svg class="svg-icons--flag-dims">
+					<use xlink:href="#icons--flag"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--flag -->
-						<svg class="svg-icons--flag-dims">
-							<use xlink:href="#icons--flag"></use>
-						</svg>
+				<!-- icons--flash -->
+				<svg class="svg-icons--flash-dims">
+					<use xlink:href="#icons--flash"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--flash -->
-						<svg class="svg-icons--flash-dims">
-							<use xlink:href="#icons--flash"></use>
-						</svg>
+				<!-- icons--folder -->
+				<svg class="svg-icons--folder-dims">
+					<use xlink:href="#icons--folder"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--folder -->
-						<svg class="svg-icons--folder-dims">
-							<use xlink:href="#icons--folder"></use>
-						</svg>
+				<!-- icons--fork -->
+				<svg class="svg-icons--fork-dims">
+					<use xlink:href="#icons--fork"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--fork -->
-						<svg class="svg-icons--fork-dims">
-							<use xlink:href="#icons--fork"></use>
-						</svg>
+				<!-- icons--fullscreen-enter -->
+				<svg class="svg-icons--fullscreen-enter-dims">
+					<use xlink:href="#icons--fullscreen-enter"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--fullscreen-enter -->
-						<svg class="svg-icons--fullscreen-enter-dims">
-							<use xlink:href="#icons--fullscreen-enter"></use>
-						</svg>
+				<!-- icons--fullscreen-exit -->
+				<svg class="svg-icons--fullscreen-exit-dims">
+					<use xlink:href="#icons--fullscreen-exit"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--fullscreen-exit -->
-						<svg class="svg-icons--fullscreen-exit-dims">
-							<use xlink:href="#icons--fullscreen-exit"></use>
-						</svg>
+				<!-- icons--grid-four-up -->
+				<svg class="svg-icons--grid-four-up-dims">
+					<use xlink:href="#icons--grid-four-up"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--grid-four-up -->
-						<svg class="svg-icons--grid-four-up-dims">
-							<use xlink:href="#icons--grid-four-up"></use>
-						</svg>
+				<!-- icons--grid-three-up -->
+				<svg class="svg-icons--grid-three-up-dims">
+					<use xlink:href="#icons--grid-three-up"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--grid-three-up -->
-						<svg class="svg-icons--grid-three-up-dims">
-							<use xlink:href="#icons--grid-three-up"></use>
-						</svg>
+				<!-- icons--grid-two-up -->
+				<svg class="svg-icons--grid-two-up-dims">
+					<use xlink:href="#icons--grid-two-up"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--grid-two-up -->
-						<svg class="svg-icons--grid-two-up-dims">
-							<use xlink:href="#icons--grid-two-up"></use>
-						</svg>
+				<!-- icons--hard-drive -->
+				<svg class="svg-icons--hard-drive-dims">
+					<use xlink:href="#icons--hard-drive"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--hard-drive -->
-						<svg class="svg-icons--hard-drive-dims">
-							<use xlink:href="#icons--hard-drive"></use>
-						</svg>
+				<!-- icons--heart -->
+				<svg class="svg-icons--heart-dims">
+					<use xlink:href="#icons--heart"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--heart -->
-						<svg class="svg-icons--heart-dims">
-							<use xlink:href="#icons--heart"></use>
-						</svg>
+				<!-- icons--home -->
+				<svg class="svg-icons--home-dims">
+					<use xlink:href="#icons--home"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--home -->
-						<svg class="svg-icons--home-dims">
-							<use xlink:href="#icons--home"></use>
-						</svg>
+				<!-- icons--image -->
+				<svg class="svg-icons--image-dims">
+					<use xlink:href="#icons--image"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--image -->
-						<svg class="svg-icons--image-dims">
-							<use xlink:href="#icons--image"></use>
-						</svg>
+				<!-- icons--inbox -->
+				<svg class="svg-icons--inbox-dims">
+					<use xlink:href="#icons--inbox"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--inbox -->
-						<svg class="svg-icons--inbox-dims">
-							<use xlink:href="#icons--inbox"></use>
-						</svg>
+				<!-- icons--infinity -->
+				<svg class="svg-icons--infinity-dims">
+					<use xlink:href="#icons--infinity"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--infinity -->
-						<svg class="svg-icons--infinity-dims">
-							<use xlink:href="#icons--infinity"></use>
-						</svg>
+				<!-- icons--info -->
+				<svg class="svg-icons--info-dims">
+					<use xlink:href="#icons--info"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--info -->
-						<svg class="svg-icons--info-dims">
-							<use xlink:href="#icons--info"></use>
-						</svg>
+				<!-- icons--italic -->
+				<svg class="svg-icons--italic-dims">
+					<use xlink:href="#icons--italic"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--italic -->
-						<svg class="svg-icons--italic-dims">
-							<use xlink:href="#icons--italic"></use>
-						</svg>
+				<!-- icons--justify-center -->
+				<svg class="svg-icons--justify-center-dims">
+					<use xlink:href="#icons--justify-center"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--justify-center -->
-						<svg class="svg-icons--justify-center-dims">
-							<use xlink:href="#icons--justify-center"></use>
-						</svg>
+				<!-- icons--justify-left -->
+				<svg class="svg-icons--justify-left-dims">
+					<use xlink:href="#icons--justify-left"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--justify-left -->
-						<svg class="svg-icons--justify-left-dims">
-							<use xlink:href="#icons--justify-left"></use>
-						</svg>
+				<!-- icons--justify-right -->
+				<svg class="svg-icons--justify-right-dims">
+					<use xlink:href="#icons--justify-right"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--justify-right -->
-						<svg class="svg-icons--justify-right-dims">
-							<use xlink:href="#icons--justify-right"></use>
-						</svg>
+				<!-- icons--laptop -->
+				<svg class="svg-icons--laptop-dims">
+					<use xlink:href="#icons--laptop"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--laptop -->
-						<svg class="svg-icons--laptop-dims">
-							<use xlink:href="#icons--laptop"></use>
-						</svg>
+				<!-- icons--layers -->
+				<svg class="svg-icons--layers-dims">
+					<use xlink:href="#icons--layers"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--layers -->
-						<svg class="svg-icons--layers-dims">
-							<use xlink:href="#icons--layers"></use>
-						</svg>
+				<!-- icons--link-broken -->
+				<svg class="svg-icons--link-broken-dims">
+					<use xlink:href="#icons--link-broken"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--link-broken -->
-						<svg class="svg-icons--link-broken-dims">
-							<use xlink:href="#icons--link-broken"></use>
-						</svg>
+				<!-- icons--link-intact -->
+				<svg class="svg-icons--link-intact-dims">
+					<use xlink:href="#icons--link-intact"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--link-intact -->
-						<svg class="svg-icons--link-intact-dims">
-							<use xlink:href="#icons--link-intact"></use>
-						</svg>
+				<!-- icons--list -->
+				<svg class="svg-icons--list-dims">
+					<use xlink:href="#icons--list"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--list -->
-						<svg class="svg-icons--list-dims">
-							<use xlink:href="#icons--list"></use>
-						</svg>
+				<!-- icons--location -->
+				<svg class="svg-icons--location-dims">
+					<use xlink:href="#icons--location"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--location -->
-						<svg class="svg-icons--location-dims">
-							<use xlink:href="#icons--location"></use>
-						</svg>
+				<!-- icons--lock-locked -->
+				<svg class="svg-icons--lock-locked-dims">
+					<use xlink:href="#icons--lock-locked"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--lock-locked -->
-						<svg class="svg-icons--lock-locked-dims">
-							<use xlink:href="#icons--lock-locked"></use>
-						</svg>
+				<!-- icons--lock-unlocked -->
+				<svg class="svg-icons--lock-unlocked-dims">
+					<use xlink:href="#icons--lock-unlocked"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--lock-unlocked -->
-						<svg class="svg-icons--lock-unlocked-dims">
-							<use xlink:href="#icons--lock-unlocked"></use>
-						</svg>
+				<!-- icons--loop -->
+				<svg class="svg-icons--loop-dims">
+					<use xlink:href="#icons--loop"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--loop -->
-						<svg class="svg-icons--loop-dims">
-							<use xlink:href="#icons--loop"></use>
-						</svg>
+				<!-- icons--loop-circular -->
+				<svg class="svg-icons--loop-circular-dims">
+					<use xlink:href="#icons--loop-circular"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--loop-circular -->
-						<svg class="svg-icons--loop-circular-dims">
-							<use xlink:href="#icons--loop-circular"></use>
-						</svg>
+				<!-- icons--loop-square -->
+				<svg class="svg-icons--loop-square-dims">
+					<use xlink:href="#icons--loop-square"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--loop-square -->
-						<svg class="svg-icons--loop-square-dims">
-							<use xlink:href="#icons--loop-square"></use>
-						</svg>
+				<!-- icons--magnifying-glass -->
+				<svg class="svg-icons--magnifying-glass-dims">
+					<use xlink:href="#icons--magnifying-glass"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--magnifying-glass -->
-						<svg class="svg-icons--magnifying-glass-dims">
-							<use xlink:href="#icons--magnifying-glass"></use>
-						</svg>
+				<!-- icons--map-marker -->
+				<svg class="svg-icons--map-marker-dims">
+					<use xlink:href="#icons--map-marker"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--map-marker -->
-						<svg class="svg-icons--map-marker-dims">
-							<use xlink:href="#icons--map-marker"></use>
-						</svg>
+				<!-- icons--media-pause -->
+				<svg class="svg-icons--media-pause-dims">
+					<use xlink:href="#icons--media-pause"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--media-pause -->
-						<svg class="svg-icons--media-pause-dims">
-							<use xlink:href="#icons--media-pause"></use>
-						</svg>
+				<!-- icons--media-play -->
+				<svg class="svg-icons--media-play-dims">
+					<use xlink:href="#icons--media-play"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--media-play -->
-						<svg class="svg-icons--media-play-dims">
-							<use xlink:href="#icons--media-play"></use>
-						</svg>
+				<!-- icons--media-record -->
+				<svg class="svg-icons--media-record-dims">
+					<use xlink:href="#icons--media-record"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--media-record -->
-						<svg class="svg-icons--media-record-dims">
-							<use xlink:href="#icons--media-record"></use>
-						</svg>
+				<!-- icons--menu -->
+				<svg class="svg-icons--menu-dims">
+					<use xlink:href="#icons--menu"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--menu -->
-						<svg class="svg-icons--menu-dims">
-							<use xlink:href="#icons--menu"></use>
-						</svg>
+				<!-- icons--minus -->
+				<svg class="svg-icons--minus-dims">
+					<use xlink:href="#icons--minus"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--minus -->
-						<svg class="svg-icons--minus-dims">
-							<use xlink:href="#icons--minus"></use>
-						</svg>
+				<!-- icons--monitor -->
+				<svg class="svg-icons--monitor-dims">
+					<use xlink:href="#icons--monitor"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--monitor -->
-						<svg class="svg-icons--monitor-dims">
-							<use xlink:href="#icons--monitor"></use>
-						</svg>
+				<!-- icons--move -->
+				<svg class="svg-icons--move-dims">
+					<use xlink:href="#icons--move"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--move -->
-						<svg class="svg-icons--move-dims">
-							<use xlink:href="#icons--move"></use>
-						</svg>
+				<!-- icons--paperclip -->
+				<svg class="svg-icons--paperclip-dims">
+					<use xlink:href="#icons--paperclip"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--paperclip -->
-						<svg class="svg-icons--paperclip-dims">
-							<use xlink:href="#icons--paperclip"></use>
-						</svg>
+				<!-- icons--pencil -->
+				<svg class="svg-icons--pencil-dims">
+					<use xlink:href="#icons--pencil"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--pencil -->
-						<svg class="svg-icons--pencil-dims">
-							<use xlink:href="#icons--pencil"></use>
-						</svg>
+				<!-- icons--people -->
+				<svg class="svg-icons--people-dims">
+					<use xlink:href="#icons--people"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--people -->
-						<svg class="svg-icons--people-dims">
-							<use xlink:href="#icons--people"></use>
-						</svg>
+				<!-- icons--person -->
+				<svg class="svg-icons--person-dims">
+					<use xlink:href="#icons--person"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--person -->
-						<svg class="svg-icons--person-dims">
-							<use xlink:href="#icons--person"></use>
-						</svg>
+				<!-- icons--phone -->
+				<svg class="svg-icons--phone-dims">
+					<use xlink:href="#icons--phone"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--phone -->
-						<svg class="svg-icons--phone-dims">
-							<use xlink:href="#icons--phone"></use>
-						</svg>
+				<!-- icons--pie-chart -->
+				<svg class="svg-icons--pie-chart-dims">
+					<use xlink:href="#icons--pie-chart"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--pie-chart -->
-						<svg class="svg-icons--pie-chart-dims">
-							<use xlink:href="#icons--pie-chart"></use>
-						</svg>
+				<!-- icons--pin -->
+				<svg class="svg-icons--pin-dims">
+					<use xlink:href="#icons--pin"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--pin -->
-						<svg class="svg-icons--pin-dims">
-							<use xlink:href="#icons--pin"></use>
-						</svg>
+				<!-- icons--play-circle -->
+				<svg class="svg-icons--play-circle-dims">
+					<use xlink:href="#icons--play-circle"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--play-circle -->
-						<svg class="svg-icons--play-circle-dims">
-							<use xlink:href="#icons--play-circle"></use>
-						</svg>
+				<!-- icons--plus -->
+				<svg class="svg-icons--plus-dims">
+					<use xlink:href="#icons--plus"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--plus -->
-						<svg class="svg-icons--plus-dims">
-							<use xlink:href="#icons--plus"></use>
-						</svg>
+				<!-- icons--power-standby -->
+				<svg class="svg-icons--power-standby-dims">
+					<use xlink:href="#icons--power-standby"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--power-standby -->
-						<svg class="svg-icons--power-standby-dims">
-							<use xlink:href="#icons--power-standby"></use>
-						</svg>
+				<!-- icons--print -->
+				<svg class="svg-icons--print-dims">
+					<use xlink:href="#icons--print"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--print -->
-						<svg class="svg-icons--print-dims">
-							<use xlink:href="#icons--print"></use>
-						</svg>
+				<!-- icons--project -->
+				<svg class="svg-icons--project-dims">
+					<use xlink:href="#icons--project"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--project -->
-						<svg class="svg-icons--project-dims">
-							<use xlink:href="#icons--project"></use>
-						</svg>
+				<!-- icons--question-mark -->
+				<svg class="svg-icons--question-mark-dims">
+					<use xlink:href="#icons--question-mark"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--question-mark -->
-						<svg class="svg-icons--question-mark-dims">
-							<use xlink:href="#icons--question-mark"></use>
-						</svg>
+				<!-- icons--reload -->
+				<svg class="svg-icons--reload-dims">
+					<use xlink:href="#icons--reload"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--reload -->
-						<svg class="svg-icons--reload-dims">
-							<use xlink:href="#icons--reload"></use>
-						</svg>
+				<!-- icons--resize-both -->
+				<svg class="svg-icons--resize-both-dims">
+					<use xlink:href="#icons--resize-both"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--resize-both -->
-						<svg class="svg-icons--resize-both-dims">
-							<use xlink:href="#icons--resize-both"></use>
-						</svg>
+				<!-- icons--resize-height -->
+				<svg class="svg-icons--resize-height-dims">
+					<use xlink:href="#icons--resize-height"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--resize-height -->
-						<svg class="svg-icons--resize-height-dims">
-							<use xlink:href="#icons--resize-height"></use>
-						</svg>
+				<!-- icons--resize-width -->
+				<svg class="svg-icons--resize-width-dims">
+					<use xlink:href="#icons--resize-width"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--resize-width -->
-						<svg class="svg-icons--resize-width-dims">
-							<use xlink:href="#icons--resize-width"></use>
-						</svg>
+				<!-- icons--right-arrow -->
+				<svg class="svg-icons--right-arrow-dims">
+					<use xlink:href="#icons--right-arrow"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--right-arrow -->
-						<svg class="svg-icons--right-arrow-dims">
-							<use xlink:href="#icons--right-arrow"></use>
-						</svg>
+				<!-- icons--rss -->
+				<svg class="svg-icons--rss-dims">
+					<use xlink:href="#icons--rss"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--rss -->
-						<svg class="svg-icons--rss-dims">
-							<use xlink:href="#icons--rss"></use>
-						</svg>
+				<!-- icons--rss-alt -->
+				<svg class="svg-icons--rss-alt-dims">
+					<use xlink:href="#icons--rss-alt"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--rss-alt -->
-						<svg class="svg-icons--rss-alt-dims">
-							<use xlink:href="#icons--rss-alt"></use>
-						</svg>
+				<!-- icons--share -->
+				<svg class="svg-icons--share-dims">
+					<use xlink:href="#icons--share"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--share -->
-						<svg class="svg-icons--share-dims">
-							<use xlink:href="#icons--share"></use>
-						</svg>
+				<!-- icons--share-boxed -->
+				<svg class="svg-icons--share-boxed-dims">
+					<use xlink:href="#icons--share-boxed"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--share-boxed -->
-						<svg class="svg-icons--share-boxed-dims">
-							<use xlink:href="#icons--share-boxed"></use>
-						</svg>
+				<!-- icons--signal -->
+				<svg class="svg-icons--signal-dims">
+					<use xlink:href="#icons--signal"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--signal -->
-						<svg class="svg-icons--signal-dims">
-							<use xlink:href="#icons--signal"></use>
-						</svg>
+				<!-- icons--spreadsheet -->
+				<svg class="svg-icons--spreadsheet-dims">
+					<use xlink:href="#icons--spreadsheet"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--spreadsheet -->
-						<svg class="svg-icons--spreadsheet-dims">
-							<use xlink:href="#icons--spreadsheet"></use>
-						</svg>
+				<!-- icons--star -->
+				<svg class="svg-icons--star-dims">
+					<use xlink:href="#icons--star"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--star -->
-						<svg class="svg-icons--star-dims">
-							<use xlink:href="#icons--star"></use>
-						</svg>
+				<!-- icons--tablet -->
+				<svg class="svg-icons--tablet-dims">
+					<use xlink:href="#icons--tablet"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--tablet -->
-						<svg class="svg-icons--tablet-dims">
-							<use xlink:href="#icons--tablet"></use>
-						</svg>
+				<!-- icons--tag -->
+				<svg class="svg-icons--tag-dims">
+					<use xlink:href="#icons--tag"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--tag -->
-						<svg class="svg-icons--tag-dims">
-							<use xlink:href="#icons--tag"></use>
-						</svg>
+				<!-- icons--tags -->
+				<svg class="svg-icons--tags-dims">
+					<use xlink:href="#icons--tags"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--tags -->
-						<svg class="svg-icons--tags-dims">
-							<use xlink:href="#icons--tags"></use>
-						</svg>
+				<!-- icons--target -->
+				<svg class="svg-icons--target-dims">
+					<use xlink:href="#icons--target"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--target -->
-						<svg class="svg-icons--target-dims">
-							<use xlink:href="#icons--target"></use>
-						</svg>
+				<!-- icons--task -->
+				<svg class="svg-icons--task-dims">
+					<use xlink:href="#icons--task"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--task -->
-						<svg class="svg-icons--task-dims">
-							<use xlink:href="#icons--task"></use>
-						</svg>
+				<!-- icons--text -->
+				<svg class="svg-icons--text-dims">
+					<use xlink:href="#icons--text"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--text -->
-						<svg class="svg-icons--text-dims">
-							<use xlink:href="#icons--text"></use>
-						</svg>
+				<!-- icons--thumb-down -->
+				<svg class="svg-icons--thumb-down-dims">
+					<use xlink:href="#icons--thumb-down"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--thumb-down -->
-						<svg class="svg-icons--thumb-down-dims">
-							<use xlink:href="#icons--thumb-down"></use>
-						</svg>
+				<!-- icons--thumb-up -->
+				<svg class="svg-icons--thumb-up-dims">
+					<use xlink:href="#icons--thumb-up"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--thumb-up -->
-						<svg class="svg-icons--thumb-up-dims">
-							<use xlink:href="#icons--thumb-up"></use>
-						</svg>
+				<!-- icons--transfer -->
+				<svg class="svg-icons--transfer-dims">
+					<use xlink:href="#icons--transfer"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--transfer -->
-						<svg class="svg-icons--transfer-dims">
-							<use xlink:href="#icons--transfer"></use>
-						</svg>
+				<!-- icons--trash -->
+				<svg class="svg-icons--trash-dims">
+					<use xlink:href="#icons--trash"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--trash -->
-						<svg class="svg-icons--trash-dims">
-							<use xlink:href="#icons--trash"></use>
-						</svg>
+				<!-- icons--underline -->
+				<svg class="svg-icons--underline-dims">
+					<use xlink:href="#icons--underline"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--underline -->
-						<svg class="svg-icons--underline-dims">
-							<use xlink:href="#icons--underline"></use>
-						</svg>
+				<!-- icons--warning -->
+				<svg class="svg-icons--warning-dims">
+					<use xlink:href="#icons--warning"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- icons--warning -->
-						<svg class="svg-icons--warning-dims">
-							<use xlink:href="#icons--warning"></use>
-						</svg>
+				<!-- icons--x -->
+				<svg class="svg-icons--x-dims">
+					<use xlink:href="#icons--x"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
-
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
-
-						<!-- icons--x -->
-						<svg class="svg-icons--x-dims">
-							<use xlink:href="#icons--x"></use>
-						</svg>
-
-					</div>
-
-				</div>
+		</div>
     </div>

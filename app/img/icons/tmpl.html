@@ -1,59 +1,22 @@
-
-<!--
-
-Sprite shape dimensions
-====================================================================================================
-You will need to set the sprite shape dimensions via CSS when you use them as inline SVG, otherwise
-they would become a huge 100% in size. You may use the following dimension classes for doing so.
-They might well be outsourced to an external stylesheet of course.
-
--->
-
-<style type="text/css">
-{{#shapes}}	{{#selector.dimensions}}{{expression}}{{^last}}, {{/last}}{{/selector.dimensions}} { width: {{width.outer}}px; height: {{height.outer}}px; }
-{{/shapes}}</style>
-<!--
-====================================================================================================
--->
-
-
-
-<!--
-
-Inline <symbol> SVG sprite
-====================================================================================================
-This is an inlined version of the generated SVG sprite. The single images may be <use>d everywhere
-below within this document. Please see
-
-	https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md#defs--symbol-mode
-
-for further details on how to create this embeddable sprite variant.
-
--->
-
 <svg width="0" height="0" style="position:absolute">
 {{#shapes}}		{{{svg}}}
 {{/shapes}}
 </svg>
 
-
-
-
-      <div class="grid grid--gutterless">
-
+  <div class="grid grid--gutterless">
 
 {{#shapes}}
 
-        <div class="grid__col xs-3 s-2 m-1">
-					<div class="icon-box">
+    <div class="grid__col xs-3 s-2 m-1">
+			<div class="icon-box">
 
-						<!-- {{name}} -->
-						<svg class="{{#selector.dimensions}}{{#last}}{{#classname}}{{raw}}{{/classname}}{{/last}}{{/selector.dimensions}}">
-							<use xlink:href="#{{name}}"></use>
-						</svg>
+				<!-- {{name}} -->
+				<svg class="{{#selector.dimensions}}{{#last}}{{#classname}}{{raw}}{{/classname}}{{/last}}{{/selector.dimensions}}">
+					<use xlink:href="#{{name}}"></use>
+				</svg>
 
-					</div>
+			</div>
 
-				</div>
+		</div>
 {{/shapes}}
     </div>

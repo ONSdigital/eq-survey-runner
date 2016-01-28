@@ -9,10 +9,12 @@ export const paths = {
   input: srcPath + '/**/*',
   output: distPath,
   scripts: {
+    dir: srcPath + '/js/',
     input: srcPath + '/js/*',
     output: distPath + '/js/'
   },
   styles: {
+    dir: srcPath + '/styles/',
     input: srcPath + '/styles/**/*.{scss,sass}',
     output: distPath + '/css/'
   },
