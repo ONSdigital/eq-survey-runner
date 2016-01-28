@@ -2,7 +2,7 @@
  * Paths to project folders
  */
 
-export const srcPath = 'app'
+export const srcPath = './app'
 export const distPath = srcPath + '/static'
 
 export const paths = {
@@ -17,10 +17,12 @@ export const paths = {
     output: distPath + '/css/'
   },
   templates: {
+    dir: srcPath + '/templates/',
     input: srcPath + '/templates/**/*.html'
   },
   svgs: {
-    input: srcPath + '/img/*.svg',
+    dir: srcPath + '/img/',
+    input: srcPath + '/img/**/*.svg',
     output: distPath + '/img/'
   },
   images: {
