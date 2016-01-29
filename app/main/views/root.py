@@ -24,7 +24,7 @@ def jwt_decrypt():
     try:
         encrypted_token = request.args.get('token')
         token = decoder.decrypt_jwt_token(encrypted_token)
-        return render_template('index.html')
+        return render_template('index.html', token_id=encrypted_token, token=token)
     except NoTokenException as e:
         return errors.unauthorized(e)
     except InvalidTokenException as e:
@@ -35,7 +35,7 @@ def jwt_decode_signed():
     try:
         signed_token = request.args.get('token')
         token = decoder.decode_signed_jwt_token(signed_token)
-        return render_template('index.html')
+        return render_template('index.html', token_id=signed_token, token=token)
     except NoTokenException as e:
         return errors.unauthorized(e)
     except InvalidTokenException as e:
@@ -44,10 +44,10 @@ def jwt_decode_signed():
 
 def jwt_decode():
     try:
-        token = request.args.get('token')
-        token = decoder.decode_jwt_token(token)
+        jwt = request.args.get('token')
+        token = decoder.decode_jwt_token(jwt)
         print(token)
-        return render_template('index.html')
+        return render_template('index.html', token_id=jwt, token=token)
     except NoTokenException as e:
         return errors.unauthorized(e)
     except InvalidTokenException as e:
