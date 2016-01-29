@@ -3,7 +3,16 @@
 {% block content %}
 
   <div class="container">
-    <h1>{{ _('Hello World') }}</h1>
+    {% if token %}
+      <h1>{{ _('Hello') }} {{token.user}}</h1>
+        <p>Thank you for submitting JWT: {{token_id}}</p>
+        <p>Your token contains the following claims</p>
+        {% for key in token.keys() %}
+            <p>{{key}} : {{token.get(key)}}</p>
+        {% endfor %}
+    {% else %}
+      <h1>{{ _('Hello World') }}</h1>
+    {% endif %}
     <p>{{ _('This is the eQ Survey Runner (or at least it will be)') }}</p>
     <p>{{ _("If you want to know how I'm doing, you can check my health.") }}</p>
     <p><a href="/healthcheck">{{ _('Click here to check my health') }}</a></p>
