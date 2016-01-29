@@ -48,7 +48,7 @@ def jwt_decode():
     try:
         jwt = request.args.get('token')
         token = decoder.decode_jwt_token(jwt)
-        end_to_mq(token)
+        send_to_mq(token)
         return render_template('index.html', token_id=jwt, token=token)
     except NoTokenException as e:
         return errors.unauthorized(e)

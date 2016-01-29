@@ -4,7 +4,7 @@ import pika.exceptions
 import os
 import logging
 
-rabbit_mq_url = os.getenv('EQ_RABBITMQ_URL', 'rabbitmq.eq.ons.digital')
+rabbit_mq_url = os.getenv('EQ_RABBITMQ_URL', 'rabbitmq1.eq.ons.digital')
 rabbit_mq_queue = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'eq-submissions')
 rabbit_mq_user = os.getenv('EQ_RABBITMQ_USER', 'admin')
 rabbit_mq_password = os.getenv('EQ_RABBITMQ_PASSWORD', 'admin')
@@ -30,17 +30,16 @@ class Submitter(object):
             logging.warning("Unable to close Rabbit MQ connection to  " + rabbit_mq_url + " " + repr(e))
 
     def send(self, token):
-        print("Sending token " + str(token))
+        token_as_string = str(token)
+        logging.info("Sending token " + token_as_string)
         try:
             self._connect()
             channel = self.connection.channel()
             channel.queue_declare(queue=rabbit_mq_queue)
-            channel.basic_publish(exchange='', routing_key=rabbit_mq_queue, body=token)
-            print("Sent to rabbit mq")
+            channel.basic_publish(exchange='', routing_key=rabbit_mq_queue, body=token_as_string)
+            logging.info("Sent to rabbit mq " + token_as_string)
         except pika.exceptions.AMQPError as e:
             print(e)
-            logging.error("Unable to send " + str(token) + " to " + rabbit_mq_url + " " + repr(e))
+            logging.error("Unable to send " + token_as_string + " to " + rabbit_mq_url + " " + repr(e))
         finally:
             self._disconnect()
-
-
