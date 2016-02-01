@@ -5,15 +5,12 @@ from app.authentication.jwt_decoder import Decoder
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.submitter.submitter import Submitter
-import os
+from app import settings
 
-rrm_public_key_file = os.getenv('EQ_RRM_PUBLIC_KEY', './jwt-test-keys/rrm-public.pem')
-sr_private_key_file = os.getenv('EQ_SR_PRIVATE_KEY', './jwt-test-keys/sr-private.pem')
-
-with open(rrm_public_key_file, "rb") as public_key_file:
+with open(settings.RRM_PUBLIC_KEY_FILE, "rb") as public_key_file:
     rmm_public_key = public_key_file.read()
 
-with open(sr_private_key_file, "rb") as private_key_file:
+with open(settings.SR_PRIVATE_KEY_FILE, "rb") as private_key_file:
     sr_private_key = private_key_file.read()
 
 decoder = Decoder(rmm_public_key, sr_private_key, "digitaleq")
