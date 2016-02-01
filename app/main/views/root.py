@@ -7,10 +7,10 @@ from app.authentication.no_token_exception import NoTokenException
 from app.submitter.submitter import Submitter
 from app import settings
 
-with open(settings.RRM_PUBLIC_KEY_FILE, "rb") as public_key_file:
+with open(settings.EQ_RRM_PUBLIC_KEY, "rb") as public_key_file:
     rmm_public_key = public_key_file.read()
 
-with open(settings.SR_PRIVATE_KEY_FILE, "rb") as private_key_file:
+with open(settings.EQ_SR_PRIVATE_KEY, "rb") as private_key_file:
     sr_private_key = private_key_file.read()
 
 decoder = Decoder(rmm_public_key, sr_private_key, "digitaleq")

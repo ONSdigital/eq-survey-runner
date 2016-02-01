@@ -34,4 +34,3 @@ def create_app(config_name):
     application.register_blueprint(main_blueprint)
     main_blueprint.config = application.config.copy()
     return application
-
