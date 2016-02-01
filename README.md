@@ -135,11 +135,10 @@ The following env variables can be used
 ```
 EQ_RRM_PUBLIC_KEY - location on disk of the RRM public key
 EQ_SR_PRIVATE_KEY - location on disk of the SR private key
-EQ_RABBITMQ_URL - the host name of the RabbitMQ server
+EQ_RABBITMQ_URL - the RabbitMQ connection string
 EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
 EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
-EQ_RABBITMQ_USER - rabbit mq username
-EQ_RABBITMQ_PASSWORD - rabbitmq password
+
 ```
 
 ## Alpha Survey Runner

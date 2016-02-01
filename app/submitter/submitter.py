@@ -7,12 +7,11 @@ from app import settings
 
 class Submitter(object):
     def __init__(self):
-        self.credentials = pika.credentials.PlainCredentials(settings.EQ_RABBITMQ_USER, settings.EQ_RABBITMQ_PASSWORD)
         self.connection = None
 
     def _connect(self):
         try:
-            self.connection = pika.BlockingConnection(pika.ConnectionParameters(host=settings.EQ_RABBITMQ_URL, credentials=self.credentials))
+            self.connection = pika.BlockingConnection(pika.URLParameters(settings.EQ_RABBITMQ_URL))
         except pika.exceptions.AMQPError as e:
             logging.error("Unable to open Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
             raise e
