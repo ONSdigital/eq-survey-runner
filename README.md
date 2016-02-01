@@ -129,7 +129,17 @@ To update the language strings, use:
 pybabel update -i app/translations/messages.pot -d translations
 ```
 
+## Environment Variables
 
+The following env variables can be used
+```
+EQ_RRM_PUBLIC_KEY - location on disk of the RRM public key
+EQ_SR_PRIVATE_KEY - location on disk of the SR private key
+EQ_RABBITMQ_URL - the RabbitMQ connection string
+EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
+EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
+
+```
 
 ## Alpha Survey Runner
 If you're looking for the Survey Runner code from the Alpha then it has been renamed to: alpha-eq-survey-runner
