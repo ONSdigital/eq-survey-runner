@@ -6,6 +6,8 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.submitter.submitter import Submitter
 from app import settings
+import os
+
 
 with open(settings.EQ_RRM_PUBLIC_KEY, "rb") as public_key_file:
     rmm_public_key = public_key_file.read()

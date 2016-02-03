@@ -20,6 +20,23 @@
         </div>
       </div>
     </fieldset>
+
+{% filter markdown %}
+```markup
+<fieldset>
+  <legend class="legend">Text-fields set in a two column grid above a certain breakpoint.</legend>
+    <div class="field">
+      <label for="name" class="label">Forename</label>
+      <input type="text" class="input" name="forename">
+    </div>
+    <div class="field">
+      <label for="name" class="label">Surname</label>
+      <input type="text" class="input" name="surname">
+    </div>
+  </div>
+</fieldset>
+```
+{% endfilter %}
   </div>
 
   <!-- <div class="ptn-section">
@@ -54,6 +71,21 @@
         {% endfor %}
       </div>
     </fieldset>
+
+{% filter markdown %}
+```markup
+<fieldset>
+  <legend class="legend">Group of radio buttons</legend>
+  <div class="field field--radio">
+    {% for i in range(3) %}
+    <input class="radio" type="radio" name="radios" id="radio{{i}}"/>
+    <label for="radio{{i}}" class="label">Option {{loop.index}}</label>
+    {% endfor %}
+  </div>
+</fieldset>
+```
+{% endfilter %}
+
   </div>
 
   <div class="ptn-section">
@@ -66,6 +98,20 @@
         {% endfor %}
       </div>
     </fieldset>
+
+{% filter markdown %}
+```markup
+<fieldset>
+  <legend class="legend">Group of checkboxes</legend>
+  <div class="field field--checkbox">
+    {% for i in range(3) %}
+    <input class="radio" type="checkbox" name="radios" id="checkbox{{i}}"/>
+    <label for="checkbox{{i}}" class="label">Option {{loop.index}}</label>
+    {% endfor %}
+  </div>
+</fieldset>
+```
+{% endfilter %}
   </div>
 
   <h3>Buttons</h3>
@@ -84,6 +130,24 @@
         <button class="btn btn--secondary">Secondary</button>
       </div>
     </fieldset>
+
+{% filter markdown %}
+```markup
+<fieldset>
+  <legend class="legend">Vanilla buttons.</legend>
+  <button class="btn">Primary</button>
+  <br />
+  <button class="btn btn--secondary">Secondary</button>
+</fieldset>
+<fieldset>
+  <legend class="legend">Button group.</legend>
+  <div class="btn-group">
+    <button class="btn">Primary</button>
+    <button class="btn btn--secondary">Secondary</button>
+  </div>
+</fieldset>
+```
+{% endfilter %}
   </div>
 
 </form>
@@ -117,23 +181,62 @@
   </div>
 </form>
 
-<form action="" method="POST" class="form" data-parsley-validate>
+{% filter markdown %}
+```markup
+<form action="/" method="post" class="form" data-parsley-validate>
   <div class="ptn-section">
     <fieldset>
-      <legend class="legend">Remote validation via AJAX. Type 'hello' into the input to successfully validate.</legend>
-      <div class="grid">
-        <div class="grid__col m-12 l-6">
-          <div class="field">
-            <label for="name" class="label">Say Hello</label>
-            <input type="text" name="q" id="name" class="input"
-                    data-parsley-remote="/validate/"
-                    data-parsley-remote-options='{ "type": "POST" }'
-                    data-parsley-remote-message="Please enter 'hello'."
-                     />
-          </div>
+      <legend class="legend">Basic form validation with required fields.</legend>
+        <div class="field field--required">
+          <label for="name" class="label">Forename</label>
+          <input type="text" class="input" name="forename"
+                data-parsley-required-message="Please enter your forename"
+                required>
         </div>
-      </div>
+        <div class="field field--required">
+          <label for="name" class="label">Surname</label>
+          <input type="text" class="input" name="surname"
+                data-parsley-required-message="Please enter your surname"
+                required>
+        </div>
       <button class="btn">Submit</button>
     </fieldset>
   </div>
 </form>
+```
+{% endfilter %}
+
+<h3>Remote validation</h3>
+
+<form action="" method="POST" class="form" data-parsley-validate>
+  <fieldset>
+    <legend class="legend">Remote validation via AJAX. Type 'hello' into the input to successfully validate.</legend>
+      <div class="field">
+        <label for="name" class="label">Say Hello</label>
+        <input type="text" name="q" id="name" class="input"
+                data-parsley-remote="/validate/"
+                data-parsley-remote-options='{ "type": "POST" }'
+                data-parsley-remote-message="Please enter 'hello'."/>
+      </div>
+    <button class="btn">Submit</button>
+  </fieldset>
+</form>
+
+{% filter markdown %}
+```markup
+<form action="" method="POST" class="form" data-parsley-validate>
+  <fieldset>
+    <legend class="legend">Remote validation via AJAX. Type 'hello' into the input to successfully validate.</legend>
+      <div class="field">
+        <label for="name" class="label">Say Hello</label>
+        <input type="text" name="q" id="name" class="input"
+                data-parsley-remote="/validate/"
+                data-parsley-remote-options='{ "type": "POST" }'
+                data-parsley-remote-message="Please enter 'hello'."
+                 />
+      </div>
+    <button class="btn">Submit</button>
+  </fieldset>
+</form>
+```
+{% endfilter %}
