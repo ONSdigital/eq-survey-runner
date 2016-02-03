@@ -22,7 +22,6 @@ export default function styles() {
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sassGlob())
-    .pipe(debug({title: 'CSS:'}))
     .pipe(sass({
       errLogToConsole: true,
       outputStyle: 'expanded',
@@ -47,7 +46,7 @@ export default function styles() {
         browsers: ['last 1 version']
       }),
       pxtorem({
-        rootValue: 16,
+        rootValue: 18,
         propWhiteList: [],
         selectorBlackList: [],
         replace: false,
@@ -66,7 +65,6 @@ export default function styles() {
       }
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(size({'title': 'CSS (minified)'}))
     .pipe(gulp.dest(paths.styles.output))
     .pipe(browserSync.stream({once: true}))
 }

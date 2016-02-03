@@ -1,3 +1,3 @@
-import Foo from './foo.js'
-
-Foo.Log()
+import 'babel-polyfill'
+import './parsley-config'
+import Parsley from 'parsleyjs'

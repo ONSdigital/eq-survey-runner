@@ -1,21 +1,18 @@
-
-{% block styles %}
-  <link href="{{ url_for('static', filename='css/patterns.css') }}" rel="stylesheet">
-{% endblock styles %}
+{% extends 'layouts/_base.html' %}
 
 {% block content %}
 
-  <header class="ptn-header">
+  <div class="ptn-header">
     <div class="container">
       <a href="/patterns/"><h1 class="ptn-title"></h1></a>
     </div>
-  </header>
+  </div>
 
   <div class="container">
     <div class="grid">
       <div class="grid__col m-3">
         <div class="ptn-sidebar">
-          <nav class="ptn-nav">
+          <div class="ptn-nav">
             <ul class="ptn-nav-list">
               {% for section in sections %}
                 <li class="ptn-nav-item {{ 'is-active' if section.current }}">
@@ -23,7 +20,7 @@
                 </li>
               {% endfor %}
             </ul>
-          </nav>
+          </div>
         </div>
       </div>
       <div class="grid__col m-9">
@@ -34,4 +31,14 @@
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.js" charset="utf-8"></script>
+  {{super()}}
+{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css" charset="utf-8">
+  {{super()}}
 {% endblock %}

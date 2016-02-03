@@ -21,7 +21,7 @@ def rabbitmq_available():
 
 
 def create_app(config_name):
-    application = Flask(__name__, static_url_path='/s')
+    application = Flask(__name__, static_url_path='/static')
     headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache'}
     application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
@@ -29,7 +29,7 @@ def create_app(config_name):
     application.babel.localeselector(get_locale)
     application.jinja_env.add_extension('jinja2.ext.i18n')
     application.envdump = EnvironmentDump(application, '/environment')
-    application.markdown = Markdown(application, extensions=['gfm'])
+    Markdown(application, extensions=['gfm'])
 
     from .main import main as main_blueprint
     application.register_blueprint(main_blueprint)

@@ -1,7 +1,11 @@
 $responsive: true;
-@import "vendor/**/*.scss";
 @import "vars/*.scss";
+
+$grid-max-width: 1400px;
+
+@import "vendor/**/*.scss";
 @import "eq-sass";
+@import "gfm.scss";
 @import "helpers/*.scss";
 @import "base/*.scss";
 @import "objects/*.scss";

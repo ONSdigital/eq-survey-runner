@@ -10,6 +10,7 @@ import watchify from 'watchify'
 import babelify from 'babelify'
 import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
+import sourcemaps from 'gulp-sourcemaps'
 
 import {paths, srcPath, distPath} from './paths'
 import browserSync from './bs'
@@ -18,28 +19,25 @@ const b = browserify(Object.assign(watchify.args, {
   entries: [`./${srcPath}/js/app.js`],
   debug: true
 }))
+.on('update', () => bundle())
+.on('log', gutil.log)
+.transform(babelify, {presets: ['es2015']})
 
 export function bundle(watch) {
   const bundler = watch ? watchify(b) : b
-  // On updates recompile
-  bundler.on('update', bundle)
-  bundler.on('log', gutil.log)
-  // Babel transform
-  bundler.transform(babelify.configure({
-    sourceMapRelative: `./${srcPath}/js`
-  }), { presets: ['es2015'] })
   bundler.bundle()
     .on('error', function(err) {
       gutil.log(err.message)
       browserSync.notify('Browserify Error!')
       this.emit('end')
     })
-    .pipe(exorcist(`./${distPath}/js/bundle.js.map`))
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(uglify())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(`./${distPath}/js`))
-    // .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.reload({stream: true}))
 }
 
 export function lint() {

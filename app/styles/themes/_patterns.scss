@@ -1,23 +1,5 @@
-$responsive: true;
-@import "vars/*.scss";
-
-$grid-max-width: 1400px;
-
-@import "vendor/**/*.scss";
-@import "eq-sass";
 @import "gfm.scss";
-@import "helpers/*.scss";
-@import "base/*.scss";
-@import "objects/*.scss";
-@import "components/*.scss";
-@import "themes/*.scss";
-@import "utilities/*.scss";
-@import "hacks/*.scss";
 
-body {
-  font-family: $font-sans;
-  color: $color-text;
-}
 
 .ptn-header {
   background: $color-light-grey;
@@ -48,12 +30,17 @@ body {
 }
 
 .ptn-nav-list {
-  margin: 40px 0;
   padding: 0;
+  margin: 10px 0;
+  font-size: 18px;
+  @include mq(m) {
+    margin: 40px 0;
+  }
 }
 
 .ptn-nav-item {
   list-style: none;
+  display: block;
   &.is-active {
     font-weight: bold;
   }
@@ -87,17 +74,21 @@ body {
 }
 
 .ptn-grid {
-  background: tint($color-blue, 80);
+  background: tint($color-blue, 70);
   padding: $grid-gutters $grid-gutters 0 $grid-gutters;
   margin-bottom: $grid-gutters;
 }
 
 .ptn-col {
-  background: tint($color-blue, 50);
+  background: tint($color-blue, 60);
   padding: 7px;
   margin-bottom: $grid-gutters;
   color: $color-white;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
+}
+
+code {
+  font-size: 14px;
 }

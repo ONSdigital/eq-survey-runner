@@ -1,6 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic);
 
+html {
+  font-size: 112.5%;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: $font-sans;
+}
+
 p {
+  font-size: 18px;
   max-width: 50rem;
   margin: 0 0 20px 0;
 }
