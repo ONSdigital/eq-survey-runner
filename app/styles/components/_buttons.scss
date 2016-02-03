@@ -22,3 +22,18 @@
 .btn--secondary {
   @include btn($color-secondary, $color-white);
 }
+
+.btn-group {
+  font-size: 0;
+  .btn {
+    display: inline-block;
+    margin-right: 18px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+.btn-group__btn {
+
+}

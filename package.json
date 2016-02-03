@@ -14,7 +14,7 @@
     "watch": "gulp watch",
     "server": "python application.py runserver",
     "vf": "vf activate eq-survey-runner",
-    "dev": "npm run server & npm run watch",
+    "dev": "gulp watch",
     "compile": "gulp compile",
     "lint": "eslint . ./",
     "lint:fix": "npm run lint -- --fix",

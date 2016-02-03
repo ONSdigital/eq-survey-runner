@@ -74,7 +74,15 @@
     <fieldset>
       <legend class="legend">Vanilla buttons.</legend>
       <button class="btn">Primary</button>
+      <br />
       <button class="btn btn--secondary">Secondary</button>
+    </fieldset>
+    <fieldset>
+      <legend class="legend">Button group.</legend>
+      <div class="btn-group">
+        <button class="btn">Primary</button>
+        <button class="btn btn--secondary">Secondary</button>
+      </div>
     </fieldset>
   </div>
 
@@ -112,13 +120,12 @@
 <form action="" method="POST" class="form" data-parsley-validate>
   <div class="ptn-section">
     <fieldset>
-      <legend class="legend">Remote validation via AJAX.</legend>
+      <legend class="legend">Remote validation via AJAX. Type 'hello' into the input to successfully validate.</legend>
       <div class="grid">
         <div class="grid__col m-12 l-6">
           <div class="field">
             <label for="name" class="label">Say Hello</label>
             <input type="text" name="q" id="name" class="input"
-                    data-parsley-trigger="focusout"
                     data-parsley-remote="/validate/"
                     data-parsley-remote-options='{ "type": "POST" }'
                     data-parsley-remote-message="Please enter 'hello'."
