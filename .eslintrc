@@ -9,6 +9,10 @@
   "env": {
     "browser" : true
   },
+ "globals": {
+    "$": true,
+    "jQuery": true
+  },
   "rules": {
     "no-unused-vars" : [1],
     "semi" : [2, "never"],

@@ -1,6 +1,8 @@
 $color-white: #ffffff;
-$color-black: #2B2B2B;
+$color-black: #4C4B4B;
 $color-grey: #b2b2b3;
+$color-dark-grey: #4f4f51;
+$color-light-grey: #F4F4F4;
 
 
 // brand
@@ -11,8 +13,9 @@ $color-primary: $color-blue;
 $color-secondary: $color-green;
 
 $color-light-blue: tint($color-blue, 40);
-$color-dark-grey: #4f4f51;
-$color-light-grey: #F4F4F4;
+
+
+$color-red: #C50B0B;
 
 // assignment
 
@@ -20,5 +23,7 @@ $color-selection: $color-secondary;
 $color-selection-text: $color-black;
 $color-text: $color-black;
 $color-links: $color-blue;
-$color-borders: $color-black;
-$color-placeholder: $color-dark-grey;
+$color-borders: $color-grey;
+$color-placeholder: $color-grey;
+
+$color-errors: $color-red;

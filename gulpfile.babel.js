@@ -85,10 +85,10 @@ gulp.task('build:images', ['clean:dist'], () => {
 gulp.task('compile', [
   'lint:scripts',
   'clean:dist',
+  'build:svgs',
   'build:scripts',
   'build:styles',
   'build:images',
-  'build:svgs',
   'copy:dist'
 ])
 
@@ -103,10 +103,10 @@ gulp.task('default', [
 gulp.task('watch', [
   'lint:scripts',
   'clean:dist',
+  'build:svgs',
   'watch:scripts',
   'build:styles',
   'build:images',
-  'build:svgs',
   'copy:dist',
   'listen'
 ])
