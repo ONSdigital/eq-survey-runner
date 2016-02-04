@@ -74,9 +74,11 @@ def jwt_signed():
 def jwt_encrypted_key_exchange():
     return jwt_decrypt()
 
+
 def send_to_mq(token):
     submitter = Submitter()
     submitter.send(token)
+
 
 @main.route('/patterns/')
 @main.route('/patterns/<pattern>', methods=['GET', 'POST'])
@@ -94,12 +96,13 @@ def patterns(pattern='index'):
                     })
     return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern_name + '.html', title=pattern)
 
+
 @main.route('/validate/', methods=['GET', 'POST'])
 def validate():
-  data = { 'msg': 'Wrong!' }
-  status = 404
-  if request.form['q'] == 'hello':
-    data = { 'msg': 'Correct!' }
-    status = 200
-  js = json.dumps(data)
-  return Response(js, status=status, mimetype='application/json')
+    data = {'msg': 'Wrong!'}
+    status = 404
+    if request.form['q'] == 'hello':
+        data = {'msg': 'Correct!'}
+        status = 200
+    js = json.dumps(data)
+    return Response(js, status=status, mimetype='application/json')
