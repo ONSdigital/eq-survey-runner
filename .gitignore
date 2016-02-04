@@ -54,6 +54,9 @@ static/
 tests/results
 tests/coverage
 
+app/templates/patterns/components/icons.html
+app/styles/base/_sprite.scss
+
 ## OS X
 ._*
 .Spotlight-V100
