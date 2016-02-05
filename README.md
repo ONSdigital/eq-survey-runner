@@ -138,8 +138,35 @@ EQ_SR_PRIVATE_KEY - location on disk of the SR private key
 EQ_RABBITMQ_URL - the RabbitMQ connection string
 EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
 EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
-
+EQ_PRODUCTION - flag to indicate if we're running in production or dev mode
 ```
+
+## JWT Integration
+Integration with the survey runner requires the use of a signed JWT using public and private key pair (see https://jwt.io,
+https://tools.ietf.org/html/rfc7519, https://tools.ietf.org/html/rfc7515).
+
+Once signed the JWT must be encrypted using JWE (see https://tools.ietf.org/html/rfc7516).
+
+The JWT payload must contain the following claims:
+- exp - expiration time
+- iat - issued at time
+
+The header of the JWT must include the following:
+- alg - the signing algorithm (must be RS256)
+- type - the token type (must be JWT)
+- kid - key identification  (must be EDCRRM)
+
+The JOSE header of the final JWE must include:
+- alg - the key encryption algorithm (must be RSA-OAEP)
+- enc - the key encryption encoding (must be A256GCM)
+
+When running in production mode every request to the survey runner must append the follow url parameter: `token`. This
+parameter must be set to a valid JWE encrypted JWT token. Only encrypted tokens are allowed in production mode.
+
+When running in dev mode the token is not mandatory, however it can be supplied and if so will be decrypted/decoded and
+used. Also when in dev mode, unencrypted signed and unencrypted unsigned tokens can be also used in the url parameter
+'token'.
+
 
 ## Alpha Survey Runner
 If you're looking for the Survey Runner code from the Alpha then it has been renamed to: alpha-eq-survey-runner

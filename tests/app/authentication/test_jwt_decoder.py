@@ -46,29 +46,26 @@ rrm_public_pem = b'-----BEGIN PUBLIC KEY-----\n' \
                  b'kwIDAQAB\n' \
                  b'-----END PUBLIC KEY-----\n'
 
-jwt = "eyJhbGciOiJub25lIn0.eyJ1c2VyIjoiamltbXkifQ."
 
-signed_jwt = "eyJhbGciOiJSUzI1NiJ9.eyJ1c2VyIjoiamltbXkifQ.oec9V6uxd9nlNsEZud9YIf1Ee" \
-             "0Su-sgVSnBPpR-8AURchaT-L_ulrDSmHRzD0BdEpuaJkbA7DgeXUsuFWpspDgtxZvomv7t" \
-             "Oel4yTKHWjZ1BzuWcZhWNMbwwzmmauUyWE7FRMVS1yFFpbpOnvuS6jOJWczVMNQEKp6PEH" \
-             "2Q99ZpJ1k9uKACNzXrILLKPSN3OJHn3sYP5Nn0WGQtol_BByE4V4YrhTSrcy3QUpKwPYcw" \
-             "4FzSchnKab0D1R9GHYHKBQaWf0f9PsbDByzF97UhZSEgJrt-kJ1fu3MCYUyrnCYzNz1W_x" \
-             "22cT5SsEiu34IKEZ2w-9XerafAEMI86FA1MOA"
+jwt = "eyJhbGciOiJub25lIn0.eyJleHAiOiIyMDc1Mjk3MTQ4IiwiaWF0IjoiMTQ1NDkzNzAyMyIsInVzZXIiOiJqaW1teSJ9."
 
-encrypted_jwt = "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.D_dPbu" \
-                "r9clGwfEI1D28zRetV76GGZrU5CExTCx8T1DtZSvGrvNSwIQLR_7z4d1Cr6BIkyFvoDOh" \
-                "bgYMpPxQNBd1e24biY5EGQxphGi4vzDs6QcuEgZGLtftTnveV0rkbLzKJ6QY7V4mqbwUg" \
-                "BeEkEnEI2RmUQ9URmzlGpieyCd0hndBhG3GOEpqAw-OD7TwDIF_VNPFHva8QEHImvdTD7n" \
-                "b5dDXZ343U2iBYeVHKa3Ot6z8zKF4EL4G1t9KYASn1OTVGENjIpv7jk6pAYts5kIH9wsAm" \
-                "3KzdPmK3Evrp1ZORFkVI08BbenzQzW6rJKIxSP5awktC0s4ooofyGw6w_Q.6NEcHGWalyK" \
-                "Z0hI3.ar6axH5GB6L1K8UPNqQoJiLhwG0dZGL0Mgp_1fadQxIJXtBTmR2ocitgnzH5JxNJ" \
-                "1Z7vIxWFLU5IsEIjViUH97lXx_PjYGzW6w4ER4Tw8YXus-2wuTJUvaKnKnrZz_1TT9kn_s" \
-                "HgGmQdBfOktA-sGh_Kys9edAq7YtrnRCz8EanxWcEHGCqYeq-qT49ejpWNBJuVfaL7gH7d" \
-                "-l7XDlK-4L_RRYuf1_VhoQSCxhJyoZcTeFfrukDlQSWMmJlAEtrpBwKJe1JYSTEQVGm6Hg" \
-                "_x9nd9N_lBOmLHk8KUFCN02_Qg4PPnlTImDtbI-lmBoJroyIBC7wnQyDtJlx6rwdjKWGG6" \
-                "OCqx_1IuC1KAoSGip4SDOfnVvncennqcF6rprBWnTcOmFAl1RPZ8VoA81fZXREBCEDp91t" \
-                "ySEfPRkl1nJsWW2Mi6YYLTfsqn-lUU-W9smCRtKYTzVxwGXF2jIU-KK1c0FDJIrbzCuX-N" \
-                "2cTG8jEw-kTLf_DA11sL32YF_S_0Lpw.AN8XkD0BIi3anityXzbmhw"
+signed_jwt = "eyJraWQiOiJFRENSUk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJleHAiOiIyMDc1Mjk3MTQ4IiwiaWF0IjoiMTQ1NDkzN" \
+             "zAyMyIsInVzZXIiOiJqaW1teSJ9.gXARjhMIgthJahF60YHD4KEMifLw6TX8m6YpoYWekXqr76Sw86pyb-qA3R-0fWqqaqRNAgx4au" \
+             "9t4uk9P5f3XMIXayPWpXhv7Iqqae7K-LIiRYz_7Jvim9fgO5JAsAp1qRWYkw2J92qhO87OUTacVLIXibHT4G2-W7Zr5bHlzr3E4uJS" \
+             "TxJ1uYm3sCyYSh17MTvE8whXYkXny33SKVqKT2HY2EAEhIaDAZJ7ewjTMxCpwyHWGnJg5NFuaPY_CyZeZFNE17rRlin2ThdydAWeyE" \
+             "pm5ffuH3uLhR6LyxTyyOP9AyCRBP50VR6xwJ3xYEmQis-4CCS3gKD-aAUn2yGl_g"
+
+encrypted_jwt = "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.YfYdaxwHqcHrAUy3cMlOglZqGEv48bEfPse1" \
+                "-Pd8DUfo5Kg_nWEoP8NgCzfWP862dr6B7UAUUlbs-JLFmua4OlXBHCJG4IcQMxzJUjkoGxQIli8N59kwynyqdVvf22j5zggMokK" \
+                "IwACidPBzgu7aHdRq2PvtpjkZRE0Ga4Q6iF4BDSwtsI0zXn0nQsXXfTpz_uIlwPnCLUgMydg478U5t9qe24TsHfq-mimCFQ0Hon" \
+                "H0b086VHoTESwTuiJ_0Kv9S-JiflZHmdAt_Xx0V0n7Lo9q97Q64gVWW8OKDrvLFQyMaUenFo0ONWpbtOgJlSm-xWrG7SIrm-uDM" \
+                "VeYm5lI2A.SNq_54mmzqYjp0y7.sHbanOmfxBsO-JOS-6nZ0HsgouMWary34i0Czx9VjCiB7tNig7nEib8nIHqRSs2ljubEhATG" \
+                "JXiptumZ4RoBHJSUQrp_vZBeR_EnKFXE8e45jz4CfBmuQo2W5lJoj2QvaVPBNrbCUsN62NIKb8n1Tr9JL0fnA6IQIByc8zR3Tbr" \
+                "mnDYVEtgbY4IPRDsFI14Dm2cWaTYkj3c0A_4vPAhHsZEiGLQiKsy8WSoi8NC-CNs6FTqYrqcB4V77umi5XRU_JcdE_mqxcMkIHY" \
+                "UsUBDCqSMSA8xQgD56OOo41K4-vFMh99fU1u5zSbdqhqLtNeYTepJkOnCFi5aSjFPrtpfbvk9YPDJERJzEXAJkYbkUplmNudtOb" \
+                "ZY2IDmZglC5waGsTOq62tpudGPNb5B_FEq0s8ezAtMtf-C3hBslOcCLtAlGdRsptS6-L4YHxaGEAvwXD1heQADoAabjGCA-BZGP" \
+                "dc6h8A6y1QR7m2P33KEz83h141X4Ftyd9kTGxgjQ8-UrIGvu9b1wbmcjTWK3hiiyC3o0guBbzBq0SflX-RG9_zyK4sAIksiXj9m" \
+                "NRah1IUjUT5zr9cs1c5i4WwJdpJ28IzKvczgQ63B_t1xEpGsb6A35EhxzRkG7BQ.I9WExvUvZVXdwjxz8EPtCg"
 
 
 class JWTDecodeTest(unittest.TestCase):

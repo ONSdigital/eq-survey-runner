@@ -87,7 +87,7 @@ class JWTDecoderRFCTest(unittest.TestCase):
         cipher_text = decoder._base64_decode(tokens[3])
         tag = decoder._base64_decode(tokens[4])
 
-        decrypted_token = decoder._decrypt_cipher_text(cipher_text, iv, cek, tag, jwe_protected_header)
+        decrypted_token = decoder._decrypt_cipher_text(cipher_text, bytes(iv), bytes(cek), bytes(tag), jwe_protected_header)
         self.assertEquals(plaintext, decrypted_token.decode())
 
 

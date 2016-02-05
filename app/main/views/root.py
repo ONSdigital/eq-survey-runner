@@ -6,19 +6,34 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.submitter.submitter import Submitter
 from app import settings
+import logging
 import os
 
-
-with open(settings.EQ_RRM_PUBLIC_KEY, "rb") as public_key_file:
-    rmm_public_key = public_key_file.read()
-
-with open(settings.EQ_SR_PRIVATE_KEY, "rb") as private_key_file:
-    sr_private_key = private_key_file.read()
-
-decoder = Decoder(rmm_public_key, sr_private_key, "digitaleq")
+decoder = Decoder(settings.EQ_RRM_PUBLIC_KEY, settings.EQ_SR_PRIVATE_KEY, "digitaleq")
 
 
-# @main.before_request
+@main.before_request
+def jwt():
+    if settings.EQ_PRODUCTION:
+        return jwt_decrypt()
+    else:
+        # DEVELOPER mode
+        logging.warning("Developer mode")
+        if request.args.get('token'):
+            token = request.args.get('token')
+            if token.count(".") == 4:
+                logging.debug("Decrypting JWT token " + token)
+                return jwt_decrypt()
+            else:
+                tokens = token.split(".")
+                if len(tokens) == 3 and tokens[2]:
+                    logging.debug("Decoding signed JWT token " + token)
+                    return jwt_decode_signed()
+                else:
+                    logging.debug("Decoding JWT token " + token)
+                    return jwt_decode()
+
+
 def jwt_decrypt():
     try:
         encrypted_token = request.args.get('token')
@@ -45,10 +60,10 @@ def jwt_decode_signed():
 
 def jwt_decode():
     try:
-        jwt = request.args.get('token')
-        token = decoder.decode_jwt_token(jwt)
+        unsigned_token = request.args.get('token')
+        token = decoder.decode_jwt_token(unsigned_token)
         send_to_mq(token)
-        return render_template('index.html', token_id=jwt, token=token)
+        return render_template('index.html', token_id=unsigned_token, token=token)
     except NoTokenException as e:
         return errors.unauthorized(e)
     except InvalidTokenException as e:
