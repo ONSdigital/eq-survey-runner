@@ -30,7 +30,7 @@ export function lint() {
     }))
 }
 
-export default function styles() {
+export function styles() {
   gulp.src(paths.styles.input)
     .pipe(sourcemaps.init())
     .pipe(plumber())
