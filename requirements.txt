@@ -16,4 +16,4 @@ pep8==1.6.2
 pytz==2015.7
 PyJWT==1.4.0
 cryptography==1.1.2
-
+watchtower==0.1.6
