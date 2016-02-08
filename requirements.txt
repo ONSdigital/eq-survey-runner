@@ -17,3 +17,4 @@ pytz==2015.7
 PyJWT==1.4.0
 cryptography==1.1.2
 newrelic==2.60.0.46
+watchtower==0.1.6
