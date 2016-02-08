@@ -1,9 +1,9 @@
 @function ems($pxval, $base: $base-font-size) {
-	@return em($pxval, $base);
+  @return em($pxval, $base);
 }
 
 @function strip-unit($num) {
-	@return $num / ($num * 0 + 1);
+  @return $num / ($num * 0 + 1);
 }
 
 /// Slightly lighten a color
@@ -28,5 +28,6 @@
 // a map-set function (not included with Sass)
 @function map-set($map, $key, $value) {
   $new: ($key: $value);
+
   @return map-merge($map, $new);
 }

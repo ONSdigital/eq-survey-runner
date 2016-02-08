@@ -13,15 +13,9 @@ table > thead {
 
 th,
 td {
-  padding: 15px 0px;
+  padding: 15px 0;
   word-wrap: normal;
   line-height: 1;
   vertical-align: top;
   border-bottom: thin solid $color-light-grey;
 }
-
-// tr {
-//   &:nth-child(even) {
-//     background-color: $color-light-grey
-//   }
-// }

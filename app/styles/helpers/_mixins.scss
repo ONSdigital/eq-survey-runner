@@ -1,80 +1,72 @@
 @mixin rem($property, $values...) {
-	$max: length($values);
-	$pxValues: "";
-	$remValues: "";
-	@for $i from 1 through $max {
-		$value: strip-unit(nth($values, $i));
-		$pxValues: #{$pxValues + $value * 16}px;
-		@if $i < $max {
-			$pxValues: #{$pxValues + " "};
-		}
-	}
-	@for $i from 1 through $max {
-		$value: strip-unit(nth($values, $i));
-		$remValues: #{$remValues + $value}rem;
-		@if $i < $max {
-			$remValues: #{$remValues + " "};
-		}
-	}
-	#{$property}: $pxValues;
-	#{$property}: $remValues;
+  $max: length($values);
+  $pxValues: "";
+  $remValues: "";
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value * 16}px;
+
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  }
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $remValues: #{$remValues + $value}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  }
+  #{$property}: $pxValues;
+  #{$property}: $remValues;
 }
 
 @mixin font-size($sizeValue: 1.6) {
-	@include rem(font-size, $sizeValue);
+  @include rem(font-size, $sizeValue);
 }
 
 @mixin inline-block {
-	display: inline-block;
-	*display: inline;
-	zoom: 1;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
 }
-
 // =============================================================================
 // String Replace
 // =============================================================================
-
 @function str-replace($string, $search, $replace: "") {
-	$index: str-index($string, $search);
+  $index: str-index($string, $search);
 
-	@if $index {
-		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-	}
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
 
-	@return $string;
+  @return $string;
 }
-
 // =============================================================================
 // Font Face
 // =============================================================================
-
 @mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
-	$src: null;
+  $src: null;
+  $extmods: (eot: "?", svg: "#" + str-replace($name, " ", "_"));
+  $formats: (otf: "opentype", ttf: "truetype");
 
-	$extmods: (
-		eot: "?",
-		svg: "#" + str-replace($name, " ", "_")
-	);
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url("#{$path}.#{$extmod}") format(quote($format)), comma);
+  }
 
-	$formats: (
-		otf: "opentype",
-		ttf: "truetype"
-	);
-
-	@each $ext in $exts {
-		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
-		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
-		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
-	}
-
-	@font-face {
-		font-family: quote($name);
-		font-style: $style;
-		font-weight: $weight;
-		src: $src;
-	}
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
 }
 
 @mixin clearfix() {
-
+  // no-op
 }
