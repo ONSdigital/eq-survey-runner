@@ -1,0 +1,4 @@
+{
+  "extends": "stylelint-config-standard",
+  "ignoreFiles": ["**/_sprite.scss", "styles/vendor/**/*.scss"]
+}

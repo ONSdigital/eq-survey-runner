@@ -5,8 +5,8 @@
 }
 
 html {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -15,28 +15,28 @@ body {
 }
 
 ::-moz-selection {
-	background: $color-selection;
-	color: $color-selection-text;
-	text-shadow: none;
+  background: $color-selection;
+  color: $color-selection-text;
+  text-shadow: none;
 }
 
 ::selection {
-	background: $color-selection;
-	color: $color-selection-text;
-	text-shadow: none;
+  background: $color-selection;
+  color: $color-selection-text;
+  text-shadow: none;
 }
 
 img {
-	vertical-align: middle;
-	max-width: 100%;
-	height: auto;
-	// margin-bottom: $base-line-height;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+  // margin-bottom: $base-line-height;
 }
 
 a {
-	color: $color-links;
-	text-decoration: none;
-	&:hover {
-		text-decoration: underline;
-	}
+  color: $color-links;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }

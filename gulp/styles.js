@@ -9,15 +9,28 @@ import minify from 'gulp-cssnano'
 import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
 import pxtorem from 'postcss-pxtorem'
+import scss from 'postcss-scss'
 import sourcemaps from 'gulp-sourcemaps'
 import flatten from 'gulp-flatten'
 import rename from 'gulp-rename'
 import size from 'gulp-size'
+import stylelint from 'stylelint'
+import reporter from 'postcss-reporter'
 
 import {paths} from './paths'
 import browserSync from './bs'
 
-export default function styles() {
+export function lint() {
+  gulp.src(paths.styles.input)
+    .pipe(postcss([
+      stylelint({}),
+      reporter({ clearMessages: true })
+    ], {
+      syntax: scss
+    }))
+}
+
+export function styles() {
   gulp.src(paths.styles.input)
     .pipe(sourcemaps.init())
     .pipe(plumber())
@@ -52,7 +65,8 @@ export default function styles() {
         replace: false,
         mediaQuery: true,
         minPixelValue: 0
-      })
+      }),
+      reporter({ clearMessages: true })
     ]))
     .pipe(gulp.dest(paths.styles.output))
     .pipe(rename({

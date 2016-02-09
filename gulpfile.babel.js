@@ -3,10 +3,10 @@ import del from 'del'
 import plumber from 'gulp-plumber'
 
 import {paths} from './gulp/paths'
-import {bundle, lint} from './gulp/scripts'
+import {bundle, lint as lintScripts} from './gulp/scripts'
 import {tests} from './gulp/tests'
 import {svg, images} from './gulp/images'
-import styles from './gulp/styles'
+import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
 
 // Process, lint, and minify Sass files
@@ -14,9 +14,9 @@ gulp.task('build:styles', () => {
   styles()
 })
 
-// Process, lint, and minify Sass files
-gulp.task('build:styles', () => {
-  styles()
+// Lint scripts
+gulp.task('lint:styles', () => {
+  lintStyles()
 })
 
 // Remove pre-existing content from output and test folders
@@ -64,7 +64,7 @@ gulp.task('copy:dist', function() {
 
 // Lint scripts
 gulp.task('lint:scripts', () => {
-  lint()
+  lintScripts()
 })
 
 // Generate SVG sprites
@@ -84,6 +84,7 @@ gulp.task('build:images', ['clean:dist'], () => {
 // Compile files
 gulp.task('compile', [
   'lint:scripts',
+  'lint:styles',
   'clean:dist',
   'build:svgs',
   'build:scripts',
@@ -102,6 +103,7 @@ gulp.task('default', [
 // Compile files and generate docs when something changes
 gulp.task('watch', [
   'lint:scripts',
+  'lint:styles',
   'clean:dist',
   'build:svgs',
   'watch:scripts',
@@ -115,4 +117,9 @@ gulp.task('watch', [
 gulp.task('test', [
   'default',
   'test:scripts'
+])
+// Run unit tests
+gulp.task('lint', [
+  'lint:styles',
+  'lint:scripts'
 ])

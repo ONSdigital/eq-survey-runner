@@ -5,6 +5,7 @@
   .u-bg-#{$label} {
     background-color: $color;
   }
+
   @for $tint from 1 through 10 {
     .u-#{$label}-#{$tint*10} {
       color: tint($color, $tint*10);

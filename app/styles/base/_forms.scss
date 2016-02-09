@@ -1,14 +1,21 @@
-::-webkit-input-placeholder { /* WebKit browsers */
-		color: $color-placeholder;
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: $color-placeholder;
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-		color: $color-placeholder;
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $color-placeholder;
 }
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-		color: $color-placeholder;
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $color-placeholder;
 }
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-		color: $color-placeholder;
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: $color-placeholder;
 }
 
 fieldset,
@@ -19,7 +26,7 @@ legend {
 }
 
 input {
-  box-sizing: border-box;;
+  box-sizing: border-box;
 }
 
 .form {
@@ -85,7 +92,7 @@ input {
   font-size: 16px;
   color: inherit;
   .field--required & {
-    &:after {
+    &::after {
       content: "*";
       margin-left: 5px;
       font-size: 12px;
@@ -105,7 +112,7 @@ input {
 }
 
 .errors__item {
-	margin: 5px 0;
+  margin: 5px 0;
   font-size: 12px;
   padding: 0;
   color: $color-errors;
