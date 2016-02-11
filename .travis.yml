@@ -3,15 +3,11 @@ sudo: required
 dist: trusty
 python:
   - "3.5"
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install build-essential libssl-dev libffi-dev python-dev
 
 # command to install dependencies
 install:
   - pip install -r requirements.txt
   - pip install -r requirements_for_test.txt
-  - pip install cryptography==1.1.2 --upgrade --force
   - . $HOME/.nvm/nvm.sh
   - nvm install v5.2.0
   - npm install
