@@ -16,6 +16,9 @@ if [ -z "$EQ_SR_PRIVATE_KEY" ]; then
   export EQ_SR_PRIVATE_KEY=`cat $DIR/../jwt-test-keys/sr-private.pem`
 fi
 
+# Output the current git revision
+git rev-parse HEAD > revision.log
+
 # Use default environment vars for localhost if not already set
 
 echo "Environment variables in use:"
