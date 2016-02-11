@@ -1,4 +1,4 @@
-from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import hashes
@@ -16,12 +16,12 @@ class Decoder (object):
     def __init__(self, rrm_public_key, sr_private_key, sr_private_key_password=None):
         self.rrm_public_key = serialization.load_pem_public_key(
             rrm_public_key,
-            backend=default_backend()
+            backend=backend
         )
         self.sr_private_key = serialization.load_pem_private_key(
             sr_private_key,
             password=sr_private_key_password.encode(),
-            backend=default_backend()
+            backend=backend
         )
 
     def _check_token(self, token):
@@ -184,7 +184,7 @@ class Decoder (object):
         return key
 
     def _decrypt_cipher_text(self, cipher_text, iv, key, tag, jwe_protected_header):
-        cipher = Cipher(algorithms.AES(key), modes.GCM(iv, tag), backend=default_backend())
+        cipher = Cipher(algorithms.AES(key), modes.GCM(iv, tag), backend=backend)
         decryptor = cipher.decryptor()
         decryptor.authenticate_additional_data(jwe_protected_header.encode())
         decrypted_token = decryptor.update(cipher_text) + decryptor.finalize()
