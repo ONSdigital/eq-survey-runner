@@ -55,10 +55,10 @@ plaintext_in_ascii = [84, 104, 101, 32, 116, 114, 117, 101, 32, 115, 105, 103, 1
                       105, 110, 97, 116, 105, 111, 110, 46]
 
 jwe_protected_header = "eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00ifQ"
-cek = [177, 161, 244, 128, 84, 143, 225, 115, 63, 180, 3, 255, 107, 154, 212, 246, 138, 7,
-       110, 91, 112, 46, 34, 105, 47, 130, 203, 46, 122, 234, 64, 252]
+cek = bytes([177, 161, 244, 128, 84, 143, 225, 115, 63, 180, 3, 255, 107, 154, 212, 246, 138,
+             7, 110, 91, 112, 46, 34, 105, 47, 130, 203, 46, 122, 234, 64, 252])
 
-iv = [227, 197, 117, 252, 2, 219, 233, 68, 180, 225, 77, 219]
+iv = bytes([227, 197, 117, 252, 2, 219, 233, 68, 180, 225, 77, 219])
 
 
 # encrypted token from the example
@@ -85,9 +85,9 @@ class JWTDecoderRFCTest(unittest.TestCase):
         self.assertEquals(jwe_protected_header, tokens[0])
 
         cipher_text = decoder._base64_decode(tokens[3])
-        tag = decoder._base64_decode(tokens[4])
+        tag = bytes(decoder._base64_decode(tokens[4]))
 
-        decrypted_token = decoder._decrypt_cipher_text(cipher_text, bytes(iv), bytes(cek), bytes(tag), jwe_protected_header)
+        decrypted_token = decoder._decrypt_cipher_text(cipher_text, iv, cek, tag, jwe_protected_header)
         self.assertEquals(plaintext, decrypted_token.decode())
 
 

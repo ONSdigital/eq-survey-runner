@@ -5,6 +5,7 @@ import os
 from app import settings
 from app import create_app
 from tests.app.authentication.encoder import Encoder
+from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
 class FlaskClientAuthenticationTestCase(unittest.TestCase):
@@ -12,10 +13,8 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
     def setUp(self):
         logging.basicConfig(level=logging.DEBUG)
 
-        with open(os.getcwd() + '/jwt-test-keys/rrm-public.pem', "r") as public_key_file:
-            settings.EQ_RRM_PUBLIC_KEY = public_key_file.read()
-        with open(os.getcwd() + '/jwt-test-keys/sr-private.pem', "r") as private_key_file:
-            settings.EQ_SR_PRIVATE_KEY = private_key_file.read()
+        settings.EQ_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
+        settings.EQ_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
         self.app = create_app("testing")
         self.app_context = self.app.app_context()
@@ -27,20 +26,20 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
 
     def test_no_token(self):
         # set to production mode
-        settings.EQ_PRODUCTION = True
+        settings.EQ_PRODUCTION = 'True'
         response = self.client.get('/')
         self.assertEquals(401, response.status_code)
 
     def test_invalid_token(self):
         # set to production mode
-        settings.EQ_PRODUCTION = True
+        settings.EQ_PRODUCTION = 'True'
         token = "invalid"
         response = self.client.get('/?token=' + token)
         self.assertEquals(403, response.status_code)
 
     def test_fully_encrypted(self):
         # set to production mode
-        settings.EQ_PRODUCTION = True
+        settings.EQ_PRODUCTION = 'True'
         encoder = Encoder()
         iat = time.time()
         exp = time.time() + (5 * 60)
@@ -52,7 +51,7 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
 
     def test_signed(self):
         # set to dev mode - production does not allow unencrypted
-        settings.EQ_PRODUCTION = False
+        settings.EQ_PRODUCTION = 'False'
         encoder = Encoder()
         iat = time.time()
         exp = time.time() + (5 * 60)
@@ -63,7 +62,7 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
 
     def test_encoded(self):
         # set to dev mode - production does not allow unencrypted and unsigned
-        settings.EQ_PRODUCTION = False
+        settings.EQ_PRODUCTION = 'False'
         encoder = Encoder()
         iat = time.time()
         exp = time.time() + (5 * 60)

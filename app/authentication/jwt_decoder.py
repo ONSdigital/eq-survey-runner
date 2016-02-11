@@ -11,6 +11,9 @@ import base64
 import jwt
 import logging
 
+IV_EXPECTED_LENGTH = 12
+CEK_EXPECT_LENGTH = 32
+
 
 class Decoder (object):
     def __init__(self, rrm_public_key, sr_private_key, sr_private_key_password=None):
@@ -28,36 +31,12 @@ class Decoder (object):
             backend=backend
         )
 
-    def _check_token(self, token):
-        iat = token.get('iat')
-        if not iat:
-            raise InvalidTokenException("Missing iat claim")
-        exp = token.get('exp')
-        if not exp:
-            raise InvalidTokenException("Missing exp claim")
-
-    def _check_payload(self, signed_token):
-        token = self.__to_str(signed_token)
-        try:
-            payload_data = token.split('.', 2)[1]
-            payload = self._base64_decode(payload_data)
-            p = payload.decode()
-            if p.count("iat") > 1:
-                raise InvalidTokenException("Multiple iat claims")
-            if p.count("exp") > 1:
-                raise InvalidTokenException("Multiple exp claims")
-        except (UnicodeDecodeError, IndexError):
-            raise InvalidTokenException("Corrupted Payload")
-        except ValueError as e:
-            raise InvalidTokenException(repr(e))
-
     def decode_jwt_token(self, token):
         try:
             if token:
                 logging.debug("Decoding JWT " + self.__to_str(token))
-                self._check_payload(token)
+                self._check_payload(self.__to_str(token))
                 token = jwt.decode(token, verify=False)
-                self._check_token(token)
                 return token
             else:
                 raise NoTokenException("JWT Missing")
@@ -70,10 +49,8 @@ class Decoder (object):
         try:
             if signed_token:
                 logging.debug("Decoding signed JWT " + self.__to_str(signed_token))
-                self._check_headers(signed_token)
-                self._check_payload(signed_token)
+                self._check_token(signed_token)
                 token = jwt.decode(signed_token, self.rrm_public_key, algorithms=['RS256'])
-                self._check_token(token)
                 if not token:
                     raise InvalidTokenException("Missing Payload")
                 return token
@@ -85,12 +62,21 @@ class Decoder (object):
                 jwt.exceptions.InvalidIssuedAtError) as e:
             raise InvalidTokenException(repr(e))
 
-    def _check_headers(self, signed_token):
-        token = self.__to_str(signed_token)
-        header_data = token.split('.', 1)[0]
+    def _check_token(self, token):
+        token_as_str = self.__to_str(token)
+        if token_as_str.count(".") != 2:
+            raise InvalidTokenException("Invalid Token")
+        self._check_headers(token_as_str)
+        self._check_payload(token_as_str)
+        return
+
+    def _check_headers(self, token):
+        header_data, payload_data, signature_data = token.split('.', maxsplit=2)
         try:
             headers = self._base64_decode(header_data)
-            self.__check_for_duplicates(headers)
+            if not headers:
+                raise InvalidTokenException("Missing Headers")
+            self._check_for_duplicates(headers)
         except UnicodeDecodeError:
             raise InvalidTokenException("Corrupted Header")
         except ValueError as e:
@@ -112,14 +98,36 @@ class Decoder (object):
         if "EDCRRM" != header.get('kid').upper():
             raise InvalidTokenException("Invalid Key Identifier")
 
-    def __check_for_duplicates(self, headers):
-        h = self.__to_str(headers)
-        if h.count("typ") > 1:
+    def _check_for_duplicates(self, headers):
+        headers_as_str = self.__to_str(headers)
+        if headers_as_str.count("typ") > 1:
             raise InvalidTokenException("Multiple Type Headers")
-        if h.count("alg") > 1:
+        if headers_as_str.count("alg") > 1:
             raise InvalidTokenException("Multiple Algorithm Headers")
-        if h.count("kid") > 1:
+        if headers_as_str.count("kid") > 1:
             raise InvalidTokenException("Multiple KID headers")
+
+    def _check_payload(self, token):
+        try:
+            header_data, payload_data, signature_data = token.split('.', maxsplit=2)
+            payload = self._base64_decode(payload_data)
+            if not payload:
+                raise InvalidTokenException("Missing Payload")
+            payload_decoded = payload.decode()
+            if payload_decoded == "{}":
+                raise InvalidTokenException("Missing Payload")
+            if payload_decoded.count("iat") == 0:
+                raise InvalidTokenException("Missing iat claim")
+            if payload_decoded.count("exp") == 0:
+                raise InvalidTokenException("Missing exp claim")
+            if payload_decoded.count("iat") > 1:
+                raise InvalidTokenException("Multiple iat claims")
+            if payload_decoded.count("exp") > 1:
+                raise InvalidTokenException("Multiple exp claims")
+        except (UnicodeDecodeError, IndexError):
+            raise InvalidTokenException("Corrupted Payload")
+        except ValueError as e:
+            raise InvalidTokenException(repr(e))
 
     def __to_str(self, bytes_or_str):
         if isinstance(bytes_or_str, bytes):
@@ -177,10 +185,10 @@ class Decoder (object):
             raise InvalidTokenException("Invalid Encoding")
 
     def _check_iv_length(self, iv):
-        return len(iv) == 12
+        return len(iv) == IV_EXPECTED_LENGTH
 
     def _check_cek_length(self, cek):
-        return len(cek) == 32
+        return len(cek) == CEK_EXPECT_LENGTH
 
     def _decrypt_key(self, encrypted_key):
         decoded_key = self._base64_decode(encrypted_key)

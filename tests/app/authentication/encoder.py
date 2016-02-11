@@ -1,23 +1,21 @@
-from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
-from tests.app.authentication import SR_PUBLIC_PEM, RRM_PRIVATE_PEM
+from tests.app.authentication import TEST_DO_NOT_USE_SR_PUBLIC_PEM, TEST_DO_NOT_USE_RRM_PRIVATE_PEM
 
 import jwt
 import os
 import base64
 
-backend = default_backend()
-
 
 class Encoder (object):
     def __init__(self):
-        private_key = self.__to_bytes(RRM_PRIVATE_PEM)
-        public_key = self.__to_bytes(SR_PUBLIC_PEM)
+        private_key = self.__to_bytes(TEST_DO_NOT_USE_RRM_PRIVATE_PEM)
+        public_key = self.__to_bytes(TEST_DO_NOT_USE_SR_PUBLIC_PEM)
         self.rrm_privatekey = serialization.load_pem_private_key(private_key, password=b'digitaleq', backend=backend)
-        self.sr_publickey = serialization.load_pem_public_key(public_key, backend=default_backend())
+        self.sr_publickey = serialization.load_pem_public_key(public_key, backend=backend)
 
         # first generate a random key
         self.cek = os.urandom(32)  # 256 bit random CEK
