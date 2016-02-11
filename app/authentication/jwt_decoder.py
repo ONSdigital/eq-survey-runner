@@ -14,12 +14,16 @@ import logging
 
 class Decoder (object):
     def __init__(self, rrm_public_key, sr_private_key, sr_private_key_password=None):
+        # oddly the python cryptography library needs these as bytes string
+        rrm_public_key_as_bytes = self.__to_bytes(rrm_public_key)
+        sr_private_key_as_bytes = self.__to_bytes(sr_private_key)
+
         self.rrm_public_key = serialization.load_pem_public_key(
-            rrm_public_key,
+            rrm_public_key_as_bytes,
             backend=backend
         )
         self.sr_private_key = serialization.load_pem_private_key(
-            sr_private_key,
+            sr_private_key_as_bytes,
             password=sr_private_key_password.encode(),
             backend=backend
         )

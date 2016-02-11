@@ -14,14 +14,23 @@ backend = default_backend()
 
 class Encoder (object):
     def __init__(self):
-        self.rrm_privatekey = serialization.load_pem_private_key(RRM_PRIVATE_PEM, password=b'digitaleq', backend=backend)
-        self.sr_publickey = serialization.load_pem_public_key(SR_PUBLIC_PEM, backend=default_backend())
+        private_key = self.__to_bytes(RRM_PRIVATE_PEM)
+        public_key = self.__to_bytes(SR_PUBLIC_PEM)
+        self.rrm_privatekey = serialization.load_pem_private_key(private_key, password=b'digitaleq', backend=backend)
+        self.sr_publickey = serialization.load_pem_public_key(public_key, backend=default_backend())
 
         # first generate a random key
         self.cek = os.urandom(32)  # 256 bit random CEK
 
         # now generate a random IV
         self.iv = os.urandom(12)  # 96 bit random IV
+
+    def __to_bytes(self, bytes_or_str):
+        if isinstance(bytes_or_str, str):
+            value = bytes_or_str.encode()
+        else:
+            value = bytes_or_str
+        return value
 
     def encode(self, payload):
         return jwt.encode(payload, self.rrm_privatekey, algorithm="RS256", headers={'kid': 'EDCRRM', 'typ': 'jwt'})

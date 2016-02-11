@@ -12,9 +12,9 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
     def setUp(self):
         logging.basicConfig(level=logging.DEBUG)
 
-        with open(os.getcwd() + '/jwt-test-keys/rrm-public.pem', "rb") as public_key_file:
+        with open(os.getcwd() + '/jwt-test-keys/rrm-public.pem', "r") as public_key_file:
             settings.EQ_RRM_PUBLIC_KEY = public_key_file.read()
-        with open(os.getcwd() + '/jwt-test-keys/sr-private.pem', "rb") as private_key_file:
+        with open(os.getcwd() + '/jwt-test-keys/sr-private.pem', "r") as private_key_file:
             settings.EQ_SR_PRIVATE_KEY = private_key_file.read()
 
         self.app = create_app("testing")

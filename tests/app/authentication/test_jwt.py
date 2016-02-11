@@ -4,16 +4,15 @@ from app.authentication.jwt_decoder import Decoder
 from app.authentication.invalid_token_exception import InvalidTokenException
 import base64
 import os
-from app import settings
 
 # public key from jwt.io
-# This has to be a bytes string due to an oddity in the underlying cryptography library
-PUBLIC_KEY = b'-----BEGIN PUBLIC KEY-----\n' \
-             b'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3Wojg\n' \
-             b'GHFHYLugdUWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlv\n' \
-             b'dbH6dvEOfou0/gCFQsHUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GU\n' \
-             b'nKHkkle+Q0pX/g6jXZ7r1/xAK5Do2kQ+X5xK9cipRgEKwIDAQAB\n' \
-             b'-----END PUBLIC KEY-----\n'
+
+PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3Wojg
+GHFHYLugdUWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlv
+dbH6dvEOfou0/gCFQsHUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GU
+nKHkkle+Q0pX/g6jXZ7r1/xAK5Do2kQ+X5xK9cipRgEKwIDAQAB
+-----END PUBLIC KEY-----"""
 
 # jwt.io public key signed
 
