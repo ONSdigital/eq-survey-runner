@@ -2,9 +2,11 @@
 
 {% block content %}
 
+  <a href="/"></a>
+
   <div class="ptn-header">
     <div class="container">
-      <a href="/patterns/"><h1 class="ptn-title"></h1></a>
+      <a href="/patterns/"><h1 class="ptn-title">ONS Pattern Library</h1></a>
     </div>
   </div>
 
@@ -31,9 +33,10 @@
       </div>
     </div>
   </div>
+
 {% endblock %}
 
 {% block scripts %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.js" charset="utf-8"></script>
+  {# <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.js" charset="utf-8"></script> #}
   {{super()}}
 {% endblock %}

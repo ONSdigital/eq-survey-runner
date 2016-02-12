@@ -8,6 +8,32 @@ import {tests} from './gulp/tests'
 import {svg, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
+import a11ym from './gulp/a11ym'
+
+import Crawler from 'simplecrawler'
+
+gulp.task('crawl', (done) => {
+  var myCrawler = new Crawler('localhost', '', 5000)
+
+  // myCrawler.on('fetchcomplete', function(queueItem, responseBuffer, response) {
+  //
+  //
+  //   if (response.headers['content-type'].indexOf('html' > -1)) {
+  //     console.log(queueItem.url)
+  //     // console.log('I just received %s (%d bytes)', queueItem.url, responseBuffer.length)
+  //     // console.log('It was a resource of type %s', response.headers['content-type'])
+  //   }
+  // })
+  //
+  myCrawler.start()
+
+  a11ym('http://localhost/patterns/forms/', {
+    report: 'cli',
+    output: './reports/',
+    standards: 'WCAG2A',
+    depth: 20
+  }, done)
+})
 
 // Process, lint, and minify Sass files
 gulp.task('build:styles', () => {

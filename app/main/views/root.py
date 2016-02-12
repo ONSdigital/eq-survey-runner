@@ -81,7 +81,7 @@ def send_to_mq(token):
 
 
 @main.route('/patterns/')
-@main.route('/patterns/<pattern>', methods=['GET', 'POST'])
+@main.route('/patterns/<pattern>/', methods=['GET', 'POST'])
 def patterns(pattern='index'):
     sections = []
     pattern_name = 'grid-system' if (pattern == 'index') else pattern
