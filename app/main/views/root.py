@@ -16,15 +16,15 @@ decoder = Decoder(settings.EQ_RRM_PUBLIC_KEY, settings.EQ_SR_PRIVATE_KEY, "digit
 
 @main.before_request
 def jwt():
-    if settings.EQ_PRODUCTION.upper() == 'TRUE':
+    if settings.EQ_PRODUCTION.upper() != 'FALSE':
         logging.info("Production mode")
         return jwt_decrypt()
     else:
+        logging.warning("Developer mode")
         return developer_mode()
 
 
 def developer_mode():
-    logging.warning("Developer mode")
     token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
     if token:
         if token.count(".") == 4:

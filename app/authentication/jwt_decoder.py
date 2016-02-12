@@ -10,6 +10,7 @@ from app.authentication.no_token_exception import NoTokenException
 import base64
 import jwt
 import logging
+import json
 
 IV_EXPECTED_LENGTH = 12
 CEK_EXPECT_LENGTH = 32
@@ -100,12 +101,16 @@ class Decoder (object):
 
     def _check_for_duplicates(self, headers):
         headers_as_str = self.__to_str(headers)
-        if headers_as_str.count("typ") > 1:
-            raise InvalidTokenException("Multiple Type Headers")
-        if headers_as_str.count("alg") > 1:
-            raise InvalidTokenException("Multiple Algorithm Headers")
-        if headers_as_str.count("kid") > 1:
-            raise InvalidTokenException("Multiple KID headers")
+        json.loads(headers_as_str, object_pairs_hook=self._raise_exception_on_duplicates)
+
+    def _raise_exception_on_duplicates(self, ordered_pairs):
+        store = {}
+        for key, value in ordered_pairs:
+            if key in store:
+                raise InvalidTokenException("Multiple " + key + " Headers")
+            else:
+                store[key] = value
+        return store
 
     def _check_payload(self, token):
         try:
@@ -175,13 +180,14 @@ class Decoder (object):
 
     def __check_jwe_protected_header(self, header):
         header = self._base64_decode(header).decode()
-        if header.count("alg") == 0:
+        header_data = json.loads(header)
+        if not header_data.get("alg"):
             raise InvalidTokenException("Missing Algorithm")
-        if header.count("RSA-OAEP") == 0:
+        if header_data.get("alg") != "RSA-OAEP":
             raise InvalidTokenException("Invalid Algorithm")
-        if header.count("enc") == 0:
+        if not header_data.get("enc"):
             raise InvalidTokenException("Missing Encoding")
-        if header.count("A256GCM") == 0:
+        if header_data.get("enc") != "A256GCM":
             raise InvalidTokenException("Invalid Encoding")
 
     def _check_iv_length(self, iv):

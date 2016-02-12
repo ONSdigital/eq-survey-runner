@@ -102,7 +102,7 @@ class JWTTest(unittest.TestCase):
         decoder = Decoder(TEST_DO_NOT_USE_PUBLIC_KEY, TEST_DO_NOT_USE_SR_PRIVATE_PEM, "digitaleq")
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decode_signed_jwt_token(jwt)
-        self.assertIn("Multiple Type Headers", ite.exception.value)
+        self.assertIn("Multiple typ Headers", ite.exception.value)
 
     def test_jose_header_missing_alg(self):
         header = base64.urlsafe_b64encode(b'{"kid":"EDCRRM","typ":"JWT"}')
@@ -138,7 +138,7 @@ class JWTTest(unittest.TestCase):
         decoder = Decoder(TEST_DO_NOT_USE_PUBLIC_KEY, TEST_DO_NOT_USE_SR_PRIVATE_PEM, "digitaleq")
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decode_signed_jwt_token(jwt)
-        self.assertIn("Multiple Algorithm Headers", ite.exception.value)
+        self.assertIn("Multiple alg Headers", ite.exception.value)
 
     def test_jose_header_missing_kid(self):
         header = base64.urlsafe_b64encode(b'{"alg":"RS256", "typ":"JWT"}')
@@ -150,13 +150,13 @@ class JWTTest(unittest.TestCase):
         self.assertIn("Missing kid", ite.exception.value)
 
     def test_jose_header_contains_multiple_kid(self):
-        header = base64.urlsafe_b64encode(b'{"alg":"RS256", "alg":"HS256", "kid":"EDCRRM", "kid":"test", "typ":"JWT"}')
+        header = base64.urlsafe_b64encode(b'{"alg":"RS256", "kid":"EDCRRM", "kid":"test", "typ":"JWT"}')
         jwt = header.decode() + "." + jwtio_payload + "." + jwtio_signature
 
         decoder = Decoder(TEST_DO_NOT_USE_PUBLIC_KEY, TEST_DO_NOT_USE_SR_PRIVATE_PEM, "digitaleq")
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decode_signed_jwt_token(jwt)
-        self.assertIn("Multiple Algorithm Headers", ite.exception.value)
+        self.assertIn("Multiple kid Headers", ite.exception.value)
 
     def test_signature_not_2048_bits(self):
         jwt = jwtio_header + "." + jwtio_payload + "." + base64.urlsafe_b64encode(os.urandom(255)).decode()
