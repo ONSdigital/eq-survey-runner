@@ -2,9 +2,11 @@
 
 {% block content %}
 
+  <a href="/"></a>
+
   <div class="ptn-header">
     <div class="container">
-      <a href="/patterns/"><h1 class="ptn-title"></h1></a>
+      <a href="/patterns/"><h1 class="ptn-title">ONS Pattern Library</h1></a>
     </div>
   </div>
 
@@ -16,7 +18,7 @@
             <ul class="ptn-nav-list">
               {% for section in sections %}
                 <li class="ptn-nav-item {{ 'is-active' if section.current }}">
-                  <a href="/patterns/{{section.title}}" class="ptn-nav-link">{{section.title|replace('-', ' ')|title}}</a>
+                  <a href="/patterns/{{section.title}}/" class="ptn-nav-link">{{section.title|replace('-', ' ')|title}}</a>
                 </li>
               {% endfor %}
             </ul>
@@ -31,6 +33,7 @@
       </div>
     </div>
   </div>
+
 {% endblock %}
 
 {% block scripts %}

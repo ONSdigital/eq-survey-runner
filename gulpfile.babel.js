@@ -8,6 +8,11 @@ import {tests} from './gulp/tests'
 import {svg, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
+import a11ym from './gulp/a11ym'
+
+gulp.task('test:a11ym', (done) => {
+  a11ym(done)
+})
 
 // Process, lint, and minify Sass files
 gulp.task('build:styles', () => {
