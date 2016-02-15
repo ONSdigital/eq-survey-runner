@@ -11,6 +11,10 @@ import os
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 
+
+if (settings.EQ_RRM_PUBLIC_KEY is None or settings.EQ_SR_PRIVATE_KEY is None):
+    raise OSError('KEYMAT not configured correctly.')
+
 decoder = Decoder(settings.EQ_RRM_PUBLIC_KEY, settings.EQ_SR_PRIVATE_KEY, "digitaleq")
 
 
