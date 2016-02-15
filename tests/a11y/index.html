@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Accessibility report (Mon Feb 15 2016 09:08:40 GMT+0000 (GMT))</title>
+  <base href="." />
+
+  <style>
+    @font-face {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 200;
+  src: local(Source Sans Pro ExtraLight),
+       local(SourceSansPro-ExtraLight),
+       url(https://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGIAPdqzPmKFFIYQ-46z3JxY.woff2) format('woff2');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: .9em/1.2em Source Sans Pro;
+  color: rgb(43, 6, 1);
+}
+
+h1 {
+  text-align: center;
+  margin: 1em 0;
+}
+
+a {
+  color: inherit;
+}
+
+.infos {
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+h2 {
+  margin-bottom: 1em;
+  line-height: 1.3em;
+}
+
+[data-result-level="error"] {
+  stroke: rgb(244, 96, 37);
+  background-color: rgba(244, 96, 37, .1);
+}
+
+  [data-result-level="error"] h2 {
+    color: rgb(244, 96, 37);
+  }
+
+[data-result-level="warning"] {
+  stroke: rgb(254, 178, 54);
+  background-color: rgba(254, 178, 54, .1);
+}
+
+  [data-result-level="warning"] h2 {
+    color: rgb(254, 178, 54);
+  }
+
+[data-result-level="notice"] {
+  stroke: rgb(10, 172, 207);
+  background-color: rgba(10, 172, 207, .1);
+}
+
+  [data-result-level="notice"] h2 {
+    color: rgb(10, 172, 207);
+  }
+
+.pie {
+  display: block;
+  margin: 2em auto;
+  max-width: 200px;
+  border-radius: 50%;
+  background-color: rgb(105, 211, 141);
+}
+
+.pie circle {
+  stroke-width: 32;
+  fill: none;
+}
+
+.pie text {
+  font-size: .5em;
+  color: inherit;
+  stroke: none;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  visibility: hidden;
+}
+
+.pie [data-result-text-level="error"] > text {
+  visibility: visible;
+}
+
+.pie circle[data-result-level="warning"]:hover ~ [data-result-text-level="error"] > text,
+.pie circle[data-result-level="notice"]:hover ~ [data-result-text-level="error"] > text {
+  visibility: hidden;
+}
+
+.pie circle[data-result-level="warning"]:hover ~ [data-result-text-level="warning"] > text,
+.pie circle[data-result-level="notice"]:hover ~ [data-result-text-level="notice"] > text {
+  visibility: visible;
+}
+
+#controls {
+  margin: 0 2em 2em;
+}
+
+#controls::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#controls > p {
+  display: inline-block;
+}
+
+#controls > p + p {
+  margin-left: 3em;
+}
+
+#controls > .all-notes {
+  float: right;
+  width: 40%;
+  max-height: 1.1em;
+  overflow: hidden;
+  transition: max-height .5s ease-in-out;
+}
+
+  #controls > .all-notes:hover {
+    max-height: 1000px;
+  }
+
+  #controls > .all-notes > p {
+    cursor: pointer;
+    text-align: right;
+    text-decoration: underline;
+    margin-bottom: .7em;
+  }
+
+  #controls > .all-notes > ul {
+    list-style: none;
+    -moz-column-width: 3.5em;
+    -moz-column-gap: 2.5em;
+    -webkit-column-width: 3.5em;
+    -webkit-column-gap: 2.5em;
+    column-width: 3.5em;
+    column-gap: 2.5em;
+  }
+
+  #controls > .all-notes > ul > li > small {
+    float: right;
+  }
+
+
+    input[id^="sort-by"] {
+      display: none;
+    }
+
+    input[id^="sort"] + label {
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: .4em;
+      padding: .3em .8em;
+      border-radius: .5em;
+    }
+
+    #sort-by-errors + label {
+      color: rgb(244, 96, 37);
+    }
+
+      #sort-by-errors:checked + label {
+        color: #fff;
+        background: rgb(244, 96, 37);
+      }
+
+    #sort-by-warnings + label {
+      color: rgb(254, 178, 54);
+    }
+
+      #sort-by-warnings:checked + label {
+        color: #000;
+        background: rgb(254, 178, 54);
+      }
+
+    #sort-by-notices + label {
+      color: rgb(10, 172, 207);
+    }
+
+      #sort-by-notices:checked + label {
+        color: #fff;
+        background: rgb(10, 172, 207);
+      }
+
+    #reports {
+      list-style: none;
+    }
+
+    .report {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+
+    .report > .pie {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: 2.5em;
+      margin: 0 2em;
+    }
+
+    .report > a,
+    .report > .notes {
+      display: inline-block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .report > a {
+      max-width: 60%;
+    }
+
+    .report > .notes {
+      margin: .5em 2em 0 2em;
+      float: right;
+      max-width: 40%;
+    }
+  </style>
+  <script>
+    var ewn   = [];
+    var notes = {};
+
+    function sort(name) {
+        var reports = document.querySelectorAll('.report');
+        var getReportScore = function (resultIndex) {
+            return +reports.item(resultIndex).getAttribute('data-' + name + '-count');
+        };
+
+        document.querySelector('#reports').innerHTML =
+            Object
+                .keys(reports)
+                .sort(
+                    function (a, b) {
+                        return getReportScore(a) < getReportScore(b) ? 1 : -1;
+                    }
+                )
+                .map(
+                    function (i) {
+                        return reports.item(i).outerHTML;
+                    }
+                )
+                .join('\n');
+    }
+
+    function pushEWN(_ewn) {
+        ewn.push(_ewn);
+    }
+
+    function pushNotes(_notes) {
+        _notes.forEach(
+            function (note) {
+                if (undefined === notes[note]) {
+                    notes[note] = 1;
+                } else {
+                    ++notes[note];
+                }
+            }
+        );
+    }
+
+    document.addEventListener(
+        'DOMContentLoaded',
+        function () {
+            var reducer = function (key) {
+                return function (accumulator, stat) {
+                    return accumulator + stat[key];
+                };
+            };
+            var errorCount   = ewn.reduce(reducer('errors'), 0);
+            var warningCount = ewn.reduce(reducer('warnings'), 0);
+            var noticeCount  = ewn.reduce(reducer('notices'), 0);
+            var total        = Math.max(errorCount + warningCount + noticeCount, 1);
+
+            var errorPercentage   = (errorCount * 100) / total;
+            var warningPercentage = (warningCount * 100) / total;
+            var noticePercentage  = (noticeCount * 100) / total;
+
+            var pie = document.querySelector('#bigPie');
+
+            pie.innerHTML =
+                pie.innerHTML.
+                    replace(/{errorCount}/g, "" + errorCount).
+                    replace(/{errorPercentage}/g, "" + errorPercentage).
+                    replace(/{errorOffset}/g, "" + 0).
+                    replace(/{warningCount}/g, "" + warningCount).
+                    replace(/{warningPercentage}/g, "" + warningPercentage).
+                    replace(/{warningOffset}/g, "" + (-errorPercentage)).
+                    replace(/{noticeCount}/g, "" + noticeCount).
+                    replace(/{noticePercentage}/g, "" + noticePercentage).
+                    replace(/{noticeOffset}/g, "" + (-(errorPercentage + warningPercentage)));
+
+            document.querySelector('.all-notes ul').innerHTML =
+                '<li>' +
+                Object
+                    .keys(notes)
+                    .sort(
+                        function (a, b) {
+                            return -(notes[a] - notes[b]);
+                        }
+                    )
+                    .map(
+                        function (code) {
+                            return '<a href="http://www.w3.org/TR/WCAG20-TECHS/' + code + '.html">' + code + '</a> <small>(' + notes[code] + ')</small>';
+                        }
+                    )
+                    .join('</li><li>') +
+                '</li>';
+
+            sort('errors');
+        },
+        false
+    );
+  </script>
+</head>
+
+<body>
+  <h1>Accessibility report</h1>
+  <p class="infos">Generated at Mon Feb 15 2016 09:08:40 GMT+0000 (GMT).</p>
+
+  <svg id="bigPie" viewBox="0 0 64 64" class="pie" data-result-level="error">
+    <title>
+      {errorCount} errors,
+      {warningCount} warnings,
+      {noticeCount} notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="{errorOffset}"
+      stroke-dasharray="{errorPercentage} 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="{warningOffset}"
+      stroke-dasharray="{warningPercentage} 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="{noticeOffset}"
+      stroke-dasharray="{noticePercentage} 100"
+      data-result-level="notice" />
+    <circle
+      r="15%" cx="50%" cy="50%"
+      stroke="white"
+      style="stroke-width: 19" />
+    <g data-result-text-level="error">
+      <text x="50%" y="45%">{errorCount}</text>
+      <text x="50%" y="55%">errors</text>
+    </g>
+    <g data-result-text-level="warning">
+      <text x="50%" y="45%">{warningCount}</text>
+      <text x="50%" y="55%">warnings</text>
+    </g>
+    <g data-result-text-level="notice">
+      <text x="50%" y="45%">{noticeCount}</text>
+      <text x="50%" y="55%">notices</text>
+    </g>
+  </svg>
+
+  <div id="controls">
+    <p>
+      Sort by:
+      <input
+        type="radio"
+        id="sort-by-errors"
+        name="sort"
+        value="errors"
+        checked="checked"
+        onclick="sort('errors')" />
+      <label for="sort-by-errors">errors</label>
+      <input
+        type="radio"
+        id="sort-by-warnings"
+        name="sort"
+        value="warnings"
+        onclick="sort('warnings')" />
+      <label for="sort-by-warnings">warnings</label>
+      <input
+        type="radio"
+        id="sort-by-notices"
+        name="sort"
+        value="notices"
+        onclick="sort('notices')" />
+      <label for="sort-by-notices">notices</label>
+    </p>
+    <div class="all-notes">
+      <p>See all notes</p>
+      <ul>
+      </ul>
+    </div>
+  </div>
+
+  <ul id="reports">
+<li
+  class="report"
+  data-errors-count="21"
+  data-warnings-count="3"
+  data-notices-count="9">
+  <svg viewBox="0 0 64 64" class="small pie" data-result-level="error">
+    <title>
+      21 errors,
+      3 warnings,
+      9 notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="63.63636363636363 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-63.63636363636363"
+      stroke-dasharray="9.090909090909092 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-72.72727272727272"
+      stroke-dasharray="27.272727272727273 100"
+      data-result-level="notice" />
+  </svg>
+  <a href="./a87e610b17cc2c49f5277fba5f9c2be2a78aa164.html">http://localhost:5000/patterns/</a>
+  <span class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H25.html">H25</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H91.html">H91</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G141.html">G141</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G18.html">G18</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/DataTable.html">DataTable</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H73.html">H73</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H39.html">H39</a></span>
+  <script>
+    pushEWN({
+      errors: 21,
+      warnings: 3,
+      notices: 9
+    });
+    pushNotes(['H25', 'H91', 'H77', 'H78', 'H79', 'H80', 'H81', 'G141', 'G18', 'DataTable', 'H73', 'H39']);
+  </script>
+</li>
+<li
+  class="report"
+  data-errors-count="0"
+  data-warnings-count="0"
+  data-notices-count="2">
+  <svg viewBox="0 0 64 64" class="small pie" data-result-level="error">
+    <title>
+      0 errors,
+      0 warnings,
+      2 notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="0 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="0 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="100 100"
+      data-result-level="notice" />
+  </svg>
+  <a href="./fb8396d910253f82aa01c909b3705493782c4ab2.html">http://localhost:5000/</a>
+  <span class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H25.html">H25</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a></span>
+  <script>
+    pushEWN({
+      errors: 0,
+      warnings: 0,
+      notices: 2
+    });
+    pushNotes(['H25', 'H77', 'H78', 'H79', 'H80', 'H81']);
+  </script>
+</li>
+<li
+  class="report"
+  data-errors-count="3"
+  data-warnings-count="0"
+  data-notices-count="8">
+  <svg viewBox="0 0 64 64" class="small pie" data-result-level="error">
+    <title>
+      3 errors,
+      0 warnings,
+      8 notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="27.272727272727273 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-27.272727272727273"
+      stroke-dasharray="0 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-27.272727272727273"
+      stroke-dasharray="72.72727272727273 100"
+      data-result-level="notice" />
+  </svg>
+  <a href="./a9c821e999c29e9fe762d8b8ac537c245e3c3874.html">http://localhost:5000/patterns/colours/</a>
+  <span class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H25.html">H25</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H91.html">H91</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G18.html">G18</a></span>
+  <script>
+    pushEWN({
+      errors: 3,
+      warnings: 0,
+      notices: 8
+    });
+    pushNotes(['H25', 'H91', 'H77', 'H78', 'H79', 'H80', 'H81', 'G18']);
+  </script>
+</li>
+<li
+  class="report"
+  data-errors-count="11"
+  data-warnings-count="2"
+  data-notices-count="37">
+  <svg viewBox="0 0 64 64" class="small pie" data-result-level="error">
+    <title>
+      11 errors,
+      2 warnings,
+      37 notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="22 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-22"
+      stroke-dasharray="4 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-26"
+      stroke-dasharray="74 100"
+      data-result-level="notice" />
+  </svg>
+  <a href="./80b6c4974a8a8ae5b0fe5ebecda5ee909f9d607d.html">http://localhost:5000/patterns/forms/</a>
+  <span class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H25.html">H25</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H91.html">H91</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H71.html">H71</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G83.html">G83</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G84.html">G84</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G85.html">G85</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G131.html">G131</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G89.html">G89</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G184.html">G184</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H90.html">H90</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G177.html">G177</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G98.html">G98</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G99.html">G99</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G155.html">G155</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G164.html">G164</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G168.html">G168</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G141.html">G141</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/F68.html">F68</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G107.html">G107</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G18.html">G18</a></span>
+  <script>
+    pushEWN({
+      errors: 11,
+      warnings: 2,
+      notices: 37
+    });
+    pushNotes(['H25', 'H91', 'H77', 'H78', 'H79', 'H80', 'H81', 'H71', 'G83', 'G84', 'G85', 'G131', 'G89', 'G184', 'H90', 'G177', 'G98', 'G99', 'G155', 'G164', 'G168', 'G141', 'F68', 'G107', 'G18']);
+  </script>
+</li>
+<li
+  class="report"
+  data-errors-count="21"
+  data-warnings-count="3"
+  data-notices-count="9">
+  <svg viewBox="0 0 64 64" class="small pie" data-result-level="error">
+    <title>
+      21 errors,
+      3 warnings,
+      9 notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="63.63636363636363 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-63.63636363636363"
+      stroke-dasharray="9.090909090909092 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-72.72727272727272"
+      stroke-dasharray="27.272727272727273 100"
+      data-result-level="notice" />
+  </svg>
+  <a href="./285daa8f877bf815b762f62f148a8a496f5298e6.html">http://localhost:5000/patterns/grid-system/</a>
+  <span class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H25.html">H25</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H91.html">H91</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G141.html">G141</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G18.html">G18</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/DataTable.html">DataTable</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H73.html">H73</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H39.html">H39</a></span>
+  <script>
+    pushEWN({
+      errors: 21,
+      warnings: 3,
+      notices: 9
+    });
+    pushNotes(['H25', 'H91', 'H77', 'H78', 'H79', 'H80', 'H81', 'G141', 'G18', 'DataTable', 'H73', 'H39']);
+  </script>
+</li>
+<li
+  class="report"
+  data-errors-count="1"
+  data-warnings-count="1"
+  data-notices-count="8">
+  <svg viewBox="0 0 64 64" class="small pie" data-result-level="error">
+    <title>
+      1 errors,
+      1 warnings,
+      8 notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="10 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-10"
+      stroke-dasharray="10 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-20"
+      stroke-dasharray="80 100"
+      data-result-level="notice" />
+  </svg>
+  <a href="./6ae5d3fdb3defa3af69df28d45b4527c14724dc4.html">http://localhost:5000/patterns/typography/</a>
+  <span class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H25.html">H25</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H91.html">H91</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G141.html">G141</a></span>
+  <script>
+    pushEWN({
+      errors: 1,
+      warnings: 1,
+      notices: 8
+    });
+    pushNotes(['H25', 'H91', 'H77', 'H78', 'H79', 'H80', 'H81', 'G141']);
+  </script>
+</li>
+<li
+  class="report"
+  data-errors-count="160"
+  data-warnings-count="159"
+  data-notices-count="8">
+  <svg viewBox="0 0 64 64" class="small pie" data-result-level="error">
+    <title>
+      160 errors,
+      159 warnings,
+      8 notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="48.92966360856269 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-48.92966360856269"
+      stroke-dasharray="48.62385321100918 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-97.55351681957187"
+      stroke-dasharray="2.4464831804281344 100"
+      data-result-level="notice" />
+  </svg>
+  <a href="./baa9505ec2d99d4b552dcf4c0056831b3db9b9c0.html">http://localhost:5000/patterns/icons/</a>
+  <span class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H25.html">H25</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H91.html">H91</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G18.html">G18</a></span>
+  <script>
+    pushEWN({
+      errors: 160,
+      warnings: 159,
+      notices: 8
+    });
+    pushNotes(['H25', 'H91', 'H77', 'H78', 'H79', 'H80', 'H81', 'G18']);
+  </script>
+</li>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Accessibility report for “http://localhost:5000/patterns/typography/” (Mon Feb 15 2016 09:08:45 GMT+0000 (GMT))</title>
+
+  <style>
+    @font-face {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 200;
+  src: local(Source Sans Pro ExtraLight),
+       local(SourceSansPro-ExtraLight),
+       url(https://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGIAPdqzPmKFFIYQ-46z3JxY.woff2) format('woff2');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: .9em/1.2em Source Sans Pro;
+  color: rgb(43, 6, 1);
+}
+
+h1 {
+  text-align: center;
+  margin: 1em 0;
+}
+
+a {
+  color: inherit;
+}
+
+.infos {
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+h2 {
+  margin-bottom: 1em;
+  line-height: 1.3em;
+}
+
+[data-result-level="error"] {
+  stroke: rgb(244, 96, 37);
+  background-color: rgba(244, 96, 37, .1);
+}
+
+  [data-result-level="error"] h2 {
+    color: rgb(244, 96, 37);
+  }
+
+[data-result-level="warning"] {
+  stroke: rgb(254, 178, 54);
+  background-color: rgba(254, 178, 54, .1);
+}
+
+  [data-result-level="warning"] h2 {
+    color: rgb(254, 178, 54);
+  }
+
+[data-result-level="notice"] {
+  stroke: rgb(10, 172, 207);
+  background-color: rgba(10, 172, 207, .1);
+}
+
+  [data-result-level="notice"] h2 {
+    color: rgb(10, 172, 207);
+  }
+
+.pie {
+  display: block;
+  margin: 2em auto;
+  max-width: 200px;
+  border-radius: 50%;
+  background-color: rgb(105, 211, 141);
+}
+
+.pie circle {
+  stroke-width: 32;
+  fill: none;
+}
+
+.pie text {
+  font-size: .5em;
+  color: inherit;
+  stroke: none;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  visibility: hidden;
+}
+
+.pie [data-result-text-level="error"] > text {
+  visibility: visible;
+}
+
+.pie circle[data-result-level="warning"]:hover ~ [data-result-text-level="error"] > text,
+.pie circle[data-result-level="notice"]:hover ~ [data-result-text-level="error"] > text {
+  visibility: hidden;
+}
+
+.pie circle[data-result-level="warning"]:hover ~ [data-result-text-level="warning"] > text,
+.pie circle[data-result-level="notice"]:hover ~ [data-result-text-level="notice"] > text {
+  visibility: visible;
+}
+
+#controls {
+  margin: 0 2em 2em;
+}
+
+#controls::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#controls > p {
+  display: inline-block;
+}
+
+#controls > p + p {
+  margin-left: 3em;
+}
+
+#controls > .all-notes {
+  float: right;
+  width: 40%;
+  max-height: 1.1em;
+  overflow: hidden;
+  transition: max-height .5s ease-in-out;
+}
+
+  #controls > .all-notes:hover {
+    max-height: 1000px;
+  }
+
+  #controls > .all-notes > p {
+    cursor: pointer;
+    text-align: right;
+    text-decoration: underline;
+    margin-bottom: .7em;
+  }
+
+  #controls > .all-notes > ul {
+    list-style: none;
+    -moz-column-width: 3.5em;
+    -moz-column-gap: 2.5em;
+    -webkit-column-width: 3.5em;
+    -webkit-column-gap: 2.5em;
+    column-width: 3.5em;
+    column-gap: 2.5em;
+  }
+
+  #controls > .all-notes > ul > li > small {
+    float: right;
+  }
+
+
+    input[id^="filter"] {
+      display: none;
+    }
+
+    input[id^="filter"] + label {
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: .4em;
+      padding: .3em .8em;
+      border-radius: .5em;
+    }
+
+    #filter-errors + label {
+      color: rgb(244, 96, 37);
+    }
+
+      #filter-errors:checked + label {
+        color: #fff;
+        background: rgb(244, 96, 37);
+      }
+
+    #filter-warnings + label {
+      color: rgb(254, 178, 54);
+    }
+
+      #filter-warnings:checked + label {
+        color: #000;
+        background: rgb(254, 178, 54);
+      }
+
+    #filter-notices + label {
+      color: rgb(10, 172, 207);
+    }
+
+      #filter-notices:checked + label {
+        color: #fff;
+        background: rgb(10, 172, 207);
+      }
+
+    input[name="sort-by"] {
+      display: none;
+    }
+
+    #sort-by-document-order + label,
+    #sort-by-category + label {
+      cursor: pointer;
+      position: relative;
+    }
+
+    #sort-by-category + label {
+      margin-left: 3.2em;
+    }
+
+    #sort-by-document-order + label::after {
+      position: absolute;
+      content: '';
+      top: -.15em;
+      right: -3.2em;
+      width: 3em;
+      height: 1.5em;
+      border-radius: 1.2em;
+      background: rgb(105, 211, 141);
+    }
+
+    #sort-by-category + label::after {
+      position: absolute;
+      top: 0;
+      left: -3.05em;
+      content: '';
+      display: block;
+      width: 1.2em;
+      height: 1.2em;
+      border-radius: 1.2em;
+      background: #fff;
+      transition: left .3s ease-out .3s;
+      animation: .3s linear unswitch .2s;
+    }
+
+    @keyframes switch {
+      30% { width: 2em; }
+    }
+
+    @keyframes unswitch {
+      30% { margin-left: -.8em; width: 2em; }
+    }
+
+    #sort-by-category:checked + label::after {
+      left: -1.55em;
+      animation: .3s linear switch .2s;
+    }
+
+    #results {
+      list-style: none;
+    }
+
+    #results.filter-errors [data-result-level="error"],
+    #results.filter-warnings [data-result-level="warning"],
+    #results.filter-notices [data-result-level="notice"] {
+      display: none;
+    }
+
+    .result {
+      position: relative;
+      padding: 1em 2em 1em 4.8em;
+    }
+
+    .result > h2 {
+      margin-bottom: .5em;
+      line-height: 1.3em;
+    }
+
+    .result > p {
+      margin-bottom: .5em;
+    }
+
+    .result > aside {
+      position: absolute;
+      top: 0;
+      left: 2em;
+      width: 1.5em;
+      height: 100%;
+      text-indent: -10em;
+      filter: saturate(50%);
+    }
+
+    .result[data-result-type="html"] > aside {
+      background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIiA/Pgo8c3ZnIHdpZHRoPSIyNTZweCIgaGVpZ2h0PSIzNjFweCIgdmlld0JveD0iMCAwIDI1NiAzNjEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgogICAgPGc+CiAgICAgICAgPHBhdGggZD0iTTI1NS41NTQ4MTMsNzAuNzY1NzE0MyBMMjMyLjMxMzY3LDMzMS4xMjU0NTEgTDEyNy44NDM4NjgsMzYwLjA4NzkxMiBMMjMuNjYxNzE0MywzMzEuMTY2MjQyIEwwLjQ0NTE4NjgxMyw3MC43NjU3MTQzIEwyNTUuNTU0ODEzLDcwLjc2NTcxNDMgTDI1NS41NTQ4MTMsNzAuNzY1NzE0MyBaIiBmaWxsPSIjRTQ0RDI2Ij48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTEyOCwzMzcuOTUwMjQyIEwyMTIuNDE2NzAzLDMxNC41NDY2MzcgTDIzMi4yNzc4MDIsOTIuMDU3MzE4NyBMMTI4LDkyLjA1NzMxODcgTDEyOCwzMzcuOTUwMjQyIEwxMjgsMzM3Ljk1MDI0MiBaIiBmaWxsPSIjRjE2NTI5Ij48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTgyLjgyMDIxOTgsMTU1LjkzMjEzMiBMMTI4LDE1NS45MzIxMzIgTDEyOCwxMjMuOTk0NzI1IEw0Ny45MTcwMTEsMTIzLjk5NDcyNSBMNDguNjgxNDk0NSwxMzIuNTYyOTg5IEw1Ni41MzA5ODksMjIwLjU3MjgzNSBMMTI4LDIyMC41NzI4MzUgTDEyOCwxODguNjM2MTMyIEw4NS43Mzg5MDExLDE4OC42MzYxMzIgTDgyLjgyMDIxOTgsMTU1LjkzMjEzMiBMODIuODIwMjE5OCwxNTUuOTMyMTMyIFoiIGZpbGw9IiNFQkVCRUIiPjwvcGF0aD4KICAgICAgICA8cGF0aCBkPSJNOTAuMDE3NzU4MiwyMzYuNTQxODkgTDU3Ljk1Nzk3OCwyMzYuNTQxODkgTDYyLjQzMjM1MTYsMjg2LjY4NzY0OCBMMTI3Ljg1MzAxMSwzMDQuODQ4ODc5IEwxMjgsMzA0LjgwODA4OCBMMTI4LDI3MS41ODAxMzIgTDEyNy44NjAwNDQsMjcxLjYxNzQwNyBMOTIuMjkxNTE2NSwyNjIuMDEzMTg3IEw5MC4wMTc3NTgyLDIzNi41NDE4OSBMOTAuMDE3NzU4MiwyMzYuNTQxODkgWiIgZmlsbD0iI0VCRUJFQiI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik0yNC4xODA3NDczLDAgTDQwLjQxMDcyNTMsMCBMNDAuNDEwNzI1MywxNi4wMzUxNjQ4IEw1NS4yNTczMTg3LDE2LjAzNTE2NDggTDU1LjI1NzMxODcsMCBMNzEuNDg4LDAgTDcxLjQ4OCw0OC41NTg0MTc2IEw1NS4yNTgwMjIsNDguNTU4NDE3NiBMNTUuMjU4MDIyLDMyLjI5ODE5NzggTDQwLjQxMTQyODYsMzIuMjk4MTk3OCBMNDAuNDExNDI4Niw0OC41NTg0MTc2IEwyNC4xODE0NTA1LDQ4LjU1ODQxNzYgTDI0LjE4MTQ1MDUsMCBMMjQuMTgwNzQ3MywwIEwyNC4xODA3NDczLDAgWiIgZmlsbD0iIzAwMDAwMCI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik05Mi44MzA5NDUxLDE2LjEwMjY4MTMgTDc4LjU0Mjc2OTIsMTYuMTAyNjgxMyBMNzguNTQyNzY5MiwwIEwxMjMuMzU2ODM1LDAgTDEyMy4zNTY4MzUsMTYuMTAyNjgxMyBMMTA5LjA2MjMzLDE2LjEwMjY4MTMgTDEwOS4wNjIzMyw0OC41NTg0MTc2IEw5Mi44MzE2NDg0LDQ4LjU1ODQxNzYgTDkyLjgzMTY0ODQsMTYuMTAyNjgxMyBMOTIuODMwOTQ1MSwxNi4xMDI2ODEzIEw5Mi44MzA5NDUxLDE2LjEwMjY4MTMgWiIgZmlsbD0iIzAwMDAwMCI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik0xMzAuNDY5Mjc1LDAgTDE0Ny4zOTI3MDMsMCBMMTU3LjgwMjkwMSwxNy4wNjE5NzggTDE2OC4yMDI1NDksMCBMMTg1LjEzMjMwOCwwIEwxODUuMTMyMzA4LDQ4LjU1ODQxNzYgTDE2OC45NjkxNDMsNDguNTU4NDE3NiBMMTY4Ljk2OTE0MywyNC40OTAxOTc4IEwxNTcuODAyOTAxLDQxLjc1NTQyODYgTDE1Ny41MjM2OTIsNDEuNzU1NDI4NiBMMTQ2LjM0OTcxNCwyNC40OTAxOTc4IEwxNDYuMzQ5NzE0LDQ4LjU1ODQxNzYgTDEzMC40NjkyNzUsNDguNTU4NDE3NiBMMTMwLjQ2OTI3NSwwIEwxMzAuNDY5Mjc1LDAgWiIgZmlsbD0iIzAwMDAwMCI+PC9wYXRoPgogICAgICAgIDxwYXRoIGQ9Ik0xOTMuMjA5NjcsMCBMMjA5LjQ0NDU3MSwwIEwyMDkuNDQ0NTcxLDMyLjUwNzc4MDIgTDIzMi4yNjg2NTksMzIuNTA3NzgwMiBMMjMyLjI2ODY1OSw0OC41NTg0MTc2IEwxOTMuMjA5NjcsNDguNTU4NDE3NiBMMTkzLjIwOTY3LDAgTDE5My4yMDk2NywwIFoiIGZpbGw9IiMwMDAwMDAiPjwvcGF0aD4KICAgICAgICA8cGF0aCBkPSJNMTI3Ljg4OTU4MiwyMjAuNTcyODM1IEwxNjcuMjE2NTI3LDIyMC41NzI4MzUgTDE2My41MDk0NTEsMjYxLjk5Mjc5MSBMMTI3Ljg4OTU4MiwyNzEuNjA2ODU3IEwxMjcuODg5NTgyLDMwNC44MzM0MDcgTDE5My4zNjIyODYsMjg2LjY4NzY0OCBMMTkzLjg0MjYzNywyODEuMjkxOTU2IEwyMDEuMzQ3NTE2LDE5Ny4yMTIxMzIgTDIwMi4xMjY3NjksMTg4LjYzNjEzMiBMMTI3Ljg4OTU4MiwxODguNjM2MTMyIEwxMjcuODg5NTgyLDIyMC41NzI4MzUgTDEyNy44ODk1ODIsMjIwLjU3MjgzNSBaIiBmaWxsPSIjRkZGRkZGIj48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTEyNy44ODk1ODIsMTU1Ljg1NDA2NiBMMTI3Ljg4OTU4MiwxNTUuOTMyMTMyIEwyMDUuMDMyNzkxLDE1NS45MzIxMzIgTDIwNS42NzM0OTUsMTQ4Ljc1MzU4MiBMMjA3LjEyODYxNSwxMzIuNTYyOTg5IEwyMDcuODkyMzk2LDEyMy45OTQ3MjUgTDEyNy44ODk1ODIsMTIzLjk5NDcyNSBMMTI3Ljg4OTU4MiwxNTUuODU0MDY2IEwxMjcuODg5NTgyLDE1NS44NTQwNjYgWiIgZmlsbD0iI0ZGRkZGRiI+PC9wYXRoPgogICAgPC9nPgo8L3N2Zz4K') 50% 1.6em no-repeat;
+      background-size: 1.5em;
+    }
+
+    .result[data-result-type="a11y"] > aside {
+      background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIiA/Pgo8c3ZnIHdpZHRoPSIyNTZweCIgaGVpZ2h0PSIxMzdweCIgdmlld0JveD0iMCAwIDI1NiAxMzciIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgogICAgPGc+CiAgICAgICAgPHBhdGggZD0iTTY3LjY1NDI3NDUsMS42MTAyOTAyIEw5MS44NzI4Nzg0LDgzLjk2Mzk4NDMgTDExNi4xMDE1MjIsMS42MTAyOTAyIEwxMzMuNjMyLDEuNjEwMjkwMiBMOTMuNTM5Mzg4MiwxMzYuOTEwODA4IEw5MS44NzA4NzA2LDEzNi45MTA4MDggTDY2LjgxMjk4ODIsNTMuMDY1Mjg2MyBMNDEuNzU3MTEzNywxMzYuOTEwODA4IEw0MC4wODY1ODgyLDEzNi45MTA4MDggTDAsMS42MTAyOTAyIEwxNy41NDA1MTc2LDEuNjEwMjkwMiBMNDEuNzU3MTEzNyw4My45NjM5ODQzIEw1OC4xMjkwNjY3LDI4LjUxMTM3MjUgTDUwLjExMTc0OSwxLjYxMjI5ODA0IEw2Ny42NTQyNzQ1LDEuNjEyMjk4MDQgTDY3LjY1NDI3NDUsMS42MTAyOTAyIFoiIGZpbGw9IiMwMDVBOUMiPjwvcGF0aD4KICAgICAgICA8cGF0aCBkPSJNMTgzLjQyNjUxLDkzLjQ3OTE1MjkgQzE4My40MjY1MSwxMDUuNzM1MDI3IDE4MC4xNjU3NzMsMTE2LjAzNTI2MyAxNzMuNjY0Mzc2LDEyNC4zODc4OSBDMTY3LjE0MjkwMiwxMzIuNzM2NTAyIDE1OC43MDU5NDUsMTM2LjkxMDgwOCAxNDguMzUxNDk4LDEzNi45MTA4MDggQzE0MC41NTcwNTEsMTM2LjkxMDgwOCAxMzMuNzY4NTMzLDEzNC40MjUwOTggMTI3Ljk3NTkwNiwxMjkuNDc3NzczIEMxMjIuMTgzMjc4LDEyNC41MTg0IDExNy44OTY1MzMsMTE3LjgwODE4OCAxMTUuMTEzNjYzLDEwOS4zNTUxNjkgTDEyOC44MDcxNTMsMTAzLjY3NDk4IEMxMzAuODE3MDA0LDEwOC43OTg5OTYgMTMzLjQ1OTMyNSwxMTIuODM0NzYxIDEzNi43NDQxNTcsMTE1Ljc3ODI1OSBDMTQwLjAyODk4OCwxMTguNzI3NzggMTQzLjg5MjA3OCwxMjAuMjA5NTY5IDE0OC4zNTE0OTgsMTIwLjIwOTU2OSBDMTUzLjAyNzc2NSwxMjAuMjA5NTY5IDE1Ni45ODUyMjQsMTE3LjU4NzMyNSAxNjAuMjE1ODQzLDExMi4zNTY4OTQgQzE2My40NDY0NjMsMTA3LjEyNDQ1NSAxNjUuMDU2NzUzLDEwMC44MzU4OSAxNjUuMDU2NzUzLDkzLjQ4MTE2MDggQzE2NS4wNTY3NTMsODUuMzUxNDAzOSAxNjMuMzI4LDc5LjA2Njg1NDkgMTU5Ljg3MjUwMiw3NC42MDk0NDMxIEMxNTUuODY2ODU1LDY5LjM4MTAxOTYgMTQ5LjU3NDI3NSw2Ni43NTQ3NjA4IDE0MS4wMDQ4LDY2Ljc1NDc2MDggTDEzNC4zMjQ3MDYsNjYuNzU0NzYwOCBMMTM0LjMyNDcwNiw1OC43NDE0NTg4IEwxNTcuNzA4MDQ3LDE4LjMxNzU1MjkgTDEyOS40NzM3NTcsMTguMzE3NTUyOSBMMTIxLjYyMTA4MiwzMS42Nzk3NDkgTDExNi42MTU1MjksMzEuNjc5NzQ5IEwxMTYuNjE1NTI5LDEuNjEwMjkwMiBMMTgxLjc1MTk2OSwxLjYxMDI5MDIgTDE4MS43NTE5NjksOS43OTIyNTA5OCBMMTU3LjAzNTQyLDUyLjM5MjY1ODggQzE2NS43MTczMzMsNTUuMTczNTIxNiAxNzIuMjg2OTk2LDYwLjI0NTMzMzMgMTc2Ljc0MjQsNjcuNTk0MDM5MiBDMTgxLjE5OTgxMiw3NC45NDA3MzczIDE4My40MjY1MSw4My41NjI0MTU3IDE4My40MjY1MSw5My40NzkxNTI5IEwxODMuNDI2NTEsOTMuNDc5MTUyOSBaIiBmaWxsPSIjMDA1QTlDIj48L3BhdGg+CiAgICAgICAgPHBhdGggZD0iTTI1MS40MDQwNDcsMC44NTMzMzMzMzMgTDI1NC4yNDMxMzcsMTguMTIwNzg0MyBMMjQ0LjE4Nzg1OSwzNy4zNjE5NDUxIEMyNDQuMTg3ODU5LDM3LjM2MTk0NTEgMjQwLjMyNDc2OSwyOS4yMDIwNzA2IDIzMy45MTM3MjUsMjQuNjg0NDIzNSBDMjI4LjUwNjYwNCwyMC44NzE1Mjk0IDIyNC45ODQ4NDcsMjAuMDQ4MzEzNyAyMTkuNDg1MzY1LDIxLjE3ODcyOTQgQzIxMi40MDM3MDIsMjIuNjQ0NDU0OSAyMDQuMzk0NDE2LDMxLjA5MzQ1ODggMjAwLjg5Njc1Myw0MS41MTgxODA0IEMxOTYuNzEyNDA4LDUzLjk4Njg4NjMgMTk2LjY3MjI1MSw2MC4wMjY0Nzg0IDE5Ni41MjM2NzEsNjUuNTY4MTI1NSBDMTk2LjI5Mjc2OSw3NC40NTg4NTQ5IDE5Ny42ODgyMiw3OS43MDkzNjQ3IDE5Ny42ODgyMiw3OS43MDkzNjQ3IEMxOTcuNjg4MjIsNzkuNzA5MzY0NyAxOTEuNTg0Mzc2LDY4LjQxMzIzOTIgMTkxLjY0MjYwNCw1MS44Njg2MTE4IEMxOTEuNjc4NzQ1LDQwLjA1ODQ3ODQgMTkzLjU0NDAzMSwyOS4zNDQ2Mjc1IDE5OS4wMDMzNTcsMTguNzgxMzY0NyBDMjAzLjgxNDE0OSw5LjQ5MTA3NDUxIDIxMC45NTAwMjQsMy45MTUyOTQxMiAyMTcuMjkyOCwzLjI2NDc1Mjk0IEMyMjMuODQ2NCwyLjU3NjA2Mjc1IDIyOS4wMzQ2NjcsNS43MzIzOTIxNiAyMzMuMDM2Mjk4LDkuMTYzNzk2MDggQzIzNy4yMzA2ODIsMTIuNzUzODE5NiAyNDEuNDk1MzQxLDIwLjYwNDQ4NjMgMjQxLjQ5NTM0MSwyMC42MDQ0ODYzIEwyNTEuNDA0MDQ3LDAuODUzMzMzMzMzIEwyNTEuNDA0MDQ3LDAuODUzMzMzMzMzIFoiIGZpbGw9IiMyMjFCMEEiPjwvcGF0aD4KICAgICAgICA8cGF0aCBkPSJNMjUyLjYzMjg0Nyw5OC41ODMwOTAyIEMyNTIuNjMyODQ3LDk4LjU4MzA5MDIgMjQ4LjE5OTUyOSwxMDYuNTI4MTI1IDI0NS40MjY2OTgsMTA5LjU4NjA3MSBDMjQyLjY1Nzg4MiwxMTIuNjQ2MDI0IDIzNy42OTg1MSwxMTguMDM3MDgyIDIzMS41ODA2MTIsMTIwLjczOTYzOSBDMjI1LjQ1ODY5OCwxMjMuNDM2MTczIDIyMi4yNTIxNzMsMTIzLjk0ODE3MyAyMTYuMTk4NTI1LDEyMy4zNjE4ODIgQzIxMC4xNTQ5MTgsMTIyLjc3OTYwOCAyMDQuNTM4OTgsMTE5LjI4MTk0NSAyMDIuNTczMzAyLDExNy44MTIyMDQgQzIwMC42MDc2MjQsMTE2LjM2MjU0MSAxOTUuNTczOTYxLDExMi4wNjE3NDEgMTkyLjc0MDg5NCwxMDguMDY2MTMzIEMxODkuODg5NzU3LDEwNC4wNTA0NDcgMTg1LjQ0NDM5Miw5Ni4wMjkxMTM3IDE4NS40NDQzOTIsOTYuMDI5MTEzNyBDMTg1LjQ0NDM5Miw5Ni4wMjkxMTM3IDE4Ny45MjAwNjMsMTA0LjA2MjQ5NCAxODkuNDc0MTMzLDEwNy40NzE4MTIgQzE5MC4zNjE2LDEwOS40MzM0NzUgMTkzLjEwODMyOSwxMTUuNDMyOTEgMTk3LjAwMTUzNywxMjAuNjY3MzU3IEMyMDAuNjI1Njk0LDEyNS41MzYzNzYgMjA3LjY3MzIyNCwxMzMuOTI3MTUzIDIxOC4zODkwODIsMTM1LjgxNjUzMyBDMjI5LjEwMjkzMywxMzcuNzEzOTQ1IDIzNi40NjM2ODYsMTMyLjkwNzE2OSAyMzguMjgwNzg0LDEzMS43Mzg2MDQgQzI0MC4xMDE4OTgsMTMwLjU3ODA3MSAyNDMuOTQwODk0LDEyNy4zNjU1MjIgMjQ2LjM3NjQwOCwxMjQuNzYxMzQ5IEMyNDguOTE0MzIyLDEyMi4wNDg3NTMgMjUxLjMxMzY5NCwxMTguNTc5MiAyNTIuNjMyODQ3LDExNi41MTMxMjkgQzI1My42MTA2NjcsMTE0Ljk5MTE4NCAyNTUuMTk0ODU1LDExMS45MjMyIDI1NS4xOTQ4NTUsMTExLjkyMzIgTDI1Mi42MzI4NDcsOTguNTgzMDkwMiBMMjUyLjYzMjg0Nyw5OC41ODMwOTAyIFoiIGZpbGw9IiMyMjFCMEEiPjwvcGF0aD4KICAgIDwvZz4KPC9zdmc+Cg==') 50% 1.6em no-repeat;
+      background-size: 1.5em;
+    }
+
+    .notes > code {
+      margin-left: 2em;
+    }
+
+    .selector {
+      padding-left: 1.1em;
+      background:
+      url('data:image/svg+xml;base64,PCEtLQpDcmVhdGVkIGJ5IEF1c3RpbiBDb25kaWZmLCBmcm9tIHRoZSBOb3VuIFByb2plY3QKLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgMTAwIDEyNSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTUxLDhDMjguMjM0LDgsOSwyNy4yMzMsOSw1MHMxOS4yMzQsNDIsNDIsNDJzNDItMTkuMjMzLDQyLTQyUzczLjc2Niw4LDUxLDh6IE01Myw4Ny45NDNWNjkuNzE4ICBjMC0xLjEwNC0wLjg5Ni0yLTItMnMtMiwwLjg5Ni0yLDJ2MTguMjI2QzI5Ljk1MSw4Ni44OTgsMTQuMTAyLDcxLjA0OSwxMy4wNTcsNTJIMzJjMS4xMDQsMCwyLTAuODk2LDItMnMtMC44OTYtMi0yLTJIMTMuMDU3ICBDMTQuMTAyLDI4Ljk1MSwyOS45NTEsMTMuMTAyLDQ5LDEyLjA1N1YzMGMwLDEuMTA0LDAuODk2LDIsMiwyczItMC44OTYsMi0yVjEyLjA1N0M3Mi4wNDksMTMuMTAyLDg3Ljg5OCwyOC45NTEsODguOTQzLDQ4SDcwICBjLTEuMTA0LDAtMiwwLjg5Ni0yLDJzMC44OTYsMiwyLDJoMTguOTQzQzg3Ljg5OCw3MS4wNDksNzIuMDQ5LDg2Ljg5OCw1Myw4Ny45NDN6Ii8+PC9zdmc+') 0 0 no-repeat;
+      background-size: 1.1em;
+    }
+
+    .selector input {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      font: inherit;
+      width: 50%;
+      border: 0;
+      background: none;
+    }
+
+    pre {
+      overflow: auto;
+      padding-left: 2.5em;
+      background: url('data:image/svg+xml;base64,PCEtLQpDcmVhdGVkIGJ5IEF1c3RpbiBDb25kaWZmLCBmcm9tIHRoZSBOb3VuIFByb2plY3QKLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgMTAwIDEyNSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTExLjE0Niw0NS44OThsMjEuMDczLTE0LjA3MmMwLjkxOC0wLjYxMywxLjE2Ni0xLjg1NSwwLjU1Mi0yLjc3NGMtMC42MTMtMC45MTgtMS44NTQtMS4xNjctMi43NzQtMC41NTIgIEw4LjkyNCw0Mi41NzJjLTEuNzk4LDEuMi0yLjg3MSwzLjIwOC0yLjg3MSw1LjM3YzAsMi4xNjIsMS4wNzMsNC4xNywyLjg3MSw1LjM3bDIxLjA3MywxNC4wNzJjMC4zNDEsMC4yMjgsMC43MjcsMC4zMzcsMS4xMDksMC4zMzcgIGMwLjY0NiwwLDEuMjgtMC4zMTIsMS42NjUtMC44ODljMC42MTQtMC45MTksMC4zNjYtMi4xNjEtMC41NTItMi43NzRMMTEuMTQ2LDQ5Ljk4NWMtMC42OTQtMC40NjQtMS4wOTMtMS4yMDgtMS4wOTMtMi4wNDQgIEMxMC4wNTMsNDcuMTA2LDEwLjQ1Miw0Ni4zNjIsMTEuMTQ2LDQ1Ljg5OHoiLz48cGF0aCBmaWxsPSIjMDAwMDAwIiBkPSJNOTAuMDc2LDQyLjU3Mkw2OS4wMDIsMjguNWMtMC45MTgtMC42MTQtMi4xNjEtMC4zNjYtMi43NzQsMC41NTJjLTAuNjE0LDAuOTE5LTAuMzY2LDIuMTYxLDAuNTUyLDIuNzc0ICBsMjEuMDczLDE0LjA3MmMwLjY5NCwwLjQ2NCwxLjA5MywxLjIwOCwxLjA5MywyLjA0M2MwLDAuODM1LTAuMzk4LDEuNTgtMS4wOTMsMi4wNDRMNjYuNzgxLDY0LjA1OCAgYy0wLjkxOCwwLjYxMy0xLjE2NiwxLjg1NS0wLjU1MiwyLjc3NGMwLjM4NSwwLjU3NywxLjAxOSwwLjg4OSwxLjY2NSwwLjg4OWMwLjM4MSwwLDAuNzY4LTAuMTA5LDEuMTA5LTAuMzM3bDIxLjA3My0xNC4wNzIgIGMxLjc5OC0xLjIsMi44NzEtMy4yMDgsMi44NzEtNS4zN0M5Mi45NDcsNDUuNzgsOTEuODc0LDQzLjc3Miw5MC4wNzYsNDIuNTcyeiIvPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik01OS4yMjEsMTcuODM0Yy0xLjA1Mi0wLjMzNS0yLjE3NywwLjI0NS0yLjUxMywxLjI5N0wzOC40ODEsNzYuMjQxYy0wLjMzNiwxLjA1MiwwLjI0NSwyLjE3NywxLjI5NywyLjUxMyAgYzAuMjAyLDAuMDY0LDAuNDA3LDAuMDk1LDAuNjA4LDAuMDk1YzAuODQ3LDAsMS42MzMtMC41NDIsMS45MDUtMS4zOTNsMTguMjI3LTU3LjEwOUM2MC44NTQsMTkuMjk1LDYwLjI3MywxOC4xNyw1OS4yMjEsMTcuODM0eiIvPjwvc3ZnPg==') 0 0 no-repeat;
+      background-size: 1.5em;
+    }
+  </style>
+
+  <script>
+    function toggleFilter(name) {
+        var classList = document.querySelector('#results').classList;
+
+        if (true === document.querySelector('#filter-' + name).checked) {
+            classList.remove('filter-' + name);
+        } else {
+            classList.add('filter-' + name);
+        }
+    }
+
+    function sortByDocumentOrder() {
+        var results = document.querySelectorAll('.result');
+        var getIndexOf = function (resultIndex) {
+            return parseInt(results.item(resultIndex).getAttribute('data-result-index'));
+        };
+
+        document.querySelector('#results').innerHTML =
+            Object
+                .keys(results)
+                .sort(
+                    function (a, b) {
+                        return getIndexOf(a) < getIndexOf(b) ? -1 : 1;
+                    }
+                )
+                .map(
+                    function (i) {
+                        return results.item(i).outerHTML;
+                    }
+                )
+                .join('\n');
+    }
+
+    function sortByCategory() {
+        var results = document.querySelectorAll('.result');
+        var getCategoryOf = function (resultIndex) {
+            return results.item(resultIndex).getAttribute('data-result-level');
+        };
+
+        document.querySelector('#results').innerHTML =
+            Object
+                .keys(results)
+                .sort(
+                    function (a, b) {
+                        var categoryA = getCategoryOf(a);
+                        var categoryB = getCategoryOf(b);
+
+                        if ('error' === categoryA) {
+                            return -1;
+                        } else if ('warning' === categoryA) {
+                            if ('error' === categoryB) {
+                                return 1;
+                            }
+
+                            return -1;
+                        }
+
+                        if ('notice' === categoryB) {
+                            return -1;
+                        }
+
+                        return 1;
+                    }
+                )
+                .map(
+                    function (i) {
+                        return results.item(i).outerHTML;
+                    }
+                )
+                .join('\n');
+    }
+  </script>
+</head>
+
+<body>
+  <h1>
+    Accessibility report for
+    “<a href="http://localhost:5000/patterns/typography/" title="Visit the page targeted by the report">http://localhost:5000/patterns/typography/</a>”
+  </h1>
+  <p class="infos">Generated at Mon Feb 15 2016 09:08:45 GMT+0000 (GMT).</p>
+
+  <svg viewBox="0 0 64 64" class="pie" data-result-level="error">
+    <title>
+      1 errors,
+      1 warnings,
+      8 notices.
+    </title>
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="0"
+      stroke-dasharray="10 100"
+      data-result-level="error" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-10"
+      stroke-dasharray="10 100"
+      data-result-level="warning" />
+    <circle
+      r="25%" cx="50%" cy="50%"
+      stroke-dashoffset="-20"
+      stroke-dasharray="80 100"
+      data-result-level="notice" />
+    <circle
+      r="15%" cx="50%" cy="50%"
+      stroke="white"
+      style="stroke-width: 19" />
+    <g data-result-text-level="error">
+      <text x="50%" y="45%">1</text>
+      <text x="50%" y="55%">errors</text>
+    </g>
+    <g data-result-text-level="warning">
+      <text x="50%" y="45%">1</text>
+      <text x="50%" y="55%">warnings</text>
+    </g>
+    <g data-result-text-level="notice">
+      <text x="50%" y="45%">8</text>
+      <text x="50%" y="55%">notices</text>
+    </g>
+  </svg>
+
+  <div id="controls">
+    <p>
+      <a href="index.html">Back to report listing</a>
+    </p>
+    <p>
+      Filter by:
+      <input
+        type="checkbox"
+        id="filter-errors"
+        checked="checked"
+        onclick="toggleFilter('errors')" />
+      <label for="filter-errors">errors</label>
+      <input
+        type="checkbox"
+        id="filter-warnings"
+        checked="checked"
+        onclick="toggleFilter('warnings')" />
+      <label for="filter-warnings">warnings</label>
+      <input
+        type="checkbox"
+        id="filter-notices"
+        checked="checked"
+        onclick="toggleFilter('notices')" />
+      <label for="filter-notices">notices</label>
+    </p>
+    <p>
+      Sort by:
+      <input
+        type="radio"
+        id="sort-by-document-order"
+        name="sort-by"
+        value="document-order"
+        checked="checked"
+        onclick="sortByDocumentOrder()" />
+      <label for="sort-by-document-order">document order</label>
+      <input
+        type="radio"
+        id="sort-by-category"
+        name="sort-by"
+        value="category"
+        onclick="sortByCategory()" />
+      <label for="sort-by-category">category</label>
+    </p>
+  </div>
+
+  <ul id="results">
+    
+              <li class="result" data-result-type="a11y" data-result-level="notice" data-result-index="0">
+                <aside>a11y</aside>
+                <h2>Notice: Check that the title element describes the document.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H25.html">H25</a> <code>#WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.2</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; head &gt; title" readonly="readonly" /></p>
+                  <pre>&lt;title&gt;eQ - Survey Runner&lt;/title&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="error" data-result-index="1">
+                <aside>a11y</aside>
+                <h2>Error: Anchor element found with a valid href attribute, but no link content has been supplied.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H91.html">H91</a> <code>#WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; a" readonly="readonly" /></p>
+                  <pre>&lt;a href=&quot;/&quot;&gt;&lt;/a&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="notice" data-result-index="2">
+                <aside>a11y</aside>
+                <h2>Notice: Check that the link text combined with programmatically determined link context identifies the purpose of the link.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a> <code>#WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; a" readonly="readonly" /></p>
+                  <pre>&lt;a href=&quot;/&quot;&gt;&lt;/a&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="notice" data-result-index="3">
+                <aside>a11y</aside>
+                <h2>Notice: Check that the link text combined with programmatically determined link context identifies the purpose of the link.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a> <code>#WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; div:nth-child(2) &gt; div &gt; a" readonly="readonly" /></p>
+                  <pre>&lt;a href=&quot;/patterns/&quot;&gt;&lt;h1 class=&quot;ptn-title&quot;&gt;ONS Patte...&lt;/a&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="notice" data-result-index="4">
+                <aside>a11y</aside>
+                <h2>Notice: Check that the link text combined with programmatically determined link context identifies the purpose of the link.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a> <code>#WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; div:nth-child(3) &gt; div &gt; div:nth-child(1) &gt; div &gt; div &gt; ul &gt; li:nth-child(1) &gt; a" readonly="readonly" /></p>
+                  <pre>&lt;a href=&quot;/patterns/colours/&quot; class=&quot;ptn-nav-link&quot;&gt;Colours&lt;/a&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="notice" data-result-index="5">
+                <aside>a11y</aside>
+                <h2>Notice: Check that the link text combined with programmatically determined link context identifies the purpose of the link.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a> <code>#WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; div:nth-child(3) &gt; div &gt; div:nth-child(1) &gt; div &gt; div &gt; ul &gt; li:nth-child(2) &gt; a" readonly="readonly" /></p>
+                  <pre>&lt;a href=&quot;/patterns/forms/&quot; class=&quot;ptn-nav-link&quot;&gt;Forms&lt;/a&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="notice" data-result-index="6">
+                <aside>a11y</aside>
+                <h2>Notice: Check that the link text combined with programmatically determined link context identifies the purpose of the link.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a> <code>#WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; div:nth-child(3) &gt; div &gt; div:nth-child(1) &gt; div &gt; div &gt; ul &gt; li:nth-child(3) &gt; a" readonly="readonly" /></p>
+                  <pre>&lt;a href=&quot;/patterns/grid-system/&quot; class=&quot;ptn-nav-link&quot;&gt;Grid System&lt;/a&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="notice" data-result-index="7">
+                <aside>a11y</aside>
+                <h2>Notice: Check that the link text combined with programmatically determined link context identifies the purpose of the link.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a> <code>#WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; div:nth-child(3) &gt; div &gt; div:nth-child(1) &gt; div &gt; div &gt; ul &gt; li:nth-child(4) &gt; a" readonly="readonly" /></p>
+                  <pre>&lt;a href=&quot;/patterns/icons/&quot; class=&quot;ptn-nav-link&quot;&gt;Icons&lt;/a&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="notice" data-result-index="8">
+                <aside>a11y</aside>
+                <h2>Notice: Check that the link text combined with programmatically determined link context identifies the purpose of the link.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/H77.html">H77</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H78.html">H78</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H79.html">H79</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H80.html">H80</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/H81.html">H81</a> <code>#WCAG2AA.Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; div:nth-child(3) &gt; div &gt; div:nth-child(1) &gt; div &gt; div &gt; ul &gt; li:nth-child(5) &gt; a" readonly="readonly" /></p>
+                  <pre>&lt;a href=&quot;/patterns/typography/&quot; class=&quot;ptn-nav-link&quot;&gt;Typography&lt;/a&gt;</pre>
+
+                
+              </li>
+              
+              <li class="result" data-result-type="a11y" data-result-level="warning" data-result-index="9">
+                <aside>a11y</aside>
+                <h2>Warning: The heading structure is not logically nested. This h3 element should be an h2 to be properly nested.</h2>
+                
+
+                  <p class="notes">Note codes: <a href="http://www.w3.org/TR/WCAG20-TECHS/G141.html">G141</a> <code>#WCAG2AA.Principle1.Guideline1_3.1_3_1_A.G141</code></p>
+                  <p class="selector"><input type="text" class="selector" value="html &gt; body &gt; div:nth-child(3) &gt; div &gt; div:nth-child(2) &gt; div &gt; h3:nth-child(3)" readonly="readonly" /></p>
+                  <pre>&lt;h3 class=&quot;ptn-section-subtitle&quot;&gt;Headings&lt;/h3&gt;</pre>
+
+                
+              </li>
+              
+  </ul>
+</body>
+</html>

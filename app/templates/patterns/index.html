@@ -18,7 +18,7 @@
             <ul class="ptn-nav-list">
               {% for section in sections %}
                 <li class="ptn-nav-item {{ 'is-active' if section.current }}">
-                  <a href="/patterns/{{section.title}}" class="ptn-nav-link">{{section.title|replace('-', ' ')|title}}</a>
+                  <a href="/patterns/{{section.title}}/" class="ptn-nav-link">{{section.title|replace('-', ' ')|title}}</a>
                 </li>
               {% endfor %}
             </ul>
@@ -37,6 +37,6 @@
 {% endblock %}
 
 {% block scripts %}
-  {# <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.js" charset="utf-8"></script> #}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.js" charset="utf-8"></script>
   {{super()}}
 {% endblock %}
