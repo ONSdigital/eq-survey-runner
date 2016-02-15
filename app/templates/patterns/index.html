@@ -18,7 +18,7 @@
             <ul class="ptn-nav-list">
               {% for section in sections %}
                 <li class="ptn-nav-item {{ 'is-active' if section.current }}">
-                  <a href="/patterns/{{section.title}}/" class="ptn-nav-link">{{section.title|replace('-', ' ')|title}}</a>
+                  <a href="/patterns/{{section.url}}/" class="ptn-nav-link">{{section.title|title}}</a>
                 </li>
               {% endfor %}
             </ul>
