@@ -119,10 +119,11 @@ def patterns(pattern='index'):
             if file.endswith('.html'):
                 with open(os.path.join(root, file), 'r') as f:
                     title = file.replace('.html', '').split("-", 1)[-1:][0]
+                    url = file.replace('.html', '')
                     sections.append({
-                        'url': file.replace('.html', ''),
-                        'title': title,
-                        'current': True if (title == pattern) else False
+                        'url': url,
+                        'title': title.replace('-', ' '),
+                        'current': True if (url == pattern) else False
                     })
     return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern + '.html', title=pattern_title)
 
