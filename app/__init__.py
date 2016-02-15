@@ -7,6 +7,7 @@ from flaskext.markdown import Markdown
 
 from app.submitter.submitter import Submitter
 import logging
+import os
 
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
@@ -22,20 +23,14 @@ def rabbitmq_available():
 
 
 def get_git_revision():
-    try:
-        revision_log = open("revision.log")
-        revision = revision_log.readlines()
-        revision_log.close()
-        return True, revision
-    except FileNotFoundError:
-        logging.exception("Git revision file missing")
-        return False, "Git revision not available"
+    git_revision = settings.EQ_GIT_REF
+    return git_revision
 
 GIT_REVISION = get_git_revision()
 
 
 def git_revision():
-    return GIT_REVISION
+    return True, GIT_REVISION
 
 
 def create_app(config_name):
