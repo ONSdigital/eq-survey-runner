@@ -1,4 +1,4 @@
-from flask import render_template, request, json, Response
+from flask import render_template, request, redirect, json, Response
 from .. import main
 from app.main import errors
 from app.authentication.jwt_decoder import Decoder
@@ -106,20 +106,26 @@ def send_to_mq(token):
 
 
 @main.route('/patterns/')
+def index():
+    return redirect("/patterns/1-typography", code=301)
+
+
 @main.route('/patterns/<pattern>/', methods=['GET', 'POST'])
 def patterns(pattern='index'):
     sections = []
-    pattern_name = 'grid-system' if (pattern == 'index') else pattern
+    pattern_title = pattern.split("-", 1)[-1:][0]
     for root, dirs, files in os.walk('app/templates/patterns/components'):
         for file in files:
             if file.endswith('.html'):
                 with open(os.path.join(root, file), 'r') as f:
-                    title = file.replace('.html', '')
+                    title = file.replace('.html', '').split("-", 1)[-1:][0]
+                    url = file.replace('.html', '')
                     sections.append({
-                        'title': title,
-                        'current': True if (title == pattern) else False
+                        'url': url,
+                        'title': title.replace('-', ' '),
+                        'current': True if (url == pattern) else False
                     })
-    return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern_name + '.html', title=pattern)
+    return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern + '.html', title=pattern_title)
 
 
 @main.route('/validate/', methods=['GET', 'POST'])
