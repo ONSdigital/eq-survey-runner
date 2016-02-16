@@ -1,0 +1,16 @@
+.survey-header {
+  display: block;
+}
+
+.survey-header__logo {
+  margin-bottom: 1rem;
+  @include mq(m) {
+    margin-bottom: 0;
+  }
+}
+
+.survey-header__info {
+  @include mq(m) {
+    float: right;
+  }
+}
