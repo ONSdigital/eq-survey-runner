@@ -6,7 +6,7 @@ from app import create_app
 from flask.ext.script import Manager, Server
 
 application = create_app(
-    os.getenv('SR_ENVIRONMENT') or 'development'
+    os.getenv('EQ_ENVIRONMENT') or 'development'
 )
 application.debug = True
 manager = Manager(application)

@@ -17,7 +17,9 @@ if [ -z "$EQ_SR_PRIVATE_KEY" ]; then
 fi
 
 # Output the current git revision
-git rev-parse HEAD > revision.log
+if [ -z "$EQ_GIT_REF" ]; then
+  export EQ_GIT_REF=`git rev-parse HEAD`
+fi
 
 # Use default environment vars for localhost if not already set
 

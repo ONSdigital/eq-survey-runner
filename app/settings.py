@@ -7,3 +7,4 @@ EQ_RABBITMQ_TEST_QUEUE_NAME = os.getenv('EQ_RABBITMQ_TEST_QUEUE_NAME', 'eq-test'
 EQ_PRODUCTION = os.getenv("EQ_PRODUCTION", 'True')
 EQ_RRM_PUBLIC_KEY = os.getenv('EQ_RRM_PUBLIC_KEY')
 EQ_SR_PRIVATE_KEY = os.getenv('EQ_SR_PRIVATE_KEY')
+EQ_GIT_REF = os.getenv('EQ_GIT_REF', None)
