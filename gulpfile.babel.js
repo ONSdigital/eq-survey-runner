@@ -49,6 +49,7 @@ gulp.task('listen', () => {
     proxy: process.env.EQ_SURVEY_RUNNER_URL,
     browser: false
   })
+  gulp.watch(paths.images.input, ['build:images']).on('change', browserSync.reload)
   gulp.watch(paths.styles.input, ['build:styles']).on('change', browserSync.reload)
   gulp.watch(paths.templates.input).on('change', browserSync.reload)
 })
