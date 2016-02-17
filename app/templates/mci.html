@@ -1,36 +1,55 @@
 {% extends 'layouts/_base.html' %}
 
+{% import 'macros/forms.html' as forms %}
+
 {% block content %}
 
 <header class="header">
+  <div class="skip">
+    <a class="skip__link" href="#main">Skip to content</a>
+  </div>
   <div class="container">
     <h1 class="header__title">Monthly Business Survey - Retail Sales Index</h1>
   </div>
 </header>
 
+<div class="container">
 
-<main class="main">
-  <div class="container">
+  <div class="panel">
 
-    <div class="panel">
-      <div class="survey-header u-cf u-pad-m">
+    <div class="panel__header survey-header u-cf u-pad-m">
 
-        <div class="logo survey-header__logo">
-          <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics" class="logo__img" />
-        </div>
-
-        <div class="info survey-header__info">
-          <ul class="info__list">
-            <li class="info__item info__item--half">Survey Code: 023</li>
-            <li class="info__item info__item--half">Period: 201403</li>
-            <li class="info__item info__item--last">Reference: 4990 0000 000</li>
-          </ul>
-        </div>
-
+      <div class="logo survey-header__logo">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics" class="logo__img" />
       </div>
+
+      <div class="info survey-header__info">
+        <ul class="info__list">
+          <li class="info__item info__item--half">Survey Code: 023</li>
+          <li class="info__item info__item--half">Period: 201403</li>
+          <li class="info__item info__item--last">Reference: 4990 0000 000</li>
+        </ul>
+      </div>
+
     </div>
 
+    <main class="panel__body u-pad-m" id="main">
+
+      <fieldset>
+        <div class="grid">
+          <div class="grid__col m-6">
+            {{ forms.input('forename', 'Forename') }}
+          </div>
+          <div class="grid__col m-6">
+            {{ forms.input('surname', 'Surname') }}
+          </div>
+        </div>
+      </fieldset>
+
+    </main>
+
   </div>
-</main>
+
+</div>
 
 {% endblock %}

@@ -1,23 +1,7 @@
-.u-pad-s {
-  padding: 0.5rem;
-
-  @include mq(m) {
-    padding: 1rem 2rem;
-  }
-}
-
 .u-pad-m {
   padding: 1rem;
 
   @include mq(m) {
-    padding: 3rem 4rem;
-  }
-}
-
-.u-pad-l {
-  padding: 1rem;
-
-  @include mq(m) {
-    padding: 5rem 6rem;
+    padding: 2rem 4rem;
   }
 }
