@@ -9,7 +9,7 @@ import svgSprite from 'gulp-svg-sprite'
 import {paths} from './paths'
 import browserSync from './bs'
 
-export function svg() {
+export function sprite() {
   gulp.src(paths.svgs.input)
     .pipe(svgSprite({
       shape: {
@@ -44,30 +44,37 @@ export function svg() {
     .pipe(gulp.dest(paths.svgs.output))
 }
 
-// // Generate SVG sprites
-// export function svg() {
-//   gulp.src(paths.svgs.input)
-//     .pipe(plumber())
-//     .pipe(tap((file, t) => {
-//       if (file.isDirectory()) {
-//         let name = file.relative + '.svg'
-//         gulp.src(file.path + '/**/*.svg')
-//           .pipe(svgmin())
-//           .pipe(svgstore({
-//             fileName: name,
-//             prefix: 'icon-',
-//             inlineSvg: true
-//           }))
-//           .pipe(gulp.dest(paths.svgs.output))
-//       }
-//     }))
-//     .pipe(svgmin())
-//     .pipe(size({'title': 'SVG'}))
-//     .pipe(gulp.dest(paths.svgs.output))
-// }
+// Generate SVG sprites
+export function svg() {
+  gulp.src(paths.svgs.input)
+    .pipe(plumber())
+    .pipe(tap((file, t) => {
+      if (file.isDirectory()) {
+        let name = file.relative + '.svg'
+        gulp.src(file.path + '/**/*.svg')
+          .pipe(svgmin())
+          .pipe(svgstore({
+            fileName: name,
+            prefix: 'icon-',
+            inlineSvg: true
+          }))
+          .pipe(gulp.dest(paths.svgs.output))
+      }
+    }))
+    .pipe(svgmin())
+    .pipe(size({'title': 'SVG'}))
+    .pipe(gulp.dest(paths.svgs.output))
+}
 
 export function images() {
   gulp.src(paths.images.input)
     .pipe(plumber())
+    .pipe(tap((file, t) => {
+      if (file.relative.indexOf('svg') > -1) {
+        gulp.src(file.path)
+        .pipe(svgmin())
+        .pipe(gulp.dest(paths.images.output))
+      }
+    }))
     .pipe(gulp.dest(paths.images.output))
 }

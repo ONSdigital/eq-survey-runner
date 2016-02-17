@@ -28,7 +28,7 @@ export const paths = {
     output: distPath + '/img/'
   },
   images: {
-    input: srcPath + '/img/**.{png,jpg,jpeg,gif,ico}',
+    input: srcPath + '/img/**.{svg,png,jpg,jpeg,gif,ico}',
     output: distPath + '/img/'
   },
   webfonts: {

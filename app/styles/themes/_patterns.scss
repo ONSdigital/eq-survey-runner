@@ -1,3 +1,7 @@
+.ptn {
+  background: $color-white;
+}
+
 .ptn-header {
   background: $color-light-grey;
   padding: 15px 0;
@@ -13,7 +17,7 @@
     display: inline-block;
     vertical-align: middle;
     content: "";
-    background: url("#{$static-dir}/img/eq.png") no-repeat left center;
+    background: url("/static/img/eq.png") no-repeat left center;
     width: 33.4px;
     height: 37.8px;
     background-size: 100%;

@@ -85,6 +85,11 @@ def root():
     return render_template('index.html')
 
 
+@main.route('/mci/', methods=['GET'])
+def mci_survey():
+    return render_template('mci.html')
+
+
 @main.route('/jwt', methods=['GET'])
 def jwt():
     return jwt_decode()

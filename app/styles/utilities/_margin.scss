@@ -1,0 +1,11 @@
+@include build-suffix(u-mb-s) {
+  margin-bottom: 1rem;
+}
+
+@include build-suffix(u-mb-m) {
+  margin-bottom: 2rem;
+}
+
+@include build-suffix(u-mb-l) {
+  margin-bottom: 3rem;
+}

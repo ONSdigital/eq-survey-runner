@@ -1,0 +1,7 @@
+.u-pad-m {
+  padding: 1rem;
+
+  @include mq(m) {
+    padding: 2rem 4rem;
+  }
+}

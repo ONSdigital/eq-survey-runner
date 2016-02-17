@@ -8,7 +8,7 @@ import sassGlob from 'gulp-sass-glob'
 import minify from 'gulp-cssnano'
 import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
-import pxtorem from 'postcss-pxtorem'
+import pixrem from 'pixrem'
 import scss from 'postcss-scss'
 import sourcemaps from 'gulp-sourcemaps'
 import flatten from 'gulp-flatten'
@@ -58,13 +58,9 @@ export function styles() {
       autoprefixer({
         browsers: ['last 1 version']
       }),
-      pxtorem({
+      pixrem({
         rootValue: 18,
-        propWhiteList: [],
-        selectorBlackList: [],
-        replace: false,
-        mediaQuery: true,
-        minPixelValue: 0
+        replace: false
       }),
       reporter({ clearMessages: true })
     ]))

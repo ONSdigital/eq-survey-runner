@@ -5,7 +5,7 @@ import plumber from 'gulp-plumber'
 import {paths} from './gulp/paths'
 import {bundle, lint as lintScripts} from './gulp/scripts'
 import {tests} from './gulp/tests'
-import {svg, images} from './gulp/images'
+import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
 import a11ym from './gulp/a11ym'
@@ -47,8 +47,9 @@ gulp.task('test:scripts', (done) => {
 gulp.task('listen', () => {
   browserSync.init({
     proxy: process.env.EQ_SURVEY_RUNNER_URL,
-    browser: false
+    open: false
   })
+  gulp.watch(paths.images.input, ['build:images']).on('change', browserSync.reload)
   gulp.watch(paths.styles.input, ['build:styles']).on('change', browserSync.reload)
   gulp.watch(paths.templates.input).on('change', browserSync.reload)
 })
@@ -73,8 +74,8 @@ gulp.task('lint:scripts', () => {
 })
 
 // Generate SVG sprites
-gulp.task('build:svgs', ['clean:dist'], () => {
-  svg()
+gulp.task('build:sprite', ['clean:dist'], () => {
+  sprite()
 })
 
 // Copy image files into output folder
@@ -91,7 +92,7 @@ gulp.task('compile', [
   'lint:scripts',
   'lint:styles',
   'clean:dist',
-  'build:svgs',
+  'build:sprite',
   'build:scripts',
   'build:styles',
   'build:images',
@@ -110,7 +111,7 @@ gulp.task('watch', [
   'lint:scripts',
   'lint:styles',
   'clean:dist',
-  'build:svgs',
+  'build:sprite',
   'watch:scripts',
   'build:styles',
   'build:images',

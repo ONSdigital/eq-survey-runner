@@ -70,3 +70,19 @@
 @mixin clearfix() {
   // no-op
 }
+
+
+
+@mixin build-suffix($class) {
+  .#{class} {
+    @content;
+  }
+
+  @each $bp, $size in $grid-bp {
+    @include mq($bp) {
+      .#{$class}\@#{$bp} {
+        @content;
+      }
+    }
+  }
+}

@@ -2,36 +2,38 @@
 
 {% block content %}
 
-  <a href="/"></a>
+  <div class="ptn">
 
-  <div class="ptn-header">
-    <div class="container">
-      <a href="/patterns/"><h1 class="ptn-title">ONS Pattern Library</h1></a>
+    <div class="ptn-header">
+      <div class="container">
+        <a href="/patterns/"><h1 class="ptn-title">ONS Pattern Library</h1></a>
+      </div>
     </div>
-  </div>
 
-  <div class="container">
-    <div class="grid">
-      <div class="grid__col m-3">
-        <div class="ptn-sidebar">
-          <div class="ptn-nav">
-            <ul class="ptn-nav-list">
-              {% for section in sections %}
-                <li class="ptn-nav-item {{ 'is-active' if section.current }}">
-                  <a href="/patterns/{{section.url}}/" class="ptn-nav-link">{{section.title|title}}</a>
-                </li>
-              {% endfor %}
-            </ul>
+    <div class="container">
+      <div class="grid">
+        <div class="grid__col m-3">
+          <div class="ptn-sidebar">
+            <div class="ptn-nav">
+              <ul class="ptn-nav-list">
+                {% for section in sections %}
+                  <li class="ptn-nav-item {{ 'is-active' if section.current }}">
+                    <a href="/patterns/{{section.url}}/" class="ptn-nav-link">{{section.title|title}}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="grid__col m-9">
+          <div class="ptn-section">
+            <h1 class="ptn-section-title">{{title|replace('-', ' ')|title}}</h1>
+            {% include pattern_include %}
           </div>
         </div>
       </div>
-      <div class="grid__col m-9">
-        <div class="ptn-section">
-          <h1 class="ptn-section-title">{{title|replace('-', ' ')|title}}</h1>
-          {% include pattern_include %}
-        </div>
-      </div>
     </div>
+
   </div>
 
 {% endblock %}

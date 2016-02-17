@@ -1,0 +1,16 @@
+.header {
+  background: $color-black;
+  color: $color-white;
+  padding: 0.2rem;
+  margin-bottom: 1rem;
+
+  @include mq(m) {
+    padding: 0.4rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.header__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
