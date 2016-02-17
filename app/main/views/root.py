@@ -85,7 +85,7 @@ def root():
     return render_template('index.html')
 
 
-@main.route('/mci', methods=['GET'])
+@main.route('/mci/', methods=['GET'])
 def mci_survey():
     return render_template('mci.html')
 
