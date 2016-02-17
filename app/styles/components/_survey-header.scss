@@ -4,6 +4,7 @@
 
 .survey-header__logo {
   margin-bottom: 1rem;
+
   @include mq(m) {
     margin-bottom: 0;
   }
@@ -13,6 +14,7 @@
   @include mq($from: xs, $to: m) {
     max-width: 100%;
   }
+
   @include mq(m) {
     float: right;
   }
