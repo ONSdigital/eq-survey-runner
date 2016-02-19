@@ -4,12 +4,11 @@ from flask import Flask
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck, EnvironmentDump
 from flaskext.markdown import Markdown
-
-
+from . import settings
 
 from app.submitter.submitter import Submitter
 import newrelic.agent
-newrelic.agent.initialize('./newrelic.ini')
+newrelic.agent.initialize(settings.EQ_NEW_RELIC_CONFIG_FILE)
 
 
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
@@ -26,7 +25,6 @@ def rabbitmq_available():
 
 
 def get_git_revision():
-    from app import settings
     git_revision = settings.EQ_GIT_REF
     return git_revision
 
