@@ -1,14 +1,17 @@
 from flask.ext.babel import Babel
-import pytz
 from flask import Flask
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck, EnvironmentDump
 from flaskext.markdown import Markdown
-from . import settings
-
+from app import settings
 from app.submitter.submitter import Submitter
+import pytz
+import os.path
 import newrelic.agent
-newrelic.agent.initialize(settings.EQ_NEW_RELIC_CONFIG_FILE)
+
+newrelic_config = settings.EQ_NEW_RELIC_CONFIG_FILE
+if os.path.isfile(newrelic_config):
+    newrelic.agent.initialize(newrelic_config)
 
 
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
