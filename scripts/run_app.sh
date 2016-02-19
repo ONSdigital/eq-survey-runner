@@ -29,4 +29,4 @@ env | grep EQ_
 npm install
 npm run compile
 
-python application.py runserver
+NEW_RELIC_CONFIG_FILE=newrelic.ini newrelic-admin run-python application.py runserver
