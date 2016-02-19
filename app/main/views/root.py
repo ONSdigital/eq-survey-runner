@@ -87,7 +87,9 @@ def root():
 
 @main.route('/mci/', methods=['GET'])
 def mci_survey():
-    return render_template('mci.html')
+    with main.open_resource('data.json') as f:
+        data = json.load(f)
+    return render_template('mci.html', data=data)
 
 
 @main.route('/jwt', methods=['GET'])

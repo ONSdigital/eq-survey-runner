@@ -1,0 +1,47 @@
+.question {
+  padding: 2rem 0;
+}
+
+.question__legend {
+  margin-bottom: 1rem;
+  float: left;
+}
+
+.question__title {
+  clear: both;
+  display: block;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: inherit;
+}
+
+.question__subtitle {
+  margin-top: 0.5rem;
+  clear: both;
+  display: block;
+  color: #888;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.question__info {
+  margin-bottom: 1rem;
+  clear: both;
+}
+
+.question__fields {
+  clear: both;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.question__field {
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.question__group {
+  display: flex;
+  clear: both;
+}

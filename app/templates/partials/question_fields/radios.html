@@ -1,0 +1,6 @@
+{% for option in field.options %}
+  <div class="field__item">
+    <input class="radio" type="radio" name="{{field.name}}" id="{{option.id}}" value="{{option.value}}">
+    <label class="label label--inline" for="{{option.id}}">{{option.label}}</label>
+  </div>
+{% endfor %}

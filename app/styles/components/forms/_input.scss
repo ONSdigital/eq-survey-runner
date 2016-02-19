@@ -1,0 +1,25 @@
+.input {
+  padding: 0.5rem 1rem;
+  display: block;
+  color: inherit;
+  font-size: 0.8rem;
+  border: 1px solid $color-borders;
+  border-radius: $input-radius;
+  &:focus {
+    outline: none;
+    border: 1px solid tint($color-blue, 50%);
+  }
+  &.has-error {
+    border-color: $color-red;
+  }
+}
+
+.input--select {
+  appearance: none;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  background: $color-white url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66278/down.svg") no-repeat center right 10px;
+  background-size: 12px;
+  flex: 1;
+  font-size: 0.9rem;
+  min-width: 10rem;
+}

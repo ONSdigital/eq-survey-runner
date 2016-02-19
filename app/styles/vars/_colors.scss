@@ -1,15 +1,16 @@
 $color-white: #fff;
 $color-black: #222;
 $color-grey: #ccc;
-$color-dark-grey: #4f4f51;
+$color-dark-grey: #9b9b9b;
 $color-light-grey: #e4e8eb;
+$color-lighter-grey: #f5f5f5;
 
 // brand
 
 $color-blue: #003d59;
 $color-green: #a8bd3a;
-$color-primary: $color-blue;
-$color-secondary: $color-green;
+$color-primary: $color-green;
+$color-secondary: $color-blue;
 
 $color-light-blue: tint($color-blue, 40);
 
@@ -22,6 +23,6 @@ $color-selection-text: $color-black;
 $color-text: $color-black;
 $color-links: $color-blue;
 $color-borders: $color-grey;
-$color-placeholder: $color-grey;
+$color-placeholder: transparent;
 
 $color-errors: $color-red;

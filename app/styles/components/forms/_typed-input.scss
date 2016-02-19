@@ -1,0 +1,20 @@
+.typed-input {
+  display: flex;
+}
+
+.typed-input__type {
+  background: $color-lighter-grey;
+  border: 1px solid $color-borders;
+  border-right: none;
+  border-radius: $input-radius 0 0 $input-radius;
+  padding: 0.5rem 1rem;
+  line-height: normal;
+  font-weight: 600;
+  color: $color-secondary;
+  text-align: center;
+}
+
+.typed-input__input {
+  flex: 1;
+  border-radius: 0 $input-radius $input-radius 0;
+}

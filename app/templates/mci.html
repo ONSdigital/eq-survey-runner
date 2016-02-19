@@ -1,11 +1,18 @@
 {% extends 'layouts/_survey.html' %}
 
-{% import 'macros/forms.html' as forms %}
-
 {% block survey %}
 
-<fieldset>
-  {{ forms.input('name', 'What is your name?') }}
-</fieldset>
+
+<form action="" class="form">
+
+{% for question in data %}
+  {% include '/partials/question.html' %}
+{% endfor %}
+
+<button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
+<button class="btn" type="button" name="button">Save &amp; Continue</button>
+
+</form>
+
 
 {% endblock %}
