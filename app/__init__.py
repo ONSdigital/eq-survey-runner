@@ -5,9 +5,12 @@ from app.libs.utils import get_locale
 from healthcheck import HealthCheck, EnvironmentDump
 from flaskext.markdown import Markdown
 
+
+
 from app.submitter.submitter import Submitter
-import logging
-import os
+import newrelic.agent
+newrelic.agent.initialize('./newrelic.ini')
+
 
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
@@ -23,6 +26,7 @@ def rabbitmq_available():
 
 
 def get_git_revision():
+    from app import settings
     git_revision = settings.EQ_GIT_REF
     return git_revision
 
