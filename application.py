@@ -18,6 +18,7 @@ manager.add_command("runserver", Server(host='0.0.0.0', port=port))
 cloud_watch_handler = watchtower.CloudWatchLogHandler()
 
 logging.basicConfig(level=logging.INFO)
+application.logger.addHandler(cloud_watch_handler)
 logging.getLogger().addHandler(cloud_watch_handler)
 logging.getLogger(__name__).addHandler(cloud_watch_handler)
 logging.getLogger('werkzeug').addHandler(cloud_watch_handler)
