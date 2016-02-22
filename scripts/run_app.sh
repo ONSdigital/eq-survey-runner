@@ -26,7 +26,9 @@ fi
 echo "Environment variables in use:"
 env | grep EQ_
 
-npm install
-npm run compile
+if [ ! -s "app/static" ]; then
+  npm install
+  npm run compile
+fi
 
 python application.py runserver
