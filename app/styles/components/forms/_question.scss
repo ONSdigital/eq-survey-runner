@@ -1,5 +1,9 @@
 .question {
-  padding: 2rem 0;
+  padding: 1rem 0;
+
+  @include mq(s) {
+    padding: 2rem 0;
+  }
 }
 
 .question__legend {
@@ -39,9 +43,4 @@
 .question__field {
   padding: 0;
   margin: 0 0 1rem;
-}
-
-.question__group {
-  display: flex;
-  clear: both;
 }

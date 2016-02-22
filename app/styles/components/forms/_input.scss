@@ -1,13 +1,17 @@
+$input-padding: 0.6rem;
+
 .input {
-  padding: 0.5rem 1rem;
+  padding: $input-padding;
   display: block;
   color: inherit;
-  font-size: 0.8rem;
+  font-size: 1rem;
   border: 1px solid $color-borders;
   border-radius: $input-radius;
+  width: 100%;
   &:focus {
     outline: none;
     border: 1px solid tint($color-blue, 50%);
+    box-shadow: 0 0 0 1px tint($color-blue, 50%);
   }
   &.has-error {
     border-color: $color-red;
@@ -16,10 +20,51 @@
 
 .input--select {
   appearance: none;
-  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  padding: $input-padding 2rem $input-padding 0.5rem;
   background: $color-white url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66278/down.svg") no-repeat center right 10px;
   background-size: 12px;
-  flex: 1;
-  font-size: 0.9rem;
-  min-width: 10rem;
+  line-height: 1.4;
+  width: 100%;
+  // min-width: 10rem;
+}
+
+.input--radio,
+.input--checkbox {
+  width: 1.1rem;
+  height: 1.1rem;
+  display: inline-block;
+  vertical-align: middle;
+  appearance: none;
+  border: 2px solid #9b9b9b;
+  padding: 0.5rem;
+  margin: 0.2rem 0.7rem 0 0;
+  font-size: 1rem;
+  background: #eee;
+  box-shadow: inset 0 0 0 3px white;
+  transition: background 300ms;
+  cursor: pointer;
+  &:focus {
+    border: 2px solid tint($color-blue, 50%);
+    box-shadow: inset 0 0 0 3px white;
+  }
+  &:checked {
+    background: #033e58;
+    border: 2px solid #555;
+  }
+}
+
+.input--radio {
+  border-radius: 100px;
+}
+
+.input--checkbox {
+  &:checked {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66278/tick.svg") no-repeat center center;
+    background-size: 11px auto;
+  }
+}
+
+.input--block {
+  display: block;
+  width: 100%;
 }

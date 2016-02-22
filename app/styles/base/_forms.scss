@@ -13,9 +13,13 @@ legend {
   border: none;
 }
 
+fieldset {
+  width: 100%;
+}
+
 legend {
-  // float: left;
-  // width: 100%;
+  float: left;
+  clear: both;
 }
 
 input {
