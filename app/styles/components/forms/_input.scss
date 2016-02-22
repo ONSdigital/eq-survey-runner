@@ -37,7 +37,7 @@ $input-padding: 0.6rem;
   appearance: none;
   border: 2px solid #9b9b9b;
   padding: 0.5rem;
-  margin: 0.2rem 0.7rem 0 0;
+  margin: 0.4rem 0.5rem 0 0;
   font-size: 1rem;
   background: #eee;
   box-shadow: inset 0 0 0 3px white;
@@ -46,6 +46,9 @@ $input-padding: 0.6rem;
   &:focus {
     border: 2px solid tint($color-blue, 50%);
     box-shadow: inset 0 0 0 3px white;
+    & ~ .label {
+      background: $color-light-grey;
+    }
   }
   &:checked {
     background: #033e58;

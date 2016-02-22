@@ -1,38 +1,48 @@
-<fieldset class="question" id="question-{{question.id}}">
+<div class="question {% if question.error %}question--has-errors{% endif %}" id="question-{{question.id}}">
 
-  <legend class="question__legend">
-    <div class="question__title">{{question.title}}</div>
-    {% if question.subtitle %}
-      <div class="question__subtitle">{{question.subtitle}}</div>
-    {% endif %}
-  </legend>
-
-  {% if question.info %}
-    <div class="question__info">
-      {{question.info}}
+  {% if question.error %}
+    <div class="question__error">
+      Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
     </div>
   {% endif %}
 
-  <div class="question__fields">
+  <fieldset class="question__fieldset">
 
-    {% if question.grid %} <div class="grid"> {% endif %}
+    <legend class="question__legend">
+      <div class="question__title">{{question.title}}</div>
+      {% if question.subtitle %}
+        <div class="question__subtitle">{{question.subtitle}}</div>
+      {% endif %}
+    </legend>
 
-      {% for field in question.fields %}
+    {% if question.info %}
+      <div class="question__info">
+        {{question.info}}
+      </div>
+    {% endif %}
 
-        {% if question.grid %} <div class="grid__col m-6"> {% endif %}
+    <div class="question__fields">
 
-          <div class="question__field field field--{{field.type}}">
+      {% if question.grid %} <div class="grid"> {% endif %}
 
-            {% include '/partials/question_fields/' ~ field.type ~ '.html' %}
+        {% for field in question.fields %}
 
-          </div>
+          {% if question.grid %} <div class="grid__col m-6"> {% endif %}
 
-        {% if question.grid %}</div>{% endif %}
+            <div class="question__field field field--{{field.type}}">
 
-      {% endfor %}
+              {% include '/partials/question_fields/' ~ field.type ~ '.html' %}
 
-    {% if question.grid %}</div>{% endif %}
+            </div>
 
-  </div>
+          {% if question.grid %}</div>{% endif %}
 
-</fieldset>
+        {% endfor %}
+
+      {% if question.grid %}</div>{% endif %}
+
+    </div>
+
+  </fieldset>
+
+</div>

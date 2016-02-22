@@ -8,10 +8,15 @@
 
 .label--inline {
   font-weight: 500;
-  width: calc(100% - 3rem);
+  padding: 0.2rem 0.5rem;
+  width: calc(100% - 2.5rem);
   display: inline-block;
   vertical-align: top;
-  margin-bottom: 0;
+  margin: 0 0.5rem 0 0;
+  &:hover {
+    background: $color-light-grey;
+    cursor: pointer;
+  }
 }
 
 .label--small {

@@ -6,4 +6,17 @@
 
 .panel__header {
   border-bottom: 1px solid $color-light-grey;
+  padding: 1rem;
+
+  @include mq(m) {
+    padding: 2rem 4rem;
+  }
+}
+
+.panel__body {
+  padding: 1rem;
+
+  @include mq(m) {
+    padding: 2rem 3rem;
+  }
 }

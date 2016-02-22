@@ -1,9 +1,24 @@
 .question {
-  padding: 1rem 0;
+  border: 2px solid transparent;
+  margin-bottom: 1rem;
+}
 
+.question__fieldset {
   @include mq(s) {
-    padding: 2rem 0;
+    padding: 1rem;
   }
+}
+
+.question--has-errors {
+  border-color: $color-red;
+  background: rgba($color-red, 0.1);
+}
+
+.question__error {
+  background: $color-red;
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
 }
 
 .question__legend {
