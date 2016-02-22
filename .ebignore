@@ -20,3 +20,6 @@ tests/coverage
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# New relic file
+!newrelic.ini

@@ -1,5 +1,4 @@
-*.py[cod]
-
+*.py[cod] 
 # C extensions
 *.so
 
@@ -66,3 +65,4 @@ app/styles/base/_sprite.scss
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+newrelic.ini
