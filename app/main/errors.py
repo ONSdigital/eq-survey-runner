@@ -1,41 +1,41 @@
 from flask import render_template
 from app.main import main
-import traceback
+import logging
 
 
 @main.app_errorhandler(400)
-def page_not_found(e):
-    print(e)
+def bad_request(e):
+    logging.error(e)
     return _render_error_page(500)
 
 
 @main.app_errorhandler(401)
 def unauthorized(e):
-    print(e)
+    logging.error(e)
     return _render_error_page(401)
 
 
 @main.app_errorhandler(403)
 def forbidden(e):
-    print(e)
+    logging.error(e)
     return _render_error_page(403)
 
 
 @main.app_errorhandler(404)
 def page_not_found(e):
-    print(e)
+    logging.error(e)
     return _render_error_page(404)
 
 
 @main.app_errorhandler(500)
 def exception(e):
-    traceback.print_exc()
+    logging.error(e)
     return _render_error_page(500)
 
 
 @main.app_errorhandler(503)
 def service_unavailable(e):
-    print(e)
+    logging.error(e)
     return _render_error_page(503)
 
 

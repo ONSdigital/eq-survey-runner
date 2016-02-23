@@ -37,7 +37,6 @@ class Submitter(object):
             logging.info("Sent to rabbit mq " + token_as_string)
             return True
         except pika.exceptions.AMQPError as e:
-            print(e)
             logging.error("Unable to send " + token_as_string + " to " + settings.EQ_RABBITMQ_URL + " " + repr(e))
             return False
         finally:
