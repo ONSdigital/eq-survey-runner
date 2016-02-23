@@ -17,7 +17,14 @@ manager.add_command("runserver", Server(host='0.0.0.0', port=port))
 
 cloud_watch_handler = watchtower.CloudWatchLogHandler()
 
-logging.basicConfig(level=logging.INFO)
+levels = {
+    'CRITICAL': logging.CRITICAL,
+    'ERROR': logging.ERROR,
+    'WARNING': logging.WARNING,
+    'INFO': logging.INFO,
+    'DEBUG': logging.DEBUG
+}
+logging.basicConfig(level=levels[os.getenv('EQ_LOG_LEVEL') or 'WARNING'])
 application.logger.addHandler(cloud_watch_handler)
 logging.getLogger().addHandler(cloud_watch_handler)
 logging.getLogger(__name__).addHandler(cloud_watch_handler)
