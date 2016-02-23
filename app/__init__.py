@@ -9,7 +9,6 @@ import pytz
 import os.path
 import newrelic.agent
 import logging
-import app.settings as settings
 
 
 newrelic_config = settings.EQ_NEW_RELIC_CONFIG_FILE
