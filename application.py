@@ -6,8 +6,6 @@ from flask.ext.script import Manager, Server
 import watchtower
 import logging
 
-from flask.ext.script import Manager, Server
-
 application = create_app(
     os.getenv('EQ_ENVIRONMENT') or 'development'
 )

@@ -7,7 +7,7 @@ from flaskext.markdown import Markdown
 
 from app.submitter.submitter import Submitter
 import logging
-import os
+import app.settings as settings
 
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
@@ -17,8 +17,10 @@ EUROPE_LONDON = pytz.timezone("Europe/London")
 def rabbitmq_available():
     submitter = Submitter()
     if submitter.send_test():
+        logging.info('RabbitMQ Healthtest OK')
         return True, "rabbit mq ok"
     else:
+        logging.error('Cannot connect to RabbbitMQ')
         return False, "rabbit mq unavailable"
 
 

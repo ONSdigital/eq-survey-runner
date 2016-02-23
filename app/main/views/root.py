@@ -19,7 +19,7 @@ if settings.EQ_PRODUCTION.upper() != 'FALSE':
 
 
 @main.before_request
-def jwt():
+def jwt_before_request():
     if settings.EQ_PRODUCTION.upper() != 'FALSE':
         logging.info("Production mode")
         return jwt_decrypt()
@@ -122,7 +122,8 @@ def patterns(pattern='index'):
     for root, dirs, files in os.walk('app/templates/patterns/components'):
         for file in files:
             if file.endswith('.html'):
-                with open(os.path.join(root, file), 'r') as f:
+                # The following line causes problems with flake8, so we use `# NOQA` to ignore it
+                with open(os.path.join(root, file), 'r') as f:           # NOQA
                     title = file.replace('.html', '').split("-", 1)[-1:][0]
                     url = file.replace('.html', '')
                     sections.append({
