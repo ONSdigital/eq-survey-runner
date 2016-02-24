@@ -108,6 +108,7 @@
     "gfm.css": "^1.1.1",
     "jquery": "./app/js/vendor/jquery-shim",
     "parsleyjs": "^2.2.0",
-    "pixrem": "^3.0.0"
+    "pixrem": "^3.0.0",
+    "postcss-pseudoelements": "^3.0.0"
   }
 }

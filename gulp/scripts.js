@@ -16,7 +16,7 @@ import {paths, srcPath, distPath} from './paths'
 import browserSync from './bs'
 
 const b = browserify(Object.assign(watchify.args, {
-  entries: [`./${srcPath}/js/app.js`],
+  entries: [`./${srcPath}/js/app/main.js`],
   debug: true
 }))
 .on('update', () => bundle())
@@ -40,8 +40,13 @@ export function bundle(watch) {
     .pipe(browserSync.reload({stream: true}))
 }
 
+export function copyVendor() {
+  gulp.src([paths.scripts.vendor])
+  .pipe(gulp.dest(paths.scripts.output + '/vendor/'))
+}
+
 export function lint() {
-  gulp.src(paths.scripts.input)
+  gulp.src([paths.scripts.input, '!**/vendor/**'])
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())
