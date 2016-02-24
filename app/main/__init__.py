@@ -1,6 +1,8 @@
 from flask import Blueprint
+
 main = Blueprint('main', __name__)
-from app.main.views import root
+
+from app.main.views import root         # NOQA
 
 
 @main.after_request

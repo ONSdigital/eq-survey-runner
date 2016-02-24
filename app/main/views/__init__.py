@@ -1,2 +1,2 @@
-from .. import main
-from flask import current_app
+from .. import main    # NOQA
+from flask import current_app    # NOQA
