@@ -3,7 +3,12 @@
 }
 
 .field__item {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+
+  @include mq(s) {
+    margin-bottom: 1rem;
+  }
 }
 
 .field--radios,
@@ -21,7 +26,9 @@
 }
 
 .field--date {
+
   $legend-width: 5rem;
+
   .legend {
     font-weight: 700;
     display: inline-block;
@@ -32,6 +39,12 @@
       margin: 1.9rem 0 0 0;
       width: 5rem;
     }
+
+    @include fixed() {
+      width: 4rem;
+      float: left;
+      margin-top: 0;
+    }
   }
   .subfields {
     display: flex;
@@ -40,9 +53,40 @@
     @include mq(s) {
       width: calc(100% - #{$legend-width});
     }
+
+    @include fixed() {
+      width: 26rem;
+      float: right;
+      margin-top: -45px;
+    }
   }
   .field {
     flex: 1 1 auto;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
+
+    @include mq(s) {
+      margin-right: 1rem;
+    }
+
+    @include fixed() {
+      display: block;
+      float: left;
+    }
+  }
+
+  .field--day {
+    @include fixed() {
+      width: 4rem;
+    }
+  }
+  .field--month {
+    @include fixed() {
+      width: 10rem;
+    }
+  }
+  .field--year {
+    @include fixed() {
+      width: 7rem;
+    }
   }
 }

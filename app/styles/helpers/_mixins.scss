@@ -28,10 +28,11 @@
   @include rem(font-size, $sizeValue);
 }
 
-@mixin inline-block {
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
+@mixin inline-block-hack {
+  @if ($responsive == false) {
+    *display: inline;
+    zoom: 1;
+  }
 }
 // =============================================================================
 // String Replace
@@ -71,8 +72,6 @@
   // no-op
 }
 
-
-
 @mixin build-suffix($class) {
   .#{class} {
     @content;
@@ -84,5 +83,29 @@
         @content;
       }
     }
+  }
+}
+
+@mixin lt-ie9() {
+  .lt-ie9 & {
+    @content;
+  }
+}
+
+@mixin lt-ie8() {
+  .lt-ie8 & {
+    @content;
+  }
+}
+
+@mixin lt-ie7() {
+  .lt-ie7 & {
+    @content;
+  }
+}
+
+@mixin fixed() {
+  @if ($responsive == false) {
+    @content;
   }
 }

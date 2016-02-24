@@ -56,6 +56,7 @@ $icon-width: 3rem;
 .info__item--half {
   width: 50%;
   display: inline-block;
+  @include inline-block-hack;
   flex: 1;
 }
 

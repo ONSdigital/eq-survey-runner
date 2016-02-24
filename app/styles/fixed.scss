@@ -2,15 +2,15 @@ $responsive: false;
 
 @import "vars/*.scss";
 
-$grid-max-width: 900px;
+$grid-max-width: 800px;
 
 @import "vendor/**/*.scss";
 @import "eq-sass";
 @import "gfm.scss";
-@import "helpers/*.scss";
-@import "base/*.scss";
-@import "objects/*.scss";
-@import "components/*.scss";
-@import "themes/*.scss";
-@import "utilities/*.scss";
-@import "hacks/*.scss";
+@import "helpers/**/*.scss";
+@import "base/**/*.scss";
+@import "objects/**/*.scss";
+@import "components/**/*.scss";
+@import "themes/**/*.scss";
+@import "utilities/**/*.scss";
+@import "hacks/**/*.scss";

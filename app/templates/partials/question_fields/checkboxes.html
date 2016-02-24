@@ -1,6 +1,6 @@
 {% for option in field.options %}
   <div class="field__item">
     <input class="input input--checkbox" type="checkbox" name="{{field.name}}" id="{{option.id}}" value="{{option.value}}" title="{{option.label}}">
-    <label class="label label--inline" for="{{option.id}}">{{option.label}}</label>
+    <label class="label label--inline" for="{{option.id}}"><span class="label__inner">{{option.label}}</span></label>
   </div>
 {% endfor %}

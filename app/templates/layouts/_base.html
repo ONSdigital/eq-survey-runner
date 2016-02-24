@@ -1,5 +1,8 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<!--[if lt IE 7]>      <html lang="en-gb" dir="ltr" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-gb" dir="ltr" class="no-js"> <!--<![endif]-->
   <head>
     {% block head %}
     <meta charset="utf-8">
@@ -8,6 +11,10 @@
     <meta content="" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+    <script src="{{ url_for('static', filename='js/vendor/html5shiv.min.js') }}"></script>
     {% block styles %}
     <!--[if (gt IE 9) | (IEMobile)]><!-->
       <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">

@@ -1,5 +1,6 @@
 .typed-input {
   display: flex;
+  position: relative;
 }
 
 .typed-input__type {
@@ -10,11 +11,31 @@
   padding: 0.5rem 1rem;
   line-height: normal;
   font-weight: 600;
+  font-size: 1rem;
   color: $color-secondary;
   text-align: center;
+
+  @include fixed() {
+    position: absolute;
+    left: 0;
+    width: 3rem;
+    height: 100%;
+    z-index: 2;
+    border: 1px solid $color-borders;
+  }
+
+  @include lt-ie8 {
+    height: auto;
+    padding: 8px 0 9px;
+  }
 }
 
 .typed-input__input {
   flex: 1;
   border-radius: 0 $input-radius $input-radius 0;
+
+  @include fixed() {
+    padding-left: 4rem;
+    z-index: 1;
+  }
 }
