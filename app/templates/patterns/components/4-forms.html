@@ -2,7 +2,9 @@
 
   <div class="ptn-section">
     <h3>Text and input fields</h3>
+    <div class="field">
     {% with field = data.forms.text %}{% include 'partials/question_fields/text.html' %}{% endwith %}
+    </div>
 
 {% filter markdown %}
 ```markup
