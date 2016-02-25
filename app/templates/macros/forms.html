@@ -1,0 +1,18 @@
+{% macro text(field, hidelabel, type='text') %}
+  <label class="label {{'u-visuallyhidden' if hidelabel}}" for="{{field.id}}">{{field.label}}</label>
+  <input class="input input--{{type}}" type="{{type}}" value="{{field.value|e}}" name="{{field.name}}" id="{{field.id}}" placeholder="{{field.placeholder}}">
+{% endmacro %}
+
+{% macro multi_choice(field, option, type) %}
+  <input class="input input--{{type}}" type="{{type}}" name="{{field.name}}" id="{{option.id}}" value="{{option.value}}" title="{{option.label}}">
+  <label class="label label--inline" for="{{option.id}}"><span class="label__inner">{{option.label}}</span></label>
+{% endmacro %}
+
+{% macro select(field, label, options) %}
+  <label class="label label--small" for="{{field.name}}">{{_(label)}}</label>
+  <select class="input input--select" name="{{field.name}}-day" id="{{field.name}}-day" required>
+    {% for option in options %}
+      <option value="{{option}}">{{option}}</option>
+    {% endfor %}
+  </select>
+{% endmacro %}

@@ -60,6 +60,7 @@
 .ptn-section {
   padding: 20px 0;
   border-bottom: 1px solid $color-light-grey;
+  margin: 1rem 0;
 }
 
 .ptn-section-title {
@@ -89,4 +90,8 @@
   font-size: 14px;
   font-weight: bold;
   text-align: center;
+}
+
+pre[class*="language-"] {
+  margin: 1rem 0;
 }

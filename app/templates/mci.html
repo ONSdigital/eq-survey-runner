@@ -2,17 +2,15 @@
 
 {% block survey %}
 
-
 <form action="" class="form">
 
-{% for question in data %}
-  {% include '/partials/question.html' %}
-{% endfor %}
+  {% for question in data %}
+    {% include '/partials/question.html' %}
+  {% endfor %}
 
-<button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
-<button class="btn" type="button" name="button">Save &amp; Continue</button>
+  <button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
+  <button class="btn" type="button" name="button">Save &amp; Continue</button>
 
 </form>
-
 
 {% endblock %}

@@ -1,242 +1,69 @@
 <form action="" class="form">
 
-  <h3>Text fields</h3>
-
   <div class="ptn-section">
-    <fieldset>
-      <legend class="legend">Text-fields set in a two column grid above a certain breakpoint.</legend>
-      <div class="grid">
-        <div class="grid__col m-6">
-          <div class="field">
-            <label for="name" class="label">Forename</label>
-            <input type="text" class="input" name="forename">
-          </div>
-        </div>
-        <div class="grid__col m-6">
-          <div class="field">
-            <label for="name" class="label">Surname</label>
-            <input type="text" class="input" name="surname">
-          </div>
-        </div>
-      </div>
-    </fieldset>
+    <h3>Text and input fields</h3>
+    {% with field = data.forms.text %}{% include 'partials/question_fields/text.html' %}{% endwith %}
 
 {% filter markdown %}
 ```markup
-<fieldset>
-  <legend class="legend">Text-fields set in a two column grid above a certain breakpoint.</legend>
-    <div class="field">
-      <label for="name" class="label">Forename</label>
-      <input type="text" class="input" name="forename">
-    </div>
-    <div class="field">
-      <label for="name" class="label">Surname</label>
-      <input type="text" class="input" name="surname">
-    </div>
-  </div>
-</fieldset>
+<div class="field">
+  {% with field = data.forms.text %}{% include 'partials/question_fields/text.html' %}{% endwith %}
+</div>
+```
+{% endfilter %}
+
+<h4>Typed input fields</h4>
+<p>Typed input fields have an associated icon to visually indicate the expected "type" of input, eg. Currency. </p>
+{% with field = data.forms.currency %}{% include 'partials/question_fields/currency.html' %}{% endwith %}
+
+{% filter markdown %}
+```markup
+<div class="field">
+  {% with field = data.forms.currency %}{% include 'partials/question_fields/currency.html' %}{% endwith %}
+</div>
 ```
 {% endfilter %}
   </div>
-
-  <!-- <div class="ptn-section">
-    <fieldset>
-      <legend class="legend">Text-fields with inline labels.</legend>
-      <div class="grid">
-        <div class="grid__col m-6">
-          <div class="field field--inline">
-            <label for="name" class="label">Forename</label>
-            <input type="text" class="input" name="forename">
-          </div>
-        </div>
-        <div class="grid__col m-6">
-          <div class="field field--inline">
-            <label for="name" class="label">Surname</label>
-            <input type="text" class="input" name="surname">
-          </div>
-        </div>
-      </div>
-    </fieldset>
-  </div> -->
-
-  <h3>Selection inputs</h3>
-
   <div class="ptn-section">
-    <fieldset>
-      <legend class="legend">Group of radio buttons</legend>
-      <div class="field field--radio">
-        {% for i in range(3) %}
-        <input class="radio" type="radio" name="radios" id="radio{{i}}"/>
-        <label for="radio{{i}}" class="label">Option {{loop.index}}</label>
-        {% endfor %}
-      </div>
-    </fieldset>
-
+    <h3>Radio Buttons</h3>
+    {% with field = data.forms.radios %}{% include 'partials/question_fields/radios.html' %}{% endwith %}
 {% filter markdown %}
 ```markup
-<fieldset>
-  <legend class="legend">Group of radio buttons</legend>
-  <div class="field field--radio">
-    {% for i in range(3) %}
-    <input class="radio" type="radio" name="radios" id="radio{{i}}"/>
-    <label for="radio{{i}}" class="label">Option {{loop.index}}</label>
-    {% endfor %}
-  </div>
-</fieldset>
+<div class="field">
+  {% with field = data.forms.radios %}{% include 'partials/question_fields/radios.html' %}{% endwith %}
+</div>
 ```
 {% endfilter %}
 
   </div>
 
   <div class="ptn-section">
-    <fieldset>
-      <legend class="legend">Group of checkboxes</legend>
-      <div class="field field--checkbox">
-        {% for i in range(3) %}
-        <input class="radio" type="checkbox" name="radios" id="checkbox{{i}}"/>
-        <label for="checkbox{{i}}" class="label">Option {{loop.index}}</label>
-        {% endfor %}
-      </div>
-    </fieldset>
-
+    <h3>Checkboxes</h3>
+    {% with field = data.forms.checkboxes %}{% include 'partials/question_fields/checkboxes.html' %}{% endwith %}
 {% filter markdown %}
 ```markup
-<fieldset>
-  <legend class="legend">Group of checkboxes</legend>
-  <div class="field field--checkbox">
-    {% for i in range(3) %}
-    <input class="radio" type="checkbox" name="radios" id="checkbox{{i}}"/>
-    <label for="checkbox{{i}}" class="label">Option {{loop.index}}</label>
-    {% endfor %}
-  </div>
-</fieldset>
+{% with field = data.forms.checkboxes %}
+<div class="field">
+{% include 'partials/question_fields/checkboxes.html' %}
+</div>
+{% endwith %}
 ```
 {% endfilter %}
+
   </div>
 
-  <h3>Buttons</h3>
 
   <div class="ptn-section">
-    <fieldset>
-      <legend class="legend">Vanilla buttons.</legend>
-      <button class="btn">Primary</button>
-      <br />
-      <button class="btn btn--secondary">Secondary</button>
-    </fieldset>
-    <fieldset>
-      <legend class="legend">Button group.</legend>
-      <div class="btn-group">
-        <button class="btn">Primary</button>
-        <button class="btn btn--secondary">Secondary</button>
-      </div>
-    </fieldset>
+    <h3>Buttons</h3>
+    <button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
+    <button class="btn" type="button" name="button">Save &amp; Continue</button>
 
 {% filter markdown %}
 ```markup
-<fieldset>
-  <legend class="legend">Vanilla buttons.</legend>
-  <button class="btn">Primary</button>
-  <br />
-  <button class="btn btn--secondary">Secondary</button>
-</fieldset>
-<fieldset>
-  <legend class="legend">Button group.</legend>
-  <div class="btn-group">
-    <button class="btn">Primary</button>
-    <button class="btn btn--secondary">Secondary</button>
-  </div>
-</fieldset>
+<button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
+<button class="btn" type="button" name="button">Save &amp; Continue</button>
 ```
 {% endfilter %}
   </div>
 
 </form>
-
-<h3>Form Validation</h3>
-
-<form action="/" method="post" class="form" data-parsley-validate>
-  <div class="ptn-section">
-    <fieldset>
-      <legend class="legend">Basic form validation with required fields.</legend>
-      <div class="grid">
-        <div class="grid__col m-6">
-          <div class="field field--required">
-            <label for="name" class="label">Forename</label>
-            <input type="text" class="input" name="forename"
-                  data-parsley-required-message="Please enter your forename"
-                  required>
-          </div>
-        </div>
-        <div class="grid__col m-6">
-          <div class="field field--required">
-            <label for="name" class="label">Surname</label>
-            <input type="text" class="input" name="surname"
-                  data-parsley-required-message="Please enter your surname"
-                  required>
-          </div>
-        </div>
-      </div>
-      <button class="btn">Submit</button>
-    </fieldset>
-  </div>
-</form>
-
-{% filter markdown %}
-```markup
-<form action="/" method="post" class="form" data-parsley-validate>
-  <div class="ptn-section">
-    <fieldset>
-      <legend class="legend">Basic form validation with required fields.</legend>
-        <div class="field field--required">
-          <label for="name" class="label">Forename</label>
-          <input type="text" class="input" name="forename"
-                data-parsley-required-message="Please enter your forename"
-                required>
-        </div>
-        <div class="field field--required">
-          <label for="name" class="label">Surname</label>
-          <input type="text" class="input" name="surname"
-                data-parsley-required-message="Please enter your surname"
-                required>
-        </div>
-      <button class="btn">Submit</button>
-    </fieldset>
-  </div>
-</form>
-```
-{% endfilter %}
-
-<h3>Remote validation</h3>
-
-<form action="" method="POST" class="form" data-parsley-validate>
-  <fieldset>
-    <legend class="legend">Remote validation via AJAX. Type 'hello' into the input to successfully validate.</legend>
-      <div class="field">
-        <label for="name" class="label">Say Hello</label>
-        <input type="text" name="q" id="name" class="input"
-                data-parsley-remote="/validate/"
-                data-parsley-remote-options='{ "type": "POST" }'
-                data-parsley-remote-message="Please enter 'hello'."/>
-      </div>
-    <button class="btn">Submit</button>
-  </fieldset>
-</form>
-
-{% filter markdown %}
-```markup
-<form action="" method="POST" class="form" data-parsley-validate>
-  <fieldset>
-    <legend class="legend">Remote validation via AJAX. Type 'hello' into the input to successfully validate.</legend>
-      <div class="field">
-        <label for="name" class="label">Say Hello</label>
-        <input type="text" name="q" id="name" class="input"
-                data-parsley-remote="/validate/"
-                data-parsley-remote-options='{ "type": "POST" }'
-                data-parsley-remote-message="Please enter 'hello'."
-                 />
-      </div>
-    <button class="btn">Submit</button>
-  </fieldset>
-</form>
-```
-{% endfilter %}

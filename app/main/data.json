@@ -9,6 +9,7 @@
     "name": "person-name",
     "id": "person-name",
     "label": "Name",
+    "hide_label": true,
     "value": "",
     "placeholder": "eg. Jemima Puddleduck"
   }]

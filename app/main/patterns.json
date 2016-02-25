@@ -1,0 +1,47 @@
+{
+  "forms": {
+    "text": {
+      "type": "text",
+      "name": "person-name",
+      "id": "person-name",
+      "label": "Name",
+      "hide_label": false,
+      "value": "",
+      "placeholder": "eg. Jemima Puddleduck"
+    },
+    "radios": {
+      "type": "radios",
+      "name": "gender",
+      "options": [{
+        "id": "gender-male",
+        "value": "male",
+        "label": "Male"
+      }, {
+        "id": "gender-female",
+        "value": "female",
+        "label": "Female"
+      }]
+    },
+    "checkboxes": {
+      "type": "checkboxes",
+      "name": "options",
+      "options": [{
+        "id": "options-yes",
+        "value": "option-1",
+        "label": "Option 1"
+      }, {
+        "id": "options-no",
+        "value": "options-2",
+        "label": "Option 2"
+      }]
+    },
+    "currency": {
+      "type": "currency",
+      "name": "howmuch",
+      "id": "howmuch",
+      "label": "Price",
+      "value": "",
+      "placeholder": "0.00"
+    }
+  }
+}
