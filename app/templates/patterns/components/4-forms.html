@@ -25,7 +25,8 @@
 {% endfilter %}
   </div>
   <div class="ptn-section">
-    <h3>Radio Buttons</h3>
+    <h3>Radios & Checkboxes</h3>
+    <h4>Radios</h4>
     {% with field = data.forms.radios %}{% include 'partials/question_fields/radios.html' %}{% endwith %}
 {% filter markdown %}
 ```markup
@@ -34,12 +35,8 @@
 </div>
 ```
 {% endfilter %}
-
-  </div>
-
-  <div class="ptn-section">
-    <h3>Checkboxes</h3>
-    {% with field = data.forms.checkboxes %}{% include 'partials/question_fields/checkboxes.html' %}{% endwith %}
+  <h4>Checkboxes</h4>
+  {% with field = data.forms.checkboxes %}{% include 'partials/question_fields/checkboxes.html' %}{% endwith %}
 {% filter markdown %}
 ```markup
 {% with field = data.forms.checkboxes %}
@@ -49,7 +46,6 @@
 {% endwith %}
 ```
 {% endfilter %}
-
   </div>
 
 
