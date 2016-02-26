@@ -23,6 +23,10 @@
   @include btn($color-secondary, $color-white);
 }
 
+.btn--neutral {
+  @include btn($color-dark-grey, $color-white);
+}
+
 .btn-group {
   font-size: 0;
   .btn {

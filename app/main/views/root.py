@@ -87,7 +87,9 @@ def root():
 
 @main.route('/mci/', methods=['GET'])
 def mci_survey():
-    return render_template('mci.html')
+    with main.open_resource('data.json') as f:
+        data = json.load(f)
+    return render_template('mci.html', data=data)
 
 
 @main.route('/jwt', methods=['GET'])
@@ -117,6 +119,8 @@ def index():
 
 @main.route('/patterns/<pattern>/', methods=['GET', 'POST'])
 def patterns(pattern='index'):
+    with main.open_resource('patterns.json') as f:
+        data = json.load(f)
     sections = []
     pattern_title = pattern.split("-", 1)[-1:][0]
     for root, dirs, files in os.walk('app/templates/patterns/components'):
@@ -131,7 +135,7 @@ def patterns(pattern='index'):
                         'title': title.replace('-', ' '),
                         'current': True if (url == pattern) else False
                     })
-    return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern + '.html', title=pattern_title)
+    return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern + '.html', title=pattern_title, data=data)
 
 
 @main.route('/validate/', methods=['GET', 'POST'])

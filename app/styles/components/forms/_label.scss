@@ -1,0 +1,61 @@
+.label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: inherit;
+}
+
+.label--inline {
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  width: calc(100% - 2.5rem);
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0.5rem 0 0;
+  z-index: 1;
+  &::before {
+    transition: background-color 200ms ease-in-out;
+  }
+
+  @include fixed() {
+    width: 25rem;
+  }
+}
+
+.input:focus,
+.input:checked,
+.input:hover {
+  + .label--inline {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -0.25rem;
+      bottom: 0;
+      left: -0.25rem;
+      background: rgba($color-grey, 0.2);
+      width: calc(100% - 0.5rem);
+      height: calc(100% + 0.25rem);
+      border-radius: 3px;
+      z-index: 0;
+    }
+  }
+}
+
+.input:checked {
+  + .label--inline {
+    &::before {
+      background: rgba($color-grey, 0.6);
+    }
+  }
+}
+
+.label--small {
+  font-size: 0.8rem;
+}
+
+.label__inner {
+  position: relative;
+  z-index: 3;
+}

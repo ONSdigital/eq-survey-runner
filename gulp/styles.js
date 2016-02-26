@@ -10,6 +10,7 @@ import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
 import pixrem from 'pixrem'
 import scss from 'postcss-scss'
+import pseudoelements from 'postcss-pseudoelements'
 import sourcemaps from 'gulp-sourcemaps'
 import flatten from 'gulp-flatten'
 import rename from 'gulp-rename'
@@ -62,6 +63,7 @@ export function styles() {
         rootValue: 18,
         replace: false
       }),
+      pseudoelements(),
       reporter({ clearMessages: true })
     ]))
     .pipe(gulp.dest(paths.styles.output))

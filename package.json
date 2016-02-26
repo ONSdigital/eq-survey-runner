@@ -60,7 +60,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-postcss": "^6.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.0.3",
+    "gulp-sass": "^2.2.0",
     "gulp-sass-glob": "0.0.8",
     "gulp-shell": "^0.5.2",
     "gulp-size": "^2.0.0",
@@ -108,6 +108,7 @@
     "gfm.css": "^1.1.1",
     "jquery": "./app/js/vendor/jquery-shim",
     "parsleyjs": "^2.2.0",
-    "pixrem": "^3.0.0"
+    "pixrem": "^3.0.0",
+    "postcss-pseudoelements": "^3.0.0"
   }
 }

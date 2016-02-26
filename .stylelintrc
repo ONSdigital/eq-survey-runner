@@ -1,4 +1,7 @@
 {
   "extends": "stylelint-config-standard",
-  "ignoreFiles": ["**/_sprite.scss", "styles/vendor/**/*.scss"]
+  "ignoreFiles": ["**/_sprite.scss", "styles/vendor/**/*.scss"],
+  "rules": {
+    "at-rule-empty-line-before": ["always", "ignore": ["all-nested", "after-comment"]]
+  }
 }

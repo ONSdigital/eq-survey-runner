@@ -1,0 +1,12 @@
+.container {
+  padding: 0 $grid-gutters / 2;
+  @include mq(m) {
+    padding: 0 $grid-gutters;
+  }
+}
+
+.grid--align-bottom {
+  .grid__col {
+    vertical-align: bottom;
+  }
+}

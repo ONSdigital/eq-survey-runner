@@ -3,7 +3,7 @@ import del from 'del'
 import plumber from 'gulp-plumber'
 
 import {paths} from './gulp/paths'
-import {bundle, lint as lintScripts} from './gulp/scripts'
+import {copyVendor, bundle, lint as lintScripts} from './gulp/scripts'
 import {tests} from './gulp/tests'
 import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
@@ -58,6 +58,10 @@ gulp.task('build:scripts', ['clean:dist'], () => {
   bundle()
 })
 
+gulp.task('copy:scripts', ['clean:dist'], () => {
+  copyVendor()
+})
+
 gulp.task('watch:scripts', ['clean:dist'], () => {
   bundle(true)
 })
@@ -94,6 +98,7 @@ gulp.task('compile', [
   'clean:dist',
   'build:sprite',
   'build:scripts',
+  'copy:scripts',
   'build:styles',
   'build:images',
   'copy:dist'
@@ -108,14 +113,8 @@ gulp.task('default', [
 
 // Compile files and generate docs when something changes
 gulp.task('watch', [
-  'lint:scripts',
-  'lint:styles',
-  'clean:dist',
-  'build:sprite',
+  'compile',
   'watch:scripts',
-  'build:styles',
-  'build:images',
-  'copy:dist',
   'listen'
 ])
 
