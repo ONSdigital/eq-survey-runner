@@ -39,6 +39,17 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.js" charset="utf-8"></script>
+  <script src="{{ url_for('static', filename='js/vendor/prism.js') }}"></script>
+  <script type="text/javascript">
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+      'remove-trailing': true,
+      'remove-indent': true,
+      'left-trim': true,
+      'right-trim': true,
+      'indent': 0,
+      'remove-initial-line-feed': false,
+      'tabs-to-spaces': 1
+      });
+  </script>
   {{super()}}
 {% endblock %}

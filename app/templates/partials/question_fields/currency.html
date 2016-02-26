@@ -1,4 +1,4 @@
-<label class="label" for="{{field.id}}">{{field.label}}</label>
+<label class="label{{' u-visuallyhidden' if field.hidelabel}}" for="{{field.id}}">{{field.label}}</label>
 <div class="typed-input typed-input--currency">
   <span class="typed-input__type">£</span>
   <input class="typed-input__input  input  input--number" type="number" value="{{field.value|e}}" name="{{field.name}}" placeholder="{{field.placeholder}}" step="any">

@@ -50,16 +50,33 @@
 {% endfilter %}
   </div>
 
-
   <div class="ptn-section">
     <h3>Buttons</h3>
     <button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
     <button class="btn" type="button" name="button">Save &amp; Continue</button>
-
 {% filter markdown %}
 ```markup
 <button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
 <button class="btn" type="button" name="button">Save &amp; Continue</button>
+```
+{% endfilter %}
+  </div>
+
+  <div class="ptn-section">
+    <h3>Dates</h3>
+    {% with field = data.forms.date %}
+    <div class="field field--date">
+    {% include 'partials/question_fields/date.html' %}
+    </div>
+    {% endwith %}
+
+{% filter markdown %}
+```markup
+{% with field = data.forms.date %}
+<div class="field">
+{% include 'partials/question_fields/date.html' %}
+</div>
+{% endwith %}
 ```
 {% endfilter %}
   </div>

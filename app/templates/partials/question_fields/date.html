@@ -9,24 +9,23 @@
     <div class="field field--day">
       <label class="label label--small label--block" for="{{field.name}}">{{_('Day')}}</label>
       <select class="input input--select" name="{{field.name}}-day" id="{{field.name}}-day" required>
-        {% for day in range(31) %}
+        {% for day in range(31) -%}
           <option value="{{day+1}}">{{day+1}}</option>
-        {% endfor %}
+        {%- endfor -%}
       </select>
     </div>
 
     <div class="field field--month">
       <label class="label label--small label--block" for="{{field.name}}">{{_('Month')}}</label>
       <select class="input input--select" name="{{field.name}}-month" id="{{field.name}}-month" required>
-        {% for day in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %}
+        {% for day in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] -%}
           <option value="{{day}}">{{_(day)}}</option>
-        {% endfor %}
+        {%- endfor %}
       </select>
     </div>
 
     <div class="field field--year">
       <label class="label label--small label--block" for="{{field.name}}">{{_('Year')}}</label>
-      <!-- this implements min/max values but cannot be relied on -->
       <input class="input input--number" type="number" name="{{field.name}}-year" value="" min="1980" max="2016" placeholder="2016" required>
     </div>
 
