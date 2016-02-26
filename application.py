@@ -5,7 +5,7 @@ from app import create_app
 from flask.ext.script import Manager, Server
 import watchtower
 import logging
-
+import app.settings as settings
 
 application = create_app(
     os.getenv('EQ_ENVIRONMENT') or 'development'
@@ -15,7 +15,7 @@ manager = Manager(application)
 port = int(os.environ.get('PORT', 5000))
 manager.add_command("runserver", Server(host='0.0.0.0', port=port))
 
-log_group = os.getenv('EQ_SR_LOG_GROUP')
+log_group = settings.EQ_SR_LOG_GROUP
 cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
 FORMAT = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
 levels = {
@@ -25,7 +25,7 @@ levels = {
     'INFO': logging.INFO,
     'DEBUG': logging.DEBUG
 }
-logging.basicConfig(level=levels[os.getenv('EQ_LOG_LEVEL') or 'WARNING'], format=FORMAT)
+logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=FORMAT)
 application.logger.addHandler(cloud_watch_handler)
 logging.getLogger().addHandler(cloud_watch_handler)
 logging.getLogger(__name__).addHandler(cloud_watch_handler)
