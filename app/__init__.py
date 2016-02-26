@@ -8,8 +8,6 @@ from app.submitter.submitter import Submitter
 import pytz
 import os.path
 import newrelic.agent
-import logging
-
 
 newrelic_config = settings.EQ_NEW_RELIC_CONFIG_FILE
 if os.path.isfile(newrelic_config):
@@ -24,10 +22,8 @@ EUROPE_LONDON = pytz.timezone("Europe/London")
 def rabbitmq_available():
     submitter = Submitter()
     if submitter.send_test():
-        logging.info('RabbitMQ Healthtest OK')
         return True, "rabbit mq ok"
     else:
-        logging.error('Cannot connect to RabbbitMQ')
         return False, "rabbit mq unavailable"
 
 

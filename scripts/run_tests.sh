@@ -24,7 +24,7 @@ function display_result {
   fi
 }
 
-flake8
+pep8 .
 display_result $? 1 "Code style check"
 
 py.test $@
