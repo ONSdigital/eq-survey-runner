@@ -140,6 +140,8 @@ EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
 EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
 EQ_PRODUCTION - flag to indicate if we're running in production or dev mode
 EQ_GIT_REF - the latest git ref of HEAD on master
+EQ_SR_LOG_GROUP - The name of the log group to create (defaults to `username-local` for local development)
+EQ_LOG_LEVEL - The default logging level (defaults to 'INFO' for local development)
 ```
 
 ## JWT Integration

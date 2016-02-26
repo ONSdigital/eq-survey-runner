@@ -11,7 +11,7 @@ import os
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 
-if settings.EQ_PRODUCTION.upper() != 'FALSE':
+if settings.EQ_PRODUCTION:
     if (settings.EQ_RRM_PUBLIC_KEY is None or settings.EQ_SR_PRIVATE_KEY is None):
         raise OSError('KEYMAT not configured correctly.')
     else:
@@ -20,7 +20,7 @@ if settings.EQ_PRODUCTION.upper() != 'FALSE':
 
 @main.before_request
 def jwt_before_request():
-    if settings.EQ_PRODUCTION.upper() != 'FALSE':
+    if settings.EQ_PRODUCTION:
         logging.info("Production mode")
         return jwt_decrypt()
     else:
