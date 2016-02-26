@@ -4,9 +4,9 @@
 
   <div class="ptn">
 
-    <div class="ptn-header">
+    <div class="ptn-header" id="ptn-header">
       <div class="container">
-        <a href="/patterns/"><h1 class="ptn-title">ONS Pattern Library</h1></a>
+        <a href="/patterns/"><h1 class="ptn-title">eQ Patterns</h1></a>
       </div>
     </div>
 
@@ -14,7 +14,7 @@
       <div class="grid">
         <div class="grid__col m-3">
           <div class="ptn-sidebar">
-            <div class="ptn-nav">
+            <div class="ptn-nav" id="ptn-nav">
               <ul class="ptn-nav-list">
                 {% for section in sections %}
                   <li class="ptn-nav-item {{ 'is-active' if section.current }}">
@@ -26,8 +26,8 @@
           </div>
         </div>
         <div class="grid__col m-9">
-          <div class="ptn-section">
-            <h1 class="ptn-section-title">{{title|replace('-', ' ')|title}}</h1>
+          <div class="ptn-main">
+            <h1 class="ptn-main-title">{{title|replace('-', ' ')|title}}</h1>
             {% include pattern_include %}
           </div>
         </div>
@@ -50,6 +50,24 @@
       'remove-initial-line-feed': false,
       'tabs-to-spaces': 1
       });
+  </script>
+  <script type="text/javascript">
+    var nav, header;
+    var scrollHandler = function() {
+      if (window.scrollY > header.scrollHeight) {
+        nav.classList.add('is-fixed')
+      } else {
+        nav.classList.remove('is-fixed')
+      }
+    }
+
+    $(function() {
+      nav = document.querySelector('#ptn-nav');
+      header = document.querySelector('#ptn-header');
+      $(window).on('scroll', function(e){
+        window.requestAnimationFrame(scrollHandler);
+      })
+    });
   </script>
   {{super()}}
 {% endblock %}
