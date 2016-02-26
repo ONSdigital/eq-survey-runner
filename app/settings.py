@@ -1,5 +1,6 @@
 import os
 
+
 def parse_mode(str):
     return str.upper() != 'FALSE'
 
