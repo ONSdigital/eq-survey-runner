@@ -164,20 +164,20 @@
     A reversed grid allows you change the source order of the markup and still keep a left-to-right layout. As you can see in the example below, the columns appear in the reverse order that they occur in the markup:
   </p>
 
-  {% filter markdown %}
+{% filter markdown %}
 
-  ```markup
-  <div class="grid  grid--reverse">
-    <div class="grid__col m-4">
-      <p>1st in the DOM</p>
-    </div>
-    <div class="grid__col m-8">
-      <p>2nd in the DOM</p>
-    </div>
+```markup
+<div class="grid  grid--reverse">
+  <div class="grid__col m-4">
+    <p>1st in the DOM</p>
   </div>
-  ```
+  <div class="grid__col m-8">
+    <p>2nd in the DOM</p>
+  </div>
+</div>
+```
 
-  {% endfilter %}
+{% endfilter %}
 </div>
 
 <div class="ptn-section">

@@ -109,12 +109,15 @@ pre[class*="language-"] {
 }
 
 .ptn {
+  .container {
+    max-width: 60rem;
+  }
   .question {
     border-left: 5px solid $color-light-grey;
     padding-left: 1.5rem;
   }
   .question__fieldset {
-    padding:0;
+    padding: 0;
   }
 }
 

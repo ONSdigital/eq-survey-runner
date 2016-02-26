@@ -4,7 +4,6 @@ import gutil from 'gulp-util'
 import eslint from 'gulp-eslint'
 import plumber from 'gulp-plumber'
 import uglify from 'gulp-uglify'
-import exorcist from 'exorcist'
 import browserify from 'browserify'
 import watchify from 'watchify'
 import babelify from 'babelify'
@@ -40,13 +39,19 @@ export function bundle(watch) {
     .pipe(browserSync.reload({stream: true}))
 }
 
-export function copyVendor() {
-  gulp.src([paths.scripts.vendor])
-  .pipe(gulp.dest(paths.scripts.output + '/vendor/'))
+export function copyScripts() {
+  gulp.src([paths.scripts.input, `!${paths.scripts.dir}app/**/*`])
+    .on('error', function(err) {
+      gutil.log(err.message)
+    })
+    .pipe(plumber())
+    .pipe(uglify())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(gulp.dest(paths.scripts.output))
 }
 
 export function lint() {
-  gulp.src([paths.scripts.input, '!**/vendor/**'])
+  gulp.src([paths.scripts.input, `!${paths.scripts.dir}vendor/**/*`])
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())

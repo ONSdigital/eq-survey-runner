@@ -3,7 +3,7 @@ import del from 'del'
 import plumber from 'gulp-plumber'
 
 import {paths} from './gulp/paths'
-import {copyVendor, bundle, lint as lintScripts} from './gulp/scripts'
+import {copyScripts, bundle, lint as lintScripts} from './gulp/scripts'
 import {tests} from './gulp/tests'
 import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
@@ -59,7 +59,7 @@ gulp.task('build:scripts', ['clean:dist'], () => {
 })
 
 gulp.task('copy:scripts', ['clean:dist'], () => {
-  copyVendor()
+  copyScripts()
 })
 
 gulp.task('watch:scripts', ['clean:dist'], () => {
