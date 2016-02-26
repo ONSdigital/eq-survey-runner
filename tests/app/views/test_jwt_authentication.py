@@ -26,20 +26,20 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
 
     def test_no_token(self):
         # set to production mode
-        settings.EQ_PRODUCTION = 'True'
+        settings.EQ_PRODUCTION = True
         response = self.client.get('/')
         self.assertEquals(401, response.status_code)
 
     def test_invalid_token(self):
         # set to production mode
-        settings.EQ_PRODUCTION = 'True'
+        settings.EQ_PRODUCTION = True
         token = "invalid"
         response = self.client.get('/?token=' + token)
         self.assertEquals(403, response.status_code)
 
     def test_fully_encrypted(self):
         # set to production mode
-        settings.EQ_PRODUCTION = 'True'
+        settings.EQ_PRODUCTION = True
         encoder = Encoder()
         iat = time.time()
         exp = time.time() + (5 * 60)
@@ -51,7 +51,7 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
 
     def test_signed(self):
         # set to dev mode - production does not allow unencrypted
-        settings.EQ_PRODUCTION = 'False'
+        settings.EQ_PRODUCTION = False
         encoder = Encoder()
         iat = time.time()
         exp = time.time() + (5 * 60)
@@ -62,7 +62,7 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
 
     def test_encoded(self):
         # set to dev mode - production does not allow unencrypted and unsigned
-        settings.EQ_PRODUCTION = 'False'
+        settings.EQ_PRODUCTION = False
         encoder = Encoder()
         iat = time.time()
         exp = time.time() + (5 * 60)
