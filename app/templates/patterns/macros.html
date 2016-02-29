@@ -1,10 +1,18 @@
-{% macro field(partial, data, m) %}
+{% macro field(partial, data) %}
   {%- set markup %}
   <div class="field field--{{partial}}">
   {% with field = data %}{% include 'partials/question_fields/' ~ partial ~ '.html' %}{% endwith %}
   </div>
   {% endset -%}
 
+  {{markup|safe}}
+  {{code(markup)}}
+{% endmacro %}
+
+{% macro question(data) %}
+  {%- set markup %}
+  {% with question = data %}{% include 'partials/question.html' %}{% endwith %}
+  {% endset -%}
   {{markup|safe}}
   {{code(markup)}}
 {% endmacro %}
