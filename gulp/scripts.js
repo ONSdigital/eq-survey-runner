@@ -7,6 +7,7 @@ import uglify from 'gulp-uglify'
 import browserify from 'browserify'
 import watchify from 'watchify'
 import babelify from 'babelify'
+import babel from 'gulp-babel'
 import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
 import sourcemaps from 'gulp-sourcemaps'
@@ -20,7 +21,7 @@ const b = browserify(Object.assign(watchify.args, {
 }))
 .on('update', () => bundle())
 .on('log', gutil.log)
-.transform(babelify, {presets: ['es2015']})
+.transform(babelify)
 
 export function bundle(watch) {
   const bundler = watch ? watchify(b) : b
@@ -44,10 +45,13 @@ export function copyScripts() {
     .on('error', function(err) {
       gutil.log(err.message)
     })
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(babel())
     .pipe(plumber())
     .pipe(uglify())
-    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.scripts.output))
+    .pipe(browserSync.reload({stream: true}))
 }
 
 export function lint() {
