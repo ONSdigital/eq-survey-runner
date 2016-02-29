@@ -43,7 +43,7 @@ def git_revision():
 
 
 def create_app(config_name):
-    application = Flask(__name__, static_url_path='/static')
+    application = Flask(__name__, static_url_path='/s')
     headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache'}
     application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
