@@ -136,14 +136,3 @@ def patterns(pattern='index'):
                         'current': True if (url == pattern) else False
                     })
     return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern + '.html', title=pattern_title, data=data)
-
-
-@main.route('/validate/', methods=['GET', 'POST'])
-def validate():
-    data = {'msg': 'Wrong!'}
-    status = 404
-    if request.form['q'] == 'hello':
-        data = {'msg': 'Correct!'}
-        status = 200
-    js = json.dumps(data)
-    return Response(js, status=status, mimetype='application/json')
