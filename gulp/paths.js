@@ -10,8 +10,7 @@ export const paths = {
   output: distPath,
   scripts: {
     dir: srcPath + '/js/',
-    input: srcPath + '/js/**/*',
-    vendor: srcPath + '/js/vendor/**/*',
+    input: srcPath + '/js/**/*.js',
     output: distPath + '/js/'
   },
   styles: {

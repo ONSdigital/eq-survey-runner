@@ -3,7 +3,7 @@ import del from 'del'
 import plumber from 'gulp-plumber'
 
 import {paths} from './gulp/paths'
-import {copyVendor, bundle, lint as lintScripts} from './gulp/scripts'
+import {copyScripts, bundle, lint as lintScripts} from './gulp/scripts'
 import {tests} from './gulp/tests'
 import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
@@ -49,20 +49,21 @@ gulp.task('listen', () => {
     proxy: process.env.EQ_SURVEY_RUNNER_URL,
     open: false
   })
-  gulp.watch(paths.images.input, ['build:images']).on('change', browserSync.reload)
-  gulp.watch(paths.styles.input, ['build:styles']).on('change', browserSync.reload)
+  gulp.watch(paths.images.input, ['build:images'])
+  gulp.watch(paths.styles.input, ['build:styles'])
+  gulp.watch([paths.scripts.input, `!${paths.scripts.dir}app/**/*`], ['copy:scripts'])
   gulp.watch(paths.templates.input).on('change', browserSync.reload)
 })
 
-gulp.task('build:scripts', ['clean:dist'], () => {
+gulp.task('bundle:scripts', () => {
   bundle()
 })
 
-gulp.task('copy:scripts', ['clean:dist'], () => {
-  copyVendor()
+gulp.task('copy:scripts', () => {
+  copyScripts()
 })
 
-gulp.task('watch:scripts', ['clean:dist'], () => {
+gulp.task('watch:scripts', () => {
   bundle(true)
 })
 
@@ -78,12 +79,12 @@ gulp.task('lint:scripts', () => {
 })
 
 // Generate SVG sprites
-gulp.task('build:sprite', ['clean:dist'], () => {
+gulp.task('build:sprite', () => {
   sprite()
 })
 
 // Copy image files into output folder
-gulp.task('build:images', ['clean:dist'], () => {
+gulp.task('build:images', () => {
   images()
 })
 
@@ -93,11 +94,12 @@ gulp.task('build:images', ['clean:dist'], () => {
 
 // Compile files
 gulp.task('compile', [
+  'clean:dist',
   'lint:scripts',
   'lint:styles',
   'clean:dist',
   'build:sprite',
-  'build:scripts',
+  'bundle:scripts',
   'copy:scripts',
   'build:styles',
   'build:images',
@@ -113,6 +115,7 @@ gulp.task('default', [
 
 // Compile files and generate docs when something changes
 gulp.task('watch', [
+  'clean:dist',
   'compile',
   'watch:scripts',
   'listen'

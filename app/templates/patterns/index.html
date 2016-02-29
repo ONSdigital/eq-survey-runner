@@ -1,5 +1,7 @@
 {% extends 'layouts/_base.html' %}
 
+{% import 'patterns/macros.html' as m %}
+
 {% block content %}
 
   <div class="ptn">
@@ -40,34 +42,6 @@
 
 {% block scripts %}
   <script src="{{ url_for('static', filename='js/vendor/prism.js') }}"></script>
-  <script type="text/javascript">
-    Prism.plugins.NormalizeWhitespace.setDefaults({
-      'remove-trailing': true,
-      'remove-indent': true,
-      'left-trim': true,
-      'right-trim': true,
-      'indent': 0,
-      'remove-initial-line-feed': false,
-      'tabs-to-spaces': 1
-      });
-  </script>
-  <script type="text/javascript">
-    var nav, header;
-    var scrollHandler = function() {
-      if (window.scrollY > header.scrollHeight) {
-        nav.classList.add('is-fixed')
-      } else {
-        nav.classList.remove('is-fixed')
-      }
-    }
-
-    $(function() {
-      nav = document.querySelector('#ptn-nav');
-      header = document.querySelector('#ptn-header');
-      $(window).on('scroll', function(e){
-        window.requestAnimationFrame(scrollHandler);
-      })
-    });
-  </script>
+  <script src="{{ url_for('static', filename='js/patterns.js') }}"></script>
   {{super()}}
 {% endblock %}
