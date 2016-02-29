@@ -1,0 +1,40 @@
+{% macro field(partial, data, m) %}
+  {%- set markup %}
+  <div class="field field--{{partial}}">
+  {% with field = data %}{% include 'partials/question_fields/' ~ partial ~ '.html' %}{% endwith %}
+  </div>
+  {% endset -%}
+
+  {{markup|safe}}
+  {{code(markup)}}
+{% endmacro %}
+
+
+{% macro code(markup, toggleable=true) %}
+  <div class="ptn-code {{'is-toggleable' if toggleable}}">
+    {% if toggleable %}
+      {% set id = "ptn-code-" ~ range(10000)|random() %}
+      <input class="ptn-code-toggle" type="checkbox" id="{{id}}">
+      <label class="ptn-code-toggle-label" for="{{id}}">code</label>
+    {% endif %}
+    <div class="ptn-code-highlight">
+{% filter markdown %}
+```markup
+{{markup|safe}}
+```
+{% endfilter %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro grid(max) -%}
+<div class="ptn-grid">
+  <div class="grid">
+    {% for i in range(1, (max + 1)) %}
+      <div class="grid__col m-{{(12/max)|round|int}}">
+        <div class="ptn-col">1 of {{max}}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{%- endmacro %}

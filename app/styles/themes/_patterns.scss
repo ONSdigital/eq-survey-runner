@@ -67,7 +67,7 @@
 }
 
 .ptn-main {
-  padding: 2rem 0;
+  padding: 3rem 0;
 }
 
 .ptn-section {
@@ -122,9 +122,51 @@ pre[class*="language-"] {
 }
 
 .ptn-code {
-  opacity: 0;
-  height: 0;
+  overflow: hidden;
+  margin: 1rem 0;
 }
+
+.ptn-code-toggle {
+  display: none;
+}
+
+.is-toggleable {
+  .ptn-code-highlight {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 200ms ease-out, opacity 400ms ease-out;
+  }
+  .ptn-code-toggle:checked ~ {
+    .ptn-code-highlight {
+      opacity: 1;
+      max-height: 40em;
+      height: auto;
+      overflow: hidden;
+    }
+    .ptn-code-toggle-label {
+      &::before {
+        content: "Hide ";
+      }
+      &::after {
+        transform: rotateX(90deg);
+      }
+    }
+  }
+  .ptn-code-toggle-label {
+    display: inline-block;
+    color: $color-blue;
+    font-size: 0.8rem;
+    &::before {
+      content: "Show ";
+    }
+    &::after {
+      content: " \00BB";
+    }
+  }
+}
+
+
 
 .prism-show-language {
   display: none;

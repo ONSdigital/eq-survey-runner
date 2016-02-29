@@ -10,12 +10,12 @@
     'tabs-to-spaces': 1
   })
 
-  let nav, header, highlight
+  let $nav, $header, highlight
   const scrollHandler = () => {
-    if (window.scrollY > header.scrollHeight) {
-      nav.classList.add('is-fixed')
+    if (window.scrollY > $header[0].scrollHeight) {
+      $nav.classList.add('is-fixed')
     } else {
-      nav.classList.remove('is-fixed')
+      $nav.classList.remove('is-fixed')
     }
   }
 
@@ -24,15 +24,7 @@
   })
 
   $(() => {
-    nav = document.querySelector('#ptn-nav')
-    header = document.querySelector('#ptn-header')
-    highlight = document.querySelectorAll('.highlight')
-    $(highlight).each((index, el) => {
-      var element =
-        `<div class=="ptn-code is-closed">
-          ${el}
-        </div>`
-      console.log(element)
-    })
+    $nav = $('#ptn-nav')
+    $header = $('#ptn-header')
   })
 })()
