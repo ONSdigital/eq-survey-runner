@@ -26,7 +26,7 @@ export function sprite() {
         symbol: {
           example: {
             template: `${paths.svgs.dir}/icons/tmpl.html`,
-            dest: `../../../../${paths.templates.dir}/patterns/components/icons.html`
+            dest: `../../../../${paths.templates.dir}/pattern_lib/1-styleguide/5-icons.html`
           },
           render: {
             scss: {

@@ -1,4 +1,4 @@
-{% import 'patterns/macros.html' as m %}
+{% import 'macros/patterns.html' as m %}
 
 <form action="" class="form">
 
@@ -19,18 +19,20 @@
   </div>
 
   <div class="ptn-section">
+    <h3>Dates</h3>
+    {{m.field('date', data.forms.date)}}
+  </div>
+
+  <div class="ptn-section">
     <h3>Buttons</h3>
     {% set buttons %}
     <button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
     <button class="btn" type="button" name="button">Save &amp; Continue</button>
     {% endset %}
-    {{buttons|safe}}
+    <div class="ptn-example">
+      {{buttons|safe}}
+    </div>
     {{m.code(buttons)}}
-  </div>
-
-  <div class="ptn-section">
-    <h3>Dates</h3>
-    {{m.field('date', data.forms.date)}}
   </div>
 
 </form>

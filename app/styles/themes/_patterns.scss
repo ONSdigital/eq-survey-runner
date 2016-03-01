@@ -28,10 +28,11 @@
 }
 
 .ptn-nav {
-  margin: 0;
+  margin: 1rem 0 0 0;
   padding: 0;
 
   @include mq(m) {
+    margin: 4rem 0 0 0;
     &.is-fixed {
       position: fixed;
       top: 0;
@@ -39,14 +40,18 @@
   }
 }
 
+.ptn-nav-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: $color-dark-grey;
+  letter-spacing: 0.1rem;
+}
+
 .ptn-nav-list {
   padding: 0;
-  margin: 1rem 0;
+  margin: 0.5rem 0 2rem;
   font-size: 1rem;
-
-  @include mq(m) {
-    margin: 2rem 0;
-  }
 }
 
 .ptn-nav-item {
@@ -112,9 +117,9 @@ pre[class*="language-"] {
   .container {
     max-width: 60rem;
   }
-  .question {
+  .ptn-example {
     border-left: 5px solid $color-light-grey;
-    padding-left: 1.5rem;
+    padding: 0.5rem 0 0.5rem 1.5rem;
   }
   .question__fieldset {
     padding: 0;
@@ -123,7 +128,7 @@ pre[class*="language-"] {
 
 .ptn-code {
   overflow: hidden;
-  margin: 1rem 0;
+  margin: 1rem 0 2rem;
 }
 
 .ptn-code-toggle {
@@ -165,8 +170,6 @@ pre[class*="language-"] {
     }
   }
 }
-
-
 
 .prism-show-language {
   display: none;

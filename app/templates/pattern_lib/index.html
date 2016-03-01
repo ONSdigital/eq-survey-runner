@@ -1,6 +1,6 @@
 {% extends 'layouts/_base.html' %}
 
-{% import 'patterns/macros.html' as m %}
+{% import 'macros/patterns.html' as m %}
 
 {% block content %}
 
@@ -8,7 +8,7 @@
 
     <div class="ptn-header" id="ptn-header">
       <div class="container">
-        <a href="/patterns/"><h1 class="ptn-title">eQ Patterns</h1></a>
+        <a href="/pattern-library/"><h1 class="ptn-title">eQ Patterns</h1></a>
       </div>
     </div>
 
@@ -17,13 +17,16 @@
         <div class="grid__col m-3">
           <div class="ptn-sidebar">
             <div class="ptn-nav" id="ptn-nav">
+              {% for key, section in sections.items() %}
+              <div class="ptn-nav-title">{{section.title}}</div>
               <ul class="ptn-nav-list">
-                {% for section in sections %}
-                  <li class="ptn-nav-item {{ 'is-active' if section.current }}">
-                    <a href="/patterns/{{section.url}}/" class="ptn-nav-link">{{section.title|title}}</a>
-                  </li>
-                {% endfor %}
+              {% for subsection in section.sections %}
+                <li class="ptn-nav-item {{ 'is-active' if subsection.current }}">
+                  <a href="{{subsection.url}}" class="ptn-nav-link">{{subsection.title|title}}</a>
+                </li>
+              {% endfor %}
               </ul>
+              {% endfor %}
             </div>
           </div>
         </div>
