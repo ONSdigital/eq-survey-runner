@@ -1,3 +1,4 @@
+
 /*global Prism:true */
 (() => {
   Prism.plugins.NormalizeWhitespace.setDefaults({
@@ -13,9 +14,9 @@
   let $nav, $header, highlight
   const scrollHandler = () => {
     if (window.scrollY > $header[0].scrollHeight) {
-      $nav.classList.add('is-fixed')
+      $nav.addClass('is-fixed')
     } else {
-      $nav.classList.remove('is-fixed')
+      $nav.removeClass('is-fixed')
     }
   }
 

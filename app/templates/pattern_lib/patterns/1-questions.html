@@ -1,0 +1,32 @@
+{% import 'macros/patterns.html' as m %}
+
+<div class="ptn-section">
+  <p>A question is composed of a title, sub-title (optional), notes (optional) and fields. The following example demonstrates a simple question with a single text-field.</p>
+  <h3>Simple Text</h3>
+  <p>The following is an example of a simple question with a single, text-based answer.</p>
+  {{m.question(data.questions.simple)}}
+</div>
+
+<div class="ptn-section">
+  <h3>Currency</h3>
+  <p>The following examples demonstrates a question with a single currency field.</p>
+  {{m.question(data.questions.currency)}}
+</div>
+
+<div class="ptn-section">
+  <h3>Multiple Choice</h3>
+  <p>A multiple choice question will typically use either radios or checkboxes.</p>
+  {{m.question(data.questions.multiple_choice)}}
+</div>
+
+<div class="ptn-section">
+  <h3>Multiple Answer</h3>
+  <p>A multiple answer will have several different fields requiring input.</p>
+  {{m.question(data.questions.multiple_answer)}}
+</div>
+
+<div class="ptn-section">
+  <h3>Dates</h3>
+  <p>A date question will require one or more dates to be entered.</p>
+  {{m.question(data.questions.date)}}
+</div>

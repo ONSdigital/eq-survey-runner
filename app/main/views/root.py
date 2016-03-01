@@ -8,6 +8,7 @@ from app.submitter.submitter import Submitter
 from app import settings
 import logging
 import os
+import pprint
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 
@@ -112,27 +113,34 @@ def send_to_mq(token):
     submitter.send(token)
 
 
-@main.route('/patterns/')
+@main.route('/pattern-library/')
 def index():
-    return redirect("/patterns/1-typography", code=301)
+    return redirect("/pattern-library/styleguide/1-typography", code=301)
 
 
-@main.route('/patterns/<pattern>/', methods=['GET', 'POST'])
-def patterns(pattern='index'):
+@main.route('/pattern-library/<section>/<pattern>', methods=['GET', 'POST'])
+def patterns(section='styleguide', pattern='index'):
     with main.open_resource('patterns.json') as f:
         data = json.load(f)
-    sections = []
+    sections = {}
     pattern_title = pattern.split("-", 1)[-1:][0]
-    for root, dirs, files in os.walk('app/templates/patterns/components'):
-        for file in files:
-            if file.endswith('.html'):
-                # The following line causes problems with flake8, so we use `# NOQA` to ignore it
-                with open(os.path.join(root, file), 'r') as f:           # NOQA
-                    title = file.replace('.html', '').split("-", 1)[-1:][0]
-                    url = file.replace('.html', '')
-                    sections.append({
-                        'url': url,
-                        'title': title.replace('-', ' '),
-                        'current': True if (url == pattern) else False
-                    })
-    return render_template('patterns/index.html', sections=sections, pattern_include='patterns/components/' + pattern + '.html', title=pattern_title, data=data)
+    for root, dirs, files in os.walk('app/templates/pattern_lib/'):
+        for dir in dirs:
+            sections[dir] = {
+              "sections": [],
+              "title": dir
+            }
+            for _root, _dirs, _files in os.walk(os.path.join(root, dir)):
+                for file in _files:
+                    if file.endswith('.html'):
+                        # The following line causes problems with flake8, so we use `# NOQA` to ignore it
+                        with open(os.path.join(_root, file), 'r') as f:           # NOQA
+                            title = file.replace('.html', '').split("-", 1)[-1:][0]
+                            url = "/pattern-library/" + dir + "/" + file.replace('.html', '')
+                            sections[dir]["sections"].append({
+                                'url': url,
+                                'title': title.replace('-', ' '),
+                                'current': True if (url == pattern) else False
+                            })
+    pattern_include = 'pattern_lib/' + section + '/' + pattern + '.html'
+    return render_template('pattern_lib/index.html', sections=sections, pattern_include=pattern_include, title=pattern_title, data=data)
