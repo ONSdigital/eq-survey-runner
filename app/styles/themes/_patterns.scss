@@ -32,7 +32,7 @@
   padding: 0;
 
   @include mq(m) {
-    margin: 5rem 0 0 0;
+    margin: 4rem 0 0 0;
     &.is-fixed {
       position: fixed;
       top: 0;
