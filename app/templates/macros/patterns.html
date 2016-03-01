@@ -22,15 +22,6 @@
   {{code(markup)}}
 {% endmacro %}
 
-{% macro question(data) %}
-  {%- set markup %}
-  {% with question = data %}{% include 'partials/question.html' %}{% endwith %}
-  {% endset -%}
-  {{markup|safe}}
-  {{code(markup)}}
-{% endmacro %}
-
-
 {% macro code(markup, toggleable=true) %}
   <div class="ptn-code {{'is-toggleable' if toggleable}}">
     {% if toggleable %}
