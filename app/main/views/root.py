@@ -8,7 +8,6 @@ from app.submitter.submitter import Submitter
 from app import settings
 import logging
 import os
-import pprint
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 
@@ -160,6 +159,5 @@ def patterns(section='styleguide', pattern='index'):
             dirName = trim(dir)
             sections[dirName] = make_section(os.path.join(root, dir), dir, dirName)
 
-    pprint.pprint(sections)
     pattern_include = 'pattern_lib/' + untrim(section) + '/' + untrim(pattern) + '.html'
     return render_template('pattern_lib/index.html', sections=sections, pattern_include=pattern_include, title=pattern_title, data=data)
