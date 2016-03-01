@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, json, Response
+from flask import render_template, request, redirect, json
 from .. import main
 from app.main import errors
 from app.authentication.jwt_decoder import Decoder
