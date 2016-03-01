@@ -130,6 +130,25 @@ def patterns(section='styleguide', pattern='index'):
     def untrim(str):
         return trimmed[str]
 
+    def make_section(sectionDir, dir, dirName):
+        section = {
+          'sections': [],
+          'title': dirName
+        }
+        for root, dirs, files in os.walk(sectionDir):
+            for file in files:
+                if file.endswith('.html'):
+                    # The following line causes problems with flake8, so we use `# NOQA` to ignore it
+                    with open(os.path.join(root, file), 'r') as f:           # NOQA
+                        title = trim(file.replace('.html', ''))
+                        url = '/pattern-library/' + dirName + "/" + trim(file.replace('.html', ''))
+                        section['sections'].append({
+                            'url': url,
+                            'title': title.replace('-', ' '),
+                            'current': True if (url == pattern) else False
+                        })
+        return section
+
     with main.open_resource('patterns.json') as f:
         data = json.load(f)
 
@@ -138,24 +157,9 @@ def patterns(section='styleguide', pattern='index'):
 
     for root, dirs, files in os.walk('app/templates/pattern_lib/'):
         for dir in dirs:
-            # remove number prefix
             dirName = trim(dir)
-            sections[dirName] = {
-              'sections': [],
-              'title': dirName
-            }
-            for subRoot, subDirs, subFiles in os.walk(os.path.join(root, dir)):
-                for file in subFiles:
-                    if file.endswith('.html'):
-                        # The following line causes problems with flake8, so we use `# NOQA` to ignore it
-                        with open(os.path.join(subRoot, file), 'r') as f:           # NOQA
-                            title = trim(file.replace('.html', ''))
-                            url = '/pattern-library/' + dirName + "/" + trim(file.replace('.html', ''))
-                            sections[dirName]["sections"].append({
-                                'url': url,
-                                'title': title.replace('-', ' '),
-                                'current': True if (url == pattern) else False
-                            })
+            sections[dirName] = make_section(os.path.join(root, dir), dir, dirName)
+
     pprint.pprint(sections)
     pattern_include = 'pattern_lib/' + untrim(section) + '/' + untrim(pattern) + '.html'
     return render_template('pattern_lib/index.html', sections=sections, pattern_include=pattern_include, title=pattern_title, data=data)
