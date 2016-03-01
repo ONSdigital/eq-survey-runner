@@ -54,7 +54,7 @@
       "id": "1",
       "title": "What is your name?",
       "subtitle": "Optional sub-title",
-      "info": "Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue.",
+      "description": "Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue.",
       "error": false,
       "fields": [{
         "type": "text",
@@ -82,7 +82,7 @@
     "multiple_choice": {
       "id": "6",
       "title": "What is your legal marital or same-sex civil partnership status?",
-      "info": "Answer with regard to the your current legal marital status. If cohabiting, record the legal marital status at this question (e.g. ‘single, that is never married, ‘divorced’)",
+      "description": "Answer with regard to the your current legal marital status. If cohabiting, record the legal marital status at this question (e.g. ‘single, that is never married, ‘divorced’)",
       "fields": [{
         "type": "radios",
         "name": "person-status",

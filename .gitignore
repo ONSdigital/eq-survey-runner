@@ -1,4 +1,4 @@
-*.py[cod] 
+*.py[cod]
 # C extensions
 *.so
 
@@ -53,7 +53,7 @@ static/
 tests/results
 tests/coverage
 
-app/templates/patterns/components/icons.html
+app/templates/pattern_lib/1-styleguide/5-icons.html
 app/styles/base/_sprite.scss
 
 ## OS X
