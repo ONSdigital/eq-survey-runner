@@ -115,32 +115,47 @@ def send_to_mq(token):
 
 @main.route('/pattern-library/')
 def index():
-    return redirect("/pattern-library/styleguide/1-typography", code=301)
+    return redirect("/pattern-library/styleguide/typography", code=301)
 
 
 @main.route('/pattern-library/<section>/<pattern>', methods=['GET', 'POST'])
 def patterns(section='styleguide', pattern='index'):
+    trimmed = {}
+
+    def trim(str):
+        trimmed_str = str.split('-', 1)[-1:][0]
+        trimmed[trimmed_str] = str
+        return trimmed_str
+
+    def untrim(str):
+        return trimmed[str]
+
     with main.open_resource('patterns.json') as f:
         data = json.load(f)
+
     sections = {}
-    pattern_title = pattern.split("-", 1)[-1:][0]
+    pattern_title = pattern.split('-', 1)[-1:][0]
+
     for root, dirs, files in os.walk('app/templates/pattern_lib/'):
         for dir in dirs:
-            sections[dir] = {
-              "sections": [],
-              "title": dir
+            # remove number prefix
+            dirName = trim(dir)
+            sections[dirName] = {
+              'sections': [],
+              'title': dirName
             }
-            for _root, _dirs, _files in os.walk(os.path.join(root, dir)):
-                for file in _files:
+            for subRoot, subDirs, subFiles in os.walk(os.path.join(root, dir)):
+                for file in subFiles:
                     if file.endswith('.html'):
                         # The following line causes problems with flake8, so we use `# NOQA` to ignore it
-                        with open(os.path.join(_root, file), 'r') as f:           # NOQA
-                            title = file.replace('.html', '').split("-", 1)[-1:][0]
-                            url = "/pattern-library/" + dir + "/" + file.replace('.html', '')
-                            sections[dir]["sections"].append({
+                        with open(os.path.join(subRoot, file), 'r') as f:           # NOQA
+                            title = trim(file.replace('.html', ''))
+                            url = '/pattern-library/' + dirName + "/" + trim(file.replace('.html', ''))
+                            sections[dirName]["sections"].append({
                                 'url': url,
                                 'title': title.replace('-', ' '),
                                 'current': True if (url == pattern) else False
                             })
-    pattern_include = 'pattern_lib/' + section + '/' + pattern + '.html'
+    pprint.pprint(sections)
+    pattern_include = 'pattern_lib/' + untrim(section) + '/' + untrim(pattern) + '.html'
     return render_template('pattern_lib/index.html', sections=sections, pattern_include=pattern_include, title=pattern_title, data=data)
