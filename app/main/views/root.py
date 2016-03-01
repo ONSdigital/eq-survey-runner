@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, json
-from .. import main
+from .. import main_blueprint
 from app.main import errors
 from app.authentication.jwt_decoder import Decoder
 from app.authentication.invalid_token_exception import InvalidTokenException
@@ -18,7 +18,7 @@ if settings.EQ_PRODUCTION:
         decoder = Decoder(settings.EQ_RRM_PUBLIC_KEY, settings.EQ_SR_PRIVATE_KEY, "digitaleq")
 
 
-@main.before_request
+@main_blueprint.before_request
 def jwt_before_request():
     if settings.EQ_PRODUCTION:
         logging.info("Production mode")
@@ -80,29 +80,29 @@ def jwt_decode():
         return errors.forbidden(e)
 
 
-@main.route('/', methods=['GET'])
+@main_blueprint.route('/', methods=['GET'])
 def root():
     return render_template('index.html')
 
 
-@main.route('/mci/', methods=['GET'])
+@main_blueprint.route('/mci/', methods=['GET'])
 def mci_survey():
-    with main.open_resource('data.json') as f:
+    with main_blueprint.open_resource('data.json') as f:
         data = json.load(f)
     return render_template('mci.html', data=data)
 
 
-@main.route('/jwt', methods=['GET'])
+@main_blueprint.route('/jwt', methods=['GET'])
 def jwt():
     return jwt_decode()
 
 
-@main.route('/jwt_signed', methods=['GET'])
+@main_blueprint.route('/jwt_signed', methods=['GET'])
 def jwt_signed():
     return jwt_decode_signed()
 
 
-@main.route('/jwt_encrypted', methods=['GET'])
+@main_blueprint.route('/jwt_encrypted', methods=['GET'])
 def jwt_encrypted_key_exchange():
     return jwt_decrypt()
 
@@ -112,12 +112,12 @@ def send_to_mq(token):
     submitter.send(token)
 
 
-@main.route('/pattern-library/')
+@main_blueprint.route('/pattern-library/')
 def index():
     return redirect("/pattern-library/styleguide/typography", code=301)
 
 
-@main.route('/pattern-library/<section>/<pattern>', methods=['GET', 'POST'])
+@main_blueprint.route('/pattern-library/<section>/<pattern>', methods=['GET', 'POST'])
 def patterns(section='styleguide', pattern='index'):
     trimmed = {}
 
@@ -148,7 +148,7 @@ def patterns(section='styleguide', pattern='index'):
                         })
         return section
 
-    with main.open_resource('patterns.json') as f:
+    with main_blueprint.open_resource('patterns.json') as f:
         data = json.load(f)
 
     sections = {}
