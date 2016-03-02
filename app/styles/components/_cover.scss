@@ -1,0 +1,42 @@
+.cover {
+  display: block;
+}
+
+.cover__info {
+  margin-bottom: 3rem;
+}
+
+.cover__header {
+  @include mq(s) {
+    text-align: center;
+  }
+}
+
+.cover__address {
+  margin-bottom: 2rem;
+  @include mq(s) {
+    margin-bottom: 0;
+  }
+}
+
+.cover__notice {
+  p {
+    margin-bottom: 0.5rem;
+  }
+  @include mq(s) {
+    text-align: right;
+  }
+}
+
+.cover__title {
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.cover__subtitle {
+  font-size: 1rem;
+}
+
+.cover__header {
+  margin-bottom: 3rem;
+}
