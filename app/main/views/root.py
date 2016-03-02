@@ -4,6 +4,7 @@ from app.main import errors
 from app.authentication.jwt_decoder import Decoder
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
+from app.authentication.session_management import SessionManagement, SessionManagementFactory
 from app.submitter.submitter import Submitter
 from app import settings
 
@@ -12,14 +13,34 @@ import logging
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 
-if (settings.EQ_RRM_PUBLIC_KEY is None or settings.EQ_SR_PRIVATE_KEY is None):
+
+if settings.EQ_RRM_PUBLIC_KEY is None or settings.EQ_SR_PRIVATE_KEY is None:
     raise OSError('KEYMAT not configured correctly.')
 else:
     decoder = Decoder(settings.EQ_RRM_PUBLIC_KEY, settings.EQ_SR_PRIVATE_KEY, "digitaleq")
 
 
+
 @main_blueprint.before_request
-def jwt_before_request():
+def check_session():
+    logging.debug("Checking for session")
+    session_management = SessionManagementFactory.get_session_management()
+    try:
+        if request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME):
+            logging.debug("Authentication token", request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME))
+            token = jwt_login()
+            logging.debug("Token authenticated - linking to session")
+            session_management.link_session(token)
+        elif not session_management.has_session():
+            logging.warning("Session does not have an authenticated token - rejecting request")
+            raise NoTokenException("Missing JWT")
+    except NoTokenException as e:
+        return errors.unauthorized(e)
+    except InvalidTokenException as e:
+        return errors.forbidden(e)
+
+
+def jwt_login():
     if settings.EQ_PRODUCTION:
         logging.info("Production mode")
         return jwt_decrypt()
@@ -45,39 +66,24 @@ def developer_mode():
 
 
 def jwt_decrypt():
-    try:
-        encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
-        token = decoder.decrypt_jwt_token(encrypted_token)
-        send_to_mq(token)
-        return render_template('index.html', token_id=encrypted_token, token=token)
-    except NoTokenException as e:
-        return errors.unauthorized(e)
-    except InvalidTokenException as e:
-        return errors.forbidden(e)
+    encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
+    token = decoder.decrypt_jwt_token(encrypted_token)
+    send_to_mq(token)
+    return token
 
 
 def jwt_decode_signed():
-    try:
-        signed_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
-        token = decoder.decode_signed_jwt_token(signed_token)
-        send_to_mq(token)
-        return render_template('index.html', token_id=signed_token, token=token)
-    except NoTokenException as e:
-        return errors.unauthorized(e)
-    except InvalidTokenException as e:
-        return errors.forbidden(e)
+    signed_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
+    token = decoder.decode_signed_jwt_token(signed_token)
+    send_to_mq(token)
+    return token
 
 
 def jwt_decode():
-    try:
-        unsigned_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
-        token = decoder.decode_jwt_token(unsigned_token)
-        send_to_mq(token)
-        return render_template('index.html', token_id=unsigned_token, token=token)
-    except NoTokenException as e:
-        return errors.unauthorized(e)
-    except InvalidTokenException as e:
-        return errors.forbidden(e)
+    unsigned_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
+    token = decoder.decode_jwt_token(unsigned_token)
+    send_to_mq(token)
+    return token
 
 
 @main_blueprint.route('/', methods=['GET'])

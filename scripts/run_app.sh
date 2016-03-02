@@ -21,6 +21,8 @@ if [ -z "$EQ_GIT_REF" ]; then
   export EQ_GIT_REF=`git rev-parse HEAD`
 fi
 
+export EQ_PRODUCTION=False
+
 # Use default environment vars for localhost if not already set
 
 echo "Environment variables in use:"
