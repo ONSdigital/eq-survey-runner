@@ -7,7 +7,7 @@ $icon-width: 3rem;
   position: relative;
   padding-left: $icon-width;
   transition: transform 100ms ease-out;
-  max-width: 300px;
+  max-width: 17rem;
   width: 100%;
   &:hover {
     transform: scale(1.2);
@@ -45,9 +45,10 @@ $icon-width: 3rem;
 
 .info__item {
   font-size: 0.65rem;
+  font-weight: 600;
   list-style: none;
   margin: 0;
-  padding: 0.3rem;
+  padding: 0.3rem 0.5rem;
   border-left: 1px solid $color-borders;
   border-bottom: 1px solid $color-borders;
   flex: 1 100%;

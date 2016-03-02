@@ -15,18 +15,6 @@ body {
   background: $color-light-grey;
 }
 
-::-moz-selection {
-  background: $color-selection;
-  color: $color-selection-text;
-  text-shadow: none;
-}
-
-::selection {
-  background: $color-selection;
-  color: $color-selection-text;
-  text-shadow: none;
-}
-
 img {
   vertical-align: middle;
   max-width: 100%;
@@ -36,7 +24,7 @@ img {
 
 a {
   color: $color-links;
-  text-decoration: none;
+  text-decoration: underline;
   &:hover {
     text-decoration: underline;
   }
