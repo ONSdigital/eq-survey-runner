@@ -28,6 +28,12 @@
   }
 }
 
+.cover__main {
+  border-bottom: 1px solid $color-light-grey;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
 .cover__title {
   font-size: 1.9rem;
   font-weight: 700;
