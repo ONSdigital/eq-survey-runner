@@ -3,13 +3,19 @@
 <div class="ptn-section">
 
   <p>Our responsive grid system is comprised of twelve columns fluid with fixed 20px gutters, constrained within a 1200px container.</p>
-  <h3>Columns</h3>
+  <h2>Columns</h2>
 
   {% for j in [1, 2, 3, 4, 6] %}
     {{m.grid(j)}}
   {% endfor %}
 
-  <h3>Markup</h3>
+
+</div>
+
+<div class="ptn-section">
+
+
+  <h2>Markup</h2>
   <p>The grid is constrained within a <code>.container</code> which gives the layout a maximum width. The grid itself represented by a <code>.grid</code>, with columns as a <code>.grid__col</code>. The column widths are expressed in terms of x of 12, prefixed by a breakpoint to allow different layouts at varying screen sizes. The breakpoints are "mobile first" meaning that they will be full-width by default. The following example demonstrates a layout which has two columns on the 'm' breakpoint and above.</p>
 
   {% set code %}
@@ -31,7 +37,7 @@
 
 <div class="ptn-section">
 
-  <h3>Breakpoints</h3>
+  <h2>Breakpoints</h2>
   <p>These are a set of pre-configured breakpoints used by the grid.</p>
 
   <table>
@@ -85,7 +91,7 @@
 
 <div class="ptn-section">
 
-  <h3>Nesting</h3>
+  <h2>Nesting</h2>
   <p>Grid can be nested indefinitely, with no extra markup or classes required.</p>
 
   <div class="ptn-grid">
@@ -140,7 +146,7 @@
 
 <div class="ptn-section">
 
-  <h3>Reversible</h3>
+  <h2>Reversible</h2>
   <p>A reversed grid allows you change the source order of the markup and still keep a left-to-right layout. As you can see in the example below, the columns appear in the reverse order that they occur in the markup:</p>
 
   {% set reversible %}
@@ -159,7 +165,7 @@
 </div>
 
 <div class="ptn-section">
-  <h3>Push and Pull</h3>
+  <h2>Push and Pull</h2>
   <p>Columns can be pushed or pulled in a particular direction at a specified breakpoint. To reset a push at a subsequent breakpoint, use the nopush feature. The following example shows three columns all pushed to the right by one column at the m breakpoint. At the l breakpoint, the first column has its push removed.</p>
 
   {% set pushpull %}

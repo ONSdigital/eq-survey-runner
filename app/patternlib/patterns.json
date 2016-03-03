@@ -50,17 +50,31 @@
     }
   },
   "questions": {
+    "example": {
+      "id": "0",
+      "title": "Question title which can be rather long",
+      "subtitle": "Optional sub-title",
+      "description": "This is a question description. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue.",
+      "error": false,
+      "fields": [{
+        "type": "text",
+        "name": "response",
+        "id": "response",
+        "label": "Response",
+        "hidelabel": false,
+        "value": "",
+        "placeholder": "Some helper text can go here"
+      }]
+    },
     "simple": {
       "id": "1",
       "title": "What is your name?",
-      "subtitle": "Optional sub-title",
-      "description": "Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue.",
       "error": false,
       "fields": [{
         "type": "text",
         "name": "person-name",
         "id": "person-name",
-        "label": "Name",
+        "label": "Your name",
         "hidelabel": true,
         "value": "",
         "placeholder": "eg. Jemmima Puddleduck"
@@ -77,6 +91,32 @@
         "hidelabel": true,
         "value": "",
         "placeholder": "0.00"
+      }]
+    },
+    "precision": {
+      "id": "44",
+      "title": "Enter a number",
+      "fields": [{
+        "type": "text",
+        "name": "howmuch2",
+        "id": "howmuch2",
+        "label": "Number",
+        "hidelabel": true,
+        "value": "",
+        "placeholder": "0.00"
+      }]
+    },
+    "percentage": {
+      "id": "444",
+      "title": "Percentage of turnover",
+      "fields": [{
+        "type": "percentage",
+        "name": "howmuch3",
+        "id": "howmuch3",
+        "label": "Number",
+        "hidelabel": true,
+        "value": "",
+        "placeholder": "0"
       }]
     },
     "multiple_choice": {

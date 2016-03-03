@@ -3,28 +3,28 @@
 <form action="" class="form">
 
   <div class="ptn-section">
-    <h3>Text and input fields</h3>
+    <h2>Text and input fields</h2>
     {{m.field('text', data.forms.text)}}
-    <h4>Typed input fields</h4>
+    <h3>Typed input fields</h3>
     <p>Typed input fields have an associated icon to visually indicate the expected "type" of input, eg. Currency. </p>
     {{m.field('currency', data.forms.currency)}}
   </div>
 
   <div class="ptn-section">
-    <h3>Radios &amp; Checkboxes</h3>
-    <h4>Radios</h4>
+    <h2>Radios &amp; Checkboxes</h2>
+    <h3>Radios</h3>
     {{m.field('radios', data.forms.radios)}}
-    <h4>Checkboxes</h4>
+    <h3>Checkboxes</h3>
     {{m.field('checkboxes', data.forms.checkboxes)}}
   </div>
 
   <div class="ptn-section">
-    <h3>Dates</h3>
+    <h2>Dates</h2>
     {{m.field('date', data.forms.date)}}
   </div>
 
   <div class="ptn-section">
-    <h3>Buttons</h3>
+    <h2>Buttons</h2>
     {% set buttons %}
     <button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
     <button class="btn" type="button" name="button">Save &amp; Continue</button>
