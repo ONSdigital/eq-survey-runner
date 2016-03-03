@@ -20,7 +20,6 @@ if os.path.isfile(newrelic_config):
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
 EUROPE_LONDON = pytz.timezone("Europe/London")
-SESSION_TIMEOUT_IN_SECONDS = 3600
 
 
 def rabbitmq_available():
@@ -55,8 +54,8 @@ def create_app(config_name):
     application.jinja_env.add_extension('jinja2.ext.i18n')
     application.envdump = EnvironmentDump(application, '/environment')
 
-    application.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-    application.permanent_session_lifetime = timedelta(seconds=SESSION_TIMEOUT_IN_SECONDS)
+    application.secret_key = settings.EQ_SECRET_KEY
+    application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
 
     Markdown(application, extensions=['gfm'])
 
