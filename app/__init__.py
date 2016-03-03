@@ -5,6 +5,7 @@ from healthcheck import HealthCheck, EnvironmentDump
 from flaskext.markdown import Markdown
 from app import settings
 from app.submitter.submitter import Submitter
+from datetime import timedelta
 import pytz
 import os.path
 import newrelic.agent
@@ -20,6 +21,7 @@ DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
 EUROPE_LONDON = pytz.timezone("Europe/London")
 SESSION_TIMEOUT_IN_SECONDS = 3600
+
 
 def rabbitmq_available():
     submitter = Submitter()
@@ -54,7 +56,7 @@ def create_app(config_name):
     application.envdump = EnvironmentDump(application, '/environment')
 
     application.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-    application.permanent_session_lifetime = SESSION_TIMEOUT_IN_SECONDS
+    application.permanent_session_lifetime = timedelta(seconds=SESSION_TIMEOUT_IN_SECONDS)
 
     Markdown(application, extensions=['gfm'])
 

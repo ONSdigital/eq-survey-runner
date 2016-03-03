@@ -2,31 +2,27 @@ from flask import session
 
 
 class SessionManagement(object):
-    def link_session(self, jwt):
+    def add_token(self, jwt):
         pass
 
-    def has_session(self):
+    def has_token(self):
         pass
 
-    def unlink_session(self):
+    def remove_token(self):
         pass
 
 
 class FlaskSessionManager(SessionManagement):
-    def link_session(self, jwt):
+    def add_token(self, jwt):
         if 'jwt' not in session:
             session['jwt'] = jwt
+            session.permanent = True
 
-    def has_session(self):
+    def has_token(self):
         return 'jwt' in session
 
-    def unlink_session(self):
+    def remove_token(self):
         if 'jwt' in session:
-            session['jwt'] = None
+            del session['jwt']
 
-
-class SessionManagementFactory(object):
-
-    @staticmethod
-    def get_session_management():
-        return FlaskSessionManager()
+session_manager = FlaskSessionManager()

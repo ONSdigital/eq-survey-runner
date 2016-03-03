@@ -4,7 +4,7 @@ from app.main import errors
 from app.authentication.jwt_decoder import Decoder
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
-from app.authentication.session_management import SessionManagement, SessionManagementFactory
+from app.authentication.session_management import session_manager
 from app.submitter.submitter import Submitter
 from app import settings
 
@@ -24,14 +24,13 @@ else:
 @main_blueprint.before_request
 def check_session():
     logging.debug("Checking for session")
-    session_management = SessionManagementFactory.get_session_management()
     try:
         if request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME):
             logging.debug("Authentication token", request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME))
             token = jwt_login()
             logging.debug("Token authenticated - linking to session")
-            session_management.link_session(token)
-        elif not session_management.has_session():
+            session_manager.add_token(token)
+        elif not session_manager.has_token():
             logging.warning("Session does not have an authenticated token - rejecting request")
             raise NoTokenException("Missing JWT")
     except NoTokenException as e:
