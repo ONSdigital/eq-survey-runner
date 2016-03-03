@@ -98,7 +98,6 @@ gulp.task('compile', [
   'lint:scripts',
   'lint:styles',
   'clean:dist',
-  'build:sprite',
   'bundle:scripts',
   'copy:scripts',
   'build:styles',
