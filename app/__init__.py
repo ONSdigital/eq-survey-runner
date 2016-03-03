@@ -54,7 +54,13 @@ def create_app(config_name):
     application.envdump = EnvironmentDump(application, '/environment')
     Markdown(application, extensions=['gfm'])
 
-    from .main import main as main_blueprint
+    # import and regsiter the main application blueprint
+    from .main import main_blueprint
     application.register_blueprint(main_blueprint)
     main_blueprint.config = application.config.copy()
+
+    # import and register the pattern library blueprint
+    from .patternlib import patternlib_blueprint
+    application.register_blueprint(patternlib_blueprint)
+
     return application
