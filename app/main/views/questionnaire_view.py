@@ -11,7 +11,8 @@ class QuestionnaireView(MethodView):
     def get(self, questionnaire_id):
         logging.debug("Get request for questionnaire %s", questionnaire_id)
 
-        schema_loader = SchemaLoader()
+        # get this value from settings
+        schema_loader = SchemaLoader("surveys")
 
         json_schema = schema_loader.load_schema(questionnaire_id)
         logging.debug("Schema loaded for %s is %s", questionnaire_id, json_schema)
