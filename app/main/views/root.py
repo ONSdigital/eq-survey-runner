@@ -143,11 +143,11 @@ def create_model():
     return questionnaire
 
 
-@main_blueprint.route('/mci/', methods=['GET'])
+@main_blueprint.route('/questionnaire/mci/', methods=['GET'])
 def mci_survey():
     with main_blueprint.open_resource('mci.json') as f:
         data = json.load(f)
-    return render_template('mci.html', data=data)
+    return render_template('questionnaire.html', questionnaire=data)
 
 
 @main_blueprint.route('/jwt', methods=['GET'])

@@ -1,7 +1,7 @@
 {
   "forms": {
     "text": {
-      "type": "text",
+      "type": "textfield",
       "name": "person-name",
       "id": "person-name",
       "label": "Name",
@@ -10,7 +10,7 @@
       "placeholder": "eg. Jemima Puddleduck"
     },
     "radios": {
-      "type": "radios",
+      "type": "radio",
       "name": "gender",
       "options": [{
         "id": "gender-male",
@@ -44,7 +44,7 @@
       "placeholder": "0.00"
     },
     "date": {
-      "type": "date",
+      "type": "daterange",
       "legend": "Date",
       "name": "from"
     }
@@ -57,7 +57,7 @@
       "description": "This is a question description. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue.",
       "error": false,
       "responses": [{
-        "type": "text",
+        "type": "textfield",
         "name": "response",
         "id": "response",
         "label": "Response",
@@ -71,7 +71,7 @@
       "title": "What is your name?",
       "error": false,
       "responses": [{
-        "type": "text",
+        "type": "textfield",
         "name": "person-name",
         "id": "person-name",
         "label": "Your name",
@@ -97,7 +97,7 @@
       "id": "44",
       "title": "Enter a number",
       "responses": [{
-        "type": "text",
+        "type": "textfield",
         "name": "howmuch2",
         "id": "howmuch2",
         "label": "Number",
@@ -124,7 +124,7 @@
       "title": "What is your legal marital or same-sex civil partnership status?",
       "description": "Answer with regard to the your current legal marital status. If cohabiting, record the legal marital status at this question (e.g. ‘single, that is never married, ‘divorced’)",
       "responses": [{
-        "type": "radios",
+        "type": "radio",
         "name": "person-status",
         "options": [{
           "id": "person-status-1",
@@ -183,11 +183,11 @@
       "id": "3",
       "title": "Select some dates",
       "responses": [{
-        "type": "date",
+        "type": "daterange",
         "legend": "From",
         "name": "date-from"
       }, {
-        "type": "date",
+        "type": "daterange",
         "legend": "To",
         "name": "date-to"
       }]

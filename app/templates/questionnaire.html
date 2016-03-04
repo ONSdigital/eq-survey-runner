@@ -8,15 +8,19 @@
 
     {% for group in questionnaire.groups %}
 
-      <div class="group">
+      <div class="group" id="group-{{group.id}}">
 
       {% for block in group.blocks %}
 
-        <div class="block">
+        <div class="block" id="block-{{block.id}}">
 
         {% for section in block.sections %}
 
-            <section class="section">
+            <section class="section" id="section-{{section.id}}">
+
+              {% if section.title %}
+                <h2 class="section__title">{{section.title}}</h2>
+              {% endif %}
 
               {% for question in section.questions %}
 
