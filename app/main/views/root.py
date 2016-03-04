@@ -92,13 +92,6 @@ def root():
     return render_template('index.html')
 
 
-@main_blueprint.route('/questionnaire/<questionnaire_id>', methods=['GET', 'POST'])
-def questionnaire(questionnaire_id):
-    # TODO implement me!
-    questionnaire_model = create_model()
-    return render_template('questionnaire.html', questionnaire=questionnaire_model)
-
-
 @main_blueprint.route('/questionnaire/mci/', methods=['GET'])
 def mci_survey():
     with main_blueprint.open_resource('../data/mci.json') as f:
@@ -109,50 +102,6 @@ def mci_survey():
 @main_blueprint.route('/cover-page', methods=['GET'])
 def cover_page():
     return render_template('cover-page.html')
-
-
-def create_model():
-    '''
-    Temporary method to hard code a questionnaire model to get hamish started
-    '''
-    questionnaire = Questionnaire()
-    questionnaire.id = "22"
-    questionnaire.survey_id = "23"
-    questionnaire.title = "Monthly Business Survey - Retail Sales Index"
-    questionnaire.description = "MCI Description"
-
-    group = Group()
-    group.id = "14ba4707-321d-441d-8d21-b8367366e766"
-    group.title = ""
-    questionnaire.groups = [group]
-
-    block = Block()
-    block.id = "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
-    block.title = "Monthly Business Survey"
-    group.blocks = [block]
-
-    section = Section()
-    section.id = "2cd99c83-186d-493a-a16d-17cb3c8bd302"
-    section.title = ""
-    block.sections = [section]
-
-    question = Question()
-    question.id = "4ba2ec8a-582f-4985-b4ed-20355deba55a"
-    question.title = "On 12 January 2016 what was the number of employees for the business named above?"
-    question.description = "An employee is anyone aged 16 years or over that your organisation directly " \
-                           "pays from its payroll(s), in return for carrying out a full-time or part-time " \
-                           "job or being on a training scheme."
-    section.questions = [question]
-
-    response = Response()
-    response.name = "29586b4c-fb0c-4755-b67d-b3cd398cb30a"
-    response.id = "29586b4c-fb0c-4755-b67d-b3cd398cb30a"
-    response.label = "Male employees working more than 30 hours per week?"
-    response.guidance = "How many men work for your company?"
-    response.type = "Integer"
-    question.responses = [response]
-
-    return questionnaire
 
 
 @main_blueprint.route('/jwt', methods=['GET'])
