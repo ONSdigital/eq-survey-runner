@@ -44,8 +44,8 @@
       "placeholder": "0.00"
     },
     "date": {
-      "type": "daterange",
-      "legend": "Date",
+      "type": "DateRange",
+      "label": "Date",
       "name": "from"
     }
   },
@@ -183,12 +183,12 @@
       "id": "3",
       "title": "Select some dates",
       "responses": [{
-        "type": "daterange",
-        "legend": "From",
+        "type": "DateRange",
+        "label": "From",
         "name": "date-from"
       }, {
-        "type": "daterange",
-        "legend": "To",
+        "type": "DateRange",
+        "label": "To",
         "name": "date-to"
       }]
     }
