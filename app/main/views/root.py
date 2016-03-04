@@ -133,6 +133,7 @@ def create_model():
     section.questions = [question]
 
     response = Response()
+    response.name = "29586b4c-fb0c-4755-b67d-b3cd398cb30a"
     response.id = "29586b4c-fb0c-4755-b67d-b3cd398cb30a"
     response.label = "Male employees working more than 30 hours per week?"
     response.guidance = "How many men work for your company?"
