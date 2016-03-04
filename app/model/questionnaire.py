@@ -4,4 +4,8 @@ class Questionnaire(object):
         self.title = None
         self.survey_id = None
         self.description = None
-        self.groups = None
+        self.groups = []
+
+    def add_group(self, group):
+        if group not in self.groups:
+            self.groups.append(group)
