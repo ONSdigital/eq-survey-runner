@@ -56,5 +56,6 @@ class IntegerTest(unittest.TestCase):
         self.assertEquals(True, validation_results.get_result("709c9f96-2757-4cf3-ba48-808c6c616848").is_valid)
         self.assertEquals(True, validation_results.get_result("0df6fe58-25c9-430f-b157-9dc6b5a7646f").is_valid)
 
+
 if __name__ == '__main__':
     unittest.main()
