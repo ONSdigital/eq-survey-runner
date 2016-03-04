@@ -27,7 +27,7 @@
                                       "id": "29586b4c-fb0c-4755-b67d-b3cd398cb30a",
                                       "label": "Male employees working more than 30 hours per week?",
                                       "guidance": "How many men work for your company?",
-                                      "type": "Numeric"
+                                      "type": "Integer"
                                     }
                                 ]
                               }
