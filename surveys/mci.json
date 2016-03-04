@@ -20,36 +20,40 @@
                           "questions": [
                               {
                                 "id": "4ba2ec8a-582f-4985-b4ed-20355deba55a",
-                                "q_code": "110",
                                 "title": "On 12 January 2016 what was the number of employees for the business named above?",
                                 "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
                                 "responses": [
                                     {
                                       "id": "29586b4c-fb0c-4755-b67d-b3cd398cb30a",
+                                      "q_code": "110",
                                       "label": "Male employees working more than 30 hours per week?",
                                       "guidance": "How many men work normal hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "3396c36e-cad1-48a4-b279-8ce491856d3d",
+                                      "q_code": "111",
                                       "label": "Male employees working less than 30 hours per week?",
                                       "guidance": "How many men work short hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "a974ab68-9239-4012-8f19-c13060f55b42",
+                                      "q_code": "112",
                                       "label": "Female employees working more than 30 hours per week?",
                                       "guidance": "How many women work normal hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "34b94f54-4ec1-46ec-ae01-fd9047901054",
+                                      "q_code": "113",
                                       "label": "Female employees working less than 30 hours per week?",
                                       "guidance": "How many women work short hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "95076e90-23da-4e17-a113-4d0d940ef168",
+                                      "q_code": "114",
                                       "label": "Total employees",
                                       "guidance": "How many people work for you in total",
                                       "type": "Integer"
@@ -64,12 +68,12 @@
                           "questions": [
                               {
                                 "id": "e415a4bd-b597-4e5b-a96a-cb684e4d4e5a",
-                                "q_code": "111",
                                 "title": "",
                                 "description": "",
                                 "responses": [
                                     {
                                       "id": "0fe3a6ac-934e-4ac8-a4fd-81db8bf945a8",
+                                      "q_code": "115",
                                       "label": "Are you able to report for the period from 4 January 2016 to 31 January 2016 ( 4 Weeks)?",
                                       "guidance": "",
                                       "type": "Radio"
@@ -78,12 +82,12 @@
                               },
                                {
                                 "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
-                                "q_code": "112",
                                 "title": "",
                                 "description": "",
                                 "responses": [
                                     {
                                       "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
+                                      "q_code": "116",
                                       "label": "What are the dates of the period that you will be reporting for?",
                                       "guidance": "",
                                       "type": "DateRange"
@@ -98,54 +102,61 @@
                           "questions": [
                               {
                                 "id": "eedb9f9f-2f2e-41f4-9186-ba7110d9e6a4",
-                                "q_code": "113",
                                 "title": "Retail Turnover",
                                 "description": "For the reporting period 4/1/2016 to 31/1/2016, enter the relevant sales below. Round figures to the nearest (£) pound. For zero amounts, or for those that don't relate to your business, enter 0",
                                 "responses": [
                                     {
                                       "id": "bb8168e6-2272-450d-b5a7-d3170508efb2",
+                                      "q_code": "117",
                                       "label": "Food",
                                       "guidance": "",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
+                                      "q_code": "118",
                                       "label": "Other Goods",
                                       "guidance": "",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
+                                      "q_code": "119",
                                       "label": "Alchol, Confectionary and Tobacco",
                                       "guidance": "",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
+                                      "q_code": "120",
                                       "label": "Automotive Fuel",
                                       "guidance": "",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
+                                      "q_code": "121",
                                       "label": "Clothing and Foodware",
                                       "guidance": "",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "e81adc6d-6fb0-4155-969c-d0d646f15345",
+                                      "q_code": "122",
                                       "label": "Total Retail Turnover",
                                       "guidance": "",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
+                                      "q_code": "123",
                                       "label": "Household goods",
                                       "guidance": "",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
+                                      "q_code": "124",
                                       "label": "Of these figures, how much were from internet sales? ",
                                       "guidance": "",
                                       "type": "Integer"
@@ -160,12 +171,12 @@
                           "questions": [
                               {
                                 "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
-                                "q_code": "114",
                                 "title": "Comments",
                                 "description": "",
                                 "responses": [
                                     {
                                       "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
+                                      "q_code": "125",
                                       "label": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                                       "guidance": "",
                                       "type": "Textfield"
