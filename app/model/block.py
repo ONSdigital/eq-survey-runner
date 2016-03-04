@@ -3,4 +3,3 @@ class Block(object):
         self.id = None
         self.title = None
         self.sections = None
-        

@@ -5,5 +5,3 @@ class Questionnaire(object):
         self.survey_id = None
         self.description = None
         self.groups = None
-
-    
