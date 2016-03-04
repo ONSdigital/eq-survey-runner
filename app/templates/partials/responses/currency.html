@@ -1,0 +1,5 @@
+<label class="label{{' u-visuallyhidden' if response.hidelabel}}" for="{{response.id}}">{{response.label}}</label>
+<div class="typed-input typed-input--currency">
+  <span class="typed-input__type">£</span>
+  <input class="typed-input__input  input  input--number" type="number" value="{{response.value|e}}" name="{{response.name}}" id="{{response.name}}" placeholder="{{response.placeholder}}" step="any">
+</div>

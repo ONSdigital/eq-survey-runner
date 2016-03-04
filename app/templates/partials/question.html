@@ -13,16 +13,16 @@
     </legend>
     {%- if question.description %}
       <div class="question__description">
-        {{question.description}}
+        {{question.description|safe}}
       </div>
     {% endif %}
     <div class="question__responses">
     {%- if question.grid %} <div class="grid grid--align-bottom"> {% endif -%}
-      {%- for field in question.fields -%}
+      {%- for response in question.responses -%}
         {%- if question.grid -%} <div class="grid__col m-6"> {%- endif %}
-      <div class="question__response field field--{{field.type}}">
-        {% include '/partials/question_fields/' ~ field.type ~ '.html' %}
-      </div>
+        <div class="question__response field field--{{response.type}}">
+          {% include 'partials/responses/' ~ response.type ~ '.html' %}
+        </div>
         {%- if question.grid %} </div> {% endif -%}
       {%- endfor -%}
     {%- if question.grid %}</div>{% endif %}

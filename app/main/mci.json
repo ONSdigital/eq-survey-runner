@@ -1,0 +1,26 @@
+[{
+  "title": "On 12 January 2016 what was the number of employees for the business named above?",
+  "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p> <div class=\"grid\"> <div class=\"grid__col m-6\"> <h5>Include</h5> <ul> <li>all workers paid directly from this businesss payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li> </ul> </div> <div class=\"grid__col m-6\"> <h5>Exclude</h5> <ul> <li>agency workers paid directly from the agency payroll</li> <li>voluntary workers</li> <li>former employees only receiving pension</li> <li>self-employed workers</li> <li><em>working</em>owners who are not paid via PAYE</li> </ul> </div> </div> ",
+  "grid": true,
+  "responses": [{
+    "type": "number",
+    "label": "Male employees working more than 30 hours per week?",
+    "placeholder": "0"
+  }, {
+    "type": "number",
+    "label": "Male employees working 30 hours or less per week?",
+    "placeholder": "0"
+  }, {
+    "type": "number",
+    "label": "Female employees working more than 30 hours per week?",
+    "placeholder": "0"
+  }, {
+    "type": "number",
+    "label": "Female employees working 30 hours or less per week?",
+    "placeholder": "0"
+  }, {
+    "type": "number",
+    "label": "Total employees",
+    "placeholder": "0"
+  }]
+}]

@@ -1,7 +1,7 @@
-{% macro field(partial, data) %}
+{% macro response(partial, data) %}
   {%- set markup %}
   <div class="field field--{{partial}}">
-  {% with field = data %}{% include 'partials/question_fields/' ~ partial ~ '.html' %}{% endwith %}
+  {% with response = data %}{% include 'partials/responses/' ~ partial ~ '.html' %}{% endwith %}
   </div>
   {% endset -%}
   <div class="ptn-example">
@@ -15,8 +15,9 @@
   {%- set markup %}
     {% with question = data %}{% include 'partials/question.html' %}{% endwith %}
   {% endset -%}
-  </div>
+
   {{markup|safe}}
+  </div>
   {{code(markup)}}
 {% endmacro %}
 
