@@ -99,6 +99,13 @@ def questionnaire(questionnaire_id):
     return render_template('questionnaire.html', questionnaire=questionnaire_model)
 
 
+@main_blueprint.route('/questionnaire/mci/', methods=['GET'])
+def mci_survey():
+    with main_blueprint.open_resource('../data/mci.json') as f:
+        data = json.load(f)
+    return render_template('questionnaire.html', questionnaire=data)
+
+
 def create_model():
     '''
     Temporary method to hard code a questionnaire model to get hamish started
@@ -141,13 +148,6 @@ def create_model():
     question.responses = [response]
 
     return questionnaire
-
-
-@main_blueprint.route('/questionnaire/mci/', methods=['GET'])
-def mci_survey():
-    with main_blueprint.open_resource('mci.json') as f:
-        data = json.load(f)
-    return render_template('questionnaire.html', questionnaire=data)
 
 
 @main_blueprint.route('/jwt', methods=['GET'])

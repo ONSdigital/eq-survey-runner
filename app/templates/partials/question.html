@@ -17,7 +17,7 @@
       </div>
     {% endif %}
     <div class="question__responses">
-    {% set grid = question.responses|length > 1 and question.responses[0].type!='daterange'%}
+    {% set grid = question.responses|length > 1 and question.responses[0].type!='DateRange'%}
 
     {%- if grid %} <div class="grid grid--align-bottom"> {% endif -%}
       {%- for response in question.responses -%}
