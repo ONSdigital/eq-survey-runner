@@ -128,7 +128,7 @@ pre[class*="language-"] {
     max-width: 60rem;
   }
   .ptn-example {
-    border-left: 5px solid $color-light-grey;
+    border-left: 5px solid #f4f4f4;
     padding: 0.5rem 0 0.5rem 1.5rem;
   }
   .question__fieldset {
@@ -160,9 +160,6 @@ pre[class*="language-"] {
       overflow: hidden;
     }
     .ptn-code-toggle-label {
-      &::before {
-        content: "Hide ";
-      }
       &::after {
         transform: rotateX(90deg);
       }
@@ -172,9 +169,6 @@ pre[class*="language-"] {
     display: inline-block;
     color: $color-blue;
     font-size: 0.8rem;
-    &::before {
-      content: "Show ";
-    }
     &::after {
       content: " \00BB";
     }
