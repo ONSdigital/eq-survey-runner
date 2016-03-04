@@ -84,6 +84,12 @@ def root():
     return render_template('index.html')
 
 
+@main_blueprint.route('/questionnaire/<questionnaire_id>', methods=['GET', 'POST'])
+def questionnaire(questionnaire_id):
+    # TODO implement me!
+    return render_template('questionnaire.html', questionnaire=None)
+
+
 @main_blueprint.route('/mci/', methods=['GET'])
 def mci_survey():
     with main_blueprint.open_resource('data.json') as f:
