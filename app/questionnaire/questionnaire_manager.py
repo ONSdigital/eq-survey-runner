@@ -19,7 +19,7 @@ class QuestionnaireManager(object):
     def process_incoming_response(self, questionnaire_id):
         # get this value from settings
         json_schema = schema_loader.load_schema(questionnaire_id)
-        logging.debug("Schema loaded for %s is %s", questionnaire_id)
+        logging.debug("Schema loaded for %s is %s", questionnaire_id, json_schema)
 
         # model comes from the schema parser when it's ready
         model = self.create_model(json_schema)

@@ -5,13 +5,6 @@ from app.authentication.jwt_decoder import Decoder
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.submitter.submitter import Submitter
-from app.model.questionnaire import Questionnaire
-from app.model.group import Group
-from app.model.block import Block
-from app.model.section import Section
-from app.model.question import Question
-from app.model.response import Response
-
 from app import settings
 
 import logging
