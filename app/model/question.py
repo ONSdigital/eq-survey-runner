@@ -3,4 +3,8 @@ class Question(object):
         self.id = None
         self.title = None
         self.description = None
-        self.responses = None
+        self.responses = []
+
+    def add_response(self, response):
+        if response not in self.responses:
+            self.responses.append(response)
