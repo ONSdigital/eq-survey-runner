@@ -5,5 +5,5 @@ class Section(object):
         self.questions = []
 
     def add_question(self, question):
-        if question not int self.questions:
+        if question not in self.questions:
             self.questions.append(question)

@@ -1,12 +1,13 @@
-from ...schema_parser import SchemaParser as AbstractSchemaParser
-from ...schema_parser_exception import SchemaParserException
-from ...parser_utils import ParserUtils
+from app.parser.schema_parser import SchemaParser as AbstractSchemaParser
+from app.parser.schema_parser_exception import SchemaParserException
+from app.parser.parser_utils import ParserUtils
 
 from app.model.questionnaire import Questionnaire
 from app.model.group import Group
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
+from app.model.response import Response
 
 import logging
 
@@ -14,7 +15,7 @@ import logging
 class SchemaParser(AbstractSchemaParser):
 
     def __init__(self, schema):
-        self._version = 0.1
+        self._version = "0.0.1"
         self._schema = schema
 
     def get_parser_version(self):
@@ -28,10 +29,10 @@ class SchemaParser(AbstractSchemaParser):
 
             questionnaire.id = ParserUtils.get_required_string(self._schema, "questionnaire_id")
             questionnaire.title = ParserUtils.get_required_string(self._schema, "title")
-            questionnaire.survey_id = ParserUtils.get_required_integer(self._schema, "survey_id")
+            questionnaire.survey_id = ParserUtils.get_required_string(self._schema, "survey_id")
             questionnaire.description = ParserUtils.get_required_string(self._schema, "description")
 
-        except e:
+        except Exception as e:
             logging.error(e)
             raise e
 
@@ -53,7 +54,7 @@ class SchemaParser(AbstractSchemaParser):
             group.id = ParserUtils.get_required_string(schema, "id")
             group.title = ParserUtils.get_optional_string(schema, "title")
 
-        except e:
+        except Exception as e:
             logging.error(e)
             raise e
 
@@ -66,13 +67,13 @@ class SchemaParser(AbstractSchemaParser):
         return group
 
     def _parse_block(self, schema):
-        block = None
+        block = Block()
 
         try:
             block.id = ParserUtils.get_required_string(schema, "id")
             block.title = ParserUtils.get_optional_string(schema, "title")
 
-        except e:
+        except Exception as e:
             logging.error(e)
             raise e
 
@@ -90,7 +91,7 @@ class SchemaParser(AbstractSchemaParser):
         try:
             section.id = ParserUtils.get_required_string(schema, "id")
             section.title = ParserUtils.get_optional_string(schema, "title")
-        except e:
+        except Exception as e:
             logging.error(e)
             raise e
 
@@ -109,13 +110,13 @@ class SchemaParser(AbstractSchemaParser):
             question.id = ParserUtils.get_required_string(schema, "id")
             question.title = ParserUtils.get_required_string(schema, "title")
             question.description = ParserUtils.get_required_string(schema, "description")
-        except e:
+        except Exception as e:
             logging.error(e)
             raise e
 
         if 'responses' in schema.keys():
             for responseSchema in schema['responses']:
-                question.add_responce(self._parse_response(responseSchema))
+                question.add_response(self._parse_response(responseSchema))
         else:
             raise SchemaParserException('Question must contain at least one response')
 
@@ -125,12 +126,12 @@ class SchemaParser(AbstractSchemaParser):
         response = Response()
 
         try:
-            response.id = ParserUtils.get_required_string('id')
-            response.code = ParserUtils.get_required_integer('q_code')
-            response.label = ParserUtils.get_optional_string('label')
-            response.guidance = ParserUtils.get_optional_string('guidance')
-            response.type = ParserUtils.get_required_string('type')
-        except e:
+            response.id = ParserUtils.get_required_string(schema, 'id')
+            response.code = ParserUtils.get_required_string(schema, 'q_code')
+            response.label = ParserUtils.get_optional_string(schema, 'label')
+            response.guidance = ParserUtils.get_optional_string(schema, 'guidance')
+            response.type = ParserUtils.get_required_string(schema, 'type')
+        except Exception as e:
             logging.error(e)
             raise e
 
