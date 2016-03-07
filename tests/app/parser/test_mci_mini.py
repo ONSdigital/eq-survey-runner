@@ -1,5 +1,5 @@
 from app.parser.schema_parser_factory import SchemaParserFactory
-from app.parser.schema_parser import SchemaParser
+from app.parser.abstract_schema_parser import AbstractSchemaParser
 from app.model.questionnaire import Questionnaire
 from app.model.group import Group
 from app.model.block import Block
@@ -18,6 +18,8 @@ def test_mci_mini():
 
     # create a parser
     parser = SchemaParserFactory.create_parser(schema)
+
+    assert isinstance(parser, AbstractSchemaParser)
 
     questionnaire = parser.parse()
 

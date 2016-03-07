@@ -1,5 +1,6 @@
 from verlib import NormalizedVersion
 import importlib
+from app.parser.schema_parser_exception import SchemaParserException
 
 
 class SchemaParserFactory(object):
@@ -14,19 +15,22 @@ class SchemaParserFactory(object):
 
     @staticmethod
     def create_parser(schema):
-        if "schema_version" in schema.keys():
-            # get the schema version number
-            schema_version = NormalizedVersion(schema['schema_version'])
+        try:
+            if "schema_version" in schema.keys():
+                # get the schema version number
+                schema_version = NormalizedVersion(schema['schema_version'])
 
-            # get the correct module name for this version
-            version_module = SchemaParserFactory.get_module_version(schema_version)
+                # get the correct module name for this version
+                version_module = SchemaParserFactory.get_module_version(schema_version)
 
-        else:
-            version_module = SchemaParserFactory.DEFAULT_MODULE
+            else:
+                version_module = SchemaParserFactory.DEFAULT_MODULE
 
-        # Import the appropriate module and return an instance of the parser
-        module_name = str("app.parser." + version_module + ".schema_parser")
-        class_name = "SchemaParser"
-        ParserClass = getattr(importlib.import_module(module_name), class_name)
+            # Import the appropriate module and return an instance of the parser
+            module_name = str("app.parser." + version_module + ".schema_parser")
+            class_name = "SchemaParser"
+            ParserClass = getattr(importlib.import_module(module_name), class_name)
 
-        return ParserClass(schema)
+            return ParserClass(schema)
+        except:
+            raise SchemaParserException('Could not create parser for version: ' + version_module)

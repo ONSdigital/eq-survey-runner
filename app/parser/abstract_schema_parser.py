@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class SchemaParser(metaclass=ABCMeta):
+class AbstractSchemaParser(metaclass=ABCMeta):
     '''
     Instantiates a parser with the Schema
     '''

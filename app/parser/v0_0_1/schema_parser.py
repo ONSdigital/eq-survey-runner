@@ -1,4 +1,4 @@
-from app.parser.schema_parser import SchemaParser as AbstractSchemaParser
+from app.parser.abstract_schema_parser import AbstractSchemaParser
 from app.parser.schema_parser_exception import SchemaParserException
 from app.parser.parser_utils import ParserUtils
 
@@ -38,8 +38,8 @@ class SchemaParser(AbstractSchemaParser):
 
         if questionnaire:
             if "groups" in self._schema.keys():
-                for groupSchema in self._schema['groups']:
-                    questionnaire.add_group(self._parse_group(groupSchema))
+                for group_schema in self._schema['groups']:
+                    questionnaire.add_group(self._parse_group(group_schema))
             else:
                 raise SchemaParserException('Questionnaire must contain at least one group')
 
@@ -59,8 +59,8 @@ class SchemaParser(AbstractSchemaParser):
             raise e
 
         if "blocks" in schema.keys():
-            for blockSchema in schema['blocks']:
-                group.add_block(self._parse_block(blockSchema))
+            for block_schema in schema['blocks']:
+                group.add_block(self._parse_block(block_schema))
         else:
             raise SchemaParserException('Group must contain at least one block')
 
@@ -78,8 +78,8 @@ class SchemaParser(AbstractSchemaParser):
             raise e
 
         if "sections" in schema.keys():
-            for sectionSchema in schema['sections']:
-                block.add_section(self._parse_section(sectionSchema))
+            for section_schema in schema['sections']:
+                block.add_section(self._parse_section(section_schema))
         else:
             raise SchemaParserException('Block must contain at least one section')
 
@@ -96,8 +96,8 @@ class SchemaParser(AbstractSchemaParser):
             raise e
 
         if 'questions' in schema.keys():
-            for questionSchema in schema['questions']:
-                section.add_question(self._parse_question(questionSchema))
+            for question_schema in schema['questions']:
+                section.add_question(self._parse_question(question_schema))
         else:
             raise SchemaParserException('Section must have at least one question')
 
@@ -115,8 +115,8 @@ class SchemaParser(AbstractSchemaParser):
             raise e
 
         if 'responses' in schema.keys():
-            for responseSchema in schema['responses']:
-                question.add_response(self._parse_response(responseSchema))
+            for response_schema in schema['responses']:
+                question.add_response(self._parse_response(response_schema))
         else:
             raise SchemaParserException('Question must contain at least one response')
 

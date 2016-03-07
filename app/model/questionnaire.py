@@ -9,3 +9,4 @@ class Questionnaire(object):
     def add_group(self, group):
         if group not in self.groups:
             self.groups.append(group)
+            group.questionnaire = self
