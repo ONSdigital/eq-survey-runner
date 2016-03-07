@@ -60,7 +60,6 @@ export function styles() {
         browsers: ['last 1 version']
       }),
       pixrem({
-        rootValue: 18,
         replace: false
       }),
       pseudoelements(),

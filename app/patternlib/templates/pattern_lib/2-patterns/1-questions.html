@@ -1,16 +1,35 @@
 {% import 'macros/patterns.html' as m %}
 
 <div class="ptn-section">
-  <p>A question is composed of a title, sub-title (optional), notes (optional) and fields. The following example demonstrates a simple question with a single text-field.</p>
-  <h3>Simple Text</h3>
-  <p>The following is an example of a simple question with a single, text-based answer.</p>
+<p>A question is composed of a number of components:
+<ul>
+  <li>Title</li>
+  <li>Sub-title (optional)</li>
+  <li>Description (optional)</li>
+  <li>Response</li>
+  <li>Guidance (optional)</li>
+</ul>
+{{m.question(data.questions.example)}}
+</div>
+<h2>Question Types</h2>
+
+<div class="ptn-section">
+  <h3>Text</h3>
+  <p>The most basic type of question simple text response that will accept any alphanumeric character.</p>
   {{m.question(data.questions.simple)}}
 </div>
 
 <div class="ptn-section">
-  <h3>Currency</h3>
-  <p>The following examples demonstrates a question with a single currency field.</p>
+  <h3>Numeric Entry</h3>
+  <h4>Currency</h4>
+  <p>A currency field accepts a numeric entry in currency format, typically in £ or €. </p>
   {{m.question(data.questions.currency)}}
+  <h4>Precision</h4>
+  <p>A precision field will be accurate to a defined decimal place.</p>
+  {{m.question(data.questions.precision)}}
+  <h4>Percentage</h4>
+  <p>Accepts a percentage.</p>
+  {{m.question(data.questions.percentage)}}
 </div>
 
 <div class="ptn-section">

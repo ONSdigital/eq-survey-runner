@@ -1,0 +1,34 @@
+<fieldset class="fieldset">
+
+  <legend class="legend">
+    <div>{{response.label}}</div>
+  </legend>
+
+  <div class="subfields">
+
+    <div class="field field--day">
+      <label class="label label--small label--block" for="{{response.name}}-day">{{_('Day')}}</label>
+      <select class="input input--select" name="{{response.name}}-day" id="{{response.name}}-day" required>
+        {% for day in range(31) -%}
+          <option value="{{day+1}}">{{day+1}}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+
+    <div class="field field--month">
+      <label class="label label--small label--block" for="{{response.name}}-month">{{_('Month')}}</label>
+      <select class="input input--select" name="{{response.name}}-month" id="{{response.name}}-month" required>
+        {% for day in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] -%}
+          <option value="{{day}}">{{_(day)}}</option>
+        {%- endfor %}
+      </select>
+    </div>
+
+    <div class="field field--year">
+      <label class="label label--small label--block" for="{{response.name}}-year">{{_('Year')}}</label>
+      <input class="input input--number" type="number" name="{{response.name}}-year" value="" min="1980" max="2016" placeholder="2016" required>
+    </div>
+
+  </div>
+
+</fieldset>

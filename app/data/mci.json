@@ -66,29 +66,22 @@
                           "id": "f11bc7dc-3940-4c7d-9d0e-faa6acb23eeb",
                           "title":"",
                           "questions": [
-                              {
-                                "id": "e415a4bd-b597-4e5b-a96a-cb684e4d4e5a",
-                                "title": "",
-                                "description": "",
-                                "responses": [
-                                    {
-                                      "id": "0fe3a6ac-934e-4ac8-a4fd-81db8bf945a8",
-                                      "q_code": "115",
-                                      "label": "Are you able to report for the period from 4 January 2016 to 31 January 2016 ( 4 Weeks)?",
-                                      "guidance": "",
-                                      "type": "Radio"
-                                    }
-                                  ]
-                              },
                                {
                                 "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
-                                "title": "",
+                                "title": "What are the dates of the period that you will be reporting for?",
                                 "description": "",
                                 "responses": [
                                     {
                                       "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
                                       "q_code": "116",
-                                      "label": "What are the dates of the period that you will be reporting for?",
+                                      "label": "From",
+                                      "guidance": "",
+                                      "type": "DateRange"
+                                    },
+                                    {
+                                      "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
+                                      "q_code": "116",
+                                      "label": "To",
                                       "guidance": "",
                                       "type": "DateRange"
                                     }
@@ -179,7 +172,7 @@
                                       "q_code": "125",
                                       "label": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                                       "guidance": "",
-                                      "type": "Textfield"
+                                      "type": "Textarea"
                                     }
                                   ]
                               }
@@ -191,4 +184,3 @@
         }
     ]
 }
-
