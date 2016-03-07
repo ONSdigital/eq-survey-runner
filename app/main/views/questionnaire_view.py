@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask import render_template
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
-from app.schema_loader.schema_loader import SchemaLoader
+
 
 import logging
 
@@ -11,14 +11,8 @@ class QuestionnaireView(MethodView):
     def get(self, questionnaire_id):
         logging.debug("Get request for questionnaire %s", questionnaire_id)
 
-        # get this value from settings
-        schema_loader = SchemaLoader("surveys")
-
-        json_schema = schema_loader.load_schema(questionnaire_id)
-        logging.debug("Schema loaded for %s is %s", questionnaire_id, json_schema)
-
-        questionnaire_manager = QuestionnaireManager(json_schema)
-        questionnaire_manager.process_incoming_response()
+        questionnaire_manager = QuestionnaireManager()
+        questionnaire_manager.process_incoming_response(questionnaire_id)
         rendering_context = questionnaire_manager.get_rendering_context()
 
         # TODO implement me!

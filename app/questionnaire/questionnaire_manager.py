@@ -6,18 +6,23 @@ from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
 from app.model.response import Response
+from app.schema_loader import schema_loader
+
 
 import logging
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema):
+    def __init__(self):
         self._rendering_context = None
-        self._schema = schema
 
-    def process_incoming_response(self):
+    def process_incoming_response(self, questionnaire_id):
+        # get this value from settings
+        json_schema = schema_loader.load_schema(questionnaire_id)
+        logging.debug("Schema loaded for %s is %s", questionnaire_id)
+
         # model comes from the schema parser when it's ready
-        model = self.create_model(self._schema)
+        model = self.create_model(json_schema)
         logging.debug("Constructed model %s", model)
 
         renderer = Renderer()
@@ -28,7 +33,11 @@ class QuestionnaireManager(object):
         return self._rendering_context
 
     def create_model(self, json_schema):
-        '''Temporary method to hard code a questionnaire model to get hamish started'''
+        """
+        Temporary method to hard code a questionnaire model to get hamish started
+        :param: json_schema this parameter will be converted to a question model
+        :return: object model representing a schema
+        """
 
         questionnaire = Questionnaire()
         questionnaire.id = "22"
