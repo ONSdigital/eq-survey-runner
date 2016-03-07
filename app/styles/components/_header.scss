@@ -1,11 +1,11 @@
 .header {
   background: $color-black;
   color: $color-white;
-  padding: 0.2rem;
+  padding: 1rem;
   margin-bottom: 0.5rem;
 
   @include mq(m) {
-    padding: 0.4rem;
+    padding: 1rem;
     margin-bottom: 3rem;
   }
 }
@@ -13,4 +13,5 @@
 .header__title {
   font-size: 0.8rem;
   font-weight: 600;
+  margin-bottom: 0;
 }

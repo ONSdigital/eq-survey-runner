@@ -1,0 +1,3 @@
+{% macro include_with(path, data, dataHandle='data') %}
+  {% with dataHandle = data %}{% include path %}{% endwith %}
+{% endmacro %}

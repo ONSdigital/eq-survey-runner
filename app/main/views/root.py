@@ -106,6 +106,11 @@ def mci_survey():
     return render_template('questionnaire.html', questionnaire=data)
 
 
+@main_blueprint.route('/cover-page', methods=['GET'])
+def cover_page():
+    return render_template('cover-page.html')
+
+
 def create_model():
     '''
     Temporary method to hard code a questionnaire model to get hamish started
