@@ -35,7 +35,7 @@
   padding: 1rem;
   background: lighten($color-light-grey, 6%);
   font-size: 1rem;
-  &:target {
+  &.is-visible {
     display: block;
   }
 }
