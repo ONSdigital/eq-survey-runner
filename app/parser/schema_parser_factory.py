@@ -8,13 +8,27 @@ class SchemaParserFactory(object):
 
     @staticmethod
     def get_module_version(version):
-        # map version numbers to directory names
+        '''Map a version string to a python module
+        '''
         return {
             '0.0.1': 'v0_0_1'
         }.get(str(version), SchemaParserFactory.DEFAULT_MODULE)
 
     @staticmethod
     def create_parser(schema):
+        '''Create a parser for the given survey schema
+
+        Examines the given schema for a version number and then creates and
+        returns a parser suitable for that schema version.
+
+        Args:
+            schema: JSON object or dict containing the schema version
+
+        Raises:
+            A SchemaParserException is raised if an appropriate parser cannot
+            be instantiated
+
+        '''
         try:
             if "schema_version" in schema.keys():
                 # get the schema version number

@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+'''SchemaParser v0.0.1
+
+This module defines the SchemaParser for the v0.0.1 of the survey schema
+
+'''
+
 from app.parser.abstract_schema_parser import AbstractSchemaParser
 from app.parser.schema_parser_exception import SchemaParserException
 from app.parser.parser_utils import ParserUtils
@@ -13,15 +20,36 @@ import logging
 
 
 class SchemaParser(AbstractSchemaParser):
+    '''SchemaParser class
+
+    Implements the inteface defined in the AbstractSchemaParser class
+
+    '''
 
     def __init__(self, schema):
+        '''Initialise the parser with the schema
+
+        Args:
+            schema: the schema json object or dict
+        '''
         self._version = "0.0.1"
         self._schema = schema
 
     def get_parser_version(self):
+        '''Return which version of the parser
+        '''
         return self._version
 
     def parse(self):
+        '''Parse the schema
+
+        Returns:
+            A questionnaire object
+
+        Raises:
+            A SchemaParserException if there is a problem while parsing the schema
+
+        '''
         questionnaire = None
 
         try:
@@ -46,6 +74,15 @@ class SchemaParser(AbstractSchemaParser):
         return questionnaire
 
     def _parse_group(self, schema):
+        '''Parse a group element
+
+        Args:
+            schema: The group schema
+
+        Returns:
+            Group object
+
+        '''
         group = None
 
         try:
@@ -67,6 +104,15 @@ class SchemaParser(AbstractSchemaParser):
         return group
 
     def _parse_block(self, schema):
+        '''Parse a block element
+
+        Args:
+            schema: The block schema
+
+        Returns:
+            A Block object
+
+        '''
         block = Block()
 
         try:
@@ -86,6 +132,15 @@ class SchemaParser(AbstractSchemaParser):
         return block
 
     def _parse_section(self, schema):
+        '''Parse a section element
+
+        Args:
+            schema: The section schema
+
+        Returns:
+            A Section object
+
+        '''
         section = Section()
 
         try:
@@ -104,6 +159,15 @@ class SchemaParser(AbstractSchemaParser):
         return section
 
     def _parse_question(self, schema):
+        '''Parse a question element
+
+        Args:
+            schema: The question schema
+
+        Returns:
+            A Question object
+
+        '''
         question = Question()
 
         try:
@@ -123,6 +187,15 @@ class SchemaParser(AbstractSchemaParser):
         return question
 
     def _parse_response(self, schema):
+        '''Parse a response element
+
+        Args:
+            schema: The response schema
+
+        Returns:
+            A Response object
+
+        '''
         response = Response()
 
         try:

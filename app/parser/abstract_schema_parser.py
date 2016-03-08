@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+'''Abstract Schema Parser Module
+
+This module defines the AbstractSchemaParser class which defines the public
+interface for all SchemaParsers.
+
+There is a single constructor which accepts a json object reperesenting the
+schema.  SchemeParsers are instantiated by a SchemaParserFactory.
+
+The main method of the SchemaParser is parse() which accepts no parameters, but
+returns an object of type Questionnaire, or raises a SchemaParserException.
+
+'''
 from abc import ABCMeta, abstractmethod
 
 
