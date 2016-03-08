@@ -6,11 +6,16 @@ from flask.ext.script import Manager, Server
 import watchtower
 import logging
 import app.settings as settings
+from app.main.views.questionnaire_view import QuestionnaireView
 
 application = create_app(
     os.getenv('EQ_ENVIRONMENT') or 'development'
 )
 application.debug = True
+
+# temporarily put this here
+application.add_url_rule('/questionnaire/<questionnaire_id>', view_func=QuestionnaireView.as_view('hello'), methods=['GET', 'POST'])
+
 manager = Manager(application)
 port = int(os.environ.get('PORT', 5000))
 manager.add_command("runserver", Server(host='0.0.0.0', port=port))
