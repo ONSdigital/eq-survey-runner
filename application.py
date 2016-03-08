@@ -3,10 +3,12 @@
 import os
 from app import create_app
 from flask.ext.script import Manager, Server
+
 import watchtower
 import logging
 import app.settings as settings
 from app.main.views.questionnaire_view import QuestionnaireView
+from app.main.views.login_view import LoginView
 
 application = create_app(
     os.getenv('EQ_ENVIRONMENT') or 'development'
@@ -14,7 +16,8 @@ application = create_app(
 application.debug = True
 
 # temporarily put this here
-application.add_url_rule('/questionnaire/<questionnaire_id>', view_func=QuestionnaireView.as_view('hello'), methods=['GET', 'POST'])
+application.add_url_rule('/questionnaire/<questionnaire_id>', view_func=QuestionnaireView.as_view("questionnaire"), methods=['GET', 'POST'])
+application.add_url_rule('/session', view_func=LoginView.as_view("login"), methods=['GET'])
 
 manager = Manager(application)
 port = int(os.environ.get('PORT', 5000))
@@ -46,4 +49,3 @@ else:
 
 if __name__ == '__main__':
     manager.run()
-

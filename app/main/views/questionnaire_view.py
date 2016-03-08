@@ -1,13 +1,14 @@
 from flask.views import MethodView
 from flask import render_template
+from flask.ext.login import login_required
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
-
 
 import logging
 
 
 class QuestionnaireView(MethodView):
 
+    @login_required
     def get(self, questionnaire_id):
         logging.debug("Get request for questionnaire %s", questionnaire_id)
 

@@ -5,7 +5,7 @@ from app.libs.utils import get_locale
 from healthcheck import HealthCheck, EnvironmentDump
 from flaskext.markdown import Markdown
 from app import settings
-from app.authentication import authenticator
+from app.authentication.authenticator import Authenticator
 from app.submitter.submitter import Submitter
 from datetime import timedelta
 import pytz
@@ -52,6 +52,7 @@ login_manager.session_protection = 'strong'
 @login_manager.request_loader
 def load_user(request):
     logging.debug("Calling load user %s")
+    authenticator = Authenticator()
     return authenticator.check_session(request)
 
 
@@ -89,5 +90,3 @@ def create_app(config_name):
     application.logger
 
     return application
-
-
