@@ -1,9 +1,6 @@
 <div class="guidance" data-guidance>
   <a class="guidance__link" href="#guidance-{{response.id}}" id="guidance-{{response.id}}-link" data-guidance-trigger><span>Show guidance for this question</span></a>
   <div class="guidance__main" id="guidance-{{response.id}}-main" data-guidance-main aria-hidden="true">
-    <h5 class="u-visuallyhidden">Guidance:</h5>
-    <div>
-      {{response.guidance}}
-    </div>
+    {{response.guidance|safe}}
   </div>
 </div>
