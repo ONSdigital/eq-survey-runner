@@ -11,6 +11,9 @@ class SessionManagement(object):
     def remove_token(self):
         pass
 
+    def get_token(self):
+        pass
+
 
 class FlaskSessionManager(SessionManagement):
     def add_token(self, jwt):
@@ -24,5 +27,8 @@ class FlaskSessionManager(SessionManagement):
     def remove_token(self):
         if 'jwt' in session:
             del session['jwt']
+
+    def get_token(self):
+        return session['jwt']
 
 session_manager = FlaskSessionManager()

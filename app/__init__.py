@@ -1,9 +1,11 @@
-from flask.ext.babel import Babel
 from flask import Flask
+from flask.ext.babel import Babel
+from flask.ext.login import LoginManager
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck, EnvironmentDump
 from flaskext.markdown import Markdown
 from app import settings
+from app.authentication import authenticator
 from app.submitter.submitter import Submitter
 from datetime import timedelta
 import pytz
@@ -43,6 +45,16 @@ def git_revision():
     return True, GIT_REVISION
 
 
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+
+
+@login_manager.request_loader
+def load_user(request):
+    logging.debug("Calling load user %s")
+    return authenticator.check_session(request)
+
+
 def create_app(config_name):
     application = Flask(__name__, static_url_path='/s')
     headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache'}
@@ -68,4 +80,14 @@ def create_app(config_name):
     from .patternlib import patternlib_blueprint
     application.register_blueprint(patternlib_blueprint)
 
+    application.logger.debug("Initializing login manager for application")
+    login_manager.init_app(application)
+    application.logger.debug("Login Manager initialized")
+
+    # workaround flask crazy logging mechanism
+    application.logger_name = "nowhere"
+    application.logger
+
     return application
+
+
