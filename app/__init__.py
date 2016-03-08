@@ -13,6 +13,7 @@ from datetime import timedelta
 import pytz
 import os.path
 import newrelic.agent
+import watchtower
 import logging
 
 
@@ -92,6 +93,29 @@ def create_app(config_name):
     application.logger
 
     add_views(application)
+
+    # set up some sane logging, as opposed to what flask does by default
+    FORMAT = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
+
+    levels = {
+        'CRITICAL': logging.CRITICAL,
+        'ERROR': logging.ERROR,
+        'WARNING': logging.WARNING,
+        'INFO': logging.INFO,
+        'DEBUG': logging.DEBUG
+    }
+    logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=FORMAT)
+
+    # set the logger for this application and stop using flasks broken solution
+    application._logger = logging.getLogger(__name__)
+
+    if settings.EQ_PRODUCTION:
+        log_group = settings.EQ_SR_LOG_GROUP
+        cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
+        application.logger.addHandler(cloud_watch_handler)               # flask logger
+        logging.getLogger().addHandler(cloud_watch_handler)              # 'root;' logger
+        logging.getLogger(__name__).addHandler(cloud_watch_handler)      # module logger
+        logging.getLogger('werkzeug').addHandler(cloud_watch_handler)    # werkzeug framework logger
 
     return application
 
