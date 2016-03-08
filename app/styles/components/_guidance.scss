@@ -18,7 +18,9 @@
   }
   &::before {
     $size: 0.9rem;
+    speak: none;
     content: "i";
+    font-style: italic;
     font-family: $font-serif;
     font-weight: 900;
     font-size: 0.8rem;
@@ -44,7 +46,7 @@
   font-size: 0.9rem;
   overflow: hidden;
   width: 100%;
-  &.is-visible {
+  .is-expanded & {
     margin-top: 1rem;
     display: table;
     table-layout: fixed;
@@ -62,7 +64,9 @@
     }
     ul {
       padding-left: 1rem;
-      margin: 0;
+      @include mq(s) {
+        margin-bottom: 0;
+      }
     }
   }
 }

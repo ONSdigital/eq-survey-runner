@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<header class="header">
+<header class="header" role="banner">
   <div class="skip">
     <a class="skip__link" href="#main">Skip to content</a>
   </div>
@@ -21,7 +21,8 @@
         <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics" class="logo__img" />
       </div>
 
-      <div class="info survey-header__info">
+      <div class="info survey-header__info" role="contentinfo">
+        <h2 class="u-vh">Information about this survey</h2>
         <ul class="info__list">
           <li class="info__item info__item--half">Survey Code: 023</li>
           <li class="info__item info__item--half">Period: 201403</li>
@@ -31,7 +32,7 @@
 
     </div>
 
-    <main class="panel__body" id="main">
+    <main role="main" class="panel__body" id="main" tabindex="-1">
 
       {% block survey %} {% endblock %}
 

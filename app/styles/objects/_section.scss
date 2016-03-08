@@ -1,6 +1,6 @@
 .section {
   margin: 1rem 0;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid $color-light-grey;
   @include mq(s) {
     padding: 2rem 0;
@@ -13,10 +13,11 @@
 }
 
 .section__title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   @include mq(s) {
     padding: 0 1rem;
+    font-size: 1.4rem;
   }
 }
 

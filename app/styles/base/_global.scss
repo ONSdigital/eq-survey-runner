@@ -29,3 +29,8 @@ a {
     text-decoration: underline;
   }
 }
+
+main:focus {
+  outline: none;
+  box-shadow: 0 0 1px rgba($color-secondary, 0.8);
+}

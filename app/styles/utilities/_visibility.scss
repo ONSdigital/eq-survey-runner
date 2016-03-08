@@ -3,7 +3,8 @@
   visibility: hidden;
 }
 
-.u-visuallyhidden {
+.u-visuallyhidden,
+.u-vh {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -15,7 +16,9 @@
 }
 
 .u-visuallyhidden.u-focusable:active,
-.u-visuallyhidden.u-focusable:focus {
+.u-vh.u-focusable:active,
+.u-visuallyhidden.u-focusable:focus,
+.u-vh.u-focusable:focus {
   clip: auto;
   height: auto;
   margin: 0;
