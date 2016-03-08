@@ -6,10 +6,6 @@ from app import create_app
 from tests.app.authentication.encoder import Encoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
-from app.main.views.questionnaire_view import QuestionnaireView
-from app.main.views.login_view import LoginView
-
-
 class FlaskClientAuthenticationTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -19,10 +15,6 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         settings.EQ_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
         self.app = create_app("testing")
-        # temporarily put this here
-        self.app.add_url_rule('/questionnaire/<questionnaire_id>', view_func=QuestionnaireView.as_view("questionnaire"), methods=['GET', 'POST'])
-        self.app.add_url_rule('/session', view_func=LoginView.as_view("login"), methods=['GET'])
-
         self.app_context = self.app.app_context()
         self.app_context.push()
         self.client = self.app.test_client(use_cookies=False)

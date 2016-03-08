@@ -3,6 +3,7 @@ from flask import render_template
 from flask.ext.login import login_required
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 
+
 import logging
 
 

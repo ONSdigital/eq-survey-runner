@@ -7,6 +7,8 @@ from flaskext.markdown import Markdown
 from app import settings
 from app.authentication.authenticator import Authenticator
 from app.submitter.submitter import Submitter
+from app.main.views.questionnaire_view import QuestionnaireView
+from app.main.views.login_view import LoginView
 from datetime import timedelta
 import pytz
 import os.path
@@ -89,4 +91,11 @@ def create_app(config_name):
     application.logger_name = "nowhere"
     application.logger
 
+    add_views(application)
+
     return application
+
+
+def add_views(application):
+    application.add_url_rule('/questionnaire/<questionnaire_id>', view_func=QuestionnaireView.as_view("questionnaire"), methods=['GET', 'POST'])
+    application.add_url_rule('/session', view_func=LoginView.as_view("login"), methods=['GET'])
