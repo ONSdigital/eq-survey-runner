@@ -1,0 +1,41 @@
+.guidance {
+  margin: 0;
+}
+
+.guidance__link {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.4rem 0;
+  span {
+    font-size: 0.8rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &::before {
+    $size: 0.9rem;
+    content: "i";
+    font-family: $font-serif;
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: $size;
+    width: $size;
+    height: $size;
+    background: $color-secondary;
+    color: $color-white;
+    vertical-align: baseline;
+    display: inline-block;
+    border-radius: 100%;
+    margin-right: 0.4rem;
+  }
+}
+
+.guidance__main {
+  display: none;
+  padding: 1rem;
+  background: lighten($color-light-grey, 6%);
+  font-size: 1rem;
+  &:target {
+    display: block;
+  }
+}
