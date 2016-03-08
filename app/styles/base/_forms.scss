@@ -25,3 +25,7 @@ legend {
 input {
   box-sizing: border-box;
 }
+
+::-webkit-inner-spin-button {
+  display: none;
+}

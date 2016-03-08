@@ -5,7 +5,7 @@
 
 .question__fieldset {
   @include mq(s) {
-    padding: 1rem;
+    padding: 0 1rem;
   }
 }
 
@@ -30,7 +30,7 @@
   clear: both;
   display: block;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: inherit;
 }
 

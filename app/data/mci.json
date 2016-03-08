@@ -68,8 +68,8 @@
                           "questions": [
                                {
                                 "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
-                                "title": "What are the dates of the period that you will be reporting for?",
-                                "description": "",
+                                "title": "What are the dates of the sales period you are reporting for?",
+                                "description": "If possible, this should be for the period [standard date period]",
                                 "responses": [
                                     {
                                       "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
@@ -91,68 +91,68 @@
                         },
                         {
                           "id": "d9d25a21-41b8-42b2-ac7b-fb21b1036d71",
-                          "title":"",
+                          "title": "Retail Turnover",
+                          "description": "<p>Round your figures to the nearest (£) pound.</p><h4>Include</h4><ul><li>VAT</li><li>Internet Sales</li></ul>",
                           "questions": [
                               {
                                 "id": "eedb9f9f-2f2e-41f4-9186-ba7110d9e6a4",
-                                "title": "Retail Turnover",
-                                "description": "For the reporting period 4/1/2016 to 31/1/2016, enter the relevant sales below. Round figures to the nearest (£) pound. For zero amounts, or for those that don't relate to your business, enter 0",
+                                "title": "For the reporting period stated above, what was the value of the business’s total sales of:",
                                 "responses": [
                                     {
                                       "id": "bb8168e6-2272-450d-b5a7-d3170508efb2",
                                       "q_code": "117",
                                       "label": "Food",
-                                      "guidance": "",
-                                      "type": "Integer"
+                                      "guidance": "Food guidance.",
+                                      "type": "Currency"
                                     },
                                     {
                                       "id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
                                       "q_code": "118",
                                       "label": "Other Goods",
-                                      "guidance": "",
-                                      "type": "Integer"
+                                      "guidance": "Other goods guidance",
+                                      "type": "Currency"
                                     },
                                     {
                                       "id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
                                       "q_code": "119",
                                       "label": "Alchol, Confectionary and Tobacco",
-                                      "guidance": "",
-                                      "type": "Integer"
+                                      "guidance": "Alchol, Confectionary and Tobacco guidance",
+                                      "type": "Currency"
                                     },
                                     {
                                       "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
                                       "q_code": "120",
                                       "label": "Automotive Fuel",
-                                      "guidance": "",
-                                      "type": "Integer"
+                                      "guidance": "Automotive Fuel guidance",
+                                      "type": "Currency"
                                     },
                                     {
                                       "id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
                                       "q_code": "121",
                                       "label": "Clothing and Foodware",
-                                      "guidance": "",
-                                      "type": "Integer"
+                                      "guidance": "Clothing and Foodware guidance",
+                                      "type": "Currency"
                                     },
                                     {
                                       "id": "e81adc6d-6fb0-4155-969c-d0d646f15345",
                                       "q_code": "122",
                                       "label": "Total Retail Turnover",
-                                      "guidance": "",
-                                      "type": "Integer"
+                                      "guidance": "Total Retail Turnover guidance",
+                                      "type": "Currency"
                                     },
                                     {
                                       "id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
                                       "q_code": "123",
                                       "label": "Household goods",
-                                      "guidance": "",
-                                      "type": "Integer"
+                                      "guidance": "Household good guidance",
+                                      "type": "Currency"
                                     },
                                     {
                                       "id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
                                       "q_code": "124",
                                       "label": "Of these figures, how much were from internet sales? ",
                                       "guidance": "",
-                                      "type": "Integer"
+                                      "type": "Currency"
                                     }
                                   ]
                               }
@@ -160,11 +160,11 @@
                         },
                         {
                           "id": "94546782-08a6-4213-9dc9-0780c2996896",
-                          "title":"",
+                          "title":"Comments",
                           "questions": [
                               {
                                 "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
-                                "title": "Comments",
+                                "title": "",
                                 "description": "",
                                 "responses": [
                                     {
