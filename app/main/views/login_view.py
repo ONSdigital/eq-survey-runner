@@ -14,6 +14,11 @@ class LoginView(MethodView):
         self.logger = logging.getLogger(__name__)
 
     def get(self):
+        """
+        Initial url processing - expects a token parameter and then will authenticate this token. Once authenticated
+        it will be placed in the users session
+        :return: a 302 redirect to the questionnaire page
+        """
         authenticator = Authenticator()
         self.logger.debug("Attempting token authentication")
         try:

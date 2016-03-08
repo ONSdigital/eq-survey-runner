@@ -55,7 +55,7 @@ login_manager.session_protection = 'strong'
 def load_user(request):
     logging.debug("Calling load user %s")
     authenticator = Authenticator()
-    return authenticator.check_session(request)
+    return authenticator.check_session()
 
 
 def create_app(config_name):

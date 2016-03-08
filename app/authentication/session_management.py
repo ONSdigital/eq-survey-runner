@@ -4,15 +4,30 @@ import logging
 
 class SessionManagement(object):
     def add_token(self, jwt):
+        """
+        Store a user's token for retrieval later
+        :param jwt: the user JWT
+        """
         pass
 
     def has_token(self):
+        """
+        Checks if a user has a stored token
+        :return: boolean value
+        """
         pass
 
     def remove_token(self):
+        """
+        Removes a user token
+        """
         pass
 
     def get_token(self):
+        """
+        Retrieves a user's token
+        :return: the user's JWT
+        """
         pass
 
 

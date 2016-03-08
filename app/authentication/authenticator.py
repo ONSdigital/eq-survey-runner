@@ -17,7 +17,11 @@ class User(UserMixin):
 
 class Authenticator(object):
 
-    def check_session(self, request):
+    def check_session(self):
+        """
+        Checks for the present of the JWT in the users sessions
+        :return: A user object if a JWT token is available in the session
+        """
         logger.debug("Checking for session")
         if session_manager.has_token():
             logger.debug("Session token exists")
@@ -27,6 +31,12 @@ class Authenticator(object):
             return None
 
     def jwt_login(self, request):
+        """
+        Login using a JWT token, in production this must be an encrypted JWT. If developer mode is enabled
+        then the token can be either encrypted, signed or plain or can be left off completely.
+        :param request: The flask request
+        :return: the decrypted and unencoded token
+        """
         if settings.EQ_PRODUCTION:
             logger.info("Production mode")
             if request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME) is None:
