@@ -25,4 +25,4 @@ tests/coverage
 !newrelic.ini
 
 # Token generation file
-token.py
+token_generator.py
