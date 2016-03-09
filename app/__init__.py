@@ -1,10 +1,15 @@
-from flask.ext.babel import Babel
 from flask import Flask
+from flask.ext.babel import Babel
+from flask.ext.login import LoginManager
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck, EnvironmentDump
 from flaskext.markdown import Markdown
 from app import settings
+from app.authentication.authenticator import Authenticator
 from app.submitter.submitter import Submitter
+from app.main.views.questionnaire_view import QuestionnaireView
+from app.main.views.login_view import LoginView
+from datetime import timedelta
 import pytz
 import os.path
 import newrelic.agent
@@ -42,6 +47,17 @@ def git_revision():
     return True, GIT_REVISION
 
 
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+
+
+@login_manager.request_loader
+def load_user(request):
+    logging.debug("Calling load user %s")
+    authenticator = Authenticator()
+    return authenticator.check_session()
+
+
 def create_app(config_name):
     application = Flask(__name__, static_url_path='/s')
     headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache'}
@@ -52,6 +68,10 @@ def create_app(config_name):
     application.babel.localeselector(get_locale)
     application.jinja_env.add_extension('jinja2.ext.i18n')
     application.envdump = EnvironmentDump(application, '/environment')
+
+    application.secret_key = settings.EQ_SECRET_KEY
+    application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+
     Markdown(application, extensions=['gfm'])
 
     # import and regsiter the main application blueprint
@@ -63,4 +83,19 @@ def create_app(config_name):
     from .patternlib import patternlib_blueprint
     application.register_blueprint(patternlib_blueprint)
 
+    application.logger.debug("Initializing login manager for application")
+    login_manager.init_app(application)
+    application.logger.debug("Login Manager initialized")
+
+    # workaround flask crazy logging mechanism
+    application.logger_name = "nowhere"
+    application.logger
+
+    add_views(application)
+
     return application
+
+
+def add_views(application):
+    application.add_url_rule('/questionnaire/<questionnaire_id>', view_func=QuestionnaireView.as_view("questionnaire"), methods=['GET', 'POST'])
+    application.add_url_rule('/session', view_func=LoginView.as_view("login"), methods=['GET'])

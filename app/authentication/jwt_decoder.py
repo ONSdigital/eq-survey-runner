@@ -7,6 +7,7 @@ from cryptography.exceptions import InvalidTag, InternalError
 
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
+from app import settings
 import base64
 import jwt
 import logging
@@ -17,20 +18,25 @@ CEK_EXPECT_LENGTH = 32
 
 
 class Decoder (object):
-    def __init__(self, rrm_public_key, sr_private_key, sr_private_key_password=None):
-        # oddly the python cryptography library needs these as bytes string
-        rrm_public_key_as_bytes = self.__to_bytes(rrm_public_key)
-        sr_private_key_as_bytes = self.__to_bytes(sr_private_key)
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+        if settings.EQ_RRM_PUBLIC_KEY is None or settings.EQ_SR_PRIVATE_KEY is None or settings.EQ_SR_PRIVATE_KEY_PASSWORD is None:
+            self.logger.fatal('KEYMAT not configured correctly.')
+            raise OSError('KEYMAT not configured correctly.')
+        else:
+            # oddly the python cryptography library needs these as bytes string
+            rrm_public_key_as_bytes = self.__to_bytes(settings.EQ_RRM_PUBLIC_KEY)
+            sr_private_key_as_bytes = self.__to_bytes(settings.EQ_SR_PRIVATE_KEY)
 
-        self.rrm_public_key = serialization.load_pem_public_key(
-            rrm_public_key_as_bytes,
-            backend=backend
-        )
-        self.sr_private_key = serialization.load_pem_private_key(
-            sr_private_key_as_bytes,
-            password=sr_private_key_password.encode(),
-            backend=backend
-        )
+            self.rrm_public_key = serialization.load_pem_public_key(
+                rrm_public_key_as_bytes,
+                backend=backend
+            )
+            self.sr_private_key = serialization.load_pem_private_key(
+                sr_private_key_as_bytes,
+                password=settings.EQ_SR_PRIVATE_KEY_PASSWORD.encode(),
+                backend=backend
+            )
 
     def decode_jwt_token(self, token):
         try:
