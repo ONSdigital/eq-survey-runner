@@ -23,21 +23,15 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_no_token(self):
-        # set to production mode
-        settings.EQ_PRODUCTION = True
         response = self.client.get('/session')
         self.assertEquals(401, response.status_code)
 
     def test_invalid_token(self):
-        # set to production mode
-        settings.EQ_PRODUCTION = True
         token = "invalid"
         response = self.client.get('/session?token=' + token)
         self.assertEquals(403, response.status_code)
 
     def test_fully_encrypted(self):
-        # set to production mode
-        settings.EQ_PRODUCTION = True
         encoder = Encoder()
         iat = time.time()
         exp = time.time() + (5 * 60)
@@ -45,30 +39,6 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         token = encoder.encode(payload)
         encrypted_token = encoder.encrypt(token)
         response = self.client.get('/session?token=' + encrypted_token.decode())
-        self.assertEquals(302, response.status_code)
-
-    def test_signed(self):
-        # set to dev mode - production does not allow unencrypted
-        settings.EQ_PRODUCTION = False
-        encoder = Encoder()
-        iat = time.time()
-        exp = time.time() + (5 * 60)
-        payload = {'user': 'jimmy', 'iat': str(int(iat)), 'exp': str(int(exp))}
-        token = encoder.encode(payload)
-        response = self.client.get('/session?token=' + token.decode())
-        self.assertEquals(302, response.status_code)
-
-    def test_encoded(self):
-        # set to dev mode - production does not allow unencrypted and unsigned
-        settings.EQ_PRODUCTION = False
-        encoder = Encoder()
-        iat = time.time()
-        exp = time.time() + (5 * 60)
-        payload = {'user': 'jimmy', 'iat': str(int(iat)), 'exp': str(int(exp))}
-        token = encoder.encode(payload)
-        tokens = token.decode().split(".")
-        new_token = tokens[0] + "." + tokens[1] + "."
-        response = self.client.get('/session?token=' + new_token)
         self.assertEquals(302, response.status_code)
 
 if __name__ == '__main__':

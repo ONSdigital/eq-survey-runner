@@ -138,7 +138,6 @@ EQ_SR_PRIVATE_KEY - location on disk of the SR private key
 EQ_RABBITMQ_URL - the RabbitMQ connection string
 EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
 EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
-EQ_PRODUCTION - flag to indicate if we're running in production or dev mode
 EQ_CLOUDWATCH_LOGGING - feature flag to enable AWS cloudwatch logging
 EQ_GIT_REF - the latest git ref of HEAD on master
 EQ_SR_LOG_GROUP - The name of the log group to create (defaults to `username-local` for local development)

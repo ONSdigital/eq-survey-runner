@@ -15,4 +15,4 @@ def generate_token():
 
 
 if __name__ == '__main__':
-    print("http://localhost:5000/session?token=" + generate_token().decode())
+    print("http://localhost:5000/session?token=" + generate_token().decode())  # NOQA
