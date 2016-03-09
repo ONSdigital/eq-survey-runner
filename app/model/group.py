@@ -10,3 +10,4 @@ class Group(object):
         if block not in self.blocks:
             self.blocks.append(block)
             block.container = self
+
