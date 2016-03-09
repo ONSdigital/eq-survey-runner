@@ -103,7 +103,7 @@ def create_app(config_name):
         log_group = settings.EQ_SR_LOG_GROUP
         cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
         application.logger.addHandler(cloud_watch_handler)               # flask logger
-        logging.getLogger().addHandler(cloud_watch_handler)              # 'root;' logger
+        # we DO NOT WANT the root logger logging to cloudwatch as thsi causes weird recursion errors
         logging.getLogger(__name__).addHandler(cloud_watch_handler)      # module logger
         logging.getLogger('werkzeug').addHandler(cloud_watch_handler)    # werkzeug framework logger
 
