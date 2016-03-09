@@ -13,7 +13,6 @@ class SchemaParserFactoryTest(unittest.TestCase):
         parser = SchemaParserFactory.create_parser(schema)
         self.assertEqual(parser.get_parser_version(), '0.0.1', "The parser and schema version numbers did not match")
 
-
     def test_invalid_schema_version(self):
         schema = {
             "schema_version": '0.0.0'   # invalid schema version
