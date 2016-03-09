@@ -6,6 +6,7 @@
 # ./scripts/run_tests.sh
 
 # Use default environment vars for localhost if not already set
+export EQ_CLOUDWATCH_LOGGING=False
 echo "Environment variables in use:"
 env | grep EQ_
 

@@ -27,8 +27,8 @@ class LoginView(MethodView):
             session_manager.add_token(token)
             return redirect("/questionnaire/1")
         except NoTokenException as e:
-            self.logger.warning("Unable to authenticate user", e)
+            self.logger.warning("Unable to authenticate user")
             return errors.unauthorized(e)
         except InvalidTokenException as e:
-            self.logger.warning("Invalid Token provided", e)
+            self.logger.warning("Invalid Token provided")
             return errors.forbidden(e)
