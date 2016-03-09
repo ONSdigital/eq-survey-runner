@@ -39,4 +39,6 @@ if [ ! -s "app/static" ]; then
   npm run compile
 fi
 
+python token_generator.py
 python application.py runserver
+

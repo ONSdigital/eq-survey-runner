@@ -27,6 +27,9 @@ Run the server with
 ./scripts/run_app.sh
 
 ```
+
+This will generate a JWT for you to log into the application. The script prints out the URL with the token included.
+
 ---
 
 ### Front-end Toolkit
@@ -138,7 +141,6 @@ EQ_SR_PRIVATE_KEY - location on disk of the SR private key
 EQ_RABBITMQ_URL - the RabbitMQ connection string
 EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
 EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
-EQ_PRODUCTION - flag to indicate if we're running in production or dev mode
 EQ_CLOUDWATCH_LOGGING - feature flag to enable AWS cloudwatch logging
 EQ_GIT_REF - the latest git ref of HEAD on master
 EQ_SR_LOG_GROUP - The name of the log group to create (defaults to `username-local` for local development)
@@ -167,12 +169,15 @@ The JOSE header of the final JWE must include:
 - alg - the key encryption algorithm (must be RSA-OAEP)
 - enc - the key encryption encoding (must be A256GCM)
 
-When running in production mode every request to the survey runner must append the follow url parameter: `token`. This
-parameter must be set to a valid JWE encrypted JWT token. Only encrypted tokens are allowed in production mode.
+To access the application you must provide a valid JWT. To do this browse to the /session url and append a token parameter.
+This parameter must be set to a valid JWE encrypted JWT token. Only encrypted tokens are allowed.
 
-When running in dev mode the token is not mandatory, however it can be supplied and if so will be decrypted/decoded and
-used. Also when in dev mode, unencrypted signed and unencrypted unsigned tokens can be also used in the url parameter
-'token'.
+There is a python script for generating tokens for use in development, to run:
+```
+python token_generator.py
+```
+
+
 
 
 ## Alpha Survey Runner
