@@ -7,3 +7,5 @@ class Block(object):
     def add_section(self, section):
         if section not in self.sections:
             self.sections.append(section)
+            section.container = self
+

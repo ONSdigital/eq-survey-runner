@@ -1,10 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class AbstractValidator(object):
-
-    def __init__(self, context):
-        self.context = context
+class IValidator(object):
 
     @abstractmethod
     def validate(self):

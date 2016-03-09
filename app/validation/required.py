@@ -1,8 +1,8 @@
-from abstract_validator import AbstractValidator
+from i_validator import IValidator
 from validation_result import ValidationResult
 
 
-class Required(AbstractValidator):
+class Required(IValidator):
 
-    def validate(self):
-      return ValidationResult()
+    def validate(self, repsone):
+        return ValidationResult()

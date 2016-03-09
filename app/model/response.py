@@ -5,3 +5,4 @@ class Response(object):
         self.guidance = None
         self.type = None
         self.code = None
+        self.container = None

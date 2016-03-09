@@ -2,6 +2,7 @@ from flask import session
 from abc import ABCMeta, abstractmethod
 from app.validation.validation_result import ValidationResult
 
+<<<<<<< HEAD
 
 class ValidationStoreFactory(object):
     @staticmethod
@@ -13,11 +14,19 @@ class IValidationStore(metaclass=ABCMeta):
     # keys are in the format...
     # group:block:section:question:response:<repetition>
     @abstractmethod
+=======
+class ValidationStore(object):
+
+    def __init__(self):
+        self.validation_results = {}
+
+>>>>>>> eq-1 validation basics
     def store_result(self, key, value):
-        raise NotImplementedError()
+        self.validation_results.update({key:value})
 
     @abstractmethod
     def get_result(self, key):
+<<<<<<< HEAD
         raise NotImplementedError()
 
 
@@ -31,3 +40,8 @@ class FlaskValidationStore(IValidationStore):
         result = ValidationResult()
         result.from_dict(session[key])
         return result
+=======
+        return self.validation_results.get(key, "No validated")
+
+
+>>>>>>> eq-1 validation basics
