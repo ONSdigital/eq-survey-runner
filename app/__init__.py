@@ -100,10 +100,19 @@ def create_app(config_name):
     application._logger = logging.getLogger(__name__)
 
     if settings.EQ_CLOUDWATCH_LOGGING:
+        # filter out botocore messages, we don't wish to log these
+        class NoBotocoreFilter(logging.Filter):
+            def filter(self, record):
+                return not record.name.startswith('botocore')
+
         log_group = settings.EQ_SR_LOG_GROUP
         cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
+
+        cloud_watch_handler.addFilter(NoBotocoreFilter())
+
         application.logger.addHandler(cloud_watch_handler)               # flask logger
         # we DO NOT WANT the root logger logging to cloudwatch as thsi causes weird recursion errors
+        logging.getLogger().addHandler(cloud_watch_handler)      # root logger
         logging.getLogger(__name__).addHandler(cloud_watch_handler)      # module logger
         logging.getLogger('werkzeug').addHandler(cloud_watch_handler)    # werkzeug framework logger
 
