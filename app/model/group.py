@@ -6,9 +6,7 @@ class Group(object):
         self.blocks = []
         self.container = None
 
-
     def add_block(self, block):
         if block not in self.blocks:
             self.blocks.append(block)
             block.container = self
-
