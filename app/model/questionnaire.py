@@ -9,4 +9,15 @@ class Questionnaire(object):
     def add_group(self, group):
         if group not in self.groups:
             self.groups.append(group)
-            group.questionnaire = self
+            group.container = self
+
+    def get_item_by_id(self, id):
+        if id == self.id:
+            return self
+        else:
+            item = None
+            for group in self.groups:
+                candidate = group.get_item_by_id(id)
+                if candidate is not None:
+                    item = candidate
+            return item
