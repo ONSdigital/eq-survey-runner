@@ -13,6 +13,7 @@ $icon-width: 3rem;
     transform: scale(1.2);
   }
   &::before {
+    speak: none;
     display: block;
     content: "i";
     font-family: $font-serif;

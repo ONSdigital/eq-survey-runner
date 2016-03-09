@@ -4,7 +4,7 @@
 
 {% block survey %}
 
-<form action="" class="form">
+<form action="" class="form" aria-role="form">
 
     {% for group in questionnaire.groups %}
 
@@ -16,19 +16,7 @@
 
         {% for section in block.sections %}
 
-            <section class="section" id="section-{{section.id}}">
-
-              {% if section.title %}
-                <h2 class="section__title">{{section.title}}</h2>
-              {% endif %}
-
-              {% for question in section.questions %}
-
-                {% include '/partials/question.html' %}
-
-              {% endfor %}
-
-            </section>
+          {% include 'partials/section.html' %}
 
         {% endfor %}
 

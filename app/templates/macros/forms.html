@@ -1,0 +1,49 @@
+{%- macro label(response) %}
+  <label class="label{{' u-visuallyhidden' if response.hidelabel}}" for="{{response.id}}" id="label-{{response.id}}">{{response.label}}</label>
+{% endmacro -%}
+
+{%- macro input(type, question, response) %}
+
+  {% set special_types = {
+    'currency': '£',
+    'percentage': '%'
+  }%}
+
+  {% if type in special_types %}
+    {% set input_type = 'number' %}
+    {% set input_has_special_type = true %}
+  {% else %}
+    {% set input_type = type %}
+    {% set input_has_special_type = false %}
+  {% endif %}
+
+  {% if input_has_special_type %}
+    <div class="input-type input-type--{{type}}" data-type="{{special_types[type]}}">
+  {% endif %}
+
+  <input class="input input--{{input_type}}"
+         type="{{input_type}}"
+         value="{{response.value|e}}"
+         name="{{response.name}}"
+         id="{{response.id}}"
+         placeholder="{{response.placeholder}}"
+         aria-describedby="description-{{question.id}} guidance-{{response.id}}-link"
+         aria-labelledby="label-{{response.id}}">
+
+  {% if input_has_special_type %}
+    </div>
+  {% endif %}
+
+{% endmacro -%}
+
+{% macro textarea(response, question) %}
+  <textarea class="input input--textarea"
+            name="{{response.name}}"
+            id="{{response.id}}"
+            placeholder="{{response.placeholder}}"
+            rows="4" cols="60"
+            aria-describedby="description-{{question.id}} guidance-{{response.id}}"
+            aria-labelledby="label-{{response.id}}">
+            {{response.value|e}}
+  </textarea>
+{% endmacro %}

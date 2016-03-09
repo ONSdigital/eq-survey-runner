@@ -1,0 +1,72 @@
+.guidance {
+  margin: 0;
+}
+
+.guidance__link {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  &:focus {
+    outline: none;
+    background: $color-yellow;
+    color: $color-black;
+  }
+  span {
+    font-size: 0.8rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &::before {
+    $size: 0.9rem;
+    speak: none;
+    content: "i";
+    font-style: italic;
+    font-family: $font-serif;
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: $size;
+    width: $size;
+    height: $size;
+    background: $color-secondary;
+    color: $color-white;
+    vertical-align: baseline;
+    display: inline-block;
+    border-radius: 100%;
+    margin-right: 0.4rem;
+  }
+}
+
+.guidance__main {
+  display: none;
+  padding: 1rem;
+  background: lighten($color-light-grey, 6%);
+  border: 1px solid $color-light-grey;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  overflow: hidden;
+  width: 100%;
+  .is-expanded & {
+    margin-top: 1rem;
+    display: table;
+    table-layout: fixed;
+  }
+  div {
+    @include mq(s) {
+      display: table-cell;
+      &:first-of-type {
+        padding-right: 0.5rem;
+        border-right: 1px solid $color-light-grey;
+      }
+      &:last-of-type {
+        padding-left: 1rem;
+      }
+    }
+    ul {
+      padding-left: 1rem;
+      @include mq(s) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<div class="guidance js-details">
+  <a class="guidance__link js-details-trigger" href="#guidance-{{response.id}}" id="guidance-{{response.id}}-link" aria-controls="guidance-{{response.id}}-main" aria-expanded="false"><span class="u-vh">Click here to </span><span>Show guidance for this question</span>
+  </a>
+  <div class="guidance__main js-details-main" id="guidance-{{response.id}}-main" tabIndex="0" aria-hidden="true">
+    {{response.guidance|safe}}
+  </div>
+</div>

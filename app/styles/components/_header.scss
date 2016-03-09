@@ -1,7 +1,7 @@
 .header {
   background: $color-black;
   color: $color-white;
-  padding: 1rem;
+  padding: 0.3rem;
   margin-bottom: 0.5rem;
 
   @include mq(m) {

@@ -1,3 +1,5 @@
+{% import 'macros/forms.html' as form %}
+
 <div class="question {% if question.error %}question--has-errors{% endif %}" id="question-{{question.id}}">
   {%- if question.error %}
     <div class="question__error">
@@ -12,19 +14,23 @@
       {%- endif %}
     </legend>
     {%- if question.description %}
-      <div class="question__description">
+      <div class="question__description" id="description-{{question.id}}">
         {{question.description|safe}}
       </div>
     {% endif %}
     <div class="question__responses">
     {% set grid = question.responses|length > 1 and question.responses[0].type!='DateRange'%}
+    {% set grid = false %}
 
     {%- if grid %} <div class="grid grid--align-bottom"> {% endif -%}
       {%- for response in question.responses -%}
         {%- if grid -%} <div class="grid__col m-6"> {%- endif %}
-        <div class="question__response">
-          <div class="field field--{{response.type|lower}}">
+        <div class="question__response response">
+          <div class="response__field field field--{{response.type|lower}}">
             {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
+            {% if response.guidance %}
+              {% include 'partials/guidance.html' %}
+            {% endif %}
           </div>
         </div>
         {%- if grid %} </div> {% endif -%}

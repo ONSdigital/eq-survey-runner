@@ -1,0 +1,14 @@
+<div class="section" id="section-{{section.id}}">
+
+  {% if section.title %}
+    <h2 class="section__title">{{section.title}}</h2>
+  {% endif %}
+  {% if section.description %}
+    <div class="section__description">{{section.description|safe}}</div>
+  {% endif %}
+
+  {% for question in section.questions %}
+    {% include '/partials/question.html' %}
+  {% endfor %}
+
+</div>

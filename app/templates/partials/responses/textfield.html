@@ -1,2 +1,2 @@
-<label class="label{{' u-visuallyhidden' if response.hidelabel}}" for="{{response.id}}">{{response.label}}</label>
-<input class="input input--text" type="text" value="{{response.value|e}}" name="{{response.name}}" id="{{response.id}}" placeholder="{{response.placeholder}}">
+{{form.label(response)}}
+{{form.input('text', question, response)}}
