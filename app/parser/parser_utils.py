@@ -1,40 +1,37 @@
 # -*- coding: utf-8 -*-
-'''Parser Utils Module
+"""Parser Utils Module
 
 This module defines a ParserUtils class with several static methods to be used
 by parser implementations.
 
-'''
+"""
 
 from .schema_parser_exception import SchemaParserException
 
 
 class ParserUtils(object):
-    '''ParserUtils
+    """ParserUtils
 
     The ParserUtils class exposes a number of static utility methods that are
     intended to be called from within parser implementations.
 
-    '''
+    """
 
     @staticmethod
     def get_required(obj, key):
-        '''Get a required value from the dict.
+        """Get a required value from the dict.
 
         Gets the value associated with key in the dict, or raises a
         SchemaParserException if it's not present.
 
-        Args:
-            obj: A dict on json object
-            key: The name of the property to retrieve
+        :param obj: A dict on json object
+        :param key: The name of the property to retrieve
 
-        Returns:
-            The value if found
+        :returns: The value if found
 
-        Raises:
-            A SchemaParserException if the key is not found
+        :raises: A SchemaParserException if the key is not found
 
-        '''
+        """
         if key in obj.keys():
             return obj[key]
         else:
@@ -42,24 +39,20 @@ class ParserUtils(object):
 
     @staticmethod
     def get_required_string(obj, key):
-        '''Get a required string from the dict
+        """Get a required string from the dict
 
         Gets the string value associated with the key in the dict, and raises a
         SchemaParserException if the key is not present or the value is not a
         string.
 
-        Args:
-            obj: A dict on json object
-            key: The name of the property to retrieve
+        :param obj: A dict on json object
+        :param key: The name of the property to retrieve
 
-        Returns:
-            The value as a string if found
+        :returns: The value as a string if found
 
-        Raises:
-            A SchemaParserException if the key is not found, or the value is not
-            a string
+        :raises: A SchemaParserException if the key is not found, or the value is not a string
 
-        '''
+        """
         value = ParserUtils.get_required(obj, key)
         if isinstance(value, str):
             return value
@@ -68,24 +61,20 @@ class ParserUtils(object):
 
     @staticmethod
     def get_required_integer(obj, key):
-        '''Get a required integer from the dict
+        """Get a required integer from the dict
 
         Gets the integer value associated with the key in the dict, and raises a
         SchemaParserException if the key is not present or the value is not an
         integer.
 
-        Args:
-            obj: A dict on json object
-            key: The name of the property to retrieve
+        :param obj: A dict on json object
+        :param key: The name of the property to retrieve
 
-        Returns:
-            The value as an integer if found
+        :returns: The value as an integer if found
 
-        Raises:
-            A SchemaParserException if the key is not found, or the value is not
-            an integer
+        :raises: A SchemaParserException if the key is not found, or the value is not an integer
 
-        '''
+        """
         value = ParserUtils.get_required(obj, key)
         if isinstance(value, int):
             return int(value)
@@ -94,41 +83,36 @@ class ParserUtils(object):
 
     @staticmethod
     def get_optional(obj, key):
-        '''Get an optional property from the dict
+        """Get an optional property from the dict
 
         Gets the optional value associated with the key in the dict, or returns
         None if the key is not found.
 
-        Args:
-            obj: A dict on json object
-            key: The name of the property to retrieve
+        :param obj: A dict on json object
+        :param key: The name of the property to retrieve
 
-        Returns:
-            The value if found, otherwise returns None
+        :returns: The value if found, otherwise returns None
 
-        '''
+        """
         if key in obj.keys():
             return obj[key]
         else:
             return None
 
     def get_optional_string(obj, key):
-        '''Get an optional string property from the dict
+        """Get an optional string property from the dict
 
         Gets the optional string value associated with the key in the dict, or returns
         None if the key is not found.
 
-        Args:
-            obj: A dict on json object
-            key: The name of the property to retrieve
+        :param obj: A dict on json object
+        :param key: The name of the property to retrieve
 
-        Returns:
-            The value if found, otherwise returns None
+        :returns: The value if found, otherwise returns None
 
-        Raises:
-            A SchemaParserException is raised if the value exists and is not a string
+        :raises: A SchemaParserException is raised if the value exists and is not a string
 
-        '''
+        """
         value = ParserUtils.get_optional(obj, key)
         if isinstance(value, str):
             return value
@@ -138,22 +122,19 @@ class ParserUtils(object):
             raise SchemaParserException("Expected string '{field}' is not a string".format(field=key))
 
     def get_optional_integer(obj, key):
-        '''Get an optional integer property from the dict
+        """Get an optional integer property from the dict
 
         Gets the optional integer value associated with the key in the dict, or returns
         None if the key is not found.
 
-        Args:
-            obj: A dict on json object
-            key: The name of the property to retrieve
+        :param obj: A dict on json object
+        :param key: The name of the property to retrieve
 
-        Returns:
-            The value if found cast to an integer, otherwise returns None
+        :returns: The value if found cast to an integer, otherwise returns None
 
-        Raises:
-            A SchemeParserException is raised if the value is not an integer
+        :raises: A SchemeParserException is raised if the value is not an integer
 
-        '''
+        """
         value = ParserUtils.get_optional(obj, key)
         if value is not None:
             try:

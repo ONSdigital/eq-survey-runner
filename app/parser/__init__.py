@@ -1,4 +1,4 @@
-'''The Parser Module
+"""The Parser Module
 
 This module is responsible for converting a survey schema json object into a
 questionnaire object tree.
@@ -9,4 +9,4 @@ returns an instance of SchemaParser appropriate for the schema version.
 
 If a SchemaParser cannot be instantiated for the version, then a
 SchemaParserException is raised.
-'''
+"""
