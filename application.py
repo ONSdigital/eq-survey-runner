@@ -28,7 +28,7 @@ levels = {
 }
 logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=FORMAT)
 
-if settings.EQ_PRODUCTION:
+if settings.EQ_CLOUDWATCH_LOGGING:
     log_group = settings.EQ_SR_LOG_GROUP
     cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
     application.logger.addHandler(cloud_watch_handler)

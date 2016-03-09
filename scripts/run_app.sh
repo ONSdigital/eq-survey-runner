@@ -25,6 +25,10 @@ if [ -z "EQ_PRODUCTION" ]; then
   export EQ_PRODUCTION=False
 fi
 
+if [ -z "EQ_CLOUDWATCH_LOGGING" ]; then
+  export EQ_CLOUDWATCH_LOGGING=False
+fi
+
 # Use default environment vars for localhost if not already set
 
 echo "Environment variables in use:"
