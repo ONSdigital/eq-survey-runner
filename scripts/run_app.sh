@@ -21,11 +21,11 @@ if [ -z "$EQ_GIT_REF" ]; then
   export EQ_GIT_REF=`git rev-parse HEAD`
 fi
 
-if [ -z "EQ_PRODUCTION" ]; then
+if [ -z "$EQ_PRODUCTION" ]; then
   export EQ_PRODUCTION=False
 fi
 
-if [ -z "EQ_CLOUDWATCH_LOGGING" ]; then
+if [ -z "$EQ_CLOUDWATCH_LOGGING" ]; then
   export EQ_CLOUDWATCH_LOGGING=False
 fi
 
