@@ -9,4 +9,3 @@ class Question(object):
         if response not in self.responses:
             self.responses.append(response)
             response.container = self
-

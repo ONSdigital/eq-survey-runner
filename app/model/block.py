@@ -8,4 +8,3 @@ class Block(object):
         if section not in self.sections:
             self.sections.append(section)
             section.container = self
-

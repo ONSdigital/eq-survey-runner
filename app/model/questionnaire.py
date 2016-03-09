@@ -10,4 +10,3 @@ class Questionnaire(object):
         if group not in self.groups:
             self.groups.append(group)
             group.questionnaire = self
-

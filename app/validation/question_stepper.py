@@ -1,5 +1,5 @@
-from i_validation_steps import IValidationSteps
-from validation_result import ValidationResult
+from app.validation.i_validation_steps import IValidationSteps
+from app.validation.validation_result import ValidationResult
 
 
 class QuestionStepper(IValidationSteps):

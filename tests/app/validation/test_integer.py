@@ -23,9 +23,9 @@ class IntegerTest(unittest.TestCase):
         response_1.id = "69ed19a4-f2ee-4742-924d-b64b9fa09499"
         response_2.type = "Integer"
         response_2.id = "709c9f96-2757-4cf3-ba48-808c6c616848"
-        user_answers ={"69ed19a4-f2ee-4742-924d-b64b9fa09499":1, "709c9f96-2757-4cf3-ba48-808c6c616848":"a"}
+        user_answers = {"69ed19a4-f2ee-4742-924d-b64b9fa09499": 1, "709c9f96-2757-4cf3-ba48-808c6c616848": "a"}
 
-        validation_results= ValidatorStepper().validator_stepper(section_1, user_answers)
+        validation_results = ValidatorStepper().validator_stepper(section_1, user_answers)
 
         self.assertEquals(True, validation_results.get_result("69ed19a4-f2ee-4742-924d-b64b9fa09499").is_valid)
         self.assertEquals(False, validation_results.get_result("709c9f96-2757-4cf3-ba48-808c6c616848").is_valid)
@@ -48,9 +48,9 @@ class IntegerTest(unittest.TestCase):
         response_1.id = "69ed19a4-f2ee-4742-924d-b64b9fa09499"
         response_2.type = "Integer"
         response_2.id = "709c9f96-2757-4cf3-ba48-808c6c616848"
-        user_answers ={"69ed19a4-f2ee-4742-924d-b64b9fa09499":1, "709c9f96-2757-4cf3-ba48-808c6c616848": 2}
+        user_answers = {"69ed19a4-f2ee-4742-924d-b64b9fa09499": 1, "709c9f96-2757-4cf3-ba48-808c6c616848": 2}
 
-        validation_results= ValidatorStepper().validator_stepper(section_1, user_answers)
+        validation_results = ValidatorStepper().validator_stepper(section_1, user_answers)
 
         self.assertEquals(True, validation_results.get_result("69ed19a4-f2ee-4742-924d-b64b9fa09499").is_valid)
         self.assertEquals(True, validation_results.get_result("709c9f96-2757-4cf3-ba48-808c6c616848").is_valid)

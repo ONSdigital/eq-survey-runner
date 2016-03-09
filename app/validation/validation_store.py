@@ -22,7 +22,7 @@ class ValidationStore(object):
 
 >>>>>>> eq-1 validation basics
     def store_result(self, key, value):
-        self.validation_results.update({key:value})
+        self.validation_results.update({key: value})
 
     @abstractmethod
     def get_result(self, key):
@@ -42,6 +42,9 @@ class FlaskValidationStore(IValidationStore):
         return result
 =======
         return self.validation_results.get(key, "No validated")
+<<<<<<< HEAD
 
 
 >>>>>>> eq-1 validation basics
+=======
+>>>>>>> Tidying up various source code issues

@@ -1,5 +1,5 @@
 from app.validation.response_validator import ResponseValidator
-from i_validation_steps import IValidationSteps
+from app.validation.i_validation_steps import IValidationSteps
 
 
 class ResponseStepper(IValidationSteps):
@@ -13,7 +13,7 @@ class ResponseStepper(IValidationSteps):
         for value, key in enumerate(user_answers):
             response = self.map_user_answer_to_response(key, question)
             validation_result = ResponseValidator().validate(response.type, user_answers[key])
-            validation_store.store_result(key,validation_result)
+            validation_store.store_result(key, validation_result)
 
     @staticmethod
     def map_user_answer_to_response(user_answer_id, question):

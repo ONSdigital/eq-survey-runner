@@ -1,4 +1,4 @@
-from response_factory import ResponseFactory
+from app.validation.response_factory import ResponseFactory
 
 
 class ResponseValidator(object):
@@ -8,5 +8,3 @@ class ResponseValidator(object):
         response_factory = ResponseFactory()
         response_class = response_factory.determine_response_class(response)
         return response_class.validate(user_response)
-
-

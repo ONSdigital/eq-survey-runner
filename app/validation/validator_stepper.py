@@ -1,6 +1,6 @@
-from validation_store import ValidationStore
-from question_stepper import QuestionStepper
-from response_stepper import ResponseStepper
+from app.validation.validation_store import ValidationStore
+from app.validation.question_stepper import QuestionStepper
+from app.validation.response_stepper import ResponseStepper
 
 
 class ValidatorStepper(object):
@@ -16,7 +16,7 @@ class ValidatorStepper(object):
 
     def validator_stepper(self, section, user_answers):
 
-        #Place holder, which will be remove, reason above
+        # Place holder, which will be remove, reason above
         question = section.questions[0]
 
         ResponseStepper().validation_steps(question, user_answers, self.validation_results)
