@@ -84,16 +84,6 @@ def create_app(config_name):
     from .patternlib import patternlib_blueprint
     application.register_blueprint(patternlib_blueprint)
 
-    application.logger.debug("Initializing login manager for application")
-    login_manager.init_app(application)
-    application.logger.debug("Login Manager initialized")
-
-    # workaround flask crazy logging mechanism
-    application.logger_name = "nowhere"
-    application.logger
-
-    add_views(application)
-
     # set up some sane logging, as opposed to what flask does by default
     FORMAT = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
 
@@ -109,13 +99,23 @@ def create_app(config_name):
     # set the logger for this application and stop using flasks broken solution
     application._logger = logging.getLogger(__name__)
 
-    if settings.EQ_PRODUCTION:
+    if settings.EQ_CLOUDWATCH_LOGGING:
         log_group = settings.EQ_SR_LOG_GROUP
         cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
         application.logger.addHandler(cloud_watch_handler)               # flask logger
         logging.getLogger().addHandler(cloud_watch_handler)              # 'root;' logger
         logging.getLogger(__name__).addHandler(cloud_watch_handler)      # module logger
         logging.getLogger('werkzeug').addHandler(cloud_watch_handler)    # werkzeug framework logger
+
+    application.logger.debug("Initializing login manager for application")
+    login_manager.init_app(application)
+    application.logger.debug("Login Manager initialized")
+
+    # workaround flask crazy logging mechanism
+    application.logger_name = "nowhere"
+    application.logger
+
+    add_views(application)
 
     return application
 

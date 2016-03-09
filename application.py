@@ -3,7 +3,6 @@
 import os
 from app import create_app
 from flask.ext.script import Manager, Server
-from app.main.views.questionnaire_view import QuestionnaireView
 
 application = create_app(
     os.getenv('EQ_ENVIRONMENT') or 'development'
