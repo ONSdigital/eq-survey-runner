@@ -19,11 +19,3 @@ class ResponseModelTest(unittest.TestCase):
         self.assertEquals(response.type, 'some-type')
         self.assertEquals(response.code, 'code')
         self.assertIsNone(response.container)
-
-    def test_get_item_by_id(self):
-        response = Response()
-        response.id = 'some-id'
-
-        self.assertEquals(response.get_item_by_id('some-id'), response)
-
-        self.assertIsNone(response.get_item_by_id('another-id'))

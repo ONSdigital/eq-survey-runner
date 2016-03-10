@@ -6,9 +6,4 @@ class Response(object):
         self.type = None
         self.code = None
         self.container = None
-
-    def get_item_by_id(self, id):
-        if id == self.id:
-            return self
-        else:
-            return None
+        self.questionnaire = None

@@ -25,23 +25,3 @@ class GroupModelTest(unittest.TestCase):
 
         self.assertEquals(block1.container, group)
         self.assertEquals(block2.container, group)
-
-    def test_get_item_by_id(self):
-        group = Group()
-
-        group.id = 'some-id'
-        group.title = 'my group object'
-
-        block1 = Block()
-        block1.id = 'block-1'
-
-        block2 = Block()
-        block2.id = 'block-2'
-
-        group.add_block(block1)
-        group.add_block(block2)
-
-        self.assertEquals(group.get_item_by_id('some-id'), group)
-        self.assertIsNone(group.get_item_by_id('another-id'))
-        self.assertEquals(group.get_item_by_id('block-1'), block1)
-        self.assertEquals(group.get_item_by_id('block-2'), block2)

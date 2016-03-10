@@ -1,3 +1,7 @@
+class QuestionnaireException(Exception):
+    pass
+
+
 class Questionnaire(object):
     def __init__(self):
         self.id = None
@@ -5,19 +9,22 @@ class Questionnaire(object):
         self.survey_id = None
         self.description = None
         self.groups = []
+        self.item_register = {}
 
     def add_group(self, group):
         if group not in self.groups:
             self.groups.append(group)
             group.container = self
+            self.register_item(group.id, group)
 
-    def get_item_by_id(self, id):
-        if id == self.id:
-            return self
-        else:
-            item = None
-            for group in self.groups:
-                candidate = group.get_item_by_id(id)
-                if candidate is not None:
-                    item = candidate
-            return item
+    def register_item(self, item_id, item):
+        if item_id in self.item_register.keys():
+            raise QuestionnaireException('Duplicate id found - ' + item_id)
+
+        self.item_register[item_id] = item
+        item.questionnaire = self
+
+    def get_item_by_id(self, item_id):
+        if item_id in self.item_register:
+            return self.item_register[item_id]
+        raise QuestionnaireException('Item not found - ' + item_id)

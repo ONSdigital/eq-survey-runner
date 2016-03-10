@@ -1,5 +1,6 @@
-from app.model.questionnaire import Questionnaire
+from app.model.questionnaire import Questionnaire, QuestionnaireException
 from app.model.group import Group
+from app.model.block import Block
 import unittest
 
 
@@ -11,7 +12,9 @@ class QuestionnaireModelTest(unittest.TestCase):
         questionnaire.title = 'my questionnaire object'
 
         group1 = Group()
+        group1.id = 'group-1'
         group2 = Group()
+        group2.id = 'group-2'
 
         questionnaire.add_group(group1)
         questionnaire.add_group(group2)
@@ -31,16 +34,27 @@ class QuestionnaireModelTest(unittest.TestCase):
         questionnaire.id = 'some-id'
         questionnaire.title = 'my questionnaire object'
 
+        # The order that items is added is important otherwise,
+        # items are ot registered on the questionnaire
         group1 = Group()
         group1.id = 'group-1'
+        questionnaire.add_group(group1)
+
+        block1 = Block()
+        block1.id = 'block-1'
+        group1.add_block(block1)
 
         group2 = Group()
         group2.id = 'group-2'
-
-        questionnaire.add_group(group1)
         questionnaire.add_group(group2)
 
-        self.assertEquals(questionnaire.get_item_by_id('some-id'), questionnaire)
-        self.assertIsNone(questionnaire.get_item_by_id('another-id'))
+        block2 = Block()
+        block2.id = 'block-2'
+        group2.add_block(block2)
+
         self.assertEquals(questionnaire.get_item_by_id('group-1'), group1)
         self.assertEquals(questionnaire.get_item_by_id('group-2'), group2)
+        self.assertEquals(questionnaire.get_item_by_id('block-1'), block1)
+        self.assertEquals(questionnaire.get_item_by_id('block-2'), block2)
+        # NOTE params to the get_item_by_id callable are passed in by assertRaises
+        self.assertRaises(QuestionnaireException, questionnaire.get_item_by_id, 'invalid-id')
