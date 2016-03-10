@@ -1,4 +1,4 @@
-{% import 'macros/patterns.html' as m %}
+{% import 'macros/patterns.html' as patterns %}
 
 <div class="ptn-section">
 
@@ -31,7 +31,7 @@
   </div>
   {% endset %}
 
-  {{m.code(code, false)}}
+  {{patterns.code(code, false)}}
 
 </div>
 
@@ -140,7 +140,7 @@
   </div>
   {% endset %}
 
-  {{m.code(nesting, false)}}
+  {{patterns.code(nesting, false)}}
 
 </div>
 
@@ -160,7 +160,7 @@
   </div>
   {% endset %}
 
-  {{m.code(reversible, false)}}
+  {{patterns.code(reversible, false)}}
 
 </div>
 
@@ -184,6 +184,6 @@
 
   {% endset %}
 
-  {{m.code(pushpull, false)}}
+  {{patterns.code(pushpull, false)}}
 
 </div>

@@ -1,4 +1,4 @@
-{% import 'macros/patterns.html' as m %}
+{% import 'macros/patterns.html' as patterns %}
 
 <p>All type is set in Open Sans with a body size of 18px.</p>
 <div class="ptn-section">
@@ -13,7 +13,7 @@
   <div class="ptn-example">
     {{headings|safe}}
   </div>
-  {{m.code(headings)}}
+  {{patterns.code(headings)}}
 
   <h2>Paragraphs</h2>
   {% set paragraphs %}
@@ -22,6 +22,6 @@
   <div class="ptn-example">
     {{paragraphs|safe}}
   </div>
-  {{m.code(paragraphs)}}
+  {{patterns.code(paragraphs)}}
 
 </div>
