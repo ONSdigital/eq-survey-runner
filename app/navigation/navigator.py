@@ -1,4 +1,8 @@
 from abc import ABCMeta, abstractmethod
+from flask import session
+import json
+
+NAVIGATION_SESSION_KEY = "nav"
 
 
 class Navigator(object):
@@ -37,11 +41,11 @@ class INavigationStore(metaclass=ABCMeta):
 
 class NavigationStore(INavigationStore):
     def store_state(self, state):
-        session["navigation"] = json.dumps(state)
+        session[NAVIGATION_SESSION_KEY] = json.dumps(state)
         session.permanent = True
 
     def get_state(self):
-        state = session["navigation"]
+        state = session[NAVIGATION_SESSION_KEY]
         if state:
             return json.loads(state)
         else:

@@ -1,11 +1,3 @@
-
-from app.renderer.renderer import Renderer
-from app.schema_loader import schema_loader
-from app.parser.schema_parser_factory import SchemaParserFactory
-
-import logging
-
-
 class QuestionnaireManager(object):
     def __init__(self, schema, response_store, validator, validation_store, routing_engine, navigator, navigation_history):
         self._schema = schema
