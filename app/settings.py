@@ -4,11 +4,22 @@ import os
 def parse_mode(str):
     return str.upper() != 'FALSE'
 
+
+def get_key(key_name):
+    """
+    TODO remove these once the encrypted key story is finished
+    :return:
+    """
+    key = open("./jwt-test-keys/" + key_name, 'r')
+    contents = key.read()
+    return contents
+
+
 EQ_RABBITMQ_URL = os.getenv('EQ_RABBITMQ_URL', 'amqp://admin:admin@localhost:5672/%2F')
 EQ_RABBITMQ_QUEUE_NAME = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'eq-submissions')
 EQ_RABBITMQ_TEST_QUEUE_NAME = os.getenv('EQ_RABBITMQ_TEST_QUEUE_NAME', 'eq-test')
-EQ_RRM_PUBLIC_KEY = os.getenv('EQ_RRM_PUBLIC_KEY')
-EQ_SR_PRIVATE_KEY = os.getenv('EQ_SR_PRIVATE_KEY')
+EQ_RRM_PUBLIC_KEY = os.getenv('EQ_RRM_PUBLIC_KEY', get_key("rrm-public.pem"))
+EQ_SR_PRIVATE_KEY = os.getenv('EQ_SR_PRIVATE_KEY', get_key("sr-private.pem"))
 EQ_SR_PRIVATE_KEY_PASSWORD = os.getenv("EQ_SR_PRIVATE_KEY_PASSWORD", "digitaleq")
 EQ_GIT_REF = os.getenv('EQ_GIT_REF', None)
 EQ_NEW_RELIC_CONFIG_FILE = os.getenv('EQ_NEW_RELIC_CONFIG_FILE', './newrelic.ini')
