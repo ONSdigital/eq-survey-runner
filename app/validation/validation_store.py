@@ -1,5 +1,6 @@
 from flask import session
 from abc import ABCMeta, abstractmethod
+from app.validation.validation_result import ValidationResult
 
 
 class ValidationStoreFactory(object):
@@ -23,8 +24,10 @@ class IValidationStore(metaclass=ABCMeta):
 class FlaskValidationStore(IValidationStore):
 
     def store_result(self, key, value):
-        session[key] = value
+        session[key] = value.to_dict()
         session.permanent = True
 
     def get_result(self, key):
-        return session[key]
+        result = ValidationResult()
+        result.from_dict(session[key])
+        return result

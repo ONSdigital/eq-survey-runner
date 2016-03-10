@@ -44,14 +44,15 @@ def questionnaire(questionnaire_id):
 
     # Create the validator
     class Validator(object):
-        def __init__(self, validation_store):
+        def __init__(self, validation_store, schema):
+            self._schema = schema
             self._validation_store = validation_store
 
         def validate(self, responses):
-            for key, value in enumerate(responses):
-                pass  # elf._validation_store.store_result(key, ValidationResult(True))
+            for key, value in responses.items():
+                self._validation_store.store_result(key, ValidationResult(True))
 
-    validator = Validator(validation_store)
+    validator = Validator(validation_store, schema)
 
     # Create the routing engine
     routing_engine = RoutingEngine(schema, response_store)
@@ -73,6 +74,7 @@ def questionnaire(questionnaire_id):
 
     if request.method == 'POST':
         questionnaire_manager.process_incoming_responses(request.form)
+
         return redirect(request.path)
 
     render_data = questionnaire_manager.get_rendering_context()

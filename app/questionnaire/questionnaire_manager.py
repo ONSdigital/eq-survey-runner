@@ -18,8 +18,8 @@ class QuestionnaireManager(object):
 
     def process_incoming_responses(self, user_responses):
         # update the response store with POST data
-        for key, value in enumerate(user_responses):
-            pass  # self._response_store.store_response(key, value)
+        for key, value in user_responses.items():
+            self._response_store.store_response(key, value)
 
         # run the validator to update the validation_store
         self._validator.validate(user_responses)
