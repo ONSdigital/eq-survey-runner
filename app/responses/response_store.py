@@ -1,7 +1,13 @@
 from flask import session
 
 
-class ResponseStore(object):
+class ResponseStoreFactory(object):
+    @staticmethod
+    def create_response_store():
+        return FlaskResponseStore()
+
+
+class IResponseStore(object):
 
     def store_response(self, key, value):
         raise NotImplementedError()
@@ -10,7 +16,7 @@ class ResponseStore(object):
         raise NotImplementedError()
 
 
-class FlaskResponseStore(ResponseStore):
+class FlaskResponseStore(IResponseStore):
 
     def store_response(self, key, value):
         session[key] = value

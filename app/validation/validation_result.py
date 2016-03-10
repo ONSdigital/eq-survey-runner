@@ -1,9 +1,12 @@
 class ValidationResult(object):
+    def __init__(self, is_valid=False):
+        self.is_valid = is_valid
+
     def is_valid(self):
-        raise NotImplementedError()
+        return self.is_valid
 
     def get_errors(self):
-        raise NotImplementedError()
+        return {}
 
     def get_warnings(self):
-        raise NotImplementedError()
+        return {}
