@@ -1,9 +1,8 @@
 $responsive: true;
 
 @import "vars/*.scss";
-@import "vendor/**/*.scss";
+@import "vendor/normalize.scss";
 @import "eq-sass";
-@import "gfm.scss";
 @import "helpers/**/*.scss";
 @import "base/**/*.scss";
 @import "objects/**/*.scss";
