@@ -1,5 +1,6 @@
 from abc import abstractmethod
 
+
 class IValidator(object):
 
     @abstractmethod

@@ -1,7 +1,7 @@
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 
 
-class IValidationSteps(metaclass=ABCMeta):
+class IValidationSteps(object):
 
     @abstractmethod
     def validation_steps(self, container, validating, validation_store):

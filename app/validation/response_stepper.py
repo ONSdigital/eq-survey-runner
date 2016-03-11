@@ -3,6 +3,7 @@ from app.validation.i_validation_steps import IValidationSteps
 
 CONST_REQUIRED = "Required"
 
+
 class ResponseStepper(IValidationSteps):
 
     """

@@ -107,6 +107,8 @@ class IntegerTest(unittest.TestCase):
         response_2.type = "Integer"
         response_2.id = "709c9f96-2757-4cf3-ba48-808c6c616848"
 
+        question_1.add_response(response_1)
+        question_1.add_response(response_2)
         user_answers ={"69ed19a4-f2ee-4742-924d-b64b9fa09499":1, "709c9f96-2757-4cf3-ba48-808c6c616848": 2}
 
         validation_results= ValidatorStepper().validator_stepper(questionnaire_1, user_answers)

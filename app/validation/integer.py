@@ -4,11 +4,6 @@ from app.validation.validation_result import ValidationResult
 
 class Integer(IValidator):
 
-    def validate(self, answer):
-        result = ValidationResult()
-        result.update_state(isinstance(answer, int))
-        return result
-
     """
     Validate that the users answer is an integer
     :param user_answer: The answer the user provided for the response
@@ -26,4 +21,3 @@ class Integer(IValidator):
             validation_result.errors.append("This field should be a number")
 
         return validation_result
-

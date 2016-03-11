@@ -11,6 +11,7 @@ class ResponseFactoryException(Exception):
     :return: response_class: The class to use to validate
     """
 
+
 class ResponseFactory(object):
 
     @staticmethod

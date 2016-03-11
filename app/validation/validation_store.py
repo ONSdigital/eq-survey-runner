@@ -51,5 +51,8 @@ class FlaskValidationStore(IValidationStore):
 >>>>>>> Tidying up various source code issues
 =======
         return self.validation_results.get(key, "Not validated")
+<<<<<<< HEAD
 
 >>>>>>> eq-1 update validation with questionnaire model
+=======
+>>>>>>> eq-1 fix code style errors

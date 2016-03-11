@@ -8,5 +8,3 @@ class Response(object):
         self.container = None
         self.questionnaire = None
         self.required = True
-
-

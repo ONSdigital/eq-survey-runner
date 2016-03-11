@@ -14,4 +14,3 @@ class ResponseValidator(object):
         response_factory = ResponseFactory()
         response_class = response_factory.determine_response_class(validator)
         return response_class.validate(user_answer)
-
