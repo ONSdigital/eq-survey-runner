@@ -27,6 +27,7 @@ class ValidationStore(object):
     @abstractmethod
     def get_result(self, key):
 <<<<<<< HEAD
+<<<<<<< HEAD
         raise NotImplementedError()
 
 
@@ -48,3 +49,7 @@ class FlaskValidationStore(IValidationStore):
 >>>>>>> eq-1 validation basics
 =======
 >>>>>>> Tidying up various source code issues
+=======
+        return self.validation_results.get(key, "Not validated")
+
+>>>>>>> eq-1 update validation with questionnaire model

@@ -18,6 +18,7 @@ class Questionnaire(object):
             self.register_item(group.id, group)
 
     def register_item(self, item_id, item):
+
         if item_id in self.item_register.keys():
             raise QuestionnaireException('Duplicate id found - ' + item_id)
 

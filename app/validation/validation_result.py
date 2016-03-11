@@ -7,9 +7,6 @@ class ValidationResult(object):
     def is_valid(self):
         return self.is_valid
 
-    def is_valid(self):
-        return True
-
     def get_errors(self):
         return self.errors
 

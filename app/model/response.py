@@ -7,3 +7,6 @@ class Response(object):
         self.code = None
         self.container = None
         self.questionnaire = None
+        self.required = True
+
+
