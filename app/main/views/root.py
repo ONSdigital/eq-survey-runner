@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, abort
+from flask import render_template, redirect, request, abort, url_for
 from flask_login import login_required
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
@@ -8,7 +8,7 @@ from app.parser.schema_parser_factory import SchemaParserFactory
 from app.validation.validation_result import ValidationResult
 from app.routing.routing_engine import RoutingEngine
 from app.navigation.navigator import Navigator
-from app.navigation.navigation_history import NavigationHistory
+from app.navigation.navigation_history import FlaskNavigationHistory
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.authentication.authenticator import Authenticator
 from app.authentication.session_management import session_manager
@@ -66,13 +66,19 @@ def login():
         schema = load_and_parse_schema(questionnaire_id)
 
         # load the navigation history
-        navigation_history = NavigationHistory()
+        navigation_history = FlaskNavigationHistory()
 
         # create the navigator
         navigator = Navigator(schema, navigation_history)
 
         current_location = navigator.get_current_location()
-        return navigator.go_to(current_location)
+
+        if current_location == "start":
+            return redirect(url_for("main.cover_page"))
+        elif current_location == "completed":
+            return redirect(url_for("main.thank_you"))
+        else:
+            return redirect(url_for("main.questionnaire"))
 
     except NoTokenException as e:
         logger.warning("Unable to authenticate user")
@@ -113,7 +119,7 @@ def questionnaire():
     routing_engine = RoutingEngine(schema, response_store)
 
     # load the navigation history
-    navigation_history = NavigationHistory()
+    navigation_history = FlaskNavigationHistory()
 
     # create the navigator
     navigator = Navigator(schema, navigation_history)

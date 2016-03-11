@@ -16,7 +16,16 @@ class Navigator(object):
 
     # destination  "group:block:section:question:<repetition>"
     def _valid_destination(self, destination):
-        raise NotImplementedError()
+        """
+        Returns a boolean indicating whether a proposed destination is a valid one
+
+        :param destination: The proposed destination
+
+        :returns: True if valid, False otherwise
+
+        """
+        # TODO Addressable elements for navigation within a questionnaire need to be decided
+        return True
 
     def get_current_location(self):
         state = self._store.get_state()
@@ -31,12 +40,16 @@ class Navigator(object):
             raise current_location
 
     def go_to(self, location):
-        if location == "start":
-            return redirect("/cover-page")
-        elif location == "completed":
-            return redirect("/thank-you")
-        else:
-            return redirect("/questionnaire")
+        """
+        Checks the validity of the proposed location and if valid, stores the
+        current position in the history before updating the current position
+        :param location: the location to go to next
+        """
+        if self._valid_destination(location):
+            state = self._store.get_state()
+            self._navigation_history.add_history_entry(state.current_position)
+            state.current_position = location
+            self._store.store_state(state)
 
 
 class NavigationState(object):
@@ -44,6 +57,18 @@ class NavigationState(object):
         self.started = False
         self.current_position = None
         self.completed = False
+
+    def to_dict(self):
+        return {
+            "started": self.started,
+            "completed": self.completed,
+            "current_position": self.current_position
+        }
+
+    def from_dict(self, values):
+        self.started = values['started'] or False
+        self.completed = values['completed'] or {}
+        self.current_position = values['current_position'] or {}
 
 
 class INavigationStore(metaclass=ABCMeta):
@@ -58,12 +83,11 @@ class INavigationStore(metaclass=ABCMeta):
 
 class NavigationStore(INavigationStore):
     def store_state(self, state):
-        # TODO this doesn't work
-        session[NAVIGATION_SESSION_KEY] = json.dumps(state)
+        session[NAVIGATION_SESSION_KEY] = state.to_dict()
         session.permanent = True
 
     def get_state(self):
+        state = NavigationState()
         if NAVIGATION_SESSION_KEY in session:
-            return json.loads(session[NAVIGATION_SESSION_KEY])
-        else:
-            return NavigationState()
+            state.from_dict(session[NAVIGATION_SESSION_KEY])
+        return state
