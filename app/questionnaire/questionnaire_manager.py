@@ -1,31 +1,26 @@
-
-from app.renderer.renderer import Renderer
-from app.schema_loader import schema_loader
-from app.parser.schema_parser_factory import SchemaParserFactory
-
-import logging
-
-
 class QuestionnaireManager(object):
-    def __init__(self):
-        self._rendering_context = None
+    def __init__(self, schema, response_store, validator, validation_store, routing_engine, navigator, navigation_history):
+        self._schema = schema
+        self._response_store = response_store
+        self._validator = validator
+        self._validation_store = response_store
+        self._routing_engine = routing_engine
+        self._navigator = navigator
+        self._navigation_history = navigation_history
 
-    def process_incoming_response(self, questionnaire_id):
-        # get this value from settings
-        json_schema = schema_loader.load_schema(questionnaire_id)
-        logging.debug("Schema loaded for %s is %s", questionnaire_id, json_schema)
+    def process_incoming_responses(self, user_responses):
+        # update the response store with POST data
+        for key, value in user_responses.items():
+            self._response_store.store_response(key, value)
 
-        # model comes from the schema parser when it's ready
-        model = self.create_model(json_schema)
-        logging.debug("Constructed model %s", model)
+        # run the validator to update the validation_store
+        self._validator.validate(user_responses)
 
-        renderer = Renderer()
-        self._rendering_context = renderer.render(model)
-        logging.debug("Rendered context")
+        # do any routing
 
     def get_rendering_context(self):
-        return self._rendering_context
-
-    def create_model(self, json_schema):
-        parser = SchemaParserFactory.create_parser(json_schema)
-        return parser.parse()
+        return {
+            "validation_results": self._validation_store,
+            "user_responses": self._response_store,
+            "schema": self._schema
+        }

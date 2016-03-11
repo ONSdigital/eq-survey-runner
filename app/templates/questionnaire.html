@@ -4,7 +4,7 @@
 
 {% block survey %}
 
-<form action="" class="form" aria-role="form">
+<form action="" class="form" aria-role="form" method="POST">
 
     {% for group in questionnaire.groups %}
 
@@ -28,8 +28,8 @@
 
     {% endfor %}
 
-  <button class="btn btn--neutral" type="button" name="button">Save &amp; Exit</button>
-  <button class="btn" type="button" name="button">Save &amp; Continue</button>
+  <button class="btn btn--neutral" type="submit" name="action[save_exit]">Save &amp; Exit</button>
+  <button class="btn" type="submit" name="action[save_continue]">Save &amp; Continue</button>
 
 </form>
 
