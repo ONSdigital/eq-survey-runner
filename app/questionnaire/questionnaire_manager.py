@@ -10,9 +10,6 @@ class QuestionnaireManager(object):
 
     def process_incoming_responses(self, user_responses):
 
-        # set the navigation state
-
-
         # update the response store with POST data
         for key, value in user_responses.items():
             self._response_store.store_response(key, value)
@@ -31,7 +28,6 @@ class QuestionnaireManager(object):
 
         # now return the new location
         return self._navigator.get_current_location()
-
 
     def get_rendering_context(self):
         return {

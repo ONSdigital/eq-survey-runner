@@ -35,7 +35,7 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         encoder = Encoder()
         iat = time.time()
         exp = time.time() + (5 * 60)
-        payload = {'user': 'jimmy', 'iat': str(int(iat)), 'exp': str(int(exp))}
+        payload = {'user': 'jimmy', 'iat': str(int(iat)), 'exp': str(int(exp)), 'eq-id':'1'}
         token = encoder.encode(payload)
         encrypted_token = encoder.encrypt(token)
         response = self.client.get('/session?token=' + encrypted_token.decode())

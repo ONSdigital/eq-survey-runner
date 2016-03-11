@@ -37,7 +37,11 @@ class Authenticator(object):
         """
         if request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME) is None:
             raise NoTokenException("Please provide a token")
-        return self._jwt_decrypt(request)
+        token = self._jwt_decrypt(request)
+
+        # store the token in the session
+        session_manager.add_token(token)
+        return token
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)

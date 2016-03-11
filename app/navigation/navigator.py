@@ -1,8 +1,5 @@
-from abc import ABCMeta, abstractmethod
-from flask import session
+from .navigation_store import FlaskNavigationStore
 import logging
-
-NAVIGATION_SESSION_KEY = "nav"
 
 logger = logging.getLogger(__name__)
 
@@ -11,7 +8,7 @@ class Navigator(object):
     def __init__(self, schema, navigation_history):
         self._schema = schema
         self._navigation_history = navigation_history
-        self._store = NavigationStore()
+        self._store = FlaskNavigationStore()
 
     # destination  "group:block:section:question:<repetition>"
     def _valid_destination(self, destination):
@@ -27,6 +24,10 @@ class Navigator(object):
         return True
 
     def get_current_location(self):
+        """
+        Load navigation state from the session, from that state get the current location
+        :return: the current location in the questionnaire
+        """
         state = self._store.get_state()
         current_location = state.current_position
         logger.debug("Current location %s", current_location)
@@ -43,38 +44,5 @@ class Navigator(object):
             self._navigation_history.add_history_entry(state.current_position)
             state.current_position = location
             self._store.store_state(state)
-
-
-class NavigationState(object):
-    def __init__(self):
-        self.current_position = None
-
-    def to_dict(self):
-        return {
-            "current_position": self.current_position
-        }
-
-    def from_dict(self, values):
-        self.current_position = values['current_position'] or {}
-
-
-class INavigationStore(metaclass=ABCMeta):
-    @abstractmethod
-    def store_state(self, state):
-        pass
-
-    @abstractmethod
-    def get_state(self):
-        pass
-
-
-class NavigationStore(INavigationStore):
-    def store_state(self, state):
-        session[NAVIGATION_SESSION_KEY] = state.to_dict()
-        session.permanent = True
-
-    def get_state(self):
-        state = NavigationState()
-        if NAVIGATION_SESSION_KEY in session:
-            state.from_dict(session[NAVIGATION_SESSION_KEY])
-        return state
+        else:
+            logger.warning("Location %s is not valid", location)

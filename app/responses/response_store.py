@@ -36,5 +36,3 @@ class FlaskResponseStore(IResponseStore):
 
     def get_responses(self):
         return session[RESPONSES]
-
-

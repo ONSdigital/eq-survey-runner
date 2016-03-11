@@ -29,18 +29,21 @@ def root():
 @main_blueprint.route('/cover-page', methods=['GET', 'POST'])
 @login_required
 def cover_page():
+    logger.debug("Requesting cover page")
     return render_template('cover-page.html')
 
 
 @main_blueprint.route('/submission', methods=['GET'])
 @login_required
 def submission():
+    logger.debug("Requesting submission page")
     return render_template('submission.html')
 
 
 @main_blueprint.route('/thank-you', methods=['GET'])
 @login_required
 def thank_you():
+    logger.debug("Requesting thank you page")
 
     # load the response store
     response_store = ResponseStoreFactory.create_response_store()
@@ -55,7 +58,7 @@ def login():
     """
     Initial url processing - expects a token parameter and then will authenticate this token. Once authenticated
     it will be placed in the users session
-    :return: a 302 redirect to the cover page
+    :return: a 302 redirect to the next location for the user
     """
     authenticator = Authenticator()
     logger.debug("Attempting token authentication")
@@ -66,11 +69,11 @@ def login():
         questionnaire_id = token.get("eq-id")
         logger.debug("Requested questionnaire %s", questionnaire_id)
         if not questionnaire_id:
+            logger.error("Missing EQ id in JWT %s", token)
             abort(404)
 
-        session_manager.add_token(token)
-
-        schema = load_and_parse_schema(questionnaire_id)
+        # load the schema
+        schema = _load_and_parse_schema(questionnaire_id)
 
         # load the navigation history
         navigation_history = FlaskNavigationHistory()
@@ -78,14 +81,10 @@ def login():
         # create the navigator
         navigator = Navigator(schema, navigation_history)
 
+        # get the current location of the user
         current_location = navigator.get_current_location()
 
-        if current_location is None:
-            return redirect(url_for("main.cover_page"))
-        elif current_location == "completed":
-            return redirect(url_for("main.thank_you"))
-        else:
-            return redirect(url_for("main.questionnaire"))
+        return _redirect_to_location(current_location)
 
     except NoTokenException as e:
         logger.warning("Unable to authenticate user")
@@ -102,7 +101,7 @@ def questionnaire():
     questionnaire_id = token.get("eq-id")
     logger.debug("Requested questionnaire %s", questionnaire_id)
 
-    schema = load_and_parse_schema(questionnaire_id)
+    schema = _load_and_parse_schema(questionnaire_id)
 
     # load the response store
     response_store = ResponseStoreFactory.create_response_store()
@@ -144,19 +143,33 @@ def questionnaire():
         questionnaire_manager.process_incoming_responses(request.form)
         current_location = navigator.get_current_location()
         logger.debug("POST request question - current location %s", current_location)
-        if current_location == "start":
-            return redirect(url_for("main.cover_page"))
-        elif current_location == "completed":
-            return redirect(url_for("main.thank_you"))
-        else:
-            return redirect(url_for("main.questionnaire"))
+        return _redirect_to_location(current_location)
 
     render_data = questionnaire_manager.get_rendering_context()
 
     return render_template('questionnaire.html', questionnaire=render_data['schema'])
 
 
-def load_and_parse_schema(questionnaire_id):
+def _redirect_to_location(current_location):
+    """
+    Issue a redirect to the next part of the questionnaire
+    :param current_location: the current location in the questionnaire
+    :return: flask redirect to the next page
+    """
+    if current_location is None:
+        return redirect(url_for("main.cover_page"))
+    elif current_location == "completed":
+        return redirect(url_for("main.thank_you"))
+    else:
+        return redirect(url_for("main.questionnaire"))
+
+
+def _load_and_parse_schema(questionnaire_id):
+    """
+    Use the schema loader to get the schema from disk. Then use the parse to construct the object model
+    :param questionnaire_id: the id of the questionnaire
+    :return: an object model
+    """
     # load the schema
     json_schema = load_schema(questionnaire_id)
     parser = SchemaParserFactory.create_parser(json_schema)
