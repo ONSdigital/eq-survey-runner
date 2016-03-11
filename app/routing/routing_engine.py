@@ -6,4 +6,4 @@ class RoutingEngine(object):
         # building routing rules
 
     def get_next(self, current_location):
-        raise NotImplementedError()
+        return "completed"

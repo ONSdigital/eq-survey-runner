@@ -1,4 +1,11 @@
 #!/bin/bash
+
+function open_url {
+  sleep 1
+  open -a "/Applications/Google Chrome.app" $1
+}
+
+
 if [ -n "$VIRTUAL_ENV" ]; then
   echo "Already in virtual environment $VIRTUAL_ENV"
 else
@@ -28,6 +35,10 @@ if [ ! -s "app/static" ]; then
   npm run compile
 fi
 
-python token_generator.py
+url="`python token_generator.py`"
+
+echo $url
+open_url $url &
 python application.py runserver
+
 

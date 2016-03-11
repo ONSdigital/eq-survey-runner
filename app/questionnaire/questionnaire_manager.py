@@ -16,7 +16,17 @@ class QuestionnaireManager(object):
         # run the validator to update the validation_store
         self._validator.validate(user_responses)
 
+        print("current_location")
+        current_location = self._navigator.get_current_location()
+        print(current_location)
+
         # do any routing
+        next_location = self._routing_engine.get_next(current_location)
+        print("next_location")
+        print(next_location)
+
+        return self._navigator.go_to(next_location)
+
 
     def get_rendering_context(self):
         return {

@@ -8,7 +8,7 @@ def generate_token():
     user = os.getenv('USER', 'UNKNOWN')
     iat = time.time()
     exp = time.time() + (5 * 60)
-    payload = {'user': user, 'iat': str(int(iat)), 'exp': str(int(exp))}
+    payload = {'user': user, 'iat': str(int(iat)), 'exp': str(int(exp)), 'eq-id': '1'}
     token = encoder.encode(payload)
     encrypted_token = encoder.encrypt(token)
     return encrypted_token
