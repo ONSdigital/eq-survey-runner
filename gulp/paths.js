@@ -2,41 +2,42 @@
  * Paths to project folders
  */
 
-export const srcPath = './app'
-export const distPath = srcPath + '/static'
+export const appPath = './app'
+export const distPath = appPath + '/static'
 
 export const paths = {
-  input: srcPath + '/**/*',
+  app: appPath,
+  input: appPath + '/**/*',
   output: distPath,
   scripts: {
-    dir: srcPath + '/js/',
-    input: srcPath + '/js/**/*.js',
+    dir: appPath + '/js/',
+    input: appPath + '/js/**/*.js',
     output: distPath + '/js/'
   },
   styles: {
-    dir: srcPath + '/styles/',
-    input: srcPath + '/styles/**/*.{scss,sass}',
+    dir: appPath + '/styles/',
+    input: appPath + '/styles/**/*.{scss,sass}',
     output: distPath + '/css/'
   },
   templates: {
-    dir: srcPath + '/templates/',
-    input: srcPath + '/templates/**/*.html'
+    dir: appPath + '/templates/',
+    input: appPath + '/templates/**/*.html'
   },
   svgs: {
-    dir: srcPath + '/img/',
-    input: srcPath + '/img/**/*.svg',
+    dir: appPath + '/img/',
+    input: appPath + '/img/**/*.svg',
     output: distPath + '/img/'
   },
   images: {
-    input: srcPath + '/img/**.{svg,png,jpg,jpeg,gif,ico}',
+    input: appPath + '/img/**.{svg,png,jpg,jpeg,gif,ico}',
     output: distPath + '/img/'
   },
   webfonts: {
-    input: srcPath + '/webfonts/**.{svg,woff,woff2,eot,ttf}',
+    input: appPath + '/webfonts/**.{svg,woff,woff2,eot,ttf}',
     output: distPath + '/webfonts/'
   },
   test: {
-    input: srcPath + '/js/**/*.js',
+    input: appPath + '/js/**/*.js',
     karma: 'tests/karma/karma.conf.js',
     spec: 'tests/karma/spec/**/*.js',
     coverage: 'tests/karma/coverage/',

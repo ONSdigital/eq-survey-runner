@@ -11,7 +11,7 @@
   padding: 0.2rem 0.5rem;
   width: calc(100% - 2.5rem);
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
   margin: 0 0.5rem 0 0;
   z-index: 1;
   &::before {
@@ -36,7 +36,7 @@
       left: -0.25rem;
       background: rgba($color-grey, 0.2);
       width: calc(100% - 0.5rem);
-      height: calc(100% + 0.25rem);
+      height: 100%;
       border-radius: 3px;
       z-index: 0;
     }

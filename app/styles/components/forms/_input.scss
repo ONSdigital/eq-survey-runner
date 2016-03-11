@@ -24,8 +24,8 @@ $input-padding: 0.6rem;
 .input--select {
   appearance: none;
   padding: $input-padding 2rem $input-padding 0.5rem;
-  background: $color-white url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66278/down.svg") no-repeat center right 10px;
-  background-size: 12px;
+  background: $color-white url("/s/img/icons/icons--chevron-bottom.svg") no-repeat center right 10px;
+  background-size: 1rem;
   line-height: 1.4;
   width: 100%;
 
@@ -43,7 +43,7 @@ $input-padding: 0.6rem;
   appearance: none;
   border: 2px solid #9b9b9b;
   padding: 0.5rem;
-  margin: 0.4rem 0.5rem 0 0;
+  // margin: 0.4rem 0.5rem 0 0;
   font-size: 1rem;
   background: #eee;
   box-shadow: inset 0 0 0 3px white;
@@ -71,8 +71,8 @@ $input-padding: 0.6rem;
 
 .input--checkbox {
   &:checked {
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66278/tick.svg") no-repeat center center;
-    background-size: 11px auto;
+    background: url("/s/img/icons/icons--check.svg") no-repeat center center;
+    background-size: 0.8rem auto;
   }
 }
 

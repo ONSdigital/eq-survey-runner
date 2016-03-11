@@ -9,43 +9,43 @@
   <li>Response</li>
   <li>Guidance (optional)</li>
 </ul>
-{{m.question(data.questions.example)}}
+{{patterns.question(data.questions.example)}}
 </div>
 <h2>Question Types</h2>
 
 <div class="ptn-section">
   <h3>Text</h3>
   <p>The most basic type of question simple text response that will accept any alphanumeric character.</p>
-  {{m.question(data.questions.simple)}}
+  {{patterns.question(data.questions.simple)}}
 </div>
 
 <div class="ptn-section">
   <h3>Numeric Entry</h3>
   <h4>Currency</h4>
   <p>A currency field accepts a numeric entry in currency format, typically in £ or €. </p>
-  {{m.question(data.questions.currency)}}
+  {{patterns.question(data.questions.currency)}}
   <h4>Precision</h4>
   <p>A precision field will be accurate to a defined decimal place.</p>
-  {{m.question(data.questions.precision)}}
+  {{patterns.question(data.questions.precision)}}
   <h4>Percentage</h4>
   <p>Accepts a percentage.</p>
-  {{m.question(data.questions.percentage)}}
+  {{patterns.question(data.questions.percentage)}}
 </div>
 
 <div class="ptn-section">
   <h3>Multiple Choice</h3>
   <p>A multiple choice question will typically use either radios or checkboxes.</p>
-  {{m.question(data.questions.multiple_choice)}}
+  {{patterns.question(data.questions.multiple_choice)}}
 </div>
 
 <div class="ptn-section">
   <h3>Multiple Answer</h3>
   <p>A multiple answer will have several different fields requiring input.</p>
-  {{m.question(data.questions.multiple_answer)}}
+  {{patterns.question(data.questions.multiple_answer)}}
 </div>
 
 <div class="ptn-section">
   <h3>Dates</h3>
   <p>A date question will require one or more dates to be entered.</p>
-  {{m.question(data.questions.date)}}
+  {{patterns.question(data.questions.date)}}
 </div>

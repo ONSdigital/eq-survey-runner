@@ -12,11 +12,11 @@ import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
 import sourcemaps from 'gulp-sourcemaps'
 
-import {paths, srcPath, distPath} from './paths'
+import {paths, appPath, distPath} from './paths'
 import browserSync from './bs'
 
 const b = browserify(Object.assign(watchify.args, {
-  entries: [`./${srcPath}/js/app/main.js`],
+  entries: [`./${appPath}/js/app/main.js`],
   debug: true
 }))
 .on('update', () => bundle())

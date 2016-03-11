@@ -24,7 +24,9 @@ import browserSync from './bs'
 export function lint() {
   gulp.src(paths.styles.input)
     .pipe(postcss([
-      stylelint({}),
+      stylelint({
+        ignoreFiles: [`${paths.styles.dir}/base/_sprite.scss`]
+      }),
       reporter({ clearMessages: true })
     ], {
       syntax: scss

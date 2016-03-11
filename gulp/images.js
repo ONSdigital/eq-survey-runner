@@ -19,21 +19,35 @@ export function sprite() {
         },
         spacing: {
           padding: 10
-        }
+        },
+        dest: `${paths.images.output}/icons/`
       },
       mode: {
         inline: true,
-        symbol: {
-          example: {
-            template: `${paths.svgs.dir}/icons/tmpl.html`,
-            dest: `../../../../${paths.templates.dir}/pattern_lib/1-styleguide/5-icons.html`
-          },
+        view: {
+          bust: false,
+          dest: '.',
+          sprite: `${paths.images.output}/sprite.svg`,
           render: {
             scss: {
-              dest: `../../../../${paths.styles.dir}/base/_sprite.scss`
+              dest: `${paths.styles.dir}/base/_sprite.scss`
             }
           }
         }
+        // symbol: {
+        //   dest: '.',
+        //   sprite: `${paths.images.output}/sprite-symbol.svg`,
+        //   example: false,
+        //   // example: {
+        //   //   template: `${paths.svgs.dir}/icons/tmpl.html`,
+        //   //   dest: `${paths.app}/patternlib/templates/pattern_lib/1-styleguide/99-icons.html`
+        //   // },
+        //   render: {
+        //     scss: {
+        //       dest: `${paths.styles.dir}/base/_sprite-symbol.scss`
+        //     }
+        //   }
+        // }
       }
     }))
     .on('error', function(err) {
@@ -41,7 +55,7 @@ export function sprite() {
       browserSync.notify('Browserify Error!')
       this.emit('end')
     })
-    .pipe(gulp.dest(paths.svgs.output))
+    .pipe(gulp.dest('.'))
 }
 
 // Generate SVG sprites
