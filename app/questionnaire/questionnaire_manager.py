@@ -9,6 +9,10 @@ class QuestionnaireManager(object):
         self._navigation_history = navigation_history
 
     def process_incoming_responses(self, user_responses):
+
+        # set the navigation state
+
+
         # update the response store with POST data
         for key, value in user_responses.items():
             self._response_store.store_response(key, value)

@@ -1,6 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from flask import session, redirect
-import json
+from flask import session
 import logging
 
 NAVIGATION_SESSION_KEY = "nav"
@@ -29,15 +28,9 @@ class Navigator(object):
 
     def get_current_location(self):
         state = self._store.get_state()
-
-        if not state.started:
-            return "start"
-        if state.completed:
-            return "completed"
-        else:
-            current_location = state.current_position
-            logger.debug("Current location %s", current_location)
-            raise current_location
+        current_location = state.current_position
+        logger.debug("Current location %s", current_location)
+        return current_location
 
     def go_to(self, location):
         """
@@ -54,20 +47,14 @@ class Navigator(object):
 
 class NavigationState(object):
     def __init__(self):
-        self.started = False
         self.current_position = None
-        self.completed = False
 
     def to_dict(self):
         return {
-            "started": self.started,
-            "completed": self.completed,
             "current_position": self.current_position
         }
 
     def from_dict(self, values):
-        self.started = values['started'] or False
-        self.completed = values['completed'] or {}
         self.current_position = values['current_position'] or {}
 
 

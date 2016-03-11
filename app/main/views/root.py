@@ -14,6 +14,7 @@ from app.authentication.authenticator import Authenticator
 from app.authentication.session_management import session_manager
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
+from app.submitter.submitter import Submitter
 from app.main import errors
 import logging
 
@@ -40,6 +41,12 @@ def submission():
 @main_blueprint.route('/thank-you', methods=['GET'])
 @login_required
 def thank_you():
+
+    # load the response store
+    response_store = ResponseStoreFactory.create_response_store()
+
+    submitter = Submitter()
+    submitter.send(response_store.get_responses())
     return render_template('thank-you.html')
 
 
@@ -73,7 +80,7 @@ def login():
 
         current_location = navigator.get_current_location()
 
-        if current_location == "start":
+        if current_location is None:
             return redirect(url_for("main.cover_page"))
         elif current_location == "completed":
             return redirect(url_for("main.thank_you"))
@@ -135,8 +142,14 @@ def questionnaire():
 
     if request.method == 'POST':
         questionnaire_manager.process_incoming_responses(request.form)
-
-        return redirect(request.path)
+        current_location = navigator.get_current_location()
+        logger.debug("POST request question - current location %s", current_location)
+        if current_location == "start":
+            return redirect(url_for("main.cover_page"))
+        elif current_location == "completed":
+            return redirect(url_for("main.thank_you"))
+        else:
+            return redirect(url_for("main.questionnaire"))
 
     render_data = questionnaire_manager.get_rendering_context()
 
