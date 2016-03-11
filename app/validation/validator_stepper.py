@@ -1,11 +1,11 @@
-from app.validation.validation_store import ValidationStore
+from app.validation.validation_store import ValidationStoreFactory
 from app.validation.response_stepper import ResponseStepper
 
 
 class ValidatorStepper(object):
 
     def __init__(self):
-        self.validation_results = ValidationStore()
+        self.validation_results = ValidationStoreFactory.create_validation_store()
 
     """
     Validate the questionnaire at response level

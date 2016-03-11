@@ -11,13 +11,12 @@ class Integer(IValidator):
     """
 
     def validate(self, user_answer):
+        result = ValidationResult(False)
+        try:
+            integer_value = int(user_answer)        # NOQA
+            result.is_valid = True
+        except:
+            result.is_valid = False
+            result.errors.append("'{value}' is not an integer".format(value=user_answer))
 
-        validation_result = ValidationResult()
-
-        if isinstance(user_answer, int):
-            validation_result.update_state(True)
-        else:
-            validation_result.update_state(False)
-            validation_result.errors.append("This field should be a number")
-
-        return validation_result
+        return result

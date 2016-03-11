@@ -2,7 +2,6 @@ from flask import session
 from abc import ABCMeta, abstractmethod
 from app.validation.validation_result import ValidationResult
 
-<<<<<<< HEAD
 
 class ValidationStoreFactory(object):
     @staticmethod
@@ -14,20 +13,11 @@ class IValidationStore(metaclass=ABCMeta):
     # keys are in the format...
     # group:block:section:question:response:<repetition>
     @abstractmethod
-=======
-class ValidationStore(object):
-
-    def __init__(self):
-        self.validation_results = {}
-
->>>>>>> eq-1 validation basics
     def store_result(self, key, value):
-        self.validation_results.update({key: value})
+        raise NotImplementedError()
 
     @abstractmethod
     def get_result(self, key):
-<<<<<<< HEAD
-<<<<<<< HEAD
         raise NotImplementedError()
 
 
@@ -41,18 +31,14 @@ class FlaskValidationStore(IValidationStore):
         result = ValidationResult()
         result.from_dict(session[key])
         return result
-=======
-        return self.validation_results.get(key, "No validated")
-<<<<<<< HEAD
 
 
->>>>>>> eq-1 validation basics
-=======
->>>>>>> Tidying up various source code issues
-=======
-        return self.validation_results.get(key, "Not validated")
-<<<<<<< HEAD
+class MockValidationStore(IValidationStore):
+    def __init__(self):
+        self._store = {}
 
->>>>>>> eq-1 update validation with questionnaire model
-=======
->>>>>>> eq-1 fix code style errors
+    def store_result(self, key, value):
+        self._store[key] = value
+
+    def get_result(self, key):
+        return self._store[key] or None

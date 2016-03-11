@@ -1,8 +1,8 @@
 class ValidationResult(object):
     def __init__(self, is_valid=False):
         self.is_valid = is_valid
-        self.errors = {}
-        self.warnings = {}
+        self.errors = []
+        self.warnings = []
 
     def is_valid(self):
         return self.is_valid
@@ -22,5 +22,5 @@ class ValidationResult(object):
 
     def from_dict(self, values):
         self.is_valid = values['valid'] or False
-        self.errors = values['errors'] or {}
-        self.warnings = values['warnings'] or {}
+        self.errors = values['errors'] or []
+        self.warnings = values['warnings'] or []

@@ -15,8 +15,8 @@ class Required(IValidator):
         validation_result = ValidationResult()
 
         if user_answer and not str(user_answer).isspace():
-            validation_result.update_state(True)
+            validation_result.is_valid = True
         else:
-            validation_result.update_state(False)
-            validation_result.errors.append("This field is required")
+            validation_result.is_valid = False
+            validation_result.errors.append("This is a required field")
         return validation_result

@@ -1,7 +1,7 @@
-from abc import abstractmethod
+from abc import ABCMeta, abstractmethod
 
 
-class IValidator(object):
+class IValidator(metaclass=ABCMeta):
 
     @abstractmethod
     def validate(self):
