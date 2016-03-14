@@ -1,5 +1,10 @@
 from app.validation.validation_result import ValidationResult
 from app.validation.required import Required
+from app.validation.type_validator_factory import TypeValidatorFactory
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class ValidationException(Exception):
@@ -12,15 +17,23 @@ class Validator(object):
         self._validation_store = validation_store
         self._response_store = response_store
 
+        # Set the factory class here, so we can override it for tests
+        self._type_validator_factory_class = TypeValidatorFactory
+
     def validate(self, user_data):
         for item_id in user_data.keys():
-            item = self.schema.get_item_by_id(item_id)
+            logger.debug('Attempting to validate {}'.format(item_id))
+            item = self._schema.get_item_by_id(item_id)
 
+            # Currently the datefields trip this up
             if not item:
-                raise ValidationException('{} is not a known item'.format(item_id))
+                logger.info('Ignoring {}'.format(item_id))
+                # raise ValidationException('{} is not a known item'.format(item_id))
+                continue
 
-            self._validation_store.store_result(item_id,
-                                                self._validate_item(item, user_data[item_id]))
+            result = self._validate_item(item, user_data[item_id])
+            logger.debug('Item {} ({}) valid: {}'.format(item_id, type(item), result.is_valid))
+            self._validation_store.store_result(item_id, result)
 
             self._validate_container(item.container)
 

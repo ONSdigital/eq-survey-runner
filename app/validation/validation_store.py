@@ -2,6 +2,8 @@ from flask import session
 from abc import ABCMeta, abstractmethod
 from app.validation.validation_result import ValidationResult
 
+RESULTS = 'val'
+
 
 class ValidationStoreFactory(object):
     @staticmethod
@@ -24,12 +26,16 @@ class IValidationStore(metaclass=ABCMeta):
 class FlaskValidationStore(IValidationStore):
 
     def store_result(self, key, value):
-        session[key] = value.to_dict()
+        if RESULTS not in session:
+            responses = {key: value.to_dict()}
+            session[RESULTS] = responses
+        else:
+            session[RESULTS][key] = value.to_dict()
         session.permanent = True
 
     def get_result(self, key):
         result = ValidationResult()
-        result.from_dict(session[key])
+        result.from_dict(session[RESULTS][key])
         return result
 
 
