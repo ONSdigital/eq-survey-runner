@@ -1,17 +1,12 @@
 from app.authentication.jwt_decoder import Decoder
 from app.authentication.session_management import session_manager
 from app.authentication.no_token_exception import NoTokenException
-from flask.ext.login import UserMixin
+from app.authentication.user import User
 import logging
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 
 logger = logging.getLogger(__name__)
-
-
-class User(UserMixin):
-    def __init__(self, id):
-        self.id = id
 
 
 class Authenticator(object):
