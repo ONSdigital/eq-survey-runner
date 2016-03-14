@@ -11,5 +11,13 @@ class Section(object):
         if question not in self.questions:
             self.questions.append(question)
             question.container = self
-            if self.questionnaire:
-                self.questionnaire.register_item(question.id, question)
+
+    def get_item_by_id(self, id):
+        if id == self.id:
+            return self
+        else:
+            for question in self.questions:
+                candidate = question.get_item_by_id(id)
+                if candidate is not None:
+                    return candidate
+            return None

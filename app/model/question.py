@@ -12,5 +12,13 @@ class Question(object):
         if response not in self.responses:
             self.responses.append(response)
             response.container = self
-            if self.questionnaire:
-                self.questionnaire.register_item(response.id, response)
+
+    def get_item_by_id(self, id):
+        if id == self.id:
+            return self
+        else:
+            for response in self.responses:
+                candidate = response.get_item_by_id(id)
+                if candidate is not None:
+                    return candidate
+            return None

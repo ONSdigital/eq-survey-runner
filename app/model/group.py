@@ -12,5 +12,13 @@ class Group(object):
         if block not in self.blocks:
             self.blocks.append(block)
             block.container = self
-            if self.questionnaire:
-                self.questionnaire.register_item(block.id, block)
+
+    def get_item_by_id(self, id):
+        if id == self.id:
+            return self
+        else:
+            for block in self.blocks:
+                candidate = block.get_item_by_id(id)
+                if candidate is not None:
+                    return candidate
+            return None

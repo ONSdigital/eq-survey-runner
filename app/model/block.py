@@ -11,5 +11,13 @@ class Block(object):
         if section not in self.sections:
             self.sections.append(section)
             section.container = self
-            if self.questionnaire:
-                self.questionnaire.register_item(section.id, section)
+
+    def get_item_by_id(self, id):
+        if id == self.id:
+            return self
+        else:
+            for section in self.sections:
+                candidate = section.get_item_by_id(id)
+                if candidate is not None:
+                    return candidate
+            return None
