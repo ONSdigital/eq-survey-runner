@@ -37,6 +37,15 @@ class Validator(object):
 
             self._validate_container(item.container)
 
+        # Return true/False for the set of values
+        for item_id in user_data.keys():
+            result = self._validation_store.get_result(item_id)
+            if result:
+                if not result.is_valid:
+                    return False
+
+        return True
+
     def _validate_item(self, item, item_data):
         # Do "required" check
         if item.required:

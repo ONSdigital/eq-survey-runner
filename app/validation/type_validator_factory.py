@@ -18,6 +18,8 @@ class TypeValidatorFactory(object):
 
         if response_type.upper() == 'INTEGER':
             validators.append(Integer())
+        elif response_type.upper() == 'CURRENCY':
+            validators.append(Integer())
         else:
             raise TypeValidatorFactoryException('\'{}\' is not a known response type'.format(response_type))
 

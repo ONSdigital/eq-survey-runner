@@ -34,9 +34,11 @@ class FlaskValidationStore(IValidationStore):
         session.permanent = True
 
     def get_result(self, key):
-        result = ValidationResult()
-        result.from_dict(session[RESULTS][key])
-        return result
+        if key in session[RESULTS].keys():
+            result = ValidationResult()
+            result.from_dict(session[RESULTS][key])
+            return result
+        return None
 
 
 class MockValidationStore(IValidationStore):
