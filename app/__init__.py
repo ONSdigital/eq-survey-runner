@@ -80,6 +80,9 @@ def create_app(config_name):
     from .patternlib import patternlib_blueprint
     application.register_blueprint(patternlib_blueprint)
 
+    import jinja_filters
+    application.register_blueprint(jinja_filters.blueprint)
+
     # set up some sane logging, as opposed to what flask does by default
     FORMAT = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
 

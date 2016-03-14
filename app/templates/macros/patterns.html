@@ -9,7 +9,7 @@
   </div>
   {% endset -%}
   <div class="ptn-example">
-  {{markup|safe}}
+  {{markup|prettify|safe}}
   </div>
   {{code(markup)}}
 {% endmacro %}
@@ -21,7 +21,7 @@
     {% include 'partials/question.html' %}
   {% endset -%}
 
-  {{markup|safe}}
+  {{markup|prettify|safe}}
   </div>
   {{code(markup)}}
 {% endmacro %}
@@ -36,7 +36,7 @@
     <div class="ptn-code-highlight">
 {% filter markdown %}
 ```markup
-{{markup|safe}}
+{{markup|prettify|safe}}
 ```
 {% endfilter %}
     </div>
