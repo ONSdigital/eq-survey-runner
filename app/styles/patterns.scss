@@ -1,10 +1,11 @@
 @import "vars/*.scss";
 @import "vendor/prism";
+@import "helpers/*";
 @import "eq-sass";
 @import "gfm.scss";
 
 .ptn {
-  background: $color-white;
+  background: $color-white url("/s/img/symbol/svg/sprite.symbol.svg#icons--account-login");
   h2 {
     font-size: 1.7rem;
   }
