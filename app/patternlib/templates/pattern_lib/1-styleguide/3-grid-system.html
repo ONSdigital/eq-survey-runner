@@ -6,14 +6,13 @@
   <h2>Columns</h2>
 
   {% for j in [1, 2, 3, 4, 6] %}
-    {{m.grid(j)}}
+    {{patterns.grid(j)}}
   {% endfor %}
 
 
 </div>
 
 <div class="ptn-section">
-
 
   <h2>Markup</h2>
   <p>The grid is constrained within a <code>.container</code> which gives the layout a maximum width. The grid itself represented by a <code>.grid</code>, with columns as a <code>.grid__col</code>. The column widths are expressed in terms of x of 12, prefixed by a breakpoint to allow different layouts at varying screen sizes. The breakpoints are "mobile first" meaning that they will be full-width by default. The following example demonstrates a layout which has two columns on the 'm' breakpoint and above.</p>

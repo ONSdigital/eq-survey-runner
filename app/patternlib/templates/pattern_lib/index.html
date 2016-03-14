@@ -2,6 +2,11 @@
 
 {% import 'macros/patterns.html' as patterns %}
 
+{% block styles %}
+  {{super()}}
+  <link href="{{ url_for('static', filename='css/patterns.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 
   <div class="ptn">

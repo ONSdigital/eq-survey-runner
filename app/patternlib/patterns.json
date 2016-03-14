@@ -9,6 +9,14 @@
       "value": "",
       "placeholder": "eg. Jemima Puddleduck"
     },
+    "textarea": {
+      "type": "textarea",
+      "name": "person-name",
+      "id": "person-name",
+      "label": "Comments",
+      "hidelabel": false,
+      "value": ""
+    },
     "radios": {
       "type": "radio",
       "name": "gender",

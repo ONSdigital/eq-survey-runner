@@ -1,3 +1,8 @@
+@import "vars/*.scss";
+@import "vendor/prism";
+@import "eq-sass";
+@import "gfm.scss";
+
 .ptn {
   background: $color-white;
   h2 {
