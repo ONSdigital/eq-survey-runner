@@ -5,6 +5,7 @@ class Block(object):
         self.sections = []
         self.container = None
         self.questionnaire = None
+        self.validation = None
 
     def add_section(self, section):
         if section not in self.sections:

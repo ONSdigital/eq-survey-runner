@@ -28,3 +28,9 @@ class RequiredTest(unittest.TestCase):
         result = required.validate('0')
         self.assertTrue(result.is_valid)
         self.assertEquals(len(result.errors), 0)
+
+        # <space>
+        result = required.validate(' ')
+        self.assertFalse(result.is_valid)
+        self.assertEquals(len(result.errors), 1)
+        self.assertEquals('This is a required field', result.errors[0])

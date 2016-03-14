@@ -6,6 +6,7 @@ class Group(object):
         self.blocks = []
         self.container = None
         self.questionnaire = None
+        self.validation = None
 
     def add_block(self, block):
         if block not in self.blocks:

@@ -6,6 +6,7 @@ class Question(object):
         self.responses = []
         self.container = None
         self.questionnaire = None
+        self.validation = None
 
     def add_response(self, response):
         if response not in self.responses:

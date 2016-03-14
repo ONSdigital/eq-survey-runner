@@ -5,6 +5,7 @@ class Section(object):
         self.questions = []
         self.container = None
         self.questionnaire = None
+        self.validation = None
 
     def add_question(self, question):
         if question not in self.questions:

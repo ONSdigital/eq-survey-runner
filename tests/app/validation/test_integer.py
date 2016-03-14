@@ -1,5 +1,4 @@
 import unittest
-from app.validation.validator_stepper import ValidatorStepper
 from app.model.response import Response
 from app.model.question import Question
 from app.model.section import Section
@@ -52,6 +51,12 @@ class IntegerTest(unittest.TestCase):
         result = integer.validate('-10')
         self.assertTrue(result.is_valid)
         self.assertEquals(len(result.errors), 0)
+
+        # <space>
+        result = integer.validate(' ')
+        self.assertFalse(result.is_valid)
+        self.assertEquals(len(result.errors), 1)
+        self.assertEquals('\' \' is not an integer', result.errors[0])
 
     # def test_integer_required_fail(self):
     #

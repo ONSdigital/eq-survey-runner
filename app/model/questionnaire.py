@@ -10,6 +10,7 @@ class Questionnaire(object):
         self.description = None
         self.groups = []
         self.item_register = {}
+        self.validation = None
 
     def add_group(self, group):
         if group not in self.groups:
