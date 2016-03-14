@@ -10,10 +10,12 @@ REF_P_START_DATE = 'ref_p_start_date'
 REF_P_END_DATE = 'ref_p_end_date'
 FORM_TYPE = 'form_type'
 
+VALUES = [USER_ID, RU_REF, EQ_ID, COLLECTION_EXERCISE_SID, PERIOD_ID, PERIOD_STR, REF_P_END_DATE, REF_P_START_DATE, FORM_TYPE]
+
 
 class User(UserMixin):
     def __init__(self, jwt):
-        self.id = jwt.get(USER_ID) or None
+        self.id = jwt.get(USER_ID)
         self.jwt = jwt
 
     def get_user_id(self):
@@ -36,3 +38,18 @@ class User(UserMixin):
 
     def get_form_type(self):
         return self.jwt.get(FORM_TYPE)
+
+    def get_ref_p_start_date(self):
+        return self.jwt.get(REF_P_START_DATE)
+
+    def get_ref_p_end_date(self):
+        return self.jwt.get(REF_P_END_DATE)
+
+    def is_valid(self):
+        for value in VALUES:
+            if not self._has_value(value):
+                return False, value
+        return True, ""
+
+    def _has_value(self, value):
+        return value in self.jwt

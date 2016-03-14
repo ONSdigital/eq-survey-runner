@@ -1,6 +1,7 @@
 from app.authentication.jwt_decoder import Decoder
 from app.authentication.session_management import session_manager
 from app.authentication.no_token_exception import NoTokenException
+from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.user import User
 import logging
 
@@ -34,6 +35,10 @@ class Authenticator(object):
             raise NoTokenException("Please provide a token")
         token = self._jwt_decrypt(request)
 
+        # once we've decrypted the token correct
+        # check we have the required user data
+        self._check_user_data(token)
+
         # store the token in the session
         session_manager.add_token(token)
         return token
@@ -43,3 +48,9 @@ class Authenticator(object):
         decoder = Decoder()
         token = decoder.decrypt_jwt_token(encrypted_token)
         return token
+
+    def _check_user_data(self, token):
+        user = User(token)
+        valid, reason = user.is_valid()
+        if not valid:
+            raise InvalidTokenException("Missing value {}".format(reason))
