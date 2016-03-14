@@ -14,7 +14,6 @@ import newrelic.agent
 import watchtower
 import logging
 
-
 newrelic_config = settings.EQ_NEW_RELIC_CONFIG_FILE
 if os.path.isfile(newrelic_config):
     newrelic.agent.initialize(newrelic_config)
@@ -79,6 +78,9 @@ def create_app(config_name):
     # import and register the pattern library blueprint
     from .patternlib import patternlib_blueprint
     application.register_blueprint(patternlib_blueprint)
+
+    from app.jinja_filters import blueprint as filter_blueprint
+    application.register_blueprint(filter_blueprint)
 
     # set up some sane logging, as opposed to what flask does by default
     FORMAT = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"

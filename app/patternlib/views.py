@@ -45,10 +45,10 @@ def patterns(section='styleguide', pattern='index'):
     sections = {}
     pattern_title = pattern.split('-', 1)[-1:][0]
 
-    for root, dirs, files in os.walk(patternlib_blueprint.root_path + '/templates/pattern_lib/'):
+    for root, dirs, files in os.walk(patternlib_blueprint.root_path + '/templates/'):
         for dir in dirs:
             dirName = trim(dir)
             sections[dirName] = make_section(os.path.join(root, dir), dir, dirName)
 
-    pattern_include = 'pattern_lib/' + untrim(section) + '/' + untrim(pattern) + '.html'
-    return render_template('pattern_lib/index.html', sections=sections, pattern_include=pattern_include, title=pattern_title, data=data)
+    pattern_include = untrim(section) + '/' + untrim(pattern) + '.html'
+    return render_template('patterns.html', sections=sections, pattern_include=pattern_include, title=pattern_title, data=data)

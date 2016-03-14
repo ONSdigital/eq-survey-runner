@@ -22,3 +22,4 @@ cryptography==1.1.2
 newrelic==2.60.0.46
 verlib==0.1
 watchtower==0.1.6
+beautifulsoup4==4.4.1
