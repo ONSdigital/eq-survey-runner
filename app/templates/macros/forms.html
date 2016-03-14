@@ -1,10 +1,10 @@
 {%- macro label(response) %}
   {% set attr = {
-    class: "label{{' u-visuallyhidden' if response.hidelabel}}",
-    for: "{{response.id}}" ,
-    id: "label-{{response.id}}"
+    "class": "label" ~ (' u-visuallyhidden' if response.hidelabel),
+    "for": response.id,
+    "id": "label-" ~ response.id
   } %}
-  <label attr|xmlattr>{{response.label}}</label>
+  <label {{attr|xmlattr}}>{{response.label}}</label>
 {% endmacro -%}
 
 {%- macro input(type, question, response) %}
@@ -12,7 +12,7 @@
   {% set special_types = {
     'currency': '£',
     'percentage': '%'
-  }%}
+  } %}
 
   {% if type in special_types %}
     {% set input_type = 'number' %}
@@ -23,22 +23,22 @@
   {% endif %}
 
   {% set attr = {
-    class: "input input--{{input_type}}",
-    type: "{{input_type}}",
-    value: "{{response.value|e}}",
-    name: "{{response.id}}",
-    id: "{{response.id}}",
-    placeholder: "{{response.placeholder}}",
-    aria-describedby: "description-{{question.id}} guidance-{{response.id}}-link",
-    aria-labelledby: "label-{{response.id}}"
+    "class": "input input--" ~ input_type,
+    "type": input_type,
+    "value": response.value|e,
+    "name": response.id,
+    "id": response.id,
+    "placeholder": response.placeholder,
+    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-link",
+    "aria-labelledby": "label-" ~ response.id
   } %}
 
   {% if input_has_special_type %}
     <div class="input-type input-type--{{type}}" data-type="{{special_types[type]}}">
-      <input attr|xmlattr>
+      <input {{attr|xmlattr}}>
     </div>
   {% else %}
-      <input attr|xmlattr>
+      <input {{attr|xmlattr}}>
   {% endif %}
 
 {% endmacro -%}
@@ -46,15 +46,15 @@
 {% macro textarea(response, question) %}
 
   {% set attr = {
-    class: "input input--textarea",
-    name: "{{response.name}}",
-    id: "{{response.id}}",
-    placeholder: "{{response.placeholder}}",
-    rows: "4",
-    cols: "60",
-    aria-describedby: "description-{{question.id}} guidance-{{response.id}}",
-    aria-labelledby: "label-{{response.id}}"
+    "class": "input input--textarea",
+    "name": response.name,
+    "id": response.id,
+    "placeholder": response.placeholder,
+    "rows": "4",
+    "cols": "60",
+    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id,
+    "aria-labelledby": "label-" ~ response.id
   } %}
 
-  <textarea attr|xmlattr>{{response.value|e}}</textarea>
+  <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>
 {% endmacro %}
