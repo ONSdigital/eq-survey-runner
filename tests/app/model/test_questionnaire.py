@@ -56,5 +56,5 @@ class QuestionnaireModelTest(unittest.TestCase):
         self.assertEquals(questionnaire.get_item_by_id('group-2'), group2)
         self.assertEquals(questionnaire.get_item_by_id('block-1'), block1)
         self.assertEquals(questionnaire.get_item_by_id('block-2'), block2)
-        # NOTE params to the get_item_by_id callable are passed in by assertRaises
-        self.assertRaises(QuestionnaireException, questionnaire.get_item_by_id, 'invalid-id')
+
+        self.assertIsNone(questionnaire.get_item_by_id('invalid-id'))
