@@ -52,6 +52,9 @@ class FlaskSessionManager(SessionManagement):
             del session['jwt']
 
     def get_token(self):
-        return session['jwt']
+        if self.has_token():
+            return session['jwt']
+        else:
+            return None
 
 session_manager = FlaskSessionManager()

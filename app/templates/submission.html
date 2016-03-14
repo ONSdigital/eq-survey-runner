@@ -1,0 +1,13 @@
+{% extends 'layouts/_survey.html' %}
+
+{% block page_title %}{{questionnaire.title}}{% endblock %}
+
+{% block survey %}
+
+<form action="" class="form" aria-role="form" method="POST">
+
+
+  <button class="btn btn--neutral" type="submit" name="action[submit]">Submit</button>
+</form>
+
+{% endblock %}

@@ -7,7 +7,6 @@ from flaskext.markdown import Markdown
 from app import settings
 from app.authentication.authenticator import Authenticator
 from app.submitter.submitter import Submitter
-from app.main.views.login_view import LoginView
 from datetime import timedelta
 import pytz
 import os.path
@@ -46,14 +45,12 @@ GIT_REVISION = get_git_revision()
 def git_revision():
     return True, GIT_REVISION
 
-
 login_manager = LoginManager()
-login_manager.session_protection = 'strong'
 
 
 @login_manager.request_loader
 def load_user(request):
-    logging.debug("Calling load user %s")
+    logging.debug("Calling load user")
     authenticator = Authenticator()
     return authenticator.check_session()
 
@@ -123,10 +120,4 @@ def create_app(config_name):
     application.logger_name = "nowhere"
     application.logger
 
-    add_views(application)
-
     return application
-
-
-def add_views(application):
-    application.add_url_rule('/session', view_func=LoginView.as_view("login"), methods=['GET'])
