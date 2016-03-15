@@ -3,7 +3,7 @@ import pika.credentials
 import pika.exceptions
 import logging
 from app import settings
-from app.submitter.formatter import Formatter
+from app.submitter.converter import Converter
 
 
 class Submitter(object):
@@ -25,8 +25,7 @@ class Submitter(object):
             logging.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
 
     def send_responses(self, schema, responses):
-        formatter = Formatter()
-        message = formatter.prepare_responses(schema, responses)
+        message = Converter.prepare_responses(schema, responses)
         return self.send(message)
 
     def send(self, message):
