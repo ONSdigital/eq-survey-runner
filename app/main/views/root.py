@@ -5,7 +5,7 @@ from app.schema_loader.schema_loader import load_schema
 from app.responses.response_store import ResponseStoreFactory
 from app.validation.validation_store import ValidationStoreFactory
 from app.parser.schema_parser_factory import SchemaParserFactory
-from app.validation.validation_result import ValidationResult
+from app.validation.validator import Validator
 from app.routing.routing_engine import RoutingEngine
 from app.navigation.navigator import Navigator
 from app.navigation.navigation_history import FlaskNavigationHistory
@@ -110,16 +110,7 @@ def questionnaire():
     validation_store = ValidationStoreFactory.create_validation_store()
 
     # Create the validator
-    class Validator(object):
-        def __init__(self, validation_store, schema):
-            self._schema = schema
-            self._validation_store = validation_store
-
-        def validate(self, responses):
-            for key, value in responses.items():
-                self._validation_store.store_result(key, ValidationResult(True))
-
-    validator = Validator(validation_store, schema)
+    validator = Validator(schema, validation_store, response_store)
 
     # Create the routing engine
     routing_engine = RoutingEngine(schema, response_store)
@@ -129,6 +120,8 @@ def questionnaire():
 
     # create the navigator
     navigator = Navigator(schema, navigation_history)
+    if navigator.get_current_location() is None:
+        navigator.go_to('questionnaire')
 
     # instantiate the questionnaire manager
     questionnaire_manager = QuestionnaireManager(schema,
@@ -143,11 +136,12 @@ def questionnaire():
         questionnaire_manager.process_incoming_responses(request.form)
         current_location = navigator.get_current_location()
         logger.debug("POST request question - current location %s", current_location)
+
         return _redirect_to_location(current_location)
 
     render_data = questionnaire_manager.get_rendering_context()
 
-    return render_template('questionnaire.html', questionnaire=render_data['schema'])
+    return render_template('questionnaire.html', questionnaire=render_data)
 
 
 def _redirect_to_location(current_location):

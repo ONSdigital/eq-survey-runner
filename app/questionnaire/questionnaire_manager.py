@@ -3,7 +3,7 @@ class QuestionnaireManager(object):
         self._schema = schema
         self._response_store = response_store
         self._validator = validator
-        self._validation_store = response_store
+        self._validation_store = validation_store
         self._routing_engine = routing_engine
         self._navigator = navigator
         self._navigation_history = navigation_history
@@ -15,18 +15,17 @@ class QuestionnaireManager(object):
             self._response_store.store_response(key, value)
 
         # run the validator to update the validation_store
-        self._validator.validate(user_responses)
+        if self._validator.validate(user_responses):
+            # get the current location in the questionnaire
+            current_location = self._navigator.get_current_location()
 
-        # get the current location in the questionnaire
-        current_location = self._navigator.get_current_location()
+            # do any routing
+            next_location = self._routing_engine.get_next(current_location)
 
-        # do any routing
-        next_location = self._routing_engine.get_next(current_location)
+            # go to that location
+            self._navigator.go_to(next_location)
 
-        # go to that location
-        self._navigator.go_to(next_location)
-
-        # now return the new location
+        # now return the location
         return self._navigator.get_current_location()
 
     def get_rendering_context(self):

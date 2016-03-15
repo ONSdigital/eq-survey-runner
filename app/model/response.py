@@ -5,3 +5,12 @@ class Response(object):
         self.guidance = None
         self.type = None
         self.code = None
+        self.container = None
+        self.required = True
+        self.validation = None
+
+    def get_item_by_id(self, id):
+        if id == self.id:
+            return self
+        else:
+            return None
