@@ -1,3 +1,4 @@
+from flask import current_app
 import json
 import logging
 import datetime
@@ -94,5 +95,4 @@ class Converter(object):
                     COLLECTION_KEY: collection, METADATA_KEY: metadata,
                     PARADATA_KEY: paradata, DATA_KEY: data}
 
-        logger.error(json.dumps(response))
         return json.dumps(response)
