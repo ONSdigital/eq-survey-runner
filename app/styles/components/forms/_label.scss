@@ -2,8 +2,13 @@
   display: block;
   margin-bottom: 0.4rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: inherit;
+}
+
+.label__inner {
+  position: relative;
+  z-index: 3;
 }
 
 .label--inline {
@@ -51,11 +56,13 @@
   }
 }
 
-.label--small {
-  font-size: 0.8rem;
+.field--textarea {
+  .label {
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
 }
 
-.label__inner {
-  position: relative;
-  z-index: 3;
+.label--small {
+  font-size: 0.8rem;
 }
