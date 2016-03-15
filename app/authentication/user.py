@@ -2,7 +2,7 @@ from flask.ext.login import UserMixin
 
 USER_ID = 'user_id'
 RU_REF = 'ru_ref'
-EQ_ID = 'eq-id'
+EQ_ID = 'eq_id'
 COLLECTION_EXERCISE_SID = 'collection_exercise_sid'
 PERIOD_ID = 'period_id'
 PERIOD_STR = 'period_str'

@@ -1,7 +1,7 @@
-from flask_login import current_user
 import json
 import logging
 import datetime
+from app import settings
 
 PARADATA_KEY = "paradata"
 
@@ -43,7 +43,7 @@ logger = logging.getLogger(__name__)
 class Converter(object):
 
     @staticmethod
-    def prepare_responses(questionnaire, responses):
+    def prepare_responses(user, questionnaire, responses):
         """
         Create the JSON response format for down stream processing
 
@@ -80,21 +80,19 @@ class Converter(object):
             if item is not None:
                 value = responses[key]
                 data[item.code] = value
-                print(value)
 
-        metadata = {USER_ID_KEY: current_user.get_user_id(), RU_REF_KEY: current_user.get_ru_ref()}
+        metadata = {USER_ID_KEY: user.get_user_id(), RU_REF_KEY: user.get_ru_ref()}
 
-        collection = {EXERCISE_SID_KEY: current_user.get_collection_exercise_sid(),
-                      INSTRUMENT_KEY: current_user.get_form_type(),
-                      PERIOD_KEY: current_user.get_period_id()}
+        collection = {EXERCISE_SID_KEY: user.get_collection_exercise_sid(),
+                      INSTRUMENT_KEY: user.get_form_type(),
+                      PERIOD_KEY: user.get_period_id()}
 
         paradata = {}
 
         response = {TYPE_KEY: TYPE, VERSION_KEY: VERSION, ORIGIN_KEY: ORIGIN, SURVEY_ID_KEY: survey_id,
-                    SUBMITTED_AT_KEY: str(datetime.datetime.now()), COLLECTION_KEY: collection, METADATA_KEY: metadata,
+                    SUBMITTED_AT_KEY: datetime.datetime.now().strftime(settings.DATETIME_FORMAT),
+                    COLLECTION_KEY: collection, METADATA_KEY: metadata,
                     PARADATA_KEY: paradata, DATA_KEY: data}
 
         logger.error(json.dumps(response))
         return json.dumps(response)
-
-

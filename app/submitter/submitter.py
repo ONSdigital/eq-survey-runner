@@ -24,8 +24,8 @@ class Submitter(object):
         except pika.exceptions.AMQPError as e:
             logging.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
 
-    def send_responses(self, schema, responses):
-        message = Converter.prepare_responses(schema, responses)
+    def send_responses(self, user, schema, responses):
+        message = Converter.prepare_responses(user, schema, responses)
         return self.send(message)
 
     def send(self, message):

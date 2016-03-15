@@ -53,7 +53,7 @@ def thank_you():
     schema = _load_and_parse_schema(questionnaire_id)
 
     submitter = Submitter()
-    submitter.send_responses(schema, response_store.get_responses())
+    submitter.send_responses(current_user, schema, response_store.get_responses())
     return render_template('thank-you.html')
 
 
@@ -70,7 +70,7 @@ def login():
         token = authenticator.jwt_login(request)
         logger.debug("Token authenticated - linking to session")
 
-        questionnaire_id = token.get("eq-id")
+        questionnaire_id = token.get("eq_id")
         logger.debug("Requested questionnaire %s", questionnaire_id)
         if not questionnaire_id:
             logger.error("Missing EQ id in JWT %s", token)
