@@ -1,4 +1,3 @@
-from flask import current_app
 import json
 import logging
 import datetime
