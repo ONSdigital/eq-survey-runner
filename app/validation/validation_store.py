@@ -11,7 +11,7 @@ class ValidationStoreFactory(object):
         return FlaskValidationStore()
 
 
-class IValidationStore(metaclass=ABCMeta):
+class AbstractValidationStore(metaclass=ABCMeta):
     # keys are in the format...
     # group:block:section:question:response:<repetition>
     @abstractmethod
@@ -23,7 +23,7 @@ class IValidationStore(metaclass=ABCMeta):
         raise NotImplementedError()
 
 
-class FlaskValidationStore(IValidationStore):
+class FlaskValidationStore(AbstractValidationStore):
 
     def store_result(self, key, value):
         if RESULTS not in session:
@@ -39,14 +39,3 @@ class FlaskValidationStore(IValidationStore):
             result.from_dict(session[RESULTS][key])
             return result
         return None
-
-
-class MockValidationStore(IValidationStore):
-    def __init__(self):
-        self._store = {}
-
-    def store_result(self, key, value):
-        self._store[key] = value
-
-    def get_result(self, key):
-        return self._store[key] or None

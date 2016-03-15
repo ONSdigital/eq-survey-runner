@@ -1,4 +1,4 @@
-from app.validation.integer import Integer
+from app.validation.integer_type_check import IntegerTypeCheck
 
 
 class TypeValidatorFactoryException(Exception):
@@ -17,9 +17,9 @@ class TypeValidatorFactory(object):
         validators = []
 
         if response_type.upper() == 'INTEGER':
-            validators.append(Integer())
+            validators.append(IntegerTypeCheck())
         elif response_type.upper() == 'CURRENCY':
-            validators.append(Integer())
+            validators.append(IntegerTypeCheck())
         else:
             raise TypeValidatorFactoryException('\'{}\' is not a known response type'.format(response_type))
 

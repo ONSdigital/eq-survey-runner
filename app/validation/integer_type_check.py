@@ -1,8 +1,8 @@
-from app.validation.i_validator import IValidator
+from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
 
 
-class Integer(IValidator):
+class IntegerTypeCheck(AbstractValidator):
 
     """
     Validate that the users answer is an integer

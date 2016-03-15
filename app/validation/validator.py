@@ -1,5 +1,5 @@
 from app.validation.validation_result import ValidationResult
-from app.validation.required import Required
+from app.validation.required_check import RequiredCheck
 from app.validation.type_validator_factory import TypeValidatorFactory
 import logging
 
@@ -81,7 +81,7 @@ class Validator(object):
             self._validate_container(item.container)
 
     def _required_check(self, item, item_data):
-        required = Required()
+        required = RequiredCheck()
         result = required.validate(item_data)
         if not result.is_valid:
             return result

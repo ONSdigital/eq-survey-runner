@@ -1,8 +1,8 @@
 import unittest
 from app.validation.validator import Validator
-from app.responses.response_store import IResponseStore
-from app.validation.validation_store import IValidationStore
-from app.validation.i_validator import IValidator
+from app.responses.response_store import AbstractResponseStore
+from app.validation.validation_store import AbstractValidationStore
+from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
 
 from app.model.questionnaire import Questionnaire
@@ -137,7 +137,7 @@ class ValidatorTest(unittest.TestCase):
         return questionnaire_1
 
     def _create_mock_responses_store(self):
-        class MockResponseStore(IResponseStore):
+        class MockResponseStore(AbstractResponseStore):
             def __init__(self):
                 self._responses = {}
 
@@ -147,13 +147,16 @@ class ValidatorTest(unittest.TestCase):
             def get_response(self, key):
                 return self.responses[key] or None
 
+            def get_responses(self, key):
+                raise NotImplementedError()
+
             def clear(self):
                 self._responses.clear()
 
         return MockResponseStore()
 
     def _create_mock_validation_store(self):
-        class MockValidationStore(IValidationStore):
+        class MockValidationStore(AbstractValidationStore):
             def __init__(self):
                 self.results = {}
 
@@ -169,7 +172,7 @@ class ValidatorTest(unittest.TestCase):
         return MockValidationStore()
 
 
-class MockValidator(IValidator):
+class MockValidator(AbstractValidator):
     def __init__(self, success, message=None):
         self.success = success
         self.message = message
@@ -181,7 +184,7 @@ class MockValidator(IValidator):
         return result
 
 
-class RaisingValidator(IValidator):
+class RaisingValidator(AbstractValidator):
     def validate(self, user_answer):
         raise Exception('validate called against \'{}\''.format(user_answer))
 
@@ -194,3 +197,14 @@ class MockTypeValidatorFactory(object):
             return [RaisingValidator()]
         else:
             return [MockValidator(False, 'Validation Failed')]
+
+
+class MockValidationStore(AbstractValidationStore):
+    def __init__(self):
+        self._store = {}
+
+    def store_result(self, key, value):
+        self._store[key] = value
+
+    def get_result(self, key):
+        return self._store[key] or None
