@@ -32,6 +32,31 @@
               {% include 'partials/guidance.html' %}
             {% endif %}
           </div>
+
+          {% set validation_result = questionnaire.validation_results.get_result(response.id) %}
+          {% if validation_result %}
+            {% if not validation_result.is_valid %}
+              {% if validation_result.get_errors() %}
+              <ul class="errors">
+                {% for error in validation_result.get_errors() %}
+                <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              {% if validation_result.get_warnings() %}
+              <ul class="warnings">
+                {% for warning in validation_result.get_warnings() %}
+                <li>{{ warning }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+          {% if questionnaire.user_responses.get_response(response.id) %}
+          <p>You entered: {{ questionnaire.user_responses.get_response(response.id) }}</p>
+          {% endif %}
+          
         </div>
         {%- if grid %} </div> {% endif -%}
       {%- endfor -%}

@@ -34,6 +34,9 @@ class FlaskValidationStore(AbstractValidationStore):
         session.permanent = True
 
     def get_result(self, key):
+        if RESULTS not in session:
+            session[RESULTS] = {}
+            return None
         if key in session[RESULTS].keys():
             result = ValidationResult()
             result.from_dict(session[RESULTS][key])

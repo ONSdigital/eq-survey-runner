@@ -35,6 +35,11 @@ class FlaskResponseStore(AbstractResponseStore):
         session.permanent = True
 
     def get_response(self, key):
+        if RESPONSES not in session:
+            session[RESPONSES] = {}
+            return None
+        if key not in session[RESPONSES].keys():
+            return None
         return session[RESPONSES][key]
 
     def get_responses(self):

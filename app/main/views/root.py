@@ -141,7 +141,7 @@ def questionnaire():
 
     render_data = questionnaire_manager.get_rendering_context()
 
-    return render_template('questionnaire.html', questionnaire=render_data['schema'])
+    return render_template('questionnaire.html', questionnaire=render_data)
 
 
 def _redirect_to_location(current_location):

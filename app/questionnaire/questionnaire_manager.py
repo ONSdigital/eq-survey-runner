@@ -3,7 +3,7 @@ class QuestionnaireManager(object):
         self._schema = schema
         self._response_store = response_store
         self._validator = validator
-        self._validation_store = response_store
+        self._validation_store = validation_store
         self._routing_engine = routing_engine
         self._navigator = navigator
         self._navigation_history = navigation_history
