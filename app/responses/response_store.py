@@ -4,12 +4,6 @@ from abc import ABCMeta, abstractmethod
 RESPONSES = "resp"
 
 
-class ResponseStoreFactory(object):
-    @staticmethod
-    def create_response_store():
-        return FlaskResponseStore()
-
-
 class AbstractResponseStore(metaclass=ABCMeta):
     @abstractmethod
     def store_response(self, key, value):

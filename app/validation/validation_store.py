@@ -5,12 +5,6 @@ from app.validation.validation_result import ValidationResult
 RESULTS = 'val'
 
 
-class ValidationStoreFactory(object):
-    @staticmethod
-    def create_validation_store():
-        return FlaskValidationStore()
-
-
 class AbstractValidationStore(metaclass=ABCMeta):
     # keys are in the format...
     # group:block:section:question:response:<repetition>

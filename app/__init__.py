@@ -4,6 +4,11 @@ from flask.ext.login import LoginManager
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck, EnvironmentDump
 from flaskext.markdown import Markdown
+from app.utilities.factory import factory
+from app.responses.response_store import FlaskResponseStore
+from app.navigation.navigation_store import FlaskNavigationStore
+from app.navigation.navigation_history import FlaskNavigationHistory
+from app.validation.validation_store import FlaskValidationStore
 from app import settings
 from app.authentication.authenticator import Authenticator
 from app.submitter.submitter import Submitter
@@ -13,9 +18,19 @@ import newrelic.agent
 import watchtower
 import logging
 
+logger = logging.getLogger(__name__)
+
 newrelic_config = settings.EQ_NEW_RELIC_CONFIG_FILE
 if os.path.isfile(newrelic_config):
     newrelic.agent.initialize(newrelic_config)
+
+
+# setup the factory
+logger.debug("Registering factory classes")
+factory.register("response-store", FlaskResponseStore)
+factory.register("navigation-store", FlaskNavigationStore)
+factory.register("navigation-history", FlaskNavigationHistory)
+factory.register("validation-store", FlaskValidationStore)
 
 
 def rabbitmq_available():

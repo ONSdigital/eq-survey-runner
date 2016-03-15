@@ -1,4 +1,4 @@
-from .navigation_store import FlaskNavigationStore
+from app.utilities.factory import factory
 import logging
 
 logger = logging.getLogger(__name__)
@@ -8,7 +8,7 @@ class Navigator(object):
     def __init__(self, schema, navigation_history):
         self._schema = schema
         self._navigation_history = navigation_history
-        self._store = FlaskNavigationStore()
+        self._store = factory.create("navigation-store")
 
     # destination  "group:block:section:question:<repetition>"
     def _valid_destination(self, destination):
