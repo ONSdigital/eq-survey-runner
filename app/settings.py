@@ -1,5 +1,6 @@
 import os
 import logging
+import pytz
 
 logger = logging.getLogger(__name__)
 
@@ -34,3 +35,9 @@ EQ_CLOUDWATCH_LOGGING = parse_mode(os.getenv("EQ_CLOUDWATCH_LOGGING", 'True'))
 EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'app/data')
 EQ_SESSION_TIMEOUT = int(os.getenv('EQ_SESSION_TIMEOUT', '1800'))
 EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
+
+# non configurable settings
+
+DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
+DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
+EUROPE_LONDON = pytz.timezone("Europe/London")

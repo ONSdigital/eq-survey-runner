@@ -8,7 +8,6 @@ from app import settings
 from app.authentication.authenticator import Authenticator
 from app.submitter.submitter import Submitter
 from datetime import timedelta
-import pytz
 import os.path
 import newrelic.agent
 import watchtower
@@ -17,11 +16,6 @@ import logging
 newrelic_config = settings.EQ_NEW_RELIC_CONFIG_FILE
 if os.path.isfile(newrelic_config):
     newrelic.agent.initialize(newrelic_config)
-
-
-DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
-DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
-EUROPE_LONDON = pytz.timezone("Europe/London")
 
 
 def rabbitmq_available():

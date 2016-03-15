@@ -1,5 +1,5 @@
 from flask import render_template, redirect, request, abort, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
 from app.responses.response_store import ResponseStoreFactory
@@ -11,7 +11,6 @@ from app.navigation.navigator import Navigator
 from app.navigation.navigation_history import FlaskNavigationHistory
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.authentication.authenticator import Authenticator
-from app.authentication.session_management import session_manager
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.submitter.submitter import Submitter
@@ -48,8 +47,13 @@ def thank_you():
     # load the response store
     response_store = ResponseStoreFactory.create_response_store()
 
+    questionnaire_id = current_user.get_eq_id()
+
+    # load the schema
+    schema = _load_and_parse_schema(questionnaire_id)
+
     submitter = Submitter()
-    submitter.send(response_store.get_responses())
+    submitter.send_responses(current_user, schema, response_store.get_responses())
     return render_template('thank-you.html')
 
 
@@ -66,7 +70,7 @@ def login():
         token = authenticator.jwt_login(request)
         logger.debug("Token authenticated - linking to session")
 
-        questionnaire_id = token.get("eq-id")
+        questionnaire_id = token.get("eq_id")
         logger.debug("Requested questionnaire %s", questionnaire_id)
         if not questionnaire_id:
             logger.error("Missing EQ id in JWT %s", token)
@@ -97,8 +101,10 @@ def login():
 @main_blueprint.route('/questionnaire', methods=['GET', 'POST'])
 @login_required
 def questionnaire():
-    token = session_manager.get_token()
-    questionnaire_id = token.get("eq-id")
+
+    logger.debug("Current user %s", current_user)
+
+    questionnaire_id = current_user.get_eq_id()
     logger.debug("Requested questionnaire %s", questionnaire_id)
 
     schema = _load_and_parse_schema(questionnaire_id)
