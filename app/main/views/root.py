@@ -47,8 +47,13 @@ def thank_you():
     # load the response store
     response_store = ResponseStoreFactory.create_response_store()
 
+    questionnaire_id = current_user.get_eq_id()
+
+    # load the schema
+    schema = _load_and_parse_schema(questionnaire_id)
+
     submitter = Submitter()
-    submitter.send(response_store.get_responses())
+    submitter.send_responses(schema, response_store.get_responses())
     return render_template('thank-you.html')
 
 

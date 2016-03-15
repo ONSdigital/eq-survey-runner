@@ -3,6 +3,7 @@ import pika.credentials
 import pika.exceptions
 import logging
 from app import settings
+from app.submitter.formatter import Formatter
 
 
 class Submitter(object):
@@ -23,11 +24,16 @@ class Submitter(object):
         except pika.exceptions.AMQPError as e:
             logging.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
 
-    def send(self, token):
-        return self.send_message(token, settings.EQ_RABBITMQ_QUEUE_NAME)
+    def send_responses(self, schema, responses):
+        formatter = Formatter()
+        message = formatter.prepare_responses(schema, responses)
+        return self.send(message)
 
-    def send_message(self, token, queue):
-        token_as_string = str(token)
+    def send(self, message):
+        return self.send_message(message, settings.EQ_RABBITMQ_QUEUE_NAME)
+
+    def send_message(self, message, queue):
+        token_as_string = str(message)
         logging.info("Sending token " + token_as_string)
         try:
             self._connect()
