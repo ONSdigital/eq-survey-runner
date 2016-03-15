@@ -6,7 +6,6 @@ from app.parser.schema_parser_factory import SchemaParserFactory
 from app.validation.validator import Validator
 from app.routing.routing_engine import RoutingEngine
 from app.navigation.navigator import Navigator
-from app.navigation.navigation_history import FlaskNavigationHistory
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.authentication.authenticator import Authenticator
 from app.authentication.no_token_exception import NoTokenException
@@ -91,7 +90,7 @@ def login():
             return errors.page_not_found()
 
         # load the navigation history
-        navigation_history = FlaskNavigationHistory()
+        navigation_history = factory.create("navigation-history")
 
         # create the navigator
         navigator = Navigator(schema, navigation_history)
