@@ -25,35 +25,35 @@
                                 "responses": [
                                     {
                                       "id": "29586b4c-fb0c-4755-b67d-b3cd398cb30a",
-                                      "q_code": "110",
+                                      "q_code": "0051",
                                       "label": "Male employees working more than 30 hours per week?",
                                       "guidance": "How many men work normal hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "3396c36e-cad1-48a4-b279-8ce491856d3d",
-                                      "q_code": "111",
+                                      "q_code": "0052",
                                       "label": "Male employees working less than 30 hours per week?",
                                       "guidance": "How many men work short hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "a974ab68-9239-4012-8f19-c13060f55b42",
-                                      "q_code": "112",
+                                      "q_code": "0053",
                                       "label": "Female employees working more than 30 hours per week?",
                                       "guidance": "How many women work normal hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "34b94f54-4ec1-46ec-ae01-fd9047901054",
-                                      "q_code": "113",
+                                      "q_code": "0054",
                                       "label": "Female employees working less than 30 hours per week?",
                                       "guidance": "How many women work short hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "95076e90-23da-4e17-a113-4d0d940ef168",
-                                      "q_code": "114",
+                                      "q_code": "0050",
                                       "label": "Total employees",
                                       "guidance": "How many people work for you in total",
                                       "type": "Integer"
@@ -73,14 +73,14 @@
                                 "responses": [
                                     {
                                       "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
-                                      "q_code": "116",
+                                      "q_code": "0011",
                                       "label": "From",
                                       "guidance": "",
                                       "type": "DateRange"
                                     },
                                     {
                                       "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
-                                      "q_code": "116",
+                                      "q_code": "0012",
                                       "label": "To",
                                       "guidance": "",
                                       "type": "DateRange"
@@ -101,55 +101,55 @@
                                 "responses": [
                                     {
                                       "id": "bb8168e6-2272-450d-b5a7-d3170508efb2",
-                                      "q_code": "117",
+                                      "q_code": "0022",
                                       "label": "Food",
                                       "guidance": "<div> <h5>Include</h5> <ul> <li>VAT</li> <li>internet sales</li> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionary)</li> <li>soft drinks</li> </ul> </div> <div> <h5>Exclude</h5> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
                                       "type": "Currency"
                                     },
                                     {
                                       "id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
-                                      "q_code": "118",
+                                      "q_code": "0026",
                                       "label": "Other Goods",
                                       "guidance": "<div> <h5>Include</h5> <ul> <li>VAT</li> <li>internet sales</li> <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets’ requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> </ul> </div> <div> <h5>Exclude</h5> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                       "type": "Currency"
                                     },
                                     {
                                       "id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
-                                      "q_code": "119",
+                                      "q_code": "0023",
                                       "label": "Alcohol, Confectionary and Tobacco",
                                       "guidance": "<div> <h5>Include</h5> <ul> <li>VAT</li> <li>internet sales</li> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionary)</li> <li>soft drinks</li> </ul> </div> <div> <h5>Exclude</h5> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
                                       "type": "Currency"
                                     },
                                     {
                                       "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
-                                      "q_code": "120",
+                                      "q_code": "0027",
                                       "label": "Automotive Fuel",
                                       "type": "Currency"
                                     },
                                     {
                                       "id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
-                                      "q_code": "121",
+                                      "q_code": "0024",
                                       "label": "Clothing and Footware",
                                       "guidance": "<h5>Include</h5><ul> <li>VAT</li> <li>internet sales</li> <li>clothing and footwear</li> <li>clothing fabrics</li> <li>haberdashery and furs</li> <li>leather and travel goods</li> <li>handbags</li> <li>umbrellas</li> </ul>",
                                       "type": "Currency"
                                     },
                                     {
                                       "id": "e81adc6d-6fb0-4155-969c-d0d646f15345",
-                                      "q_code": "122",
+                                      "q_code": "0020",
                                       "label": "Total Retail Sales",
                                       "guidance": "<div> <h5>Include</h5> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sale from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h5>Exclude</h5> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                       "type": "Currency"
                                     },
                                     {
                                       "id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
-                                      "q_code": "123",
+                                      "q_code": "0025",
                                       "label": "Household goods",
                                       "guidance": "<h5>Include</h5><ul> <li>VAT</li> <li>internet sales</li> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical appliance, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators’ and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> </ul>",
                                       "type": "Currency"
                                     },
                                     {
                                       "id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
-                                      "q_code": "124",
+                                      "q_code": "0021",
                                       "label": "Of these figures, how much were from internet sales? ",
                                       "guidance": "<h5>Include</h5><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method.</li> </ul>",
                                       "type": "Currency"
@@ -169,7 +169,7 @@
                                 "responses": [
                                     {
                                       "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
-                                      "q_code": "125",
+                                      "q_code": "0146",
                                       "label": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                                       "guidance": "",
                                       "type": "Textarea"
