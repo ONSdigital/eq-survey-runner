@@ -1,6 +1,4 @@
 import 'babel-polyfill'
-import './parsley-config'
-import Parsley from 'parsleyjs'
 
 $('.js-details').each((index, el) => {
   const $el = $(el)
