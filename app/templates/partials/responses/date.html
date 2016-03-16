@@ -1,6 +1,6 @@
 <div class="field field--day">
-  <label class="label label--small label--block" for="{{response.name}}-day">{{_('Day')}}</label>
-  <select class="input input--select" name="{{response.name}}-day" id="{{response.name}}-day">
+  <label class="label label--small label--block" for="{{response.id}}-day">{{_('Day')}}</label>
+  <select class="input input--select" name="{{response.id}}-day" id="{{response.id}}-day">
     {% for day in range(31) -%}
       <option value="{{day+1}}">{{day+1}}</option>
     {%- endfor -%}
@@ -8,8 +8,8 @@
 </div>
 
 <div class="field field--month">
-  <label class="label label--small label--block" for="{{response.name}}-month">{{_('Month')}}</label>
-  <select class="input input--select" name="{{response.name}}-month" id="{{response.name}}-month">
+  <label class="label label--small label--block" for="{{response.id}}-month">{{_('Month')}}</label>
+  <select class="input input--select" name="{{response.id}}-month" id="{{response.id}}-month">
     {% for day in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] -%}
       <option value="{{day}}">{{_(day)}}</option>
     {%- endfor %}
@@ -17,6 +17,6 @@
 </div>
 
 <div class="field field--year">
-  <label class="label label--small label--block" for="{{response.name}}-year">{{_('Year')}}</label>
-  <input class="input input--number" type="number" name="{{response.name}}-year" value="{{response.value}}">
+  <label class="label label--small label--block" for="{{response.id}}-year">{{_('Year')}}</label>
+  <input class="input input--number" type="number" name="{{response.id}}-year" value="{{response.value}}">
 </div>
