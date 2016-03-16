@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import jinja2
 import flask
-
+import json
 
 blueprint = flask.Blueprint('filters', __name__)
 
@@ -13,3 +13,11 @@ def prettify(context, code):
     return soup.prettify()
 
 blueprint.add_app_template_filter(prettify)
+
+
+@jinja2.contextfilter
+@blueprint.app_template_filter()
+def dumpobj(context, my_obj):
+    return vars(my_obj)
+
+blueprint.add_app_template_filter(dumpobj)
