@@ -61,7 +61,7 @@
     }
   }
   .field {
-    flex: 1 1 auto;
+    flex: 1 1 0;
     margin-right: 0.5rem;
 
     @include mq(s) {
@@ -80,6 +80,7 @@
     }
   }
   .field--month {
+    flex: 2;
     @include fixed() {
       width: 10rem;
     }
