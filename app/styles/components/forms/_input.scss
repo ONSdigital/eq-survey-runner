@@ -16,9 +16,9 @@ $input-padding: 0.6rem;
   //   border: 1px solid tint($color-blue, 50%);
   //   box-shadow: 0 0 0 1px tint($color-blue, 50%);
   // }
-  &.has-error {
-    border-color: $color-red;
-  }
+  // .response--has-error & {
+  //   border-color: $color-red;
+  // }
 }
 
 .input--select {

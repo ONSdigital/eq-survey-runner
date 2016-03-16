@@ -1,0 +1,38 @@
+{% set validation_result = questionnaire.validation_results.get_result(response.id) %}
+{% set is_valid = validation_result.is_valid or validation_result.is_valid is not defined %}
+
+<div class="question__response response {{'response--has-error' if not is_valid}}">
+
+  {% if validation_result %}
+    {% if not is_valid %}
+      {% if validation_result.get_errors() %}
+      <ul class="response__errors">
+        {% for error in validation_result.get_errors() %}
+        <li class='response__error'>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if validation_result.get_warnings() %}
+      <ul class="response__warnings">
+        {% for warning in validation_result.get_warnings() %}
+        <li class="response__warning">{{ warning }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  <div class="response__field field field--{{response.type|lower}}">
+
+    {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
+
+  </div>
+
+
+  {# {{ questionnaire.user_responses.get_response(response.id) }} #}
+
+  {% if response.guidance %}
+    {% include 'partials/guidance.html' %}
+  {% endif %}
+
+</div>
