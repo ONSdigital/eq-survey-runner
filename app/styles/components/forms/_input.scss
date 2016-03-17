@@ -11,14 +11,6 @@ $input-padding: 0.6rem;
   border-radius: $input-radius;
   width: 100%;
   max-width: 40rem;
-  // &:focus {
-  //   outline: none;
-  //   border: 1px solid tint($color-blue, 50%);
-  //   box-shadow: 0 0 0 1px tint($color-blue, 50%);
-  // }
-  // .response--has-error & {
-  //   border-color: $color-red;
-  // }
 }
 
 .input--select {
@@ -43,7 +35,6 @@ $input-padding: 0.6rem;
   appearance: none;
   border: 2px solid #9b9b9b;
   padding: 0.5rem;
-  // margin: 0.4rem 0.5rem 0 0;
   font-size: 1rem;
   background: #eee;
   box-shadow: inset 0 0 0 3px white;
