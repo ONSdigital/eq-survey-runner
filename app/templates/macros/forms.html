@@ -15,7 +15,7 @@
   } %}
 
   {% if type in special_types %}
-    {% set input_type = 'number' %}
+    {% set input_type = 'text' %}
     {% set input_has_special_type = true %}
   {% else %}
     {% set input_type = type %}
@@ -29,8 +29,7 @@
     "name": response.id,
     "id": response.id,
     "placeholder": response.placeholder,
-    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-link",
-    "aria-labelledby": "label-" ~ response.id
+    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-link"
   } %}
 
   {% if input_has_special_type %}
@@ -47,14 +46,22 @@
 
   {% set attr = {
     "class": "input input--textarea",
-    "name": response.name,
+    "name": response.id,
     "id": response.id,
     "placeholder": response.placeholder,
     "rows": "4",
     "cols": "60",
-    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id,
-    "aria-labelledby": "label-" ~ response.id
+    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id
   } %}
 
   <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>
 {% endmacro %}
+
+
+{%- macro select(name, values, response) %}
+  <select class="input input--select" name="{{response.id}}-{{name}}" id="{{response.id}}-{{name}}">
+    {% for value in values -%}
+      <option value="{{loop.index}}">{{value}}</option>
+    {%- endfor -%}
+  </select>
+{% endmacro -%}
