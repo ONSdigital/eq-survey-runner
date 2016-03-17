@@ -205,6 +205,7 @@ class SchemaParser(AbstractSchemaParser):
             response.label = ParserUtils.get_optional_string(schema, 'label')
             response.guidance = ParserUtils.get_optional_string(schema, 'guidance')
             response.type = ParserUtils.get_required_string(schema, 'type')
+            response.required = ParserUtils.get_required_boolean(schema, 'required')
         except Exception as e:
             logging.error(e)
             raise e

@@ -1,5 +1,6 @@
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
+from gettext import gettext as _
 
 
 class RequiredCheck(AbstractValidator):
@@ -18,5 +19,5 @@ class RequiredCheck(AbstractValidator):
             validation_result.is_valid = True
         else:
             validation_result.is_valid = False
-            validation_result.errors.append("This is a required field")
+            validation_result.errors.append(_('This is a required field'))
         return validation_result

@@ -82,6 +82,28 @@ class ParserUtils(object):
             raise SchemaParserException("Required integer '{field}' is not an integer".format(field=key))
 
     @staticmethod
+    def get_required_boolean(obj, key):
+        """Get a required boolean from the dict
+
+        Gets the boolean value associated with the key in the dict, and raises a
+        SchemaParserException if the key is not present or the value is not an
+        boolean.
+
+        :param obj: A dict on json object
+        :param key: The name of the property to retrieve
+
+        :returns: The value as an boolean if found
+
+        :raises: A SchemaParserException if the key is not found, or the value is not an boolean
+
+        """
+        value = ParserUtils.get_required(obj, key)
+        if isinstance(value, bool):
+            return value
+        else:
+            raise SchemaParserException("Required boolean '{field}' is not an boolean".format(field=key))
+
+    @staticmethod
     def get_optional(obj, key):
         """Get an optional property from the dict
 
