@@ -1,24 +1,22 @@
-<div class="field field--day">
-  <label class="label label--small label--block" for="{{response.id}}-day">{{_('Day')}}</label>
-  <select class="input input--select" name="{{response.id}}-day" id="{{response.id}}-day">
-    {% for day in range(31) -%}
-      <option value="{{day+1}}">{{day+1}}</option>
-    {%- endfor -%}
-  </select>
-</div>
 
-<div class="field field--month">
-  <label class="label label--small label--block" for="{{response.id}}-month">{{_('Month')}}</label>
-  <select class="input input--select" name="{{response.id}}-month" id="{{response.id}}-month">
-    {% for month in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] -%}
-      <option value="{{loop.index}}">{{_(month)}}</option>
-    {%- endfor %}
-  </select>
+{% with name="day" %}
+<div class="field field--{{name}}">
+  <label class="label label--small" for="{{response.id}}-{{name}}">{{_('Day')}}</label>
+  {{form.select(name, (range(1, 32)), response)}}
 </div>
+{% endwith %}
+
+{% with name="month" %}
+<div class="field field--{{name}}">
+  {% set months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %}
+  <label class="label label--small" for="{{response.id}}-{{name}}">{{_('Month')}}</label>
+  {{form.select(name, months, response)}}
+</div>
+{% endwith %}
 
 <div class="field field--year">
-  <label class="label label--small label--block" for="{{response.name}}-year">{{_('Year')}}</label>
-  <input class="input input--number" type="number" name="{{response.id}}-year" value="" min="1980" max="2016" placeholder="YYYY">
+  <label class="label label--small" for="{{response.name}}-year">{{_('Year')}}</label>
+  <input class="input input--number" type="number" name="{{response.id}}-year" value="" placeholder="YYYY">
 </div>
 
 {% if response.is_valid is not none and response.is_valid == False %}

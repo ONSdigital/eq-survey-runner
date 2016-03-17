@@ -1,7 +1,7 @@
 
 {% set is_valid = response.is_valid or response.is_valid is not defined %}
 
-<div class="question__response response {{'response--has-error' if not is_valid}}">
+<div class="question__response response {{'response--has-error' if not is_valid}}" id="{{response.id}}">
 
   {% if not is_valid %}
     {% if response.errors %}
