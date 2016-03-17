@@ -52,7 +52,7 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
                 EQ_ID: '1',
                 PERIOD_STR: '2016-01-01',
                 PERIOD_ID: '12',
-                FORM_TYPE: 'a',
+                FORM_TYPE: '0203',
                 COLLECTION_EXERCISE_SID: "sid",
                 REF_P_START_DATE: "2016-01-01",
                 REF_P_END_DATE: "2016-09-01",

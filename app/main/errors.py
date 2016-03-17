@@ -2,40 +2,48 @@ from flask import render_template
 from app.main import main_blueprint
 import logging
 
+logger = logging.getLogger(__name__)
+
 
 @main_blueprint.app_errorhandler(400)
-def bad_request(e):
-    logging.error(e)
+def bad_request(error=None):
+    if error:
+        logger.error(error)
     return _render_error_page(500)
 
 
 @main_blueprint.app_errorhandler(401)
-def unauthorized(e):
-    logging.error(e)
+def unauthorized(error=None):
+    if error:
+        logger.error(error)
     return _render_error_page(401)
 
 
 @main_blueprint.app_errorhandler(403)
-def forbidden(e):
-    logging.error(e)
+def forbidden(error=None):
+    if error:
+        logger.error(error)
     return _render_error_page(403)
 
 
 @main_blueprint.app_errorhandler(404)
-def page_not_found(e):
-    logging.error(e)
+def page_not_found(error=None):
+    if error:
+        logger.error(error)
     return _render_error_page(404)
 
 
 @main_blueprint.app_errorhandler(500)
-def exception(e):
-    logging.error(e)
+def exception(error=None):
+    if error:
+        logger.error(error)
     return _render_error_page(500)
 
 
 @main_blueprint.app_errorhandler(503)
-def service_unavailable(e):
-    logging.error(e)
+def service_unavailable(error=None):
+    if error:
+        logger.error(error)
     return _render_error_page(503)
 
 
