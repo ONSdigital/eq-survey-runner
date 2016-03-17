@@ -18,5 +18,5 @@ class IntegerTypeCheck(AbstractValidator):
             result.is_valid = True
         except:
             result.is_valid = False
-            result.errors.append(_("'{value}' is not an integer".format(value=user_answer)))
+            result.errors.append(_("'{value}' is not a whole number".format(value=user_answer)))
         return result
