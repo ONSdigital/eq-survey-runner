@@ -4,15 +4,22 @@
 
 {% block survey %}
 
-<form action="" method="POST">
+<form action="" method="POST" xmlns="http://www.w3.org/1999/html">
   <p>
     User ID: <input name="user_id" type="text" value="{{user}}">
   </p>
   <p>
-    EQ ID: <input name="eq_id" type="text" value="1">
+    EQ ID:
+    <select name="eq_id">
+      <option value="1">1</option>
+      </select>
   </p>
   <p>
-    Form Type: <input name="form_type" type="text" value="23">
+    Form Type:
+     <select name="form_type">
+          <option value="0203">0203</option>
+          <option value="0205">0205</option>
+      </select>
   </p>
   <p>
     Token Expiry (seconds): <input name="exp" type="text" value="1800">

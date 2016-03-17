@@ -73,9 +73,10 @@ def create_app(config_name):
     from .patternlib import patternlib_blueprint
     application.register_blueprint(patternlib_blueprint)
 
-    # import and register the pattern library blueprint
-    from .dev_mode import dev_mode_blueprint
-    application.register_blueprint(dev_mode_blueprint)
+    if settings.EQ_DEV_MODE:
+        # import and register the dev mode blueprint
+        from .dev_mode import dev_mode_blueprint
+        application.register_blueprint(dev_mode_blueprint)
 
     from app.jinja_filters import blueprint as filter_blueprint
     application.register_blueprint(filter_blueprint)
