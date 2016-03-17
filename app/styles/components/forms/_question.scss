@@ -1,6 +1,6 @@
 .question {
   border: 2px solid transparent;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .question__fieldset {
@@ -22,7 +22,7 @@
 }
 
 .question__legend {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   float: left;
 }
 
@@ -31,9 +31,10 @@
   display: block;
   font-weight: 700;
   font-size: 1rem;
+  line-height: 1.3;
   color: inherit;
   @include mq(s) {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -60,5 +61,8 @@
 
 .question__response {
   padding: 0;
-  margin: 0 0 1rem;
+  margin: 0 0 2rem;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }

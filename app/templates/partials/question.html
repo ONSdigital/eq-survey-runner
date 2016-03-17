@@ -25,39 +25,7 @@
     {%- if grid %} <div class="grid grid--align-bottom"> {% endif -%}
       {%- for response in question.responses -%}
         {%- if grid -%} <div class="grid__col m-6"> {%- endif %}
-        <div class="question__response response">
-          <div class="response__field field field--{{response.type|lower}}">
-            {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
-            {% if response.guidance %}
-              {% include 'partials/guidance.html' %}
-            {% endif %}
-          </div>
-
-          {% set validation_result = questionnaire.validation_results.get_result(response.id) %}
-          {% if validation_result %}
-            {% if not validation_result.is_valid %}
-              {% if validation_result.get_errors() %}
-              <ul class="errors">
-                {% for error in validation_result.get_errors() %}
-                <li>{{ error }}</li>
-                {% endfor %}
-              </ul>
-              {% endif %}
-              {% if validation_result.get_warnings() %}
-              <ul class="warnings">
-                {% for warning in validation_result.get_warnings() %}
-                <li>{{ warning }}</li>
-                {% endfor %}
-              </ul>
-              {% endif %}
-            {% endif %}
-          {% endif %}
-
-          {% if questionnaire.user_responses.get_response(response.id) %}
-          <p>You entered: {{ questionnaire.user_responses.get_response(response.id) }}</p>
-          {% endif %}
-          
-        </div>
+          {% include 'partials/response.html' %}
         {%- if grid %} </div> {% endif -%}
       {%- endfor -%}
     {%- if question.grid %}</div>{% endif %}
