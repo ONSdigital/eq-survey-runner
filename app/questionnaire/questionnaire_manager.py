@@ -8,9 +8,11 @@ class QuestionnaireManager(object):
         self._navigator = navigator
         self._navigation_history = navigation_history
 
-    def process_incoming_responses(self, user_responses):
+    def process_incoming_responses(self, post_data):
+        # process incoming post data
+        user_responses = self._process_incoming_post_data(post_data)
 
-        # update the response store with POST data
+        # update the response store with data
         for key, value in user_responses.items():
             self._response_store.store_response(key, value)
 
@@ -52,3 +54,31 @@ class QuestionnaireManager(object):
             "user_responses": self._response_store,
             "schema": self._schema
         }
+
+    def _process_incoming_post_data(self, post_data):
+        user_responses = {}
+        for key in post_data.keys():
+            if key.endswith('-day'):
+                # collect the matching -month, and -year fields and return a single response for validation
+                response_id = key[0:-4]
+                month_key = response_id + '-month'
+                year_key = response_id + '-year'
+
+                if month_key not in post_data.keys() or year_key not in post_data.keys():
+                    continue
+
+                # We do not validate here, only concatenate the inputs into a single response which is validated elsewhere
+                # we concatenate the fields into a date of the format dd/mm/yyyy
+                user_responses[response_id] = post_data[key] + '/' + post_data[month_key] + '/' + post_data[year_key]
+
+            elif key.endswith('-month') or key.endswith('-year'):
+                # skip theses, they are handled above
+                continue
+            elif key.startswith('action['):
+                # capture the required action
+                pass
+            else:
+                # for now assume it is a valid response id
+                user_responses[key] = post_data[key]
+
+        return user_responses
