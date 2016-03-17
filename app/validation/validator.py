@@ -54,18 +54,20 @@ class Validator(object):
             if not result.is_valid:
                 return result
 
-        # Implicit -type-checking
-        logger.debug('Type Checking ({}) with data {}'.format(item.id, item_data))
-        result = self._type_check(item, item_data)
-        if not result.is_valid:
-            return result
+        # Validate if data is present
+        if item_data:
+            # Implicit -type-checking
+            logger.debug('Type Checking ({}) with data {}'.format(item.id, item_data))
+            result = self._type_check(item, item_data)
+            if not result.is_valid:
+                return result
 
-        # check for additional validation rules
-        if item.validation:
-            for rule in item.validation:
-                result = rule.validate(item_data, self._response_store)
-                if not result.is_valid:
-                    return result
+            # check for additional validation rules
+            if item.validation:
+                for rule in item.validation:
+                    result = rule.validate(item_data, self._response_store)
+                    if not result.is_valid:
+                        return result
 
         # If we've made it this far, the thing is valid
         return ValidationResult(True)
