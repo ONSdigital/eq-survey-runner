@@ -1,17 +1,11 @@
 import unittest
-from app.model.response import Response
-from app.model.question import Question
-from app.model.section import Section
-from app.model.block import Block
-from app.model.questionnaire import Questionnaire
-from app.model.group import Group
-from app.validation.integer_type_check import IntegerTypeCheck
+from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
 
 
-class IntegerTest(unittest.TestCase):
+class PositiveIntegerTest(unittest.TestCase):
 
-    def test_integer_validator(self):
-        integer = IntegerTypeCheck()
+    def test_positive_integer_type_check(self):
+        integer = PositiveIntegerTypeCheck()
 
         # validate None
         result = integer.validate(None)
@@ -49,8 +43,9 @@ class IntegerTest(unittest.TestCase):
 
         # negative integer
         result = integer.validate('-10')
-        self.assertTrue(result.is_valid)
-        self.assertEquals(len(result.errors), 0)
+        self.assertFalse(result.is_valid)
+        self.assertEquals(len(result.errors), 1)
+        self.assertEquals('\'-10\' is less than zero', result.errors[0])
 
         # <space>
         result = integer.validate(' ')

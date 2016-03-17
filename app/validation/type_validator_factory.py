@@ -1,5 +1,6 @@
 from app.validation.integer_type_check import IntegerTypeCheck
 from app.validation.date_type_check import DateTypeCheck
+from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
 
 
 class TypeValidatorFactoryException(Exception):
@@ -19,8 +20,10 @@ class TypeValidatorFactory(object):
 
         if response_type.upper() == 'INTEGER':
             validators.append(IntegerTypeCheck())
+        elif response_type.upper() == "POSTIVEINTEGER":
+            validators.append(PositiveIntegerTypeCheck())
         elif response_type.upper() == 'CURRENCY':
-            validators.append(IntegerTypeCheck())
+            validators.append(PositiveIntegerTypeCheck())
         elif response_type.upper() == 'DATERANGE':
             validators.append(DateTypeCheck())
         else:
