@@ -1,10 +1,11 @@
-import unittest
-import time
 import logging
-from app import settings
+import time
+import unittest
+
 from app import create_app
+from app import settings
+from app.authentication.encoder import Encoder
 from app.authentication.user import USER_ID, RU_REF, REF_P_START_DATE, REF_P_END_DATE, COLLECTION_EXERCISE_SID, EQ_ID, FORM_TYPE, PERIOD_ID, PERIOD_STR
-from tests.app.authentication.encoder import Encoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
