@@ -2,7 +2,7 @@ from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
 
 
-class IntegerTypeCheck(AbstractValidator):
+class PositiveIntegerTypeCheck(AbstractValidator):
 
     """
     Validate that the users answer is an integer
@@ -14,6 +14,9 @@ class IntegerTypeCheck(AbstractValidator):
         result = ValidationResult(False)
         try:
             integer_value = int(user_answer)        # NOQA
+            if integer_value < 0:
+                result.errors.append("'{value}' is less than zero".format(value=user_answer))
+                return result
             result.is_valid = True
         except:
             result.is_valid = False
