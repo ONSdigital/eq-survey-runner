@@ -10,13 +10,21 @@
 <div class="field field--month">
   <label class="label label--small label--block" for="{{response.id}}-month">{{_('Month')}}</label>
   <select class="input input--select" name="{{response.id}}-month" id="{{response.id}}-month">
-    {% for day in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] -%}
-      <option value="{{day}}">{{_(day)}}</option>
+    {% for month in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] -%}
+      <option value="{{loop.index}}">{{_(month)}}</option>
     {%- endfor %}
   </select>
 </div>
 
 <div class="field field--year">
-  <label class="label label--small label--block" for="{{response.id}}-year">{{_('Year')}}</label>
-  <input class="input input--number" type="number" name="{{response.id}}-year" value="{{response.value}}">
+  <label class="label label--small label--block" for="{{response.name}}-year">{{_('Year')}}</label>
+  <input class="input input--number" type="number" name="{{response.id}}-year" value="" min="1980" max="2016" placeholder="YYYY">
 </div>
+
+{% if response.is_valid is not none and response.is_valid == False %}
+<ul>
+  {% for error in response.errors %}
+  <li>{{ error }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
