@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request
 from app.authentication.encoder import Encoder
 from app.authentication.user import USER_ID, RU_REF, RU_NAME, REF_P_START_DATE, REF_P_END_DATE, \
-  COLLECTION_EXERCISE_SID, EQ_ID, FORM_TYPE, PERIOD_ID, PERIOD_STR
+  COLLECTION_EXERCISE_SID, EQ_ID, FORM_TYPE, PERIOD_ID, PERIOD_STR, RETURN_BY, TRAD_AS
 from . import dev_mode_blueprint
 import os
 import time
@@ -22,16 +22,18 @@ def dev_mode():
         ref_p_end_date = form.get("ref_p_end_date")
         ru_ref = form.get("ru_ref")
         ru_name = form.get("ru_name")
+        trad_as = form.get("trad_as")
+        return_by = form.get("return-by")
 
         payload = create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid,
-                                 ref_p_start_date, ref_p_end_date, ru_ref, ru_name)
+                                 ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by)
         return redirect("/session?token=" + generate_token(payload).decode())
     else:
         return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'))
 
 
 def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid, ref_p_start_date,
-                   ref_p_end_date, ru_ref, ru_name):
+                   ref_p_end_date, ru_ref, ru_name, trad_as, return_by):
     iat = time.time()
     exp = time.time() + float(exp_time)
     return {
@@ -46,7 +48,9 @@ def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, coll
             REF_P_START_DATE: ref_p_start_date,
             REF_P_END_DATE: ref_p_end_date,
             RU_REF: ru_ref,
-            RU_NAME: ru_name}
+            RU_NAME: ru_name,
+            RETURN_BY: return_by,
+            TRAD_AS: trad_as}
 
 
 def generate_token(payload):

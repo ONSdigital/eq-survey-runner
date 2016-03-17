@@ -5,7 +5,8 @@ import unittest
 from app import create_app
 from app import settings
 from app.authentication.encoder import Encoder
-from app.authentication.user import USER_ID, RU_REF, REF_P_START_DATE, REF_P_END_DATE, COLLECTION_EXERCISE_SID, EQ_ID, FORM_TYPE, PERIOD_ID, PERIOD_STR
+from app.authentication.user import USER_ID, RU_REF, REF_P_START_DATE, REF_P_END_DATE, COLLECTION_EXERCISE_SID, EQ_ID, \
+  FORM_TYPE, PERIOD_ID, PERIOD_STR, RETURN_BY, RU_NAME
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
@@ -56,7 +57,9 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
                 COLLECTION_EXERCISE_SID: "sid",
                 REF_P_START_DATE: "2016-01-01",
                 REF_P_END_DATE: "2016-09-01",
-                RU_REF: "1234"}
+                RU_REF: "1234",
+                RU_NAME: "Test",
+                RETURN_BY: "2016-09-09"}
 
 if __name__ == '__main__':
     unittest.main()

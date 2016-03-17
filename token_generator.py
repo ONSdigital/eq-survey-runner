@@ -3,7 +3,8 @@ import sys
 import time
 
 from app.authentication.encoder import Encoder
-from app.authentication.user import USER_ID, RU_REF, RU_NAME, REF_P_START_DATE, REF_P_END_DATE, COLLECTION_EXERCISE_SID, EQ_ID, FORM_TYPE, PERIOD_ID, PERIOD_STR
+from app.authentication.user import USER_ID, RU_REF, RU_NAME, REF_P_START_DATE, REF_P_END_DATE, COLLECTION_EXERCISE_SID,\
+  EQ_ID, FORM_TYPE, PERIOD_ID, PERIOD_STR, RETURN_BY
 
 
 def create_payload(user):
@@ -21,7 +22,8 @@ def create_payload(user):
             REF_P_START_DATE: "2016-01-01",
             REF_P_END_DATE: "2016-09-01",
             RU_REF: "12346789012A",
-            RU_NAME: "Apple"}
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-04-30"}
 
 
 def generate_token():
