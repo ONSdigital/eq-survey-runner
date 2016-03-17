@@ -1,5 +1,6 @@
 import unittest
-from app.authentication.user import User, FORM_TYPE, COLLECTION_EXERCISE_SID, EQ_ID, PERIOD_ID, PERIOD_STR, REF_P_END_DATE, REF_P_START_DATE, RU_REF, USER_ID
+from app.authentication.user import User, FORM_TYPE, COLLECTION_EXERCISE_SID, EQ_ID, PERIOD_ID, PERIOD_STR, \
+  REF_P_END_DATE, REF_P_START_DATE, RU_REF, USER_ID, RU_NAME, RETURN_BY
 
 
 class TestUser(unittest.TestCase):
@@ -14,7 +15,9 @@ class TestUser(unittest.TestCase):
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         }
         self.user = User(self.jwt)
 
@@ -57,7 +60,9 @@ class TestUser(unittest.TestCase):
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -73,7 +78,9 @@ class TestUser(unittest.TestCase):
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -88,7 +95,9 @@ class TestUser(unittest.TestCase):
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -103,7 +112,9 @@ class TestUser(unittest.TestCase):
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -118,7 +129,9 @@ class TestUser(unittest.TestCase):
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -133,7 +146,9 @@ class TestUser(unittest.TestCase):
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -148,7 +163,9 @@ class TestUser(unittest.TestCase):
             PERIOD_ID: "3",
             REF_P_START_DATE: "2016-02-02",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -163,7 +180,9 @@ class TestUser(unittest.TestCase):
             PERIOD_ID: "3",
             PERIOD_STR: "2016-01-01",
             REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -178,7 +197,9 @@ class TestUser(unittest.TestCase):
             PERIOD_ID: "3",
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
-            RU_REF: "2016-04-04"
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
@@ -193,11 +214,64 @@ class TestUser(unittest.TestCase):
             PERIOD_ID: "3",
             PERIOD_STR: "2016-01-01",
             REF_P_START_DATE: "2016-02-02",
-            REF_P_END_DATE: "2016-03-03"
+            REF_P_END_DATE: "2016-03-03",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
         })
         valid, reason = user.is_valid()
         self.assertFalse(valid)
         self.assertEquals(RU_REF, reason)
+
+    def test_is_valid_fails_missing_ru_name(self):
+        user = User({
+            USER_ID: "1",
+            FORM_TYPE: "a",
+            COLLECTION_EXERCISE_SID: "test-sid",
+            EQ_ID: "2",
+            PERIOD_ID: "3",
+            PERIOD_STR: "2016-01-01",
+            REF_P_START_DATE: "2016-02-02",
+            REF_P_END_DATE: "2016-03-03",
+            RU_REF: "2016-04-04",
+            RETURN_BY: "2016-07-07"
+        })
+        valid, reason = user.is_valid()
+        self.assertFalse(valid)
+        self.assertEquals(RU_NAME, reason)
+
+    def test_is_valid_fails_missing_return_by(self):
+        user = User({
+            USER_ID: "1",
+            FORM_TYPE: "a",
+            COLLECTION_EXERCISE_SID: "test-sid",
+            EQ_ID: "2",
+            PERIOD_ID: "3",
+            PERIOD_STR: "2016-01-01",
+            REF_P_START_DATE: "2016-02-02",
+            REF_P_END_DATE: "2016-03-03",
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple"
+        })
+        valid, reason = user.is_valid()
+        self.assertFalse(valid)
+        self.assertEquals(RETURN_BY, reason)
+
+    def test_is_valid_does_not_fail_missing_trading_name(self):
+        user = User({
+            USER_ID: "1",
+            FORM_TYPE: "a",
+            COLLECTION_EXERCISE_SID: "test-sid",
+            EQ_ID: "2",
+            PERIOD_ID: "3",
+            PERIOD_STR: "2016-01-01",
+            REF_P_START_DATE: "2016-02-02",
+            REF_P_END_DATE: "2016-03-03",
+            RU_REF: "2016-04-04",
+            RU_NAME: "Apple",
+            RETURN_BY: "2016-07-07"
+        })
+        valid, reason = user.is_valid()
+        self.assertTrue(valid)
 
 if __name__ == '__main__':
     unittest.main()

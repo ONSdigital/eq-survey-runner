@@ -10,8 +10,11 @@ PERIOD_STR = 'period_str'
 REF_P_START_DATE = 'ref_p_start_date'
 REF_P_END_DATE = 'ref_p_end_date'
 FORM_TYPE = 'form_type'
+RETURN_BY = 'return_by'
+TRAD_AS = 'trad_as'
 
-VALUES = [USER_ID, RU_REF, EQ_ID, COLLECTION_EXERCISE_SID, PERIOD_ID, PERIOD_STR, REF_P_END_DATE, REF_P_START_DATE, FORM_TYPE]
+VALUES_FOR_VALIDATION = [USER_ID, RU_REF, RU_NAME, EQ_ID, COLLECTION_EXERCISE_SID, PERIOD_ID, PERIOD_STR,
+                         REF_P_END_DATE, REF_P_START_DATE, FORM_TYPE, RETURN_BY]
 
 
 class User(UserMixin):
@@ -49,8 +52,14 @@ class User(UserMixin):
     def get_ref_p_end_date(self):
         return self.jwt.get(REF_P_END_DATE)
 
+    def get_trad_as(self):
+        return self.jwt.get(TRAD_AS)
+
+    def get_return_by(self):
+        return self.jwt.get(RETURN_BY)
+
     def is_valid(self):
-        for value in VALUES:
+        for value in VALUES_FOR_VALIDATION:
             if not self._has_value(value):
                 return False, value
         return True, ""
