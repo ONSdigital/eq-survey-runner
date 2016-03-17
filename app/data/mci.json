@@ -123,35 +123,30 @@
                                       "id": "29586b4c-fb0c-4755-b67d-b3cd398cb30a",
                                       "q_code": "0051",
                                       "label": "Male employees working more than 30 hours per week?",
-                                      "guidance": "How many men work normal hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "3396c36e-cad1-48a4-b279-8ce491856d3d",
                                       "q_code": "0052",
                                       "label": "Male employees working less than 30 hours per week?",
-                                      "guidance": "How many men work short hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "a974ab68-9239-4012-8f19-c13060f55b42",
                                       "q_code": "0053",
                                       "label": "Female employees working more than 30 hours per week?",
-                                      "guidance": "How many women work normal hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "34b94f54-4ec1-46ec-ae01-fd9047901054",
                                       "q_code": "0054",
                                       "label": "Female employees working less than 30 hours per week?",
-                                      "guidance": "How many women work short hours?",
                                       "type": "Integer"
                                     },
                                     {
                                       "id": "95076e90-23da-4e17-a113-4d0d940ef168",
                                       "q_code": "0050",
                                       "label": "Total employees",
-                                      "guidance": "How many people work for you in total",
                                       "type": "Integer"
                                     }
                                 ]
