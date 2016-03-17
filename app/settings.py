@@ -36,6 +36,11 @@ EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'app/data')
 EQ_SESSION_TIMEOUT = int(os.getenv('EQ_SESSION_TIMEOUT', '1800'))
 EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
 
+# keys for the dev mode
+EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
+EQ_RRM_PRIVATE_KEY = get_key(os.getenv('EQ_RRM_PRIVATE_KEY', "./jwt-test-keys/rrm-private.pem"))
+EQ_SR_PUBLIC_KEY = get_key(os.getenv('EQ_SR_PUBLIC_KEY', "./jwt-test-keys/sr-public.pem"))
+
 # non configurable settings
 
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'

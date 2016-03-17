@@ -1,0 +1,44 @@
+{% extends 'layouts/_survey.html' %}
+
+{% block page_title %}EQ Development{% endblock %}
+
+{% block survey %}
+
+<form action="" method="POST">
+  <p>
+    User ID: <input name="user_id" type="text" value="{{user}}">
+  </p>
+  <p>
+    EQ ID: <input name="eq_id" type="text" value="1">
+  </p>
+  <p>
+    Form Type: <input name="form_type" type="text" value="23">
+  </p>
+  <p>
+    Token Expiry (seconds): <input name="exp" type="text" value="1800">
+  </p>
+  <p>
+    Period String: <input name="period_str" type="text" value="01-04-2016">
+  </p>
+  <p>
+    Period ID: <input name="period_id" type="text" value="201601">
+  </p>
+  <p>
+    Collection Exercise SID: <input name="sid" type="text" value="789">
+  </p>
+  <p>
+    RU REF: <input name="ru_ref" type="text" value="12346789012A">
+  </p>
+  <p>
+    RU NAME: <input name="ru_name" type="text" value="Apple">
+  </p>
+  <p>
+    REF P Start Date: <input name="ref_p_start_date" type="text" value="2016-04-01">
+  </p>
+  <p>
+    REF P End Date: <input name="ref_p_end_date" type="text" value="2016-04-30">
+  </p>
+  <input type="submit" value="submit"/>
+</form>
+
+{% endblock %}

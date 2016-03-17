@@ -2,6 +2,7 @@ from flask.ext.login import UserMixin
 
 USER_ID = 'user_id'
 RU_REF = 'ru_ref'
+RU_NAME = 'ru_name'
 EQ_ID = 'eq_id'
 COLLECTION_EXERCISE_SID = 'collection_exercise_sid'
 PERIOD_ID = 'period_id'
@@ -23,6 +24,9 @@ class User(UserMixin):
 
     def get_ru_ref(self):
         return self.jwt.get(RU_REF)
+
+    def get_ru_name(self):
+        return self.jwt.get(RU_NAME)
 
     def get_eq_id(self):
         return self.jwt.get(EQ_ID)
