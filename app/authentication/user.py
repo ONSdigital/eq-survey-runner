@@ -1,52 +1,71 @@
 from flask.ext.login import UserMixin
 
-USER_ID = 'user_id'
-RU_REF = 'ru_ref'
-EQ_ID = 'eq_id'
-COLLECTION_EXERCISE_SID = 'collection_exercise_sid'
-PERIOD_ID = 'period_id'
-PERIOD_STR = 'period_str'
-REF_P_START_DATE = 'ref_p_start_date'
-REF_P_END_DATE = 'ref_p_end_date'
-FORM_TYPE = 'form_type'
 
-VALUES = [USER_ID, RU_REF, EQ_ID, COLLECTION_EXERCISE_SID, PERIOD_ID, PERIOD_STR, REF_P_END_DATE, REF_P_START_DATE, FORM_TYPE]
+class UserConstants(object):
+    """Constant for user values"""
+    USER_ID = 'user_id'
+    RU_REF = 'ru_ref'
+    RU_NAME = 'ru_name'
+    EQ_ID = 'eq_id'
+    COLLECTION_EXERCISE_SID = 'collection_exercise_sid'
+    PERIOD_ID = 'period_id'
+    PERIOD_STR = 'period_str'
+    REF_P_START_DATE = 'ref_p_start_date'
+    REF_P_END_DATE = 'ref_p_end_date'
+    FORM_TYPE = 'form_type'
+    RETURN_BY = 'return_by'
+    TRAD_AS = 'trad_as'
 
 
 class User(UserMixin):
+
+    VALUES_FOR_VALIDATION = [UserConstants.USER_ID, UserConstants.RU_REF, UserConstants.RU_NAME, UserConstants.EQ_ID,
+                             UserConstants.COLLECTION_EXERCISE_SID, UserConstants.PERIOD_ID, UserConstants.PERIOD_STR,
+                             UserConstants.REF_P_END_DATE, UserConstants.REF_P_START_DATE, UserConstants.FORM_TYPE,
+                             UserConstants.RETURN_BY]
+
     def __init__(self, jwt):
-        self.id = jwt.get(USER_ID)
+        self.id = jwt.get(UserConstants.USER_ID)
         self.jwt = jwt
 
     def get_user_id(self):
-        return self.jwt.get(USER_ID)
+        return self.jwt.get(UserConstants.USER_ID)
 
     def get_ru_ref(self):
-        return self.jwt.get(RU_REF)
+        return self.jwt.get(UserConstants.RU_REF)
+
+    def get_ru_name(self):
+        return self.jwt.get(UserConstants.RU_NAME)
 
     def get_eq_id(self):
-        return self.jwt.get(EQ_ID)
+        return self.jwt.get(UserConstants.EQ_ID)
 
     def get_collection_exercise_sid(self):
-        return self.jwt.get(COLLECTION_EXERCISE_SID)
+        return self.jwt.get(UserConstants.COLLECTION_EXERCISE_SID)
 
     def get_period_id(self):
-        return self.jwt.get(PERIOD_ID)
+        return self.jwt.get(UserConstants.PERIOD_ID)
 
     def get_period_str(self):
-        return self.jwt.get(PERIOD_STR)
+        return self.jwt.get(UserConstants.PERIOD_STR)
 
     def get_form_type(self):
-        return self.jwt.get(FORM_TYPE)
+        return self.jwt.get(UserConstants.FORM_TYPE)
 
     def get_ref_p_start_date(self):
-        return self.jwt.get(REF_P_START_DATE)
+        return self.jwt.get(UserConstants.REF_P_START_DATE)
 
     def get_ref_p_end_date(self):
-        return self.jwt.get(REF_P_END_DATE)
+        return self.jwt.get(UserConstants.REF_P_END_DATE)
+
+    def get_trad_as(self):
+        return self.jwt.get(UserConstants.TRAD_AS)
+
+    def get_return_by(self):
+        return self.jwt.get(UserConstants.RETURN_BY)
 
     def is_valid(self):
-        for value in VALUES:
+        for value in User.VALUES_FOR_VALIDATION:
             if not self._has_value(value):
                 return False, value
         return True, ""

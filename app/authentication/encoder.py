@@ -3,7 +3,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
-from tests.app.authentication import TEST_DO_NOT_USE_SR_PUBLIC_PEM, TEST_DO_NOT_USE_RRM_PRIVATE_PEM
+from app import settings
 
 import jwt
 import os
@@ -12,8 +12,8 @@ import base64
 
 class Encoder (object):
     def __init__(self):
-        private_key = self.__to_bytes(TEST_DO_NOT_USE_RRM_PRIVATE_PEM)
-        public_key = self.__to_bytes(TEST_DO_NOT_USE_SR_PUBLIC_PEM)
+        private_key = self.__to_bytes(settings.EQ_RRM_PRIVATE_KEY)
+        public_key = self.__to_bytes(settings.EQ_SR_PUBLIC_KEY)
         self.rrm_privatekey = serialization.load_pem_private_key(private_key, password=b'digitaleq', backend=backend)
         self.sr_publickey = serialization.load_pem_public_key(public_key, backend=backend)
 

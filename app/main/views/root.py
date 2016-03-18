@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, abort, url_for
+from flask import render_template, redirect, request, abort, url_for, session
 from flask_login import login_required, current_user
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
@@ -16,6 +16,7 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.submitter.submitter import Submitter
 from app.main import errors
 import logging
+
 
 logger = logging.getLogger(__name__)
 
@@ -47,10 +48,13 @@ def thank_you():
     # load the response store
     response_store = ResponseStoreFactory.create_response_store()
 
-    questionnaire_id = current_user.get_eq_id()
+    eq_id = current_user.get_eq_id()
+    form_type = current_user.get_form_type()
 
     # load the schema
-    schema = _load_and_parse_schema(questionnaire_id)
+    schema = _load_and_parse_schema(eq_id, form_type)
+    if not schema:
+        return errors.page_not_found()
 
     submitter = Submitter()
     submitter.send_responses(current_user, schema, response_store.get_responses())
@@ -64,20 +68,28 @@ def login():
     it will be placed in the users session
     :return: a 302 redirect to the next location for the user
     """
+
+    # logging in again clears any session state
+    if session:
+        session.clear()
+
     authenticator = Authenticator()
     logger.debug("Attempting token authentication")
     try:
-        token = authenticator.jwt_login(request)
+        user = authenticator.jwt_login(request)
         logger.debug("Token authenticated - linking to session")
 
-        questionnaire_id = token.get("eq_id")
-        logger.debug("Requested questionnaire %s", questionnaire_id)
-        if not questionnaire_id:
-            logger.error("Missing EQ id in JWT %s", token)
+        eq_id = user.get_eq_id()
+        form_type = user.get_form_type()
+        logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
+        if not eq_id or not form_type:
+            logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
             abort(404)
 
         # load the schema
-        schema = _load_and_parse_schema(questionnaire_id)
+        schema = _load_and_parse_schema(eq_id, form_type)
+        if not schema:
+            return errors.page_not_found()
 
         # load the navigation history
         navigation_history = FlaskNavigationHistory()
@@ -104,10 +116,13 @@ def questionnaire():
 
     logger.debug("Current user %s", current_user)
 
-    questionnaire_id = current_user.get_eq_id()
-    logger.debug("Requested questionnaire %s", questionnaire_id)
+    eq_id = current_user.get_eq_id()
+    form_type = current_user.get_form_type()
+    logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
-    schema = _load_and_parse_schema(questionnaire_id)
+    schema = _load_and_parse_schema(eq_id, form_type)
+    if not schema:
+        return errors.page_not_found()
 
     # load the response store
     response_store = ResponseStoreFactory.create_response_store()
@@ -164,14 +179,18 @@ def _redirect_to_location(current_location):
         return redirect(url_for("main.questionnaire"))
 
 
-def _load_and_parse_schema(questionnaire_id):
+def _load_and_parse_schema(eq_id, form_type):
     """
     Use the schema loader to get the schema from disk. Then use the parse to construct the object model
-    :param questionnaire_id: the id of the questionnaire
+    :param eq_id: the id of the questionnaire
+    :param form_type: the form type
     :return: an object model
     """
     # load the schema
-    json_schema = load_schema(questionnaire_id)
-    parser = SchemaParserFactory.create_parser(json_schema)
-    schema = parser.parse()
-    return schema
+    json_schema = load_schema(eq_id, form_type)
+    if json_schema:
+        parser = SchemaParserFactory.create_parser(json_schema)
+        schema = parser.parse()
+        return schema
+    else:
+        return None

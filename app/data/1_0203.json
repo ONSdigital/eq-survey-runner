@@ -1,0 +1,33 @@
+{
+    "schema_version": "0.0.1",
+    "questionnaire_id": "22",
+    "survey_id": "23",
+    "title": "Monthly Business Survey - Retail Sales Index",
+    "description": "MCI description",
+    "groups": [
+        {
+            "id": "14ba4707-321d-441d-8d21-b8367366e766",
+            "title": "",
+            "blocks": [
+                {
+                    "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
+                    "title": "Monthly Business Survey",
+                    "sections": [
+                        {
+                          "id": "2cd99c83-186d-493a-a16d-17cb3c8bd302",
+                          "title":"",
+                          "questions": [
+                              {
+                                "id": "4ba2ec8a-582f-4985-b4ed-20355deba55a",
+                                "title": "This is a place holder for the no fuel question mci survey",
+                                "description": "Replace before go live",
+                                "responses": []
+                              }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

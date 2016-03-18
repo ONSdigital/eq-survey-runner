@@ -1,10 +1,11 @@
-import unittest
-import time
 import logging
-from app import settings
+import time
+import unittest
+
 from app import create_app
-from app.authentication.user import USER_ID, RU_REF, REF_P_START_DATE, REF_P_END_DATE, COLLECTION_EXERCISE_SID, EQ_ID, FORM_TYPE, PERIOD_ID, PERIOD_STR
-from tests.app.authentication.encoder import Encoder
+from app import settings
+from app.authentication.encoder import Encoder
+from app.authentication.user import UserConstants
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
@@ -45,17 +46,19 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         iat = time.time()
         exp = time.time() + (5 * 60)
         return {
-                USER_ID: 'jimmy',
+                UserConstants.USER_ID: 'jimmy',
                 'iat': str(int(iat)),
                 'exp': str(int(exp)),
-                EQ_ID: '1',
-                PERIOD_STR: '2016-01-01',
-                PERIOD_ID: '12',
-                FORM_TYPE: 'a',
-                COLLECTION_EXERCISE_SID: "sid",
-                REF_P_START_DATE: "2016-01-01",
-                REF_P_END_DATE: "2016-09-01",
-                RU_REF: "1234"}
+                UserConstants.EQ_ID: '1',
+                UserConstants.PERIOD_STR: '2016-01-01',
+                UserConstants.PERIOD_ID: '12',
+                UserConstants.FORM_TYPE: '0203',
+                UserConstants.COLLECTION_EXERCISE_SID: "sid",
+                UserConstants.REF_P_START_DATE: "2016-01-01",
+                UserConstants.REF_P_END_DATE: "2016-09-01",
+                UserConstants.RU_REF: "1234",
+                UserConstants.RU_NAME: "Test",
+                UserConstants.RETURN_BY: "2016-09-09"}
 
 if __name__ == '__main__':
     unittest.main()

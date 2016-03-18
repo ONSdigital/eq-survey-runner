@@ -43,11 +43,11 @@
 
 {% endmacro -%}
 
-{% macro textarea(response, question) %}
+{% macro textarea(question, response) %}
 
   {% set attr = {
     "class": "input input--textarea",
-    "name": response.name,
+    "name": response.id,
     "id": response.id,
     "placeholder": response.placeholder,
     "rows": "4",
