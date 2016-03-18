@@ -1,8 +1,13 @@
+{% if response.value %}
+  {% set response_value = response.value.split('/') %}
+{% else %}
+  {% set response_value = "0/0".split('/') %}
+{% endif %}
 
 {% with name="day" %}
 <div class="field field--{{name}}">
   <label class="label label--small" for="{{response.id}}-{{name}}">{{_('Day')}}</label>
-  {{form.select(name, (range(1, 32)), response)}}
+  {{form.select(name, (range(1, 32)), response_value[0]|int, response)}}
 </div>
 {% endwith %}
 
@@ -10,11 +15,11 @@
 <div class="field field--{{name}}">
   {% set months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %}
   <label class="label label--small" for="{{response.id}}-{{name}}">{{_('Month')}}</label>
-  {{form.select(name, months, response)}}
+  {{form.select(name, months, response_value[1]|int, response)}}
 </div>
 {% endwith %}
 
 <div class="field field--year">
   <label class="label label--small" for="{{response.name}}-year">{{_('Year')}}</label>
-  <input class="input input--number" type="number" name="{{response.id}}-year" value="" placeholder="YYYY">
+  <input class="input input--number" type="number" name="{{response.id}}-year" value="{{response_value[2]}}" placeholder="YYYY">
 </div>
