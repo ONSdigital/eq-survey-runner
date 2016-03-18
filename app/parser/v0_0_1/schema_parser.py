@@ -68,13 +68,13 @@ class SchemaParser(AbstractSchemaParser):
         if questionnaire:
             if "groups" in self._schema.keys():
                 for group_schema in self._schema['groups']:
-                    questionnaire.add_group(self._parse_group(group_schema))
+                    questionnaire.add_group(self._parse_group(group_schema, questionnaire))
             else:
                 raise SchemaParserException('Questionnaire must contain at least one group')
 
         return questionnaire
 
-    def _parse_group(self, schema):
+    def _parse_group(self, schema, questionnaire):
         """Parse a group element
 
         :param schema: The group schema
@@ -92,19 +92,22 @@ class SchemaParser(AbstractSchemaParser):
             group.id = ParserUtils.get_required_string(schema, "id")
             group.title = ParserUtils.get_optional_string(schema, "title")
 
+            # Register the group
+            questionnaire.register(group)
+
         except Exception as e:
             logging.error(e)
             raise e
 
         if "blocks" in schema.keys():
             for block_schema in schema['blocks']:
-                group.add_block(self._parse_block(block_schema))
+                group.add_block(self._parse_block(block_schema, questionnaire))
         else:
             raise SchemaParserException('Group must contain at least one block')
 
         return group
 
-    def _parse_block(self, schema):
+    def _parse_block(self, schema, questionnaire):
         """Parse a block element
 
         :param schema: The block schema
@@ -120,19 +123,22 @@ class SchemaParser(AbstractSchemaParser):
             block.id = ParserUtils.get_required_string(schema, "id")
             block.title = ParserUtils.get_optional_string(schema, "title")
 
+            # register the block
+            questionnaire.register(block)
+
         except Exception as e:
             logging.error(e)
             raise e
 
         if "sections" in schema.keys():
             for section_schema in schema['sections']:
-                block.add_section(self._parse_section(section_schema))
+                block.add_section(self._parse_section(section_schema, questionnaire))
         else:
             raise SchemaParserException('Block must contain at least one section')
 
         return block
 
-    def _parse_section(self, schema):
+    def _parse_section(self, schema, questionnaire):
         """Parse a section element
 
         :param schema: The section schema
@@ -147,19 +153,23 @@ class SchemaParser(AbstractSchemaParser):
         try:
             section.id = ParserUtils.get_required_string(schema, "id")
             section.title = ParserUtils.get_optional_string(schema, "title")
+
+            # regisger the section
+            questionnaire.register(section)
+
         except Exception as e:
             logging.error(e)
             raise e
 
         if 'questions' in schema.keys():
             for question_schema in schema['questions']:
-                section.add_question(self._parse_question(question_schema))
+                section.add_question(self._parse_question(question_schema, questionnaire))
         else:
             raise SchemaParserException('Section must have at least one question')
 
         return section
 
-    def _parse_question(self, schema):
+    def _parse_question(self, schema, questionnaire):
         """Parse a question element
 
         :param schema: The question schema
@@ -175,19 +185,23 @@ class SchemaParser(AbstractSchemaParser):
             question.id = ParserUtils.get_required_string(schema, "id")
             question.title = ParserUtils.get_required_string(schema, "title")
             question.description = ParserUtils.get_required_string(schema, "description")
+
+            # register the question
+            questionnaire.register(question)
+
         except Exception as e:
             logging.error(e)
             raise e
 
         if 'responses' in schema.keys():
             for response_schema in schema['responses']:
-                question.add_response(self._parse_response(response_schema))
+                question.add_response(self._parse_response(response_schema, questionnaire))
         else:
             raise SchemaParserException('Question must contain at least one response')
 
         return question
 
-    def _parse_response(self, schema):
+    def _parse_response(self, schema, questionnaire):
         """Parse a response element
 
         :param schema: The response schema
@@ -206,6 +220,10 @@ class SchemaParser(AbstractSchemaParser):
             response.guidance = ParserUtils.get_optional_string(schema, 'guidance')
             response.type = ParserUtils.get_required_string(schema, 'type')
             response.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
+
+            # register the response
+            questionnaire.register(response)
+
         except Exception as e:
             logging.error(e)
             raise e
