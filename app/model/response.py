@@ -8,9 +8,4 @@ class Response(object):
         self.container = None
         self.mandatory = None
         self.validation = None
-
-    def get_item_by_id(self, id):
-        if id == self.id:
-            return self
-        else:
-            return None
+        self.questionnaire = None
