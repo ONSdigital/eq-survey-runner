@@ -53,6 +53,7 @@ class TestConverter(unittest.TestCase):
         response_2.code = "002"
 
         question = Question()
+        question.id = 'question-1'
         question.add_response(response_1)
         question.add_response(response_2)
 
@@ -60,14 +61,23 @@ class TestConverter(unittest.TestCase):
         section.add_question(question)
 
         block = Block()
+        block.id = 'block-1'
         block.add_section(section)
 
         group = Group()
+        group.id = 'group-1'
         group.add_block(block)
 
         questionniare = Questionnaire()
         questionniare.survey_id = "021"
         questionniare.add_group(group)
+
+        questionniare.register(group)
+        questionniare.register(block)
+        questionniare.register(section)
+        questionniare.register(question)
+        questionniare.register(response_1)
+        questionniare.register(response_2)
 
         json_string = Converter.prepare_responses(user, questionniare, user_response)
         response_object = json.loads(json_string)

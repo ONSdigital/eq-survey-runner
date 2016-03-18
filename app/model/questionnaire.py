@@ -10,18 +10,27 @@ class Questionnaire(object):
         self.description = None
         self.groups = []
         self.validation = None
+        self.items_by_id = {}
 
     def add_group(self, group):
         if group not in self.groups:
             self.groups.append(group)
             group.container = self
 
-    def get_item_by_id(self, id):
-        if id == self.id:
+    def get_item_by_id(self, item_id):
+        if item_id == self.id:
             return self
         else:
-            for group in self.groups:
-                candidate = group.get_item_by_id(id)
-                if candidate is not None:
-                    return candidate
-            return None
+            if item_id in self.items_by_id.keys():
+                return self.items_by_id[item_id]
+            else:
+                raise QuestionnaireException('Unknown id \'{}\''.format(item_id))
+
+    def register(self, item):
+        if item.id in self.items_by_id.keys():
+            raise QuestionnaireException('{} is a duplicate id'.format(item.id))
+
+        self.items_by_id[item.id] = item
+
+        # Build the two-way relationship
+        item.questionnaire = self

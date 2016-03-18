@@ -52,9 +52,36 @@ class QuestionnaireModelTest(unittest.TestCase):
         block2.id = 'block-2'
         group2.add_block(block2)
 
+        self.assertRaises(QuestionnaireException, questionnaire.get_item_by_id, 'group-1')
+        self.assertRaises(QuestionnaireException, questionnaire.get_item_by_id, 'group-2')
+        self.assertRaises(QuestionnaireException, questionnaire.get_item_by_id, 'block-1')
+        self.assertRaises(QuestionnaireException, questionnaire.get_item_by_id, 'block-2')
+
+        questionnaire.register(group1)
+        questionnaire.register(group2)
+        questionnaire.register(block1)
+        questionnaire.register(block2)
+
         self.assertEquals(questionnaire.get_item_by_id('group-1'), group1)
         self.assertEquals(questionnaire.get_item_by_id('group-2'), group2)
         self.assertEquals(questionnaire.get_item_by_id('block-1'), block1)
         self.assertEquals(questionnaire.get_item_by_id('block-2'), block2)
 
-        self.assertIsNone(questionnaire.get_item_by_id('invalid-id'))
+    def test_register_duplicate(self):
+        questionnaire = Questionnaire()
+
+        questionnaire.id = 'some-id'
+        questionnaire.title = 'my questionnaire object'
+
+        group1 = Group()
+        group1.id = 'group-1'
+        questionnaire.add_group(group1)
+        questionnaire.register(group1)
+
+        group = questionnaire.get_item_by_id('group-1')
+        self.assertEqual(group1, group)
+
+        group2 = Group()
+        group2.id = 'group-1'  # Duplicate id
+
+        self.assertRaises(QuestionnaireException, questionnaire.register, group2)
