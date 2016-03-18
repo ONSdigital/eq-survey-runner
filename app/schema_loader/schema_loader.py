@@ -22,3 +22,11 @@ def load_schema(eq_id, form_type):
     except FileNotFoundError:
         logging.error("No file exists for eq-id %s and form type %s")
         return None
+
+
+def available_schemas():
+    files = []
+    for file in os.listdir(settings.EQ_SCHEMA_DIRECTORY):
+        if os.path.isfile(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file)):
+            files.append(file)
+    return files
