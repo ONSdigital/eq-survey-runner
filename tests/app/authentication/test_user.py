@@ -6,17 +6,17 @@ class TestUser(unittest.TestCase):
 
     def setUp(self):
         self.jwt = {
-            USER_ID: "1",
-            FORM_TYPE: "a",
-            COLLECTION_EXERCISE_SID: "test-sid",
-            EQ_ID: "2",
-            PERIOD_ID: "3",
-            PERIOD_STR: "2016-01-01",
-            REF_P_START_DATE: "2016-02-02",
-            REF_P_END_DATE: "2016-03-03",
-            RU_REF: "2016-04-04",
-            RU_NAME: "Apple",
-            RETURN_BY: "2016-07-07"
+            UserConstants.USER_ID: "1",
+            UserConstants.FORM_TYPE: "a",
+            UserConstants.COLLECTION_EXERCISE_SID: "test-sid",
+            UserConstants.EQ_ID: "2",
+            UserConstants.PERIOD_ID: "3",
+            UserConstants.PERIOD_STR: "2016-01-01",
+            UserConstants.REF_P_START_DATE: "2016-02-02",
+            UserConstants.REF_P_END_DATE: "2016-03-03",
+            UserConstants.RU_REF: "2016-04-04",
+            UserConstants.RU_NAME: "Apple",
+            UserConstants.RETURN_BY: "2016-07-07"
         }
         self.user = User(self.jwt)
 
