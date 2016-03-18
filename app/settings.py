@@ -44,5 +44,5 @@ EQ_SR_PUBLIC_KEY = get_key(os.getenv('EQ_SR_PUBLIC_KEY', "./jwt-test-keys/sr-pub
 # non configurable settings
 
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
-DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
+DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 EUROPE_LONDON = pytz.timezone("Europe/London")
