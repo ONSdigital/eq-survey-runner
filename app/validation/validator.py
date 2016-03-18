@@ -49,6 +49,7 @@ class Validator(object):
     def _validate_item(self, item, item_data):
         # Do "mandatory" check
         if item.mandatory:
+            logger.debug('Item ({}) is mandatory, data is: {}'.format(item.id, item_data))
             result = self._mandatory_check(item, item_data)
             if not result.is_valid:
                 return result
@@ -56,6 +57,7 @@ class Validator(object):
         # Validate if data is present
         if item_data:
             # Implicit -type-checking
+            logger.debug('Type Checking ({}) with data {}'.format(item.id, item_data))
             result = self._type_check(item, item_data)
             if not result.is_valid:
                 return result

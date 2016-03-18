@@ -1,5 +1,6 @@
 from app.validation.integer_type_check import IntegerTypeCheck
 from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
+from app.validation.date_type_check import DateTypeCheck
 
 
 class TypeValidatorFactoryException(Exception):
@@ -23,6 +24,8 @@ class TypeValidatorFactory(object):
             validators.append(PositiveIntegerTypeCheck())
         elif response_type.upper() == 'CURRENCY':
             validators.append(PositiveIntegerTypeCheck())
+        elif response_type.upper() == 'DATERANGE':
+            validators.append(DateTypeCheck())
         else:
             raise TypeValidatorFactoryException('\'{}\' is not a known response type'.format(response_type))
 

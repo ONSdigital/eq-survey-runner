@@ -111,28 +111,34 @@ class ValidatorTest(unittest.TestCase):
         group_1 = Group()
         group_1.id = "be0296a5-3235-40e5-a7b0-d1d7dff0ba87"
         questionnaire_1.add_group(group_1)
+        questionnaire_1.register(group_1)
 
         block_1 = Block()
         block_1.id = "ce8d7204-615e-42dd-9e46-17744ac39b04"
         group_1.add_block(block_1)
+        questionnaire_1.register(block_1)
 
         section_1 = Section()
         section_1.id = "e109368f-46f2-4283-982e-eebf76051eac"
         block_1.add_section(section_1)
+        questionnaire_1.register(section_1)
 
         question_1 = Question()
         question_1.id = "0df6fe58-25c9-430f-b157-9dc6b5a7646f"
         section_1.add_question(question_1)
+        questionnaire_1.register(question_1)
 
         response_1 = Response()
         response_1.type = "Integer"
         response_1.id = "69ed19a4-f2ee-4742-924d-b64b9fa09499"
         question_1.add_response(response_1)
+        questionnaire_1.register(response_1)
 
         response_2 = Response()
         response_2.type = "Integer"
         response_2.id = "709c9f96-2757-4cf3-ba48-808c6c616848"
         question_1.add_response(response_2)
+        questionnaire_1.register(response_2)
 
         return questionnaire_1
 

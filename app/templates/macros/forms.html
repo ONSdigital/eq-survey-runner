@@ -29,8 +29,7 @@
     "name": response.id,
     "id": response.id,
     "placeholder": response.placeholder,
-    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-link",
-    "aria-labelledby": "label-" ~ response.id
+    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-link"
   } %}
 
   {% if input_has_special_type %}
@@ -52,9 +51,17 @@
     "placeholder": response.placeholder,
     "rows": "4",
     "cols": "60",
-    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id,
-    "aria-labelledby": "label-" ~ response.id
+    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id
   } %}
 
   <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>
 {% endmacro %}
+
+
+{%- macro select(name, values, default_value, response) %}
+  <select class="input input--select" name="{{response.id}}-{{name}}" id="{{response.id}}-{{name}}">
+    {% for value in values -%}
+      <option value="{{loop.index}}" {{'selected' if loop.index == default_value}}>{{value}}</option>
+    {%- endfor -%}
+  </select>
+{% endmacro -%}
