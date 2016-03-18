@@ -86,6 +86,7 @@
     }
   }
   .field--year {
+    margin-right: 0;
     @include fixed() {
       width: 7rem;
     }

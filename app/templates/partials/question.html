@@ -19,16 +19,9 @@
       </div>
     {% endif %}
     <div class="question__responses">
-    {% set grid = question.responses|length > 1 and question.responses[0].type!='DateRange'%}
-    {% set grid = false %}
-
-    {%- if grid %} <div class="grid grid--align-bottom"> {% endif -%}
       {%- for response in question.responses -%}
-        {%- if grid -%} <div class="grid__col m-6"> {%- endif %}
-          {% include 'partials/response.html' %}
-        {%- if grid %} </div> {% endif -%}
+        {% include 'partials/response.html' %}
       {%- endfor -%}
-    {%- if question.grid %}</div>{% endif %}
     </div>
   </fieldset>
 </div>
