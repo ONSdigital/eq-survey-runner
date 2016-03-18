@@ -6,7 +6,7 @@ class Response(object):
         self.type = None
         self.code = None
         self.container = None
-        self.required = None
+        self.mandatory = None
         self.validation = None
 
     def get_item_by_id(self, id):
