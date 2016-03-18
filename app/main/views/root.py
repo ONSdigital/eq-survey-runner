@@ -2,19 +2,17 @@ from flask import render_template, redirect, request, abort, url_for, session
 from flask_login import login_required, current_user
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
-from app.responses.response_store import ResponseStoreFactory
-from app.validation.validation_store import ValidationStoreFactory
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.validation.validator import Validator
 from app.routing.routing_engine import RoutingEngine
 from app.navigation.navigator import Navigator
-from app.navigation.navigation_history import FlaskNavigationHistory
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.authentication.authenticator import Authenticator
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.submitter.submitter import Submitter
 from app.main import errors
+from app.utilities.factory import factory
 import logging
 
 
@@ -46,7 +44,7 @@ def thank_you():
     logger.debug("Requesting thank you page")
 
     # load the response store
-    response_store = ResponseStoreFactory.create_response_store()
+    response_store = factory.create("response-store")
 
     eq_id = current_user.get_eq_id()
     form_type = current_user.get_form_type()
@@ -92,7 +90,7 @@ def login():
             return errors.page_not_found()
 
         # load the navigation history
-        navigation_history = FlaskNavigationHistory()
+        navigation_history = factory.create("navigation-history")
 
         # create the navigator
         navigator = Navigator(schema, navigation_history)
@@ -125,10 +123,10 @@ def questionnaire():
         return errors.page_not_found()
 
     # load the response store
-    response_store = ResponseStoreFactory.create_response_store()
+    response_store = factory.create("response-store")
 
     # load the validation store
-    validation_store = ValidationStoreFactory.create_validation_store()
+    validation_store = factory.create("validation-store")
 
     # Create the validator
     validator = Validator(schema, validation_store, response_store)
@@ -137,7 +135,7 @@ def questionnaire():
     routing_engine = RoutingEngine(schema, response_store)
 
     # load the navigation history
-    navigation_history = FlaskNavigationHistory()
+    navigation_history = factory.create("navigation-history")
 
     # create the navigator
     navigator = Navigator(schema, navigation_history)
