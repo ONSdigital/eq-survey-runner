@@ -29,7 +29,7 @@ class ValidatorTest(unittest.TestCase):
 
         response_1 = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
         response_1.type = 'succeed'
-        response_1.required = False
+        response_1.mandatory = False
 
         question_1 = self._schema.get_item_by_id("0df6fe58-25c9-430f-b157-9dc6b5a7646f")
         question_1.validation = [RaisingValidator()]    # Raises an exception when called, which we can track
@@ -49,23 +49,23 @@ class ValidatorTest(unittest.TestCase):
 
         """
         Uses the MockTypeValidatorFactory to determine the validation result based
-        on the type.  Here we are checking that _validate_item handles the "required"
+        on the type.  Here we are checking that _validate_item handles the "mandatory"
         check correctly.
         """
         # check validating a non-mandatory response
         non_mandatory_response = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
         non_mandatory_response.type = "succeed"  # overwrite built in type checking
-        non_mandatory_response.required = False
+        non_mandatory_response.mandatory = False
 
         result = validator._validate_item(non_mandatory_response, None)
         self.assertTrue(result.is_valid)
 
-        # Check validating a required response
-        require_response = self._schema.get_item_by_id("709c9f96-2757-4cf3-ba48-808c6c616848")
-        non_mandatory_response.type = "succeed"  # again, should still fail required
-        require_response.required = True
+        # Check validating a mandatory response
+        mandatory_response = self._schema.get_item_by_id("709c9f96-2757-4cf3-ba48-808c6c616848")
+        non_mandatory_response.type = "succeed"  # again, should still fail mandatory
+        mandatory_response.mandatory = True
 
-        result = validator._validate_item(require_response, None)
+        result = validator._validate_item(mandatory_response, None)
         self.assertFalse(result.is_valid)
 
         """
@@ -76,7 +76,7 @@ class ValidatorTest(unittest.TestCase):
         # type-checking a non-mandatory response (using mock factory)
         non_mandatory_response = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
         non_mandatory_response.type = "succeed"  # overwrite built in type checking
-        non_mandatory_response.required = False
+        non_mandatory_response.mandatory = False
 
         result = validator._validate_item(non_mandatory_response, "Anything")
         self.assertTrue(result.is_valid)
@@ -84,7 +84,7 @@ class ValidatorTest(unittest.TestCase):
         # type-checking a non-mandatory response (using mock)
         non_mandatory_response = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
         non_mandatory_response.type = "failure"  # overwrite built in type checking
-        non_mandatory_response.required = False
+        non_mandatory_response.mandatory = False
 
         result = validator._validate_item(non_mandatory_response, "Anything")
         self.assertFalse(result.is_valid)
