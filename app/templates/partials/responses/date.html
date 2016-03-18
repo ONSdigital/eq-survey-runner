@@ -18,11 +18,3 @@
   <label class="label label--small" for="{{response.name}}-year">{{_('Year')}}</label>
   <input class="input input--number" type="number" name="{{response.id}}-year" value="" placeholder="YYYY">
 </div>
-
-{% if response.is_valid is not none and response.is_valid == False %}
-<ul>
-  {% for error in response.errors %}
-  <li>{{ error }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
