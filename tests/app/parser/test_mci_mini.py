@@ -54,7 +54,7 @@ def test_mci_mini():
     section = block.sections[0]
     assert section.id == "2cd99c83-186d-493a-a16d-17cb3c8bd302"
     assert section.title == ""
-    assert len(section.questions) == 1
+    assert len(section.questions) == 2
     assert isinstance(section.questions[0], Question)
 
     # check the question properties
@@ -65,10 +65,20 @@ def test_mci_mini():
     assert len(question.responses) == 1
     assert isinstance(question.responses[0], Response)
 
-    # Check the response proeprties
+    # Check the response properties
     response = question.responses[0]
     assert response.id == "29586b4c-fb0c-4755-b67d-b3cd398cb30a"
     assert response.code == "110"
     assert response.label == "Male employees working more than 30 hours per week?"
     assert response.guidance == "How many men work for your company?"
     assert response.type == "Integer"
+    assert response.display is None
+
+    # check the response properties on question 2
+    question_two = section.questions[1]
+    response = question_two.responses[0]
+    assert response.type == "Textarea"
+    assert response.display is not None
+    assert response.display.properties is not None
+    print(response.display.properties.max_length)
+    assert response.display.properties.max_length == "2000"

@@ -136,7 +136,12 @@
                                       "label": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                                       "guidance": "",
                                       "type": "Textarea",
-                                      "mandatory":false
+                                      "mandatory":false,
+                                      "display": {
+                                          "properties": {
+                                              "max_length": "2000"
+                                          }
+                                      }
                                     }
                                   ]
                               }
