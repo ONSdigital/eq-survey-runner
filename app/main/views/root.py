@@ -1,16 +1,12 @@
 from flask import render_template, redirect, request, abort, url_for, session
-from flask_login import login_required, current_user
+from flask_login import login_required
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
 from app.parser.schema_parser_factory import SchemaParserFactory
-from app.validation.validator import Validator
-from app.routing.routing_engine import RoutingEngine
 from app.navigation.navigator import Navigator
-from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.authentication.authenticator import Authenticator
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.submitter.submitter import Submitter
 from app.main import errors
 from app.utilities.factory import factory
 import logging
@@ -24,39 +20,11 @@ def root():
     return render_template('index.html')
 
 
-@main_blueprint.route('/cover-page', methods=['GET', 'POST'])
-@login_required
-def cover_page():
-    logger.debug("Requesting cover page")
-    return render_template('cover-page.html')
-
-
 @main_blueprint.route('/submission', methods=['GET'])
 @login_required
 def submission():
     logger.debug("Requesting submission page")
     return render_template('submission.html')
-
-
-@main_blueprint.route('/thank-you', methods=['GET'])
-@login_required
-def thank_you():
-    logger.debug("Requesting thank you page")
-
-    # load the response store
-    response_store = factory.create("response-store")
-
-    eq_id = current_user.get_eq_id()
-    form_type = current_user.get_form_type()
-
-    # load the schema
-    schema = _load_and_parse_schema(eq_id, form_type)
-    if not schema:
-        return errors.page_not_found()
-
-    submitter = Submitter()
-    submitter.send_responses(current_user, schema, response_store.get_responses())
-    return render_template('thank-you.html')
 
 
 @main_blueprint.route('/session', methods=['GET'])
@@ -106,61 +74,6 @@ def login():
     except InvalidTokenException as e:
         logger.warning("Invalid Token provided")
         return errors.forbidden(e)
-
-
-@main_blueprint.route('/questionnaire', methods=['GET', 'POST'])
-@login_required
-def questionnaire():
-
-    logger.debug("Current user %s", current_user)
-
-    eq_id = current_user.get_eq_id()
-    form_type = current_user.get_form_type()
-    logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
-
-    schema = _load_and_parse_schema(eq_id, form_type)
-    if not schema:
-        return errors.page_not_found()
-
-    # load the response store
-    response_store = factory.create("response-store")
-
-    # load the validation store
-    validation_store = factory.create("validation-store")
-
-    # Create the validator
-    validator = Validator(schema, validation_store, response_store)
-
-    # Create the routing engine
-    routing_engine = RoutingEngine(schema, response_store)
-
-    # load the navigation history
-    navigation_history = factory.create("navigation-history")
-
-    # create the navigator
-    navigator = Navigator(schema, navigation_history)
-    if navigator.get_current_location() is None:
-        navigator.go_to('questionnaire')
-
-    # instantiate the questionnaire manager
-    questionnaire_manager = QuestionnaireManager(schema,
-                                                 response_store,
-                                                 validator,
-                                                 validation_store,
-                                                 routing_engine,
-                                                 navigator,
-                                                 navigation_history)
-
-    if request.method == 'POST':
-        questionnaire_manager.process_incoming_responses(request.form)
-        current_location = navigator.get_current_location()
-        logger.debug("POST request question - current location %s", current_location)
-
-        return _redirect_to_location(current_location)
-
-    render_data = questionnaire_manager.get_rendering_context()
-
-    return render_template('questionnaire.html', questionnaire=render_data)
 
 
 def _redirect_to_location(current_location):
