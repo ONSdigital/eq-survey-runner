@@ -4,6 +4,8 @@
 
 {% block survey %}
 
+{% include 'partials/alert.html' %}
+
 <form action="" class="form" aria-role="form" method="POST" novalidate>
 
     {% for group in questionnaire.schema.groups %}
