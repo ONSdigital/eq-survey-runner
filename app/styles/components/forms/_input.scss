@@ -13,6 +13,12 @@ $input-padding: 0.6rem;
   max-width: 40rem;
 }
 
+.input__helper {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+
 .input--select {
   appearance: none;
   padding: $input-padding 2rem $input-padding 0.5rem;

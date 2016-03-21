@@ -33,7 +33,7 @@ export function bundle(watch) {
     })
     .pipe(source('bundle.js'))
     .pipe(buffer())
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(`./${distPath}/js`))

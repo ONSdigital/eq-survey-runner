@@ -44,19 +44,27 @@
 
 {% macro textarea(question, response) %}
 
+  {% set maxChars = "2000" %}
+
   {% set attr = {
-    "class": "input input--textarea",
+    "class": "input input--textarea js-charlimit-input",
     "name": response.id,
     "id": response.id,
     "placeholder": response.placeholder,
-    "rows": "4",
+    "rows": "8",
     "cols": "60",
+    "data-maxlength": maxChars,
     "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id
   } %}
-
+  
   <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>
-{% endmacro %}
 
+  {% if maxChars %}
+    <div class="input__helper">
+      {{_('Characters remaining')}}: <span class="js-charlimit-msg">{{maxChars}}</span>
+    </div>
+  {% endif %}
+{% endmacro %}
 
 {%- macro select(name, values, default_value, response) %}
   <select class="input input--select" name="{{response.id}}-{{name}}" id="{{response.id}}-{{name}}">
