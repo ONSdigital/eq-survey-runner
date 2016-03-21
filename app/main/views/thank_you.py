@@ -29,4 +29,8 @@ def thank_you():
 
     submitter = Submitter()
     submitter.send_responses(current_user, schema, response_store.get_responses())
-    return render_template('thank-you.html')
+    return render_template('thank-you.html', data={
+        "survey_code": schema.survey_id,
+        "period": current_user.get_period_str(),
+        "respondent_id": current_user.get_ru_ref(),
+    })
