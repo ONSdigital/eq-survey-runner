@@ -31,6 +31,26 @@
                                       "mandatory":true
                                     }
                                 ]
+                              },
+                              {
+                                "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
+                                "title": "Comments",
+                                "description": "",
+                                "responses": [
+                                    {
+                                      "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
+                                      "q_code": "146",
+                                      "label": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
+                                      "guidance": "",
+                                      "type": "Textarea",
+                                      "mandatory":false,
+                                      "display": {
+                                          "properties": {
+                                              "max_length": "2000"
+                                          }
+                                      }
+                                    }
+                                  ]
                               }
                             ]
                         }

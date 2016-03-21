@@ -9,3 +9,4 @@ class Response(object):
         self.mandatory = None
         self.validation = None
         self.questionnaire = None
+        self.display = None

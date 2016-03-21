@@ -15,6 +15,8 @@ from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
 from app.model.response import Response
+from app.model.display import Display
+from app.model.properties import Properties
 
 import logging
 
@@ -221,6 +223,10 @@ class SchemaParser(AbstractSchemaParser):
             response.type = ParserUtils.get_required_string(schema, 'type')
             response.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
 
+            display = ParserUtils.get_optional(schema, "display")
+            if display:
+                response.display = self._parse_display(display)
+
             # register the response
             questionnaire.register(response)
 
@@ -229,3 +235,34 @@ class SchemaParser(AbstractSchemaParser):
             raise e
 
         return response
+
+    def _parse_display(self, schema):
+        """
+        Parse a display element
+        :param schema: the display element
+        :return: A display object
+        """
+        display = Display()
+
+        properties = ParserUtils.get_optional(schema, "properties")
+        if properties:
+            display.properties = self._parse_properties(properties)
+
+        return display
+
+    def _parse_properties(self, schema):
+        """
+         Parse a properties element
+        :param schema: the properties element
+        :return: a properties object
+        """
+        properties = Properties()
+
+        try:
+            properties.max_length = ParserUtils.get_optional_string(schema, 'max_length')
+
+        except Exception as e:
+            logging.error(e)
+            raise e
+
+        return properties
