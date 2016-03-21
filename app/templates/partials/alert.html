@@ -2,38 +2,12 @@
   <h2>Errors</h2>
   <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
   <ul class="list list--bare">
-  {% for group in questionnaire.schema.groups %}
-
-    {% for block in group.blocks %}
-
-      {% for section in block.sections %}
-
-        {% for question in section.questions %}
-
-          {% for response in question.responses %}
-
-          {% set is_valid = response.is_valid or response.is_valid is not defined %}
-
-            {% if not is_valid %}
-              {% if response.errors %}
-
-                {% for error in response.errors %}
-                <li>
-                  <a href="#response-{{response.id}}">{{ error }}</a>
-                </li>
-                {% endfor %}
-
-              {% endif %}
-            {% endif %}
-
-          {% endfor %}
-
-        {% endfor %}
-
-      {% endfor %}
-
+    {% for item_id, errors in questionnaire.data.errors.items() %}
+    {% for error in errors %}
+    <li>
+      <a href="#response-{{item_id}}">{{ error }}</a>
+    </li>
     {% endfor %}
-
-  {% endfor %}
+    {% endfor %}
   </ul>
 </div>
