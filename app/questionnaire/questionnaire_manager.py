@@ -1,3 +1,6 @@
+import bleach
+
+
 class QuestionnaireManager(object):
     def __init__(self, schema, response_store, validator, validation_store, routing_engine, navigator, navigation_history):
         self._schema = schema
@@ -12,12 +15,16 @@ class QuestionnaireManager(object):
         # process incoming post data
         user_responses = self._process_incoming_post_data(post_data)
 
-        # update the response store with data
+        cleaned_user_responses = {}
         for key, value in user_responses.items():
+            cleaned_user_responses[key] = self._clean_input(value)
+
+        # update the response store with data
+        for key, value in cleaned_user_responses.items():
             self._response_store.store_response(key, value)
 
         # run the validator to update the validation_store
-        if self._validator.validate(user_responses):
+        if self._validator.validate(cleaned_user_responses):
             # get the current location in the questionnaire
             current_location = self._navigator.get_current_location()
 
@@ -82,3 +89,6 @@ class QuestionnaireManager(object):
                 user_responses[key] = post_data[key]
 
         return user_responses
+
+    def _clean_input(self, value):
+        return bleach.clean(value)
