@@ -1,16 +1,12 @@
 {% set address = {
-  "name": "Contact Name",
-  "street": [
-    "Office for National Statistics",
-    "Government Buildings",
-    "CARDIFF ROAD"
-  ],
-  "locality": "Duffryn, Newport",
-  "postcode": "NP10 8XG"
+  "name": data.address.name,
+  "street": data.address.street,
+  "locality": data.address.locality,
+  "postcode": data.address.postcode
 } %}
 
 <div class="vcard address">
-  <span class="fn">{{address.name}}</span>
+  <span class="fn">{{ address.name}}</span>
   <div class="adr">
     {% for street in address.street %}
       <div class="street-address">{{street}}</div>

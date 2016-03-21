@@ -2,7 +2,7 @@
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "questionnaire_id": "23",
-    "survey_id": "23",
+    "survey_id": "023",
     "title": "Monthly Business Survey - Retail Sales Index",
     "description": "MCI description",
     "introduction": {

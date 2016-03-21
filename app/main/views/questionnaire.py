@@ -67,4 +67,8 @@ def questionnaire():
 
     render_data = questionnaire_manager.get_rendering_context()
 
-    return render_template('questionnaire.html', questionnaire=render_data)
+    return render_template('questionnaire.html', questionnaire=render_data, data={
+        "survey_code": schema.survey_id,
+        "period": current_user.get_period_str(),
+        "respondent_id": current_user.get_ru_ref(),
+    })
