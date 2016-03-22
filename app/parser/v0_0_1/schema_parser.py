@@ -18,6 +18,8 @@ from app.model.response import Response
 from app.model.display import Display
 from app.model.properties import Properties
 
+from app.model.introduction import Introduction
+
 import logging
 
 
@@ -68,6 +70,9 @@ class SchemaParser(AbstractSchemaParser):
             raise e
 
         if questionnaire:
+            if "introduction" in self._schema.keys():
+                questionnaire.introduction = self._parse_introduction(self._schema['introduction'])
+
             if "groups" in self._schema.keys():
                 for group_schema in self._schema['groups']:
                     questionnaire.add_group(self._parse_group(group_schema, questionnaire))
@@ -75,6 +80,14 @@ class SchemaParser(AbstractSchemaParser):
                 raise SchemaParserException('Questionnaire must contain at least one group')
 
         return questionnaire
+
+    def _parse_introduction(self, intro_schema):
+        introduction = Introduction()
+
+        introduction.legal = ParserUtils.get_optional_string(intro_schema, 'legal')
+        introduction.description = ParserUtils.get_optional_string(intro_schema, 'description')
+
+        return introduction
 
     def _parse_group(self, schema, questionnaire):
         """Parse a group element
