@@ -4,8 +4,35 @@
 
 {% block survey %}
 
+<h2> This is what you told us, is that correct?</h2></br>
+
 <form action="" class="form" aria-role="form" method="POST" novalidate>
-  <button class="btn btn--neutral" type="submit" name="action[submit]">Submit</button>
+
+    {% for group in questionnaire.schema.groups %}
+
+      <div class="group" id="group-{{group.id}}">
+
+      {% for block in group.blocks %}
+
+        <div class="block" id="block-{{block.id}}">
+
+        {% for section in block.sections %}
+
+          {% include 'partials/section.html' %}
+
+        {% endfor %}
+
+        </div>
+
+      {% endfor %}
+
+      </div>
+
+    {% endfor %}
+
+  <button class="btn btn--neutral" type="submit" name="action[save_exit]">Save &amp; Exit</button>
+  <button class="btn" type="submit" name="action[save_continue]">Save &amp; Continue</button>
+
 </form>
 
 {% endblock %}
