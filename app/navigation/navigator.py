@@ -31,7 +31,15 @@ class Navigator(object):
         state = self._store.get_state()
         current_location = state.current_position
         logger.debug("Current location %s", current_location)
-        return current_location
+
+        # We need to have a conversation about what constitutes an addressable element within a questionnaire
+        if current_location is None:
+            if self._schema.introduction is not None:
+                return 'introduction'
+            else:
+                return 'questionnaire'
+        else:
+            return current_location
 
     def go_to(self, location):
         """

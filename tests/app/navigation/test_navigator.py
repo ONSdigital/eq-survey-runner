@@ -3,6 +3,7 @@ from app.navigation.navigation_history import FlaskNavigationHistory
 from datetime import timedelta
 from flask import Flask
 import unittest
+from app.model.questionnaire import Questionnaire
 
 
 class NavigatorTest(unittest.TestCase):
@@ -15,15 +16,27 @@ class NavigatorTest(unittest.TestCase):
 
     def test_get_current_location(self):
         with self.application.test_request_context():
-            schema = {}
+            schema = Questionnaire()
+
             navigation_history = FlaskNavigationHistory()
             navigator = Navigator(schema, navigation_history)
             #  brand new session shouldn't have a current location
-            self.assertIsNone(navigator.get_current_location())
+            self.assertEquals("questionnaire", navigator.get_current_location())
+
+    def test_get_current_location_with_intro(self):
+        with self.application.test_request_context():
+            schema = Questionnaire()
+            schema.introduction = "anything"
+
+            navigation_history = FlaskNavigationHistory()
+            navigator = Navigator(schema, navigation_history)
+            #  brand new session shouldn't have a current location
+            self.assertEquals("introduction", navigator.get_current_location())
 
     def test_go_to(self):
         with self.application.test_request_context():
-            schema = {}
+            schema = Questionnaire()
+
             navigation_history = FlaskNavigationHistory()
             navigator = Navigator(schema, navigation_history)
             navigator.go_to("completed")

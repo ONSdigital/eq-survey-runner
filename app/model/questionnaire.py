@@ -11,6 +11,7 @@ class Questionnaire(object):
         self.groups = []
         self.validation = None
         self.items_by_id = {}
+        self.introduction = None
 
     def add_group(self, group):
         if group not in self.groups:

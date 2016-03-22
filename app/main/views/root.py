@@ -82,12 +82,14 @@ def _redirect_to_location(current_location):
     :param current_location: the current location in the questionnaire
     :return: flask redirect to the next page
     """
-    if current_location is None:
+    if current_location == 'introduction':
         return redirect(url_for("main.cover_page"))
     elif current_location == "completed":
         return redirect(url_for("main.thank_you"))
-    else:
+    elif current_location == 'questionnaire':
         return redirect(url_for("main.questionnaire"))
+    else:
+        return errors.page_not_found()
 
 
 def _load_and_parse_schema(eq_id, form_type):
