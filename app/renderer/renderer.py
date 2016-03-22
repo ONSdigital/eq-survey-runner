@@ -38,9 +38,6 @@ class Renderer(object):
         errors = OrderedDict()
         warnings = OrderedDict()
 
-        import pdb
-        pdb.set_trace()
-
         # loops through the Schema and get errors and warnings in order
         for group in self._schema.groups:
             group_result = self._validation_store.get_result(group.id)
