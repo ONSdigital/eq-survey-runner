@@ -7,6 +7,11 @@
 
 # Use default environment vars for localhost if not already set
 export EQ_CLOUDWATCH_LOGGING=False
+
+if [ -z "$EQ_DEV_MODE" ]; then
+  export EQ_DEV_MODE=True
+fi
+
 echo "Environment variables in use:"
 env | grep EQ_
 
