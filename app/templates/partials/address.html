@@ -1,17 +1,3 @@
-{% set address = {
-  "name": data.address.name,
-  "street": data.address.street,
-  "locality": data.address.locality,
-  "postcode": data.address.postcode
-} %}
-
 <div class="vcard address">
-  <span class="fn">{{ address.name}}</span>
-  <div class="adr">
-    {% for street in address.street %}
-      <div class="street-address">{{street}}</div>
-    {% endfor %}
-    <div class="locality">{{address.locality}}</div>
-    <div class="postal-code">{{address.postcode}}</div>
-  </div>
+  <span class="fn">{{ data.address.name}}</span>
 </div>

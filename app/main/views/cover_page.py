@@ -22,13 +22,7 @@ def cover_page():
         "legal": questionnaire.introduction.legal,
         "description": questionnaire.introduction.description,
         "address": {
-            "name": current_user.get_ru_name(),
-            "street": [
-                "3 St Edmunds Ave",
-                "Porthill"
-            ],
-            "locality": "Newcastle, Staffordshire",
-            "postcode": "ST5 0AB"
+            "name": current_user.get_ru_name()
         },
         "survey_code": questionnaire.survey_id,
         "period": current_user.get_period_str(),
