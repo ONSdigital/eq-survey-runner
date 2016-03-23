@@ -27,8 +27,11 @@ def submission():
 
     if request.method == 'POST':
         submitter = Submitter()
-        submitter.send_responses(current_user, schema, responses)
-        return _redirect_to_location("submitted")
+        submitted = submitter.send_responses(current_user, schema, responses)
+        if submitted:
+            return _redirect_to_location("submitted")
+        else:
+            return errors.internal_server_error()
 
     questionnaire_manager = create_questionnaire_manager()
     questionnaire_manager.process_incoming_responses(responses)
@@ -39,3 +42,4 @@ def submission():
         "period": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref(),
     })
+g
