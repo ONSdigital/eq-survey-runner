@@ -46,7 +46,8 @@ def questionnaire():
 
     # create the navigator
     navigator = Navigator(schema, navigation_history)
-    if navigator.get_current_location() is None:
+    current_location = navigator.get_current_location()
+    if current_location == "introduction" or current_location is None:
         navigator.go_to('questionnaire')
 
     # instantiate the questionnaire manager
