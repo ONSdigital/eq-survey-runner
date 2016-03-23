@@ -1,0 +1,39 @@
+.alert {
+  border-radius: 3px;
+  margin: 0 0 2rem 0;
+}
+
+.alert__header {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-white;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 3px 3px 0 0;
+}
+
+.alert__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-white;
+  margin: 0;
+  padding: 0;
+}
+
+.alert__body {
+  padding: 1rem;
+}
+
+.alert--error {
+  border: 1px solid $color-red;
+  .alert__header {
+    background: $color-red;
+  }
+  .alert__body {
+    background: tint($color-red, 90%);
+  }
+}
+
+.alert--warning {
+
+}
