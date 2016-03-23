@@ -46,7 +46,7 @@ def login():
             abort(404)
 
         # load the schema
-        schema = _load_and_parse_schema()
+        schema = load_and_parse_schema()
         if not schema:
             return errors.page_not_found()
 
@@ -59,7 +59,7 @@ def login():
         # get the current location of the user
         current_location = navigator.get_current_location()
 
-        return _redirect_to_location(current_location)
+        return redirect_to_location(current_location)
 
     except NoTokenException as e:
         logger.warning("Unable to authenticate user")
@@ -69,7 +69,7 @@ def login():
         return errors.forbidden(e)
 
 
-def _redirect_to_location(current_location):
+def redirect_to_location(current_location):
     """
     Issue a redirect to the next part of the questionnaire
     :param current_location: the current location in the questionnaire
@@ -88,7 +88,7 @@ def _redirect_to_location(current_location):
         return errors.page_not_found()
 
 
-def _load_and_parse_schema():
+def load_and_parse_schema():
     """
     Use the schema loader to get the schema from disk. Then use the parse to construct the object model
     :param eq_id: the id of the questionnaire

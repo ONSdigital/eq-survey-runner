@@ -34,7 +34,7 @@ def page_not_found(error=None):
 
 
 @main_blueprint.app_errorhandler(500)
-def exception(error=None):
+def internal_server_error(error=None):
     if error:
         logger.error(error)
     return _render_error_page(500)

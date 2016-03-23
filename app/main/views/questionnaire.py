@@ -1,7 +1,7 @@
 import logging
 from flask import render_template, request
 from flask_login import login_required, current_user
-from app.main.views.root import _redirect_to_location
+from app.main.views.root import redirect_to_location
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
 from .. import main_blueprint
 
@@ -21,7 +21,7 @@ def questionnaire():
         current_location = questionnaire_manager.get_current_location()
         logger.debug("POST request question - current location %s", current_location)
 
-        return _redirect_to_location(current_location)
+        return redirect_to_location(current_location)
 
     render_data = questionnaire_manager.get_rendering_context()
 

@@ -1,11 +1,14 @@
 import logging
-from flask import render_template, request
+from flask import render_template, request, session
 from flask_login import login_required, current_user
-from app.main.views.root import _load_and_parse_schema
-from app.main.views.root import _redirect_to_location
+from app.main.views.root import load_and_parse_schema
+from app.main.views.root import redirect_to_location
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
-from app.submitter.submitter import Submitter
+from app.submitter.submitter import SubmitterFactory
+from app.submitter.submission_failed import SubmissionFailedException
+from app.submitter.converter import SubmitterConstants
 from app.utilities.factory import factory
+from app import settings
 from .. import main_blueprint
 from app.main import errors
 
@@ -20,15 +23,20 @@ def submission():
 
     response_store = factory.create("response-store")
     responses = response_store.get_responses()
-    schema = _load_and_parse_schema()
+    schema = load_and_parse_schema()
 
     if not schema:
-            return errors.page_not_found()
+        return errors.page_not_found()
 
     if request.method == 'POST':
-        submitter = Submitter()
-        submitter.send_responses(current_user, schema, responses)
-        return _redirect_to_location("submitted")
+        submitter = SubmitterFactory.get_submitter()
+        try:
+            submitted_at = submitter.send_responses(current_user, schema, responses)
+            # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
+            session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
+            return redirect_to_location("submitted")
+        except SubmissionFailedException as e:
+            return errors.internal_server_error(e)
 
     questionnaire_manager = create_questionnaire_manager()
     questionnaire_manager.process_incoming_responses(responses)

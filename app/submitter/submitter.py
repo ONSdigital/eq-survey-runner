@@ -1,12 +1,60 @@
+from app import settings
+from app.submitter.converter import Converter
+from app.submitter.submission_failed import SubmissionFailedException
 import pika
 import pika.credentials
 import pika.exceptions
 import logging
-from app import settings
-from app.submitter.converter import Converter
+from abc import abstractmethod
+
+logger = logging.getLogger(__name__)
+
+
+class SubmitterFactory(object):
+
+    @staticmethod
+    def get_submitter():
+        if settings.EQ_RABBITMQ_ENABLED:
+            return RabbitMQSubmitter()
+        else:
+            return LogSubmitter()
 
 
 class Submitter(object):
+
+    def send_responses(self, user, schema, responses):
+        '''
+        Sends the responses to rabbit mq and returns a timestamp for submission
+        :param user: The current user
+        :param schema: The current schema
+        :param responses: The user's responses
+        :return: a datetime object indicating the time it was submitted
+        :raise: a submission failed exception
+        '''
+        message, submitted_at = Converter.prepare_responses(user, schema, responses)
+
+        sent = self.send(message)
+        if sent:
+            return submitted_at
+        else:
+            raise SubmissionFailedException()
+
+    def send(self, message):
+        return self.send_message(message, settings.EQ_RABBITMQ_QUEUE_NAME)
+
+    @abstractmethod
+    def send_message(self, message, queue):
+        pass
+
+
+class LogSubmitter(Submitter):
+
+    def send_message(self, message, queue):
+        logger.info("Message submitted %s", message)
+        return True
+
+
+class RabbitMQSubmitter(Submitter):
     def __init__(self):
         self.connection = None
 
@@ -14,7 +62,7 @@ class Submitter(object):
         try:
             self.connection = pika.BlockingConnection(pika.URLParameters(settings.EQ_RABBITMQ_URL))
         except pika.exceptions.AMQPError as e:
-            logging.error("Unable to open Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
+            logger.error("Unable to open Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
             raise e
 
     def _disconnect(self):
@@ -22,27 +70,29 @@ class Submitter(object):
             if self.connection:
                 self.connection.close()
         except pika.exceptions.AMQPError as e:
-            logging.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
-
-    def send_responses(self, user, schema, responses):
-        message = Converter.prepare_responses(user, schema, responses)
-        return self.send(message)
-
-    def send(self, message):
-        return self.send_message(message, settings.EQ_RABBITMQ_QUEUE_NAME)
+            logger.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
 
     def send_message(self, message, queue):
-        token_as_string = str(message)
-        logging.info("Sending token " + token_as_string)
+        '''
+        Sends a message to rabbit mq and returns a true or false depending on if it was successful
+        :param message: The message to send to the rabbit mq queue
+        :param queue: the name of the queue
+        :return: a boolean value indicating if it was successful
+        '''
+        message_as_string = str(message)
+        logger.info("Sending messaging " + message_as_string)
         try:
             self._connect()
             channel = self.connection.channel()
             channel.queue_declare(queue=queue)
-            channel.basic_publish(exchange='', routing_key=queue, body=token_as_string)
-            logging.info("Sent to rabbit mq " + token_as_string)
-            return True
+            published = channel.basic_publish(exchange='', routing_key=queue, body=message_as_string, mandatory=True)
+            if published:
+                logger.info("Sent to rabbit mq " + message_as_string)
+            else:
+                logger.error("Unable to send to rabbit mq " + message_as_string)
+            return published
         except pika.exceptions.AMQPError as e:
-            logging.error("Unable to send " + token_as_string + " to " + settings.EQ_RABBITMQ_URL + " " + repr(e))
+            logger.error("Unable to send " + message_as_string + " to " + settings.EQ_RABBITMQ_URL + " " + repr(e))
             return False
         finally:
             self._disconnect()
