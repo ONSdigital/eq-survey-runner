@@ -1,34 +1,35 @@
-const inputSelector = '.js-charlimit-input'
-const msgSelector = '.js-charlimit-msg'
+export const inputClass = 'js-charlimit-input'
+export const msgClass = 'js-charlimit-msg'
+export const maxLengthAttr = 'data-maxlength'
 
-export function applyCharLimit(limitField, limitNum) {
-  if (limitField.value.length > limitNum) {
-    limitField.value = limitField.value.substring(0, limitNum)
+export function applyCharLimit(limitValue, limit) {
+  if (limitValue.length > limit) {
+    limitValue = limitValue.substring(0, limit)
   }
 
-  return limitField.value.length
+  return limit - limitValue.length
 }
 
-export function updateDOM(el, length, maxLength) {
+export function updateMsg(el, length, maxLength) {
   el.innerHTML = 0 - (maxLength - length)
 }
 
 export function imposeCharLimit(el, maxLength) {
-  const msgEl = el.parentElement.querySelector(msgSelector)
+  const msgEl = el.parentElement.querySelector(`.${msgClass}`)
 
-  updateDOM(msgEl, maxLength, 0)
+  updateMsg(msgEl, maxLength, 0)
 
   el.addEventListener('input', (e) => {
-    let currLength = applyCharLimit(el, maxLength)
-    updateDOM(msgEl, maxLength, currLength)
+    el.value = applyCharLimit(el.value, maxLength)
+    updateMsg(msgEl, maxLength, el.value.length)
   })
 }
 
 export default function() {
-  const nodeList = document.querySelectorAll(inputSelector)
+  const nodeList = document.querySelectorAll(`.${inputClass}`)
 
   Array.prototype.slice.call(nodeList).forEach(function(el) {
-    const maxLength = el.getAttribute('data-maxlength')
+    const maxLength = el.getAttribute(maxLengthAttr)
     if (typeof maxLength !== 'undefined') {
       imposeCharLimit(el, maxLength)
     }

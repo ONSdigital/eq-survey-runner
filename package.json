@@ -17,7 +17,8 @@
     "dev": "gulp watch",
     "compile": "gulp compile",
     "lint": "gulp lint",
-    "test": "gulp test"
+    "test": "gulp test",
+    "karma": "./node_modules/karma/bin/karma start tests/karma/karma.conf.js"
   },
   "browserify": {
     "transform": [
@@ -79,6 +80,7 @@
     "karma-chai": "^0.1.0",
     "karma-chai-as-promised": "^0.1.2",
     "karma-chai-sinon": "^0.1.5",
+    "karma-chrome-launcher": "^0.2.3",
     "karma-coverage": "^0.5.5",
     "karma-htmlfile-reporter": "^0.2.2",
     "karma-mocha": "^0.2.2",

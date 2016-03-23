@@ -1,6 +1,5 @@
 module.exports = function(config) {
 
-  var appDir = 'app/js'
   var testDir = 'tests/karma'
 
   config.set({
@@ -18,6 +17,7 @@ module.exports = function(config) {
     },
 
     plugins: [
+      'karma-chrome-launcher',
       'karma-mocha-reporter',
       'karma-browserify',
       'karma-mocha',
@@ -30,7 +30,7 @@ module.exports = function(config) {
     browserify: {
       debug: true,
       transform: ['babelify'],
-      paths: ['./node_modules', './app/js/app/']
+      paths: ['./node_modules', './app/js/']
     },
 
     reporters: ['mocha'],

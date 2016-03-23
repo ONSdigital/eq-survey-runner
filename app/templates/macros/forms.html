@@ -44,7 +44,7 @@
 
 {% macro textarea(question, response) %}
 
-  {% set maxChars = "2000" %}
+  {% set maxChars = "10" %}
 
   {% set attr = {
     "class": "input input--textarea js-charlimit-input",
@@ -56,7 +56,7 @@
     "data-maxlength": maxChars,
     "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id
   } %}
-  
+
   <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>
 
   {% if maxChars %}
