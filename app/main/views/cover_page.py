@@ -2,7 +2,7 @@ from flask import render_template
 from flask_login import login_required, current_user
 from .. import main_blueprint
 import logging
-from app.main.views.root import _load_and_parse_schema
+from app.main.views.root import load_and_parse_schema
 
 
 logger = logging.getLogger(__name__)
@@ -16,7 +16,7 @@ def cover_page():
     form_type = current_user.get_form_type()
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
-    questionnaire = _load_and_parse_schema()
+    questionnaire = load_and_parse_schema()
 
     return render_template('cover-page.html', data={
         "legal": questionnaire.introduction.legal,

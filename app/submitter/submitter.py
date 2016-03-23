@@ -34,6 +34,12 @@ class Submitter(object):
         return self.send_message(message, settings.EQ_RABBITMQ_QUEUE_NAME)
 
     def send_message(self, message, queue):
+        '''
+        Sends a message to rabbit mq and returns a timestamp for submission
+        :param message: The message to send to the rabbit mq queue
+        :param queue: the name of the queue
+        :return: a timestamp indicating the time it was submitted
+        '''
         message_as_string = str(message)
         logger.info("Sending messaging " + message_as_string)
         try:

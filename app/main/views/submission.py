@@ -1,8 +1,8 @@
 import logging
 from flask import render_template, request
 from flask_login import login_required, current_user
-from app.main.views.root import _load_and_parse_schema
-from app.main.views.root import _redirect_to_location
+from app.main.views.root import load_and_parse_schema
+from app.main.views.root import redirect_to_location
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
 from app.submitter.submitter import Submitter
 from app.utilities.factory import factory
@@ -20,7 +20,7 @@ def submission():
 
     response_store = factory.create("response-store")
     responses = response_store.get_responses()
-    schema = _load_and_parse_schema()
+    schema = load_and_parse_schema()
 
     if not schema:
             return errors.page_not_found()
@@ -29,7 +29,7 @@ def submission():
         submitter = Submitter()
         submitted = submitter.send_responses(current_user, schema, responses)
         if submitted:
-            return _redirect_to_location("submitted")
+            return redirect_to_location("submitted")
         else:
             return errors.internal_server_error()
 
