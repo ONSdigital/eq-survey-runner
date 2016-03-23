@@ -7,6 +7,7 @@ from app.questionnaire.create_questionnaire_manager import create_questionnaire_
 from app.submitter.submitter import Submitter
 from app.utilities.factory import factory
 from .. import main_blueprint
+from app.main import errors
 
 logger = logging.getLogger(__name__)
 
@@ -19,10 +20,13 @@ def submission():
 
     response_store = factory.create("response-store")
     responses = response_store.get_responses()
+    schema = _load_and_parse_schema()
+
+    if not schema:
+            return errors.page_not_found()
 
     if request.method == 'POST':
         submitter = Submitter()
-        schema = _load_and_parse_schema()
         submitter.send_responses(current_user, schema, responses)
         return _redirect_to_location("submitted")
 
@@ -31,7 +35,7 @@ def submission():
     render_data = questionnaire_manager.get_rendering_context()
 
     return render_template('submission.html', questionnaire=render_data, data={
-        "survey_code": questionnaire_manager.schema.survey_id,
+        "survey_code": schema.survey_id,
         "period": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref(),
     })

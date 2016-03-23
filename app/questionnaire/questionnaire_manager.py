@@ -3,12 +3,12 @@ import bleach
 
 class QuestionnaireManager(object):
     def __init__(self, schema, response_store, validator, validation_store, routing_engine, navigator, navigation_history):
-        self.schema = schema
+        self._schema = schema
         self._response_store = response_store
         self._validator = validator
         self._validation_store = validation_store
         self._routing_engine = routing_engine
-        self.navigator = navigator
+        self._navigator = navigator
         self._navigation_history = navigation_history
 
     def process_incoming_responses(self, post_data):
@@ -26,16 +26,16 @@ class QuestionnaireManager(object):
         # run the validator to update the validation_store
         if self._validator.validate(cleaned_user_responses):
             # get the current location in the questionnaire
-            current_location = self.navigator.get_current_location()
+            current_location = self._navigator.get_current_location()
 
             # do any routing
             next_location = self._routing_engine.get_next(current_location)
 
             # go to that location
-            self.navigator.go_to(next_location)
+            self._navigator.go_to(next_location)
 
         # now return the location
-        return self.navigator.get_current_location()
+        return self._navigator.get_current_location()
 
     def get_rendering_context(self):
 
@@ -43,7 +43,7 @@ class QuestionnaireManager(object):
 
         all_responses = self._response_store.get_responses()
         for item_id, value in all_responses.items():
-            item = self.schema.get_item_by_id(item_id)
+            item = self._schema.get_item_by_id(item_id)
             if item:
                 item.value = value
                 validation_result = self._validation_store.get_result(item_id)
@@ -59,7 +59,7 @@ class QuestionnaireManager(object):
         return {
             "validation_results": self._validation_store,
             "user_responses": self._response_store,
-            "schema": self.schema
+            "schema": self._schema
         }
 
     def _process_incoming_post_data(self, post_data):
@@ -92,3 +92,9 @@ class QuestionnaireManager(object):
 
     def _clean_input(self, value):
         return bleach.clean(value)
+
+    def get_current_location(self):
+        return self._navigator.get_current_location()
+
+    def get_schema(self):
+        return self._schema

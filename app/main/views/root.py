@@ -103,4 +103,4 @@ def _load_and_parse_schema():
         schema = parser.parse()
         return schema
     else:
-        return errors.page_not_found()
+        return None
