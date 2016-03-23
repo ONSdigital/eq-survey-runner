@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from app.main.views.root import load_and_parse_schema
 from app.main.views.root import redirect_to_location
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
-from app.submitter.submitter import Submitter
+from app.submitter.submitter import SubmitterFactory
 from app.submitter.submission_failed import SubmissionFailedException
 from app.submitter.converter import SubmitterConstants
 from app.utilities.factory import factory
@@ -29,7 +29,7 @@ def submission():
         return errors.page_not_found()
 
     if request.method == 'POST':
-        submitter = Submitter()
+        submitter = SubmitterFactory.get_submitter()
         try:
             submitted_at = submitter.send_responses(current_user, schema, responses)
             # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way

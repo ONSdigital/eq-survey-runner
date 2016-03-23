@@ -24,6 +24,7 @@ def get_key(key_name):
 EQ_RABBITMQ_URL = os.getenv('EQ_RABBITMQ_URL', 'amqp://localhost:5672/%2F')
 EQ_RABBITMQ_QUEUE_NAME = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'eq-submissions')
 EQ_RABBITMQ_TEST_QUEUE_NAME = os.getenv('EQ_RABBITMQ_TEST_QUEUE_NAME', 'eq-test')
+EQ_RABBITMQ_ENABLED = parse_mode(os.getenv('EQ_RABBITMQ_ENABLED', 'True'))
 EQ_RRM_PUBLIC_KEY = get_key(os.getenv('EQ_RRM_PUBLIC_KEY', "./jwt-test-keys/rrm-public.pem"))
 EQ_SR_PRIVATE_KEY = get_key(os.getenv('EQ_SR_PRIVATE_KEY', "./jwt-test-keys/sr-private.pem"))
 EQ_SR_PRIVATE_KEY_PASSWORD = os.getenv("EQ_SR_PRIVATE_KEY_PASSWORD", "digitaleq")

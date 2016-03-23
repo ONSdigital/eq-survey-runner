@@ -79,7 +79,7 @@ class TestConverter(unittest.TestCase):
         questionniare.register(response_1)
         questionniare.register(response_2)
 
-        json_string = Converter.prepare_responses(user, questionniare, user_response)
+        json_string, submitted_at = Converter.prepare_responses(user, questionniare, user_response)
         response_object = json.loads(json_string)
         self.assertEquals(EXPECTED_RESPONSE["type"], response_object["type"])
         self.assertEquals(EXPECTED_RESPONSE["version"], response_object["version"])

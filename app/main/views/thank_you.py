@@ -20,7 +20,7 @@ def thank_you():
     if not schema:
         return errors.page_not_found()
 
-     # TODO this should be part of the navigation store really
+    # TODO this should be part of the navigation store really
     submitted_at = session[SubmitterConstants.SUBMITTED_AT_KEY]
 
     return render_template('thank-you.html', data={
