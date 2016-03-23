@@ -5,7 +5,7 @@
 
 .question__fieldset {
   @include mq(s) {
-    padding: 0 1rem;
+    // padding: 0 1rem;
   }
 }
 
@@ -54,13 +54,10 @@
 
 .question__responses {
   clear: both;
-  list-style-type: none;
-  padding: 0;
   margin: 0 0 -1rem;
 }
 
 .question__response {
-  padding: 0;
   margin: 0 0 2rem;
   &:last-of-type {
     margin-bottom: 0;

@@ -1,13 +1,16 @@
-<div class="alert">
-  <h2>Errors</h2>
-  <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-  <ul class="list list--bare">
-    {% for item_id, errors in questionnaire.data.errors.items() %}
-    {% for error in errors %}
-    <li>
-      <a href="#response-{{item_id}}">{{ error }}</a>
-    </li>
-    {% endfor %}
-    {% endfor %}
-  </ul>
+<div class="alert alert--error">
+  <div class="alert__header">
+    <h2 class="alert__title">This page has {{all_errors|length}} errors</h2>
+  </div>
+  <div class="alert__body">
+    <p>These <strong>must be corrected</strong> to continue.</p>
+    <ul class="list list--bare">
+      {% for item_id, errors in all_errors %}
+        {% set loop_index = loop.index %}
+        {% for error in errors %}
+        <li>{{loop_index}}) {{ error }}. <a href="#response-{{item_id}}">{{_('Go to this error')}}</a></li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
 </div>

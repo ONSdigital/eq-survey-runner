@@ -2,17 +2,11 @@
   padding: 0;
 }
 
-.response--has-error {
-  padding: 0;
-  margin-left: -1rem;
-  margin-right: -1rem;
-}
-
 .response__field {
   border: 1px solid transparent;
   border-radius: 0 0 3px 3px;
-  padding: 0;
-  .response--has-error & {
+  // padding: 0 1rem;
+  .response.has-error & {
     padding: 1rem;
     border-color: $color-red;
     background: tint($color-red, 90%);

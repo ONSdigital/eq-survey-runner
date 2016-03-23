@@ -4,7 +4,13 @@
 
 {% block survey %}
 
+{% set all_errors = questionnaire.data.errors.items() %}
+
+{% if all_errors %}
+
 {% include 'partials/alert.html' %}
+
+{% endif %}
 
 <form action="" class="form" aria-role="form" method="POST" novalidate>
 
@@ -30,7 +36,6 @@
 
     {% endfor %}
 
-  <button class="btn btn--neutral" type="submit" name="action[save_exit]">Save &amp; Exit</button>
   <button class="btn" type="submit" name="action[save_continue]">Save &amp; Continue</button>
 
 </form>
