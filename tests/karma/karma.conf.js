@@ -6,15 +6,14 @@ module.exports = function(config) {
   config.set({
 
     basePath: './../../',
+
     frameworks: ['browserify', 'mocha', 'chai-sinon', 'chai-as-promised', 'chai'],
 
     files: [
-      appDir + '/**/*.js',
       testDir + '/spec/**/*.js'
     ],
 
     preprocessors: {
-      'app/js/**/*.js': ['browserify'],
       'tests/karma/spec/**/*.js': ['browserify']
     },
 
@@ -31,7 +30,7 @@ module.exports = function(config) {
     browserify: {
       debug: true,
       transform: ['babelify'],
-      paths: ['./node_modules', './app/js/']
+      paths: ['./node_modules', './app/js/app/']
     },
 
     reporters: ['mocha'],
@@ -48,6 +47,6 @@ module.exports = function(config) {
     },
 
     colors: true,
-    logLevel: config.LOG_INFO
+    logLevel: config.LOG_DEBUG
   })
 }
