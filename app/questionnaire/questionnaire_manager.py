@@ -92,3 +92,9 @@ class QuestionnaireManager(object):
 
     def _clean_input(self, value):
         return bleach.clean(value)
+
+    def get_current_location(self):
+        return self._navigator.get_current_location()
+
+    def get_schema(self):
+        return self._schema

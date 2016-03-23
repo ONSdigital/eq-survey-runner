@@ -6,6 +6,7 @@ from app.main.views import root         # NOQA
 from app.main.views import questionnaire  # NOQA
 from app.main.views import cover_page   # NOQA
 from app.main.views import thank_you    # NOQA
+from app.main.views import submission    # NOQA
 
 
 @main_blueprint.after_request

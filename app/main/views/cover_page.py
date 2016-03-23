@@ -16,7 +16,7 @@ def cover_page():
     form_type = current_user.get_form_type()
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
-    questionnaire = _load_and_parse_schema(eq_id, form_type)
+    questionnaire = _load_and_parse_schema()
 
     return render_template('cover-page.html', data={
         "legal": questionnaire.introduction.legal,
