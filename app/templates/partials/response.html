@@ -17,8 +17,10 @@
     {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
   </div>
 
-  {% if response.guidance %}
-    {% include 'partials/guidance.html' %}
-  {% endif %}
+  <div class="response__guidance">
+    {% if response.guidance %}
+      {% include 'partials/guidance.html' %}
+    {% endif %}
+  </div>
 
 </div>
