@@ -7,7 +7,7 @@ export function applyCharLimit(limitValue, limit) {
     limitValue = limitValue.substring(0, limit)
   }
 
-  return limit - limitValue.length
+  return limitValue
 }
 
 export function updateMsg(el, length, maxLength) {

@@ -21,16 +21,9 @@ describe('charlimit', () => {
   const inputInstance = document.getElementsByClassName(inputClass)
   const msgInstance = document.getElementsByClassName(msgClass)
 
-  it('textarea in the DOM', () => {
-    expect(inputInstance).to.not.equal(null)
-  })
-
-  it('msg element in the DOM', () => {
-    expect(msgInstance).to.not.equal(null)
-  })
+  const nodes = charLimit()
 
   it('should return a nodeList with a length of 1', () => {
-    const nodes = charLimit()
     expect(nodes.length).to.equal(1)
   })
 
@@ -39,8 +32,16 @@ describe('charlimit', () => {
   })
 
   it('should decrease the limit message by the number of characters entered', () => {
-    const testString = 'test!!!!!'
+    const testString = 'test!!!'
     inputInstance.value = testString
-    expect(applyCharLimit(inputInstance.value, limit)).to.equal(limit - testString.length)
+    const newValue = applyCharLimit(inputInstance.value, limit)
+    expect(limit - newValue.length).to.equal(limit - testString.length)
+  })
+
+  it('should prevent excess characters being entered', () => {
+    const testString = '123'
+    inputInstance.value = testString
+    let length = applyCharLimit(inputInstance.value, 1).length
+    expect(length).to.equal(1)
   })
 })
