@@ -4,6 +4,6 @@
 
 {% block survey %}
 
-  <p>Thank you for submitting the survey</p>
+  <p>Thank you for submitting the survey {% if data.submitted_at %} on {{data.submitted_at}} {% endif %}</p>
 
 {% endblock %}

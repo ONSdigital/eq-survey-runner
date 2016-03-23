@@ -4,6 +4,7 @@ import pika.exceptions
 import logging
 from app import settings
 from app.submitter.converter import Converter
+from app.submitter.submission_failed import SubmissionFailedException
 
 logger = logging.getLogger(__name__)
 
@@ -27,18 +28,31 @@ class Submitter(object):
             logger.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
 
     def send_responses(self, user, schema, responses):
-        message = Converter.prepare_responses(user, schema, responses)
-        return self.send(message)
+        '''
+        Sends the responses to rabbit mq and returns a timestamp for submission
+        :param user: The current user
+        :param schema: The current schema
+        :param responses: The user's responses
+        :return: a datetime object indicating the time it was submitted
+        :raise: a submission failed exception
+        '''
+        message, submitted_at = Converter.prepare_responses(user, schema, responses)
+
+        sent = self.send(message)
+        if sent:
+            return submitted_at
+        else:
+            raise SubmissionFailedException()
 
     def send(self, message):
         return self.send_message(message, settings.EQ_RABBITMQ_QUEUE_NAME)
 
     def send_message(self, message, queue):
         '''
-        Sends a message to rabbit mq and returns a timestamp for submission
+        Sends a message to rabbit mq and returns a true or false depending on if it was successful
         :param message: The message to send to the rabbit mq queue
         :param queue: the name of the queue
-        :return: a timestamp indicating the time it was submitted
+        :return: a boolean value indicating if it was successful
         '''
         message_as_string = str(message)
         logger.info("Sending messaging " + message_as_string)

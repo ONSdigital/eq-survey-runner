@@ -1,41 +1,44 @@
-import json
 import logging
 import datetime
+import json
 from app import settings
 
-PARADATA_KEY = "paradata"
 
-METADATA_KEY = "metadata"
+class SubmitterConstants(object):
 
-RU_REF_KEY = "ru_ref"
+    PARADATA_KEY = "paradata"
 
-USER_ID_KEY = "user_id"
+    METADATA_KEY = "metadata"
 
-SUBMITTED_AT_KEY = "submitted_at"
+    RU_REF_KEY = "ru_ref"
 
-COLLECTION_KEY = "collection"
+    USER_ID_KEY = "user_id"
 
-PERIOD_KEY = "period"
+    SUBMITTED_AT_KEY = "submitted_at"
 
-EXERCISE_SID_KEY = "exercise_sid"
+    COLLECTION_KEY = "collection"
 
-INSTRUMENT_KEY = "instrument_id"
+    PERIOD_KEY = "period"
 
-SURVEY_ID_KEY = "survey_id"
+    EXERCISE_SID_KEY = "exercise_sid"
 
-ORIGIN_KEY = "origin"
+    INSTRUMENT_KEY = "instrument_id"
 
-VERSION_KEY = "version"
+    SURVEY_ID_KEY = "survey_id"
 
-TYPE_KEY = "type"
+    ORIGIN_KEY = "origin"
 
-DATA_KEY = "data"
+    VERSION_KEY = "version"
 
-TYPE = "uk.gov.ons.edc.eq:surveyresponse"
+    TYPE_KEY = "type"
 
-VERSION = "0.0.1"
+    DATA_KEY = "data"
 
-ORIGIN = "uk.gov.ons.edc.eq"
+    TYPE = "uk.gov.ons.edc.eq:surveyresponse"
+
+    VERSION = "0.0.1"
+
+    ORIGIN = "uk.gov.ons.edc.eq"
 
 logger = logging.getLogger(__name__)
 
@@ -81,17 +84,25 @@ class Converter(object):
                 value = responses[key]
                 data[item.code] = value
 
-        metadata = {USER_ID_KEY: user.get_user_id(), RU_REF_KEY: user.get_ru_ref()}
+        metadata = {SubmitterConstants.USER_ID_KEY: user.get_user_id(),
+                    SubmitterConstants.RU_REF_KEY: user.get_ru_ref()}
 
-        collection = {EXERCISE_SID_KEY: user.get_collection_exercise_sid(),
-                      INSTRUMENT_KEY: user.get_form_type(),
-                      PERIOD_KEY: user.get_period_id()}
+        collection = {SubmitterConstants.EXERCISE_SID_KEY: user.get_collection_exercise_sid(),
+                      SubmitterConstants.INSTRUMENT_KEY: user.get_form_type(),
+                      SubmitterConstants.PERIOD_KEY: user.get_period_id()}
 
         paradata = {}
 
-        response = {TYPE_KEY: TYPE, VERSION_KEY: VERSION, ORIGIN_KEY: ORIGIN, SURVEY_ID_KEY: survey_id,
-                    SUBMITTED_AT_KEY: datetime.datetime.now().strftime(settings.DATETIME_FORMAT),
-                    COLLECTION_KEY: collection, METADATA_KEY: metadata,
-                    PARADATA_KEY: paradata, DATA_KEY: data}
+        submitted_at = datetime.datetime.now()
 
-        return json.dumps(response)
+        response = {SubmitterConstants.TYPE_KEY: SubmitterConstants.TYPE,
+                    SubmitterConstants.VERSION_KEY: SubmitterConstants.VERSION,
+                    SubmitterConstants.ORIGIN_KEY: SubmitterConstants.ORIGIN,
+                    SubmitterConstants.SURVEY_ID_KEY: survey_id,
+                    SubmitterConstants.SUBMITTED_AT_KEY: submitted_at.strftime(settings.DATETIME_FORMAT),
+                    SubmitterConstants.COLLECTION_KEY: collection,
+                    SubmitterConstants.METADATA_KEY: metadata,
+                    SubmitterConstants.PARADATA_KEY: paradata,
+                    SubmitterConstants.DATA_KEY: data}
+
+        return json.dumps(response), submitted_at
