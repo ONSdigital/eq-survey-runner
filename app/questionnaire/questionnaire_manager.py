@@ -34,6 +34,9 @@ class QuestionnaireManager(object):
 
             # go to that location
             self._navigator.go_to(next_location)
+        else:
+            # bug fix for using back button which then fails validation
+            self._navigator.go_to('questionnaire')
 
         # now return the location
         return self._navigator.get_current_location()
