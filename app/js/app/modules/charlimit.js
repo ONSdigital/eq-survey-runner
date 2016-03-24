@@ -1,6 +1,12 @@
+import domready from './domready'
+
 export const inputClass = 'js-charlimit-input'
 export const msgClass = 'js-charlimit-msg'
 export const maxLengthAttr = 'data-maxlength'
+
+export default function() {
+  charLimit()
+}
 
 export function applyCharLimit(limitValue, limit) {
   if (limitValue.length > limit) {
@@ -25,7 +31,7 @@ export function imposeCharLimit(el, maxLength) {
   })
 }
 
-export default function() {
+export function charLimit() {
   const nodeList = document.querySelectorAll(`.${inputClass}`)
 
   Array.prototype.slice.call(nodeList).forEach(function(el) {
@@ -37,3 +43,5 @@ export default function() {
 
   return nodeList
 }
+
+domready(charLimit)

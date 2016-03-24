@@ -1,7 +1,3 @@
 import 'babel-polyfill'
-import './modules/details'
-import charLimit from './modules/charlimit'
-
-$(() => {
-  charLimit()
-})
+import './modules/details-toggle'
+import './modules/charlimit'
