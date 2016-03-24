@@ -10,40 +10,44 @@ from app.model.section import Section
 from app.model.question import Question
 from app.model.response import Response
 
+from collections import OrderedDict
+
 import unittest
 
 
 class TestRenderer(unittest.TestCase):
-    def test_augment_responses(self):
-        validation_store = MockValidationStore()
-        response_store = MockResponseStore()
-        schema = self._create_schema()
-
-        renderer = Renderer(schema, response_store, validation_store)
+    def setUp(self):
+        self.validation_store = MockValidationStore()
+        self.response_store = MockResponseStore()
+        self.schema = self._create_schema()
 
         # The responses and the validation results are not related for the purposes of this test
         # The renderer simply combines these objects to create new objects for consumption
         # by the templates.  We are not testing validation here
 
         # Populate the response store
-        response_store.store_response('response-1', 'One')
-        response_store.store_response('response-2', 'Two')
+        self.response_store.store_response('response-1', 'One')
+        self.response_store.store_response('response-2', 'Two')
         # We do not provide a response for response-3
 
         # Populate the validation store
-        validation_store.store_result('response-1', ValidationResult(True))
+        self.validation_store.store_result('response-1', ValidationResult(True))
         r2_result = ValidationResult(False)
         r2_result.errors.append('There is an error')
         r2_result.warnings.append('There is a warning')
-        validation_store.store_result('response-2', r2_result)
+        self.validation_store.store_result('response-2', r2_result)
         r3_result = ValidationResult(False)
         r3_result.errors.append('This is a required field')
-        validation_store.store_result('response-3', r3_result)
+        self.validation_store.store_result('response-3', r3_result)
+
+    def test_augment_responses(self):
+        # Instantiate the renderer using the pre-populated mock objects
+        renderer = Renderer(self.schema, self.response_store, self.validation_store)
 
         # Get the response objects
-        response_1 = schema.get_item_by_id('response-1')
-        response_2 = schema.get_item_by_id('response-2')
-        response_3 = schema.get_item_by_id('response-3')
+        response_1 = self.schema.get_item_by_id('response-1')
+        response_2 = self.schema.get_item_by_id('response-2')
+        response_3 = self.schema.get_item_by_id('response-3')
 
         # Check the attributes do not exist
         with self.assertRaises(AttributeError):
@@ -72,6 +76,29 @@ class TestRenderer(unittest.TestCase):
         self.assertEquals(len(response_3.errors), 1)
         self.assertEquals(len(response_3.warnings), 0)
         self.assertEquals(response_3.errors[0], 'This is a required field')
+
+    def test_augment_questionnaire(self):
+        # Instantiate the renderer using the pre-populated mock objects
+        renderer = Renderer(self.schema, self.response_store, self.validation_store)
+
+        # check the attributes do not exist
+        with self.assertRaises(AttributeError):
+            errors = self.schema.errors
+        with self.assertRaises(AttributeError):
+            warnings = self.schema.warnings
+
+        # augment the questionnaire
+        renderer._augment_questionnaire()
+
+        # check the questionnaire has been augmented correctly
+        self.assertIsInstance(self.schema.errors, OrderedDict, 'Errors should be an OrderedDict')
+        self.assertIsInstance(self.schema.warnings, OrderedDict, 'Warnings should be an OrderedDict')
+
+        self.assertListEqual(self.schema.errors['response-2'], ['There is an error'])
+        self.assertListEqual(self.schema.errors['response-3'], ['This is a required field'])
+        self.assertListEqual(self.schema.warnings['response-2'], ['There is a warning'])
+
+
 
     def _create_schema(self):
         questionnaire = Questionnaire()
@@ -127,7 +154,10 @@ class MockValidationStore(AbstractValidationStore):
         self._store[key] = value
 
     def get_result(self, key):
-        return self._store[key] or None
+        if key in self._store.keys():
+            return self._store[key]
+        else:
+            return None
 
 
 class MockResponseStore(AbstractResponseStore):
