@@ -1,24 +1,23 @@
 module.exports = function(config) {
 
-  var appDir = 'app/js'
   var testDir = 'tests/karma'
 
   config.set({
 
     basePath: './../../',
+
     frameworks: ['browserify', 'mocha', 'chai-sinon', 'chai-as-promised', 'chai'],
 
     files: [
-      appDir + '/**/*.js',
       testDir + '/spec/**/*.js'
     ],
 
     preprocessors: {
-      'app/js/**/*.js': ['browserify'],
       'tests/karma/spec/**/*.js': ['browserify']
     },
 
     plugins: [
+      'karma-chrome-launcher',
       'karma-mocha-reporter',
       'karma-browserify',
       'karma-mocha',
@@ -48,6 +47,6 @@ module.exports = function(config) {
     },
 
     colors: true,
-    logLevel: config.LOG_INFO
+    logLevel: config.LOG_DEBUG
   })
 }
