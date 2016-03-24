@@ -42,6 +42,10 @@ class Submitter(object):
     def send(self, message):
         return self.send_message(message, settings.EQ_RABBITMQ_QUEUE_NAME)
 
+    def send_test(self):
+        test = "Test connection"
+        return self.send_message(test, settings.EQ_RABBITMQ_TEST_QUEUE_NAME)
+
     @abstractmethod
     def send_message(self, message, queue):
         pass
@@ -96,7 +100,3 @@ class RabbitMQSubmitter(Submitter):
             return False
         finally:
             self._disconnect()
-
-    def send_test(self):
-        test = "Test connection"
-        return self.send_message(test, settings.EQ_RABBITMQ_TEST_QUEUE_NAME)
