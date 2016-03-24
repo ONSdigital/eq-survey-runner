@@ -1,0 +1,13 @@
+.tag {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 3px;
+}
+
+.tag--amber {
+  background-color: $color-amber;
+}
