@@ -17,7 +17,7 @@ export function updateMsg(el, length, maxLength) {
 export function imposeCharLimit(el, maxLength) {
   const msgEl = el.parentElement.querySelector(`.${msgClass}`)
 
-  updateMsg(msgEl, maxLength, 0)
+  updateMsg(msgEl, maxLength, el.value.length)
 
   el.addEventListener('input', (e) => {
     el.value = applyCharLimit(el.value, maxLength)
