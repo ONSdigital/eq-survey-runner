@@ -4,40 +4,80 @@
 
 {% block survey %}
 
-{% set all_errors = questionnaire.data.errors.items() %}
+  <header class="cover__header">
+        <h2 class="cover__title">Summary of Answers</h2>
+        <h3 class="cover__subtitle">Please check your answers before submitting. Thank you</h3>
+  </header>
 
-{% if all_errors %}
-
-{% include 'partials/alert.html' %}
-
-{% endif %}
 
 <form action="" class="form" aria-role="form" method="POST" novalidate>
 
     {% for group in questionnaire.data.groups %}
 
-      <div class="group" id="group-{{group.id}}">
+      <div class="group" id="group-{{group.id}}">  
 
-      {% for block in group.blocks %}
+        {% for block in group.blocks %}  
 
-        <div class="block" id="block-{{block.id}}">
+        <div class="block" id="block-{{block.id}}">  
 
-        {% for section in block.sections %}
+          {% for section in block.sections %}  
 
-          {% include 'partials/section.html' %}
+          <div class="section" id="section-{{section.id}}"> 
 
-        {% endfor %}
+            {% if section.title %} 
 
-        </div>
+            <h2 class="section__title u-vh">{{section.title}}</h2> 
 
-      {% endfor %}
+            {% endif %}   
 
-      </div>
+            {% for question in section.questions %} 
 
-    {% endfor %}
+            {% import 'macros/forms.html' as form %}
 
-  <button class="btn" type="submit" name="action[save_continue]">Save &amp; Continue</button>
+              <div class="question" id="question-{{question.id}}">  
 
-</form>
+              <fieldset class="question__fieldset"> 
 
-{% endblock %}
+                <legend class="question__legend"> 
+
+                  <div class="question__title">{{question.title}}</div> 
+
+                </legend> 
+
+                <div class="question__responses"> 
+
+                  {%- for response in question.responses -%}
+
+                   <div class="question__response response {{'response--has-error' if not is_valid}}" id="{{response.id}}"> 
+
+                    <div class="response__field field field--{{response.type|lower}}">    
+                      {{response.label}} <br/>
+                      <strong>{{response.value}}   </strong>
+
+                    </div>  </div> 
+
+                  {%- endfor -%} 
+
+                </div> 
+
+              </fieldset> 
+            </div> 
+
+            {% endfor %}
+
+              </div>   
+
+          {% endfor %}  
+
+        </div>  
+
+        {% endfor %}  
+
+      </div>  
+
+  {% endfor %}  
+
+  <button class="btn" type="submit" name="action[save_continue]">Submit answers</button>
+  <a href="/questionnaire">Change your answers</a>   </form>  
+
+{% endblock %} 
