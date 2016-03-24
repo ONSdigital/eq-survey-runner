@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from app.model.response import Response
 
 
 class Renderer(object):
@@ -20,10 +19,12 @@ class Renderer(object):
 
     def _augment_responses(self):
         # Augment the schema with user responses and validation results
-        for item_id, item in self._schema.items_by_id.items():
-            if isinstance(item, Response):
-                item.value = self._response_store.get_response(item.id)
-                validation_result = self._validation_store.get_result(item.id)
+        all_responses = self._response_store.get_responses()
+        for item_id, value in all_responses.items():
+            item = self._schema.get_item_by_id(item_id)
+            if item:
+                item.value = value
+                validation_result = self._validation_store.get_result(item_id)
                 if validation_result:
                     item.is_valid = validation_result.is_valid
                     item.errors = validation_result.get_errors()

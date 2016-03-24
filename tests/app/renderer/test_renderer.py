@@ -71,11 +71,9 @@ class TestRenderer(unittest.TestCase):
         self.assertEquals(response_2.errors[0], 'There is an error')
         self.assertEquals(response_2.warnings[0], 'There is a warning')
 
-        self.assertIsNone(response_3.value)
-        self.assertFalse(response_3.is_valid)
-        self.assertEquals(len(response_3.errors), 1)
-        self.assertEquals(len(response_3.warnings), 0)
-        self.assertEquals(response_3.errors[0], 'This is a required field')
+        # Response 3 has not had any value sent so is not augmented.
+        with self.assertRaises(AttributeError):
+            self.assertIsNone(response_3.value)
 
     def test_augment_questionnaire(self):
         # Instantiate the renderer using the pre-populated mock objects
