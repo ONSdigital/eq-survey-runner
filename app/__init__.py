@@ -13,8 +13,6 @@ from app import settings
 from app.authentication.authenticator import Authenticator
 from app.submitter.submitter import SubmitterFactory
 from datetime import timedelta
-import os.path
-import newrelic.agent
 import watchtower
 import logging
 from logging.handlers import RotatingFileHandler
@@ -24,10 +22,6 @@ LOG_SIZE = 1048576
 LOG_NUMBER = 10
 
 logger = logging.getLogger(__name__)
-
-newrelic_config = settings.EQ_NEW_RELIC_CONFIG_FILE
-if os.path.isfile(newrelic_config):
-    newrelic.agent.initialize(newrelic_config)
 
 
 # setup the factory
@@ -132,7 +126,6 @@ def create_app(config_name):
         logging.getLogger().addHandler(cloud_watch_handler)      # root logger
         logging.getLogger(__name__).addHandler(cloud_watch_handler)      # module logger
         logging.getLogger('werkzeug').addHandler(cloud_watch_handler)    # werkzeug framework logger
-
 
     # setup file logging
     rotating_log_file = RotatingFileHandler(LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
