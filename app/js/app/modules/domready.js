@@ -1,11 +1,9 @@
-import _ from 'lodash'
-
 const EVENT_DOM_READY = 'DOMContentLoaded'
 
 let callbacks = []
 
 const onReady = () => {
-  _.forEach(callbacks, (fn) => {
+  callbacks.forEach((fn) => {
     fn.call()
   })
   document.removeEventListener(EVENT_DOM_READY, onReady)
