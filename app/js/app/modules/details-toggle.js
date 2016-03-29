@@ -1,40 +1,57 @@
 import _ from 'lodash'
 import domready from './domready'
 
-export const detailsClass = 'js-details'
-export const triggerClass = 'js-details-trigger'
-export const mainClass = 'js-details-main'
-export const expandedStateClass = 'is-expanded'
+const classDetails = 'js-details'
+const classTrigger = 'js-details-trigger'
+const classMain = 'js-details-main'
+const classLabel = 'js-details-label'
+const classExpandedState = 'is-expanded'
+
+const attrShowLbl = 'data-show-label'
+const attrHideLbl = 'data-hide-label'
+const attrAriaExpanaded = 'aria-expanded'
+const attrAriaHidden = 'aria-hidden'
 
 export default function() {
   return detailsToggle()
 }
 
 export function detailsToggle() {
-  const nodeList = document.getElementsByClassName(detailsClass)
+  const nodeList = document.getElementsByClassName(classDetails)
 
-  _.forEach(nodeList, (el) => {
-    applyDetailsToggle(el)
-  })
+  _.forEach(nodeList, applyDetailsToggle)
 
   return nodeList
 }
 
-export function applyDetailsToggle(el) {
-  const triggerEl = el.parentElement.getElementsByClassName(triggerClass)[0]
+export function applyDetailsToggle(elDetails) {
+  const elTrigger = elDetails.parentElement.getElementsByClassName(classTrigger)[0]
+  const elMain = elDetails.getElementsByClassName(classMain)[0]
+  const elLabel = elDetails.getElementsByClassName(classLabel)[0]
+  let toggled = false
 
-  triggerEl.addEventListener('click', (e) => {
-    const mainElement = el.getElementsByClassName(mainClass)[0]
+  elTrigger.addEventListener('click', (e) => {
     e.preventDefault()
-
-    triggerEl.setAttribute('aria-expanded', 'true')
-    el.classList.add('is-expanded')
-
-    mainElement.focus()
-    mainElement.setAttribute('aria-hidden', 'false')
-
+    toggled = toggle(toggled, elDetails, elTrigger, elMain, elLabel)
     return false
   })
+}
+
+export function toggle(toggled, elDetails, elTrigger, elMain, elLabel) {
+  elTrigger.setAttribute(attrAriaExpanaded, toggled)
+  elMain.setAttribute(attrAriaHidden, !toggled)
+
+  if (!toggled) {
+    elDetails.classList.add(classExpandedState)
+    elMain.focus()
+    elLabel.innerHTML = elDetails.getAttribute(attrHideLbl)
+  } else {
+    elDetails.classList.remove(classExpandedState)
+    elMain.blur()
+    elLabel.innerHTML = elDetails.getAttribute(attrShowLbl)
+  }
+
+  return !toggled
 }
 
 domready(detailsToggle)
