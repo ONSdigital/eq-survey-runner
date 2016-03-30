@@ -17,6 +17,10 @@ class PositiveIntegerTypeCheck(AbstractValidator):
             if integer_value < 0:
                 result.errors.append(AbstractValidator.NEGATIVE_INTEGER)
                 return result
+            if integer_value > 9999999999:          # 10 digits
+                result.errors.append(AbstractValidator.INTEGER_TOO_LARGE)
+                return result
+
             result.is_valid = True
         except:
             result.is_valid = False
