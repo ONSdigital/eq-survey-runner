@@ -23,12 +23,20 @@ def submission():
 
     response_store = factory.create("response-store")
     responses = response_store.get_responses()
+    questionnaire_manager = create_questionnaire_manager()
     schema = load_and_parse_schema()
 
     if not schema:
         return errors.page_not_found()
 
     if request.method == 'POST':
+        # Check the responses are still valid
+        questionnaire_manager.process_incoming_responses(responses)
+        current_location = questionnaire_manager.get_current_location()
+
+        if not responses or current_location == 'questionnaire':
+            return redirect_to_location('questionnaire')
+
         submitter = SubmitterFactory.get_submitter()
         try:
             submitted_at = submitter.send_responses(current_user, schema, responses)
@@ -38,8 +46,6 @@ def submission():
         except SubmissionFailedException as e:
             return errors.internal_server_error(e)
 
-    questionnaire_manager = create_questionnaire_manager()
-    questionnaire_manager.process_incoming_responses(responses)
     render_data = questionnaire_manager.get_rendering_context()
 
     return render_template('submission.html', questionnaire=render_data, data={
