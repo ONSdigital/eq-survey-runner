@@ -2,6 +2,7 @@ from app.validation.validation_result import ValidationResult
 from app.validation.mandatory_check import MandatoryCheck
 from app.validation.type_validator_factory import TypeValidatorFactory
 from app.validation.abstract_validator import AbstractValidator
+from flask.ext.babel import gettext as _
 import logging
 
 
@@ -23,11 +24,11 @@ class Validator(object):
 
         # Set up default error and warning messages
         self.messages = {
-            AbstractValidator.NOT_INTEGER: "This is not a whole number",
-            AbstractValidator.NOT_STRING: "This is not a string",
-            AbstractValidator.MANDATORY: "This field is mandatory",
-            AbstractValidator.INVALID_DATE: "This is not a valid date",
-            AbstractValidator.NEGATIVE_INTEGER: "Negative values are not allowed"
+            AbstractValidator.NOT_INTEGER: _("This is not a whole number"),
+            AbstractValidator.NOT_STRING: _("This is not a string"),
+            AbstractValidator.MANDATORY: _("This field is mandatory"),
+            AbstractValidator.INVALID_DATE: _("This is not a valid date"),
+            AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed")
         }
 
     def validate(self, user_data):
