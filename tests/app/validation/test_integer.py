@@ -6,6 +6,7 @@ from app.model.block import Block
 from app.model.questionnaire import Questionnaire
 from app.model.group import Group
 from app.validation.integer_type_check import IntegerTypeCheck
+from app.validation.abstract_validator import AbstractValidator
 
 
 class IntegerTest(unittest.TestCase):
@@ -17,25 +18,25 @@ class IntegerTest(unittest.TestCase):
         result = integer.validate(None)
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('\'None\' is not a whole number', result.errors[0])
+        self.assertEquals(AbstractValidator.NOT_INTEGER, result.errors[0])
 
         # empty string
         result = integer.validate('')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('\'\' is not a whole number', result.errors[0])
+        self.assertEquals(AbstractValidator.NOT_INTEGER, result.errors[0])
 
         # non-numeric string
         result = integer.validate('a')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('\'a\' is not a whole number', result.errors[0])
+        self.assertEquals(AbstractValidator.NOT_INTEGER, result.errors[0])
 
         # decimal number
         result = integer.validate('1.3')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('\'1.3\' is not a whole number', result.errors[0])
+        self.assertEquals(AbstractValidator.NOT_INTEGER, result.errors[0])
 
         # 0
         result = integer.validate('0')
@@ -56,7 +57,7 @@ class IntegerTest(unittest.TestCase):
         result = integer.validate(' ')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('\' \' is not a whole number', result.errors[0])
+        self.assertEquals(AbstractValidator.NOT_INTEGER, result.errors[0])
 
 
 if __name__ == '__main__':

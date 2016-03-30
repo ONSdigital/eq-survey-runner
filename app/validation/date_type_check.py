@@ -1,7 +1,6 @@
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
 import time
-from flask.ext.babel import gettext
 
 
 class DateTypeCheck(AbstractValidator):
@@ -18,7 +17,7 @@ class DateTypeCheck(AbstractValidator):
             date = time.strptime(user_answer, "%d/%m/%Y")  # NOQA
             return ValidationResult(True)
         except ValueError:
-            result.errors.append(gettext('This is not a valid date'))
+            result.errors.append(AbstractValidator.INVALID_DATE)
         except TypeError:
-            result.errors.append(gettext('This is not a valid date'))
+            result.errors.append(AbstractValidator.INVALID_DATE)
         return result
