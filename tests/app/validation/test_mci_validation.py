@@ -223,7 +223,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(internet_sales_result.is_valid)
         self.assertEquals(len(internet_sales_result.errors), 1)
-        self.assertFalse(internet_sales_result.errors[0], 'The value cannot be negative. Please correct your answer')
+        self.assertEquals(internet_sales_result.errors[0], 'The value cannot be negative. Please correct your answer')
         self.assertEquals(len(internet_sales_result.warnings), 0)
 
 

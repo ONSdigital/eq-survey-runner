@@ -10,3 +10,4 @@ class Response(object):
         self.validation = None
         self.questionnaire = None
         self.display = None
+        self.messages = {}

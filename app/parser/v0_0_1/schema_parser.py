@@ -240,6 +240,9 @@ class SchemaParser(AbstractSchemaParser):
             if display:
                 response.display = self._parse_display(display)
 
+            if 'validation' in schema.keys():
+                self._parse_validation(response, schema['validation'])
+
             # register the response
             questionnaire.register(response)
 
@@ -248,6 +251,13 @@ class SchemaParser(AbstractSchemaParser):
             raise e
 
         return response
+
+    def _parse_validation(self, response, schema):
+        if 'messages' in schema.keys():
+            messages = schema['messages']
+
+            for code, message in messages.items():
+                response.messages[code] = message
 
     def _parse_display(self, schema):
         """
