@@ -89,6 +89,7 @@
     "karma-sinon": "^1.0.4",
     "karma-spec-reporter": "0.0.24",
     "mocha": "^2.3.4",
+    "node-fetch": "^1.4.1",
     "node-fs": "^0.1.7",
     "path": "^0.12.7",
     "phantomjs-polyfill": "0.0.1",

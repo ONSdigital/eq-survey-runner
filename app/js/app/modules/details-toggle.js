@@ -1,16 +1,16 @@
 import _ from 'lodash'
 import domready from './domready'
 
-const classDetails = 'js-details'
-const classTrigger = 'js-details-trigger'
-const classMain = 'js-details-main'
-const classLabel = 'js-details-label'
-const classExpandedState = 'is-expanded'
+export const classDetails = 'js-details'
+export const classTrigger = 'js-details-trigger'
+export const classMain = 'js-details-main'
+export const classLabel = 'js-details-label'
+export const classExpandedState = 'is-expanded'
 
-const attrShowLbl = 'data-show-label'
-const attrHideLbl = 'data-hide-label'
-const attrAriaExpanaded = 'aria-expanded'
-const attrAriaHidden = 'aria-hidden'
+export const attrShowLbl = 'data-show-label'
+export const attrHideLbl = 'data-hide-label'
+export const attrAriaExpanaded = 'aria-expanded'
+export const attrAriaHidden = 'aria-hidden'
 
 export default function() {
   return detailsToggle()
