@@ -1,3 +1,8 @@
 <div class="vcard address">
   <span class="fn">{{ data.address.name}}</span>
+  {% if data.address.trading_as %}
+  <br />
+  <b>Trading As</b><br />
+  {{ data.address.trading_as }}
+  {% endif %}
 </div>

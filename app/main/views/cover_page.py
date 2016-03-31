@@ -23,13 +23,15 @@ def cover_page():
         "legal": questionnaire.introduction.legal,
         "description": questionnaire.introduction.description,
         "address": {
-            "name": current_user.get_ru_name()
+            "name": current_user.get_ru_name(),
+            "trading_as": current_user.get_trad_as()
         },
         "survey_code": questionnaire.survey_id,
-        "period": current_user.get_period_str(),
+        "period_str": current_user.get_period_str(),
+        "period_id": current_user.get_period_id(),
         "respondent_id": current_user.get_ru_ref(),
-        "return_by": current_user.get_return_by(),
         # You'd think there would be an easier way of doing this...
+        "return_by": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_return_by(), "%Y-%m-%d")),
         "start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_ref_p_start_date(), "%Y-%m-%d")),
         "end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_ref_p_end_date(), "%Y-%m-%d"))
     })
