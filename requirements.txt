@@ -23,3 +23,4 @@ cryptography==1.1.2
 verlib==0.1
 watchtower==0.1.6
 beautifulsoup4==4.4.1
+flask-cors==2.1.2
