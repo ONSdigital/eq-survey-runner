@@ -67,7 +67,7 @@
                               {
                                 "id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
                                 "q_code": "24",
-                                "label": "What was the value of the business's total sales of clothing and footwear",
+                                "label": "What was the value of the business's total sales of clothing and footwear?",
                                 "guidance": "<h4>Include</h4><ul> <li>VAT</li> <li>internet sales</li> <li>clothing and footwear</li> <li>clothing fabrics</li> <li>haberdashery and furs</li> <li>leather and travel goods</li> <li>handbags</li> <li>umbrellas</li> </ul>",
                                 "type": "Currency",
                                 "mandatory": false
@@ -75,7 +75,7 @@
                               {
                                 "id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
                                 "q_code": "25",
-                                "label": "What was the value of the business's total sales of household goods",
+                                "label": "What was the value of the business's total sales of household goods?",
                                 "guidance": "<h4>Include</h4><ul> <li>VAT</li> <li>internet sales</li> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical appliance, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators’ and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> </ul>",
                                 "type": "Currency",
                                 "mandatory": false
@@ -83,7 +83,7 @@
                               {
                                 "id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
                                 "q_code": "23",
-                                "label": "What was the value of the business's total sales of alcohol, confectionary and tobacco",
+                                "label": "What was the value of the business's total sales of alcohol, confectionary and tobacco?",
                                 "guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionary)</li> <li>soft drinks</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
                                 "type": "Currency",
                                 "mandatory": false
@@ -91,7 +91,7 @@
                               {
                                 "id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
                                 "q_code": "26",
-                                "label": "What was the value of the business’s total sales of other Goods",
+                                "label": "What was the value of the business’s total sales of other Goods?",
                                 "guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets’ requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                 "type": "Currency",
                                 "mandatory": false
@@ -115,7 +115,7 @@
                               {
                                 "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
                                 "q_code": "27",
-                                "label": "What was the value of the business’s total sales of automotive Fuel",
+                                "label": "What was the value of the business’s total sales of automotive Fuel?",
                                 "type": "Currency",
                                 "mandatory": false
                               }
