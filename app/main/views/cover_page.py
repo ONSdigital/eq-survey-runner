@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .. import main_blueprint
 import logging
 from app.main.views.root import load_and_parse_schema
+from datetime import datetime
 
 
 logger = logging.getLogger(__name__)
@@ -28,6 +29,7 @@ def cover_page():
         "period": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref(),
         "return_by": current_user.get_return_by(),
-        "start_date": current_user.get_ref_p_start_date(),
-        "end_date": current_user.get_ref_p_end_date()
+        # You'd think there would be an easier way of doing this...
+        "start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_ref_p_start_date(), "%Y-%m-%d")),
+        "end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_ref_p_end_date(), "%Y-%m-%d"))
     })
