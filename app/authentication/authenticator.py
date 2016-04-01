@@ -35,6 +35,13 @@ class Authenticator(object):
             raise NoTokenException("Please provide a token")
         token = self._jwt_decrypt(request)
 
+        # <kludge>
+        # TODO: Remove this once RM is correctly sending dates
+        from app.authentication.user import UserConstants
+        token[UserConstants.REF_P_START_DATE] = '2020-04-01'
+        token[UserConstants.REF_P_END_DATE] = '2020-05-01'
+        # </kludge>
+
         # once we've decrypted the token correct
         # check we have the required user data
         self._check_user_data(token)
