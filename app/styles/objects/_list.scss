@@ -7,3 +7,39 @@
   margin: 0;
   padding: 0;
 }
+
+
+.list--def {
+  border: 1px solid $color-borders;
+  font-size: 0;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .list__item {
+    padding: 1rem;
+    margin: 0;
+    font-size: 1rem;
+    border-bottom: 1px solid $color-borders;
+    display: flex;
+    align-items: center;
+    &:nth-child(1n) {
+      width: 75%;
+      flex: 1 1 75%;
+    }
+    &:nth-child(2n) {
+      justify-content: center;
+      text-align: center;
+      width: 25%;
+      flex: 1 1 25%;
+      border-left: 1px solid $color-borders;
+      background: $color-light-grey;
+    }
+    &:nth-last-of-type(-n+1)  {
+      border-bottom: none;
+    }
+  }
+}

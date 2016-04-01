@@ -59,7 +59,7 @@ export function styles() {
     .pipe(flatten())
     .pipe(postcss([
       autoprefixer({
-        browsers: ['last 1 version']
+        browsers: ['last 2 versions', 'Explorer >= 10', 'Android >= 4.1', 'Safari >= 7', 'iOS >= 7']
       }),
       pixrem({
         replace: false

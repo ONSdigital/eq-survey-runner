@@ -1,83 +1,54 @@
-{% extends 'layouts/_survey.html' %}
+{% extends 'layouts/_survey.html' -%}
 
-{% block page_title %}{{questionnaire.title}}{% endblock %}
+{% block page_title -%}{{questionnaire.title}}{% endblock -%}
 
-{% block survey %}
+{% block survey -%}
 
-  <header class="cover__header">
-        <h2 class="cover__title">Summary of Answers</h2>
-        <h3 class="cover__subtitle">Please check your answers before submitting. Thank you</h3>
-  </header>
+  <h1>Your responses</h1>
+  <h2>Please check carefully before submission</h2>
 
+<div>
 
-<form action="" class="form" aria-role="form" method="POST" novalidate>
+  <dl class="list list--def">
 
-    {% for group in questionnaire.data.groups %}
+  {%- for group in questionnaire.data.groups -%}
 
-      <div class="group" id="group-{{group.id}}">  
+    {%- for block in group.blocks -%}
 
-        {% for block in group.blocks %}  
+      {%- for section in block.sections -%}
 
-        <div class="block" id="block-{{block.id}}">  
+        {%- for question in section.questions -%}
 
-          {% for section in block.sections %}  
+          {%- for response in question.responses -%}
 
-          <div class="section" id="section-{{section.id}}"> 
+            {% if response.type == 'DateRange' %}
 
-            {% if section.title %} 
+            {% if loop.index == 1 %}
+              <dt class="list__item">{{question.title}}</dt>
+              <dd class="list__item">{{response.label}}: {{response.value if response.value|length > 0 else 'N/A'}}</dd>
+            {% endif %}
 
-            <h2 class="section__title u-vh">{{section.title}}</h2> 
+            {% else %}
 
-            {% endif %}   
+            <dt class="list__item">{{response.label}}</dt>
+            <dd class="list__item">{{response.value if response.value|length > 0 else 'N/A'}}</dd>
 
-            {% for question in section.questions %} 
+            {% endif %}
 
-            {% import 'macros/forms.html' as form %}
+          {%- endfor -%}
 
-              <div class="question" id="question-{{question.id}}">  
+        {% endfor -%}
 
-              <fieldset class="question__fieldset"> 
+      {% endfor -%}
 
-                <legend class="question__legend"> 
+    {% endfor -%}
 
-                  <div class="question__title">{{question.title}}</div> 
+  {% endfor -%}
 
-                </legend> 
-
-                <div class="question__responses"> 
-
-                  {%- for response in question.responses -%}
-
-                   <div class="question__response response {{'response--has-error' if not is_valid}}" id="{{response.id}}"> 
-
-                    <div class="response__field field field--{{response.type|lower}}">    
-                      {{response.label}} <br/>
-                      <strong>{{response.value}}   </strong>
-
-                    </div>  </div> 
-
-                  {%- endfor -%} 
-
-                </div> 
-
-              </fieldset> 
-            </div> 
-
-            {% endfor %}
-
-              </div>   
-
-          {% endfor %}  
-
-        </div>  
-
-        {% endfor %}  
-
-      </div>  
-
-  {% endfor %}  
+    </dl>
 
   <button class="btn" type="submit" name="action[save_continue]">Submit answers</button>
-  <a href="/questionnaire">Change your answers</a>   </form>  
+  <a href="/questionnaire">Change your answers</a>
+</div>
 
-{% endblock %} 
+{% endblock -%}
