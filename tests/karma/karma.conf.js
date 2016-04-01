@@ -6,12 +6,6 @@ module.exports = function(config) {
 
     basePath: './../../',
 
-    client: {
-      mocha: {
-        timeout: 4000
-      }
-    },
-
     frameworks: ['browserify', 'mocha', 'chai-sinon', 'chai-as-promised', 'chai'],
 
     files: [
@@ -53,6 +47,6 @@ module.exports = function(config) {
     },
 
     colors: true,
-    logLevel: config.LOG_INFO
+    logLevel: config.LOG_DEBUG
   })
 }
