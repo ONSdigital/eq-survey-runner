@@ -47,3 +47,6 @@ EQ_SR_PUBLIC_KEY = get_key(os.getenv('EQ_SR_PUBLIC_KEY', "./jwt-test-keys/sr-pub
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 EUROPE_LONDON = pytz.timezone("Europe/London")
+
+# JWT configurations
+EQ_JWT_LEEWAY_IN_SECONDS = 120
