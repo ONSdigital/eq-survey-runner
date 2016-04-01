@@ -2,20 +2,12 @@ from flask import render_template, redirect, request, abort
 from app.authentication.encoder import Encoder
 from app.authentication.user import UserConstants
 from app.schema_loader.schema_loader import available_schemas
-from flask.ext.cors import cross_origin
 from . import dev_mode_blueprint
 import os
 import time
 import logging
 
 logger = logging.getLogger(__name__)
-
-
-@dev_mode_blueprint.route('/dev/render-template', methods=['POST'])
-@cross_origin()
-def template():
-    payload = request.get_json()
-    return render_template('partials/' + payload['template'] + '.html', **payload['data'])
 
 
 @dev_mode_blueprint.route('/dev', methods=['GET', 'POST'])
