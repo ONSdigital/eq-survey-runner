@@ -3,13 +3,14 @@
 {% block page_title -%}{{questionnaire.title}}{% endblock -%}
 
 {% block survey -%}
-
-  <h1>Your responses</h1>
-  <h2>Please check carefully before submission</h2>
+  <div class="header">
+    <h1 class="header__title h1">Your responses</h1>
+    <h2 class="header__subtitle">Please check carefully before submission</h2>
+  </div>
 
 <div>
 
-  <dl class="list list--def">
+  <dl class="dl">
 
   {%- for group in questionnaire.data.groups -%}
 
@@ -23,15 +24,26 @@
 
             {% if response.type == 'DateRange' %}
 
-            {% if loop.index == 1 %}
-              <dt class="list__item">{{question.title}}</dt>
-              <dd class="list__item">{{response.label}}: {{response.value if response.value|length > 0 else 'N/A'}}</dd>
-            {% endif %}
+              {% if loop.index == 2 %}
+                <dt class="dt">{{question.title}}</dt>
+                <dd class="dd">
+                  {{question.responses[loop.index0 - 1].label}}: {{question.responses[loop.index0 - 1].value}}<br>
+                  {{response.label}}: {{response.value}}
+                </dd>
+              {% endif %}
+
+            {% elif response.type == 'Currency' %}
+
+              {% set response_value = '£' ~ response.value if response.value|length > 0 else 'N/A' %}
+
+              <dt class="dt">{{response.label}}</dt>
+              <dd class="dd">{{response_value}}</dd>
 
             {% else %}
+              {% set response_value = response.value if response.value|length > 0 else 'N/A' %}
 
-            <dt class="list__item">{{response.label}}</dt>
-            <dd class="list__item">{{response.value if response.value|length > 0 else 'N/A'}}</dd>
+              <dt class="dt fw">{{response.label}}</dt>
+              <dd class="dd fw">{{response_value}}</dd>
 
             {% endif %}
 
@@ -47,8 +59,8 @@
 
     </dl>
 
-  <button class="btn" type="submit" name="action[save_continue]">Submit answers</button>
-  <a href="/questionnaire">Change your answers</a>
+  <button class="btn u-mr-s" type="submit" name="action[save_continue]">Submit answers</button>
+  <a class="u-dib" href="/questionnaire">Change your answers</a>
 </div>
 
 {% endblock -%}

@@ -1,7 +1,20 @@
-.u-pad-m {
-  padding: 1rem;
+$sizes: (
+  s: 1rem,
+  m: 2rem,
+  l: 3rem
+);
 
-  @include mq(m) {
-    padding: 2rem 4rem;
+$padding: (
+  pt: padding-top,
+  pr: padding-right,
+  pb: padding-bottom,
+  pl: padding-left
+);
+
+@each $key, $value in $sizes {
+  @each $abbr, $dec in $margins {
+    @include suffix(u-#{$abbr}-#{$key}) {
+      #{$dec}: #{$value};
+    }
   }
 }

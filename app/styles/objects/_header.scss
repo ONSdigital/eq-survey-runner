@@ -1,0 +1,19 @@
+.header {
+  @include mq(s) {
+    text-align: center;
+  }
+}
+
+.header__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  @include mq(s) {
+    font-size: 1.9rem;
+  }
+}
+
+.header__subtitle {
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
