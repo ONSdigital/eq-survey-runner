@@ -72,8 +72,8 @@
   // no-op
 }
 
-@mixin build-suffix($class) {
-  .#{class} {
+@mixin suffix($class) {
+  .#{$class} {
     @content;
   }
 

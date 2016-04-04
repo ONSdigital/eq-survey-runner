@@ -1,11 +1,20 @@
-@include build-suffix(u-mb-s) {
-  margin-bottom: 1rem;
-}
+$sizes: (
+  s: 1rem,
+  m: 2rem,
+  l: 3rem
+);
 
-@include build-suffix(u-mb-m) {
-  margin-bottom: 2rem;
-}
+$margins: (
+  mt: margin-top,
+  mr: margin-right,
+  mb: margin-bottom,
+  ml: margin-left
+);
 
-@include build-suffix(u-mb-l) {
-  margin-bottom: 3rem;
+@each $key, $value in $sizes {
+  @each $abbr, $dec in $margins {
+    @include suffix(u-#{$abbr}-#{$key}) {
+      #{$dec}: #{$value};
+    }
+  }
 }

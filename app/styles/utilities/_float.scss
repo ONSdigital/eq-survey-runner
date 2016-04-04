@@ -29,6 +29,6 @@
   float: right;
 }
 
-@include build-suffix(u-fr) {
+@include suffix(u-fr) {
   float: right;
 }

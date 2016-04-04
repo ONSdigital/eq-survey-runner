@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<header class="header" role="banner">
+<div class="bar" role="banner">
   <div class="skip">
     <a class="skip__link" href="#main">Skip to content</a>
   </div>
   <div class="container">
-    <h1 class="header__title">Monthly Business Survey - Retail Sales Index</h1>
+    <h1 class="bar__title">Monthly Business Survey - Retail Sales Index</h1>
   </div>
-</header>
+</div>
 
 <div class="container">
 
@@ -34,11 +34,11 @@
 
     </div>
 
-    <main role="main" class="panel__body" id="main" tabindex="-1">
+    <div role="main" class="panel__body" id="main" tabindex="-1">
 
       {% block survey %} {% endblock %}
 
-    </main>
+    </div>
 
   </div>
 

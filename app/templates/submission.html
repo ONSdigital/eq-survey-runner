@@ -1,83 +1,68 @@
-{% extends 'layouts/_survey.html' %}
+{% extends 'layouts/_survey.html' -%}
 
-{% block page_title %}{{questionnaire.title}}{% endblock %}
+{% block page_title -%}{{questionnaire.title}}{% endblock -%}
 
-{% block survey %}
+{% block survey -%}
+  <div class="header">
+    <h1 class="header__title h1">Your responses</h1>
+    <h2 class="header__subtitle">Please check carefully before submission</h2>
+  </div>
 
-  <header class="cover__header">
-        <h2 class="cover__title">Summary of Answers</h2>
-        <h3 class="cover__subtitle">Please check your answers before submitting. Thank you</h3>
-  </header>
+<div>
 
+  <dl class="dl">
 
-<form action="" class="form" aria-role="form" method="POST" novalidate>
+  {%- for group in questionnaire.data.groups -%}
 
-    {% for group in questionnaire.data.groups %}
+    {%- for block in group.blocks -%}
 
-      <div class="group" id="group-{{group.id}}">  
+      {%- for section in block.sections -%}
 
-        {% for block in group.blocks %}  
+        {%- for question in section.questions -%}
 
-        <div class="block" id="block-{{block.id}}">  
+          {%- for response in question.responses -%}
 
-          {% for section in block.sections %}  
+            {% if response.type == 'DateRange' %}
 
-          <div class="section" id="section-{{section.id}}"> 
+              {% if loop.index == 2 %}
+                <dt class="dt">{{question.title}}</dt>
+                <dd class="dd">
+                  {{question.responses[loop.index0 - 1].label}}: {{question.responses[loop.index0 - 1].value}}<br>
+                  {{response.label}}: {{response.value}}
+                </dd>
+              {% endif %}
 
-            {% if section.title %} 
+            {% elif response.type == 'Currency' %}
 
-            <h2 class="section__title u-vh">{{section.title}}</h2> 
+              {% set response_value = response.value|int|format_currency if response.value|length > 0 else 'N/A' %}
 
-            {% endif %}   
+              <dt class="dt">{{response.label}}</dt>
+              <dd class="dd">{{response_value}}</dd>
 
-            {% for question in section.questions %} 
+            {% else %}
 
-            {% import 'macros/forms.html' as form %}
+              {% set response_value = response.value if response.value|length > 0 else 'N/A' %}
 
-              <div class="question" id="question-{{question.id}}">  
+              <dt class="dt fw">{{response.label}}</dt>
+              <dd class="dd fw">{{response_value}}</dd>
 
-              <fieldset class="question__fieldset"> 
+            {% endif %}
 
-                <legend class="question__legend"> 
+          {%- endfor -%}
 
-                  <div class="question__title">{{question.title}}</div> 
+        {% endfor -%}
 
-                </legend> 
+      {% endfor -%}
 
-                <div class="question__responses"> 
+    {% endfor -%}
 
-                  {%- for response in question.responses -%}
+  {% endfor -%}
 
-                   <div class="question__response response {{'response--has-error' if not is_valid}}" id="{{response.id}}"> 
+  </dl>
+  <form action="" method="POST" novalidate>
+    <button class="btn u-mr-s" type="submit" name="action[save_continue]">Submit answers</button>
+    <a class="u-dib" href="/questionnaire">Change your answers</a>
+  </form>
+</div>
 
-                    <div class="response__field field field--{{response.type|lower}}">    
-                      {{response.label}} <br/>
-                      <strong>{{response.value}}   </strong>
-
-                    </div>  </div> 
-
-                  {%- endfor -%} 
-
-                </div> 
-
-              </fieldset> 
-            </div> 
-
-            {% endfor %}
-
-              </div>   
-
-          {% endfor %}  
-
-        </div>  
-
-        {% endfor %}  
-
-      </div>  
-
-  {% endfor %}  
-
-  <button class="btn" type="submit" name="action[save_continue]">Submit answers</button>
-  <a href="/questionnaire">Change your answers</a>   </form>  
-
-{% endblock %} 
+{% endblock -%}
