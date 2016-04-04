@@ -1,5 +1,6 @@
 import unittest
 from app.validation.date_type_check import DateTypeCheck
+from app.validation.abstract_validator import AbstractValidator
 
 
 class DateTypeTest(unittest.TestCase):
@@ -11,55 +12,55 @@ class DateTypeTest(unittest.TestCase):
         result = date_type.validate(None)
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         # empty string
         result = date_type.validate('')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         # missing day
         result = date_type.validate('/12/2016')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         # missing month
         result = date_type.validate('01//2016')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         # missing year
         result = date_type.validate('01/12/')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         # invalid day
         result = date_type.validate('40/12/2016')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         # invalid month
         result = date_type.validate('01/13/2016')
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         # invalid year
         result = date_type.validate('01/12/16')  # year should be 4 digits
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         # Leap year
         result = date_type.validate('29/02/2015')  # 2015 was not a leap year
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
-        self.assertEquals('This is not a valid date', result.errors[0])
+        self.assertEquals(AbstractValidator.INVALID_DATE, result.errors[0])
 
         result = date_type.validate('29/02/2016')  # 2016 WAS a leap year
         self.assertTrue(result.is_valid)

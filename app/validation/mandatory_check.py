@@ -1,6 +1,5 @@
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
-from gettext import gettext as _
 
 
 class MandatoryCheck(AbstractValidator):
@@ -19,5 +18,5 @@ class MandatoryCheck(AbstractValidator):
             validation_result.is_valid = True
         else:
             validation_result.is_valid = False
-            validation_result.errors.append(_('This field is mandatory'))
+            validation_result.errors.append(AbstractValidator.MANDATORY)
         return validation_result

@@ -1,6 +1,5 @@
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
-from gettext import gettext as _
 
 
 # TODO we need to think about types as TextArea is tied too much to HTML
@@ -19,5 +18,5 @@ class TextAreaTypeCheck(AbstractValidator):
             result.is_valid = not str_value.isspace()
         except:
             result.is_valid = False
-            result.errors.append(_("'{value}' is not a alphanumeric string".format(value=user_answer)))
+            result.errors.append(AbstractValidator.NOT_STRING)
         return result

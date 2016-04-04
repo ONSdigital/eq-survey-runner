@@ -1,6 +1,5 @@
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
-from gettext import gettext as _
 
 
 class IntegerTypeCheck(AbstractValidator):
@@ -18,5 +17,5 @@ class IntegerTypeCheck(AbstractValidator):
             result.is_valid = True
         except:
             result.is_valid = False
-            result.errors.append(_("'{value}' is not a whole number".format(value=user_answer)))
+            result.errors.append(AbstractValidator.NOT_INTEGER)
         return result

@@ -32,7 +32,13 @@
                                   "label": "From",
                                   "guidance": "",
                                   "type": "DateRange",
-                                  "mandatory":true
+                                  "mandatory":true,
+                                  "validation": {
+                                    "messages": {
+                                      "MANDATORY": "Please answer before continuing",
+                                      "INVALID_DATE": "Date should be in the format DD/MM/YYYY. Please correct your answer"
+                                    }
+                                  }
                                 },
                                 {
                                   "id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0",
@@ -40,7 +46,13 @@
                                   "label": "To",
                                   "guidance": "",
                                   "type": "DateRange",
-                                  "mandatory":true
+                                  "mandatory":true,
+                                  "validation": {
+                                    "messages": {
+                                      "MANDATORY": "Please answer before continuing",
+                                      "INVALID_DATE": "Date should be in the format DD/MM/YYYY. Please correct your answer"
+                                    }
+                                  }
                                 }
                               ]
                             }
@@ -102,7 +114,14 @@
                                 "label": "What was the value of the business’s total retail turnover?",
                                 "guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sale from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                 "type": "Currency",
-                                "mandatory": true
+                                "mandatory": true,
+                                "validation": {
+                                  "messages": {
+                                    "MANDATORY": "Please provide a value, even if your value is 0",
+                                    "NOT_INTEGER": "Please only enter numbers into the field",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                  }
+                                }
                               },
                               {
                                 "id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
@@ -110,14 +129,26 @@
                                 "label": "Of these figures, how much were from internet sales?",
                                 "guidance": "<h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method.</li> </ul>",
                                 "type": "Currency",
-                                "mandatory": false
+                                "mandatory": false,
+                                "validation": {
+                                  "messages": {
+                                    "NOT_INTEGER": "Please only enter numbers into the field",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                  }
+                                }
                               },
                               {
                                 "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
                                 "q_code": "27",
                                 "label": "What was the value of the business’s total sales of automotive Fuel?",
                                 "type": "Currency",
-                                "mandatory": false
+                                "mandatory": false,
+                                "validation": {
+                                  "messages": {
+                                    "NOT_INTEGER": "Please only enter numbers into the field",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                  }
+                                }
                               }
                             ]
                           }

@@ -1,6 +1,8 @@
 from app.validation.validation_result import ValidationResult
 from app.validation.mandatory_check import MandatoryCheck
 from app.validation.type_validator_factory import TypeValidatorFactory
+from app.validation.abstract_validator import AbstractValidator
+from flask.ext.babel import gettext as _
 import logging
 
 
@@ -19,6 +21,15 @@ class Validator(object):
 
         # Set the factory class here, so we can override it for tests
         self._type_validator_factory_class = TypeValidatorFactory
+
+        # Set up default error and warning messages
+        self.messages = {
+            AbstractValidator.NOT_INTEGER: _("This is not a whole number"),
+            AbstractValidator.NOT_STRING: _("This is not a string"),
+            AbstractValidator.MANDATORY: _("This field is mandatory"),
+            AbstractValidator.INVALID_DATE: _("This is not a valid date"),
+            AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed")
+        }
 
     def validate(self, user_data):
         for item_id in user_data.keys():
@@ -52,6 +63,7 @@ class Validator(object):
             logger.debug('Item ({}) is mandatory, data is: {}'.format(item.id, item_data))
             result = self._mandatory_check(item, item_data)
             if not result.is_valid:
+                self._update_messages(item, result)
                 return result
 
         # Validate if data is present
@@ -60,6 +72,7 @@ class Validator(object):
             logger.debug('Type Checking ({}) with data {}'.format(item.id, item_data))
             result = self._type_check(item, item_data)
             if not result.is_valid:
+                self._update_messages(item, result)
                 return result
 
             # check for additional validation rules
@@ -67,6 +80,7 @@ class Validator(object):
                 for rule in item.validation:
                     result = rule.validate(item_data, self._response_store)
                     if not result.is_valid:
+                        self._update_messages(item, result)
                         return result
 
         # If we've made it this far, the thing is valid
@@ -88,6 +102,7 @@ class Validator(object):
         mandatory = MandatoryCheck()
         result = mandatory.validate(item_data)
         if not result.is_valid:
+            self._update_messages(item, result)
             return result
         return ValidationResult(True)
 
@@ -97,6 +112,24 @@ class Validator(object):
         for validator in validators:
             result = validator.validate(item_data)
             if not result.is_valid:
+                self._update_messages(item, result)
                 return result
 
         return ValidationResult(True)
+
+    def _update_messages(self, item, result):
+        # error messages
+        for index, code in enumerate(result.errors):
+            if code in item.messages.keys():
+                result.errors[index] = item.messages[code]
+            elif code in self.messages.keys():
+                # Use the default error message
+                result.errors[index] = self.messages[code]
+
+        # warning messages
+        for index, code in enumerate(result.warnings):
+            if code in item.messages.keys():
+                result.warnings[index] = item.messages[code]
+            elif code in self.messages.keys():
+                # Use the default error message
+                result.warnings[index] = self.messages[code]

@@ -15,11 +15,11 @@ class PositiveIntegerTypeCheck(AbstractValidator):
         try:
             integer_value = int(user_answer)        # NOQA
             if integer_value < 0:
-                result.errors.append("'{value}' is less than zero".format(value=user_answer))
+                result.errors.append(AbstractValidator.NEGATIVE_INTEGER)
                 return result
             result.is_valid = True
         except:
             result.is_valid = False
-            result.errors.append("'{value}' is not a whole number".format(value=user_answer))
+            result.errors.append(AbstractValidator.NOT_INTEGER)
 
         return result
