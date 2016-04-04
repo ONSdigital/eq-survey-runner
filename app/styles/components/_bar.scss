@@ -10,8 +10,16 @@
   }
 }
 
+.bar__inner {
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
 .bar__title {
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
