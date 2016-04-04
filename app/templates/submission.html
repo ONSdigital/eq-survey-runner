@@ -58,10 +58,11 @@
 
   {% endfor -%}
 
-    </dl>
-
-  <button class="btn u-mr-s" type="submit" name="action[save_continue]">Submit answers</button>
-  <a class="u-dib" href="/questionnaire">Change your answers</a>
+  </dl>
+  <form action="" method="POST" novalidate>
+    <button class="btn u-mr-s" type="submit" name="action[save_continue]">Submit answers</button>
+    <a class="u-dib" href="/questionnaire">Change your answers</a>
+  </form>
 </div>
 
 {% endblock -%}
