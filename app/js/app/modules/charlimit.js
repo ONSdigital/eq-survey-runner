@@ -5,8 +5,17 @@ export const inputClass = 'js-charlimit-input'
 export const msgClass = 'js-charlimit-msg'
 export const maxLengthAttr = 'data-maxlength'
 
-export default function() {
-  return charLimit()
+export default function charLimit() {
+  const nodeList = document.getElementsByClassName(inputClass)
+
+  _.forEach(nodeList, (el) => {
+    const maxLength = el.getAttribute(maxLengthAttr)
+    if (typeof maxLength !== 'undefined') {
+      imposeCharLimit(el, maxLength)
+    }
+  })
+
+  return nodeList
 }
 
 export function applyCharLimit(limitValue, limit) {
@@ -30,19 +39,6 @@ export function imposeCharLimit(el, maxLength) {
     el.value = applyCharLimit(el.value, maxLength)
     updateMsg(msgEl, maxLength, el.value.length)
   })
-}
-
-export function charLimit() {
-  const nodeList = document.getElementsByClassName(inputClass)
-
-  _.forEach(nodeList, (el) => {
-    const maxLength = el.getAttribute(maxLengthAttr)
-    if (typeof maxLength !== 'undefined') {
-      imposeCharLimit(el, maxLength)
-    }
-  })
-
-  return nodeList
 }
 
 domready(charLimit)
