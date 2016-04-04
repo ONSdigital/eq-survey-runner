@@ -29,17 +29,27 @@
 }
 
 .guidance__main {
-  display: none;
-  padding: 1rem;
-  font-size: 0.9rem;
   overflow: hidden;
   width: 100%;
   border-radius: 3px;
+  opacity: 0;
+  transition: all 0;
+  max-height: 0;
   .is-expanded & {
-    margin-top: 1rem;
-    display: table;
-    table-layout: fixed;
+    max-height: 10000em;
+    height: auto;
+    opacity: 1;
+    transition: opacity 300ms ease-out, max-height 300ms ease-out;
   }
+}
+
+.guidance__content {
+  padding: 1rem;
+  font-size: 0.9rem;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  margin-top: 1rem;
   div {
     @include mq(s) {
       display: table-cell;

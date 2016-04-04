@@ -1,6 +1,22 @@
+import domready from './domready'
+import _ from 'lodash'
+
 export const inputClass = 'js-charlimit-input'
 export const msgClass = 'js-charlimit-msg'
 export const maxLengthAttr = 'data-maxlength'
+
+export default function charLimit() {
+  const nodeList = document.getElementsByClassName(inputClass)
+
+  _.forEach(nodeList, (el) => {
+    const maxLength = el.getAttribute(maxLengthAttr)
+    if (typeof maxLength !== 'undefined') {
+      imposeCharLimit(el, maxLength)
+    }
+  })
+
+  return nodeList
+}
 
 export function applyCharLimit(limitValue, limit) {
   if (limitValue.length > limit) {
@@ -25,15 +41,4 @@ export function imposeCharLimit(el, maxLength) {
   })
 }
 
-export default function() {
-  const nodeList = document.querySelectorAll(`.${inputClass}`)
-
-  Array.prototype.slice.call(nodeList).forEach(function(el) {
-    const maxLength = el.getAttribute(maxLengthAttr)
-    if (typeof maxLength !== 'undefined') {
-      imposeCharLimit(el, maxLength)
-    }
-  })
-
-  return nodeList
-}
+domready(charLimit)
