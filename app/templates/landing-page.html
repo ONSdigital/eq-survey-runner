@@ -1,0 +1,82 @@
+{% extends 'layouts/_survey.html' %}
+{% import 'macros/helpers.html' as h %}
+
+{% block survey %}
+
+  <div class="">
+
+      <div class="grid grid--align-mid">
+
+        <div class="grid__col s-5">
+
+          <div class="u-mb-s u-mb-no@s">
+            <h5 class="u-mb-no">To be completed by</h5>
+            <div class="u-fs-xs">{{ data.address.name}}</div>
+            <div class="u-mt-xs">
+              {% if data.address.trading_as %}
+              <h5 class="u-mb-no">Trading as</h5>
+              <div class="u-fs-xs">{{ data.address.trading_as }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid__col s-5 s-push-2">
+          <div>
+            <div class="u-mb-xs">
+              <h5 class="u-mb-no u-fs-xxs">PLEASE SUBMIT BY</h5>
+              <div class="u-fs-xs u-mb-xs">{{ data.return_by }}</div>
+            </div>
+            <div class="u-mb-xs">
+              <h5 class="u-mb-no u-fs-xxs">PERIOD</h5>
+              <div>
+                <span class="u-fs-xs">{{ data.start_date }}</span> <span class="u-fs-xs">to</span> <span class="u-fs-xs">{{ data.end_date}}</span>
+              </div>
+            </div>
+            <div><strong class="u-fs-xs">NB: Your response is legally required</strong></div>
+          </div>
+        </div>
+
+      </div>
+
+
+    <div>
+
+      <div class="header">
+        <h2 class="header__title">Monthly Business Survey - Retail Sales Index</h2>
+        <h3 class="header__subtitle">Notice is given under section 1 of the Statistics of Trade Act 1947</h3>
+      </div>
+
+      <div>
+        <p><strong>You are required by law to complete this questionnaire.</strong> If you do not submit this
+          questionnaire by {{ data.return_by }}, penalties may be incurred (under section 4 of the Statistics of
+          Trade Act 1947). All the information you provide is kept strictly confidential. It is illegal for us to
+          reveal your data or identify your business to unauthorised persons.</p>
+
+        <div class="notice u-mb-s u-mb-m@s">
+          <div class="notice__text">If actual figures are not available, please provide informed estimates.</div>
+        </div>
+
+        {% with accordion_data = [{
+          "title": "How is your information used?",
+          "body": data.description|safe
+        }] %}
+        <div class="u-mb-s u-mb-m@s">
+          {% include 'partials/accordion.html' %}
+        </div>
+        {% endwith %}
+
+        <p><b>Office for National Statistics</b></p>
+
+    </div>
+
+
+    <div>
+      <a href="/questionnaire" class="btn btn--secondary">Get Started</a>
+    </div>
+
+  </div>
+
+
+{% endblock %}

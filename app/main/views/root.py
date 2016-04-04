@@ -77,7 +77,7 @@ def redirect_to_location(current_location):
     """
 
     if current_location == 'introduction':
-        return redirect(url_for("main.cover_page"))
+        return redirect(url_for("main.landing_page"))
     elif current_location == "completed":
         return redirect(url_for("main.submission"))
     elif current_location == "submitted":

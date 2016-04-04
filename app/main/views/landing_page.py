@@ -9,17 +9,17 @@ from datetime import datetime
 logger = logging.getLogger(__name__)
 
 
-@main_blueprint.route('/cover-page', methods=['GET', 'POST'])
+@main_blueprint.route('/landing-page', methods=['GET', 'POST'])
 @login_required
-def cover_page():
-    logger.debug("Requesting cover page")
+def landing_page():
+    logger.debug("Requesting landing page")
     eq_id = current_user.get_eq_id()
     form_type = current_user.get_form_type()
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
     questionnaire = load_and_parse_schema()
 
-    return render_template('cover-page.html', data={
+    return render_template('landing-page.html', data={
         "legal": questionnaire.introduction.legal,
         "description": questionnaire.introduction.description,
         "address": {

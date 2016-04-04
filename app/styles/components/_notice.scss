@@ -1,0 +1,27 @@
+.notice {
+  display: block;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  &::before {
+    $size: 2rem;
+    content: " ";
+    display: inline-block;
+    vertical-align: middle;
+    background: $color-white url("/s/img/icons/icons--info-circle.svg") no-repeat center center;
+    background-size: 3rem;
+    min-width: $size;
+    height: $size;
+    margin-right: 0.5em;
+  }
+}
+
+.notice__text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.9rem;
+  line-height: 1.1;
+  @include mq(s) {
+    font-size: 1rem;
+  }
+}

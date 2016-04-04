@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import forEach from 'lodash/forEach'
 import domready from './domready'
 
 export const classDetails = 'js-details'
@@ -18,9 +18,7 @@ export default function() {
 
 export function detailsToggle() {
   const nodeList = document.getElementsByClassName(classDetails)
-
-  _.forEach(nodeList, applyDetailsToggle)
-
+  forEach(nodeList, applyDetailsToggle)
   return nodeList
 }
 

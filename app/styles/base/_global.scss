@@ -30,6 +30,8 @@ a {
   }
 }
 
-main:focus {
-  outline: none;
+main, [role="main"] {
+  &:focus {
+    outline: none;
+  }
 }

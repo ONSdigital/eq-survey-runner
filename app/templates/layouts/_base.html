@@ -19,6 +19,7 @@
     {% block styles %}
     <!--[if (gt IE 9) | (IEMobile)]><!-->
       <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+      <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('has-js');</script>
     <!--<![endif]-->
     <!--[if (lte IE 9) & (!IEMobile)]>
       <link href="{{ url_for('static', filename='css/fixed.css') }}" rel="stylesheet">
