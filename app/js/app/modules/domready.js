@@ -1,4 +1,4 @@
-const EVENT_DOM_READY = 'DOMContentLoaded'
+const eventReady = 'DOMContentLoaded'
 
 let callbacks = []
 
@@ -6,7 +6,7 @@ const onReady = () => {
   callbacks.forEach((fn) => {
     fn.call()
   })
-  document.removeEventListener(EVENT_DOM_READY, onReady)
+  document.removeEventListener(eventReady, onReady)
 }
 
 export default function ready(fn) {
@@ -14,6 +14,6 @@ export default function ready(fn) {
   if (document.readyState !== 'loading') {
     onReady.call()
   } else {
-    document.addEventListener(EVENT_DOM_READY, onReady)
+    document.addEventListener(eventReady, onReady)
   }
 }
