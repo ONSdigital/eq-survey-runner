@@ -57,7 +57,8 @@ class Decoder (object):
             if signed_token:
                 logging.debug("Decoding signed JWT " + self.__to_str(signed_token))
                 self._check_token(signed_token)
-                token = jwt.decode(signed_token, self.rrm_public_key, algorithms=['RS256'])
+                token = jwt.decode(signed_token, self.rrm_public_key, algorithms=['RS256'],
+                                   leeway=settings.EQ_JWT_LEEWAY_IN_SECONDS)
                 if not token:
                     raise InvalidTokenException("Missing Payload")
                 return token
