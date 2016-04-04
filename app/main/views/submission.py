@@ -19,6 +19,10 @@ logger = logging.getLogger(__name__)
 @login_required
 def submission():
 
+    # Redirect to thank you page if the questionnaire has already been submitted
+    if SubmitterConstants.SUBMITTED_AT_KEY in session:
+        return redirect_to_location("submitted")
+
     logger.debug("Requesting submission page")
 
     response_store = factory.create("response-store")
