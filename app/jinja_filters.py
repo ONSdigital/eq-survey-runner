@@ -7,6 +7,14 @@ blueprint = flask.Blueprint('filters', __name__)
 
 @jinja2.contextfilter
 @blueprint.app_template_filter()
+def format_currency(context, value):
+    return "£{:,}".format(value)
+
+blueprint.add_app_template_filter(format_currency)
+
+
+@jinja2.contextfilter
+@blueprint.app_template_filter()
 def prettify(context, code):
     soup = BeautifulSoup(code)
     return soup.prettify()

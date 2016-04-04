@@ -34,12 +34,13 @@
 
             {% elif response.type == 'Currency' %}
 
-              {% set response_value = '£' ~ response.value if response.value|length > 0 else 'N/A' %}
+              {% set response_value = response.value|int|format_currency if response.value|length > 0 else 'N/A' %}
 
               <dt class="dt">{{response.label}}</dt>
               <dd class="dd">{{response_value}}</dd>
 
             {% else %}
+
               {% set response_value = response.value if response.value|length > 0 else 'N/A' %}
 
               <dt class="dt fw">{{response.label}}</dt>
