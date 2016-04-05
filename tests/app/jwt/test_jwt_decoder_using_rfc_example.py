@@ -1,8 +1,7 @@
-from app.authentication.jwt_decoder import Decoder
-from app import settings
-
 import unittest
 
+from app import settings
+from app.jwt.jwt_decoder import Decoder
 
 # Not used in this test, but needed for the Decoder constructor
 private_pem = '''-----BEGIN RSA PRIVATE KEY-----

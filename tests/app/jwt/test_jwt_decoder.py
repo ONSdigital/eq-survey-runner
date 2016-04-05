@@ -1,11 +1,11 @@
-from app.authentication.jwt_decoder import Decoder
+import unittest
+
+from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
-from app import settings
+from app.jwt.jwt_decoder import Decoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 from tests.app.authentication import VALID_JWT, VALID_SIGNED_JWT, VALID_JWE
-
-import unittest
 
 
 class JWTDecodeTest(unittest.TestCase):

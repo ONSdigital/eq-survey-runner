@@ -4,8 +4,8 @@ import unittest
 
 from app import create_app
 from app import settings
-from app.authentication.encoder import Encoder
 from app.authentication.user import UserConstants
+from app.jwt.jwt_encoder import Encoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
