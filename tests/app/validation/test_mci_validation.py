@@ -114,7 +114,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(period_start_result.is_valid)
         self.assertEquals(len(period_start_result.errors), 1)
-        self.assertEquals(period_start_result.errors[0], 'Date should be in the format DD/MM/YYYY. Please correct your answer')
+        self.assertEquals(period_start_result.errors[0], 'The date entered is not valid.  Please correct your answer.')
         self.assertEquals(len(period_start_result.warnings), 0)
 
         # Period End Tests
@@ -122,7 +122,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(period_end_result.is_valid)
         self.assertEquals(len(period_end_result.errors), 1)
-        self.assertEquals(period_end_result.errors[0], 'Date should be in the format DD/MM/YYYY. Please correct your answer')
+        self.assertEquals(period_end_result.errors[0], 'The date entered is not valid.  Please correct your answer.')
         self.assertEquals(len(period_end_result.warnings), 0)
 
     def test_invalid_total_turnover(self):
