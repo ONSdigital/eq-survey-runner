@@ -1,5 +1,6 @@
 from app import settings
 from app.submitter.converter import Converter
+from app.submitter.encrypter import Encrypter
 from app.submitter.submission_failed import SubmissionFailedException
 import pika
 import pika.credentials
@@ -33,7 +34,10 @@ class Submitter(object):
         '''
         message, submitted_at = Converter.prepare_responses(user, schema, responses)
 
-        sent = self.send(message)
+        encrypter = Encrypter()
+        encrypted_message = encrypter.encrypt(message)
+
+        sent = self.send(encrypted_message)
         if sent:
             return submitted_at
         else:
