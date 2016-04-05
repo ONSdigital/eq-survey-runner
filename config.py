@@ -4,12 +4,10 @@ from babel.dates import get_timezone
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 LANGUAGES = {
-    'en': 'English',
-    'cy': 'Welsh (Cymraeg)',
-    'gd': 'Gaelic (Scots Gaelic)'
+    'en': 'English'
 }
 
-BABEL_DEFAULT_LOCALE = 'cy'
+BABEL_DEFAULT_LOCALE = 'en'
 BABEL_DEFAULT_TIMEZONE = get_timezone('Europe/London')
 
 
