@@ -3,7 +3,7 @@ import sys
 import time
 
 from app.authentication.user import UserConstants
-from app.jwt.jwt_encoder import Encoder
+from app.dev_mode.jwt_encoder import Encoder
 
 
 def create_payload(user):

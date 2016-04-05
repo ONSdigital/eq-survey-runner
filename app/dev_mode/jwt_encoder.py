@@ -7,6 +7,7 @@ import jwt
 import os
 
 
+# TODO this class really should only exist in the dev_mode/unit test
 class Encoder (Encrypter):
     def __init__(self):
         private_key = self._to_bytes(settings.EQ_RRM_PRIVATE_KEY)
@@ -24,6 +25,17 @@ class Encoder (Encrypter):
         return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': 'EDCRRM', 'typ': 'jwt'})
 
     def encrypt(self, text, jwe_protected_header=None, cek=None, iv=None, encrypted_key=None, tag=None):
+        '''
+        Overloading this method for test purposes, this allows us to modify the encrypted contents to test
+        the decoder.
+        :param text: the text to encrypt
+        :param jwe_protected_header: the protected header, providing this overrides the internal one
+        :param cek: key for encryption, providing this overrides the generated internal one
+        :param iv: iv for encryption, providing this overrides the generated internal ones
+        :param encrypted_key: the encrypted cek, providing this overrides the encrypted internal one
+        :param tag: the authentication tag, providing this overrides the generated one
+        :return: an encoded and encrypted text
+        '''
         if jwe_protected_header is None:
             jwe_protected_header = self._jwe_protected_header()
         if cek is None:
