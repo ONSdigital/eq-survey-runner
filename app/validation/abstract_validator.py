@@ -8,6 +8,7 @@ class AbstractValidator(metaclass=ABCMeta):
     NEGATIVE_INTEGER = "NEGATIVE_INTEGER"
     MANDATORY = "MANDATORY"
     INVALID_DATE = "INVALID_DATE"
+    INTEGER_TOO_LARGE = "INTEGER_TOO_LARGE"
 
     @abstractmethod
     def validate(self, user_answer):

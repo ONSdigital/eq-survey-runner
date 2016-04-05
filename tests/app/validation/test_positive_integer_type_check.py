@@ -54,6 +54,17 @@ class PositiveIntegerTest(unittest.TestCase):
         self.assertEquals(len(result.errors), 1)
         self.assertEquals(AbstractValidator.NOT_INTEGER, result.errors[0])
 
+        # Too big
+        result = integer.validate('10000000000')    # 11 digits
+        self.assertFalse(result.is_valid)
+        self.assertEquals(len(result.errors),  1)
+        self.assertEquals(AbstractValidator.INTEGER_TOO_LARGE, result.errors[0])
+
+        # Big enough
+        result = integer.validate('9999999999')     # 10 digits
+        self.assertTrue(result.is_valid)
+        self.assertEquals(len(result.errors),  0)
+        self.assertEquals(len(result.warnings),  0)
 
 if __name__ == '__main__':
     unittest.main()

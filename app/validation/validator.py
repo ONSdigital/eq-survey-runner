@@ -28,7 +28,8 @@ class Validator(object):
             AbstractValidator.NOT_STRING: _("This is not a string"),
             AbstractValidator.MANDATORY: _("This field is mandatory"),
             AbstractValidator.INVALID_DATE: _("This is not a valid date"),
-            AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed")
+            AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed"),
+            AbstractValidator.INTEGER_TOO_LARGE: _('This number is too big')
         }
 
     def validate(self, user_data):

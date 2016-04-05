@@ -14,6 +14,11 @@ class IntegerTypeCheck(AbstractValidator):
         result = ValidationResult(False)
         try:
             integer_value = int(user_answer)        # NOQA
+            if integer_value > 9999999999:          # 10 digits
+                result.is_valid = False
+                result.errors.append(AbstractValidator.INTEGER_TOO_LARGE)
+                return result
+
             result.is_valid = True
         except:
             result.is_valid = False
