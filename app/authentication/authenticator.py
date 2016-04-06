@@ -1,9 +1,10 @@
-from app.authentication.jwt_decoder import Decoder
-from app.authentication.session_management import session_manager
-from app.authentication.no_token_exception import NoTokenException
-from app.authentication.invalid_token_exception import InvalidTokenException
-from app.authentication.user import User
 import logging
+
+from app.authentication.invalid_token_exception import InvalidTokenException
+from app.authentication.jwt_decoder import Decoder
+from app.authentication.no_token_exception import NoTokenException
+from app.authentication.session_management import session_manager
+from app.authentication.user import User
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 

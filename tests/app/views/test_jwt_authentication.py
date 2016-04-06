@@ -4,8 +4,8 @@ import unittest
 
 from app import create_app
 from app import settings
-from app.authentication.encoder import Encoder
 from app.authentication.user import UserConstants
+from app.dev_mode.jwt_encoder import Encoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
@@ -14,8 +14,8 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
     def setUp(self):
         logging.basicConfig(level=logging.DEBUG)
 
-        settings.EQ_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
-        settings.EQ_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
+        settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
         self.app = create_app("testing")
         self.app_context = self.app.app_context()

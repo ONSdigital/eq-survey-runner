@@ -1,6 +1,6 @@
 import logging
 import datetime
-import json
+
 from app import settings
 
 
@@ -105,4 +105,4 @@ class Converter(object):
                     SubmitterConstants.PARADATA_KEY: paradata,
                     SubmitterConstants.DATA_KEY: data}
 
-        return json.dumps(response), submitted_at
+        return response, submitted_at

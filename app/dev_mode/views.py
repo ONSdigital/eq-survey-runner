@@ -1,11 +1,13 @@
-from flask import render_template, redirect, request, abort
-from app.authentication.encoder import Encoder
-from app.authentication.user import UserConstants
-from app.schema_loader.schema_loader import available_schemas
-from . import dev_mode_blueprint
+import logging
 import os
 import time
-import logging
+
+from flask import render_template, redirect, request, abort
+
+from app.authentication.user import UserConstants
+from app.dev_mode.jwt_encoder import Encoder
+from app.schema_loader.schema_loader import available_schemas
+from . import dev_mode_blueprint
 
 logger = logging.getLogger(__name__)
 

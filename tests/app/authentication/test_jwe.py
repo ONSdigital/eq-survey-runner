@@ -2,17 +2,17 @@ import os
 import unittest
 
 from app import settings
-from app.authentication.encoder import Encoder
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.jwt_decoder import Decoder
+from app.dev_mode.jwt_encoder import Encoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM, VALID_SIGNED_JWT, VALID_JWE
 
 
 class JWETest(unittest.TestCase):
     def setUp(self):
-        settings.EQ_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
-        settings.EQ_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
-        settings.EQ_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
+        settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
 
     def test_valid_jwe(self):
         decoder = Decoder()
@@ -29,7 +29,7 @@ class JWETest(unittest.TestCase):
     def test_missing_algorithm(self):
         jwe_protected_header = b'{"enc":"A256GCM"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder.base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = Decoder()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -39,7 +39,7 @@ class JWETest(unittest.TestCase):
     def test_invalid_algorithm(self):
         jwe_protected_header = b'{"alg":"PBES2_HS256_A128KW","enc":"A256GCM"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder.base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = Decoder()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -50,7 +50,7 @@ class JWETest(unittest.TestCase):
         jwe_protected_header = b'{"alg":"RSA-OAEP"}'
 
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder.base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = Decoder()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -60,7 +60,7 @@ class JWETest(unittest.TestCase):
     def test_invalid_enc(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","enc":"A128GCM"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder.base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = Decoder()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -70,7 +70,7 @@ class JWETest(unittest.TestCase):
     def test_jwe_header_contains_alg_twice(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","alg":"RSA-OAEP","enc":"A256GCM"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder.base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = Decoder()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -80,7 +80,7 @@ class JWETest(unittest.TestCase):
     def test_jwe_header_only_contains_alg_and_enc(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","enc":"A256GCM", "test":"test"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder.base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = Decoder()
         with self.assertRaises(InvalidTokenException) as ite:
