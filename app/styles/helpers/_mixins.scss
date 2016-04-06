@@ -109,3 +109,7 @@
     @content;
   }
 }
+
+@mixin icon($name) {
+  background: url("/s/img/icons/icons--#{$name}.svg") no-repeat center;
+}
