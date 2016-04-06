@@ -14,10 +14,10 @@ KID = 'EDCSR'
 
 class Encrypter (object):
     def __init__(self):
-        private_key_bytes = self._to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY)
+        private_key_bytes = self._to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY)
         public_key_bytes = self._to_bytes(settings.EQ_SUBMISSION_SDX_PUBLIC_KEY)
         self.private_key = serialization.load_pem_private_key(private_key_bytes,
-                                                              password=self._to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY_PASSWORD),
+                                                              password=self._to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD),
                                                               backend=backend)
 
         self.public_key = serialization.load_pem_public_key(public_key_bytes, backend=backend)

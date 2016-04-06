@@ -140,8 +140,8 @@ EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY - the RRM public key for JWT user authenti
 EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY - the SR private key for JWT user authentication
 EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD - password of the SR private key for JWT user authentication
 EQ_SUBMISSION_SDX_PUBLIC_KEY - the SDX public key for encryption of Submission data
-EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY - the SR private key for signing of submission data
-EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY_PASSWORD - the password to the SR private key
+EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY - the SR private key for signing of submission data
+EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD - the password to the SR private key
 EQ_RABBITMQ_URL - the RabbitMQ connection string
 EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
 EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
