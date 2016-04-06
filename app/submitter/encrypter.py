@@ -51,8 +51,8 @@ class Encrypter (object):
     def _encode_and_signed(self, payload):
         return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': 'EDCRRM', 'typ': 'jwt'})
 
-    def encrypt(self, text):
-        payload = self._encode_and_signed(text)
+    def encrypt(self, json):
+        payload = self._encode_and_signed(json)
         jwe_protected_header = self._jwe_protected_header()
         encrypted_key = self._encrypted_key(self.cek)
 
