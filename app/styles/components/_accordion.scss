@@ -1,0 +1,87 @@
+.accordion {
+  display: block;
+  border: 1px solid $color-borders;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.accordion__item {
+  overflow: hidden;
+  border-bottom: 1px solid $color-borders;
+  &:last-of-type {
+    margin-bottom: -1px;
+  }
+  &.is-closed {
+    border: none;
+  }
+}
+
+.accordion__head {
+  background: $color-lighter-grey;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: none;
+  border-bottom: 1px solid $color-borders;
+  display: block;
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  @include mq(s) {
+    padding: 1rem;
+  }
+}
+
+.has-js {
+  .accordion__head {
+    display: flex;
+    align-items: center;
+    &:focus {
+      transition: background 100ms ease-out;
+      background: $color-light-grey;
+      outline: none;
+    }
+    &::before {
+      font-family: monospace;
+      content: "-";
+      font-weight: bold;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  .is-closed {
+    .accordion__head {
+      &::before {
+        content: "+";
+      }
+    }
+  }
+}
+
+.accordion__title {
+  font-weight: 700;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.8rem;
+  @include mq(s) {
+    font-size: 1rem;
+  }
+}
+
+.accordion__body {
+  overflow: hidden;
+  .is-closed & {
+    display: none;
+  }
+}
+
+.accordion__content {
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  @include mq(s) {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}

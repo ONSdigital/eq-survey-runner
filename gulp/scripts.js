@@ -33,8 +33,8 @@ export function bundle(watch) {
     })
     .pipe(source('bundle.js'))
     .pipe(buffer())
-    // .pipe(uglify())
     .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(`./${distPath}/js`))
     .pipe(browserSync.reload({stream: true}))
@@ -49,7 +49,7 @@ export function copyScripts() {
     .pipe(babel())
     .pipe(plumber())
     .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.scripts.output))
     .pipe(browserSync.reload({stream: true}))
 }

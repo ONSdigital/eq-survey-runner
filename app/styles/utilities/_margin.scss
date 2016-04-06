@@ -1,4 +1,5 @@
 $sizes: (
+  no: 0!important,
   xs: 0.5rem,
   s: 1rem,
   m: 2rem,
@@ -9,7 +10,8 @@ $margins: (
   mt: margin-top,
   mr: margin-right,
   mb: margin-bottom,
-  ml: margin-left
+  ml: margin-left,
+  m: margin
 );
 
 @each $key, $value in $sizes {

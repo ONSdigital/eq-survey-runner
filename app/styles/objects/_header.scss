@@ -1,14 +1,16 @@
 .header {
+  margin: 1rem 0;
   @include mq(s) {
     text-align: center;
+    margin: 2rem 0;
   }
 }
 
 .header__title {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
   @include mq(s) {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
   }
 }
 

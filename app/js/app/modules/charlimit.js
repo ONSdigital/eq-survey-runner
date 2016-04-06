@@ -1,5 +1,5 @@
 import domready from './domready'
-import _ from 'lodash'
+import forEach from 'lodash/forEach'
 
 export const inputClass = 'js-charlimit-input'
 export const msgClass = 'js-charlimit-msg'
@@ -8,7 +8,7 @@ export const maxLengthAttr = 'data-maxlength'
 export default function charLimit() {
   const nodeList = document.getElementsByClassName(inputClass)
 
-  _.forEach(nodeList, (el) => {
+  forEach(nodeList, (el) => {
     const maxLength = el.getAttribute(maxLengthAttr)
     if (typeof maxLength !== 'undefined') {
       imposeCharLimit(el, maxLength)
