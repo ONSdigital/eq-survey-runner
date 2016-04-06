@@ -1,22 +1,9 @@
-{% extends 'layouts/_base.html' %}
+{% extends 'layouts/_survey.html' %}
 
-{% block content %}
+{% block survey %}
 
-  <div class="container">
-    {% if token %}
-      <h1>{{ _('Hello') }} {{token.user}}</h1>
-        <p>Thank you for submitting JWT: {{token_id}}</p>
-        <p>Your token contains the following claims</p>
-        {% for key in token.keys() %}
-            <p>{{key}} : {{token.get(key)}}</p>
-        {% endfor %}
-    {% else %}
-      <h1>{{ _('Hello World') }}</h1>
-    {% endif %}
-    <p>{{ _('This is the eQ Survey Runner (or at least it will be)') }}</p>
-    <p>{{ _("If you want to know how I'm doing, you can check my health.") }}</p>
-    <p><a href="/healthcheck">{{ _('Click here to check my health') }}</a></p>
-    <p><a href="/pattern-library/">{{ _('View the pattern library') }}</a></p>
-  </div>
-
+<div class="welcome">
+  <h2>Welcome to the Office of National Statistics</h2>
+  <p><a href="http://www.ons.gov.uk/">Please visit our home page</a></p>
+</div>
 {% endblock %}
