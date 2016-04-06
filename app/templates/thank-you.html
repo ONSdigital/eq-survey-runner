@@ -4,6 +4,22 @@
 
 {% block survey %}
 
-  <p>Thank you for submitting the survey {% if data.submitted_at %} on {{data.submitted_at}} {% endif %}</p>
+  <div class="header u-mb-m u-mb-l@s">
+    <h1 class="header__title">Thank You</h1>
+    <div>Monthly Business Survey - Retail Sales Index</div>
+    <div class="u-lighter">Period: 4th January 2016 to 31st January 2016</div>
+    <div class="u-fw-b">Successfully Received</div>
+  </div>
+
+  <div class="confirmation u-mb-s u-mb-l@s">
+    <strong>{% if data.submitted_at %} Submitted on {{data.submitted_at}} {% endif %}</strong>
+    <p class="u-mb-no">You may wish to save or print this page for your records.</p>
+  </div>
+
+  <div class="u-ta-c@s">
+    <div>For more information on how we use this data.</div>
+    <p class="u-mb-m@s"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
+    <p>It is now to safe to close this window.</p>
+  </div>
 
 {% endblock %}

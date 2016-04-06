@@ -11,3 +11,23 @@ $sizes: (
     font-size: #{$value};
   }
 }
+
+.u-fw-b {
+  font-weight: 700;
+}
+
+.u-fw-n {
+  font-weight: normal;;
+}
+
+.u-fs-i {
+  font-style: italic;
+}
+
+@include suffix(u-ta-c) {
+  text-align: center;
+}
+
+.u-lighter {
+  color: $color-text-light;
+}
