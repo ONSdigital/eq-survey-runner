@@ -82,7 +82,8 @@ class Converter(object):
             item = questionnaire.get_item_by_id(key)
             if item is not None:
                 value = responses[key]
-                data[item.code] = value
+                if value:
+                    data[item.code] = value
 
         metadata = {SubmitterConstants.USER_ID_KEY: user.get_user_id(),
                     SubmitterConstants.RU_REF_KEY: user.get_ru_ref()}
