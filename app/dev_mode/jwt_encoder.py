@@ -7,11 +7,13 @@ import jwt
 import os
 
 
-# TODO this class really should only exist in the dev_mode/unit test
+KID = 'EDCRRM'
+
+
 class Encoder (Encrypter):
     def __init__(self):
-        private_key = self._to_bytes(settings.EQ_RRM_PRIVATE_KEY)
-        public_key = self._to_bytes(settings.EQ_SR_PUBLIC_KEY)
+        private_key = self._to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY)
+        public_key = self._to_bytes(settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY)
         self.private_key = serialization.load_pem_private_key(private_key, password=b'digitaleq', backend=backend)
         self.public_key = serialization.load_pem_public_key(public_key, backend=backend)
 
@@ -22,7 +24,7 @@ class Encoder (Encrypter):
         self.iv = os.urandom(12)  # 96 bit random IV
 
     def encode(self, payload):
-        return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': 'EDCRRM', 'typ': 'jwt'})
+        return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': KID, 'typ': 'jwt'})
 
     def encrypt(self, text, jwe_protected_header=None, cek=None, iv=None, encrypted_key=None, tag=None):
         '''

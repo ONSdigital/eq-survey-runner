@@ -35,19 +35,19 @@ EQ_SESSION_TIMEOUT = int(os.getenv('EQ_SESSION_TIMEOUT', '28800'))
 EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
 
 # keys for the RRM token exchange
-EQ_RRM_PUBLIC_KEY = get_key(os.getenv('EQ_RRM_PUBLIC_KEY', "./jwt-test-keys/rrm-public.pem"))
-EQ_SR_PRIVATE_KEY = get_key(os.getenv('EQ_SR_PRIVATE_KEY', "./jwt-test-keys/sr-private.pem"))
-EQ_SR_PRIVATE_KEY_PASSWORD = os.getenv("EQ_SR_PRIVATE_KEY_PASSWORD", "digitaleq")
+EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY', "./jwt-test-keys/rrm-public.pem"))
+EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY', "./jwt-test-keys/sr-private.pem"))
+EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = os.getenv("EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD", "digitaleq")
 
 # keys for encryption of submissions
-EQ_SDX_PUBLIC_KEY = get_key(os.getenv('EQ_SDX_PUBLIC_KEY', "./jwt-test-keys/sdx-public.pem"))
-EQ_SR_PRIVATE_ENCRYPTION_KEY = get_key(os.getenv('EQ_SR_PRIVATE_ENCRYPTION_KEY', "./jwt-test-keys/sr-private-encryption.pem"))
-EQ_SR_PRIVATE_ENCRYPTION_KEY_PASSWORD = os.getenv("EQ_SR_PRIVATE_ENCRYPTION_KEY_PASSWORD", "digitaleq")
+EQ_SUBMISSION_SDX_PUBLIC_KEY = get_key(os.getenv('EQ_SUBMISSION_SDX_PUBLIC_KEY', "./jwt-test-keys/sdx-public.pem"))
+EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY = get_key(os.getenv('EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY', "./jwt-test-keys/sr-private-encryption.pem"))
+EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY_PASSWORD = os.getenv("EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY_PASSWORD", "digitaleq")
 
 # keys for the dev mode
 EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
-EQ_RRM_PRIVATE_KEY = get_key(os.getenv('EQ_RRM_PRIVATE_KEY', "./jwt-test-keys/rrm-private.pem"))
-EQ_SR_PUBLIC_KEY = get_key(os.getenv('EQ_SR_PUBLIC_KEY', "./jwt-test-keys/sr-public.pem"))
+EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY = get_key(os.getenv('EQ_RRM_PRIVATE_KEY', "./jwt-test-keys/rrm-private.pem"))
+EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY = get_key(os.getenv('EQ_SR_PUBLIC_KEY', "./jwt-test-keys/sr-public.pem"))
 
 # non configurable settings
 

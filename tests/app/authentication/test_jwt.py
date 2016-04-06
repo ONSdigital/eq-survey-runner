@@ -29,9 +29,9 @@ jwtio_signed = jwtio_header + "." + jwtio_payload + "." + jwtio_signature
 
 class JWTTest(unittest.TestCase):
     def setUp(self):
-        settings.EQ_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
-        settings.EQ_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_PUBLIC_KEY
-        settings.EQ_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
+        settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_PUBLIC_KEY
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
 
     def test_jwt_io(self):
         decoder = Decoder()

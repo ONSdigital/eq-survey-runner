@@ -10,9 +10,9 @@ from tests.app.authentication import VALID_JWT, VALID_SIGNED_JWT, VALID_JWE
 
 class JWTDecodeTest(unittest.TestCase):
     def setUp(self):
-        settings.EQ_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
-        settings.EQ_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
-        settings.EQ_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
+        settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
 
     def test_decode(self):
         decoder = Decoder()

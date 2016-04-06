@@ -74,9 +74,9 @@ encrypted_jwt = "eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00ifQ.OKOawDo13gRp2oja
 # Unit test based of Example A.1 in RFC 7516 (https://tools.ietf.org/html/rfc7516#appendix-A.1)
 class JWTDecoderRFCTest(unittest.TestCase):
     def setUp(self):
-        settings.EQ_SR_PRIVATE_KEY = private_pem
-        settings.EQ_RRM_PUBLIC_KEY = public_pem
-        settings.EQ_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = private_pem
+        settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = public_pem
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
 
     def test_plaintext_conversion(self):
         self.assertEquals(plaintext, ''.join(chr(i) for i in plaintext_in_ascii))

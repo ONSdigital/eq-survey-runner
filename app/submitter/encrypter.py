@@ -9,13 +9,15 @@ import jwt
 import os
 import base64
 
+KID = 'EDCSR'
+
 
 class Encrypter (object):
     def __init__(self):
-        private_key_bytes = self._to_bytes(settings.EQ_SR_PRIVATE_ENCRYPTION_KEY)
-        public_key_bytes = self._to_bytes(settings.EQ_SDX_PUBLIC_KEY)
+        private_key_bytes = self._to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY)
+        public_key_bytes = self._to_bytes(settings.EQ_SUBMISSION_SDX_PUBLIC_KEY)
         self.private_key = serialization.load_pem_private_key(private_key_bytes,
-                                                              password=self._to_bytes(settings.EQ_SR_PRIVATE_ENCRYPTION_KEY_PASSWORD),
+                                                              password=self._to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_ENCRYPTION_KEY_PASSWORD),
                                                               backend=backend)
 
         self.public_key = serialization.load_pem_public_key(public_key_bytes, backend=backend)
@@ -49,7 +51,7 @@ class Encrypter (object):
         return base64.urlsafe_b64encode(text).decode().strip("=").encode()
 
     def _encode_and_signed(self, payload):
-        return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': 'EDCRRM', 'typ': 'jwt'})
+        return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': KID, 'typ': 'jwt'})
 
     def encrypt(self, json):
         payload = self._encode_and_signed(json)
