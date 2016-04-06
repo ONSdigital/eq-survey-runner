@@ -8,7 +8,7 @@
       {% for item_id, errors in all_errors %}
         {% set loop_index = loop.index %}
         {% for error in errors %}
-        <li>{{loop_index}}) {{ error }}. <a href="#response-{{item_id}}">{{_('Go to this error')}}</a></li>
+        <li>- {{ error }}. <a href="#response-{{item_id}}">{{_('Go to this error')}}</a></li>
         {% endfor %}
       {% endfor %}
     </ul>
