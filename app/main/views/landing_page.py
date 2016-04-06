@@ -28,7 +28,6 @@ def landing_page():
         },
         "survey_code": questionnaire.survey_id,
         "period_str": current_user.get_period_str(),
-        "period_id": current_user.get_period_id(),
         "respondent_id": current_user.get_ru_ref(),
         # You'd think there would be an easier way of doing this...
         "return_by": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_return_by(), "%Y-%m-%d")),

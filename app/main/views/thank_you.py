@@ -25,7 +25,7 @@ def thank_you():
 
     return render_template('thank-you.html', data={
         "survey_code": schema.survey_id,
-        "period": current_user.get_period_str(),
+        "period_str": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref(),
         "submitted_at": submitted_at
     })
