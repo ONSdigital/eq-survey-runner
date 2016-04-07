@@ -24,12 +24,18 @@
 
     {% if data %}
       <div class="info survey-header__info" role="contentinfo">
-        <h2 class="u-vh">Information about this survey</h2>
-        <ul class="info__list">
-          <li class="info__item info__item--half">Survey Code: {{ data.survey_code or '' }}</li>
-          <li class="info__item info__item--half">Period: {{ data.period_str or '' }}</li>
-          <li class="info__item info__item--last">Reference: {{ data.respondent_id or '' }}</li>
-        </ul>
+        <h2 class="info__title">Survey Help</h2>
+        <div class="info__tel">
+          0300 1234 931
+        </div>
+        <dl class="info__list">
+          <dt class="info__dt">ID:</dt>
+          <dd class="info__dd">{{ data.survey_code}}</dd>
+          <dt class="info__dt">Period:</dt>
+          <dd class="info__dd">{{ data.period_str}}</dd>
+          <dt class="info__dt">Ref:</dt>
+          <dd class="info__dd">{{ data.respondent_id}}</dd>
+        </dl>
       </div>
     {% endif %}
 
