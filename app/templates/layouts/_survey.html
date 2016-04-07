@@ -1,7 +1,6 @@
 {% extends 'layouts/_base.html' %}
 
-{% block content %}
-
+{% block top_bar %}
 <div class="bar" role="banner">
   <div class="skip">
     <a class="skip__link" href="#main">Skip to content</a>
@@ -11,44 +10,36 @@
     <div class="bar__title">Monthly Business Survey - Retail Sales Index</div>
   </div>
 </div>
+{% endblock %}
 
+{% block content %}
 <div class="container">
-
   <div class="panel">
-
     <div class="panel__header survey-header u-cf">
-
       <div class="logo survey-header__logo">
         <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics" class="logo__img" />
       </div>
-
-    {% if data %}
       <div class="info survey-header__info" role="contentinfo">
         <h2 class="info__title">Survey Help</h2>
         <div class="info__tel">
           0300 1234 931
         </div>
+        {% if data %}
         <dl class="info__list">
           <dt class="info__dt">ID:</dt>
-          <dd class="info__dd">{{ data.survey_code}}</dd>
+          <dd class="info__dd">{{ data.survey_code or 'N/A'}}</dd>
           <dt class="info__dt">Period:</dt>
-          <dd class="info__dd">{{ data.period_str}}</dd>
+          <dd class="info__dd">{{ data.period_str or 'N/A'}}</dd>
           <dt class="info__dt">Ref:</dt>
-          <dd class="info__dd">{{ data.respondent_id}}</dd>
+          <dd class="info__dd">{{ data.respondent_id or 'N/A'}}</dd>
         </dl>
+        {% endif %}
       </div>
-    {% endif %}
-
     </div>
-
     <div role="main" class="panel__body" id="main" tabindex="-1">
-
       {% block survey %} {% endblock %}
-
     </div>
-
   </div>
-
 </div>
 
 {% endblock %}

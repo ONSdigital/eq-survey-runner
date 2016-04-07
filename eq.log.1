@@ -1,0 +1,80 @@
+Exception on /session [GET]
+Traceback (most recent call last):
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/main/views/root.py", line 38, in login
+    user = authenticator.jwt_login(request)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/authentication/authenticator.py", line 37, in jwt_login
+    token = self._jwt_decrypt(request)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/authentication/authenticator.py", line 57, in _jwt_decrypt
+    token = decoder.decrypt_jwt_token(encrypted_token)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/authentication/jwt_decoder.py", line 165, in decrypt_jwt_token
+    raise InvalidTokenException("Incorrect size")
+app.authentication.invalid_token_exception.InvalidTokenException: Incorrect size
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/main/views/root.py", line 69, in login
+    return errors.forbidden(e)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/main/errors.py", line 28, in forbidden
+    return _render_error_page(403)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/main/errors.py", line 53, in _render_error_page
+    user_agent = user_agent_parser.Parse(request.headers.get('User-Agent'))
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/ua_parser/user_agent_parser.py", line 221, in Parse
+    'user_agent': ParseUserAgent(user_agent_string, **jsParseBits),
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/ua_parser/user_agent_parser.py", line 248, in ParseUserAgent
+    family, v1, v2, v3 = uaParser.Parse(user_agent_string)
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/ua_parser/user_agent_parser.py", line 51, in Parse
+    match = self.user_agent_re.search(user_agent_string)
+TypeError: expected string or bytes-like object
+expected string or bytes-like object
+Unable to authenticate user
+Please provide a token
+Exception on /session [GET]
+Traceback (most recent call last):
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/main/views/root.py", line 38, in login
+    user = authenticator.jwt_login(request)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/authentication/authenticator.py", line 36, in jwt_login
+    raise NoTokenException("Please provide a token")
+app.authentication.no_token_exception.NoTokenException: Please provide a token
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/main/views/root.py", line 66, in login
+    return errors.unauthorized(e)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/main/errors.py", line 21, in unauthorized
+    return _render_error_page(401)
+  File "/Users/hamishtaplin/Sites/eq/public/eq-survey-runner/app/main/errors.py", line 53, in _render_error_page
+    user_agent = user_agent_parser.Parse(request.headers.get('User-Agent'))
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/ua_parser/user_agent_parser.py", line 221, in Parse
+    'user_agent': ParseUserAgent(user_agent_string, **jsParseBits),
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/ua_parser/user_agent_parser.py", line 248, in ParseUserAgent
+    family, v1, v2, v3 = uaParser.Parse(user_agent_string)
+  File "/Users/hamishtaplin/.virtualenvs/eq-survey-runner/lib/python3.5/site-packages/ua_parser/user_agent_parser.py", line 51, in Parse
+    match = self.user_agent_re.search(user_agent_string)
+TypeError: expected string or bytes-like object
+expected string or bytes-like object

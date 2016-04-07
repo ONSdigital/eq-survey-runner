@@ -9,3 +9,9 @@
 .u-db {
   display: block;
 }
+
+.u-no-js-hide {
+  .no-js & {
+    display: none;
+  }
+}
