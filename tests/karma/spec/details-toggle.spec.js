@@ -1,33 +1,41 @@
-import { applyDetailsToggle, classTrigger, classDetails, classMain, classExpandedState } from 'app/modules/details-toggle'
+import { applyDetailsToggle, classTrigger, classDetails, classBody, classExpandedState } from 'app/modules/details-toggle'
 
 const strTemplate = `<div class="guidance ${classDetails}" data-show-label="Show further guidance" data-hide-label="Hide further guidance">
   <a class="guidance__link ${classTrigger}" href="#guidance-response" id="guidance-response-link" aria-controls="guidance-response-main" aria-expanded="false"><span class="u-vh">Click here to </span><span class="js-details-label">Show further guidance</span>
   </a>
-  <div class="guidance__main ${classMain}" id="guidance-response-main" tabIndex="0" aria-hidden="true">
+  <div class="guidance__main ${classBody}" id="guidance-response-main" aria-hidden="true">
     Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur.
   </div>
 </div>`
 
-let elTemplate
+let elDetails, elTrigger, elBody
 
 describe('Details Toggle', () => {
   before('Add template to DOM', () => {
     let wrapper = document.createElement('div')
     wrapper.innerHTML = strTemplate
-    elTemplate = wrapper
-    document.body.appendChild(elTemplate)
+    elDetails = wrapper.firstChild
+    document.body.appendChild(elDetails)
+    let el = applyDetailsToggle(elDetails)
+    ;({elTrigger, elBody} = el)
   })
 
   it('DOM should contain the template', () => {
-    expect(document.body.contains(elTemplate)).to.equal(true)
+    expect(document.body.contains(elDetails)).to.equal(true)
   })
 
   it(`Should toggle class '.${classExpandedState}' when clicked`, () => {
-    applyDetailsToggle(elTemplate)
-    const elTrigger = elTemplate.parentElement.getElementsByClassName(classTrigger)[0]
     elTrigger.click()
-    expect(elTemplate.classList.contains(classExpandedState)).to.equal(true)
+    expect(elDetails.classList.contains(classExpandedState)).to.equal(true)
     elTrigger.click()
-    expect(elTemplate.classList.contains(classExpandedState)).to.equal(false)
+    expect(elDetails.classList.contains(classExpandedState)).to.equal(false)
+  })
+
+  it('Body should not recieve focus when collapsed', () => {
+    elBody.focus()
+    expect(document.activeElement.classList.contains(classBody)).to.equal(false)
+    elTrigger.click()
+    elBody.focus()
+    expect(document.activeElement.classList.contains(classBody)).to.equal(true)
   })
 })
