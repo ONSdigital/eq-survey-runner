@@ -1,8 +1,9 @@
-import logging
 import datetime
-
+import logging
+import json
 from app import settings
 
+logger = logging.getLogger(__name__)
 
 class SubmitterConstants(object):
 
@@ -39,9 +40,6 @@ class SubmitterConstants(object):
     VERSION = "0.0.1"
 
     ORIGIN = "uk.gov.ons.edc.eq"
-
-logger = logging.getLogger(__name__)
-
 
 class Converter(object):
 
@@ -106,4 +104,5 @@ class Converter(object):
                     SubmitterConstants.PARADATA_KEY: paradata,
                     SubmitterConstants.DATA_KEY: data}
 
+        logging.debug("Converted response ready for submission %s", json.dumps(response))
         return response, submitted_at
