@@ -1,7 +1,9 @@
-import logging
 import datetime
-
+import logging
+import json
 from app import settings
+
+logger = logging.getLogger(__name__)
 
 
 class SubmitterConstants(object):
@@ -39,8 +41,6 @@ class SubmitterConstants(object):
     VERSION = "0.0.1"
 
     ORIGIN = "uk.gov.ons.edc.eq"
-
-logger = logging.getLogger(__name__)
 
 
 class Converter(object):
@@ -82,7 +82,8 @@ class Converter(object):
             item = questionnaire.get_item_by_id(key)
             if item is not None:
                 value = responses[key]
-                data[item.code] = value
+                if value:
+                    data[item.code] = value
 
         metadata = {SubmitterConstants.USER_ID_KEY: user.get_user_id(),
                     SubmitterConstants.RU_REF_KEY: user.get_ru_ref()}
@@ -105,4 +106,5 @@ class Converter(object):
                     SubmitterConstants.PARADATA_KEY: paradata,
                     SubmitterConstants.DATA_KEY: data}
 
+        logging.debug("Converted response ready for submission %s", json.dumps(response))
         return response, submitted_at
