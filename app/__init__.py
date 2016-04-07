@@ -11,6 +11,7 @@ from app.navigation.navigation_history import FlaskNavigationHistory
 from app.validation.validation_store import FlaskValidationStore
 from app import settings
 from app.authentication.authenticator import Authenticator
+from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
 from datetime import timedelta
 import watchtower
@@ -75,6 +76,8 @@ def create_app(config_name):
 
     application.secret_key = settings.EQ_SECRET_KEY
     application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+
+    application.session_interface = SHA256SecureCookieSessionInterface()
 
     Markdown(application, extensions=['gfm'])
 
