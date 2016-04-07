@@ -5,6 +5,7 @@ from app import settings
 
 logger = logging.getLogger(__name__)
 
+
 class SubmitterConstants(object):
 
     PARADATA_KEY = "paradata"
@@ -40,6 +41,7 @@ class SubmitterConstants(object):
     VERSION = "0.0.1"
 
     ORIGIN = "uk.gov.ons.edc.eq"
+
 
 class Converter(object):
 
