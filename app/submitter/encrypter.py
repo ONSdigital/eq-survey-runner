@@ -35,6 +35,13 @@ class Encrypter (object):
             value = bytes_or_str
         return value
 
+    def _to_str(self, bytes_or_str):
+        if isinstance(bytes_or_str, bytes):
+            value = bytes_or_str.decode()
+        else:
+            value = bytes_or_str
+        return value
+
     def _jwe_protected_header(self):
         return self._base_64_encode(b'{"alg":"RSA-OAEP","enc":"A256GCM"}')
 
@@ -73,4 +80,4 @@ class Encrypter (object):
         # assemble result
         jwe = jwe_protected_header + b"." + encrypted_key + b"." + self._encode_iv(self.iv) + b"." + encoded_ciphertext + b"." + encoded_tag
 
-        return jwe
+        return self._to_str(jwe)
