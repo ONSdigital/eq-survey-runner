@@ -27,7 +27,7 @@ pip-log.txt
 .cache
 
 *.log
-
+eq.log.*
 
 # Sphinx
 docs/_build
