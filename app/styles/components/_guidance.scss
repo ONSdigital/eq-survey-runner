@@ -26,6 +26,10 @@
     vertical-align: middle;
     display: inline-block;
   }
+
+  .no-js & {
+    display: none;
+  }
 }
 
 .guidance__main {
@@ -35,6 +39,7 @@
   opacity: 0;
   transition: all 0;
   max-height: 0;
+  .no-js &,
   .is-expanded & {
     max-height: 10000em;
     height: auto;
