@@ -24,12 +24,12 @@ class Validator(object):
 
         # Set up default error and warning messages
         self.messages = {
-            AbstractValidator.NOT_INTEGER: _("This is not a whole number"),
-            AbstractValidator.NOT_STRING: _("This is not a string"),
-            AbstractValidator.MANDATORY: _("This field is mandatory"),
-            AbstractValidator.INVALID_DATE: _("This is not a valid date"),
-            AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed"),
-            AbstractValidator.INTEGER_TOO_LARGE: _('This number is too big')
+            AbstractValidator.NOT_INTEGER: _("Please only enter whole numbers into the field."),
+            AbstractValidator.NOT_STRING: _("This is not a string."),
+            AbstractValidator.MANDATORY: _("This field is mandatory."),
+            AbstractValidator.INVALID_DATE: _("This is not a valid date."),
+            AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed."),
+            AbstractValidator.INTEGER_TOO_LARGE: _('This number is too big.')
         }
 
     def validate(self, user_data):
