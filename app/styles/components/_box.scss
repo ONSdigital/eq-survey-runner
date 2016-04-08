@@ -1,0 +1,29 @@
+.box {
+  text-align: center;
+  padding: 2rem 1rem;
+  border: 1px solid $color-borders;
+  border-radius: 3px;
+  max-width: 32em;
+  margin: 0 auto;
+  position: relative;
+
+  &w.confirm {
+    &::before {
+      $size: 2.5rem;
+      background: url("#{$s}/img/icons/icons--check.svg") no-repeat center center;
+      background-color: white;
+      background-size: 2rem;
+      content: "";
+      position: absolute;
+      top: -$size/2;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      margin: auto;
+      width: $size;
+      height: $size;
+      border: 2px solid $color-borders;
+      border-radius: 100%;
+    }
+  }
+}

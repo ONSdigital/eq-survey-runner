@@ -1,53 +1,66 @@
-{% extends 'layouts/_survey.html' %}
+{% extends 'layouts/_base.html' %} {% block page_title %}EQ Development{% endblock %} {% block content %}
 
-{% block page_title %}EQ Development{% endblock %}
 
-{% block survey %}
-
-<form action="" method="POST" xmlns="http://www.w3.org/1999/html">
-  <p>
-    User ID: <input name="{{UserConstants.USER_ID}}" type="text" value="{{user}}">
-  </p>
-  <p>
-    Schemas:
-    <select name="schema">
-      {{available_schemas}}
-      {% for id in available_schemas %}
-        <option name="{id}}" value="{{id}}">{{id}}</option>
-      {% endfor %}
-    </select>
-  </p>
-  <p>
-    Token Expiry (seconds): <input name="exp" type="text" value="1800">
-  </p>
-  <p>
-    Period String: <input name="{{UserConstants.PERIOD_STR}}" type="text" value="01-04-2016">
-  </p>
-  <p>
-    Period ID: <input name="{{UserConstants.PERIOD_ID}}" type="text" value="201601">
-  </p>
-  <p>
-    Collection Exercise SID: <input name="{{UserConstants.COLLECTION_EXERCISE_SID}}" type="text" value="789">
-  </p>
-  <p>
-    RU REF: <input name="{{UserConstants.RU_REF}}" type="text" value="12346789012A">
-  </p>
-  <p>
-    RU NAME: <input name="{{UserConstants.RU_NAME}}" type="text" value="Apple">
-  </p>
-  <p>
-    REF P Start Date: <input name="{{UserConstants.REF_P_START_DATE}}" type="text" value="2016-04-01">
-  </p>
-  <p>
-    REF P End Date: <input name="{{UserConstants.REF_P_END_DATE}}" type="text" value="2016-04-30">
-  </p>
-  <p>
-    RETURN BY: <input name="{{UserConstants.RETURN_BY}}" type="text" value="2016-04-30">
-  </p>
-  <p>
-    TRAD AS: <input name="{{UserConstants.TRAD_AS}}" type="text" value="Apple">
-  </p>
-  <input type="submit" value="submit"/>
-</form>
+<div class="container">
+  <div class="panel u-mt-l">
+    <div role="main" class="panel__body" id="main" tabindex="-1">
+      <form action="" method="POST" xmlns="http://www.w3.org/1999/html">
+        <p>
+          User ID:
+          <input name="{{UserConstants.USER_ID}}" type="text" value="{{user}}">
+        </p>
+        <p>
+          Schemas:
+          <select name="schema">
+            {{available_schemas}} {% for id in available_schemas %}
+            <option name="{id}}" value="{{id}}">{{id}}</option>
+            {% endfor %}
+          </select>
+        </p>
+        <p>
+          Token Expiry (seconds):
+          <input name="exp" type="text" value="1800">
+        </p>
+        <p>
+          Period String:
+          <input name="{{UserConstants.PERIOD_STR}}" type="text" value="01-04-2016">
+        </p>
+        <p>
+          Period ID:
+          <input name="{{UserConstants.PERIOD_ID}}" type="text" value="201601">
+        </p>
+        <p>
+          Collection Exercise SID:
+          <input name="{{UserConstants.COLLECTION_EXERCISE_SID}}" type="text" value="789">
+        </p>
+        <p>
+          RU REF:
+          <input name="{{UserConstants.RU_REF}}" type="text" value="12346789012A">
+        </p>
+        <p>
+          RU NAME:
+          <input name="{{UserConstants.RU_NAME}}" type="text" value="Apple">
+        </p>
+        <p>
+          REF P Start Date:
+          <input name="{{UserConstants.REF_P_START_DATE}}" type="text" value="2016-04-01">
+        </p>
+        <p>
+          REF P End Date:
+          <input name="{{UserConstants.REF_P_END_DATE}}" type="text" value="2016-04-30">
+        </p>
+        <p>
+          RETURN BY:
+          <input name="{{UserConstants.RETURN_BY}}" type="text" value="2016-04-30">
+        </p>
+        <p>
+          TRAD AS:
+          <input name="{{UserConstants.TRAD_AS}}" type="text" value="Apple">
+        </p>
+        <input type="submit" value="submit" />
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
