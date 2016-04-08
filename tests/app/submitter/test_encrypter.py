@@ -93,7 +93,7 @@ class TestEncrypter(unittest.TestCase):
         encrypted_data = encrypter.encrypt(SUBMISSION_DATA)
 
         decrypter = Decrypter()
-        unencrypted_data = decrypter.decrypt(encrypted_data.decode())
+        unencrypted_data = decrypter.decrypt(encrypted_data)
 
         self.assertEquals(SUBMISSION_DATA["type"], unencrypted_data["type"])
         self.assertEquals(SUBMISSION_DATA["version"], unencrypted_data["version"])
