@@ -3,7 +3,7 @@ import domready from './domready'
 
 export const classDetails = 'js-details'
 export const classTrigger = 'js-details-trigger'
-export const classMain = 'js-details-main'
+export const classBody = 'js-details-body'
 export const classLabel = 'js-details-label'
 export const classExpandedState = 'is-expanded'
 
@@ -11,6 +11,7 @@ export const attrShowLbl = 'data-show-label'
 export const attrHideLbl = 'data-hide-label'
 export const attrAriaExpanaded = 'aria-expanded'
 export const attrAriaHidden = 'aria-hidden'
+export const attrTabIndex = 'tabindex'
 
 export default function() {
   return detailsToggle()
@@ -23,32 +24,40 @@ export function detailsToggle() {
 }
 
 export function applyDetailsToggle(elDetails) {
-  const elTrigger = elDetails.parentElement.getElementsByClassName(classTrigger)[0]
-  const elMain = elDetails.getElementsByClassName(classMain)[0]
+  const elTrigger = elDetails.getElementsByClassName(classTrigger)[0]
+  const elBody = elDetails.getElementsByClassName(classBody)[0]
   const elLabel = elDetails.getElementsByClassName(classLabel)[0]
   let toggled = false
 
   elTrigger.addEventListener('click', (e) => {
     e.preventDefault()
-    toggled = toggle(toggled, elDetails, elTrigger, elMain, elLabel)
+    toggled = toggle(toggled, elDetails, elTrigger, elBody, elLabel)
     return false
   })
+
+  return {elDetails, elTrigger, elBody}
 }
 
-export function toggle(toggled, elDetails, elTrigger, elMain, elLabel) {
-  elTrigger.setAttribute(attrAriaExpanaded, toggled)
-  elMain.setAttribute(attrAriaHidden, !toggled)
+export function open(elDetails, elBody, elLabel, elTrigger) {
+  elDetails.classList.add(classExpandedState)
+  elBody.focus()
+  elLabel.innerHTML = elDetails.getAttribute(attrHideLbl)
+  elTrigger.setAttribute(attrAriaExpanaded, true)
+  elBody.setAttribute(attrAriaHidden, false)
+  elBody.setAttribute(attrTabIndex, '0')
+}
 
-  if (!toggled) {
-    elDetails.classList.add(classExpandedState)
-    elMain.focus()
-    elLabel.innerHTML = elDetails.getAttribute(attrHideLbl)
-  } else {
-    elDetails.classList.remove(classExpandedState)
-    elMain.blur()
-    elLabel.innerHTML = elDetails.getAttribute(attrShowLbl)
-  }
+export function close(elDetails, elBody, elLabel, elTrigger) {
+  elDetails.classList.remove(classExpandedState)
+  elBody.blur()
+  elLabel.innerHTML = elDetails.getAttribute(attrShowLbl)
+  elTrigger.setAttribute(attrAriaExpanaded, false)
+  elBody.setAttribute(attrAriaHidden, true)
+  elBody.removeAttribute(attrTabIndex)
+}
 
+export function toggle(toggled, elDetails, elTrigger, elBody, elLabel) {
+  !toggled ? open(elDetails, elBody, elLabel, elTrigger) : close(elDetails, elBody, elLabel, elTrigger)
   return !toggled
 }
 
