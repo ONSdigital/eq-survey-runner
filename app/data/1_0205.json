@@ -24,7 +24,7 @@
                             {
                               "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
                               "title": "What are the dates of the sales period you are reporting for?",
-                              "description": "If possible, this should be for the period 3rd April 2016 to 30th April 2016",
+                              "description": "If possible, this should be for the period 3rd April 2016 to 30th April 2016.",
                               "responses": [
                                 {
                                   "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
@@ -35,7 +35,7 @@
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
-                                      "MANDATORY": "Please answer before continuing",
+                                      "MANDATORY": "Please answer before continuing.",
                                       "INVALID_DATE": "The date entered is not valid.  Please correct your answer."
                                     }
                                   }
@@ -49,7 +49,7 @@
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
-                                      "MANDATORY": "Please answer before continuing",
+                                      "MANDATORY": "Please answer before continuing.",
                                       "INVALID_DATE": "The date entered is not valid.  Please correct your answer."
                                     }
                                   }
@@ -77,8 +77,8 @@
                                 "mandatory": false,
                                 "validation": {
                                   "messages": {
-                                    "NOT_INTEGER": "Please only enter numbers into the field",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                    "NOT_INTEGER": "Please only enter numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                   }
                                 }
                               },
@@ -91,8 +91,8 @@
                                 "mandatory": false,
                                 "validation": {
                                   "messages": {
-                                    "NOT_INTEGER": "Please only enter numbers into the field",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                    "NOT_INTEGER": "Please only enter numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                   }
                                 }
                               },
@@ -105,8 +105,8 @@
                                 "mandatory": false,
                                 "validation": {
                                   "messages": {
-                                    "NOT_INTEGER": "Please only enter numbers into the field",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                    "NOT_INTEGER": "Please only enter numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                   }
                                 }
                               },
@@ -119,8 +119,8 @@
                                 "mandatory": false,
                                 "validation": {
                                   "messages": {
-                                    "NOT_INTEGER": "Please only enter numbers into the field",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                    "NOT_INTEGER": "Please only enter numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                   }
                                 }
                               },
@@ -134,8 +134,8 @@
                                 "mandatory": false,
                                 "validation": {
                                   "messages": {
-                                    "NOT_INTEGER": "Please only enter numbers into the field",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                    "NOT_INTEGER": "Please only enter numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                   }
                                 }
                               },
@@ -148,9 +148,9 @@
                                 "mandatory": true,
                                 "validation": {
                                   "messages": {
-                                    "MANDATORY": "Please provide a value, even if your value is 0",
-                                    "NOT_INTEGER": "Please only enter numbers into the field",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                    "MANDATORY": "Please provide a value, even if your value is 0.",
+                                    "NOT_INTEGER": "Please only enter numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                   }
                                 }
                               },
@@ -163,8 +163,8 @@
                                 "mandatory": false,
                                 "validation": {
                                   "messages": {
-                                    "NOT_INTEGER": "Please only enter numbers into the field",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                    "NOT_INTEGER": "Please only enter numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                   }
                                 }
                               },
@@ -177,8 +177,8 @@
                                 "mandatory": false,
                                 "validation": {
                                   "messages": {
-                                    "NOT_INTEGER": "Please only enter numbers into the field",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer"
+                                    "NOT_INTEGER": "Please only enter numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                   }
                                 }
                               }
