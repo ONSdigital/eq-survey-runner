@@ -59,7 +59,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(period_start_result.is_valid)
         self.assertEquals(len(period_start_result.errors), 1)
-        self.assertEquals(period_start_result.errors[0], 'Please answer before continuing')
+        self.assertEquals(period_start_result.errors[0], 'Please answer before continuing.')
         self.assertEquals(len(period_start_result.warnings), 0)
 
         # Period End Tests
@@ -67,7 +67,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(period_end_result.is_valid)
         self.assertEquals(len(period_end_result.errors), 1)
-        self.assertEquals(period_end_result.errors[0], 'Please answer before continuing')
+        self.assertEquals(period_end_result.errors[0], 'Please answer before continuing.')
         self.assertEquals(len(period_end_result.warnings), 0)
 
         # Total Retail Turnover Tests
@@ -75,7 +75,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(total_turnover_result.is_valid)
         self.assertEquals(len(total_turnover_result.errors), 1)
-        self.assertEquals(total_turnover_result.errors[0], 'Please provide a value, even if your value is 0')
+        self.assertEquals(total_turnover_result.errors[0], 'Please provide a value, even if your value is 0.')
         self.assertEquals(len(total_turnover_result.warnings), 0)
 
         # Internet Sales Tests
@@ -143,7 +143,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(total_turnover_result.is_valid)
         self.assertEquals(len(total_turnover_result.errors), 1)
-        self.assertEquals(total_turnover_result.errors[0], 'Please only enter numbers into the field')
+        self.assertEquals(total_turnover_result.errors[0], 'Please only enter numbers into the field.')
         self.assertEquals(len(total_turnover_result.warnings), 0)
 
 
@@ -162,7 +162,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(total_turnover_result.is_valid)
         self.assertEquals(len(total_turnover_result.errors), 1)
-        self.assertEquals(total_turnover_result.errors[0], 'The value cannot be negative. Please correct your answer')
+        self.assertEquals(total_turnover_result.errors[0], 'The value cannot be negative. Please correct your answer.')
         self.assertEquals(len(total_turnover_result.warnings), 0)
 
     def test_invalid_fuel_sales(self):
@@ -183,7 +183,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(fuel_sales_result.is_valid)
         self.assertEquals(len(fuel_sales_result.errors), 1)
-        self.assertEquals(fuel_sales_result.errors[0], 'Please only enter numbers into the field')
+        self.assertEquals(fuel_sales_result.errors[0], 'Please only enter numbers into the field.')
         self.assertEquals(len(fuel_sales_result.warnings), 0)
 
 
@@ -202,7 +202,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(fuel_sales_result.is_valid)
         self.assertEquals(len(fuel_sales_result.errors), 1)
-        self.assertEquals(fuel_sales_result.errors[0], 'The value cannot be negative. Please correct your answer')
+        self.assertEquals(fuel_sales_result.errors[0], 'The value cannot be negative. Please correct your answer.')
         self.assertEquals(len(fuel_sales_result.warnings), 0)
 
     def test_invalid_internet_sales(self):
@@ -223,7 +223,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(internet_sales_result.is_valid)
         self.assertEquals(len(internet_sales_result.errors), 1)
-        self.assertEquals(internet_sales_result.errors[0], 'The value cannot be negative. Please correct your answer')
+        self.assertEquals(internet_sales_result.errors[0], 'The value cannot be negative. Please correct your answer.')
         self.assertEquals(len(internet_sales_result.warnings), 0)
 
 
