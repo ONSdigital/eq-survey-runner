@@ -77,7 +77,13 @@ class AWSReverseProxied(object):
 
 def create_app(config_name):
     application = Flask(__name__, static_url_path='/s')
-    headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache'}
+    headers = {'Content-Type': 'application/json',
+               'Cache-Control': 'no-cache, no-store, must-revalidate',
+               'Pragma': 'no-cache',
+               'Strict-Transport-Security': 'max-age=31536000; includeSubdomains',
+               'X-Frame-Options': 'DENY',
+               'X-Xss-Protection': '1; mode=block',
+               'X-Content-Type-Options': 'nosniff'}
     application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
