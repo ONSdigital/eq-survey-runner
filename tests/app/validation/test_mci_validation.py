@@ -143,7 +143,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(total_turnover_result.is_valid)
         self.assertEquals(len(total_turnover_result.errors), 1)
-        self.assertEquals(total_turnover_result.errors[0], 'Please only enter numbers into the field.')
+        self.assertEquals(total_turnover_result.errors[0], 'Please only enter whole numbers into the field.')
         self.assertEquals(len(total_turnover_result.warnings), 0)
 
 
@@ -183,7 +183,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(fuel_sales_result.is_valid)
         self.assertEquals(len(fuel_sales_result.errors), 1)
-        self.assertEquals(fuel_sales_result.errors[0], 'Please only enter numbers into the field.')
+        self.assertEquals(fuel_sales_result.errors[0], 'Please only enter whole numbers into the field.')
         self.assertEquals(len(fuel_sales_result.warnings), 0)
 
 
