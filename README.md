@@ -152,6 +152,7 @@ EQ_LOG_LEVEL - The default logging level (defaults to 'INFO' for local developme
 EQ_SCHEMA_DIRECTORY - The directory that contains the schema files
 EQ_SESSION_TIMEOUT - The duration of the flask session, defaults to 30 minutes
 EQ_SECRET_KEY - The Flask secret key for signing cookies
+EQ_PROFILING - Enables or disables profiling (True/False) Default False/Disabled
 ```
 
 ## JWT Integration
@@ -181,7 +182,14 @@ There is a python script for generating tokens for use in development, to run:
 python token_generator.py
 ```
 
+## profiling
 
+Setting the `EQ_PROFILING` environment variable to `True` will enable profiling of the application.  Profiling information
+will be collected per-request in the `profiling` directory where it can be examined using the Pstats Interactive Browser.
+
+`$ python -m pstats <filename>`
+
+will load the file into the interactive browser where it can be sorted and queried as required.
 
 
 ## Alpha Survey Runner

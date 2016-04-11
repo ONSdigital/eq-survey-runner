@@ -20,6 +20,7 @@ def get_key(key_name):
     logger.debug("Key is %s", contents)
     return contents
 
+EQ_PROFILING = parse_mode(os.getenv('EQ_PROFILING', 'False'))
 
 EQ_RABBITMQ_URL = os.getenv('EQ_RABBITMQ_URL', 'amqp://localhost:5672/%2F')
 EQ_RABBITMQ_QUEUE_NAME = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'eq-submissions')

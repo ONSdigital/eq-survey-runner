@@ -17,6 +17,7 @@ from datetime import timedelta
 import watchtower
 import logging
 from logging.handlers import RotatingFileHandler
+import sys
 
 LOG_NAME = "eq.log"
 LOG_SIZE = 1048576
@@ -153,5 +154,22 @@ def create_app(config_name):
     # workaround flask crazy logging mechanism
     application.logger_name = "nowhere"
     application.logger
+
+    # Setup profiling
+    if settings.EQ_PROFILING:
+        from werkzeug.contrib.profiler import ProfilerMiddleware, MergeStream
+        import os
+
+        profiling_dir = "profiling"
+
+        f = open('profiler.log', 'w')
+        stream = MergeStream(sys.stdout, f)
+
+        if not os.path.exists(profiling_dir):
+            os.makedirs(profiling_dir)
+
+        application.config['PROFILE'] = True
+        application.wsgi_app = ProfilerMiddleware(application.wsgi_app, stream, profile_dir=profiling_dir)
+        application.debug = True
 
     return application
