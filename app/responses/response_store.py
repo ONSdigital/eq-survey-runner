@@ -17,6 +17,10 @@ class AbstractResponseStore(metaclass=ABCMeta):
     def get_responses(self):
         raise NotImplementedError()
 
+    @abstractmethod
+    def clear_responses(self):
+        raise NotImplementedError()
+
 
 class FlaskResponseStore(AbstractResponseStore):
 
@@ -40,3 +44,7 @@ class FlaskResponseStore(AbstractResponseStore):
         if RESPONSES not in session.keys():
             session[RESPONSES] = {}
         return session[RESPONSES]
+
+    def clear_responses(self):
+        if RESPONSES in session.keys():
+            del session[RESPONSES]

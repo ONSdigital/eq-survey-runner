@@ -46,6 +46,7 @@ def submission():
             submitted_at = submitter.send_responses(current_user, schema, responses)
             # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
             session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
+            response_store.clear_responses()
             return redirect_to_location("submitted")
         except SubmissionFailedException as e:
             return errors.internal_server_error(e)

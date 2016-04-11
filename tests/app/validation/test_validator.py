@@ -159,6 +159,9 @@ class ValidatorTest(unittest.TestCase):
             def clear(self):
                 self._responses.clear()
 
+            def clear_responses(self):
+                self.clear();
+
         return MockResponseStore()
 
     def _create_mock_validation_store(self):
