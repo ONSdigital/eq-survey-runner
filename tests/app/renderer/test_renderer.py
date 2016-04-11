@@ -176,3 +176,6 @@ class MockResponseStore(AbstractResponseStore):
 
     def clear(self):
         self._responses.clear()
+
+    def clear_responses(self):
+        self.clear();
