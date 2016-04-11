@@ -57,14 +57,31 @@ class TestHappyPath(unittest.TestCase):
         }
 
         # We submit the form
-        resp = self.client.post('/questionnaire', data=form_data, follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.client.post('/questionnaire', data=form_data, follow_redirects=False)
+        self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
+        self.assertRegexpMatches(resp.headers['Location'], '\/submission$')
+        resp = self.client.get('/submission', follow_redirects=True)
+        self.assertEquals(resp.status_code, 200)
+
         # We are on the review answers page
+        content = resp.get_data(True)
+        self.assertRegexpMatches(content, '>Your responses<')
+        self.assertRegexpMatches(content, '>Please check carefully before submission<')
+        self.assertRegexpMatches(content, '>Submit answers<')
+
         # We submit our answers
+        post_data = {}
+        resp = self.client.post('/submission', data=post_data, follow_redirects=False)
+        self.assertEquals(resp.status_code, 302)
+        self.assertRegexpMatches(resp.headers['Location'], '\/thank-you$')
+        resp = self.client.get('/thank-you', follow_redirects=True)
+        self.assertEquals(resp.status_code, 200)
+
         # We are on the thank you page
-        self.assertTrue(True)
+        content = resp.get_data(True)
+        self.assertRegexpMatches(content, '>Successfully Received<')
 
     def _create_token(self):
         user = USER
