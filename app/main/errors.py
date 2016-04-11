@@ -7,11 +7,18 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+@main_blueprint.app_errorhandler(200)
+def index(error=None):
+    if error:
+        logger.error(error)
+    return _render_error_page(200)
+
+
 @main_blueprint.app_errorhandler(400)
 def bad_request(error=None):
     if error:
         logger.error(error)
-    return _render_error_page(500)
+    return _render_error_page(400)
 
 
 @main_blueprint.app_errorhandler(401)

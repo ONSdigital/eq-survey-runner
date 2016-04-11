@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, abort, url_for, session
+from flask import redirect, request, abort, url_for, session
 from flask_login import current_user
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 @main_blueprint.route('/', methods=['GET'])
 def root():
-    return render_template('index.html')
+    return errors.index()
 
 
 @main_blueprint.route('/session', methods=['GET'])
