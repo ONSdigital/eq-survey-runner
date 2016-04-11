@@ -63,6 +63,17 @@ def load_user(request):
     return authenticator.check_session()
 
 
+class AWSReverseProxied(object):
+    def __init__(self, app):
+        self.app = app
+
+    def __call__(self, environ, start_response):
+        scheme = environ.get('HTTP_X_FORWARDED_PROTO', 'http')
+        if scheme:
+            environ['wsgi.url_scheme'] = scheme
+        return self.app(environ, start_response)
+
+
 def create_app(config_name):
     application = Flask(__name__, static_url_path='/s')
     headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache'}
@@ -76,6 +87,8 @@ def create_app(config_name):
 
     application.secret_key = settings.EQ_SECRET_KEY
     application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+
+    application.wsgi_app = AWSReverseProxied(application.wsgi_app)
 
     application.session_interface = SHA256SecureCookieSessionInterface()
 
