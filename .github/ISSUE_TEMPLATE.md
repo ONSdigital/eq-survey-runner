@@ -12,6 +12,7 @@
 - [ ] Firefox
 - [ ] Safari
 - [ ] MS Edge
+- [ ] Internet Explorer 11
 - [ ] Internet Explorer 10
 - [ ] Internet Explorer 9
 - [ ] Internet Explorer 8
@@ -25,3 +26,5 @@
 - [ ] OS X
 - [ ] iOS
 - [ ] Android
+
+### Screenshot
