@@ -2,7 +2,7 @@ from flask import Flask
 from flask.ext.babel import Babel
 from flask.ext.login import LoginManager
 from app.libs.utils import get_locale
-from healthcheck import HealthCheck, EnvironmentDump
+from healthcheck import HealthCheck
 from flaskext.markdown import Markdown
 from app.utilities.factory import factory
 from app.responses.response_store import FlaskResponseStore
@@ -83,7 +83,6 @@ def create_app(config_name):
     application.babel = Babel(application)
     application.babel.localeselector(get_locale)
     application.jinja_env.add_extension('jinja2.ext.i18n')
-    application.envdump = EnvironmentDump(application, '/environment')
 
     application.secret_key = settings.EQ_SECRET_KEY
     application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
