@@ -5,6 +5,7 @@ import logging
 from app.submitter.converter import SubmitterConstants
 from app.main.views.root import load_and_parse_schema
 from app.main import errors
+from app.main.views.root import redirect_to_location
 
 logger = logging.getLogger(__name__)
 
@@ -13,6 +14,10 @@ logger = logging.getLogger(__name__)
 @login_required
 def thank_you():
     logger.debug("Requesting thank you page")
+
+    # Redirect to questionnaire page if submission has been skipped
+    if SubmitterConstants.SUBMITTED_AT_KEY not in session:
+        return redirect_to_location('questionnaire')
 
     # load the schema
     schema = load_and_parse_schema()
