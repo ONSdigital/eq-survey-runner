@@ -55,7 +55,7 @@ export function copyScripts() {
 }
 
 export function lint() {
-  gulp.src([paths.scripts.input, `!${paths.scripts.dir}vendor/**/*`])
+  gulp.src([paths.scripts.input, `!${paths.scripts.dir}vendor/**/*`, `!${paths.scripts.dir}polyfills.js`])
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())

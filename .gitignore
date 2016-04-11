@@ -47,11 +47,11 @@ venv
 
 .DS_Store
 
-# node
 node_modules/
 static/
 tests/results
 tests/coverage
+tests/a11y
 
 app/styles/base/_sprite.scss
 

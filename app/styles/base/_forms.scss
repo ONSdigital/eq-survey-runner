@@ -1,9 +1,13 @@
-::-webkit-input-placeholder,
-:-moz-placeholder,
-::-moz-placeholder,
-:-ms-input-placeholder {
-  color: $color-placeholder;
-  font-weight: 700;
+input {
+  &::placeholder {
+    color: $color-placeholder;
+    font-weight: 400;
+  }
+  &:focus {
+    &::placeholder {
+      color: darken($color-placeholder, 20%);
+    }
+  }
 }
 
 fieldset,
@@ -20,6 +24,9 @@ fieldset {
 legend {
   float: left;
   clear: both;
+  @include lt-ie8 {
+    margin-left: -7px;
+  }
 }
 
 input {

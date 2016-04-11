@@ -1,0 +1,80 @@
+// Temporary solution
+
+.dl {
+  border: 1px solid $color-borders;
+  font-size: 0;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 3px;
+  @include fixed {
+    font-size: 0;
+  }
+  @include mq(s) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .dt, .dd {
+    padding: 0.5rem;
+    margin: 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid $color-borders;
+    &:nth-last-of-type(-n+1)  {
+      border-bottom: none;
+    }
+    &.fw {
+      display: block;
+      width: 100%;
+      flex: none;
+      border: none;
+      text-align: left;
+      border-bottom: 1px solid $color-borders;
+      &.dd {
+        border: none;
+      }
+      @include lt-ie8 {
+        width: 100%!important;
+      }
+    }
+    @include mq(s) {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+    @include fixed {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: initial;
+      min-height: 5.5rem;
+    }
+    @include lt-ie8 {
+      min-height: 3rem;
+    }
+  }
+  .dt {
+    width: 100%;
+    @include mq(s) {
+      width: 70%;
+      max-width: 100%;
+    }
+    @include lt-ie8 {
+      width: 60%;
+    }
+    // fixes IE10 wrapping problem
+    div {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  .dd {
+    background: #fbfbfb;
+    @include mq(s) {
+      width: 30%;
+      justify-content: center;
+      text-align: center;
+      border-left: 1px solid $color-borders;
+    }
+  }
+}

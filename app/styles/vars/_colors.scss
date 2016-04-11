@@ -25,6 +25,6 @@ $color-text: $color-black;
 $color-text-light: $color-very-dark-grey;
 $color-links: $color-blue;
 $color-borders: $color-grey;
-$color-placeholder: transparent;
+$color-placeholder: lighten($color-text-light, 40%);
 
 $color-errors: $color-red;

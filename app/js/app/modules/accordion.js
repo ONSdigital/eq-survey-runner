@@ -5,6 +5,7 @@ export const hasJs = 'has-js'
 export const classAccordion = 'js-accordion'
 export const classAccordionItem = 'js-accordion-item'
 export const classAccordionTrigger = 'js-accordion-trigger'
+export const classAccordionBody = 'js-accordion-body'
 export const classClosed = 'is-closed'
 
 export const attrHidden = 'aria-hidden'
@@ -21,7 +22,6 @@ export function applyAccordion(elAccordion) {
 
 export function applyAccordionItem(elAccordionItem) {
   elAccordionItem.classList.add(hasJs)
-
   closeAccordion(elAccordionItem)
 
   accordionItems.push(elAccordionItem)
@@ -42,12 +42,12 @@ function closeAllExcept(elAccordion) {
 }
 
 function closeAccordion(elAccordion) {
-  elAccordion.setAttribute(attrHidden, true)
+  elAccordion.getElementsByClassName(classAccordionBody)[0].setAttribute(attrHidden, true)
   elAccordion.classList.add(classClosed)
 }
 
 function openAccordion(elAccordion) {
-  elAccordion.setAttribute(attrHidden, false)
+  elAccordion.getElementsByClassName(classAccordionBody)[0].setAttribute(attrHidden, false)
   elAccordion.classList.remove(classClosed)
 }
 

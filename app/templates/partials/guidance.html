@@ -1,5 +1,5 @@
 <div class="guidance js-details" data-show-label="{{_('Show further guidance')}}" data-hide-label="{{_('Hide further guidance')}}">
-  <a class="guidance__link js-details-trigger" href="#guidance-{{response.id}}" id="guidance-{{response.id}}-body" aria-controls="guidance-{{response.id}}-body" aria-expanded="false"><span class="u-vh">Click here to </span><span class="js-details-label">Show further guidance</span></a>
+  <a class="guidance__link js-details-trigger" href="#guidance-{{response.id}}" id="guidance-{{response.id}}-trigger" aria-controls="guidance-{{response.id}}-body" aria-expanded="false"><span class="u-vh">Click here to </span><span class="js-details-label">Show further guidance</span></a>
   <div class="guidance__main js-details-body" id="guidance-{{response.id}}-body" aria-hidden="true">
     <div class="guidance__content">
       {{response.guidance|safe}}

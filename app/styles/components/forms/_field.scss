@@ -43,7 +43,12 @@
     @include fixed() {
       width: 4rem;
       float: left;
-      margin-top: 0;
+      margin-top: 40px;
+    }
+
+    @include lt-ie8 {
+      position: absolute;
+      margin-top: 20px;
     }
   }
   .subfields {
@@ -57,7 +62,6 @@
     @include fixed() {
       width: 26rem;
       float: right;
-      margin-top: -45px;
     }
   }
   .field {

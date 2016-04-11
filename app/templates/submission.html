@@ -25,7 +25,9 @@
             {% if response.type == 'DateRange' %}
 
               {% if loop.index == 2 %}
-                <dt class="dt">{{question.title}}</dt>
+                <dt class="dt"><div>
+                  {{question.title}}
+                </div></dt>
                 <dd class="dd">
                   {{question.responses[loop.index0 - 1].label}}: {{question.responses[loop.index0 - 1].value}}<br>
                   {{response.label}}: {{response.value}}
@@ -36,14 +38,18 @@
 
               {% set response_value = response.value|int|format_currency if response.value|length > 0 else 'N/A' %}
 
-              <dt class="dt">{{response.label}}</dt>
+              <dt class="dt"><div>
+                {{response.label}}
+              </div></dt>
               <dd class="dd">{{response_value}}</dd>
 
             {% else %}
 
               {% set response_value = response.value if response.value|length > 0 else 'N/A' %}
 
-              <dt class="dt fw">{{response.label}}</dt>
+              <dt class="dt fw"><div>
+                {{response.label}}
+              </div></dt>
               <dd class="dd fw">{{response_value}}</dd>
 
             {% endif %}
@@ -60,7 +66,7 @@
 
   </dl>
   <form action="" method="POST" novalidate>
-    <button class="btn u-mr-s" type="submit" name="action[save_continue]">Submit answers</button>
+    <button class="btn btn--secondary u-mr-s" type="submit" name="action[save_continue]">Submit answers</button>
     <a class="u-dib" href="/questionnaire">Change your answers</a>
   </form>
 </div>

@@ -4,6 +4,7 @@ $bp: 36em;
 
 .survey-header {
   display: block;
+  overflow: hidden;
   @include mq($bp) {
     display: flex;
     align-items: center;
@@ -28,5 +29,11 @@ $bp: 36em;
     float: right;
     flex: 1 1 19rem;
     margin-left: 2rem;
+  }
+
+  @include fixed {
+    width: 20em;
+    float: right;
+    position: relative;
   }
 }
