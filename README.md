@@ -193,7 +193,7 @@ will load the file into the interactive browser where it can be sorted and queri
 
 ## Updating / Installing dependencies
 
-We make use of python pip's support for only installing packages if their md5 hash matches a known good value.
+We make use of python pip's support for only installing packages if the SHA256 hash of the package matches a known good value.
 To add a new dependency, try installing the `hashin` python package that calculates a hash and adds it to the
 local `requirements.txt`. When installing the dependencies, always use `--require-hashes` to force this check
 on downloaded packages.
