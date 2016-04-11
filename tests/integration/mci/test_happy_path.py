@@ -83,7 +83,6 @@ class TestHappyPath(unittest.TestCase):
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '>Successfully Received<')
 
-
     def _create_token(self):
         user = USER
         exp_time = 3600                         # one hour from now
