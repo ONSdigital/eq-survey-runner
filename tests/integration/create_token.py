@@ -3,7 +3,6 @@ from app.dev_mode.views import generate_token, create_payload
 # Set up some constants
 USER = "mci-integration-test"
 EQ_ID = "1"
-FORM_TYPE = "0205"
 PERIOD_STR = "April 2016"
 PERIOD_ID = "201604"
 COLLECTION_EXERCISE_SID = "789"
