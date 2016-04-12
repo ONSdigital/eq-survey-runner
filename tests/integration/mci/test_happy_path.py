@@ -1,21 +1,6 @@
 import unittest
 from app import create_app
-
-from app.dev_mode.views import generate_token, create_payload
-
-# Set up some constants
-USER = "mci-integration-test"
-EQ_ID = "1"
-FORM_TYPE = "0205"
-PERIOD_STR = "April 2016"
-PERIOD_ID = "201604"
-COLLECTION_EXERCISE_SID = "789"
-RU_REF = "123456789012A"
-RU_NAME = "MCI Integration Testing"
-REF_P_START_DATE = "2016-04-01"
-REF_P_END_DATE = "2016-04-30"
-RETURN_BY = "2016-05-06"
-TRAD_AS = "Happy Path Testing"
+from tests.integration.create_token import create_token
 
 
 class TestHappyPath(unittest.TestCase):
@@ -23,9 +8,15 @@ class TestHappyPath(unittest.TestCase):
         self.application = create_app('development')
         self.client = self.application.test_client()
 
-    def test_happy_path(self):
+    def test_happy_path_203(self):
+        self.happy_path('0203')
+
+    def test_happy_path_205(self):
+        self.happy_path('0205')
+
+    def happy_path(self,form_type_id):
         # Get a token
-        token = self._create_token()
+        token = create_token(form_type_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
@@ -82,24 +73,3 @@ class TestHappyPath(unittest.TestCase):
         # We are on the thank you page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '>Successfully Received<')
-
-    def _create_token(self):
-        user = USER
-        exp_time = 3600                         # one hour from now
-        eq_id = EQ_ID
-        period_str = PERIOD_STR
-        period_id = PERIOD_ID
-        form_type = FORM_TYPE
-        collection_exercise_sid = COLLECTION_EXERCISE_SID
-        ref_p_start_date = REF_P_START_DATE
-        ref_p_end_date = REF_P_END_DATE
-        ru_ref = RU_REF
-        ru_name = RU_NAME
-        trad_as = TRAD_AS
-        return_by = RETURN_BY
-
-        payload = create_payload(user, exp_time, eq_id, period_str, period_id,
-                                 form_type, collection_exercise_sid, ref_p_start_date,
-                                 ref_p_end_date, ru_ref, ru_name, trad_as, return_by)
-
-        return generate_token(payload)

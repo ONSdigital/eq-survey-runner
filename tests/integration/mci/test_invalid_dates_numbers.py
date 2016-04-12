@@ -9,13 +9,13 @@ class TestInvalidDateNumber(unittest.TestCase):
         self.application = create_app('development')
         self.client = self.application.test_client()
 
-    def test_empty_submission_203(self):
-        self.empty_submission('0203')
+    def test_invalid_date_number_203(self):
+        self.invalid_date_number('0203')
 
-    def test_empty_submission_205(self):
-        self.empty_submission('0205')
+    def test_invalid_date_number_205(self):
+        self.invalid_date_number('0205')
 
-    def empty_submission(self, form_type_id):
+    def invalid_date_number(self, form_type_id):
         # Get a token
         token = create_token(form_type_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
@@ -36,23 +36,41 @@ class TestInvalidDateNumber(unittest.TestCase):
 
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "",
+            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
+            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
             "6fd644b0-798e-4a58-a393-a438b32fe637-year": "",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "",
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": ""
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000"
         }
 
-        # We submit the form without data
+        # We submit the form with an invalid date
         resp = self.client.post('/questionnaire', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "The date entered is not valid.  Please correct your answer.")
-        self.assertRegexpMatches(content, "Please provide a value, even if your value is 0.")
+
+        form_data = {
+            # Start Date
+            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
+            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
+            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            # End Date
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            # Total Turnover
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "rubbish"
+        }
+
+        # We submit the form without a valid turnover value
+        resp = self.client.post('/questionnaire', data=form_data, follow_redirects=True)
+        self.assertEquals(resp.status_code, 200)
+        content = resp.get_data(True)
+        self.assertRegexpMatches(content, "Please only enter whole numbers into the field.")
 
         # We try to access the submission page without correction
         resp = self.client.get('/submission', follow_redirects=True)
