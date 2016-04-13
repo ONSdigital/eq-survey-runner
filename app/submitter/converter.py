@@ -1,7 +1,7 @@
-import datetime
 import logging
 import json
 from app import settings
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -93,8 +93,7 @@ class Converter(object):
                       SubmitterConstants.PERIOD_KEY: user.get_period_id()}
 
         paradata = {}
-
-        submitted_at = datetime.datetime.now()
+        submitted_at = datetime.now(settings.EUROPE_LONDON)
 
         response = {SubmitterConstants.TYPE_KEY: SubmitterConstants.TYPE,
                     SubmitterConstants.VERSION_KEY: SubmitterConstants.VERSION,
