@@ -19,21 +19,12 @@ import logging
 from logging.handlers import RotatingFileHandler
 import sys
 
-
-SECURE_HEADERS = {
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
-    'Pragma': 'no-cache',
-    'Strict-Transport-Security': 'max-age=31536000; includeSubdomains',
-    'X-Frame-Options': 'DENY',
-    'X-Xss-Protection': '1; mode=block',
-    'X-Content-Type-Options': 'nosniff'
-}
-
 LOG_NAME = "eq.log"
 LOG_SIZE = 1048576
 LOG_NUMBER = 10
 
 logger = logging.getLogger(__name__)
+
 
 # setup the factory
 logger.debug("Registering factory classes")
@@ -86,26 +77,13 @@ class AWSReverseProxied(object):
 
 def create_app(config_name):
     application = Flask(__name__, static_url_path='/s')
-    headers = {'Content-Type': 'application/json',
-               'Cache-Control': 'no-cache, no-store, must-revalidate',
-               'Pragma': 'no-cache',
-               'Strict-Transport-Security': 'max-age=31536000; includeSubdomains',
-               'X-Frame-Options': 'DENY',
-               'X-Xss-Protection': '1; mode=block',
-               'X-Content-Type-Options': 'nosniff'}
+    headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache'}
     application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
     application.babel = Babel(application)
     application.babel.localeselector(get_locale)
     application.jinja_env.add_extension('jinja2.ext.i18n')
-
-    @application.after_request
-    def apply_caching(response):
-        for k, v in SECURE_HEADERS.items():
-            response.headers[k] = v
-
-        return response
 
     application.secret_key = settings.EQ_SECRET_KEY
     application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
@@ -129,9 +107,6 @@ def create_app(config_name):
         # import and register the dev mode blueprint
         from .dev_mode import dev_mode_blueprint
         application.register_blueprint(dev_mode_blueprint)
-    else:
-        # Not in dev mode, so use secure_session_cookies
-        application.config['SESSION_COOKIE_SECURE'] = True
 
     from app.jinja_filters import blueprint as filter_blueprint
     application.register_blueprint(filter_blueprint)
