@@ -153,6 +153,7 @@ EQ_SCHEMA_DIRECTORY - The directory that contains the schema files
 EQ_SESSION_TIMEOUT - The duration of the flask session, defaults to 30 minutes
 EQ_SECRET_KEY - The Flask secret key for signing cookies
 EQ_PROFILING - Enables or disables profiling (True/False) Default False/Disabled
+EQ_UA_ID - The Google Analytics ID
 ```
 
 ## JWT Integration
