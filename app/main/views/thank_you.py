@@ -33,4 +33,5 @@ def thank_you():
         "period_str": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref(),
         "submitted_at": submitted_at
-    })
+    },
+    bar_title="Monthly Business Survey - Retail Sales Index")

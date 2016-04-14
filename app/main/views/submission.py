@@ -56,5 +56,6 @@ def submission():
     return render_template('submission.html', questionnaire=render_data, data={
         "survey_code": schema.survey_id,
         "period_str": current_user.get_period_str(),
-        "respondent_id": current_user.get_ru_ref(),
-    })
+        "respondent_id": current_user.get_ru_ref()
+    },
+    bar_title="Monthly Business Survey - Retail Sales Index")

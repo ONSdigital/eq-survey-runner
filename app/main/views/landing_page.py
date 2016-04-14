@@ -39,4 +39,5 @@ def landing_page():
         "return_by": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_return_by(), "%Y-%m-%d")),
         "start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_ref_p_start_date(), "%Y-%m-%d")),
         "end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(current_user.get_ref_p_end_date(), "%Y-%m-%d"))
-    })
+    },
+    bar_title="Monthly Business Survey - Retail Sales Index")
