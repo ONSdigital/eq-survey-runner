@@ -19,6 +19,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import sys
 from flask_analytics import Analytics
+from app.analytics.custom_google_analytics import CustomGoogleAnalytics
 
 
 SECURE_HEADERS = {
@@ -201,6 +202,7 @@ def create_app(config_name):
 
     # Setup analytics
     if settings.EQ_UA_ID:
+        Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
         Analytics(application)
         application.config['ANALYTICS']['GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
