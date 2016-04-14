@@ -37,12 +37,12 @@ EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
 EQ_UA_ID = os.getenv('EQ_UA_ID', '')
 
 
-EQ_SPLUNK_LOGGING = parse_mode(os.getenv('EQ_SPLUNK_LOGGING', 'True'))
-EQ_SPLUNK_HOST = os.getenv('EQ_SPLUNK_HOST', '')
-EQ_SPLUNK_PORT = os.getenv('EQ_SPLUNK_PORT', '')
-EQ_SPLUNK_USERNAME = os.getenv('EQ_SPLUNK_USERNAME', '')
-EQ_SPLUNK_PASSWORD = os.getenv('EQ_SPLUNK_PASSWORD', '')
-EQ_SPLUNK_INDEX = os.getenv('EQ_SPLUNK_INDEX', '')
+EQ_SPLUNK_LOGGING = parse_mode(os.getenv('EQ_SPLUNK_LOGGING', 'False'))
+EQ_SPLUNK_HOST = os.getenv('EQ_SPLUNK_HOST')
+EQ_SPLUNK_PORT = os.getenv('EQ_SPLUNK_PORT')
+EQ_SPLUNK_USERNAME = os.getenv('EQ_SPLUNK_USERNAME')
+EQ_SPLUNK_PASSWORD = os.getenv('EQ_SPLUNK_PASSWORD')
+EQ_SPLUNK_INDEX = os.getenv('EQ_SPLUNK_INDEX')
 
 # keys for the RRM token exchange
 EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY', "./jwt-test-keys/rrm-public.pem"))
