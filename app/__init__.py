@@ -19,6 +19,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import sys
 from flask_analytics import Analytics
+from splunk_handler import SplunkHandler
 from app.analytics.custom_google_analytics import CustomGoogleAnalytics
 
 
@@ -174,6 +175,15 @@ def create_app(config_name):
     # setup file logging
     rotating_log_file = RotatingFileHandler(LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
     logging.getLogger().addHandler(rotating_log_file)
+
+    # setup splunk logging
+    if settings.EQ_SPLUNK_LOGGING:
+        splunk_handler = SplunkHandler(host=settings.EQ_SPLUNK_HOST,
+                                       port=settings.EQ_SPLUNK_PORT,
+                                       username=settings.EQ_SPLUNK_USERNAME,
+                                       password=settings.EQ_SPLUNK_PASSWORD,
+                                       index=settings.EQ_SPLUNK_INDEX)
+        logging.getLogger().addHandler(splunk_handler)
 
     application.logger.debug("Initializing login manager for application")
     login_manager.init_app(application)
