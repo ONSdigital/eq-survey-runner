@@ -200,7 +200,8 @@ def create_app(config_name):
         application.debug = True
 
     # Setup analytics
-    Analytics(application)
-    application.config['ANALYTICS']['GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
+    if settings.EQ_UA_ID:
+        Analytics(application)
+        application.config['ANALYTICS']['GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
     return application
