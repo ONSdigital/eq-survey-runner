@@ -22,6 +22,7 @@ class TestHappyPath(unittest.TestCase):
 
         # We are on the landing page
         content = resp.get_data(True)
+        self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '>Get Started<')
 
         # We proceed to the questionnaire
@@ -30,6 +31,7 @@ class TestHappyPath(unittest.TestCase):
 
         # We are in the Questionnaire
         content = resp.get_data(True)
+        self.assertRegexpMatches(content, '<title>Survey</title>')
         self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
         self.assertRegexpMatches(content, ">Save &amp; Continue<")
 
@@ -58,6 +60,7 @@ class TestHappyPath(unittest.TestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
+        self.assertRegexpMatches(content, '<title>Summary</title>')
         self.assertRegexpMatches(content, '>Your responses<')
         self.assertRegexpMatches(content, '>Please check carefully before submission<')
         self.assertRegexpMatches(content, '>Submit answers<')
@@ -72,4 +75,5 @@ class TestHappyPath(unittest.TestCase):
 
         # We are on the thank you page
         content = resp.get_data(True)
+        self.assertRegexpMatches(content, '<title>Thank You</title>')
         self.assertRegexpMatches(content, '>Successfully Received<')
