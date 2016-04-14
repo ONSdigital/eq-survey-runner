@@ -18,6 +18,8 @@ import watchtower
 import logging
 from logging.handlers import RotatingFileHandler
 import sys
+from flask_analytics import Analytics
+
 
 SECURE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -196,5 +198,10 @@ def create_app(config_name):
         application.config['PROFILE'] = True
         application.wsgi_app = ProfilerMiddleware(application.wsgi_app, stream, profile_dir=profiling_dir)
         application.debug = True
+
+    # Setup analytics
+    if settings.EQ_UA_ID:
+        Analytics(application)
+        application.config['ANALYTICS']['GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
     return application

@@ -24,3 +24,4 @@ verlib==0.1
 watchtower==0.1.6
 beautifulsoup4==4.4.1
 ua-parser==0.7.0
+Flask-Analytics==0.5.5
