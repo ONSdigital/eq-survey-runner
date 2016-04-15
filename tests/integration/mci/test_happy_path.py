@@ -24,7 +24,7 @@ class TestHappyPath(unittest.TestCase):
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '>Get Started<')
-        self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
+        self.assertRegexpMatches(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         resp = self.client.get('/questionnaire', follow_redirects=True)
@@ -79,5 +79,5 @@ class TestHappyPath(unittest.TestCase):
         # We are on the thank you page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '<title>Thank You</title>')
-        self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
+        self.assertRegexpMatches(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
         self.assertRegexpMatches(content, '>Successfully Received<')
