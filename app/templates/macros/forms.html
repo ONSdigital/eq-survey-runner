@@ -46,6 +46,8 @@
 
   {% set maxChars = "2000" %}
 
+  {% set response_helper = response.id ~ "-helper" %}
+
   {% set attr = {
     "class": "input input--textarea js-charlimit-input",
     "name": response.id,
@@ -53,13 +55,15 @@
     "placeholder": response.placeholder,
     "rows": "8",
     "cols": "60",
-    "data-maxlength": maxChars
+    "data-maxlength": maxChars,
+    "aria-describedby": response_helper
   } %}
+
 
   <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>
 
   {% if maxChars %}
-    <div class="input__helper">
+    <div class="input__helper" id="{{response_helper}}">
       <span class="js-charlimit-label" data-remaining-msg="{{_('Characters remaining')}}">{{_('Maximum characters')}}</span>: <span class="js-charlimit-msg">{{maxChars}}</span>
     </div>
   {% endif %}
