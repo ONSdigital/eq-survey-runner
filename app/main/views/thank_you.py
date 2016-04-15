@@ -32,5 +32,6 @@ def thank_you():
         "survey_code": schema.survey_id,
         "period_str": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref(),
-        "submitted_at": submitted_at
+        "submitted_at": submitted_at,
+        "title": schema.title
     }, bar_title=schema.title)
