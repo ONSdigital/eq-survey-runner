@@ -182,7 +182,8 @@ def create_app(config_name):
                                        port=settings.EQ_SPLUNK_PORT,
                                        username=settings.EQ_SPLUNK_USERNAME,
                                        password=settings.EQ_SPLUNK_PASSWORD,
-                                       index=settings.EQ_SPLUNK_INDEX)
+                                       index=settings.EQ_SPLUNK_INDEX,
+                                       verify=False)
         logging.getLogger().addHandler(splunk_handler)
 
     application.logger.debug("Initializing login manager for application")
