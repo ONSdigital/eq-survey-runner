@@ -3,13 +3,15 @@ import forEach from 'lodash/forEach'
 
 export const inputClass = 'js-charlimit-input'
 export const msgClass = 'js-charlimit-msg'
-export const maxLengthAttr = 'data-maxlength'
+export const msgLabel = 'js-charlimit-label'
+export const attrMaxLength = 'data-maxlength'
+export const attrRemainingMsg = 'data-remaining-msg'
 
 export default function charLimit() {
   const nodeList = document.getElementsByClassName(inputClass)
 
   forEach(nodeList, (el) => {
-    const maxLength = el.getAttribute(maxLengthAttr)
+    const maxLength = el.getAttribute(attrMaxLength)
     if (typeof maxLength !== 'undefined') {
       imposeCharLimit(el, maxLength)
     }
@@ -31,13 +33,15 @@ export function updateMsg(el, length, maxLength) {
 }
 
 export function imposeCharLimit(el, maxLength) {
-  const msgEl = el.parentElement.querySelector(`.${msgClass}`)
+  const elMsg = el.parentElement.querySelector(`.${msgClass}`)
+  const elLabel = el.parentElement.getElementsByClassName(msgLabel)[0]
+  elLabel.innerHTML = elLabel.getAttribute(attrRemainingMsg)
 
-  updateMsg(msgEl, maxLength, el.value.length)
+  updateMsg(elMsg, maxLength, el.value.length)
 
   el.addEventListener('input', (e) => {
     el.value = applyCharLimit(el.value, maxLength)
-    updateMsg(msgEl, maxLength, el.value.length)
+    updateMsg(elMsg, maxLength, el.value.length)
   })
 }
 
