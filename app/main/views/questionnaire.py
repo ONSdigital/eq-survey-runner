@@ -35,4 +35,4 @@ def questionnaire():
         "period_str": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref()
     },
-    bar_title="Monthly Business Survey - Retail Sales Index")
+    bar_title=questionnaire_manager.get_schema().title)

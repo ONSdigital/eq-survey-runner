@@ -34,4 +34,4 @@ def thank_you():
         "respondent_id": current_user.get_ru_ref(),
         "submitted_at": submitted_at
     },
-    bar_title="Monthly Business Survey - Retail Sales Index")
+    bar_title=schema.title)
