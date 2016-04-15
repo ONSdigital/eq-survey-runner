@@ -60,7 +60,7 @@
 
   {% if maxChars %}
     <div class="input__helper">
-      {{_('Characters remaining')}}: <span class="js-charlimit-msg">{{maxChars}}</span>
+      <span class="js-charlimit-label" data-remaining-msg="{{_('Characters remaining')}}">{{_('Maximum characters')}}</span>: <span class="js-charlimit-msg">{{maxChars}}</span>
     </div>
   {% endif %}
 {% endmacro %}
