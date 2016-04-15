@@ -4,7 +4,7 @@
 <!--[if IE 8]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en-gb" dir="ltr" class="no-js"> <!--<![endif]-->
   <head>
-    {% block head %}
+    {%- block head %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>{% block page_title %}{{ _('eQ - Survey Runner') }}{% endblock page_title %}</title>
@@ -13,19 +13,27 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700,' rel='stylesheet' type='text/css'>
     <!--[if lt IE 9]>
-
+      <script src="{{ url_for('static', filename='js/vendor/html5shiv.min.js') }}"></script>
     <![endif]-->
-    <script src="{{ url_for('static', filename='js/vendor/html5shiv.min.js') }}"></script>
-    {% block styles %}
+    <!--[if lte IE 9]>
+      <script src="{{ url_for('static', filename='js/polyfills.js') }}"></script>
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+      <script>document.documentElement.className = document.documentElement.className.replace('no-js','has-js')</script>
+    <!--<![endif]-->
+    {%- block styles %}
     <!--[if (gt IE 9) | (IEMobile)]><!-->
-      <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
-      <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('has-js');</script>
+      {%- if request.args.get('fixed') == 'true' %}
+        <link href="{{ url_for('static', filename='css/fixed.css') }}" rel="stylesheet">
+      {%- else %}
+        <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+      {%- endif %}
     <!--<![endif]-->
     <!--[if (lte IE 9) & (!IEMobile)]>
       <link href="{{ url_for('static', filename='css/fixed.css') }}" rel="stylesheet">
     <![endif]-->
-    {% endblock styles %}
-    {% endblock head %}
+    {% endblock styles -%}
+    {% endblock head -%}
     {{ analytics }}
   </head>
   <body>
@@ -34,7 +42,6 @@
 
     {% block content %}{% endblock %}
 
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.3.14/polyfill.js" charset="utf-8"></script> -->
     <!-- jQuery 1 -->
   	<!--[if lt IE 9]>
   	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>

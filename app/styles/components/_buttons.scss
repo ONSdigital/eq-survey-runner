@@ -12,7 +12,6 @@
   text-decoration: none;
   &:focus,
   &:hover {
-    // outline: none;
     text-decoration: none;
     color: $color;
     background-color: darken($bg, 5%);

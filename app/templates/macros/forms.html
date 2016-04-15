@@ -29,7 +29,7 @@
     "name": response.id,
     "id": response.id,
     "placeholder": response.placeholder,
-    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-link"
+    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-trigger"
   } %}
 
   {% if input_has_special_type %}
@@ -37,7 +37,7 @@
       <input {{attr|xmlattr}}>
     </div>
   {% else %}
-      <input {{attr|xmlattr}}>
+    <input {{attr|xmlattr}}>
   {% endif %}
 
 {% endmacro -%}
@@ -53,8 +53,7 @@
     "placeholder": response.placeholder,
     "rows": "8",
     "cols": "60",
-    "data-maxlength": maxChars,
-    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id
+    "data-maxlength": maxChars
   } %}
 
   <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>

@@ -14,7 +14,7 @@
 
 {% endif %}
 
-<form action="" class="form" aria-role="form" method="POST" novalidate>
+<form action="" class="form" role="form" method="POST" novalidate>
 
     {% for group in questionnaire.data.groups %}
 
@@ -38,7 +38,7 @@
 
     {% endfor %}
 
-  <button class="btn" type="submit" name="action[save_continue]">Save &amp; Continue</button>
+  <button class="btn btn--secondary" type="submit" name="action[save_continue]">Save &amp; Continue</button>
 
 </form>
 

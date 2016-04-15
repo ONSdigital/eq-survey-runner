@@ -17,6 +17,7 @@ import rename from 'gulp-rename'
 import size from 'gulp-size'
 import stylelint from 'stylelint'
 import reporter from 'postcss-reporter'
+import inlineblock from 'postcss-inline-block'
 
 import {paths} from './paths'
 import browserSync from './bs'
@@ -59,11 +60,12 @@ export function styles() {
     .pipe(flatten())
     .pipe(postcss([
       autoprefixer({
-        browsers: ['last 2 versions', 'Explorer >= 10', 'Android >= 4.1', 'Safari >= 7', 'iOS >= 7']
+        browsers: ['last 2 versions', 'Explorer >= 8', 'Android >= 4.1', 'Safari >= 7', 'iOS >= 7']
       }),
       pixrem({
         replace: false
       }),
+      inlineblock(),
       pseudoelements(),
       reporter({ clearMessages: true })
     ]))

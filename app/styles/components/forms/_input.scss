@@ -22,11 +22,13 @@ $input-padding: 0.6rem;
 .input--select {
   appearance: none;
   padding: $input-padding 2rem $input-padding 0.5rem;
-  background: $color-white url("/s/img/icons/icons--chevron-down.svg") no-repeat center right 10px;
+  background: $color-white url("/s/img/icons/icons--chevron-down.svg") no-repeat center right 6px;
   background-size: 1.5rem;
   line-height: 1.4;
   width: 100%;
-
+  &::-ms-expand {
+    display: none;
+  }
   @include fixed() {
     padding-right: 0.5rem;
   }
@@ -85,21 +87,23 @@ $input-padding: 0.6rem;
 .input-type {
   display: flex;
   position: relative;
+  align-items: center;
   .input {
     border-radius: 0 3px 3px 0;
+    flex: 1;
+    line-height: normal;
   }
   &::before {
     content: attr(data-type);
-    background: $color-lighter-grey;
+    background-color: $color-lighter-grey;
     border: 1px solid $color-borders;
     border-right: none;
     border-radius: $input-radius 0 0 $input-radius;
-    padding: 0.5rem 0.9rem;
-    line-height: normal;
+    padding: $input-padding 0.9rem;
     font-weight: 600;
     font-size: 1rem;
     text-align: center;
-
+    line-height: normal;
     @include fixed() {
       position: absolute;
       left: 0;
