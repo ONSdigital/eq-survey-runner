@@ -15,7 +15,7 @@
 
   <div class="u-m-m u-ta-c">
     <div class="u-fw-b">Your system information</div>
-    <div>{{ua.user_agent.family}} {{ua.user_agent.minor}}.{{ua.user_agent.major}}.{{ua.user_agent.patch}}</div>
-    <div>{{ua.os.family}} {{ua.os.minor}}.{{ua.os.major}}.{{ua.os.patch}}</div>
+    <div>{{ua.user_agent.family}} ({{ua.user_agent.major or '0'}}.{{ua.user_agent.minor or '0'}}.{{ua.user_agent.patch or '0'}})</div>
+    <div>{{ua.os.family}} ({{ua.os.major or '0'}}.{{ua.os.minor or '0'}}.{{ua.os.patch or '0'}})</div>
   </div>
 {% endblock %}
