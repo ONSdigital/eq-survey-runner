@@ -36,7 +36,18 @@
 
             {% elif response.type == 'Currency' %}
 
-              {% set response_value = response.value|int|format_currency if response.value|length > 0 else 'N/A' %}
+              {% set response_value = response.value|int|format_currency if response.value else 'N/A' %}
+
+              {{response.value}}
+
+              <dt class="dt"><div>
+                {{response.label}}
+              </div></dt>
+              <dd class="dd">{{response_value}}</dd>
+
+            {% elif response.type == 'Integer' %}
+
+              {% set response_value = response.value if response.value else 'N/A' %}
 
               <dt class="dt"><div>
                 {{response.label}}
@@ -45,7 +56,7 @@
 
             {% else %}
 
-              {% set response_value = response.value if response.value|length > 0 else 'N/A' %}
+              {% set response_value = response.value if response.value else 'N/A' %}
 
               <dt class="dt fw"><div>
                 {{response.label}}
