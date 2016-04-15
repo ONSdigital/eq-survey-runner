@@ -57,5 +57,4 @@ def submission():
         "survey_code": schema.survey_id,
         "period_str": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref()
-    },
-    bar_title=schema.title)
+    }, bar_title=schema.title)

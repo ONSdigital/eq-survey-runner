@@ -30,9 +30,9 @@ def questionnaire():
 
     render_data = questionnaire_manager.get_rendering_context()
 
+    schema = questionnaire_manager.get_schema()
     return render_template('questionnaire.html', questionnaire=render_data, data={
-        "survey_code": questionnaire_manager.get_schema().survey_id,
+        "survey_code": schema.survey_id,
         "period_str": current_user.get_period_str(),
         "respondent_id": current_user.get_ru_ref()
-    },
-    bar_title=questionnaire_manager.get_schema().title)
+    }, bar_title=schema.title)
