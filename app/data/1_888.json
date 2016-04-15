@@ -171,7 +171,7 @@
                                 {
                                   "id": "a5c43b5b-f6e9-412f-834d-2d6cc83b5436",
                                   "q_code": "06",
-                                  "label": "How many people usually live your household?",
+                                  "label": "How many people usually live in your household?",
                                   "guidance": "",
                                   "type": "Integer",
                                   "mandatory":true,
