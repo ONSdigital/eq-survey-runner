@@ -1,16 +1,8 @@
 <div class="alert alert--error">
   <div class="alert__header">
-    <h2 class="alert__title">This page has {{all_errors|length}} errors</h2>
+    <h2 class="alert__title">{{alert_title|safe}}</h2>
   </div>
   <div class="alert__body">
-    <p>These <strong>must be corrected</strong> to continue.</p>
-    <ul class="list list--bare">
-      {% for item_id, errors in all_errors %}
-        {% set loop_index = loop.index %}
-        {% for error in errors %}
-        <li>{{loop_index}}) {{ error }} <a href="#response-{{item_id}}">{{_('Go to this error')}}</a></li>
-        {% endfor %}
-      {% endfor %}
-    </ul>
+    {{alert_body|safe}}
   </div>
 </div>

@@ -1,0 +1,13 @@
+{% import 'macros/patterns.html' as patterns %}
+
+<div class="ptn-section">
+<p>A question is composed of a number of components:
+<ul>
+  <li>Title</li>
+  <li>Sub-title (optional)</li>
+  <li>Description (optional)</li>
+  <li>Response</li>
+  <li>Guidance (optional)</li>
+</ul>
+{{patterns.question(data.questions.example)}}
+</div>
