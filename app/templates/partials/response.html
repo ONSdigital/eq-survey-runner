@@ -2,11 +2,9 @@
   {% set is_valid = response.is_valid or response.is_valid is not defined %}
 
   {%- set response_guidance %}
-    <div class="response__guidance">
-      {% if response.guidance %}
-        {% include 'partials/guidance.html' %}
-      {% endif %}
-    </div>
+    {% if response.guidance %}    
+      {% include 'partials/guidance.html' %}
+    {% endif %}
   {% endset -%}
 
   {%- set response_fields %}
