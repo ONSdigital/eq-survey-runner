@@ -1,26 +1,35 @@
+<div class="response" id="response-{{response.id}}">
+  {% set is_valid = response.is_valid or response.is_valid is not defined %}
 
-{% set is_valid = response.is_valid or response.is_valid is not defined %}
-
-<div class="question__response response {{'has-error' if not is_valid}}" id="response-{{response.id}}">
-
-  {% if not is_valid %}
-    {% if response.errors %}
-    <ul class="response__errors">
-      {% for error in response.errors %}
-      <li class='response__error'>{{ error }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  {% endif %}
-
-  <div class="response__field field field--{{response.type|lower}}">
-    {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
-  </div>
-
-  <div class="response__guidance">
-    {% if response.guidance %}
+  {%- set response_guidance %}
+    {% if response.guidance %}    
       {% include 'partials/guidance.html' %}
     {% endif %}
-  </div>
+  {% endset -%}
 
+  {%- set response_fields %}
+    <div class="field field--{{response.type|lower}}">
+      {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
+    </div>
+  {% endset -%}
+
+  {% if not is_valid %}
+    {% with %}
+      {% set alert_title %}
+        {% if response.errors %}
+        <ul class="list list--bare">
+          {% for error in response.errors %}
+          <li class="list__item">{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      {% endset %}
+      {% set alert_body = response_fields %}
+      {% include 'partials/alert.html' %}
+      {{response_guidance|safe}}
+    {% endwith %}
+  {% else %}
+    {{response_fields|safe}}
+    {{response_guidance|safe}}
+  {% endif %}
 </div>

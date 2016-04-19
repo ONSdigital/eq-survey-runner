@@ -14,6 +14,13 @@
   {{code(markup)}}
 {% endmacro %}
 
+{% macro example(markup) %}
+  <div class="ptn-example">
+    {{markup|prettify|safe}}
+  </div>
+  {{code(markup)}}
+{% endmacro %}
+
 {% macro question(data) %}
   {% set question = data %}
   <div class="ptn-example">

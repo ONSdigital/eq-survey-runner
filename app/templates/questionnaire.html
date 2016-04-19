@@ -9,8 +9,26 @@
 {% set all_errors = questionnaire.data.errors.items() %}
 
 {% if all_errors %}
+  {% with %}
 
-{% include 'partials/alert.html' %}
+    {% set alert_title %}<h2 class="alert__title">This page has {{all_errors|length}} errors</h2> {% endset %}
+    {% set alert_body %}
+
+    <p>These <strong>must be corrected</strong> to continue.</p>
+    <ul class="list list--bare">
+      {% for item_id, errors in all_errors %}
+        {% set loop_index = loop.index %}
+        {% for error in errors %}
+        <li class="list__item">{{loop_index}}) {{ error }} <a href="#response-{{item_id}}">{{_('Go to this error')}}</a></li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+
+    {% endset %}
+
+    <div class="u-mb-l">{% include 'partials/alert.html' %}</div>
+
+  {% endwith %}
 
 {% endif %}
 

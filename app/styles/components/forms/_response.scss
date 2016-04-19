@@ -1,31 +1,14 @@
 .response {
   padding: 0;
-}
-
-.response__field {
-  border: 1px solid transparent;
-  border-radius: 0 0 3px 3px;
-  // padding: 0 1rem;
-  .response.has-error & {
-    padding: 1rem;
-    border-color: $color-red;
-    background: tint($color-red, 90%);
+  margin-bottom: 1rem;
+  @include mq(m) {
+    margin-bottom: 2rem;
+  }
+  &:last-of-type {
+    margin-bottom: 0;
   }
 }
 
-.response__errors {
-  background-color: $color-red;
-  color: $color-white;
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  border-radius: 3px 3px 0 0;
-}
-
-.response__error {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: $color-white;
-  margin: 0;
-  padding: 0;
+.response__guidance {
+  display: block;
 }

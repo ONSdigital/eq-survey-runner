@@ -1,0 +1,37 @@
+{% import 'macros/patterns.html' as patterns %}
+
+<div class="ptn-section">
+  <p>An alert is designed to highlight important information to the user, be it a success, warning or success message.
+  {% with %}
+    {% set alert_title = "This is an error alert. " %}
+    {% set alert_body = "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." %}
+    {% set code %}
+        {% include 'partials/alert.html' %}
+    {% endset %}
+
+    {{patterns.example(code)}}
+  {% endwith %}
+
+  {% with %}
+    {% set alert_type = "warn" %}
+    {% set alert_title = "This is a warning alert." %}
+    {% set alert_body = "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." %}
+    {% set code %}
+      {% include 'partials/alert.html' %}
+    {% endset %}
+
+    {{patterns.example(code)}}
+  {% endwith %}
+
+  {% with %}
+    {% set alert_type = "success" %}
+    {% set alert_title = "This is a success alert." %}
+    {% set alert_body = "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." %}
+    {% set code %}
+      {% include 'partials/alert.html' %}
+    {% endset %}
+
+    {{patterns.example(code)}}
+  {% endwith %}
+
+</div>
