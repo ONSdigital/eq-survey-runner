@@ -9,7 +9,6 @@
     {{patterns.grid(j)}}
   {% endfor %}
 
-
 </div>
 
 <div class="ptn-section">
@@ -20,10 +19,10 @@
   {% set code %}
   <div class="container">
     <div class="grid">
-      <div class="grid__col m-6">
+      <div class="grid__col col-6@m">
         <p>This will be 6 columns wide.</p>
       </div>
-      <div class="grid__col m-6">
+      <div class="grid__col col-6@m">
         <p>This will be 6 columns wide.</p>
       </div>
     </div>
@@ -95,22 +94,22 @@
 
   <div class="ptn-grid">
     <div class="grid">
-      <div class="grid__col m-3">
+      <div class="grid__col col-3@m">
         <div class="ptn-col">
           <p>
             This column is 3 cols wide.
           </p>
         </div>
       </div>
-      <div class="grid__col m-9">
+      <div class="grid__col col-9@m">
         <div class="ptn-col">
           <p>This is a parent column, 9 wide.</p>
           <div class="ptn-grid">
             <div class="grid">
-              <div class="grid__col m-6">
+              <div class="grid__col col-6@m">
                 <div class="ptn-col">This will be 6 columns wide.</div>
               </div>
-              <div class="grid__col m-6">
+              <div class="grid__col col-6@m">
                 <div class="ptn-col">This will be 6 columns wide.</div>
               </div>
             </div>
@@ -122,16 +121,16 @@
 
   {% set nesting %}
   <div class="grid">
-    <div class="grid__col m-3">
+    <div class="grid__col col-3@m">
       <p>This column is 3 cols wide.</p>
     </div>
-    <div class="grid__col m-9">
+    <div class="grid__col col-9@m">
       <p>This is a parent column, 9 wide.</p>
       <div class="grid">
-        <div class="grid__col m-6">
+        <div class="grid__col col-6@m">
           This will be 6 columns wide.
         </div>
-        <div class="grid__col m-6">
+        <div class="grid__col col-6@m">
           This will be 6 columns wide.
         </div>
       </div>
@@ -150,10 +149,10 @@
 
   {% set reversible %}
   <div class="grid  grid--reverse">
-    <div class="grid__col m-4">
+    <div class="grid__col col-4@m">
       <p>1st in the DOM</p>
     </div>
-    <div class="grid__col m-8">
+    <div class="grid__col col-8@m">
       <p>2nd in the DOM</p>
     </div>
   </div>
@@ -170,13 +169,13 @@
   {% set pushpull %}
 
   <div class="grid">
-    <div class="grid__col m-3 m-push-3 l-nopush">
+    <div class="grid__col col-3@m push-3@m nopush@l">
       <p>Column</p>
     </div>
-    <div class="grid__col m-3 m-push-3">
+    <div class="grid__col col-3@m push-3@m">
       <p>Column</p>
     </div>
-    <div class="grid__col m-3 m-push-3">
+    <div class="grid__col col-3@m push-3@m">
       <p>Column</p>
     </div>
   </div>

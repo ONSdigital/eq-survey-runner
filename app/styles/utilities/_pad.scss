@@ -14,7 +14,7 @@ $padding: (
 
 @each $key, $value in $sizes {
   @each $abbr, $dec in $margins {
-    @include suffix(u-#{$abbr}-#{$key}) {
+    @include bp-suffix(u-#{$abbr}-#{$key}) {
       #{$dec}: #{$value};
     }
   }

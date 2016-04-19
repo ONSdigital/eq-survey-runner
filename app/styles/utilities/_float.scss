@@ -29,6 +29,6 @@
   float: right;
 }
 
-@include suffix(u-fr) {
+@include bp-suffix(u-fr) {
   float: right;
 }

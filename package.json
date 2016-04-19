@@ -108,7 +108,7 @@
     "watchify": "~3.7.0"
   },
   "dependencies": {
-    "eq-sass": "^1.0.7",
+    "eq-sass": "^2.0.0",
     "gfm.css": "^1.1.1",
     "jquery": "./app/js/vendor/jquery-shim",
     "lodash": "^4.6.1",
