@@ -19,7 +19,7 @@
 
     <div class="container">
       <div class="grid">
-        <div class="grid__col m-3">
+        <div class="grid__col col-3@m">
           <div class="ptn-sidebar">
             <div class="ptn-nav" id="ptn-nav">
               {% for key, section in sections.items() %}
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="grid__col m-9">
+        <div class="grid__col col-9@m">
           <div class="ptn-main">
             <h1 class="ptn-main-title">{{title|replace('-', ' ')|title}}</h1>
             {% include pattern_include %}

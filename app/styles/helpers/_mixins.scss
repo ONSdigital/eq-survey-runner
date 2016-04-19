@@ -72,20 +72,6 @@
   // no-op
 }
 
-@mixin suffix($class) {
-  .#{$class} {
-    @content;
-  }
-
-  @each $bp, $size in $grid-bp {
-    @include mq($bp) {
-      .#{$class}\@#{$bp} {
-        @content;
-      }
-    }
-  }
-}
-
 @mixin lt-ie9() {
   .lt-ie9 & {
     @content;

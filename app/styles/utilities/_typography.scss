@@ -7,7 +7,7 @@ $sizes: (
 );
 
 @each $key, $value in $sizes {
-  @include suffix(u-fs-#{$key}) {
+  @include bp-suffix(u-fs-#{$key}) {
     font-size: #{$value};
   }
 }
@@ -24,7 +24,7 @@ $sizes: (
   font-style: italic;
 }
 
-@include suffix(u-ta-c) {
+@include bp-suffix(u-ta-c) {
   text-align: center;
 }
 
