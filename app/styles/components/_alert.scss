@@ -23,16 +23,18 @@
   padding: 1rem;
 }
 
-.alert--error {
-  border: 1px solid $color-red;
-  .alert__header {
-    background: $color-red;
-  }
-  .alert__body {
-    background: tint($color-red, 90%);
+@mixin alert_type($name, $color) {
+  .alert--#{$name} {
+    border: 1px solid $color;
+    .alert__header {
+      background: $color;
+    }
+    .alert__body {
+      background: tint($color, 90%);
+    }
   }
 }
 
-.alert--warning {
-
-}
+@include alert_type(error, $color-red);
+@include alert_type(warn, $color-amber);
+@include alert_type(success, $color-green-dark);

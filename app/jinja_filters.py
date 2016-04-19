@@ -17,7 +17,7 @@ blueprint.add_app_template_filter(format_currency)
 @blueprint.app_template_filter()
 def prettify(context, code):
     soup = BeautifulSoup(code)
-    return soup.prettify()
+    return soup.html.body.contents[0].prettify()
 
 blueprint.add_app_template_filter(prettify)
 

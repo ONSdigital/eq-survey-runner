@@ -1,4 +1,4 @@
-.tag {
+.badge {
   display: inline-block;
   vertical-align: middle;
   padding: 0 0.6rem;
@@ -8,6 +8,6 @@
   border-radius: 3px;
 }
 
-.tag--amber {
+.badge--amber {
   background-color: $color-amber;
 }

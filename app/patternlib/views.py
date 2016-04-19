@@ -1,4 +1,4 @@
-from flask import render_template,  redirect, json
+from flask import render_template, redirect, json
 from . import patternlib_blueprint
 import os
 
