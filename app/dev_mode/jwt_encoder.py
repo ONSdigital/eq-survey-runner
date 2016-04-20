@@ -2,6 +2,7 @@ from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from app import settings
+from app.utilities import strings
 from app.submitter.encrypter import Encrypter
 import jwt
 import os
@@ -12,9 +13,17 @@ KID = 'EDCRRM'
 
 class Encoder (Encrypter):
     def __init__(self):
-        private_key = self._to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY)
-        public_key = self._to_bytes(settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY)
-        self.private_key = serialization.load_pem_private_key(private_key, password=b'digitaleq', backend=backend)
+        if settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY is None:
+            raise Exception("EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY is None (check EQ_DEV_MODE?)")
+        if settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD is None:
+            raise Exception("EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD is None (check EQ_DEV_MODE?)")
+        if settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY is None:
+            raise Exception("EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY is None (check EQ_DEV_MODE?)")
+
+        private_key = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY)
+        private_key_password = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD)
+        public_key = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY)
+        self.private_key = serialization.load_pem_private_key(private_key, password=private_key_password, backend=backend)
         self.public_key = serialization.load_pem_public_key(public_key, backend=backend)
 
         # first generate a random key

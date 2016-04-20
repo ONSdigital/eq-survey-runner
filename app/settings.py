@@ -47,22 +47,34 @@ EQ_SPLUNK_USERNAME = os.getenv('EQ_SPLUNK_USERNAME')
 EQ_SPLUNK_PASSWORD = os.getenv('EQ_SPLUNK_PASSWORD')
 EQ_SPLUNK_INDEX = os.getenv('EQ_SPLUNK_INDEX')
 
-# keys for the RRM token exchange
-EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY', "./jwt-test-keys/rrm-public.pem"))
-EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY', "./jwt-test-keys/sr-private.pem"))
-EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = os.getenv("EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD", "digitaleq")
-
-# keys for encryption of submissions
-EQ_SUBMISSION_SDX_PUBLIC_KEY = get_key(os.getenv('EQ_SUBMISSION_SDX_PUBLIC_KEY', "./jwt-test-keys/sdx-public.pem"))
-EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY = get_key(os.getenv('EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY', "./jwt-test-keys/sr-private-encryption.pem"))
-EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD = os.getenv("EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD", "digitaleq")
-
-# keys for the dev mode
 EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
-EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY',
-                                                           "./jwt-test-keys/rrm-private.pem" if EQ_DEV_MODE else None))
-EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY',
-                                                         "./jwt-test-keys/sr-public.pem" if EQ_DEV_MODE else None))
+
+_KEYS = {
+    'EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY':    "./jwt-test-keys/rrm-public.pem",
+    'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY':    "./jwt-test-keys/sr-private.pem",
+    'EQ_SUBMISSION_SDX_PUBLIC_KEY':             "./jwt-test-keys/sdx-public.pem",
+    'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY':     "./jwt-test-keys/sr-private-encryption.pem",
+
+    # Only used in DEV MODE:
+    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY':   "./jwt-test-keys/rrm-private.pem",
+    'EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY':     "./jwt-test-keys/sr-public.pem"
+}
+
+_PASSWORDS = {
+    'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD':   "digitaleq",
+    'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD':    "digitaleq",
+    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD':  "digitaleq"
+}
+
+# Load keys and passwords, but only allow developer mode defaults if EQ_DEV_MODE
+# has been enabled explicitly...
+for key_name, dev_location in _KEYS.items():
+    path = os.getenv(key_name, dev_location if EQ_DEV_MODE else None)
+    vars()[key_name] = get_key(path)  # assigns attribute to this module
+
+for password_name, dev_default in _PASSWORDS.items():
+    password = os.getenv(password_name, dev_default if EQ_DEV_MODE else None)
+    vars()[password_name] = password  # assigns attribute to this module
 
 
 # non configurable settings

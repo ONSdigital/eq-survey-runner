@@ -8,6 +8,8 @@ from cryptography.exceptions import InvalidTag, InternalError
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app import settings
+from app.utilities import strings
+
 import base64
 import jwt
 import logging
@@ -26,8 +28,8 @@ class Decoder (object):
                 raise OSError('KEYMAT not configured correctly.')
         else:
             # oddly the python cryptography library needs these as bytes string
-            rrm_public_key_as_bytes = self.__to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY)
-            sr_private_key_as_bytes = self.__to_bytes(settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY)
+            rrm_public_key_as_bytes = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY)
+            sr_private_key_as_bytes = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY)
 
             self.rrm_public_key = serialization.load_pem_public_key(
                 rrm_public_key_as_bytes,
@@ -42,8 +44,8 @@ class Decoder (object):
     def decode_jwt_token(self, token):
         try:
             if token:
-                logging.debug("Decoding JWT " + self.__to_str(token))
-                self._check_payload(self.__to_str(token))
+                logging.debug("Decoding JWT " + strings.to_str(token))
+                self._check_payload(strings.to_str(token))
                 token = jwt.decode(token, verify=False)
                 return token
             else:
@@ -56,7 +58,7 @@ class Decoder (object):
     def decode_signed_jwt_token(self, signed_token):
         try:
             if signed_token:
-                logging.debug("Decoding signed JWT " + self.__to_str(signed_token))
+                logging.debug("Decoding signed JWT " + strings.to_str(signed_token))
                 self._check_token(signed_token)
                 token = jwt.decode(signed_token, self.rrm_public_key, algorithms=['RS256'],
                                    leeway=settings.EQ_JWT_LEEWAY_IN_SECONDS)
@@ -72,7 +74,7 @@ class Decoder (object):
             raise InvalidTokenException(repr(e))
 
     def _check_token(self, token):
-        token_as_str = self.__to_str(token)
+        token_as_str = strings.to_str(token)
         if token_as_str.count(".") != 2:
             raise InvalidTokenException("Invalid Token")
         self._check_headers(token_as_str)
@@ -108,7 +110,7 @@ class Decoder (object):
             raise InvalidTokenException("Invalid Key Identifier")
 
     def _check_for_duplicates(self, headers):
-        headers_as_str = self.__to_str(headers)
+        headers_as_str = strings.to_str(headers)
         json.loads(headers_as_str, object_pairs_hook=self._raise_exception_on_duplicates)
 
     def _raise_exception_on_duplicates(self, ordered_pairs):
@@ -142,24 +144,10 @@ class Decoder (object):
         except ValueError as e:
             raise InvalidTokenException(repr(e))
 
-    def __to_str(self, bytes_or_str):
-        if isinstance(bytes_or_str, bytes):
-            value = bytes_or_str.decode()
-        else:
-            value = bytes_or_str
-        return value
-
-    def __to_bytes(self, bytes_or_str):
-        if isinstance(bytes_or_str, str):
-            value = bytes_or_str.encode()
-        else:
-            value = bytes_or_str
-        return value
-
     def decrypt_jwt_token(self, token):
         try:
             if token:
-                logging.debug("Decrypting signed JWT " + self.__to_str(token))
+                logging.debug("Decrypting signed JWT " + strings.to_str(token))
                 tokens = token.split('.')
                 if len(tokens) != 5:
                     raise InvalidTokenException("Incorrect size")
