@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash -e
 
 mv Keys $Keys
 
 echo $Password | gpg -o secure-data.tar --passphrase-fd 0 --batch $Keys
 tar xvf secure-data.tar
 
-mkdir -p key_mat 
+mkdir -p key_mat
 
 cp secure-data/rrm-public.pem key_mat
 cp secure-data/sr-private.pem key_mat
@@ -30,14 +30,14 @@ option_settings:
     value: ${EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY}
 
   - option_name: EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD
-    value: ${EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD}  
- 
+    value: ${EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD}
+
   - option_name: EQ_SUBMISSION_SDX_PUBLIC_KEY
     value: ${EQ_SUBMISSION_SDX_PUBLIC_KEY}
 
   - option_name: EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY
     value: ${EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY}
- 
+
   - option_name: EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD
     value: ${EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD}
 
