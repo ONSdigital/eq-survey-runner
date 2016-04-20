@@ -42,7 +42,8 @@ def login():
         form_type = user.get_form_type()
         logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
         if not eq_id or not form_type:
-            logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
+            logger.error('Invalid Token')
+            logger.info("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
             abort(404)
 
         # load the schema

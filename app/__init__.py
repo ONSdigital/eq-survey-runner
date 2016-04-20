@@ -53,7 +53,7 @@ def rabbitmq_available():
         logging.info('RabbitMQ Healthtest OK')
         return True, "rabbit mq ok"
     else:
-        logging.error('Cannot connect to RabbbitMQ')
+        logging.error('Cannot connect to Message Server')
         return False, "rabbit mq unavailable"
 
 
