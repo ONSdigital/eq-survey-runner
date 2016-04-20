@@ -8,5 +8,5 @@ rm -rf secure-data
 shred -u -v $Keys
 rm -f $Keys
 
-shred -u -v key-mat/*
+shred -u -v key_mat/*
 rm -rf secure-data

@@ -10,15 +10,18 @@ def parse_mode(str):
 
 
 def get_key(key_name):
-    """
-    TODO remove these once the encrypted key story is finished
-    :return:
-    """
-    logger.debug("Opening file %", key_name)
-    key = open(key_name, 'r')
-    contents = key.read()
-    logger.debug("Key is %s", contents)
-    return contents
+    if key_name:
+        """
+        TODO remove these once the encrypted key story is finished
+        :return:
+        """
+        logger.debug("Opening file %", key_name)
+        key = open(key_name, 'r')
+        contents = key.read()
+        logger.debug("Key is %s", contents)
+        return contents
+    else:
+        return None
 
 EQ_PROFILING = parse_mode(os.getenv('EQ_PROFILING', 'False'))
 
@@ -58,7 +61,7 @@ EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD = os.getenv("EQ_SUBMISSION_SR_PRIV
 EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
 EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY',
                                                            "./jwt-test-keys/rrm-private.pem" if EQ_DEV_MODE else None))
-EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY',
+EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY',
                                                          "./jwt-test-keys/sr-public.pem" if EQ_DEV_MODE else None))
 
 
