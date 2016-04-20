@@ -56,8 +56,11 @@ EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD = os.getenv("EQ_SUBMISSION_SR_PRIV
 
 # keys for the dev mode
 EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
-EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY = get_key(os.getenv('EQ_RRM_PRIVATE_KEY', "./jwt-test-keys/rrm-private.pem"))
-EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY = get_key(os.getenv('EQ_SR_PUBLIC_KEY', "./jwt-test-keys/sr-public.pem"))
+EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY',
+                                                           "./jwt-test-keys/rrm-private.pem" if EQ_DEV_MODE else None))
+EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY = get_key(os.getenv('EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY',
+                                                         "./jwt-test-keys/sr-public.pem" if EQ_DEV_MODE else None))
+
 
 # non configurable settings
 
