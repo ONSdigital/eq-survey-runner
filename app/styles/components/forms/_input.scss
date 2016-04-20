@@ -92,9 +92,16 @@ $input-padding: 0.6rem;
     border-radius: 0 3px 3px 0;
     flex: 1;
     line-height: normal;
+    position: relative;
+    z-index: 1;
+    @include fixed {
+      margin-left: 2.5rem;
+      border-left: 0;
+    }
   }
   &::before {
     content: attr(data-type);
+    display: inline-block;
     background-color: $color-lighter-grey;
     border: 1px solid $color-borders;
     border-right: none;
@@ -104,13 +111,13 @@ $input-padding: 0.6rem;
     font-size: 1rem;
     text-align: center;
     line-height: normal;
-    @include fixed() {
+    @include fixed {
       position: absolute;
       left: 0;
-      width: 3rem;
+      width: 2.5rem;
       height: 100%;
-      z-index: 2;
       border: 1px solid $color-borders;
+      z-index: 2;
     }
   }
 }
