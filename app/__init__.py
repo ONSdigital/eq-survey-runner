@@ -155,8 +155,6 @@ def create_app(config_name):
     # set the logger for this application and stop using flasks broken solution
     application._logger = logging.getLogger(__name__)
 
-    logging.getLogger('pika.connection').setLevel(logging.CRITICAL)
-
     if settings.EQ_CLOUDWATCH_LOGGING:
         # filter out botocore messages, we don't wish to log these
         class NoBotocoreFilter(logging.Filter):

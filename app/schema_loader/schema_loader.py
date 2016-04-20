@@ -20,8 +20,7 @@ def load_schema(eq_id, form_type):
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, eq_id + "_" + form_type + ".json"), encoding="utf8")
         return json.load(schema_file)
     except FileNotFoundError:
-        logging.error('File Not Found')
-        logging.info("No file exists for eq-id %s and form type %s")
+        logging.error("No file exists for eq-id %s and form type %s")
         return None
 
 
