@@ -66,7 +66,8 @@ class SchemaParser(AbstractSchemaParser):
             questionnaire.description = ParserUtils.get_required_string(self._schema, "description")
 
         except Exception as e:
-            logging.error(e)
+            logging.error('Error parsing schema')
+            logging.info(e)
             raise e
 
         if questionnaire:
@@ -111,7 +112,8 @@ class SchemaParser(AbstractSchemaParser):
             questionnaire.register(group)
 
         except Exception as e:
-            logging.error(e)
+            logging.error('Error parsing schema')
+            logging.info(e)
             raise e
 
         if "blocks" in schema.keys():
@@ -142,7 +144,8 @@ class SchemaParser(AbstractSchemaParser):
             questionnaire.register(block)
 
         except Exception as e:
-            logging.error(e)
+            logging.error('Error parsing schema')
+            logging.info(e)
             raise e
 
         if "sections" in schema.keys():
@@ -173,7 +176,8 @@ class SchemaParser(AbstractSchemaParser):
             questionnaire.register(section)
 
         except Exception as e:
-            logging.error(e)
+            logging.error('Error parsing schema')
+            logging.info(e)
             raise e
 
         if 'questions' in schema.keys():
@@ -205,7 +209,8 @@ class SchemaParser(AbstractSchemaParser):
             questionnaire.register(question)
 
         except Exception as e:
-            logging.error(e)
+            logging.error('Error parsing schema')
+            logging.info(e)
             raise e
 
         if 'responses' in schema.keys():
@@ -247,7 +252,8 @@ class SchemaParser(AbstractSchemaParser):
             questionnaire.register(response)
 
         except Exception as e:
-            logging.error(e)
+            logging.error('Error parsing schema')
+            logging.info(e)
             raise e
 
         return response
@@ -285,7 +291,8 @@ class SchemaParser(AbstractSchemaParser):
             properties.max_length = ParserUtils.get_optional_string(schema, 'max_length')
 
         except Exception as e:
-            logging.error(e)
+            logging.error('Error parsing schema')
+            logging.info(e)
             raise e
 
         return properties

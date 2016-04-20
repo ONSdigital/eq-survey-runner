@@ -70,7 +70,8 @@ class RabbitMQSubmitter(Submitter):
         try:
             self.connection = pika.BlockingConnection(pika.URLParameters(settings.EQ_RABBITMQ_URL))
         except pika.exceptions.AMQPError as e:
-            logger.error("Unable to open Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
+            logger.error('Unable to connect to Message Server')
+            logger.info("Unable to open Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
             raise e
 
     def _disconnect(self):
@@ -97,10 +98,12 @@ class RabbitMQSubmitter(Submitter):
             if published:
                 logger.info("Sent to rabbit mq " + message_as_string)
             else:
-                logger.error("Unable to send to rabbit mq " + message_as_string)
+                logger.error('Unable to send message')
+                logger.info("Unable to send to rabbit mq " + message_as_string)
             return published
         except pika.exceptions.AMQPError as e:
-            logger.error("Unable to send " + message_as_string + " to " + settings.EQ_RABBITMQ_URL + " " + repr(e))
+            logger.error('Unable to send message')
+            logger.info("Unable to send " + message_as_string + " to " + settings.EQ_RABBITMQ_URL + " " + repr(e))
             return False
         finally:
             self._disconnect()

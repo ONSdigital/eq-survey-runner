@@ -51,8 +51,8 @@ def extract_eq_id_and_form_type(schema_name):
         form_type = split_rest_of_name[0]
         logger.debug("form_type: " + form_type)
         return eq_id, form_type
-    except Exception as e:
-        logger.exception("Invalid schema file %s", schema_name, e)
+    except Exception:
+        logger.error("Invalid schema file %s", schema_name)
         abort(404)
 
 
