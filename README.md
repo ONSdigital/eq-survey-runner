@@ -51,12 +51,15 @@ npm run compile
 
 There are a few additional npm tasks:
 
-Command            | Task
--------------------|----------------------
-`npm run compile`  | Build the assets (js, css, img) into `/app/static`
-`npm run dev`      | Build assets and watch for changes. Runs Browsersync.
-`npm run test`     | Runs the test suite through Karma.
-`npm run lint`     | Lints the JS, reporting errors/warnings.
+Command                         | Task
+--------------------------------|----------------------
+`npm run compile`               | Build the assets (js, css, img) into `/app/static`
+`npm run dev`                   | Build assets and watch for changes. Runs Browsersync.
+`npm run test`                  | Runs the unit tests through Karma and the functional tests through a local Selenium instance
+`npm run test_unit`             | Watches the unit tests via Karma
+`npm run test_functional`       | Runs the functional tests through a local Selenium instance
+`npm run test_functional_sauce` | Runs the functional tests through Sauce Labs
+`npm run lint`                  | Lints the JS, reporting errors/warnings.
 
 ---
 

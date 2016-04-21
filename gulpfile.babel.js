@@ -4,7 +4,7 @@ import plumber from 'gulp-plumber'
 
 import {paths} from './gulp/paths'
 import {copyScripts, bundle, lint as lintScripts} from './gulp/scripts'
-import {tests} from './gulp/tests'
+import {unitTests, functionalTests, startSeleniumServer, seleniumServer} from './gulp/tests'
 import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
@@ -39,8 +39,32 @@ gulp.task('clean:test', () => {
   ])
 })
 
-gulp.task('test:scripts', (done) => {
-  tests(done, false)
+gulp.task('test:scripts', ['test:scripts:unit', 'test:scripts:functional'])
+
+gulp.task('test:scripts:functional:local', ['test:scripts:selenium'], (done) => {
+  process.env.SAUCELABS = 'false'
+  functionalTests(done)
+})
+
+gulp.task('test:scripts:functional', (done) => {
+  process.env.SAUCELABS = 'true'
+  functionalTests(done)
+})
+
+gulp.task('test:scripts:selenium', (done) => {
+  startSeleniumServer(done)
+})
+
+gulp.task('test:scripts:unit', (done) => {
+  unitTests(done, false)
+})
+
+gulp.task('test:scripts:unit:watch', (done) => {
+  unitTests(done, true)
+})
+
+gulp.task('test:a11ym', (done) => {
+  a11ym(done)
 })
 
 // Spin up livereload server and listen for file changes

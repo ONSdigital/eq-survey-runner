@@ -18,8 +18,10 @@
     "compile": "gulp compile",
     "lint": "gulp lint",
     "test": "gulp test",
-    "a11y": "gulp test:a11ym",
-    "karma": "./node_modules/karma/bin/karma start tests/karma/karma.conf.js"
+    "test_unit": "gulp test:scripts:unit:watch",
+    "test_functional": "gulp test:scripts:functional",
+    "test_functional_local": "gulp test:scripts:functional:local",
+    "a11y": "gulp test:a11ym"
   },
   "browserify": {
     "transform": [
@@ -35,6 +37,7 @@
     "babel-eslint": "^4.1.6",
     "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-2": "^6.5.0",
     "babel-register": "^6.5.1",
     "babelify": "~7.2.0",
     "browser-sync": "^2.11.0",
@@ -75,6 +78,7 @@
     "gulp-tap": "^0.1.3",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "~3.0.7",
+    "gulp-webdriver": "^2.0.1",
     "jshint-stylish": "^2.0.1",
     "karma": "=0.13.18",
     "karma-browserify": "^5.0.3",
@@ -96,6 +100,10 @@
     "phantomjs-prebuilt": "^2.1.7",
     "postcss-reporter": "^1.3.1",
     "postcss-scss": "^0.1.3",
+    "promise": "^7.1.1",
+    "sauce-connect-launcher": "^0.14.0",
+    "selenium-standalone": "^5.1.0",
+    "selenium-webdriver": "^2.53.1",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0",
     "socket.io": "1.3.7",
@@ -105,7 +113,12 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "~1.1.0",
     "vinyl-transform": "^1.0.0",
-    "watchify": "~3.7.0"
+    "watchify": "~3.7.0",
+    "wdio-dot-reporter": "0.0.5",
+    "wdio-mocha-framework": "^0.2.12",
+    "wdio-sauce-service": "^0.2.2",
+    "wdio-selenium-standalone-service": "0.0.1",
+    "webdriverio": "^4.0.5"
   },
   "dependencies": {
     "eq-sass": "^2.0.0",

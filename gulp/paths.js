@@ -38,8 +38,10 @@ export const paths = {
   },
   test: {
     input: appPath + '/js/**/*.js',
-    karma: 'tests/karma/karma.conf.js',
-    spec: 'tests/karma/spec/**/*.js',
+    karmaConf: 'tests/karma/karma.conf.js',
+    karmaSpec: 'tests/karma/spec/**/*.js',
+    wdioConf: 'tests/wdio/wdio.conf.js',
+    wdioSpec: 'tests/wdio/spec/**/*.js',
     coverage: 'tests/karma/coverage/',
     results: 'tests/karma/results/'
   }

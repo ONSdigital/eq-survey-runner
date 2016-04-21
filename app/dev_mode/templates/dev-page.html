@@ -11,9 +11,9 @@
         </p>
         <p>
           Schemas:
-          <select name="schema">
-            {{available_schemas}} {% for id in available_schemas %}
-            <option name="{id}}" value="{{id}}">{{id}}</option>
+          <select name="schema" class="qa-select-schema">
+            {% for id in available_schemas %}
+            <option name="{{id}}" value="{{id}}">{{id}}</option>
             {% endfor %}
           </select>
         </p>
@@ -57,7 +57,7 @@
           TRAD AS:
           <input name="{{UserConstants.TRAD_AS}}" type="text" value="Apple">
         </p>
-        <input type="submit" value="submit" />
+        <input type="submit" value="submit"/>
       </form>
     </div>
   </div>
