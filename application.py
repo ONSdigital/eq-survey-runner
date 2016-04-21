@@ -7,7 +7,6 @@ from flask.ext.script import Manager, Server
 application = create_app(
     os.getenv('EQ_ENVIRONMENT') or 'development'
 )
-application.debug = True
 
 manager = Manager(application)
 port = int(os.environ.get('PORT', 5000))
