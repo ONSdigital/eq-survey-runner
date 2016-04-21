@@ -133,6 +133,8 @@ def create_app(config_name):
         # import and register the dev mode blueprint
         from .dev_mode import dev_mode_blueprint
         application.register_blueprint(dev_mode_blueprint)
+
+        application.debug = True
     else:
         # Not in dev mode, so use secure_session_cookies
         application.config['SESSION_COOKIE_SECURE'] = True
