@@ -9,7 +9,7 @@ cp secure-data/sdc-user-authentication-signing-rrm-public-key.pem key_mat
 cp secure-data/sdc-user-authentication-encryption-sr-private-key.pem key_mat
 cp secure-data/sdc-submission-encryption-sdx-public-key.pem key_mat
 cp secure-data/sdc-submission-signing-sr-private-key.pem key_mat
-cp secure-data/sdc-user-authentication-signing-rrm-private-key key_mat
+cp secure-data/sdc-user-authentication-signing-rrm-private-key.pem key_mat
 cp secure-data/sdc-user-authentication-encryption-sr-public-key.pem key_mat
 
 EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY="./key_mat/sdc-user-authentication-signing-rrm-public-key.pem"
