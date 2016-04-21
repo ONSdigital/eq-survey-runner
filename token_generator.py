@@ -7,8 +7,9 @@ from app.dev_mode.jwt_encoder import Encoder
 
 
 def create_payload(user):
+    EXPIRE_AFTER_SECONDS = 12 * 60 * 60
     iat = time.time()
-    exp = time.time() + (5 * 60 * 60)
+    exp = time.time() + EXPIRE_AFTER_SECONDS
     return {
             UserConstants.USER_ID: user,
             'iat': str(int(iat)),

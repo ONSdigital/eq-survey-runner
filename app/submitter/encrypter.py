@@ -4,6 +4,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from app import settings
+from app.utilities import strings
 
 import jwt
 import os
@@ -14,10 +15,10 @@ KID = 'EDCSR'
 
 class Encrypter (object):
     def __init__(self):
-        private_key_bytes = self._to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY)
-        public_key_bytes = self._to_bytes(settings.EQ_SUBMISSION_SDX_PUBLIC_KEY)
+        private_key_bytes = strings.to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY)
+        public_key_bytes = strings.to_bytes(settings.EQ_SUBMISSION_SDX_PUBLIC_KEY)
         self.private_key = serialization.load_pem_private_key(private_key_bytes,
-                                                              password=self._to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD),
+                                                              password=strings.to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD),
                                                               backend=backend)
 
         self.public_key = serialization.load_pem_public_key(public_key_bytes, backend=backend)
@@ -27,20 +28,6 @@ class Encrypter (object):
 
         # now generate a random IV
         self.iv = os.urandom(12)  # 96 bit random IV
-
-    def _to_bytes(self, bytes_or_str):
-        if isinstance(bytes_or_str, str):
-            value = bytes_or_str.encode()
-        else:
-            value = bytes_or_str
-        return value
-
-    def _to_str(self, bytes_or_str):
-        if isinstance(bytes_or_str, bytes):
-            value = bytes_or_str.decode()
-        else:
-            value = bytes_or_str
-        return value
 
     def _jwe_protected_header(self):
         return self._base_64_encode(b'{"alg":"RSA-OAEP","enc":"A256GCM"}')
@@ -80,4 +67,4 @@ class Encrypter (object):
         # assemble result
         jwe = jwe_protected_header + b"." + encrypted_key + b"." + self._encode_iv(self.iv) + b"." + encoded_ciphertext + b"." + encoded_tag
 
-        return self._to_str(jwe)
+        return strings.to_str(jwe)
