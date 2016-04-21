@@ -50,14 +50,14 @@ EQ_SPLUNK_INDEX = os.getenv('EQ_SPLUNK_INDEX')
 EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
 
 _KEYS = {
-    'EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY':    "./jwt-test-keys/rrm-public.pem",
-    'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY':    "./jwt-test-keys/sr-private.pem",
-    'EQ_SUBMISSION_SDX_PUBLIC_KEY':             "./jwt-test-keys/sdx-public.pem",
-    'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY':     "./jwt-test-keys/sr-private-encryption.pem",
+    'EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY':    "./jwt-test-keys/sdc-user-authentication-signing-rrm-public-key.pem",
+    'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY':    "./jwt-test-keys/sdc-user-authentication-encryption-sr-private-key.pem",
+    'EQ_SUBMISSION_SDX_PUBLIC_KEY':             "./jwt-test-keys/sdc-submission-encryption-sdx-public-key.pem",
+    'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY':     "./jwt-test-keys/sdc-submission-signing-sr-private-key.pem",
 
     # Only used in DEV MODE:
-    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY':   "./jwt-test-keys/rrm-private.pem",
-    'EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY':     "./jwt-test-keys/sr-public.pem"
+    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY':   "./jwt-test-keys/sdc-user-authentication-signing-rrm-private-key.pem",
+    'EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY':     "./jwt-test-keys/sdc-user-authentication-encryption-sr-public-key.pem"
 }
 
 _PASSWORDS = {
