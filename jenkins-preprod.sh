@@ -14,7 +14,7 @@ cp secure-data/sdc-user-authentication-encryption-sr-public-key.pem key_mat
 
 EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY="./key_mat/sdc-user-authentication-signing-rrm-public-key.pem"
 EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY="./key_mat/sdc-user-authentication-encryption-sr-private-key.pem"
-EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD=`cat secure-data/sdc-user-authentication-encryption-sr-private-key.txt`
+EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD=`cat secure-data/sdc-user-authentication-encryption-sr-private-key-password.txt`
 
 # needed for DEV mode
 EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY="./key_mat/sdc-user-authentication-signing-rrm-private-key.pem"
