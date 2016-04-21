@@ -21,3 +21,8 @@ script:
 
 notifications:
   slack: digitaleq:LDxJXRGeVmg3PpdUhp90eY3Z
+
+addons:
+  sauce_connect:
+    username: "eqdigital"
+    access_key: "eadd16a1-883e-4cd5-90aa-7d6c1701f0dc"
