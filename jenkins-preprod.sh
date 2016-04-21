@@ -14,7 +14,7 @@ cp secure-data/sdc-user-authentication-encryption-sr-public-key.pem key_mat
 
 EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY="./key_mat/sdc-user-authentication-signing-rrm-public-key.pem"
 EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY="./key_mat/sdc-user-authentication-encryption-sr-private-key.pem"
-EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD=`cat secure-data/sdc-user-authentication-encryption-sr-private-key.pem`
+EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD=`cat secure-data/sdc-user-authentication-encryption-sr-private-key.txt`
 
 # needed for DEV mode
 EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY="./key_mat/sdc-user-authentication-signing-rrm-private-key.pem"
@@ -23,7 +23,7 @@ EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD=`cat secure-data/sdc-user-authen
 
 EQ_SUBMISSION_SDX_PUBLIC_KEY="./key_mat/sdc-submission-encryption-sdx-public-key.pem"
 EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY="./key_mat/sdc-submission-signing-sr-private-key.pem"
-EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD=`cat secure-data/sdc-submission-signing-sr-private-key-password.pem`
+EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD=`cat secure-data/sdc-submission-signing-sr-private-key-password.txt`
 
 
 cat << EOF >> ./.ebextensions/secure.config
