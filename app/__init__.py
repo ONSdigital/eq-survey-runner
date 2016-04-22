@@ -157,6 +157,9 @@ def create_app(config_name):
     # set the logger for this application and stop using flasks broken solution
     application._logger = logging.getLogger(__name__)
 
+    # turn boto logging to critical as it logs far too much and it's only used for cloudwatch logging
+    logging.getLogger("botocore").setLevel(logging.ERROR)
+
     if settings.EQ_CLOUDWATCH_LOGGING:
         # filter out botocore messages, we don't wish to log these
         class NoBotocoreFilter(logging.Filter):
