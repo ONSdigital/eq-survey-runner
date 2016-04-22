@@ -97,9 +97,12 @@ def create_app(config_name):
                'X-Frame-Options': 'DENY',
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
-    application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
-    application.healthcheck.add_check(rabbitmq_available)
-    application.healthcheck.add_check(git_revision)
+
+    if settings.EQ_DEV_MODE:
+        application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
+        application.healthcheck.add_check(rabbitmq_available)
+        application.healthcheck.add_check(git_revision)
+
     application.babel = Babel(application)
     application.babel.localeselector(get_locale)
     application.jinja_env.add_extension('jinja2.ext.i18n')
