@@ -171,7 +171,7 @@ class Decoder (object):
                 return self.decode_signed_jwt_token(signed_token)
             else:
                 raise NoTokenException("JWT Missing")
-        except (jwt.DecodeError, InvalidTag, InternalError, ValueError) as e:
+        except (jwt.DecodeError, InvalidTag, InternalError, ValueError, AssertionError) as e:
             raise InvalidTokenException(repr(e))
 
     def __check_jwe_protected_header(self, header):
