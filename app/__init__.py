@@ -98,14 +98,7 @@ def create_app(config_name):
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
 
-    if settings.EQ_DEV_MODE:
-        application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
-        application.healthcheck.add_check(rabbitmq_available)
-        application.healthcheck.add_check(git_revision)
-
-    application.babel = Babel(application)
-    application.babel.localeselector(get_locale)
-    application.jinja_env.add_extension('jinja2.ext.i18n')
+    setup_babel(application)
 
     @application.after_request
     def apply_caching(response):
@@ -114,46 +107,66 @@ def create_app(config_name):
 
         return response
 
-    application.secret_key = settings.EQ_SECRET_KEY
-    application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+    setup_secure_cookies(application)
 
     application.wsgi_app = AWSReverseProxied(application.wsgi_app)
 
-    application.session_interface = SHA256SecureCookieSessionInterface()
-
     Markdown(application, extensions=['gfm'])
 
-    # import and regsiter the main application blueprint
-    from .main import main_blueprint
-    application.register_blueprint(main_blueprint)
-    main_blueprint.config = application.config.copy()
+    add_blueprints(application)
+
+    configure_logging(application)
 
     if settings.EQ_DEV_MODE:
-        # import and register the pattern library blueprint
-        from .patternlib import patternlib_blueprint
-        application.register_blueprint(patternlib_blueprint)
+        # TODO fix health check so it no longer sends message to queue
+        add_health_check(application, headers)
+        start_dev_mode(application)
 
-        # import and register the dev mode blueprint
-        from .dev_mode import dev_mode_blueprint
-        application.register_blueprint(dev_mode_blueprint)
+    if settings.EQ_PROFILING:
+        setup_profiling(application)
 
-        application.debug = True
-    else:
-        # Not in dev mode, so use secure_session_cookies
-        application.config['SESSION_COOKIE_SECURE'] = True
+    if settings.EQ_UA_ID:
+        setup_analytics(application)
 
-    from app.jinja_filters import blueprint as filter_blueprint
-    application.register_blueprint(filter_blueprint)
+    return application
 
+
+def setup_profiling(application):
+    # Setup profiling
+
+    from werkzeug.contrib.profiler import ProfilerMiddleware, MergeStream
+    import os
+
+    profiling_dir = "profiling"
+
+    f = open('profiler.log', 'w')
+    stream = MergeStream(sys.stdout, f)
+
+    if not os.path.exists(profiling_dir):
+        os.makedirs(profiling_dir)
+
+    application.config['PROFILE'] = True
+    application.wsgi_app = ProfilerMiddleware(application.wsgi_app, stream, profile_dir=profiling_dir)
+    application.debug = True
+
+
+def setup_analytics(application):
+    # Setup analytics
+
+    Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
+    Analytics(application)
+    application.config['ANALYTICS']['GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
+
+
+def configure_logging(application):
     # set up some sane logging, as opposed to what flask does by default
     FORMAT = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
-
     levels = {
-        'CRITICAL': logging.CRITICAL,
-        'ERROR': logging.ERROR,
-        'WARNING': logging.WARNING,
-        'INFO': logging.INFO,
-        'DEBUG': logging.DEBUG
+      'CRITICAL': logging.CRITICAL,
+      'ERROR': logging.ERROR,
+      'WARNING': logging.WARNING,
+      'INFO': logging.INFO,
+      'DEBUG': logging.DEBUG
     }
     logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=FORMAT)
 
@@ -162,23 +175,8 @@ def create_app(config_name):
 
     # turn boto logging to critical as it logs far too much and it's only used for cloudwatch logging
     logging.getLogger("botocore").setLevel(logging.ERROR)
-
     if settings.EQ_CLOUDWATCH_LOGGING:
-        # filter out botocore messages, we don't wish to log these
-        class NoBotocoreFilter(logging.Filter):
-            def filter(self, record):
-                return not record.name.startswith('botocore')
-
-        log_group = settings.EQ_SR_LOG_GROUP
-        cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
-
-        cloud_watch_handler.addFilter(NoBotocoreFilter())
-
-        application.logger.addHandler(cloud_watch_handler)               # flask logger
-        # we DO NOT WANT the root logger logging to cloudwatch as thsi causes weird recursion errors
-        logging.getLogger().addHandler(cloud_watch_handler)      # root logger
-        logging.getLogger(__name__).addHandler(cloud_watch_handler)      # module logger
-        logging.getLogger('werkzeug').addHandler(cloud_watch_handler)    # werkzeug framework logger
+        setup_cloud_watch_logging(application)
 
     # setup file logging
     rotating_log_file = RotatingFileHandler(LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
@@ -186,14 +184,7 @@ def create_app(config_name):
 
     # setup splunk logging
     if settings.EQ_SPLUNK_LOGGING:
-        splunk_handler = SplunkHandler(host=settings.EQ_SPLUNK_HOST,
-                                       port=settings.EQ_SPLUNK_PORT,
-                                       username=settings.EQ_SPLUNK_USERNAME,
-                                       password=settings.EQ_SPLUNK_PASSWORD,
-                                       index=settings.EQ_SPLUNK_INDEX,
-                                       verify=False)
-        logging.getLogger().addHandler(splunk_handler)
-
+        setup_splunk_logging()
     application.logger.debug("Initializing login manager for application")
     login_manager.init_app(application)
     application.logger.debug("Login Manager initialized")
@@ -202,27 +193,69 @@ def create_app(config_name):
     application.logger_name = "nowhere"
     application.logger
 
-    # Setup profiling
-    if settings.EQ_PROFILING:
-        from werkzeug.contrib.profiler import ProfilerMiddleware, MergeStream
-        import os
 
-        profiling_dir = "profiling"
+def setup_splunk_logging():
+    splunk_handler = SplunkHandler(host=settings.EQ_SPLUNK_HOST,
+                                   port=settings.EQ_SPLUNK_PORT,
+                                   username=settings.EQ_SPLUNK_USERNAME,
+                                   password=settings.EQ_SPLUNK_PASSWORD,
+                                   index=settings.EQ_SPLUNK_INDEX,
+                                   verify=False)
+    logging.getLogger().addHandler(splunk_handler)
 
-        f = open('profiler.log', 'w')
-        stream = MergeStream(sys.stdout, f)
 
-        if not os.path.exists(profiling_dir):
-            os.makedirs(profiling_dir)
+def setup_cloud_watch_logging(application):
+    # filter out botocore messages, we don't wish to log these
+    class NoBotocoreFilter(logging.Filter):
+        def filter(self, record):
+            return not record.name.startswith('botocore')
 
-        application.config['PROFILE'] = True
-        application.wsgi_app = ProfilerMiddleware(application.wsgi_app, stream, profile_dir=profiling_dir)
-        application.debug = True
+    log_group = settings.EQ_SR_LOG_GROUP
+    cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
+    cloud_watch_handler.addFilter(NoBotocoreFilter())
+    application.logger.addHandler(cloud_watch_handler)  # flask logger
+    # we DO NOT WANT the root logger logging to cloudwatch as thsi causes weird recursion errors
+    logging.getLogger().addHandler(cloud_watch_handler)  # root logger
+    logging.getLogger(__name__).addHandler(cloud_watch_handler)  # module logger
+    logging.getLogger('werkzeug').addHandler(cloud_watch_handler)  # werkzeug framework logger
 
-    # Setup analytics
-    if settings.EQ_UA_ID:
-        Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
-        Analytics(application)
-        application.config['ANALYTICS']['GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
-    return application
+def start_dev_mode(application):
+    # import and register the pattern library blueprint
+    from .patternlib import patternlib_blueprint
+    application.register_blueprint(patternlib_blueprint)
+    # import and register the dev mode blueprint
+    from .dev_mode import dev_mode_blueprint
+    application.register_blueprint(dev_mode_blueprint)
+    application.debug = True
+    # Not in dev mode, so use secure_session_cookies
+    application.config['SESSION_COOKIE_SECURE'] = False
+
+
+def add_blueprints(application):
+    # import and regsiter the main application blueprint
+    from .main import main_blueprint
+    application.register_blueprint(main_blueprint)
+    main_blueprint.config = application.config.copy()
+
+    from app.jinja_filters import blueprint as filter_blueprint
+    application.register_blueprint(filter_blueprint)
+
+
+def setup_secure_cookies(application):
+    application.secret_key = settings.EQ_SECRET_KEY
+    application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+    application.session_interface = SHA256SecureCookieSessionInterface()
+    application.config['SESSION_COOKIE_SECURE'] = True
+
+
+def setup_babel(application):
+    application.babel = Babel(application)
+    application.babel.localeselector(get_locale)
+    application.jinja_env.add_extension('jinja2.ext.i18n')
+
+
+def add_health_check(application, headers):
+    application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
+    application.healthcheck.add_check(rabbitmq_available)
+    application.healthcheck.add_check(git_revision)
