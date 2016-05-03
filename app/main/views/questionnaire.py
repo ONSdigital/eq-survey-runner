@@ -1,6 +1,7 @@
 import logging
 from flask import render_template, request, session
 from flask_login import login_required, current_user
+from app.utilities.factory import factory
 from app.main.views.root import redirect_to_location
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
 from app.submitter.converter import SubmitterConstants
@@ -30,9 +31,11 @@ def questionnaire():
 
     render_data = questionnaire_manager.get_rendering_context()
 
+    metadata = factory.create("metadata-store")
+
     schema = questionnaire_manager.get_schema()
     return render_template('questionnaire.html', questionnaire=render_data, data={
         "survey_code": schema.survey_id,
-        "period_str": current_user.get_period_str(),
-        "respondent_id": current_user.get_ru_ref()
+        "period_str": metadata.get_period_str(),
+        "respondent_id": metadata.get_ru_ref()
     }, bar_title=schema.title)

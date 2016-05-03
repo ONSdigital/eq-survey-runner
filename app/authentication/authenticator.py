@@ -5,6 +5,8 @@ from app.authentication.jwt_decoder import Decoder
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
+from app.metadata.metadata_store import MetaDataStore
+from app.utilities.factory import factory
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 
@@ -19,9 +21,9 @@ class Authenticator(object):
         :return: A user object if a JWT token is available in the session
         """
         logger.debug("Checking for session")
-        if session_manager.has_token():
+        if session_manager.has_user_id():
             logger.debug("Session token exists")
-            return User(session_manager.get_token())
+            return User(session_manager.get_user_id())
         else:
             logging.debug("Session does not have an authenticated token")
             return None
@@ -38,18 +40,26 @@ class Authenticator(object):
 
         # <kludge>
         # TODO: Remove this once RM is correctly sending dates
-        from app.authentication.user import UserConstants
-        token[UserConstants.REF_P_START_DATE] = '2016-04-03'
-        token[UserConstants.REF_P_END_DATE] = '2016-04-30'
+        from app.metadata.metadata_store import MetaDataConstants
+        token[MetaDataConstants.REF_P_START_DATE] = '2016-04-03'
+        token[MetaDataConstants.REF_P_END_DATE] = '2016-04-30'
         # </kludge>
 
         # once we've decrypted the token correct
         # check we have the required user data
         self._check_user_data(token)
 
-        # store the token in the session
-        session_manager.add_token(token)
-        return User(token)
+        user_id = token.get(MetaDataConstants.USER_ID)
+
+        # store the user id in the session
+        session_manager.store_user_id(user_id)
+
+        # store the meta data
+        metadata_store = factory.create("metadata-store")
+
+        metadata_store.store_all(token)
+
+        return User(user_id)
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
@@ -58,7 +68,6 @@ class Authenticator(object):
         return token
 
     def _check_user_data(self, token):
-        user = User(token)
-        valid, reason = user.is_valid()
+        valid, reason = MetaDataStore.is_valid(token)
         if not valid:
             raise InvalidTokenException("Missing value {}".format(reason))

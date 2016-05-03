@@ -23,16 +23,17 @@ class SubmitterFactory(object):
 
 class Submitter(object):
 
-    def send_responses(self, user, schema, responses):
+    def send_responses(self, user, metadata, schema, responses):
         '''
         Sends the responses to rabbit mq and returns a timestamp for submission
-        :param user: The current user
+        :param user: the current user:
+        :param metadata: The metadata for the survey
         :param schema: The current schema
         :param responses: The user's responses
         :return: a datetime object indicating the time it was submitted
         :raise: a submission failed exception
         '''
-        message, submitted_at = Converter.prepare_responses(user, schema, responses)
+        message, submitted_at = Converter.prepare_responses(user, metadata, schema, responses)
 
         encrypter = Encrypter()
         encrypted_message = encrypter.encrypt(message)

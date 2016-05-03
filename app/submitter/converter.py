@@ -46,7 +46,7 @@ class SubmitterConstants(object):
 class Converter(object):
 
     @staticmethod
-    def prepare_responses(user, questionnaire, responses):
+    def prepare_responses(user, metadata_store, questionnaire, responses):
         """
         Create the JSON response format for down stream processing
 
@@ -86,11 +86,11 @@ class Converter(object):
                     data[item.code] = value
 
         metadata = {SubmitterConstants.USER_ID_KEY: user.get_user_id(),
-                    SubmitterConstants.RU_REF_KEY: user.get_ru_ref()}
+                    SubmitterConstants.RU_REF_KEY: metadata_store.get_ru_ref()}
 
-        collection = {SubmitterConstants.EXERCISE_SID_KEY: user.get_collection_exercise_sid(),
-                      SubmitterConstants.INSTRUMENT_KEY: user.get_form_type(),
-                      SubmitterConstants.PERIOD_KEY: user.get_period_id()}
+        collection = {SubmitterConstants.EXERCISE_SID_KEY: metadata_store.get_collection_exercise_sid(),
+                      SubmitterConstants.INSTRUMENT_KEY: metadata_store.get_form_type(),
+                      SubmitterConstants.PERIOD_KEY: metadata_store.get_period_id()}
 
         paradata = {}
         submitted_at = datetime.now(settings.EUROPE_LONDON)

@@ -1,4 +1,4 @@
-from flask import session
+from flask_login import current_user
 from abc import ABCMeta, abstractmethod
 from app.validation.validation_result import ValidationResult
 
@@ -20,19 +20,20 @@ class AbstractValidationStore(metaclass=ABCMeta):
 class FlaskValidationStore(AbstractValidationStore):
 
     def store_result(self, key, value):
-        if RESULTS not in session:
+        data = current_user.get_questionnaire_data()
+        if RESULTS not in data:
             responses = {key: value.to_dict()}
-            session[RESULTS] = responses
+            data[RESULTS] = responses
         else:
-            session[RESULTS][key] = value.to_dict()
-        session.permanent = True
+            data[RESULTS][key] = value.to_dict()
 
     def get_result(self, key):
-        if RESULTS not in session.keys():
-            session[RESULTS] = {}
+        data = current_user.get_questionnaire_data()
+        if RESULTS not in data.keys():
+            data[RESULTS] = {}
             return None
-        if key in session[RESULTS].keys():
+        if key in data[RESULTS].keys():
             result = ValidationResult()
-            result.from_dict(session[RESULTS][key])
+            result.from_dict(data[RESULTS][key])
             return result
         return None

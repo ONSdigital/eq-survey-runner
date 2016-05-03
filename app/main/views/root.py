@@ -35,18 +35,20 @@ def login():
     authenticator = Authenticator()
     logger.debug("Attempting token authentication")
     try:
-        user = authenticator.jwt_login(request)
+        authenticator.jwt_login(request)
         logger.debug("Token authenticated - linking to session")
 
-        eq_id = user.get_eq_id()
-        form_type = user.get_form_type()
+        metadata = factory.create("metadata-store")
+        eq_id = metadata.get_eq_id()
+        form_type = metadata.get_form_type()
+
         logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
         if not eq_id or not form_type:
             logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
             abort(404)
 
         # load the schema
-        schema = load_and_parse_schema()
+        schema = load_and_parse_schema(eq_id, form_type)
         if not schema:
             return errors.page_not_found()
 
@@ -76,6 +78,9 @@ def redirect_to_location(current_location):
     :return: flask redirect to the next page
     """
 
+    # TODO temporarily put this here, not sure it's the right place
+    current_user.save()
+
     if current_location == 'introduction':
         return redirect(url_for("main.landing_page"))
     elif current_location == "completed":
@@ -88,7 +93,7 @@ def redirect_to_location(current_location):
         return errors.page_not_found()
 
 
-def load_and_parse_schema():
+def load_and_parse_schema(eq_id, form_type):
     """
     Use the schema loader to get the schema from disk. Then use the parse to construct the object model
     :param eq_id: the id of the questionnaire
@@ -97,7 +102,7 @@ def load_and_parse_schema():
     """
     # load the schema
 
-    json_schema = load_schema(current_user.get_eq_id(), current_user.get_form_type())
+    json_schema = load_schema(eq_id, form_type)
     if json_schema:
         parser = SchemaParserFactory.create_parser(json_schema)
         schema = parser.parse()

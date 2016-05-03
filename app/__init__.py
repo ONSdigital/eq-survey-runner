@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask.ext.babel import Babel
 from flask.ext.login import LoginManager
 from app.libs.utils import get_locale
@@ -10,10 +9,10 @@ from app.responses.response_store import FlaskResponseStore
 from app.navigation.navigation_store import FlaskNavigationStore
 from app.navigation.navigation_history import FlaskNavigationHistory
 from app.validation.validation_store import FlaskValidationStore
+from app.metadata.metadata_store import MetaDataStore
 from app import settings
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
-from app.authentication.database_session import EncryptedSqlAlchemySessionInterface
 from app.submitter.submitter import SubmitterFactory
 from datetime import timedelta
 import watchtower
@@ -47,6 +46,7 @@ factory.register("response-store", FlaskResponseStore)
 factory.register("navigation-store", FlaskNavigationStore)
 factory.register("navigation-history", FlaskNavigationHistory)
 factory.register("validation-store", FlaskValidationStore)
+factory.register("metadata-store", MetaDataStore)
 
 
 def rabbitmq_available():
@@ -72,9 +72,18 @@ def git_revision():
 login_manager = LoginManager()
 
 
+@login_manager.user_loader
+def load_user_s(user_id):
+    logger.debug("User ID is >> ")
+    logger.debug(user_id)
+    logger.debug("Calling load user")
+    authenticator = Authenticator()
+    return authenticator.check_session()
+
+
 @login_manager.request_loader
 def load_user(request):
-    logging.debug("Calling load user")
+    logger.debug("Calling load user")
     authenticator = Authenticator()
     return authenticator.check_session()
 
@@ -90,7 +99,6 @@ class AWSReverseProxied(object):
         return self.app(environ, start_response)
 
 
-
 def create_app(config_name):
     application = Flask(__name__, static_url_path='/s')
     headers = {'Content-Type': 'application/json',
@@ -101,8 +109,6 @@ def create_app(config_name):
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
 
-    db = setup_database(application)
-
     setup_babel(application)
 
     @application.after_request
@@ -112,10 +118,7 @@ def create_app(config_name):
 
         return response
 
-    if settings.EQ_SERVER_SIDE_STORAGE:
-        setup_server_side_database_sessions(application, db)
-    else:
-        setup_secure_cookies(application)
+    setup_secure_cookies(application)
 
     application.wsgi_app = AWSReverseProxied(application.wsgi_app)
 
@@ -268,14 +271,14 @@ def add_health_check(application, headers):
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
 
+#
+# def setup_database(application):
+#     application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/session.db'
+#     db = SQLAlchemy(application)
+#     db.create_all()
+#     return db
+#
 
-def setup_database(application):
-    application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/session.db'
-    db = SQLAlchemy(application)
-    db.create_all()
-    return db
-
-
-def setup_server_side_database_sessions(application, db):
-    application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
-    application.session_interface = EncryptedSqlAlchemySessionInterface(application, db, "session", "eq")
+# def setup_server_side_database_sessions(application, db):
+#     application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+#     application.session_interface = EncryptedSqlAlchemySessionInterface(application, db, "session", "eq")
