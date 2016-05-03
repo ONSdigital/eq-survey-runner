@@ -9,6 +9,7 @@ class Questionnaire(object):
         self.survey_id = None
         self.description = None
         self.groups = []
+        self.children = self.groups
         self.validation = None
         self.items_by_id = {}
         self.introduction = None

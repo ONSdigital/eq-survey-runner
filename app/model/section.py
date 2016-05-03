@@ -3,6 +3,7 @@ class Section(object):
         self.id = None
         self.title = None
         self.questions = []
+        self.children = self.questions
         self.container = None
         self.questionnaire = None
         self.validation = None

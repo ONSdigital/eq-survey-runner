@@ -2,6 +2,7 @@ from app.validation.validation_result import ValidationResult
 from app.validation.mandatory_check import MandatoryCheck
 from app.validation.type_validator_factory import TypeValidatorFactory
 from app.validation.abstract_validator import AbstractValidator
+from app.model.response import Response
 from flask.ext.babel import gettext as _
 import logging
 
@@ -29,7 +30,9 @@ class Validator(object):
             AbstractValidator.MANDATORY: _("This field is mandatory."),
             AbstractValidator.INVALID_DATE: _("This is not a valid date."),
             AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed."),
-            AbstractValidator.INTEGER_TOO_LARGE: _('This number is too big.')
+            AbstractValidator.INTEGER_TOO_LARGE: _('This number is too big.'),
+            AbstractValidator.INVALID_DATE_RANGE_DIFF: _("The 'To date' cannot be before the 'From date'. Please correct your answer."),
+            AbstractValidator.INVALID_DATE_RANGE_SAME: _("The 'To date' must be different to the 'From date'. Please correct your answer.")
         }
 
     def validate(self, user_data):
@@ -46,14 +49,15 @@ class Validator(object):
             result = self._validate_item(item, user_data[item_id])
             logger.debug('Item {} ({}) valid: {}'.format(item_id, type(item), result.is_valid))
             self._validation_store.store_result(item_id, result)
-
-            self._validate_container(item.container)
+            self._validate_container(item.container, user_data)
 
         # Return true/False for the set of values
         for item_id in user_data.keys():
             result = self._validation_store.get_result(item_id)
+            item = self._schema.get_item_by_id(item_id)
+            container_result = self._validation_store.get_result(item.id)
             if result:
-                if not result.is_valid:
+                if not result.is_valid or not container_result.is_valid:
                     return False
 
         return True
@@ -87,7 +91,14 @@ class Validator(object):
         # If we've made it this far, the thing is valid
         return ValidationResult(True)
 
-    def _validate_container(self, item):
+    def _validate_container(self, item, user_data):
+
+        children_user_data = {}
+        for child in item.children:
+            children_user_data[child.label] = user_data[child.id]
+            result = self._type_check(item, children_user_data)
+            self._validation_store.store_result(item.id, result)
+
         if item and item.validation:
             for rule in item.validation:
                 result = rule.validate(None, self._response_store)
@@ -97,7 +108,7 @@ class Validator(object):
 
             self._validation_store.store_result(item.id, ValidationResult(True))
 
-            self._validate_container(item.container)
+            self._validate_container(item.container, user_data)
 
     def _mandatory_check(self, item, item_data):
         mandatory = MandatoryCheck()
@@ -108,10 +119,11 @@ class Validator(object):
         return ValidationResult(True)
 
     def _type_check(self, item, item_data):
-        validators = self._type_validator_factory_class.get_validators_by_type(item.type)
+        validators = self._type_validator_factory_class.get_validators_by_type(item)
 
         for validator in validators:
             result = validator.validate(item_data)
+
             if not result.is_valid:
                 self._update_messages(item, result)
                 return result
@@ -121,7 +133,7 @@ class Validator(object):
     def _update_messages(self, item, result):
         # error messages
         for index, code in enumerate(result.errors):
-            if code in item.messages.keys():
+            if isinstance(item, Response) and code in item.messages.keys():
                 result.errors[index] = item.messages[code]
             elif code in self.messages.keys():
                 # Use the default error message
@@ -129,7 +141,7 @@ class Validator(object):
 
         # warning messages
         for index, code in enumerate(result.warnings):
-            if code in item.messages.keys():
+            if isinstance(item, Response) and code in item.messages.keys():
                 result.warnings[index] = item.messages[code]
             elif code in self.messages.keys():
                 # Use the default error message

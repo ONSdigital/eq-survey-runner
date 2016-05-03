@@ -4,6 +4,7 @@ class Group(object):
         self.id = None
         self.title = None
         self.blocks = []
+        self.children = self.blocks
         self.container = None
         self.questionnaire = None
         self.validation = None
