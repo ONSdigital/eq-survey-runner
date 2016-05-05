@@ -7,7 +7,7 @@
   </div>
   <div class="bar__inner container">
     <div class="badge badge--amber u-mr-xs">BETA</div>
-    <div class="bar__title">{{ meta.survey.title }}</div>
+    <div class="bar__title">{% if meta %}{{ meta.survey.title }}{% endif %}</div>
   </div>
 </div>
 {% endblock %}
@@ -24,7 +24,7 @@
         <div class="info__tel">
           0300 1234 931
         </div>
-        {% if data %}
+        {% if meta %}
         <dl class="info__list">
           <dt class="info__dt first">ID:</dt>
           <dd class="info__dd">{{ meta.survey.survey_code or 'N/A'}}</dd>

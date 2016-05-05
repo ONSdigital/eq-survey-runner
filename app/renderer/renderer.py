@@ -51,29 +51,44 @@ class Renderer(object):
     def _render_survey_meta(self):
         survey_meta = {
             "title": self._schema.title,
-            "description": self._schema.introduction.description,
             "survey_code": self._schema.survey_id,
-            "return_by": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(metadata.get_return_by(), "%Y-%m-%d")),
-            "start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(metadata.get_ref_p_start_date(), "%Y-%m-%d")),
-            "end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(metadata.get_ref_p_end_date(), "%Y-%m-%d")),
-            "period_str": metadata.get_period_str()
+            "description": None,
+            "return_by": None,
+            "start_date": None,
+            "end_date": None,
+            "period_str": None
         }
 
+        if self._schema.introduction and self._schema.introduction.description:
+            survey_meta["description"] = self._schema.introduction.description
+
+        if current_user:
+            survey_meta["return_by"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_return_by(), "%Y-%m-%d")),
+            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d")),
+            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d")),
+            survey_meta["period_str"] = self._metadata.get_period_str()
+
         # TODO: This is still not the right place to do this...
-        if SubmitterConstants.SUBMITTED_AT_KEY in session:
+        if session and SubmitterConstants.SUBMITTED_AT_KEY in session:
             survey_meta['submitted'] = True
             survey_meta['submitted_at'] = session[SubmitterConstants.SUBMITTED_AT_KEY]
 
         return survey_meta
 
     def _render_respondent_meta(self):
-        return {
-            "respondent_id": metadata.get_ru_ref(),
+        respondent_meta = {
+            "respondent_id": None,
             "address": {
-                "name": metadata.get_ru_name(),
-                "trading_as": metadata.get_trad_as()
+                "name": None,
+                "trading_as": None
             }
         }
+        if current_user:
+            respondent_meta["respondent_id"] = self._metadata.get_ru_ref()
+            respondent_meta["address"]["name"] = self._metadata.get_ru_name()
+            respondent_meta["address"]["trading_as"] = self._metadata.get_trad_as()
+
+        return respondent_meta
 
     def _render_navigation_meta(self):
         navigation_meta = {

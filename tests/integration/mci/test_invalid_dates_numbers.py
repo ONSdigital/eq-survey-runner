@@ -9,9 +9,6 @@ class TestInvalidDateNumber(unittest.TestCase):
         self.application = create_app('development')
         self.client = self.application.test_client()
 
-    def test_invalid_date_number_203(self):
-        self.invalid_date_number('0203')
-
     def test_invalid_date_number_205(self):
         self.invalid_date_number('0205')
 
@@ -26,7 +23,7 @@ class TestInvalidDateNumber(unittest.TestCase):
         self.assertRegexpMatches(content, '>Get Started<')
 
         # We proceed to the questionnaire
-        resp = self.client.get('/questionnaire', follow_redirects=True)
+        resp = self.client.get('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
         # We are in the Questionnaire
@@ -44,11 +41,13 @@ class TestInvalidDateNumber(unittest.TestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000"
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            # User action
+            "action[save_continue]": "Save &amp; Continue"
         }
 
         # We submit the form with an invalid date
-        resp = self.client.post('/questionnaire', data=form_data, follow_redirects=True)
+        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "The date entered is not valid.  Please correct your answer.")
@@ -67,13 +66,13 @@ class TestInvalidDateNumber(unittest.TestCase):
         }
 
         # We submit the form without a valid turnover value
-        resp = self.client.post('/questionnaire', data=form_data, follow_redirects=True)
+        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "Please only enter whole numbers into the field.")
 
         # We try to access the submission page without correction
-        resp = self.client.get('/submission', follow_redirects=True)
+        resp = self.client.get('/questionnaire/summary', follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
@@ -88,16 +87,18 @@ class TestInvalidDateNumber(unittest.TestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000"
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            # User action
+            "action[save_continue]": "Save &amp; Continue"
         }
 
         # We correct our answers and submit
-        resp = self.client.post('/questionnaire', data=form_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], '\/submission$')
-        resp = self.client.get('/submission', follow_redirects=True)
+        self.assertRegexpMatches(resp.headers['Location'], '\/questionnaire\/summary$')
+        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
         # We are on the review answers page
@@ -107,11 +108,13 @@ class TestInvalidDateNumber(unittest.TestCase):
         self.assertRegexpMatches(content, '>Submit answers<')
 
         # We submit our answers
-        post_data = {}
-        resp = self.client.post('/submission', data=post_data, follow_redirects=False)
+        post_data = {
+            "action[submit_answers]": 'Submit answers'
+        }
+        resp = self.client.post('/questionnaire/summary', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], '\/thank-you$')
-        resp = self.client.get('/thank-you', follow_redirects=True)
+        self.assertRegexpMatches(resp.headers['Location'], '\/questionnaire\/thank-you$')
+        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
         # We are on the thank you page

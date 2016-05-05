@@ -24,12 +24,21 @@ class TestHappyPath(unittest.TestCase):
 
         # We are on the landing page
         content = resp.get_data(True)
+
         self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '>Get Started<')
         self.assertRegexpMatches(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
-        resp = self.client.get('/questionnaire', follow_redirects=True)
+        post_data = {
+            'action[start_questionnaire]': 'Start Questionnaire'
+        }
+        resp = self.client.post('/questionnaire/introduction', data=post_data, follow_redirects=False)
+        self.assertEquals(resp.status_code, 302)
+
+        block_one_url = resp.headers['Location']
+
+        resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
         # We are in the Questionnaire
@@ -50,16 +59,21 @@ class TestHappyPath(unittest.TestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000"
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            # User Action
+            "action[save_continue]": "Save &amp; Continue"
         }
 
         # We submit the form
-        resp = self.client.post('/questionnaire', data=form_data, follow_redirects=False)
+        resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], '\/submission$')
-        resp = self.client.get('/submission', follow_redirects=True)
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/summary$')
+
+        summary_url = resp.headers['Location']
+
+        resp = self.client.get(summary_url, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
         # We are on the review answers page
@@ -71,11 +85,13 @@ class TestHappyPath(unittest.TestCase):
         self.assertRegexpMatches(content, '>Submit answers<')
 
         # We submit our answers
-        post_data = {}
-        resp = self.client.post('/submission', data=post_data, follow_redirects=False)
+        post_data = {
+            "action[submit_answers]": "Submit answers"
+        }
+        resp = self.client.post(summary_url, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], '\/thank-you$')
-        resp = self.client.get('/thank-you', follow_redirects=True)
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/thank-you$')
+        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
         # We are on the thank you page

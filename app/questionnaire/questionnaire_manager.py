@@ -31,7 +31,8 @@ class QuestionnaireManager(object):
             # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
             session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
             self._response_store.clear_responses()
-            return 'thank-you'
+            self._navigator.go_to('thank-you')
+            return
 
         # Process the responses and see where to go next
         cleaned_user_responses = {}
