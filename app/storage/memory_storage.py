@@ -23,3 +23,6 @@ class InMemoryStorage(AbstractServerStorage):
 
     def delete(self, user_id):
         del DATA[user_id]
+
+    def clear(self):
+        DATA.clear()

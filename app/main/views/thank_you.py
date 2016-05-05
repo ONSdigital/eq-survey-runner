@@ -1,5 +1,5 @@
 from flask import render_template, session
-from flask_login import login_required
+from flask_login import login_required, current_user
 from .. import main_blueprint
 import logging
 from app.submitter.converter import SubmitterConstants
@@ -30,6 +30,9 @@ def thank_you():
 
     # TODO this should be part of the navigation store really
     submitted_at = session[SubmitterConstants.SUBMITTED_AT_KEY]
+
+    # finally delete all their data
+    current_user.delete_questionnaire_data()
 
     return render_template('thank-you.html', data={
         "survey_code": schema.survey_id,

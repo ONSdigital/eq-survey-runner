@@ -8,6 +8,7 @@ from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore
 from app.utilities.factory import factory
 
+
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 
 logger = logging.getLogger(__name__)

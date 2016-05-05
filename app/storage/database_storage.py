@@ -21,3 +21,6 @@ class DatabaseStore(AbstractServerStorage):
 
     def delete(self, user_id):
         pass
+
+    def clear(self):
+        pass

@@ -15,3 +15,6 @@ class AbstractServerStorage(object):
 
     def delete(self, user_id):
         pass
+
+    def clear(self):
+        pass

@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask.ext.babel import Babel
-from flask.ext.login import LoginManager
+from flask_babel import Babel
+from flask_login import LoginManager
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck
 from flaskext.markdown import Markdown
@@ -11,11 +11,11 @@ from app.navigation.navigation_store import FlaskNavigationStore
 from app.navigation.navigation_history import FlaskNavigationHistory
 from app.validation.validation_store import FlaskValidationStore
 from app.metadata.metadata_store import MetaDataStore
-from app import settings
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
 from app.storage.database_storage import metadata
+from app import settings
 from datetime import timedelta
 import watchtower
 import logging

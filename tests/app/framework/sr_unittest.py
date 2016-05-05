@@ -1,16 +1,17 @@
 import unittest
 from app.authentication.user import User
-from flask.ext.login import LoginManager
+from app.storage.storage_factory import StorageFactory
+from flask_login import LoginManager
 from datetime import timedelta
 from flask import Flask
 
 login_manager = LoginManager()
 
+
 @login_manager.request_loader
-def load_user(user_id):
+def request_loader(request):
     user = User("1")
-    # clear any data
-    user.delete_all()
+    return user
 
 
 class SurveyRunnerTestCase(unittest.TestCase):
@@ -26,3 +27,6 @@ class SurveyRunnerTestCase(unittest.TestCase):
         with self.application.test_client() as c:
             with c.session_transaction() as sess:
                 sess['user_id'] = '1'
+
+    def tearDown(self):
+        StorageFactory.get_storage_mechanism().clear()
