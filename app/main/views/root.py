@@ -1,4 +1,4 @@
-from flask import redirect, request, abort, url_for, session
+from flask import redirect, request, abort, session
 from flask_login import current_user
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
@@ -69,28 +69,6 @@ def login():
     except InvalidTokenException as e:
         logger.warning("Invalid Token provided")
         return errors.forbidden(e)
-
-
-def redirect_to_location(current_location):
-    """
-    Issue a redirect to the next part of the questionnaire
-    :param current_location: the current location in the questionnaire
-    :return: flask redirect to the next page
-    """
-
-    # TODO temporarily put this here, not sure it's the right place
-    current_user.save()
-
-    if current_location == 'introduction':
-        return redirect(url_for("main.landing_page"))
-    elif current_location == "completed":
-        return redirect(url_for("main.submission"))
-    elif current_location == "submitted":
-        return redirect(url_for("main.thank_you"))
-    elif current_location == 'questionnaire':
-        return redirect(url_for("main.questionnaire"))
-    else:
-        return errors.page_not_found()
 
 
 def load_and_parse_schema(eq_id, form_type):

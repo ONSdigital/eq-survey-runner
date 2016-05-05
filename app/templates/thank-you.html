@@ -6,12 +6,12 @@
 
   <div class="header u-mb-m u-mb-l@s">
     <h1 class="header__title">Thank You</h1>
-    <div>{{ data.title }}</div>
+    <div>{{ meta.survey.title }}</div>
     <div class="u-fw-b">Successfully Received</div>
   </div>
 
   <div class="box box--confirm u-mb-s u-mb-l@s">
-    <strong>{% if data.submitted_at %} Submitted on {{data.submitted_at}} {% endif %}</strong>
+    <strong>{% if meta.survey.submitted %} Submitted on {{meta.survey.submitted_at}} {% endif %}</strong>
     <p class="u-mb-no">You may wish to save or print this page for your records.</p>
   </div>
 

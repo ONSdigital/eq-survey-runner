@@ -1,21 +1,97 @@
 from collections import OrderedDict
+from flask_login import current_user
+from datetime import datetime
+from app.submitter.converter import SubmitterConstants
+from flask import session
 
 
 class Renderer(object):
-    def __init__(self, schema, response_store, validation_store):
+    def __init__(self, schema, response_store, validation_store, navigator, metadata):
         self._schema = schema
         self._response_store = response_store
         self._validation_store = validation_store
+        self._navigator = navigator
+        self._metadata = metadata
+
+    def get_template_name(self):
+        known_templates = {
+            'introduction': "landing-page.html",
+            'summary': "submission.html",
+            'thank-you': 'thank-you.html'
+        }
+
+        current_location = self._navigator.get_current_location()
+        if current_location in known_templates.keys():
+            return known_templates[current_location]
+        else:
+            # must be a valid location to get this far, so must be within the
+            # questionnaire
+            return 'questionnaire.html'
 
     def render(self):
         self._augment_responses()
         self._augment_questionnaire()
 
-        template_vars = {
-            "data": self._schema
+        render_data = {
+            "meta": {
+                "survey": self._render_survey_meta(),
+                "respondent": self._render_respondent_meta()
+            },
+            "content": {
+                "introduction": {},
+                "questionnaire": self._schema,
+                "summary": None,
+                "thanks": None
+            },
+            "navigation": self._render_navigation_meta()
         }
 
-        return template_vars
+        return render_data
+
+    def _render_survey_meta(self):
+        survey_meta = {
+            "title": self._schema.title,
+            "description": self._schema.introduction.description,
+            "survey_code": self._schema.survey_id,
+            "return_by": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(metadata.get_return_by(), "%Y-%m-%d")),
+            "start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(metadata.get_ref_p_start_date(), "%Y-%m-%d")),
+            "end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(metadata.get_ref_p_end_date(), "%Y-%m-%d")),
+            "period_str": metadata.get_period_str()
+        }
+
+        # TODO: This is still not the right place to do this...
+        if SubmitterConstants.SUBMITTED_AT_KEY in session:
+            survey_meta['submitted'] = True
+            survey_meta['submitted_at'] = session[SubmitterConstants.SUBMITTED_AT_KEY]
+
+        return survey_meta
+
+    def _render_respondent_meta(self):
+        return {
+            "respondent_id": metadata.get_ru_ref(),
+            "address": {
+                "name": metadata.get_ru_name(),
+                "trading_as": metadata.get_trad_as()
+            }
+        }
+
+    def _render_navigation_meta(self):
+        navigation_meta = {
+            "history": None,
+            "current_position": self._navigator.get_current_location(),
+            "current_block_id": None,
+            "current_group_id": None
+        }
+
+        try:
+            current_block = self._schema.get_item_by_id(self._navigator.get_current_location())
+            current_group = current_block.container
+            navigation_meta["current_block_id"] = self._navigator.get_current_location()
+            navigation_meta["current_group_id"] = current_group.id
+        except:
+            pass
+
+        return navigation_meta
 
     def _augment_responses(self):
         # Augment the schema with user responses and validation results

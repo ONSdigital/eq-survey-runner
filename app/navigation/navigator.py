@@ -1,7 +1,13 @@
 from app.utilities.factory import factory
 import logging
+from app.model.block import Block
+
 
 logger = logging.getLogger(__name__)
+
+
+class NavigationException(Exception):
+    pass
 
 
 class Navigator(object):
@@ -20,8 +26,24 @@ class Navigator(object):
         :returns: True if valid, False otherwise
 
         """
-        # TODO Addressable elements for navigation within a questionnaire need to be decided
-        return True
+        if destination == 'introduction':
+            # 'introduction' is only a valid destination if the schema contains one
+            if self._schema.introduction is not None:
+                return True
+            else:
+                return False
+
+        if destination == 'summary':
+            return True
+
+        if destination == 'thank-you':
+            return True
+
+        item = self._schema.get_item_by_id(destination)
+        if isinstance(item, Block):
+            return True
+
+        return False
 
     def get_current_location(self):
         """
@@ -32,12 +54,13 @@ class Navigator(object):
         current_location = state.current_position
         logger.debug("Current location %s", current_location)
 
-        # We need to have a conversation about what constitutes an addressable element within a questionnaire
+        # Blocks are the navigable elements within a questionnaire
         if current_location is None:
+            # If there is no introduction, go to the first block
             if self._schema.introduction is not None:
                 return 'introduction'
             else:
-                return 'questionnaire'
+                return self._schema.groups[0].blocks[0].id
         else:
             return current_location
 
@@ -53,4 +76,4 @@ class Navigator(object):
             state.current_position = location
             self._store.store_state(state)
         else:
-            logger.warning("Location %s is not valid", location)
+            raise NavigationException('Invalid location: {}'.format(location))

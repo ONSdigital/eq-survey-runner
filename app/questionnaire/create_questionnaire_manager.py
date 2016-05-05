@@ -28,6 +28,9 @@ def create_questionnaire_manager():
     # load the validation store
     validation_store = factory.create("validation-store")
 
+    # metadata store
+    metadata = factory.create("metadata-store")
+
     # Create the validator
     validator = Validator(schema, validation_store, response_store)
 
@@ -40,8 +43,8 @@ def create_questionnaire_manager():
     # create the navigator
     navigator = Navigator(schema, navigation_history)
 
-    if navigator.get_current_location() == "introduction" or navigator.get_current_location() is None:
-        navigator.go_to('questionnaire')
+    # if navigator.get_current_location() == "introduction" or navigator.get_current_location() is None:
+    #     navigator.go_to('questionnaire')
 
     # instantiate the questionnaire manager
     questionnaire_manager = QuestionnaireManager(schema,
@@ -50,5 +53,6 @@ def create_questionnaire_manager():
                                                  validation_store,
                                                  routing_engine,
                                                  navigator,
-                                                 navigation_history)
+                                                 navigation_history,
+                                                 metadata)
     return questionnaire_manager
