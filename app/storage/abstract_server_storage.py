@@ -9,3 +9,9 @@ class AbstractServerStorage(object):
 
     def get(self, user_id):
         pass
+
+    def has_data(self, user_id):
+        pass
+
+    def delete(self, user_id):
+        pass

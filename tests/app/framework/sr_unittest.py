@@ -4,17 +4,18 @@ from flask.ext.login import LoginManager
 from datetime import timedelta
 from flask import Flask
 
-
 login_manager = LoginManager()
 
 @login_manager.request_loader
 def load_user(user_id):
-    return User("1")
+    user = User("1")
+    # clear any data
+    user.delete_all()
 
 
 class SurveyRunnerTestCase(unittest.TestCase):
 
-     def setUp(self):
+    def setUp(self):
         application = Flask(__name__)
         application.config['TESTING'] = True
         application.secret_key = 'you will not guess'

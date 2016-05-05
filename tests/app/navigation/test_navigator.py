@@ -4,6 +4,7 @@ from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.model.questionnaire import Questionnaire
 import unittest
 
+
 class NavigatorTest(SurveyRunnerTestCase):
 
     def test_get_current_location(self):

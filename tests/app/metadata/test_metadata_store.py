@@ -1,15 +1,14 @@
 import unittest
 from app.authentication.user import User
-from flask import Flask
+from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.metadata.metadata_store import MetaDataStore
 from app.metadata.metadata_store import MetaDataConstants
 
 
-class TestMetadataStore(unittest.TestCase):
+class TestMetadataStore(SurveyRunnerTestCase):
 
     def setUp(self):
-        self.application = Flask(__name__)
-        self.application.config['TESTING'] = True
+        super().setUp()
         self.jwt = {
             MetaDataConstants.USER_ID: "1",
             MetaDataConstants.FORM_TYPE: "a",

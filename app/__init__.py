@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from flask.ext.babel import Babel
 from flask.ext.login import LoginManager
 from app.libs.utils import get_locale
@@ -14,6 +15,7 @@ from app import settings
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
+from app.storage.database_storage import metadata
 from datetime import timedelta
 import watchtower
 import logging
@@ -108,6 +110,8 @@ def create_app(config_name):
                'X-Frame-Options': 'DENY',
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
+
+    setup_database(application)
 
     setup_babel(application)
 
@@ -271,14 +275,9 @@ def add_health_check(application, headers):
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
 
-#
-# def setup_database(application):
-#     application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/session.db'
-#     db = SQLAlchemy(application)
-#     db.create_all()
-#     return db
-#
 
-# def setup_server_side_database_sessions(application, db):
-#     application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
-#     application.session_interface = EncryptedSqlAlchemySessionInterface(application, db, "session", "eq")
+def setup_database(application):
+    application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/questionnaire.db'
+    db = SQLAlchemy(application, metadata)
+    db.create_all()
+    application.db = db

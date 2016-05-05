@@ -1,17 +1,8 @@
 from flask.ext.login import UserMixin
-from flask import session
-
-
-class TemporarySessionStore(object):
-
-    def store(self, data):
-        session["questionnaire-data"] = data
-
-    def get(self):
-        return session["questionnaire-data"]
-
-    def has_data(self):
-        return "questionnaire-data" in session
+from app.storage.database_storage import DatabaseStore
+from app.storage.session_storage import FlaskSessionStore
+from app.storage.memory_storage import InMemoryStorage
+from app import settings
 
 
 class User(UserMixin):
@@ -21,18 +12,27 @@ class User(UserMixin):
             self.user_id = user_id
         else:
             raise ValueError("No user_id found in session")
-        temp_store = TemporarySessionStore()
-        if temp_store.has_data():
-            self.questionnaire_data = temp_store.get()
+
+        if settings.EQ_SERVER_SIDE_STORAGE:
+            if settings.EQ_SERVER_SIDE_STORAGE_TYPE.upper() == 'DATABASE':
+                self.storage = DatabaseStore()
+            else:
+                self.storage = InMemoryStorage()
+        else:
+            self.storage = FlaskSessionStore()
+
+        if self.storage.has_data(self.user_id):
+            self.questionnaire_data = self.storage.get(self.user_id)
         else:
             self.questionnaire_data = {}
+        self.save()
 
     def get_user_id(self):
         return self.user_id
 
     def get_questionnaire_data(self):
+        self.questionnaire_data = self.storage.get(self.user_id)
         return self.questionnaire_data
 
     def save(self):
-        temp_store = TemporarySessionStore()
-        temp_store.store(self.questionnaire_data)
+        self.storage.store(self.questionnaire_data, self.user_id)

@@ -44,6 +44,7 @@ EQ_SESSION_STORAGE_SIGNING_KEY = os.getenv('EQ_SESSION_STORAGE_SIGNING_KEY', os.
 
 # Feature flags
 EQ_SERVER_SIDE_STORAGE = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE', 'True'))
+EQ_SERVER_SIDE_STORAGE_TYPE = os.getenv('EQ_SERVICE_SIDE_STORAGE_TYPE', 'memory')
 EQ_DATABASE_URL = os.getenv('EQ_DATABASE_URL', 'sqlite:////tmp/session.db')
 
 EQ_SPLUNK_LOGGING = parse_mode(os.getenv('EQ_SPLUNK_LOGGING', 'False'))
