@@ -21,13 +21,13 @@ class FlaskSessionManagerTest(unittest.TestCase):
     def test_has_token(self):
         with self.application.test_request_context():
             session_manager = FlaskSessionManager()
-            session_manager.add_user_id("test")
+            session_manager.store_user_id("test")
             self.assertTrue(session_manager.has_user_id())
 
     def test_remove_token(self):
         with self.application.test_request_context():
             session_manager = FlaskSessionManager()
-            session_manager.add_user_id("test")
+            session_manager.store_user_id("test")
             self.assertTrue(session_manager.has_user_id())
             session_manager.remove_user_id()
             self.assertFalse(session_manager.has_user_id())

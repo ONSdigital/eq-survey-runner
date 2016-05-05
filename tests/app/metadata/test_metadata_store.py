@@ -1,4 +1,6 @@
 import unittest
+from app.authentication.user import User
+from flask import Flask
 from app.metadata.metadata_store import MetaDataStore
 from app.metadata.metadata_store import MetaDataConstants
 
@@ -6,6 +8,8 @@ from app.metadata.metadata_store import MetaDataConstants
 class TestMetadataStore(unittest.TestCase):
 
     def setUp(self):
+        self.application = Flask(__name__)
+        self.application.config['TESTING'] = True
         self.jwt = {
             MetaDataConstants.USER_ID: "1",
             MetaDataConstants.FORM_TYPE: "a",
@@ -19,37 +23,46 @@ class TestMetadataStore(unittest.TestCase):
             MetaDataConstants.RU_NAME: "Apple",
             MetaDataConstants.RETURN_BY: "2016-07-07"
         }
-        self.metadata_store = MetaDataStore()
-
-    def test_get_user_id(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.USER_ID), self.metadata_store.get_user_id())
+        with self.application.test_request_context():
+            user = User("1")
+            self.metadata_store = MetaDataStore(user)
+            self.metadata_store.store_all(self.jwt)
 
     def test_form_type(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.FORM_TYPE), self.metadata_store.get_form_type())
+        with self.application.test_request_context():
+            self.assertEquals(self.jwt.get(MetaDataConstants.FORM_TYPE), self.metadata_store.get_form_type())
 
     def test_collection_id(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.COLLECTION_EXERCISE_SID), self.metadata_store.get_collection_exercise_sid())
+        with self.application.test_request_context():
+            self.assertEquals(self.jwt.get(MetaDataConstants.COLLECTION_EXERCISE_SID), self.metadata_store.get_collection_exercise_sid())
 
     def test_get_eq_id(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.EQ_ID), self.metadata_store.get_eq_id())
+        with self.application.test_request_context():
+            self.assertEquals(self.jwt.get(MetaDataConstants.EQ_ID), self.metadata_store.get_eq_id())
 
     def test_get_period_id(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.PERIOD_ID), self.metadata_store.get_period_id())
+        with self.application.test_request_context():
+            self.assertEquals(self.jwt.get(MetaDataConstants.PERIOD_ID), self.metadata_store.get_period_id())
 
     def test_get_period_str(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.PERIOD_STR), self.metadata_store.get_period_str())
+        with self.application.test_request_context():
+            self.assertEquals(self.jwt.get(MetaDataConstants.PERIOD_STR), self.metadata_store.get_period_str())
 
     def test_ref_p_start_date(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_START_DATE), self.metadata_store.get_ref_p_start_date())
+        with self.application.test_request_context():
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_START_DATE), self.metadata_store.get_ref_p_start_date())
 
     def test_ref_p_end_date(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date())
+        with self.application.test_request_context():
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date())
 
     def test_ru_ref(self):
-        self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date())
+        with self.application.test_request_context():
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date())
 
     def test_is_valid(self):
-        self.assertTrue(MetaDataStore.is_valid(self.jwt))
+        with self.application.test_request_context():
+            self.assertTrue(MetaDataStore.is_valid(self.jwt))
 
     def test_is_valid_fails_missing_user_id(self):
         jwt = {

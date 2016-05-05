@@ -1,18 +1,10 @@
 from app.navigation.navigator import Navigator
 from app.navigation.navigation_history import FlaskNavigationHistory
-from datetime import timedelta
-from flask import Flask
-import unittest
+from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.model.questionnaire import Questionnaire
+import unittest
 
-
-class NavigatorTest(unittest.TestCase):
-    def setUp(self):
-        application = Flask(__name__)
-        application.config['TESTING'] = True
-        application.secret_key = 'you will not guess'
-        application.permanent_session_lifetime = timedelta(seconds=1)
-        self.application = application
+class NavigatorTest(SurveyRunnerTestCase):
 
     def test_get_current_location(self):
         with self.application.test_request_context():

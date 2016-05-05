@@ -33,8 +33,14 @@ class MetaDataStore(object):
                              MetaDataConstants.REF_P_END_DATE, MetaDataConstants.REF_P_START_DATE, MetaDataConstants.FORM_TYPE,
                              MetaDataConstants.RETURN_BY]
 
+    def __init__(self, user=None):
+        if user:
+            self.user = user
+        else:
+            self.user = current_user
+
     def store(self, key, value):
-        data = current_user.get_questionnaire_data()
+        data = self.user.get_questionnaire_data()
         data[key] = value
 
     def store_all(self, token):
@@ -42,7 +48,7 @@ class MetaDataStore(object):
             self.store(key, token[key])
 
     def get(self, key):
-        data = current_user.get_questionnaire_data()
+        data = self.user.get_questionnaire_data()
         if key in data:
             return data[key]
         else:
@@ -84,6 +90,6 @@ class MetaDataStore(object):
     @staticmethod
     def is_valid(token):
         for value in MetaDataStore.VALUES_FOR_VALIDATION:
-            if not token[value]:
+            if value not in token:
                 return False, value
         return True, ""
