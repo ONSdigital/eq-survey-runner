@@ -20,6 +20,7 @@
                         {
                           "id": "f11bc7dc-3940-4c7d-9d0e-faa6acb23eeb",
                           "title":"",
+                          "description":"",
                           "questions": [
                             {
                               "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
@@ -232,6 +233,7 @@
                       {
                           "id": "94546782-08a6-4213-9dc9-0780c2996896",
                           "title":"Comments",
+                          "description":"",
                           "questions": [
                               {
                                 "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",

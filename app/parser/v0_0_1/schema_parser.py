@@ -171,6 +171,7 @@ class SchemaParser(AbstractSchemaParser):
         try:
             section.id = ParserUtils.get_required_string(schema, "id")
             section.title = ParserUtils.get_optional_string(schema, "title")
+            section.description = ParserUtils.get_optional_string(schema, "description")
 
             # regisger the section
             questionnaire.register(section)

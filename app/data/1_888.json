@@ -20,6 +20,7 @@
                         {
                           "id": "ccf71d21-8ef6-4003-859f-00b199439cce",
                           "title":"",
+                          "description":"",
                           "questions": [
                             {
                               "id": "",
@@ -62,6 +63,7 @@
                       {
                           "id": "5dc9b6e1-e069-451c-afe7-f1b9069e6763",
                           "title":"",
+                          "description":"",
                           "questions": [
                             {
                               "id": "e5ea8649-0869-4bd6-b2b9-d3b4e790602b",
@@ -91,6 +93,7 @@
                        {
                           "id": "c521b947-3424-4f1b-8e5e-10f5e882ad0c",
                           "title":"",
+                          "description":"",
                           "questions": [
                             {
                               "id": "b4cf8d77-59ea-4633-bfa4-2f6a5d3ca8a9",
@@ -189,6 +192,7 @@
                       {
                           "id": "feea53d4-8572-4879-bc75-b8d06d4438ac",
                           "title":"Household questions",
+                          "description":"",
                           "questions": [
                              {
                               "id": "3b83a88e-a200-4a8f-ba70-6a18aca11016",
@@ -293,6 +297,7 @@
 
                           "id": "56329aae-0698-44f6-b71c-f5dfb9dd1d0f",
                           "title":"Comments",
+                          "description":"",
                           "questions": [
                               {
                                 "id": "b7fa3176-24a5-47bc-991c-661b2e990cc6",

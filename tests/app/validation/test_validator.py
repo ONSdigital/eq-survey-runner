@@ -200,10 +200,10 @@ class RaisingValidator(AbstractValidator):
 
 
 class MockTypeValidatorFactory(object):
-    def get_validators_by_type(type):
-        if type == "succeed":
+    def get_validators_by_type(item):
+        if item.type == "succeed":
             return [MockValidator(True)]
-        elif type == 'except':
+        elif item.type == 'except':
             return [RaisingValidator()]
         else:
             return [MockValidator(False, 'Validation Failed')]
