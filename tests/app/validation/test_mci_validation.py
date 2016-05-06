@@ -34,7 +34,8 @@ class ValidatorTest(unittest.TestCase):
             "REPORTING_PERIOD_END": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0",
             "TOTAL_RETAIL_TURNOVER": "e81adc6d-6fb0-4155-969c-d0d646f15345",
             "INTERNET_SALES": "4b75a6f7-9774-4b2b-82dc-976561189a99",
-            "FUEL_SALES": "b2bac3ed-5504-43ef-a883-f9ca8496aca3"
+            "FUEL_SALES": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
+            "SALES_PERIOD": "6cc86b54-330c-4465-99b2-34cc7073dc2c"
         }
 
     def test_validate_empty_questionnaire(self):
@@ -94,7 +95,6 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(fuel_sales_result.errors), 0)
         self.assertEquals(len(fuel_sales_result.warnings), 0)
 
-
     def test_invalid_dates(self):
         validator = Validator(self._schema, self._validation_store, self._response_store)
 
@@ -124,6 +124,51 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(period_end_result.errors), 1)
         self.assertEquals(period_end_result.errors[0], 'The date entered is not valid.  Please correct your answer.')
         self.assertEquals(len(period_end_result.warnings), 0)
+
+    def test_invalid_date_diff(self):
+        validator = Validator(self._schema, self._validation_store, self._response_store)
+
+        # Clear the response store and validation store
+        self._response_store.clear()
+        self._validation_store.clear()
+
+        # setup invalid dates diff
+        self._response_store.store_response(self.ids['REPORTING_PERIOD_START'], '01/01/2016')
+        self._response_store.store_response(self.ids['REPORTING_PERIOD_END'], '01/01/2016')
+
+        # validate the questionnaire
+        validator.validate(self._response_store.get_responses())
+
+        # Period Tests
+        period_start_result = self._validation_store.get_result(self.ids['SALES_PERIOD'])
+
+        self.assertFalse(period_start_result.is_valid)
+        self.assertEquals(len(period_start_result.errors), 1)
+        self.assertEquals(period_start_result.errors[0], "The 'To date' must be different to the 'From date'. Please correct your answer.")
+        self.assertEquals(len(period_start_result.warnings), 0)
+
+    def test_invalid_date_diff_range(self):
+        validator = Validator(self._schema, self._validation_store, self._response_store)
+
+        # Clear the response store and validation store
+        self._response_store.clear()
+        self._validation_store.clear()
+
+        # setup invalid date diff
+        self._response_store.store_response(self.ids['REPORTING_PERIOD_START'], '01/01/2017')
+        self._response_store.store_response(self.ids['REPORTING_PERIOD_END'], '01/01/2016')
+
+        # validate the questionnaire
+        validator.validate(self._response_store.get_responses())
+
+        # Period Tests
+        period_start_result = self._validation_store.get_result(self.ids['SALES_PERIOD'])
+
+        self.assertFalse(period_start_result.is_valid)
+        self.assertEquals(len(period_start_result.errors), 1)
+        self.assertEquals(period_start_result.errors[0], "The 'To date' cannot be before the 'From date'. Please correct your answer.")
+        self.assertEquals(len(period_start_result.warnings), 0)
+
 
     def test_invalid_total_turnover(self):
         validator = Validator(self._schema, self._validation_store, self._response_store)

@@ -43,4 +43,6 @@ class DateRangeCheck(AbstractValidator):
             result.errors.append(AbstractValidator.INVALID_DATE)
         except TypeError:
             result.errors.append(AbstractValidator.INVALID_DATE)
+        except AttributeError:
+            result.errors.append(AbstractValidator.INVALID_DATE)
         return result

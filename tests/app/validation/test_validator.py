@@ -125,6 +125,7 @@ class ValidatorTest(unittest.TestCase):
 
         question_1 = Question()
         question_1.id = "0df6fe58-25c9-430f-b157-9dc6b5a7646f"
+        question_1.type = "Integer"
         section_1.add_question(question_1)
         questionnaire_1.register(question_1)
 

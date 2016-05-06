@@ -20,23 +20,24 @@ class TypeValidatorFactory(object):
         Given a type, returns a list of validator instances used for basic
         type checking
         """
+        i_type = item.type
 
         validators = []
         if isinstance(item, Response):
-            if item.type.upper() == 'INTEGER':
+            if i_type.upper() == 'INTEGER':
                 validators.append(IntegerTypeCheck())
-            elif item.type.upper() == "POSTIVEINTEGER":
+            elif i_type.upper() == "POSTIVEINTEGER":
                 validators.append(PositiveIntegerTypeCheck())
-            elif item.type.upper() == 'CURRENCY':
+            elif i_type.upper() == 'CURRENCY':
                 validators.append(PositiveIntegerTypeCheck())
-            elif item.type.upper() == 'DATE':
+            elif i_type.upper() == 'DATE':
                 validators.append(DateTypeCheck())
-            elif item.type.upper() == 'TEXTAREA':
+            elif i_type.upper() == 'TEXTAREA':
                 validators.append(TextAreaTypeCheck())
             else:
-                raise TypeValidatorFactoryException('\'{}\' is not a known response type'.format(item.type))
+                raise TypeValidatorFactoryException('\'{}\' is not a known response type'.format(i_type))
 
         elif isinstance(item, Question):
-            if item.type.upper() == 'DATERANGE':
+            if i_type.upper() == 'DATERANGE':
                 validators.append(DateRangeCheck())
         return validators
