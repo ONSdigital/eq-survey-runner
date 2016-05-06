@@ -44,3 +44,24 @@ def dumpobj(context, my_obj):
     return output
 
 blueprint.add_app_template_filter(dumpobj)
+
+
+@jinja2.contextfilter
+@blueprint.app_template_filter()
+def merge(context, target_obj, dict_args):
+    for property in dict_args.keys():
+        setattr(target_obj, property, dict_args[property])
+    return target_obj
+
+
+blueprint.add_app_template_filter(merge)
+
+
+@jinja2.contextfilter
+@blueprint.app_template_filter()
+def print_type(context, value):
+    print(context)
+    print(value)
+    return type(value)
+
+blueprint.add_app_template_filter(print_type)

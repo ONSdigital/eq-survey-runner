@@ -4,22 +4,29 @@
   {% set response_value = "0/0".split('/') %}
 {% endif %}
 
-{% with name="day" %}
-<div class="field field--{{name}}">
-  <label class="label label--small" for="{{response.id}}-{{name}}">{{_('Day')}}</label>
-  {{form.select(name, (range(1, 32)), response_value[0]|int, response)}}
-</div>
-{% endwith %}
+<fieldset class="fieldset date">
+  <legend class="legend">
+    <div>{{response.label}}</div>
+  </legend>
+  <div class="subfields">
+    {% with name="day" %}
+    <div class="field field--{{name}}">
+      <label class="label label--small" for="{{response.id}}-{{name}}">{{_('Day')}}</label>
+      {{form.select(name, (range(1, 32)), response_value[0]|int, response)}}
+    </div>
+    {% endwith %}
 
-{% with name="month" %}
-<div class="field field--{{name}}">
-  {% set months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %}
-  <label class="label label--small" for="{{response.id}}-{{name}}">{{_('Month')}}</label>
-  {{form.select(name, months, response_value[1]|int, response)}}
-</div>
-{% endwith %}
+    {% with name="month" %}
+    <div class="field field--{{name}}">
+      {% set months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %}
+      <label class="label label--small" for="{{response.id}}-{{name}}">{{_('Month')}}</label>
+      {{form.select(name, months, response_value[1]|int, response)}}
+    </div>
+    {% endwith %}
 
-<div class="field field--year">
-  <label class="label label--small" for="{{response.id}}-year">{{_('Year')}}</label>
-  <input class="input input--number" type="number" name="{{response.id}}-year" id="{{response.id}}-year" value="{{response_value[2]}}" placeholder="YYYY">
-</div>
+    <div class="field field--year">
+      <label class="label label--small" for="{{response.id}}-year">{{_('Year')}}</label>
+      <input class="input input--number" type="number" name="{{response.id}}-year" id="{{response.id}}-year" value="{{response_value[2]}}" placeholder="YYYY">
+    </div>
+  </div>
+</fieldset>

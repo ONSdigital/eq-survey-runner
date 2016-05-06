@@ -1,9 +1,12 @@
 <div class="section" id="section-{{section.id}}">
   {% if section.title %}
-    <h2 class="section__title u-vh">{{section.title}}</h2>
+    <h2 class="section__title">{{section.title}}</h2>
   {% endif %}
+
+
+  {{section.description}}
   {% if section.description %}
-    <div class="section__description u-vh">{{section.description|safe}}</div>
+    <div class="section__description">{{section.description|safe}}</div>
   {% endif %}
 
   {% for question in section.questions %}

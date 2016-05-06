@@ -11,7 +11,7 @@ export default function charLimit() {
   const nodeList = document.getElementsByClassName(inputClass)
 
   forEach(nodeList, (el) => {
-    const maxLength = el.getAttribute(attrMaxLength)
+    const maxLength = parseInt(el.getAttribute(attrMaxLength), 10)
     if (typeof maxLength !== 'undefined') {
       imposeCharLimit(el, maxLength)
     }
@@ -20,12 +20,12 @@ export default function charLimit() {
   return nodeList
 }
 
-export function applyCharLimit(limitValue, limit) {
-  if (limitValue.length > limit) {
-    limitValue = limitValue.substring(0, limit)
+export function applyCharLimit(inputTextValue, limit) {
+  if (inputTextValue.length > limit) {
+    return inputTextValue.substring(0, limit)
+  } else {
+    return inputTextValue
   }
-
-  return limitValue
 }
 
 export function updateMsg(el, length, maxLength) {
