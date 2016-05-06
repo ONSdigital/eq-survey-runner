@@ -267,7 +267,7 @@
                                     {
                                       "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
                                       "q_code": "146",
-                                      "label": "Your comments",
+                                      "label": "Comments",
                                       "guidance": "",
                                       "type": "Textarea",
                                       "mandatory": false,

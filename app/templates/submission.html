@@ -22,7 +22,7 @@
 
           {%- for response in question.responses -%}
 
-            {% if response.type == 'DateRange' %}
+            {% if question.type == 'DateRange' %}
 
               {% if loop.index == 2 %}
                 <dt class="dt"><div>
@@ -38,10 +38,8 @@
 
               {% set response_value = response.value|int|format_currency if response.value else 'N/A' %}
 
-              {{response.value}}
-
               <dt class="dt"><div>
-                {{response.label}}
+                {{question.title}}
               </div></dt>
               <dd class="dd">{{response_value}}</dd>
 
@@ -50,7 +48,7 @@
               {% set response_value = response.value if response.value else 'N/A' %}
 
               <dt class="dt"><div>
-                {{response.label}}
+                {{question.title}}
               </div></dt>
               <dd class="dd">{{response_value}}</dd>
 
