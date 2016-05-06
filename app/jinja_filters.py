@@ -60,8 +60,6 @@ blueprint.add_app_template_filter(merge)
 @jinja2.contextfilter
 @blueprint.app_template_filter()
 def print_type(context, value):
-    print(context)
-    print(value)
     return type(value)
 
 blueprint.add_app_template_filter(print_type)

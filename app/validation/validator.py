@@ -49,7 +49,9 @@ class Validator(object):
             result = self._validate_item(item, user_data[item_id])
             logger.debug('Item {} ({}) valid: {}'.format(item_id, type(item), result.is_valid))
             self._validation_store.store_result(item_id, result)
-            self._validate_container(item.container, user_data)
+
+            if result.is_valid:
+                self._validate_container(item.container, user_data)
 
         # Return true/False for the set of values
         for item_id in user_data.keys():
@@ -93,11 +95,17 @@ class Validator(object):
 
     def _validate_container(self, item, user_data):
 
+        # only type check container if all parts are present and valid
         children_user_data = {}
         for child in item.children:
-            children_user_data[child.label] = user_data[child.id]
-            result = self._type_check(item, children_user_data)
-            self._validation_store.store_result(item.id, result)
+            child_result = self._validation_store.get_result(child.id)
+            if child_result and child_result.is_valid:
+                children_user_data[child.label] = user_data[child.id]
+            else:
+                return
+
+        result = self._type_check(item, children_user_data)
+        self._validation_store.store_result(item.id, result)
 
         if item and item.validation:
             for rule in item.validation:
