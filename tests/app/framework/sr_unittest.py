@@ -29,4 +29,5 @@ class SurveyRunnerTestCase(unittest.TestCase):
                 sess['user_id'] = '1'
 
     def tearDown(self):
-        StorageFactory.get_storage_mechanism().clear()
+        with self.application.test_request_context():
+            StorageFactory.get_storage_mechanism().clear()

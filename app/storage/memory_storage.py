@@ -16,7 +16,7 @@ class InMemoryStorage(AbstractServerStorage):
         if self.has_data(user_id):
             return DATA[user_id]
         else:
-            return {}
+            return None
 
     def has_data(self, user_id):
         return user_id in DATA

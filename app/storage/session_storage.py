@@ -1,6 +1,8 @@
 from flask import session
 from app.storage.abstract_server_storage import AbstractServerStorage
 
+QUESTIONNAIRE_DATA = "questionnaire-data"
+
 
 class FlaskSessionStore(AbstractServerStorage):
     '''
@@ -8,16 +10,20 @@ class FlaskSessionStore(AbstractServerStorage):
     '''
 
     def store(self, user_id, data):
-        session["questionnaire-data"] = data
+        session[QUESTIONNAIRE_DATA] = data
 
     def get(self, user_id):
-        return session["questionnaire-data"]
+        if self.has_data(user_id):
+            return session[QUESTIONNAIRE_DATA]
+        else:
+            return None
 
     def has_data(self, user_id):
-        return "questionnaire-data" in session
+        return QUESTIONNAIRE_DATA in session
 
     def delete(self, user_id):
-        del session[user_id]
+        if self.has_data(user_id):
+            del session[QUESTIONNAIRE_DATA]
 
     def clear(self):
         session.clear()

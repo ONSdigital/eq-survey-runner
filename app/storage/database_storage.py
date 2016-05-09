@@ -42,7 +42,7 @@ class QuestionnaireState(Base):
 Base.metadata.create_all(engine)
 
 
-class DatabaseStore(AbstractServerStorage):
+class DatabaseStorage(AbstractServerStorage):
     '''
     Server side storage using an RDS database (where one column is the entire JSON representation of the questionnaire state)
     '''
