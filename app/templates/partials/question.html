@@ -1,54 +1,77 @@
 {% import 'macros/forms.html' as form %}
 
-<div class="question question--{{question.type|lower}} {% if question.error %}question--has-errors{% endif %}" id="question-{{question.id}}">
+{% set is_valid = question.is_valid or question.is_valid is not defined %}
 
-  {% set question_description %}
-    {%- if question.description %}
-      <div class="question__description" id="description-{{question.id}}">
-        {{question.description|safe}}
-      </div>
-    {% endif %}
-  {% endset %}
+{% set question_markup %}
 
-  {% if question.responses|length > 1 %}
+  <div class="question question--{{question.type|lower}}" id="question-{{question.id}}">
 
-    <fieldset class="question__fieldset">
+    {% set question_description %}
+      {%- if question.description %}
+        <div class="question__description" id="description-{{question.id}}">
+          {{question.description|safe}}
+        </div>
+      {% endif %}
+    {% endset %}
 
-      <legend class="question__legend">
-        <div class="question__title">{{question.title}}</div>
-        {%- if question.subtitle -%}
-          <div class="question__subtitle">{{question.subtitle}}</div>
-        {%- endif %}
-      </legend>
+    {% if question.responses|length > 1 %}
 
-      {{question_description|safe}}
+      <fieldset class="question__fieldset">
 
-      <div class="question__responses">
-        {%- for response in question.responses -%}
+        <legend class="question__legend">
+          <div class="question__title">{{question.title}}</div>
+          {%- if question.subtitle -%}
+            <div class="question__subtitle">{{question.subtitle}}</div>
+          {%- endif %}
+        </legend>
+
+        {{question_description|safe}}
+
+        <div class="question__responses">
+          {%- for response in question.responses -%}
+            {% include 'partials/response.html' %}
+          {%- endfor -%}
+        </div>
+
+      </fieldset>
+
+    {% else %}
+
+    {{question_description|safe}}
+
+    <div class="question__responses">
+      {%- for question_response in question.responses -%}
+        {% with %}
+          {% if question.title %}
+            {% set response = question_response|merge({'label': question.title}) %}
+          {% else %}
+            {% set response = question_response %}
+          {% endif %}
           {% include 'partials/response.html' %}
-        {%- endfor -%}
-      </div>
+        {% endwith %}
+      {%- endfor -%}
+    </div>
 
-    </fieldset>
+    {% endif %}
 
-  {% else %}
-
-  {{question_description|safe}}
-
-  <div class="question__responses">
-    {%- for question_response in question.responses -%}
-      {% with %}
-        {% if question.title %}
-          {% set response = question_response|merge({'label': question.title}) %}
-        {% else %}
-          {% set response = question_response %}
-        {% endif %}
-        {% include 'partials/response.html' %}
-      {% endwith %}
-    {%- endfor -%}
   </div>
 
-  {% endif %}
+{% endset %}
 
-
-</div>
+{% if not is_valid %}
+  {% with %}
+    {% set alert_title %}
+      {% if question.errors %}
+      <ul class="list list--bare">
+        {% for error in question.errors %}
+        <li class="list__item">{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endset %}
+    {% set alert_body = question_markup %}
+    {% include 'partials/alert.html' %}
+  {% endwith %}
+{% else %}
+  {{question_markup|safe}}
+{% endif %}
