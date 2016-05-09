@@ -1,4 +1,4 @@
-<div class="response response--{{response.type|lower}}" id="response-{{response.id}}">
+<div class="response response--{{response.type|lower}}" id="{{response.id}}">
   {% set is_valid = response.is_valid or response.is_valid is not defined %}
 
   {%- set response_guidance %}

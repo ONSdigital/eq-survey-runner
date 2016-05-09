@@ -2,9 +2,9 @@
 
 {% set is_valid = question.is_valid or question.is_valid is not defined %}
 
-{% set question_markup %}
+<div class="question question--{{question.type|lower}}" id="{{question.id}}">
 
-  <div class="question question--{{question.type|lower}}" id="question-{{question.id}}">
+{% set question_markup %}
 
     {% set question_description %}
       {%- if question.description %}
@@ -54,8 +54,6 @@
 
     {% endif %}
 
-  </div>
-
 {% endset %}
 
 {% if not is_valid %}
@@ -75,3 +73,5 @@
 {% else %}
   {{question_markup|safe}}
 {% endif %}
+
+  </div>
