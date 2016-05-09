@@ -157,6 +157,9 @@ class Renderer(object):
                         if question_result and not question_result.is_valid:
                             errors[question.id] = question_result.errors
                             warnings[question.id] = question_result.warnings
+                            question.is_valid = question_result.is_valid
+                            question.errors = question_result.get_errors()
+                            question.warnings = question_result.get_warnings()
 
                         for response in question.responses:
                             response_result = self._validation_store.get_result(response.id)
