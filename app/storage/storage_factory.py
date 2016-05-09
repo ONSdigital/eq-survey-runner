@@ -1,6 +1,7 @@
 from app.storage.database_storage import DatabaseStore
 from app.storage.session_storage import FlaskSessionStore
 from app.storage.memory_storage import InMemoryStorage
+from app.storage.encrypted_storage import EncryptedServerStorageDecorator
 from app import settings
 import logging
 
@@ -19,4 +20,9 @@ class StorageFactory(object):
                 storage = InMemoryStorage()
         else:
                 storage = FlaskSessionStore()
-        return storage
+
+        if settings.EQ_SERVER_SIDE_STORAGE and settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION:
+            # wrap the storage in an encrypted decorator
+            return EncryptedServerStorageDecorator(storage)
+        else:
+            return storage

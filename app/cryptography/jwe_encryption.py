@@ -18,7 +18,7 @@ class JWEDirEncrypter(object):
         return base64.urlsafe_b64encode(text).decode().strip("=").encode()
 
     def encrypt(self, json, iv):
-        payload = self._base_64_encode(json)
+        payload = self._base_64_encode(strings.to_bytes(json))
         jwe_protected_header = self._jwe_protected_header()
 
         cipher = Cipher(algorithms.AES(self.cek), modes.GCM(iv), backend=backend)

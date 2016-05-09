@@ -2,13 +2,13 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, create_engine
 from app.storage.abstract_server_storage import AbstractServerStorage
-
+from app import settings
 import logging
 import json
 
 logger = logging.getLogger(__name__)
 
-engine = create_engine('sqlite:////tmp/questionnaire.db', convert_unicode=True)
+engine = create_engine(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL, convert_unicode=True)
 
 Base = declarative_base()
 
@@ -79,12 +79,19 @@ class DatabaseStore(AbstractServerStorage):
 
     def has_data(self, user_id):
         logger.debug("Running count query for user %s", user_id)
-        return QuestionnaireState.query.filter(QuestionnaireState.user_id == user_id).count() > 0
+        count = QuestionnaireState.query.filter(QuestionnaireState.user_id == user_id).count()
+        logger.debug("Number of entries for user %s", user_id)
+        return count > 0
 
     def delete(self, user_id):
-        # TODO implement me
-        pass
+        logger.debug("About to delete users %s data", user_id)
+        if self.has_data(user_id):
+            questionnaire_state = self._get_object(user_id)
+            db_session.delete(questionnaire_state)
+            db_session.commit()
+            logger.debug("Deleted")
 
     def clear(self):
-        # TODO implement me
-        pass
+        logger.warning("About to delete all questionnaire data")
+        QuestionnaireState.query.delete()
+        logger.warning("Deleted all questionnaire data")

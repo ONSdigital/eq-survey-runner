@@ -39,13 +39,13 @@ EQ_SESSION_TIMEOUT = int(os.getenv('EQ_SESSION_TIMEOUT', '28800'))
 EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
 EQ_UA_ID = os.getenv('EQ_UA_ID', '')
 
-EQ_SESSION_STORAGE_ENCRYPTION_KEY = os.getenv('EQ_SESSION_STORAGE_ENCRYPTION_KEY', os.urandom(32))
-EQ_SESSION_STORAGE_SIGNING_KEY = os.getenv('EQ_SESSION_STORAGE_SIGNING_KEY', os.urandom(24))
 
-# Feature flags
 EQ_SERVER_SIDE_STORAGE = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE', 'True'))
 EQ_SERVER_SIDE_STORAGE_TYPE = os.getenv('EQ_SERVER_SIDE_STORAGE_TYPE', 'memory')
-EQ_DATABASE_URL = os.getenv('EQ_DATABASE_URL', 'sqlite:////tmp/session.db')
+EQ_SERVER_SIDE_STORAGE_ENCRYPTION = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION', 'True'))
+EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY = os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY', "lord.darth.vader").encode()
+EQ_SERVER_SIDE_STORAGE_SIGNING_KEY = os.getenv('EQ_SERVER_SIDE_STORAGE_SIGNING_KEY', "luke.skywalker.princess").encode()
+EQ_SERVER_SIDE_STORAGE_DATABASE_URL = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_URL', 'sqlite:////tmp/questionnaire.db')
 
 EQ_SPLUNK_LOGGING = parse_mode(os.getenv('EQ_SPLUNK_LOGGING', 'False'))
 EQ_SPLUNK_HOST = os.getenv('EQ_SPLUNK_HOST')

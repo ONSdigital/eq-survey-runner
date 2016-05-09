@@ -16,8 +16,10 @@ class User(UserMixin):
         self.storage = StorageFactory.get_storage_mechanism()
 
         if self.storage.has_data(self.user_id):
+            logger.debug("User %s has previous data loading", user_id)
             self.load()
         else:
+            logger.debug("User %s does not have previous data creating", user_id)
             self.questionnaire_data = {}
             self.save()
 

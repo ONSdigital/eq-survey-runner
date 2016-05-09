@@ -1,5 +1,6 @@
 from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from app.utilities import strings
 import base64
 
 
@@ -22,7 +23,8 @@ class JWEDirDecrypter(object):
         cipher_text = self._base64_decode(encoded_cipher_text)
 
         decrypted_text = self._decrypt_cipher_text(cipher_text, iv, self.cek, tag, jwe_protected_header)
-        return decrypted_text
+        decoded_text = self._base64_decode(strings.to_str(decrypted_text))
+        return strings.to_str(decoded_text)
 
     def _decrypt_cipher_text(self, cipher_text, iv, key, tag, jwe_protected_header):
         cipher = Cipher(algorithms.AES(key), modes.GCM(iv, tag), backend=backend)
