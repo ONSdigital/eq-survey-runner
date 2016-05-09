@@ -44,7 +44,6 @@ EQ_SERVER_SIDE_STORAGE = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE', 'True'))
 EQ_SERVER_SIDE_STORAGE_TYPE = os.getenv('EQ_SERVER_SIDE_STORAGE_TYPE', 'memory')
 EQ_SERVER_SIDE_STORAGE_ENCRYPTION = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION', 'True'))
 EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY = os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY', "lord.darth.vader").encode()
-EQ_SERVER_SIDE_STORAGE_SIGNING_KEY = os.getenv('EQ_SERVER_SIDE_STORAGE_SIGNING_KEY', "luke.skywalker.princess").encode()
 EQ_SERVER_SIDE_STORAGE_DATABASE_URL = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_URL', 'sqlite:////tmp/questionnaire.db')
 
 EQ_SPLUNK_LOGGING = parse_mode(os.getenv('EQ_SPLUNK_LOGGING', 'False'))

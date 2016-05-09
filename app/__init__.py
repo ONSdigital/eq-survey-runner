@@ -17,6 +17,7 @@ from app import settings
 from datetime import timedelta
 import watchtower
 import logging
+import sys
 from logging.handlers import RotatingFileHandler
 from flask_analytics import Analytics
 from splunk_handler import SplunkHandler
