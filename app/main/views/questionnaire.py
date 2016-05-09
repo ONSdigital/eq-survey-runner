@@ -8,9 +8,8 @@ from flask_login import login_required
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
 from app.submitter.converter import SubmitterConstants
 from .. import main_blueprint
-from werkzeug.exceptions import NotFound
-from app.navigation.navigator import NavigationException
-
+from app.model.questionnaire import QuestionnaireException
+from app.main.errors import page_not_found
 
 logger = logging.getLogger(__name__)
 
@@ -46,5 +45,5 @@ def survey(location):
                                navigation=context['navigation']
                                )
 
-    except NavigationException:
-        raise NotFound()
+    except QuestionnaireException:
+        return page_not_found(404)
