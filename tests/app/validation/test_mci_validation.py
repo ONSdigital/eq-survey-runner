@@ -144,7 +144,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(period_start_result.is_valid)
         self.assertEquals(len(period_start_result.errors), 1)
-        self.assertEquals(period_start_result.errors[0], "The 'To date' must be different to the 'From date'. Please correct your answer.")
+        self.assertEquals(period_start_result.errors[0], "The 'to' date must be different to the 'from' date.")
         self.assertEquals(len(period_start_result.warnings), 0)
 
     def test_invalid_date_diff_range(self):
@@ -166,7 +166,7 @@ class ValidatorTest(unittest.TestCase):
 
         self.assertFalse(period_start_result.is_valid)
         self.assertEquals(len(period_start_result.errors), 1)
-        self.assertEquals(period_start_result.errors[0], "The 'To date' cannot be before the 'From date'. Please correct your answer.")
+        self.assertEquals(period_start_result.errors[0], "The 'to' date cannot be before the 'from' date.")
         self.assertEquals(len(period_start_result.warnings), 0)
 
 

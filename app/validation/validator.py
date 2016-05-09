@@ -31,8 +31,8 @@ class Validator(object):
             AbstractValidator.INVALID_DATE: _("This is not a valid date."),
             AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed."),
             AbstractValidator.INTEGER_TOO_LARGE: _('This number is too big.'),
-            AbstractValidator.INVALID_DATE_RANGE_DIFF: _("The 'To date' cannot be before the 'From date'. Please correct your answer."),
-            AbstractValidator.INVALID_DATE_RANGE_SAME: _("The 'To date' must be different to the 'From date'. Please correct your answer.")
+            AbstractValidator.INVALID_DATE_RANGE_DIFF: _("The 'to' date cannot be before the 'from' date."),
+            AbstractValidator.INVALID_DATE_RANGE_SAME: _("The 'to' date must be different to the 'from' date.")
         }
 
     def validate(self, user_data):
