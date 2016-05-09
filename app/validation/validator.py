@@ -57,7 +57,8 @@ class Validator(object):
         for item_id in user_data.keys():
             result = self._validation_store.get_result(item_id)
             item = self._schema.get_item_by_id(item_id)
-            container_result = self._validation_store.get_result(item.id)
+            container_result = self._validation_store.get_result(item.container.id)
+
             if result:
                 if not result.is_valid or not container_result.is_valid:
                     return False
