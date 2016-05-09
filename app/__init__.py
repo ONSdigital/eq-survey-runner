@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_babel import Babel
 from flask_login import LoginManager
 from app.libs.utils import get_locale
@@ -14,7 +13,6 @@ from app.metadata.metadata_store import MetaDataStore
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
-from app.storage.database_storage import metadata
 from app import settings
 from datetime import timedelta
 import watchtower
@@ -110,8 +108,6 @@ def create_app(config_name):
                'X-Frame-Options': 'DENY',
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
-
-    setup_database(application)
 
     setup_babel(application)
 
@@ -274,10 +270,3 @@ def add_health_check(application, headers):
     application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
-
-
-def setup_database(application):
-    application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/questionnaire.db'
-    db = SQLAlchemy(application, metadata)
-    db.create_all()
-    application.db = db

@@ -7,7 +7,7 @@ class FlaskSessionStore(AbstractServerStorage):
     Client side storage using sessions
     '''
 
-    def store(self, data, user_id):
+    def store(self, user_id, data):
         session["questionnaire-data"] = data
 
     def get(self, user_id):

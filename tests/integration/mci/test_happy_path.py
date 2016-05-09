@@ -1,10 +1,12 @@
 import unittest
 from app import create_app
 from tests.integration.create_token import create_token
+from app import settings
 
 
 class TestHappyPath(unittest.TestCase):
     def setUp(self):
+        settings.EQ_SERVER_SIDE_STORAGE = False
         self.application = create_app('development')
         self.client = self.application.test_client()
 
@@ -14,7 +16,7 @@ class TestHappyPath(unittest.TestCase):
     def test_happy_path_205(self):
         self.happy_path('0205')
 
-    def happy_path(self,form_type_id):
+    def happy_path(self, form_type_id):
         # Get a token
         token = create_token(form_type_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
