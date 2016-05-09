@@ -18,7 +18,6 @@ from datetime import timedelta
 import watchtower
 import logging
 from logging.handlers import RotatingFileHandler
-import sys
 from flask_analytics import Analytics
 from splunk_handler import SplunkHandler
 from app.analytics.custom_google_analytics import CustomGoogleAnalytics
@@ -73,17 +72,16 @@ login_manager = LoginManager()
 
 
 @login_manager.user_loader
-def load_user_s(user_id):
-    logger.debug("User ID is >> ")
+def load_user(user_id):
+    logger.debug("Loading user %s", user_id)
     logger.debug(user_id)
-    logger.debug("Calling load user")
     authenticator = Authenticator()
     return authenticator.check_session()
 
 
 @login_manager.request_loader
-def load_user(request):
-    logger.debug("Calling load user")
+def request_load_user(request):
+    logger.debug("Load user %s", request)
     authenticator = Authenticator()
     return authenticator.check_session()
 
