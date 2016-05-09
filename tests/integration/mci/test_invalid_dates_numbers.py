@@ -94,7 +94,7 @@ class TestInvalidDateNumber(unittest.TestCase):
         resp = self.client.post('/questionnaire', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, "The &#39;To date&#39; cannot be before the &#39;From date&#39;. Please correct your answer.")
+        self.assertRegexpMatches(content, "The &#39;to&#39; date cannot be before the &#39;from&#39; date.")
 
         form_data = {
             # Start Date
@@ -113,7 +113,7 @@ class TestInvalidDateNumber(unittest.TestCase):
         resp = self.client.post('/questionnaire', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, "The &#39;To date&#39; must be different to the &#39;From date&#39;. Please correct your answer.")
+        self.assertRegexpMatches(content, "The &#39;to&#39; date must be different to the &#39;from&#39; date.")
 
         form_data = {
             # Start Date
