@@ -1,6 +1,6 @@
 from flask import Flask
-from flask.ext.babel import Babel
-from flask.ext.login import LoginManager
+from flask_babel import Babel
+from flask_login import LoginManager
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck
 from flaskext.markdown import Markdown
@@ -9,15 +9,16 @@ from app.responses.response_store import FlaskResponseStore
 from app.navigation.navigation_store import FlaskNavigationStore
 from app.navigation.navigation_history import FlaskNavigationHistory
 from app.validation.validation_store import FlaskValidationStore
-from app import settings
+from app.metadata.metadata_store import MetaDataStore
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
+from app import settings
 from datetime import timedelta
 import watchtower
 import logging
-from logging.handlers import RotatingFileHandler
 import sys
+from logging.handlers import RotatingFileHandler
 from flask_analytics import Analytics
 from splunk_handler import SplunkHandler
 from app.analytics.custom_google_analytics import CustomGoogleAnalytics
@@ -45,6 +46,7 @@ factory.register("response-store", FlaskResponseStore)
 factory.register("navigation-store", FlaskNavigationStore)
 factory.register("navigation-history", FlaskNavigationHistory)
 factory.register("validation-store", FlaskValidationStore)
+factory.register("metadata-store", MetaDataStore)
 
 
 def rabbitmq_available():
@@ -70,9 +72,17 @@ def git_revision():
 login_manager = LoginManager()
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    logger.debug("Loading user %s", user_id)
+    logger.debug(user_id)
+    authenticator = Authenticator()
+    return authenticator.check_session()
+
+
 @login_manager.request_loader
-def load_user(request):
-    logging.debug("Calling load user")
+def request_load_user(request):
+    logger.debug("Load user %s", request)
     authenticator = Authenticator()
     return authenticator.check_session()
 

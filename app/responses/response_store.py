@@ -1,4 +1,4 @@
-from flask import session
+from flask_login import current_user
 from abc import ABCMeta, abstractmethod
 
 RESPONSES = "resp"
@@ -25,26 +25,29 @@ class AbstractResponseStore(metaclass=ABCMeta):
 class FlaskResponseStore(AbstractResponseStore):
 
     def store_response(self, key, value):
-        if RESPONSES not in session:
+        data = current_user.get_questionnaire_data()
+        if RESPONSES not in data:
             responses = {key: value}
-            session[RESPONSES] = responses
+            data[RESPONSES] = responses
         else:
-            session[RESPONSES][key] = value
-        session.permanent = True
+            data[RESPONSES][key] = value
 
     def get_response(self, key):
-        if RESPONSES not in session.keys():
-            session[RESPONSES] = {}
+        data = current_user.get_questionnaire_data()
+        if RESPONSES not in data.keys():
+            data[RESPONSES] = {}
             return None
-        if key not in session[RESPONSES].keys():
+        if key not in data[RESPONSES].keys():
             return None
-        return session[RESPONSES][key]
+        return data[RESPONSES][key]
 
     def get_responses(self):
-        if RESPONSES not in session.keys():
-            session[RESPONSES] = {}
-        return session[RESPONSES]
+        data = current_user.get_questionnaire_data()
+        if RESPONSES not in data.keys():
+            data[RESPONSES] = {}
+        return data[RESPONSES]
 
     def clear_responses(self):
-        if RESPONSES in session.keys():
-            del session[RESPONSES]
+        data = current_user.get_questionnaire_data()
+        if RESPONSES in data.keys():
+            del data[RESPONSES]

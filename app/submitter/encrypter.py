@@ -3,17 +3,17 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
+from app.cryptography.jwe_encryption import JWEEncrypter
 from app import settings
 from app.utilities import strings
 
 import jwt
 import os
-import base64
 
 KID = 'EDCSR'
 
 
-class Encrypter (object):
+class Encrypter (JWEEncrypter):
     def __init__(self):
         private_key_bytes = strings.to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY)
         public_key_bytes = strings.to_bytes(settings.EQ_SUBMISSION_SDX_PUBLIC_KEY)
@@ -38,11 +38,6 @@ class Encrypter (object):
 
     def _encode_iv(self, iv):
         return self._base_64_encode(iv)
-
-    def _base_64_encode(self, text):
-        # strip the trailing = as they are padding to make the result a multiple of 4
-        # the RFC does the same, as do other base64 libraries so this is a safe operation
-        return base64.urlsafe_b64encode(text).decode().strip("=").encode()
 
     def _encode_and_signed(self, payload):
         return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': KID, 'typ': 'jwt'})

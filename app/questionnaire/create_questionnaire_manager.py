@@ -1,4 +1,3 @@
-from flask_login import current_user
 from app.validation.validator import Validator
 from app.routing.routing_engine import RoutingEngine
 from app.navigation.navigator import Navigator
@@ -13,11 +12,13 @@ logger = logging.getLogger(__name__)
 
 def create_questionnaire_manager():
 
-    eq_id = current_user.get_eq_id()
-    form_type = current_user.get_form_type()
+    metadata = factory.create("metadata-store")
+
+    eq_id = metadata.get_eq_id()
+    form_type = metadata.get_form_type()
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
-    schema = load_and_parse_schema()
+    schema = load_and_parse_schema(eq_id, form_type)
     if not schema:
         return errors.page_not_found()
 

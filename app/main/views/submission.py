@@ -28,7 +28,10 @@ def submission():
     response_store = factory.create("response-store")
     responses = response_store.get_responses()
     questionnaire_manager = create_questionnaire_manager()
-    schema = load_and_parse_schema()
+
+    metadata = factory.create("metadata-store")
+
+    schema = load_and_parse_schema(metadata.get_eq_id(), metadata.get_form_type())
 
     if not schema:
         return errors.page_not_found()
@@ -43,7 +46,7 @@ def submission():
 
         submitter = SubmitterFactory.get_submitter()
         try:
-            submitted_at = submitter.send_responses(current_user, schema, responses)
+            submitted_at = submitter.send_responses(current_user, metadata, schema, responses)
             # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
             session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
             response_store.clear_responses()
@@ -55,6 +58,6 @@ def submission():
 
     return render_template('submission.html', questionnaire=render_data, data={
         "survey_code": schema.survey_id,
-        "period_str": current_user.get_period_str(),
-        "respondent_id": current_user.get_ru_ref()
+        "period_str": metadata.get_period_str(),
+        "respondent_id": metadata.get_ru_ref()
     }, bar_title=schema.title)

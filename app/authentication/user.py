@@ -1,74 +1,44 @@
-from flask.ext.login import UserMixin
+from flask_login import UserMixin
+from app.storage.storage_factory import StorageFactory
+import logging
 
-
-class UserConstants(object):
-    """Constant for user values"""
-    USER_ID = 'user_id'
-    RU_REF = 'ru_ref'
-    RU_NAME = 'ru_name'
-    EQ_ID = 'eq_id'
-    COLLECTION_EXERCISE_SID = 'collection_exercise_sid'
-    PERIOD_ID = 'period_id'
-    PERIOD_STR = 'period_str'
-    REF_P_START_DATE = 'ref_p_start_date'
-    REF_P_END_DATE = 'ref_p_end_date'
-    FORM_TYPE = 'form_type'
-    RETURN_BY = 'return_by'
-    TRAD_AS = 'trad_as'
+logger = logging.getLogger(__name__)
 
 
 class User(UserMixin):
 
-    VALUES_FOR_VALIDATION = [UserConstants.USER_ID, UserConstants.RU_REF, UserConstants.RU_NAME, UserConstants.EQ_ID,
-                             UserConstants.COLLECTION_EXERCISE_SID, UserConstants.PERIOD_ID, UserConstants.PERIOD_STR,
-                             UserConstants.REF_P_END_DATE, UserConstants.REF_P_START_DATE, UserConstants.FORM_TYPE,
-                             UserConstants.RETURN_BY]
+    def __init__(self, user_id):
+        if user_id:
+            self.user_id = user_id
+        else:
+            raise ValueError("No user_id found in session")
 
-    def __init__(self, jwt):
-        self.id = jwt.get(UserConstants.USER_ID)
-        self.jwt = jwt
+        self.storage = StorageFactory.get_storage_mechanism()
+
+        if self.storage.has_data(self.user_id):
+            logger.debug("User %s has previous data loading", user_id)
+            self.load()
+        else:
+            logger.debug("User %s does not have previous data creating", user_id)
+            self.questionnaire_data = {}
+            self.save()
 
     def get_user_id(self):
-        return self.jwt.get(UserConstants.USER_ID)
+        logger.debug("Returning user id %s", self.user_id)
+        return self.user_id
 
-    def get_ru_ref(self):
-        return self.jwt.get(UserConstants.RU_REF)
+    def get_questionnaire_data(self):
+        logger.debug("Returning questionnaire data %s", self.questionnaire_data)
+        return self.questionnaire_data
 
-    def get_ru_name(self):
-        return self.jwt.get(UserConstants.RU_NAME)
+    def delete_questionnaire_data(self):
+        logger.debug("Deleting questionnaire data for %s", self.questionnaire_data)
+        self.questionnaire_data = {}
+        self.storage.delete(self.user_id)
 
-    def get_eq_id(self):
-        return self.jwt.get(UserConstants.EQ_ID)
+    def save(self):
+        logger.debug("Saving user data %s for user id %s", self.questionnaire_data, self.user_id)
+        self.storage.store(self.user_id, self.questionnaire_data)
 
-    def get_collection_exercise_sid(self):
-        return self.jwt.get(UserConstants.COLLECTION_EXERCISE_SID)
-
-    def get_period_id(self):
-        return self.jwt.get(UserConstants.PERIOD_ID)
-
-    def get_period_str(self):
-        return self.jwt.get(UserConstants.PERIOD_STR)
-
-    def get_form_type(self):
-        return self.jwt.get(UserConstants.FORM_TYPE)
-
-    def get_ref_p_start_date(self):
-        return self.jwt.get(UserConstants.REF_P_START_DATE)
-
-    def get_ref_p_end_date(self):
-        return self.jwt.get(UserConstants.REF_P_END_DATE)
-
-    def get_trad_as(self):
-        return self.jwt.get(UserConstants.TRAD_AS)
-
-    def get_return_by(self):
-        return self.jwt.get(UserConstants.RETURN_BY)
-
-    def is_valid(self):
-        for value in User.VALUES_FOR_VALIDATION:
-            if not self._has_value(value):
-                return False, value
-        return True, ""
-
-    def _has_value(self, value):
-        return value in self.jwt
+    def load(self):
+        self.questionnaire_data = self.storage.get(self.user_id)
