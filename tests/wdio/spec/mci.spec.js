@@ -3,7 +3,7 @@ const expect = chai.expect
 const getUri = uri => 'http://localhost:5000/' + uri
 
 describe('MCI test', function() {
-  before((done) => {
+  before(() => {
     browser
       .url('/dev')
       .waitForExist('.qa-select-schema')
@@ -19,16 +19,15 @@ describe('MCI test', function() {
   })
 
   it('The form can be filled in and submitted', function() {
-    const inputs = browser.elements('.input-type--currency .input')
     browser
       .setValue('#6fd644b0-798e-4a58-a393-a438b32fe637-year', '2016')
       .setValue('#06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year', '2017')
-    inputs.setValue(2000)
+    browser.setValue('.input-type--currency .input', 2000)
     browser.submitForm('form')
     expect(browser.url().value).to.equal(getUri('submission'))
   })
 
-  it('The survery can be completed with "thankyou page" reached', function() {
+  it('The survey can be completed with "thankyou page" reached', function() {
     browser.submitForm('form')
     expect(browser.url().value).to.equal(getUri('thank-you'))
   })

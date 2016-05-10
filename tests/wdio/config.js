@@ -25,7 +25,7 @@ let config = {
   mochaOpts: {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
-    timeout: 50000
+    timeout: 100000
   }
 }
 
