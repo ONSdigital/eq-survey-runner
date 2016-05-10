@@ -29,11 +29,11 @@ class JWEDecryptor(object):
 
 class JWERSAOAEPDecryptor(JWEDecryptor):
 
-    def __init__(self, private_key):
+    def __init__(self, private_key, password):
 
         self.private_key = serialization.load_pem_private_key(
             private_key.encode(),
-            password=b'digitaleq',
+            password=password.encode(),
             backend=backend
         )
 

@@ -26,7 +26,7 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
                 self.logger.fatal('KEYMAT not configured correctly.')
                 raise OSError('KEYMAT not configured correctly.')
         else:
-            super().__init__(settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY)
+            super().__init__(settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY, settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD)
             # oddly the python cryptography library needs these as bytes string
             rrm_public_key_as_bytes = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY)
             self.rrm_public_key = serialization.load_pem_public_key(

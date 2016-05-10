@@ -34,7 +34,7 @@ SUBMISSION_DATA = json.loads("""
 class Decrypter(JWERSAOAEPDecryptor):
 
     def __init__(self):
-        super().__init__(TEST_DO_NOT_USE_SDX_PRIVATE_KEY)
+        super().__init__(TEST_DO_NOT_USE_SDX_PRIVATE_KEY, 'digitaleq')
         self.rrm_public_key = serialization.load_pem_public_key(
               TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY.encode(),
               backend=backend
