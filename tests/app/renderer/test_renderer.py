@@ -2,6 +2,7 @@ from app.renderer.renderer import Renderer
 from app.validation.validation_store import AbstractValidationStore
 from app.responses.response_store import AbstractResponseStore
 from app.validation.validation_result import ValidationResult
+from app.metadata.metadata_store import MetaDataStore
 
 from app.model.questionnaire import Questionnaire
 from app.model.group import Group
@@ -20,6 +21,8 @@ class TestRenderer(unittest.TestCase):
         self.validation_store = MockValidationStore()
         self.response_store = MockResponseStore()
         self.schema = self._create_schema()
+        self.navigator = MockNavigator()
+        self.metadata = MetaDataStore()
 
         # The responses and the validation results are not related for the purposes of this test
         # The renderer simply combines these objects to create new objects for consumption
@@ -42,7 +45,7 @@ class TestRenderer(unittest.TestCase):
 
     def test_augment_responses(self):
         # Instantiate the renderer using the pre-populated mock objects
-        renderer = Renderer(self.schema, self.response_store, self.validation_store)
+        renderer = Renderer(self.schema, self.response_store, self.validation_store, self.navigator, self.metadata)
 
         # Get the response objects
         response_1 = self.schema.get_item_by_id('response-1')
@@ -77,7 +80,7 @@ class TestRenderer(unittest.TestCase):
 
     def test_augment_questionnaire(self):
         # Instantiate the renderer using the pre-populated mock objects
-        renderer = Renderer(self.schema, self.response_store, self.validation_store)
+        renderer = Renderer(self.schema, self.response_store, self.validation_store, self.navigator, self.metadata)
 
         # check the attributes do not exist
         with self.assertRaises(AttributeError):
@@ -96,6 +99,14 @@ class TestRenderer(unittest.TestCase):
         self.assertListEqual(self.schema.errors['response-3'], ['This is a required field'])
         self.assertListEqual(self.schema.warnings['response-2'], ['There is a warning'])
 
+    def test_render(self):
+        renderer = Renderer(self.schema, self.response_store, self.validation_store, self.navigator, self.metadata)
+
+        context = renderer.render()
+
+        self.assertIn('meta', context.keys())
+        self.assertIn('content', context.keys())
+        self.assertIn('navigation', context.keys())
 
 
     def _create_schema(self):
@@ -178,4 +189,9 @@ class MockResponseStore(AbstractResponseStore):
         self._responses.clear()
 
     def clear_responses(self):
-        self.clear();
+        self.clear()
+
+
+class MockNavigator(object):
+    def get_current_location(self):
+        return 'current-location'

@@ -6,7 +6,7 @@
 
 <h1 class="u-vh">Monthly Business Survey - Retail Sales Index</h1>
 
-{% set all_errors = questionnaire.data.errors.items() %}
+{% set all_errors = content.questionnaire.errors.items() %}
 
 {% if all_errors %}
   {% with %}
@@ -34,13 +34,13 @@
 
 <form action="" class="form" role="form" method="POST" novalidate>
 
-    {% for group in questionnaire.data.groups %}
+    {% set group = content.questionnaire.get_item_by_id(navigation.current_group_id) %}
 
-      <div class="group" id="group-{{group.id}}">
+      <div class="group" id="group-{{navigation.current_group_id}}">
 
-      {% for block in group.blocks %}
+      {% set block = content.questionnaire.get_item_by_id(navigation.current_block_id) %}
 
-        <div class="block" id="block-{{block.id}}">
+        <div class="block" id="block-{{navigation.current_block_id}}">
 
         {% for section in block.sections %}
 
@@ -50,11 +50,8 @@
 
         </div>
 
-      {% endfor %}
-
       </div>
 
-    {% endfor %}
 
   <button class="btn btn--secondary" type="submit" name="action[save_continue]">Save &amp; Continue</button>
 

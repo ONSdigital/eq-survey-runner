@@ -16,6 +16,7 @@ def create_questionnaire_manager():
 
     eq_id = metadata.get_eq_id()
     form_type = metadata.get_form_type()
+
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
     schema = load_and_parse_schema(eq_id, form_type)
@@ -40,8 +41,8 @@ def create_questionnaire_manager():
     # create the navigator
     navigator = Navigator(schema, navigation_history)
 
-    if navigator.get_current_location() == "introduction" or navigator.get_current_location() is None:
-        navigator.go_to('questionnaire')
+    # if navigator.get_current_location() == "introduction" or navigator.get_current_location() is None:
+    #     navigator.go_to('questionnaire')
 
     # instantiate the questionnaire manager
     questionnaire_manager = QuestionnaireManager(schema,
@@ -50,5 +51,6 @@ def create_questionnaire_manager():
                                                  validation_store,
                                                  routing_engine,
                                                  navigator,
-                                                 navigation_history)
+                                                 navigation_history,
+                                                 metadata)
     return questionnaire_manager
