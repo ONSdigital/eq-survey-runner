@@ -4,7 +4,6 @@ import Promise from 'promise'
 import sauceConnectLauncher from 'sauce-connect-launcher'
 
 const useLocalSauceLabs = process.env.SAUCELABS === 'true' || false
-// const useBrowserStack = process.env.SAUCELABS === 'true' || false
 
 let sauceConnectProcess
 
@@ -34,32 +33,14 @@ let config = {
 const sauceLabsConfig = {
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
-  capabilities: [ie10]
+  capabilities: [chrome, firefox, ie11, ie10, ie9, ie8]
 }
-//
-// if (useBrowserStack) {
-//   config = {
-//     ...config,
-//     desiredCapabilities: {
-//       browserName: 'chrome',
-//       browser_version: '46.0',
-//       os: 'Windows',
-//       os_version: '10',
-//       resolution: '1024x768'
-//     },
-//     host: 'hub.browserstack.com',
-//     port: 80,
-//     user: 'lewisbabbage1',
-//     key: 'eumEzmmD6Cp8CRyyURuh',
-//     loglevel: 'verbose'
-//   }
-// }
 
 if (process.env.TRAVIS === 'true') {
   config = {
     ...config,
     ...sauceLabsConfig,
-    logLevel: 'debug  '
+    logLevel: 'debug'
   }
 } else {
   if (useLocalSauceLabs) {

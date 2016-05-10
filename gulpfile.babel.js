@@ -4,7 +4,7 @@ import plumber from 'gulp-plumber'
 
 import {paths} from './gulp/paths'
 import {copyScripts, bundle, lint as lintScripts} from './gulp/scripts'
-import {unitTests, functionalTests, startSeleniumServer, seleniumServer} from './gulp/tests'
+import {unitTests, functionalTests, startSeleniumServer} from './gulp/tests'
 import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
@@ -48,7 +48,6 @@ gulp.task('test:scripts:functional:local', ['test:scripts:selenium'], (done) => 
 
 gulp.task('test:scripts:functional', (done) => {
   process.env.SAUCELABS = 'true'
-  process.env.BROWSERSTACK = 'false'
   functionalTests(done)
 })
 
