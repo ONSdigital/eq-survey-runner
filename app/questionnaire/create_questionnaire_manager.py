@@ -16,6 +16,7 @@ def create_questionnaire_manager():
 
     eq_id = metadata.get_eq_id()
     form_type = metadata.get_form_type()
+
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
     schema = load_and_parse_schema(eq_id, form_type)
@@ -27,9 +28,6 @@ def create_questionnaire_manager():
 
     # load the validation store
     validation_store = factory.create("validation-store")
-
-    # metadata store
-    metadata = factory.create("metadata-store")
 
     # Create the validator
     validator = Validator(schema, validation_store, response_store)

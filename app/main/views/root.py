@@ -1,4 +1,4 @@
-from flask import redirect, request, abort, session
+from flask import request, abort, session, redirect
 from flask_login import current_user
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
@@ -61,7 +61,9 @@ def login():
         # get the current location of the user
         current_location = navigator.get_current_location()
 
-        return redirect_to_location(current_location)
+        current_user.save()
+
+        return redirect('/questionnaire/' + current_location)
 
     except NoTokenException as e:
         logger.warning("Unable to authenticate user")

@@ -27,7 +27,7 @@ class QuestionnaireManager(object):
         if user_action == 'submit_answers':
             responses = self._response_store.get_responses()
             submitter = SubmitterFactory.get_submitter()
-            submitted_at = submitter.send_responses(current_user, self._schema, responses)
+            submitted_at = submitter.send_responses(current_user, self._metadata, self._schema, responses)
             # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
             session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
             self._response_store.clear_responses()

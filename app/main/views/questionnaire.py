@@ -1,10 +1,7 @@
 import logging
 from flask import render_template, request, session
 from flask_login import login_required, current_user
-from app.utilities.factory import factory
-from app.main.views.root import redirect_to_location
-from flask import render_template, request, session, redirect
-from flask_login import login_required
+from flask import redirect
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
 from app.submitter.converter import SubmitterConstants
 from .. import main_blueprint
@@ -33,6 +30,8 @@ def survey(location):
             logger.debug("POST request question - current location %s", location)
             questionnaire_manager.process_incoming_responses(request.form)
             next_location = questionnaire_manager.get_current_location()
+
+            current_user.save()
 
             return redirect('/questionnaire/' + next_location)
 

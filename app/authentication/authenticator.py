@@ -21,6 +21,7 @@ class Authenticator(object):
         Checks for the present of the JWT in the users sessions
         :return: A user object if a JWT token is available in the session
         """
+
         logger.debug("Checking for session")
         if session_manager.has_user_id():
             logger.debug("Session token exists")

@@ -62,11 +62,15 @@ class Renderer(object):
         if self._schema.introduction and self._schema.introduction.description:
             survey_meta["description"] = self._schema.introduction.description
 
-        if current_user:
-            survey_meta["return_by"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_return_by(), "%Y-%m-%d")),
-            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d")),
-            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d")),
+        try:
+            # Under certain conditions, there is no user so these steps may fail
+            survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=datetime.strptime(self._metadata.get_return_by(), "%Y-%m-%d"))
+            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d"))
+            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d"))
             survey_meta["period_str"] = self._metadata.get_period_str()
+        except:
+            # But we can silently ignore them under those circumstanes
+            pass
 
         # TODO: This is still not the right place to do this...
         if session and SubmitterConstants.SUBMITTED_AT_KEY in session:
