@@ -26,13 +26,15 @@ describe('MCI test', function() {
       .setValue('#06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year', '2017')
     browser.setValue('.input-type--currency .input', 2000)
     browser.click(submitBtn)
-    expect(browser.url().value).to.equal(getUri('submission'))
+    const url = browser.url().value
+    expect(url).to.equal(getUri('submission'))
   })
 
   it('The survey can be completed with "thankyou page" reached', function() {
     const submitBtn = '.qa-btn-submit-answers'
     browser.waitForExist(submitBtn)
     browser.click(submitBtn)
-    expect(browser.url().value).to.equal(getUri('thank-you'))
+    const url = browser.url().value
+    expect(url).to.equal(getUri('thank-you'))
   })
 })

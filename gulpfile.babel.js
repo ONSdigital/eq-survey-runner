@@ -48,6 +48,7 @@ gulp.task('test:scripts:functional:local', ['test:scripts:selenium'], (done) => 
 
 gulp.task('test:scripts:functional', (done) => {
   process.env.SAUCELABS = 'true'
+  process.env.BROWSERSTACK = 'false'
   functionalTests(done)
 })
 
