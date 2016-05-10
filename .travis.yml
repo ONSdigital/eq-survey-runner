@@ -17,6 +17,8 @@ before_script:
 - "./scripts/run_app.sh"
 script:
 - "./scripts/run_tests.sh"
+notifications:
+ -  slack: digitaleq:LDxJXRGeVmg3PpdUhp90eY3Z
 addons:
   sauce_connect:
     username:
