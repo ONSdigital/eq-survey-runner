@@ -179,7 +179,7 @@
                                 "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
                                 "q_code": "27",
                                 "label": "What was the value of the business’s total sales of automotive fuel?",
-                                "guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commisions</li> </ul></div>",
+                                "guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commissions</li> </ul></div>",
                                 "type": "Currency",
                                 "mandatory": false,
                                 "validation": {
