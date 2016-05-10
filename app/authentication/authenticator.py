@@ -1,7 +1,7 @@
 import logging
 
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.authentication.jwt_decoder import Decoder
+from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
@@ -64,7 +64,7 @@ class Authenticator(object):
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         token = decoder.decrypt_jwt_token(encrypted_token)
         return token
 

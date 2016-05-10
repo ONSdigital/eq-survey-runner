@@ -3,7 +3,7 @@ import unittest
 
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.authentication.jwt_decoder import Decoder
+from app.authentication.jwt_decoder import JWTDecryptor
 from app.dev_mode.jwt_encoder import Encoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM, VALID_SIGNED_JWT, VALID_JWE
 
@@ -15,13 +15,13 @@ class JWETest(unittest.TestCase):
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
 
     def test_valid_jwe(self):
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         token = decoder.decrypt_jwt_token(VALID_JWE)
         self.assertEquals("jimmy", token.get("user"))
 
     def test_does_not_contain_four_instances_of_full_stop(self):
         jwe = VALID_JWE.replace('.', '', 1)
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe)
         self.assertIn("Incorrect size", ite.exception.value)
@@ -31,7 +31,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("Missing Algorithm", ite.exception.value)
@@ -41,7 +41,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("Invalid Algorithm", ite.exception.value)
@@ -52,7 +52,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("Missing Encoding", ite.exception.value)
@@ -62,7 +62,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("Invalid Encoding", ite.exception.value)
@@ -72,7 +72,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("InvalidTag", ite.exception.value)
@@ -82,7 +82,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("InvalidTag", ite.exception.value)
@@ -95,7 +95,7 @@ class JWETest(unittest.TestCase):
         encrypted_key = encrypted_key[0:len(encrypted_key) - 2]
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), cek=cek, encrypted_key=encrypted_key)
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("ValueError", ite.exception.value)
@@ -106,7 +106,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), cek=cek)
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("CEK incorrect length", ite.exception.value)
@@ -117,7 +117,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), iv=iv)
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
             self.assertIn("IV incorrect length", ite.exception.value)
@@ -126,7 +126,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), tag=os.urandom(10))
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
         self.assertIn("'Authentication tag must be 16 bytes or longer", ite.exception.value)
@@ -135,7 +135,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), tag=b'adssadsadsadsadasdasdasads')
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(jwe.decode())
 
@@ -153,7 +153,7 @@ class JWETest(unittest.TestCase):
         corrupted_cipher = encoded_cipher_text[0:len(encoded_cipher_text) - 1]
         reassembled = jwe_protected_header + "." + encrypted_key + "." + encoded_iv + "." + corrupted_cipher + "." + encoded_tag
 
-        decoder = Decoder()
+        decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
             decoder.decrypt_jwt_token(reassembled)
 

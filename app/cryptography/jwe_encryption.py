@@ -5,17 +5,20 @@ from app.utilities import strings
 import base64
 
 
-class JWEDirEncrypter(object):
-    def __init__(self, cek):
-        self.cek = cek
-
-    def _jwe_protected_header(self):
-        return self._base_64_encode(b'{"alg":"dir","enc":"A256GCM"}')
+class JWEEncrypter(object):
 
     def _base_64_encode(self, text):
         # strip the trailing = as they are padding to make the result a multiple of 4
         # the RFC does the same, as do other base64 libraries so this is a safe operation
         return base64.urlsafe_b64encode(text).decode().strip("=").encode()
+
+
+class JWEDirEncrypter(JWEEncrypter):
+    def __init__(self, cek):
+        self.cek = cek
+
+    def _jwe_protected_header(self):
+        return self._base_64_encode(b'{"alg":"dir","enc":"A256GCM"}')
 
     def encrypt(self, json, iv):
         payload = self._base_64_encode(strings.to_bytes(json))
