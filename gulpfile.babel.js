@@ -1,6 +1,7 @@
 import gulp from 'gulp'
 import del from 'del'
 import plumber from 'gulp-plumber'
+import yargs from 'yargs'
 
 import {paths} from './gulp/paths'
 import {copyScripts, bundle, lint as lintScripts} from './gulp/scripts'
@@ -9,6 +10,11 @@ import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
 import a11ym from './gulp/a11ym'
+
+const envs = {
+  local: 'http://localhost:5000',
+  preprod: 'https://preprod-surveys.eq.ons.digital'
+}
 
 gulp.task('test:a11ym', (done) => {
   a11ym(done)
@@ -42,11 +48,14 @@ gulp.task('clean:test', () => {
 gulp.task('test:scripts', ['test:scripts:unit'])
 
 gulp.task('test:scripts:functional:local', ['test:scripts:selenium'], (done) => {
+  process.env.BASEURL = envs[yargs.argv.env] || envs['local']
   process.env.SAUCELABS = 'false'
+  console.log(yargs.argv.env)
   functionalTests(done)
 })
 
 gulp.task('test:scripts:functional', (done) => {
+  process.env.BASEURL = envs[yargs.argv.env] || envs['local']
   process.env.SAUCELABS = 'true'
   functionalTests(done)
 })

@@ -1,21 +1,34 @@
 import chai from 'chai'
+import {getUri, getRandomString} from '../helpers'
+
 const expect = chai.expect
-const getUri = uri => 'http://localhost:5000/' + uri
 
 describe('MCI test', function() {
-  before(() => {
+  before('Progress from the developer page', () => {
+    const userId = '.qa-user-id'
+    const selectSchema = '.qa-select-schema'
+
     browser
       .url('/dev')
-      .waitForExist('.qa-select-schema')
+      .waitForExist(userId)
     browser
-      .selectByValue('.qa-select-schema', '1_0205.json')
-      .submitForm('form')
+      .setValue(userId, getRandomString(10))
     browser
-      .url('/questionnaire')
+      .waitForExist(selectSchema)
+    browser
+      .selectByValue(selectSchema, '1_0205.json')
+      .click('.qa-btn-submit-dev')
+  })
+
+  it('The landig page has been reached', function() {
+    const url = browser.url().value
+    expect(url).to.equal(getUri('/questionnaire/introduction'))
+    browser.click('.qa-btn-get-started')
   })
 
   it('The questionnaire page has been reached', function() {
-    expect(browser.url().value).to.equal(getUri('questionnaire'))
+    const questionnaireElementExists = browser.isExisting('.qa-questionnaire-form')
+    expect(questionnaireElementExists).to.equal(true)
   })
 
   it('The form can be filled in and submitted', function() {
@@ -27,7 +40,7 @@ describe('MCI test', function() {
     browser.setValue('.input-type--currency .input', 2000)
     browser.click(submitBtn)
     const url = browser.url().value
-    expect(url).to.equal(getUri('submission'))
+    expect(url).to.equal(getUri('/questionnaire/summary'))
   })
 
   it('The survey can be completed with "thankyou page" reached', function() {
@@ -35,6 +48,6 @@ describe('MCI test', function() {
     browser.waitForExist(submitBtn)
     browser.click(submitBtn)
     const url = browser.url().value
-    expect(url).to.equal(getUri('thank-you'))
+    expect(url).to.equal(getUri('/questionnaire/thank-you'))
   })
 })

@@ -9,10 +9,10 @@ let sauceConnectProcess
 
 let config = {
   // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: 'error',
+  logLevel: 'verbose',
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
-  baseUrl: 'http://localhost:5000',
+  baseUrl: process.env.BASEURL,
   waitforTimeout: 500000,
   updateJob: true,
   specs: [paths.test.wdioSpec],

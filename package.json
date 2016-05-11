@@ -118,7 +118,8 @@
     "wdio-mocha-framework": "^0.2.12",
     "wdio-sauce-service": "^0.2.2",
     "wdio-selenium-standalone-service": "0.0.1",
-    "webdriverio": "^4.0.7"
+    "webdriverio": "^4.0.7",
+    "yargs": "^4.7.0"
   },
   "dependencies": {
     "eq-sass": "^2.0.0",
