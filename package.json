@@ -20,7 +20,7 @@
     "test": "gulp test",
     "test_unit": "gulp test:scripts:unit:watch",
     "test_functional": "gulp test:scripts:functional",
-    "test_functional_local": "gulp test:scripts:functional:local",
+    "test_functional_sauce": "gulp test:scripts:functional:sauce",
     "a11y": "gulp test:a11ym"
   },
   "browserify": {

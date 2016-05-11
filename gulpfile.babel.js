@@ -11,9 +11,12 @@ import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
 import a11ym from './gulp/a11ym'
 
-const envs = {
-  local: 'http://localhost:5000',
-  preprod: 'https://preprod-surveys.eq.ons.digital'
+const getEnv = () => {
+  const envs = {
+    local: 'http://localhost:5000',
+    preprod: 'https://preprod-surveys.eq.ons.digital'
+  }
+  return envs[yargs.argv.env] || envs['local']
 }
 
 gulp.task('test:a11ym', (done) => {
@@ -47,15 +50,14 @@ gulp.task('clean:test', () => {
 
 gulp.task('test:scripts', ['test:scripts:unit'])
 
-gulp.task('test:scripts:functional:local', ['test:scripts:selenium'], (done) => {
-  process.env.BASEURL = envs[yargs.argv.env] || envs['local']
+gulp.task('test:scripts:functional', ['test:scripts:selenium'], (done) => {
+  process.env.BASEURL = getEnv()
   process.env.SAUCELABS = 'false'
-  console.log(yargs.argv.env)
   functionalTests(done)
 })
 
-gulp.task('test:scripts:functional', (done) => {
-  process.env.BASEURL = envs[yargs.argv.env] || envs['local']
+gulp.task('test:scripts:functional:sauce', (done) => {
+  process.env.BASEURL = getEnv()
   process.env.SAUCELABS = 'true'
   functionalTests(done)
 })
