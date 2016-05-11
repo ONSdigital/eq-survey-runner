@@ -60,7 +60,7 @@ class Navigator(object):
             if self._schema.introduction is not None:
                 return 'introduction'
             else:
-                return self._schema.groups[0].blocks[0].id
+                return self.get_first_block()
         else:
             return current_location
 
@@ -77,3 +77,6 @@ class Navigator(object):
             self._store.store_state(state)
         else:
             raise NavigationException('Invalid location: {}'.format(location))
+
+    def get_first_block(self):
+        return self._schema.groups[0].blocks[0].id

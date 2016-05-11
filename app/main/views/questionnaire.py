@@ -8,6 +8,7 @@ from .. import main_blueprint
 from app.model.questionnaire import QuestionnaireException
 from app.main.errors import page_not_found
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -19,6 +20,10 @@ def survey(location):
         return redirect('/questionnaire/thank-you')
 
     questionnaire_manager = create_questionnaire_manager()
+
+    if location == 'first':
+        questionnaire_manager.go_to_first()
+        return redirect('/questionnaire/' + questionnaire_manager.get_current_location())
 
     try:
         # Go to the location in the url.

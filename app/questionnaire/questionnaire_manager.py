@@ -109,5 +109,8 @@ class QuestionnaireManager(object):
     def go_to_location(self, location):
         self._navigator.go_to(location)
 
+    def go_to_first(self):
+        self._navigator.go_to(self._navigator.get_first_block())
+
     def get_schema(self):
         return self._schema
