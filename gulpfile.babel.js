@@ -39,7 +39,7 @@ gulp.task('clean:test', () => {
   ])
 })
 
-gulp.task('test:scripts', ['test:scripts:unit', 'test:scripts:functional'])
+gulp.task('test:scripts', ['test:scripts:unit'])
 
 gulp.task('test:scripts:functional:local', ['test:scripts:selenium'], (done) => {
   process.env.SAUCELABS = 'false'
