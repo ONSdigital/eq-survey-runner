@@ -8,6 +8,7 @@ from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore
 from app.metadata.metadata_store import MetaDataConstants
 from app.utilities.factory import factory
+from app.authentication.user_id_generator import UserIDGenerator
 
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
@@ -45,15 +46,16 @@ class Authenticator(object):
         # check we have the required user data
         self._check_user_data(token)
 
-        user_id = token.get(MetaDataConstants.USER_ID)
-
-        # store the user id in the session
-        session_manager.store_user_id(user_id)
-
         # store the meta data
         metadata_store = factory.create("metadata-store")
 
         metadata_store.store_all(token)
+
+        # get the hashed user id for eq
+        user_id = UserIDGenerator.generate_id(metadata_store)
+
+        # store the user id in the session
+        session_manager.store_user_id(user_id)
 
         return User(user_id)
 
