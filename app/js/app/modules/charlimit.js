@@ -35,6 +35,7 @@ export function updateMsg(el, length, maxLength) {
 export function imposeCharLimit(el, maxLength) {
   const elMsg = el.parentElement.querySelector(`.${msgClass}`)
   const elLabel = el.parentElement.getElementsByClassName(msgLabel)[0]
+
   elLabel.innerHTML = elLabel.getAttribute(attrRemainingMsg)
 
   updateMsg(elMsg, maxLength, el.value.length)

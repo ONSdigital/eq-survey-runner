@@ -1,5 +1,4 @@
 module.exports = function(config) {
-
   var testDir = 'tests/karma'
 
   config.set({

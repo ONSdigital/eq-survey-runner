@@ -1,14 +1,23 @@
 import gulp from 'gulp'
 import del from 'del'
 import plumber from 'gulp-plumber'
+import yargs from 'yargs'
 
 import {paths} from './gulp/paths'
 import {copyScripts, bundle, lint as lintScripts} from './gulp/scripts'
-import {tests} from './gulp/tests'
+import {unitTests, functionalTests, startSeleniumServer} from './gulp/tests'
 import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
 import a11ym from './gulp/a11ym'
+
+const getEnv = () => {
+  const envs = {
+    local: 'http://localhost:5000',
+    preprod: 'https://preprod-surveys.eq.ons.digital'
+  }
+  return envs[yargs.argv.env] || envs['local']
+}
 
 gulp.task('test:a11ym', (done) => {
   a11ym(done)
@@ -39,8 +48,34 @@ gulp.task('clean:test', () => {
   ])
 })
 
-gulp.task('test:scripts', (done) => {
-  tests(done, false)
+gulp.task('test:scripts', ['test:scripts:unit'])
+
+gulp.task('test:scripts:functional', ['test:scripts:selenium'], (done) => {
+  process.env.BASEURL = getEnv()
+  process.env.SAUCELABS = 'false'
+  functionalTests(done)
+})
+
+gulp.task('test:scripts:functional:sauce', (done) => {
+  process.env.BASEURL = getEnv()
+  process.env.SAUCELABS = 'true'
+  functionalTests(done)
+})
+
+gulp.task('test:scripts:selenium', (done) => {
+  startSeleniumServer(done)
+})
+
+gulp.task('test:scripts:unit', (done) => {
+  unitTests(done, false)
+})
+
+gulp.task('test:scripts:unit:watch', (done) => {
+  unitTests(done, true)
+})
+
+gulp.task('test:a11ym', (done) => {
+  a11ym(done)
 })
 
 // Spin up livereload server and listen for file changes

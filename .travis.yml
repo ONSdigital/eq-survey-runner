@@ -2,22 +2,18 @@ language: python
 sudo: required
 dist: trusty
 python:
-  - "3.5"
-
-# command to install dependencies
+- '3.5'
 install:
-  - . $HOME/.nvm/nvm.sh
-  - rm -rf node_modules
-  - npm cache clean
-  - nvm install v5.4.1
-  - npm config set strict-ssl true
-  - npm install
-  - pip install -U pip wheel
-  - pip install --require-hashes -r requirements.txt
-  - pip install -r requirements_for_test.txt
-# command to run tests
+- ". $HOME/.nvm/nvm.sh"
+- rm -rf node_modules
+- npm cache clean
+- nvm install v5.4.1
+- npm config set strict-ssl true
+- npm install
+- pip install -U pip wheel
+- pip install --require-hashes -r requirements.txt
+- pip install -r requirements_for_test.txt
 script:
-- ./scripts/run_tests.sh
-
+- "./scripts/run_tests.sh"
 notifications:
-  slack: digitaleq:LDxJXRGeVmg3PpdUhp90eY3Z
+ -  slack: digitaleq:LDxJXRGeVmg3PpdUhp90eY3Z

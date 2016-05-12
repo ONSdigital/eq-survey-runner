@@ -1,44 +1,43 @@
-import charLimit, { inputClass, msgClass, maxLengthAttr, applyCharLimit } from 'app/modules/charlimit'
+import charLimit, { inputClass, msgClass, msgLabel, attrRemainingMsg, attrMaxLength, applyCharLimit } from 'app/modules/charlimit'
 
-describe('charlimit', () => {
-  const msgClass = 'js-charlimit-msg'
-  const textEl = document.createElement('textarea')
-  const msgEl = document.createElement('div')
-  const parentEl = document.createElement('div')
+let elTemplate, inputInstance, msgEl, nodes
 
-  const limit = 20
+const limit = 20
 
-  textEl.classList.add(inputClass)
-  textEl.setAttribute(maxLengthAttr, limit)
+const strTemplate = `
+  <textarea class="${inputClass}" data-maxlength="${limit}"></textarea>
+  <div class="${msgLabel}" ${attrRemainingMsg}="Characters remaining">Maximum characters</div>:
+  <div class="${msgClass}">${limit}</div>
+`
 
-  msgEl.classList.add(msgClass)
+describe('Character Limit', function() {
+  before('Add template to DOM', function() {
+    let wrapper = document.createElement('div')
+    wrapper.innerHTML = strTemplate
+    elTemplate = wrapper
+    document.body.appendChild(elTemplate)
 
-  parentEl.appendChild(textEl)
-  parentEl.appendChild(msgEl)
+    inputInstance = document.getElementsByClassName(inputClass)[0]
+    msgEl = document.getElementsByClassName(msgClass)[0]
+    nodes = charLimit()
+  })
 
-  document.body.appendChild(parentEl)
-
-  const inputInstance = document.getElementsByClassName(inputClass)
-  const msgInstance = document.getElementsByClassName(msgClass)
-
-  const nodes = charLimit()
-
-  it('should return a nodeList with a length of 1', () => {
+  it('should return a nodeList with a length of 1', function() {
     expect(nodes.length).to.equal(1)
   })
 
-  it('should render limit in to msg element', () => {
+  it('should render limit in to msg element', function() {
     expect(msgEl.innerText).to.equal(limit.toString())
   })
 
-  it('should decrease the limit message by the number of characters entered', () => {
+  it('should decrease the limit message by the number of characters entered', function() {
     const testString = 'test!!!'
     inputInstance.value = testString
     const newValue = applyCharLimit(inputInstance.value, limit)
     expect(limit - newValue.length).to.equal(limit - testString.length)
   })
 
-  it('should prevent excess characters being entered', () => {
+  it('should prevent excess characters being entered', function() {
     const testString = '123'
     inputInstance.value = testString
     let length = applyCharLimit(inputInstance.value, 1).length

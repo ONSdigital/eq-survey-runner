@@ -43,11 +43,8 @@
 {% endmacro -%}
 
 {% macro textarea(question, response) %}
-
   {% set maxChars = "2000" %}
-
   {% set response_helper = response.id ~ "-helper" %}
-
   {% set attr = {
     "class": "input input--textarea js-charlimit-input",
     "name": response.id,
@@ -58,7 +55,6 @@
     "data-maxlength": maxChars,
     "aria-describedby": response_helper
   } %}
-
 
   <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>
 

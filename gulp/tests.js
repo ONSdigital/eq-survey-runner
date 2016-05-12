@@ -1,22 +1,38 @@
+import gulp from 'gulp'
 import karma from 'karma'
 import path from 'path'
 import gutil from 'gulp-util'
+import {paths} from './paths'
+import webdriver from 'gulp-webdriver'
+import selenium from 'selenium-standalone'
 
-import {
-  paths
+const KarmaServer = karma.Server
+
+export let seleniumServer
+
+export function startSeleniumServer(done) {
+  selenium.install({logger: console.log}, () => {
+    selenium.start((err, child) => {
+      if (err) {
+        gutil.log(err)
+        return done(err)
+      }
+      seleniumServer = child
+      done()
+    })
+  })
 }
-from './paths'
-const Server = karma.Server
 
-export function tests(done, watch) {
-  const server = new Server({
-    configFile: path.resolve('.') + '/' + paths.test.karma,
+export function unitTests(done, watch) {
+  const server = new KarmaServer({
+    configFile: path.resolve('.') + '/' + paths.test.karmaConf,
     singleRun: !watch
   }, function() {
     done()
   })
 
   server.on('browser_error', function(browser, err) {
+    gutil.log(err)
     gutil.log('Karma Run Failed: ' + err.message)
     throw err
   })
@@ -29,4 +45,18 @@ export function tests(done, watch) {
   })
 
   server.start()
+}
+
+export function functionalTests(done) {
+  gulp.src(paths.test.wdioConf)
+    .pipe(webdriver())
+    .on('error', (err) => {
+      if (typeof seleniumServer !== 'undefined') seleniumServer.kill()
+      process.exit(1)
+      throw err
+    })
+    .once('finish', () => {
+      done()
+      seleniumServer.kill()
+    })
 }
