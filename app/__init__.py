@@ -282,14 +282,28 @@ def versioned_url_for(endpoint, **values):
     if endpoint == 'static':
         filename = values.get('filename', None)
         if filename:
-            file_path = os.path.join(current_app.root_path, endpoint, filename)
-
+            filename = get_minimized_asset(filename)
             if settings.EQ_GIT_REF:
                 # use the git revision
                 version = settings.EQ_GIT_REF
             else:
                 # timestamp it
+                file_path = os.path.join(current_app.root_path, endpoint, filename)
                 version = int(os.stat(file_path).st_mtime)
-
+            values['filename'] = filename
             values['q'] = version
     return url_for(endpoint, **values)
+
+
+def get_minimized_asset(filename):
+    '''
+    If we're in production and it's a js or css file, return the minified version.
+    :param filename: the original filename
+    :return: the new file name will be .min.css or .min.js
+    '''
+    if settings.EQ_MINIMIZE_ASSETS:
+        if 'css' in filename:
+            filename = filename.replace(".css", ".min.css")
+        elif 'js' in filename:
+            filename = filename.replace(".js", ".min.js")
+    return filename

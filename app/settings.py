@@ -23,6 +23,8 @@ def get_key(key_name):
     else:
         return None
 
+EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'False'))
+
 EQ_PROFILING = parse_mode(os.getenv('EQ_PROFILING', 'False'))
 
 EQ_RABBITMQ_URL = os.getenv('EQ_RABBITMQ_URL', 'amqp://localhost:5672/%2F')
