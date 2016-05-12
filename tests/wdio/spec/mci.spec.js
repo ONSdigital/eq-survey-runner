@@ -19,16 +19,20 @@ describe('MCI test', function() {
   })
 
   it('The form can be filled in and submitted', function() {
+    const submitBtn = '.qa-btn-submit'
+    browser.waitForExist(submitBtn)
     browser
       .setValue('#6fd644b0-798e-4a58-a393-a438b32fe637-year', '2016')
       .setValue('#06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year', '2017')
     browser.setValue('.input-type--currency .input', 2000)
-    browser.submitForm('form')
+    browser.click(submitBtn)
     expect(browser.url().value).to.equal(getUri('submission'))
   })
 
   it('The survey can be completed with "thankyou page" reached', function() {
-    browser.submitForm('form')
+    const submitBtn = '.qa-btn-submit-answers'
+    browser.waitForExist(submitBtn)
+    browser.click(submitBtn)
     expect(browser.url().value).to.equal(getUri('thank-you'))
   })
 })

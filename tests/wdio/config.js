@@ -39,7 +39,7 @@ if (process.env.TRAVIS === 'true') {
   config = {
     ...config,
     ...sauceLabsConfig,
-    logLevel: 'error'
+    logLevel: 'debug'
   }
 } else {
   if (useLocalSauceLabs) {
