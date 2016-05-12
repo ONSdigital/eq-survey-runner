@@ -97,7 +97,11 @@ class QuestionnaireManager(object):
         return user_action, user_responses
 
     def _clean_input(self, value):
-        return bleach.clean(value)
+        if value:
+            whitespace_removed = value.strip()
+            return bleach.clean(whitespace_removed)
+        else:
+            return value
 
     def get_current_location(self):
         return self._navigator.get_current_location()

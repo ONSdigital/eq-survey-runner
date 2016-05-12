@@ -3,7 +3,7 @@ from app import create_app
 from tests.integration.create_token import create_token
 
 
-class TestInvalidDateNumber(unittest.TestCase):
+class TestEmptySubmission(unittest.TestCase):
 
     def setUp(self):
         self.application = create_app('development')
