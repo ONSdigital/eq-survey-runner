@@ -1,4 +1,6 @@
 from flask import Flask
+from flask import url_for
+from flask import current_app
 from flask_babel import Babel
 from flask_login import LoginManager
 from app.libs.utils import get_locale
@@ -18,6 +20,7 @@ from datetime import timedelta
 import watchtower
 import logging
 import sys
+import os
 from logging.handlers import RotatingFileHandler
 from flask_analytics import Analytics
 from splunk_handler import SplunkHandler
@@ -116,6 +119,10 @@ def create_app(config_name):
             response.headers[k] = v
 
         return response
+
+    @application.context_processor
+    def override_url_for():
+        return dict(url_for=versioned_url_for)
 
     setup_secure_cookies(application)
 
@@ -269,3 +276,20 @@ def add_health_check(application, headers):
     application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
+
+
+def versioned_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', None)
+        if filename:
+            file_path = os.path.join(current_app.root_path, endpoint, filename)
+
+            if settings.EQ_GIT_REF:
+                # use the git revision
+                version = settings.EQ_GIT_REF
+            else:
+                # timestamp it
+                version = int(os.stat(file_path).st_mtime)
+
+            values['q'] = version
+    return url_for(endpoint, **values)
