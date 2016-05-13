@@ -6,7 +6,6 @@ from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore
-from app.metadata.metadata_store import MetaDataConstants
 from app.utilities.factory import factory
 from app.authentication.user_id_generator import UserIDGenerator
 
