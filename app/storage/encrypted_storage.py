@@ -17,7 +17,7 @@ class EncryptedServerStorageDecorator(AbstractServerStorage):
 
     def store(self, user_id, data):
         logger.debug("About to encrypt data %s", data)
-        encrypted_data = self.encryption.encrypt(json.dumps(data), user_id.encode())
+        encrypted_data = self.encryption.encrypt(json.dumps(data))
         logger.debug("Encrypted data %s", encrypted_data)
         self.server_storage.store(user_id, {EncryptedServerStorageDecorator.ENCRYPTED_KEY: encrypted_data})
 
