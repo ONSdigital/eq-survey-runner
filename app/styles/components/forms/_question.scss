@@ -1,11 +1,8 @@
 .question {
   border: 2px solid transparent;
-  margin-bottom: 2rem;
-}
-
-.question__fieldset {
-  @include mq(s) {
-    // padding: 0 1rem;
+  margin-bottom: 1rem;
+  &:last-of-type {
+    margin-bottom: 0;
   }
 }
 
@@ -54,7 +51,6 @@
 
 .question__responses {
   clear: both;
-  margin: 0 0 -1rem;
 }
 
 .question__response {

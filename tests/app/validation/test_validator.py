@@ -125,6 +125,7 @@ class ValidatorTest(unittest.TestCase):
 
         question_1 = Question()
         question_1.id = "0df6fe58-25c9-430f-b157-9dc6b5a7646f"
+        question_1.type = "Integer"
         section_1.add_question(question_1)
         questionnaire_1.register(question_1)
 
@@ -199,10 +200,10 @@ class RaisingValidator(AbstractValidator):
 
 
 class MockTypeValidatorFactory(object):
-    def get_validators_by_type(type):
-        if type == "succeed":
+    def get_validators_by_type(item):
+        if item.type == "succeed":
             return [MockValidator(True)]
-        elif type == 'except':
+        elif item.type == 'except':
             return [RaisingValidator()]
         else:
             return [MockValidator(False, 'Validation Failed')]

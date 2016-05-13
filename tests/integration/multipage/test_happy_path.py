@@ -79,7 +79,7 @@ class TestHappyPath(unittest.TestCase):
         # We are in the Questionnaire
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '<title>Survey</title>')
-        self.assertRegexpMatches(content, ">How many people usually live in your household\?</")
+        self.assertRegexpMatches(content, ">How many rooms are available for use only by your household\?</")
         self.assertRegexpMatches(content, ">Save &amp; Continue<")
 
         # We fill in our answers
@@ -110,7 +110,7 @@ class TestHappyPath(unittest.TestCase):
         # We are in the Questionnaire
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '<title>Survey</title>')
-        self.assertRegexpMatches(content, ">Please give any comments about completing this survey</")
+        self.assertRegexpMatches(content, ">Comments</")
         self.assertRegexpMatches(content, ">Save &amp; Continue<")
 
         # Fill in the comments

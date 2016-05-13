@@ -12,21 +12,21 @@
   {% with %}
 
     {% set alert_title %}<h2 class="alert__title">This page has {{all_errors|length}} errors</h2> {% endset %}
-    {% set alert_body %}
 
+    {% set alert_body %}
     <p>These <strong>must be corrected</strong> to continue.</p>
+
     <ul class="list list--bare">
       {% for item_id, errors in all_errors %}
         {% set loop_index = loop.index %}
         {% for error in errors %}
-        <li class="list__item">{{loop_index}}) {{ error }} <a href="#response-{{item_id}}">{{_('Go to this error')}}</a></li>
+        <li class="list__item">{{loop_index}}) {{ error }} <a href="#{{item_id}}">{{_('Go to this error')}}</a></li>
         {% endfor %}
       {% endfor %}
     </ul>
-
     {% endset %}
 
-    <div class="u-mb-l">{% include 'partials/alert.html' %}</div>
+    <div class="u-mb-s u-mb-l@s">{% include 'partials/alert.html' %}</div>
 
   {% endwith %}
 
@@ -36,11 +36,11 @@
 
     {% set group = content.questionnaire.get_item_by_id(navigation.current_group_id) %}
 
-      <div class="group" id="group-{{navigation.current_group_id}}">
+      <div class="group" id="{{group.id}}">
 
       {% set block = content.questionnaire.get_item_by_id(navigation.current_block_id) %}
 
-        <div class="block" id="block-{{navigation.current_block_id}}">
+        <div class="block" id="{{block.id}}">
 
         {% for section in block.sections %}
 

@@ -1,16 +1,14 @@
-<div class="response" id="response-{{response.id}}">
+<div class="response response--{{response.type|lower}}" id="{{response.id}}">
   {% set is_valid = response.is_valid or response.is_valid is not defined %}
 
   {%- set response_guidance %}
-    {% if response.guidance %}    
+    {% if response.guidance %}
       {% include 'partials/guidance.html' %}
     {% endif %}
   {% endset -%}
 
   {%- set response_fields %}
-    <div class="field field--{{response.type|lower}}">
-      {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
-    </div>
+    {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
   {% endset -%}
 
   {% if not is_valid %}

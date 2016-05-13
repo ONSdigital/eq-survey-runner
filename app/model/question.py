@@ -4,6 +4,7 @@ class Question(object):
         self.title = None
         self.description = None
         self.responses = []
+        self.children = self.responses
         self.container = None
         self.questionnaire = None
         self.validation = None

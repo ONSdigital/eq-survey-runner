@@ -1,6 +1,6 @@
 {%- macro label(response) %}
   {% set attr = {
-    "class": "label" ~ (' u-visuallyhidden' if response.hidelabel),
+    "class": "label",
     "for": response.id,
     "id": "label-" ~ response.id
   } %}

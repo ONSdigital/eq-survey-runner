@@ -62,7 +62,7 @@ class TestEmptySubmission(unittest.TestCase):
         form_data = {
             # Start Date
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "4",
+            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "04",
             "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
             # End Date
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "30",

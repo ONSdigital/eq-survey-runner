@@ -65,6 +65,7 @@ class TestHappyPath(unittest.TestCase):
         }
 
         # We submit the form
+
         resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
