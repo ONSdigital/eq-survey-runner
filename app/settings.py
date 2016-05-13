@@ -2,6 +2,7 @@ import os
 import logging
 import pytz
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -31,7 +32,7 @@ EQ_RABBITMQ_URL = os.getenv('EQ_RABBITMQ_URL', 'amqp://localhost:5672/%2F')
 EQ_RABBITMQ_QUEUE_NAME = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'eq-submissions')
 EQ_RABBITMQ_TEST_QUEUE_NAME = os.getenv('EQ_RABBITMQ_TEST_QUEUE_NAME', 'eq-test')
 EQ_RABBITMQ_ENABLED = parse_mode(os.getenv('EQ_RABBITMQ_ENABLED', 'True'))
-EQ_GIT_REF = os.getenv('EQ_GIT_REF', None)
+EQ_GIT_REF = os.getenv('EQ_GIT_REF', 'unknown')
 EQ_NEW_RELIC_CONFIG_FILE = os.getenv('EQ_NEW_RELIC_CONFIG_FILE', './newrelic.ini')
 EQ_SR_LOG_GROUP = os.getenv('EQ_SR_LOG_GROUP', os.getenv('USER', 'UNKNOWN') + '-local')
 EQ_LOG_LEVEL = os.getenv('EQ_LOG_LEVEL', 'INFO')

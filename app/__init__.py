@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import url_for
-from flask import current_app
 from flask_babel import Babel
 from flask_login import LoginManager
 from app.libs.utils import get_locale
@@ -20,7 +19,6 @@ from datetime import timedelta
 import watchtower
 import logging
 import sys
-import os
 from logging.handlers import RotatingFileHandler
 from flask_analytics import Analytics
 from splunk_handler import SplunkHandler
@@ -283,13 +281,8 @@ def versioned_url_for(endpoint, **values):
         filename = values.get('filename', None)
         if filename:
             filename = get_minimized_asset(filename)
-            if settings.EQ_GIT_REF:
-                # use the git revision
-                version = settings.EQ_GIT_REF
-            else:
-                # timestamp it
-                file_path = os.path.join(current_app.root_path, endpoint, filename)
-                version = int(os.stat(file_path).st_mtime)
+            # use the git revision
+            version = settings.EQ_GIT_REF
             values['filename'] = filename
             values['q'] = version
     return url_for(endpoint, **values)
