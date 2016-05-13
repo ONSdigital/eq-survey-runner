@@ -14,9 +14,17 @@ class TestUserIDGenerator(unittest.TestCase):
         user_id_1 = UserIDGenerator.generate_id(self.create_token('1', '2', '3'))
         user_id_2 = UserIDGenerator.generate_id(self.create_token('1', '2', '3'))
         user_id_3 = UserIDGenerator.generate_id(self.create_token('1', '2', '4'))
+        user_id_4 = UserIDGenerator.generate_id(self.create_token('2', '2', '3'))
+        user_id_5 = UserIDGenerator.generate_id(self.create_token('1', '1', '3'))
+        user_id_6 = UserIDGenerator.generate_id(self.create_token('2', '2', '4'))
+
         self.assertEqual(user_id_1, user_id_2)
+
         self.assertNotEquals(user_id_1, user_id_3)
-        self.assertNotEquals(user_id_2, user_id_3)
+        self.assertNotEquals(user_id_1, user_id_3)
+        self.assertNotEquals(user_id_1, user_id_4)
+        self.assertNotEquals(user_id_1, user_id_5)
+        self.assertNotEquals(user_id_1, user_id_6)
 
     def test_different_salt_creates_different_userids(self):
         user_id_1 = UserIDGenerator.generate_id(self.create_token('1', '2', '3'))
