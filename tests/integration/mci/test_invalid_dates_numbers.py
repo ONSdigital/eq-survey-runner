@@ -71,6 +71,27 @@ class TestInvalidDateNumber(unittest.TestCase):
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "Please only enter whole numbers into the field.")
 
+
+        form_data = {
+            # Start Date
+            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
+            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "01",
+            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            # End Date
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "",
+            # Total Turnover
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "10000"
+        }
+
+        # We submit the form without a valid 2nd date
+        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
+        self.assertEquals(resp.status_code, 200)
+        content = resp.get_data(True)
+        self.assertRegexpMatches(content, "The date entered is not valid")
+
+
         # We try to access the submission page without correction
         resp = self.client.get('/questionnaire/summary', follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
@@ -106,7 +127,7 @@ class TestInvalidDateNumber(unittest.TestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "rubbish"
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000"
         }
 
         # We submit the form with the dates the same
@@ -114,6 +135,8 @@ class TestInvalidDateNumber(unittest.TestCase):
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "The &#39;to&#39; date must be different to the &#39;from&#39; date.")
+
+
 
         form_data = {
             # Start Date

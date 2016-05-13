@@ -31,8 +31,8 @@ class Validator(object):
             AbstractValidator.INVALID_DATE: _("This is not a valid date."),
             AbstractValidator.NEGATIVE_INTEGER: _("Negative values are not allowed."),
             AbstractValidator.INTEGER_TOO_LARGE: _('This number is too big.'),
-            AbstractValidator.INVALID_DATE_RANGE_DIFF: _("The 'to' date cannot be before the 'from' date."),
-            AbstractValidator.INVALID_DATE_RANGE_SAME: _("The 'to' date must be different to the 'from' date.")
+            AbstractValidator.INVALID_DATE_RANGE_TO_BEFORE_FROM: _("The 'to' date cannot be before the 'from' date."),
+            AbstractValidator.INVALID_DATE_RANGE_TO_FROM_SAME: _("The 'to' date must be different to the 'from' date.")
         }
 
     def validate(self, user_data):
@@ -60,7 +60,7 @@ class Validator(object):
             container_result = self._validation_store.get_result(item.container.id)
 
             if result:
-                if not result.is_valid or not container_result.is_valid:
+                if not result.is_valid or (container_result and not container_result.is_valid):
                     return False
 
         return True
@@ -97,11 +97,11 @@ class Validator(object):
     def _validate_container(self, item, user_data):
 
         # only type check container if all parts are present and valid
-        children_user_data = {}
+        children_user_data = []
         for child in item.children:
             child_result = self._validation_store.get_result(child.id)
             if child_result and child_result.is_valid:
-                children_user_data[child.label] = user_data[child.id]
+                children_user_data.append(user_data[child.id])
             else:
                 return
 
