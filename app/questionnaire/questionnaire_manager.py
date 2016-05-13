@@ -17,6 +17,7 @@ class QuestionnaireManager(object):
         self._navigator = navigator
         self._navigation_history = navigation_history
         self._metadata = metadata
+
         self.renderer = Renderer(self._schema, self._response_store, self._validation_store, self._navigator, self._metadata)
 
     def process_incoming_responses(self, post_data):

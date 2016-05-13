@@ -3,6 +3,7 @@ from flask_login import current_user
 from datetime import datetime
 from app.submitter.converter import SubmitterConstants
 from flask import session
+from app.piping.plumber import Plumber
 
 
 class Renderer(object):
@@ -12,6 +13,13 @@ class Renderer(object):
         self._validation_store = validation_store
         self._navigator = navigator
         self._metadata = metadata
+
+        context = {
+            "exercise_start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d")),
+            "exercise_end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d"))
+        }
+
+        self._plumber = Plumber(context)
 
     def get_template_name(self):
         known_templates = {
@@ -153,6 +161,9 @@ class Renderer(object):
                         warnings[section.id] = section_result.warnings
 
                     for question in section.questions:
+
+                        self._plumber.plumb_item(question)
+
                         question_result = self._validation_store.get_result(question.id)
                         if question_result and not question_result.is_valid:
                             errors[question.id] = question_result.errors
