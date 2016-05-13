@@ -6,6 +6,7 @@ from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore
+from app.metadata.metadata_store import MetaDataConstants
 from app.utilities.factory import factory
 
 
@@ -39,13 +40,6 @@ class Authenticator(object):
         if request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME) is None:
             raise NoTokenException("Please provide a token")
         token = self._jwt_decrypt(request)
-
-        # <kludge>
-        # TODO: Remove this once RM is correctly sending dates
-        from app.metadata.metadata_store import MetaDataConstants
-        token[MetaDataConstants.REF_P_START_DATE] = '2016-04-03'
-        token[MetaDataConstants.REF_P_END_DATE] = '2016-04-30'
-        # </kludge>
 
         # once we've decrypted the token correct
         # check we have the required user data
