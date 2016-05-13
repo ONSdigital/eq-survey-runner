@@ -2,6 +2,7 @@
 import gulp from 'gulp'
 import gutil from 'gulp-util'
 import eslint from 'gulp-eslint'
+import rename from 'gulp-rename'
 import plumber from 'gulp-plumber'
 import uglify from 'gulp-uglify'
 import browserify from 'browserify'
@@ -12,7 +13,7 @@ import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
 import sourcemaps from 'gulp-sourcemaps'
 
-import {paths, appPath, distPath} from './paths'
+import {paths, appPath} from './paths'
 import browserSync from './bs'
 
 const b = browserify(Object.assign(watchify.args, {
@@ -34,9 +35,13 @@ export function bundle(watch) {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(gulp.dest(paths.scripts.output))
+    .pipe(rename({
+      suffix: '.min'
+    }))
     .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(`./${distPath}/js`))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(paths.scripts.output))
     .pipe(browserSync.reload({stream: true}))
 }
 
@@ -48,6 +53,10 @@ export function copyScripts() {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(babel())
     .pipe(plumber())
+    .pipe(gulp.dest(paths.scripts.output))
+    .pipe(rename({
+      suffix: '.min'
+    }))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.scripts.output))

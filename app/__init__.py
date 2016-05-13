@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import url_for
 from flask_babel import Babel
 from flask_login import LoginManager
 from app.libs.utils import get_locale
@@ -116,6 +117,10 @@ def create_app(config_name):
             response.headers[k] = v
 
         return response
+
+    @application.context_processor
+    def override_url_for():
+        return dict(url_for=versioned_url_for)
 
     setup_secure_cookies(application)
 
@@ -269,3 +274,29 @@ def add_health_check(application, headers):
     application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
+
+
+def versioned_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', None)
+        if filename:
+            filename = get_minimized_asset(filename)
+            # use the git revision
+            version = settings.EQ_GIT_REF
+            values['filename'] = filename
+            values['q'] = version
+    return url_for(endpoint, **values)
+
+
+def get_minimized_asset(filename):
+    '''
+    If we're in production and it's a js or css file, return the minified version.
+    :param filename: the original filename
+    :return: the new file name will be .min.css or .min.js
+    '''
+    if settings.EQ_MINIMIZE_ASSETS:
+        if 'css' in filename:
+            filename = filename.replace(".css", ".min.css")
+        elif 'js' in filename:
+            filename = filename.replace(".js", ".min.js")
+    return filename

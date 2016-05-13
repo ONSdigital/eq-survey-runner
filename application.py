@@ -2,7 +2,7 @@
 
 import os
 from app import create_app
-from flask.ext.script import Manager, Server
+from flask_script import Manager, Server
 
 application = create_app(
     os.getenv('EQ_ENVIRONMENT') or 'development'
