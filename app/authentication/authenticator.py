@@ -46,18 +46,20 @@ class Authenticator(object):
         # check we have the required user data
         self._check_user_data(token)
 
+        # get the hashed user id for eq
+        user_id = UserIDGenerator.generate_id(token)
+
+        user = User(user_id)
+
+        # store the user id in the session
+        session_manager.store_user_id(user_id)
+
         # store the meta data
         metadata_store = factory.create("metadata-store")
 
         metadata_store.store_all(token)
 
-        # get the hashed user id for eq
-        user_id = UserIDGenerator.generate_id(metadata_store)
-
-        # store the user id in the session
-        session_manager.store_user_id(user_id)
-
-        return User(user_id)
+        return user
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
