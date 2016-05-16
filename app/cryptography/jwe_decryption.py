@@ -62,10 +62,8 @@ class JWERSAOAEPDecryptor(JWEDecryptor):
 
 
 class JWEDirDecrypter(JWEDecryptor):
-    def __init__(self, cek):
-        self.cek = cek
 
-    def decrypt(self, token):
+    def decrypt(self, token, cek):
         tokens = token.split('.')
         if len(tokens) != 5:
             raise ValueError("Incorrect size")
@@ -79,6 +77,6 @@ class JWEDirDecrypter(JWEDecryptor):
         tag = self._base64_decode(encoded_tag)
         cipher_text = self._base64_decode(encoded_cipher_text)
 
-        decrypted_text = self._decrypt_cipher_text(cipher_text, iv, self.cek, tag, jwe_protected_header)
+        decrypted_text = self._decrypt_cipher_text(cipher_text, iv, cek, tag, jwe_protected_header)
         decoded_text = self._base64_decode(strings.to_str(decrypted_text))
         return strings.to_str(decoded_text)
