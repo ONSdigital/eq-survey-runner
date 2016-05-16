@@ -6,8 +6,8 @@ from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore
-from app.metadata.metadata_store import MetaDataConstants
 from app.utilities.factory import factory
+from app.authentication.user_id_generator import UserIDGenerator
 
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
@@ -45,7 +45,10 @@ class Authenticator(object):
         # check we have the required user data
         self._check_user_data(token)
 
-        user_id = token.get(MetaDataConstants.USER_ID)
+        # get the hashed user id for eq
+        user_id = UserIDGenerator.generate_id(token)
+
+        user = User(user_id)
 
         # store the user id in the session
         session_manager.store_user_id(user_id)
@@ -55,7 +58,7 @@ class Authenticator(object):
 
         metadata_store.store_all(token)
 
-        return User(user_id)
+        return user
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
