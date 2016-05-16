@@ -25,7 +25,7 @@
                             {
                               "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
                               "title": "What are the dates of the sales period you are reporting for?",
-                              "description": "If possible, this should be for the period ${exercise_start_date} to ${exercise_end_date}.",
+                              "description": "If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.",
                               "type" : "DateRange",
                               "responses": [
                                 {

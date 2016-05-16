@@ -1,6 +1,5 @@
 from collections import OrderedDict
 from flask_login import current_user
-from datetime import datetime
 from app.submitter.converter import SubmitterConstants
 from flask import session
 from app.piping.plumber import Plumber
@@ -14,9 +13,18 @@ class Renderer(object):
         self._navigator = navigator
         self._metadata = metadata
 
+        # Create an object from a dict
+        class ContextEntry:
+            def __init__(self, entries):
+                self.__dict__ = entries
+
         context = {
-            "exercise_start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d")),
-            "exercise_end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d"))
+            "exercise": ContextEntry({
+                # "start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d")),
+                # "end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d"))
+                "start_date": self._metadata.get_ref_p_start_date(),
+                "end_date": self._metadata.get_ref_p_end_date()
+            })
         }
 
         self._plumber = Plumber(context)
@@ -72,9 +80,9 @@ class Renderer(object):
 
         try:
             # Under certain conditions, there is no user so these steps may fail
-            survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=datetime.strptime(self._metadata.get_return_by(), "%Y-%m-%d"))
-            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d"))
-            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d"))
+            survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=self._metadata.get_return_by())
+            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_ref_p_start_date())
+            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_ref_p_end_date())
             survey_meta["period_str"] = self._metadata.get_period_str()
         except:
             # But we can silently ignore them under those circumstanes

@@ -1,4 +1,5 @@
 from flask_login import current_user
+from datetime import datetime
 
 
 class MetaDataConstants(object):
@@ -76,16 +77,16 @@ class MetaDataStore(object):
         return self.get(MetaDataConstants.FORM_TYPE)
 
     def get_ref_p_start_date(self):
-        return self.get(MetaDataConstants.REF_P_START_DATE)
+        return datetime.strptime(self.get(MetaDataConstants.REF_P_START_DATE), "%Y-%m-%d")
 
     def get_ref_p_end_date(self):
-        return self.get(MetaDataConstants.REF_P_END_DATE)
+        return datetime.strptime(self.get(MetaDataConstants.REF_P_END_DATE), "%Y-%m-%d")
 
     def get_trad_as(self):
         return self.get(MetaDataConstants.TRAD_AS)
 
     def get_return_by(self):
-        return self.get(MetaDataConstants.RETURN_BY)
+        return datetime.strptime(self.get(MetaDataConstants.RETURN_BY), "%Y-%m-%d")
 
     @staticmethod
     def is_valid(token):

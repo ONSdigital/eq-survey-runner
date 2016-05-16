@@ -1,4 +1,4 @@
-from string import Template
+import re
 
 
 class Plumber(object):
@@ -20,10 +20,15 @@ class Plumber(object):
 
     def _needs_plumbing(self, item, interesting_property):
         value = getattr(item, interesting_property)
-        return '$' in value
+        pattern = re.compile("\{.+\}")
+        needs_plumbing = pattern.search(value)
+        if needs_plumbing is not None:
+            return True
+        return False
 
     def _plumb(self, item, interesting_property):
         if hasattr(item, interesting_property):
-            template = Template(getattr(item, interesting_property))
-            plumbed_value = template.safe_substitute(self._context)
+            template = getattr(item, interesting_property)
+            formatting_data = self._context
+            plumbed_value = template.format(**formatting_data)
             setattr(item, interesting_property, plumbed_value)
