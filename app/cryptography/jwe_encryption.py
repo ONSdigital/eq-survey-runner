@@ -20,7 +20,7 @@ ALG = "dir"
 ENC_HEADER = "enc"
 ENC = "A256GCM"
 KID_HEADER = "kid"
-KID = "1"
+KID = "1,1"
 
 
 class JWEDirEncrypter(JWEEncrypter):

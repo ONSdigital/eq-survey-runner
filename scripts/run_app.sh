@@ -1,7 +1,8 @@
 #!/bin/bash
 
 function open_url {
-  sleep 1
+  sleep 5
+  echo $1
   open -a "/Applications/Google Chrome.app" $1
 }
 
@@ -45,10 +46,8 @@ fi
 
 url="`python token_generator.py`"
 
-echo $url
-
 if [ -z "${TRAVIS}" ]; then
-  open_url $url &&
+  open_url $url &
   python application.py runserver
 else
   python application.py runserver &
