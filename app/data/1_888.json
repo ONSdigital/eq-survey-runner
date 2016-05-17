@@ -120,14 +120,14 @@
                             },
                             {
                               "id": "1a044f04-a7f0-4d00-9f8c-c92aceed36f1",
-                              "title": "What was the value of your total spend on alcohol, confectionary & tobacco?",
+                              "title": "",
                               "description": "",
                               "type": "Currency",
                               "responses": [
                                 {
                                   "id": "8075e95f-cfb4-40e4-bc1c-f90b373ca22a",
                                   "q_code": "03",
-                                  "label": "",
+                                  "label": "What was the value of your total spend on alcohol, confectionary & tobacco?",
                                   "guidance": "Include:<ul><li>alcoholic drink</li><li>chocolate and sugar confectionary</li><li>tobacco and smokers’ requisites</li></ul>",
                                   "type": "Currency",
                                   "mandatory":true,
@@ -143,14 +143,14 @@
                             },
                             {
                               "id": "8bc9bd2e-9f4d-435f-b627-fe77aa43cfe7",
-                              "title": "What was the value of your total spend on clothing and footwear?",
+                              "title": "",
                               "description": "",
                               "type": "Integer",
                               "responses": [
                                 {
                                   "id": "b01820e9-7437-4383-a557-48d736898924",
                                   "q_code": "",
-                                  "label": "",
+                                  "label": "What was the value of your total spend on clothing and footwear?",
                                   "guidance": "Include:<ul><li>clothing and footwear</li><li>clothing fabrics</li><li>haberdashery and furs</li><li>leather and travel goods</li><li>handbags</li><li>haberdashery and furs</li></ul>",
                                   "type": "Currency",
                                   "mandatory":true,
@@ -166,14 +166,14 @@
                             },
                             {
                               "id": "5da0d6de-d3a4-4ac1-8535-8d8cf93bb2ae",
-                              "title": "What was your total spend on retail?",
+                              "title": "",
                               "description": "",
                               "type": "Integer",
                               "responses": [
                                 {
                                   "id": "f77ae356-6f42-4afe-a476-747b1aab4a6c",
                                   "q_code": "05",
-                                  "label": "",
+                                  "label": "What was your total spend on retail?",
                                   "guidance": "Include:<ul><li>VAT</li><li>internet purchases</li><li>food</li><li>alcohol, confectionary & tobacco</li><li>clothing & Footwear</li></ul>Exclude:<ul><li></li>Household goods</ul>",
                                   "type": "Currency",
                                   "mandatory":true,
@@ -196,14 +196,14 @@
                           "questions": [
                              {
                               "id": "3b83a88e-a200-4a8f-ba70-6a18aca11016",
-                              "title": "How many people usually live in your household?",
+                              "title": "",
                               "description": "",
                               "type": "Integer",
                               "responses": [
                                 {
                                   "id": "a5c43b5b-f6e9-412f-834d-2d6cc83b5436",
                                   "q_code": "06",
-                                  "label": "",
+                                  "label": "How many people usually live in your household?",
                                   "guidance": "",
                                   "type": "Integer",
                                   "mandatory":true,
@@ -219,14 +219,14 @@
                             },
                             {
                               "id": "d5f9db59-ycc0-433f-9318-39f83b63d4d8",
-                              "title": "Counting the people included above, how many visitors were staying overnight on 11th April 2016?",
+                              "title": "",
                               "description": "",
                               "type": "Integer",
                               "responses": [
                                 {
                                   "id": "d5f9db59-9cc0-433f-9318-39f83b63d4d8",
                                   "q_code": "07",
-                                  "label": "",
+                                  "label": "Counting the people included above, how many visitors were staying overnight on 11th April 2016?",
                                   "guidance": "",
                                   "type": "Integer",
                                   "mandatory":true,
@@ -242,14 +242,14 @@
                             },
                             {
                               "id": "783d4afa-17e8-4537-bbae-65d19a6894c1",
-                              "title": "How many rooms are available for use only by your household?",
+                              "title": "",
                               "description": "",
                               "type": "Integer",
                               "responses": [
                                 {
                                   "id": "863d4afa-17e8-4537-bbae-65d19a6894c1",
                                   "q_code": "08",
-                                  "label": "",
+                                  "label": "How many rooms are available for use only by your household?",
                                   "guidance": "Do NOT count:<ul><li>Bathrooms</li><li>Toilets</li><li>Halls or landings</li><li>Rooms that can only be used for storage such as cupboards</li></ul>Count all other rooms, for example:<ul><li>Kitchens</li><li>Living rooms</li><li>Utility rooms</li><li>Bedrooms</li><li>Studies</li><li>Conservatories</li></ul>If two rooms have been converted into one, count them as one room",
                                   "type": "Integer",
                                   "mandatory": true,

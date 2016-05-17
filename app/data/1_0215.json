@@ -67,14 +67,14 @@
                     "questions": [
                       {
                         "id": "eedb9f9f-2f2e-41f4-9186-ba7110d9e6a4",
-                        "title": "What was the value of the business's total sales of food?",
+                        "title": "",
                         "description": "",
                         "type": "Currency",
                         "responses": [
                           {
                             "id": "bb8168e6-2272-450d-b5a7-d3170508efb2",
                             "q_code": "22",
-                            "label": "",
+                            "label": "What was the value of the business's total sales of food?",
                             "guidance": "<div> <h4>Include</h4> <ul> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionery)</li> <li>soft drinks</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
                             "type": "Currency",
                             "mandatory": false,
@@ -90,14 +90,14 @@
                       },
                       {
                         "id": "5743fe04-e9a3-491f-b475-ea5be662eff3",
-                        "title": "What was the value of the business's total sales of alcohol, confectionery and tobacco?",
+                        "title": "",
                         "description": "",
                         "type": "Currency",
                         "responses": [
                           {
                             "id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
                             "q_code": "23",
-                            "label": "",
+                            "label": "What was the value of the business's total sales of alcohol, confectionery and tobacco?",
                             "guidance": "<div> <h4>Include</h4> <ul> <li>alcoholic drink</li> <li>chocolate and sugar confectionery</li> <li>tobacco and smokers’ requisites</li></ul> </div>",
                             "type": "Currency",
                             "mandatory": false,
@@ -113,14 +113,14 @@
                       },
                       {
                         "id": "475471a1-7be0-4a7a-82b3-2b803d3935ed",
-                        "title": "What was the value of the business's total sales of clothing and footwear?",
+                        "title": "",
                         "description": "",
                         "type": "Currency",
                         "responses": [
                           {
                             "id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
                             "q_code": "24",
-                            "label": "",
+                            "label": "What was the value of the business's total sales of clothing and footwear?",
                             "guidance": "<div> <h4>Include</h4><ul> <li>clothing and footwear</li> <li>clothing fabrics</li> <li>haberdashery and furs</li> <li>leather and travel goods</li> <li>handbags</li> <li>umbrellas</li></ul></div>",
                             "type": "Currency",
                             "mandatory": false,
@@ -136,14 +136,14 @@
                       },
                       {
                         "id": "656eaad2-67ed-4413-93dd-06d66c954a22",
-                        "title": "What was the value of the business's total sales of household goods?",
+                        "title": "",
                         "description": "",
                         "type": "Currency",
                         "responses": [
                           {
                             "id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
                             "q_code": "25",
-                            "label": "",
+                            "label": "What was the value of the business's total sales of household goods?",
                             "guidance": "<div> <h4>Include</h4><ul> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical and gas appliances, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators’ and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> <li>e-cigarettes</li> </ul></div>",
                             "type": "Currency",
                             "mandatory": false,
@@ -159,14 +159,14 @@
                       },
                       {
                         "id": "d7144593-8899-434a-8630-c622df1689b2",
-                        "title": "What was the value of the business’s total sales of other goods?",
+                        "title": "",
                         "description": "",
                         "type": "Currency",
                         "responses": [
                           {
                             "id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
                             "q_code": "26",
-                            "label": "",
+                            "label": "What was the value of the business’s total sales of other goods?",
                             "guidance": "<div> <h4>Include</h4> <ul>  <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets’ requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> <li>Mobile phones</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                             "type": "Currency",
                             "mandatory": false,
@@ -182,14 +182,14 @@
                       },
                       {
                         "id": "6c302f72-cf9d-4f42-8a35-cb258c3f807c",
-                        "title": "What was the value of the business’s total retail turnover?",
+                        "title": "",
                         "description": "",
                         "type": "Currency",
                         "responses": [
                           {
                             "id": "e81adc6d-6fb0-4155-969c-d0d646f15345",
                             "q_code": "20",
-                            "label": "",
+                            "label": "What was the value of the business’s total retail turnover?",
                             "guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sale from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                             "type": "Currency",
                             "mandatory": true,
@@ -206,14 +206,14 @@
                       },
                       {
                         "id": "c9902a3b-7dbb-48ff-8d3f-dce6fef322c7",
-                        "title": "Of your total retail turnover, how much were from internet sales?",
+                        "title": "",
                         "description": "",
                         "type": "Currency",
                         "responses": [
                           {
                             "id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
                             "q_code": "21",
-                            "label": "",
+                            "label": "Of your total retail turnover, how much were from internet sales?",
                             "guidance": "<div> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
                             "type": "Currency",
                             "mandatory": false,
@@ -229,14 +229,14 @@
                       },
                       {
                         "id": "96984134-1863-4450-b314-c44cf48d2bcd",
-                        "title": "What was the value of the business’s total sales of automotive fuel?",
+                        "title": "",
                         "description": "",
                         "type": "Currency",
                         "responses": [
                           {
                             "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
                             "q_code": "27",
-                            "label": "",
+                            "label": "What was the value of the business’s total sales of automotive fuel?",
                             "guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commisions</li> </ul></div>",
                             "type": "Currency",
                             "mandatory": false,
@@ -265,14 +265,14 @@
                         "questions": [
                           {
                             "id": "59ccb6e3-4a0a-4c32-b798-aafbf6b9e481",
-                            "title": "Male employees working more than 30 hours per week?",
+                            "title": "",
                             "description": "",
                             "type": "Integer",
                             "responses": [
                               {
                                 "id": "cffbbca5-1162-44d8-bbfb-3bc733d80239",
                                 "q_code": "51",
-                                "label": "",
+                                "label": "Male employees working more than 30 hours per week?",
                                 "guidance": "How many men work normal hours?",
                                 "type": "INTEGER",
                                 "mandatory": false,
@@ -288,14 +288,14 @@
                           },
                           {
                             "id": "fdafbc19-25b0-4985-a676-100df5bf25d3",
-                            "title": "Male employees working less than 30 hours per week?",
+                            "title": "",
                             "description": "",
                             "type": "Integer",
                             "responses": [
                               {
                                 "id": "c5908b75-d63d-4518-b00e-a60919aa63cd",
                                 "q_code": "52",
-                                "label": "",
+                                "label": "Male employees working less than 30 hours per week?",
                                 "guidance": "How many men work short hours?",
                                 "type": "INTEGER",
                                 "mandatory": false,
@@ -311,14 +311,14 @@
                           },
                           {
                             "id": "e10d5a63-ac30-4031-8c71-20eb04196978",
-                            "title": "Female employees working more than 30 hours per week?",
+                            "title": "",
                             "description": "",
                             "type": "Integer",
                             "responses": [
                               {
                                 "id": "0ac86568-2e33-420c-9dfe-f47a95132a5a",
                                 "q_code": "53",
-                                "label": "",
+                                "label": "Female employees working more than 30 hours per week?",
                                 "guidance": "How many women work normal hours?",
                                 "type": "INTEGER",
                                 "mandatory": false,
@@ -334,14 +334,14 @@
                           },
                           {
                             "id": "87f52d2a-b0e4-47f2-b884-ce94df109ed9",
-                            "title": "Female employees working less than 30 hours per week?",
+                            "title": "",
                             "description": "",
                             "type": "Integer",
                             "responses": [
                               {
                                 "id": "ed675602-9696-49ba-b3b9-2ea582ffe171",
                                 "q_code": "54",
-                                "label": "",
+                                "label": "Female employees working less than 30 hours per week?",
                                 "guidance": "How many women work short hours?",
                                 "type": "INTEGER",
                                 "mandatory": false,
@@ -357,14 +357,14 @@
                           },
                               {
                             "id": "b08ffc0f-c148-462e-a988-0a8ca259436a",
-                            "title": "How many people work for you in total?",
+                            "title": "",
                             "description": "",
                             "type":"Integer",
                             "responses":[
                               {
                                 "id": "42ee21a7-c050-49f7-9cdc-647596f22317",
                                 "q_code": "50",
-                                "label": "",
+                                "label": "How many people work for you in total?",
                                 "guidance": "How many people work for you in total",
                                 "type": "INTEGER",
                                 "mandatory": false,
