@@ -20,10 +20,11 @@ class Plumber(object):
 
     def _needs_plumbing(self, item, interesting_property):
         value = getattr(item, interesting_property)
-        pattern = re.compile("\{.+\}")
-        needs_plumbing = pattern.search(value)
-        if needs_plumbing is not None:
-            return True
+        if value is not None:
+            pattern = re.compile("\{.+\}")
+            needs_plumbing = pattern.search(value)
+            if needs_plumbing is not None:
+                return True
         return False
 
     def _plumb(self, item, interesting_property):

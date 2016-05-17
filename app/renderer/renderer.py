@@ -18,12 +18,21 @@ class Renderer(object):
             def __init__(self, entries):
                 self.__dict__ = entries
 
+        start_date = None
+        end_date = None
+
+        try:
+            start_date = self._metadata.get_ref_p_start_date()
+            end_date = self._metadata.get_ref_p_end_date()
+        except:
+            pass
+
         context = {
             "exercise": ContextEntry({
                 # "start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d")),
                 # "end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d"))
-                "start_date": self._metadata.get_ref_p_start_date(),
-                "end_date": self._metadata.get_ref_p_end_date()
+                "start_date": start_date,
+                "end_date": end_date
             })
         }
 
