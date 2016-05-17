@@ -191,11 +191,11 @@
       "id": "3",
       "title": "Select some dates",
       "responses": [{
-        "type": "DateRange",
+        "type": "Date",
         "label": "From",
         "name": "date-from"
       }, {
-        "type": "DateRange",
+        "type": "Date",
         "label": "To",
         "name": "date-to"
       }]
