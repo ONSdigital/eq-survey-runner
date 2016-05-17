@@ -39,7 +39,7 @@
               {% set response_value = response.value|int|format_currency if response.value else 'N/A' %}
 
               <dt class="dt"><div>
-                {{question.title}}
+                {{response.label}}
               </div></dt>
               <dd class="dd">{{response_value}}</dd>
 
@@ -48,7 +48,7 @@
               {% set response_value = response.value if response.value else 'N/A' %}
 
               <dt class="dt"><div>
-                {{question.title}}
+                {{response.label}}
               </div></dt>
               <dd class="dd">{{response_value}}</dd>
 
