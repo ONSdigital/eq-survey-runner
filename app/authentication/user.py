@@ -28,11 +28,11 @@ class User(UserMixin):
         return self.user_id
 
     def get_questionnaire_data(self):
-        logger.debug("Returning questionnaire data %s", self.questionnaire_data)
+        logger.debug("Returning questionnaire data for %s", self.user_id)
         return self.questionnaire_data
 
     def delete_questionnaire_data(self):
-        logger.debug("Deleting questionnaire data for %s", self.questionnaire_data)
+        logger.debug("Deleting questionnaire data for %s", self.user_id)
         self.questionnaire_data = {}
         self.storage.delete(self.user_id)
 
@@ -42,3 +42,4 @@ class User(UserMixin):
 
     def load(self):
         self.questionnaire_data = self.storage.get(self.user_id)
+        logger.debug("Loaded questionnaire data %s", self.questionnaire_data)

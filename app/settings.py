@@ -39,7 +39,7 @@ EQ_LOG_LEVEL = os.getenv('EQ_LOG_LEVEL', 'INFO')
 EQ_CLOUDWATCH_LOGGING = parse_mode(os.getenv("EQ_CLOUDWATCH_LOGGING", 'True'))
 EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'app/data')
 EQ_SESSION_TIMEOUT = int(os.getenv('EQ_SESSION_TIMEOUT', '28800'))
-EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', 'test.test.test.test')
+EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
 EQ_UA_ID = os.getenv('EQ_UA_ID', '')
 
 

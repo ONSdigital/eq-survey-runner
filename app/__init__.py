@@ -112,7 +112,11 @@ def create_app(config_name):
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
 
-    db = setup_database(application)
+    if settings.EQ_SERVER_SIDE_STORAGE:
+        db = setup_database(application)
+        setup_server_side_database_sessions(application, db)
+    else:
+        setup_secure_cookies(application)
 
     setup_babel(application)
 
@@ -126,11 +130,6 @@ def create_app(config_name):
     @application.context_processor
     def override_url_for():
         return dict(url_for=versioned_url_for)
-
-    if settings.EQ_SERVER_SIDE_STORAGE:
-        setup_server_side_database_sessions(application, db)
-    else:
-        setup_secure_cookies(application)
 
     application.wsgi_app = AWSReverseProxied(application.wsgi_app)
 
@@ -312,6 +311,7 @@ def get_minimized_asset(filename):
 
 def setup_database(application):
     application.config['SQLALCHEMY_DATABASE_URI'] = settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL
+    application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db = SQLAlchemy(application)
     db.create_all()
     return db
