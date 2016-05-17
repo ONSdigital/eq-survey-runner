@@ -44,10 +44,8 @@ class EncryptedServerStorageDecorator(AbstractServerStorage):
         sha256.update(to_str(salt).encode('utf-8'))
         sha256.update(to_str(user_id).encode('utf-8'))
 
-        md5 = hashlib.md5()
-        md5.update(to_str(sha256.hexdigest()).encode('utf-8'))
-
-        cek = md5.hexdigest()
+        # we only need the first 32 characters for the CEK
+        cek = sha256.hexdigest()[:32]
         logger.debug("Generated cek is %s", cek)
         return to_bytes(cek)
 

@@ -1,9 +1,12 @@
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.metadata.metadata_store import MetaDataConstants
-from app.utilities.strings import to_str
-import hashlib
+from app.utilities.strings import to_bytes
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.backends.openssl.backend import backend
 import logging
+import binascii
 
 logger = logging.getLogger(__name__)
 
@@ -19,17 +22,14 @@ class UserIDGenerator(object):
 
         if ru_ref and collection_exercise_sid and eq_id:
             logger.debug("Using values %s, %s and %s with a salt", ru_ref, collection_exercise_sid, eq_id)
-            salt = settings.EQ_SERVER_SIDE_STORAGE_USER_ID_SALT
+            salt = to_bytes(settings.EQ_SERVER_SIDE_STORAGE_USER_ID_SALT)
+            user_id_material = ru_ref + collection_exercise_sid + eq_id
 
-            sha256 = hashlib.sha256()
-            sha256.update(to_str(ru_ref).encode('utf-8'))
-            sha256.update(to_str(collection_exercise_sid).encode('utf-8'))
-            sha256.update(to_str(eq_id).encode('utf-8'))
-            sha256.update(to_str(salt).encode('utf-8'))
-
-            user_id = sha256.hexdigest()
+            kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000, backend=backend)
+            generated_user_id = kdf.derive(to_bytes(user_id_material))
+            user_id = binascii.hexlify(generated_user_id)
             logger.debug("User ID is %s", user_id)
-            return user_id
+            return binascii.hexlify(user_id)
         else:
             logger.error("Missing values for ru_ref, collection_exercise_sid or eq_id in token %s", token)
             raise InvalidTokenException("Missing values in JWT token")

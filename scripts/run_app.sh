@@ -48,7 +48,7 @@ url="`python token_generator.py`"
 echo $url
 
 if [ -z "${TRAVIS}" ]; then
-  open_url $url &
+  open_url $url &&
   python application.py runserver
 else
   python application.py runserver &

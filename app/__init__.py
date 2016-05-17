@@ -2,6 +2,8 @@ from flask import Flask
 from flask import url_for
 from flask_babel import Babel
 from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+from flask_session import SqlAlchemySessionInterface
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck
 from flaskext.markdown import Markdown
@@ -109,6 +111,8 @@ def create_app(config_name):
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
 
+    db = setup_database(application)
+
     setup_babel(application)
 
     @application.after_request
@@ -122,7 +126,10 @@ def create_app(config_name):
     def override_url_for():
         return dict(url_for=versioned_url_for)
 
-    setup_secure_cookies(application)
+    if settings.EQ_SERVER_SIDE_STORAGE:
+        setup_server_side_database_sessions(application, db)
+    else:
+        setup_secure_cookies(application)
 
     application.wsgi_app = AWSReverseProxied(application.wsgi_app)
 
@@ -300,3 +307,24 @@ def get_minimized_asset(filename):
         elif 'js' in filename:
             filename = filename.replace(".js", ".min.js")
     return filename
+
+
+def setup_database(application):
+    application.config['SQLALCHEMY_DATABASE_URI'] = settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL
+    db = SQLAlchemy(application)
+    db.create_all()
+    return db
+
+
+def setup_server_side_database_sessions(application, db):
+    application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+    application.secret_key = settings.EQ_SECRET_KEY
+    application.config['SESSION_COOKIE_SECURE'] = True
+    application.session_cookie_name = "eq-session"
+
+    # this is needed due to a bug in flask session
+    class PrefixShim(object):
+        def __add__(self, other):
+            return "eq" + str(other)
+
+    application.session_interface = SqlAlchemySessionInterface(application, db, "session", PrefixShim(), use_signer=True)
