@@ -12,7 +12,7 @@ REF_P_END_DATE = "2016-04-30"
 RETURN_BY = "2016-05-06"
 TRAD_AS = "Integration Tests"
 
-def create_token(form_type_id, eq_id):
+def create_token(form_type_id, eq_id, start_date=None, end_date=None):
         user = USER
         exp_time = 3600                         # one hour from now
         eq_id = eq_id
@@ -20,8 +20,17 @@ def create_token(form_type_id, eq_id):
         period_id = PERIOD_ID
         form_type = form_type_id
         collection_exercise_sid = COLLECTION_EXERCISE_SID
-        ref_p_start_date = REF_P_START_DATE
-        ref_p_end_date = REF_P_END_DATE
+
+        if start_date is None:
+            ref_p_start_date = REF_P_START_DATE
+        else:
+            ref_p_start_date = start_date
+
+        if end_date is None:
+            ref_p_end_date = REF_P_END_DATE
+        else:
+            ref_p_end_date = end_date
+
         ru_ref = RU_REF
         ru_name = RU_NAME
         trad_as = TRAD_AS
