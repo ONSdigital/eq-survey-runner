@@ -28,7 +28,8 @@ class UserIDGenerator(object):
             kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000, backend=backend)
             generated_user_id = kdf.derive(to_bytes(user_id_material))
             user_id = binascii.hexlify(generated_user_id)
-            logger.debug("User ID is %s", user_id)
+            if settings.EQ_DEV_MODE:
+                logger.debug("User ID is %s", user_id)
             return binascii.hexlify(user_id)
         else:
             logger.error("Missing values for ru_ref, collection_exercise_sid or eq_id in token %s", token)

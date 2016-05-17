@@ -31,9 +31,11 @@ class EncryptedServerStorageDecorator(AbstractServerStorage):
         logger.debug("About to decrypt data %s", data)
         if EncryptedServerStorageDecorator.ENCRYPTED_KEY in data:
             decrypted_data = self.decryption.decrypt(data[EncryptedServerStorageDecorator.ENCRYPTED_KEY], self._generate_key(user_id))
-            logger.debug("Decrypted data %s", decrypted_data)
+            if settings.EQ_DEV_MODE:
+                logger.debug("Decrypted data %s", decrypted_data)
             json_data = json.loads(decrypted_data)
-            logger.debug("JSONify %s", json_data)
+            if settings.EQ_DEV_MODE:
+                logger.debug("JSONify %s", json_data)
             return json_data
         else:
             return {}
@@ -46,7 +48,8 @@ class EncryptedServerStorageDecorator(AbstractServerStorage):
 
         # we only need the first 32 characters for the CEK
         cek = sha256.hexdigest()[:32]
-        logger.debug("Generated cek is %s", cek)
+        if settings.EQ_DEV_MODE:
+            logger.debug("Generated cek is %s", cek)
         return to_bytes(cek)
 
     def has_data(self, user_id):
