@@ -387,7 +387,7 @@
                           "questions": [
                               {
                                 "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
-                                "title": "Comments",
+                                "title": "",
                                 "description": "",
                                 "type": "Textarea",
                                 "responses": [
