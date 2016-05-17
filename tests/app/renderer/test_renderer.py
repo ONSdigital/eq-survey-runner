@@ -43,7 +43,7 @@ class TestRenderer(unittest.TestCase):
         r3_result.errors.append('This is a required field')
         self.validation_store.store_result('response-3', r3_result)
 
-    def test_augment_responses(self):
+    def test_augment_response(self):
         # Instantiate the renderer using the pre-populated mock objects
         renderer = Renderer(self.schema, self.response_store, self.validation_store, self.navigator, self.metadata)
 
@@ -59,7 +59,9 @@ class TestRenderer(unittest.TestCase):
             value = response_1.is_valid
 
         # Augment the responses
-        renderer._augment_responses()
+        renderer._augment_response(response_1)
+        renderer._augment_response(response_2)
+        renderer._augment_response(response_3)
 
         # Check the model has been augmented correctly
         self.assertEquals(response_1.value, 'One')
@@ -107,7 +109,6 @@ class TestRenderer(unittest.TestCase):
         self.assertIn('meta', context.keys())
         self.assertIn('content', context.keys())
         self.assertIn('navigation', context.keys())
-
 
     def _create_schema(self):
         questionnaire = Questionnaire()

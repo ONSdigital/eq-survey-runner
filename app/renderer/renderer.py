@@ -54,7 +54,6 @@ class Renderer(object):
             return 'questionnaire.html'
 
     def render(self):
-        self._augment_responses()
         self._augment_questionnaire()
 
         render_data = {
@@ -137,48 +136,51 @@ class Renderer(object):
 
         return navigation_meta
 
-    def _augment_responses(self):
-        # Augment the schema with user responses and validation results
-        all_responses = self._response_store.get_responses()
-        for item_id, value in all_responses.items():
-            item = self._schema.get_item_by_id(item_id)
-            if item:
-                item.value = value
-                validation_result = self._validation_store.get_result(item_id)
+    def _augment_response(self, response):
+        if response.id in self._response_store.get_responses().keys():
+            value = self._response_store.get_response(response.id)
+            if value is not None:
+                response.value = value
+                validation_result = self._validation_store.get_result(response.id)
                 if validation_result:
-                    item.is_valid = validation_result.is_valid
-                    item.errors = validation_result.get_errors()
-                    item.warnings = validation_result.get_warnings()
+                    response.is_valid = validation_result.is_valid
+                    response.errors = validation_result.get_errors()
+                    response.warnings = validation_result.get_warnings()
                 else:
-                    item.is_valid = None
-                    item.errors = None
-                    item.warnings = None
+                    response.is_valid = None
+                    response.errors = None
+                    response.warnings = None
 
     def _augment_questionnaire(self):
         errors = OrderedDict()
         warnings = OrderedDict()
 
         # loops through the Schema and get errors and warnings in order
+        # augments each item in the schema as required
         for group in self._schema.groups:
+            self._plumber.plumb_item(group)
+
             group_result = self._validation_store.get_result(group.id)
             if group_result and not group_result.is_valid:
                 errors[group.id] = group_result.errors
                 warnings[group.id] = group_result.warnings
 
             for block in group.blocks:
+                self._plumber.plumb_item(block)
+
                 block_result = self._validation_store.get_result(block.id)
                 if block_result and not block_result.is_valid:
                     errors[block.id] = block_result.errors
                     warnings[block.id] = block_result.warnings
 
                 for section in block.sections:
+                    self._plumber.plumb_item(section)
                     section_result = self._validation_store.get_result(section.id)
                     if section_result and not section_result.is_valid:
                         errors[section.id] = section_result.errors
                         warnings[section.id] = section_result.warnings
 
                     for question in section.questions:
-
                         self._plumber.plumb_item(question)
 
                         question_result = self._validation_store.get_result(question.id)
@@ -190,6 +192,10 @@ class Renderer(object):
                             question.warnings = question_result.get_warnings()
 
                         for response in question.responses:
+                            self._plumber.plumb_item(response)
+
+                            self._augment_response(response)
+
                             response_result = self._validation_store.get_result(response.id)
                             if response_result and not response_result.is_valid:
                                 errors[response.id] = response_result.errors
