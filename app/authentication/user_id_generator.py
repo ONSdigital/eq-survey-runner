@@ -19,11 +19,12 @@ class UserIDGenerator(object):
         ru_ref = token.get(MetaDataConstants.RU_REF)
         collection_exercise_sid = token.get(MetaDataConstants.COLLECTION_EXERCISE_SID)
         eq_id = token.get(MetaDataConstants.EQ_ID)
+        form_type = token.get(MetaDataConstants.FORM_TYPE)
 
-        if ru_ref and collection_exercise_sid and eq_id:
-            logger.debug("Using values %s, %s and %s with a salt", ru_ref, collection_exercise_sid, eq_id)
+        if ru_ref and collection_exercise_sid and eq_id and form_type:
+            logger.debug("Using values %s, %s, %s and %s with a salt", ru_ref, collection_exercise_sid, eq_id, form_type)
             salt = to_bytes(settings.EQ_SERVER_SIDE_STORAGE_USER_ID_SALT)
-            user_id_material = ru_ref + collection_exercise_sid + eq_id
+            user_id_material = ru_ref + collection_exercise_sid + eq_id + form_type
 
             kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=settings.EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS, backend=backend)
             generated_user_id = kdf.derive(to_bytes(user_id_material))
@@ -32,5 +33,5 @@ class UserIDGenerator(object):
                 logger.debug("User ID is %s", to_str(user_id))
             return to_str(user_id)
         else:
-            logger.error("Missing values for ru_ref, collection_exercise_sid or eq_id in token %s", token)
+            logger.error("Missing values for ru_ref, collection_exercise_sid, form_type or eq_id in token %s", token)
             raise InvalidTokenException("Missing values in JWT token")
