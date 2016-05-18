@@ -25,7 +25,7 @@ class UserIDGenerator(object):
             salt = to_bytes(settings.EQ_SERVER_SIDE_STORAGE_USER_ID_SALT)
             user_id_material = ru_ref + collection_exercise_sid + eq_id
 
-            kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000, backend=backend)
+            kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=settings.EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS, backend=backend)
             generated_user_id = kdf.derive(to_bytes(user_id_material))
             user_id = binascii.hexlify(generated_user_id)
             if settings.EQ_DEV_MODE:

@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 def ensure_min(value, minimum):
     if value < minimum:
+        logger.warning("Value to low %s setting to minimum %s", value, minimum)
         return minimum
     else:
         return value
