@@ -8,14 +8,13 @@ class TestJWEDecryption(unittest.TestCase):
 
     def test_decryption(self):
         cek = os.urandom(32)
-        iv = os.urandom(12)
 
         plain_text = "test decryption"
-        encrypter = JWEDirEncrypter(cek)
-        decrypter = JWEDirDecrypter(cek)
+        encrypter = JWEDirEncrypter()
+        decrypter = JWEDirDecrypter()
 
-        encrypted_text = encrypter.encrypt(plain_text, iv)
-        self.assertEqual(plain_text, decrypter.decrypt(encrypted_text))
+        encrypted_text = encrypter.encrypt(plain_text, cek)
+        self.assertEqual(plain_text, decrypter.decrypt(encrypted_text, cek))
 
 
 if __name__ == '__main__':

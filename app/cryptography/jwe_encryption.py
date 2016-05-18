@@ -2,6 +2,8 @@ from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from app.utilities import strings
 
+import json
+import os
 import base64
 
 
@@ -13,18 +15,28 @@ class JWEEncrypter(object):
         return base64.urlsafe_b64encode(text).decode().strip("=").encode()
 
 
+ALG_HEADER = "alg"
+ALG = "dir"
+ENC_HEADER = "enc"
+ENC = "A256GCM"
+KID_HEADER = "kid"
+KID = "1,1"
+
+
 class JWEDirEncrypter(JWEEncrypter):
-    def __init__(self, cek):
-        self.cek = cek
 
     def _jwe_protected_header(self):
-        return self._base_64_encode(b'{"alg":"dir","enc":"A256GCM"}')
 
-    def encrypt(self, json, iv):
-        payload = self._base_64_encode(strings.to_bytes(json))
+        protected_header = {ALG_HEADER: ALG, ENC_HEADER: ENC, KID_HEADER: KID}
+        return self._base_64_encode(json.dumps(protected_header).encode())
+
+    def encrypt(self, json_data, cek):
+        # 96 bit random IV
+        iv = os.urandom(12)
+        payload = self._base_64_encode(strings.to_bytes(json_data))
         jwe_protected_header = self._jwe_protected_header()
 
-        cipher = Cipher(algorithms.AES(self.cek), modes.GCM(iv), backend=backend)
+        cipher = Cipher(algorithms.AES(cek), modes.GCM(iv), backend=backend)
         encryptor = cipher.encryptor()
 
         encryptor.authenticate_additional_data(jwe_protected_header)

@@ -6,6 +6,14 @@ import pytz
 logger = logging.getLogger(__name__)
 
 
+def ensure_min(value, minimum):
+    if value < minimum:
+        logger.warning("Value to low %s setting to minimum %s", value, minimum)
+        return minimum
+    else:
+        return value
+
+
 def parse_mode(str):
     return str.upper() != 'FALSE'
 
@@ -46,9 +54,10 @@ EQ_UA_ID = os.getenv('EQ_UA_ID', '')
 EQ_SERVER_SIDE_STORAGE = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE', 'False'))
 EQ_SERVER_SIDE_STORAGE_TYPE = os.getenv('EQ_SERVER_SIDE_STORAGE_TYPE', 'DATABASE')
 EQ_SERVER_SIDE_STORAGE_ENCRYPTION = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION', 'False'))
-EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY = os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY', "lord.darth.vader").encode()
+EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_SALT = os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_SALT', "lord.darth.vader.temp").encode()
 EQ_SERVER_SIDE_STORAGE_DATABASE_URL = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_URL', 'sqlite:////tmp/questionnaire.db')
 EQ_SERVER_SIDE_STORAGE_USER_ID_SALT = os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_SALT', 'luke.skywalker.r2d2.c3p0')
+EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS = ensure_min(os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS', 10000), 1000)
 
 EQ_SPLUNK_LOGGING = parse_mode(os.getenv('EQ_SPLUNK_LOGGING', 'False'))
 EQ_SPLUNK_HOST = os.getenv('EQ_SPLUNK_HOST')
