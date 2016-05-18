@@ -54,15 +54,18 @@
 <h2>Errors</h2>
 <div class="ptn-section">
   <p>Validation errors use the <a href="/pattern-library/patterns/alert">alert component</a>:</p>
-  {% with %}
-    {% set alert_title = "This is a validation error message." %}
-    {% set question = data.questions.currency %}
-    {% set alert_body %}
-      {% include 'partials/question.html' %}
-    {% endset %}
-    {% set code %}
-        {% include 'partials/alert.html' %}
-    {% endset %}
-    {{patterns.example(code)}}
-  {% endwith %}
+  {#
+    {% with %}
+      {% set alert_title = "This is a validation error message." %}
+      {% set question = data.questions.currency %}
+      {% set alert_body %}
+        {% include 'partials/question.html' %}
+      {% endset %}
+      {% set code %}
+          {% include 'partials/alert.html' %}
+      {% endset %}
+      {{patterns.example(code)}}
+    {% endwith %}
+
+      #}
 </div>

@@ -280,7 +280,7 @@
                             "questions": [
                                 {
                                     "id": "b7fa3176-24a5-47bc-991c-661b2e990cc6",
-                                    "title": "Comments",
+                                    "title": "",
                                     "description": "",
                                     "type":"Textarea",
                                     "responses": [
