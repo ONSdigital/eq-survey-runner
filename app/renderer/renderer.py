@@ -131,19 +131,9 @@ class Renderer(object):
         return navigation_meta
 
     def _augment_response(self, response):
+        response.value = None
         if response.id in self._response_store.get_responses().keys():
-            value = self._response_store.get_response(response.id)
-            if value is not None:
-                response.value = value
-                validation_result = self._validation_store.get_result(response.id)
-                if validation_result:
-                    response.is_valid = validation_result.is_valid
-                    response.errors = validation_result.get_errors()
-                    response.warnings = validation_result.get_warnings()
-                else:
-                    response.is_valid = None
-                    response.errors = None
-                    response.warnings = None
+            response.value = self._response_store.get_response(response.id)
 
     def _augment_questionnaire(self):
         errors = OrderedDict()
@@ -152,48 +142,34 @@ class Renderer(object):
         # loops through the Schema and get errors and warnings in order
         # augments each item in the schema as required
         for group in self._schema.groups:
-            self._plumber.plumb_item(group)
-
-            group_result = self._validation_store.get_result(group.id)
-            if group_result and not group_result.is_valid:
-                errors[group.id] = group_result.errors
-                warnings[group.id] = group_result.warnings
-
+            self._augment_item(group, errors, warnings)
             for block in group.blocks:
-                self._plumber.plumb_item(block)
-
-                block_result = self._validation_store.get_result(block.id)
-                if block_result and not block_result.is_valid:
-                    errors[block.id] = block_result.errors
-                    warnings[block.id] = block_result.warnings
-
+                self._augment_item(block, errors, warnings)
                 for section in block.sections:
-                    self._plumber.plumb_item(section)
-                    section_result = self._validation_store.get_result(section.id)
-                    if section_result and not section_result.is_valid:
-                        errors[section.id] = section_result.errors
-                        warnings[section.id] = section_result.warnings
-
+                    self._augment_item(section, errors, warnings)
                     for question in section.questions:
-                        self._plumber.plumb_item(question)
-
-                        question_result = self._validation_store.get_result(question.id)
-                        if question_result and not question_result.is_valid:
-                            errors[question.id] = question_result.errors
-                            warnings[question.id] = question_result.warnings
-                            question.is_valid = question_result.is_valid
-                            question.errors = question_result.get_errors()
-                            question.warnings = question_result.get_warnings()
-
+                        self._augment_item(question, errors, warnings)
                         for response in question.responses:
-                            self._plumber.plumb_item(response)
-
                             self._augment_response(response)
-
-                            response_result = self._validation_store.get_result(response.id)
-                            if response_result and not response_result.is_valid:
-                                errors[response.id] = response_result.errors
-                                warnings[response.id] = response_result.warnings
+                            self._augment_item(response, errors, warnings)
 
         self._schema.errors = errors
         self._schema.warnings = warnings
+
+    def _augment_item(self, item, global_errors, global_warnings):
+        # Perform any plumbing of variables into displayed text
+        self._plumber.plumb_item(item)
+
+        item.is_valid = None
+        item.errors = []
+        item.warnings = []
+
+        item_result = self._validation_store.get_result(item.id)
+
+        if item_result:
+            item.is_valid = item_result.is_valid
+            if not item_result.is_valid:
+                global_errors[item.id] = item_result.errors
+                global_warnings[item.id] = item_result.warnings
+                item.errors = item_result.get_errors()
+                item.warnings = item_result.get_warnings()

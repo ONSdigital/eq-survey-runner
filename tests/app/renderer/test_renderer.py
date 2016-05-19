@@ -55,8 +55,6 @@ class TestRenderer(unittest.TestCase):
         # Check the attributes do not exist
         with self.assertRaises(AttributeError):
             value = response_1.value
-        with self.assertRaises(AttributeError):
-            value = response_1.is_valid
 
         # Augment the responses
         renderer._augment_response(response_1)
@@ -65,20 +63,45 @@ class TestRenderer(unittest.TestCase):
 
         # Check the model has been augmented correctly
         self.assertEquals(response_1.value, 'One')
+
+        self.assertEquals(response_2.value, 'Two')
+
+        self.assertIsNone(response_3.value)
+
+    def test_augment_item(self):
+        # Instantiate the renderer using the pre-populated mock objects
+        renderer = Renderer(self.schema, self.response_store, self.validation_store, self.navigator, self.metadata)
+
+        # Get the response objects
+        response_1 = self.schema.get_item_by_id('response-1')
+        response_2 = self.schema.get_item_by_id('response-2')
+        response_3 = self.schema.get_item_by_id('response-3')
+
+        errors = OrderedDict()
+        warnings = OrderedDict()
+
+        with self.assertRaises(AttributeError):
+            value = response_1.is_valid
+
+        # Augment the items
+        renderer._augment_item(response_1, errors, warnings)
+        renderer._augment_item(response_2, errors, warnings)
+        renderer._augment_item(response_3, errors, warnings)
+
+        # Check the model has been augmented correctly
         self.assertTrue(response_1.is_valid)
         self.assertEquals(len(response_1.errors), 0)
         self.assertEquals(len(response_1.warnings), 0)
 
-        self.assertEquals(response_2.value, 'Two')
         self.assertFalse(response_2.is_valid)
         self.assertEquals(len(response_2.errors), 1)
         self.assertEquals(len(response_2.warnings), 1)
         self.assertEquals(response_2.errors[0], 'There is an error')
         self.assertEquals(response_2.warnings[0], 'There is a warning')
 
-        # Response 3 has not had any value sent so is not augmented.
-        with self.assertRaises(AttributeError):
-            self.assertIsNone(response_3.value)
+        self.assertFalse(response_3.is_valid)
+        self.assertEquals(len(response_3.errors), 1)
+        self.assertEquals(response_3.errors[0], 'This is a required field')
 
     def test_augment_questionnaire(self):
         # Instantiate the renderer using the pre-populated mock objects
