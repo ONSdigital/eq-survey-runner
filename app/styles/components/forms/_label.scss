@@ -51,7 +51,7 @@
 .input:checked {
   + .label--inline {
     &::before {
-      background: rgba($color-grey, 0.6);
+      background: rgba($color-grey, 0.3);
     }
   }
 }
