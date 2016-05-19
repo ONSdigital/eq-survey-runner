@@ -3,6 +3,7 @@ from flask_login import current_user
 from app.submitter.converter import SubmitterConstants
 from flask import session
 from app.piping.plumber import Plumber
+from app.libs.utils import ObjectFromDict
 
 
 class Renderer(object):
@@ -12,11 +13,6 @@ class Renderer(object):
         self._validation_store = validation_store
         self._navigator = navigator
         self._metadata = metadata
-
-        # Create an object from a dict
-        class ContextEntry:
-            def __init__(self, entries):
-                self.__dict__ = entries
 
         start_date = None
         end_date = None
@@ -28,9 +24,7 @@ class Renderer(object):
             pass
 
         context = {
-            "exercise": ContextEntry({
-                # "start_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d")),
-                # "end_date": '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d"))
+            "exercise": ObjectFromDict({
                 "start_date": start_date,
                 "end_date": end_date
             })

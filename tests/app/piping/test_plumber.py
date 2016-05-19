@@ -1,12 +1,7 @@
 from app.piping.plumber import Plumber
 from datetime import datetime
 import unittest
-
-
-# Helper class to creata an object from a dict
-class ObjectFromDict:
-    def __init__(self, dict):
-        self.__dict__ = dict
+from app.libs.utils import ObjectFromDict
 
 
 class TestPlumber(unittest.TestCase):
