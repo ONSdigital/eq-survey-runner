@@ -126,10 +126,11 @@
                                 ],
                                 "mandatory": true,
                                 "validation": {
-                                  "messages": {
-                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+
+                                },
+                                "display": {
+                                  "properties": {
+                                    "columns": true
                                   }
                                 }
                               }
@@ -167,10 +168,109 @@
                                 ],
                                 "mandatory": false,
                                 "validation": {
-                                  "messages": {
-                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+
+                                },
+                                "display": {
+                                  "properties": {
+                                    "columns": false
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                           {
+                            "id": "def6r645-c231-4522-ba2f-273b25507e53",
+                            "title": "Which 3 have wielded a green lightsavers?",
+                            "description": "",
+                            "type": "Checkboxes",
+                            "responses": [
+                              {
+                                "id": "9587eb9b-f24e-4dc0-ac94-66117b896c10",
+                                "q_code": "29",
+                                "label": "",
+                                "guidance": "",
+                                "type": "Checkboxes",
+                                "options": [
+                                  {
+                                    "value": "Luke Skywalker",
+                                    "label": "Luke Skywalker"
+                                  },
+                                  {
+                                    "value": "Yoda",
+                                    "label": "Yoda"
+                                  },
+                                     {
+                                    "value": "Anakin Skywalker",
+                                    "label": "Anakin Skywalker"
+                                  },
+                                  {
+                                    "value": "Rey",
+                                    "label": "Rey"
+                                  },
+                                     {
+                                    "value": "Obi-Wan Kenobi",
+                                    "label": "Obi-Wan Kenobi"
+                                  },
+                                  {
+                                    "value": "Qui-Gon Jinn",
+                                    "label": "Qui-Gon Jinn"
+                                  }
+                                ],
+                                "mandatory": true,
+                                "validation": {
+                                },
+                                "display": {
+                                  "properties": {
+                                    "columns": true
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "pef6r645-c231-4522-ba2f-273b25507e53",
+                            "title": "Which 3 appear in any of the opening crawlers?",
+                            "description": "",
+                            "type": "Checkboxes",
+                            "responses": [
+                              {
+                                "id": "5587eb9b-f24e-4dc0-ac94-66117b896c10",
+                                "q_code": "29",
+                                "label": "",
+                                "guidance": "",
+                                "type": "Checkboxes",
+                                "options": [
+                                  {
+                                    "value": "Luke Skywalker",
+                                    "label": "Luke Skywalker"
+                                  },
+                                  {
+                                    "value": "Han Solo",
+                                    "label": "Han Solo"
+                                  },
+                                     {
+                                    "value": "The Emperor",
+                                    "label": "The Emperor"
+                                  },
+                                  {
+                                    "value": "R2D2",
+                                    "label": "R2D2"
+                                  },
+                                  {
+                                    "value": "Senator Amidala",
+                                    "label": "Senator Amidala"
+                                  },
+                                  {
+                                    "value": "Yoda",
+                                    "label": "Yoda"
+                                  }
+                                ],
+                                "mandatory": false,
+                                "validation": {
+                                },
+                                "display": {
+                                  "properties": {
+                                    "columns": true
                                   }
                                 }
                               }

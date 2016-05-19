@@ -32,12 +32,16 @@
     "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-trigger"
   } %}
 
+  {% set input_element %}
+    <input {{attr|xmlattr}}>
+  {% endset %}
+
   {% if input_has_special_type %}
     <div class="input-type input-type--{{type}}" data-type="{{special_types[type]}}">
-      <input {{attr|xmlattr}}>
+      {{input_element|safe}}
     </div>
   {% else %}
-    <input {{attr|xmlattr}}>
+    {{input_element|safe}}
   {% endif %}
 
 {% endmacro -%}

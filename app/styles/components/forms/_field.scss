@@ -10,6 +10,26 @@
   }
 }
 
+.field--radios,
+.field--checkboxes {
+
+  &.field--cols {
+    display: block;
+    @include mq(s) {
+      font-size: 0;
+      .field__item {
+        font-size: inherit;
+        display: inline-block;
+        width: 50%;
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+}
+
 .date {
   $legend-width: 5rem;
   .legend {
