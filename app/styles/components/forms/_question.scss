@@ -4,6 +4,9 @@
   &:last-of-type {
     margin-bottom: 0;
   }
+  @include mq(m) {
+    margin-bottom: 2rem;
+  }
 }
 
 .question--has-errors {

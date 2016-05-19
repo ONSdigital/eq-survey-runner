@@ -98,7 +98,7 @@
                             "id": "235f0930-47fb-4998-afed-d73167886d63",
                             "title": "What animal was used to create the engine sound of the Empire's TIE fighters?",
                             "description": "",
-                            "type":"",
+                            "type": "Radios",
                             "responses": [
                               {
                                 "id": "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d",
@@ -139,7 +139,7 @@
                             "id": "def61645-c231-4522-ba2f-273b25507e53",
                             "title": "Which of these Darth Vader quotes is wrong?",
                             "description": "",
-                            "type":"",
+                            "type": "Radios",
                             "responses": [
                               {
                                 "id": "7587eb9b-f24e-4dc0-ac94-66118b896c10",
