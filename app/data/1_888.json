@@ -277,16 +277,18 @@
                           ]
                         },
                       {
-                          "id": "5dc9b6e1-e069-451c-afe7-f1b9069e6763",
+                          "id": "5dc9ber1-e069-451c-afe7-f1b9069e6763",
                           "title":"",
                           "questions": [
                             {
-                              "id": "e5ea8649-0869-4bd6-b2b9-d3b4e790602b",
+                              "id": "e5ea8649-0869-4bd6-b2b9-d3b4e7r0602b",
                               "title": "Contact Details",
                               "description": "",
+                              "type":"Integer",
+                              "options":[],
                               "responses": [
                                 {
-                                  "id": "ddd33acb-3d9c-4b27-b99e-1407935cdd16",
+                                  "id": "ddd33acb-3d9c-4b27-b99e-1d07935cdd16",
                                   "q_code": "01",
                                   "label": "What is your preferred phone number?",
                                   "guidance": "",
