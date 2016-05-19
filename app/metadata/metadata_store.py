@@ -41,18 +41,14 @@ class MetaDataStore(object):
             self.user = current_user
 
     def store(self, key, value):
-        if self.user is not None:
-            data = self.user.get_questionnaire_data()
-            data[key] = value
+        data = self.user.get_questionnaire_data()
+        data[key] = value
 
     def store_all(self, token):
         for key in token.keys():
             self.store(key, token[key])
 
     def get(self, key):
-        if self.user is None:
-            return None
-
         data = self.user.get_questionnaire_data()
         if key in data:
             return data[key]
@@ -81,13 +77,9 @@ class MetaDataStore(object):
         return self.get(MetaDataConstants.FORM_TYPE)
 
     def get_ref_p_start_date(self):
-        if self.user is None:
-            return None
         return datetime.strptime(self.get(MetaDataConstants.REF_P_START_DATE), "%Y-%m-%d")
 
     def get_ref_p_end_date(self):
-        if self.user is None:
-            return None
         return datetime.strptime(self.get(MetaDataConstants.REF_P_END_DATE), "%Y-%m-%d")
 
     def get_trad_as(self):
