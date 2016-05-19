@@ -49,3 +49,20 @@ class TestPlumber(unittest.TestCase):
         self.assertEquals(item2.property_two, "Date is 2016/04/01")
         self.assertEquals(item2.property_three, "Date is 2016-04-01 00:00:00")
         self.assertEquals(item2.property_four, "Not plumbed {dates.first_april_2016}")
+
+        item3 = ObjectFromDict({
+            'templatable_properties': ['funky_formatting', 'random_brace', 'mixing_it_up'],
+            'funky_formatting': 'This is an opening brace {{ and this is a closing brace }}',
+            'random_brace': 'This will not throw an error {',
+            'mixing_it_up': '{{ {simple.property_one} {simple.property_two} }}'
+        })
+
+        self.assertEquals(item3.funky_formatting, 'This is an opening brace {{ and this is a closing brace }}')
+        self.assertEquals(item3.random_brace, 'This will not throw an error {')
+        self.assertEquals(item3.mixing_it_up, '{{ {simple.property_one} {simple.property_two} }}')
+
+        self.plumber.plumb_item(item3)
+
+        self.assertEquals(item3.funky_formatting, 'This is an opening brace { and this is a closing brace }')
+        self.assertEquals(item3.random_brace, 'This will not throw an error {')
+        self.assertEquals(item3.mixing_it_up, '{ value one value two }')
