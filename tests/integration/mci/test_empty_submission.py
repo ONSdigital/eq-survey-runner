@@ -10,11 +10,11 @@ class TestEmptySubmission(unittest.TestCase):
         self.client = self.application.test_client()
 
     def test_empty_submission_205(self):
-        self.empty_submission('0205')
+        self.empty_submission('0205','1')
 
-    def empty_submission(self, form_type_id):
+    def empty_submission(self, form_type_id, eq_id):
         # Get a token
-        token = create_token(form_type_id)
+        token = create_token(form_type_id, eq_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 

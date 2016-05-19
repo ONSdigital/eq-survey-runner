@@ -2,7 +2,6 @@ from app.dev_mode.views import generate_token, create_payload
 
 # Set up some constants
 USER = "mci-integration-test"
-EQ_ID = "1"
 PERIOD_STR = "April 2016"
 PERIOD_ID = "201604"
 COLLECTION_EXERCISE_SID = "789"
@@ -13,10 +12,10 @@ REF_P_END_DATE = "2016-04-30"
 RETURN_BY = "2016-05-06"
 TRAD_AS = "Integration Tests"
 
-def create_token(form_type_id):
+def create_token(form_type_id, eq_id):
         user = USER
         exp_time = 3600                         # one hour from now
-        eq_id = EQ_ID
+        eq_id = eq_id
         period_str = PERIOD_STR
         period_id = PERIOD_ID
         form_type = form_type_id

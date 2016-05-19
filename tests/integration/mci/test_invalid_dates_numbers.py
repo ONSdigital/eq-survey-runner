@@ -10,11 +10,11 @@ class TestInvalidDateNumber(unittest.TestCase):
         self.client = self.application.test_client()
 
     def test_invalid_date_number_205(self):
-        self.invalid_date_number('0205')
+        self.invalid_date_number('0205', '1')
 
-    def invalid_date_number(self, form_type_id):
+    def invalid_date_number(self, form_type_id, eq_id):
         # Get a token
-        token = create_token(form_type_id)
+        token = create_token(form_type_id, eq_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 

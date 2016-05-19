@@ -11,14 +11,14 @@ class TestHappyPath(unittest.TestCase):
         self.client = self.application.test_client()
 
     def test_happy_path_203(self):
-        self.happy_path('0203')
+        self.happy_path('0203','1')
 
     def test_happy_path_205(self):
-        self.happy_path('0205')
+        self.happy_path('0205','1')
 
-    def happy_path(self, form_type_id):
+    def happy_path(self, form_type_id, eq_id):
         # Get a token
-        token = create_token(form_type_id)
+        token = create_token(form_type_id, eq_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 

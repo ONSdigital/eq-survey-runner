@@ -13,7 +13,7 @@ class TestEmptyRadioBoxes(unittest.TestCase):
 
     def test_radio_boxes_mandatory_empty(self):
         # Get a token
-        token = create_token('star_wars')
+        token = create_token('star_wars', '0')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
