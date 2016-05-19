@@ -26,7 +26,7 @@
                             "id": "88824eff-7bb6-443f-85cb-8c2db016d44c",
                             "title": "",
                             "description": "",
-                            "type":"Integer",
+                            "type": "Integer",
                             "responses": [
                               {
                                 "id": "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b",
@@ -96,31 +96,34 @@
                           },
                           {
                             "id": "235f0930-47fb-4998-afed-d73167886d63",
-                            "title": "",
+                            "title": "What animal was used to create the engine sound of the Empire's TIE fighters?",
                             "description": "",
-                            "type":"Radio",
+                            "type":"",
                             "responses": [
                               {
                                 "id": "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d",
                                 "q_code": "22",
-                                "label": "What animal was used to create the engine sound of the Empire's TIE fighters?",
+                                "label": "",
                                 "guidance": "",
-                                "type": "Radio",
+                                "type": "radio",
                                 "options": [
                                   {
-                                    "value": "Lion"
+                                    "value": "Lion",
+                                    "label": "Lion"
                                   },
                                   {
-                                    "value": "Elephant"
+                                    "value": "Elephant",
+                                    "label": "Elephant"
                                   },
                                   {
-                                    "value": "Cow"
+                                    "value": "Cow",
+                                    "label": "Cow"
                                   },
                                   {
-                                    "value": "Hippo"
+                                    "value": "Hippo",
+                                    "label": "Hippo"
                                   }
                                 ],
-
                                 "mandatory": true,
                                 "validation": {
                                   "messages": {
@@ -132,30 +135,34 @@
                               }
                             ]
                           },
-                           {
+                          {
                             "id": "def61645-c231-4522-ba2f-273b25507e53",
-                            "title": "",
+                            "title": "Which of these Darth Vader quotes is wrong?",
                             "description": "",
-                            "type":"Radio",
+                            "type":"",
                             "responses": [
                               {
                                 "id": "7587eb9b-f24e-4dc0-ac94-66118b896c10",
                                 "q_code": "22",
-                                "label": "Which of these Darth Vader quotes is wrong?",
+                                "label": "",
                                 "guidance": "",
                                 "type": "Radio",
                                 "options": [
                                   {
-                                    "value": "I’ve been waiting for you, Obi-Wan"
+                                    "value": "I've been waiting for you, Obi-Wan",
+                                    "label": "I've been waiting for you, Obi-Wan"
                                   },
                                   {
-                                    "value": "Luke, I am your father"
+                                    "value": "Luke, I am your father",
+                                    "label": "Luke, I am your father"
                                   },
                                      {
-                                    "value": "Together we can rule the galaxy"
+                                    "value": "Together we can rule the galaxy",
+                                    "label": "Together we can rule the galaxy"
                                   },
                                   {
-                                    "value": "I find your lack of faith disturbing"
+                                    "value": "I find your lack of faith disturbing",
+                                    "label": "I find your lack of faith disturbing"
                                   }
                                 ],
                                 "mandatory": false,
@@ -216,14 +223,14 @@
                           "questions": [
                               {
                                 "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
-                                "title": "Comments",
+                                "title": "",
                                 "description": "Why doesn't Chewbacca receive a medal at the end of A New Hope?",
                                 "type": "Textarea",
                                 "responses": [
                                     {
                                       "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
                                       "q_code": "146",
-                                      "label": "",
+                                      "label": "Comments",
                                       "guidance": "",
                                       "type": "Textarea",
                                       "options":[],

@@ -21,6 +21,6 @@
 
 .section__description {
   @include mq(s) {
-    padding: 0 1rem;
+    padding: 0;
   }
 }
