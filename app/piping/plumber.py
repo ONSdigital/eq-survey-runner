@@ -6,20 +6,14 @@ class Plumber(object):
         self._context = context
 
     def plumb_item(self, item):
-        interesting_properties = self.get_properties_of_interest(item)
+        templatable_properties = item.templatable_properties
 
-        for interesting_property in interesting_properties:
-            if self._needs_plumbing(item, interesting_property):
-                self._plumb(item, interesting_property)
+        for templatable_property in templatable_properties:
+            if self._needs_plumbing(item, templatable_property):
+                self._plumb(item, templatable_property)
 
-    def get_properties_of_interest(self, item):
-        if hasattr(item, 'templatable_properties'):
-            return item.templatable_properties
-        else:
-            return []
-
-    def _needs_plumbing(self, item, interesting_property):
-        value = getattr(item, interesting_property)
+    def _needs_plumbing(self, item, templatable_property):
+        value = getattr(item, templatable_property)
         if value is not None:
             pattern = re.compile("\{.+\}")
             needs_plumbing = pattern.search(value)
@@ -27,9 +21,9 @@ class Plumber(object):
                 return True
         return False
 
-    def _plumb(self, item, interesting_property):
-        if hasattr(item, interesting_property):
-            template = getattr(item, interesting_property)
+    def _plumb(self, item, templatable_property):
+        if hasattr(item, templatable_property):
+            template = getattr(item, templatable_property)
             formatting_data = self._context
             plumbed_value = template.format(**formatting_data)
-            setattr(item, interesting_property, plumbed_value)
+            setattr(item, templatable_property, plumbed_value)

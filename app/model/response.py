@@ -11,3 +11,4 @@ class Response(object):
         self.questionnaire = None
         self.display = None
         self.messages = {}
+        self.templatable_properties = []

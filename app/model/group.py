@@ -9,6 +9,7 @@ class Group(object):
         self.questionnaire = None
         self.validation = None
         self.questionnaire = None
+        self.templatable_properties = []
 
     def add_block(self, block):
         if block not in self.blocks:

@@ -8,6 +8,7 @@ class Section(object):
         self.questionnaire = None
         self.validation = None
         self.questionnaire = None
+        self.templatable_properties = []
 
     def add_question(self, question):
         if question not in self.questions:
