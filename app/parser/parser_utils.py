@@ -121,6 +121,27 @@ class ParserUtils(object):
         else:
             return None
 
+    @staticmethod
+    def get_optional_array(obj, key):
+        """Get an optional property from the dict
+
+        Gets the optional values associated with the key in the dict, or returns
+        None if the key is not found.
+
+        :param obj: A dict on json object
+        :param key: The name of the property to retrieve
+
+        :returns: An array of the values or None
+
+        """
+        options = []
+        if key in obj.keys():
+            for option in obj[key]:
+                options.append(option)
+            return options
+        else:
+            return None
+
     def get_optional_string(obj, key):
         """Get an optional string property from the dict
 

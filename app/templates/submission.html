@@ -21,46 +21,27 @@
         {%- for question in section.questions -%}
 
           {%- for response in question.responses -%}
-
             {% if question.type == 'DateRange' %}
-
               {% if loop.index == 2 %}
-                <dt class="dt"><div>
-                  {{question.title}}
-                </div></dt>
-                <dd class="dd">
+                {% set question_title = question.title %}
+                {% set response_value %}
                   {{question.responses[loop.index0 - 1].label}}: {{question.responses[loop.index0 - 1].value}}<br>
                   {{response.label}}: {{response.value}}
-                </dd>
+                {% endset %}
               {% endif %}
-
             {% elif response.type == 'Currency' %}
-
+            {% set question_title = question.title or response.label %}
               {% set response_value = response.value|int|format_currency if response.value else 'N/A' %}
-
-              <dt class="dt"><div>
-                {{response.label}}
-              </div></dt>
-              <dd class="dd">{{response_value}}</dd>
-
-            {% elif response.type == 'Integer' %}
-
-              {% set response_value = response.value if response.value else 'N/A' %}
-
-              <dt class="dt"><div>
-                {{response.label}}
-              </div></dt>
-              <dd class="dd">{{response_value}}</dd>
-
             {% else %}
-
+              {% set question_title = question.title or response.label %}
               {% set response_value = response.value if response.value else 'N/A' %}
+            {% endif %}
 
-              <dt class="dt fw"><div>
-                {{response.label}}
-              </div></dt>
-              <dd class="dd fw">{{response_value}}</dd>
+            {% set full_width = 'fw' if response.type == 'Textarea' %}
 
+            {% if question_title and response_value %}
+              <dt class="dt {{full_width}}"><div>{{question_title|safe}}</div></dt>
+              <dd class="dd {{full_width}}">{{response_value|safe}}</dd>
             {% endif %}
 
           {%- endfor -%}

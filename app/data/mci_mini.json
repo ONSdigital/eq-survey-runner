@@ -29,6 +29,7 @@
                                       "label": "Male employees working more than 30 hours per week?",
                                       "guidance": "How many men work for your company?",
                                       "type": "Integer",
+                                      "options":[],
                                       "mandatory":true
                                     }
                                 ]

@@ -10,7 +10,7 @@ class TestEmptySubmission(unittest.TestCase):
 
     def test_happy_path(self):
         # Get a token
-        token = create_token("999")
+        token = create_token("999","1")
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 

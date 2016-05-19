@@ -2,11 +2,9 @@
 
 {% macro response(partial, data) %}
   {%- set markup %}
-  <div class="field field--{{partial}}">
   {% set response = data %}
   {% set question = {} %}
   {% include 'partials/responses/' ~ partial ~ '.html' %}
-  </div>
   {% endset -%}
   <div class="ptn-example">
   {{markup|prettify|safe}}

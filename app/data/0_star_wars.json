@@ -1,0 +1,253 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "questionnaire_id": "333",
+    "survey_id": "33",
+    "title": "Star Wars",
+    "description": "Star Wars",
+    "introduction": {
+      "description": "May the force be with you"
+    },
+    "groups": [
+        {
+            "id": "14ba4707-321d-441d-8d21-b8367366e766",
+            "title": "",
+            "blocks": [
+                {
+                    "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
+                    "title": "Star Wars",
+                    "sections": [
+                      {
+                        "id": "017880bc-752d-4a6b-83df-e130409ee660",
+                        "title": "Star Wars Quiz",
+                        "description": "May the force be with you young EQ developer<br/><br/>",
+                        "questions": [
+                          {
+                            "id": "88824eff-7bb6-443f-85cb-8c2db016d44c",
+                            "title": "",
+                            "description": "",
+                            "type": "Integer",
+                            "responses": [
+                              {
+                                "id": "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b",
+                                "q_code": "22",
+                                "label": "How old is Chewy?",
+                                "guidance": "",
+                                "type": "Integer",
+                                "options": [],
+                                "mandatory": true,
+                                "validation": {
+                                  "messages": {
+                                    "NOT_INTEGER": "Please enter your age.",
+                                    "NEGATIVE_INTEGER": "Negative age you can not be.",
+                                    "INTEGER_TOO_LARGE": "No one lives that long, not even Yoda"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "b8a803ba-2048-46dc-83cf-9ef9000d7a92",
+                            "title": "",
+                            "description": "",
+                            "type":"Currency",
+                            "responses": [
+                              {
+                                "id": "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
+                                "q_code": "22",
+                                "label": "How many Octillions do Nasa reckon it would cost to build a death star?",
+                                "guidance": "",
+                                "type": "Currency",
+                                "options": [],
+                                "mandatory": false,
+                                "validation": {
+                                  "messages": {
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                    "NEGATIVE_INTEGER": "How can it be negative?",
+                                    "INTEGER_TOO_LARGE": "How much?, idiot you must be"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "d8a803ga-2048-46dc-83cf-9ef9000d7a92",
+                            "title": "",
+                            "description": "",
+                            "type":"Integer",
+                            "responses": [
+                              {
+                                "id": "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
+                                "q_code": "29",
+                                "label": "How hot is a lightsaver in degrees C?",
+                                "guidance": "",
+                                "type": "Integer",
+                                "options": [],
+                                "mandatory": false,
+                                "validation": {
+                                  "messages": {
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                    "NEGATIVE_INTEGER": "How can it be negative?",
+                                    "INTEGER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "235f0930-47fb-4998-afed-d73167886d63",
+                            "title": "What animal was used to create the engine sound of the Empire's TIE fighters?",
+                            "description": "",
+                            "type": "Radios",
+                            "responses": [
+                              {
+                                "id": "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d",
+                                "q_code": "22",
+                                "label": "",
+                                "guidance": "",
+                                "type": "radio",
+                                "options": [
+                                  {
+                                    "value": "Lion",
+                                    "label": "Lion"
+                                  },
+                                  {
+                                    "value": "Elephant",
+                                    "label": "Elephant"
+                                  },
+                                  {
+                                    "value": "Cow",
+                                    "label": "Cow"
+                                  },
+                                  {
+                                    "value": "Hippo",
+                                    "label": "Hippo"
+                                  }
+                                ],
+                                "mandatory": true,
+                                "validation": {
+                                  "messages": {
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "def61645-c231-4522-ba2f-273b25507e53",
+                            "title": "Which of these Darth Vader quotes is wrong?",
+                            "description": "",
+                            "type": "Radios",
+                            "responses": [
+                              {
+                                "id": "7587eb9b-f24e-4dc0-ac94-66118b896c10",
+                                "q_code": "22",
+                                "label": "",
+                                "guidance": "",
+                                "type": "Radio",
+                                "options": [
+                                  {
+                                    "value": "I've been waiting for you, Obi-Wan",
+                                    "label": "I've been waiting for you, Obi-Wan"
+                                  },
+                                  {
+                                    "value": "Luke, I am your father",
+                                    "label": "Luke, I am your father"
+                                  },
+                                     {
+                                    "value": "Together we can rule the galaxy",
+                                    "label": "Together we can rule the galaxy"
+                                  },
+                                  {
+                                    "value": "I find your lack of faith disturbing",
+                                    "label": "I find your lack of faith disturbing"
+                                  }
+                                ],
+                                "mandatory": false,
+                                "validation": {
+                                  "messages": {
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                           {
+                              "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
+                              "title": "When was return of the Jedi released?",
+                              "description": "Your start and end date can't be more then a month apart",
+                              "type" : "DateRange",
+                              "responses": [
+                                {
+                                  "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
+                                  "q_code": "11",
+                                  "label": "From",
+                                  "guidance": "",
+                                  "type": "Date",
+                                  "options":[],
+                                  "mandatory":true,
+                                  "validation": {
+                                    "messages": {
+                                      "MANDATORY": "Please answer before continuing.",
+                                      "INVALID_DATE": "The date entered is not valid.  Please correct your answer."
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0",
+                                  "q_code": "12",
+                                  "label": "To",
+                                  "guidance": "",
+                                  "type": "Date",
+                                  "options":[],
+                                  "mandatory":true,
+                                  "validation": {
+                                    "messages": {
+                                      "MANDATORY": "Please answer before continuing.",
+                                      "INVALID_DATE": "The date entered is not valid.  Please correct your answer."
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                        ]
+                      },
+                       {
+                          "id": "94546782-08a6-4213-9dc9-0780c2996896",
+                          "title":"Comments",
+                          "description":"",
+                          "questions": [
+                              {
+                                "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
+                                "title": "",
+                                "description": "Why doesn't Chewbacca receive a medal at the end of A New Hope?",
+                                "type": "Textarea",
+                                "responses": [
+                                    {
+                                      "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
+                                      "q_code": "146",
+                                      "label": "Comments",
+                                      "guidance": "",
+                                      "type": "Textarea",
+                                      "options":[],
+                                      "mandatory":false,
+                                      "display": {
+                                          "properties": {
+                                              "max_length": "2000"
+                                          }
+                                      }
+                                    }
+                                  ]
+                              }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

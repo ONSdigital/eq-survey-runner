@@ -34,6 +34,7 @@
                                   "label": "From",
                                   "guidance": "",
                                   "type": "Date",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -48,6 +49,7 @@
                                   "label": "To",
                                   "guidance": "",
                                   "type": "Date",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -77,6 +79,7 @@
                                   "label": "What is your preferred phone number?",
                                   "guidance": "",
                                   "type": "Integer",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -107,6 +110,7 @@
                                   "label": "What was the value of your total spend on food?",
                                   "guidance": "Include:<ul><li>all fresh food</li><li>eating out</li><li>takeaways</li><li>soft drinks</li></ul>Exclude:<ul><li>Alcoholic beverages</li><li>Non-consumable household items</li></ul>",
                                   "type": "Currency",
+                                  "options":[],
                                   "mandatory": true,
                                   "validation": {
                                     "messages": {
@@ -130,6 +134,7 @@
                                   "label": "What was the value of your total spend on alcohol, confectionary & tobacco?",
                                   "guidance": "Include:<ul><li>alcoholic drink</li><li>chocolate and sugar confectionary</li><li>tobacco and smokers’ requisites</li></ul>",
                                   "type": "Currency",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -153,6 +158,7 @@
                                   "label": "What was the value of your total spend on clothing and footwear?",
                                   "guidance": "Include:<ul><li>clothing and footwear</li><li>clothing fabrics</li><li>haberdashery and furs</li><li>leather and travel goods</li><li>handbags</li><li>haberdashery and furs</li></ul>",
                                   "type": "Currency",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -176,6 +182,7 @@
                                   "label": "What was your total spend on retail?",
                                   "guidance": "Include:<ul><li>VAT</li><li>internet purchases</li><li>food</li><li>alcohol, confectionary & tobacco</li><li>clothing & Footwear</li></ul>Exclude:<ul><li></li>Household goods</ul>",
                                   "type": "Currency",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -199,6 +206,7 @@
                               "title": "",
                               "description": "",
                               "type": "Integer",
+                               "options":[],
                               "responses": [
                                 {
                                   "id": "a5c43b5b-f6e9-412f-834d-2d6cc83b5436",
@@ -206,6 +214,7 @@
                                   "label": "How many people usually live in your household?",
                                   "guidance": "",
                                   "type": "Integer",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -229,6 +238,7 @@
                                   "label": "Counting the people included above, how many visitors were staying overnight on 11th April 2016?",
                                   "guidance": "",
                                   "type": "Integer",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -252,6 +262,7 @@
                                   "label": "How many rooms are available for use only by your household?",
                                   "guidance": "Do NOT count:<ul><li>Bathrooms</li><li>Toilets</li><li>Halls or landings</li><li>Rooms that can only be used for storage such as cupboards</li></ul>Count all other rooms, for example:<ul><li>Kitchens</li><li>Living rooms</li><li>Utility rooms</li><li>Bedrooms</li><li>Studies</li><li>Conservatories</li></ul>If two rooms have been converted into one, count them as one room",
                                   "type": "Integer",
+                                  "options":[],
                                   "mandatory": true,
                                   "validation": {
                                     "messages": {
@@ -266,20 +277,23 @@
                           ]
                         },
                       {
-                          "id": "5dc9b6e1-e069-451c-afe7-f1b9069e6763",
+                          "id": "5dc9ber1-e069-451c-afe7-f1b9069e6763",
                           "title":"",
                           "questions": [
                             {
-                              "id": "e5ea8649-0869-4bd6-b2b9-d3b4e790602b",
+                              "id": "e5ea8649-0869-4bd6-b2b9-d3b4e7r0602b",
                               "title": "Contact Details",
                               "description": "",
+                              "type":"Integer",
+                              "options":[],
                               "responses": [
                                 {
-                                  "id": "ddd33acb-3d9c-4b27-b99e-1407935cdd16",
+                                  "id": "ddd33acb-3d9c-4b27-b99e-1d07935cdd16",
                                   "q_code": "01",
                                   "label": "What is your preferred phone number?",
                                   "guidance": "",
                                   "type": "Integer",
+                                  "options":[],
                                   "mandatory":true,
                                   "validation": {
                                     "messages": {
@@ -311,6 +325,7 @@
                                       "label": "Please give any comments about completing this survey",
                                       "guidance": "",
                                       "type": "Textarea",
+                                      "options":[],
                                       "mandatory":false,
                                       "display": {
                                           "properties": {
