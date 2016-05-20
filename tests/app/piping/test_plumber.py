@@ -66,3 +66,14 @@ class TestPlumber(unittest.TestCase):
         self.assertEquals(item3.funky_formatting, 'This is an opening brace { and this is a closing brace }')
         self.assertEquals(item3.random_brace, 'This will not throw an error {')
         self.assertEquals(item3.mixing_it_up, '{ value one value two }')
+
+        item4 = ObjectFromDict({
+            'templatable_properties': ['unknown_parameter'],
+            'unknown_parameter': 'This expansion is {unknown}'
+        })
+
+        self.assertEquals(item4.unknown_parameter, 'This expansion is {unknown}')
+
+        self.plumber.plumb_item(item4)
+
+        self.assertEquals(item4.unknown_parameter, 'This expansion is {unknown}')

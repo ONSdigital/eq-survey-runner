@@ -23,7 +23,10 @@ class Plumber(object):
 
     def _plumb(self, item, templatable_property):
         if hasattr(item, templatable_property):
-            template = getattr(item, templatable_property)
-            formatting_data = self._context
-            plumbed_value = template.format(**formatting_data)
-            setattr(item, templatable_property, plumbed_value)
+            try:
+                template = getattr(item, templatable_property)
+                formatting_data = self._context
+                plumbed_value = template.format(**formatting_data)
+                setattr(item, templatable_property, plumbed_value)
+            except KeyError:
+                pass    # Do nothing, leave the propery as is
