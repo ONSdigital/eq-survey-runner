@@ -21,6 +21,7 @@ from app.model.properties import Properties
 from app.model.introduction import Introduction
 
 import logging
+import copy
 
 
 class SchemaParser(AbstractSchemaParser):
@@ -290,7 +291,7 @@ class SchemaParser(AbstractSchemaParser):
         properties = Properties()
 
         try:
-            properties.max_length = ParserUtils.get_optional_string(schema, 'max_length')
+            properties.__dict__ = copy.deepcopy(schema)
 
         except Exception as e:
             logging.error('Error parsing schema')
