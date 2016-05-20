@@ -189,7 +189,7 @@
                                 "q_code": "29",
                                 "label": "",
                                 "guidance": "",
-                                "type": "Checkboxes",
+                                "type": "Checkbox",
                                 "options": [
                                   {
                                     "value": "Luke Skywalker",
@@ -238,7 +238,7 @@
                                 "q_code": "29",
                                 "label": "",
                                 "guidance": "",
-                                "type": "Checkboxes",
+                                "type": "Checkbox",
                                 "options": [
                                   {
                                     "value": "Luke Skywalker",
@@ -270,7 +270,53 @@
                                 },
                                 "display": {
                                   "properties": {
-                                    "columns": true
+                                    "columns": false
+                                  }
+                                }
+                              }
+                            ]
+                          },
+
+                          {
+                            "id": "pef6r645-c231-4522-ba2f-273b25507e53asdas",
+                            "title": "Which 3 appear in any of the opening crawlers?",
+                            "description": "",
+                            "type": "Checkboxes",
+                            "responses": [
+                              {
+                                "id": "5587eb9b-f24e-4dc0-ac94-sadasdas",
+                                "q_code": "29",
+                                "label": "",
+                                "guidance": "",
+                                "type": "Checkbox",
+                                "options": [
+                                  {
+                                    "value": "Luke Skywalker",
+                                    "label": "Donec ullamcorper nulla non metus auctor fringilla "
+                                  },
+                                  {
+                                    "value": "Han Solo",
+                                    "label": "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
+                                  },
+                                     {
+                                    "value": "The Emperor",
+                                    "label": "Sed posuere consectetur est at lobortis. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+                                  },
+                                  {
+                                    "value": "R2D2",
+                                    "label": "Donec sed odio dui."
+                                  },
+                                  {
+                                    "value": "Senator Amidala",
+                                    "label": "Maecenas sed diam eget risus varius blandit sit amet non magna. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
+                                  }
+                                ],
+                                "mandatory": false,
+                                "validation": {
+                                },
+                                "display": {
+                                  "properties": {
+                                    "columns": false
                                   }
                                 }
                               }
@@ -316,7 +362,7 @@
                             }
                         ]
                       },
-                       {
+                      {
                           "id": "94546782-08a6-4213-9dc9-0780c2996896",
                           "title":"Comments",
                           "description":"",

@@ -1,3 +1,6 @@
+from app.model.display import Display
+
+
 class Group(object):
 
     def __init__(self):
@@ -10,6 +13,7 @@ class Group(object):
         self.validation = None
         self.questionnaire = None
         self.templatable_properties = []
+        self.display = Display()
 
     def add_block(self, block):
         if block not in self.blocks:

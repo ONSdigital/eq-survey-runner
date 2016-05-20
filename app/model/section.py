@@ -1,3 +1,6 @@
+from app.model.display import Display
+
+
 class Section(object):
     def __init__(self):
         self.id = None
@@ -9,6 +12,7 @@ class Section(object):
         self.validation = None
         self.questionnaire = None
         self.templatable_properties = []
+        self.display = Display()
 
     def add_question(self, question):
         if question not in self.questions:

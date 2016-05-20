@@ -1,3 +1,6 @@
+from app.model.display import Display
+
+
 class Question(object):
     def __init__(self):
         self.id = None
@@ -10,6 +13,7 @@ class Question(object):
         self.validation = None
         self.questionnaire = None
         self.templatable_properties = ['description']
+        self.display = Display()
 
     def add_response(self, response):
         if response not in self.responses:

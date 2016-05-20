@@ -1,3 +1,6 @@
+from app.model.display import Display
+
+
 class QuestionnaireException(Exception):
     pass
 
@@ -13,6 +16,7 @@ class Questionnaire(object):
         self.validation = None
         self.items_by_id = {}
         self.introduction = None
+        self.display = Display()
 
     def add_group(self, group):
         if group not in self.groups:
