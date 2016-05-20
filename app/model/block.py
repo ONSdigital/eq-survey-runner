@@ -8,6 +8,7 @@ class Block(object):
         self.questionnaire = None
         self.validation = None
         self.questionniare = None
+        self.templatable_properties = []
 
     def add_section(self, section):
         if section not in self.sections:

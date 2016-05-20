@@ -1,6 +1,6 @@
 {% import 'macros/forms.html' as form %}
 
-{% set is_valid = question.is_valid or question.is_valid is not defined %}
+{% set invalid = question.is_valid == False %}
 
 {% set question_titles %}
   {%- if question.title -%}
@@ -54,7 +54,7 @@
 
   {% endset %}
 
-  {% if not is_valid %}
+  {% if invalid %}
 
     {% with %}
       {% set alert_title %}

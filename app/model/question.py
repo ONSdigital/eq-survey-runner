@@ -9,6 +9,7 @@ class Question(object):
         self.questionnaire = None
         self.validation = None
         self.questionnaire = None
+        self.templatable_properties = ['description']
 
     def add_response(self, response):
         if response not in self.responses:

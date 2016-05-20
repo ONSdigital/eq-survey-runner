@@ -1,8 +1,9 @@
 from collections import OrderedDict
 from flask_login import current_user
-from datetime import datetime
 from app.submitter.converter import SubmitterConstants
 from flask import session
+from app.piping.plumber import Plumber
+from app.libs.utils import ObjectFromDict
 
 
 class Renderer(object):
@@ -12,6 +13,24 @@ class Renderer(object):
         self._validation_store = validation_store
         self._navigator = navigator
         self._metadata = metadata
+
+        start_date = None
+        end_date = None
+
+        try:
+            start_date = self._metadata.get_ref_p_start_date()
+            end_date = self._metadata.get_ref_p_end_date()
+        except:
+            pass
+
+        context = {
+            "exercise": ObjectFromDict({
+                "start_date": start_date,
+                "end_date": end_date
+            })
+        }
+
+        self._plumber = Plumber(context)
 
     def get_template_name(self):
         known_templates = {
@@ -29,7 +48,6 @@ class Renderer(object):
             return 'questionnaire.html'
 
     def render(self):
-        self._augment_responses()
         self._augment_questionnaire()
 
         render_data = {
@@ -64,9 +82,9 @@ class Renderer(object):
 
         try:
             # Under certain conditions, there is no user so these steps may fail
-            survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=datetime.strptime(self._metadata.get_return_by(), "%Y-%m-%d"))
-            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_start_date(), "%Y-%m-%d"))
-            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=datetime.strptime(self._metadata.get_ref_p_end_date(), "%Y-%m-%d"))
+            survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=self._metadata.get_return_by())
+            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_ref_p_start_date())
+            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_ref_p_end_date())
             survey_meta["period_str"] = self._metadata.get_period_str()
         except:
             # But we can silently ignore them under those circumstanes
@@ -112,60 +130,46 @@ class Renderer(object):
 
         return navigation_meta
 
-    def _augment_responses(self):
-        # Augment the schema with user responses and validation results
-        all_responses = self._response_store.get_responses()
-        for item_id, value in all_responses.items():
-            item = self._schema.get_item_by_id(item_id)
-            if item:
-                item.value = value
-                validation_result = self._validation_store.get_result(item_id)
-                if validation_result:
-                    item.is_valid = validation_result.is_valid
-                    item.errors = validation_result.get_errors()
-                    item.warnings = validation_result.get_warnings()
-                else:
-                    item.is_valid = None
-                    item.errors = None
-                    item.warnings = None
+    def _augment_response(self, response):
+        response.value = None
+        if response.id in self._response_store.get_responses().keys():
+            response.value = self._response_store.get_response(response.id)
 
     def _augment_questionnaire(self):
         errors = OrderedDict()
         warnings = OrderedDict()
 
         # loops through the Schema and get errors and warnings in order
+        # augments each item in the schema as required
         for group in self._schema.groups:
-            group_result = self._validation_store.get_result(group.id)
-            if group_result and not group_result.is_valid:
-                errors[group.id] = group_result.errors
-                warnings[group.id] = group_result.warnings
-
+            self._augment_item(group, errors, warnings)
             for block in group.blocks:
-                block_result = self._validation_store.get_result(block.id)
-                if block_result and not block_result.is_valid:
-                    errors[block.id] = block_result.errors
-                    warnings[block.id] = block_result.warnings
-
+                self._augment_item(block, errors, warnings)
                 for section in block.sections:
-                    section_result = self._validation_store.get_result(section.id)
-                    if section_result and not section_result.is_valid:
-                        errors[section.id] = section_result.errors
-                        warnings[section.id] = section_result.warnings
-
+                    self._augment_item(section, errors, warnings)
                     for question in section.questions:
-                        question_result = self._validation_store.get_result(question.id)
-                        if question_result and not question_result.is_valid:
-                            errors[question.id] = question_result.errors
-                            warnings[question.id] = question_result.warnings
-                            question.is_valid = question_result.is_valid
-                            question.errors = question_result.get_errors()
-                            question.warnings = question_result.get_warnings()
-
+                        self._augment_item(question, errors, warnings)
                         for response in question.responses:
-                            response_result = self._validation_store.get_result(response.id)
-                            if response_result and not response_result.is_valid:
-                                errors[response.id] = response_result.errors
-                                warnings[response.id] = response_result.warnings
+                            self._augment_response(response)
+                            self._augment_item(response, errors, warnings)
 
         self._schema.errors = errors
         self._schema.warnings = warnings
+
+    def _augment_item(self, item, global_errors, global_warnings):
+        # Perform any plumbing of variables into displayed text
+        self._plumber.plumb_item(item)
+
+        item.is_valid = None
+        item.errors = []
+        item.warnings = []
+
+        item_result = self._validation_store.get_result(item.id)
+
+        if item_result:
+            item.is_valid = item_result.is_valid
+            if not item_result.is_valid:
+                global_errors[item.id] = item_result.errors
+                global_warnings[item.id] = item_result.warnings
+                item.errors = item_result.get_errors()
+                item.warnings = item_result.get_warnings()

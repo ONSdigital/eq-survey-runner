@@ -49,15 +49,15 @@ class TestMetadataStore(SurveyRunnerTestCase):
 
     def test_ref_p_start_date(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_START_DATE), self.metadata_store.get_ref_p_start_date())
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_START_DATE), self.metadata_store.get_ref_p_start_date().strftime('%Y-%m-%d'))
 
     def test_ref_p_end_date(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date())
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date().strftime('%Y-%m-%d'))
 
     def test_ru_ref(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date())
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date().strftime('%Y-%m-%d'))
 
     def test_is_valid(self):
         with self.application.test_request_context():
