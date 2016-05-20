@@ -34,7 +34,7 @@ class TypeValidatorFactory(object):
                 validators.append(DateTypeCheck())
             elif i_type.upper() == 'TEXTAREA':
                 validators.append(TextAreaTypeCheck())
-            elif i_type.upper() == 'RADIO' or i_type.upper() == 'CHECKBOXES':
+            elif i_type.upper() == 'RADIO' or i_type.upper() == 'CHECKBOX':
                 # type checking isn't required for radio boxes or checkboxes, but we don't want to throw an exception
                 pass
             else:

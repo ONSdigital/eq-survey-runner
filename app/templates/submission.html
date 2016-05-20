@@ -30,8 +30,17 @@
                 {% endset %}
               {% endif %}
             {% elif response.type == 'Currency' %}
-            {% set question_title = question.title or response.label %}
+              {% set question_title = question.title or response.label %}
               {% set response_value = response.value|int|format_currency if response.value else 'N/A' %}
+            {% elif response.type == 'Checkbox' %}
+              {% set question_title = question.title or response.label %}
+              {% set response_value %}
+                <ul>
+                  {% for response in response.value %}
+                    <li>{{response}}</li>
+                  {% endfor %}
+                </ul>
+              {% endset %}
             {% else %}
               {% set question_title = question.title or response.label %}
               {% set response_value = response.value if response.value else 'N/A' %}
