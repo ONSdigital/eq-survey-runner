@@ -8,14 +8,19 @@ import json
 
 logger = logging.getLogger(__name__)
 
-engine = create_engine(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL, convert_unicode=True)
+try:
+    engine = create_engine(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL, convert_unicode=True)
 
-Base = declarative_base()
+    Base = declarative_base()
 
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
-Base.query = db_session.query_property()
+    db_session = scoped_session(sessionmaker(autocommit=False,
+                                           autoflush=False,
+                                           bind=engine))
+    Base.query = db_session.query_property()
+
+except Exception as e:
+    logger.error("Error creating database connections")
+    logger.exception(e)
 
 
 class QuestionnaireState(Base):
