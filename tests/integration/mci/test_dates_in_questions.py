@@ -16,12 +16,12 @@ class TestHappyPath(unittest.TestCase):
     def test_happy_path_205(self):
         self.happy_path('0205', '1')
 
-    def happy_path(self, form_type_id):
+    def happy_path(self, form_type_id, eq_id):
         # Get a token
         start_date = "2016-04-01"
         end_date = "2016-04-30"
 
-        token = create_token(form_type_id, start_date, end_date)
+        token = create_token(form_type_id, eq_id, start_date, end_date)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
@@ -52,7 +52,7 @@ class TestHappyPath(unittest.TestCase):
 
         # Try another date
         # Get a token
-        token = create_token(form_type_id, '2017-08-01', '2017-08-31')
+        token = create_token(form_type_id, eq_id, '2017-08-01', '2017-08-31')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
