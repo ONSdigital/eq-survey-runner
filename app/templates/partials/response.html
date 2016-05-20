@@ -1,5 +1,5 @@
 <div class="response response--{{response.type|lower}}" id="{{response.id}}">
-  {% set is_valid = response.is_valid or response.is_valid is not defined %}
+  {% set invalid = response.is_valid == False %}
 
   {%- set response_guidance %}
     {% if response.guidance %}
@@ -11,7 +11,7 @@
     {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
   {% endset -%}
 
-  {% if not is_valid %}
+  {% if invalid %}
     {% with %}
       {% set alert_title %}
         {% if response.errors %}

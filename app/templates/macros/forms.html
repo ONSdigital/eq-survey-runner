@@ -25,7 +25,7 @@
   {% set attr = {
     "class": "input input--" ~ input_type,
     "type": input_type,
-    "value": response.value|e,
+    "value": (response.value or "")|e,
     "name": response.id,
     "id": response.id,
     "placeholder": response.placeholder,
@@ -56,7 +56,7 @@
     "aria-describedby": response_helper
   } %}
 
-  <textarea {{attr|xmlattr}}>{{response.value|e}}</textarea>
+  <textarea {{attr|xmlattr}}>{{(response.value or "")|e}}</textarea>
 
   {% if maxChars %}
     <div class="input__helper" id="{{response_helper}}">
