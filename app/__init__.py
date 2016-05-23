@@ -26,7 +26,7 @@ from logging.handlers import RotatingFileHandler
 from flask_analytics import Analytics
 from splunk_handler import SplunkHandler
 from app.analytics.custom_google_analytics import CustomGoogleAnalytics
-
+import json
 
 SECURE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -92,6 +92,7 @@ def request_load_user(request):
 
 
 class AWSReverseProxied(object):
+
     def __init__(self, app):
         self.app = app
 
@@ -142,6 +143,8 @@ def create_app(config_name):
         # TODO fix health check so it no longer sends message to queue
         add_health_check(application, headers)
         start_dev_mode(application)
+    else:
+        add_safe_health_check(application, headers)
 
     if settings.EQ_PROFILING:
         setup_profiling(application)
@@ -167,7 +170,8 @@ def setup_profiling(application):
         os.makedirs(profiling_dir)
 
     application.config['PROFILE'] = True
-    application.wsgi_app = ProfilerMiddleware(application.wsgi_app, stream, profile_dir=profiling_dir)
+    application.wsgi_app = ProfilerMiddleware(
+        application.wsgi_app, stream, profile_dir=profiling_dir)
     application.debug = True
 
 
@@ -176,7 +180,8 @@ def setup_analytics(application):
 
     Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
     Analytics(application)
-    application.config['ANALYTICS']['GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
+    application.config['ANALYTICS'][
+        'GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
 
 def configure_logging(application):
@@ -188,19 +193,21 @@ def configure_logging(application):
       'WARNING': logging.WARNING,
       'INFO': logging.INFO,
       'DEBUG': logging.DEBUG
-    }
+      }
     logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=FORMAT)
 
     # set the logger for this application and stop using flasks broken solution
     application._logger = logging.getLogger(__name__)
 
-    # turn boto logging to critical as it logs far too much and it's only used for cloudwatch logging
+    # turn boto logging to critical as it logs far too much and it's only used
+    # for cloudwatch logging
     logging.getLogger("botocore").setLevel(logging.ERROR)
     if settings.EQ_CLOUDWATCH_LOGGING:
         setup_cloud_watch_logging(application)
 
     # setup file logging
-    rotating_log_file = RotatingFileHandler(LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
+    rotating_log_file = RotatingFileHandler(
+      LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
     logging.getLogger().addHandler(rotating_log_file)
 
     # setup splunk logging
@@ -228,6 +235,7 @@ def setup_splunk_logging():
 def setup_cloud_watch_logging(application):
     # filter out botocore messages, we don't wish to log these
     class NoBotocoreFilter(logging.Filter):
+
         def filter(self, record):
             return not record.name.startswith('botocore')
 
@@ -235,10 +243,12 @@ def setup_cloud_watch_logging(application):
     cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
     cloud_watch_handler.addFilter(NoBotocoreFilter())
     application.logger.addHandler(cloud_watch_handler)  # flask logger
-    # we DO NOT WANT the root logger logging to cloudwatch as thsi causes weird recursion errors
+    # we DO NOT WANT the root logger logging to cloudwatch as thsi causes
+    # weird recursion errors
     logging.getLogger().addHandler(cloud_watch_handler)  # root logger
     logging.getLogger(__name__).addHandler(cloud_watch_handler)  # module logger
-    logging.getLogger('werkzeug').addHandler(cloud_watch_handler)  # werkzeug framework logger
+    logging.getLogger('werkzeug').addHandler(
+        cloud_watch_handler)  # werkzeug framework logger
 
 
 def start_dev_mode(application):
@@ -265,7 +275,8 @@ def add_blueprints(application):
 
 def setup_secure_cookies(application):
     application.secret_key = settings.EQ_SECRET_KEY
-    application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+    application.permanent_session_lifetime = timedelta(
+      seconds=settings.EQ_SESSION_TIMEOUT)
     application.session_interface = SHA256SecureCookieSessionInterface()
     application.config['SESSION_COOKIE_SECURE'] = True
 
@@ -277,9 +288,28 @@ def setup_babel(application):
 
 
 def add_health_check(application, headers):
-    application.healthcheck = HealthCheck(application, '/healthcheck', success_headers=headers, failed_headers=headers)
+    application.healthcheck = HealthCheck(
+      application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
+
+
+def add_safe_health_check(application, headers):
+
+    def safe_success_handler(results):
+        data = {'status': 'OK'}
+        return json.dumps(data)
+
+    def safe_failure_handler(results):
+        data = {'status': 'DOWN'}
+        return json.dumps(data)
+
+    application.healthcheck = HealthCheck(application, '/status',
+                                          success_headers=headers,
+                                          failed_headers=headers,
+                                          success_handler=safe_success_handler,
+                                          failed_handler=safe_failure_handler)
+    application.healthcheck.add_check(rabbitmq_available)
 
 
 def versioned_url_for(endpoint, **values):
@@ -310,15 +340,19 @@ def get_minimized_asset(filename):
 
 def setup_database(application):
 
-    # this is needed due to a bug in flask session (https://github.com/fengsp/flask-session/issues/37)
+    # this is needed due to a bug in flask session
+    # (https://github.com/fengsp/flask-session/issues/37)
     class PrefixShim(object):
+
         def __add__(self, other):
             return "eq" + to_str(other)
 
     application.config['SESSION_KEY_PREFIX'] = PrefixShim()
-    application.config['SQLALCHEMY_DATABASE_URI'] = settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL
+    application.config[
+      'SQLALCHEMY_DATABASE_URI'] = settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    application.permanent_session_lifetime = timedelta(seconds=settings.EQ_SESSION_TIMEOUT)
+    application.permanent_session_lifetime = timedelta(
+      seconds=settings.EQ_SESSION_TIMEOUT)
     application.secret_key = settings.EQ_SECRET_KEY
     application.config['SESSION_USE_SIGNER'] = True
     application.config['SESSION_TYPE'] = 'sqlalchemy'
