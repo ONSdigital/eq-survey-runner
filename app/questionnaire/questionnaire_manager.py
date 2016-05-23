@@ -71,6 +71,7 @@ class QuestionnaireManager(object):
     def _process_incoming_post_data(self, post_data):
         user_responses = {}
         user_action = None
+
         for key in post_data.keys():
             if key.endswith('-day'):
                 # collect the matching -month, and -year fields and return a single response for validation
@@ -91,6 +92,12 @@ class QuestionnaireManager(object):
             elif key.startswith('action['):
                 # capture the required action
                 user_action = key[7:-1]
+            elif key.endswith('[]'):
+                # is an array of Checkboxes
+                response_id = key[:-2]
+                if response_id not in user_responses.keys():
+                    # copies the whole array
+                    user_responses[response_id] = post_data.getlist(key)
             else:
                 # for now assume it is a valid response id
                 user_responses[key] = post_data[key]
@@ -98,6 +105,9 @@ class QuestionnaireManager(object):
         return user_action, user_responses
 
     def _clean_input(self, value):
+        if isinstance(value, list):
+            return value
+
         if value:
             whitespace_removed = value.strip()
             return bleach.clean(whitespace_removed)
