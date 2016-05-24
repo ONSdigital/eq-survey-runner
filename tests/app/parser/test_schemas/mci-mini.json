@@ -48,7 +48,8 @@
                                       "mandatory":false,
                                       "display": {
                                           "properties": {
-                                              "max_length": "2000"
+                                              "max_length": "2000",
+                                              "additional": "Just for testing"
                                           }
                                       }
                                     }

@@ -1,3 +1,6 @@
+from app.model.display import Display
+
+
 class Block(object):
     def __init__(self):
         self.id = None
@@ -9,6 +12,7 @@ class Block(object):
         self.validation = None
         self.questionniare = None
         self.templatable_properties = []
+        self.display = Display()
 
     def add_section(self, section):
         if section not in self.sections:

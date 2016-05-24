@@ -8,6 +8,9 @@
   {% endset -%}
 
   {%- set response_fields %}
+    {% if response.display.properties %}
+      {% set use_grid = response.display.properties.columns  %}
+    {% endif %}
     {% include 'partials/responses/' ~ response.type|lower ~ '.html' %}
   {% endset -%}
 

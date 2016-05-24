@@ -1,8 +1,0 @@
-<div class="field field--checkboxes">
-  {% for option in response.options %}
-    <div class="field__item">
-      <input class="input input--checkbox" type="checkbox" name="{{response.name}}" id="{{option.id}}" value="{{option.value}}" title="{{option.label}}">
-      <label class="label label--inline" for="{{option.id}}"><span class="label__inner">{{option.label}}</span></label>
-    </div>
-  {% endfor %}
-</div>

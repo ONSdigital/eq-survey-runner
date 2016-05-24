@@ -9,15 +9,14 @@
 .label__inner {
   position: relative;
   z-index: 3;
-  top: -1px;
 }
 
 .label--inline {
   font-weight: 400;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   width: calc(100% - 2.5rem);
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: text-top;
   margin: 0;
   z-index: 1;
   &::before {
@@ -36,11 +35,11 @@
       content: "";
       position: absolute;
       top: 0;
-      right: -0.5rem;
+      right: 0;
       bottom: 0;
-      left: -0.5rem;
-      background: rgba($color-grey, 0.2);
-      width: 100%;
+      left: 0;
+      background: #f0f0f0;
+      width: calc(100% - 0.5rem);
       height: 100%;
       border-radius: 3px;
       z-index: 0;
@@ -51,7 +50,7 @@
 .input:checked {
   + .label--inline {
     &::before {
-      background: rgba($color-grey, 0.3);
+      background: darken(#f0f0f0, 1%);
     }
   }
 }

@@ -30,8 +30,24 @@
                 {% endset %}
               {% endif %}
             {% elif response.type == 'Currency' %}
-            {% set question_title = question.title or response.label %}
+              {% set question_title = question.title or response.label %}
               {% set response_value = response.value|int|format_currency if response.value else 'N/A' %}
+            {% elif response.type == 'Radio' %}
+               {% set question_title = question.title or response.label %}
+               {% set response_value = response.value %}
+            {% elif response.type == 'Checkbox' %}
+              {% set question_title = question.title or response.label %}
+              {% set response_value %}
+                {% if response.value and response.value|length > 0 %}
+                  <ul class="list list--bullets">
+                      {% for response in response.value %}
+                      <li class="list__item">{{response}}</li>
+                      {% endfor %}
+                  </ul>
+                {% else %}
+                  N/A
+                {% endif %}
+              {% endset %}
             {% else %}
               {% set question_title = question.title or response.label %}
               {% set response_value = response.value if response.value else 'N/A' %}
@@ -40,8 +56,8 @@
             {% set full_width = 'fw' if response.type == 'Textarea' %}
 
             {% if question_title and response_value %}
-              <dt class="dt {{full_width}}"><div>{{question_title|safe}}</div></dt>
-              <dd class="dd {{full_width}}">{{response_value|safe}}</dd>
+              <dt class="dt {{full_width}} {{loop.index}}"><div>{{question_title|safe}}</div></dt>
+              <dd class="dd {{full_width}} {{loop.index}}">{{response_value|safe}}</dd>
             {% endif %}
 
           {%- endfor -%}

@@ -85,6 +85,7 @@ class MciMiniParsingTest(unittest.TestCase):
         assert response.display.properties is not None
         print(response.display.properties.max_length)
         assert response.display.properties.max_length == "2000"
+        assert response.display.properties.additional == "Just for testing"
 
     def test_mci_mini_with_intro(self):
         # Load the json file as a dict
