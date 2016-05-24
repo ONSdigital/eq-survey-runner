@@ -2,8 +2,6 @@ from flask import Flask
 from flask import url_for
 from flask_babel import Babel
 from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
-from flask_session import Session
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck
 from flaskext.markdown import Markdown
@@ -113,10 +111,7 @@ def create_app(config_name):
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
 
-    if settings.EQ_SERVER_SIDE_STORAGE:
-        setup_database(application)
-    else:
-        setup_secure_cookies(application)
+    setup_secure_cookies(application)
 
     setup_babel(application)
 
@@ -337,27 +332,3 @@ def get_minimized_asset(filename):
             filename = filename.replace(".js", ".min.js")
     return filename
 
-
-def setup_database(application):
-
-    # this is needed due to a bug in flask session
-    # (https://github.com/fengsp/flask-session/issues/37)
-    class PrefixShim(object):
-
-        def __add__(self, other):
-            return "eq" + to_str(other)
-
-    application.config['SESSION_KEY_PREFIX'] = PrefixShim()
-    application.config[
-      'SQLALCHEMY_DATABASE_URI'] = settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL
-    application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    application.permanent_session_lifetime = timedelta(
-      seconds=settings.EQ_SESSION_TIMEOUT)
-    application.secret_key = settings.EQ_SECRET_KEY
-    application.config['SESSION_USE_SIGNER'] = True
-    application.config['SESSION_TYPE'] = 'sqlalchemy'
-    application.config['SESSION_COOKIE_NAME'] = "eq-session"
-
-    Session(application)
-    db = SQLAlchemy(application)
-    db.create_all()
