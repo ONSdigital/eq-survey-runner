@@ -63,8 +63,8 @@ class DatabaseSessionManager(SessionManagement):
         logger.debug("DatabaseSessionManager has_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
-            logger.debug("Running count query for eq session id %s", eq_session_id)
-            count = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).count()
+
+            count = self.run_count(eq_session_id)
             logger.debug("Number of entries for eq session id %s is %s", eq_session_id, count)
             return count > 0
 
@@ -89,11 +89,23 @@ class DatabaseSessionManager(SessionManagement):
             return None
 
     def create_session_id(self):
-        return str(uuid4())
+        while True:
+            new_session_id = str(uuid4())
+            if self.check_unique(new_session_id):
+                break
+        return new_session_id
+
+    def check_unique(self, new_session_id):
+        return self.run_count(new_session_id) == 0
 
     def _get_object(self, eq_session_id):
         logger.debug("Get the EQ Session object for eq session id %s", eq_session_id)
         return EQSession.query.filter(EQSession.eq_session_id == eq_session_id).first()
+
+    def run_count(self, eq_session_id):
+        logger.debug("Running count query for eq session id %s", eq_session_id)
+        count = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).count()
+        return count
 
 
 class FlaskSessionManager(SessionManagement):
