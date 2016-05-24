@@ -1,17 +1,10 @@
 from app.navigation.navigation_history import FlaskNavigationHistory
-from datetime import timedelta
-from flask import Flask
+
+from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 import unittest
 
 
-class FlaskNavigationHistoryTest(unittest.TestCase):
-
-    def setUp(self):
-        application = Flask(__name__)
-        application.config['TESTING'] = True
-        application.secret_key = 'you will not guess'
-        application.permanent_session_lifetime = timedelta(seconds=1)
-        self.application = application
+class FlaskNavigationHistoryTest(SurveyRunnerTestCase):
 
     def test_add_history(self):
         with self.application.test_request_context():

@@ -67,5 +67,3 @@ db_session, engine = create_session_and_engine()
 Base.query = db_session.query_property()
 
 Base.metadata.create_all(engine)
-
-

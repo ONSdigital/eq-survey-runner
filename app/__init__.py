@@ -14,7 +14,6 @@ from app.metadata.metadata_store import MetaDataStore
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
-from app.utilities.strings import to_str
 from app import settings
 from datetime import timedelta
 import watchtower
@@ -331,4 +330,3 @@ def get_minimized_asset(filename):
         elif 'js' in filename:
             filename = filename.replace(".js", ".min.js")
     return filename
-
