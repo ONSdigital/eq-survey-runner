@@ -85,7 +85,7 @@ class Converter(object):
                 if value:
                     data[item.code] = value
 
-        metadata = {SubmitterConstants.USER_ID_KEY: user.get_user_id(),
+        metadata = {SubmitterConstants.USER_ID_KEY: metadata_store.get_user_id(),
                     SubmitterConstants.RU_REF_KEY: metadata_store.get_ru_ref()}
 
         collection = {SubmitterConstants.EXERCISE_SID_KEY: metadata_store.get_collection_exercise_sid(),
