@@ -88,6 +88,9 @@ class MetaDataStore(object):
     def get_return_by(self):
         return datetime.strptime(self.get(MetaDataConstants.RETURN_BY), "%Y-%m-%d")
 
+    def get_user_id(self):
+        return self.get(MetaDataConstants.USER_ID)
+
     @staticmethod
     def is_valid(token):
         for value in MetaDataStore.VALUES_FOR_VALIDATION:
