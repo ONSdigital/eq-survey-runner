@@ -1,5 +1,6 @@
 import unittest
 from app.authentication.user import User
+from app.authentication.invalid_token_exception import InvalidTokenException
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.metadata.metadata_store import MetaDataStore
 from app.metadata.metadata_store import MetaDataConstants
@@ -24,8 +25,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         }
         with self.application.test_request_context():
             user = User("1")
-            self.metadata_store = MetaDataStore(user)
-            self.metadata_store.store_all(self.jwt)
+            self.metadata_store = MetaDataStore.save_instance(user, self.jwt)
 
     def test_form_type(self):
         with self.application.test_request_context():
@@ -199,6 +199,66 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetaDataStore.is_valid(jwt)
         self.assertFalse(valid)
         self.assertEquals(MetaDataConstants.REF_P_START_DATE, reason)
+
+    def test_is_valid_fails_invalid_ref_p_start_date(self):
+        jwt = {
+            MetaDataConstants.USER_ID: "1",
+            MetaDataConstants.FORM_TYPE: "a",
+            MetaDataConstants.COLLECTION_EXERCISE_SID: "test-sid",
+            MetaDataConstants.EQ_ID: "2",
+            MetaDataConstants.PERIOD_ID: "3",
+            MetaDataConstants.PERIOD_STR: "2016-01-01",
+            MetaDataConstants.REF_P_START_DATE: "2016-13-31",
+            MetaDataConstants.REF_P_END_DATE: "2016-03-03",
+            MetaDataConstants.RU_REF: "2016-04-04",
+            MetaDataConstants.RU_NAME: "Apple",
+            MetaDataConstants.RETURN_BY: "2016-07-07"
+        }
+        valid, reason = MetaDataStore.is_valid(jwt)
+        self.assertTrue(valid)
+        with self.assertRaises(InvalidTokenException) as ite:
+            MetaDataStore.save_instance(User("1"), jwt)
+        self.assertIn("Incorrect date format in token", ite.exception.value)
+
+    def test_is_valid_fails_invalid_ref_p_end_date(self):
+        jwt = {
+            MetaDataConstants.USER_ID: "1",
+            MetaDataConstants.FORM_TYPE: "a",
+            MetaDataConstants.COLLECTION_EXERCISE_SID: "test-sid",
+            MetaDataConstants.EQ_ID: "2",
+            MetaDataConstants.PERIOD_ID: "3",
+            MetaDataConstants.PERIOD_STR: "2016-01-01",
+            MetaDataConstants.REF_P_START_DATE: "2016-12-31",
+            MetaDataConstants.REF_P_END_DATE: "2016-04-31",
+            MetaDataConstants.RU_REF: "2016-04-04",
+            MetaDataConstants.RU_NAME: "Apple",
+            MetaDataConstants.RETURN_BY: "2016-07-07"
+        }
+        valid, reason = MetaDataStore.is_valid(jwt)
+        self.assertTrue(valid)
+        with self.assertRaises(InvalidTokenException) as ite:
+            MetaDataStore.save_instance(User("1"), jwt)
+        self.assertIn("Incorrect date format in token", ite.exception.value)
+
+    def test_is_valid_fails_invalid_return_by(self):
+        jwt = {
+            MetaDataConstants.USER_ID: "1",
+            MetaDataConstants.FORM_TYPE: "a",
+            MetaDataConstants.COLLECTION_EXERCISE_SID: "test-sid",
+            MetaDataConstants.EQ_ID: "2",
+            MetaDataConstants.PERIOD_ID: "3",
+            MetaDataConstants.PERIOD_STR: "2016-01-01",
+            MetaDataConstants.REF_P_START_DATE: "2016-12-31",
+            MetaDataConstants.REF_P_END_DATE: "2016-03-31",
+            MetaDataConstants.RU_REF: "2016-04-04",
+            MetaDataConstants.RU_NAME: "Apple",
+            MetaDataConstants.RETURN_BY: "2016-09-31"
+        }
+        valid, reason = MetaDataStore.is_valid(jwt)
+        self.assertTrue(valid)
+        with self.assertRaises(InvalidTokenException) as ite:
+            MetaDataStore.save_instance(User("1"), jwt)
+        self.assertIn("Incorrect date format in token", ite.exception.value)
 
     def test_is_valid_fails_missing_ref_p_end_date(self):
         jwt = {

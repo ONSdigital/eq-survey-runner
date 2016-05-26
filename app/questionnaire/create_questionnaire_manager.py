@@ -4,6 +4,8 @@ from app.navigation.navigator import Navigator
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.main import errors
 from app.utilities.factory import factory
+from app.metadata.metadata_store import MetaDataStore
+from flask_login import current_user
 import logging
 from app.main.views.root import load_and_parse_schema
 
@@ -12,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 def create_questionnaire_manager():
 
-    metadata = factory.create("metadata-store")
+    metadata = MetaDataStore.get_instance(current_user)
 
     eq_id = metadata.get_eq_id()
     form_type = metadata.get_form_type()

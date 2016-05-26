@@ -2,7 +2,8 @@ from app.renderer.renderer import Renderer
 from app.validation.validation_store import AbstractValidationStore
 from app.responses.response_store import AbstractResponseStore
 from app.validation.validation_result import ValidationResult
-from app.metadata.metadata_store import MetaDataStore
+from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
+from app.authentication.user import User
 
 from app.model.questionnaire import Questionnaire
 from app.model.group import Group
@@ -22,7 +23,21 @@ class TestRenderer(unittest.TestCase):
         self.response_store = MockResponseStore()
         self.schema = self._create_schema()
         self.navigator = MockNavigator()
-        self.metadata = MetaDataStore()
+        user = User("1")
+        jwt = {
+            MetaDataConstants.USER_ID: "1",
+            MetaDataConstants.FORM_TYPE: "a",
+            MetaDataConstants.COLLECTION_EXERCISE_SID: "test-sid",
+            MetaDataConstants.EQ_ID: "2",
+            MetaDataConstants.PERIOD_ID: "3",
+            MetaDataConstants.PERIOD_STR: "2016-01-01",
+            MetaDataConstants.REF_P_START_DATE: "2016-02-02",
+            MetaDataConstants.REF_P_END_DATE: "2016-03-03",
+            MetaDataConstants.RU_REF: "2016-04-04",
+            MetaDataConstants.RU_NAME: "Apple",
+            MetaDataConstants.RETURN_BY: "2016-07-07"
+        }
+        self.metadata = MetaDataStore.save_instance(user, jwt)
 
         # The responses and the validation results are not related for the purposes of this test
         # The renderer simply combines these objects to create new objects for consumption

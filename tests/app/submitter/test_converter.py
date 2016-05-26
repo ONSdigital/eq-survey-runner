@@ -5,7 +5,7 @@ from app.model.block import Block
 from app.model.question import Question
 from app.model.response import Response
 from app.authentication.user import User
-from app.metadata.metadata_store import MetaDataStore
+from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
 from app.submitter.converter import Converter
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
@@ -19,8 +19,8 @@ EXPECTED_RESPONSE = json.loads("""
         "origin" : "uk.gov.ons.edc.eq",
         "survey_id": "021",
         "collection":{
-          "exercise_sid": "hfjdskf",
-          "instrument_id": "yui789",
+          "exercise_sid": "test-sid",
+          "instrument_id": "0205",
           "period": "2016-02-01"
         },
         "submitted_at": "2016-03-07T15:28:05Z",
@@ -41,11 +41,24 @@ class TestConverter(SurveyRunnerTestCase):
     def test_prepare_responses(self):
         with self.application.test_request_context():
             self.maxDiff = None
-            jwt = {"user_id": "789473423", "collection_exercise_sid" : "hfjdskf", "form_type": "yui789", "period_id": "2016-02-01", "ru_ref" : "432423423423"}
 
-            user = User("789473423")
-            metadata  = MetaDataStore()
-            metadata.store_all(jwt)
+            user = User("1")
+
+            jwt = {
+                MetaDataConstants.USER_ID: "789473423",
+                MetaDataConstants.FORM_TYPE: "0205",
+                MetaDataConstants.COLLECTION_EXERCISE_SID: "test-sid",
+                MetaDataConstants.EQ_ID: "1",
+                MetaDataConstants.PERIOD_ID: "2016-02-01",
+                MetaDataConstants.PERIOD_STR: "2016-01-01",
+                MetaDataConstants.REF_P_START_DATE: "2016-02-02",
+                MetaDataConstants.REF_P_END_DATE: "2016-03-03",
+                MetaDataConstants.RU_REF: "432423423423",
+                MetaDataConstants.RU_NAME: "Apple",
+                MetaDataConstants.RETURN_BY: "2016-07-07"
+            }
+
+            metadata = MetaDataStore.save_instance(user, jwt)
 
             user_response = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
 
