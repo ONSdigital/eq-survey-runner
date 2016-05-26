@@ -1,4 +1,4 @@
-from flask import session
+from flask_login import current_user
 NAV_HISTORY = "history"
 
 
@@ -13,15 +13,16 @@ class NavigationHistory(object):
 class FlaskNavigationHistory(NavigationHistory):
 
     def get_history(self):
-        if NAV_HISTORY not in session:
+        data = current_user.get_questionnaire_data()
+        if NAV_HISTORY not in data:
             return []
         else:
-            return session[NAV_HISTORY]
+            return data[NAV_HISTORY]
 
     def add_history_entry(self, location):
-        if NAV_HISTORY not in session:
+        data = current_user.get_questionnaire_data()
+        if NAV_HISTORY not in data:
             history = [location]
-            session[NAV_HISTORY] = history
+            data[NAV_HISTORY] = history
         else:
-            session[NAV_HISTORY].append(location)
-        session.permanent = True
+            data[NAV_HISTORY].append(location)

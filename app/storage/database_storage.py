@@ -1,45 +1,10 @@
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, create_engine
 from app.storage.abstract_server_storage import AbstractServerStorage
-from app import settings
+from app.data_model.database import QuestionnaireState
+from app.data_model.database import db_session
 import logging
-import json
+
 
 logger = logging.getLogger(__name__)
-
-engine = create_engine(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL, convert_unicode=True)
-
-Base = declarative_base()
-
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
-Base.query = db_session.query_property()
-
-
-class QuestionnaireState(Base):
-    __tablename__ = 'questionnaire_state'
-    user_id = Column('userid', String, primary_key=True)
-    state = Column('questionnaire_data', String)
-
-    def __init__(self, user_id, data):
-        self.user_id = user_id
-        self.state = json.dumps(data)
-
-    def set_data(self, data):
-        logger.debug("Setting data for questionnaire state %s", data)
-        self.state = json.dumps(data)
-
-    def get_data(self):
-        data = json.loads(self.state)
-        logger.debug("Loading questionnaire state %s", data)
-        return data
-
-    def __repr__(self):
-        return "<QuestionnaireState('%s','%s')>" % (self.user_id, self.state)
-
-Base.metadata.create_all(engine)
 
 
 class DatabaseStorage(AbstractServerStorage):
@@ -80,7 +45,7 @@ class DatabaseStorage(AbstractServerStorage):
     def has_data(self, user_id):
         logger.debug("Running count query for user %s", user_id)
         count = QuestionnaireState.query.filter(QuestionnaireState.user_id == user_id).count()
-        logger.debug("Number of entries for user %s", user_id)
+        logger.debug("Number of entries for user %s is %s", user_id, count)
         return count > 0
 
     def delete(self, user_id):
