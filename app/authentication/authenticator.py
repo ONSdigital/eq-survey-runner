@@ -6,7 +6,6 @@ from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore
-from app.utilities.factory import factory
 from app.authentication.user_id_generator import UserIDGenerator
 
 
@@ -54,9 +53,9 @@ class Authenticator(object):
         session_manager.store_user_id(user_id)
 
         # store the meta data
-        metadata_store = factory.create("metadata-store")
+        MetaDataStore.save_instance(user, token)
 
-        metadata_store.store_all(token)
+        user.save()
 
         return user
 

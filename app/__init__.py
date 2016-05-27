@@ -10,7 +10,6 @@ from app.responses.response_store import FlaskResponseStore
 from app.navigation.navigation_store import FlaskNavigationStore
 from app.navigation.navigation_history import FlaskNavigationHistory
 from app.validation.validation_store import FlaskValidationStore
-from app.metadata.metadata_store import MetaDataStore
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
@@ -47,7 +46,6 @@ factory.register("response-store", FlaskResponseStore)
 factory.register("navigation-store", FlaskNavigationStore)
 factory.register("navigation-history", FlaskNavigationHistory)
 factory.register("validation-store", FlaskValidationStore)
-factory.register("metadata-store", MetaDataStore)
 
 
 def rabbitmq_available():

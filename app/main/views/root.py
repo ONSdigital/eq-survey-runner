@@ -9,6 +9,7 @@ from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.main import errors
 from app.utilities.factory import factory
+from app.metadata.metadata_store import MetaDataStore
 import logging
 
 
@@ -38,7 +39,7 @@ def login():
         authenticator.jwt_login(request)
         logger.debug("Token authenticated - linking to session")
 
-        metadata = factory.create("metadata-store")
+        metadata = MetaDataStore.get_instance(current_user)
         eq_id = metadata.get_eq_id()
         form_type = metadata.get_form_type()
 
