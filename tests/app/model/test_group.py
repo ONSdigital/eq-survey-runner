@@ -1,6 +1,7 @@
 from app.model.group import Group
 from app.model.block import Block
 import unittest
+import json
 
 
 class GroupModelTest(unittest.TestCase):
@@ -25,3 +26,22 @@ class GroupModelTest(unittest.TestCase):
 
         self.assertEquals(block1.container, group)
         self.assertEquals(block2.container, group)
+
+    def test_to_json(self):
+        group = Group()
+
+        group.id = 'some-id'
+        group.title = 'my group object'
+
+        block1 = Block()
+        block2 = Block()
+
+        group.add_block(block1)
+        group.add_block(block2)
+
+        json_str = json.dumps(group.to_json())
+        json_obj = json.loads(json_str)
+
+        self.assertEquals(json_obj['id'], 'some-id')
+        self.assertEquals(json_obj['title'], 'my group object')
+        self.assertEquals(len(json_obj['blocks']), 2)
