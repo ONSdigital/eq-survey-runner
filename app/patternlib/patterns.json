@@ -64,6 +64,7 @@
       "subtitle": "Optional sub-title",
       "description": "This is a question description. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue.",
       "error": false,
+      "type": "text",
       "responses": [{
         "type": "textfield",
         "name": "response",
