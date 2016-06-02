@@ -2,12 +2,14 @@
 
 {% macro response(partial, data) %}
   {%- set markup %}
-  {% set response = data %}
-  {% set question = {} %}
-  {% include 'partials/responses/' ~ partial ~ '.html' %}
+    {% set response = data %}
+    {% set question = {
+      id: response.id
+    } %}
+    {% include 'partials/responses/' ~ partial ~ '.html' %}
   {% endset -%}
-  <div class="ptn-example">
-  {{markup|prettify|safe}}
+  <div class="ptn-example ptn-example-{{partial}}">
+    {{markup|prettify|safe}}
   </div>
   {{code(markup)}}
 {% endmacro %}
@@ -21,12 +23,11 @@
 
 {% macro question(data) %}
   {% set question = data %}
-  <div class="ptn-example">
   {%- set markup %}
     {% include 'partials/question.html' %}
   {% endset -%}
-
-  {{markup|prettify|safe}}
+  <div class="ptn-example">
+    {{markup|prettify|safe}}
   </div>
   {{code(markup)}}
 {% endmacro %}
