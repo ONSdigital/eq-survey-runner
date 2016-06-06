@@ -60,7 +60,7 @@ def create_questionnaire_manager():
 
 def create_test_survey_manager():
 
-    metadata = factory.create("metadata-store")
+    metadata = MetaDataStore.get_instance(current_user)
 
     logger.debug("Requested test questionnaire")
 
