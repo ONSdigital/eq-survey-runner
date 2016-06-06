@@ -56,3 +56,44 @@ def create_questionnaire_manager():
                                                  navigation_history,
                                                  metadata)
     return questionnaire_manager
+
+
+def create_test_survey_manager():
+
+    metadata = factory.create("metadata-store")
+
+    logger.debug("Requested test questionnaire")
+
+    from app.test_survey.test_survey import test_questionnaire as schema
+
+    # load the response store
+    response_store = factory.create("response-store")
+
+    # load the validation store
+    validation_store = factory.create("validation-store")
+
+    # Create the validator
+    validator = Validator(schema, validation_store, response_store)
+
+    # Create the routing engine
+    routing_engine = RoutingEngine(schema, response_store)
+
+    # load the navigation history
+    navigation_history = factory.create("navigation-history")
+
+    # create the navigator
+    navigator = Navigator(schema, navigation_history)
+
+    # if navigator.get_current_location() == "introduction" or navigator.get_current_location() is None:
+    #     navigator.go_to('questionnaire')
+
+    # instantiate the questionnaire manager
+    questionnaire_manager = QuestionnaireManager(schema,
+                                                 response_store,
+                                                 validator,
+                                                 validation_store,
+                                                 routing_engine,
+                                                 navigator,
+                                                 navigation_history,
+                                                 metadata)
+    return questionnaire_manager
