@@ -36,9 +36,12 @@ class Response(object):
         return json_dict
 
     def __eq__(self, other):
+        if id(self) == id(other):
+            return True
+
         if isinstance(other, Response):
             properties_match = self.id == other.id and \
-                               self.title == other.title and \
+                               self.label == other.label and \
                                self.guidance == other.guidance and \
                                self.type == other.type and \
                                self.code == other.code and \
@@ -52,8 +55,6 @@ class Response(object):
                 for index, validation in enumerate(self.validation):
                     if validation != other.validation[index]:
                         return False
-            else:
-                return False
 
             templatable_properties_match = False
             if len(self.templatable_properties) != len(other.templatable_properties):
@@ -67,11 +68,14 @@ class Response(object):
             if len(self.messages) != len(other.messages):
                 return False
 
-            for index, message in enumerate(self.messages):
-                if message != other.messages[index]:
+            for index, message in self.messages.items():
+                if message not in other.messages:
                     return False
 
             return properties_match and validations_match and templatable_properties_match and messages_match
 
         else:
             return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)

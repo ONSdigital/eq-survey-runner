@@ -41,10 +41,12 @@ class Section(object):
         return json_dict
 
     def __eq__(self, other):
+        if id(self) == id(other):
+            return True
+
         if isinstance(other, Section):
             properties_match = self.id == other.id and \
                                self.title == other.title and \
-                               self.container == other.container and \
                                self.questionnaire == other.questionnaire and \
                                self.display == other.display
 
@@ -64,8 +66,6 @@ class Section(object):
                 for index, validation in enumerate(self.validation):
                     if validation != other.validation[index]:
                         return False
-            else:
-                return False
 
             templatable_properties_match = False
             if len(self.templatable_properties) != len(other.templatable_properties):
@@ -79,3 +79,6 @@ class Section(object):
 
         else:
             return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)

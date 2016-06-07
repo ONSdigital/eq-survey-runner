@@ -45,6 +45,9 @@ class Question(object):
         return json_dict
 
     def __eq__(self, other):
+        if id(self) == id(other):
+            return True
+
         if isinstance(other, Question):
             properties_match = self.id == other.id and \
                                self.title == other.title and \
@@ -67,8 +70,6 @@ class Question(object):
                 for index, validation in enumerate(self.validation):
                     if validation != other.validation[index]:
                         return False
-            else:
-                return False
 
             templatable_properties_match = False
             if len(self.templatable_properties) != len(other.templatable_properties):
@@ -82,3 +83,6 @@ class Question(object):
 
         else:
             return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)

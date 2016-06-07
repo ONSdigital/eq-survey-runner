@@ -73,7 +73,10 @@ class Questionnaire(object):
         return json_dict
 
     def __eq__(self, other):
-        if isinstance(other, Questionnnaire):
+        if id(self) == id(other):
+            return True
+
+        if isinstance(other, Questionnaire):
             properties_match = self.id == other.id and \
                                self.title == other.title
 
@@ -93,10 +96,11 @@ class Questionnaire(object):
                 for index, validation in enumerate(self.validation):
                     if validation != other.validation[index]:
                         return False
-            else:
-                return False
 
             return properties_match and groups_match and validations_match
 
         else:
             return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
