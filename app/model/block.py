@@ -65,7 +65,7 @@ class Block(object):
                     if validation != other.validation[index]:
                         return False
 
-            templatable_properties_match = False
+            templatable_properties_match = True
             if len(self.templatable_properties) != len(other.templatable_properties):
                 return False
 

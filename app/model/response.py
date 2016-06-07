@@ -56,7 +56,7 @@ class Response(object):
                     if validation != other.validation[index]:
                         return False
 
-            templatable_properties_match = False
+            templatable_properties_match = True
             if len(self.templatable_properties) != len(other.templatable_properties):
                 return False
 
@@ -69,7 +69,7 @@ class Response(object):
                 return False
 
             for index, message in self.messages.items():
-                if message not in other.messages:
+                if index not in other.messages.keys() or message != other.messages[index]:
                     return False
 
             return properties_match and validations_match and templatable_properties_match and messages_match

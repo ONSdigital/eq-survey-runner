@@ -46,9 +46,7 @@ class Section(object):
 
         if isinstance(other, Section):
             properties_match = self.id == other.id and \
-                               self.title == other.title and \
-                               self.questionnaire == other.questionnaire and \
-                               self.display == other.display
+                               self.title == other.title
 
             questions_match = True
             if len(self.questions) != len(other.questions):
@@ -67,7 +65,7 @@ class Section(object):
                     if validation != other.validation[index]:
                         return False
 
-            templatable_properties_match = False
+            templatable_properties_match = True
             if len(self.templatable_properties) != len(other.templatable_properties):
                 return False
 

@@ -12,7 +12,9 @@ class SectionModelTest(unittest.TestCase):
         section.title = 'my section object'
 
         question1 = Question()
+        question1.id = 'question-1'
         question2 = Question()
+        question2.id = 'question-2'
 
         section.add_question(question1)
         section.add_question(question2)
@@ -34,7 +36,9 @@ class SectionModelTest(unittest.TestCase):
         section.title = 'my section object'
 
         question1 = Question()
+        question1.id = 'question-1'
         question2 = Question()
+        question2.id = 'question-2'
 
         section.add_question(question1)
         section.add_question(question2)
@@ -45,3 +49,32 @@ class SectionModelTest(unittest.TestCase):
         self.assertEquals(json_obj['id'], 'some-id')
         self.assertEquals(json_obj['title'], 'my section object')
         self.assertEquals(len(json_obj['questions']), 2)
+
+    def test_equivalence(self):
+        section1 = Section()
+
+        section1.id = 'some-id'
+        section1.title = 'my section object'
+
+        question1_1 = Question()
+        question1_1.id = 'question-1'
+        question1_2 = Question()
+        question1_2.id = 'question-2'
+
+        section1.add_question(question1_1)
+        section1.add_question(question1_2)
+
+        section2 = Section()
+
+        section2.id = 'some-id'
+        section2.title = 'my section object'
+
+        question2_1 = Question()
+        question2_1.id = 'question-1'
+        question2_2 = Question()
+        question2_2.id = 'question-2'
+
+        section2.add_question(question2_1)
+        section2.add_question(question2_2)
+
+        self.assertEquals(section1, section2)

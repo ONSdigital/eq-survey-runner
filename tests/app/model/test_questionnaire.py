@@ -85,3 +85,52 @@ class QuestionnaireModelTest(unittest.TestCase):
         group2.id = 'group-1'  # Duplicate id
 
         self.assertRaises(QuestionnaireException, questionnaire.register, group2)
+
+    def test_equivalence(self):
+        questionnaire1 = Questionnaire()
+
+        questionnaire1.id = 'some-id'
+        questionnaire1.title = 'my questionnaire object'
+
+        # The order that items is added is important otherwise,
+        # items are ot registered on the questionnaire
+        group1_1 = Group()
+        group1_1.id = 'group-1'
+        questionnaire1.add_group(group1_1)
+
+        block1_1 = Block()
+        block1_1.id = 'block-1'
+        group1_1.add_block(block1_1)
+
+        group1_2 = Group()
+        group1_2.id = 'group-2'
+        questionnaire1.add_group(group1_2)
+
+        block1_2 = Block()
+        block1_2.id = 'block-2'
+        group1_2.add_block(block1_2)
+
+        questionnaire2 = Questionnaire()
+
+        questionnaire2.id = 'some-id'
+        questionnaire2.title = 'my questionnaire object'
+
+        # The order that items is added is important otherwise,
+        # items are ot registered on the questionnaire
+        group2_1 = Group()
+        group2_1.id = 'group-1'
+        questionnaire2.add_group(group2_1)
+
+        block2_1 = Block()
+        block2_1.id = 'block-1'
+        group2_1.add_block(block2_1)
+
+        group2_2 = Group()
+        group2_2.id = 'group-2'
+        questionnaire2.add_group(group2_2)
+
+        block2_2 = Block()
+        block2_2.id = 'block-2'
+        group2_2.add_block(block2_2)
+
+        self.assertEquals(questionnaire1, questionnaire2)
