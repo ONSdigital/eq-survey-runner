@@ -9,20 +9,28 @@ from app.model.question import Question
 from app.model.response import Response
 
 from app.surveys.mci.mci_0205 import mci_0205
+from app.surveys.mci.mci_0203 import mci_0203
 
 from app.parser.schema_parser_factory import SchemaParserFactory
 
 
 class SerialisationTest(unittest.TestCase):
     def test_serialisation(self):
-        model = self.create_model()
-        serialised = self.serialise_model(model)
+        serialised = self.serialise_model(mci_0205)
         parsed = self.parse_schema(serialised)
 
-        self.assertEquals(model, parsed)
+        self.assertEquals(mci_0205, parsed)
 
-    def create_model(self):
-        return mci_0205
+        serialised = self.serialise_model(mci_0203)
+        from_code = self.parse_schema(serialised)
+
+        serialised = None
+        with open('app/data/1_0203.json') as f:
+            serialised = f.read()
+
+        from_file = self.parse_schema(serialised)
+
+        self.assertEquals(from_file, from_code)
 
     def serialise_model(self, questionnaire):
         json_str = json.dumps(questionnaire.to_json())

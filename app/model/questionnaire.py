@@ -109,3 +109,7 @@ class Questionnaire(object):
 
     def __hash__(self):
         return hash((self.id, self.title, self.description, self.survey_id, self.groups, self.validation))
+
+    def unregister(self, id):
+        if id in self.items_by_id.keys():
+            del self.items_by_id[id]
