@@ -16,17 +16,20 @@ class Renderer(object):
 
         start_date = None
         end_date = None
+        employment_date = None
 
         try:
             start_date = self._metadata.get_ref_p_start_date()
             end_date = self._metadata.get_ref_p_end_date()
+            employment_date = self._metadata.get_employment_date()
         except:
             pass
 
         context = {
             "exercise": ObjectFromDict({
                 "start_date": start_date,
-                "end_date": end_date
+                "end_date": end_date,
+                "employment_date": employment_date
             })
         }
 
@@ -74,6 +77,7 @@ class Renderer(object):
             "return_by": None,
             "start_date": None,
             "end_date": None,
+            "employment_date": None,
             "period_str": None
         }
 
@@ -85,6 +89,7 @@ class Renderer(object):
             survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=self._metadata.get_return_by())
             survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_ref_p_start_date())
             survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_ref_p_end_date())
+            survey_meta["employment_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_employment_date())
             survey_meta["period_str"] = self._metadata.get_period_str()
         except:
             # But we can silently ignore them under those circumstanes

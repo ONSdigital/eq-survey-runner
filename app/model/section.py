@@ -11,7 +11,7 @@ class Section(object):
         self.questionnaire = None
         self.validation = None
         self.questionnaire = None
-        self.templatable_properties = []
+        self.templatable_properties = ['title']
         self.display = Display()
 
     def add_question(self, question):

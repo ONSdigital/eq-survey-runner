@@ -20,6 +20,7 @@ class MetaDataConstants(object):
     FORM_TYPE = 'form_type'
     RETURN_BY = 'return_by'
     TRAD_AS = 'trad_as'
+    EMPLOYMENT_DATE = 'employment_date'
 
 
 class MetaDataStore(object):
@@ -32,7 +33,7 @@ class MetaDataStore(object):
                              MetaDataConstants.RETURN_BY]
 
     def __init__(self, user_id, ru_ref, ru_name, eq_id, collection_exercise_sid, period_id, period_str, ref_p_end_date,
-                 ref_p_start_date, form_type, return_by, trad_as):
+                 ref_p_start_date, form_type, return_by, trad_as, employment_date):
         self.user_id = user_id
         self.ru_ref = ru_ref
         self.ru_name = ru_name
@@ -45,6 +46,7 @@ class MetaDataStore(object):
         self.form_type = form_type
         self.return_by = return_by
         self.trad_as = trad_as
+        self.employment_date = employment_date
 
     def get_ru_ref(self):
         return self.ru_ref
@@ -82,6 +84,9 @@ class MetaDataStore(object):
     def get_user_id(self):
         return self.user_id
 
+    def get_employment_date(self):
+        return self.employment_date
+
     @staticmethod
     def is_valid(token):
         for value in MetaDataStore.VALUES_FOR_VALIDATION:
@@ -104,11 +109,19 @@ class MetaDataStore(object):
             ref_p_start_date = datetime.strptime(token[MetaDataConstants.REF_P_START_DATE], "%Y-%m-%d")
             form_type = token[MetaDataConstants.FORM_TYPE]
             return_by = datetime.strptime(token[MetaDataConstants.RETURN_BY], "%Y-%m-%d")
+
             # optional values
             trad_as = token[MetaDataConstants.TRAD_AS] if MetaDataConstants.TRAD_AS in token else None
 
+            # TODO remove when rrm implements employment date
+            if MetaDataConstants.EMPLOYMENT_DATE in token and token[MetaDataConstants.EMPLOYMENT_DATE]:
+
+                employment_date = datetime.strptime(token[MetaDataConstants.EMPLOYMENT_DATE], "%Y-%m-%d")
+            else:
+                employment_date = datetime.strptime("2016-06-10", "%Y-%m-%d")
+
             metadata = MetaDataStore(user_id, ru_ref, ru_name, eq_id, collection_exercise_sid, period_id, period_str,
-                                     ref_p_end_date, ref_p_start_date, form_type, return_by, trad_as)
+                                     ref_p_end_date, ref_p_start_date, form_type, return_by, trad_as, employment_date)
 
             frozen = jsonpickle.encode(metadata)
             data = user.get_questionnaire_data()
