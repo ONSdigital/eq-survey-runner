@@ -6,7 +6,7 @@ from app.model.question import Question
 from app.model.response import Response
 from app.model.display import Display
 from app.model.introduction import Introduction
-
+from app.validation.abstract_validator import AbstractValidator
 
 # Create the questionnaire object
 mci_0205 = Questionnaire()
@@ -70,8 +70,8 @@ q1r1.type = "Date"
 q1r1.options = []
 q1r1.mandatory = True
 q1r1.messages = {
-    "MANDATORY": "Please answer before continuing.",
-    "INVALID_DATE": "The date entered is not valid.  Please correct your answer."
+    AbstractValidator.MANDATORY: "Please answer before continuing.",
+    AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer."
 }
 
 q1.add_response(q1r1)
@@ -86,8 +86,8 @@ q1r2.type = "Date"
 q1r2.options = []
 q1r2.mandatory = True
 q1r2.messages = {
-    "MANDATORY": "Please answer before continuing.",
-    "INVALID_DATE": "The date entered is not valid.  Please correct your answer."
+    AbstractValidator.MANDATORY: "Please answer before continuing.",
+    AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer."
 }
 
 q1.add_response(q1r2)
@@ -123,9 +123,9 @@ q2r.type = "Currency"
 q2r.options = []
 q2r.mandatory = False
 q2r.messages = {
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q2.add_response(q2r)
@@ -149,9 +149,9 @@ q3r.type = "Currency"
 q3r.options = []
 q3r.mandatory = False
 q3r.messages = {
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q3.add_response(q3r)
@@ -175,9 +175,9 @@ q4r.type = "Currency"
 q4r.options = []
 q4r.mandatory = False
 q4r.messages = {
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q4.add_response(q4r)
@@ -201,9 +201,9 @@ q5r.type = "Currency"
 q5r.options = []
 q5r.mandatory = False
 q5r.messages = {
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q5.add_response(q5r)
@@ -227,9 +227,9 @@ q6r.type = "Currency"
 q6r.options = []
 q6r.mandatory = False
 q6r.messages = {
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q6.add_response(q6r)
@@ -253,10 +253,10 @@ q7r.type = "Currency"
 q7r.options = []
 q7r.mandatory = True
 q7r.messages = {
-    "MANDATORY": "Please provide a value, even if your value is 0.",
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.MANDATORY: "Please provide a value, even if your value is 0.",
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q7.add_response(q7r)
@@ -280,9 +280,9 @@ q8r.type = "Currency"
 q8r.options = []
 q8r.mandatory = False
 q8r.messages = {
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q8.add_response(q8r)
@@ -306,9 +306,9 @@ q9r.type = "Currency"
 q9r.options = []
 q9r.mandatory = False
 q9r.messages = {
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q9.add_response(q9r)
