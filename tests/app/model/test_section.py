@@ -78,3 +78,60 @@ class SectionModelTest(unittest.TestCase):
         section2.add_question(question2_2)
 
         self.assertEquals(section1, section2)
+        self.assertEquals(section2, section1)
+
+        section2.id = 'another-id'
+
+        self.assertNotEquals(section1, section2)
+        self.assertNotEquals(section2, section1)
+
+        section2.id = 'some-id'
+
+        self.assertEquals(section1, section2)
+        self.assertEquals(section2, section1)
+
+        question1_1.id = 'another-question'
+
+        self.assertNotEquals(section1, section2)
+        self.assertNotEquals(section2, section1)
+
+    def test_hashing(self):
+        section1 = Section()
+
+        section1.id = 'some-id'
+        section1.title = 'my section object'
+
+        section2 = Section()
+
+        section2.id = 'some-id'
+        section2.title = 'my section object'
+
+        self.assertEquals(section1, section2)
+        self.assertEquals(section2, section1)
+
+        section_list = []
+
+        section_list.append(section1)
+        section_list.append(section2)
+
+        self.assertEquals(len(section_list), 2)
+        self.assertIn(section1, section_list)
+        self.assertIn(section2, section_list)
+
+        section_set = set()
+
+        section_set.add(section1)
+        section_set.add(section2)
+
+        self.assertEquals(len(section_set), 1)
+        self.assertIn(section1, section_set)
+        self.assertIn(section2, section_set)
+
+        section1.id = 'a different id'
+
+        section_set.add(section1)
+        section_set.add(section2)
+
+        self.assertEquals(len(section_set), 3)  # Section 1 has been added twice
+        self.assertIn(section1, section_set)
+        self.assertIn(section2, section_set)

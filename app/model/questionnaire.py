@@ -78,7 +78,9 @@ class Questionnaire(object):
 
         if isinstance(other, Questionnaire):
             properties_match = self.id == other.id and \
-                               self.title == other.title
+                               self.title == other.title and \
+                               self.description == other.description and \
+                               self.survey_id == other.survey_id
 
             groups_match = True
             if len(self.groups) != len(other.groups):
@@ -100,7 +102,10 @@ class Questionnaire(object):
             return properties_match and groups_match and validations_match
 
         else:
-            return False
+            return NotImplemented
 
     def __ne__(self, other):
-        return not self.__eq__(other)
+        return not self == other
+
+    def __hash__(self):
+        return hash((self.id, self.title, self.description, self.survey_id, self.groups, self.validation))

@@ -1,0 +1,315 @@
+{
+	"description": "MCI Description",
+	"display": {
+		"properties": {}
+	},
+	"introduction": {
+		"description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>"
+	},
+	"survey_id": "023",
+	"title": "Monthly Business Survey - Retail Sales Index",
+	"questionnaire_id": "23",
+	"groups": [{
+		"title": "",
+		"id": "14ba4707-321d-441d-8d21-b8367366e766",
+		"blocks": [{
+			"title": "Monthly Business Survey",
+			"id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
+			"display": {
+				"properties": {}
+			},
+			"sections": [{
+				"title": "",
+				"id": "f11bc7dc-3940-4c7d-9d0e-faa6acb23eeb",
+				"display": {
+					"properties": {}
+				},
+				"questions": [{
+					"description": "If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.",
+					"id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "6fd644b0-798e-4a58-a393-a438b32fe637",
+						"type": "Date",
+						"q_code": "11",
+						"mandatory": true,
+						"label": "From",
+						"guidance": "",
+						"validation": {
+							"messages": {
+								"MANDATORY": "Please answer before continuing.",
+								"INVALID_DATE": "The date entered is not valid.  Please correct your answer."
+							}
+						},
+						"display": {}
+					}, {
+						"id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0",
+						"type": "Date",
+						"q_code": "12",
+						"mandatory": true,
+						"label": "To",
+						"guidance": "",
+						"validation": {
+							"messages": {
+								"MANDATORY": "Please answer before continuing.",
+								"INVALID_DATE": "The date entered is not valid.  Please correct your answer."
+							}
+						},
+						"display": {}
+					}],
+					"title": "What are the dates of the sales period you are reporting for?",
+					"type": "DateRange",
+					"validation": []
+				}],
+				"validation": []
+			}, {
+				"title": "Commodities - Retail Turnover",
+				"id": "d9d25a21-41b8-42b2-ac7b-fb21b1036d71",
+				"display": {
+					"properties": {}
+				},
+				"questions": [{
+					"description": "",
+					"id": "eedb9f9f-2f2e-41f4-9186-ba7110d9e6a4",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "bb8168e6-2272-450d-b5a7-d3170508efb2",
+						"type": "Currency",
+						"q_code": "22",
+						"mandatory": false,
+						"label": "What was the value of the business's total sales of food?",
+						"guidance": "<div> <h4>Include</h4> <ul> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionery)</li> <li>soft drinks</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
+						"validation": {
+							"messages": {
+								"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+								"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+								"NOT_INTEGER": "Please only enter whole numbers into the field."
+							}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Currency",
+					"validation": []
+				}, {
+					"description": "",
+					"id": "5743fe04-e9a3-491f-b475-ea5be662eff3",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
+						"type": "Currency",
+						"q_code": "23",
+						"mandatory": false,
+						"label": "What was the value of the business's total sales of alcohol, confectionery and tobacco?",
+						"guidance": "<div> <h4>Include</h4> <ul> <li>alcoholic drink</li> <li>chocolate and sugar confectionery</li> <li>tobacco and smokers\u2019 requisites</li></ul> </div>",
+						"validation": {
+							"messages": {
+								"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+								"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+								"NOT_INTEGER": "Please only enter whole numbers into the field."
+							}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Currency",
+					"validation": []
+				}, {
+					"description": "",
+					"id": "475471a1-7be0-4a7a-82b3-2b803d3935ed",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
+						"type": "Currency",
+						"q_code": "24",
+						"mandatory": false,
+						"label": "What was the value of the business's total sales of clothing and footwear?",
+						"guidance": "<div> <h4>Include</h4><ul> <li>clothing and footwear</li> <li>clothing fabrics</li> <li>haberdashery and furs</li> <li>leather and travel goods</li> <li>handbags</li> <li>umbrellas</li></ul></div>",
+						"validation": {
+							"messages": {
+								"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+								"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+								"NOT_INTEGER": "Please only enter whole numbers into the field."
+							}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Currency",
+					"validation": []
+				}, {
+					"description": "",
+					"id": "656eaad2-67ed-4413-93dd-06d66c954a22",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
+						"type": "Currency",
+						"q_code": "25",
+						"mandatory": false,
+						"label": "What was the value of the business's total sales of household goods?",
+						"guidance": "<div> <h4>Include</h4><ul> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical and gas appliances, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators\u2019 and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> <li>e-cigarettes</li> </ul></div>",
+						"validation": {
+							"messages": {
+								"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+								"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+								"NOT_INTEGER": "Please only enter whole numbers into the field."
+							}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Currency",
+					"validation": []
+				}, {
+					"description": "",
+					"id": "d7144593-8899-434a-8630-c622df1689b2",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
+						"type": "Currency",
+						"q_code": "26",
+						"mandatory": false,
+						"label": "What was the value of the business\u2019s total sales of other goods?",
+						"guidance": "<div> <h4>Include</h4> <ul>  <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets\u2019 requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> <li>Mobile phones</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+						"validation": {
+							"messages": {
+								"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+								"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+								"NOT_INTEGER": "Please only enter whole numbers into the field."
+							}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Currency",
+					"validation": []
+				}, {
+					"description": "",
+					"id": "6c302f72-cf9d-4f42-8a35-cb258c3f807c",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "e81adc6d-6fb0-4155-969c-d0d646f15345",
+						"type": "Currency",
+						"q_code": "20",
+						"mandatory": true,
+						"label": "What was the value of the business\u2019s total retail turnover?",
+						"guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sale from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+						"validation": {
+							"messages": {
+								"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+								"MANDATORY": "Please provide a value, even if your value is 0.",
+								"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+								"NOT_INTEGER": "Please only enter whole numbers into the field."
+							}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Currency",
+					"validation": []
+				}, {
+					"description": "",
+					"id": "c9902a3b-7dbb-48ff-8d3f-dce6fef322c7",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
+						"type": "Currency",
+						"q_code": "21",
+						"mandatory": false,
+						"label": "Of your total retail turnover, how much were from internet sales?",
+						"guidance": "<div> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
+						"validation": {
+							"messages": {
+								"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+								"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+								"NOT_INTEGER": "Please only enter whole numbers into the field."
+							}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Currency",
+					"validation": []
+				}, {
+					"description": "",
+					"id": "96984134-1863-4450-b314-c44cf48d2bcd",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
+						"type": "Currency",
+						"q_code": "27",
+						"mandatory": false,
+						"label": "What was the value of the business\u2019s total sales of automotive fuel?",
+						"guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commissions</li> </ul></div>",
+						"validation": {
+							"messages": {
+								"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+								"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+								"NOT_INTEGER": "Please only enter whole numbers into the field."
+							}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Currency",
+					"validation": []
+				}],
+				"validation": []
+			}, {
+				"title": "Comments",
+				"id": "94546782-08a6-4213-9dc9-0780c2996896",
+				"display": {
+					"properties": {}
+				},
+				"questions": [{
+					"description": "",
+					"id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
+					"display": {
+						"properties": {}
+					},
+					"responses": [{
+						"id": "215015b1-f87c-4740-9fd4-f01f707ef558",
+						"type": "Textarea",
+						"q_code": "146",
+						"mandatory": false,
+						"label": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
+						"guidance": "",
+						"validation": {
+							"messages": {}
+						},
+						"display": {}
+					}],
+					"title": "",
+					"type": "Textarea",
+					"validation": []
+				}],
+				"validation": []
+			}],
+			"validation": []
+		}],
+		"validation": [],
+		"display": {
+			"properties": {}
+		}
+	}],
+	"mime_type": "application/json/ons/eq",
+	"schema_version": "0.0.1"
+}

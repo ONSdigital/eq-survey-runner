@@ -78,3 +78,62 @@ class GroupModelTest(unittest.TestCase):
         group2.add_block(block2_2)
 
         self.assertEquals(group1, group2)
+        self.assertEquals(group2, group1)
+
+        group1.id = 'a different id'
+
+        self.assertNotEquals(group1, group2)
+        self.assertNotEquals(group2, group1)
+
+        group1.id = 'some-id'
+
+        self.assertEquals(group1, group2)
+        self.assertEquals(group2, group1)
+
+    def test_hashing(self):
+        group1 = Group()
+
+        group1.id = 'some-id'
+        group1.title = 'my block object'
+
+        group2 = Group()
+
+        group2.id = 'some-id'
+        group2.title = 'my block object'
+
+        group_list = []
+
+        group_list.append(group1)
+
+        # Both objects areequivalent, so both appear to be in the list
+        self.assertIn(group1, group_list)
+        self.assertIn(group2, group_list)
+        self.assertEquals(len(group_list), 1)
+
+        group_list.append(group2)
+
+        # Now they both are, but they are equivalent
+        self.assertEquals(len(group_list), 2)
+
+        group_set = set()
+
+        group_set.add(group1)
+
+        self.assertIn(group1, group_set)
+        self.assertEquals(len(group_set), 1)
+
+        group_set.add(group2)
+
+        self.assertEquals(len(group_set), 1)
+        self.assertIn(group1, group_set)
+        self.assertIn(group2, group_set)
+
+        group2.id = 'another-id'
+
+        self.assertNotEquals(group1, group2)
+
+        group_set.add(group2)
+
+        self.assertEquals(len(group_set), 2)
+        self.assertIn(group1, group_set)
+        self.assertIn(group2, group_set)

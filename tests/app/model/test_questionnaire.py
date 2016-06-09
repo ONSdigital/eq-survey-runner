@@ -134,3 +134,62 @@ class QuestionnaireModelTest(unittest.TestCase):
         group2_2.add_block(block2_2)
 
         self.assertEquals(questionnaire1, questionnaire2)
+        self.assertEquals(questionnaire2, questionnaire1)
+
+        questionnaire1.id = 'a different id'
+
+        self.assertNotEquals(questionnaire1, questionnaire2)
+        self.assertNotEquals(questionnaire2, questionnaire1)
+
+        questionnaire1.id = 'some-id'
+
+        self.assertEquals(questionnaire1, questionnaire2)
+        self.assertEquals(questionnaire2, questionnaire1)
+
+    def test_hashing(self):
+        questionnaire1 = Group()
+
+        questionnaire1.id = 'some-id'
+        questionnaire1.title = 'my block object'
+
+        questionnaire2 = Group()
+
+        questionnaire2.id = 'some-id'
+        questionnaire2.title = 'my block object'
+
+        questionnaire_list = []
+
+        questionnaire_list.append(questionnaire1)
+
+        # Both objects areequivalent, so both appear to be in the list
+        self.assertIn(questionnaire1, questionnaire_list)
+        self.assertIn(questionnaire2, questionnaire_list)
+        self.assertEquals(len(questionnaire_list), 1)
+
+        questionnaire_list.append(questionnaire2)
+
+        # Now they both are, but they are equivalent
+        self.assertEquals(len(questionnaire_list), 2)
+
+        questionnaire_set = set()
+
+        questionnaire_set.add(questionnaire1)
+
+        self.assertIn(questionnaire1, questionnaire_set)
+        self.assertEquals(len(questionnaire_set), 1)
+
+        questionnaire_set.add(questionnaire2)
+
+        self.assertEquals(len(questionnaire_set), 1)
+        self.assertIn(questionnaire1, questionnaire_set)
+        self.assertIn(questionnaire2, questionnaire_set)
+
+        questionnaire2.id = 'another-id'
+
+        self.assertNotEquals(questionnaire1, questionnaire2)
+
+        questionnaire_set.add(questionnaire2)
+
+        self.assertEquals(len(questionnaire_set), 2)
+        self.assertIn(questionnaire1, questionnaire_set)
+        self.assertIn(questionnaire2, questionnaire_set)

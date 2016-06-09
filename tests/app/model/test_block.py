@@ -78,3 +78,62 @@ class BlockModelTest(unittest.TestCase):
         block2.add_section(section2_2)
 
         self.assertEquals(block1, block2)
+        self.assertEquals(block2, block1)
+
+        block1.id = 'a different id'
+
+        self.assertNotEquals(block1, block2)
+        self.assertNotEquals(block2, block1)
+
+        block1.id = 'some-id'
+
+        self.assertEquals(block1, block2)
+        self.assertEquals(block2, block1)
+
+    def test_hashing(self):
+        block1 = Block()
+
+        block1.id = 'some-id'
+        block1.title = 'my block object'
+
+        block2 = Block()
+
+        block2.id = 'some-id'
+        block2.title = 'my block object'
+
+        block_list = []
+
+        block_list.append(block1)
+
+        # Both objects areequivalent, so both appear to be in the list
+        self.assertIn(block1, block_list)
+        self.assertIn(block2, block_list)
+        self.assertEquals(len(block_list), 1)
+
+        block_list.append(block2)
+
+        # Now they both are, but they are equivalent
+        self.assertEquals(len(block_list), 2)
+
+        block_set = set()
+
+        block_set.add(block1)
+
+        self.assertIn(block1, block_set)
+        self.assertEquals(len(block_set), 1)
+
+        block_set.add(block2)
+
+        self.assertEquals(len(block_set), 1)
+        self.assertIn(block1, block_set)
+        self.assertIn(block2, block_set)
+
+        block2.id = 'another-id'
+
+        self.assertNotEquals(block1, block2)
+
+        block_set.add(block2)
+
+        self.assertEquals(len(block_set), 2)
+        self.assertIn(block1, block_set)
+        self.assertIn(block2, block_set)

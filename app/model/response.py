@@ -75,7 +75,10 @@ class Response(object):
             return properties_match and validations_match and templatable_properties_match and messages_match
 
         else:
-            return False
+            return NotImplemented
 
     def __ne__(self, other):
-        return not self.__eq__(other)
+        return not self == other
+
+    def __hash__(self):
+        return hash((self.id, self.label, self.guidance, self.type, self.code, self.mandatory))  # NOQA

@@ -84,3 +84,69 @@ class QuestionModelTest(unittest.TestCase):
         question2.add_response(response2_2)
 
         self.assertEquals(question1, question2)
+        self.assertEquals(question2, question1)
+
+        question1.id = 'a different id'
+
+        self.assertNotEquals(question1, question2)
+        self.assertNotEquals(question2, question1)
+
+        question1.id = 'some-id'
+
+        self.assertEquals(question1, question2)
+        self.assertEquals(question2, question1)
+
+        response1_1.id = 'a different id'
+
+        self.assertNotEquals(question1, question2)
+        self.assertNotEquals(question2, question1)
+
+    def test_hashing(self):
+        question1 = Question()
+
+        question1.id = 'some-id'
+        question1.title = 'my question object'
+        question1.description = 'fill this in'
+
+        question2 = Question()
+
+        question2.id = 'some-id'
+        question2.title = 'my question object'
+        question2.description = 'fill this in'
+
+        question_list = []
+
+        question_list.append(question1)
+
+        # Both objects areequivalent, so both appear to be in the list
+        self.assertIn(question1, question_list)
+        self.assertIn(question2, question_list)
+        self.assertEquals(len(question_list), 1)
+
+        question_list.append(question2)
+
+        # Now they both are, but they are equivalent
+        self.assertEquals(len(question_list), 2)
+
+        question_set = set()
+
+        question_set.add(question1)
+
+        self.assertIn(question1, question_set)
+        self.assertEquals(len(question_set), 1)
+
+        question_set.add(question2)
+
+        self.assertEquals(len(question_set), 1)
+        self.assertIn(question1, question_set)
+        self.assertIn(question2, question_set)
+
+        question2.id = 'another-id'
+
+        self.assertNotEquals(question1, question2)
+
+        question_set.add(question2)
+
+        self.assertEquals(len(question_set), 2)
+        self.assertIn(question1, question_set)
+        self.assertIn(question2, question_set)

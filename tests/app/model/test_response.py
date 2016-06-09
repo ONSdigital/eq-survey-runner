@@ -69,3 +69,61 @@ class ResponseModelTest(unittest.TestCase):
         response2.messages['message2'] = "Message Two"
 
         self.assertEquals(response1, response2)
+
+        response2.id = 'another-id'
+
+        self.assertNotEquals(response1, response2)
+
+        response2.id = 'some-id'
+
+        self.assertEquals(response1, response2)
+
+        response2.label = 'another response object'
+
+        self.assertNotEquals(response1, response2)
+
+    def test_hashing(self):
+        responses_list = []
+
+        response1 = Response()
+        response2 = Response()
+
+        self.assertEquals(response1, response2)
+        self.assertEquals(response2, response1)
+
+        responses_list.append(response1)
+
+        self.assertEquals(len(responses_list), 1)
+
+        responses_list.append(response2)
+
+        self.assertEquals(len(responses_list), 2)
+
+        response2.id = 'not response1'
+
+        self.assertNotEquals(response1, response2)
+        self.assertNotEquals(response2, response1)
+
+        responses_set = set()
+
+        responses_set.add(response1)
+
+        self.assertEquals(len(responses_set), 1)
+
+        response2.id = None
+
+        responses_set.add(response2)
+
+        self.assertEquals(len(responses_set), 1)
+        self.assertIn(response1, responses_set)
+        self.assertIn(response2, responses_set)
+
+        response2.id = 'different value'
+
+        responses_set.add(response2)
+
+        self.assertEquals(len(responses_set), 2)
+        self.assertIn(response1, responses_set)
+        self.assertIn(response2, responses_set)
+
+        self.assertNotEquals(response1, response2)
