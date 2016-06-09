@@ -23,7 +23,8 @@ def create_payload(user):
             MetaDataConstants.REF_P_END_DATE: "2016-09-01",
             MetaDataConstants.RU_REF: "12346789012A",
             MetaDataConstants.RU_NAME: "Apple",
-            MetaDataConstants.RETURN_BY: "2016-04-30"}
+            MetaDataConstants.RETURN_BY: "2016-04-30",
+            MetaDataConstants.EMPLOYMENT_DATE: "2016-06-10"}
 
 
 def generate_token():

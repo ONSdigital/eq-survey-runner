@@ -29,8 +29,9 @@ def dev_mode():
         ru_name = form.get(MetaDataConstants.RU_NAME)
         trad_as = form.get(MetaDataConstants.TRAD_AS)
         return_by = form.get(MetaDataConstants.RETURN_BY)
+        employment_date = form.get(MetaDataConstants.EMPLOYMENT_DATE)
         payload = create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid,
-                                 ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by)
+                                 ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date)
         return redirect("/session?token=" + generate_token(payload).decode())
     else:
         return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), UserConstants=MetaDataConstants,
@@ -57,7 +58,7 @@ def extract_eq_id_and_form_type(schema_name):
 
 
 def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid, ref_p_start_date,
-                   ref_p_end_date, ru_ref, ru_name, trad_as, return_by):
+                   ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date):
     iat = time.time()
     exp = time.time() + float(exp_time)
     return {
@@ -74,7 +75,8 @@ def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, coll
             MetaDataConstants.RU_REF: ru_ref,
             MetaDataConstants.RU_NAME: ru_name,
             MetaDataConstants.RETURN_BY: return_by,
-            MetaDataConstants.TRAD_AS: trad_as}
+            MetaDataConstants.TRAD_AS: trad_as,
+            MetaDataConstants.EMPLOYMENT_DATE: employment_date}
 
 
 def generate_token(payload):

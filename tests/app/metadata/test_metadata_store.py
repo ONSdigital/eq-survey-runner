@@ -328,7 +328,8 @@ class TestMetadataStore(SurveyRunnerTestCase):
         self.assertFalse(valid)
         self.assertEquals(MetaDataConstants.RETURN_BY, reason)
 
-    def test_is_valid_does_not_fail_missing_trading_name(self):
+    #Both trad_as and employment_date are optional and might not be in the token
+    def test_is_valid_does_not_fail_missing_optional_value_in_token(self):
         jwt = {
             MetaDataConstants.USER_ID: "1",
             MetaDataConstants.FORM_TYPE: "a",
@@ -344,6 +345,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         }
         valid, reason = MetaDataStore.is_valid(jwt)
         self.assertTrue(valid)
+
 
 if __name__ == '__main__':
     unittest.main()
