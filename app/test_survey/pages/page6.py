@@ -24,7 +24,7 @@ h7_r1 = Response()
 h7_r1.id = "response1-h7"
 h7_r1.type = "Checkbox"
 h7_r1.label = "A whole house or bungalow that is:"
-h7_r1.q_code = "H7"
+h7_r1.code = "H7"
 h7_r1.options = [
     {
         "value": "h7_a",
@@ -44,7 +44,7 @@ h7_r2 = Response()
 h7_r2.id = "response2-h7"
 h7_r2.type = "Checkbox"
 h7_r2.label = "A flat, maisonette or apartment that is:"
-h7_r2.q_code = "H7"
+h7_r2.code = "H7"
 h7_r2.options = [
     {
         "value": "h7_d",
@@ -64,7 +64,7 @@ h7_r3 = Response()
 h7_r3.id = "response3-h7"
 h7_r3.type = "Checkbox"
 h7_r3.label = "A mobile or temporary structure:"
-h7_r3.q_code = "H7"
+h7_r3.code = "H7"
 h7_r3.options = [
     {
         "value": "h7_g",
@@ -98,7 +98,7 @@ h8_q.type = "Radio"
 h8_r = Response()
 h8_r.id = 'response-h8'
 h8_r.type = "Radio"
-h8_r.q_code = 'H2'
+h8_r.code = 'H2'
 h8_r.options = [
     {
         "value": "h8_a",
@@ -133,7 +133,7 @@ h9_q.type = "General"
 
 h9_r = Response()
 h9_r.type = "Integer"
-h9_r.q_code = 'H9'
+h9_r.code = 'H9'
 h9_r.id = "response-h9"
 h9_r.label = "Number of rooms"
 
@@ -157,7 +157,7 @@ h10_q.type = "Integer"
 h10_r = Response()
 h10_r.id = 'response-h10'
 h10_r.type = "PositiveInteger"
-h10_r.q_code = 'H10'
+h10_r.code = 'H10'
 h10_r.label = "Number of bedrooms"
 
 h10_q.add_response(h10_r)
@@ -182,7 +182,7 @@ h11_q.type = "Checkboxes"
 h11_r = Response()
 h11_r.id = "response1-h11"
 h11_r.type = "Checkbox"
-h11_r.q_code = "H11"
+h11_r.code = "H11"
 h11_r.options = [
     {
         "value": "h11_a",
@@ -232,7 +232,7 @@ h12_q.type = "Radio"
 h12_r = Response()
 h12_r.id = "response1-h12"
 h12_r.type = "Radio"
-h12_r.q_code = "H12"
+h12_r.code = "H12"
 h12_r.options = [
     # TODO: This option should route to question H14
     {
@@ -280,7 +280,7 @@ h13_q.type = "Radio"
 h13_r = Response()
 h13_r.id = "response1-h13"
 h13_r.type = "Radio"
-h13_r.q_code = "H13"
+h13_r.code = "H13"
 h13_r.options = [
     {
         "value": "h13_a",
@@ -330,7 +330,7 @@ h14_q.type = "Radio"
 h14_r1 = Response()
 h14_r1.id = "response1-h14"
 h14_r1.type = "Radio"
-h14_r1.q_code = "H14"
+h14_r1.code = "H14"
 h14_r1.options = [
     {
         "value": "h14_a",
@@ -357,7 +357,7 @@ h14_r1.options = [
 h14_r2 = Response()
 h14_r2.id = 'response2-h14'
 h14_r2.type = 'textfield'
-h14_r2.q_code = "H14"
+h14_r2.code = "H14"
 
 h14_q.add_response(h14_r1)
 h14_q.add_response(h14_r2)

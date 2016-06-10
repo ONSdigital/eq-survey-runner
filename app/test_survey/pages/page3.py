@@ -24,7 +24,7 @@ h1_q.type = "Checkboxes"
 h1_r = Response()
 h1_r.id = "response-h1"
 h1_r.type = "Checkbox"
-h1_r.q_code = "H1"
+h1_r.code = "H1"
 h1_r.options = [
     {
         "value": "h1_a",
@@ -90,7 +90,8 @@ h2_q.type = "Integer"
 
 h2_r = Response()
 h2_r.type = "PositiveInteger"
-h2_r.q_code = 'H2'
+h2_r.code = 'H2'
+h2_r.id = 'response-h2'
 
 h2_q.add_response(h2_r)
 h2_s.add_question(h2_q)
@@ -115,7 +116,7 @@ h4_q.type = "Checkboxes"
 
 h4_r = Response()
 h4_r.type = "Checkbox"
-h4_r.q_code = 'H4'
+h4_r.code = 'H4'
 h4_r.id = "response-h4"
 h4_r.options = [
     {
@@ -163,7 +164,7 @@ h5_q.type = "Integer"
 h5_r = Response()
 h5_r.id = "response-h5"
 h5_r.type = "PositiveInteger"
-h5_r.q_code = 'H5'
+h5_r.code = 'H5'
 
 h5_q.add_response(h5_r)
 h5_s.add_question(h5_q)
