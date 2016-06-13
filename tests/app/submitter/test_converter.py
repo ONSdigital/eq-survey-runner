@@ -42,7 +42,7 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.maxDiff = None
 
-            user = User("1")
+            user = User("1", "2")
 
             jwt = {
                 MetaDataConstants.USER_ID: "789473423",

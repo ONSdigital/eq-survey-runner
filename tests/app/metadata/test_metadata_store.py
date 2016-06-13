@@ -24,7 +24,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
             MetaDataConstants.RETURN_BY: "2016-07-07"
         }
         with self.application.test_request_context():
-            user = User("1")
+            user = User("1", "2")
             self.metadata_store = MetaDataStore.save_instance(user, self.jwt)
 
     def test_form_type(self):
@@ -217,7 +217,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetaDataStore.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetaDataStore.save_instance(User("1"), jwt)
+            MetaDataStore.save_instance(User("1", "2"), jwt)
         self.assertIn("Incorrect date format in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_ref_p_end_date(self):
@@ -237,7 +237,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetaDataStore.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetaDataStore.save_instance(User("1"), jwt)
+            MetaDataStore.save_instance(User("1", "2"), jwt)
         self.assertIn("Incorrect date format in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_return_by(self):
@@ -257,7 +257,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetaDataStore.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetaDataStore.save_instance(User("1"), jwt)
+            MetaDataStore.save_instance(User("1", "2"), jwt)
         self.assertIn("Incorrect date format in token", ite.exception.value)
 
     def test_is_valid_fails_missing_ref_p_end_date(self):
@@ -328,8 +328,8 @@ class TestMetadataStore(SurveyRunnerTestCase):
         self.assertFalse(valid)
         self.assertEquals(MetaDataConstants.RETURN_BY, reason)
 
-    #Both trad_as and employment_date are optional and might not be in the token
     def test_is_valid_does_not_fail_missing_optional_value_in_token(self):
+        # Both trad_as and employment_date are optional and might not be in the token
         jwt = {
             MetaDataConstants.USER_ID: "1",
             MetaDataConstants.FORM_TYPE: "a",

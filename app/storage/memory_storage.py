@@ -9,10 +9,10 @@ class InMemoryStorage(AbstractServerStorage):
     In memory server side storage used for testing
     '''
 
-    def store(self, user_id, data):
+    def store(self, data, user_id, user_ik=None):
         DATA[user_id] = data
 
-    def get(self, user_id):
+    def get(self, user_id, user_ik=None):
         if self.has_data(user_id):
             return DATA[user_id]
         else:

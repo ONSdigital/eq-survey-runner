@@ -23,7 +23,7 @@ class TestRenderer(unittest.TestCase):
         self.response_store = MockResponseStore()
         self.schema = self._create_schema()
         self.navigator = MockNavigator()
-        user = User("1")
+        user = User("1", "2")
         jwt = {
             MetaDataConstants.USER_ID: "1",
             MetaDataConstants.FORM_TYPE: "a",
