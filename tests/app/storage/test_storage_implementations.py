@@ -20,17 +20,17 @@ class BaseTestStorage(unittest.TestCase):
 
     def test_store(self):
         data = {'test': 'test'}
-        self.assertIsNone(self.storage.store(USER_ID, data))
+        self.assertIsNone(self.storage.store(data, USER_ID))
         self.assertTrue(self.storage.has_data(USER_ID))
 
     def test_get(self):
         data = {'test': 'test'}
-        self.storage.store(USER_ID, data)
+        self.storage.store(data, USER_ID)
         self.assertEqual(data, self.storage.get(USER_ID))
 
     def test_delete(self):
         data = {'test': 'test'}
-        self.storage.store(USER_ID, data)
+        self.storage.store(data, USER_ID)
         self.assertEqual(data, self.storage.get(USER_ID))
         self.storage.delete(USER_ID)
         self.assertFalse(self.storage.has_data(USER_ID))
@@ -38,7 +38,7 @@ class BaseTestStorage(unittest.TestCase):
 
     def test_clear(self):
         data = {'test': 'test'}
-        self.storage.store(USER_ID, data)
+        self.storage.store(data, USER_ID)
         self.assertEqual(data, self.storage.get(USER_ID))
         self.storage.clear()
         self.assertFalse(self.storage.has_data(USER_ID))

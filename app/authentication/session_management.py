@@ -5,15 +5,16 @@ import logging
 from uuid import uuid4
 
 USER_ID = "user_id"
+USER_IK = "user_ik"
 EQ_SESSION_ID = "eq-session-id"
 logger = logging.getLogger(__name__)
 
 
 class SessionManagement(object):
-    def store_user_id(self, jwt):
+    def store_user_id(self, user_id):
         """
         Store a user's id for retrieval later
-        :param jwt: the user JWT
+        :param user_id: the user id
         """
         pass
 
@@ -32,10 +33,50 @@ class SessionManagement(object):
 
     def get_user_id(self):
         """
-        Retrieves a user's token
+        Retrieves a user's id
         :return: the user's JWT
         """
         pass
+
+    def store_user_ik(self, user_ik):
+        '''
+        Store a user's ik in the cookie for retrieval later
+        :param user_ik: the user ik
+        '''
+        logger.debug("SessionManager store_user_ik() - session %s", session)
+        if USER_IK not in session:
+            session[USER_IK] = user_ik
+            session.permanent = True
+
+    def has_user_ik(self):
+        """
+        Checks if a user has a stored ik
+        :return: boolean value
+        """
+        logger.debug("SessionManager has_user_ik() - session %s", session)
+        if USER_IK in session:
+            return session[USER_IK] is not None
+        else:
+            return False
+
+    def remove_user_ik(self):
+        """
+        Removes a user id from the session
+        """
+        logger.debug("SessionManager remove_user_ik() - session %s", session)
+        if USER_IK in session:
+            del session[USER_IK]
+
+    def get_user_ik(self):
+        """
+        Retrieves a user's id
+        :return: the user's JWT
+        """
+        logger.debug("SessionManager get_user_ik() - session %s", session)
+        if self.has_user_ik():
+            return session[USER_IK]
+        else:
+            return None
 
 
 class DatabaseSessionManager(SessionManagement):

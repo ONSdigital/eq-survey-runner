@@ -9,10 +9,10 @@ class FlaskSessionStore(AbstractServerStorage):
     Client side storage using sessions
     '''
 
-    def store(self, user_id, data):
+    def store(self, data, user_id, user_ik=None):
         session[QUESTIONNAIRE_DATA] = data
 
-    def get(self, user_id):
+    def get(self, user_id, user_ik=None):
         if self.has_data(user_id):
             return session[QUESTIONNAIRE_DATA]
         else:

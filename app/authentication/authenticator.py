@@ -25,7 +25,7 @@ class Authenticator(object):
         logger.debug("Checking for session")
         if session_manager.has_user_id():
             logger.debug("Session token exists")
-            return User(session_manager.get_user_id())
+            return User(session_manager.get_user_id(), session_manager.get_user_ik())
         else:
             logging.debug("Session does not have an authenticated token")
             return None
@@ -46,11 +46,14 @@ class Authenticator(object):
 
         # get the hashed user id for eq
         user_id = UserIDGenerator.generate_id(token)
+        user_ik = UserIDGenerator.generate_ik(token)
 
-        user = User(user_id)
+        user = User(user_id, user_ik)
 
         # store the user id in the session
         session_manager.store_user_id(user_id)
+        # store the user ik in the cookie
+        session_manager.store_user_ik(user_ik)
 
         # store the meta data
         MetaDataStore.save_instance(user, token)

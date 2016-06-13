@@ -1,7 +1,5 @@
 from app.responses.response_store import FlaskResponseStore
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
-from flask import Flask
-from datetime import timedelta
 import unittest
 
 
