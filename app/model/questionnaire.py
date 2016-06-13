@@ -26,11 +26,10 @@ class Questionnaire(object):
     def get_item_by_id(self, item_id):
         if item_id == self.id:
             return self
+        elif item_id in self.items_by_id.keys():
+            return self.items_by_id[item_id]
         else:
-            if item_id in self.items_by_id.keys():
-                return self.items_by_id[item_id]
-            else:
-                raise QuestionnaireException('Unknown id \'{}\''.format(item_id))
+            raise QuestionnaireException('Unknown id \'{}\''.format(item_id))
 
     def register(self, item):
         if item.id in self.items_by_id.keys():
@@ -78,9 +77,9 @@ class Questionnaire(object):
 
         if isinstance(other, Questionnaire):
             properties_match = self.id == other.id and \
-                               self.title == other.title and \
-                               self.description == other.description and \
-                               self.survey_id == other.survey_id
+                self.title == other.title and \
+                self.description == other.description and \
+                self.survey_id == other.survey_id
 
             groups_match = True
             if len(self.groups) != len(other.groups):
@@ -109,3 +108,7 @@ class Questionnaire(object):
 
     def __hash__(self):
         return hash((self.id, self.title, self.description, self.survey_id, self.groups, self.validation))
+
+    def unregister(self, id):
+        if id in self.items_by_id.keys():
+            del self.items_by_id[id]
