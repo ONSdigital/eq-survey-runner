@@ -1,8 +1,8 @@
 {
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
-    "questionnaire_id": "333",
-    "survey_id": "33",
+    "questionnaire_id": "0",
+    "survey_id": "0",
     "title": "Star Wars",
     "description": "Star Wars",
     "introduction": {
@@ -30,7 +30,7 @@
                             "responses": [
                               {
                                 "id": "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b",
-                                "q_code": "22",
+                                "q_code": "1",
                                 "label": "How old is Chewy?",
                                 "guidance": "",
                                 "type": "Integer",
@@ -54,7 +54,7 @@
                             "responses": [
                               {
                                 "id": "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
-                                "q_code": "22",
+                                "q_code": "2",
                                 "label": "How many Octillions do Nasa reckon it would cost to build a death star?",
                                 "guidance": "",
                                 "type": "Currency",
@@ -78,7 +78,7 @@
                             "responses": [
                               {
                                 "id": "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
-                                "q_code": "29",
+                                "q_code": "3",
                                 "label": "How hot is a lightsaver in degrees C?",
                                 "guidance": "",
                                 "type": "Integer",
@@ -102,10 +102,10 @@
                             "responses": [
                               {
                                 "id": "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d",
-                                "q_code": "22",
+                                "q_code": "4",
                                 "label": "",
                                 "guidance": "",
-                                "type": "radio",
+                                "type": "Radio",
                                 "options": [
                                   {
                                     "value": "Lion",
@@ -144,7 +144,7 @@
                             "responses": [
                               {
                                 "id": "7587eb9b-f24e-4dc0-ac94-66118b896c10",
-                                "q_code": "22",
+                                "q_code": "5",
                                 "label": "",
                                 "guidance": "",
                                 "type": "Radio",
@@ -180,13 +180,13 @@
                           },
                            {
                             "id": "def6r645-c231-4522-ba2f-273b25507e53",
-                            "title": "Which 3 have wielded a green lightsavers?",
+                            "title": "Which 3 have wielded a green lightsaber?",
                             "description": "",
                             "type": "Checkboxes",
                             "responses": [
                               {
                                 "id": "9587eb9b-f24e-4dc0-ac94-66117b896c10",
-                                "q_code": "29",
+                                "q_code": "6",
                                 "label": "",
                                 "guidance": "",
                                 "type": "Checkbox",
@@ -235,7 +235,7 @@
                             "responses": [
                               {
                                 "id": "5587eb9b-f24e-4dc0-ac94-66117b896c10",
-                                "q_code": "29",
+                                "q_code": "7",
                                 "label": "",
                                 "guidance": "",
                                 "type": "Checkbox",
@@ -283,7 +283,7 @@
                               "responses": [
                                 {
                                   "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
-                                  "q_code": "11",
+                                  "q_code": "81",
                                   "label": "From",
                                   "guidance": "",
                                   "type": "Date",
@@ -298,7 +298,7 @@
                                 },
                                 {
                                   "id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0",
-                                  "q_code": "12",
+                                  "q_code": "82",
                                   "label": "To",
                                   "guidance": "",
                                   "type": "Date",
@@ -328,7 +328,7 @@
                                 "responses": [
                                     {
                                       "id": "5rr015b1-f87c-4740-9fd4-f01f707ef558",
-                                      "q_code": "147",
+                                      "q_code": "9",
                                       "label": "",
                                       "guidance": "",
                                       "type": "Integer",
@@ -359,7 +359,7 @@
                                 "responses": [
                                     {
                                       "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
-                                      "q_code": "146",
+                                      "q_code": "10",
                                       "label": "Comments",
                                       "guidance": "",
                                       "type": "Textarea",

@@ -44,7 +44,7 @@ class Questionnaire(object):
         json_dict = {
             "mime_type": "application/json/ons/eq",
             "schema_version": "0.0.1",
-            "questionnaire_id": "23",
+            "questionnaire_id": self.id,
             "survey_id": self.survey_id,
             "title": self.title,
             "description": self.description,

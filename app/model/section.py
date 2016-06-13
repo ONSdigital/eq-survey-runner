@@ -5,6 +5,7 @@ class Section(object):
     def __init__(self):
         self.id = None
         self.title = None
+        self.description = None
         self.questions = []
         self.children = self.questions
         self.container = None
@@ -23,6 +24,7 @@ class Section(object):
         json_dict = {
             "id": self.id,
             "title": self.title,
+            "description": self.description,
             "questions": [],
             "validation": [],
             "display": {}
@@ -46,9 +48,10 @@ class Section(object):
 
         if isinstance(other, Section):
             properties_match = self.id == other.id and \
-                               self.title == other.title
-
+                               self.title == other.title and \
+                               self.description == other.description
             questions_match = True
+
             if len(self.questions) != len(other.questions):
                 return False
 

@@ -10,6 +10,8 @@ export EQ_CLOUDWATCH_LOGGING=False
 
 export EQ_RABBITMQ_ENABLED=False
 
+python generate_json.py
+
 if [ -z "$EQ_DEV_MODE" ]; then
   export EQ_DEV_MODE=True
 fi
