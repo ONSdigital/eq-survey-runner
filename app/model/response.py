@@ -38,6 +38,9 @@ class Response(object):
         for option in self.options:
             json_dict['options'].append(option)
 
+        for option in self.options:
+            json_dict['options'].append(option)
+
         return json_dict
 
     def __eq__(self, other):

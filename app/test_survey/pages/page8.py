@@ -262,7 +262,7 @@ i18_q.type = "General"
 
 i18_r1 = Response()
 i18_r1.id = "response1-i18"
-i18_r1.type = "Checkboxes"
+i18_r1.type = "Checkbox"
 i18_r1.code = "i18_a"
 i18_r1.options = [
     # @TODO Route to question 20
