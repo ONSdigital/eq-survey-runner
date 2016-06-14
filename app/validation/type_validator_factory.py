@@ -20,27 +20,44 @@ class TypeValidatorFactory(object):
         Given a type, returns a list of validator instances used for basic
         type checking
         """
-        i_type = item.type
+        response_validators = {
+            'INTEGER': [IntegerTypeCheck],
+            'POSITIVEINTEGER': [PositiveIntegerTypeCheck],
+            'CURRENCY': [PositiveIntegerTypeCheck],
+            'DATE': [DateTypeCheck],
+            'TEXTAREA': [TextAreaTypeCheck],
+            'RADIO': [],
+            'CHECKBOX': []
+            }
+
+        question_validators = {
+            'DATERANGE': [DateRangeCheck],
+            'INTEGER': [],
+            'POSITIVEINTEGER': [],
+            'CURRENCY': [],
+            'DATE': [],
+            'TEXTAREA': [],
+            'RADIOS': [],
+            'CHECKBOXS': [],
+            'CHECKBOXES': []
+        }
+
+        i_type = item.type.upper()
 
         validators = []
         if isinstance(item, Response):
-            if i_type.upper() == 'INTEGER':
-                validators.append(IntegerTypeCheck())
-            elif i_type.upper() == "POSITIVEINTEGER":
-                validators.append(PositiveIntegerTypeCheck())
-            elif i_type.upper() == 'CURRENCY':
-                validators.append(PositiveIntegerTypeCheck())
-            elif i_type.upper() == 'DATE':
-                validators.append(DateTypeCheck())
-            elif i_type.upper() == 'TEXTAREA':
-                validators.append(TextAreaTypeCheck())
-            elif i_type.upper() == 'RADIO' or i_type.upper() == 'CHECKBOX':
-                # type checking isn't required for radio boxes or checkboxes, but we don't want to throw an exception
-                pass
-            else:
-                raise TypeValidatorFactoryException('\'{}\' is not a known response type'.format(i_type))
+            try:
+                for validator in response_validators[i_type]:
+                    validators.append(validator())
+            except KeyError:
+                err_msg = '\'{}\' is not a known response type'.format(i_type)
+                raise TypeValidatorFactoryException(err_msg)
 
         elif isinstance(item, Question):
-            if i_type.upper() == 'DATERANGE':
-                validators.append(DateRangeCheck())
+            try:
+                for validator in question_validators[i_type]:
+                    validators.append(validator())
+            except KeyError:
+                err_msg = '\'{}\' is not a known question type'.format(i_type)
+                raise TypeValidatorFactoryException(err_msg)
         return validators
