@@ -25,7 +25,7 @@ class SessionManagement(object):
         """
         pass
 
-    def remove_user_id(self):
+    def clear(self):
         """
         Removes a user id from the session
         """
@@ -58,14 +58,6 @@ class SessionManagement(object):
             return session[USER_IK] is not None
         else:
             return False
-
-    def remove_user_ik(self):
-        """
-        Removes a user id from the session
-        """
-        logger.debug("SessionManager remove_user_ik() - session %s", session)
-        if USER_IK in session:
-            del session[USER_IK]
 
     def get_user_ik(self):
         """
@@ -109,7 +101,7 @@ class DatabaseSessionManager(SessionManagement):
             logger.debug("Number of entries for eq session id %s is %s", eq_session_id, count)
             return count > 0
 
-    def remove_user_id(self):
+    def clear(self):
         logger.debug("DatabaseSessionManager remove_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
@@ -163,10 +155,9 @@ class FlaskSessionManager(SessionManagement):
         else:
             return False
 
-    def remove_user_id(self):
+    def clear(self):
         logger.debug("FlaskSessionManager remove_user_id() - session %s", session)
-        if USER_ID in session:
-            del session[USER_ID]
+        session.clear()
 
     def get_user_id(self):
         logger.debug("FlaskSessionManager get_user_id() - session %s", session)

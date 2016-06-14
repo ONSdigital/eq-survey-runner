@@ -1,4 +1,5 @@
 import logging
+from flask import session
 
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.jwt_decoder import JWTDecryptor
@@ -36,6 +37,11 @@ class Authenticator(object):
         :param request: The flask request
         :return: the decrypted and unencoded token
         """
+        # clear the session entry in the database
+        session_manager.clear()
+        # also clear the secure cookie data
+        session.clear()
+
         if request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME) is None:
             raise NoTokenException("Please provide a token")
         token = self._jwt_decrypt(request)
