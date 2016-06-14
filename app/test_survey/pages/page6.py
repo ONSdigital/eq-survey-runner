@@ -326,7 +326,7 @@ h14_s.id = "section-h14"
 
 h14_q = Question()
 h14_q.id = "question-h14"
-h14_q.title = 'In total, how many var or vans are owned, or available for use, by members of this household?'
+h14_q.title = 'In total, how many car or vans are owned, or available for use, by members of this household?'
 h14_q.description = '<p>Include any company car(s) or van(s) available for private use<p>'
 # TODO: Decide on Question Types and Response Types
 h14_q.type = "Radio"
