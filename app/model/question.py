@@ -12,7 +12,7 @@ class Question(object):
         self.questionnaire = None
         self.validation = None
         self.questionnaire = None
-        self.templatable_properties = ['description']
+        self.templatable_properties = ['title', 'description']
         self.display = Display()
         self.type = None
 
