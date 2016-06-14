@@ -92,7 +92,7 @@ h8_s.id = 'section-h8'
 h8_q = Question()
 h8_q.id = 'question-h8'
 h8_q.title = "Is this household's accomodation self-contained?"
-h8_q.description = "This means that all the rooms, including the kitchen, bathroom and toilet, are"
+h8_q.description = ''
 h8_q.type = "Radio"
 
 h8_r = Response()
@@ -109,6 +109,7 @@ h8_r.options = [
         "label": "No"
     }
 ]
+h8_r.guidance = "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use"  # NOQA
 
 h8_q.add_response(h8_r)
 h8_s.add_question(h8_q)
@@ -127,7 +128,7 @@ h9_s.id = 'section-h9'
 h9_q = Question()
 h9_q.id = 'question-h9'
 h9_q.title = 'How many rooms are available for use only by this household?'  # NOQA
-h9_q.description = '<p>Do NOT count</p><ul><li>bathrooms</li><li>toilets</li><li>halls or landings</li><li>rooms that can only be used for storage such as cupboards</li></ul><p>Count all other rooms, for example:</p><ul><li>kitchens</li><li>liviing rooms</li><li>utility rooms</li><li>bedrooms</li><li>studies</li><li>conservatories</li></ul><p> if two rooms have been converted into one, count them as one</p>'  # NOQA
+h9_q.description = ''
 h9_q.type = "General"
 
 
@@ -136,6 +137,7 @@ h9_r.type = "Integer"
 h9_r.code = 'H9'
 h9_r.id = "response-h9"
 h9_r.label = "Number of rooms"
+h9_r.guidance = '<p>Do NOT count</p><ul><li>bathrooms</li><li>toilets</li><li>halls or landings</li><li>rooms that can only be used for storage such as cupboards</li></ul><p>Count all other rooms, for example:</p><ul><li>kitchens</li><li>liviing rooms</li><li>utility rooms</li><li>bedrooms</li><li>studies</li><li>conservatories</li></ul><p> if two rooms have been converted into one, count them as one</p>'  # NOQA
 
 h9_q.add_response(h9_r)
 h9_s.add_question(h9_q)
@@ -151,7 +153,7 @@ h10_s.id = 'section-h10'
 h10_q = Question()
 h10_q.id = 'question-h10'
 h10_q.title = 'How many of these rooms are bedrooms?'
-h10_q.description = 'Include all rooms built or converted for use as bedrooms, even if they are not currently used as bedrooms'  # NOQA
+h10_q.description = ''
 h10_q.type = "Integer"
 
 h10_r = Response()
@@ -159,6 +161,7 @@ h10_r.id = 'response-h10'
 h10_r.type = "PositiveInteger"
 h10_r.code = 'H10'
 h10_r.label = "Number of bedrooms"
+h10_r.guidance = 'Include all rooms built or converted for use as bedrooms, even if they are not currently used as bedrooms'  # NOQA
 
 h10_q.add_response(h10_r)
 h10_s.add_question(h10_q)
@@ -175,7 +178,7 @@ h11_s.id = "section-h11"
 h11_q = Question()
 h11_q.id = "question-h11"
 h11_q.title = 'What type of central heating does this accomodation have?'
-h11_q.description = '<p>Tick all that apply, whether or not you use it</p><p>Central heating is a central system that generates heat for multiple rooms<p>'
+h11_q.description = '<p>Tick all that apply, whether or not you use it</p>'
 # TODO: Decide on Question Types and Response Types
 h11_q.type = "Checkboxes"
 
@@ -183,6 +186,7 @@ h11_r = Response()
 h11_r.id = "response1-h11"
 h11_r.type = "Checkbox"
 h11_r.code = "H11"
+h11_r.guidance = "<p>Central heating is a central system that generates heat for multiple rooms<p>"
 h11_r.options = [
     {
         "value": "h11_a",
@@ -356,7 +360,7 @@ h14_r1.options = [
 
 h14_r2 = Response()
 h14_r2.id = 'response2-h14'
-h14_r2.type = 'textfield'
+h14_r2.type = 'positiveinteger'
 h14_r2.code = "H14"
 
 h14_q.add_response(h14_r1)
