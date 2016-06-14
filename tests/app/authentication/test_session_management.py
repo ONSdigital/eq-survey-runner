@@ -27,7 +27,7 @@ class BaseSessionManagerTest(unittest.TestCase):
         with self.application.test_request_context():
             self.session_manager.store_user_id("test")
             self.assertTrue(self.session_manager.has_user_id())
-            self.session_manager.remove_user_id()
+            self.session_manager.clear()
             self.assertFalse(self.session_manager.has_user_id())
 
 
