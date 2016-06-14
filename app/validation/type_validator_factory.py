@@ -26,7 +26,7 @@ class TypeValidatorFactory(object):
         if isinstance(item, Response):
             if i_type.upper() == 'INTEGER':
                 validators.append(IntegerTypeCheck())
-            elif i_type.upper() == "POSTIVEINTEGER":
+            elif i_type.upper() == "POSITIVEINTEGER":
                 validators.append(PositiveIntegerTypeCheck())
             elif i_type.upper() == 'CURRENCY':
                 validators.append(PositiveIntegerTypeCheck())
