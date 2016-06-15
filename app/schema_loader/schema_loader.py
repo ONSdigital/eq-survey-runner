@@ -36,9 +36,9 @@ def load_schema(eq_id, form_type):
                 return json.loads(jsn_schema.read().decode("utf-8"))
             except botocore.exceptions.ClientError as e:
                 logging.error("S3 error: %s", e.response['Error']['Code'])
-                logging.error("No file exists for eq-id %s and form type %s", eq_id, form_type)
                 return None
         else:
+            logging.error("No file exists for eq-id %s and form type %s", eq_id, form_type)
             return None
 
 
