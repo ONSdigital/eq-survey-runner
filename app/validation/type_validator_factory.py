@@ -39,7 +39,8 @@ class TypeValidatorFactory(object):
             'TEXTAREA': [],
             'RADIOS': [],
             'CHECKBOXS': [],
-            'CHECKBOXES': []
+            'CHECKBOXES': [],
+            'GENERAL': []
         }
 
         i_type = item.type.upper()

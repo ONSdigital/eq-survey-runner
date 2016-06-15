@@ -16,7 +16,7 @@ i1_s.id = "section-i1"
 
 i1_q = Question()
 i1_q.id = "question-i1"
-i1_q.title = 'What is your name?'
+i1_q.title = '(I1) What is your name?'
 # TODO: Decide on Question Types and Response Types
 i1_q.type = "General"
 
@@ -50,7 +50,7 @@ i2_s.id = 'section-i2'
 
 i2_q = Question()
 i2_q.id = 'question-i2'
-i2_q.title = "What is your sex?"
+i2_q.title = "(I3) What is your sex?"
 i2_q.type = "Radio"
 
 i2_r = Response()
@@ -81,7 +81,7 @@ i3_s.id = 'section-i3'
 
 i3_q = Question()
 i3_q.id = 'question-i3'
-i3_q.title = "What is your date of birth?"
+i3_q.title = "(I3) What is your date of birth?"
 i3_q.type = "General"
 
 i3_r = Response()
@@ -101,12 +101,12 @@ i4_s.id = "section-i4"
 
 i4_q = Question()
 i4_q.id = "question-i4"
-i4_q.title = 'On {exercise.start_date:%-d %B %Y}, what is your legal marital or same-sex civil partnership status?'
-i4_q.type = "Checkboxes"
+i4_q.title = '(I4) On {exercise.return_by:%-d %B %Y}, what is your legal marital or same-sex civil partnership status?'
+i4_q.type = "Radios"
 
 i4_r = Response()
 i4_r.id = "response1-i4"
-i4_r.type = "Checkbox"
+i4_r.type = "Radio"
 i4_r.code = "I4"
 i4_r.options = [
     {
@@ -163,13 +163,13 @@ i6_s.id = "section-i6"
 
 i6_q = Question()
 i6_q.id = "question-i6"
-i6_q.title = 'What is that address?'
+i6_q.title = '(I6) What is that address?'
 # TODO: Decide on Question Types and Response Types
-i6_q.type = "Checkboxes"
+i6_q.type = "Radios"
 
 i6_r = Response()
 i6_r.id = "response1-i6"
-i6_r.type = "Checkbox"
+i6_r.type = "Radio"
 i6_r.code = "I6"
 i6_r.options = [
     {
@@ -216,7 +216,7 @@ i7_s.id = 'section-i7'
 
 i7_q = Question()
 i7_q.id = 'question-i7'
-i7_q.title = "Are you a schoolchild or student in full-time education?"
+i7_q.title = "(I7) Are you a schoolchild or student in full-time education?"
 i7_q.type = "Radio"
 
 i7_r = Response()
@@ -248,13 +248,13 @@ i8_s.id = "section-i8"
 
 i8_q = Question()
 i8_q.id = "question-i8"
-i8_q.title = 'During term time, do you live:'
+i8_q.title = '(I8) During term time, do you live:'
 # TODO: Decide on Question Types and Response Types
-i8_q.type = "Checkboxes"
+i8_q.type = "Radios"
 
 i8_r = Response()
 i8_r.id = "response1-i8"
-i8_r.type = "Checkbox"
+i8_r.type = "Radio"
 i8_r.code = "I8"
 i8_r.options = [
     {
@@ -286,13 +286,13 @@ i9_s.id = "section-i9"
 
 i9_q = Question()
 i9_q.id = "question-i9"
-i9_q.title = 'What is your country of birth?'
+i9_q.title = '(I9) What is your country of birth?'
 # TODO: Decide on Question Types and Response Types
-i9_q.type = "Checkboxes"
+i9_q.type = "Radios"
 
 i9_r1 = Response()
 i9_r1.id = "response1-i9"
-i9_r1.type = "Checkbox"
+i9_r1.type = "Radio"
 i9_r1.code = "I9"
 i9_r1.options = [
     # @TODO: Should route to question 13
@@ -345,7 +345,7 @@ i10_s.id = 'section-i10'
 
 i10_q = Question()
 i10_q.id = 'question-i10'
-i10_q.title = "If you were not born in the united kingdom, when did you most recently arrive to live here?"
+i10_q.title = "(I10) If you were not born in the united kingdom, when did you most recently arrive to live here?"
 i10_q.description = "Do not count short stay visits away from the UK"
 i10_q.type = "General"
 
@@ -369,13 +369,13 @@ i12_s.id = "section-i12"
 
 i12_q = Question()
 i12_q.id = "question-i12"
-i12_q.title = 'Including the time you have already spent here, how long do you intend to stay in the United Kingdom?'
+i12_q.title = '(I12) Including the time you have already spent here, how long do you intend to stay in the United Kingdom?'
 # TODO: Decide on Question Types and Response Types
-i12_q.type = "Checkboxes"
+i12_q.type = "Radios"
 
 i12_r = Response()
 i12_r.id = "response1-i12"
-i12_r.type = "Checkbox"
+i12_r.type = "Radio"
 i12_r.code = "I12"
 i12_r.options = [
     {
@@ -405,13 +405,13 @@ i13_s.id = "section-i13"
 
 i13_q = Question()
 i13_q.id = "question-i13"
-i13_q.title = 'How is your health in general?'
+i13_q.title = '(I13) How is your health in general?'
 # TODO: Decide on Question Types and Response Types
-i13_q.type = "Checkboxes"
+i13_q.type = "Radios"
 
 i13_r = Response()
 i13_r.id = "response1-i13"
-i13_r.type = "Checkbox"
+i13_r.type = "Radio"
 i13_r.code = "I13"
 i13_r.options = [
     {
@@ -449,14 +449,14 @@ i14_s.id = "section-i14"
 
 i14_q = Question()
 i14_q.id = "question-i14"
-i14_q.title = 'Do you look after, or give any help or support to family members, friends, neighbours or others because of either:<br><ul><li>long-term physical or mental ill-health/disability?<li><li>problems related to old age?</li></ul>'  # NOQA
+i14_q.title = '(I14) Do you look after, or give any help or support to family members, friends, neighbours or others because of either:<br><ul><li>long-term physical or mental ill-health/disability?<li><li>problems related to old age?</li></ul>'  # NOQA
 i14_q.description = "Do not count anything you do as part of your paid employment"
 # TODO: Decide on Question Types and Response Types
-i14_q.type = "Checkboxes"
+i14_q.type = "Radios"
 
 i14_r = Response()
 i14_r.id = "response1-i14"
-i14_r.type = "Checkbox"
+i14_r.type = "Radio"
 i14_r.code = "I14"
 i14_r.options = [
     {

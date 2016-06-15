@@ -17,11 +17,13 @@ class Renderer(object):
         start_date = None
         end_date = None
         employment_date = None
+        return_by = None
 
         try:
             start_date = self._metadata.get_ref_p_start_date()
             end_date = self._metadata.get_ref_p_end_date()
             employment_date = self._metadata.get_employment_date()
+            return_by = self._metadata.get_return_by()
         except:
             pass
 
@@ -29,7 +31,8 @@ class Renderer(object):
             "exercise": ObjectFromDict({
                 "start_date": start_date,
                 "end_date": end_date,
-                "employment_date": employment_date
+                "employment_date": employment_date,
+                "return_by": return_by
             })
         }
 

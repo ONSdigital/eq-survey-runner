@@ -16,10 +16,10 @@ i15_s.id = "section-i15"
 
 i15_q = Question()
 i15_q.id = "question-i15"
-i15_q.title = 'How would you describe your national identity?'
-i15_q.description = 'Tick all that apply'
+i15_q.title = '(I15) How would you describe your national identity?'
+i15_q.description = 'Select all that apply'
 # TODO: Decide on Question Types and Response Types
-i15_q.type = "Checkboxes"
+i15_q.type = "General"
 
 i15_r1 = Response()
 i15_r1.id = "response1-i15"
@@ -76,8 +76,8 @@ i16_s.id = 'section-i16'
 
 i16_q = Question()
 i16_q.id = 'question-i16'
-i16_q.title = "What is your ethnic group?"
-i16_q.type = "Radio"
+i16_q.title = "(I16) What is your ethnic group?"
+i16_q.type = "General"
 
 i16_r1 = Response()
 i16_r1.id = 'response1-i16'
@@ -256,7 +256,7 @@ i18_s.id = "section-i18"
 
 i18_q = Question()
 i18_q.id = "question-i18"
-i18_q.title = 'What is your main language?'
+i18_q.title = '(I18) What is your main language?'
 # TODO: Decide on Question Types and Response Types
 i18_q.type = "General"
 
@@ -298,7 +298,7 @@ i19_s.id = 'section-i19'
 
 i19_q = Question()
 i19_q.id = 'question-i19'
-i19_q.title = "How well can you speak English?"
+i19_q.title = "(I19) How well can you speak English?"
 i19_q.type = "Radio"
 
 i19_r = Response()
@@ -337,13 +337,13 @@ i20_s.id = 'section-i20'
 
 i20_q = Question()
 i20_q.id = 'question-i20'
-i20_q.title = "What is your religion?"
+i20_q.title = "(I20) What is your religion?"
 i20_q.description = "This question is voluntary"
 i20_q.type = "General"
 
 i20_r1 = Response()
 i20_r1.id = 'response-i20'
-i20_r1.type = "Radio"
+i20_r1.type = "Checkbox"
 i20_r1.code = 'I20'
 i20_r1.label = "White"
 i20_r1.options = [

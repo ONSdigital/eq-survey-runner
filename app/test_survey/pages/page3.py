@@ -16,8 +16,8 @@ h1_s.id = "section-h1"
 
 h1_q = Question()
 h1_q.id = "question-h1"
-h1_q.title = 'Who usually lives here?'
-h1_q.description = 'Tick all that apply'
+h1_q.title = '(H1) Who usually lives here?'
+h1_q.description = 'Select all that apply'
 # TODO: Decide on Question Types and Response Types
 h1_q.type = "Checkboxes"
 
@@ -60,7 +60,7 @@ h1_r.options = [
     },
     {
         "value": "h1_i",
-        "label": "Other people who usually llive here, including anyone temporarily away from home"
+        "label": "Other people who usually live here, including anyone temporarily away from home"
     },
 
     # TODO: This option should be exclusive and unset other options
@@ -85,7 +85,7 @@ h2_s.id = 'section-h2'
 
 h2_q = Question()
 h2_q.id = 'question-h2'
-h2_q.title = 'Counting everyone you included in question H1, how many people usually live here?'
+h2_q.title = '(H2) Counting everyone you included in question H1, how many people usually live here?'
 h2_q.type = "Integer"
 
 h2_r = Response()
@@ -109,7 +109,7 @@ h4_s.id = 'section-h4'
 
 h4_q = Question()
 h4_q.id = 'question-h4'
-h4_q.title = 'Apart from everyone counted in question H2, who else is staying overnight here on 27 March 2011? These people are counted as visitors. Remeber to include children and babies.'  # NOQA
+h4_q.title = '(H4) Apart from everyone counted in question H2, who else is staying overnight here on {exercise.return_by:%-d %B %Y}? These people are counted as visitors. Remember to include children and babies.'  # NOQA
 h4_q.description = 'Tick all that apply'
 h4_q.type = "Checkboxes"
 
@@ -140,7 +140,7 @@ h4_r.options = [
     # TODO: This option should route the respondent to H6
     {
         "value": "h4_e",
-        "label": "There are no visitors staying overnight here on 27 March 2011"
+        "label": "There are no visitors staying overnight here on {exercise.return_by:%-d %B %Y}"
     }
 ]
 
@@ -157,7 +157,7 @@ h5_s.id = 'section-h5'
 
 h5_q = Question()
 h5_q.id = 'question-h5'
-h5_q.title = 'Counting only the people included in question H4, how many visitors are staying overnight here on 27 March 2011?'
+h5_q.title = '(H5) Counting only the people included in question H4, how many visitors are staying overnight here on {exercise.return_by:%-d %B %Y}?'
 h5_q.description = 'If there is no-one usually living here (there are only visitors staying here) answer questions H7 to H11 on page 6 and then go to the back page (page 32) to answer the Visitor questions'  # NOQA
 h5_q.type = "Integer"
 

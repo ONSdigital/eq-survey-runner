@@ -16,7 +16,7 @@ h7_s.id = "section-h7"
 
 h7_q = Question()
 h7_q.id = "question-h7"
-h7_q.title = 'What type of accomodation is this?'
+h7_q.title = '(H7) What type of accommodation is this?'
 # TODO: Decide on Question Types and Response Types
 h7_q.type = "Checkboxes"
 
@@ -91,7 +91,7 @@ h8_s.id = 'section-h8'
 
 h8_q = Question()
 h8_q.id = 'question-h8'
-h8_q.title = "Is this household's accomodation self-contained?"
+h8_q.title = "(H8) Is this household's accommodation self-contained?"
 h8_q.description = ''
 h8_q.type = "Radio"
 
@@ -127,7 +127,7 @@ h9_s.id = 'section-h9'
 
 h9_q = Question()
 h9_q.id = 'question-h9'
-h9_q.title = 'How many rooms are available for use only by this household?'  # NOQA
+h9_q.title = '(H9) How many rooms are available for use only by this household?'  # NOQA
 h9_q.description = ''
 h9_q.type = "General"
 
@@ -152,7 +152,7 @@ h10_s.id = 'section-h10'
 
 h10_q = Question()
 h10_q.id = 'question-h10'
-h10_q.title = 'How many of these rooms are bedrooms?'
+h10_q.title = '(H10) How many of these rooms are bedrooms?'
 h10_q.description = ''
 h10_q.type = "Integer"
 
@@ -177,7 +177,7 @@ h11_s.id = "section-h11"
 
 h11_q = Question()
 h11_q.id = "question-h11"
-h11_q.title = 'What type of central heating does this accomodation have?'
+h11_q.title = '(H11) What type of central heating does this accomodation have?'
 h11_q.description = '<p>Tick all that apply, whether or not you use it</p>'
 # TODO: Decide on Question Types and Response Types
 h11_q.type = "Checkboxes"
@@ -228,8 +228,8 @@ h12_s.id = "section-h12"
 
 h12_q = Question()
 h12_q.id = "question-h12"
-h12_q.title = 'Does your household own or rent this accomodation?'
-h12_q.description = '<p>Tick one box only<p>'
+h12_q.title = '(H12) Does your household own or rent this accomodation?'
+h12_q.description = '<p>Select one box only<p>'
 # TODO: Decide on Question Types and Response Types
 h12_q.type = "Radio"
 
@@ -276,8 +276,8 @@ h13_s.id = "section-h13"
 
 h13_q = Question()
 h13_q.id = "question-h13"
-h13_q.title = 'Does your household own or rent this accomodation?'
-h13_q.description = '<p>Tick one box only<p>'
+h13_q.title = '(H13) Does your household own or rent this accomodation?'
+h13_q.description = '<p>Select one box only<p>'
 # TODO: Decide on Question Types and Response Types
 h13_q.type = "Radio"
 
@@ -326,7 +326,7 @@ h14_s.id = "section-h14"
 
 h14_q = Question()
 h14_q.id = "question-h14"
-h14_q.title = 'In total, how many car or vans are owned, or available for use, by members of this household?'
+h14_q.title = '(H14) In total, how many cars or vans are owned, or available for use, by members of this household?'
 h14_q.description = '<p>Include any company car(s) or van(s) available for private use<p>'
 # TODO: Decide on Question Types and Response Types
 h14_q.type = "Radio"
