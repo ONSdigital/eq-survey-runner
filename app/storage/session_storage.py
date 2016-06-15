@@ -26,4 +26,4 @@ class FlaskSessionStore(AbstractServerStorage):
             del session[QUESTIONNAIRE_DATA]
 
     def clear(self):
-        session.clear()
+        session.delete()

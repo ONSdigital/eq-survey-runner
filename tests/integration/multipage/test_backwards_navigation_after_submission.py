@@ -1,5 +1,6 @@
 from .test_happy_path import TestHappyPath
 
+
 class TestbackwardsNavigationAfterSubmission(TestHappyPath):
 
     def test_backwards_navigation_205(self):

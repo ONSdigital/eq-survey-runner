@@ -1,13 +1,8 @@
-import unittest
-from app import create_app
 from tests.integration.create_token import create_token
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
-class TestInvalidDateNumber(unittest.TestCase):
-
-    def setUp(self):
-        self.application = create_app('development')
-        self.client = self.application.test_client()
+class TestInvalidDateNumber(IntegrationTestCase):
 
     def test_invalid_date_number_205(self):
         self.invalid_date_number('0205', '1')

@@ -1,13 +1,8 @@
-import unittest
-from app import create_app
+from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.create_token import create_token
 
 
-class TestEmptySubmission(unittest.TestCase):
-
-    def setUp(self):
-        self.application = create_app('development')
-        self.client = self.application.test_client()
+class TestEmptySubmission(IntegrationTestCase):
 
     def test_empty_submission_205(self):
         self.empty_submission('0205','1')

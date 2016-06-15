@@ -1,4 +1,4 @@
-from app.authentication.session_management import FlaskSessionManager, DatabaseSessionManager
+from app.authentication.session_management import DatabaseSessionManager
 from flask import Flask
 import unittest
 from datetime import timedelta
@@ -12,7 +12,9 @@ class BaseSessionManagerTest(unittest.TestCase):
         application.secret_key = 'you will not guess'
         application.permanent_session_lifetime = timedelta(seconds=1)
         self.application = application
-        self.session_manager = FlaskSessionManager()
+        # Use an in memory database
+        settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
+        self.session_manager = DatabaseSessionManager()
 
     def test_has_token_empty(self):
         with self.application.test_request_context():
@@ -29,21 +31,6 @@ class BaseSessionManagerTest(unittest.TestCase):
             self.assertTrue(self.session_manager.has_user_id())
             self.session_manager.clear()
             self.assertFalse(self.session_manager.has_user_id())
-
-
-class TestDatabaseSessionManager(BaseSessionManagerTest):
-    def setUp(self):
-        super().setUp()
-        # Use an in memory database
-        settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
-        self.session_manager = DatabaseSessionManager()
-
-
-class TestFlaskSessionManager(BaseSessionManagerTest):
-
-    def setUp(self):
-        super().setUp()
-        self.session_manager = FlaskSessionManager()
 
 
 if __name__ == '__main__':

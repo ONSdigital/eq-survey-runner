@@ -52,7 +52,6 @@ EQ_UA_ID = os.getenv('EQ_UA_ID', '')
 EQ_SCHEMA_BUCKET = os.getenv('EQ_SCHEMA_BUCKET', "eq-schema-files-" + os.getenv('USER', 'UNKNOWN'))
 
 
-EQ_SERVER_SIDE_STORAGE = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE', 'False'))
 EQ_SERVER_SIDE_STORAGE_TYPE = os.getenv('EQ_SERVER_SIDE_STORAGE_TYPE', 'DATABASE')
 EQ_SERVER_SIDE_STORAGE_ENCRYPTION = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION', 'True'))
 EQ_SERVER_SIDE_STORAGE_DATABASE_URL = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_URL', 'sqlite:////tmp/questionnaire.db')
