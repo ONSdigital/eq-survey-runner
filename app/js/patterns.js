@@ -11,7 +11,7 @@
     'tabs-to-spaces': 1
   })
 
-  let $nav, $header, highlight
+  let $nav, $header
   const scrollHandler = () => {
     if (window.scrollY > $header[0].scrollHeight) {
       $nav.addClass('is-fixed')

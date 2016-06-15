@@ -18,6 +18,7 @@
   <div class="ptn-example">
     {{markup|prettify|safe}}
   </div>
+
   {{code(markup)}}
 {% endmacro %}
 
@@ -40,11 +41,11 @@
       <label class="ptn-code-toggle-label" for="{{id}}">View code</label>
     {% endif %}
     <div class="ptn-code-highlight">
-{% filter markdown %}
-```markup
-{{markup|prettify|safe}}
-```
-{% endfilter %}
+      <pre class="language-html">
+        <code>
+          {{markup|prettify}}
+        </code>
+      </pre>
     </div>
   </div>
 {% endmacro %}
