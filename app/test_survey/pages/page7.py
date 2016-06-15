@@ -362,6 +362,18 @@ test_questionnaire.register(i10_q)
 test_questionnaire.register(i10_s)
 
 # @TODO: Question 11 is a simple routing check which directs the user based on the date entered in i10
+i11_s = Section()
+i11_s.id = 'section-i11'
+
+i11_q = Question()
+i11_q.id = 'question-i11'
+i11_q.title = "This question on the paper form just contains a routing instruction.  Here it is used to test whether we can display simple instructions"
+i11_q.type = "General"
+
+i11_s.add_question(i11_q)
+page7.add_section(i11_s)
+test_questionnaire.register(i11_s)
+test_questionnaire.register(i11_q)
 
 # I12
 i12_s = Section()
