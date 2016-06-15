@@ -2,9 +2,16 @@ from app import settings
 import json
 import os
 import logging
+import boto3
+import botocore
 
+
+class SchemaNotFound(Exception):
+    pass
 
 logger = logging.getLogger(__name__)
+
+# s3 = boto3.resource('s3')
 
 
 def load_schema(eq_id, form_type):
@@ -16,12 +23,23 @@ def load_schema(eq_id, form_type):
     :return: The Schema representing in a dict
     """
     logging.debug("About to load schema for eq-id %s and form type %s", eq_id, form_type)
+    schema_key = ("{}_{}.json").format(eq_id, form_type)
     try:
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, eq_id + "_" + form_type + ".json"), encoding="utf8")
+        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, schema_key), encoding="utf8")
         return json.load(schema_file)
     except FileNotFoundError:
-        logging.error("No file exists for eq-id %s and form type %s", eq_id, form_type)
-        return None
+        if settings.EQ_SCHEMA_BUCKET:
+            try:
+                s3 = boto3.resource('s3')
+                schema = s3.Object(settings.EQ_SCHEMA_BUCKET, schema_key)
+                jsn_schema = schema.get()['Body']
+                return json.loads(jsn_schema.read().decode("utf-8"))
+            except botocore.exceptions.ClientError as e:
+                logging.error("S3 error: %s", e.response['Error']['Code'])
+                logging.error("No file exists for eq-id %s and form type %s", eq_id, form_type)
+                return None
+        else:
+            return None
 
 
 def available_schemas():
@@ -29,4 +47,9 @@ def available_schemas():
     for file in os.listdir(settings.EQ_SCHEMA_DIRECTORY):
         if os.path.isfile(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file)):
             files.append(file)
+    if settings.EQ_SCHEMA_BUCKET:
+        s3 = boto3.resource('s3')
+        schemas_bucket = s3.Bucket(settings.EQ_SCHEMA_BUCKET)
+        for key in schemas_bucket.objects.all():
+            files.append(key.key)
     return files
