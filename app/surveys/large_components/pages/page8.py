@@ -3,7 +3,7 @@ from app.model.section import Section
 from app.model.question import Question
 from app.model.response import Response
 
-from app.test_survey.test_survey import test_questionnaire
+from app.surveys.large_test import test_questionnaire
 
 page8 = Block()
 page8.id = 'page-8'

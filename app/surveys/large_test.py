@@ -2,10 +2,13 @@ from app.model.questionnaire import Questionnaire
 
 # Create the Questionnaire
 test_questionnaire = Questionnaire()
+large_test = test_questionnaire
+eq_id = '0'
+form_type = '2011'
 
 # Do the imports here to prevent circular dependencies
-from app.test_survey.groups.household_questions import household_questions  # NOQA
-from app.test_survey.groups.individual_questions import individual_questions  # NOQA
+from app.surveys.large_components.groups.household_questions import household_questions  # NOQA
+from app.surveys.large_components.groups.individual_questions import individual_questions  # NOQA
 
 # Set the questionnaire properties
 test_questionnaire.id = "questionnaire"

@@ -1,9 +1,9 @@
 from app.model.group import Group
 
-from app.test_survey.pages.page3 import page3
-# from app.test_survey.pages.page4 import page4
-# from app.test_survey.pages.page5 import page5
-from app.test_survey.pages.page6 import page6
+from app.surveys.large_components.pages.page3 import page3
+# from app.surveys.large_components.pages.page4 import page4
+# from app.surveys.large_components.pages.page5 import page5
+from app.surveys.large_components.pages.page6 import page6
 
 household_questions = Group()
 household_questions.id = 'household-questions'

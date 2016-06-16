@@ -1,7 +1,7 @@
 from app.model.group import Group
 
-from app.test_survey.pages.page7 import page7
-from app.test_survey.pages.page8 import page8
+from app.surveys.large_components.pages.page7 import page7
+from app.surveys.large_components.pages.page8 import page8
 
 individual_questions = Group()
 individual_questions.id = 'individual-questions'
