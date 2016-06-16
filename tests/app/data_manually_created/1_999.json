@@ -1,0 +1,320 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "questionnaire_id": "888",
+    "survey_id": "888",
+    "title": "Test Survey",
+    "description": "Test Survey",
+    "introduction": {
+        "description": "<p>The information supplied will not be stored and is only for research purposes.  You do not need to give personal information and can provide estimates where possible.All the information you input into the questionnaire and any additional information that you provide will be treated in the strictest confidence. Nothing that could identify you will be passed on to anyone outside the small research team working on this project. Any reports we produce on our findings will not identify you personally or your company. All the information you provide is kept strictly confidential. It is illegal for us to reveal your identity to unauthorised persons.</p>"
+    },
+    "groups": [
+        {
+            "id": "6e23a82c-b124-4dcc-8874-9e86f6fb653d",
+            "title": "",
+            "blocks": [
+                {
+                    "id": "0e41e80a-f45a-4dfd-9ae0-55cc2c7807d9",
+                    "title": "Test Survey - Page One",
+                    "sections": [
+                        {
+                            "id": "ccf71d21-8ef6-4003-859f-00b199439cce",
+                            "title":"",
+                            "questions": [
+                                {
+                                    "id": "",
+                                    "title": "What are the dates of the retail spending period you are reporting for?",
+                                    "description": "If possible, these should be for the period 11th April 2016 to 15th April 2016.",
+                                    "type":"DateRange",
+                                    "responses": [
+                                        {
+                                            "id": "1ce2045f-e773-4ef4-9767-a864cbfc8577",
+                                            "q_code": "11",
+                                            "label": "From",
+                                            "guidance": "",
+                                            "type": "Date",
+                                            "options":[],
+                                            "mandatory":true,
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing.",
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "id": "fa0e74dc-cd84-45b8-8761-23bb1f4af1cb",
+                                            "q_code": "12",
+                                            "label": "To",
+                                            "guidance": "",
+                                            "type": "Date",
+                                            "options":[],
+                                            "mandatory":true,
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing.",
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer."
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "5dc9b6e1-e069-451c-afe7-f1b9069e6763",
+                            "title":"",
+                            "questions": [
+                                {
+                                    "id": "e5ea8649-0869-4bd6-b2b9-d3b4e790602b",
+                                    "title": "Contact Details",
+                                    "description": "",
+                                    "type":"Integer",
+                                    "responses": [
+                                        {
+                                            "id": "ddd33acb-3d9c-4b27-b99e-1407935cdd16",
+                                            "q_code": "01",
+                                            "label": "What is your preferred phone number?",
+                                            "guidance": "",
+                                            "type": "Integer",
+                                            "options":[],
+                                            "mandatory":true,
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "c521b947-3424-4f1b-8e5e-10f5e882ad0c",
+                            "title":"",
+                            "questions": [
+                                {
+                                    "id": "b4cf8d77-59ea-4633-bfa4-2f6a5d3ca8a9",
+                                    "title": "Retail spending",
+                                    "description": "- You should enter figures for the reporting period stated above<br/>- You should round your figures to the nearest (£) pound<br/>- Please provide estimates if you are not sure of the actual figures<br/>Include:<br/><ul><li>VAT</li><li>internet purchases</li></ul>",
+                                    "type":"Currency",
+                                    "responses": [
+                                        {
+                                            "id": "047cf8f5-e9c4-4a6c-a3f0-293bdf54dd0d",
+                                            "q_code": "02",
+                                            "label": "What was the value of your total spend on food?",
+                                            "guidance": "Include:<ul><li>all fresh food</li><li>eating out</li><li>takeaways</li><li>soft drinks</li></ul>Exclude:<ul><li>Alcoholic beverages</li><li>Non-consumable household items</li></ul>",
+                                            "type": "Currency",
+                                            "options":[],
+                                            "mandatory":true,
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
+                                                }
+                                            }
+                                        }
+                                      ]
+                                },
+                               {
+                                    "id": "97b471e6-7347-4187-a5f0-9eca46ff49fd",
+                                    "title": "",
+                                    "description": "",
+                                    "type":"Currency",
+                                    "responses": [
+                                        {
+                                            "id": "8075e95f-cfb4-40e4-bc1c-f90b373ca22a",
+                                            "q_code": "03",
+                                            "label": "What was the value of your total spend on alcohol, confectionary & tobacco?",
+                                            "guidance": "Include:<ul><li>alcoholic drink</li><li>chocolate and sugar confectionary</li><li>tobacco and smokers’ requisites</li></ul>",
+                                            "type": "Currency",
+                                            "options":[],
+                                            "mandatory":true,
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
+                                                }
+                                            }
+                                        }
+                                      ]
+                                },
+                              {
+                                    "id": "fa73f9aa-c619-4b00-89c8-e8c95bfe43df",
+                                    "title": "",
+                                    "description": "",
+                                    "type":"Currency",
+                                    "responses": [
+                                        {
+                                            "id": "b01820e9-7437-4383-a557-48d736898924",
+                                            "q_code": "04",
+                                            "label": "What was the value of your total spend on clothing and footwear?",
+                                            "guidance": "Include:<ul><li>clothing and footwear</li><li>clothing fabrics</li><li>haberdashery and furs</li><li>leather and travel goods</li><li>handbags</li><li>haberdashery and furs</li></ul>",
+                                            "type": "Currency",
+                                            "options":[],
+                                            "mandatory":true,
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
+                                                }
+                                            }
+                                        }
+                                      ]
+                                },
+
+                              {
+                                    "id": "247c36aa-8ad5-49d7-a0c1-4269e3728da5",
+                                    "title": "",
+                                    "description": "",
+                                    "type":"Currency",
+                                    "responses": [
+                                        {
+                                            "id": "f77ae356-6f42-4afe-a476-747b1aab4a6c",
+                                            "q_code": "05",
+                                            "label": "What was your total spend on retail?",
+                                            "guidance": "Include:<ul><li>VAT</li><li>internet purchases</li><li>food</li><li>alcohol, confectionary & tobacco</li><li>clothing & Footwear</li></ul>Exclude:<ul><li></li>Household goods</ul>",
+                                            "type": "Currency",
+                                            "options":[],
+                                            "mandatory":true,
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
+                                                }
+                                            }
+                                        }
+                                      ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "0e41e80a-f45a-2dfd-9fe0-55cc2c7807d9",
+                    "title": "Test Survey - Page Two",
+                    "sections": [
+                        {
+                            "id": "feea53d4-8572-4879-bc75-b8d06d4438ac",
+                            "title":"",
+                            "questions": [
+                              {
+                                "id": "3b83a88e-a200-4a8f-ba70-6a18aca11016",
+                                "title": "Household questions",
+                                "description": "",
+                                "type": "Integer",
+                                "responses": [
+                                  {
+                                    "id": "a5c43b5b-f6e9-412f-834d-2d6cc83b5436",
+                                    "q_code": "06",
+                                    "label": "How many people usually live in your household?",
+                                    "guidance": "",
+                                    "type": "Integer",
+                                    "options":[],
+                                    "mandatory": true,
+                                    "validation": {
+                                      "messages": {
+                                        "MANDATORY": "Please answer before continuing.",
+                                        "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                        "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                               {
+                                "id": "ec040bb2-179e-4a17-93ec-81871a4433b7",
+                                "title": "",
+                                "description": "",
+                                "type": "Integer",
+                                "responses": [
+                                  {
+                                    "id": "d5f9db59-9cc0-433f-9318-39f83b63d4d8",
+                                    "q_code": "07",
+                                    "label": "Counting the people included above, how many visitors were staying overnight on 11th April 2016?",
+                                    "guidance": "",
+                                    "type": "Integer",
+                                    "options":[],
+                                    "mandatory":true,
+                                    "validation": {
+                                      "messages": {
+                                        "MANDATORY": "Please answer before continuing.",
+                                        "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                        "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "c9ec900a-8fae-4b1e-82a8-1f55276c69df",
+                                "title": "",
+                                "description": "",
+                                "type": "Integer",
+                                "responses": [
+                                  {
+                                    "id": "863d4afa-17e8-4537-bbae-65d19a6894c1",
+                                    "q_code": "08",
+                                    "label": "How many rooms are available for use only by your household?",
+                                    "guidance": "Do NOT count:<ul><li>Bathrooms</li><li>Toilets</li><li>Halls or landings</li><li>Rooms that can only be used for storage such as cupboards</li></ul>Count all other rooms, for example:<ul><li>Kitchens</li><li>Living rooms</li><li>Utility rooms</li><li>Bedrooms</li><li>Studies</li><li>Conservatories</li></ul>If two rooms have been converted into one, count them as one room",
+                                    "type": "Integer",
+                                    "options":[],
+                                    "mandatory":true,
+                                    "validation": {
+                                      "messages": {
+                                        "MANDATORY": "Please answer before continuing.",
+                                        "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                        "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "0e41e80a-f45a-2dfd-9fe0-55cc2c7807d0",
+                    "title": "Test Survey - Page Three",
+                    "sections": [
+                        {
+                            "id": "56329aae-0698-44f6-b71c-f5dfb9dd1d0f",
+                            "title":"Comments",
+                            "questions": [
+                                {
+                                    "id": "b7fa3176-24a5-47bc-991c-661b2e990cc6",
+                                    "title": "",
+                                    "description": "",
+                                    "type":"Textarea",
+                                    "responses": [
+                                        {
+                                            "id": "6a3c8f46-112b-49df-aed8-0f7572074cec",
+                                            "q_code": "146",
+                                            "label": "Please give any comments about completing this survey",
+                                            "guidance": "",
+                                            "type": "Textarea",
+                                            "options":[],
+                                            "mandatory":false,
+                                            "display": {
+                                                "properties": {
+                                                    "max_length": "2000"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

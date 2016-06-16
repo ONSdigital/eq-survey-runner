@@ -4,7 +4,7 @@
     "questionnaire_id": "23",
     "survey_id": "023",
     "title": "Monthly Business Survey - Retail Sales Index",
-    "description": "MCI description",
+    "description": "MCI Description",
     "introduction": {
       "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>"
     },
@@ -235,30 +235,6 @@
                                 }
                               }
                             ]
-                          },
-                          {
-                            "id": "96984134-1863-4450-b314-c44cf48d2bcd",
-                            "title": "",
-                            "description": "",
-                            "type": "Currency",
-                            "responses": [
-                              {
-                                "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
-                                "q_code": "27",
-                                "label": "What was the value of the business’s total sales of automotive fuel?",
-                                "guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commissions</li> </ul></div>",
-                                "type": "Currency",
-                                "options":[],
-                                "mandatory": false,
-                                "validation": {
-                                  "messages": {
-                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
-                                  }
-                                }
-                              }
-                            ]
                           }
                         ]
                       },
@@ -271,13 +247,13 @@
                               {
                                 "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
                                 "title": "",
-                                "description": "",
+                                "description": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                                 "type": "Textarea",
                                 "responses": [
                                     {
                                       "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
                                       "q_code": "146",
-                                      "label": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
+                                      "label": "",
                                       "guidance": "",
                                       "type": "Textarea",
                                       "options":[],

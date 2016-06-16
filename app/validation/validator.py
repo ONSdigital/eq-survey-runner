@@ -36,6 +36,7 @@ class Validator(object):
         }
 
     def validate(self, user_data):
+
         for item_id in user_data.keys():
             logger.debug('Attempting to validate {}'.format(item_id))
             item = self._schema.get_item_by_id(item_id)

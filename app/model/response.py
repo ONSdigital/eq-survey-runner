@@ -1,8 +1,8 @@
 class Response(object):
     def __init__(self):
         self.id = None
-        self.label = None
-        self.guidance = None
+        self.label = ""
+        self.guidance = ""
         self.type = None
         self.code = None
         self.container = None
@@ -12,6 +12,7 @@ class Response(object):
         self.display = None
         self.messages = {}
         self.templatable_properties = []
+        self.options = []
 
     def to_json(self):
         json_dict = {
@@ -24,14 +25,18 @@ class Response(object):
                 "messages": {}
             },
             "mandatory": self.mandatory,
-            'display': {}
+            'display': {},
+            'options': []
         }
 
         for key, value in self.messages.items():
             json_dict['validation']['messages'][key] = value
 
         if self.display is not None:
-            json_dict['display'] = self.display.to_json()
+            json_dict['display'] = {"properties": self.display.properties}
+
+        for option in self.options:
+            json_dict['options'].append(option)
 
         return json_dict
 

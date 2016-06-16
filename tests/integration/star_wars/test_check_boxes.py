@@ -51,9 +51,7 @@ class TestEmptyCheckBoxes(unittest.TestCase):
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
             "7587eb9b-f24e-4dc0-ac94-66118b896c10" : "Luke, I am your father",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
             "9587eb9b-f24e-4dc0-ac94-66117b896c10":"",
-            "5587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Han Solo, Senator Amidala]",
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
@@ -94,10 +92,7 @@ class TestEmptyCheckBoxes(unittest.TestCase):
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
             "7587eb9b-f24e-4dc0-ac94-66118b896c10" : "Luke, I am your father",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
             "9587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Yoda, Qui-Gon Jinn]",
-            "5587eb9b-f24e-4dc0-ac94-66117b896c10":"",
-
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",

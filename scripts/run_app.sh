@@ -46,6 +46,8 @@ fi
 
 url="`python token_generator.py`"
 
+python generate_json.py
+
 if [ -z "${TRAVIS}" ]; then
   open_url $url &
   python application.py runserver

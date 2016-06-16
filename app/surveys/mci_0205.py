@@ -11,6 +11,8 @@ from app.validation.abstract_validator import AbstractValidator
 # Create the questionnaire object
 mci_0205 = Questionnaire()
 questionnaire = mci_0205
+eq_id = "1"
+form_type = "0205"
 
 questionnaire.id = "23"
 questionnaire.title = "Monthly Business Survey - Retail Sales Index"
@@ -30,12 +32,12 @@ questionnaire.add_group(group)
 questionnaire.register(group)
 
 # Create the block
-block = Block()
-block.id = "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
-block.title = "Monthly Business Survey"
+b1 = Block()
+b1.id = "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
+b1.title = "Monthly Business Survey"
 
-group.add_block(block)
-questionnaire.register(block)
+group.add_block(b1)
+questionnaire.register(b1)
 
 # Add the sections
 
@@ -48,7 +50,7 @@ s1.id = "f11bc7dc-3940-4c7d-9d0e-faa6acb23eeb"
 s1.title = ""
 s1.description = ""
 
-block.add_section(s1)
+b1.add_section(s1)
 questionnaire.register(s1)
 
 # Date Range question
@@ -102,7 +104,7 @@ s2.id = "d9d25a21-41b8-42b2-ac7b-fb21b1036d71"
 s2.title = "Commodities - Retail Turnover"
 s2.description = "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (£) pound</p><h4>Include</h4><ul><li>VAT</li><li>Internet Sales</li></ul>"  # NOQA
 
-block.add_section(s2)
+b1.add_section(s2)
 questionnaire.register(s2)
 
 q2 = Question()
@@ -323,13 +325,14 @@ s3.id = "94546782-08a6-4213-9dc9-0780c2996896"
 s3.title = "Comments"
 s3.description = ""
 
-block.add_section(s3)
+b1.add_section(s3)
 questionnaire.register(s3)
 
 q10 = Question()
 q10.id = "fef6edc2-d98c-4d4d-9a7c-997ce10c361f"
 q10.title = ""
-q10.description = ""
+q10.description = "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop"
+
 q10.type = "Textarea"
 
 s3.add_question(q10)
@@ -338,7 +341,7 @@ questionnaire.register(q10)
 q10r = Response()
 q10r.id = "215015b1-f87c-4740-9fd4-f01f707ef558"
 q10r.code = "146"
-q10r.label = "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop"
+q10r.label = ""
 q10r.guidance = ""
 q10r.type = "Textarea"
 q10r.options = []
@@ -351,3 +354,4 @@ q10r_display = Display()
 q10r_display.properties = {
     "max_length": "2000"
 }
+q10r.display = q10r_display
