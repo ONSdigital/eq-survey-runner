@@ -26,6 +26,8 @@ def patterns(section='styleguide', pattern='index'):
           'title': dirName
         }
         for root, dirs, files in os.walk(sectionDir):
+            files = [f for f in files if not f[0] == '.']
+            files.sort()
             for file in files:
                 if file.endswith('.html'):
                     # The following line causes problems with flake8, so we use `# NOQA` to ignore it
@@ -46,6 +48,8 @@ def patterns(section='styleguide', pattern='index'):
     pattern_title = pattern.split('-', 1)[-1:][0]
 
     for root, dirs, files in os.walk(patternlib_blueprint.root_path + '/templates/'):
+        dirs[:] = [d for d in dirs if not d[0] == '.']
+        dirs.sort()
         for dir in dirs:
             dirName = trim(dir)
             sections[dirName] = make_section(os.path.join(root, dir), dir, dirName)

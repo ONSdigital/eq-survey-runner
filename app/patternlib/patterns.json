@@ -5,40 +5,40 @@
       "name": "person-name",
       "id": "person-name",
       "label": "Name",
-      "hidelabel": false,
       "value": "",
       "placeholder": "eg. Jemima Puddleduck"
     },
     "textarea": {
       "type": "textarea",
-      "name": "person-name",
-      "id": "person-name",
+      "name": "comments",
+      "id": "comments",
       "label": "Comments",
       "hidelabel": false,
       "value": ""
     },
     "radios": {
       "type": "radio",
-      "name": "gender",
+      "id": "gender",
       "options": [{
-        "id": "gender-male",
         "value": "male",
         "label": "Male"
       }, {
-        "id": "gender-female",
         "value": "female",
         "label": "Female"
-      }]
+      }],
+      "display": {
+        "properties": {
+          "columns": true
+        }
+      }
     },
-    "checkboxes": {
-      "type": "checkboxes",
-      "name": "options",
+    "checkbox": {
+      "type": "checkbox",
+      "id": "options",
       "options": [{
-        "id": "options-yes",
         "value": "option-1",
         "label": "Option 1"
       }, {
-        "id": "options-no",
         "value": "options-2",
         "label": "Option 2"
       }]
@@ -64,6 +64,7 @@
       "subtitle": "Optional sub-title",
       "description": "This is a question description. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue.",
       "error": false,
+      "type": "text",
       "responses": [{
         "type": "textfield",
         "name": "response",
@@ -127,64 +128,54 @@
         "placeholder": "0"
       }]
     },
-    "multiple_choice": {
+    "multiple_choice_single_answer": {
       "id": "6",
       "title": "What is your legal marital or same-sex civil partnership status?",
-      "description": "Answer with regard to the your current legal marital status. If cohabiting, record the legal marital status at this question (e.g. ‘single, that is never married, ‘divorced’)",
       "responses": [{
         "type": "radio",
-        "name": "person-status",
+        "id": "person-status",
         "options": [{
-          "id": "person-status-1",
           "value": "never-married",
           "label": "Never married and never registered in a same-sex civil partnership"
         }, {
-          "id": "person-status-2",
           "value": "married",
           "label": "Married"
         }, {
-          "id": "person-status-3",
           "value": "divorced",
           "label": "Divorced"
         }, {
-          "id": "person-status-4",
           "value": "widowed",
           "label": "Widowed"
-        }]
+        }],
+        "display": {
+          "properties": {
+            "columns": false
+          }
+        }
       }]
     },
-    "multiple_answer": {
+    "multiple_choice_multiple_answer": {
       "id": "8",
-      "title": "How much do you spend per month?",
-      "grid": true,
+      "title": "During the year 2015, did this business issue/send any types of invoices to:",
+      "description": "Please check all that apply.",
       "responses": [{
-        "type": "currency",
-        "name": "spend-food",
-        "id": "spend-food",
-        "label": "Food",
-        "value": "",
-        "placeholder": "0.00"
-      }, {
-        "type": "currency",
-        "name": "spend-household",
-        "id": "spend-household",
-        "label": "Household Goods",
-        "value": "",
-        "placeholder": "0.00"
-      }, {
-        "type": "currency",
-        "name": "spend-fun",
-        "id": "spend-fun",
-        "label": "Alcohol, Confectionary & Tobacco",
-        "value": "",
-        "placeholder": "0.00"
-      }, {
-        "type": "currency",
-        "name": "spend-clothing",
-        "id": "spend-clothing",
-        "label": "Clothing & Footwear",
-        "value": "",
-        "placeholder": "0.00"
+        "type": "checkbox",
+        "id": "invoices",
+        "options": [{
+          "value": "Other-businesses",
+          "label": "Other businesses"
+        }, {
+          "value": "Public-authorities",
+          "label": "Public authorities"
+        }, {
+          "value": "Private-customers",
+          "label": "Private customers"
+        }],
+        "display": {
+          "properties": {
+            "columns": false
+          }
+        }
       }]
     },
     "date": {
