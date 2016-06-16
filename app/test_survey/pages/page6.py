@@ -276,7 +276,7 @@ h13_s.id = "section-h13"
 
 h13_q = Question()
 h13_q.id = "question-h13"
-h13_q.title = '(H13) Does your household own or rent this accomodation?'
+h13_q.title = '(H13) Who is your landlord?'
 h13_q.description = '<p>Select one box only<p>'
 # TODO: Decide on Question Types and Response Types
 h13_q.type = "Radio"
@@ -329,7 +329,7 @@ h14_q.id = "question-h14"
 h14_q.title = '(H14) In total, how many cars or vans are owned, or available for use, by members of this household?'
 h14_q.description = '<p>Include any company car(s) or van(s) available for private use<p>'
 # TODO: Decide on Question Types and Response Types
-h14_q.type = "Radio"
+h14_q.type = "Radios"
 
 h14_r1 = Response()
 h14_r1.id = "response1-h14"

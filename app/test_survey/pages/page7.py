@@ -91,6 +91,7 @@ i3_r.code = "I3"
 
 i3_q.add_response(i3_r)
 i3_s.add_question(i3_q)
+page7.add_section(i3_s)
 test_questionnaire.register(i3_r)
 test_questionnaire.register(i3_q)
 test_questionnaire.register(i3_s)
