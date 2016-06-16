@@ -1,6 +1,9 @@
 import json
 import os.path
 from app.parser.schema_parser_factory import SchemaParserFactory
+import logging
+
+logger = logging.getLogger(__name__)
 
 JSON_PATH = 'app/data/'
 PYTHON_MODEL_PATH = 'app/surveys'
@@ -34,11 +37,12 @@ def write_json_to_file(json_name, json_survey):
         f.write(json_survey)
         f.close()
 
-    except IOError:
-        raise IOError("Can't write file to disk")
+    except IOError as e:
+        logger.error("Error creating json file")
+        logger.exception(e)
 
 
-if __name__ == '__main__':
+def generate_all_json():
     # Loop through all the files in the survey folder, generating json for each, before writing to disk
     for filename in os.listdir(PYTHON_MODEL_PATH):
         if filename.endswith('.py') and not filename.startswith('_'):
@@ -46,3 +50,6 @@ if __name__ == '__main__':
             json_survey, file_name = generate_json_survey(python_model)
             parse_schema(json_survey)
             write_json_to_file(file_name, json_survey)
+
+if __name__ == '__main__':
+    generate_all_json()

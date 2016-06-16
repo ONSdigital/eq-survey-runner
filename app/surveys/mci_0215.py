@@ -4,6 +4,7 @@ from app.model.section import Section
 from app.model.question import Question
 from app.model.response import Response
 from app.surveys.mci_0205 import mci_0205
+from app.validation.abstract_validator import AbstractValidator
 
 
 # The 0203 Form is the same as 0205 but without the fuel question
@@ -159,9 +160,10 @@ q15r.type = "Integer"
 q15r.options = []
 q15r.mandatory = True
 q15r.messages = {
-    "NOT_INTEGER": "Please only enter whole numbers into the field.",
-    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.MANDATORY: "Please provide a value, even if your value is 0.",
+    AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
+    AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
 q15.add_response(q15r)
