@@ -15,12 +15,13 @@
 
     {% set alert_body %}
     <p>These <strong>must be corrected</strong> to continue.</p>
-
     <ul class="list list--bare">
       {% for item_id, errors in all_errors %}
         {% set loop_index = loop.index %}
         {% for error in errors %}
-        <li class="list__item">{{loop_index}}) {{ error }} <a href="#{{item_id}}">{{_('Go to this error')}}</a></li>
+        <li class="list__item">
+          {{loop_index}}) {{ error }} <a href="#{{item_id}}">{{_('Go to this error')}}</a>
+        </li>
         {% endfor %}
       {% endfor %}
     </ul>

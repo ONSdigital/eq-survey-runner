@@ -75,3 +75,13 @@
     {%- endfor -%}
   </select>
 {% endmacro -%}
+
+{%- macro errorTracking(id, errorMsg, errorValue) -%}
+  {% set attr = {
+    "data-error": "true",
+    "data-error-id": id,
+    "data-error-msg": errorMsg,
+    "data-error-value": errorValue
+  } %}
+  {{attr|xmlattr}}
+{%- endmacro -%}

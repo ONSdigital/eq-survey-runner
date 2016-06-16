@@ -61,7 +61,7 @@
         {% if question.errors %}
         <ul class="list list--bare">
           {% for error in question.errors %}
-          <li class="list__item">{{ error }}</li>
+            <li class="list__item" {{form.errorTracking(question.id, error, question.responses|join(', ', attribute='value'))}}>{{ error }}</li>
           {% endfor %}
         </ul>
         {% endif %}

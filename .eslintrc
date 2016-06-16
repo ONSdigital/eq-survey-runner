@@ -12,7 +12,8 @@
  "globals": {
     "$": true,
     "jQuery": true,
-    "browser": true
+    "browser": true,
+    "ga": true
   },
   "rules": {
     "no-unused-vars" : [1],
