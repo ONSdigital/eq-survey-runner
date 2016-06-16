@@ -93,7 +93,7 @@ h8_q = Question()
 h8_q.id = 'question-h8'
 h8_q.title = "(H8) Is this household's accommodation self-contained?"
 h8_q.description = ''
-h8_q.type = "Radio"
+h8_q.type = "General"
 
 h8_r = Response()
 h8_r.id = 'response-h8'
@@ -231,7 +231,7 @@ h12_q.id = "question-h12"
 h12_q.title = '(H12) Does your household own or rent this accomodation?'
 h12_q.description = '<p>Select one box only<p>'
 # TODO: Decide on Question Types and Response Types
-h12_q.type = "Radio"
+h12_q.type = "General"
 
 h12_r = Response()
 h12_r.id = "response1-h12"
@@ -279,7 +279,7 @@ h13_q.id = "question-h13"
 h13_q.title = '(H13) Who is your landlord?'
 h13_q.description = '<p>Select one box only<p>'
 # TODO: Decide on Question Types and Response Types
-h13_q.type = "Radio"
+h13_q.type = "General"
 
 h13_r = Response()
 h13_r.id = "response1-h13"
@@ -329,7 +329,7 @@ h14_q.id = "question-h14"
 h14_q.title = '(H14) In total, how many cars or vans are owned, or available for use, by members of this household?'
 h14_q.description = '<p>Include any company car(s) or van(s) available for private use<p>'
 # TODO: Decide on Question Types and Response Types
-h14_q.type = "Radios"
+h14_q.type = "General"
 
 h14_r1 = Response()
 h14_r1.id = "response1-h14"

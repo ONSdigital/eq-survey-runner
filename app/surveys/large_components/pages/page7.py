@@ -103,7 +103,7 @@ i4_s.id = "section-i4"
 i4_q = Question()
 i4_q.id = "question-i4"
 i4_q.title = '(I4) On {exercise.return_by:%-d %B %Y}, what is your legal marital or same-sex civil partnership status?'
-i4_q.type = "Radios"
+i4_q.type = "General"
 
 i4_r = Response()
 i4_r.id = "response1-i4"
@@ -166,7 +166,7 @@ i6_q = Question()
 i6_q.id = "question-i6"
 i6_q.title = '(I6) What is that address?'
 # TODO: Decide on Question Types and Response Types
-i6_q.type = "Radios"
+i6_q.type = "General"
 
 i6_r = Response()
 i6_r.id = "response1-i6"
@@ -251,7 +251,7 @@ i8_q = Question()
 i8_q.id = "question-i8"
 i8_q.title = '(I8) During term time, do you live:'
 # TODO: Decide on Question Types and Response Types
-i8_q.type = "Radios"
+i8_q.type = "General"
 
 i8_r = Response()
 i8_r.id = "response1-i8"
@@ -289,7 +289,7 @@ i9_q = Question()
 i9_q.id = "question-i9"
 i9_q.title = '(I9) What is your country of birth?'
 # TODO: Decide on Question Types and Response Types
-i9_q.type = "Radios"
+i9_q.type = "General"
 
 i9_r1 = Response()
 i9_r1.id = "response1-i9"
@@ -384,7 +384,7 @@ i12_q = Question()
 i12_q.id = "question-i12"
 i12_q.title = '(I12) Including the time you have already spent here, how long do you intend to stay in the United Kingdom?'
 # TODO: Decide on Question Types and Response Types
-i12_q.type = "Radios"
+i12_q.type = "General"
 
 i12_r = Response()
 i12_r.id = "response1-i12"
@@ -420,7 +420,7 @@ i13_q = Question()
 i13_q.id = "question-i13"
 i13_q.title = '(I13) How is your health in general?'
 # TODO: Decide on Question Types and Response Types
-i13_q.type = "Radios"
+i13_q.type = "General"
 
 i13_r = Response()
 i13_r.id = "response1-i13"
@@ -465,7 +465,7 @@ i14_q.id = "question-i14"
 i14_q.title = '(I14) Do you look after, or give any help or support to family members, friends, neighbours or others because of either:<br><ul><li>long-term physical or mental ill-health/disability?<li><li>problems related to old age?</li></ul>'  # NOQA
 i14_q.description = "Do not count anything you do as part of your paid employment"
 # TODO: Decide on Question Types and Response Types
-i14_q.type = "Radios"
+i14_q.type = "General"
 
 i14_r = Response()
 i14_r.id = "response1-i14"
