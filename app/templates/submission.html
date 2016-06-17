@@ -10,12 +10,10 @@
 
 <div>
 
-  <dl class="dl">
-
   {%- for group in content.questionnaire.groups -%}
 
     {%- for block in group.blocks -%}
-
+      <dl class="dl">
       {%- for section in block.sections -%}
 
         {%- for question in section.questions -%}
@@ -65,12 +63,11 @@
         {% endfor -%}
 
       {% endfor -%}
-
+      </dl>
     {% endfor -%}
 
   {% endfor -%}
 
-  </dl>
   <form action="" method="POST" novalidate>
     <button class="btn btn--secondary u-mr-s qa-btn-submit-answers" type="submit" name="action[submit_answers]">Submit answers</button>
     <a class="u-dib" href="/questionnaire/first">Change your answers</a>
