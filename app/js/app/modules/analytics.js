@@ -7,12 +7,11 @@ export default function initAnalytics() {
 
   forEach(errors, error => {
     const errorMsg = error.getAttribute('data-error-msg')
-    const errorValue = error.getAttribute('data-error-value')
     const elementId = error.getAttribute('data-error-id')
     const errorData = {
       hitType: 'event',
       eventCategory: 'Errors',
-      eventAction: `${errorMsg} (${errorValue || 'N/A'})`,
+      eventAction: errorMsg,
       eventLabel: elementId
     }
     ga('send', errorData)
