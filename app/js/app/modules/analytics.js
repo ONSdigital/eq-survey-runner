@@ -12,10 +12,9 @@ export default function initAnalytics() {
     const errorData = {
       hitType: 'event',
       eventCategory: 'Errors',
-      eventAction: `${errorMsg} (${errorValue})`,
+      eventAction: `${errorMsg} (${errorValue || 'N/A'})`,
       eventLabel: elementId
     }
-    console.log(errorData)
     ga('send', errorData)
   })
 
@@ -32,7 +31,6 @@ export default function initAnalytics() {
         eventAction: questionLabel,
         eventLabel: questionId
       }
-      console.log(triggerData)
       ga('send', triggerData)
     }
 
