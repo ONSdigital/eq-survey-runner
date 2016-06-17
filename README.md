@@ -157,7 +157,17 @@ EQ_SESSION_TIMEOUT - The duration of the flask session, defaults to 30 minutes
 EQ_SECRET_KEY - The Flask secret key for signing cookies
 EQ_PROFILING - Enables or disables profiling (True/False) Default False/Disabled
 EQ_UA_ID - The Google Analytics ID
+EQ_SCHEMA_BUCKET - The name of the bucket in S3 where to look to find schemas.
 ```
+## Loading schemas from S3
+
+To enable an instance of the survey runner to load form schemas from AWS s3,
+set the environment variable `EQ_SCHEMA_BUCKET` and ensure the correct IAM
+permissions are set for the ec2 instances that are created by elasticbeanstalk
+OR ensure you have the correct boto aws credentials set in `~/.aws/credentials`.
+
+This will then make the schemas available in the dev page and enable the runner
+to look inside the bucket to load schemas for rendering.
 
 ## JWT Integration
 Integration with the survey runner requires the use of a signed JWT using public and private key pair (see https://jwt.io,
