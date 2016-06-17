@@ -7,6 +7,7 @@ class QuestionnaireException(Exception):
 
 class Questionnaire(object):
     def __init__(self):
+        self.eq_id = None
         self.id = None
         self.title = None
         self.survey_id = None
@@ -46,6 +47,7 @@ class Questionnaire(object):
             "schema_version": "0.0.1",
             "questionnaire_id": self.id,
             "survey_id": self.survey_id,
+            "eq_id": self.eq_id,
             "title": self.title,
             "description": self.description,
             "groups": [],
@@ -79,7 +81,8 @@ class Questionnaire(object):
             properties_match = self.id == other.id and \
                 self.title == other.title and \
                 self.description == other.description and \
-                self.survey_id == other.survey_id
+                self.survey_id == other.survey_id and \
+                self.eq_id == self.eq_id
 
             groups_match = True
             if len(self.groups) != len(other.groups):
@@ -107,7 +110,7 @@ class Questionnaire(object):
         return not self == other
 
     def __hash__(self):
-        return hash((self.id, self.title, self.description, self.survey_id, self.groups, self.validation))
+        return hash((self.id, self.eq_id, self.title, self.description, self.survey_id, self.groups, self.validation))
 
     def unregister(self, id):
         if id in self.items_by_id.keys():

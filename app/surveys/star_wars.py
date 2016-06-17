@@ -12,7 +12,7 @@ from app.validation.abstract_validator import AbstractValidator
 # Create the questionnaire object
 star_wars = Questionnaire()
 questionnaire = star_wars
-eq_id = "0"
+questionnaire.eq_id = "0"
 form_type = "star_wars"
 
 questionnaire.id = "0"

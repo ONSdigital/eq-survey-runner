@@ -13,7 +13,7 @@ mci_0215 = copy.deepcopy(mci_0205)
 group = mci_0215.get_item_by_id("14ba4707-321d-441d-8d21-b8367366e766")
 
 questionnaire = mci_0215
-eq_id = "1"
+questionnaire.eq_id = "1"
 form_type = "0215"
 
 # Create block 2

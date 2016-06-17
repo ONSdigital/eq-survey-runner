@@ -3,6 +3,7 @@
     "schema_version": "0.0.1",
     "questionnaire_id": "888",
     "survey_id": "888",
+    "eq_id" : "1",
     "title": "Test Survey",
     "description": "Test Survey",
     "introduction": {

@@ -3,6 +3,7 @@
     "schema_version": "0.0.1",
     "questionnaire_id": "23",
     "survey_id": "023",
+    "eq_id" : "1",
     "title": "Monthly Business Survey - Retail Sales Index",
     "description": "MCI Description",
     "introduction": {
