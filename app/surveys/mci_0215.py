@@ -33,7 +33,7 @@ questionnaire.register(b2)
 s4 = Section()
 s4.id = "c528d24b-d0dd-45cd-91af-380b61a5725d"
 s4.title = "On {exercise.employment_date:%-d %B %Y} what was the number of employees for the business?"
-s4.description = "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include</h4> <ul> <li>all workers paid directly from this business’s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> </div> <div> <h4>Exclude</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li><u>working</u> owners who are not paid via PAYE</li></ul> </div>"  # NOQA
+s4.description = "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business’s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> </div> <div> <h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li><b>working</b> owners who are not paid via PAYE</li></ul> </div>"  # NOQA
 b2.add_section(s4)
 questionnaire.register(s4)
 
@@ -154,7 +154,7 @@ questionnaire.register(q15)
 q15r = Response()
 q15r.id = "42ee21a7-c050-49f7-9cdc-647596f22317"
 q15r.code = "50"
-q15r.label = "What was the number of total employees?"
+q15r.label = "What was the total number of employees?"
 q15r.guidance = ""
 q15r.type = "PositiveInteger"
 q15r.options = []
