@@ -27,7 +27,8 @@ class TypeValidatorFactory(object):
             'DATE': [DateTypeCheck],
             'TEXTAREA': [TextAreaTypeCheck],
             'RADIO': [],
-            'CHECKBOX': []
+            'CHECKBOX': [],
+            'TEXTFIELD': []
             }
 
         question_validators = {
