@@ -27,7 +27,8 @@ class TypeValidatorFactory(object):
             'DATE': [DateTypeCheck],
             'TEXTAREA': [TextAreaTypeCheck],
             'RADIO': [],
-            'CHECKBOX': []
+            'CHECKBOX': [],
+            'TEXTFIELD': []
             }
 
         question_validators = {
@@ -39,7 +40,8 @@ class TypeValidatorFactory(object):
             'TEXTAREA': [],
             'RADIOS': [],
             'CHECKBOXS': [],
-            'CHECKBOXES': []
+            'CHECKBOXES': [],
+            'GENERAL': []
         }
 
         i_type = item.type.upper()
