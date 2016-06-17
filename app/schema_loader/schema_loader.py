@@ -11,8 +11,6 @@ class SchemaNotFound(Exception):
 
 logger = logging.getLogger(__name__)
 
-# s3 = boto3.resource('s3')
-
 
 def load_schema(eq_id, form_type):
     """
