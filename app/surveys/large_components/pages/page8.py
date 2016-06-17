@@ -262,7 +262,7 @@ i18_q.type = "General"
 
 i18_r1 = Response()
 i18_r1.id = "response1-i18"
-i18_r1.type = "Checkbox"
+i18_r1.type = "Radio"
 i18_r1.code = "i18_a"
 i18_r1.options = [
     # @TODO Route to question 20
@@ -299,7 +299,7 @@ i19_s.id = 'section-i19'
 i19_q = Question()
 i19_q.id = 'question-i19'
 i19_q.title = "(I19) How well can you speak English?"
-i19_q.type = "Radio"
+i19_q.type = "General"
 
 i19_r = Response()
 i19_r.id = 'response-i19'

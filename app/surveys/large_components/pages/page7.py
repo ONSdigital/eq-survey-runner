@@ -51,7 +51,7 @@ i2_s.id = 'section-i2'
 i2_q = Question()
 i2_q.id = 'question-i2'
 i2_q.title = "(I3) What is your sex?"
-i2_q.type = "Radio"
+i2_q.type = "General"
 
 i2_r = Response()
 i2_r.id = 'response-i2'
@@ -218,7 +218,7 @@ i7_s.id = 'section-i7'
 i7_q = Question()
 i7_q.id = 'question-i7'
 i7_q.title = "(I7) Are you a schoolchild or student in full-time education?"
-i7_q.type = "Radio"
+i7_q.type = "General"
 
 i7_r = Response()
 i7_r.id = 'response-i7'
@@ -462,7 +462,7 @@ i14_s.id = "section-i14"
 
 i14_q = Question()
 i14_q.id = "question-i14"
-i14_q.title = '(I14) Do you look after, or give any help or support to family members, friends, neighbours or others because of either:<br><ul><li>long-term physical or mental ill-health/disability?<li><li>problems related to old age?</li></ul>'  # NOQA
+i14_q.title = '(I14) Do you look after, or give any help or support to family members, friends, neighbours or others because of either: long-term physical or mental ill-health/disability?; problems related to old age?'  # NOQA
 i14_q.description = "Do not count anything you do as part of your paid employment"
 # TODO: Decide on Question Types and Response Types
 i14_q.type = "General"
