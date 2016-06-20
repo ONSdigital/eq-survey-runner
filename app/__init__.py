@@ -135,8 +135,9 @@ def create_app(config_name):
         # TODO fix health check so it no longer sends message to queue
         add_health_check(application, headers)
         start_dev_mode(application)
-    else:
-        add_safe_health_check(application, headers)
+
+    # always add safe health check
+    add_safe_health_check(application, headers)
 
     if settings.EQ_PROFILING:
         setup_profiling(application)
@@ -287,21 +288,10 @@ def add_health_check(application, headers):
 
 
 def add_safe_health_check(application, headers):
-
-    def safe_success_handler(results):
+    @application.route('/status')
+    def safe_health_check():
         data = {'status': 'OK'}
         return json.dumps(data)
-
-    def safe_failure_handler(results):
-        data = {'status': 'DOWN'}
-        return json.dumps(data)
-
-    application.healthcheck = HealthCheck(application, '/status',
-                                          success_headers=headers,
-                                          failed_headers=headers,
-                                          success_handler=safe_success_handler,
-                                          failed_handler=safe_failure_handler)
-    application.healthcheck.add_check(rabbitmq_available)
 
 
 def versioned_url_for(endpoint, **values):
