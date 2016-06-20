@@ -14,9 +14,18 @@ class MandatoryCheck(AbstractValidator):
 
         validation_result = ValidationResult()
 
-        if user_answer and not str(user_answer).isspace():
-            validation_result.is_valid = True
+        if isinstance(user_answer, list):
+            for answer in user_answer:
+                if answer:
+                    validation_result.is_valid = True
+                    return validation_result
+            else:
+                validation_result.is_valid = False
+                validation_result.errors.append(AbstractValidator.MANDATORY)
         else:
-            validation_result.is_valid = False
-            validation_result.errors.append(AbstractValidator.MANDATORY)
+            if user_answer and not str(user_answer).isspace():
+                validation_result.is_valid = True
+            else:
+                validation_result.is_valid = False
+                validation_result.errors.append(AbstractValidator.MANDATORY)
         return validation_result

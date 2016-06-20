@@ -1,11 +1,12 @@
 <div class="field field--multi field--{{response.type|lower}} {{'field--cols' if use_grid}}">
+
   {% for option in response.options %}
     {% set option_id = response.id ~ "-" ~ loop.index %}
     {% set checked %}{% if response.value and option.value in response.value %}checked="checked"{% endif %}{%endset %}
     <div class="field__item">
-      <input class="input input--{{response.type|lower}}" type="{{response.type|lower}}" name="{{response.id}}[]" id="{{option_id}}" value="{{option.value}}" title="{{option.label}}" {{checked}}>
       <label class="label label--inline" for="{{option_id}}"><span class="label__inner">{{option.label}}</span></label>
+      <input class="input input--{{response.type|lower}}" type="{{response.type|lower}}" name="{{response.id}}[]" id="{{option_id}}" value="{{option.value}}" title="{{option.label}}" {{checked}}>
     </div>
   {% endfor %}
-  <input type="hidden" name="{{response.name}}" value="">
+    <input type="hidden" name="{{response.id}}[]">
 </div>

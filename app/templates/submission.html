@@ -39,7 +39,9 @@
                 {% if response.value and response.value|length > 0 %}
                   <ul class="list list--bullets">
                       {% for response in response.value %}
-                      <li class="list__item">{{response}}</li>
+                        {% if response %}
+                          <li class="list__item">{{response}}</li>
+                        {% endif %}
                       {% endfor %}
                   </ul>
                 {% else %}
