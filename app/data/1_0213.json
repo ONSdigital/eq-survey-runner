@@ -3,6 +3,7 @@
     "display": {
         "properties": {}
     },
+    "eq_id": "1",
     "groups": [
         {
             "blocks": [
@@ -304,7 +305,7 @@
                                             },
                                             "guidance": "",
                                             "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
-                                            "label": "",
+                                            "label": "Comments",
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "146",
@@ -333,7 +334,7 @@
                     "id": "2d24cb72-5598-4c3e-bd53-1d21bb12455f",
                     "sections": [
                         {
-                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> </div> <div> <h4>Exclude</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li><u>working</u> owners who are not paid via PAYE</li></ul> </div>",
+                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> </div> <div> <h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li><b>working</b> owners who are not paid via PAYE</li></ul> </div>",
                             "display": {
                                 "properties": {}
                             },
@@ -350,11 +351,11 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "cffbbca5-1162-44d8-bbfb-3bc733d80239",
-                                            "label": "a. What was the number of male employees working more than 30 hours per week?",
+                                            "label": "What was the number of male employees working more than 30 hours per week?",
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "51",
-                                            "type": "Integer",
+                                            "type": "PositiveInteger",
                                             "validation": {
                                                 "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
@@ -379,11 +380,11 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "c5908b75-d63d-4518-b00e-a60919aa63cd",
-                                            "label": "b. What was the number of male employees working 30 hours or less per week?",
+                                            "label": "What was the number of male employees working 30 hours or less per week?",
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "52",
-                                            "type": "Integer",
+                                            "type": "PositiveInteger",
                                             "validation": {
                                                 "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
@@ -408,11 +409,11 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "0ac86568-2e33-420c-9dfe-f47a95132a5a",
-                                            "label": "c. What was the number of female employees working more than 30 hours per week?",
+                                            "label": "What was the number of female employees working more than 30 hours per week?",
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "53",
-                                            "type": "Integer",
+                                            "type": "PositiveInteger",
                                             "validation": {
                                                 "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
@@ -437,11 +438,11 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "ed675602-9696-49ba-b3b9-2ea582ffe171",
-                                            "label": "d. What was the number of female employees working 30 hours or less per week?",
+                                            "label": "What was the number of female employees working 30 hours or less per week?",
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "54",
-                                            "type": "Integer",
+                                            "type": "PositiveInteger",
                                             "validation": {
                                                 "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
@@ -466,14 +467,15 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "42ee21a7-c050-49f7-9cdc-647596f22317",
-                                            "label": "e. What was the number of total employees?",
+                                            "label": "What was the total number of employees?",
                                             "mandatory": true,
                                             "options": [],
                                             "q_code": "50",
-                                            "type": "Integer",
+                                            "type": "PositiveInteger",
                                             "validation": {
                                                 "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "MANDATORY": "Please provide a value, even if your value is 0.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
                                                     "NOT_INTEGER": "Please only enter whole numbers into the field."
                                                 }
