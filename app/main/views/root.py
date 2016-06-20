@@ -73,6 +73,8 @@ def login():
     except InvalidTokenException as e:
         logger.warning("Invalid Token provided")
         return errors.forbidden(e)
+    except RuntimeError as e:
+        return errors.internal_server_error(e)
 
 
 def load_and_parse_schema(eq_id, form_type):

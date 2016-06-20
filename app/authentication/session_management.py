@@ -6,7 +6,13 @@ from uuid import uuid4
 USER_ID = "user_id"
 USER_IK = "user_ik"
 EQ_SESSION_ID = "eq-session-id"
+MAX_RETRY = 10
+
 logger = logging.getLogger(__name__)
+
+
+class NoUniqueIDError(RuntimeError):
+    pass
 
 
 class SessionManagement(object):
@@ -111,11 +117,17 @@ class DatabaseSessionManager(SessionManagement):
             return None
 
     def create_session_id(self):
-        while True:
+        for x in range(0, MAX_RETRY):
             new_session_id = str(uuid4())
             if self.check_unique(new_session_id):
                 break
-        return new_session_id
+            else:
+                new_session_id = None
+        if new_session_id:
+            return new_session_id
+        else:
+            logger.error("Unable to generate a unique session id before the retry count %s was reached", MAX_RETRY)
+            raise NoUniqueIDError()
 
     def check_unique(self, new_session_id):
         return self.run_count(new_session_id) == 0
