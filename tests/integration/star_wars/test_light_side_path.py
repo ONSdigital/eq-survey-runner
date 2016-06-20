@@ -27,7 +27,7 @@ class TestLightSidePath(unittest.TestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -45,11 +45,11 @@ class TestLightSidePath(unittest.TestCase):
         form_data = {
             # Start Date
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "234",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c" : "40",
+            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "40",
             "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "7587eb9b-f24e-4dc0-ac94-66118b896c10" : "Luke, I am your father",
+            "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
@@ -70,7 +70,7 @@ class TestLightSidePath(unittest.TestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
 
         summary_url = resp.headers['Location']
 
@@ -91,7 +91,7 @@ class TestLightSidePath(unittest.TestCase):
         }
         resp = self.client.post(summary_url, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/thank-you$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/thank-you$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 

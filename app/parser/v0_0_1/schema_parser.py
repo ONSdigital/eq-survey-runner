@@ -67,7 +67,7 @@ class SchemaParser(AbstractSchemaParser):
             logger.debug("eq_id: " + questionnaire.eq_id)
             questionnaire.title = ParserUtils.get_required_string(self._schema, "title")
             questionnaire.survey_id = ParserUtils.get_required_string(self._schema, "survey_id")
-            logger.error("title: " + questionnaire.title)
+            logger.debug("title: " + questionnaire.title)
             questionnaire.description = ParserUtils.get_required_string(self._schema, "description")
 
         except Exception as e:

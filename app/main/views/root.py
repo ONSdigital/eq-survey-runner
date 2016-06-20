@@ -41,6 +41,7 @@ def login():
 
         metadata = MetaDataStore.get_instance(current_user)
         eq_id = metadata.get_eq_id()
+        collection_id = metadata.get_collection_exercise_sid()
         form_type = metadata.get_form_type()
 
         logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
@@ -64,7 +65,7 @@ def login():
 
         current_user.save()
 
-        return redirect('/questionnaire/' + current_location)
+        return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/' + current_location)
 
     except NoTokenException as e:
         logger.warning("Unable to authenticate user")

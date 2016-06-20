@@ -34,7 +34,7 @@ class TestHappyPath(unittest.TestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/' + eq_id + '/1/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -65,7 +65,7 @@ class TestHappyPath(unittest.TestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/1/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']

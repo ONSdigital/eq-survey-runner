@@ -33,7 +33,7 @@ class TestHappyPath(unittest.TestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -69,7 +69,7 @@ class TestHappyPath(unittest.TestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/789\/summary$')
 
         summary_url = resp.headers['Location']
 
@@ -84,7 +84,7 @@ class TestHappyPath(unittest.TestCase):
         self.assertRegexpMatches(content, '>Please check carefully before submission<')
         self.assertRegexpMatches(content, '>Submit answers<')
 
-        resp = self.client.get('/questionnaire/first', follow_redirects=False)
+        resp = self.client.get('/questionnaire/' + eq_id + '/789/first', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         self.assertEquals(resp.headers['Location'], block_one_url)
