@@ -142,6 +142,7 @@ class TestHappyPath(unittest.TestCase):
         self.assertRegexpMatches(content, '>Your responses<')
         self.assertRegexpMatches(content, '>Please check carefully before submission<')
         self.assertRegexpMatches(content, '>Submit answers<')
+        self.assertRegexpMatches(content, 'href="first">Change your answers</a>')
 
         resp = self.client.get('/questionnaire/' + eq_id + '/789/first', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
