@@ -23,6 +23,8 @@ from app.model.introduction import Introduction
 import logging
 import copy
 
+logger = logging.getLogger(__name__)
+
 
 class SchemaParser(AbstractSchemaParser):
     """SchemaParser class
@@ -60,10 +62,12 @@ class SchemaParser(AbstractSchemaParser):
 
         try:
             questionnaire = Questionnaire()
-
             questionnaire.id = ParserUtils.get_required_string(self._schema, "questionnaire_id")
+            questionnaire.eq_id = ParserUtils.get_required_string(self._schema, "eq_id")
+            logger.debug("eq_id: " + questionnaire.eq_id)
             questionnaire.title = ParserUtils.get_required_string(self._schema, "title")
             questionnaire.survey_id = ParserUtils.get_required_string(self._schema, "survey_id")
+            logger.debug("title: " + questionnaire.title)
             questionnaire.description = ParserUtils.get_required_string(self._schema, "description")
 
         except Exception as e:

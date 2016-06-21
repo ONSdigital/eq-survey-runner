@@ -12,18 +12,18 @@ from app.main.errors import page_not_found
 logger = logging.getLogger(__name__)
 
 
-@main_blueprint.route('/questionnaire/<location>', methods=["GET", "POST"])
+@main_blueprint.route('/questionnaire/<eq_id>/<collection_id>/<location>', methods=["GET", "POST"])
 @login_required
-def survey(location):
+def survey(eq_id, collection_id, location):
     # Redirect to thankyou page if the questionnaire has already been submitted
     if SubmitterConstants.SUBMITTED_AT_KEY in session and location != 'thank-you':
-        return redirect('/questionnaire/thank-you')
+        return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/thank-you')
 
     questionnaire_manager = create_questionnaire_manager()
 
     if location == 'first':
         questionnaire_manager.go_to_first()
-        return redirect('/questionnaire/' + questionnaire_manager.get_current_location())
+        return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/' + questionnaire_manager.get_current_location())
 
     try:
         # Go to the location in the url.
@@ -38,7 +38,7 @@ def survey(location):
 
             current_user.save()
 
-            return redirect('/questionnaire/' + next_location)
+            return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/' + next_location)
 
         context = questionnaire_manager.get_rendering_context()
         template = questionnaire_manager.get_rendering_template()

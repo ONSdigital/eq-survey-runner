@@ -10,7 +10,6 @@ class TestEmptyRadioBoxes(unittest.TestCase):
         self.application = create_app('development')
         self.client = self.application.test_client()
 
-
     def test_radio_boxes_mandatory_empty(self):
         # Get a token
         token = create_token('star_wars', '0')
@@ -28,7 +27,7 @@ class TestEmptyRadioBoxes(unittest.TestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -72,7 +71,7 @@ class TestEmptyRadioBoxes(unittest.TestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/cd3b74d1-b687-4051-9634-a8f9ce10a27d')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/cd3b74d1-b687-4051-9634-a8f9ce10a27d')
 
         resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
@@ -114,7 +113,7 @@ class TestEmptyRadioBoxes(unittest.TestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
 
         summary_url = resp.headers['Location']
 

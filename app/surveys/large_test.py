@@ -3,7 +3,7 @@ from app.model.questionnaire import Questionnaire
 # Create the Questionnaire
 test_questionnaire = Questionnaire()
 large_test = test_questionnaire
-eq_id = '0'
+large_test.eq_id = '0'
 form_type = '2011'
 
 # Do the imports here to prevent circular dependencies

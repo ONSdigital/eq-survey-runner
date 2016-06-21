@@ -18,7 +18,7 @@ def create_payload(user):
             MetaDataConstants.PERIOD_STR: '2016-01-01',
             MetaDataConstants.PERIOD_ID: '2016-01-01',
             MetaDataConstants.FORM_TYPE: '0205',
-            MetaDataConstants.COLLECTION_EXERCISE_SID: "sid",
+            MetaDataConstants.COLLECTION_EXERCISE_SID: "789",
             MetaDataConstants.REF_P_START_DATE: "2016-01-01",
             MetaDataConstants.REF_P_END_DATE: "2016-09-01",
             MetaDataConstants.RU_REF: "12346789012A",

@@ -11,7 +11,7 @@ from app.validation.abstract_validator import AbstractValidator
 # Create the questionnaire object
 mci_0205 = Questionnaire()
 questionnaire = mci_0205
-eq_id = "1"
+questionnaire.eq_id = "1"
 form_type = "0205"
 
 questionnaire.id = "23"

@@ -11,8 +11,9 @@ class TestPipingEmploymentDate(unittest.TestCase):
         self.client = self.application.test_client()
 
     def test_piping_employment_date(self):
+        eq_id = "0"
         # Get a token
-        token = create_token('star_wars', '0')
+        token = create_token('star_wars', eq_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
@@ -27,7 +28,7 @@ class TestPipingEmploymentDate(unittest.TestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']

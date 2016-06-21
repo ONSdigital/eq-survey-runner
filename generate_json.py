@@ -23,9 +23,9 @@ def parse_schema(json_survey):
 
 def generate_json_survey(python_model):
     # Import the required module and convert the python model to json format
-    module = __import__('app.surveys.' + python_model, globals(), locals(), [python_model, 'eq-id', 'form_type'])
+    module = __import__('app.surveys.' + python_model, globals(), locals(), [python_model, 'form_type'])
     model = eval("module." + python_model)
-    file_name = module.eq_id + "_" + module.form_type
+    file_name = model.eq_id + "_" + module.form_type
     json_survey = convert_to_json(model)
     return json_survey, file_name
 

@@ -7,25 +7,26 @@ class TestbackwardsNavigationAfterSubmission(TestHappyPath):
         self.backwards_navigation()
 
     def backwards_navigation(self):
-        resp = self.client.get('/questionnaire/summary', follow_redirects=False)
+        eq_id = "1"
+        resp = self.client.get('/questionnaire/' + eq_id + '/789/summary', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertRegexpMatches(resp.headers['Location'], '\/thank-you$')
 
         # Block Three
-        resp = self.client.get('/questionnaire/0e41e80a-f45a-2dfd-9fe0-55cc2c7807d0', follow_redirects=False)
+        resp = self.client.get('/questionnaire/' + eq_id + '/789/0e41e80a-f45a-2dfd-9fe0-55cc2c7807d0', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertRegexpMatches(resp.headers['Location'], '\/thank-you$')
 
         # Block Two
-        resp = self.client.get('/questionnaire/0e41e80a-f45a-2dfd-9fe0-55cc2c7807d9', follow_redirects=False)
+        resp = self.client.get('/questionnaire/' + eq_id + '/789/0e41e80a-f45a-2dfd-9fe0-55cc2c7807d9', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertRegexpMatches(resp.headers['Location'], '\/thank-you$')
 
         # Block One
-        resp = self.client.get('/questionnaire/0e41e80a-f45a-4dfd-9ae0-55cc2c7807d9', follow_redirects=False)
+        resp = self.client.get('/questionnaire/' + eq_id + '/789/0e41e80a-f45a-4dfd-9ae0-55cc2c7807d9', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertRegexpMatches(resp.headers['Location'], '\/thank-you$')
 
-        resp = self.client.get('/questionnaire/introduction', follow_redirects=False)
+        resp = self.client.get('/questionnaire/' + eq_id + '/789/introduction', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertRegexpMatches(resp.headers['Location'], '\/thank-you$')

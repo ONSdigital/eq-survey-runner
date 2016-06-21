@@ -23,7 +23,7 @@ class TestInvalidDateNumber(unittest.TestCase):
         self.assertRegexpMatches(content, '>Get Started<')
 
         # We proceed to the questionnaire
-        resp = self.client.get('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', follow_redirects=True)
+        resp = self.client.get('/questionnaire/' + eq_id + '/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d', follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
         # We are in the Questionnaire
@@ -47,7 +47,7 @@ class TestInvalidDateNumber(unittest.TestCase):
         }
 
         # We submit the form with an invalid date
-        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "The date entered is not valid.  Please correct your answer.")
@@ -66,11 +66,10 @@ class TestInvalidDateNumber(unittest.TestCase):
         }
 
         # We submit the form without a valid turnover value
-        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "Please only enter whole numbers into the field.")
-
 
         form_data = {
             # Start Date
@@ -86,14 +85,13 @@ class TestInvalidDateNumber(unittest.TestCase):
         }
 
         # We submit the form without a valid 2nd date
-        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "The date entered is not valid")
 
-
         # We try to access the submission page without correction
-        resp = self.client.get('/questionnaire/summary', follow_redirects=True)
+        resp = self.client.get('/questionnaire/1/789/summary', follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
@@ -112,7 +110,7 @@ class TestInvalidDateNumber(unittest.TestCase):
         }
 
         # We submit the form with the front date later then the to date
-        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "The &#39;to&#39; date cannot be before the &#39;from&#39; date.")
@@ -131,7 +129,7 @@ class TestInvalidDateNumber(unittest.TestCase):
         }
 
         # We submit the form with the dates the same
-        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "The &#39;to&#39; date must be different to the &#39;from&#39; date.")
@@ -154,11 +152,11 @@ class TestInvalidDateNumber(unittest.TestCase):
         }
 
         # We correct our answers and submit
-        resp = self.client.post('/questionnaire/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d', data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], '\/questionnaire\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], '\/questionnaire\/1\/789\/summary$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
@@ -172,9 +170,9 @@ class TestInvalidDateNumber(unittest.TestCase):
         post_data = {
             "action[submit_answers]": 'Submit answers'
         }
-        resp = self.client.post('/questionnaire/summary', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/summary', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], '\/questionnaire\/thank-you$')
+        self.assertRegexpMatches(resp.headers['Location'], '\/questionnaire\/1\/789\/thank-you$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
