@@ -50,7 +50,7 @@ i2_s.id = 'section-i2'
 
 i2_q = Question()
 i2_q.id = 'question-i2'
-i2_q.title = "(I3) What is your sex?"
+i2_q.title = "(I2) What is your sex?"
 i2_q.type = "General"
 
 i2_r = Response()
