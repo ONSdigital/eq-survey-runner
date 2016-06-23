@@ -41,18 +41,24 @@ def dev_mode():
 def extract_eq_id_and_form_type(schema_name):
     try:
         logger.debug("schema file name: %s", schema_name)
-        split_schema_name = schema_name.split("_", 1)
-        if len(split_schema_name) != 2:
-            raise ValueError("Schema file name incorrect %", schema_name)
-        eq_id = split_schema_name[0]
+        if "_" in schema_name:
+            split_schema_name = schema_name.split("_", 1)
+            if len(split_schema_name) != 2:
+                raise ValueError("Schema file name incorrect %", schema_name)
+            eq_id = split_schema_name[0]
+            split_rest_of_name = split_schema_name[1].split(".", 1)
+            if len(split_rest_of_name) != 2:
+                raise ValueError("Schema file name incorrect %", schema_name)
+            form_type = split_rest_of_name[0]
+        else:
+            # No form type associated with
+            eq_id = schema_name.split(".", 1)[0]
+            form_type = "0"
         logger.debug("eq-id: %s", eq_id)
-        split_rest_of_name = split_schema_name[1].split(".", 1)
-        if len(split_rest_of_name) != 2:
-            raise ValueError("Schema file name incorrect %", schema_name)
-        form_type = split_rest_of_name[0]
         logger.debug("form_type: " + form_type)
         return eq_id, form_type
-    except Exception:
+    except Exception as e:
+        logger.exception(e)
         logger.error("Invalid schema file %s", schema_name)
         abort(404)
 
