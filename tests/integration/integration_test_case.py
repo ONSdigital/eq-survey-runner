@@ -2,7 +2,6 @@ import unittest
 from app import create_app
 from app import settings
 from app.storage.storage_factory import StorageFactory
-from app.authentication.session_management import session_manager
 
 
 class IntegrationTestCase(unittest.TestCase):
