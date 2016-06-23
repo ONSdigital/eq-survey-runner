@@ -17,7 +17,9 @@ form_type = "star_wars"
 
 questionnaire.id = "0"
 questionnaire.title = "Star Wars"
-questionnaire.description = "Star Wars"
+
+# Currently not used on the frontend
+questionnaire.description = "Kitchen sink test for the Star Wars questionnaire"
 questionnaire.survey_id = "0"
 
 introduction = Introduction()
@@ -95,11 +97,11 @@ q2r.label = "How many Octillions do Nasa reckon it would cost to build a death s
 q2r.guidance = ""
 q2r.type = "Currency"
 q2r.options = []
-q2r.mandatory = False
+q2r.mandatory = True
 q2r.messages = {
     AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
     AbstractValidator.NEGATIVE_INTEGER: "How can it be negative?",
-    AbstractValidator.INTEGER_TOO_LARGE: "How much?, idiot you must be"
+    AbstractValidator.INTEGER_TOO_LARGE: "How much, idiot you must be"
 }
 
 q2.add_response(q2r)
@@ -120,7 +122,7 @@ q3r.id = "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c"
 q3r.code = "3"
 q3r.label = "How hot is a lightsaver in degrees C?"
 q3r.guidance = ""
-q3r.type = "Integer"
+q3r.type = "PositiveInteger"
 q3r.options = []
 q3r.mandatory = False
 q3r.messages = {
@@ -303,7 +305,7 @@ questionnaire.register(q7r)
 q8 = Question()
 q8.id = "6cc86b54-330c-4465-99b2-34cc7073dc2c"
 q8.title = "When was The Empire Strikes Back released?"
-q8.description = "Your start and end date can't be more then a month apart"
+q8.description = "It could be between {exercise.start_date:%-d %B %Y} and {exercise.end_date:%-d %B %Y}. But that might just be a test"
 q8.type = "DateRange"
 
 s1.add_question(q8)
@@ -341,12 +343,19 @@ q8r2.messages = {
 q8.add_response(q8r2)
 questionnaire.register(q8r2)
 
+b2 = Block()
+b2.id = "an3b74d1-b687-4051-9634-a8f9ce10ard"
+b2.title = ""
+
+group.add_block(b2)
+questionnaire.register(b2)
+
 s2 = Section()
 s2.id = "12346782-08a6-4213-9dc9-0780c2996896"
-s2.title = "On {exercise.employment_date:%-d %B %Y} how many Ewokes were employed?"
+s2.title = "On {exercise.employment_date:%-d %B %Y} how many were employed?"
 s2.description = "If you didn't pick the right employment date for Return of the Jedi its your fault if this question makes no sense"
 
-b1.add_section(s2)
+b2.add_section(s2)
 questionnaire.register(s2)
 
 q9 = Question()
@@ -361,7 +370,7 @@ questionnaire.register(q9)
 q9r = Response()
 q9r.id = "5rr015b1-f87c-4740-9fd4-f01f707ef558"
 q9r.code = "9"
-q9r.label = ""
+q9r.label = "What was the total number of Ewokes?"
 q9r.guidance = ""
 q9r.type = "Integer"
 q9r.options = []
@@ -377,16 +386,16 @@ questionnaire.register(q9r)
 
 s3 = Section()
 s3.id = "94546782-08a6-4213-9dc9-0780c2996896"
-s3.title = "Comments"
+s3.title = ""
 s3.description = ""
 
-b1.add_section(s3)
+b2.add_section(s3)
 questionnaire.register(s3)
 
 q10 = Question()
 q10.id = "fef6edc2-d98c-4d4d-9a7c-997ce10c361f"
 q10.title = ""
-q10.description = "Why doesn't Chewbacca receive a medal at the end of A New Hope?"
+q10.description = ""
 q10.type = "Textarea"
 
 s3.add_question(q10)
@@ -395,7 +404,7 @@ questionnaire.register(q10)
 q10r = Response()
 q10r.id = "215015b1-f87c-4740-9fd4-f01f707ef558"
 q10r.code = "10"
-q10r.label = "Comments"
+q10r.label = "Why doesn't Chewbacca receive a medal at the end of A New Hope?"
 q10r.guidance = ""
 q10r.type = "Textarea"
 q10r.options = []

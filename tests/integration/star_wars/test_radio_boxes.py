@@ -113,17 +113,13 @@ class TestEmptyRadioBoxes(unittest.TestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/an3b74d1-b687-4051-9634-a8f9ce10ard')
 
         summary_url = resp.headers['Location']
-
         resp = self.client.get(summary_url, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
-        # We are on the review answers page
+        # Check we are on the next page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Summary</title>')
-        self.assertRegexpMatches(content, '>Star Wars</')
-        self.assertRegexpMatches(content, '>Your responses<')
-        self.assertRegexpMatches(content, '>Please check carefully before submission<')
-        self.assertRegexpMatches(content, '>Submit answers<')
+        self.assertRegexpMatches(content, 'Why doesn&#39;t Chewbacca receive a medal at the end of A New Hope?')
+

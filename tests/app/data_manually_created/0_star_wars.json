@@ -5,7 +5,7 @@
     "eq_id" : "0",
     "survey_id": "0",
     "title": "Star Wars",
-    "description": "Star Wars",
+    "description": "Kitchen sink test for the Star Wars questionnaire",
     "introduction": {
       "description": "May the force be with you"
     },
@@ -60,12 +60,12 @@
                                 "guidance": "",
                                 "type": "Currency",
                                 "options": [],
-                                "mandatory": false,
+                                "mandatory": true,
                                 "validation": {
                                   "messages": {
                                     "NOT_INTEGER": "Please only enter whole numbers into the field.",
                                     "NEGATIVE_INTEGER": "How can it be negative?",
-                                    "INTEGER_TOO_LARGE": "How much?, idiot you must be"
+                                    "INTEGER_TOO_LARGE": "How much, idiot you must be"
                                   }
                                 }
                               }
@@ -82,7 +82,7 @@
                                 "q_code": "3",
                                 "label": "How hot is a lightsaver in degrees C?",
                                 "guidance": "",
-                                "type": "Integer",
+                                "type": "PositiveInteger",
                                 "options": [],
                                 "mandatory": false,
                                 "validation": {
@@ -279,7 +279,7 @@
                           }, {
                               "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
                               "title": "When was The Empire Strikes Back released?",
-                              "description": "Your start and end date can't be more then a month apart",
+                              "description": "It could be between {exercise.start_date:%-d %B %Y} and {exercise.end_date:%-d %B %Y}. But that might just be a test",
                               "type" : "DateRange",
                               "responses": [
                                 {
@@ -315,69 +315,77 @@
                               ]
                             }
                         ]
-                      },
-                      {
-                          "id": "12346782-08a6-4213-9dc9-0780c2996896",
-                          "title":"On {exercise.employment_date:%-d %B %Y} how many Ewokes were employed?",
-                          "description":"If you didn't pick the right employment date for Return of the Jedi its your fault if this question makes no sense",
-                          "questions": [
-                              {
-                                "id": "rt4eedc2-d98c-4d4d-9a7c-997ce10c361f",
-                                "title": "",
-                                "description": "",
-                                "type": "Integer",
-                                "responses": [
-                                    {
-                                      "id": "5rr015b1-f87c-4740-9fd4-f01f707ef558",
-                                      "q_code": "9",
-                                      "label": "",
-                                      "guidance": "",
-                                      "type": "Integer",
-                                      "options":[],
-                                      "mandatory":false,
-                                      "validation": {
-                                        "messages": {
-                                          "NOT_INTEGER": "Please only enter whole numbers into the field.",
-                                          "NEGATIVE_INTEGER": "How can it be negative?",
-                                          "INTEGER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be"
-                                        }
-                                      }
-                                    }
-                                  ]
-                              }
-                            ]
-                        },
-                      {
-                          "id": "94546782-08a6-4213-9dc9-0780c2996896",
-                          "title":"Comments",
-                          "description":"",
-                          "questions": [
-                              {
-                                "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
-                                "title": "",
-                                "description": "Why doesn't Chewbacca receive a medal at the end of A New Hope?",
-                                "type": "Textarea",
-                                "responses": [
-                                    {
-                                      "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
-                                      "q_code": "10",
-                                      "label": "Comments",
-                                      "guidance": "",
-                                      "type": "Textarea",
-                                      "options":[],
-                                      "mandatory":false,
-                                      "display": {
-                                          "properties": {
-                                              "max_length": "2000"
-                                          }
-                                      }
-                                    }
-                                  ]
-                              }
-                            ]
-                        }
+                      }
                     ]
-                }
+                },
+              {
+                "id": "an3b74d1-b687-4051-9634-a8f9ce10ard",
+                "title": "",
+                "sections": [
+                  {
+                    "id": "12346782-08a6-4213-9dc9-0780c2996896",
+                    "title": "On {exercise.employment_date:%-d %B %Y} how many were employed?",
+                    "description": "If you didn't pick the right employment date for Return of the Jedi its your fault if this question makes no sense",
+                    "questions": [
+                      {
+                        "id": "rt4eedc2-d98c-4d4d-9a7c-997ce10c361f",
+                        "title": "",
+                        "description": "",
+                        "type": "Integer",
+                        "responses": [
+                          {
+                            "id": "5rr015b1-f87c-4740-9fd4-f01f707ef558",
+                            "q_code": "9",
+                            "label": "What was the total number of Ewokes?",
+                            "guidance": "",
+                            "type": "Integer",
+                            "options": [],
+                            "mandatory": false,
+                            "validation": {
+                              "messages": {
+                                "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                "NEGATIVE_INTEGER": "How can it be negative?",
+                                "INTEGER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "94546782-08a6-4213-9dc9-0780c2996896",
+                    "title": "",
+                    "description": "",
+                    "questions": [
+                      {
+                        "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
+                        "title": "",
+                        "description": "",
+                        "type": "Textarea",
+                        "responses": [
+                          {
+                            "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
+                            "q_code": "10",
+                            "label": "Why doesn't Chewbacca receive a medal at the end of A New Hope?",
+                            "guidance": "",
+                            "type": "Textarea",
+                            "options": [],
+                            "mandatory": false,
+                            "display": {
+                              "properties": {
+                                "max_length": "2000"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+
+
             ]
         }
     ]
