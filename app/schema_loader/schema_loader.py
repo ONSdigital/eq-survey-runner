@@ -46,8 +46,11 @@ def available_schemas():
         if os.path.isfile(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file)):
             files.append(file)
     if settings.EQ_SCHEMA_BUCKET:
-        s3 = boto3.resource('s3')
-        schemas_bucket = s3.Bucket(settings.EQ_SCHEMA_BUCKET)
-        for key in schemas_bucket.objects.all():
-            files.append(key.key)
+        try:
+            s3 = boto3.resource('s3')
+            schemas_bucket = s3.Bucket(settings.EQ_SCHEMA_BUCKET)
+            for key in schemas_bucket.objects.all():
+                files.append(key.key)
+        except botocore.exceptions.ClientError as e:
+            logging.error("S3 error: %s", e.response['Error']['Code'])
     return files
