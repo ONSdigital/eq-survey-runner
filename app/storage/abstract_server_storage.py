@@ -7,10 +7,10 @@ class AbstractServerStorage(object):
     '''
     Interface which facilitates server side storage of questionnaire data
     '''
-    def store(self, user_id, data):
+    def store(self, data, user_id, user_ik=None):
         pass
 
-    def get(self, user_id):
+    def get(self, user_id, user_ik=None):
         pass
 
     def has_data(self, user_id):

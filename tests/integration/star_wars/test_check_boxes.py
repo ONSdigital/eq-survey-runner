@@ -1,14 +1,8 @@
-import unittest
-from app import create_app
 from tests.integration.create_token import create_token
-from app import settings
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
-class TestEmptyCheckBoxes(unittest.TestCase):
-    def setUp(self):
-        settings.EQ_SERVER_SIDE_STORAGE = False
-        self.application = create_app('development')
-        self.client = self.application.test_client()
+class TestEmptyCheckBoxes(IntegrationTestCase):
 
     def test_check_boxes_mandatory_empty(self):
         # Get a token

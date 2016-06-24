@@ -1,6 +1,5 @@
 from app.storage.memory_storage import InMemoryStorage
 from app.storage.database_storage import DatabaseStorage
-from app.storage.session_storage import FlaskSessionStore
 from app import settings
 from datetime import timedelta
 from flask import Flask
@@ -20,17 +19,17 @@ class BaseTestStorage(unittest.TestCase):
 
     def test_store(self):
         data = {'test': 'test'}
-        self.assertIsNone(self.storage.store(USER_ID, data))
+        self.assertIsNone(self.storage.store(data, USER_ID))
         self.assertTrue(self.storage.has_data(USER_ID))
 
     def test_get(self):
         data = {'test': 'test'}
-        self.storage.store(USER_ID, data)
+        self.storage.store(data, USER_ID)
         self.assertEqual(data, self.storage.get(USER_ID))
 
     def test_delete(self):
         data = {'test': 'test'}
-        self.storage.store(USER_ID, data)
+        self.storage.store(data, USER_ID)
         self.assertEqual(data, self.storage.get(USER_ID))
         self.storage.delete(USER_ID)
         self.assertFalse(self.storage.has_data(USER_ID))
@@ -38,7 +37,7 @@ class BaseTestStorage(unittest.TestCase):
 
     def test_clear(self):
         data = {'test': 'test'}
-        self.storage.store(USER_ID, data)
+        self.storage.store(data, USER_ID)
         self.assertEqual(data, self.storage.get(USER_ID))
         self.storage.clear()
         self.assertFalse(self.storage.has_data(USER_ID))
@@ -57,35 +56,6 @@ class TestDatabaseStorage(BaseTestStorage):
         # use an inmemory database
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
         self.storage = DatabaseStorage()
-
-
-class TestFlaskSessionStorage(BaseTestStorage):
-
-    def setUp(self):
-        self.application = Flask(__name__)
-        self.application.config['TESTING'] = True
-        self.storage = FlaskSessionStore()
-        self.application.secret_key = 'you will not guess'
-        self.application.permanent_session_lifetime = timedelta(seconds=1)
-
-    def tearDown(self):
-        pass
-
-    def test_store(self):
-        with self.application.test_request_context():
-            super().test_store()
-
-    def test_get(self):
-        with self.application.test_request_context():
-            super().test_get()
-
-    def test_delete(self):
-        with self.application.test_request_context():
-            super().test_delete()
-
-    def test_clear(self):
-        with self.application.test_request_context():
-            super().test_clear()
 
 
 if __name__ == '__main__':

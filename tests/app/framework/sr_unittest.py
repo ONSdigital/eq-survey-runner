@@ -10,7 +10,7 @@ login_manager = LoginManager()
 
 @login_manager.request_loader
 def request_loader(request):
-    user = User("1")
+    user = User("1", "2")
     return user
 
 

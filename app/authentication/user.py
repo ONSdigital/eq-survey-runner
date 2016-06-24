@@ -7,11 +7,12 @@ logger = logging.getLogger(__name__)
 
 class User(UserMixin):
 
-    def __init__(self, user_id):
-        if user_id:
+    def __init__(self, user_id, user_ik):
+        if user_id and user_ik:
             self.user_id = user_id
+            self.user_ik = user_ik
         else:
-            raise ValueError("No user_id found in session")
+            raise ValueError("No user_id or user_ik found in session")
 
         self.storage = StorageFactory.get_storage_mechanism()
 
@@ -27,6 +28,10 @@ class User(UserMixin):
         logger.debug("Returning user id %s", self.user_id)
         return self.user_id
 
+    def get_user_ik(self):
+        logger.debug("Returning user ik %s", self.user_ik)
+        return self.user_ik
+
     def get_questionnaire_data(self):
         logger.debug("Returning questionnaire data for %s", self.user_id)
         return self.questionnaire_data
@@ -38,8 +43,8 @@ class User(UserMixin):
 
     def save(self):
         logger.debug("Saving user data %s for user id %s", self.questionnaire_data, self.user_id)
-        self.storage.store(self.user_id, self.questionnaire_data)
+        self.storage.store(data=self.questionnaire_data, user_id=self.user_id, user_ik=self.user_ik)
 
     def load(self):
-        self.questionnaire_data = self.storage.get(self.user_id)
+        self.questionnaire_data = self.storage.get(self.user_id, self.user_ik)
         logger.debug("Loaded questionnaire data %s", self.questionnaire_data)

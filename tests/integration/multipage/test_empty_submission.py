@@ -1,12 +1,8 @@
-import unittest
-from app import create_app
 from tests.integration.create_token import create_token
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
-class TestEmptySubmission(unittest.TestCase):
-    def setUp(self):
-        self.application = create_app('development')
-        self.client = self.application.test_client()
+class TestEmptySubmission(IntegrationTestCase):
 
     def test_happy_path(self):
         # Get a token

@@ -1,19 +1,25 @@
 from flask import session
-from app import settings
 from app.data_model.database import db_session, EQSession
 import logging
 from uuid import uuid4
 
 USER_ID = "user_id"
+USER_IK = "user_ik"
 EQ_SESSION_ID = "eq-session-id"
+MAX_RETRY = 10
+
 logger = logging.getLogger(__name__)
 
 
+class NoUniqueIDError(RuntimeError):
+    pass
+
+
 class SessionManagement(object):
-    def store_user_id(self, jwt):
+    def store_user_id(self, user_id):
         """
         Store a user's id for retrieval later
-        :param jwt: the user JWT
+        :param user_id: the user id
         """
         pass
 
@@ -24,7 +30,7 @@ class SessionManagement(object):
         """
         pass
 
-    def remove_user_id(self):
+    def clear(self):
         """
         Removes a user id from the session
         """
@@ -32,7 +38,29 @@ class SessionManagement(object):
 
     def get_user_id(self):
         """
-        Retrieves a user's token
+        Retrieves a user's id
+        :return: the user's JWT
+        """
+        pass
+
+    def store_user_ik(self, user_ik):
+        '''
+        Store a user's ik in the cookie for retrieval later
+        :param user_ik: the user ik
+        '''
+        pass
+
+    def has_user_ik(self):
+        """
+        Checks if a user has a stored ik
+        :return: boolean value
+        """
+        logger.debug("SessionManager has_user_ik() - session %s", session)
+        pass
+
+    def get_user_ik(self):
+        """
+        Retrieves a user's id
         :return: the user's JWT
         """
         pass
@@ -68,7 +96,7 @@ class DatabaseSessionManager(SessionManagement):
             logger.debug("Number of entries for eq session id %s is %s", eq_session_id, count)
             return count > 0
 
-    def remove_user_id(self):
+    def clear(self):
         logger.debug("DatabaseSessionManager remove_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
@@ -89,11 +117,17 @@ class DatabaseSessionManager(SessionManagement):
             return None
 
     def create_session_id(self):
-        while True:
+        for x in range(0, MAX_RETRY):
             new_session_id = str(uuid4())
             if self.check_unique(new_session_id):
                 break
-        return new_session_id
+            else:
+                new_session_id = None
+        if new_session_id:
+            return new_session_id
+        else:
+            logger.error("Unable to generate a unique session id before the retry count %s was reached", MAX_RETRY)
+            raise NoUniqueIDError()
 
     def check_unique(self, new_session_id):
         return self.run_count(new_session_id) == 0
@@ -107,34 +141,46 @@ class DatabaseSessionManager(SessionManagement):
         count = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).count()
         return count
 
-
-class FlaskSessionManager(SessionManagement):
-    def store_user_id(self, user_id):
-        logger.debug("FlaskSessionManager store_user_id() - session %s", session)
-        if USER_ID not in session:
-            session[USER_ID] = user_id
+    def store_user_ik(self, user_ik):
+        '''
+        Store a user's ik in the cookie for retrieval later
+        :param user_ik: the user ik
+        '''
+        logger.debug("SessionManager store_user_ik() - session %s", session)
+        if USER_IK not in session:
+            session[USER_IK] = user_ik
             session.permanent = True
 
-    def has_user_id(self):
-        logger.debug("FlaskSessionManager has_user_id() - session %s", session)
-        if USER_ID in session:
-            return session[USER_ID] is not None
+    def has_user_ik(self):
+        """
+        Checks if a user has a stored ik
+        :return: boolean value
+        """
+        logger.debug("SessionManager has_user_ik() - session %s", session)
+        if USER_IK in session:
+            return session[USER_IK] is not None
         else:
             return False
 
-    def remove_user_id(self):
-        logger.debug("FlaskSessionManager remove_user_id() - session %s", session)
-        if USER_ID in session:
-            del session[USER_ID]
-
-    def get_user_id(self):
-        logger.debug("FlaskSessionManager get_user_id() - session %s", session)
-        if self.has_user_id():
-            return session[USER_ID]
+    def get_user_ik(self):
+        """
+        Retrieves a user's id
+        :return: the user's JWT
+        """
+        logger.debug("SessionManager get_user_ik() - session %s", session)
+        if self.has_user_ik():
+            return session[USER_IK]
         else:
             return None
 
-if settings.EQ_SERVER_SIDE_STORAGE:
-    session_manager = DatabaseSessionManager()
-else:
-    session_manager = FlaskSessionManager()
+    def delete_all(self):
+        """
+        Clears all session mapping data. Use with caution
+        :return:
+        """
+        logger.warning("About to delete all session data")
+        EQSession.query.delete()
+        logger.warning("Deleted all session data")
+
+
+session_manager = DatabaseSessionManager()

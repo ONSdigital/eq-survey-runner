@@ -1,20 +1,14 @@
-import unittest
-from app import create_app
 from tests.integration.create_token import create_token
-from app import settings
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
-class TestHappyPath(unittest.TestCase):
-    def setUp(self):
-        settings.EQ_SERVER_SIDE_STORAGE = False
-        self.application = create_app('development')
-        self.client = self.application.test_client()
+class TestHappyPath(IntegrationTestCase):
 
     def test_happy_path_203(self):
-        self.happy_path('0203','1')
+        self.happy_path('0203', '1')
 
     def test_happy_path_205(self):
-        self.happy_path('0205','1')
+        self.happy_path('0205', '1')
 
     def happy_path(self, form_type_id, eq_id):
         # Get a token

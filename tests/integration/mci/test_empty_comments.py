@@ -1,13 +1,8 @@
-import unittest
-from app import create_app
+from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.create_token import create_token
 
 
-class TestEmptyComments(unittest.TestCase):
-
-    def setUp(self):
-        self.application = create_app('development')
-        self.client = self.application.test_client()
+class TestEmptyComments(IntegrationTestCase):
 
     def test_empty_comments(self):
         # Get a token

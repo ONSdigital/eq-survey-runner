@@ -1,14 +1,8 @@
-import unittest
-from app import create_app
 from tests.integration.create_token import create_token
-from app import settings
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
-class TestPipingEmploymentDate(unittest.TestCase):
-    def setUp(self):
-        settings.EQ_SERVER_SIDE_STORAGE = False
-        self.application = create_app('development')
-        self.client = self.application.test_client()
+class TestPipingEmploymentDate(IntegrationTestCase):
 
     def test_piping_employment_date(self):
         eq_id = "0"
@@ -24,7 +18,7 @@ class TestPipingEmploymentDate(unittest.TestCase):
         self.assertRegexpMatches(content, '>Get Started<')
         self.assertRegexpMatches(content, '(?s)Star Wars.*?Star Wars')
 
-         # We proceed to the questionnaire
+        # We proceed to the questionnaire
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
