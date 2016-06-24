@@ -234,3 +234,6 @@ class MockResponseStore(AbstractResponseStore):
 class MockNavigator(object):
     def get_current_location(self):
         return 'current-location'
+
+    def get_first_block(self):
+        return 'block-1'
