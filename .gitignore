@@ -65,5 +65,5 @@ app/styles/base/_sprite.scss
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 newrelic.ini
-app/data/*
+app/data/*.json
 tests/serialisation/data/*
