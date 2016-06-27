@@ -4,6 +4,7 @@ from app.submitter.converter import SubmitterConstants
 from flask import session
 from app.piping.plumber import Plumber
 from app.libs.utils import ObjectFromDict
+from app.model.questionnaire import QuestionnaireException
 
 
 class Renderer(object):
@@ -30,11 +31,13 @@ class Renderer(object):
         except:
             pass
 
+        # Get the current location or the first block
         try:
             self._current_block = self._schema.get_item_by_id(self._navigator.get_current_location())
-        except:
+        except QuestionnaireException:
             self._current_block = self._schema.get_item_by_id(self._navigator.get_first_block())
 
+        # get the group
         self._current_group = self._current_block.container
 
         context = {
@@ -138,11 +141,8 @@ class Renderer(object):
             "current_group_id": None
         }
 
-        try:
-            navigation_meta["current_block_id"] = self._current_block.id
-            navigation_meta["current_group_id"] = self._current_group.id
-        except:
-            pass
+        navigation_meta["current_block_id"] = self._current_block.id
+        navigation_meta["current_group_id"] = self._current_group.id
 
         return navigation_meta
 

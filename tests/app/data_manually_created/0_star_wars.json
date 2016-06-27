@@ -371,7 +371,7 @@
                             "guidance": "",
                             "type": "Textarea",
                             "options": [],
-                            "mandatory": false,
+                            "mandatory": true,
                             "display": {
                               "properties": {
                                 "max_length": "2000"

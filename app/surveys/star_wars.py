@@ -408,7 +408,7 @@ q10r.label = "Why doesn't Chewbacca receive a medal at the end of A New Hope?"
 q10r.guidance = ""
 q10r.type = "Textarea"
 q10r.options = []
-q10r.mandatory = False
+q10r.mandatory = True
 
 q10.add_response(q10r)
 questionnaire.register(q10r)
