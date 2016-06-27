@@ -74,7 +74,6 @@ class DatabaseSessionManager(SessionManagement):
             eq_session_id = self.create_session_id()
             logger.debug("Created new eq session id %s", eq_session_id)
             session[EQ_SESSION_ID] = eq_session_id
-            session.permanent = True
             eq_session = EQSession(eq_session_id, user_id)
             logger.debug("Constructed EQ Session object %s", eq_session)
         else:
@@ -149,7 +148,6 @@ class DatabaseSessionManager(SessionManagement):
         logger.debug("SessionManager store_user_ik() - session %s", session)
         if USER_IK not in session:
             session[USER_IK] = user_ik
-            session.permanent = True
 
     def has_user_ik(self):
         """

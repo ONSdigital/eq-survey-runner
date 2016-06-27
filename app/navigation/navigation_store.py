@@ -15,7 +15,7 @@ class INavigationStore(metaclass=ABCMeta):
         pass
 
 
-class FlaskNavigationStore(INavigationStore):
+class NavigationStore(INavigationStore):
     def store_state(self, state):
         data = current_user.get_questionnaire_data()
         data[NAVIGATION_SESSION_KEY] = state.to_dict()

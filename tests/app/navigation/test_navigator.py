@@ -1,5 +1,5 @@
 from app.navigation.navigator import Navigator
-from app.navigation.navigation_history import FlaskNavigationHistory
+from app.navigation.navigation_history import NavigationHistory
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.model.questionnaire import Questionnaire
 import unittest
@@ -22,7 +22,7 @@ class NavigatorTest(SurveyRunnerTestCase):
             group.add_block(block)
             schema.add_group(group)
 
-            navigation_history = FlaskNavigationHistory()
+            navigation_history = NavigationHistory()
             navigator = Navigator(schema, navigation_history)
             #  brand new session shouldn't have a current location
             self.assertEquals("block-1", navigator.get_current_location())
@@ -32,7 +32,7 @@ class NavigatorTest(SurveyRunnerTestCase):
             schema = Questionnaire()
             schema.introduction = "anything"
 
-            navigation_history = FlaskNavigationHistory()
+            navigation_history = NavigationHistory()
             navigator = Navigator(schema, navigation_history)
             #  brand new session shouldn't have a current location
             self.assertEquals("introduction", navigator.get_current_location())
@@ -49,19 +49,19 @@ class NavigatorTest(SurveyRunnerTestCase):
             group.add_block(block)
             schema.add_group(group)
 
-            navigation_history = FlaskNavigationHistory()
+            navigation_history = NavigationHistory()
             navigator = Navigator(schema, navigation_history)
 
             self.assertRaises(NavigationException, navigator.go_to, 'introduction')
 
-            navigation_history = FlaskNavigationHistory()
+            navigation_history = NavigationHistory()
             navigator = Navigator(schema, navigation_history)
             navigator.go_to("block-1")
             self.assertEquals("block-1", navigator.get_current_location())
 
             schema.introduction = {'description': 'Some sort of intro'}
 
-            navigation_history = FlaskNavigationHistory()
+            navigation_history = NavigationHistory()
             navigator = Navigator(schema, navigation_history)
             navigator.go_to("introduction")
             self.assertEquals("introduction", navigator.get_current_location())

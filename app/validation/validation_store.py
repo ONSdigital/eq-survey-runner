@@ -17,7 +17,7 @@ class AbstractValidationStore(metaclass=ABCMeta):
         raise NotImplementedError()
 
 
-class FlaskValidationStore(AbstractValidationStore):
+class ValidationStore(AbstractValidationStore):
 
     def store_result(self, key, value):
         data = current_user.get_questionnaire_data()

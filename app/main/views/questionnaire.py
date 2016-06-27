@@ -1,4 +1,5 @@
 import logging
+from app.authentication.session_management import session_manager
 from flask import render_template, request, session
 from flask_login import login_required, current_user
 from flask import redirect
@@ -24,6 +25,9 @@ def survey(eq_id, collection_id, location):
     if location == 'first':
         questionnaire_manager.go_to_first()
         return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/' + questionnaire_manager.get_current_location())
+
+    if location == 'thank-you':
+        delete_user_data()
 
     try:
         # Go to the location in the url.
@@ -51,3 +55,11 @@ def survey(eq_id, collection_id, location):
 
     except QuestionnaireException:
         return page_not_found(404)
+
+
+def delete_user_data():
+    # once the survey has been submitted
+    # delete all user data from the database
+    current_user.delete_questionnaire_data()
+    # and clear out the session state
+    session_manager.clear()
