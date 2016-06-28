@@ -42,15 +42,25 @@ def load_schema(eq_id, form_type):
 
 def available_schemas():
     files = []
+    available_local_schemas(files)
+    if settings.EQ_SCHEMA_BUCKET:
+        available_s3_schemas(files)
+    return files
+
+
+def available_local_schemas(files):
     for file in os.listdir(settings.EQ_SCHEMA_DIRECTORY):
         if os.path.isfile(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file)):
-            files.append(file)
-    if settings.EQ_SCHEMA_BUCKET:
-        try:
-            s3 = boto3.resource('s3')
-            schemas_bucket = s3.Bucket(settings.EQ_SCHEMA_BUCKET)
-            for key in schemas_bucket.objects.all():
-                files.append(key.key)
-        except botocore.exceptions.ClientError as e:
-            logging.error("S3 error: %s", e.response['Error']['Code'])
-    return files
+            # ignore hidden file
+            if not file.startswith("."):
+                files.append(file)
+
+
+def available_s3_schemas(files):
+    try:
+        s3 = boto3.resource('s3')
+        schemas_bucket = s3.Bucket(settings.EQ_SCHEMA_BUCKET)
+        for key in schemas_bucket.objects.all():
+            files.append(key.key)
+    except botocore.exceptions.ClientError as e:
+        logging.error("S3 error: %s", e.response['Error']['Code'])
