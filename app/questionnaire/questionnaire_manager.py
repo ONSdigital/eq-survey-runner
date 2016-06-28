@@ -26,14 +26,7 @@ class QuestionnaireManager(object):
 
         # Are we submitting downstram?
         if user_action == 'submit_answers':
-            responses = self._response_store.get_responses()
-            submitter = SubmitterFactory.get_submitter()
-            submitted_at = submitter.send_responses(current_user, self._metadata, self._schema, responses)
-            # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
-            session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
-            self._response_store.clear_responses()
-            self._navigator.go_to('thank-you')
-            return
+            return self.submit()
 
         # Process the responses and see where to go next
         cleaned_user_responses = {}
@@ -61,6 +54,15 @@ class QuestionnaireManager(object):
 
         # now return the location
         return self._navigator.get_current_location()
+
+    def submit(self):
+        responses = self._response_store.get_responses()
+        submitter = SubmitterFactory.get_submitter()
+        submitted_at = submitter.send_responses(current_user, self._metadata, self._schema, responses)
+        # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
+        session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
+        self._navigator.go_to('thank-you')
+        return
 
     def get_rendering_context(self):
         return self.renderer.render()

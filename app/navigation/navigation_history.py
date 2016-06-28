@@ -1,16 +1,19 @@
 from flask_login import current_user
+from abc import ABCMeta, abstractmethod
 NAV_HISTORY = "history"
 
 
-class NavigationHistory(object):
+class AbstractNavigationHistory(metaclass=ABCMeta):
+    @abstractmethod
     def get_history(self):
         raise NotImplementedError()
 
+    @abstractmethod
     def add_history_entry(self, location):
         raise NotImplementedError()
 
 
-class FlaskNavigationHistory(NavigationHistory):
+class NavigationHistory(AbstractNavigationHistory):
 
     def get_history(self):
         data = current_user.get_questionnaire_data()

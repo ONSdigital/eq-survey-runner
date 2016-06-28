@@ -22,7 +22,7 @@ class AbstractResponseStore(metaclass=ABCMeta):
         raise NotImplementedError()
 
 
-class FlaskResponseStore(AbstractResponseStore):
+class ResponseStore(AbstractResponseStore):
 
     def store_response(self, key, value):
         data = current_user.get_questionnaire_data()
