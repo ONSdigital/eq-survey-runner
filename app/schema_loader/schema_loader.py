@@ -52,7 +52,7 @@ def available_local_schemas(files):
     for file in os.listdir(settings.EQ_SCHEMA_DIRECTORY):
         if os.path.isfile(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file)):
             # ignore hidden file
-            if not file.startswith("."):
+            if file.endswith(".json"):
                 files.append(file)
 
 
