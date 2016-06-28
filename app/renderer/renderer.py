@@ -4,6 +4,7 @@ from app.submitter.converter import SubmitterConstants
 from flask import session
 from app.piping.plumber import Plumber
 from app.libs.utils import ObjectFromDict
+from app.model.questionnaire import QuestionnaireException
 
 
 class Renderer(object):
@@ -13,6 +14,8 @@ class Renderer(object):
         self._validation_store = validation_store
         self._navigator = navigator
         self._metadata = metadata
+        self._current_block = None
+        self._current_group = None
 
         start_date = None
         end_date = None
@@ -24,8 +27,18 @@ class Renderer(object):
             end_date = self._metadata.get_ref_p_end_date()
             employment_date = self._metadata.get_employment_date()
             return_by = self._metadata.get_return_by()
+
         except:
             pass
+
+        # Get the current location or the first block
+        try:
+            self._current_block = self._schema.get_item_by_id(self._navigator.get_current_location())
+        except QuestionnaireException:
+            self._current_block = self._schema.get_item_by_id(self._navigator.get_first_block())
+
+        # get the group
+        self._current_group = self._current_block.container
 
         context = {
             "exercise": ObjectFromDict({
@@ -128,13 +141,8 @@ class Renderer(object):
             "current_group_id": None
         }
 
-        try:
-            current_block = self._schema.get_item_by_id(self._navigator.get_current_location())
-            current_group = current_block.container
-            navigation_meta["current_block_id"] = self._navigator.get_current_location()
-            navigation_meta["current_group_id"] = current_group.id
-        except:
-            pass
+        navigation_meta["current_block_id"] = self._current_block.id
+        navigation_meta["current_group_id"] = self._current_group.id
 
         return navigation_meta
 
@@ -150,16 +158,22 @@ class Renderer(object):
         # loops through the Schema and get errors and warnings in order
         # augments each item in the schema as required
         for group in self._schema.groups:
-            self._augment_item(group, errors, warnings)
-            for block in group.blocks:
-                self._augment_item(block, errors, warnings)
-                for section in block.sections:
-                    self._augment_item(section, errors, warnings)
-                    for question in section.questions:
-                        self._augment_item(question, errors, warnings)
-                        for response in question.responses:
-                            self._augment_response(response)
-                            self._augment_item(response, errors, warnings)
+            if self._current_group.id == group.id:
+                self._augment_item(group, errors, warnings)
+                for block in group.blocks:
+                    if self._current_block.id == block.id:
+                        self._augment_item(block, errors, warnings)
+                        for section in block.sections:
+                            self._augment_item(section, errors, warnings)
+                            for question in section.questions:
+                                self._augment_item(question, errors, warnings)
+                                for response in question.responses:
+                                    self._augment_item(response, errors, warnings)
+
+        # We need to augment all the responses, regardless of the current block
+        for response_id in self._response_store.get_responses().keys():
+            response = self._schema.get_item_by_id(response_id)
+            self._augment_response(response)
 
         self._schema.errors = errors
         self._schema.warnings = warnings
