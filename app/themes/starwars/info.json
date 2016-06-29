@@ -1,0 +1,9 @@
+{
+    "application": "surveyrunner",
+    "identifier": "starwars",
+    "name": "Star Wars",
+    "author": "hamishtapin",
+    "description": "A Star Wars theme",
+    "license": "MIT/X11",
+    "version": "1.0.0"
+}

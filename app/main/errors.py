@@ -1,6 +1,8 @@
-from flask import render_template, request
+from flask import request
 from app.main import main_blueprint
 from ua_parser import user_agent_parser
+from flask.ext.themes2 import render_theme_template
+
 
 import logging
 
@@ -58,4 +60,6 @@ def service_unavailable(error=None):
 
 def _render_error_page(status_code):
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
-    return render_template('errors/error.html', status_code=status_code, ua=user_agent), status_code
+    return render_theme_template('default', 'errors/error.html',
+                                 status_code=status_code,
+                                 ua=user_agent), status_code

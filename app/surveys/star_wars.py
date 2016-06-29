@@ -20,7 +20,7 @@ questionnaire.title = "Star Wars"
 
 # Currently not used on the frontend
 questionnaire.description = "Kitchen sink test for the Star Wars questionnaire"
-questionnaire.theme = "star_wars"
+questionnaire.theme = "starwars"
 questionnaire.survey_id = "0"
 
 introduction = Introduction()

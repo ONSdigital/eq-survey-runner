@@ -6,6 +6,7 @@ import plumber from 'gulp-plumber'
 import sass from 'gulp-sass'
 import sassGlob from 'gulp-sass-glob'
 import minify from 'gulp-cssnano'
+import tap from 'gulp-tap'
 import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
 import pixrem from 'pixrem'
@@ -14,12 +15,11 @@ import pseudoelements from 'postcss-pseudoelements'
 import sourcemaps from 'gulp-sourcemaps'
 import flatten from 'gulp-flatten'
 import rename from 'gulp-rename'
-import size from 'gulp-size'
 import stylelint from 'stylelint'
 import reporter from 'postcss-reporter'
 import inlineblock from 'postcss-inline-block'
 
-import {paths} from './paths'
+import { paths } from './paths'
 import browserSync from './bs'
 
 export function lint() {
@@ -44,6 +44,7 @@ export function styles() {
       outputStyle: 'expanded',
       sourceComments: false,
       includePaths: [
+        './app/styles/',
         './node_modules/eq-sass/',
         './node_modules/gfm.css/source/'
       ],
@@ -51,13 +52,11 @@ export function styles() {
         gutil.log('Done', gutil.colors.cyan(msg))
       }
     })
-    // .pipe(debug({title: 'CSS:'}))
     .on('error', function(err) {
       gutil.log(err.message.toString())
       browserSync.notify('Browserify Error!')
       this.emit('end')
     }))
-    .pipe(flatten())
     .pipe(postcss([
       autoprefixer({
         browsers: ['last 2 versions', 'Explorer >= 8', 'Android >= 4.1', 'Safari >= 7', 'iOS >= 7']
@@ -69,7 +68,12 @@ export function styles() {
       pseudoelements(),
       reporter({ clearMessages: true })
     ]))
+    .pipe(rename(function(path) {
+      path.dirname = path.dirname.replace('themes/', '')
+      return path
+    }))
     .pipe(gulp.dest(paths.styles.output))
+    .pipe(browserSync.reload({ stream: true }))
     .pipe(rename({
       suffix: '.min'
     }))
@@ -81,5 +85,4 @@ export function styles() {
     }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.styles.output))
-    .pipe(browserSync.stream({once: true}))
 }

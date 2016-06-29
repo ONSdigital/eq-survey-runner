@@ -13,10 +13,12 @@ from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
 from app import settings
+from flask.ext.themes2 import Themes
 from datetime import timedelta
 import watchtower
 import logging
 import sys
+import os
 from logging.handlers import RotatingFileHandler
 from flask_analytics import Analytics
 from splunk_handler import SplunkHandler
@@ -143,6 +145,9 @@ def create_app(config_name):
     if settings.EQ_UA_ID:
         setup_analytics(application)
 
+    # Add theme manager
+    application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
+    Themes(application, app_identifier="surveyrunner")
     return application
 
 

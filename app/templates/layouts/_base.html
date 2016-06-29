@@ -24,9 +24,9 @@
     {%- block styles %}
     <!--[if (gt IE 9) | (IEMobile)]><!-->
       {%- if request.args.get('fixed') == 'true' %}
-        <link href="{{ url_for('static', filename='css/fixed.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/default/fixed.css') }}" rel="stylesheet">
       {%- else %}
-        <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/default/responsive.css') }}" rel="stylesheet">
       {%- endif %}
     <!--<![endif]-->
     <!--[if (lte IE 9) & (!IEMobile)]>
@@ -37,7 +37,6 @@
     {{ analytics }}
   </head>
   <body>
-
     {% block top_bar %}{% endblock %}
 
     {% block content %}{% endblock %}

@@ -53,8 +53,6 @@ class Questionnaire(object):
             elif self.aliases[item.alias] != item.id:
                 raise QuestionnaireException('{} is not a unique alias'.format(item.alias))
 
-<<<<<<< HEAD
-=======
     def to_json(self):
         json_dict = {
             "mime_type": "application/json/ons/eq",
