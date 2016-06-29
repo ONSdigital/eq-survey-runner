@@ -79,6 +79,7 @@ class TemplatePreProcessor(object):
             "title": self._schema.title,
             "survey_code": self._schema.survey_id,
             "description": None,
+            "theme": self._schema.theme,
             "return_by": None,
             "start_date": None,
             "end_date": None,
