@@ -28,7 +28,7 @@
                               "title": "What are the dates of the sales period you are reporting for?",
                               "description": "If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.",
                               "type" : "DateRange",
-                              "responses": [
+                              "answers": [
                                 {
                                   "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
                                   "q_code": "11",
@@ -73,7 +73,7 @@
                             "title": "",
                             "description": "",
                             "type": "Currency",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "bb8168e6-2272-450d-b5a7-d3170508efb2",
                                 "q_code": "22",
@@ -97,7 +97,7 @@
                             "title": "",
                             "description": "",
                             "type": "Currency",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
                                 "q_code": "23",
@@ -121,7 +121,7 @@
                             "title": "",
                             "description": "",
                             "type": "Currency",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
                                 "q_code": "24",
@@ -145,7 +145,7 @@
                             "title": "",
                             "description": "",
                             "type": "Currency",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
                                 "q_code": "25",
@@ -169,7 +169,7 @@
                             "title": "",
                             "description": "",
                             "type": "Currency",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
                                 "q_code": "26",
@@ -193,7 +193,7 @@
                             "title": "",
                             "description": "",
                             "type": "Currency",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "e81adc6d-6fb0-4155-969c-d0d646f15345",
                                 "q_code": "20",
@@ -218,7 +218,7 @@
                             "title": "",
                             "description": "",
                             "type": "Currency",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
                                 "q_code": "21",
@@ -250,7 +250,7 @@
                                 "title": "",
                                 "description": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                                 "type": "Textarea",
-                                "responses": [
+                                "answers": [
                                     {
                                       "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
                                       "q_code": "146",

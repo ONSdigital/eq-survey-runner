@@ -1,7 +1,7 @@
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 
 from app.surveys.large_test import test_questionnaire
 
@@ -17,25 +17,25 @@ i1_s.id = "section-i1"
 i1_q = Question()
 i1_q.id = "question-i1"
 i1_q.title = '(I1) What is your name?'
-# TODO: Decide on Question Types and Response Types
+# TODO: Decide on Question Types and Answer Types
 i1_q.type = "General"
 
-i1_r1 = Response()
-i1_r1.id = "response1-i1"
+i1_r1 = Answer()
+i1_r1.id = "answer1-i1"
 i1_r1.type = "Textfield"
 i1_r1.label = "First name:"
 i1_r1.code = "i1_a"
 i1_r1.options = []
 
-i1_r2 = Response()
-i1_r2.id = "response2-i1"
+i1_r2 = Answer()
+i1_r2.id = "answer2-i1"
 i1_r2.type = "Textfield"
 i1_r2.label = "Last name:"
 i1_r2.code = "i1_b"
 i1_r2.options = []
 
-i1_q.add_response(i1_r1)
-i1_q.add_response(i1_r2)
+i1_q.add_answer(i1_r1)
+i1_q.add_answer(i1_r2)
 i1_s.add_question(i1_q)
 page7.add_section(i1_s)
 test_questionnaire.register(i1_s)
@@ -53,8 +53,8 @@ i2_q.id = 'question-i2'
 i2_q.title = "(I2) What is your sex?"
 i2_q.type = "General"
 
-i2_r = Response()
-i2_r.id = 'response-i2'
+i2_r = Answer()
+i2_r.id = 'answer-i2'
 i2_r.type = "Radio"
 i2_r.code = 'I2'
 i2_r.options = [
@@ -68,7 +68,7 @@ i2_r.options = [
     }
 ]
 
-i2_q.add_response(i2_r)
+i2_q.add_answer(i2_r)
 i2_s.add_question(i2_q)
 page7.add_section(i2_s)
 test_questionnaire.register(i2_s)
@@ -84,12 +84,12 @@ i3_q.id = 'question-i3'
 i3_q.title = "(I3) What is your date of birth?"
 i3_q.type = "General"
 
-i3_r = Response()
-i3_r.id = 'response-i3'
+i3_r = Answer()
+i3_r.id = 'answer-i3'
 i3_r.type = "Date"
 i3_r.code = "I3"
 
-i3_q.add_response(i3_r)
+i3_q.add_answer(i3_r)
 i3_s.add_question(i3_q)
 page7.add_section(i3_s)
 test_questionnaire.register(i3_r)
@@ -105,8 +105,8 @@ i4_q.id = "question-i4"
 i4_q.title = '(I4) On {exercise.return_by:%-d %B %Y}, what is your legal marital or same-sex civil partnership status?'
 i4_q.type = "General"
 
-i4_r = Response()
-i4_r.id = "response1-i4"
+i4_r = Answer()
+i4_r.id = "answer1-i4"
 i4_r.type = "Radio"
 i4_r.code = "I4"
 i4_r.options = [
@@ -149,7 +149,7 @@ i4_r.options = [
 ]
 
 
-i4_q.add_response(i4_r)
+i4_q.add_answer(i4_r)
 i4_s.add_question(i4_q)
 page7.add_section(i4_s)
 test_questionnaire.register(i4_s)
@@ -165,11 +165,11 @@ i6_s.id = "section-i6"
 i6_q = Question()
 i6_q.id = "question-i6"
 i6_q.title = '(I6) What is that address?'
-# TODO: Decide on Question Types and Response Types
+# TODO: Decide on Question Types and Answer Types
 i6_q.type = "General"
 
-i6_r = Response()
-i6_r.id = "response1-i6"
+i6_r = Answer()
+i6_r.id = "answer1-i6"
 i6_r.type = "Radio"
 i6_r.code = "I6"
 i6_r.options = [
@@ -204,7 +204,7 @@ i6_r.options = [
 ]
 
 
-i6_q.add_response(i6_r)
+i6_q.add_answer(i6_r)
 i6_s.add_question(i6_q)
 page7.add_section(i6_s)
 test_questionnaire.register(i6_s)
@@ -220,8 +220,8 @@ i7_q.id = 'question-i7'
 i7_q.title = "(I7) Are you a schoolchild or student in full-time education?"
 i7_q.type = "General"
 
-i7_r = Response()
-i7_r.id = 'response-i7'
+i7_r = Answer()
+i7_r.id = 'answer-i7'
 i7_r.type = "Radio"
 i7_r.code = 'I7'
 i7_r.options = [
@@ -236,7 +236,7 @@ i7_r.options = [
     }
 ]
 
-i7_q.add_response(i7_r)
+i7_q.add_answer(i7_r)
 i7_s.add_question(i7_q)
 page7.add_section(i7_s)
 test_questionnaire.register(i7_s)
@@ -250,11 +250,11 @@ i8_s.id = "section-i8"
 i8_q = Question()
 i8_q.id = "question-i8"
 i8_q.title = '(I8) During term time, do you live:'
-# TODO: Decide on Question Types and Response Types
+# TODO: Decide on Question Types and Answer Types
 i8_q.type = "General"
 
-i8_r = Response()
-i8_r.id = "response1-i8"
+i8_r = Answer()
+i8_r.id = "answer1-i8"
 i8_r.type = "Radio"
 i8_r.code = "I8"
 i8_r.options = [
@@ -274,7 +274,7 @@ i8_r.options = [
     }
 ]
 
-i8_q.add_response(i8_r)
+i8_q.add_answer(i8_r)
 i8_s.add_question(i8_q)
 page7.add_section(i8_s)
 test_questionnaire.register(i8_s)
@@ -288,11 +288,11 @@ i9_s.id = "section-i9"
 i9_q = Question()
 i9_q.id = "question-i9"
 i9_q.title = '(I9) What is your country of birth?'
-# TODO: Decide on Question Types and Response Types
+# TODO: Decide on Question Types and Answer Types
 i9_q.type = "General"
 
-i9_r1 = Response()
-i9_r1.id = "response1-i9"
+i9_r1 = Answer()
+i9_r1.id = "answer1-i9"
 i9_r1.type = "Radio"
 i9_r1.code = "I9"
 i9_r1.options = [
@@ -326,13 +326,13 @@ i9_r1.options = [
     }
 ]
 
-i9_r2 = Response()
-i9_r2.id = 'response2-i9'
+i9_r2 = Answer()
+i9_r2.id = 'answer2-i9'
 i9_r2.type = 'textfield'
 i9_r2.code = "H14"
 
-i9_q.add_response(i9_r1)
-i9_q.add_response(i9_r2)
+i9_q.add_answer(i9_r1)
+i9_q.add_answer(i9_r2)
 i9_s.add_question(i9_q)
 page7.add_section(i9_s)
 test_questionnaire.register(i9_s)
@@ -351,12 +351,12 @@ i10_q.description = "Do not count short stay visits away from the UK"
 i10_q.type = "General"
 
 # @TODO: Should show month and year only
-i10_r = Response()
-i10_r.id = 'response-i10'
+i10_r = Answer()
+i10_r.id = 'answer-i10'
 i10_r.type = "Date"
 i10_r.code = "I10"
 
-i10_q.add_response(i10_r)
+i10_q.add_answer(i10_r)
 i10_s.add_question(i10_q)
 test_questionnaire.register(i10_r)
 test_questionnaire.register(i10_q)
@@ -383,11 +383,11 @@ i12_s.id = "section-i12"
 i12_q = Question()
 i12_q.id = "question-i12"
 i12_q.title = '(I12) Including the time you have already spent here, how long do you intend to stay in the United Kingdom?'
-# TODO: Decide on Question Types and Response Types
+# TODO: Decide on Question Types and Answer Types
 i12_q.type = "General"
 
-i12_r = Response()
-i12_r.id = "response1-i12"
+i12_r = Answer()
+i12_r.id = "answer1-i12"
 i12_r.type = "Radio"
 i12_r.code = "I12"
 i12_r.options = [
@@ -405,7 +405,7 @@ i12_r.options = [
     }
 ]
 
-i12_q.add_response(i12_r)
+i12_q.add_answer(i12_r)
 i12_s.add_question(i12_q)
 page7.add_section(i12_s)
 test_questionnaire.register(i12_s)
@@ -419,11 +419,11 @@ i13_s.id = "section-i13"
 i13_q = Question()
 i13_q.id = "question-i13"
 i13_q.title = '(I13) How is your health in general?'
-# TODO: Decide on Question Types and Response Types
+# TODO: Decide on Question Types and Answer Types
 i13_q.type = "General"
 
-i13_r = Response()
-i13_r.id = "response1-i13"
+i13_r = Answer()
+i13_r.id = "answer1-i13"
 i13_r.type = "Radio"
 i13_r.code = "I13"
 i13_r.options = [
@@ -449,7 +449,7 @@ i13_r.options = [
     }
 ]
 
-i13_q.add_response(i13_r)
+i13_q.add_answer(i13_r)
 i13_s.add_question(i13_q)
 page7.add_section(i13_s)
 test_questionnaire.register(i13_s)
@@ -464,11 +464,11 @@ i14_q = Question()
 i14_q.id = "question-i14"
 i14_q.title = '(I14) Do you look after, or give any help or support to family members, friends, neighbours or others because of either: long-term physical or mental ill-health/disability?; problems related to old age?'  # NOQA
 i14_q.description = "Do not count anything you do as part of your paid employment"
-# TODO: Decide on Question Types and Response Types
+# TODO: Decide on Question Types and Answer Types
 i14_q.type = "General"
 
-i14_r = Response()
-i14_r.id = "response1-i14"
+i14_r = Answer()
+i14_r.id = "answer1-i14"
 i14_r.type = "Radio"
 i14_r.code = "I14"
 i14_r.options = [
@@ -490,7 +490,7 @@ i14_r.options = [
     }
 ]
 
-i14_q.add_response(i14_r)
+i14_q.add_answer(i14_r)
 i14_s.add_question(i14_q)
 page7.add_section(i14_s)
 test_questionnaire.register(i14_s)

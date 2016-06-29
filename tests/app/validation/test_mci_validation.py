@@ -5,7 +5,7 @@ parses it and then tests the validation rules needed before MCI can go live.
 import unittest
 
 from app.validation.validator import Validator
-from app.responses.response_store import AbstractResponseStore
+from app.answers.answer_store import AbstractAnswerStore
 from app.validation.validation_store import AbstractValidationStore
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
@@ -19,13 +19,13 @@ from app.model.group import Group
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 
 
 class ValidatorTest(unittest.TestCase):
     def setUp(self):
 
-        self._response_store = self._create_mock_responses_store()
+        self._answer_store = self._create_mock_answers_store()
         self._validation_store = self._create_mock_validation_store()
         self._schema = self._create_schema()
 
@@ -39,21 +39,21 @@ class ValidatorTest(unittest.TestCase):
         }
 
     def test_validate_empty_questionnaire(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
-        # setup blank responses for all required fields
-        self._response_store.store_response(self.ids['REPORTING_PERIOD_START'], '')
-        self._response_store.store_response(self.ids['REPORTING_PERIOD_END'], '')
-        self._response_store.store_response(self.ids['TOTAL_RETAIL_TURNOVER'], '')
-        self._response_store.store_response(self.ids['INTERNET_SALES'], '')
-        self._response_store.store_response(self.ids['FUEL_SALES'], '')
+        # setup blank answers for all required fields
+        self._answer_store.store_answer(self.ids['REPORTING_PERIOD_START'], '')
+        self._answer_store.store_answer(self.ids['REPORTING_PERIOD_END'], '')
+        self._answer_store.store_answer(self.ids['TOTAL_RETAIL_TURNOVER'], '')
+        self._answer_store.store_answer(self.ids['INTERNET_SALES'], '')
+        self._answer_store.store_answer(self.ids['FUEL_SALES'], '')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Period Start Tests
         period_start_result = self._validation_store.get_result(self.ids['REPORTING_PERIOD_START'])
@@ -96,18 +96,18 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(fuel_sales_result.warnings), 0)
 
     def test_invalid_dates(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
         # setup invalid dates for date fields
-        self._response_store.store_response(self.ids['REPORTING_PERIOD_START'], '13/13/2013')
-        self._response_store.store_response(self.ids['REPORTING_PERIOD_END'], '29/02/2015')
+        self._answer_store.store_answer(self.ids['REPORTING_PERIOD_START'], '13/13/2013')
+        self._answer_store.store_answer(self.ids['REPORTING_PERIOD_END'], '29/02/2015')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Period Start Tests
         period_start_result = self._validation_store.get_result(self.ids['REPORTING_PERIOD_START'])
@@ -126,18 +126,18 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(period_end_result.warnings), 0)
 
     def test_invalid_date_diff(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
         # setup invalid dates diff
-        self._response_store.store_response(self.ids['REPORTING_PERIOD_START'], '01/01/2016')
-        self._response_store.store_response(self.ids['REPORTING_PERIOD_END'], '01/01/2016')
+        self._answer_store.store_answer(self.ids['REPORTING_PERIOD_START'], '01/01/2016')
+        self._answer_store.store_answer(self.ids['REPORTING_PERIOD_END'], '01/01/2016')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Period Tests
         period_start_result = self._validation_store.get_result(self.ids['SALES_PERIOD'])
@@ -148,18 +148,18 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(period_start_result.warnings), 0)
 
     def test_invalid_date_diff_range(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
         # setup invalid date diff
-        self._response_store.store_response(self.ids['REPORTING_PERIOD_START'], '01/01/2017')
-        self._response_store.store_response(self.ids['REPORTING_PERIOD_END'], '01/01/2016')
+        self._answer_store.store_answer(self.ids['REPORTING_PERIOD_START'], '01/01/2017')
+        self._answer_store.store_answer(self.ids['REPORTING_PERIOD_END'], '01/01/2016')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Period Tests
         period_start_result = self._validation_store.get_result(self.ids['SALES_PERIOD'])
@@ -171,17 +171,17 @@ class ValidatorTest(unittest.TestCase):
 
 
     def test_invalid_total_turnover(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
         # setup invalid total
-        self._response_store.store_response(self.ids['TOTAL_RETAIL_TURNOVER'], 'This is invalid')
+        self._answer_store.store_answer(self.ids['TOTAL_RETAIL_TURNOVER'], 'This is invalid')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Total Retail Turnover Tests
         total_turnover_result = self._validation_store.get_result(self.ids['TOTAL_RETAIL_TURNOVER'])
@@ -192,15 +192,15 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(total_turnover_result.warnings), 0)
 
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
         # setup invalid total
-        self._response_store.store_response(self.ids['TOTAL_RETAIL_TURNOVER'], '-1')
+        self._answer_store.store_answer(self.ids['TOTAL_RETAIL_TURNOVER'], '-1')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Total Retail Turnover Tests
         total_turnover_result = self._validation_store.get_result(self.ids['TOTAL_RETAIL_TURNOVER'])
@@ -211,17 +211,17 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(total_turnover_result.warnings), 0)
 
     def test_invalid_fuel_sales(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
         # setup invalid fuel sales
-        self._response_store.store_response(self.ids['FUEL_SALES'], 'not numeric')
+        self._answer_store.store_answer(self.ids['FUEL_SALES'], 'not numeric')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Fuel Sales Tests
         fuel_sales_result = self._validation_store.get_result(self.ids['FUEL_SALES'])
@@ -232,15 +232,15 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(fuel_sales_result.warnings), 0)
 
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
         # setup negative fuel sales
-        self._response_store.store_response(self.ids['FUEL_SALES'], '-1')
+        self._answer_store.store_answer(self.ids['FUEL_SALES'], '-1')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Fuel Sales Tests
         fuel_sales_result = self._validation_store.get_result(self.ids['FUEL_SALES'])
@@ -251,17 +251,17 @@ class ValidatorTest(unittest.TestCase):
         self.assertEquals(len(fuel_sales_result.warnings), 0)
 
     def test_invalid_internet_sales(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
-        # Clear the response store and validation store
-        self._response_store.clear()
+        # Clear the answer store and validation store
+        self._answer_store.clear()
         self._validation_store.clear()
 
         # setup negative internet sales
-        self._response_store.store_response(self.ids['INTERNET_SALES'], '-1')
+        self._answer_store.store_answer(self.ids['INTERNET_SALES'], '-1')
 
         # validate the questionnaire
-        validator.validate(self._response_store.get_responses())
+        validator.validate(self._answer_store.get_answers())
 
         # Internet Sales Tests
         internet_sales_result = self._validation_store.get_result(self.ids['INTERNET_SALES'])
@@ -281,30 +281,30 @@ class ValidatorTest(unittest.TestCase):
         # ... and return it
         return questionnaire
 
-    def _create_mock_responses_store(self):
-        class MockResponseStore(AbstractResponseStore):
+    def _create_mock_answers_store(self):
+        class MockAnswerStore(AbstractAnswerStore):
             def __init__(self):
-                self.responses = {}
+                self.answers = {}
 
-            def store_response(self, key, value):
-                self.responses[key] = value
+            def store_answer(self, key, value):
+                self.answers[key] = value
 
-            def get_response(self, key):
-                if key in self.responses.keys():
-                    return self.responses[key]
+            def get_answer(self, key):
+                if key in self.answers.keys():
+                    return self.answers[key]
                 else:
                     return None
 
-            def get_responses(self):
-                return self.responses
+            def get_answers(self):
+                return self.answers
 
             def clear(self):
-                self.responses.clear()
+                self.answers.clear()
 
-            def clear_responses(self):
+            def clear_answers(self):
                 self.clear();
 
-        return MockResponseStore()
+        return MockAnswerStore()
 
     def _create_mock_validation_store(self):
         class MockValidationStore(AbstractValidationStore):

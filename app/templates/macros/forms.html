@@ -1,13 +1,13 @@
-{%- macro label(response) %}
+{%- macro label(answer) %}
   {% set attr = {
     "class": "label",
-    "for": response.id,
-    "id": "label-" ~ response.id
+    "for": answer.id,
+    "id": "label-" ~ answer.id
   } %}
-  <label {{attr|xmlattr}}>{{response.label}}</label>
+  <label {{attr|xmlattr}}>{{answer.label}}</label>
 {% endmacro -%}
 
-{%- macro input(type, question, response) %}
+{%- macro input(type, question, answer) %}
   {% set special_types = {
     'currency': '£',
     'percentage': '%'
@@ -24,11 +24,11 @@
   {% set attr = {
     "class": "input input--" ~ input_type,
     "type": input_type,
-    "value": (response.value or "")|e,
-    "name": response.id,
-    "id": response.id,
-    "placeholder": response.placeholder,
-    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ response.id ~ "-trigger"
+    "value": (answer.value or "")|e,
+    "name": answer.id,
+    "id": answer.id,
+    "placeholder": answer.placeholder,
+    "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ answer.id ~ "-trigger"
   } %}
 
   {% set input_element %}
@@ -45,31 +45,31 @@
 
 {% endmacro -%}
 
-{% macro textarea(question, response) %}
+{% macro textarea(question, answer) %}
   {% set maxChars = "2000" %}
-  {% set response_helper = response.id ~ "-helper" %}
+  {% set answer_helper = answer.id ~ "-helper" %}
   {% set attr = {
     "class": "input input--textarea js-charlimit-input",
-    "name": response.id,
-    "id": response.id,
-    "placeholder": response.placeholder,
+    "name": answer.id,
+    "id": answer.id,
+    "placeholder": answer.placeholder,
     "rows": "8",
     "cols": "60",
     "data-maxlength": maxChars,
-    "aria-describedby": response_helper
+    "aria-describedby": answer_helper
   } %}
 
-  <textarea {{attr|xmlattr}}>{{(response.value or "")|e}}</textarea>
+  <textarea {{attr|xmlattr}}>{{(answer.value or "")|e}}</textarea>
 
   {% if maxChars %}
-    <div class="input__helper" id="{{response_helper}}">
+    <div class="input__helper" id="{{answer_helper}}">
       <span class="js-charlimit-label" data-remaining-msg="{{_('Characters remaining')}}">{{_('Maximum characters')}}</span>: <span class="js-charlimit-msg">{{maxChars}}</span>
     </div>
   {% endif %}
 {% endmacro %}
 
-{%- macro select(name, values, default_value, response) %}
-  <select class="input input--select" name="{{response.id}}-{{name}}" id="{{response.id}}-{{name}}">
+{%- macro select(name, values, default_value, answer) %}
+  <select class="input input--select" name="{{answer.id}}-{{name}}" id="{{answer.id}}-{{name}}">
     {% for value in values -%}
       <option value="{{loop.index}}" {{'selected' if loop.index == default_value}}>{{value}}</option>
     {%- endfor -%}

@@ -1,10 +1,10 @@
 import unittest
-from app.model.response import Response
-from app.model.question import Question
-from app.model.section import Section
-from app.model.block import Block
-from app.model.questionnaire import Questionnaire
-from app.model.group import Group
+# from app.model.answer import Response
+# from app.model.question import Question
+# from app.model.section import Section
+# from app.model.block import Block
+# from app.model.questionnaire import Questionnaire
+# from app.model.group import Group
 from app.validation.integer_type_check import IntegerTypeCheck
 from app.validation.abstract_validator import AbstractValidator
 

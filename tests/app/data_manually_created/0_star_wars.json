@@ -28,7 +28,7 @@
                             "title": "",
                             "description": "",
                             "type": "Integer",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b",
                                 "q_code": "1",
@@ -52,7 +52,7 @@
                             "title": "",
                             "description": "",
                             "type":"Currency",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
                                 "q_code": "2",
@@ -76,7 +76,7 @@
                             "title": "",
                             "description": "",
                             "type":"Integer",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
                                 "q_code": "3",
@@ -100,7 +100,7 @@
                             "title": "What animal was used to create the engine sound of the Empire's TIE fighters?",
                             "description": "",
                             "type": "Radios",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d",
                                 "q_code": "4",
@@ -142,7 +142,7 @@
                             "title": "Which of these Darth Vader quotes is wrong?",
                             "description": "",
                             "type": "Radios",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "7587eb9b-f24e-4dc0-ac94-66118b896c10",
                                 "q_code": "5",
@@ -184,7 +184,7 @@
                             "title": "Which 3 have wielded a green lightsaber?",
                             "description": "",
                             "type": "Checkboxes",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "9587eb9b-f24e-4dc0-ac94-66117b896c10",
                                 "q_code": "6",
@@ -233,7 +233,7 @@
                             "title": "Which 3 appear in any of the opening crawlers?",
                             "description": "",
                             "type": "Checkboxes",
-                            "responses": [
+                            "answers": [
                               {
                                 "id": "5587eb9b-f24e-4dc0-ac94-66117b896c10",
                                 "q_code": "7",
@@ -281,7 +281,7 @@
                               "title": "When was The Empire Strikes Back released?",
                               "description": "It could be between {exercise.start_date:%-d %B %Y} and {exercise.end_date:%-d %B %Y}. But that might just be a test",
                               "type" : "DateRange",
-                              "responses": [
+                              "answers": [
                                 {
                                   "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
                                   "q_code": "81",
@@ -332,7 +332,7 @@
                         "title": "",
                         "description": "",
                         "type": "Integer",
-                        "responses": [
+                        "answers": [
                           {
                             "id": "5rr015b1-f87c-4740-9fd4-f01f707ef558",
                             "q_code": "9",
@@ -363,7 +363,7 @@
                         "title": "",
                         "description": "",
                         "type": "Textarea",
-                        "responses": [
+                        "answers": [
                           {
                             "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
                             "q_code": "10",

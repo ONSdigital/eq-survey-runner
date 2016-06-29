@@ -2,7 +2,7 @@ import copy
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 from app.surveys.mci_0205 import mci_0205
 from app.validation.abstract_validator import AbstractValidator
 
@@ -47,7 +47,7 @@ q11.type = "Integer"
 s4.add_question(q11)
 questionnaire.register(q11)
 
-q11r = Response()
+q11r = Answer()
 q11r.id = "cffbbca5-1162-44d8-bbfb-3bc733d80239"
 q11r.code = "51"
 q11r.label = "What was the number of male employees working more than 30 hours per week?"
@@ -61,7 +61,7 @@ q11r.messages = {
     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q11.add_response(q11r)
+q11.add_answer(q11r)
 questionnaire.register(q11r)
 
 q12 = Question()
@@ -73,7 +73,7 @@ q12.type = "Integer"
 s4.add_question(q12)
 questionnaire.register(q12)
 
-q12r = Response()
+q12r = Answer()
 q12r.id = "c5908b75-d63d-4518-b00e-a60919aa63cd"
 q12r.code = "52"
 q12r.label = "What was the number of male employees working 30 hours or less per week?"
@@ -87,7 +87,7 @@ q12r.messages = {
     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q12.add_response(q12r)
+q12.add_answer(q12r)
 questionnaire.register(q12r)
 
 q13 = Question()
@@ -99,7 +99,7 @@ q13.type = "Integer"
 s4.add_question(q13)
 questionnaire.register(q13)
 
-q13r = Response()
+q13r = Answer()
 q13r.id = "0ac86568-2e33-420c-9dfe-f47a95132a5a"
 q13r.code = "53"
 q13r.label = "What was the number of female employees working more than 30 hours per week?"
@@ -113,7 +113,7 @@ q13r.messages = {
     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q13.add_response(q13r)
+q13.add_answer(q13r)
 questionnaire.register(q13r)
 
 q14 = Question()
@@ -125,7 +125,7 @@ q14.type = "Integer"
 s4.add_question(q14)
 questionnaire.register(q14)
 
-q14r = Response()
+q14r = Answer()
 q14r.id = "ed675602-9696-49ba-b3b9-2ea582ffe171"
 q14r.code = "54"
 q14r.label = "What was the number of female employees working 30 hours or less per week?"
@@ -139,7 +139,7 @@ q14r.messages = {
     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q14.add_response(q14r)
+q14.add_answer(q14r)
 questionnaire.register(q14r)
 
 q15 = Question()
@@ -151,7 +151,7 @@ q15.type = "Integer"
 s4.add_question(q15)
 questionnaire.register(q15)
 
-q15r = Response()
+q15r = Answer()
 q15r.id = "42ee21a7-c050-49f7-9cdc-647596f22317"
 q15r.code = "50"
 q15r.label = "What was the total number of employees?"
@@ -166,5 +166,5 @@ q15r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q15.add_response(q15r)
+q15.add_answer(q15r)
 questionnaire.register(q15r)

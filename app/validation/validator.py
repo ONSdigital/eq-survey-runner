@@ -2,7 +2,7 @@ from app.validation.validation_result import ValidationResult
 from app.validation.mandatory_check import MandatoryCheck
 from app.validation.type_validator_factory import TypeValidatorFactory
 from app.validation.abstract_validator import AbstractValidator
-from app.model.response import Response
+from app.model.answer import Answer
 from flask.ext.babel import gettext as _
 import logging
 
@@ -15,10 +15,10 @@ class ValidationException(Exception):
 
 
 class Validator(object):
-    def __init__(self, schema, validation_store, response_store):
+    def __init__(self, schema, validation_store, answer_store):
         self._schema = schema
         self._validation_store = validation_store
-        self._response_store = response_store
+        self._answer_store = answer_store
 
         # Set the factory class here, so we can override it for tests
         self._type_validator_factory_class = TypeValidatorFactory
@@ -87,7 +87,7 @@ class Validator(object):
             # check for additional validation rules
             if item.validation:
                 for rule in item.validation:
-                    result = rule.validate(item_data, self._response_store)
+                    result = rule.validate(item_data, self._answer_store)
                     if not result.is_valid:
                         self._update_messages(item, result)
                         return result
@@ -111,7 +111,7 @@ class Validator(object):
 
         if item and item.validation:
             for rule in item.validation:
-                result = rule.validate(None, self._response_store)
+                result = rule.validate(None, self._answer_store)
                 if not result.is_valid:
                     self._validation_store.store_result(item.id, result)
                     return
@@ -143,7 +143,7 @@ class Validator(object):
     def _update_messages(self, item, result):
         # error messages
         for index, code in enumerate(result.errors):
-            if isinstance(item, Response) and code in item.messages.keys():
+            if isinstance(item, Answer) and code in item.messages.keys():
                 result.errors[index] = item.messages[code]
             elif code in self.messages.keys():
                 # Use the default error message
@@ -151,7 +151,7 @@ class Validator(object):
 
         # warning messages
         for index, code in enumerate(result.warnings):
-            if isinstance(item, Response) and code in item.messages.keys():
+            if isinstance(item, Answer) and code in item.messages.keys():
                 result.warnings[index] = item.messages[code]
             elif code in self.messages.keys():
                 # Use the default error message

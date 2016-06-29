@@ -5,7 +5,7 @@ from app.model.group import Group
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 from app.model.introduction import Introduction
 import os
 import json
@@ -65,27 +65,27 @@ class MciMiniParsingTest(unittest.TestCase):
         assert question.id == "4ba2ec8a-582f-4985-b4ed-20355deba55a"
         assert question.title == "On 12 January 2016 what was the number of employees for the business named above?"
         assert question.description == "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
-        assert len(question.responses) == 1
-        assert isinstance(question.responses[0], Response)
+        assert len(question.answers) == 1
+        assert isinstance(question.answers[0], Answer)
 
-        # Check the response properties
-        response = question.responses[0]
-        assert response.id == "29586b4c-fb0c-4755-b67d-b3cd398cb30a"
-        assert response.code == "110"
-        assert response.label == "Male employees working more than 30 hours per week?"
-        assert response.guidance == "How many men work for your company?"
-        assert response.type == "Integer"
-        assert response.display is None
+        # Check the answer properties
+        answer = question.answers[0]
+        assert answer.id == "29586b4c-fb0c-4755-b67d-b3cd398cb30a"
+        assert answer.code == "110"
+        assert answer.label == "Male employees working more than 30 hours per week?"
+        assert answer.guidance == "How many men work for your company?"
+        assert answer.type == "Integer"
+        assert answer.display is None
 
-        # check the response properties on question 2
+        # check the answer properties on question 2
         question_two = section.questions[1]
-        response = question_two.responses[0]
-        assert response.type == "Textarea"
-        assert response.display is not None
-        assert response.display.properties is not None
-        print(response.display.properties.max_length)
-        assert response.display.properties.max_length == "2000"
-        assert response.display.properties.additional == "Just for testing"
+        answer = question_two.answers[0]
+        assert answer.type == "Textarea"
+        assert answer.display is not None
+        assert answer.display.properties is not None
+        print(answer.display.properties.max_length)
+        assert answer.display.properties.max_length == "2000"
+        assert answer.display.properties.additional == "Just for testing"
 
     def test_mci_mini_with_intro(self):
         # Load the json file as a dict

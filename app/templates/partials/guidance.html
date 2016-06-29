@@ -1,8 +1,8 @@
-<div class="guidance js-details" data-show-label="{{_('Show further guidance')}}" data-hide-label="{{_('Hide further guidance')}}" data-guidance="{{response.id}}" data-guidance-label="{{response.label}}"">
-  <a class="guidance__link js-details-trigger" href="#guidance-{{response.id}}" id="guidance-{{response.id}}-trigger" aria-controls="guidance-{{response.id}}-body" aria-expanded="false" data-guidance-trigger><span class="u-vh">Click here to </span><span class="js-details-label">Show further guidance</span></a>
-  <div class="guidance__main js-details-body" id="guidance-{{response.id}}-body" aria-hidden="true">
+<div class="guidance js-details" data-show-label="{{_('Show further guidance')}}" data-hide-label="{{_('Hide further guidance')}}" data-guidance="{{answer.id}}" data-guidance-label="{{answer.label}}"">
+  <a class="guidance__link js-details-trigger" href="#guidance-{{answer.id}}" id="guidance-{{answer.id}}-trigger" aria-controls="guidance-{{answer.id}}-body" aria-expanded="false" data-guidance-trigger><span class="u-vh">Click here to </span><span class="js-details-label">Show further guidance</span></a>
+  <div class="guidance__main js-details-body" id="guidance-{{answer.id}}-body" aria-hidden="true">
     <div class="guidance__content">
-      {{response.guidance|safe}}
+      {{answer.guidance|safe}}
     </div>
   </div>
 </div>

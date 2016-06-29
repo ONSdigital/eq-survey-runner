@@ -3,7 +3,7 @@ from app.model.section import Section
 from app.model.group import Group
 from app.model.block import Block
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
 from app.submitter.converter import Converter
@@ -38,7 +38,7 @@ EXPECTED_RESPONSE = json.loads("""
 
 class TestConverter(SurveyRunnerTestCase):
 
-    def test_prepare_responses(self):
+    def test_prepare_answers(self):
         with self.application.test_request_context():
             self.maxDiff = None
 
@@ -60,20 +60,20 @@ class TestConverter(SurveyRunnerTestCase):
 
             metadata = MetaDataStore.save_instance(user, jwt)
 
-            user_response = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
+            user_answer = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
 
-            response_1 = Response()
-            response_1.id = "ABC"
-            response_1.code = "001"
+            answer_1 = Answer()
+            answer_1.id = "ABC"
+            answer_1.code = "001"
 
-            response_2 = Response()
-            response_2.id = "DEF"
-            response_2.code = "002"
+            answer_2 = Answer()
+            answer_2.id = "DEF"
+            answer_2.code = "002"
 
             question = Question()
             question.id = 'question-1'
-            question.add_response(response_1)
-            question.add_response(response_2)
+            question.add_answer(answer_1)
+            question.add_answer(answer_2)
 
             section = Section()
             section.add_question(question)
@@ -94,19 +94,19 @@ class TestConverter(SurveyRunnerTestCase):
             questionniare.register(block)
             questionniare.register(section)
             questionniare.register(question)
-            questionniare.register(response_1)
-            questionniare.register(response_2)
+            questionniare.register(answer_1)
+            questionniare.register(answer_2)
 
-            response_object, submitted_at = Converter.prepare_responses(user, metadata, questionniare, user_response)
+            answer_object, submitted_at = Converter.prepare_answers(user, metadata, questionniare, user_answer)
 
-            self.assertEquals(EXPECTED_RESPONSE["type"], response_object["type"])
-            self.assertEquals(EXPECTED_RESPONSE["version"], response_object["version"])
-            self.assertEquals(EXPECTED_RESPONSE["origin"], response_object["origin"])
-            self.assertEquals(EXPECTED_RESPONSE["survey_id"], response_object["survey_id"])
-            self.assertEquals(EXPECTED_RESPONSE["collection"], response_object["collection"])
-            self.assertEquals(EXPECTED_RESPONSE["metadata"], response_object["metadata"])
-            self.assertEquals(EXPECTED_RESPONSE["paradata"], response_object["paradata"])
-            self.assertEquals(EXPECTED_RESPONSE["data"], response_object["data"])
+            self.assertEquals(EXPECTED_RESPONSE["type"], answer_object["type"])
+            self.assertEquals(EXPECTED_RESPONSE["version"], answer_object["version"])
+            self.assertEquals(EXPECTED_RESPONSE["origin"], answer_object["origin"])
+            self.assertEquals(EXPECTED_RESPONSE["survey_id"], answer_object["survey_id"])
+            self.assertEquals(EXPECTED_RESPONSE["collection"], answer_object["collection"])
+            self.assertEquals(EXPECTED_RESPONSE["metadata"], answer_object["metadata"])
+            self.assertEquals(EXPECTED_RESPONSE["paradata"], answer_object["paradata"])
+            self.assertEquals(EXPECTED_RESPONSE["data"], answer_object["data"])
 
 if __name__ == '__main__':
     unittest.main()
