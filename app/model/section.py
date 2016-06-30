@@ -1,4 +1,5 @@
 from app.model.display import Display
+from app.libs.utils import eq_helper_lists_equivalent
 
 
 class Section(object):
@@ -50,31 +51,10 @@ class Section(object):
             properties_match = self.id == other.id and \
                                self.title == other.title and \
                                self.description == other.description
-            questions_match = True
 
-            if len(self.questions) != len(other.questions):
-                return False
-
-            for index, question in enumerate(self.questions):
-                if question != other.questions[index]:
-                    return False
-
-            validations_match = True
-            if self.validation is not None and other.validation is not None:
-                if len(self.validation) != len(other.validation):
-                    return False
-
-                for index, validation in enumerate(self.validation):
-                    if validation != other.validation[index]:
-                        return False
-
-            templatable_properties_match = True
-            if len(self.templatable_properties) != len(other.templatable_properties):
-                return False
-
-            for index, templatable_property in enumerate(self.templatable_properties):
-                if templatable_property not in other.templatable_properties:
-                    return False
+            questions_match = eq_helper_lists_equivalent(self.questions, other.questions)
+            validations_match = eq_helper_lists_equivalent(self.validation, other.validation)
+            templatable_properties_match = eq_helper_lists_equivalent(self.templatable_properties, other.templatable_properties)
 
             return properties_match and questions_match and validations_match and templatable_properties_match
 

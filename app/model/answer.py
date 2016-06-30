@@ -1,3 +1,7 @@
+from app.libs.utils import eq_helper_lists_equivalent
+from app.libs.utils import eq_helper_dicts_equivalent
+
+
 class Answer(object):
     def __init__(self):
         self.id = None
@@ -52,30 +56,9 @@ class Answer(object):
                                self.code == other.code and \
                                self.mandatory == other.mandatory
 
-            validations_match = True
-            if self.validation is not None and other.validation is not None:
-                if len(self.validation) != len(other.validation):
-                    return False
-
-                for index, validation in enumerate(self.validation):
-                    if validation != other.validation[index]:
-                        return False
-
-            templatable_properties_match = True
-            if len(self.templatable_properties) != len(other.templatable_properties):
-                return False
-
-            for index, templatable_property in enumerate(self.templatable_properties):
-                if templatable_property not in other.templatable_properties:
-                    return False
-
-            messages_match = True
-            if len(self.messages) != len(other.messages):
-                return False
-
-            for index, message in self.messages.items():
-                if index not in other.messages.keys() or message != other.messages[index]:
-                    return False
+            validations_match = eq_helper_lists_equivalent(self.validation, other.validation)
+            templatable_properties_match = eq_helper_lists_equivalent(self.templatable_properties, other.templatable_properties)
+            messages_match = eq_helper_dicts_equivalent(self.messages, other.messages)
 
             return properties_match and validations_match and templatable_properties_match and messages_match
 
