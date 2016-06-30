@@ -40,7 +40,7 @@ class Renderer(object):
         # get the group
         self._current_group = self._current_block.container
 
-        context = {
+        piping_context = {
             "exercise": ObjectFromDict({
                 "start_date": start_date,
                 "end_date": end_date,
@@ -49,7 +49,7 @@ class Renderer(object):
             })
         }
 
-        self._plumber = Plumber(context)
+        self._plumber = Plumber(piping_context)
 
     def get_template_name(self):
         known_templates = {
