@@ -94,8 +94,14 @@ class RabbitMQSubmitter(Submitter):
         try:
             self._connect()
             channel = self.connection.channel()
-            channel.queue_declare(queue=queue)
-            published = channel.basic_publish(exchange='', routing_key=queue, body=message_as_string, mandatory=True)
+            channel.queue_declare(queue=queue, durable=True)
+            published = channel.basic_publish(exchange='',
+                                              routing_key=queue,
+                                              body=message_as_string,
+                                              mandatory=True,
+                                              properties=pika.BasicProperties(
+                                                  delivery_mode=2
+                                              ))
             if published:
                 logger.info("Sent to rabbit mq " + message_as_string)
             else:
