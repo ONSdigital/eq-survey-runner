@@ -17,20 +17,6 @@ class Renderer(object):
         self._current_block = None
         self._current_group = None
 
-        start_date = None
-        end_date = None
-        employment_date = None
-        return_by = None
-
-        try:
-            start_date = self._metadata.get_ref_p_start_date()
-            end_date = self._metadata.get_ref_p_end_date()
-            employment_date = self._metadata.get_employment_date()
-            return_by = self._metadata.get_return_by()
-
-        except:
-            pass
-
         # Get the current location or the first block
         try:
             self._current_block = self._schema.get_item_by_id(self._navigator.get_current_location())
@@ -40,14 +26,7 @@ class Renderer(object):
         # get the group
         self._current_group = self._current_block.container
 
-        piping_context = {
-            "exercise": ObjectFromDict({
-                "start_date": start_date,
-                "end_date": end_date,
-                "employment_date": employment_date,
-                "return_by": return_by
-            })
-        }
+        piping_context = self._build_piping_context()
 
         self._plumber = Plumber(piping_context)
 
@@ -198,3 +177,43 @@ class Renderer(object):
                 global_warnings[item.id] = item_result.warnings
                 item.errors = item_result.get_errors()
                 item.warnings = item_result.get_warnings()
+
+    def _build_piping_context(self):
+        piping_context = {
+            "exercise": self._build_exercse_piping_context(),
+            "answers": self._build_answers_piping_context()
+        }
+
+        return piping_context
+
+    def _build_exercse_piping_context(self):
+        '''
+        Build the exercise data from the survey metadata
+        '''
+        start_date = self._metadata.ref_p_start_date
+        end_date = self._metadata.ref_p_end_date
+        employment_date = self._metadata.employment_date
+        return_by = self._metadata.return_by
+
+        return ObjectFromDict({
+            "start_date": start_date,
+            "end_date": end_date,
+            "employment_date": employment_date,
+            "return_by": return_by
+        })
+
+    def _build_answers_piping_context(self):
+        '''
+        Get the answer values for all aliased elements and make them available for piping.
+        Where answers are not available, use an empty string
+        '''
+        aliases = self._schema.aliases
+        values = {}
+        for alias, item_id in aliases.items():
+            value = self._answer_store.get_answer(item_id)
+            if value is None:
+                value = ""  # Empty string
+
+            values[alias] = value
+
+        return ObjectFromDict(values)

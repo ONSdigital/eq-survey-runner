@@ -17,6 +17,7 @@ class Answer(object):
         self.messages = {}
         self.templatable_properties = []
         self.options = []
+        self.alias = None
 
     def to_json(self):
         json_dict = {
@@ -39,6 +40,9 @@ class Answer(object):
         if self.display is not None:
             json_dict['display'] = {"properties": self.display.properties}
 
+        if self.alias is not None:
+            json_dict['alias'] = self.alias
+
         for option in self.options:
             json_dict['options'].append(option)
 
@@ -54,7 +58,8 @@ class Answer(object):
                                self.guidance == other.guidance and \
                                self.type == other.type and \
                                self.code == other.code and \
-                               self.mandatory == other.mandatory
+                               self.mandatory == other.mandatory and \
+                               self.alias == other.alias
 
             validations_match = eq_helper_lists_equivalent(self.validation, other.validation)
             templatable_properties_match = eq_helper_lists_equivalent(self.templatable_properties, other.templatable_properties)

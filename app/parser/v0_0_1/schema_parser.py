@@ -247,6 +247,7 @@ class SchemaParser(AbstractSchemaParser):
             answer.type = ParserUtils.get_required_string(schema, 'type')
             answer.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
             answer.options = ParserUtils.get_optional_array(schema, 'options')
+            answer.alias = ParserUtils.get_optional_string(schema, 'alias')
 
             display = ParserUtils.get_optional(schema, "display")
             if display:
