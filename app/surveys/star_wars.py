@@ -72,6 +72,7 @@ q1r.guidance = ""
 q1r.type = "Integer"
 q1r.options = []
 q1r.mandatory = True
+q1r.alias = "chewies_age"
 q1r.messages = {
     AbstractValidator.NOT_INTEGER: "Please enter your age.",
     AbstractValidator.NEGATIVE_INTEGER: "Negative age you can not be.",
@@ -418,3 +419,34 @@ q10r_display.properties = {
     "max_length": "2000"
 }
 q10r.display = q10r_display
+
+q11 = Question()
+q11.id = "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f"
+q11.title = "Do you really think that Chewbacca is {answers.chewies_age} years old?"
+q11.description = ""
+q11.type = "Radios"
+
+s3.add_question(q11)
+questionnaire.register(q11)
+
+q11r = Answer()
+q11r.id = "7587qe9b-f24e-4dc0-ac94-66118b896c10"
+q11r.code = "43"
+q11r.label = ""
+q11r.guidance = ""
+q11r.type = "Radio"
+q11r.options = [{
+                    "value": "Yes",
+                    "label": "Yes, Really!"
+                }, {
+                    "value": "No",
+                    "label": "No"
+                }]
+q11r.mandatory = True
+q11.add_answer(q11r)
+
+q11r_display = Display()
+q11r_display.properties = {
+    "columns": False
+}
+q11r.display = q11r_display

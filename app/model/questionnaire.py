@@ -1,4 +1,5 @@
 from app.model.display import Display
+from app.model.answer import Answer
 
 
 class QuestionnaireException(Exception):
@@ -18,6 +19,7 @@ class Questionnaire(object):
         self.items_by_id = {}
         self.introduction = None
         self.display = Display()
+        self.aliases = {}
 
     def add_group(self, group):
         if group not in self.groups:
@@ -37,9 +39,18 @@ class Questionnaire(object):
             raise QuestionnaireException('{} is a duplicate id'.format(item.id))
 
         self.items_by_id[item.id] = item
+        self._register_alias(item)
 
         # Build the two-way relationship
         item.questionnaire = self
+
+    def _register_alias(self, item):
+        # Register the alias if the item has one
+        if isinstance(item, Answer) and item.alias is not None:
+            if item.alias not in self.aliases.keys():
+                self.aliases[item.alias] = item.id
+            elif self.aliases[item.alias] != item.id:
+                raise QuestionnaireException('{} is not a unique alias'.format(item.alias))
 
     def to_json(self):
         json_dict = {

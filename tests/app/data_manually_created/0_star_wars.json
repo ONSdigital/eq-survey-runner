@@ -43,7 +43,8 @@
                                     "NEGATIVE_INTEGER": "Negative age you can not be.",
                                     "INTEGER_TOO_LARGE": "No one lives that long, not even Yoda"
                                   }
-                                }
+                                },
+                                "alias": "chewies_age"
                               }
                             ]
                           },
@@ -375,6 +376,36 @@
                             "display": {
                               "properties": {
                                 "max_length": "2000"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
+                        "title": "Do you really think that Chewbacca is {answers.chewies_age} years old?",
+                        "description": "",
+                        "type": "Radios",
+                        "answers": [
+                          {
+                            "id": "7587qe9b-f24e-4dc0-ac94-66118b896c10",
+                            "q_code": "43",
+                            "label": "",
+                            "guidance": "",
+                            "type": "Radio",
+                            "options": [
+                              {
+                                "value": "Yes",
+                                "label": "Yes, Really!"
+                              }, {
+                                "value": "No",
+                                "label": "No"
+                              }
+                            ],
+                            "mandatory": true,
+                            "display": {
+                              "properties": {
+                                "columns": false
                               }
                             }
                           }
