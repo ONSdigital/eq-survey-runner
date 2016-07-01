@@ -1,4 +1,5 @@
 from app.model.display import Display
+from app.libs.utils import eq_helper_lists_equivalent
 
 
 class Question(object):
@@ -54,30 +55,9 @@ class Question(object):
                                self.description == other.description and \
                                self.type == other.type
 
-            answers_match = True
-            if len(self.answers) != len(other.answers):
-                return False
-
-            for index, answer in enumerate(self.answers):
-                if answer != other.answers[index]:
-                    return False
-
-            validations_match = True
-            if self.validation is not None and other.validation is not None:
-                if len(self.validation) != len(other.validation):
-                    return False
-
-                for index, validation in enumerate(self.validation):
-                    if validation != other.validation[index]:
-                        return False
-
-            templatable_properties_match = True
-            if len(self.templatable_properties) != len(other.templatable_properties):
-                return False
-
-            for index, templatable_property in enumerate(self.templatable_properties):
-                if templatable_property not in other.templatable_properties:
-                    return False
+            answers_match = eq_helper_lists_equivalent(self.answers, other.answers)
+            validations_match = eq_helper_lists_equivalent(self.validation, other.validation)
+            templatable_properties_match = eq_helper_lists_equivalent(self.templatable_properties, other.templatable_properties)
 
             return properties_match and answers_match and validations_match and templatable_properties_match
 
