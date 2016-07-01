@@ -1,6 +1,6 @@
 import unittest
 from app.validation.validator import Validator
-from app.responses.response_store import AbstractResponseStore
+from app.answers.answer_store import AbstractAnswerStore
 from app.validation.validation_store import AbstractValidationStore
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
@@ -11,25 +11,25 @@ from app.model.group import Group
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 
 
 class ValidatorTest(unittest.TestCase):
     def setUp(self):
 
-        self._response_store = self._create_mock_responses_store()
+        self._answer_store = self._create_mock_answers_store()
         self._validation_store = self._create_mock_validation_store()
         self._schema = self._create_schema()
 
     def test_validate(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
         # Override the factory class used for Type Checking
         validator._type_validator_factory_class = MockTypeValidatorFactory
 
-        response_1 = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
-        response_1.type = 'succeed'
-        response_1.mandatory = False
+        answer_1 = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
+        answer_1.type = 'succeed'
+        answer_1.mandatory = False
 
         question_1 = self._schema.get_item_by_id("0df6fe58-25c9-430f-b157-9dc6b5a7646f")
         question_1.validation = [RaisingValidator()]    # Raises an exception when called, which we can track
@@ -42,7 +42,7 @@ class ValidatorTest(unittest.TestCase):
             self.assertEquals('validate called against \'None\'', exc.message)
 
     def test_validate_item(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
         # Override the factory class used for Type Checking
         validator._type_validator_factory_class = MockTypeValidatorFactory
@@ -52,20 +52,20 @@ class ValidatorTest(unittest.TestCase):
         on the type.  Here we are checking that _validate_item handles the "mandatory"
         check correctly.
         """
-        # check validating a non-mandatory response
-        non_mandatory_response = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
-        non_mandatory_response.type = "succeed"  # overwrite built in type checking
-        non_mandatory_response.mandatory = False
+        # check validating a non-mandatory answer
+        non_mandatory_answer = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
+        non_mandatory_answer.type = "succeed"  # overwrite built in type checking
+        non_mandatory_answer.mandatory = False
 
-        result = validator._validate_item(non_mandatory_response, None)
+        result = validator._validate_item(non_mandatory_answer, None)
         self.assertTrue(result.is_valid)
 
-        # Check validating a mandatory response
-        mandatory_response = self._schema.get_item_by_id("709c9f96-2757-4cf3-ba48-808c6c616848")
-        non_mandatory_response.type = "succeed"  # again, should still fail mandatory
-        mandatory_response.mandatory = True
+        # Check validating a mandatory answer
+        mandatory_answer = self._schema.get_item_by_id("709c9f96-2757-4cf3-ba48-808c6c616848")
+        non_mandatory_answer.type = "succeed"  # again, should still fail mandatory
+        mandatory_answer.mandatory = True
 
-        result = validator._validate_item(mandatory_response, None)
+        result = validator._validate_item(mandatory_answer, None)
         self.assertFalse(result.is_valid)
 
         """
@@ -73,35 +73,35 @@ class ValidatorTest(unittest.TestCase):
         on the type.  We are not checking the Factoyr, we are checking that the
         _validate_item method does the right thing.
         """
-        # type-checking a non-mandatory response (using mock factory)
-        non_mandatory_response = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
-        non_mandatory_response.type = "succeed"  # overwrite built in type checking
-        non_mandatory_response.mandatory = False
+        # type-checking a non-mandatory answer (using mock factory)
+        non_mandatory_answer = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
+        non_mandatory_answer.type = "succeed"  # overwrite built in type checking
+        non_mandatory_answer.mandatory = False
 
-        result = validator._validate_item(non_mandatory_response, "Anything")
+        result = validator._validate_item(non_mandatory_answer, "Anything")
         self.assertTrue(result.is_valid)
 
-        # type-checking a non-mandatory response (using mock)
-        non_mandatory_response = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
-        non_mandatory_response.type = "failure"  # overwrite built in type checking
-        non_mandatory_response.mandatory = False
+        # type-checking a non-mandatory answer (using mock)
+        non_mandatory_answer = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
+        non_mandatory_answer.type = "failure"  # overwrite built in type checking
+        non_mandatory_answer.mandatory = False
 
-        result = validator._validate_item(non_mandatory_response, "Anything")
+        result = validator._validate_item(non_mandatory_answer, "Anything")
         self.assertFalse(result.is_valid)
 
     def test_validate_container(self):
-        validator = Validator(self._schema, self._validation_store, self._response_store)
+        validator = Validator(self._schema, self._validation_store, self._answer_store)
 
         # Override the factory class used for Type Checking
         validator._type_validator_factory_class = MockTypeValidatorFactory
 
-        response_1 = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
+        answer_1 = self._schema.get_item_by_id("69ed19a4-f2ee-4742-924d-b64b9fa09499")
         question_1 = self._schema.get_item_by_id("0df6fe58-25c9-430f-b157-9dc6b5a7646f")
 
         question_1.validation = [RaisingValidator()]    # Raises an exception when called, which we can track
 
         with self.assertRaises(Exception) as exc:
-            validator._validate_container(response_1.container)
+            validator._validate_container(answer_1.container)
             self.assertEquals('validate called against \'None\'', exc.message)
 
     def _create_schema(self):
@@ -129,41 +129,41 @@ class ValidatorTest(unittest.TestCase):
         section_1.add_question(question_1)
         questionnaire_1.register(question_1)
 
-        response_1 = Response()
-        response_1.type = "Integer"
-        response_1.id = "69ed19a4-f2ee-4742-924d-b64b9fa09499"
-        question_1.add_response(response_1)
-        questionnaire_1.register(response_1)
+        answer_1 = Answer()
+        answer_1.type = "Integer"
+        answer_1.id = "69ed19a4-f2ee-4742-924d-b64b9fa09499"
+        question_1.add_answer(answer_1)
+        questionnaire_1.register(answer_1)
 
-        response_2 = Response()
-        response_2.type = "Integer"
-        response_2.id = "709c9f96-2757-4cf3-ba48-808c6c616848"
-        question_1.add_response(response_2)
-        questionnaire_1.register(response_2)
+        answer_2 = Answer()
+        answer_2.type = "Integer"
+        answer_2.id = "709c9f96-2757-4cf3-ba48-808c6c616848"
+        question_1.add_answer(answer_2)
+        questionnaire_1.register(answer_2)
 
         return questionnaire_1
 
-    def _create_mock_responses_store(self):
-        class MockResponseStore(AbstractResponseStore):
+    def _create_mock_answers_store(self):
+        class MockAnswerStore(AbstractAnswerStore):
             def __init__(self):
-                self._responses = {}
+                self._answers = {}
 
-            def store_response(self, key, value):
-                self.responses[key] = value
+            def store_answer(self, key, value):
+                self.answers[key] = value
 
-            def get_response(self, key):
-                return self.responses[key] or None
+            def get_answer(self, key):
+                return self.answers[key] or None
 
-            def get_responses(self, key):
+            def get_answers(self, key):
                 raise NotImplementedError()
 
             def clear(self):
-                self._responses.clear()
+                self._answers.clear()
 
-            def clear_responses(self):
+            def clear_answers(self):
                 self.clear();
 
-        return MockResponseStore()
+        return MockAnswerStore()
 
     def _create_mock_validation_store(self):
         class MockValidationStore(AbstractValidationStore):
@@ -177,7 +177,7 @@ class ValidatorTest(unittest.TestCase):
                 return self.results[key] or None
 
             def clear(self):
-                self._responses.clear()
+                self._answers.clear()
 
         return MockValidationStore()
 

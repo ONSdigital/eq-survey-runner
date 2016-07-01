@@ -25,17 +25,17 @@ def create_questionnaire_manager():
     if not schema:
         return errors.page_not_found()
 
-    # load the response store
-    response_store = factory.create("response-store")
+    # load the answer store
+    answer_store = factory.create("answer-store")
 
     # load the validation store
     validation_store = factory.create("validation-store")
 
     # Create the validator
-    validator = Validator(schema, validation_store, response_store)
+    validator = Validator(schema, validation_store, answer_store)
 
     # Create the routing engine
-    routing_engine = RoutingEngine(schema, response_store)
+    routing_engine = RoutingEngine(schema, answer_store)
 
     # load the navigation history
     navigation_history = factory.create("navigation-history")
@@ -48,7 +48,7 @@ def create_questionnaire_manager():
 
     # instantiate the questionnaire manager
     questionnaire_manager = QuestionnaireManager(schema,
-                                                 response_store,
+                                                 answer_store,
                                                  validator,
                                                  validation_store,
                                                  routing_engine,

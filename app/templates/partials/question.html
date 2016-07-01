@@ -19,10 +19,10 @@
   {% endif %}
 {% endset %}
 
-{% set question_responses %}
-  <div class="question__responses">
-    {%- for response in question.responses -%}
-      {% include 'partials/response.html' %}
+{% set question_answers %}
+  <div class="question__answers">
+    {%- for answer in question.answers -%}
+      {% include 'partials/answer.html' %}
     {%- endfor -%}
   </div>
 {% endset %}
@@ -31,7 +31,7 @@
 
   {% set question_markup %}
 
-    {% if question.responses|length > 1 %}
+    {% if question.answers|length > 1 %}
 
       <fieldset class="question__fieldset">
 
@@ -40,7 +40,7 @@
         </legend>
 
         {{question_description|safe}}
-        {{question_responses|safe}}
+        {{question_answers|safe}}
 
       </fieldset>
 
@@ -48,7 +48,7 @@
 
       {{question_titles|safe}}
       {{question_description|safe}}
-      {{question_responses|safe}}
+      {{question_answers|safe}}
 
     {% endif %}
 

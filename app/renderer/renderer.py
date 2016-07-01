@@ -8,9 +8,9 @@ from app.model.questionnaire import QuestionnaireException
 
 
 class Renderer(object):
-    def __init__(self, schema, response_store, validation_store, navigator, metadata):
+    def __init__(self, schema, answer_store, validation_store, navigator, metadata):
         self._schema = schema
-        self._response_store = response_store
+        self._answer_store = answer_store
         self._validation_store = validation_store
         self._navigator = navigator
         self._metadata = metadata
@@ -146,10 +146,10 @@ class Renderer(object):
 
         return navigation_meta
 
-    def _augment_response(self, response):
-        response.value = None
-        if response.id in self._response_store.get_responses().keys():
-            response.value = self._response_store.get_response(response.id)
+    def _augment_answer(self, answer):
+        answer.value = None
+        if answer.id in self._answer_store.get_answers().keys():
+            answer.value = self._answer_store.get_answer(answer.id)
 
     def _augment_questionnaire(self):
         errors = OrderedDict()
@@ -158,22 +158,25 @@ class Renderer(object):
         # loops through the Schema and get errors and warnings in order
         # augments each item in the schema as required
         for group in self._schema.groups:
+            # We only do this for the current group...
             if self._current_group.id == group.id:
                 self._augment_item(group, errors, warnings)
                 for block in group.blocks:
+                    # ...and the current block
                     if self._current_block.id == block.id:
                         self._augment_item(block, errors, warnings)
                         for section in block.sections:
                             self._augment_item(section, errors, warnings)
                             for question in section.questions:
                                 self._augment_item(question, errors, warnings)
-                                for response in question.responses:
-                                    self._augment_item(response, errors, warnings)
+                                for answer in question.answers:
+                                    self._augment_item(answer, errors, warnings)
 
-        # We need to augment all the responses, regardless of the current block
-        for response_id in self._response_store.get_responses().keys():
-            response = self._schema.get_item_by_id(response_id)
-            self._augment_response(response)
+        # We need to augment all the answer objects, regardless of the current
+        # group/block as the summary page will otherwise fail
+        for answer_id in self._answer_store.get_answers().keys():
+            answer = self._schema.get_item_by_id(answer_id)
+            self._augment_answer(answer)
 
         self._schema.errors = errors
         self._schema.warnings = warnings

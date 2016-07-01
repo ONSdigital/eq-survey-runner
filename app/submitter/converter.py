@@ -46,12 +46,12 @@ class SubmitterConstants(object):
 class Converter(object):
 
     @staticmethod
-    def prepare_responses(user, metadata_store, questionnaire, responses):
+    def prepare_answers(user, metadata_store, questionnaire, answers):
         """
-        Create the JSON response format for down stream processing
+        Create the JSON answer format for down stream processing
 
         :param questionnaire: the questionnaire model
-        :param responses: the users responses
+        :param answers: the users answers as a dict of id/value
         :return: a JSON object in the following format:
           {
             "type" : "uk.gov.ons.edc.eq:surveyresponse",
@@ -78,10 +78,10 @@ class Converter(object):
         survey_id = questionnaire.survey_id
         data = {}
 
-        for key in responses.keys():
+        for key in answers.keys():
             item = questionnaire.get_item_by_id(key)
             if item is not None:
-                value = responses[key]
+                value = answers[key]
                 if value:
                     data[item.code] = value
 
@@ -95,15 +95,15 @@ class Converter(object):
         paradata = {}
         submitted_at = datetime.now(settings.EUROPE_LONDON)
 
-        response = {SubmitterConstants.TYPE_KEY: SubmitterConstants.TYPE,
-                    SubmitterConstants.VERSION_KEY: SubmitterConstants.VERSION,
-                    SubmitterConstants.ORIGIN_KEY: SubmitterConstants.ORIGIN,
-                    SubmitterConstants.SURVEY_ID_KEY: survey_id,
-                    SubmitterConstants.SUBMITTED_AT_KEY: submitted_at.strftime(settings.DATETIME_FORMAT),
-                    SubmitterConstants.COLLECTION_KEY: collection,
-                    SubmitterConstants.METADATA_KEY: metadata,
-                    SubmitterConstants.PARADATA_KEY: paradata,
-                    SubmitterConstants.DATA_KEY: data}
+        payload = {SubmitterConstants.TYPE_KEY: SubmitterConstants.TYPE,
+                   SubmitterConstants.VERSION_KEY: SubmitterConstants.VERSION,
+                   SubmitterConstants.ORIGIN_KEY: SubmitterConstants.ORIGIN,
+                   SubmitterConstants.SURVEY_ID_KEY: survey_id,
+                   SubmitterConstants.SUBMITTED_AT_KEY: submitted_at.strftime(settings.DATETIME_FORMAT),
+                   SubmitterConstants.COLLECTION_KEY: collection,
+                   SubmitterConstants.METADATA_KEY: metadata,
+                   SubmitterConstants.PARADATA_KEY: paradata,
+                   SubmitterConstants.DATA_KEY: data}
 
-        logging.debug("Converted response ready for submission %s", json.dumps(response))
-        return response, submitted_at
+        logging.debug("Converted answer ready for submission %s", json.dumps(payload))
+        return payload, submitted_at

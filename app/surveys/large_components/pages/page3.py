@@ -1,7 +1,7 @@
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 
 from app.surveys.large_test import test_questionnaire
 
@@ -18,11 +18,11 @@ h1_q = Question()
 h1_q.id = "question-h1"
 h1_q.title = '(H1) Who usually lives here?'
 h1_q.description = 'Select all that apply'
-# TODO: Decide on Question Types and Response Types
+# TODO: Decide on Question Types and Answer Types
 h1_q.type = "Checkboxes"
 
-h1_r = Response()
-h1_r.id = "response-h1"
+h1_r = Answer()
+h1_r.id = "answer-h1"
 h1_r.type = "Checkbox"
 h1_r.code = "H1"
 h1_r.options = [
@@ -71,7 +71,7 @@ h1_r.options = [
     }
 ]
 
-h1_q.add_response(h1_r)
+h1_q.add_answer(h1_r)
 h1_s.add_question(h1_q)
 page3.add_section(h1_s)
 test_questionnaire.register(h1_s)
@@ -88,12 +88,12 @@ h2_q.id = 'question-h2'
 h2_q.title = '(H2) Counting everyone you included in question H1, how many people usually live here?'
 h2_q.type = "Integer"
 
-h2_r = Response()
+h2_r = Answer()
 h2_r.type = "PositiveInteger"
 h2_r.code = 'H2'
-h2_r.id = 'response-h2'
+h2_r.id = 'answer-h2'
 
-h2_q.add_response(h2_r)
+h2_q.add_answer(h2_r)
 h2_s.add_question(h2_q)
 page3.add_section(h2_s)
 test_questionnaire.register(h2_s)
@@ -114,10 +114,10 @@ h4_q.description = 'Tick all that apply'
 h4_q.type = "Checkboxes"
 
 
-h4_r = Response()
+h4_r = Answer()
 h4_r.type = "Checkbox"
 h4_r.code = 'H4'
-h4_r.id = "response-h4"
+h4_r.id = "answer-h4"
 h4_r.options = [
     {
         "value": "h4_a",
@@ -144,7 +144,7 @@ h4_r.options = [
     }
 ]
 
-h4_q.add_response(h4_r)
+h4_q.add_answer(h4_r)
 h4_s.add_question(h4_q)
 page3.add_section(h4_s)
 test_questionnaire.register(h4_s)
@@ -161,12 +161,12 @@ h5_q.title = '(H5) Counting only the people included in question H4, how many vi
 h5_q.description = 'If there is no-one usually living here (there are only visitors staying here) answer questions H7 to H11 on page 6 and then go to the back page (page 32) to answer the Visitor questions'  # NOQA
 h5_q.type = "Integer"
 
-h5_r = Response()
-h5_r.id = "response-h5"
+h5_r = Answer()
+h5_r.id = "answer-h5"
 h5_r.type = "PositiveInteger"
 h5_r.code = 'H5'
 
-h5_q.add_response(h5_r)
+h5_q.add_answer(h5_r)
 h5_s.add_question(h5_q)
 page3.add_section(h5_s)
 test_questionnaire.register(h5_s)

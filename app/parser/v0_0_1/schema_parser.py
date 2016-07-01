@@ -14,7 +14,7 @@ from app.model.group import Group
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 from app.model.display import Display
 from app.model.properties import Properties
 
@@ -219,58 +219,58 @@ class SchemaParser(AbstractSchemaParser):
             logging.info(e)
             raise e
 
-        if 'responses' in schema.keys():
-            for response_schema in schema['responses']:
-                question.add_response(self._parse_response(response_schema, questionnaire))
+        if 'answers' in schema.keys():
+            for answer_schema in schema['answers']:
+                question.add_answer(self._parse_answer(answer_schema, questionnaire))
         else:
-            raise SchemaParserException('Question must contain at least one response')
+            raise SchemaParserException('Question must contain at least one answer')
 
         return question
 
-    def _parse_response(self, schema, questionnaire):
-        """Parse a response element
+    def _parse_answer(self, schema, questionnaire):
+        """Parse a answer element
 
-        :param schema: The response schema
+        :param schema: The answer schema
 
-        :returns: A Response object
+        :returns: A Answer object
 
         :raises: SchemaParserException
 
         """
-        response = Response()
+        answer = Answer()
 
         try:
-            response.id = ParserUtils.get_required_string(schema, 'id')
-            response.code = ParserUtils.get_required_string(schema, 'q_code')
-            response.label = ParserUtils.get_optional_string(schema, 'label')
-            response.guidance = ParserUtils.get_optional_string(schema, 'guidance')
-            response.type = ParserUtils.get_required_string(schema, 'type')
-            response.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
-            response.options = ParserUtils.get_optional_array(schema, 'options')
+            answer.id = ParserUtils.get_required_string(schema, 'id')
+            answer.code = ParserUtils.get_required_string(schema, 'q_code')
+            answer.label = ParserUtils.get_optional_string(schema, 'label')
+            answer.guidance = ParserUtils.get_optional_string(schema, 'guidance')
+            answer.type = ParserUtils.get_required_string(schema, 'type')
+            answer.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
+            answer.options = ParserUtils.get_optional_array(schema, 'options')
 
             display = ParserUtils.get_optional(schema, "display")
             if display:
-                response.display = self._parse_display(display)
+                answer.display = self._parse_display(display)
 
             if 'validation' in schema.keys():
-                self._parse_validation(response, schema['validation'])
+                self._parse_validation(answer, schema['validation'])
 
-            # register the response
-            questionnaire.register(response)
+            # register the answer
+            questionnaire.register(answer)
 
         except Exception as e:
             logging.error('Error parsing schema')
             logging.info(e)
             raise e
 
-        return response
+        return answer
 
-    def _parse_validation(self, response, schema):
+    def _parse_validation(self, answer, schema):
         if 'messages' in schema.keys():
             messages = schema['messages']
 
             for code, message in messages.items():
-                response.messages[code] = message
+                answer.messages[code] = message
 
     def _parse_display(self, schema):
         """

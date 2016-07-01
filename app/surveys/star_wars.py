@@ -3,7 +3,7 @@ from app.model.group import Group
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 from app.model.display import Display
 from app.model.introduction import Introduction
 from app.validation.abstract_validator import AbstractValidator
@@ -64,7 +64,7 @@ q1.type = "Integer"
 s1.add_question(q1)
 questionnaire.register(q1)
 
-q1r = Response()
+q1r = Answer()
 q1r.id = "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b"
 q1r.code = "1"
 q1r.label = "How old is Chewy?"
@@ -78,7 +78,7 @@ q1r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "No one lives that long, not even Yoda"
 }
 
-q1.add_response(q1r)
+q1.add_answer(q1r)
 questionnaire.register(q1r)
 
 q2 = Question()
@@ -90,7 +90,7 @@ q2.type = "Currency"
 s1.add_question(q2)
 questionnaire.register(q2)
 
-q2r = Response()
+q2r = Answer()
 q2r.id = "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c"
 q2r.code = "2"
 q2r.label = "How many Octillions do Nasa reckon it would cost to build a death star?"
@@ -104,7 +104,7 @@ q2r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "How much, idiot you must be"
 }
 
-q2.add_response(q2r)
+q2.add_answer(q2r)
 questionnaire.register(q2r)
 
 
@@ -117,7 +117,7 @@ q3.type = "Integer"
 s1.add_question(q3)
 questionnaire.register(q3)
 
-q3r = Response()
+q3r = Answer()
 q3r.id = "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c"
 q3r.code = "3"
 q3r.label = "How hot is a lightsaver in degrees C?"
@@ -131,7 +131,7 @@ q3r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "Thats hotter then the sun, Jar Jar Binks you must be"
 }
 
-q3.add_response(q3r)
+q3.add_answer(q3r)
 questionnaire.register(q3r)
 
 
@@ -144,7 +144,7 @@ q4.type = "Radios"
 s1.add_question(q4)
 questionnaire.register(q4)
 
-q4r = Response()
+q4r = Answer()
 q4r.id = "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d"
 q4r.code = "4"
 q4r.label = ""
@@ -170,7 +170,7 @@ q4r_display.properties = {
 }
 q4r.display = q4r_display
 
-q4.add_response(q4r)
+q4.add_answer(q4r)
 questionnaire.register(q4r)
 
 
@@ -183,7 +183,7 @@ q5.type = "Radios"
 s1.add_question(q5)
 questionnaire.register(q5)
 
-q5r = Response()
+q5r = Answer()
 q5r.id = "7587eb9b-f24e-4dc0-ac94-66118b896c10"
 q5r.code = "5"
 q5r.label = ""
@@ -210,7 +210,7 @@ q5r_display.properties = {
 }
 q5r.display = q5r_display
 
-q5.add_response(q5r)
+q5.add_answer(q5r)
 questionnaire.register(q5r)
 
 q6 = Question()
@@ -222,7 +222,7 @@ q6.type = "Checkboxes"
 s1.add_question(q6)
 questionnaire.register(q6)
 
-q6r = Response()
+q6r = Answer()
 q6r.id = "9587eb9b-f24e-4dc0-ac94-66117b896c10"
 q6r.code = "6"
 q6r.label = ""
@@ -254,7 +254,7 @@ q6r_display.properties = {
     "columns": True
 }
 q6r.display = q6r_display
-q6.add_response(q6r)
+q6.add_answer(q6r)
 questionnaire.register(q6r)
 
 
@@ -267,7 +267,7 @@ q7.type = "Checkboxes"
 s1.add_question(q7)
 questionnaire.register(q7)
 
-q7r = Response()
+q7r = Answer()
 q7r.id = "5587eb9b-f24e-4dc0-ac94-66117b896c10"
 q7r.code = "7"
 q7r.label = ""
@@ -299,7 +299,7 @@ q7r_display.properties = {
     "columns": False
 }
 q7r.display = q7r_display
-q7.add_response(q7r)
+q7.add_answer(q7r)
 questionnaire.register(q7r)
 
 q8 = Question()
@@ -311,7 +311,7 @@ q8.type = "DateRange"
 s1.add_question(q8)
 questionnaire.register(q8)
 
-q8r1 = Response()
+q8r1 = Answer()
 q8r1.id = "6fd644b0-798e-4a58-a393-a438b32fe637"
 q8r1.code = "81"
 q8r1.label = "From"
@@ -324,10 +324,10 @@ q8r1.messages = {
     AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer."
 }
 
-q8.add_response(q8r1)
+q8.add_answer(q8r1)
 questionnaire.register(q8r1)
 
-q8r2 = Response()
+q8r2 = Answer()
 q8r2.id = "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0"
 q8r2.code = "82"
 q8r2.label = "To"
@@ -340,7 +340,7 @@ q8r2.messages = {
     AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer."
 }
 
-q8.add_response(q8r2)
+q8.add_answer(q8r2)
 questionnaire.register(q8r2)
 
 b2 = Block()
@@ -367,7 +367,7 @@ q9.type = "Integer"
 s2.add_question(q9)
 questionnaire.register(q9)
 
-q9r = Response()
+q9r = Answer()
 q9r.id = "5rr015b1-f87c-4740-9fd4-f01f707ef558"
 q9r.code = "9"
 q9r.label = "What was the total number of Ewokes?"
@@ -381,7 +381,7 @@ q9r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "Thats hotter then the sun, Jar Jar Binks you must be"
 }
 
-q9.add_response(q9r)
+q9.add_answer(q9r)
 questionnaire.register(q9r)
 
 s3 = Section()
@@ -401,7 +401,7 @@ q10.type = "Textarea"
 s3.add_question(q10)
 questionnaire.register(q10)
 
-q10r = Response()
+q10r = Answer()
 q10r.id = "215015b1-f87c-4740-9fd4-f01f707ef558"
 q10r.code = "10"
 q10r.label = "Why doesn't Chewbacca receive a medal at the end of A New Hope?"
@@ -410,7 +410,7 @@ q10r.type = "Textarea"
 q10r.options = []
 q10r.mandatory = True
 
-q10.add_response(q10r)
+q10.add_answer(q10r)
 questionnaire.register(q10r)
 
 q10r_display = Display()

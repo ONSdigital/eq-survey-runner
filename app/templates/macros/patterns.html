@@ -1,12 +1,12 @@
 {% import 'macros/forms.html' as form %}
 
-{% macro response(partial, data) %}
+{% macro answer(partial, data) %}
   {%- set markup %}
-    {% set response = data %}
+    {% set answer = data %}
     {% set question = {
-      id: response.id
+      id: answer.id
     } %}
-    {% include 'partials/responses/' ~ partial ~ '.html' %}
+    {% include 'partials/answers/' ~ partial ~ '.html' %}
   {% endset -%}
   <div class="ptn-example ptn-example-{{partial}}">
     {{markup|prettify|safe}}

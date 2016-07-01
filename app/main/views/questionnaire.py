@@ -37,7 +37,7 @@ def survey(eq_id, collection_id, location):
         # Process the POST request
         if request.method == 'POST':
             logger.debug("POST request question - current location %s", location)
-            questionnaire_manager.process_incoming_responses(request.form)
+            questionnaire_manager.process_incoming_answers(request.form)
             next_location = questionnaire_manager.get_current_location()
 
             current_user.save()

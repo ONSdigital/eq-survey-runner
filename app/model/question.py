@@ -6,8 +6,8 @@ class Question(object):
         self.id = None
         self.title = None
         self.description = ""
-        self.responses = []
-        self.children = self.responses
+        self.answers = []
+        self.children = self.answers
         self.container = None
         self.questionnaire = None
         self.validation = None
@@ -16,24 +16,24 @@ class Question(object):
         self.display = Display()
         self.type = None
 
-    def add_response(self, response):
-        if response not in self.responses:
-            self.responses.append(response)
-            response.container = self
+    def add_answer(self, answer):
+        if answer not in self.answers:
+            self.answers.append(answer)
+            answer.container = self
 
     def to_json(self):
         json_dict = {
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "responses": [],
+            "answers": [],
             "validation": [],
             "display": {},
             "type": self.type
         }
 
-        for response in self.responses:
-            json_dict['responses'].append(response.to_json())
+        for answer in self.answers:
+            json_dict['answers'].append(answer.to_json())
 
         if self.validation is not None:
             for validation in self.validation:
@@ -54,12 +54,12 @@ class Question(object):
                                self.description == other.description and \
                                self.type == other.type
 
-            responses_match = True
-            if len(self.responses) != len(other.responses):
+            answers_match = True
+            if len(self.answers) != len(other.answers):
                 return False
 
-            for index, response in enumerate(self.responses):
-                if response != other.responses[index]:
+            for index, answer in enumerate(self.answers):
+                if answer != other.answers[index]:
                     return False
 
             validations_match = True
@@ -79,7 +79,7 @@ class Question(object):
                 if templatable_property not in other.templatable_properties:
                     return False
 
-            return properties_match and responses_match and validations_match and templatable_properties_match
+            return properties_match and answers_match and validations_match and templatable_properties_match
 
         else:
             return NotImplemented

@@ -2,13 +2,13 @@ import unittest
 from app.validation.type_validator_factory import TypeValidatorFactory, TypeValidatorFactoryException
 from app.validation.integer_type_check import IntegerTypeCheck
 from app.validation.date_type_check import DateTypeCheck
-from app.model.response import Response
+from app.model.answer import Answer
 
 
 class TypeValidatorFactoryTest(unittest.TestCase):
     def test_get_validators_by_type(self):
 
-        item = Response()
+        item = Answer()
         item.type = 'integer'
         validators = TypeValidatorFactory.get_validators_by_type(item)
 

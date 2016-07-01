@@ -18,29 +18,29 @@
 
         {%- for question in section.questions -%}
 
-          {%- for response in question.responses -%}
+          {%- for answer in question.answers -%}
             {% if question.type == 'DateRange' %}
               {% if loop.index == 2 %}
                 {% set question_title = question.title %}
-                {% set response_value %}
-                  {{question.responses[loop.index0 - 1].label}}: {{question.responses[loop.index0 - 1].value}}<br>
-                  {{response.label}}: {{response.value}}
+                {% set answer_value %}
+                  {{question.answers[loop.index0 - 1].label}}: {{question.answers[loop.index0 - 1].value}}<br>
+                  {{answer.label}}: {{answer.value}}
                 {% endset %}
               {% endif %}
-            {% elif response.type == 'Currency' %}
-              {% set question_title = question.title or response.label %}
-              {% set response_value = response.value|int|format_currency if response.value else 'N/A' %}
-            {% elif response.type == 'Radio' %}
-               {% set question_title = question.title or response.label %}
-               {% set response_value = response.value %}
-            {% elif response.type == 'Checkbox' %}
-              {% set question_title = question.title or response.label %}
-              {% set response_value %}
-                {% if response.value and response.value|length > 0 %}
+            {% elif answer.type == 'Currency' %}
+              {% set question_title = question.title or answer.label %}
+              {% set answer_value = answer.value|int|format_currency if answer.value else 'N/A' %}
+            {% elif answer.type == 'Radio' %}
+               {% set question_title = question.title or answer.label %}
+               {% set answer_value = answer.value %}
+            {% elif answer.type == 'Checkbox' %}
+              {% set question_title = question.title or answer.label %}
+              {% set answer_value %}
+                {% if answer.value and answer.value|length > 0 %}
                   <ul class="list list--bullets">
-                      {% for response in response.value %}
-                        {% if response %}
-                          <li class="list__item">{{response}}</li>
+                      {% for answer in answer.value %}
+                        {% if answer %}
+                          <li class="list__item">{{answer}}</li>
                         {% endif %}
                       {% endfor %}
                   </ul>
@@ -49,15 +49,15 @@
                 {% endif %}
               {% endset %}
             {% else %}
-              {% set question_title = question.title or response.label %}
-              {% set response_value = response.value if response.value else 'N/A' %}
+              {% set question_title = question.title or answer.label %}
+              {% set answer_value = answer.value if answer.value else 'N/A' %}
             {% endif %}
 
-            {% set full_width = 'fw' if response.type == 'Textarea' %}
+            {% set full_width = 'fw' if answer.type == 'Textarea' %}
 
-            {% if question_title and response_value %}
+            {% if question_title and answer_value %}
               <dt class="dt {{full_width}} {{loop.index}}"><div>{{question_title|safe}}</div></dt>
-              <dd class="dd {{full_width}} {{loop.index}}">{{response_value|safe}}</dd>
+              <dd class="dd {{full_width}} {{loop.index}}">{{answer_value|safe}}</dd>
             {% endif %}
 
           {%- endfor -%}

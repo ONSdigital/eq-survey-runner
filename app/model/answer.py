@@ -1,4 +1,4 @@
-class Response(object):
+class Answer(object):
     def __init__(self):
         self.id = None
         self.label = ""
@@ -44,7 +44,7 @@ class Response(object):
         if id(self) == id(other):
             return True
 
-        if isinstance(other, Response):
+        if isinstance(other, Answer):
             properties_match = self.id == other.id and \
                                self.label == other.label and \
                                self.guidance == other.guidance and \

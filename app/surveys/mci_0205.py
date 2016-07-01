@@ -3,7 +3,7 @@ from app.model.group import Group
 from app.model.block import Block
 from app.model.section import Section
 from app.model.question import Question
-from app.model.response import Response
+from app.model.answer import Answer
 from app.model.display import Display
 from app.model.introduction import Introduction
 from app.validation.abstract_validator import AbstractValidator
@@ -63,7 +63,7 @@ q1.type = "DateRange"
 s1.add_question(q1)
 questionnaire.register(q1)
 
-q1r1 = Response()
+q1r1 = Answer()
 q1r1.id = "6fd644b0-798e-4a58-a393-a438b32fe637"
 q1r1.code = "11"
 q1r1.label = "From"
@@ -76,10 +76,10 @@ q1r1.messages = {
     AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer."
 }
 
-q1.add_response(q1r1)
+q1.add_answer(q1r1)
 questionnaire.register(q1r1)
 
-q1r2 = Response()
+q1r2 = Answer()
 q1r2.id = "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0"
 q1r2.code = "12"
 q1r2.label = "To"
@@ -92,7 +92,7 @@ q1r2.messages = {
     AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer."
 }
 
-q1.add_response(q1r2)
+q1.add_answer(q1r2)
 questionnaire.register(q1r2)
 
 ###
@@ -116,7 +116,7 @@ q2.type = "Currency"
 s2.add_question(q2)
 questionnaire.register(q2)
 
-q2r = Response()
+q2r = Answer()
 q2r.id = "bb8168e6-2272-450d-b5a7-d3170508efb2"
 q2r.code = "22"
 q2r.label = "What was the value of the business's total sales of food?"
@@ -130,7 +130,7 @@ q2r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q2.add_response(q2r)
+q2.add_answer(q2r)
 questionnaire.register(q2r)
 
 q3 = Question()
@@ -142,7 +142,7 @@ q3.type = "Currency"
 s2.add_question(q3)
 questionnaire.register(q3)
 
-q3r = Response()
+q3r = Answer()
 q3r.id = "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a"
 q3r.code = "23"
 q3r.label = "What was the value of the business's total sales of alcohol, confectionery and tobacco?"
@@ -156,7 +156,7 @@ q3r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q3.add_response(q3r)
+q3.add_answer(q3r)
 questionnaire.register(q3r)
 
 q4 = Question()
@@ -168,7 +168,7 @@ q4.type = "Currency"
 s2.add_question(q4)
 questionnaire.register(q4)
 
-q4r = Response()
+q4r = Answer()
 q4r.id = "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25"
 q4r.code = "24"
 q4r.label = "What was the value of the business's total sales of clothing and footwear?"
@@ -182,7 +182,7 @@ q4r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q4.add_response(q4r)
+q4.add_answer(q4r)
 questionnaire.register(q4r)
 
 q5 = Question()
@@ -194,7 +194,7 @@ q5.type = "Currency"
 s2.add_question(q5)
 questionnaire.register(q5)
 
-q5r = Response()
+q5r = Answer()
 q5r.id = "7605c4a9-2c3a-483c-908b-e07244105ac4"
 q5r.code = "25"
 q5r.label = "What was the value of the business's total sales of household goods?"
@@ -208,7 +208,7 @@ q5r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q5.add_response(q5r)
+q5.add_answer(q5r)
 questionnaire.register(q5r)
 
 q6 = Question()
@@ -220,7 +220,7 @@ q6.type = "Currency"
 s2.add_question(q6)
 questionnaire.register(q6)
 
-q6r = Response()
+q6r = Answer()
 q6r.id = "5843e26e-a139-4645-baa9-51bdb0aba27b"
 q6r.code = "26"
 q6r.label = "What was the value of the business’s total sales of other goods?"
@@ -234,7 +234,7 @@ q6r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q6.add_response(q6r)
+q6.add_answer(q6r)
 questionnaire.register(q6r)
 
 q7 = Question()
@@ -246,7 +246,7 @@ q7.type = "Currency"
 s2.add_question(q7)
 questionnaire.register(q7)
 
-q7r = Response()
+q7r = Answer()
 q7r.id = "e81adc6d-6fb0-4155-969c-d0d646f15345"
 q7r.code = "20"
 q7r.label = "What was the value of the business’s total retail turnover?"
@@ -261,7 +261,7 @@ q7r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q7.add_response(q7r)
+q7.add_answer(q7r)
 questionnaire.register(q7r)
 
 q8 = Question()
@@ -273,7 +273,7 @@ q8.type = "Currency"
 s2.add_question(q8)
 questionnaire.register(q8)
 
-q8r = Response()
+q8r = Answer()
 q8r.id = "4b75a6f7-9774-4b2b-82dc-976561189a99"
 q8r.code = "21"
 q8r.label = "Of your total retail turnover, how much were from internet sales?"
@@ -287,7 +287,7 @@ q8r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q8.add_response(q8r)
+q8.add_answer(q8r)
 questionnaire.register(q8r)
 
 q9 = Question()
@@ -299,7 +299,7 @@ q9.type = "Currency"
 s2.add_question(q9)
 questionnaire.register(q9)
 
-q9r = Response()
+q9r = Answer()
 q9r.id = "b2bac3ed-5504-43ef-a883-f9ca8496aca3"
 q9r.code = "27"
 q9r.label = "What was the value of the business’s total sales of automotive fuel?"
@@ -313,7 +313,7 @@ q9r.messages = {
     AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
 }
 
-q9.add_response(q9r)
+q9.add_answer(q9r)
 questionnaire.register(q9r)
 
 ###
@@ -338,7 +338,7 @@ q10.type = "Textarea"
 s3.add_question(q10)
 questionnaire.register(q10)
 
-q10r = Response()
+q10r = Answer()
 q10r.id = "215015b1-f87c-4740-9fd4-f01f707ef558"
 q10r.code = "146"
 q10r.label = "Comments"
@@ -347,7 +347,7 @@ q10r.type = "Textarea"
 q10r.options = []
 q10r.mandatory = False
 
-q10.add_response(q10r)
+q10.add_answer(q10r)
 questionnaire.register(q10r)
 
 q10r_display = Display()
