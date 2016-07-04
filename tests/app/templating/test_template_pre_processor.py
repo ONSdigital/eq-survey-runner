@@ -25,17 +25,17 @@ class TestTemplatePreProcessor(unittest.TestCase):
         self.navigator = MockNavigator()
         user = User("1", "2")
         jwt = {
-            MetaDataConstants.USER_ID: "1",
-            MetaDataConstants.FORM_TYPE: "a",
-            MetaDataConstants.COLLECTION_EXERCISE_SID: "test-sid",
-            MetaDataConstants.EQ_ID: "2",
-            MetaDataConstants.PERIOD_ID: "3",
-            MetaDataConstants.PERIOD_STR: "2016-01-01",
-            MetaDataConstants.REF_P_START_DATE: "2016-02-02",
-            MetaDataConstants.REF_P_END_DATE: "2016-03-03",
-            MetaDataConstants.RU_REF: "2016-04-04",
-            MetaDataConstants.RU_NAME: "Apple",
-            MetaDataConstants.RETURN_BY: "2016-07-07"
+            MetaDataConstants.USER_ID.claim_id: "1",
+            MetaDataConstants.FORM_TYPE.claim_id: "a",
+            MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
+            MetaDataConstants.EQ_ID.claim_id: "2",
+            MetaDataConstants.PERIOD_ID.claim_id: "3",
+            MetaDataConstants.PERIOD_STR.claim_id: "2016-01-01",
+            MetaDataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
+            MetaDataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
+            MetaDataConstants.RU_REF.claim_id: "2016-04-04",
+            MetaDataConstants.RU_NAME.claim_id: "Apple",
+            MetaDataConstants.RETURN_BY.claim_id: "2016-07-07"
         }
         self.metadata = MetaDataStore.save_instance(user, jwt)
 

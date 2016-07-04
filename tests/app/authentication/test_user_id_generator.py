@@ -88,10 +88,10 @@ class TestUserIDGenerator(unittest.TestCase):
 
     def create_token(self, eq_id, collection_exercise_sid, ru_ref, form_type):
         return {
-                MetaDataConstants.EQ_ID: eq_id,
-                MetaDataConstants.COLLECTION_EXERCISE_SID: collection_exercise_sid,
-                MetaDataConstants.RU_REF: ru_ref,
-                MetaDataConstants.FORM_TYPE: form_type}
+                MetaDataConstants.EQ_ID.claim_id: eq_id,
+                MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: collection_exercise_sid,
+                MetaDataConstants.RU_REF.claim_id: ru_ref,
+                MetaDataConstants.FORM_TYPE.claim_id: form_type}
 
 if __name__ == '__main__':
     unittest.main()

@@ -6,83 +6,78 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+def iso_8601_data_parser(iso_8601_string):
+    return datetime.strptime(iso_8601_string, "%Y-%m-%d")
+
+
+def string_parser(plain_string):
+    return plain_string
+
+
+class MetaDataConstant(object):
+    def __init__(self, claim_id, mandatory=True, parser=string_parser):
+        # the claim id from the JWT token
+        self.claim_id = claim_id
+        # the function to convert the value from the jwt into the required data type
+        self.parser = parser
+        # flag to indicate if the value must exist in the jwt token
+        self.mandatory = mandatory
+
+
 class MetaDataConstants(object):
     """Constant for meta data values"""
-    USER_ID = 'user_id'
-    RU_REF = 'ru_ref'
-    RU_NAME = 'ru_name'
-    EQ_ID = 'eq_id'
-    COLLECTION_EXERCISE_SID = 'collection_exercise_sid'
-    PERIOD_ID = 'period_id'
-    PERIOD_STR = 'period_str'
-    REF_P_START_DATE = 'ref_p_start_date'
-    REF_P_END_DATE = 'ref_p_end_date'
-    FORM_TYPE = 'form_type'
-    RETURN_BY = 'return_by'
-    TRAD_AS = 'trad_as'
-    EMPLOYMENT_DATE = 'employment_date'
+    USER_ID = MetaDataConstant(claim_id='user_id')
+    RU_REF = MetaDataConstant(claim_id='ru_ref')
+    RU_NAME = MetaDataConstant(claim_id='ru_name')
+    EQ_ID = MetaDataConstant(claim_id='eq_id')
+    COLLECTION_EXERCISE_SID = MetaDataConstant(claim_id='collection_exercise_sid')
+    PERIOD_ID = MetaDataConstant(claim_id='period_id')
+    PERIOD_STR = MetaDataConstant(claim_id='period_str')
+    REF_P_START_DATE = MetaDataConstant(claim_id='ref_p_start_date', parser=iso_8601_data_parser)
+    REF_P_END_DATE = MetaDataConstant(claim_id='ref_p_end_date', parser=iso_8601_data_parser)
+    FORM_TYPE = MetaDataConstant(claim_id='form_type')
+    RETURN_BY = MetaDataConstant(claim_id='return_by', parser=iso_8601_data_parser)
+    TRAD_AS = MetaDataConstant(claim_id='trad_as', mandatory=False)
+    EMPLOYMENT_DATE = MetaDataConstant(claim_id='employment_date', parser=iso_8601_data_parser, mandatory=False)
 
 
 class MetaDataStore(object):
 
     METADATA_KEY = "METADATA"
 
-    VALUES_FOR_VALIDATION = [MetaDataConstants.USER_ID, MetaDataConstants.RU_REF, MetaDataConstants.RU_NAME, MetaDataConstants.EQ_ID,
-                             MetaDataConstants.COLLECTION_EXERCISE_SID, MetaDataConstants.PERIOD_ID, MetaDataConstants.PERIOD_STR,
-                             MetaDataConstants.REF_P_END_DATE, MetaDataConstants.REF_P_START_DATE, MetaDataConstants.FORM_TYPE,
-                             MetaDataConstants.RETURN_BY]
-
-    def __init__(self, user_id, ru_ref, ru_name, eq_id, collection_exercise_sid, period_id, period_str, ref_p_end_date,
-                 ref_p_start_date, form_type, return_by, trad_as, employment_date):
-        self.user_id = user_id
-        self.ru_ref = ru_ref
-        self.ru_name = ru_name
-        self.eq_id = eq_id
-        self.collection_exercise_sid = collection_exercise_sid
-        self.period_id = period_id
-        self.period_str = period_str
-        self.ref_p_end_date = ref_p_end_date
-        self.ref_p_start_date = ref_p_start_date
-        self.form_type = form_type
-        self.return_by = return_by
-        self.trad_as = trad_as
-        self.employment_date = employment_date
+    @staticmethod
+    def _get_constants():
+        for attr in dir(MetaDataConstants):
+            constant = getattr(MetaDataConstants, attr)
+            if isinstance(constant, MetaDataConstant):
+                yield constant
 
     @staticmethod
     def is_valid(token):
-        for value in MetaDataStore.VALUES_FOR_VALIDATION:
-            if value not in token:
-                return False, value
+        for constant in MetaDataStore._get_constants():
+            if constant.mandatory and constant.claim_id not in token:
+                return False, constant.claim_id
         return True, ""
 
     @staticmethod
     def save_instance(user, token):
         try:
-            # mandatory values
-            user_id = token[MetaDataConstants.USER_ID]
-            ru_ref = token[MetaDataConstants.RU_REF]
-            ru_name = token[MetaDataConstants.RU_NAME]
-            eq_id = token[MetaDataConstants.EQ_ID]
-            collection_exercise_sid = token[MetaDataConstants.COLLECTION_EXERCISE_SID]
-            period_id = token[MetaDataConstants.PERIOD_ID]
-            period_str = token[MetaDataConstants.PERIOD_STR]
-            ref_p_end_date = datetime.strptime(token[MetaDataConstants.REF_P_END_DATE], "%Y-%m-%d")
-            ref_p_start_date = datetime.strptime(token[MetaDataConstants.REF_P_START_DATE], "%Y-%m-%d")
-            form_type = token[MetaDataConstants.FORM_TYPE]
-            return_by = datetime.strptime(token[MetaDataConstants.RETURN_BY], "%Y-%m-%d")
-
-            # optional values
-            trad_as = token[MetaDataConstants.TRAD_AS] if MetaDataConstants.TRAD_AS in token else None
-
-            # TODO remove when rrm implements employment date
-            if MetaDataConstants.EMPLOYMENT_DATE in token and token[MetaDataConstants.EMPLOYMENT_DATE]:
-
-                employment_date = datetime.strptime(token[MetaDataConstants.EMPLOYMENT_DATE], "%Y-%m-%d")
-            else:
-                employment_date = datetime.strptime("2016-06-10", "%Y-%m-%d")
-
-            metadata = MetaDataStore(user_id, ru_ref, ru_name, eq_id, collection_exercise_sid, period_id, period_str,
-                                     ref_p_end_date, ref_p_start_date, form_type, return_by, trad_as, employment_date)
+            metadata = MetaDataStore()
+            # loop around all the constants and add them as attributes of the metadata store object
+            for constant in MetaDataStore._get_constants():
+                attr_name = constant.claim_id
+                logger.debug("MetaDataStore adding attr %s", attr_name)
+                if attr_name in token:
+                    value = token[constant.claim_id]
+                    attr_value = constant.parser(value)
+                    logger.debug("with value %s", attr_value)
+                elif constant.mandatory:
+                    logger.warning("Missing constant value for %s", constant.claim_id)
+                    raise(ValueError("Missing constant value %s".format(constant.claim_id)))
+                else:
+                    logger.debug("No value provide for %s but this is not mandatory, setting to None", attr_name)
+                    attr_value = None
+                setattr(metadata, attr_name, attr_value)
 
             frozen = jsonpickle.encode(metadata)
             data = user.get_questionnaire_data()

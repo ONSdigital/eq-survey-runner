@@ -11,20 +11,20 @@ def create_payload(user):
     iat = time.time()
     exp = time.time() + EXPIRE_AFTER_SECONDS
     return {
-            MetaDataConstants.USER_ID: user,
+            MetaDataConstants.USER_ID.claim_id: user,
             'iat': str(int(iat)),
             'exp': str(int(exp)),
-            MetaDataConstants.EQ_ID: '1',
-            MetaDataConstants.PERIOD_STR: '2016-01-01',
-            MetaDataConstants.PERIOD_ID: '2016-01-01',
-            MetaDataConstants.FORM_TYPE: '0205',
-            MetaDataConstants.COLLECTION_EXERCISE_SID: "789",
-            MetaDataConstants.REF_P_START_DATE: "2016-01-01",
-            MetaDataConstants.REF_P_END_DATE: "2016-09-01",
-            MetaDataConstants.RU_REF: "12346789012A",
-            MetaDataConstants.RU_NAME: "Apple",
-            MetaDataConstants.RETURN_BY: "2016-04-30",
-            MetaDataConstants.EMPLOYMENT_DATE: "2016-06-10"}
+            MetaDataConstants.EQ_ID.claim_id: '1',
+            MetaDataConstants.PERIOD_STR.claim_id: '2016-01-01',
+            MetaDataConstants.PERIOD_ID.claim_id: '2016-01-01',
+            MetaDataConstants.FORM_TYPE.claim_id: '0205',
+            MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "789",
+            MetaDataConstants.REF_P_START_DATE.claim_id: "2016-01-01",
+            MetaDataConstants.REF_P_END_DATE.claim_id: "2016-09-01",
+            MetaDataConstants.RU_REF.claim_id: "12346789012A",
+            MetaDataConstants.RU_NAME.claim_id: "Apple",
+            MetaDataConstants.RETURN_BY.claim_id: "2016-04-30",
+            MetaDataConstants.EMPLOYMENT_DATE.claim_id: "2016-06-10"}
 
 
 def generate_token():

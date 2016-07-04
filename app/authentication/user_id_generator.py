@@ -46,10 +46,10 @@ class UserIDGenerator(object):
 
     @staticmethod
     def _get_token_data(token):
-        ru_ref = token.get(MetaDataConstants.RU_REF)
-        collection_exercise_sid = token.get(MetaDataConstants.COLLECTION_EXERCISE_SID)
-        eq_id = token.get(MetaDataConstants.EQ_ID)
-        form_type = token.get(MetaDataConstants.FORM_TYPE)
+        ru_ref = token.get(MetaDataConstants.RU_REF.claim_id)
+        collection_exercise_sid = token.get(MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id)
+        eq_id = token.get(MetaDataConstants.EQ_ID.claim_id)
+        form_type = token.get(MetaDataConstants.FORM_TYPE.claim_id)
         if ru_ref and collection_exercise_sid and eq_id and form_type:
             return collection_exercise_sid, eq_id, form_type, ru_ref
         else:
