@@ -1,5 +1,5 @@
 import bleach
-from app.renderer.renderer import Renderer
+from app.templating.template_pre_processor import TemplatePreProcessor
 from app.submitter.converter import SubmitterConstants
 from flask import session
 from flask_login import current_user
@@ -18,7 +18,7 @@ class QuestionnaireManager(object):
         self._navigation_history = navigation_history
         self._metadata = metadata
 
-        self.renderer = Renderer(self._schema, self.answer_store, self._validation_store, self._navigator, self._metadata)
+        self.pre_processor = TemplatePreProcessor(self._schema, self.answer_store, self._validation_store, self._navigator, self._metadata)
 
     def process_incoming_answers(self, post_data):
         # process incoming post data
@@ -65,10 +65,10 @@ class QuestionnaireManager(object):
         return
 
     def get_rendering_context(self):
-        return self.renderer.render()
+        return self.pre_processor.build_view_data()
 
     def get_rendering_template(self):
-        return self.renderer.get_template_name()
+        return self.pre_processor.get_template_name()
 
     def _process_incoming_post_data(self, post_data):
         user_answers = {}

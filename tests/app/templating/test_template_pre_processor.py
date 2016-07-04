@@ -1,4 +1,4 @@
-from app.renderer.renderer import Renderer
+from app.templating.template_pre_processor import TemplatePreProcessor
 from app.validation.validation_store import AbstractValidationStore
 from app.answers.answer_store import AbstractAnswerStore
 from app.validation.validation_result import ValidationResult
@@ -17,7 +17,7 @@ from collections import OrderedDict
 import unittest
 
 
-class TestRenderer(unittest.TestCase):
+class TestTemplatePreProcessor(unittest.TestCase):
     def setUp(self):
         self.validation_store = MockValidationStore()
         self.answer_store = MockAnswerStore()
@@ -40,7 +40,7 @@ class TestRenderer(unittest.TestCase):
         self.metadata = MetaDataStore.save_instance(user, jwt)
 
         # The answers and the validation results are not related for the purposes of this test
-        # The renderer simply combines these objects to create new objects for consumption
+        # The pre_proc simply combines these objects to create new objects for consumption
         # by the templates.  We are not testing validation here
 
         # Populate the answer store
@@ -59,8 +59,8 @@ class TestRenderer(unittest.TestCase):
         self.validation_store.store_result('answer-3', r3_result)
 
     def test_augment_answer(self):
-        # Instantiate the renderer using the pre-populated mock objects
-        renderer = Renderer(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
+        # Instantiate the pre processor using the pre-populated mock objects
+        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
 
         # Get the answer objects
         answer_1 = self.schema.get_item_by_id('answer-1')
@@ -72,9 +72,9 @@ class TestRenderer(unittest.TestCase):
             value = answer_1.value
 
         # Augment the answers
-        renderer._augment_answer(answer_1)
-        renderer._augment_answer(answer_2)
-        renderer._augment_answer(answer_3)
+        pre_proc._augment_answer(answer_1)
+        pre_proc._augment_answer(answer_2)
+        pre_proc._augment_answer(answer_3)
 
         # Check the model has been augmented correctly
         self.assertEquals(answer_1.value, 'One')
@@ -84,8 +84,8 @@ class TestRenderer(unittest.TestCase):
         self.assertIsNone(answer_3.value)
 
     def test_augment_item(self):
-        # Instantiate the renderer using the pre-populated mock objects
-        renderer = Renderer(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
+        # Instantiate the pre_proc using the pre-populated mock objects
+        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
 
         # Get the answer objects
         answer_1 = self.schema.get_item_by_id('answer-1')
@@ -99,9 +99,9 @@ class TestRenderer(unittest.TestCase):
             value = answer_1.is_valid
 
         # Augment the items
-        renderer._augment_item(answer_1, errors, warnings)
-        renderer._augment_item(answer_2, errors, warnings)
-        renderer._augment_item(answer_3, errors, warnings)
+        pre_proc._augment_item(answer_1, errors, warnings)
+        pre_proc._augment_item(answer_2, errors, warnings)
+        pre_proc._augment_item(answer_3, errors, warnings)
 
         # Check the model has been augmented correctly
         self.assertTrue(answer_1.is_valid)
@@ -119,8 +119,8 @@ class TestRenderer(unittest.TestCase):
         self.assertEquals(answer_3.errors[0], 'This is a required field')
 
     def test_augment_questionnaire(self):
-        # Instantiate the renderer using the pre-populated mock objects
-        renderer = Renderer(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
+        # Instantiate the pre_proc using the pre-populated mock objects
+        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
 
         # check the attributes do not exist
         with self.assertRaises(AttributeError):
@@ -129,7 +129,7 @@ class TestRenderer(unittest.TestCase):
             warnings = self.schema.warnings
 
         # augment the questionnaire
-        renderer._augment_questionnaire()
+        pre_proc._augment_questionnaire()
 
         # check the questionnaire has been augmented correctly
         self.assertIsInstance(self.schema.errors, OrderedDict, 'Errors should be an OrderedDict')
@@ -139,10 +139,10 @@ class TestRenderer(unittest.TestCase):
         self.assertListEqual(self.schema.errors['answer-3'], ['This is a required field'])
         self.assertListEqual(self.schema.warnings['answer-2'], ['There is a warning'])
 
-    def test_render(self):
-        renderer = Renderer(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
+    def test_build_view_data(self):
+        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
 
-        context = renderer.render()
+        context = pre_proc.build_view_data()
 
         self.assertIn('meta', context.keys())
         self.assertIn('content', context.keys())
