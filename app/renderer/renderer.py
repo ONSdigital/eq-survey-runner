@@ -81,11 +81,11 @@ class Renderer(object):
 
         try:
             # Under certain conditions, there is no user so these steps may fail
-            survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=self._metadata.get_return_by())
-            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_ref_p_start_date())
-            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_ref_p_end_date())
-            survey_meta["employment_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.get_employment_date())
-            survey_meta["period_str"] = self._metadata.get_period_str()
+            survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=self._metadata.return_by)
+            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.ref_p_start_date)
+            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.ref_p_end_date)
+            survey_meta["employment_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.employment_date)
+            survey_meta["period_str"] = self._metadata.period_str
         except:
             # But we can silently ignore them under those circumstanes
             pass
@@ -106,9 +106,9 @@ class Renderer(object):
             }
         }
         if current_user:
-            respondent_meta["respondent_id"] = self._metadata.get_ru_ref()
-            respondent_meta["address"]["name"] = self._metadata.get_ru_name()
-            respondent_meta["address"]["trading_as"] = self._metadata.get_trad_as()
+            respondent_meta["respondent_id"] = self._metadata.ru_ref
+            respondent_meta["address"]["name"] = self._metadata.ru_name
+            respondent_meta["address"]["trading_as"] = self._metadata.trad_as
 
         return respondent_meta
 

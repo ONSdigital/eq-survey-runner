@@ -85,12 +85,12 @@ class Converter(object):
                 if value:
                     data[item.code] = value
 
-        metadata = {SubmitterConstants.USER_ID_KEY: metadata_store.get_user_id(),
-                    SubmitterConstants.RU_REF_KEY: metadata_store.get_ru_ref()}
+        metadata = {SubmitterConstants.USER_ID_KEY: metadata_store.user_id,
+                    SubmitterConstants.RU_REF_KEY: metadata_store.ru_ref}
 
-        collection = {SubmitterConstants.EXERCISE_SID_KEY: metadata_store.get_collection_exercise_sid(),
-                      SubmitterConstants.INSTRUMENT_KEY: metadata_store.get_form_type(),
-                      SubmitterConstants.PERIOD_KEY: metadata_store.get_period_id()}
+        collection = {SubmitterConstants.EXERCISE_SID_KEY: metadata_store.collection_exercise_sid,
+                      SubmitterConstants.INSTRUMENT_KEY: metadata_store.form_type,
+                      SubmitterConstants.PERIOD_KEY: metadata_store.period_id}
 
         paradata = {}
         submitted_at = datetime.now(settings.EUROPE_LONDON)

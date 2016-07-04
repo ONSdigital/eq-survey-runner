@@ -48,45 +48,6 @@ class MetaDataStore(object):
         self.trad_as = trad_as
         self.employment_date = employment_date
 
-    def get_ru_ref(self):
-        return self.ru_ref
-
-    def get_ru_name(self):
-        return self.ru_name
-
-    def get_eq_id(self):
-        return self.eq_id
-
-    def get_collection_exercise_sid(self):
-        return self.collection_exercise_sid
-
-    def get_period_id(self):
-        return self.period_id
-
-    def get_period_str(self):
-        return self.period_str
-
-    def get_form_type(self):
-        return self.form_type
-
-    def get_ref_p_start_date(self):
-        return self.ref_p_start_date
-
-    def get_ref_p_end_date(self):
-        return self.ref_p_end_date
-
-    def get_trad_as(self):
-        return self.trad_as
-
-    def get_return_by(self):
-        return self.return_by
-
-    def get_user_id(self):
-        return self.user_id
-
-    def get_employment_date(self):
-        return self.employment_date
-
     @staticmethod
     def is_valid(token):
         for value in MetaDataStore.VALUES_FOR_VALIDATION:
