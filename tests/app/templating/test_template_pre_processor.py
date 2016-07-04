@@ -83,7 +83,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
         self.assertIsNone(answer_3.value)
 
-    def test_augment_item(self):
+    def test_collect_errors(self):
         # Instantiate the pre_proc using the pre-populated mock objects
         pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
 
@@ -99,9 +99,9 @@ class TestTemplatePreProcessor(unittest.TestCase):
             value = answer_1.is_valid
 
         # Augment the items
-        pre_proc._augment_item(answer_1, errors, warnings)
-        pre_proc._augment_item(answer_2, errors, warnings)
-        pre_proc._augment_item(answer_3, errors, warnings)
+        pre_proc._collect_errors(answer_1, errors, warnings)
+        pre_proc._collect_errors(answer_2, errors, warnings)
+        pre_proc._collect_errors(answer_3, errors, warnings)
 
         # Check the model has been augmented correctly
         self.assertTrue(answer_1.is_valid)

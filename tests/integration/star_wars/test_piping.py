@@ -207,6 +207,47 @@ class TestPiping(IntegrationTestCase):
         # Check Cheewies Age has been correctly piped into the question text
         self.assertRegexpMatches(content, "Do you really think that Chewbacca is 234 years old?")
 
+        # Our answers
+        form_data = {
+            # People in household
+            "215015b1-f87c-4740-9fd4-f01f707ef558": "Wookiees don’t place value in material rewards and refused the medal initially", # NOQA
+            "7587qe9b-f24e-4dc0-ac94-66118b896c10": "Yes",  # Yes, Chewbacca is really 234 years old
+            # User Action
+            "action[save_continue]": "Save &amp; Continue"
+        }
+
+        resp = self.client.post(second_page, data=form_data, follow_redirects=False)
+        self.assertEquals(resp.status_code, 302)
+
+        # There are no validation errors
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+
+        summary_url = resp.headers['Location']
+
+        resp = self.client.get(summary_url, follow_redirects=False)
+        self.assertEquals(resp.status_code, 200)
+
+        # We are on the review answers page
+        content = resp.get_data(True)
+        self.check_headings(content)
+        self.assertRegexpMatches(content, '<title>Summary</title>')
+        self.assertRegexpMatches(content, '>Star Wars</')
+        self.assertRegexpMatches(content, '>Your responses<')
+        self.assertRegexpMatches(content, '(?s)How old is Chewy?.*?234')
+        self.assertRegexpMatches(content, '(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
+        self.assertRegexpMatches(content, '(?s)How hot is a lightsaver in degrees C?.*?1370')
+        self.assertRegexpMatches(content, '(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant') # NOQA
+        self.assertRegexpMatches(content, '(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
+        self.assertRegexpMatches(content, '(?s)Which 3 have wielded a green lightsaber?.*?<li class="list__item">Y.*?o.*?d.*?a') # NOQA
+        self.assertRegexpMatches(content, '(?s)Which 3 appear in any of the opening crawlers?')
+        self.assertRegexpMatches(content, '(?s)When was The Empire Strikes Back released?.*?From: 28/05/1983.*?To: 29/05/1983') # NOQA
+        self.assertRegexpMatches(content, '(?s)What was the total number of Ewokes?.*?')
+        self.assertRegexpMatches(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?Wookiees don’t place value in material rewards and refused the medal initially') # NOQA
+        # Check that the piped value appear on the summary page also
+        self.assertRegexpMatches(content, '(?s)Do you really think that Chewbacca is 234 years old?.*') # NOQA
+        self.assertRegexpMatches(content, '>Please check carefully before submission<')
+        self.assertRegexpMatches(content, '>Submit answers<')
+
     def check_headings(self, content):
         self.assertRegexpMatches(content, 'BETA')
         self.assertRegexpMatches(content, 'Survey Help')
