@@ -29,35 +29,35 @@ class TestMetadataStore(SurveyRunnerTestCase):
 
     def test_form_type(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.FORM_TYPE), self.metadata_store.get_form_type())
+            self.assertEquals(self.jwt.get(MetaDataConstants.FORM_TYPE), self.metadata_store.form_type)
 
     def test_collection_id(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.COLLECTION_EXERCISE_SID), self.metadata_store.get_collection_exercise_sid())
+            self.assertEquals(self.jwt.get(MetaDataConstants.COLLECTION_EXERCISE_SID), self.metadata_store.collection_exercise_sid)
 
     def test_get_eq_id(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.EQ_ID), self.metadata_store.get_eq_id())
+            self.assertEquals(self.jwt.get(MetaDataConstants.EQ_ID), self.metadata_store.eq_id)
 
     def test_get_period_id(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.PERIOD_ID), self.metadata_store.get_period_id())
+            self.assertEquals(self.jwt.get(MetaDataConstants.PERIOD_ID), self.metadata_store.period_id)
 
     def test_get_period_str(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.PERIOD_STR), self.metadata_store.get_period_str())
+            self.assertEquals(self.jwt.get(MetaDataConstants.PERIOD_STR), self.metadata_store.period_str)
 
     def test_ref_p_start_date(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_START_DATE), self.metadata_store.get_ref_p_start_date().strftime('%Y-%m-%d'))
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_START_DATE), self.metadata_store.ref_p_start_date.strftime('%Y-%m-%d'))
 
     def test_ref_p_end_date(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date().strftime('%Y-%m-%d'))
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.ref_p_end_date.strftime('%Y-%m-%d'))
 
     def test_ru_ref(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.get_ref_p_end_date().strftime('%Y-%m-%d'))
+            self.assertEquals(self.jwt.get(MetaDataConstants.REF_P_END_DATE), self.metadata_store.ref_p_end_date.strftime('%Y-%m-%d'))
 
     def test_is_valid(self):
         with self.application.test_request_context():

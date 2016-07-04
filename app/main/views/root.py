@@ -40,9 +40,9 @@ def login():
         logger.debug("Token authenticated - linking to session")
 
         metadata = MetaDataStore.get_instance(current_user)
-        eq_id = metadata.get_eq_id()
-        collection_id = metadata.get_collection_exercise_sid()
-        form_type = metadata.get_form_type()
+        eq_id = metadata.eq_id
+        collection_id = metadata.collection_exercise_sid
+        form_type = metadata.form_type
 
         logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
         if not eq_id or not form_type:

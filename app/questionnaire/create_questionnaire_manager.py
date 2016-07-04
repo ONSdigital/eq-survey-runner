@@ -16,8 +16,8 @@ def create_questionnaire_manager():
 
     metadata = MetaDataStore.get_instance(current_user)
 
-    eq_id = metadata.get_eq_id()
-    form_type = metadata.get_form_type()
+    eq_id = metadata.eq_id
+    form_type = metadata.form_type
 
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
