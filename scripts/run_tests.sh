@@ -38,7 +38,7 @@ function display_result {
   fi
 }
 
-flake8
+flake8 --max-complexity 10
 display_result $? 1 "Code style check"
 
 py.test $@
