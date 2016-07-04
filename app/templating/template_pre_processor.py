@@ -7,7 +7,7 @@ from app.libs.utils import ObjectFromDict
 from app.model.questionnaire import QuestionnaireException
 
 
-class Renderer(object):
+class TemplatePreProcessor(object):
     def __init__(self, schema, answer_store, validation_store, navigator, metadata):
         self._schema = schema
         self._answer_store = answer_store
@@ -45,13 +45,13 @@ class Renderer(object):
             # questionnaire
             return 'questionnaire.html'
 
-    def render(self):
+    def build_view_data(self):
         self._augment_questionnaire()
 
         render_data = {
             "meta": {
-                "survey": self._render_survey_meta(),
-                "respondent": self._render_respondent_meta()
+                "survey": self._build_survey_meta(),
+                "respondent": self._build_respondent_meta()
             },
             "content": {
                 "introduction": {},
@@ -59,12 +59,12 @@ class Renderer(object):
                 "summary": None,
                 "thanks": None
             },
-            "navigation": self._render_navigation_meta()
+            "navigation": self._build_navigation_meta()
         }
 
         return render_data
 
-    def _render_survey_meta(self):
+    def _build_survey_meta(self):
         survey_meta = {
             "title": self._schema.title,
             "survey_code": self._schema.survey_id,
@@ -97,7 +97,7 @@ class Renderer(object):
 
         return survey_meta
 
-    def _render_respondent_meta(self):
+    def _build_respondent_meta(self):
         respondent_meta = {
             "respondent_id": None,
             "address": {
@@ -112,7 +112,7 @@ class Renderer(object):
 
         return respondent_meta
 
-    def _render_navigation_meta(self):
+    def _build_navigation_meta(self):
         navigation_meta = {
             "history": None,
             "current_position": self._navigator.get_current_location(),
