@@ -2,8 +2,9 @@
  * Paths to project folders
  */
 
-export const appPath = './app'
-export const distPath = appPath + '/static'
+export const homePath = './app'
+export const appPath = './app/assets'
+export const distPath = homePath + '/static'
 
 export const paths = {
   app: appPath,
