@@ -46,7 +46,17 @@ class TemplatePreProcessor(object):
             return 'questionnaire.html'
 
     def build_view_data(self):
-        self._augment_questionnaire()
+        # Always plumb the questionnaire
+        self._plumb_questionnaire()
+
+        # Collect the answers for all pages except the intro and thank you pages
+        current_location = self._navigator.get_current_location()
+        if current_location != 'introduction' and current_location != 'thank-you':
+            self._collect_answers()
+
+        # We only need to augment the questionnaire if we are still inside it
+        if current_location != 'summary' and current_location != 'introduction' and current_location != 'thank-you':
+            self._augment_questionnaire()
 
         render_data = {
             "meta": {
@@ -139,31 +149,41 @@ class TemplatePreProcessor(object):
         for group in self._schema.groups:
             # We only do this for the current group...
             if self._current_group.id == group.id:
-                self._augment_item(group, errors, warnings)
+                self._collect_errors(group, errors, warnings)
                 for block in group.blocks:
                     # ...and the current block
                     if self._current_block.id == block.id:
-                        self._augment_item(block, errors, warnings)
+                        self._collect_errors(block, errors, warnings)
                         for section in block.sections:
-                            self._augment_item(section, errors, warnings)
+                            self._collect_errors(section, errors, warnings)
                             for question in section.questions:
-                                self._augment_item(question, errors, warnings)
+                                self._collect_errors(question, errors, warnings)
                                 for answer in question.answers:
-                                    self._augment_item(answer, errors, warnings)
-
-        # We need to augment all the answer objects, regardless of the current
-        # group/block as the summary page will otherwise fail
-        for answer_id in self._answer_store.get_answers().keys():
-            answer = self._schema.get_item_by_id(answer_id)
-            self._augment_answer(answer)
+                                    self._collect_errors(answer, errors, warnings)
 
         self._schema.errors = errors
         self._schema.warnings = warnings
 
-    def _augment_item(self, item, global_errors, global_warnings):
-        # Perform any plumbing of variables into displayed text
-        self._plumber.plumb_item(item)
+    def _plumb_questionnaire(self):
+        # loops through the Schema and plumbs each item it finds
+        for group in self._schema.groups:
+            self._plumber.plumb_item(group)
+            for block in group.blocks:
+                self._plumber.plumb_item(block)
+                for section in block.sections:
+                    self._plumber.plumb_item(section)
+                    for question in section.questions:
+                        self._plumber.plumb_item(question)
+                        for answer in question.answers:
+                            self._plumber.plumb_item(answer)
 
+    def _collect_answers(self):
+        # Collect all the answers and add them to the schema
+        for answer_id in self._answer_store.get_answers().keys():
+            answer = self._schema.get_item_by_id(answer_id)
+            self._augment_answer(answer)
+
+    def _collect_errors(self, item, global_errors, global_warnings):
         item.is_valid = None
         item.errors = []
         item.warnings = []
