@@ -16,25 +16,25 @@ logger = logging.getLogger(__name__)
 def dev_mode():
     if request.method == "POST":
         form = request.form
-        user = form.get(MetaDataConstants.USER_ID)
+        user = form.get(MetaDataConstants.USER_ID.claim_id)
         exp_time = form.get("exp")
         schema = form.get("schema")
         eq_id, form_type = extract_eq_id_and_form_type(schema)
-        period_str = form.get(MetaDataConstants.PERIOD_STR)
-        period_id = form.get(MetaDataConstants.PERIOD_ID)
-        collection_exercise_sid = form.get(MetaDataConstants.COLLECTION_EXERCISE_SID)
-        ref_p_start_date = form.get(MetaDataConstants.REF_P_START_DATE)
-        ref_p_end_date = form.get(MetaDataConstants.REF_P_END_DATE)
-        ru_ref = form.get(MetaDataConstants.RU_REF)
-        ru_name = form.get(MetaDataConstants.RU_NAME)
-        trad_as = form.get(MetaDataConstants.TRAD_AS)
-        return_by = form.get(MetaDataConstants.RETURN_BY)
-        employment_date = form.get(MetaDataConstants.EMPLOYMENT_DATE)
+        period_str = form.get(MetaDataConstants.PERIOD_STR.claim_id)
+        period_id = form.get(MetaDataConstants.PERIOD_ID.claim_id)
+        collection_exercise_sid = form.get(MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id)
+        ref_p_start_date = form.get(MetaDataConstants.REF_P_START_DATE.claim_id)
+        ref_p_end_date = form.get(MetaDataConstants.REF_P_END_DATE.claim_id)
+        ru_ref = form.get(MetaDataConstants.RU_REF.claim_id)
+        ru_name = form.get(MetaDataConstants.RU_NAME.claim_id)
+        trad_as = form.get(MetaDataConstants.TRAD_AS.claim_id)
+        return_by = form.get(MetaDataConstants.RETURN_BY.claim_id)
+        employment_date = form.get(MetaDataConstants.EMPLOYMENT_DATE.claim_id)
         payload = create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid,
                                  ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date)
         return redirect("/session?token=" + generate_token(payload).decode())
     else:
-        return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), UserConstants=MetaDataConstants,
+        return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), MetaDataConstants=MetaDataConstants,
                                available_schemas=available_schemas())
 
 
@@ -68,21 +68,21 @@ def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, coll
     iat = time.time()
     exp = time.time() + float(exp_time)
     return {
-            MetaDataConstants.USER_ID: user,
+            MetaDataConstants.USER_ID.claim_id: user,
             'iat': str(int(iat)),
             'exp': str(int(exp)),
-            MetaDataConstants.EQ_ID: eq_id,
-            MetaDataConstants.PERIOD_STR: period_str,
-            MetaDataConstants.PERIOD_ID: period_id,
-            MetaDataConstants.FORM_TYPE: form_type,
-            MetaDataConstants.COLLECTION_EXERCISE_SID: collection_exercise_sid,
-            MetaDataConstants.REF_P_START_DATE: ref_p_start_date,
-            MetaDataConstants.REF_P_END_DATE: ref_p_end_date,
-            MetaDataConstants.RU_REF: ru_ref,
-            MetaDataConstants.RU_NAME: ru_name,
-            MetaDataConstants.RETURN_BY: return_by,
-            MetaDataConstants.TRAD_AS: trad_as,
-            MetaDataConstants.EMPLOYMENT_DATE: employment_date}
+            MetaDataConstants.EQ_ID.claim_id: eq_id,
+            MetaDataConstants.PERIOD_STR.claim_id: period_str,
+            MetaDataConstants.PERIOD_ID.claim_id: period_id,
+            MetaDataConstants.FORM_TYPE.claim_id: form_type,
+            MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: collection_exercise_sid,
+            MetaDataConstants.REF_P_START_DATE.claim_id: ref_p_start_date,
+            MetaDataConstants.REF_P_END_DATE.claim_id: ref_p_end_date,
+            MetaDataConstants.RU_REF.claim_id: ru_ref,
+            MetaDataConstants.RU_NAME.claim_id: ru_name,
+            MetaDataConstants.RETURN_BY.claim_id: return_by,
+            MetaDataConstants.TRAD_AS.claim_id: trad_as,
+            MetaDataConstants.EMPLOYMENT_DATE.claim_id: employment_date}
 
 
 def generate_token(payload):
