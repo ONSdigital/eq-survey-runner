@@ -1,2 +1,3 @@
 [run]
-omit = templates/*.html
+omit = app/templates/*.html,app/dev_mode/templates/*.html
+
