@@ -7,19 +7,8 @@ import unittest
 from app.validation.validator import Validator
 from app.answers.answer_store import AbstractAnswerStore
 from app.validation.validation_store import AbstractValidationStore
-from app.validation.abstract_validator import AbstractValidator
-from app.validation.validation_result import ValidationResult
-
 from app.schema_loader import schema_loader
 from app.parser.schema_parser_factory import SchemaParserFactory
-
-from app.model.questionnaire import Questionnaire
-from app.model.block import Block
-from app.model.group import Group
-from app.model.block import Block
-from app.model.section import Section
-from app.model.question import Question
-from app.model.answer import Answer
 
 
 class ValidatorTest(unittest.TestCase):

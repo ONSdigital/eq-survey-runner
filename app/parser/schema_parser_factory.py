@@ -46,8 +46,8 @@ class SchemaParserFactory(object):
             # Import the appropriate module and return an instance of the parser
             module_name = str("app.parser." + version_module + ".schema_parser")
             class_name = "SchemaParser"
-            ParserClass = getattr(importlib.import_module(module_name), class_name)
+            parser_class = getattr(importlib.import_module(module_name), class_name)
 
-            return ParserClass(schema)
+            return parser_class(schema)
         except:
             raise SchemaParserException('Could not create parser for version: ' + version_module)

@@ -44,8 +44,6 @@ class TestEmptyRadioBoxes(IntegrationTestCase):
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "",
             "7587eb9b-f24e-4dc0-ac94-66118b896c10" : "Luke, I am your father",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
-
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",

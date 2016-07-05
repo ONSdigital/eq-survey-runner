@@ -1,4 +1,5 @@
 import os
+from app import settings
 from babel.dates import get_timezone
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -26,13 +27,13 @@ class Config(object):
 class Test(Config):
     DEBUG = True
     WTF_CSRF_ENABLED = False
-    SECRET_KEY = "not-so-secret"
+    SECRET_KEY = settings.EQ_SECRET_KEY
 
 
 class Development(Config):
     DEBUG = True
     SESSION_COOKIE_SECURE = False
-    SECRET_KEY = "not-so-secret"
+    SECRET_KEY = settings.EQ_SECRET_KEY
 
 
 class Live(Config):
