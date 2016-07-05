@@ -20,12 +20,12 @@ def patterns(section='styleguide', pattern='index'):
     def untrim(str):
         return trimmed[str]
 
-    def make_section(sectionDir, dir, dirName):
+    def make_section(section_dir, dir, dir_name):
         section = {
           'sections': [],
-          'title': dirName
+          'title': dir_name
         }
-        for root, dirs, files in os.walk(sectionDir):
+        for root, dirs, files in os.walk(section_dir):
             files = [f for f in files if not f[0] == '.']
             files.sort()
             for file in files:
@@ -33,7 +33,7 @@ def patterns(section='styleguide', pattern='index'):
                     # The following line causes problems with flake8, so we use `# NOQA` to ignore it
                     with open(os.path.join(root, file), 'r') as f:           # NOQA
                         title = trim(file.replace('.html', ''))
-                        url = '/pattern-library/' + dirName + "/" + trim(file.replace('.html', ''))
+                        url = '/pattern-library/' + dir_name + "/" + trim(file.replace('.html', ''))
                         section['sections'].append({
                             'url': url,
                             'title': title.replace('-', ' '),

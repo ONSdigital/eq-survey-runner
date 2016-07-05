@@ -2,6 +2,7 @@
 from app.utilities import strings
 import unittest
 
+
 class TestStrings(unittest.TestCase):
 
     def test_to_bytes_with_string(self):
@@ -12,7 +13,7 @@ class TestStrings(unittest.TestCase):
         b = strings.to_bytes(b'def')
         self.assertEqual(b, b'def')
 
-    def test_to_bytes_with_None(self):
+    def test_to_bytes_with_none(self):
         b = strings.to_bytes(None)
         self.assertEqual(b, None)
 

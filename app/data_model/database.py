@@ -8,10 +8,10 @@ import json
 
 logger = logging.getLogger(__name__)
 
-Base = declarative_base()
+base = declarative_base()
 
 
-class QuestionnaireState(Base):
+class QuestionnaireState(base):
     __tablename__ = 'questionnaire_state'
     user_id = Column('userid', String, primary_key=True)
     state = Column('questionnaire_data', String)
@@ -33,7 +33,7 @@ class QuestionnaireState(Base):
         return "<QuestionnaireState('%s','%s')>" % (self.user_id, self.state)
 
 
-class EQSession(Base):
+class EQSession(base):
     __tablename__ = "eq_session"
     eq_session_id = Column("eq_session_id", String, primary_key=True)
     user_id = Column("user_id", String, primary_key=True)
@@ -64,6 +64,6 @@ def create_session_and_engine():
 
 
 db_session, engine = create_session_and_engine()
-Base.query = db_session.query_property()
+base.query = db_session.query_property()
 
-Base.metadata.create_all(engine)
+base.metadata.create_all(engine)

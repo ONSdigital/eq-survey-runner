@@ -6,7 +6,6 @@ from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
 
 from app.model.questionnaire import Questionnaire
-from app.model.block import Block
 from app.model.group import Group
 from app.model.block import Block
 from app.model.section import Section
