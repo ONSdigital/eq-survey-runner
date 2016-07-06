@@ -35,7 +35,7 @@ def create_questionnaire_manager():
     validator = Validator(schema, validation_store, answer_store)
 
     # Create the routing engine
-    routing_engine = RoutingEngine(schema, answer_store)
+    routing_engine = RoutingEngine(schema)
 
     # load the navigation history
     navigation_history = factory.create("navigation-history")

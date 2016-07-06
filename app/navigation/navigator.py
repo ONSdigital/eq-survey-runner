@@ -8,11 +8,15 @@ logger = logging.getLogger(__name__)
 
 
 class NavigationStep(object):
+    '''
+    Using another chain of responsibility hand off down the chain until we find a find location
+    '''
     def __init__(self):
         self.next_step = None
 
     def set_next_step(self, step):
         self.next_step = step
+        return step
 
     def is_valid(self, destination):
         logger.error("Is valid destination %s", destination)
@@ -95,9 +99,7 @@ class Navigator(object):
         page = Page(self._schema)
         summary = Summary()
         thank_you = ThankYou()
-        introduction.next_step = page
-        page.next_step = summary
-        summary.next_step = thank_you
+        introduction.set_next_step(page).set_next_step(summary).set_next_step(thank_you)
         return introduction
 
     # destination  "group:block:section:question:<repetition>"
@@ -139,3 +141,6 @@ class Navigator(object):
             self._store.store_state(state)
         else:
             raise NavigationException('Invalid location: {}'.format(location))
+
+    def get_first_block(self):
+        return self._schema.groups[0].blocks[0].id

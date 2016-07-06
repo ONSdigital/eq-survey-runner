@@ -24,10 +24,6 @@ class QuestionnaireManager(object):
         # process incoming post data
         user_action, user_answers = self._process_incoming_post_data(post_data)
 
-        # Are we submitting downstram?
-        if user_action == 'submit_answers':
-            return self.submit()
-
         # Process the answers and see where to go next
         cleaned_user_answers = {}
         for key, value in user_answers.items():
@@ -46,6 +42,9 @@ class QuestionnaireManager(object):
             # do any routing
             next_location = self._routing_engine.get_next(current_location, user_action)
 
+            if next_location == 'thank-you':
+                self.submit()
+
             # go to that location
             self._navigator.go_to(next_location)
         else:
@@ -61,7 +60,6 @@ class QuestionnaireManager(object):
         submitted_at = submitter.send_answers(current_user, self._metadata, self._schema, answers)
         # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
         session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
-        self._navigator.go_to('thank-you')
         return
 
     def get_rendering_context(self):
