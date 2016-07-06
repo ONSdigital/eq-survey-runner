@@ -19,13 +19,13 @@ class NavigationStep(object):
         return step
 
     def is_valid(self, destination):
-        logger.error("Is valid destination %s", destination)
+        logger.debug("Is valid destination %s", destination)
         valid = False
         if destination == self.get_destination():
             valid = True
         elif self.next_step:
             valid = self.next_step.is_valid(destination)
-        logger.error("Is valid %s", valid)
+        logger.debug("Is valid %s", valid)
         return valid
 
     def next_destination(self):
@@ -44,7 +44,7 @@ class Introduction(NavigationStep):
         self._schema = schema
 
     def get_destination(self):
-        logger.error("Introduction returning from get_destination - introduction")
+        logger.debug("Introduction returning from get_destination - introduction")
         if self._schema.introduction:
             return "introduction"
         else:
@@ -53,13 +53,13 @@ class Introduction(NavigationStep):
 
 class Summary(NavigationStep):
     def get_destination(self):
-        logger.error("Summary returning from get_destination - summary")
+        logger.debug("Summary returning from get_destination - summary")
         return "summary"
 
 
 class ThankYou(NavigationStep):
     def get_destination(self):
-        logger.error("Thank you returning from get_destination - thank you")
+        logger.debug("Thank you returning from get_destination - thank you")
         return "thank-you"
 
 
@@ -69,7 +69,7 @@ class Page(NavigationStep):
 
     def is_valid(self, destination):
         # override is_valid as page have special conditions
-        logger.error("Page is valid destination %s", destination)
+        logger.debug("Page is valid destination %s", destination)
         try:
             item = self._schema.get_item_by_id(destination)
             if isinstance(item, Block):
