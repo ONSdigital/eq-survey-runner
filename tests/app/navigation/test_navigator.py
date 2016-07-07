@@ -1,11 +1,13 @@
 from app.navigation.navigator import Navigator
 from app.navigation.navigation_history import NavigationHistory
+from app.metadata.metadata_store import MetaDataStore
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.model.questionnaire import Questionnaire
 import unittest
 from app.model.group import Group
 from app.model.block import Block
-from app.navigation.navigator import NavigationException
+from app.navigation.navigation_state import NavigationException
+from app.routing.routing_engine import RoutingEngine
 
 
 class NavigatorTest(SurveyRunnerTestCase):
@@ -23,9 +25,9 @@ class NavigatorTest(SurveyRunnerTestCase):
             schema.add_group(group)
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, navigation_history)
+            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
             #  brand new session shouldn't have a current location
-            self.assertEquals("block-1", navigator.get_current_location())
+            self.assertEquals('block-1', navigator.get_current_location())
 
     def test_get_current_location_with_intro(self):
         with self.application.test_request_context():
@@ -33,7 +35,7 @@ class NavigatorTest(SurveyRunnerTestCase):
             schema.introduction = "anything"
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, navigation_history)
+            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
             #  brand new session shouldn't have a current location
             self.assertEquals("introduction", navigator.get_current_location())
 
@@ -50,19 +52,19 @@ class NavigatorTest(SurveyRunnerTestCase):
             schema.add_group(group)
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, navigation_history)
+            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
 
             self.assertRaises(NavigationException, navigator.go_to, 'introduction')
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, navigation_history)
+            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
             navigator.go_to("block-1")
             self.assertEquals("block-1", navigator.get_current_location())
 
             schema.introduction = {'description': 'Some sort of intro'}
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, navigation_history)
+            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
             navigator.go_to("introduction")
             self.assertEquals("introduction", navigator.get_current_location())
 

@@ -41,7 +41,7 @@ def create_questionnaire_manager():
     navigation_history = factory.create("navigation-history")
 
     # create the navigator
-    navigator = Navigator(schema, navigation_history)
+    navigator = Navigator(schema, metadata, navigation_history, routing_engine)
 
     # if navigator.get_current_location() == "introduction" or navigator.get_current_location() is None:
     #     navigator.go_to('questionnaire')
@@ -51,7 +51,6 @@ def create_questionnaire_manager():
                                                  answer_store,
                                                  validator,
                                                  validation_store,
-                                                 routing_engine,
                                                  navigator,
                                                  navigation_history,
                                                  metadata)
