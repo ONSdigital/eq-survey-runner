@@ -46,13 +46,6 @@ fi
 
 url="`python token_generator.py`"
 
-
-if [ ! -d "/app/data" ]; then
-  mkdir "app/data"
-fi
-
-python generate_json.py
-
 if [ -z "${TRAVIS}" ]; then
   open_url $url &
   python application.py runserver
