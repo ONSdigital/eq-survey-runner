@@ -16,16 +16,21 @@ class MandatoryCheck(AbstractValidator):
 
         if isinstance(user_answer, list):
             for answer in user_answer:
-                if answer:
+                if answer and not str(answer).isspace():
                     validation_result.is_valid = True
                     return validation_result
-            else:
-                validation_result.is_valid = False
-                validation_result.errors.append(AbstractValidator.MANDATORY)
+                else:
+                    validation_result.is_valid = False
+                    # We do not return at this point as there may still be
+                    # a valid response in the list
+
+            # No valid values in list
+            validation_result.errors.append(AbstractValidator.MANDATORY)
         else:
             if user_answer and not str(user_answer).isspace():
                 validation_result.is_valid = True
             else:
                 validation_result.is_valid = False
                 validation_result.errors.append(AbstractValidator.MANDATORY)
+
         return validation_result

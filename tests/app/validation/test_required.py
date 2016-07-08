@@ -35,3 +35,15 @@ class RequiredTest(unittest.TestCase):
         self.assertFalse(result.is_valid)
         self.assertEquals(len(result.errors), 1)
         self.assertEquals(AbstractValidator.MANDATORY, result.errors[0])
+
+        # empty list
+        result = required.validate([])
+        self.assertFalse(result.is_valid)
+        self.assertEquals(len(result.errors), 1)
+        self.assertEquals(AbstractValidator.MANDATORY, result.errors[0])
+
+        # list wih empty string
+        result = required.validate(['', ' '])
+        self.assertFalse(result.is_valid)
+        self.assertEquals(len(result.errors), 1)
+        self.assertEquals(AbstractValidator.MANDATORY, result.errors[0])
