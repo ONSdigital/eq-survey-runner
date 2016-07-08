@@ -6,6 +6,8 @@ requests-mock==0.6.0
 lxml==3.4.4
 cssselect==0.9.1
 watchdog==0.8.3
-coverage==3.7.1
-pytest-cov==2.2.0
-python-coveralls==2.5.0
+python-coveralls==2.7.0
+PyYAML==3.11
+sh==1.11
+coverage==4.2b1
+pytest-cov==2.3.0

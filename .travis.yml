@@ -19,3 +19,5 @@ script:
 - "./scripts/run_tests.sh"
 notifications:
  -  slack: digitaleq:LDxJXRGeVmg3PpdUhp90eY3Z
+after_success:
+ - coveralls -d .coverage -c .coveragerc -y .coveralls.yml

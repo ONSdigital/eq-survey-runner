@@ -2,6 +2,10 @@
 
 * Based on python 3
 
+
+[![Coverage Status](https://coveralls.io/repos/github/ONSdigital/eq-survey-runner/badge.svg?branch=master)](https://coveralls.io/github/ONSdigital/eq-survey-runner?branch=master)
+
+
 ## Setup
 
 If using virtualenvwrapper (if not, you should be), create a new virtual env for python3
