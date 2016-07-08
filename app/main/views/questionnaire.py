@@ -9,6 +9,8 @@ from .. import main_blueprint
 from app.schema.questionnaire import QuestionnaireException
 from app.main.errors import page_not_found
 from flask.ext.themes2 import render_theme_template
+from app.metadata.metadata_store import MetaDataStore
+
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +43,9 @@ def survey(eq_id, collection_id, location):
             next_location = questionnaire_manager.get_current_location()
 
             current_user.save()
+            metadata = MetaDataStore.get_instance(current_user)
 
+            logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata.tx_id)
             return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/' + next_location)
 
         context = questionnaire_manager.get_rendering_context()

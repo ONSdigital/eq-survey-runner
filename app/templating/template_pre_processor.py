@@ -5,6 +5,7 @@ from flask import session
 from app.piping.plumber import Plumber
 from app.libs.utils import ObjectFromDict
 from app.schema.questionnaire import QuestionnaireException
+import uuid
 
 
 class TemplatePreProcessor(object):
@@ -110,6 +111,7 @@ class TemplatePreProcessor(object):
 
     def _build_respondent_meta(self):
         respondent_meta = {
+            "tx_id": self._convert_tx_id(),
             "respondent_id": None,
             "address": {
                 "name": None,
@@ -122,6 +124,14 @@ class TemplatePreProcessor(object):
             respondent_meta["address"]["trading_as"] = self._metadata.trad_as
 
         return respondent_meta
+
+    def _convert_tx_id(self):
+        # converts the guid tx_id to string of 16 characters with a space between every 4 characters
+        tx_id = uuid.UUID(self._metadata.tx_id)
+        tx_id = tx_id.hex
+        tx_id = tx_id.upper()
+        displayable_tx_id = (tx_id[i:i+4] for i in range(0, 16, 4))
+        return displayable_tx_id
 
     def _build_navigation_meta(self):
         navigation_meta = {

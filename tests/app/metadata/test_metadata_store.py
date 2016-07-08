@@ -21,11 +21,16 @@ class TestMetadataStore(SurveyRunnerTestCase):
             MetaDataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
             MetaDataConstants.RU_REF.claim_id: "2016-04-04",
             MetaDataConstants.RU_NAME.claim_id: "Apple",
-            MetaDataConstants.RETURN_BY.claim_id: "2016-07-07"
+            MetaDataConstants.RETURN_BY.claim_id: "2016-07-07",
+            MetaDataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
             user = User("1", "2")
             self.metadata_store = MetaDataStore.save_instance(user, self.jwt)
+
+    def test_transaction_id(self):
+        with self.application.test_request_context():
+            self.assertEqual(self.jwt.get(MetaDataConstants.TRANSACTION_ID.claim_id), self.metadata_store.tx_id)
 
     def test_form_type(self):
         with self.application.test_request_context():
@@ -218,7 +223,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             MetaDataStore.save_instance(User("1", "2"), jwt)
-        self.assertIn("Incorrect date format in token", ite.exception.value)
+        self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_ref_p_end_date(self):
         jwt = {
@@ -238,7 +243,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             MetaDataStore.save_instance(User("1", "2"), jwt)
-        self.assertIn("Incorrect date format in token", ite.exception.value)
+        self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_return_by(self):
         jwt = {
@@ -258,7 +263,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             MetaDataStore.save_instance(User("1", "2"), jwt)
-        self.assertIn("Incorrect date format in token", ite.exception.value)
+        self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_missing_ref_p_end_date(self):
         jwt = {
@@ -329,7 +334,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         self.assertEquals(MetaDataConstants.RETURN_BY.claim_id, reason)
 
     def test_is_valid_does_not_fail_missing_optional_value_in_token(self):
-        # Both trad_as and employment_date are optional and might not be in the token
+        # tx_id, trad_as and employment_date are optional and might not be in the token
         jwt = {
             MetaDataConstants.USER_ID.claim_id: "1",
             MetaDataConstants.FORM_TYPE.claim_id: "a",
@@ -345,6 +350,50 @@ class TestMetadataStore(SurveyRunnerTestCase):
         }
         valid, reason = MetaDataStore.is_valid(jwt)
         self.assertTrue(valid)
+
+    def test_invalid_tx_id(self):
+        jwt = {
+            MetaDataConstants.USER_ID.claim_id: "1",
+            MetaDataConstants.FORM_TYPE.claim_id: "a",
+            MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
+            MetaDataConstants.EQ_ID.claim_id: "2",
+            MetaDataConstants.PERIOD_ID.claim_id: "3",
+            MetaDataConstants.PERIOD_STR.claim_id: "2016-01-01",
+            MetaDataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
+            MetaDataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
+            MetaDataConstants.RU_REF.claim_id: "2016-04-04",
+            MetaDataConstants.RU_NAME.claim_id: "Apple",
+            MetaDataConstants.RETURN_BY.claim_id: "2016-07-07",
+            # invalid
+            MetaDataConstants.TRANSACTION_ID.claim_id: "12121"
+        }
+        valid, reason = MetaDataStore.is_valid(jwt)
+        self.assertTrue(valid)
+        with self.assertRaises(InvalidTokenException) as ite:
+            MetaDataStore.save_instance(User("1", "2"), jwt)
+        self.assertIn("Incorrect data in token", ite.exception.value)
+
+    def test_malformed_tx_id(self):
+        jwt = {
+            MetaDataConstants.USER_ID.claim_id: "1",
+            MetaDataConstants.FORM_TYPE.claim_id: "a",
+            MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
+            MetaDataConstants.EQ_ID.claim_id: "2",
+            MetaDataConstants.PERIOD_ID.claim_id: "3",
+            MetaDataConstants.PERIOD_STR.claim_id: "2016-01-01",
+            MetaDataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
+            MetaDataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
+            MetaDataConstants.RU_REF.claim_id: "2016-04-04",
+            MetaDataConstants.RU_NAME.claim_id: "Apple",
+            MetaDataConstants.RETURN_BY.claim_id: "2016-07-07",
+            # one character short
+            MetaDataConstants.TRANSACTION_ID.claim_id: "83a3db82-bea7-403c-a411-6357ff70f2f"
+        }
+        valid, reason = MetaDataStore.is_valid(jwt)
+        self.assertTrue(valid)
+        with self.assertRaises(InvalidTokenException) as ite:
+            MetaDataStore.save_instance(User("1", "2"), jwt)
+        self.assertIn("Incorrect data in token", ite.exception.value)
 
 
 if __name__ == '__main__':
