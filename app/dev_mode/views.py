@@ -53,7 +53,7 @@ def extract_eq_id_and_form_type(schema_name):
         else:
             # No form type associated with
             eq_id = schema_name.split(".", 1)[0]
-            form_type = "0"
+            form_type = "-1"
         logger.debug("eq-id: %s", eq_id)
         logger.debug("form_type: " + form_type)
         return eq_id, form_type
