@@ -21,7 +21,12 @@ def load_schema(eq_id, form_type):
     :return: The Schema representing in a dict
     """
     logging.debug("About to load schema for eq-id %s and form type %s", eq_id, form_type)
-    schema_key = ("{}_{}.json").format(eq_id, form_type)
+    # form type is mandatory JWT claim, but it isn't needed when getting schemas from the schema bucket
+    # in that case default it to -1 and ignore it
+    if form_type and form_type != "-1":
+        schema_key = "{}_{}.json".format(eq_id, form_type)
+    else:
+        schema_key = "{}.json".format(eq_id)
     try:
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, schema_key), encoding="utf8")
         return json.load(schema_file)
