@@ -1,4 +1,4 @@
-from app.model.answer import Answer
+from app.schema.answer import Answer
 import unittest
 
 

@@ -1,5 +1,5 @@
-from app.model.block import Block
-from app.model.questionnaire import QuestionnaireException
+from app.schema.block import Block
+from app.schema.questionnaire import QuestionnaireException
 import logging
 
 logger = logging.getLogger(__name__)

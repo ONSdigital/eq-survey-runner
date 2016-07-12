@@ -5,12 +5,12 @@ from app.validation.validation_result import ValidationResult
 from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
 from app.authentication.user import User
 
-from app.model.questionnaire import Questionnaire
-from app.model.group import Group
-from app.model.block import Block
-from app.model.section import Section
-from app.model.question import Question
-from app.model.answer import Answer
+from app.schema.questionnaire import Questionnaire
+from app.schema.group import Group
+from app.schema.block import Block
+from app.schema.section import Section
+from app.schema.question import Question
+from app.schema.answer import Answer
 
 from collections import OrderedDict
 
@@ -76,7 +76,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
         pre_proc._augment_answer(answer_2)
         pre_proc._augment_answer(answer_3)
 
-        # Check the model has been augmented correctly
+        # Check the schema has been augmented correctly
         self.assertEquals(answer_1.value, 'One')
 
         self.assertEquals(answer_2.value, 'Two')
@@ -103,7 +103,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
         pre_proc._collect_errors(answer_2, errors, warnings)
         pre_proc._collect_errors(answer_3, errors, warnings)
 
-        # Check the model has been augmented correctly
+        # Check the schema has been augmented correctly
         self.assertTrue(answer_1.is_valid)
         self.assertEquals(len(answer_1.errors), 0)
         self.assertEquals(len(answer_1.warnings), 0)

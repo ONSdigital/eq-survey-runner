@@ -2,7 +2,7 @@ from app.validation.validation_result import ValidationResult
 from app.validation.mandatory_check import MandatoryCheck
 from app.validation.type_validator_factory import TypeValidatorFactory
 from app.validation.abstract_validator import AbstractValidator
-from app.model.answer import Answer
+from app.schema.answer import Answer
 from flask.ext.babel import gettext as _
 import logging
 

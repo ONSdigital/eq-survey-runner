@@ -2,10 +2,10 @@ from app.navigation.navigator import Navigator
 from app.navigation.navigation_history import NavigationHistory
 from app.metadata.metadata_store import MetaDataStore
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
-from app.model.questionnaire import Questionnaire
+from app.schema.questionnaire import Questionnaire
 import unittest
-from app.model.group import Group
-from app.model.block import Block
+from app.schema.group import Group
+from app.schema.block import Block
 from app.navigation.navigation_state import NavigationException
 from app.routing.routing_engine import RoutingEngine
 

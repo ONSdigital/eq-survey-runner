@@ -1,9 +1,9 @@
-from app.model.questionnaire import Questionnaire
-from app.model.section import Section
-from app.model.group import Group
-from app.model.block import Block
-from app.model.question import Question
-from app.model.answer import Answer
+from app.schema.questionnaire import Questionnaire
+from app.schema.section import Section
+from app.schema.group import Group
+from app.schema.block import Block
+from app.schema.question import Question
+from app.schema.answer import Answer
 from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
 from app.submitter.converter import Converter

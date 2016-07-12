@@ -1,4 +1,4 @@
-from app.model.group import Group
+from app.schema.group import Group
 
 from app.surveys.large_components.pages.page3 import page3
 # from app.surveys.large_components.pages.page4 import page4

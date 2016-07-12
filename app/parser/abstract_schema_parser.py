@@ -33,7 +33,7 @@ class AbstractSchemaParser(metaclass=ABCMeta):
     def get_parser_version(self):
         raise NotImplementedError()
 
-    """Parse the schema and return an object model, the root of which will be a
+    """Parse the schema and return an object schema, the root of which will be a
     Questionnaire object
 
     :returns: Questionnaire object

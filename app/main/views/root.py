@@ -83,10 +83,10 @@ def login():
 
 def load_and_parse_schema(eq_id, form_type):
     """
-    Use the schema loader to get the schema from disk. Then use the parse to construct the object model
+    Use the schema loader to get the schema from disk. Then use the parse to construct the object schema
     :param eq_id: the id of the questionnaire
     :param form_type: the form type
-    :return: an object model
+    :return: an object schema
     """
     # load the schema
 

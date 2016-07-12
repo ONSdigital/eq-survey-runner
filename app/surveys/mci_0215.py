@@ -1,8 +1,8 @@
 import copy
-from app.model.block import Block
-from app.model.section import Section
-from app.model.question import Question
-from app.model.answer import Answer
+from app.schema.block import Block
+from app.schema.section import Section
+from app.schema.question import Question
+from app.schema.answer import Answer
 from app.surveys.mci_0205 import mci_0205
 from app.validation.abstract_validator import AbstractValidator
 

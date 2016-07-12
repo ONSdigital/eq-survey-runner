@@ -1,5 +1,5 @@
-from app.model.group import Group
-from app.model.block import Block
+from app.schema.group import Group
+from app.schema.block import Block
 import unittest
 
 

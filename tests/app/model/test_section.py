@@ -1,5 +1,5 @@
-from app.model.section import Section
-from app.model.question import Question
+from app.schema.section import Section
+from app.schema.question import Question
 import unittest
 
 
