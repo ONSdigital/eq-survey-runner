@@ -24,6 +24,8 @@ class UserAction(object):
         self._schema = schema
         self._metadata = metadata
         self.next_action = None
+        # subclasses should provide the name of the action it can support
+        self.action = None
 
     def set_next_action(self, action):
         self.next_action = action
@@ -31,7 +33,7 @@ class UserAction(object):
 
     def process_action(self, action, current_location):
         # work through the user actions to determine which one matches the request action
-        if action == self.get_action():
+        if action == self.action:
             # perform any functionality necessary to complete that action
             self.perform_action()
             # then provide the next location
@@ -39,10 +41,6 @@ class UserAction(object):
         else:
             # request the next location
             return self.next_action.process_action(action, current_location)
-
-    def get_action(self):
-        # subclasses should provide the name of the action it can support
-        pass
 
     def perform_action(self):
         # subclasses should perform any functionality necessary to execute the user action
@@ -54,16 +52,18 @@ class UserAction(object):
 
 
 class StartQuestionnaire(UserAction):
-    def get_action(self):
-        return 'start_questionnaire'
+    def __init__(self, schema, metadata):
+        super().__init__(schema, metadata)
+        self.action = 'start_questionnaire'
 
     def provide_next_location(self, current_location):
         return self._schema.groups[0].blocks[0].id
 
 
 class SaveContinue(UserAction):
-    def get_action(self):
-        return 'save_continue'
+    def __init__(self, schema, metadata):
+        super().__init__(schema, metadata)
+        self.action = 'save_continue'
 
     def provide_next_location(self, current_location):
         current_block = self._schema.get_item_by_id(current_location)
@@ -88,8 +88,9 @@ class SaveContinue(UserAction):
 
 
 class SubmitAnswers(UserAction):
-    def get_action(self):
-        return 'submit_answers'
+    def __init__(self, schema, metadata):
+        super().__init__(schema, metadata)
+        self.action = 'submit_answers'
 
     def provide_next_location(self, current_location):
         return 'thank-you'
