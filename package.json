@@ -124,7 +124,7 @@
   "dependencies": {
     "eq-sass": "^2.0.0",
     "gfm.css": "^1.1.1",
-    "jquery": "./app/js/vendor/jquery-shim",
+    "jquery": "./app/assets/js/vendor/jquery-shim",
     "lodash": "^4.6.1",
     "parsleyjs": "^2.2.0",
     "pixrem": "^3.0.0",
