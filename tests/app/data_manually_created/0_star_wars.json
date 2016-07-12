@@ -4,9 +4,9 @@
     "questionnaire_id": "0",
     "eq_id" : "0",
     "survey_id": "0",
+    "theme":"starwars",
     "title": "Star Wars",
     "description": "Kitchen sink test for the Star Wars questionnaire",
-    "theme": "starwars",
     "introduction": {
       "description": "May the force be with you"
     },
