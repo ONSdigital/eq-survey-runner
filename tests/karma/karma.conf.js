@@ -35,7 +35,7 @@ module.exports = function(config) {
     browserify: {
       debug: true,
       transform: ['babelify'],
-      paths: ['./node_modules', './app/js/']
+      paths: ['./node_modules', './app/assets/js/']
     },
 
     reporters: ['mocha'],
