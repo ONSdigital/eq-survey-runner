@@ -10,6 +10,7 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.main import errors
 from app.utilities.factory import factory
 from app.metadata.metadata_store import MetaDataStore
+from app.routing.routing_engine import RoutingEngine
 import logging
 
 
@@ -57,8 +58,11 @@ def login():
         # load the navigation history
         navigation_history = factory.create("navigation-history")
 
+        # Create the routing engine
+        routing_engine = RoutingEngine(schema)
+
         # create the navigator
-        navigator = Navigator(schema, navigation_history)
+        navigator = Navigator(schema, metadata, navigation_history, routing_engine)
 
         # get the current location of the user
         current_location = navigator.get_current_location()

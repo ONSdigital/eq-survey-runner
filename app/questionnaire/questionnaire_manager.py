@@ -1,32 +1,25 @@
 import bleach
 from app.templating.template_pre_processor import TemplatePreProcessor
-from app.submitter.converter import SubmitterConstants
-from flask import session
-from flask_login import current_user
-from app.submitter.submitter import SubmitterFactory
-from app import settings
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema, answer_store, validator, validation_store, routing_engine, navigator, navigation_history, metadata):
+    def __init__(self, schema, answer_store, validator, validation_store, navigator, navigation_history, metadata):
         self._schema = schema
         self.answer_store = answer_store
         self._validator = validator
         self._validation_store = validation_store
-        self._routing_engine = routing_engine
         self._navigator = navigator
         self._navigation_history = navigation_history
         self._metadata = metadata
-
         self.pre_processor = TemplatePreProcessor(self._schema, self.answer_store, self._validation_store, self._navigator, self._metadata)
 
     def process_incoming_answers(self, post_data):
         # process incoming post data
         user_action, user_answers = self._process_incoming_post_data(post_data)
-
-        # Are we submitting downstram?
-        if user_action == 'submit_answers':
-            return self.submit()
 
         # Process the answers and see where to go next
         cleaned_user_answers = {}
@@ -44,8 +37,8 @@ class QuestionnaireManager(object):
         if self._validator.validate(cleaned_user_answers):
 
             # do any routing
-            next_location = self._routing_engine.get_next(current_location, user_action)
-
+            next_location = self._navigator.get_next_location(current_location, user_action)
+            logger.debug("Going to location %s", next_location)
             # go to that location
             self._navigator.go_to(next_location)
         else:
@@ -54,15 +47,6 @@ class QuestionnaireManager(object):
 
         # now return the location
         return self._navigator.get_current_location()
-
-    def submit(self):
-        answers = self.answer_store.get_answers()
-        submitter = SubmitterFactory.get_submitter()
-        submitted_at = submitter.send_answers(current_user, self._metadata, self._schema, answers)
-        # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
-        session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
-        self._navigator.go_to('thank-you')
-        return
 
     def get_rendering_context(self):
         return self.pre_processor.build_view_data()

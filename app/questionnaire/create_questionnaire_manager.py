@@ -35,13 +35,13 @@ def create_questionnaire_manager():
     validator = Validator(schema, validation_store, answer_store)
 
     # Create the routing engine
-    routing_engine = RoutingEngine(schema, answer_store)
+    routing_engine = RoutingEngine(schema)
 
     # load the navigation history
     navigation_history = factory.create("navigation-history")
 
     # create the navigator
-    navigator = Navigator(schema, navigation_history)
+    navigator = Navigator(schema, metadata, navigation_history, routing_engine)
 
     # if navigator.get_current_location() == "introduction" or navigator.get_current_location() is None:
     #     navigator.go_to('questionnaire')
@@ -51,7 +51,6 @@ def create_questionnaire_manager():
                                                  answer_store,
                                                  validator,
                                                  validation_store,
-                                                 routing_engine,
                                                  navigator,
                                                  navigation_history,
                                                  metadata)
