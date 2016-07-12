@@ -2,7 +2,7 @@ import unittest
 from app.validation.type_validator_factory import TypeValidatorFactory, TypeValidatorFactoryException
 from app.validation.integer_type_check import IntegerTypeCheck
 from app.validation.date_type_check import DateTypeCheck
-from app.model.answer import Answer
+from app.schema.answer import Answer
 
 
 class TypeValidatorFactoryTest(unittest.TestCase):

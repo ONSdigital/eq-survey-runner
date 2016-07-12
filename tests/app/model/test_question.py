@@ -1,5 +1,5 @@
-from app.model.question import Question
-from app.model.answer import Answer
+from app.schema.question import Question
+from app.schema.answer import Answer
 import unittest
 
 

@@ -1,4 +1,4 @@
-from app.model.display import Display
+from app.schema.display import Display
 
 
 class Group(object):

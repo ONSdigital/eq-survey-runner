@@ -1,12 +1,12 @@
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.parser.abstract_schema_parser import AbstractSchemaParser
-from app.model.questionnaire import Questionnaire
-from app.model.group import Group
-from app.model.block import Block
-from app.model.section import Section
-from app.model.question import Question
-from app.model.answer import Answer
-from app.model.introduction import Introduction
+from app.schema.questionnaire import Questionnaire
+from app.schema.group import Group
+from app.schema.block import Block
+from app.schema.section import Section
+from app.schema.question import Question
+from app.schema.answer import Answer
+from app.schema.introduction import Introduction
 import os
 import json
 import unittest

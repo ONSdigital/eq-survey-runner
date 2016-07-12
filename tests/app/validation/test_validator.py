@@ -5,12 +5,12 @@ from app.validation.validation_store import AbstractValidationStore
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
 
-from app.model.questionnaire import Questionnaire
-from app.model.group import Group
-from app.model.block import Block
-from app.model.section import Section
-from app.model.question import Question
-from app.model.answer import Answer
+from app.schema.questionnaire import Questionnaire
+from app.schema.group import Group
+from app.schema.block import Block
+from app.schema.section import Section
+from app.schema.question import Question
+from app.schema.answer import Answer
 
 
 class ValidatorTest(unittest.TestCase):

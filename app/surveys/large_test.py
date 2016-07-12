@@ -1,4 +1,4 @@
-from app.model.questionnaire import Questionnaire
+from app.schema.questionnaire import Questionnaire
 
 # Create the Questionnaire
 test_questionnaire = Questionnaire()

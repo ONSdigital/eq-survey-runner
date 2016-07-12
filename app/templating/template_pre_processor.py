@@ -4,7 +4,7 @@ from app.submitter.converter import SubmitterConstants
 from flask import session
 from app.piping.plumber import Plumber
 from app.libs.utils import ObjectFromDict
-from app.model.questionnaire import QuestionnaireException
+from app.schema.questionnaire import QuestionnaireException
 
 
 class TemplatePreProcessor(object):

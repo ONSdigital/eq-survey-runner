@@ -1,11 +1,11 @@
-from app.model.questionnaire import Questionnaire
-from app.model.group import Group
-from app.model.block import Block
-from app.model.section import Section
-from app.model.question import Question
-from app.model.answer import Answer
-from app.model.display import Display
-from app.model.introduction import Introduction
+from app.schema.questionnaire import Questionnaire
+from app.schema.group import Group
+from app.schema.block import Block
+from app.schema.section import Section
+from app.schema.question import Question
+from app.schema.answer import Answer
+from app.schema.display import Display
+from app.schema.introduction import Introduction
 from app.validation.abstract_validator import AbstractValidator
 
 # Create the questionnaire object

@@ -1,4 +1,4 @@
-from app.model.properties import Properties
+from app.schema.properties import Properties
 
 
 class Display(object):

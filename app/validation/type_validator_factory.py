@@ -3,8 +3,8 @@ from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
 from app.validation.date_type_check import DateTypeCheck
 from app.validation.textarea_type_check import TextAreaTypeCheck
 from app.validation.date_range_check import DateRangeCheck
-from app.model.answer import Answer
-from app.model.question import Question
+from app.schema.answer import Answer
+from app.schema.question import Question
 
 
 class TypeValidatorFactoryException(Exception):

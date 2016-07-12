@@ -1,5 +1,5 @@
-from app.model.block import Block
-from app.model.section import Section
+from app.schema.block import Block
+from app.schema.section import Section
 import unittest
 
 

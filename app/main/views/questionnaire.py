@@ -6,7 +6,7 @@ from flask import redirect
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
 from app.submitter.converter import SubmitterConstants
 from .. import main_blueprint
-from app.model.questionnaire import QuestionnaireException
+from app.schema.questionnaire import QuestionnaireException
 from app.main.errors import page_not_found
 
 

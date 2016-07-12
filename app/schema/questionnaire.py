@@ -1,5 +1,5 @@
-from app.model.display import Display
-from app.model.answer import Answer
+from app.schema.display import Display
+from app.schema.answer import Answer
 
 
 class QuestionnaireException(Exception):
