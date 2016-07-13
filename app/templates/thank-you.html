@@ -13,10 +13,9 @@
   <div class="box box--confirm u-mb-s u-mb-l@s">
     <strong>{% if meta.survey.submitted %} Submitted on {{meta.survey.submitted_at}}{% endif %}</strong>
     <p>Transaction ID (Please quote this reference for any support queries)</p>
-    {%for id_part in meta.respondent.tx_id%}
-      {{id_part}}
-    {% endfor %}
-
+    <ul class="box__list">
+    {%for id_part in meta.respondent.tx_id%}<li class="box__list__item">{{id_part}}</li>{% endfor %}
+    </ul>
     <p class="u-mb-no">You may wish to save or print this page for your records.</p>
   </div>
 
