@@ -5,6 +5,7 @@
     "eq_id" : "1",
     "title": "Monthly Business Survey - Retail Sales Index",
     "description": "MCI description",
+    "theme": "default",
     "groups": [
         {
             "id": "14ba4707-321d-441d-8d21-b8367366e766",

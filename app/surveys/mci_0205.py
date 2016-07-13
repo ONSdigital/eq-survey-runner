@@ -17,6 +17,7 @@ form_type = "0205"
 questionnaire.id = "23"
 questionnaire.title = "Monthly Business Survey - Retail Sales Index"
 questionnaire.description = "MCI Description"
+questionnaire.theme = "default"
 questionnaire.survey_id = "023"
 
 introduction = Introduction()

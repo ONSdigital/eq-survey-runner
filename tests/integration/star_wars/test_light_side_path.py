@@ -13,7 +13,7 @@ class TestLightSidePath(IntegrationTestCase):
 
         # Landing page tests
         content = resp.get_data(True)
-        self.check_headings(content)
+
         self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '(?s)Star Wars.*?Star Wars')
         self.assertRegexpMatches(content, 'If actual figures are not available, please provide informed estimates.')
@@ -46,7 +46,6 @@ class TestLightSidePath(IntegrationTestCase):
         self.assertRegexpMatches(content, ">Save &amp; Continue<")
         self.assertRegexpMatches(content, 'Star Wars Quiz')
         self.assertRegexpMatches(content, 'May the force be with you young EQ developer')
-        self.check_headings(content)
 
         # Integer question
         self.assertRegexpMatches(content, 'How old is Chewy?')
@@ -120,7 +119,6 @@ class TestLightSidePath(IntegrationTestCase):
         self.assertEquals(resp.status_code, 200)
 
         content = resp.get_data(True)
-        self.check_headings(content)
 
         # Pipe Test for section title
         self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
@@ -150,7 +148,6 @@ class TestLightSidePath(IntegrationTestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.check_headings(content)
         self.assertRegexpMatches(content, '<title>Summary</title>')
         self.assertRegexpMatches(content, '>Star Wars</')
         self.assertRegexpMatches(content, '>Your responses<')
@@ -183,11 +180,3 @@ class TestLightSidePath(IntegrationTestCase):
         self.assertRegexpMatches(content, '<title>Thank You</title>')
         self.assertRegexpMatches(content, '(?s)Star Wars.*?Star Wars')
         self.assertRegexpMatches(content, '>Successfully Received<')
-
-    def check_headings(self, content):
-        self.assertRegexpMatches(content, 'BETA')
-        self.assertRegexpMatches(content, 'Survey Help')
-        self.assertRegexpMatches(content, '0300 1234 931')
-        self.assertRegexpMatches(content, '(?s)ID:.*?0')
-        self.assertRegexpMatches(content, '(?s)Period:.*?April 2016')
-        self.assertRegexpMatches(content, '(?s)Ref:.*?123456789012A')

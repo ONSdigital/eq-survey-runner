@@ -1,15 +1,7 @@
-{% extends 'layouts/_base.html' %}
+{% extends theme('layouts/_base.html') %}
 
 {% block top_bar %}
-<div class="bar" role="banner">
-  <div class="skip">
-    <a class="skip__link" href="#main">Skip to content</a>
-  </div>
-  <div class="bar__inner container">
-    <div class="badge badge--amber u-mr-xs">BETA</div>
-    <div class="bar__title">{% if meta %}{{ meta.survey.title }}{% endif %}</div>
-  </div>
-</div>
+{% include 'partials/topbar.html' %}
 {% endblock %}
 
 {% block content %}
@@ -17,7 +9,9 @@
   <div class="panel">
     <div class="panel__header survey-header u-cf">
       <div class="logo survey-header__logo">
-        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics" class="logo__img" />
+        {% block logo %}
+          <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics" class="logo__img" />
+        {% endblock logo %}
       </div>
       <div class="info survey-header__info" role="contentinfo">
         <h2 class="info__title">Survey Help</h2>

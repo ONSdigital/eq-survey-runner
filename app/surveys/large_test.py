@@ -15,6 +15,7 @@ test_questionnaire.id = "questionnaire"
 test_questionnaire.survey_id = "Test_Survey"
 test_questionnaire.title = "Test Survey"
 test_questionnaire.description = "eQ Test survey"
+test_questionnaire.theme = "census"
 
 # Add the groups
 test_questionnaire.add_group(household_questions)

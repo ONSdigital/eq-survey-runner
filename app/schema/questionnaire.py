@@ -20,6 +20,7 @@ class Questionnaire(object):
         self.introduction = None
         self.display = Display()
         self.aliases = {}
+        self.theme = None
 
     def add_group(self, group):
         if group not in self.groups:

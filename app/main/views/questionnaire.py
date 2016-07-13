@@ -1,6 +1,6 @@
 import logging
 from app.authentication.session_management import session_manager
-from flask import render_template, request, session
+from flask import request, session
 from flask_login import login_required, current_user
 from flask import redirect
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
@@ -8,7 +8,7 @@ from app.submitter.converter import SubmitterConstants
 from .. import main_blueprint
 from app.schema.questionnaire import QuestionnaireException
 from app.main.errors import page_not_found
-
+from flask.ext.themes2 import render_theme_template
 
 logger = logging.getLogger(__name__)
 
@@ -46,12 +46,18 @@ def survey(eq_id, collection_id, location):
 
         context = questionnaire_manager.get_rendering_context()
         template = questionnaire_manager.get_rendering_template()
-
-        return render_template(template,
-                               meta=context['meta'],
-                               content=context['content'],
-                               navigation=context['navigation']
-                               )
+        try:
+            theme = context['meta']['survey']['theme']
+            logger.info("Theme selected: {} ".format(theme))
+        except KeyError:
+            logger.info("No theme set ")
+            theme = None
+        return render_theme_template(theme,
+                                     template,
+                                     meta=context['meta'],
+                                     content=context['content'],
+                                     navigation=context['navigation']
+                                     )
 
     except QuestionnaireException:
         return page_not_found(404)
