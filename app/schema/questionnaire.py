@@ -35,8 +35,11 @@ class Questionnaire(object):
         else:
             raise QuestionnaireException('Unknown id \'{}\''.format(item_id))
 
+    def item_exists(self, item_id):
+        return item_id in self.items_by_id.keys()
+
     def register(self, item):
-        if item.id in self.items_by_id.keys():
+        if self.item_exists(item.id):
             raise QuestionnaireException('{} is a duplicate id'.format(item.id))
 
         self.items_by_id[item.id] = item

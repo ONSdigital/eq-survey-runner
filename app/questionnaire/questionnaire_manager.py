@@ -1,5 +1,6 @@
 import bleach
 from app.templating.template_pre_processor import TemplatePreProcessor
+from app.questionnaire_state.user_journey_manager import UserJourneyManager
 import logging
 
 
@@ -9,15 +10,22 @@ logger = logging.getLogger(__name__)
 class QuestionnaireManager(object):
     def __init__(self, schema, answer_store, validator, validation_store, navigator, navigation_history, metadata):
         self._schema = schema
-        self.answer_store = answer_store
+        self._answer_store = answer_store
         self._validator = validator
         self._validation_store = validation_store
         self._navigator = navigator
         self._navigation_history = navigation_history
         self._metadata = metadata
-        self.pre_processor = TemplatePreProcessor(self._schema, self.answer_store, self._validation_store, self._navigator, self._metadata)
+        self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._navigator, self._metadata)
+        self._user_journey_manager = UserJourneyManager.get_instance()
+        if not self._user_journey_manager:
+            self._user_journey_manager = UserJourneyManager.new_instance(self._schema)
 
-    def process_incoming_answers(self, post_data):
+    def create_new_state(self, location):
+        if self._schema.item_exists(location):
+            self._user_journey_manager.create_new_state(location)
+
+    def process_incoming_answers(self, location, post_data):
         # process incoming post data
         user_action, user_answers = self._process_incoming_post_data(post_data)
 
@@ -26,9 +34,13 @@ class QuestionnaireManager(object):
         for key, value in user_answers.items():
             cleaned_user_answers[key] = self._clean_input(value)
 
+        if self._schema.item_exists(location):
+            # updated state
+            self._user_journey_manager.update_state(location, user_answers)
+
         # update the answer store with data
         for key, value in cleaned_user_answers.items():
-            self.answer_store.store_answer(key, value)
+            self._answer_store.store_answer(key, value)
 
         # get the current location in the questionnaire
         current_location = self._navigator.get_current_location()
@@ -49,10 +61,10 @@ class QuestionnaireManager(object):
         return self._navigator.get_current_location()
 
     def get_rendering_context(self):
-        return self.pre_processor.build_view_data()
+        return self._pre_processor.build_view_data()
 
     def get_rendering_template(self):
-        return self.pre_processor.get_template_name()
+        return self._pre_processor.get_template_name()
 
     def _process_incoming_post_data(self, post_data):
         user_answers = {}
