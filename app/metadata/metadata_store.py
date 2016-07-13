@@ -107,10 +107,16 @@ class MetaDataStore(object):
 
     @staticmethod
     def get_instance(user):
-        data = user.get_questionnaire_data()
-        if MetaDataStore.METADATA_KEY in data:
-            metadata = data[MetaDataStore.METADATA_KEY]
-            thawed = jsonpickle.decode(metadata)
-            return thawed
-        else:
-            raise RuntimeError("No metadata for user %s", user.get_user_id())
+
+        try:
+            data = user.get_questionnaire_data()
+            if MetaDataStore.METADATA_KEY in data:
+                metadata = data[MetaDataStore.METADATA_KEY]
+                thawed = jsonpickle.decode(metadata)
+                return thawed
+            else:
+                raise RuntimeError("No metadata for user %s", user.get_user_id())
+        except AttributeError:
+            logger.debug("Anonymous user requesting metadata get instance")
+            # anonymous user mixin - this happens on the error pages before authentication
+            return None

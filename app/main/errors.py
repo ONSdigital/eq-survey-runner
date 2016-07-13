@@ -1,9 +1,10 @@
 from flask import request
+from flask_login import current_user
 from app.main import main_blueprint
 from ua_parser import user_agent_parser
+from app.metadata.metadata_store import MetaDataStore
+from app.libs.utils import convert_tx_id
 from flask.ext.themes2 import render_theme_template
-
-
 import logging
 
 logger = logging.getLogger(__name__)
@@ -59,7 +60,11 @@ def service_unavailable(error=None):
 
 
 def _render_error_page(status_code):
+    tx_id = None
+    metadata = MetaDataStore.get_instance(current_user)
+    if metadata:
+        tx_id = convert_tx_id(metadata.tx_id)
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
     return render_theme_template('default', 'errors/error.html',
                                  status_code=status_code,
-                                 ua=user_agent), status_code
+                                 ua=user_agent, tx_id=tx_id), status_code
