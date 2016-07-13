@@ -1,4 +1,5 @@
 from app.schema.block import Block as SchemaBlock
+from app.questionnaire_state.block import Block as StateBlock
 from app.questionnaire_state.page import Page
 
 
@@ -13,8 +14,20 @@ class UserJourneyManager(object):
         item = self._schema.get_item_by_id(item_id)
 
         if isinstance(item, SchemaBlock):
-            page = Page(item_id, None)
+            state = StateBlock.construct_state(item)
+            page = Page(item_id, state)
             self._append(page)
+        else:
+            raise TypeError("Can only handle blocks")
+
+    def update_state(self, item_id, user_input):
+        item = self._schema.get_item_by_id(item_id)
+        if isinstance(item, SchemaBlock):
+            if item_id == self._current.id:
+                state = self._current.page_state
+                state.update_state(user_input)
+            else:
+                raise ValueError("Updating state for incorrect page")
         else:
             raise TypeError("Can only handle blocks")
 
