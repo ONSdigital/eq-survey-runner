@@ -15,6 +15,12 @@ class Answer(object):
         if self.id in user_input.keys():
             self.input = user_input[self.id]
 
+    def get_answer(self, id=None):
+        if not id or self.id == id:
+            return self
+        else:
+            return None
+
     @staticmethod
     def construct_state(item):
         state = Answer(item.id)

@@ -53,7 +53,7 @@ def survey(eq_id, collection_id, location):
 
 
 def do_get(questionnaire_manager, location):
-    questionnaire_manager.create_new_state(location)
+    questionnaire_manager.go_to_state(location)
     context = questionnaire_manager.get_rendering_context()
     template = questionnaire_manager.get_rendering_template()
     try:

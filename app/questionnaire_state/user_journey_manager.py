@@ -35,7 +35,26 @@ class UserJourneyManager(object):
         else:
             return None
 
-    def create_new_state(self, item_id):
+    def get_state(self, item_id):
+        page = self._first
+        while page and item_id != page.item_id:
+            page = page.next_page
+        return page
+
+    def go_to_state(self, item_id):
+        page = self.get_state(item_id)
+        logger.debug("go to state %s", item_id)
+        if page:
+            logger.debug("truncating to page %s", item_id)
+            if page.next_page:
+                self._truncate(page.next_page)
+            logger.debug("current item %s", item_id)
+            StateManager.save_state(self)
+        else:
+            logger.debug("creating new state for %s", item_id)
+            self._create_new_state(item_id)
+
+    def _create_new_state(self, item_id):
         item = self._schema.get_item_by_id(item_id)
         logger.debug("Creating new state for %s", item_id)
         if isinstance(item, SchemaBlock):
@@ -49,10 +68,9 @@ class UserJourneyManager(object):
 
     def update_state(self, item_id, user_input):
         item = self._schema.get_item_by_id(item_id)
-        logger.debug("Updating state for item %s", item.id)
+        logger.error("Updating state for item %s", item.id)
         if isinstance(item, SchemaBlock):
             logger.debug("item id is %s", item_id)
-            logger.debug("current item id is %s", self._current.item_id)
             if item_id == self._current.item_id:
                 state = self._current.page_state
                 state.update_state(user_input)
@@ -82,9 +100,17 @@ class UserJourneyManager(object):
     def _pop(self):
         page = self._current
         self._current = page.previous_page
-        self._current.next_page = None
+        if self._current:
+            self._current.next_page = None
         page.previous_page = None
         return page
+
+    def get_current_state(self):
+        return self._current.page_state
+
+    # TODO temporary memory to support answer stored
+    def get_first(self):
+        return self._first
 
 
 class StateManager(object):

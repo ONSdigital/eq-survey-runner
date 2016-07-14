@@ -12,51 +12,50 @@ logger = logging.getLogger(__name__)
 
 @main_blueprint.app_errorhandler(200)
 def index(error=None):
-    if error:
-        logger.error(error)
+    log_exception(error)
     return _render_error_page(200)
 
 
 @main_blueprint.app_errorhandler(400)
 def bad_request(error=None):
-    if error:
-        logger.error(error)
+    log_exception(error)
     return _render_error_page(400)
 
 
 @main_blueprint.app_errorhandler(401)
 def unauthorized(error=None):
-    if error:
-        logger.error(error)
+    log_exception(error)
     return _render_error_page(401)
 
 
 @main_blueprint.app_errorhandler(403)
 def forbidden(error=None):
-    if error:
-        logger.error(error)
+    log_exception(error)
     return _render_error_page(403)
 
 
 @main_blueprint.app_errorhandler(404)
 def page_not_found(error=None):
-    if error:
-        logger.error(error)
+    log_exception(error)
     return _render_error_page(404)
 
 
 @main_blueprint.app_errorhandler(500)
 def internal_server_error(error=None):
-    if error:
-        logger.error(error)
+    log_exception(error)
     return _render_error_page(500)
 
 
 @main_blueprint.app_errorhandler(503)
 def service_unavailable(error=None):
+    log_exception(error)
+    return _render_error_page(503)
+
+
+def log_exception(error):
     if error:
         logger.error(error)
-    return _render_error_page(503)
+        logger.exception(error)
 
 
 def _render_error_page(status_code):

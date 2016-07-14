@@ -14,6 +14,20 @@ class Question(object):
         for child in self.children:
             child.update_state(user_input)
 
+    def get_answer(self, id):
+        for child in self.children:
+            answer = child.get_answer(id)
+            if answer:
+                return answer
+        # haven't found anything so return none
+        return None
+
+    def get_answers(self):
+        answers = []
+        for child in self.children:
+            answers.append(child.get_answer())
+        return answers
+
     @staticmethod
     def construct_state(item):
         state = Question(item.id)

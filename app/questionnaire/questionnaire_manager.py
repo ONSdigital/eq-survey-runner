@@ -10,20 +10,21 @@ logger = logging.getLogger(__name__)
 class QuestionnaireManager(object):
     def __init__(self, schema, answer_store, validator, validation_store, navigator, navigation_history, metadata):
         self._schema = schema
+        self._user_journey_manager = UserJourneyManager.get_instance()
+        if not self._user_journey_manager:
+            self._user_journey_manager = UserJourneyManager.new_instance(self._schema)
         self._answer_store = answer_store
         self._validator = validator
         self._validation_store = validation_store
         self._navigator = navigator
         self._navigation_history = navigation_history
         self._metadata = metadata
+        # TODO lifecycle issue here - calling answer store before its ready
         self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._navigator, self._metadata)
-        self._user_journey_manager = UserJourneyManager.get_instance()
-        if not self._user_journey_manager:
-            self._user_journey_manager = UserJourneyManager.new_instance(self._schema)
 
-    def create_new_state(self, location):
+    def go_to_state(self, location):
         if self._schema.item_exists(location):
-            self._user_journey_manager.create_new_state(location)
+            self._user_journey_manager.go_to_state(location)
 
     def process_incoming_answers(self, location, post_data):
         # process incoming post data
