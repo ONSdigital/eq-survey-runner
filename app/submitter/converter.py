@@ -42,6 +42,8 @@ class SubmitterConstants(object):
 
     ORIGIN = "uk.gov.ons.edc.eq"
 
+    TX_ID = "tx_id"
+
 
 class Converter(object):
 
@@ -54,6 +56,7 @@ class Converter(object):
         :param answers: the users answers as a dict of id/value
         :return: a JSON object in the following format:
           {
+            "tx_id": "0f534ffc-9442-414c-b39f-a756b4adc6cb",
             "type" : "uk.gov.ons.edc.eq:surveyresponse",
             "version" : "0.0.1",
             "origin" : "uk.gov.ons.edc.eq",
@@ -95,7 +98,8 @@ class Converter(object):
         paradata = {}
         submitted_at = datetime.now(settings.EUROPE_LONDON)
 
-        payload = {SubmitterConstants.TYPE_KEY: SubmitterConstants.TYPE,
+        payload = {SubmitterConstants.TX_ID: metadata_store.tx_id,
+                   SubmitterConstants.TYPE_KEY: SubmitterConstants.TYPE,
                    SubmitterConstants.VERSION_KEY: SubmitterConstants.VERSION,
                    SubmitterConstants.ORIGIN_KEY: SubmitterConstants.ORIGIN,
                    SubmitterConstants.SURVEY_ID_KEY: survey_id,

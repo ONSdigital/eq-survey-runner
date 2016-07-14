@@ -3,7 +3,7 @@ from flask_login import current_user
 from app.submitter.converter import SubmitterConstants
 from flask import session
 from app.piping.plumber import Plumber
-from app.libs.utils import ObjectFromDict
+from app.libs.utils import ObjectFromDict, convert_tx_id
 from app.schema.questionnaire import QuestionnaireException
 
 
@@ -110,6 +110,7 @@ class TemplatePreProcessor(object):
 
     def _build_respondent_meta(self):
         respondent_meta = {
+            "tx_id": convert_tx_id(self._metadata.tx_id),
             "respondent_id": None,
             "address": {
                 "name": None,

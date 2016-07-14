@@ -27,3 +27,21 @@
     }
   }
 }
+
+.box__list{
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  list-style-type: none;
+  padding: 0;
+  margin: 2rem auto;
+}
+.box__list__item {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 0.2rem 0.2rem;
+  text-align: center;
+  margin: 0.2rem;
+  @include mq(m) {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+  }
+}

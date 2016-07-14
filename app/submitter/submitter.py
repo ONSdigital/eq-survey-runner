@@ -39,7 +39,9 @@ class Submitter(object):
         encrypted_message = encrypter.encrypt(message)
 
         sent = self.send(encrypted_message)
+
         if sent:
+            logger.info("Responses submitted at %s for tx_id=%s", submitted_at, metadata.tx_id)
             return submitted_at
         else:
             raise SubmissionFailedException()
@@ -53,7 +55,7 @@ class Submitter(object):
 
     @abstractmethod
     def send_message(self, message, queue):
-        pass
+        return False
 
 
 class LogSubmitter(Submitter):

@@ -2,6 +2,7 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from datetime import datetime
 import jsonpickle
 import logging
+import uuid
 
 logger = logging.getLogger(__name__)
 
@@ -14,14 +15,24 @@ def string_parser(plain_string):
     return plain_string
 
 
+def uuid_4_parser(plain_string):
+    return str(uuid.UUID(plain_string))
+
+
+def id_generator():
+    return str(uuid.uuid4())
+
+
 class MetaDataConstant(object):
-    def __init__(self, claim_id, mandatory=True, parser=string_parser):
+    def __init__(self, claim_id, mandatory=True, parser=string_parser, generator=None):
         # the claim id from the JWT token
         self.claim_id = claim_id
         # the function to convert the value from the jwt into the required data type
         self.parser = parser
         # flag to indicate if the value must exist in the jwt token
         self.mandatory = mandatory
+        # the function to execute if the value should be auto-generated
+        self.generator = generator
 
 
 class MetaDataConstants(object):
@@ -38,7 +49,8 @@ class MetaDataConstants(object):
     FORM_TYPE = MetaDataConstant(claim_id='form_type')
     RETURN_BY = MetaDataConstant(claim_id='return_by', parser=iso_8601_data_parser)
     TRAD_AS = MetaDataConstant(claim_id='trad_as', mandatory=False)
-    EMPLOYMENT_DATE = MetaDataConstant(claim_id='employment_date', parser=iso_8601_data_parser, mandatory=False)
+    EMPLOYMENT_DATE = MetaDataConstant(claim_id='employment_date', mandatory=False, parser=iso_8601_data_parser)
+    TRANSACTION_ID = MetaDataConstant(claim_id='tx_id', mandatory=False, parser=uuid_4_parser, generator=id_generator)
 
 
 class MetaDataStore(object):
@@ -73,10 +85,14 @@ class MetaDataStore(object):
                     logger.debug("with value %s", attr_value)
                 elif constant.mandatory:
                     logger.warning("Missing constant value for %s", constant.claim_id)
-                    raise(ValueError("Missing constant value %s".format(constant.claim_id)))
+                    raise ValueError("Missing constant value %s".format(constant.claim_id))
                 else:
-                    logger.debug("No value provide for %s but this is not mandatory, setting to None", attr_name)
-                    attr_value = None
+                    if constant.generator:
+                        logger.debug("Generating value for %s", attr_name)
+                        attr_value = constant.generator()
+                    else:
+                        logger.debug("No value provide for %s but this is not mandatory, setting to None", attr_name)
+                        attr_value = None
                 setattr(metadata, attr_name, attr_value)
 
             frozen = jsonpickle.encode(metadata)
@@ -84,17 +100,23 @@ class MetaDataStore(object):
             data[MetaDataStore.METADATA_KEY] = frozen
 
             return metadata
-        except (RuntimeError, ValueError) as e:
+        except (RuntimeError, ValueError, TypeError) as e:
             logger.error("Unable to create Metadata store")
             logger.exception(e)
-            raise InvalidTokenException("Incorrect date format in token")
+            raise InvalidTokenException("Incorrect data in token")
 
     @staticmethod
     def get_instance(user):
-        data = user.get_questionnaire_data()
-        if MetaDataStore.METADATA_KEY in data:
-            metadata = data[MetaDataStore.METADATA_KEY]
-            thawed = jsonpickle.decode(metadata)
-            return thawed
-        else:
-            raise RuntimeError("No metadata for user %s", user.get_user_id())
+
+        try:
+            data = user.get_questionnaire_data()
+            if MetaDataStore.METADATA_KEY in data:
+                metadata = data[MetaDataStore.METADATA_KEY]
+                thawed = jsonpickle.decode(metadata)
+                return thawed
+            else:
+                raise RuntimeError("No metadata for user %s", user.get_user_id())
+        except AttributeError:
+            logger.debug("Anonymous user requesting metadata get instance")
+            # anonymous user mixin - this happens on the error pages before authentication
+            return None

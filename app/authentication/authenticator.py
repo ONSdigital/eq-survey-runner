@@ -22,13 +22,14 @@ class Authenticator(object):
         Checks for the present of the JWT in the users sessions
         :return: A user object if a JWT token is available in the session
         """
-
         logger.debug("Checking for session")
         if session_manager.has_user_id():
-            logger.debug("Session token exists")
-            return User(session_manager.get_user_id(), session_manager.get_user_ik())
+            user = User(session_manager.get_user_id(), session_manager.get_user_ik())
+            metadata = MetaDataStore.get_instance(user)
+            logger.info("Session token exists for tx_id=%s", metadata.tx_id)
+            return user
         else:
-            logging.debug("Session does not have an authenticated token")
+            logging.info("Session does not have an authenticated token")
             return None
 
     def jwt_login(self, request):
@@ -62,9 +63,11 @@ class Authenticator(object):
         session_manager.store_user_ik(user_ik)
 
         # store the meta data
-        MetaDataStore.save_instance(user, token)
+        metadata = MetaDataStore.save_instance(user, token)
 
         user.save()
+
+        logger.info("User authenticated with tx_id=%s", metadata.tx_id)
 
         return user
 
