@@ -1,13 +1,11 @@
+from app.questionnaire_state.item import Item
 
 
-class Answer(object):
+class Answer(Item):
     def __init__(self, id):
-        self.id = id
-        self.is_valid = False
+        super().__init__(id=id)
         # typed value
         self.value = None
-        self.errors = None
-        self.warnings = None
         # actual user input
         self.input = None
 
