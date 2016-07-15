@@ -1,8 +1,7 @@
 from app.schema.block import Block as SchemaBlock
 from app.questionnaire_state.block import Block as StateBlock
 from app.questionnaire_state.page import Page
-from flask_login import current_user
-import jsonpickle
+from app.questionnaire_state.state_manager import StateManager
 import logging
 
 
@@ -111,23 +110,3 @@ class UserJourneyManager(object):
     # TODO temporary memory to support answer stored
     def get_first(self):
         return self._first
-
-
-class StateManager(object):
-
-    @staticmethod
-    def has_state():
-        questionnaire_data = current_user.get_questionnaire_data()
-        return STATE in questionnaire_data.keys()
-
-    @staticmethod
-    def get_state():
-        questionnaire_data = current_user.get_questionnaire_data()
-        state = questionnaire_data[STATE]
-        return jsonpickle.decode(state)
-
-    @staticmethod
-    def save_state(questionnaire_state):
-        questionnaire_data = current_user.get_questionnaire_data()
-        questionnaire_data[STATE] = jsonpickle.encode(questionnaire_state)
-        current_user.save()
