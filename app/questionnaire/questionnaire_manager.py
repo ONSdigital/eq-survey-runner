@@ -43,10 +43,6 @@ class QuestionnaireManager(object):
             # updated state
             self._user_journey_manager.update_state(location, user_answers)
 
-        # update the answer store with data
-        for key, value in cleaned_user_answers.items():
-            self._answer_store.store_answer(key, value)
-
         # get the current location in the questionnaire
         current_location = self._navigator.get_current_location()
 

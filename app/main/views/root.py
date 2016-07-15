@@ -3,7 +3,7 @@ from flask_login import current_user
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
 from app.parser.schema_parser_factory import SchemaParserFactory
-from app.navigation.navigator import Navigator
+from app.navigation.navigation_store import NavigationStore
 from app.authentication.authenticator import Authenticator
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
@@ -57,8 +57,10 @@ def login():
         # load the navigation history
         navigation_history = factory.create("navigation-history")
 
+        navigation_store = NavigationStore(schema, navigation_history)
+
         # create the navigator
-        navigator = Navigator(schema, metadata, navigation_history)
+        navigator = navigation_store.get_navigator()
 
         # get the current location of the user
         current_location = navigator.get_current_location()

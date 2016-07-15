@@ -97,32 +97,3 @@ class ThankYouState(NavigationState):
         # thank you state is the last state, if the destination doesn't match
         # then it is an invalid location
         raise NavigationException('Invalid location')
-
-
-class NavigationContext(object):
-
-    def __init__(self, schema):
-        self._schema = schema
-        if self._schema.introduction:
-            self.state = IntroductionState(schema)
-        else:
-            self.state = QuestionnaireState(schema)
-
-    def go_to(self, destination):
-        # start at the beginning of a questionnaire
-        state = IntroductionState(self._schema)
-        # go to the new destination, this will update the state of the context
-        state.go_to(self, destination)
-
-    def to_dict(self):
-        state = {
-            "current_position": self.state.get_location()
-        }
-        logger.debug("NavigationContext to dict %s", state)
-        return state
-
-    def from_dict(self, values):
-        current_location = values['current_position'] or None
-        logger.debug("Attempting to go to position %s", current_location)
-        self.go_to(destination=current_location)
-        logger.debug("Navigation Context from dict %s", values)

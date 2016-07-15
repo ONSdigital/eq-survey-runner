@@ -1,32 +1,25 @@
-from .navigation_state import NavigationContext
-from abc import ABCMeta, abstractmethod
+from .navigator import Navigator
+
 from flask_login import current_user
+import jsonpickle
 
 NAVIGATION_SESSION_KEY = "nav"
 
 
-class INavigationStore(metaclass=ABCMeta):
-    @abstractmethod
-    def store_context(self, state):
-        pass
+class NavigationStore(object):
 
-    @abstractmethod
-    def get_context(self):
-        pass
-
-
-class NavigationStore(INavigationStore):
-
-    def __init__(self, schema):
+    def __init__(self, schema, navigation_history):
         self._schema = schema
+        self._navigation_history = navigation_history
 
-    def store_context(self, state):
+    def save_navigator(self, navigator):
         data = current_user.get_questionnaire_data()
-        data[NAVIGATION_SESSION_KEY] = state.to_dict()
+        data[NAVIGATION_SESSION_KEY] = jsonpickle.encode(navigator)
 
-    def get_context(self):
+    def get_navigator(self):
         data = current_user.get_questionnaire_data()
-        state = NavigationContext(self._schema)
         if NAVIGATION_SESSION_KEY in data:
-            state.from_dict(data[NAVIGATION_SESSION_KEY])
-        return state
+            navigator = jsonpickle.decode(data[NAVIGATION_SESSION_KEY])
+        else:
+            navigator = Navigator(self._schema, self, self._navigation_history)
+        return navigator
