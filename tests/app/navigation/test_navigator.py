@@ -25,7 +25,7 @@ class NavigatorTest(SurveyRunnerTestCase):
             schema.add_group(group)
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
+            navigator = Navigator(schema, MetaDataStore(), navigation_history)
             #  brand new session shouldn't have a current location
             self.assertEquals('block-1', navigator.get_current_location())
 
@@ -35,7 +35,7 @@ class NavigatorTest(SurveyRunnerTestCase):
             schema.introduction = "anything"
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
+            navigator = Navigator(schema, MetaDataStore(), navigation_history)
             #  brand new session shouldn't have a current location
             self.assertEquals("introduction", navigator.get_current_location())
 
@@ -52,19 +52,19 @@ class NavigatorTest(SurveyRunnerTestCase):
             schema.add_group(group)
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
+            navigator = Navigator(schema, MetaDataStore(), navigation_history)
 
             self.assertRaises(NavigationException, navigator.go_to, 'introduction')
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
+            navigator = Navigator(schema, MetaDataStore(), navigation_history)
             navigator.go_to("block-1")
             self.assertEquals("block-1", navigator.get_current_location())
 
             schema.introduction = {'description': 'Some sort of intro'}
 
             navigation_history = NavigationHistory()
-            navigator = Navigator(schema, MetaDataStore(), navigation_history, RoutingEngine(schema))
+            navigator = Navigator(schema, MetaDataStore(), navigation_history)
             navigator.go_to("introduction")
             self.assertEquals("introduction", navigator.get_current_location())
 

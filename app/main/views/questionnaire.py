@@ -9,7 +9,7 @@ from app.submitter.submission_failed import SubmissionFailedException
 from .. import main_blueprint
 from app.schema.questionnaire import QuestionnaireException
 from app.main.errors import page_not_found, internal_server_error, service_unavailable
-from flask.ext.themes2 import render_theme_template
+from flask_themes2 import render_theme_template
 from app.metadata.metadata_store import MetaDataStore
 
 

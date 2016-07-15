@@ -1,6 +1,7 @@
 import bleach
 from app.templating.template_pre_processor import TemplatePreProcessor
 from app.questionnaire_state.user_journey_manager import UserJourneyManager
+from app.questionnaire.user_action_processor import UserActionProcessor
 import logging
 
 
@@ -8,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema, answer_store, validator, validation_store, navigator, navigation_history, metadata):
+    def __init__(self, schema, answer_store, validator, validation_store, navigator, navigation_history, routing_engine, metadata):
         self._schema = schema
         self._user_journey_manager = UserJourneyManager.get_instance()
         if not self._user_journey_manager:
@@ -19,6 +20,9 @@ class QuestionnaireManager(object):
         self._navigator = navigator
         self._navigation_history = navigation_history
         self._metadata = metadata
+        self._routing_engine = routing_engine
+        self._user_action_processor = UserActionProcessor(self._schema, self._metadata)
+
         # TODO lifecycle issue here - calling answer store before its ready
         self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._navigator, self._metadata)
 
@@ -49,11 +53,16 @@ class QuestionnaireManager(object):
         # run the validator to update the validation_store
         if self._validator.validate(cleaned_user_answers):
 
+            # process the user action
+            next_location = self._user_action_processor.process_action(user_action, current_location)
+
             # do any routing
-            next_location = self._navigator.get_next_location(current_location, user_action)
-            logger.debug("Going to location %s", next_location)
+            next_location = self._routing_engine.get_next(next_location)
+            logger.debug("next location after routing is %s", next_location)
+
             # go to that location
             self._navigator.go_to(next_location)
+            logger.debug("Going to location %s", next_location)
         else:
             # bug fix for using back button which then fails validation
             self._navigator.go_to(current_location)
