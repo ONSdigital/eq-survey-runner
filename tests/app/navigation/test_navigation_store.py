@@ -1,5 +1,4 @@
 from app.navigation.navigation_store import NavigationStore
-from app.navigation.navigation_history import NavigationHistory
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.parser.schema_parser_factory import SchemaParserFactory
 import unittest
@@ -19,7 +18,7 @@ class NavigationStoreTest(SurveyRunnerTestCase):
 
     def test_add_history(self):
         with self.application.test_request_context():
-            navigation_store = NavigationStore(self.questionnaire, NavigationHistory())
+            navigation_store = NavigationStore(self.questionnaire)
             navigator = navigation_store.get_navigator()
             navigation_store.save_navigator(navigator)
             self.assertEquals("introduction", navigation_store.get_navigator().state.get_location())

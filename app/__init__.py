@@ -7,13 +7,12 @@ from healthcheck import HealthCheck
 from flaskext.markdown import Markdown
 from app.utilities.factory import factory
 from app.answers.answer_store import AnswerStore
-from app.navigation.navigation_history import NavigationHistory
 from app.validation.validation_store import ValidationStore
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
 from app import settings
-from flask.ext.themes2 import Themes
+from flask_themes2 import Themes
 from datetime import timedelta
 import watchtower
 import logging
@@ -44,7 +43,6 @@ logger = logging.getLogger(__name__)
 # setup the factory
 logger.debug("Registering factory classes")
 factory.register("answer-store", AnswerStore)
-factory.register("navigation-history", NavigationHistory)
 factory.register("validation-store", ValidationStore)
 
 

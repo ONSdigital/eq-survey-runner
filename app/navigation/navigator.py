@@ -5,9 +5,8 @@ logger = logging.getLogger(__name__)
 
 
 class Navigator(object):
-    def __init__(self, schema, navigation_store, navigation_history):
+    def __init__(self, schema, navigation_store):
         self._schema = schema
-        self._navigation_history = navigation_history
         self._store = navigation_store
         if self._schema.introduction:
             self.state = IntroductionState(schema)
@@ -29,7 +28,6 @@ class Navigator(object):
         current position in the history before updating the current position
         :param location: the location to go to next
         """
-        self._navigation_history.add_history_entry(self.state.get_location())
         logger.debug("go_to %s", location)
         # start at the beginning of a questionnaire
         state = IntroductionState(self._schema)

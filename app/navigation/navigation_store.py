@@ -8,9 +8,8 @@ NAVIGATION_SESSION_KEY = "nav"
 
 class NavigationStore(object):
 
-    def __init__(self, schema, navigation_history):
+    def __init__(self, schema):
         self._schema = schema
-        self._navigation_history = navigation_history
 
     def save_navigator(self, navigator):
         data = current_user.get_questionnaire_data()
@@ -21,5 +20,5 @@ class NavigationStore(object):
         if NAVIGATION_SESSION_KEY in data:
             navigator = jsonpickle.decode(data[NAVIGATION_SESSION_KEY])
         else:
-            navigator = Navigator(self._schema, self, self._navigation_history)
+            navigator = Navigator(self._schema, self)
         return navigator

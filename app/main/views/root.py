@@ -8,7 +8,6 @@ from app.authentication.authenticator import Authenticator
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.main import errors
-from app.utilities.factory import factory
 from app.metadata.metadata_store import MetaDataStore
 import logging
 
@@ -54,10 +53,7 @@ def login():
         if not schema:
             return errors.page_not_found()
 
-        # load the navigation history
-        navigation_history = factory.create("navigation-history")
-
-        navigation_store = NavigationStore(schema, navigation_history)
+        navigation_store = NavigationStore(schema)
 
         # create the navigator
         navigator = navigation_store.get_navigator()

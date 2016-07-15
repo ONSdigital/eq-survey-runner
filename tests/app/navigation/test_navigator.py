@@ -1,5 +1,4 @@
 from app.navigation.navigation_store import NavigationStore
-from app.navigation.navigation_history import NavigationHistory
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.schema.questionnaire import Questionnaire
 import unittest
@@ -22,7 +21,7 @@ class NavigatorTest(SurveyRunnerTestCase):
             group.add_block(block)
             schema.add_group(group)
 
-            navigation_store = NavigationStore(schema, NavigationHistory())
+            navigation_store = NavigationStore(schema)
             navigator = navigation_store.get_navigator()
             #  brand new session shouldn't have a current location
             self.assertEquals('block-1', navigator.get_current_location())
@@ -32,7 +31,7 @@ class NavigatorTest(SurveyRunnerTestCase):
             schema = Questionnaire()
             schema.introduction = "anything"
 
-            navigation_store = NavigationStore(schema, NavigationHistory())
+            navigation_store = NavigationStore(schema)
             navigator = navigation_store.get_navigator()
             #  brand new session shouldn't have a current location
             self.assertEquals("introduction", navigator.get_current_location())
@@ -49,12 +48,12 @@ class NavigatorTest(SurveyRunnerTestCase):
             group.add_block(block)
             schema.add_group(group)
 
-            navigation_store = NavigationStore(schema, NavigationHistory())
+            navigation_store = NavigationStore(schema)
             navigator = navigation_store.get_navigator()
 
             self.assertRaises(NavigationException, navigator.go_to, 'introduction')
 
-            navigation_store = NavigationStore(schema, NavigationHistory())
+            navigation_store = NavigationStore(schema)
             navigator = navigation_store.get_navigator()
             navigator.go_to("block-1")
             self.assertEquals("block-1", navigator.get_current_location())
@@ -73,7 +72,7 @@ class NavigatorTest(SurveyRunnerTestCase):
 
             schema.introduction = {'description': 'Some sort of intro'}
 
-            navigation_store = NavigationStore(schema, NavigationHistory())
+            navigation_store = NavigationStore(schema)
             navigator = navigation_store.get_navigator()
             navigator.go_to("introduction")
             self.assertEquals("introduction", navigator.get_current_location())

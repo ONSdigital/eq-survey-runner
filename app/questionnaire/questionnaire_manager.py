@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema, answer_store, validator, validation_store, navigator, navigation_history, routing_engine, metadata):
+    def __init__(self, schema, answer_store, validator, validation_store, navigator, routing_engine, metadata):
         self._schema = schema
         self._user_journey_manager = UserJourneyManager.get_instance()
         if not self._user_journey_manager:
@@ -18,7 +18,6 @@ class QuestionnaireManager(object):
         self._validator = validator
         self._validation_store = validation_store
         self._navigator = navigator
-        self._navigation_history = navigation_history
         self._metadata = metadata
         self._routing_engine = routing_engine
         self._user_action_processor = UserActionProcessor(self._schema, self._metadata)

@@ -37,10 +37,7 @@ def create_questionnaire_manager():
     # Create the routing engine
     routing_engine = RoutingEngine(schema)
 
-    # load the navigation history
-    navigation_history = factory.create("navigation-history")
-
-    navigation_store = NavigationStore(schema, navigation_history)
+    navigation_store = NavigationStore(schema)
 
     # create the navigator
     navigator = navigation_store.get_navigator()
@@ -51,7 +48,6 @@ def create_questionnaire_manager():
                                                  validator,
                                                  validation_store,
                                                  navigator,
-                                                 navigation_history,
                                                  routing_engine,
                                                  metadata)
     return questionnaire_manager
