@@ -44,7 +44,7 @@ export function styles() {
       outputStyle: 'expanded',
       sourceComments: false,
       includePaths: [
-        './app/styles/',
+        './app/assets/styles/',
         './node_modules/eq-sass/',
         './node_modules/gfm.css/source/'
       ],
