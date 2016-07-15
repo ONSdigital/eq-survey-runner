@@ -13,11 +13,8 @@ class Answer(Item):
         if self.id in user_input.keys():
             self.input = user_input[self.id]
 
-    def get_answer(self, id=None):
-        if not id or self.id == id:
-            return self
-        else:
-            return None
+    def get_answers(self):
+        return [self]
 
     @staticmethod
     def construct_state(item):

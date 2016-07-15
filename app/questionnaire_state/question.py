@@ -8,12 +8,6 @@ class Question(Item):
         self.answers = []
         self.children = self.answers
 
-    def get_answers(self):
-        answers = []
-        for child in self.children:
-            answers.append(child.get_answer())
-        return answers
-
     @staticmethod
     def construct_state(item):
         state = Question(item.id)

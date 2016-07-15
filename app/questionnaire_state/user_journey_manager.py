@@ -11,6 +11,15 @@ STATE = "state"
 
 
 class UserJourneyManager(object):
+    '''
+    This class represents a user journey through a survey. It models the request/response process of the web application
+    using a doubly linked list. Each node in the list is essentially a page displayed to the user. A new page is created
+    by a GET request and subsequently updated via a POST request.
+
+    The doubly linked list approach allows us to maintain the path the user has taken through the question. If that path
+    changes we archive off the pages incase the user revists that path.
+
+    '''
     def __init__(self, schema):
         self._schema = schema
         self._current = None  # the latest page
