@@ -1,4 +1,5 @@
 import gulp from 'gulp'
+import gutil from 'gulp-util'
 import del from 'del'
 import plumber from 'gulp-plumber'
 import yargs from 'yargs'
@@ -25,6 +26,7 @@ gulp.task('test:a11ym', (done) => {
 
 // Process, lint, and minify Sass files
 gulp.task('build:styles', () => {
+  gutil.log('build:styles')
   styles()
 })
 
@@ -86,6 +88,7 @@ gulp.task('listen', () => {
     files: paths.styles.output
   })
   gulp.watch(paths.images.input, ['build:images'])
+  gutil.log(paths.styles.input)
   gulp.watch(paths.styles.input, ['build:styles'])
   gulp.watch([paths.scripts.input, `!${paths.scripts.dir}app/**/*`], ['copy:scripts'])
   gulp.watch(paths.templates.input).on('change', browserSync.reload)
