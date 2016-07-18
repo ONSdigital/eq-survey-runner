@@ -46,10 +46,10 @@ class QuestionnaireManager(object):
         if self._validator.validate(cleaned_user_answers):
 
             # process the user action
-            next_location = self._user_action_processor.process_action(user_action, current_location)
+            self._user_action_processor.process_action(user_action)
 
             # do any routing
-            next_location = self._routing_engine.get_next(next_location)
+            next_location = self._routing_engine.get_next_location(current_location)
             logger.debug("next location after routing is %s", next_location)
 
             # go to that location
