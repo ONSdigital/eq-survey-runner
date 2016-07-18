@@ -1,6 +1,5 @@
 from app.validation.validator import Validator
 from app.routing.routing_engine import RoutingEngine
-from app.navigation.navigation_store import NavigationStore
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.main import errors
 from app.utilities.factory import factory
@@ -37,17 +36,11 @@ def create_questionnaire_manager():
     # Create the routing engine
     routing_engine = RoutingEngine(schema)
 
-    navigation_store = NavigationStore(schema)
-
-    # create the navigator
-    navigator = navigation_store.get_navigator()
-
     # instantiate the questionnaire manager
     questionnaire_manager = QuestionnaireManager(schema,
                                                  answer_store,
                                                  validator,
                                                  validation_store,
-                                                 navigator,
                                                  routing_engine,
                                                  metadata)
     return questionnaire_manager

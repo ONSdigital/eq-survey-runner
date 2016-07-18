@@ -35,6 +35,7 @@ def survey(eq_id, collection_id, location):
     try:
         # Go to the location in the url.
         # This will throw an exception if invalid
+        # TODO this can go eventually it's crazy
         questionnaire_manager.go_to_location(location)
 
         # Process the POST request

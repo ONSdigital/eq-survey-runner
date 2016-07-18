@@ -2,6 +2,9 @@ from app.schema.block import Block as SchemaBlock
 from app.questionnaire_state.block import Block as StateBlock
 from app.questionnaire_state.page import Page
 from app.questionnaire_state.state_manager import StateManager
+from app.questionnaire_state.introduction import Introduction as StateIntroduction
+from app.questionnaire_state.thank_you import ThankYou as StateThankYou
+from app.questionnaire_state.summary import Summary as StateSummary
 import logging
 
 
@@ -25,6 +28,7 @@ class UserJourneyManager(object):
         self._current = None  # the latest page
         self._first = None  # the first page in the doubly linked list
         self._archive = []  # a list of completed or discarded pages
+        self._valid_locations = self._build_valid_locations()
 
     @staticmethod
     def new_instance(schema):
@@ -42,6 +46,15 @@ class UserJourneyManager(object):
             return StateManager.get_state()
         else:
             return None
+
+    def _build_valid_locations(self):
+        validate_location = ['thank-you', 'summary']
+        if self._schema.introduction:
+            validate_location.append('introduction')
+        for group in self._schema.children:
+            for block in group.children:
+                validate_location.append(block.id)
+        return validate_location
 
     def get_state(self, item_id):
         page = self._first
@@ -63,22 +76,33 @@ class UserJourneyManager(object):
             self._create_new_state(item_id)
 
     def _create_new_state(self, item_id):
-        item = self._schema.get_item_by_id(item_id)
+
         logger.debug("Creating new state for %s", item_id)
-        if isinstance(item, SchemaBlock):
-            state = StateBlock.construct_state(item)
+        if item_id in self._valid_locations:
+            if item_id == 'introduction':
+                state = StateIntroduction(item_id)
+            elif item_id == 'thank-you':
+                state = StateThankYou(item_id)
+            elif item_id == 'summary':
+                state = StateSummary(item_id)
+            else:
+                item = self._schema.get_item_by_id(item_id)
+                if isinstance(item, SchemaBlock):
+                    state = StateBlock.construct_state(item)
+                else:
+                    raise TypeError("Can only handle blocks and supported valid location")
             page = Page(item_id, state)
             self._append(page)
             StateManager.save_state(self)
         else:
-            raise TypeError("Can only handle blocks")
+            raise ValueError("Unsupported location %s", item_id)
         logger.debug("current item id is %s", self._current.item_id)
 
     def update_state(self, item_id, user_input):
-        item = self._schema.get_item_by_id(item_id)
-        logger.error("Updating state for item %s", item.id)
-        if isinstance(item, SchemaBlock):
+        logger.error("Updating state for item %s", item_id)
+        if item_id in self._valid_locations:
             logger.debug("item id is %s", item_id)
+            logger.error("Current location %s", self.get_current_location())
             if item_id == self._current.item_id:
                 state = self._current.page_state
                 state.update_state(user_input)
@@ -116,6 +140,24 @@ class UserJourneyManager(object):
     def get_current_state(self):
         return self._current.page_state
 
+    def get_current_location(self):
+        if self._current:
+            current_location = self._current.item_id
+        else:
+            current_location = self._get_first_location()
+        logger.debug("get current location returning %s", current_location)
+        return current_location
+
+    def _get_first_location(self):
+        if self._schema.introduction:
+            return "introduction"
+        else:
+            return self._schema.groups[0].blocks[0].id
+
     # TODO temporary memory to support answer stored
     def get_first(self):
         return self._first
+
+    # TODO this needs to go too
+    def get_first_block(self):
+        return self._schema.groups[0].blocks[0].id

@@ -2,6 +2,9 @@ from app.questionnaire_state.user_journey_manager import UserJourneyManager
 from app.questionnaire_state.page import Page
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.questionnaire_state.state_manager import InMemoryStateManager
+from app.schema.questionnaire import Questionnaire
+from app.schema.group import Group
+from app.schema.block import Block
 from app import settings
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 import json
@@ -57,7 +60,7 @@ class TestUserJourneyManager(SurveyRunnerTestCase):
         self.assertIsNotNone(user_journey_manager.get_state(block1.id))
 
     def test_append(self):
-        user_journey_manager = UserJourneyManager(None)
+        user_journey_manager = UserJourneyManager(self.questionnaire)
 
         page1 = Page("first", None)
         page2 = Page("second", None)
@@ -89,7 +92,7 @@ class TestUserJourneyManager(SurveyRunnerTestCase):
         self.assertIsNone(page3.next_page)
 
     def test_pop(self):
-        user_journey_manager = UserJourneyManager(None)
+        user_journey_manager = UserJourneyManager(self.questionnaire)
 
         page1 = Page("first", None)
         page2 = Page("second", None)
@@ -112,7 +115,7 @@ class TestUserJourneyManager(SurveyRunnerTestCase):
         self.assertIsNone(page3.next_page)
 
     def test_truncate(self):
-        user_journey_manager = UserJourneyManager(None)
+        user_journey_manager = UserJourneyManager(self.questionnaire)
 
         page1 = Page("first", None)
         page2 = Page("second", None)
@@ -143,3 +146,65 @@ class TestUserJourneyManager(SurveyRunnerTestCase):
 
         self.assertEqual(page2, user_journey_manager._current)
         self.assertIsNone(page2.next_page)
+
+    def test_get_current_location(self):
+        with self.application.test_request_context():
+            schema = Questionnaire()
+            group = Group()
+            group.id = 'group-1'
+            schema.register(group)
+            block = Block()
+            block.id = 'block-1'
+            schema.register(block)
+            group.add_block(block)
+            schema.add_group(group)
+
+            user_journey_manager = UserJourneyManager(schema)
+            #  brand new session shouldn't have a current location
+            self.assertEquals('block-1', user_journey_manager.get_current_location())
+
+    def test_get_current_location_with_intro(self):
+        with self.application.test_request_context():
+            schema = Questionnaire()
+            schema.introduction = "anything"
+
+            user_journey_manager = UserJourneyManager(schema)
+
+            #  brand new session shouldn't have a current location
+            self.assertEquals("introduction", user_journey_manager.get_current_location())
+
+    def test_go_to(self):
+        with self.application.test_request_context():
+            schema = Questionnaire()
+            group = Group()
+            group.id = 'group-1'
+            schema.register(group)
+            block = Block()
+            block.id = 'block-1'
+            schema.register(block)
+            group.add_block(block)
+            schema.add_group(group)
+
+            user_journey_manager = UserJourneyManager(schema)
+            self.assertRaises(ValueError, user_journey_manager.go_to_state, 'introduction')
+
+            user_journey_manager.go_to_state("block-1")
+            self.assertEquals("block-1", user_journey_manager.get_current_location())
+
+    def test_go_to_invalid_location(self):
+        with self.application.test_request_context():
+            schema = Questionnaire()
+            group = Group()
+            group.id = 'group-1'
+            schema.register(group)
+            block = Block()
+            block.id = 'block-1'
+            schema.register(block)
+            group.add_block(block)
+            schema.add_group(group)
+
+            schema.introduction = {'description': 'Some sort of intro'}
+
+            user_journey_manager = UserJourneyManager(schema)
+            user_journey_manager.go_to_state("introduction")
+            self.assertEquals("introduction", user_journey_manager.get_current_location())

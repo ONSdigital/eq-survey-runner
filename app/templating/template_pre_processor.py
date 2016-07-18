@@ -8,11 +8,11 @@ from app.schema.questionnaire import QuestionnaireException
 
 
 class TemplatePreProcessor(object):
-    def __init__(self, schema, answer_store, validation_store, navigator, metadata):
+    def __init__(self, schema, answer_store, validation_store, user_journey_manager, metadata):
         self._schema = schema
         self._answer_store = answer_store
         self._validation_store = validation_store
-        self._navigator = navigator
+        self._user_journey_manager = user_journey_manager
         self._metadata = metadata
         self._current_block = None
         self._current_group = None
@@ -20,9 +20,9 @@ class TemplatePreProcessor(object):
 
         # Get the current location or the first block
         try:
-            self._current_block = self._schema.get_item_by_id(self._navigator.get_current_location())
+            self._current_block = self._schema.get_item_by_id(self._user_journey_manager.get_current_location())
         except QuestionnaireException:
-            self._current_block = self._schema.get_item_by_id(self._navigator.get_first_block())
+            self._current_block = self._schema.get_item_by_id(self._user_journey_manager.get_first_block())
 
         # get the group
         self._current_group = self._current_block.container
@@ -38,7 +38,7 @@ class TemplatePreProcessor(object):
             'thank-you': 'thank-you.html'
         }
 
-        current_location = self._navigator.get_current_location()
+        current_location = self._user_journey_manager.get_current_location()
         if current_location in known_templates.keys():
             return known_templates[current_location]
         else:
@@ -51,7 +51,7 @@ class TemplatePreProcessor(object):
         self._plumb_questionnaire()
 
         # Collect the answers for all pages except the intro and thank you pages
-        current_location = self._navigator.get_current_location()
+        current_location = self._user_journey_manager.get_current_location()
         if current_location != 'introduction' and current_location != 'thank-you':
             self._collect_answers()
 
@@ -128,7 +128,7 @@ class TemplatePreProcessor(object):
     def _build_navigation_meta(self):
         navigation_meta = {
             "history": None,
-            "current_position": self._navigator.get_current_location(),
+            "current_position": self._user_journey_manager.get_current_location(),
             "current_block_id": None,
             "current_group_id": None
         }

@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema, answer_store, validator, validation_store, navigator, routing_engine, metadata):
+    def __init__(self, schema, answer_store, validator, validation_store, routing_engine, metadata):
         self._schema = schema
         self._user_journey_manager = UserJourneyManager.get_instance()
         if not self._user_journey_manager:
@@ -17,17 +17,15 @@ class QuestionnaireManager(object):
         self._answer_store = answer_store
         self._validator = validator
         self._validation_store = validation_store
-        self._navigator = navigator
         self._metadata = metadata
         self._routing_engine = routing_engine
         self._user_action_processor = UserActionProcessor(self._schema, self._metadata)
 
         # TODO lifecycle issue here - calling answer store before its ready
-        self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._navigator, self._metadata)
+        self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._user_journey_manager, self._metadata)
 
     def go_to_state(self, location):
-        if self._schema.item_exists(location):
-            self._user_journey_manager.go_to_state(location)
+        self._user_journey_manager.go_to_state(location)
 
     def process_incoming_answers(self, location, post_data):
         # process incoming post data
@@ -38,12 +36,11 @@ class QuestionnaireManager(object):
         for key, value in user_answers.items():
             cleaned_user_answers[key] = self._clean_input(value)
 
-        if self._schema.item_exists(location):
-            # updated state
-            self._user_journey_manager.update_state(location, user_answers)
+        # updated state
+        self._user_journey_manager.update_state(location, user_answers)
 
         # get the current location in the questionnaire
-        current_location = self._navigator.get_current_location()
+        current_location = self._user_journey_manager.get_current_location()
 
         # run the validator to update the validation_store
         if self._validator.validate(cleaned_user_answers):
@@ -56,14 +53,14 @@ class QuestionnaireManager(object):
             logger.debug("next location after routing is %s", next_location)
 
             # go to that location
-            self._navigator.go_to(next_location)
+            self._user_journey_manager.go_to_state(next_location)
             logger.debug("Going to location %s", next_location)
         else:
             # bug fix for using back button which then fails validation
-            self._navigator.go_to(current_location)
+            self._user_journey_manager.go_to_state(current_location)
 
         # now return the location
-        return self._navigator.get_current_location()
+        return self._user_journey_manager.get_current_location()
 
     def get_rendering_context(self):
         return self._pre_processor.build_view_data()
@@ -118,13 +115,10 @@ class QuestionnaireManager(object):
             return value
 
     def get_current_location(self):
-        return self._navigator.get_current_location()
+        return self._user_journey_manager.get_current_location()
 
     def go_to_location(self, location):
-        self._navigator.go_to(location)
+        self._user_journey_manager.go_to_state(location)
 
     def go_to_first(self):
-        self._navigator.go_to(self._navigator.get_first_block())
-
-    def get_schema(self):
-        return self._schema
+        self._user_journey_manager.go_to_state(self._user_journey_manager.get_first_block())
