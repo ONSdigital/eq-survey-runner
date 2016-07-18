@@ -428,7 +428,7 @@
                                         "properties": {}
                                     },
                                     "id": "pef6r645-c231-4522-ba2f-273b25507e53",
-                                    "title": "Did you visit the help facility at&nbsp;<a href=\"http://www.ons.gov.uk/census\">www.ons.gov.uk/census</a>&nbsp;?",
+                                    "title": "Did you visit the help facility at http://www.ons.gov.uk/census?",
                                     "type": "Radios",
                                     "validation": []
                                 },
