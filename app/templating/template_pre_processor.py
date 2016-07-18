@@ -1,10 +1,12 @@
 from collections import OrderedDict
 from flask_login import current_user
-from app.submitter.converter import SubmitterConstants
-from flask import session
 from app.piping.plumber import Plumber
 from app.libs.utils import ObjectFromDict, convert_tx_id
 from app.schema.questionnaire import QuestionnaireException
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class TemplatePreProcessor(object):
@@ -22,7 +24,7 @@ class TemplatePreProcessor(object):
         try:
             self._current_block = self._schema.get_item_by_id(self._user_journey_manager.get_current_location())
         except QuestionnaireException:
-            self._current_block = self._schema.get_item_by_id(self._user_journey_manager.get_first_block())
+            self._current_block = self._schema.get_item_by_id(self._schema.groups[0].blocks[0].id)
 
         # get the group
         self._current_group = self._current_block.container
@@ -102,10 +104,11 @@ class TemplatePreProcessor(object):
             # But we can silently ignore them under those circumstanes
             pass
 
-        # TODO: This is still not the right place to do this...
-        if session and SubmitterConstants.SUBMITTED_AT_KEY in session:
+        logger.error("Templated pre-processor submitted at %s", self._user_journey_manager.submitted_at)
+        if self._user_journey_manager.submitted_at:
+            logger.error("Templated pre-processor submitted at %s", self._user_journey_manager.submitted_at)
             survey_meta['submitted'] = True
-            survey_meta['submitted_at'] = session[SubmitterConstants.SUBMITTED_AT_KEY]
+            survey_meta['submitted_at'] = self._user_journey_manager.submitted_at
 
         return survey_meta
 

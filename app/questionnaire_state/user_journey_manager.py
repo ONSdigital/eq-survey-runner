@@ -24,6 +24,7 @@ class UserJourneyManager(object):
 
     '''
     def __init__(self, schema):
+        self.submitted_at = None
         self._schema = schema
         self._current = None  # the latest page
         self._first = None  # the first page in the doubly linked list
@@ -154,10 +155,6 @@ class UserJourneyManager(object):
         else:
             return self._schema.groups[0].blocks[0].id
 
-    # TODO temporary memory to support answer stored
+    # TODO temporary measure to support answer store
     def get_first(self):
         return self._first
-
-    # TODO this needs to go too
-    def get_first_block(self):
-        return self._schema.groups[0].blocks[0].id

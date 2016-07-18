@@ -33,11 +33,6 @@ class AnswerStore(AbstractAnswerStore):
         pass
 
     def get_answer(self, key):
-        # ujm = UserJourneyManager.get_instance()
-        # current_state = ujm.get_current_state()
-        # answer = current_state.get_answer(key)
-        # return answer.input
-        #
         answers = self.get_answers()
         if key in answers:
             return answers[key]

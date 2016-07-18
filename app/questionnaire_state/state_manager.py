@@ -1,6 +1,9 @@
 from flask_login import current_user
 from app import settings
 import jsonpickle
+import logging
+
+logger = logging.getLogger(__name__)
 
 STATE = "state"
 
@@ -54,6 +57,7 @@ class DatabaseStateManager(StateManager):
     @staticmethod
     def get_state():
         questionnaire_data = current_user.get_questionnaire_data()
+        logger.debug("Returning questionnaire data %s", questionnaire_data)
         state = questionnaire_data[STATE]
         return jsonpickle.decode(state)
 

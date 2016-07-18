@@ -2,6 +2,8 @@ import bleach
 from app.templating.template_pre_processor import TemplatePreProcessor
 from app.questionnaire_state.user_journey_manager import UserJourneyManager
 from app.questionnaire.user_action_processor import UserActionProcessor
+from app.authentication.session_management import session_manager
+from flask_login import current_user
 import logging
 
 
@@ -13,21 +15,32 @@ class QuestionnaireManager(object):
         self._schema = schema
         self._user_journey_manager = UserJourneyManager.get_instance()
         if not self._user_journey_manager:
+            logger.error("Constructing brand new User Journey Manager")
             self._user_journey_manager = UserJourneyManager.new_instance(self._schema)
         self._answer_store = answer_store
         self._validator = validator
         self._validation_store = validation_store
         self._metadata = metadata
         self._routing_engine = routing_engine
-        self._user_action_processor = UserActionProcessor(self._schema, self._metadata)
+        self._user_action_processor = UserActionProcessor(self._schema, self._metadata, self._user_journey_manager)
 
         # TODO lifecycle issue here - calling answer store before its ready
         self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._user_journey_manager, self._metadata)
 
-    def go_to_state(self, location):
+    @property
+    def submitted(self):
+        return self._user_journey_manager.submitted_at is not None
+
+    def go_to(self, location):
+        if location == 'first':
+            # convenience method for routing to the first block
+            location = self._routing_engine.get_first_block()
         self._user_journey_manager.go_to_state(location)
 
     def process_incoming_answers(self, location, post_data):
+        # ensure we're in the correct location
+        self._user_journey_manager.go_to_state(location)
+
         # process incoming post data
         user_action, user_answers = self._process_incoming_post_data(post_data)
 
@@ -117,8 +130,9 @@ class QuestionnaireManager(object):
     def get_current_location(self):
         return self._user_journey_manager.get_current_location()
 
-    def go_to_location(self, location):
-        self._user_journey_manager.go_to_state(location)
-
-    def go_to_first(self):
-        self._user_journey_manager.go_to_state(self._user_journey_manager.get_first_block())
+    def delete_user_data(self):
+        # once the survey has been submitted
+        # delete all user data from the database
+        current_user.delete_questionnaire_data()
+        # and clear out the session state
+        session_manager.clear()

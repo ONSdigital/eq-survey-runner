@@ -22,7 +22,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
         self.validation_store = MockValidationStore()
         self.answer_store = MockAnswerStore()
         self.schema = self._create_schema()
-        self.navigator = MockNavigator()
+        self.user_journey_manager = MockUserJourneyManager()
         user = User("1", "2")
         jwt = {
             MetaDataConstants.USER_ID.claim_id: "1",
@@ -60,7 +60,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
     def test_augment_answer(self):
         # Instantiate the pre processor using the pre-populated mock objects
-        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
+        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.user_journey_manager, self.metadata)
 
         # Get the answer objects
         answer_1 = self.schema.get_item_by_id('answer-1')
@@ -85,7 +85,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
     def test_collect_errors(self):
         # Instantiate the pre_proc using the pre-populated mock objects
-        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
+        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.user_journey_manager, self.metadata)
 
         # Get the answer objects
         answer_1 = self.schema.get_item_by_id('answer-1')
@@ -120,7 +120,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
     def test_augment_questionnaire(self):
         # Instantiate the pre_proc using the pre-populated mock objects
-        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
+        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.user_journey_manager, self.metadata)
 
         # check the attributes do not exist
         with self.assertRaises(AttributeError):
@@ -140,7 +140,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
         self.assertListEqual(self.schema.warnings['answer-2'], ['There is a warning'])
 
     def test_build_view_data(self):
-        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.navigator, self.metadata)
+        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.user_journey_manager, self.metadata)
 
         context = pre_proc.build_view_data()
 
@@ -231,7 +231,11 @@ class MockAnswerStore(AbstractAnswerStore):
         self.clear()
 
 
-class MockNavigator(object):
+class MockUserJourneyManager(object):
+    def __init__(self):
+        self.submitted = None
+        self.submitted_at = None
+
     def get_current_location(self):
         return 'current-location'
 

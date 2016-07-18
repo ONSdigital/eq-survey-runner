@@ -35,3 +35,6 @@ class RoutingEngine(object):
             else:
                 raise RoutingException('Cannot route: No current block')
         return next_location
+
+    def get_first_block(self):
+        return self._schema.groups[0].blocks[0].id

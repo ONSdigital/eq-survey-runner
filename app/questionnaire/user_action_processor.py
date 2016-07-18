@@ -1,23 +1,25 @@
-from app.submitter.converter import SubmitterConstants
 from app.utilities.factory import factory
-from flask import session
 from flask_login import current_user
 from app.submitter.submitter import SubmitterFactory
 from app import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class UserActionProcessor(object):
 
-    def __init__(self, schema, metadata):
+    def __init__(self, schema, metadata, user_journey_manager):
         self._schema = schema
         self._metadata = metadata
+        self._user_journey_manager = user_journey_manager
         self._user_actions = self._build_user_action_chain()
 
     def _build_user_action_chain(self):
         # builds the chain of responsibility
         start_questionnaire = StartQuestionnaire(self._schema, self._metadata)
         save_continue = SaveContinue(self._schema, self._metadata)
-        submit = SubmitAnswers(self._schema, self._metadata)
+        submit = SubmitAnswers(self._schema, self._metadata, self._user_journey_manager)
         start_questionnaire.set_next_action(save_continue).set_next_action(submit)
         return start_questionnaire
 
@@ -75,15 +77,15 @@ class SaveContinue(UserAction):
 
 
 class SubmitAnswers(UserAction):
-    def __init__(self, schema, metadata):
+    def __init__(self, schema, metadata, user_journey_manager):
         super().__init__(schema, metadata)
         self.action = 'submit_answers'
+        self._user_journey_manager = user_journey_manager
 
     def perform_action(self):
         answer_store = factory.create("answer-store")
         answers = answer_store.get_answers()
         submitter = SubmitterFactory.get_submitter()
         submitted_at = submitter.send_answers(current_user, self._metadata, self._schema, answers)
-        # TODO I don't like this but until we sort out the landing/review/submission flow this is the easiest way
-        session[SubmitterConstants.SUBMITTED_AT_KEY] = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
-        return
+        logger.debug("setting submitted at %s", submitted_at)
+        self._user_journey_manager.submitted_at = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
