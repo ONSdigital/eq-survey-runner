@@ -41,7 +41,7 @@ def survey(eq_id, collection_id, location):
         if request.method == 'POST':
             return do_post(collection_id, eq_id, location, questionnaire_manager)
         else:
-            return do_get(questionnaire_manager)
+            return do_get(questionnaire_manager, location)
 
     except QuestionnaireException as e:
         return page_not_found(e)
@@ -52,7 +52,8 @@ def survey(eq_id, collection_id, location):
         return internal_server_error(e)
 
 
-def do_get(questionnaire_manager):
+def do_get(questionnaire_manager, location):
+    questionnaire_manager.go_to_state(location)
     context = questionnaire_manager.get_rendering_context()
     template = questionnaire_manager.get_rendering_template()
     try:
@@ -66,7 +67,7 @@ def do_get(questionnaire_manager):
 
 def do_post(collection_id, eq_id, location, questionnaire_manager):
     logger.debug("POST request question - current location %s", location)
-    questionnaire_manager.process_incoming_answers(request.form)
+    questionnaire_manager.process_incoming_answers(location, request.form)
     next_location = questionnaire_manager.get_current_location()
     current_user.save()
     metadata = MetaDataStore.get_instance(current_user)

@@ -8,6 +8,7 @@ class IntegrationTestCase(unittest.TestCase):
 
     def setUp(self):
         # Use an in memory database
+        settings.EQ_SERVER_SIDE_STORAGE_TYPE = "DATABASE"
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
 
         self.application = create_app('development')

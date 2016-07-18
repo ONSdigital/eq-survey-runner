@@ -16,6 +16,7 @@ class TemplatePreProcessor(object):
         self._metadata = metadata
         self._current_block = None
         self._current_group = None
+        self._plumber = None
 
         # Get the current location or the first block
         try:
@@ -232,7 +233,11 @@ class TemplatePreProcessor(object):
         aliases = self._schema.aliases
         values = {}
         for alias, item_id in aliases.items():
-            value = self._answer_store.get_answer(item_id)
+            # TODO remove this try except
+            try:
+                value = self._answer_store.get_answer(item_id)
+            except AttributeError:
+                value = None
             if value is None:
                 value = ""  # Empty string
 

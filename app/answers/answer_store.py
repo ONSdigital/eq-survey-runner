@@ -1,7 +1,12 @@
-from flask_login import current_user
+from app.questionnaire_state.user_journey_manager import UserJourneyManager
 from abc import ABCMeta, abstractmethod
+import logging
+
 
 ANSWERS = "ans"
+
+
+logger = logging.getLogger(__name__)
 
 
 class AbstractAnswerStore(metaclass=ABCMeta):
@@ -25,29 +30,36 @@ class AbstractAnswerStore(metaclass=ABCMeta):
 class AnswerStore(AbstractAnswerStore):
 
     def store_answer(self, key, value):
-        data = current_user.get_questionnaire_data()
-        if ANSWERS not in data:
-            answers = {key: value}
-            data[ANSWERS] = answers
-        else:
-            data[ANSWERS][key] = value
+        pass
 
     def get_answer(self, key):
-        data = current_user.get_questionnaire_data()
-        if ANSWERS not in data.keys():
-            data[ANSWERS] = {}
+        # ujm = UserJourneyManager.get_instance()
+        # current_state = ujm.get_current_state()
+        # answer = current_state.get_answer(key)
+        # return answer.input
+        #
+        answers = self.get_answers()
+        if key in answers:
+            return answers[key]
+        else:
             return None
-        if key not in data[ANSWERS].keys():
-            return None
-        return data[ANSWERS][key]
 
     def get_answers(self):
-        data = current_user.get_questionnaire_data()
-        if ANSWERS not in data.keys():
-            data[ANSWERS] = {}
-        return data[ANSWERS]
+        answers_dict = {}
+        ujm = UserJourneyManager.get_instance()
+        if ujm:
+            page = ujm.get_first()
+            answers = []
+            while page:
+                page_answers = page.page_state.get_answers()
+                answers.extend(page_answers)
+                page = page.next_page
+
+            for answer in answers:
+                id = answer.id
+                value = answer.input
+                answers_dict[id] = value
+        return answers_dict
 
     def clear_answers(self):
-        data = current_user.get_questionnaire_data()
-        if ANSWERS in data.keys():
-            del data[ANSWERS]
+        pass
