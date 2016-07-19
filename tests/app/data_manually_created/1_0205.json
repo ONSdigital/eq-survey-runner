@@ -73,7 +73,7 @@
                             "id": "eedb9f9f-2f2e-41f4-9186-ba7110d9e6a4",
                             "title": "",
                             "description": "",
-                            "type": "Currency",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "bb8168e6-2272-450d-b5a7-d3170508efb2",
@@ -97,7 +97,7 @@
                             "id": "5743fe04-e9a3-491f-b475-ea5be662eff3",
                             "title": "",
                             "description": "",
-                            "type": "Currency",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
@@ -121,7 +121,7 @@
                             "id": "475471a1-7be0-4a7a-82b3-2b803d3935ed",
                             "title": "",
                             "description": "",
-                            "type": "Currency",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
@@ -145,7 +145,7 @@
                             "id": "656eaad2-67ed-4413-93dd-06d66c954a22",
                             "title": "",
                             "description": "",
-                            "type": "Currency",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
@@ -169,7 +169,7 @@
                             "id": "d7144593-8899-434a-8630-c622df1689b2",
                             "title": "",
                             "description": "",
-                            "type": "Currency",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
@@ -193,7 +193,7 @@
                             "id": "6c302f72-cf9d-4f42-8a35-cb258c3f807c",
                             "title": "",
                             "description": "",
-                            "type": "Currency",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "e81adc6d-6fb0-4155-969c-d0d646f15345",
@@ -218,7 +218,7 @@
                             "id": "c9902a3b-7dbb-48ff-8d3f-dce6fef322c7",
                             "title": "",
                             "description": "",
-                            "type": "Currency",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
@@ -242,7 +242,7 @@
                             "id": "96984134-1863-4450-b314-c44cf48d2bcd",
                             "title": "",
                             "description": "",
-                            "type": "Currency",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
@@ -274,7 +274,7 @@
                                 "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
                                 "title": "",
                                 "description": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
-                                "type": "Textarea",
+                                "type": "General",
                                 "answers": [
                                     {
                                       "id": "215015b1-f87c-4740-9fd4-f01f707ef558",

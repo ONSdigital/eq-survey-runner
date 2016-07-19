@@ -27,7 +27,7 @@
                                 "id": "4ba2ec8a-582f-4985-b4ed-20355deba55a",
                                 "title": "On 12 January 2016 what was the number of employees for the business named above?",
                                 "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
-                                "type": "Integer",
+                                "type": "General",
                                 "answers": [
                                     {
                                       "id": "29586b4c-fb0c-4755-b67d-b3cd398cb30a",

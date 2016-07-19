@@ -89,7 +89,7 @@
                                     },
                                     "id": "question-h1",
                                     "title": "(H1) Who usually lives here?",
-                                    "type": "Checkboxes",
+                                    "type": "General",
                                     "validation": []
                                 }
                             ],
@@ -125,7 +125,7 @@
                                     },
                                     "id": "question-h2",
                                     "title": "(H2) Counting everyone you included in question H1, how many people usually live here?",
-                                    "type": "Integer",
+                                    "type": "General",
                                     "validation": []
                                 }
                             ],
@@ -182,7 +182,7 @@
                                     },
                                     "id": "question-h4",
                                     "title": "(H4) Apart from everyone counted in question H2, who else is staying overnight here on {exercise.return_by:%-d %B %Y}? These people are counted as visitors. Remember to include children and babies.",
-                                    "type": "Checkboxes",
+                                    "type": "General",
                                     "validation": []
                                 }
                             ],
@@ -218,7 +218,7 @@
                                     },
                                     "id": "question-h5",
                                     "title": "(H5) Counting only the people included in question H4, how many visitors are staying overnight here on {exercise.return_by:%-d %B %Y}?",
-                                    "type": "Integer",
+                                    "type": "General",
                                     "validation": []
                                 }
                             ],
@@ -321,7 +321,7 @@
                                     },
                                     "id": "question-h7",
                                     "title": "(H7) What type of accommodation is this?",
-                                    "type": "Checkboxes",
+                                    "type": "General",
                                     "validation": []
                                 }
                             ],
@@ -438,7 +438,7 @@
                                     },
                                     "id": "question-h10",
                                     "title": "(H10) How many of these rooms are bedrooms?",
-                                    "type": "Integer",
+                                    "type": "General",
                                     "validation": []
                                 }
                             ],
@@ -499,7 +499,7 @@
                                     },
                                     "id": "question-h11",
                                     "title": "(H11) What type of central heating does this accomodation have?",
-                                    "type": "Checkboxes",
+                                    "type": "General",
                                     "validation": []
                                 }
                             ],

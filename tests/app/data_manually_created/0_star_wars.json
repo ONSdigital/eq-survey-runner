@@ -28,7 +28,7 @@
                             "id": "88824eff-7bb6-443f-85cb-8c2db016d44c",
                             "title": "",
                             "description": "",
-                            "type": "Integer",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b",
@@ -53,7 +53,7 @@
                             "id": "b8a803ba-2048-46dc-83cf-9ef9000d7a92",
                             "title": "",
                             "description": "",
-                            "type":"Currency",
+                            "type":"General",
                             "answers": [
                               {
                                 "id": "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
@@ -77,7 +77,7 @@
                             "id": "d8a803ga-2048-46dc-83cf-9ef9000d7a92",
                             "title": "",
                             "description": "",
-                            "type":"Integer",
+                            "type":"General",
                             "answers": [
                               {
                                 "id": "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
@@ -101,7 +101,7 @@
                             "id": "235f0930-47fb-4998-afed-d73167886d63",
                             "title": "What animal was used to create the engine sound of the Empire's TIE fighters?",
                             "description": "",
-                            "type": "Radios",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d",
@@ -143,7 +143,7 @@
                             "id": "def61645-c231-4522-ba2f-273b25507e53",
                             "title": "Which of these Darth Vader quotes is wrong?",
                             "description": "",
-                            "type": "Radios",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "7587eb9b-f24e-4dc0-ac94-66118b896c10",
@@ -185,7 +185,7 @@
                             "id": "def6r645-c231-4522-ba2f-273b25507e53",
                             "title": "Which 3 have wielded a green lightsaber?",
                             "description": "",
-                            "type": "Checkboxes",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "9587eb9b-f24e-4dc0-ac94-66117b896c10",
@@ -234,7 +234,7 @@
                             "id": "pef6r645-c231-4522-ba2f-273b25507e53",
                             "title": "Which 3 appear in any of the opening crawlers?",
                             "description": "",
-                            "type": "Checkboxes",
+                            "type": "General",
                             "answers": [
                               {
                                 "id": "5587eb9b-f24e-4dc0-ac94-66117b896c10",
@@ -333,7 +333,7 @@
                         "id": "rt4eedc2-d98c-4d4d-9a7c-997ce10c361f",
                         "title": "",
                         "description": "",
-                        "type": "Integer",
+                        "type": "General",
                         "answers": [
                           {
                             "id": "5rr015b1-f87c-4740-9fd4-f01f707ef558",
@@ -364,7 +364,7 @@
                         "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
                         "title": "",
                         "description": "",
-                        "type": "Textarea",
+                        "type": "General",
                         "answers": [
                           {
                             "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
@@ -386,7 +386,7 @@
                         "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
                         "title": "Do you really think that Chewbacca is {answers.chewies_age} years old?",
                         "description": "",
-                        "type": "Radios",
+                        "type": "General",
                         "answers": [
                           {
                             "id": "7587qe9b-f24e-4dc0-ac94-66118b896c10",
