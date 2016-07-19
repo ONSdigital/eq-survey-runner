@@ -1,6 +1,5 @@
 from app.templating.template_pre_processor import TemplatePreProcessor
 from app.validation.validation_store import AbstractValidationStore
-from app.answers.answer_store import AbstractAnswerStore
 from app.validation.validation_result import ValidationResult
 from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
 from app.authentication.user import User
@@ -20,7 +19,6 @@ import unittest
 class TestTemplatePreProcessor(unittest.TestCase):
     def setUp(self):
         self.validation_store = MockValidationStore()
-        self.answer_store = MockAnswerStore()
         self.schema = self._create_schema()
         self.user_journey_manager = MockUserJourneyManager()
         user = User("1", "2")
@@ -44,8 +42,8 @@ class TestTemplatePreProcessor(unittest.TestCase):
         # by the templates.  We are not testing validation here
 
         # Populate the answer store
-        self.answer_store.store_answer('answer-1', 'One')
-        self.answer_store.store_answer('answer-2', 'Two')
+        self.user_journey_manager.store_answer('answer-1', 'One')
+        self.user_journey_manager.store_answer('answer-2', 'Two')
         # We do not provide a answer for answer-3
 
         # Populate the validation store
@@ -60,7 +58,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
     def test_augment_answer(self):
         # Instantiate the pre processor using the pre-populated mock objects
-        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.user_journey_manager, self.metadata)
+        pre_proc = TemplatePreProcessor(self.schema, self.validation_store, self.user_journey_manager, self.metadata)
 
         # Get the answer objects
         answer_1 = self.schema.get_item_by_id('answer-1')
@@ -85,7 +83,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
     def test_collect_errors(self):
         # Instantiate the pre_proc using the pre-populated mock objects
-        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.user_journey_manager, self.metadata)
+        pre_proc = TemplatePreProcessor(self.schema, self.validation_store, self.user_journey_manager, self.metadata)
 
         # Get the answer objects
         answer_1 = self.schema.get_item_by_id('answer-1')
@@ -120,7 +118,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
     def test_augment_questionnaire(self):
         # Instantiate the pre_proc using the pre-populated mock objects
-        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.user_journey_manager, self.metadata)
+        pre_proc = TemplatePreProcessor(self.schema, self.validation_store, self.user_journey_manager, self.metadata)
 
         # check the attributes do not exist
         with self.assertRaises(AttributeError):
@@ -140,7 +138,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
         self.assertListEqual(self.schema.warnings['answer-2'], ['There is a warning'])
 
     def test_build_view_data(self):
-        pre_proc = TemplatePreProcessor(self.schema, self.answer_store, self.validation_store, self.user_journey_manager, self.metadata)
+        pre_proc = TemplatePreProcessor(self.schema, self.validation_store, self.user_journey_manager, self.metadata)
 
         context = pre_proc.build_view_data()
 
@@ -208,8 +206,10 @@ class MockValidationStore(AbstractValidationStore):
             return None
 
 
-class MockAnswerStore(AbstractAnswerStore):
+class MockUserJourneyManager(object):
     def __init__(self):
+        self.submitted = None
+        self.submitted_at = None
         self._answers = {}
 
     def store_answer(self, key, value):
@@ -229,12 +229,6 @@ class MockAnswerStore(AbstractAnswerStore):
 
     def clear_answers(self):
         self.clear()
-
-
-class MockUserJourneyManager(object):
-    def __init__(self):
-        self.submitted = None
-        self.submitted_at = None
 
     def get_current_location(self):
         return 'current-location'
