@@ -205,13 +205,13 @@ class SchemaParser(AbstractSchemaParser):
         :raises: SchemaParserException
 
         """
-        question = Question()
-
         try:
+            question_type = ParserUtils.get_required_string(schema, "type")
+            question = Question.get_instance(question_type)
+            question.type = question_type
             question.id = ParserUtils.get_required_string(schema, "id")
             question.title = ParserUtils.get_required_string(schema, "title")
             question.description = ParserUtils.get_required_string(schema, "description")
-            question.type = ParserUtils.get_required_string(schema, "type")
             # register the question
             questionnaire.register(question)
 
