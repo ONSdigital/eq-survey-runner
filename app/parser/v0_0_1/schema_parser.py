@@ -238,14 +238,14 @@ class SchemaParser(AbstractSchemaParser):
         :raises: SchemaParserException
 
         """
-        answer = Answer()
-
         try:
+            answer_type = ParserUtils.get_required_string(schema, 'type')
+            answer = Answer.get_instance(answer_type)
+            answer.type = answer_type
             answer.id = ParserUtils.get_required_string(schema, 'id')
             answer.code = ParserUtils.get_required_string(schema, 'q_code')
             answer.label = ParserUtils.get_optional_string(schema, 'label')
             answer.guidance = ParserUtils.get_optional_string(schema, 'guidance')
-            answer.type = ParserUtils.get_required_string(schema, 'type')
             answer.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
             answer.options = ParserUtils.get_optional_array(schema, 'options')
             answer.alias = ParserUtils.get_optional_string(schema, 'alias')
