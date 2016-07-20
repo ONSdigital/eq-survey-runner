@@ -5,7 +5,6 @@ parses it and then tests the validation rules needed before MCI can go live.
 import unittest
 
 from app.validation.validator import Validator
-from app.answers.answer_store import AbstractAnswerStore
 from app.validation.validation_store import AbstractValidationStore
 from app.schema_loader import schema_loader
 from app.parser.schema_parser_factory import SchemaParserFactory
@@ -271,7 +270,7 @@ class ValidatorTest(unittest.TestCase):
         return questionnaire
 
     def _create_mock_answers_store(self):
-        class MockAnswerStore(AbstractAnswerStore):
+        class MockAnswerStore(object):
             def __init__(self):
                 self.answers = {}
 

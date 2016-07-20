@@ -6,7 +6,6 @@ from app.libs.utils import get_locale
 from healthcheck import HealthCheck
 from flaskext.markdown import Markdown
 from app.utilities.factory import factory
-from app.answers.answer_store import AnswerStore
 from app.validation.validation_store import ValidationStore
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
@@ -42,7 +41,6 @@ logger = logging.getLogger(__name__)
 
 # setup the factory
 logger.debug("Registering factory classes")
-factory.register("answer-store", AnswerStore)
 factory.register("validation-store", ValidationStore)
 
 

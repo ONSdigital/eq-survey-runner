@@ -150,6 +150,26 @@ class UserJourneyManager(object):
         else:
             return self._schema.groups[0].blocks[0].id
 
-    # TODO temporary measure to support answer store
-    def get_first(self):
-        return self._first
+    # TODO temporary methods to support the template pre-processor
+    def get_answers(self):
+
+        # walk the list and collect all the answers
+        answers_dict = {}
+
+        page = self._first
+        answers = []
+        while page:
+            page_answers = page.page_state.get_answers()
+            answers.extend(page_answers)
+            page = page.next_page
+
+        for answer in answers:
+            answers_dict[answer.id] = answer.input
+        return answers_dict
+
+    def get_answer(self, id):
+        answers = self.get_answers()
+        if id in answers:
+            return answers[id]
+        else:
+            return None

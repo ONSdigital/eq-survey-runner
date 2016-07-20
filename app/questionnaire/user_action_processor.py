@@ -1,4 +1,3 @@
-from app.utilities.factory import factory
 from flask_login import current_user
 from app.submitter.submitter import SubmitterFactory
 from app import settings
@@ -83,8 +82,7 @@ class SubmitAnswers(UserAction):
         self._user_journey_manager = user_journey_manager
 
     def perform_action(self):
-        answer_store = factory.create("answer-store")
-        answers = answer_store.get_answers()
+        answers = self._user_journey_manager.get_answers()
         submitter = SubmitterFactory.get_submitter()
         submitted_at = submitter.send_answers(current_user, self._metadata, self._schema, answers)
         logger.debug("setting submitted at %s", submitted_at)
