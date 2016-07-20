@@ -14,7 +14,11 @@ class Item(object):
             child.update_state(user_input)
 
     def get_answer(self, id):
-        return self.answers[id]
+        answers = self.get_answers()
+        if id in answers:
+            return answers[id]
+        else:
+            return None
 
     def get_answers(self):
         # TODO we can optimise this away once we remove the answer store

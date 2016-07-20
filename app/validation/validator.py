@@ -15,10 +15,10 @@ class ValidationException(Exception):
 
 
 class Validator(object):
-    def __init__(self, schema, validation_store, answer_store):
+    def __init__(self, schema, validation_store, user_journey_manager):
         self._schema = schema
         self._validation_store = validation_store
-        self._answer_store = answer_store
+        self._user_journey_manager = user_journey_manager
 
         # Set the factory class here, so we can override it for tests
         self._type_validator_factory_class = TypeValidatorFactory
@@ -87,7 +87,7 @@ class Validator(object):
             # check for additional validation rules
             if item.validation:
                 for rule in item.validation:
-                    result = rule.validate(item_data, self._answer_store)
+                    result = rule.validate(item_data, self._user_journey_manager)
                     if not result.is_valid:
                         self._update_messages(item, result)
                         return result
@@ -111,7 +111,7 @@ class Validator(object):
 
         if item and item.validation:
             for rule in item.validation:
-                result = rule.validate(None, self._answer_store)
+                result = rule.validate(None, self._user_journey_manager)
                 if not result.is_valid:
                     self._validation_store.store_result(item.id, result)
                     return

@@ -10,9 +10,8 @@ logger = logging.getLogger(__name__)
 
 
 class TemplatePreProcessor(object):
-    def __init__(self, schema, answer_store, validation_store, user_journey_manager, metadata):
+    def __init__(self, schema, validation_store, user_journey_manager, metadata):
         self._schema = schema
-        self._answer_store = answer_store
         self._validation_store = validation_store
         self._user_journey_manager = user_journey_manager
         self._metadata = metadata
@@ -142,9 +141,7 @@ class TemplatePreProcessor(object):
         return navigation_meta
 
     def _augment_answer(self, answer):
-        answer.value = None
-        if answer.id in self._answer_store.get_answers().keys():
-            answer.value = self._answer_store.get_answer(answer.id)
+        answer.value = self._user_journey_manager.get_answer(answer.id)
 
     def _augment_questionnaire(self):
         errors = OrderedDict()
@@ -185,7 +182,7 @@ class TemplatePreProcessor(object):
 
     def _collect_answers(self):
         # Collect all the answers and add them to the schema
-        for answer_id in self._answer_store.get_answers().keys():
+        for answer_id in self._user_journey_manager.get_answers().keys():
             answer = self._schema.get_item_by_id(answer_id)
             self._augment_answer(answer)
 
@@ -238,7 +235,7 @@ class TemplatePreProcessor(object):
         for alias, item_id in aliases.items():
             # TODO remove this try except
             try:
-                value = self._answer_store.get_answer(item_id)
+                value = self._user_journey_manager.get_answer(item_id)
             except AttributeError:
                 value = None
             if value is None:

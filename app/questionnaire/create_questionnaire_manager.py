@@ -1,4 +1,5 @@
 from app.validation.validator import Validator
+from app.questionnaire_state.user_journey_manager import UserJourneyManager
 from app.routing.routing_engine import RoutingEngine
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.main import errors
@@ -24,21 +25,22 @@ def create_questionnaire_manager():
     if not schema:
         return errors.page_not_found()
 
-    # load the answer store
-    answer_store = factory.create("answer-store")
-
     # load the validation store
     validation_store = factory.create("validation-store")
 
+    user_journey_manager = UserJourneyManager.get_instance()
+    if not user_journey_manager:
+        logger.debug("Constructing brand new User Journey Manager")
+        user_journey_manager = UserJourneyManager.new_instance(schema)
     # Create the validator
-    validator = Validator(schema, validation_store, answer_store)
+    validator = Validator(schema, validation_store, user_journey_manager)
 
     # Create the routing engine
     routing_engine = RoutingEngine(schema)
 
     # instantiate the questionnaire manager
     questionnaire_manager = QuestionnaireManager(schema,
-                                                 answer_store,
+                                                 user_journey_manager,
                                                  validator,
                                                  validation_store,
                                                  routing_engine,

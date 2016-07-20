@@ -1,6 +1,5 @@
 import unittest
 from app.validation.validator import Validator
-from app.answers.answer_store import AbstractAnswerStore
 from app.validation.validation_store import AbstractValidationStore
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
@@ -143,7 +142,7 @@ class ValidatorTest(unittest.TestCase):
         return questionnaire_1
 
     def _create_mock_answers_store(self):
-        class MockAnswerStore(AbstractAnswerStore):
+        class MockAnswerStore(object):
             def __init__(self):
                 self._answers = {}
 

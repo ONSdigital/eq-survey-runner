@@ -1,6 +1,6 @@
 import bleach
 from app.templating.template_pre_processor import TemplatePreProcessor
-from app.questionnaire_state.user_journey_manager import UserJourneyManager
+
 from app.questionnaire.user_action_processor import UserActionProcessor
 from app.authentication.session_management import session_manager
 from flask_login import current_user
@@ -11,13 +11,9 @@ logger = logging.getLogger(__name__)
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema, answer_store, validator, validation_store, routing_engine, metadata):
+    def __init__(self, schema, user_journey_manager, validator, validation_store, routing_engine, metadata):
         self._schema = schema
-        self._user_journey_manager = UserJourneyManager.get_instance()
-        if not self._user_journey_manager:
-            logger.error("Constructing brand new User Journey Manager")
-            self._user_journey_manager = UserJourneyManager.new_instance(self._schema)
-        self._answer_store = answer_store
+        self._user_journey_manager = user_journey_manager
         self._validator = validator
         self._validation_store = validation_store
         self._metadata = metadata
@@ -25,7 +21,7 @@ class QuestionnaireManager(object):
         self._user_action_processor = UserActionProcessor(self._schema, self._metadata, self._user_journey_manager)
 
         # TODO lifecycle issue here - calling answer store before its ready
-        self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._user_journey_manager, self._metadata)
+        self._pre_processor = TemplatePreProcessor(self._schema, self._validation_store, self._user_journey_manager, self._metadata)
 
     @property
     def submitted(self):
