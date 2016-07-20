@@ -13,7 +13,7 @@ let config = {
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
-  waitforTimeout: 500000,
+  waitforTimeout: 10000,
   updateJob: true,
   specs: [paths.test.wdioSpec],
   sync: true,
@@ -26,14 +26,14 @@ let config = {
   mochaOpts: {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
-    timeout: 100000
+    timeout: 60000
   }
 }
 
 const sauceLabsConfig = {
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
-  capabilities: [chrome, firefox, ie11, ie10, ie9, ie8]
+  capabilities: [chrome, ie11]
 }
 
 if (process.env.TRAVIS === 'true') {
