@@ -3,14 +3,12 @@ from flask_login import current_user
 from .. import main_blueprint
 from app.schema_loader.schema_loader import load_schema
 from app.parser.schema_parser_factory import SchemaParserFactory
-from app.navigation.navigator import Navigator
+from app.questionnaire_state.user_journey_manager import UserJourneyManager
 from app.authentication.authenticator import Authenticator
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.main import errors
-from app.utilities.factory import factory
 from app.metadata.metadata_store import MetaDataStore
-from app.routing.routing_engine import RoutingEngine
 import logging
 
 
@@ -55,17 +53,12 @@ def login():
         if not schema:
             return errors.page_not_found()
 
-        # load the navigation history
-        navigation_history = factory.create("navigation-history")
-
-        # Create the routing engine
-        routing_engine = RoutingEngine(schema)
-
-        # create the navigator
-        navigator = Navigator(schema, metadata, navigation_history, routing_engine)
+        user_journey_manager = UserJourneyManager.get_instance()
+        if not user_journey_manager:
+            user_journey_manager = UserJourneyManager.new_instance(schema)
 
         # get the current location of the user
-        current_location = navigator.get_current_location()
+        current_location = user_journey_manager.get_current_location()
 
         current_user.save()
 

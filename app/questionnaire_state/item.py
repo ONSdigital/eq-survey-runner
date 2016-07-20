@@ -4,7 +4,7 @@ class Item(object):
     def __init__(self, id):
         self.id = id
         self.sections = []
-        self.children = None
+        self.children = []
         self.is_valid = None
         self.errors = None
         self.warnings = None

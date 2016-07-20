@@ -1,18 +1,20 @@
 from collections import OrderedDict
 from flask_login import current_user
-from app.submitter.converter import SubmitterConstants
-from flask import session
 from app.piping.plumber import Plumber
 from app.libs.utils import ObjectFromDict, convert_tx_id
 from app.schema.questionnaire import QuestionnaireException
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class TemplatePreProcessor(object):
-    def __init__(self, schema, answer_store, validation_store, navigator, metadata):
+    def __init__(self, schema, answer_store, validation_store, user_journey_manager, metadata):
         self._schema = schema
         self._answer_store = answer_store
         self._validation_store = validation_store
-        self._navigator = navigator
+        self._user_journey_manager = user_journey_manager
         self._metadata = metadata
         self._current_block = None
         self._current_group = None
@@ -20,9 +22,9 @@ class TemplatePreProcessor(object):
 
         # Get the current location or the first block
         try:
-            self._current_block = self._schema.get_item_by_id(self._navigator.get_current_location())
+            self._current_block = self._schema.get_item_by_id(self._user_journey_manager.get_current_location())
         except QuestionnaireException:
-            self._current_block = self._schema.get_item_by_id(self._navigator.get_first_block())
+            self._current_block = self._schema.get_item_by_id(self._schema.groups[0].blocks[0].id)
 
         # get the group
         self._current_group = self._current_block.container
@@ -38,7 +40,7 @@ class TemplatePreProcessor(object):
             'thank-you': 'thank-you.html'
         }
 
-        current_location = self._navigator.get_current_location()
+        current_location = self._user_journey_manager.get_current_location()
         if current_location in known_templates.keys():
             return known_templates[current_location]
         else:
@@ -51,7 +53,7 @@ class TemplatePreProcessor(object):
         self._plumb_questionnaire()
 
         # Collect the answers for all pages except the intro and thank you pages
-        current_location = self._navigator.get_current_location()
+        current_location = self._user_journey_manager.get_current_location()
         if current_location != 'introduction' and current_location != 'thank-you':
             self._collect_answers()
 
@@ -102,10 +104,11 @@ class TemplatePreProcessor(object):
             # But we can silently ignore them under those circumstanes
             pass
 
-        # TODO: This is still not the right place to do this...
-        if session and SubmitterConstants.SUBMITTED_AT_KEY in session:
+        logger.error("Templated pre-processor submitted at %s", self._user_journey_manager.submitted_at)
+        if self._user_journey_manager.submitted_at:
+            logger.error("Templated pre-processor submitted at %s", self._user_journey_manager.submitted_at)
             survey_meta['submitted'] = True
-            survey_meta['submitted_at'] = session[SubmitterConstants.SUBMITTED_AT_KEY]
+            survey_meta['submitted_at'] = self._user_journey_manager.submitted_at
 
         return survey_meta
 
@@ -128,7 +131,7 @@ class TemplatePreProcessor(object):
     def _build_navigation_meta(self):
         navigation_meta = {
             "history": None,
-            "current_position": self._navigator.get_current_location(),
+            "current_position": self._user_journey_manager.get_current_location(),
             "current_block_id": None,
             "current_group_id": None
         }

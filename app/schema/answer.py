@@ -1,5 +1,8 @@
+from app.questionnaire_state.answer import Answer as State
+from app.schema.item import Item
 
-class Answer(object):
+
+class Answer(Item):
     def __init__(self):
         self.id = None
         self.label = ""
@@ -15,3 +18,9 @@ class Answer(object):
         self.templatable_properties = []
         self.options = []
         self.alias = None
+
+    def construct_state(self):
+        return State(self.id)
+
+    def get_state_class(self):
+        return State

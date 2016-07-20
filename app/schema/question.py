@@ -1,7 +1,9 @@
 from app.schema.display import Display
+from app.schema.item import Item
+from app.questionnaire_state.question import Question as State
 
 
-class Question(object):
+class Question(Item):
     def __init__(self):
         self.id = None
         self.title = None
@@ -20,3 +22,6 @@ class Question(object):
         if answer not in self.answers:
             self.answers.append(answer)
             answer.container = self
+
+    def get_state_class(self):
+        return State

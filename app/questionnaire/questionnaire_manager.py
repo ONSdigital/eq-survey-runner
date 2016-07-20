@@ -1,6 +1,9 @@
 import bleach
 from app.templating.template_pre_processor import TemplatePreProcessor
 from app.questionnaire_state.user_journey_manager import UserJourneyManager
+from app.questionnaire.user_action_processor import UserActionProcessor
+from app.authentication.session_management import session_manager
+from flask_login import current_user
 import logging
 
 
@@ -8,25 +11,36 @@ logger = logging.getLogger(__name__)
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema, answer_store, validator, validation_store, navigator, navigation_history, metadata):
+    def __init__(self, schema, answer_store, validator, validation_store, routing_engine, metadata):
         self._schema = schema
         self._user_journey_manager = UserJourneyManager.get_instance()
         if not self._user_journey_manager:
+            logger.error("Constructing brand new User Journey Manager")
             self._user_journey_manager = UserJourneyManager.new_instance(self._schema)
         self._answer_store = answer_store
         self._validator = validator
         self._validation_store = validation_store
-        self._navigator = navigator
-        self._navigation_history = navigation_history
         self._metadata = metadata
-        # TODO lifecycle issue here - calling answer store before its ready
-        self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._navigator, self._metadata)
+        self._routing_engine = routing_engine
+        self._user_action_processor = UserActionProcessor(self._schema, self._metadata, self._user_journey_manager)
 
-    def go_to_state(self, location):
-        if self._schema.item_exists(location):
-            self._user_journey_manager.go_to_state(location)
+        # TODO lifecycle issue here - calling answer store before its ready
+        self._pre_processor = TemplatePreProcessor(self._schema, self._answer_store, self._validation_store, self._user_journey_manager, self._metadata)
+
+    @property
+    def submitted(self):
+        return self._user_journey_manager.submitted_at is not None
+
+    def go_to(self, location):
+        if location == 'first':
+            # convenience method for routing to the first block
+            location = self._routing_engine.get_first_block()
+        self._user_journey_manager.go_to_state(location)
 
     def process_incoming_answers(self, location, post_data):
+        # ensure we're in the correct location
+        self._user_journey_manager.go_to_state(location)
+
         # process incoming post data
         user_action, user_answers = self._process_incoming_post_data(post_data)
 
@@ -35,31 +49,31 @@ class QuestionnaireManager(object):
         for key, value in user_answers.items():
             cleaned_user_answers[key] = self._clean_input(value)
 
-        if self._schema.item_exists(location):
-            # updated state
-            self._user_journey_manager.update_state(location, user_answers)
-
-        # update the answer store with data
-        for key, value in cleaned_user_answers.items():
-            self._answer_store.store_answer(key, value)
+        # updated state
+        self._user_journey_manager.update_state(location, user_answers)
 
         # get the current location in the questionnaire
-        current_location = self._navigator.get_current_location()
+        current_location = self._user_journey_manager.get_current_location()
 
         # run the validator to update the validation_store
         if self._validator.validate(cleaned_user_answers):
 
+            # process the user action
+            self._user_action_processor.process_action(user_action)
+
             # do any routing
-            next_location = self._navigator.get_next_location(current_location, user_action)
-            logger.debug("Going to location %s", next_location)
+            next_location = self._routing_engine.get_next_location(current_location)
+            logger.debug("next location after routing is %s", next_location)
+
             # go to that location
-            self._navigator.go_to(next_location)
+            self._user_journey_manager.go_to_state(next_location)
+            logger.debug("Going to location %s", next_location)
         else:
             # bug fix for using back button which then fails validation
-            self._navigator.go_to(current_location)
+            self._user_journey_manager.go_to_state(current_location)
 
         # now return the location
-        return self._navigator.get_current_location()
+        return self._user_journey_manager.get_current_location()
 
     def get_rendering_context(self):
         return self._pre_processor.build_view_data()
@@ -114,13 +128,11 @@ class QuestionnaireManager(object):
             return value
 
     def get_current_location(self):
-        return self._navigator.get_current_location()
+        return self._user_journey_manager.get_current_location()
 
-    def go_to_location(self, location):
-        self._navigator.go_to(location)
-
-    def go_to_first(self):
-        self._navigator.go_to(self._navigator.get_first_block())
-
-    def get_schema(self):
-        return self._schema
+    def delete_user_data(self):
+        # once the survey has been submitted
+        # delete all user data from the database
+        current_user.delete_questionnaire_data()
+        # and clear out the session state
+        session_manager.clear()

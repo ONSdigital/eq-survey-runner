@@ -1,6 +1,5 @@
 from app.validation.validator import Validator
 from app.routing.routing_engine import RoutingEngine
-from app.navigation.navigator import Navigator
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.main import errors
 from app.utilities.factory import factory
@@ -37,21 +36,11 @@ def create_questionnaire_manager():
     # Create the routing engine
     routing_engine = RoutingEngine(schema)
 
-    # load the navigation history
-    navigation_history = factory.create("navigation-history")
-
-    # create the navigator
-    navigator = Navigator(schema, metadata, navigation_history, routing_engine)
-
-    # if navigator.get_current_location() == "introduction" or navigator.get_current_location() is None:
-    #     navigator.go_to('questionnaire')
-
     # instantiate the questionnaire manager
     questionnaire_manager = QuestionnaireManager(schema,
                                                  answer_store,
                                                  validator,
                                                  validation_store,
-                                                 navigator,
-                                                 navigation_history,
+                                                 routing_engine,
                                                  metadata)
     return questionnaire_manager
