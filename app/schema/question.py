@@ -1,7 +1,6 @@
 from app.schema.display import Display
 from app.schema.item import Item
 from app.questionnaire_state.question import Question as State
-from app.schema.questionnaire import QuestionnaireException
 
 
 class Question(Item):
@@ -18,19 +17,6 @@ class Question(Item):
         self.templatable_properties = ['title', 'description']
         self.display = Display()
         self.type = None
-
-    @staticmethod
-    def get_instance(question_type):
-        # Do imports here to avoid circular dependencies
-        from app.schema.questions.general_question import GeneralQuestion
-        from app.schema.questions.date_range_question import DateRangeQuestion
-
-        if question_type.upper() == 'GENERAL':
-            return GeneralQuestion()
-        elif question_type.upper() == 'DATERANGE':
-            return DateRangeQuestion()
-        else:
-            raise QuestionnaireException('Unknown question type "{}"'.format(question_type))
 
     def add_answer(self, answer):
         if answer not in self.answers:
