@@ -82,23 +82,7 @@ class QuestionnaireManager(object):
         user_action = None
 
         for key in post_data.keys():
-            if key.endswith('-day'):
-                # collect the matching -month, and -year fields and return a single answer for validation
-                answer_id = key[0:-4]
-                month_key = answer_id + '-month'
-                year_key = answer_id + '-year'
-
-                if month_key not in post_data.keys() or year_key not in post_data.keys():
-                    continue
-
-                # We do not validate here, only concatenate the inputs into a single answer which is validated elsewhere
-                # we concatenate the fields into a date of the format dd/mm/yyyy
-                user_answers[answer_id] = post_data[key] + '/' + post_data[month_key] + '/' + post_data[year_key]
-
-            elif key.endswith('-month') or key.endswith('-year'):
-                # skip theses, they are handled above
-                continue
-            elif key.startswith('action['):
+            if key.startswith('action['):
                 # capture the required action
                 user_action = key[7:-1]
             elif key.endswith('[]'):

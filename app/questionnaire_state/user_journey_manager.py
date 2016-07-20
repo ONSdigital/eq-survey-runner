@@ -3,6 +3,7 @@ from app.questionnaire_state.state_manager import StateManager
 from app.questionnaire_state.introduction import Introduction as StateIntroduction
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
 from app.questionnaire_state.summary import Summary as StateSummary
+from app.schema.questionnaire import QuestionnaireException
 import logging
 
 
@@ -104,7 +105,12 @@ class UserJourneyManager(object):
             logger.debug("Current location %s", self.get_current_location())
             if item_id == self._current.item_id:
                 state = self._current.page_state
-                state.update_state(user_input)
+                schema_item = None
+                try:
+                    schema_item = self._schema.get_item_by_id(item_id)
+                except QuestionnaireException:
+                    pass
+                state.update_state(user_input, schema_item)
                 StateManager.save_state(self)
             else:
                 raise ValueError("Updating state for incorrect page")

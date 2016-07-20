@@ -4,6 +4,7 @@ from app.validation.type_validator_factory import TypeValidatorFactory
 from app.validation.abstract_validator import AbstractValidator
 from app.schema.answer import Answer
 from flask.ext.babel import gettext as _
+from app.schema.questionnaire import QuestionnaireException
 import logging
 
 
@@ -39,30 +40,30 @@ class Validator(object):
 
         for item_id in user_data.keys():
             logger.debug('Attempting to validate {}'.format(item_id))
-            item = self._schema.get_item_by_id(item_id)
+            try:
+                item = self._schema.get_item_by_id(item_id)
 
-            # Currently the datefields trip this up
-            if not item:
-                logger.info('Ignoring {}'.format(item_id))
-                # raise ValidationException('{} is not a known item'.format(item_id))
-                continue
+                result = self._validate_item(item, user_data[item_id])
+                logger.debug('Item {} ({}) valid: {}'.format(item_id, type(item), result.is_valid))
+                self._validation_store.store_result(item_id, result)
 
-            result = self._validate_item(item, user_data[item_id])
-            logger.debug('Item {} ({}) valid: {}'.format(item_id, type(item), result.is_valid))
-            self._validation_store.store_result(item_id, result)
-
-            if result.is_valid:
-                self._validate_container(item.container, user_data)
+                if result.is_valid:
+                    self._validate_container(item.container, user_data)
+            except QuestionnaireException:
+                pass
 
         # Return true/False for the set of values
         for item_id in user_data.keys():
-            result = self._validation_store.get_result(item_id)
-            item = self._schema.get_item_by_id(item_id)
-            container_result = self._validation_store.get_result(item.container.id)
+            try:
+                result = self._validation_store.get_result(item_id)
+                item = self._schema.get_item_by_id(item_id)
+                container_result = self._validation_store.get_result(item.container.id)
 
-            if result:
-                if not result.is_valid or (container_result and not container_result.is_valid):
-                    return False
+                if result:
+                    if not result.is_valid or (container_result and not container_result.is_valid):
+                        return False
+            except QuestionnaireException:
+                pass
 
         return True
 
@@ -74,16 +75,8 @@ class Validator(object):
             if not result.is_valid:
                 self._update_messages(item, result)
                 return result
-
         # Validate if data is present
         if item_data:
-            # Implicit -type-checking
-            logger.debug('Type Checking ({}) with data {}'.format(item.id, item_data))
-            result = self._type_check(item, item_data)
-            if not result.is_valid:
-                self._update_messages(item, result)
-                return result
-
             # check for additional validation rules
             if item.validation:
                 for rule in item.validation:

@@ -9,9 +9,9 @@ class Item(object):
         self.errors = None
         self.warnings = None
 
-    def update_state(self, user_input):
+    def update_state(self, user_input, schema_item):
         for child in self.children:
-            child.update_state(user_input)
+            child.update_state(user_input, schema_item)
 
     def get_answer(self, id):
         answers = self.get_answers()
