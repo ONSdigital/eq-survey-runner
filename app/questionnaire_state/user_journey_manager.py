@@ -1,5 +1,3 @@
-from app.schema.block import Block as SchemaBlock
-from app.questionnaire_state.block import Block as StateBlock
 from app.questionnaire_state.page import Page
 from app.questionnaire_state.state_manager import StateManager
 from app.questionnaire_state.introduction import Introduction as StateIntroduction
@@ -88,10 +86,7 @@ class UserJourneyManager(object):
                 state = StateSummary(item_id)
             else:
                 item = self._schema.get_item_by_id(item_id)
-                if isinstance(item, SchemaBlock):
-                    state = StateBlock.construct_state(item)
-                else:
-                    raise TypeError("Can only handle blocks and supported valid location")
+                state = item.construct_state()
             page = Page(item_id, state)
             self._append(page)
             StateManager.save_state(self)

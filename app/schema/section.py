@@ -1,7 +1,9 @@
 from app.schema.display import Display
+from app.schema.item import Item
+from app.questionnaire_state.section import Section as State
 
 
-class Section(object):
+class Section(Item):
     def __init__(self):
         self.id = None
         self.title = None
@@ -19,3 +21,6 @@ class Section(object):
         if question not in self.questions:
             self.questions.append(question)
             question.container = self
+
+    def get_state_class(self):
+        return State

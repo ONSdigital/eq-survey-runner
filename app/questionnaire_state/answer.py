@@ -15,8 +15,3 @@ class Answer(Item):
 
     def get_answers(self):
         return [self]
-
-    @staticmethod
-    def construct_state(item):
-        state = Answer(item.id)
-        return state
