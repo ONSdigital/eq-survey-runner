@@ -12,7 +12,8 @@ class TestPlumber(unittest.TestCase):
                 "property_two": "value two"
             }),
             'dates': ObjectFromDict({
-                "first_april_2016": datetime.strptime('01-04-2016', "%d-%m-%Y")
+                "first_april_2016": datetime.strptime('01-04-2016', "%d-%m-%Y"),
+                'none_date': None
             })
         }
 
@@ -20,6 +21,7 @@ class TestPlumber(unittest.TestCase):
 
     def test_plumb_item(self):
         item = ObjectFromDict({
+            "id": "item1",
             "templatable_properties": ['description'],
             "description": "Property One is {simple.property_one}, while Property Two is {simple.property_two}"
         })
@@ -31,6 +33,7 @@ class TestPlumber(unittest.TestCase):
         self.assertEquals(item.description, "Property One is value one, while Property Two is value two")
 
         item2 = ObjectFromDict({
+            "id": "item2",
             "templatable_properties": ['property_one', 'property_two', 'property_three'],
             "property_one": "Date is {dates.first_april_2016:%-d %B %Y}",
             "property_two": "Date is {dates.first_april_2016:%Y/%m/%d}",
@@ -51,6 +54,7 @@ class TestPlumber(unittest.TestCase):
         self.assertEquals(item2.property_four, "Not plumbed {dates.first_april_2016}")
 
         item3 = ObjectFromDict({
+            "id": "item3",
             'templatable_properties': ['funky_formatting', 'random_brace', 'mixing_it_up'],
             'funky_formatting': 'This is an opening brace {{ and this is a closing brace }}',
             'random_brace': 'This will not throw an error {',
@@ -68,6 +72,7 @@ class TestPlumber(unittest.TestCase):
         self.assertEquals(item3.mixing_it_up, '{ value one value two }')
 
         item4 = ObjectFromDict({
+            "id": "item4",
             'templatable_properties': ['unknown_parameter'],
             'unknown_parameter': 'This expansion is {unknown}'
         })
@@ -77,3 +82,15 @@ class TestPlumber(unittest.TestCase):
         self.plumber.plumb_item(item4)
 
         self.assertEquals(item4.unknown_parameter, 'This expansion is {unknown}')
+
+        item5 = ObjectFromDict({
+            "id": "item5",
+            'templatable_properties': ['none_date'],
+            'none_date': 'This date is {dates.none_date:%Y/%m/%d}'
+        })
+
+        self.assertEquals(item5.none_date, 'This date is {dates.none_date:%Y/%m/%d}')
+
+        self.assertRaises(Exception, self.plumber.plumb_item, item5)
+
+        self.assertEquals(item5.none_date, 'This date is {dates.none_date:%Y/%m/%d}')
