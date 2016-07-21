@@ -20,6 +20,9 @@ let config = {
   capabilities: [{
     name: 'Chrome (local)',
     browserName: 'chrome'
+  }, {
+    name: 'Firefox (local)',
+    browserName: 'firefox'
   }],
   framework: 'mocha',
   reporters: ['dot'],
