@@ -1,4 +1,8 @@
 import re
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class Plumber(object):
@@ -36,10 +40,16 @@ class Plumber(object):
         Perform the string replacement directly on the object
         '''
         if hasattr(item, templatable_property):
+            logger.debug('Piping property "{}" of item "{}"'.format(templatable_property, item.id))
+            template = getattr(item, templatable_property)
             try:
-                template = getattr(item, templatable_property)
                 formatting_data = self._context
                 plumbed_value = template.format(**formatting_data)
                 setattr(item, templatable_property, plumbed_value)
             except KeyError:
+                logger.warn('Property "{}" of item "{}" cannot be piped'.format(templatable_property, item.id))
                 pass    # Do nothing, leave the propery as is
+            except Exception as e:
+                logger.error('Data required to pip property "{}" of item "{}" is invalid.  The template is "{}"'.format(templatable_property, item.id, template))  # NOQA
+                logger.exception(e)
+                raise e
