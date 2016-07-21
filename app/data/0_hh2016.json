@@ -85,7 +85,7 @@
                                     },
                                     "id": "88824eff-7bb6-443f-85cb-8c2db016d44c",
                                     "title": "Please select your age group",
-                                    "type": "Radios",
+                                    "type": "General",
                                     "validation": []
                                 },
                                 {
@@ -138,7 +138,7 @@
                                     },
                                     "id": "b8a803ba-2048-46dc-83cf-9ef9000d7a92",
                                     "title": "Did you have help to log in?",
-                                    "type": "Radios",
+                                    "type": "General",
                                     "validation": []
                                 },
                                 {
@@ -171,7 +171,7 @@
                                     },
                                     "id": "d8a803ga-2048-46dc-83cf-9ef9000d7a92",
                                     "title": "If tomorrow was Census day, how would your prefer to complete your Census questionnaire?",
-                                    "type": "Radios",
+                                    "type": "General",
                                     "validation": []
                                 },
                                 {
@@ -238,7 +238,7 @@
                                     },
                                     "id": "235f0930-47fb-4998-afed-d73167886d63",
                                     "title": "Which device would you use?",
-                                    "type": "Checkboxes",
+                                    "type": "General",
                                     "validation": []
                                 },
                                 {
@@ -305,7 +305,7 @@
                                     },
                                     "id": "def61645-c231-4522-ba2f-273b25507e53",
                                     "title": "Why would you choose to do it on paper",
-                                    "type": "Checkboxes",
+                                    "type": "General",
                                     "validation": []
                                 },
                                 {
@@ -392,7 +392,7 @@
                                     },
                                     "id": "def6r645-c231-4522-ba2f-273b25507e53",
                                     "title": "If you needed help or advice to complete your Census questionnaire online which of the following would you use?",
-                                    "type": "Checkboxes",
+                                    "type": "General",
                                     "validation": []
                                 },
                                 {
@@ -429,7 +429,7 @@
                                     },
                                     "id": "pef6r645-c231-4522-ba2f-273b25507e53",
                                     "title": "Did you visit the help facility at http://www.ons.gov.uk/census?",
-                                    "type": "Radios",
+                                    "type": "General",
                                     "validation": []
                                 },
                                 {
@@ -466,7 +466,7 @@
                                     },
                                     "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
                                     "title": "Did you find what you needed?",
-                                    "type": "Radios",
+                                    "type": "General",
                                     "validation": []
                                 }
                             ],

@@ -24,3 +24,6 @@ class Answer(Item):
 
     def get_state_class(self):
         return State
+
+    def get_typed_value(self, post_vars):
+        pass

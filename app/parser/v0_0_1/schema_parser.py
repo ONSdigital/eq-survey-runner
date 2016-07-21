@@ -13,15 +13,28 @@ from app.schema.questionnaire import Questionnaire
 from app.schema.group import Group
 from app.schema.block import Block
 from app.schema.section import Section
-from app.schema.question import Question
-from app.schema.answer import Answer
 from app.schema.display import Display
 from app.schema.properties import Properties
 
 from app.schema.introduction import Introduction
 
+from app.schema.questions.general_question import GeneralQuestion
+from app.schema.questions.date_range_question import DateRangeQuestion
+
+from app.schema.answers.checkbox_answer import CheckboxAnswer
+from app.schema.answers.currency_answer import CurrencyAnswer
+from app.schema.answers.date_answer import DateAnswer
+from app.schema.answers.integer_answer import IntegerAnswer
+from app.schema.answers.percentage_answer import PercentageAnswer
+from app.schema.answers.positiveinteger_answer import PositiveIntegerAnswer
+from app.schema.answers.radio_answer import RadioAnswer
+from app.schema.answers.textarea_answer import TextareaAnswer
+from app.schema.answers.textfield_answer import TextfieldAnswer
+
 import logging
 import copy
+from app.utilities.factory import Factory
+
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +54,24 @@ class SchemaParser(AbstractSchemaParser):
         """
         self._version = "0.0.1"
         self._schema = schema
+        self.answer_factory = Factory()
+        self.answer_factory.register_all({
+            'CHECKBOX': CheckboxAnswer,
+            'CURRENCY': CurrencyAnswer,
+            'DATE': DateAnswer,
+            'INTEGER': IntegerAnswer,
+            'PERCENTAGE': PercentageAnswer,
+            'POSITIVEINTEGER': PositiveIntegerAnswer,
+            'RADIO': RadioAnswer,
+            'TEXTAREA': TextareaAnswer,
+            'TEXTFIELD': TextfieldAnswer
+        })
+
+        self.question_factory = Factory()
+        self.question_factory.register_all({
+            'GENERAL': GeneralQuestion,
+            'DATERANGE': DateRangeQuestion
+        })
 
     def get_parser_version(self):
         """Return which version of the parser
@@ -205,13 +236,13 @@ class SchemaParser(AbstractSchemaParser):
         :raises: SchemaParserException
 
         """
-        question = Question()
-
         try:
+            question_type = ParserUtils.get_required_string(schema, "type")
+            question = self.question_factory.create(question_type.upper())
+            question.type = question_type
             question.id = ParserUtils.get_required_string(schema, "id")
             question.title = ParserUtils.get_required_string(schema, "title")
             question.description = ParserUtils.get_required_string(schema, "description")
-            question.type = ParserUtils.get_required_string(schema, "type")
             # register the question
             questionnaire.register(question)
 
@@ -238,14 +269,14 @@ class SchemaParser(AbstractSchemaParser):
         :raises: SchemaParserException
 
         """
-        answer = Answer()
-
         try:
+            answer_type = ParserUtils.get_required_string(schema, 'type')
+            answer = self.answer_factory.create(answer_type.upper())
+            answer.type = answer_type
             answer.id = ParserUtils.get_required_string(schema, 'id')
             answer.code = ParserUtils.get_required_string(schema, 'q_code')
             answer.label = ParserUtils.get_optional_string(schema, 'label')
             answer.guidance = ParserUtils.get_optional_string(schema, 'guidance')
-            answer.type = ParserUtils.get_required_string(schema, 'type')
             answer.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
             answer.options = ParserUtils.get_optional_array(schema, 'options')
             answer.alias = ParserUtils.get_optional_string(schema, 'alias')
