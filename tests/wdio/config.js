@@ -10,7 +10,7 @@ let sauceConnectProcess
 let config = {
   // Level of logging verbosity: silent | verbose | command | data | result | error
   logLevel: 'verbose',
-  maxInstances: 2,
+  maxInstances: 1,
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
