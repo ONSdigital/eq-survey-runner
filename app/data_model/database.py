@@ -21,12 +21,12 @@ class QuestionnaireState(base):
         self.state = json.dumps(data)
 
     def set_data(self, data):
-        logger.debug("Setting data for questionnaire state %s", data)
+        logger.debug("Setting data for questionnaire state")
         self.state = json.dumps(data)
 
     def get_data(self):
         data = json.loads(self.state)
-        logger.debug("Loading questionnaire state %s", data)
+        logger.debug("Loading questionnaire state")
         return data
 
     def __repr__(self):

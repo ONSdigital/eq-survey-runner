@@ -19,6 +19,8 @@ class TemplatePreProcessor(object):
         self._current_group = None
         self._plumber = None
 
+    def initialize(self):
+
         # Get the current location or the first block
         try:
             self._current_block = self._schema.get_item_by_id(self._user_journey_manager.get_current_location())
@@ -103,9 +105,8 @@ class TemplatePreProcessor(object):
             # But we can silently ignore them under those circumstanes
             pass
 
-        logger.error("Templated pre-processor submitted at %s", self._user_journey_manager.submitted_at)
         if self._user_journey_manager.submitted_at:
-            logger.error("Templated pre-processor submitted at %s", self._user_journey_manager.submitted_at)
+            logger.debug("Template pre-processor submitted at %s", self._user_journey_manager.submitted_at)
             survey_meta['submitted'] = True
             survey_meta['submitted_at'] = self._user_journey_manager.submitted_at
 

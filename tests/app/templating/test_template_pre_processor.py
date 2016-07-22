@@ -59,6 +59,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
     def test_augment_answer(self):
         # Instantiate the pre processor using the pre-populated mock objects
         pre_proc = TemplatePreProcessor(self.schema, self.validation_store, self.user_journey_manager, self.metadata)
+        pre_proc.initialize()
 
         # Get the answer objects
         answer_1 = self.schema.get_item_by_id('answer-1')
@@ -84,6 +85,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
     def test_collect_errors(self):
         # Instantiate the pre_proc using the pre-populated mock objects
         pre_proc = TemplatePreProcessor(self.schema, self.validation_store, self.user_journey_manager, self.metadata)
+        pre_proc.initialize()
 
         # Get the answer objects
         answer_1 = self.schema.get_item_by_id('answer-1')
@@ -119,6 +121,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
     def test_augment_questionnaire(self):
         # Instantiate the pre_proc using the pre-populated mock objects
         pre_proc = TemplatePreProcessor(self.schema, self.validation_store, self.user_journey_manager, self.metadata)
+        pre_proc.initialize()
 
         # check the attributes do not exist
         with self.assertRaises(AttributeError):
@@ -139,6 +142,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
     def test_build_view_data(self):
         pre_proc = TemplatePreProcessor(self.schema, self.validation_store, self.user_journey_manager, self.metadata)
+        pre_proc.initialize()
 
         context = pre_proc.build_view_data()
 

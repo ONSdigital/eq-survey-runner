@@ -101,7 +101,7 @@ class UserJourneyManager(object):
         logger.error("Updating state for item %s", item_id)
         if item_id in self._valid_locations:
             logger.debug("item id is %s", item_id)
-            logger.error("Current location %s", self.get_current_location())
+            logger.debug("Current location %s", self.get_current_location())
             if item_id == self._current.item_id:
                 state = self._current.page_state
                 state.update_state(user_input)
@@ -122,16 +122,16 @@ class UserJourneyManager(object):
             self._current = page
 
     def _truncate(self, page):
-        logger.error("Truncate everything after %s", page.item_id)
-        logger.error("Current position %s", self._current.item_id)
+        logger.debug("Truncate everything after %s", page.item_id)
+        logger.debug("Current position %s", self._current.item_id)
         # truncate everything after page and archive it
         while page != self._current:
             popped_page = self._pop()
-            logger.error("Archiving %s", popped_page.item_id)
+            logger.debug("Archiving %s", popped_page.item_id)
             self._archive[popped_page.item_id] = popped_page
         # finally pop that page
         self._archive[page.item_id] = self._pop()
-        logger.error("Finally archiving %s", page.item_id)
+        logger.debug("Finally archiving %s", page.item_id)
 
     def _pop(self):
         page = self._current
