@@ -10,6 +10,7 @@ let sauceConnectProcess
 let config = {
   // Level of logging verbosity: silent | verbose | command | data | result | error
   logLevel: 'verbose',
+  maxInstances: 2,
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
@@ -20,9 +21,6 @@ let config = {
   capabilities: [{
     name: 'Chrome (local)',
     browserName: 'chrome'
-  }, {
-    name: 'Firefox (local)',
-    browserName: 'firefox'
   }],
   framework: 'mocha',
   reporters: ['dot'],
