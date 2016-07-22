@@ -1,0 +1,244 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Monthly Business Survey - Retail Sales Index",
+    "description": "RSI Description",
+    "theme": "default",
+    "introduction": {
+        "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies.</p><p>We guarantee that while your employment is less than 10, you will receive no more than 15 monthly questionnaires for this one ONS business survey. You must complete and return all questionnaires on time, after which you will be excluded from all business surveys for at least 3 years. The Annual Survey of Hours and Earnings is not covered by this guarantee.</p>"
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "1",
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "5bce8d8f-0af8-4d35-b77d-744e6179b406",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "2d5e6844-d1c0-4280-baa4-26ee68b81489",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "94f368e4-7c6c-4272-a780-8c46328626a2",
+                                            "label": "From",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "11",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "dc156715-3d48-4af3-afed-7a0a6bb65583",
+                                            "label": "To",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "12",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "f5ef26e3-b22d-4689-9053-3eefac4504e8",
+                                    "title": "What are the dates of the period that you will be reporting for?",
+                                    "type": "DateRange",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Reporting period",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "7418732e-12fb-4270-8307-5682ac63bfae",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "5ed7e98a-146f-415d-9f4b-75c8d45e495e",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "ea08f977-33a8-4933-ad7b-c497997107cf",
+                                            "label": "Total retail turnover",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "20",
+                                            "type": "Currency",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "MANDATORY": "Please provide a value, even if your value is 0.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "7a4b1aee-d6b9-4581-ab18-1191e5ebb94d",
+                                    "title": "For the reporting period, what was the value of the business’s total retail turnover?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Retail turnover",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "02ed26ad-4cfc-4e29-a946-630476228b2c",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "fdd9dc60-59f2-475e-af1e-9bfe30010e36",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "66612bbb-bc06-4d38-b32c-e2a113641c8a",
+                                            "label": "Internet sales",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "21",
+                                            "type": "Currency",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "eb40935b-b771-4082-adc4-37e4c0b04208",
+                                    "title": "Of your total retail turnover, how much were from internet sales?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Internet sales",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "f55cccc6-0755-455d-9f9e-085f1bf55399",
+                    "sections": [
+                        {
+                            "description": "We rely on your commentary to ‘tell the story’ behind your business’s figures. By commenting here, it will reduce the need for us to call you.",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "2a7f1c20-8a10-4fe4-96ff-b9356e32302f",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                                "properties": {
+                                                    "max_length": "2000"
+                                                }
+                                            },
+                                            "guidance": "",
+                                            "id": "568e2c81-b11d-4682-bd89-f170481c9a48",
+                                            "label": "Comments",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "146",
+                                            "type": "Textarea",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "d434cea3-00ac-4954-8ad8-ef6bb9e85041",
+                                    "title": "Describe the changes in the business’s total retail turnover in more detail",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Changes in total retail turnover",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "07f40cd2-0704-4804-9f32-19309089a51b",
+            "title": "",
+            "validation": []
+        }
+    ]
+}
