@@ -6,10 +6,13 @@ const expect = chai.expect
 describe('MCI test', function() {
   before('Progress from the developer page', function() {
     const userId = '.qa-user-id'
+    const collectionSID = '.qa-collection-sid'
     const selectSchema = '.qa-select-schema'
     browser.url('/dev')
     browser.waitForExist(userId)
     browser.setValue(userId, getRandomString(10))
+    browser.waitForExist(collectionSID)
+    browser.setValue(collectionSID, getRandomString(3))
     browser.waitForExist(selectSchema)
     browser.selectByValue(selectSchema, '1_0205.json')
     browser.click('.qa-btn-submit-dev')
