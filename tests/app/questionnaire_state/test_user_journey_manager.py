@@ -135,8 +135,8 @@ class TestUserJourneyManager(SurveyRunnerTestCase):
         user_journey_manager._truncate(page3)
 
         self.assertEqual(2, len(user_journey_manager._archive))
-        self.assertEqual(page4, user_journey_manager._archive[0])
-        self.assertEqual(page3, user_journey_manager._archive[1])
+        self.assertEqual(page4, user_journey_manager._archive["fourth"])
+        self.assertEqual(page3, user_journey_manager._archive["third"])
 
         self.assertIsNone(page3.next_page)
         self.assertIsNone(page3.previous_page)
