@@ -1,27 +1,12 @@
-from tests.integration.create_token import create_token
-from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
-class TestDarkSidePath(IntegrationTestCase):
+class TestDarkSidePath(StarWarsTestCase):
 
     def test_dark_side_path(self):
+        self.check_introduction_text()
 
-        # Get a token
-        token = create_token('star_wars', '0')
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
-
-        # Go to questionnaire
-        post_data = {
-            'action[start_questionnaire]': 'Start Questionnaire'
-        }
-        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
-
-        first_page = resp.headers['Location']
-
-        resp = self.client.get(first_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        first_page = self.start_questionnaire()
 
         '''
         Testing
@@ -56,14 +41,12 @@ class TestDarkSidePath(IntegrationTestCase):
         }
 
         # Submit the form
-        resp = self.client.post(first_page, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        resp = self.submit_page(first_page, form_data)
 
         # Check we stay on the page
         self.assertEquals(resp.headers['Location'], first_page)
 
-        resp = self.client.get(first_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.navigate_to_page(first_page)
 
         # Test error messages
         content = resp.get_data(True)
@@ -104,14 +87,12 @@ class TestDarkSidePath(IntegrationTestCase):
         }
 
         # Submit the form
-        resp = self.client.post(first_page, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        resp = self.submit_page(first_page, form_data)
 
         # Check we stay on the page
         self.assertEquals(resp.headers['Location'], first_page)
 
-        resp = self.client.get(first_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.navigate_to_page(first_page)
 
         # Test error messages
         content = resp.get_data(True)
@@ -147,21 +128,19 @@ class TestDarkSidePath(IntegrationTestCase):
         }
 
         # Submit the form
-        resp = self.client.post(first_page, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        resp = self.submit_page(first_page, form_data)
 
         # Check we stay on the page
         self.assertEquals(resp.headers['Location'], first_page)
 
-        resp = self.client.get(first_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.navigate_to_page(first_page)
 
         # Test error messages
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '1\) How can it be negative?')
         self.assertRegexpMatches(content, '2\) The &#39;to&#39; date cannot be before the &#39;from&#39; date.')
 
-        # Testing Currecy  - Mandatory
+        # Testing Currency  - Mandatory
 
         form_data = {
 
@@ -184,14 +163,12 @@ class TestDarkSidePath(IntegrationTestCase):
         }
 
         # Submit the form
-        resp = self.client.post(first_page, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        resp = self.submit_page(first_page, form_data)
 
         # Check we stay on the page
         self.assertEquals(resp.headers['Location'], first_page)
 
-        resp = self.client.get(first_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.navigate_to_page(first_page)
 
         # Test error messages
         content = resp.get_data(True)
@@ -220,14 +197,12 @@ class TestDarkSidePath(IntegrationTestCase):
         }
 
         # Submit form with no errors
-        resp = self.client.post(first_page, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        resp = self.submit_page(first_page, form_data)
         self.assertNotEquals(resp.headers['Location'], first_page)
 
         # Second page
         second_page = resp.headers['Location']
-        resp = self.client.get(second_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.navigate_to_page(second_page)
 
         content = resp.get_data(True)
 

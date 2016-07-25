@@ -7,7 +7,7 @@ class StarWarsTestCase(IntegrationTestCase):
         super().setUp()
         self.token = create_token('star_wars', '0')
 
-    def assert_introduction_text(self):
+    def check_introduction_text(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
@@ -88,34 +88,43 @@ class StarWarsTestCase(IntegrationTestCase):
 
         return first_page
 
-    def submit_first_page(self, first_page):
-        # Our answers
-        form_data = {
+    def check_second_page(self, second_page):
+        resp = self.client.get(second_page, follow_redirects=False)
+        self.assertEquals(resp.status_code, 200)
 
-            "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "234",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "40",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
+        content = resp.get_data(True)
 
-            "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Yoda, Qui-Gon Jinn]",
+        # Pipe Test for section title
+        self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
 
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "1983",
+        # Textarea question
+        self.assertRegexpMatches(content, 'Why doesn&#39;t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertRegexpMatches(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
 
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "29",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "05",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "1983",
-
-            "action[save_continue]": "Save &amp; Continue"
-        }
-
-        # Form submission with no errors
-        resp = self.client.post(first_page, data=form_data, follow_redirects=False)
+    def submit_page(self, page, form_data):
+        resp = self.client.post(page, data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertNotEquals(resp.headers['Location'], first_page)
-        # Second page
-        second_page = resp.headers['Location']
+        return resp
 
-        return second_page
+    def navigate_to_page(self, page):
+        resp = self.client.get(page, follow_redirects=False)
+        self.assertEquals(resp.status_code, 200)
+        return resp
+
+    def complete_survey(self, summary_page):
+        # Submit answers
+        post_data = {
+            "action[submit_answers]": "Submit answers"
+        }
+        resp = self.client.post(summary_page, data=post_data, follow_redirects=False)
+
+        self.assertEquals(resp.status_code, 302)
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/thank-you$')
+        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
+        self.assertEquals(resp.status_code, 200)
+
+        # Thank you page
+        content = resp.get_data(True)
+        self.assertRegexpMatches(content, '<title>Thank You</title>')
+        self.assertRegexpMatches(content, '(?s)Star Wars.*?Star Wars')
+        self.assertRegexpMatches(content, '>Successfully Received<')
