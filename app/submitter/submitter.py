@@ -84,8 +84,6 @@ class RabbitMQSubmitter(Submitter):
                 logger.error("Attempting failover to secondary")
                 raise err
 
-
-
     def _disconnect(self):
         try:
             if self.connection:
