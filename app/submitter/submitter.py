@@ -73,9 +73,16 @@ class RabbitMQSubmitter(Submitter):
         try:
             self.connection = pika.BlockingConnection(pika.URLParameters(settings.EQ_RABBITMQ_URL))
         except pika.exceptions.AMQPError as e:
-            logger.error('Unable to connect to Message Server')
+            logger.error('Unable to connect to Prime Message Server')
             logger.info("Unable to open Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
-            raise e
+            logger.error("Attempting failover to secondary")
+            try:
+                self.connection = pika.BlockingConnection(pika.URLParameters(settings.EQ_RABBITMQ_URL_SECONDARY))
+            except pika.exceptions.AMQPError as err:
+                logger.error('Unable to connect to Prime Message Server')
+                logger.info("Unable to open Secondary Rabbit MQ connection to %s, ERROR: %s ".format(settings.EQ_RABBITMQ_URL_SECONDARY, repr(e)))
+                logger.error("Attempting failover to secondary")
+                raise err
 
     def _disconnect(self):
         try:
