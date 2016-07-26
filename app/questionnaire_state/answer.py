@@ -14,12 +14,18 @@ class Answer(Item):
             self.input = user_input[self.id]
         try:
             if schema_item:
-                if schema_item.id == self.id:
+                # Do we have the item or it's containing block?
+                if schema_item.id != self.id:
+                    schema_item = schema_item.questionnaire.get_item_by_id(self.id)
+
+                # Mandatory check
+                if self.input:
                     self.value = schema_item.get_typed_value(user_input)
-                else:
-                    item = schema_item.questionnaire.get_item_by_id(self.id)
-                    self.value = item.get_typed_value(user_input)
-                self.is_valid = True
+                    self.is_valid = True
+                elif schema_item.mandatory:
+                    self.errors = []
+                    self.errors.append('Missing Value')
+                    self.is_valid = False
         except Exception as e:
             self.value = None
             # @TODO: Need to look again at this interface when we come to warnings
