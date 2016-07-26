@@ -19,8 +19,6 @@ class QuestionnaireManager(object):
         self._metadata = metadata
         self._routing_engine = routing_engine
         self._user_action_processor = UserActionProcessor(self._schema, self._metadata, self._user_journey_manager)
-
-        # TODO lifecycle issue here - calling answer store before its ready
         self._pre_processor = TemplatePreProcessor(self._schema, self._validation_store, self._user_journey_manager, self._metadata)
 
     @property
@@ -32,6 +30,7 @@ class QuestionnaireManager(object):
             # convenience method for routing to the first block
             location = self._routing_engine.get_first_block()
         self._user_journey_manager.go_to_state(location)
+        self._pre_processor.initialize()
 
     def process_incoming_answers(self, location, post_data):
         # ensure we're in the correct location
@@ -68,6 +67,7 @@ class QuestionnaireManager(object):
             # bug fix for using back button which then fails validation
             self._user_journey_manager.go_to_state(current_location)
 
+        self._pre_processor.initialize()
         # now return the location
         return self._user_journey_manager.get_current_location()
 

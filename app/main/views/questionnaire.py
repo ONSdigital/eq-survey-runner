@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 @login_required
 def survey(eq_id, collection_id, location):
 
+    logger.debug("Requesting location : /questionnaire/%s/%s/%s", eq_id, collection_id, location)
     try:
         questionnaire_manager = create_questionnaire_manager()
 

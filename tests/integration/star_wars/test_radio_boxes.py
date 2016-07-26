@@ -1,39 +1,13 @@
-from tests.integration.create_token import create_token
-from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
-class TestEmptyRadioBoxes(IntegrationTestCase):
+class TestEmptyRadioBoxes(StarWarsTestCase):
 
     def test_radio_boxes_mandatory_empty(self):
-        # Get a token
-        token = create_token('star_wars', '0')
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
 
-        # We are on the landing page
-        content = resp.get_data(True)
+        self.login_and_check_introduction_text()
 
-        self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '>Get Started<')
-        self.assertRegexpMatches(content, '(?s)Star Wars.*?Star Wars')
-
-        # We proceed to the questionnaire
-        post_data = {
-            'action[start_questionnaire]': 'Start Questionnaire'
-        }
-        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
-
-        block_one_url = resp.headers['Location']
-
-        resp = self.client.get(block_one_url, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-
-        # We are in the Questionnaire
-        content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'Star Wars Quiz')
-        self.assertRegexpMatches(content, 'May the force be with you young EQ developer')
-        self.assertRegexpMatches(content, ">Save &amp; Continue<")
+        first_page = self.start_questionnaire()
 
         # We fill in the survey without a mandatory radio box
         form_data = {
@@ -58,15 +32,13 @@ class TestEmptyRadioBoxes(IntegrationTestCase):
             "action[save_continue]": "Save &amp; Continue"
         }
 
-         # We submit the form
-        resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        # We submit the form
+        resp = self.submit_page(first_page, form_data)
 
         # There are validation errors
         self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/cd3b74d1-b687-4051-9634-a8f9ce10a27d')
 
-        resp = self.client.get(block_one_url, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.navigate_to_page(first_page)
 
         # We stay on the current page
         content = resp.get_data(True)
@@ -100,16 +72,14 @@ class TestEmptyRadioBoxes(IntegrationTestCase):
             "action[save_continue]": "Save &amp; Continue"
         }
 
-         # We submit the form
-        resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        # We submit the form
+        resp = self.submit_page(first_page, form_data)
 
         # There are no validation errors
         self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/an3b74d1-b687-4051-9634-a8f9ce10ard')
 
         summary_url = resp.headers['Location']
-        resp = self.client.get(summary_url, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.navigate_to_page(summary_url)
 
         # Check we are on the next page
         content = resp.get_data(True)
