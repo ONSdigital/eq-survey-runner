@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from flask_login import current_user
 from app.piping.plumber import Plumber
 from app.libs.utils import ObjectFromDict, convert_tx_id
@@ -10,9 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 class TemplatePreProcessor(object):
-    def __init__(self, schema, validation_store, user_journey_manager, metadata):
+    def __init__(self, schema, user_journey_manager, metadata):
         self._schema = schema
-        self._validation_store = validation_store
         self._user_journey_manager = user_journey_manager
         self._metadata = metadata
         self._current_block = None
@@ -56,7 +54,6 @@ class TemplatePreProcessor(object):
         # Collect the answers for all pages except the intro and thank you pages
         current_location = self._user_journey_manager.get_current_location()
         if current_location != 'introduction' and current_location != 'thank-you':
-            self._collect_answers()
 
             # We only need to augment the questionnaire if we are still inside it
             if current_location != 'summary':
@@ -145,28 +142,15 @@ class TemplatePreProcessor(object):
         answer.value = self._user_journey_manager.get_answer(answer.id)
 
     def _augment_questionnaire(self):
-        errors = OrderedDict()
-        warnings = OrderedDict()
+        current_location = self._user_journey_manager.get_current_location()
+        current_state = self._user_journey_manager.get_state(current_location)
 
-        # loops through the Schema and get errors and warnings in order
-        # augments each item in the schema as required
-        for group in self._schema.groups:
-            # We only do this for the current group...
-            if self._current_group.id == group.id:
-                self._collect_errors(group, errors, warnings)
-                for block in group.blocks:
-                    # ...and the current block
-                    if self._current_block.id == block.id:
-                        self._collect_errors(block, errors, warnings)
-                        for section in block.sections:
-                            self._collect_errors(section, errors, warnings)
-                            for question in section.questions:
-                                self._collect_errors(question, errors, warnings)
-                                for answer in question.answers:
-                                    self._collect_errors(answer, errors, warnings)
+        # This now feels wrong, but I can't think of a better way of doing this without ripping apart the whole rendering pipeline
+        schema_item = self._schema.get_item_by_id(current_state.item_id)
+        schema_item.augment_with_state(current_state.page_state)
 
-        self._schema.errors = errors
-        self._schema.warnings = warnings
+        self._schema.errors = schema_item.collect_errors()
+        self._schema.warnings = schema_item.collect_warnings()
 
     def _plumb_questionnaire(self):
         # loops through the Schema and plumbs each item it finds
@@ -180,27 +164,6 @@ class TemplatePreProcessor(object):
                         self._plumber.plumb_item(question)
                         for answer in question.answers:
                             self._plumber.plumb_item(answer)
-
-    def _collect_answers(self):
-        # Collect all the answers and add them to the schema
-        for answer_id in self._user_journey_manager.get_answers().keys():
-            answer = self._schema.get_item_by_id(answer_id)
-            self._augment_answer(answer)
-
-    def _collect_errors(self, item, global_errors, global_warnings):
-        item.is_valid = None
-        item.errors = []
-        item.warnings = []
-
-        item_result = self._validation_store.get_result(item.id)
-
-        if item_result:
-            item.is_valid = item_result.is_valid
-            if not item_result.is_valid:
-                global_errors[item.id] = item_result.errors
-                global_warnings[item.id] = item_result.warnings
-                item.errors = item_result.get_errors()
-                item.warnings = item_result.get_warnings()
 
     def _build_piping_context(self):
         piping_context = {

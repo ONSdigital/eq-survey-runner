@@ -1,9 +1,7 @@
-from app.validation.validator import Validator
 from app.questionnaire_state.user_journey_manager import UserJourneyManager
 from app.routing.routing_engine import RoutingEngine
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.main import errors
-from app.utilities.factory import factory
 from app.metadata.metadata_store import MetaDataStore
 from flask_login import current_user
 import logging
@@ -25,15 +23,10 @@ def create_questionnaire_manager():
     if not schema:
         return errors.page_not_found()
 
-    # load the validation store
-    validation_store = factory.create("validation-store")
-
     user_journey_manager = UserJourneyManager.get_instance()
     if not user_journey_manager:
         logger.debug("Constructing brand new User Journey Manager")
         user_journey_manager = UserJourneyManager.new_instance(schema)
-    # Create the validator
-    validator = Validator(schema, validation_store, user_journey_manager)
 
     # Create the routing engine
     routing_engine = RoutingEngine(schema)
@@ -41,8 +34,6 @@ def create_questionnaire_manager():
     # instantiate the questionnaire manager
     questionnaire_manager = QuestionnaireManager(schema,
                                                  user_journey_manager,
-                                                 validator,
-                                                 validation_store,
                                                  routing_engine,
                                                  metadata)
     return questionnaire_manager

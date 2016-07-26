@@ -11,15 +11,13 @@ logger = logging.getLogger(__name__)
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema, user_journey_manager, validator, validation_store, routing_engine, metadata):
+    def __init__(self, schema, user_journey_manager, routing_engine, metadata):
         self._schema = schema
         self._user_journey_manager = user_journey_manager
-        self._validator = validator
-        self._validation_store = validation_store
         self._metadata = metadata
         self._routing_engine = routing_engine
         self._user_action_processor = UserActionProcessor(self._schema, self._metadata, self._user_journey_manager)
-        self._pre_processor = TemplatePreProcessor(self._schema, self._validation_store, self._user_journey_manager, self._metadata)
+        self._pre_processor = TemplatePreProcessor(self._schema, self._user_journey_manager, self._metadata)
 
     @property
     def submitted(self):
@@ -51,7 +49,7 @@ class QuestionnaireManager(object):
         current_location = self._user_journey_manager.get_current_location()
 
         # run the validator to update the validation_store
-        if self._validator.validate():
+        if self._user_journey_manager.validate():
 
             # process the user action
             self._user_action_processor.process_action(user_action)

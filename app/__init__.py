@@ -5,8 +5,6 @@ from flask_login import LoginManager
 from app.libs.utils import get_locale
 from healthcheck import HealthCheck
 from flaskext.markdown import Markdown
-from app.utilities.factory import factory
-from app.validation.validation_store import ValidationStore
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.submitter.submitter import SubmitterFactory
@@ -37,11 +35,6 @@ LOG_SIZE = 1048576
 LOG_NUMBER = 10
 
 logger = logging.getLogger(__name__)
-
-
-# setup the factory
-logger.debug("Registering factory classes")
-factory.register("validation-store", ValidationStore)
 
 
 def rabbitmq_available():

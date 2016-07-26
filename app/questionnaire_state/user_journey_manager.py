@@ -190,3 +190,19 @@ class UserJourneyManager(object):
             return answers[id]
         else:
             return None
+
+    def validate(self):
+        # get the current location in the questionnaire
+        current_location = self.get_current_location()
+        if self.is_valid_location(current_location):
+            try:
+                current_state = self.get_state(current_location)
+                schema_item = self._schema.get_item_by_id(current_state.item_id)
+
+                return schema_item.validate(current_state.page_state)
+            except QuestionnaireException:
+                # Item has state, but is not in schema: must be introduction, thank you or summary
+                return True
+        else:
+            # Not a validation location, so can't be valid
+            return False

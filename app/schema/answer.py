@@ -49,3 +49,18 @@ class Answer(Item):
             return state.is_valid
         else:
             raise Exception('Cannot validate - incorrect state class')
+
+    def augment_with_state(self, state):
+        if state.id == self.id:
+            self.is_valid = state.is_valid
+            self.errors = state.errors
+            self.warnings = state.warnings
+            self.value = state.value
+            self.input = state.input
+
+    def _collect_property(self, property_name):
+        collection = {}
+        if hasattr(self, property_name):
+            collection[self.id] = getattr(self, property_name)
+
+        return collection

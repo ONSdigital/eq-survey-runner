@@ -4,8 +4,6 @@ parses it and then tests the validation rules needed before MCI can go live.
 """
 import unittest
 
-from app.validation.validator import Validator
-from app.validation.validation_store import AbstractValidationStore
 from app.schema_loader import schema_loader
 from app.parser.schema_parser_factory import SchemaParserFactory
 
