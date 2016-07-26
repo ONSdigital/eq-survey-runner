@@ -5,7 +5,7 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
 
     def test_radio_boxes_mandatory_empty(self):
 
-        self.check_introduction_text()
+        self.login_and_check_introduction_text()
 
         first_page = self.start_questionnaire()
 

@@ -4,7 +4,7 @@ from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 class TestDarkSidePath(StarWarsTestCase):
 
     def test_dark_side_path(self):
-        self.check_introduction_text()
+        self.login_and_check_introduction_text()
 
         first_page = self.start_questionnaire()
 

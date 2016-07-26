@@ -13,7 +13,7 @@ class TestThemeSelection(TestLightSidePath):
         Theme Test case
         """
 
-        self.check_introduction_text()
+        self.login_and_check_introduction_text()
 
         first_page = self.start_questionnaire()
         resp = self.navigate_to_page(first_page)

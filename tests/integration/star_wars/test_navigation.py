@@ -1,13 +1,22 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
-class TestLightSidePath(StarWarsTestCase):
+class TestNavigation(StarWarsTestCase):
 
     def test_light_side_path(self):
 
         self.login_and_check_introduction_text()
 
         first_page = self.start_questionnaire()
+
+        introduction = '/questionnaire/0/789/introduction'
+
+        resp = self.navigate_to_page(introduction)
+
+        self.check_introduction_text(resp)
+
+        # navigate back to first page
+        self.navigate_to_page(first_page)
 
         # Our answers
         form_data = {
@@ -18,7 +27,7 @@ class TestLightSidePath(StarWarsTestCase):
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
             "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Yoda, Qui-Gon Jinn]",
+            "9587eb9b-f24e-4dc0-ac94-66117b896c10": "[Luke Skywalker, Yoda, Qui-Gon Jinn]",
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
@@ -35,17 +44,16 @@ class TestLightSidePath(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
         self.assertNotEquals(resp.headers['Location'], first_page)
 
-        # Second page
         second_page = resp.headers['Location']
-        resp = self.navigate_to_page(second_page)
-        content = resp.get_data(True)
 
-        # Pipe Test for section title
-        self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
+        # go to the second page
+        self.check_second_page(second_page)
 
-        # Textarea question
-        self.assertRegexpMatches(content, 'Why doesn&#39;t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegexpMatches(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        # now navigate back to the first page
+        self.check_first_page(first_page)
+
+        # now go back to the second page
+        self.check_second_page(second_page)
 
         # Our answers
         form_data = {

@@ -5,7 +5,7 @@ class TestPageErrors(StarWarsTestCase):
     def test_multi_page_errors(self):
         # Get a token
 
-        self.check_introduction_text()
+        self.login_and_check_introduction_text()
 
         first_page = self.start_questionnaire()
 

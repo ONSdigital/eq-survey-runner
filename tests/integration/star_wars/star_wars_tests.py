@@ -7,12 +7,14 @@ class StarWarsTestCase(IntegrationTestCase):
         super().setUp()
         self.token = create_token('star_wars', '0')
 
-    def check_introduction_text(self):
+    def login_and_check_introduction_text(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
+        self.check_introduction_text(resp)
 
+    def check_introduction_text(self, response):
         # Landing page tests
-        content = resp.get_data(True)
+        content = response.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '(?s)Star Wars.*?Star Wars')
         self.assertRegexpMatches(content, 'If actual figures are not available, please provide informed estimates.')
@@ -37,7 +39,9 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertEquals(resp.status_code, 302)
 
         first_page = resp.headers['Location']
+        return self.check_first_page(first_page)
 
+    def check_first_page(self, first_page):
         resp = self.client.get(first_page, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
