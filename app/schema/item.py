@@ -17,3 +17,18 @@ class Item(object):
 
     def get_state_class(self):
         pass
+
+    def validate(self, state):
+        if isinstance(state, self.get_state_class()):
+            is_valid = True
+            for child_state in state.children:
+                child_schema = self.questionnaire.get_item_by_id(child_state.id)
+                child_valid = child_schema.validate(child_state)
+                if not child_valid:
+                    is_valid = False
+
+            return is_valid
+        else:
+            import pdb
+            pdb.set_trace()
+            raise Exception('Cannot validate - incorrect state class')

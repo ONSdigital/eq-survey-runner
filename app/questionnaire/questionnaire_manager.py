@@ -51,7 +51,7 @@ class QuestionnaireManager(object):
         current_location = self._user_journey_manager.get_current_location()
 
         # run the validator to update the validation_store
-        if self._validator.validate(cleaned_user_answers):
+        if self._validator.validate():
 
             # process the user action
             self._user_action_processor.process_action(user_action)

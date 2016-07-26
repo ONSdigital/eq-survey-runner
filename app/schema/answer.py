@@ -42,3 +42,10 @@ class Answer(Item):
 
     def _cast_user_input(self, user_input):
         return user_input
+
+    def validate(self, state):
+        if isinstance(state, self.get_state_class()):
+            # Here we just report on whether the answer has passed type checking
+            return state.is_valid
+        else:
+            raise Exception('Cannot validate - incorrect state class')

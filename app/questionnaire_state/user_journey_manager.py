@@ -62,6 +62,9 @@ class UserJourneyManager(object):
             page = page.next_page
         return page
 
+    def is_valid_location(self, location):
+        return location in self._valid_locations
+
     def go_to_state(self, item_id):
         page = self.get_state(item_id)
         logger.debug("go to state %s", item_id)
