@@ -56,5 +56,7 @@ class Item(object):
             collection = {**collection, **child_properties}
 
         if hasattr(self, property_name):
-            collection[self.id] = getattr(self, property_name)
+            value = getattr(self, property_name)
+            if value:
+                collection[self.id] = [value]
         return collection

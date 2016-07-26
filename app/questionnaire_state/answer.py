@@ -23,7 +23,8 @@ class Answer(Item):
         except Exception as e:
             self.value = None
             # @TODO: Need to look again at this interface when we come to warnings
-            self.errors = str(e)
+            self.errors = []
+            self.errors.append(str(e))
             self.is_valid = False
 
     def get_answers(self):

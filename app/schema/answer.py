@@ -61,6 +61,8 @@ class Answer(Item):
     def _collect_property(self, property_name):
         collection = {}
         if hasattr(self, property_name):
-            collection[self.id] = getattr(self, property_name)
+            value = getattr(self, property_name)
+            if value:
+                collection[self.id] = [value]
 
         return collection
