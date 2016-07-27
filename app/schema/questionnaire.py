@@ -1,5 +1,6 @@
 from app.schema.display import Display
 from app.schema.answer import Answer
+from app.validation.messages import messages
 
 
 class QuestionnaireException(Exception):
@@ -21,6 +22,7 @@ class Questionnaire(object):
         self.display = Display()
         self.aliases = {}
         self.theme = None
+        self.messages = {}
 
     def add_group(self, group):
         if group not in self.groups:
@@ -59,3 +61,17 @@ class Questionnaire(object):
     def unregister(self, id):
         if id in self.items_by_id.keys():
             del self.items_by_id[id]
+
+    def get_error_message(self, error, item_id):
+        schema_item = self.get_item_by_id(item_id)
+
+        # Try get the error message from the item
+        if error in schema_item.messages.keys():
+            return schema_item.messages[error]
+
+        # Try get the erro message from the quetionnaire
+        if error in self.messages.keys():
+            return self.messages[error]
+
+        # Error message has not been overwritten by the author, use the default
+        return messages[error]
