@@ -27,6 +27,9 @@ class Answer(Item):
     def get_state_class(self):
         return State
 
+    def get_user_input(self, post_vars):
+        return post_vars.get(self.id, None)
+
     def get_typed_value(self, post_vars):
         if self.id in post_vars.keys():
             user_input = bleach.clean(post_vars[self.id])

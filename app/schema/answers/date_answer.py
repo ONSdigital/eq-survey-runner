@@ -25,3 +25,6 @@ class DateAnswer(Answer):
 
     def _cast_user_input(self, user_input):
         return datetime.strptime(user_input, "%Y/%m/%d")
+
+    def get_user_input(self, post_vars):
+        return post_vars.get(self.id + '-year', '') + '/' + post_vars.get(self.id + '-month', '') + '/' + post_vars.get(self.id + '-day', '')
