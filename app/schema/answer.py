@@ -28,7 +28,11 @@ class Answer(Item):
         return State
 
     def get_user_input(self, post_vars):
-        return post_vars.get(self.id, None)
+        user_input = post_vars.get(self.id, None)
+        if user_input and not str(user_input).isspace() and user_input != '':
+            return user_input
+        else:
+            return None
 
     def get_typed_value(self, post_vars):
         if self.id in post_vars.keys():

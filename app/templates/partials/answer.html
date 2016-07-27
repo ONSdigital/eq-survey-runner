@@ -1,6 +1,12 @@
 {% import 'macros/forms.html' as form %}
 
 <div class="response response--{{answer.type|lower}}" id="{{answer.id}}">
+  {{ answer.value }}<br />
+  {{ answer.input }}<br />
+  {{ answer.is_valid }}<br />
+  {{ answer.errors }}<br />
+  {{ answer.warnings }}<br />
+
   {% set invalid = answer.is_valid == False %}
 
   {%- set answer_guidance %}

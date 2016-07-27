@@ -24,7 +24,7 @@ class Answer(Item):
             self.is_valid = False
 
         # Try and get the typed value
-        if self.input:
+        if self.input is not None:
             try:
                 self.value = schema_item.get_typed_value(user_input)
                 self.is_valid = True

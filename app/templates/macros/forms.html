@@ -24,7 +24,7 @@
   {% set attr = {
     "class": "input input--" ~ input_type,
     "type": input_type,
-    "value": (answer.value or "")|e,
+    "value": (answer.value or answer.input or '')|e,
     "name": answer.id,
     "id": answer.id,
     "placeholder": answer.placeholder,

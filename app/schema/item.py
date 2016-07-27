@@ -22,7 +22,7 @@ class Item(object):
             for child_state in state.children:
                 child_schema = self.questionnaire.get_item_by_id(child_state.id)
                 child_valid = child_schema.validate(child_state)
-                if not child_valid:
+                if child_valid is not None and child_valid is False:
                     is_valid = False
 
             return is_valid
