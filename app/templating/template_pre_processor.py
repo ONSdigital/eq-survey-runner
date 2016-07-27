@@ -54,10 +54,7 @@ class TemplatePreProcessor(object):
         # Collect the answers for all pages except the intro and thank you pages
         current_location = self._user_journey_manager.get_current_location()
         if current_location != 'introduction' and current_location != 'thank-you':
-
-            # We only need to augment the questionnaire if we are still inside it
-            if current_location != 'summary':
-                self._augment_questionnaire()
+            self._augment_questionnaire()
 
         render_data = {
             "meta": {
@@ -143,14 +140,23 @@ class TemplatePreProcessor(object):
 
     def _augment_questionnaire(self):
         current_location = self._user_journey_manager.get_current_location()
-        current_state = self._user_journey_manager.get_state(current_location)
+        if current_location == 'summary':
+            location = self._user_journey_manager._first
+            while location.next_page:
+                if self._schema.item_exists(location.item_id):
+                    location_state = location.page_state
+                    schema_item = self._schema.get_item_by_id(location.item_id)
+                    schema_item.augment_with_state(location_state)
+                location = location.next_page
+        else:
+            current_state = self._user_journey_manager.get_state(current_location)
 
-        # This now feels wrong, but I can't think of a better way of doing this without ripping apart the whole rendering pipeline
-        schema_item = self._schema.get_item_by_id(current_state.item_id)
-        schema_item.augment_with_state(current_state.page_state)
+            # This now feels wrong, but I can't think of a better way of doing this without ripping apart the whole rendering pipeline
+            schema_item = self._schema.get_item_by_id(current_state.item_id)
+            schema_item.augment_with_state(current_state.page_state)
 
-        self._schema.errors = schema_item.collect_errors()
-        self._schema.warnings = schema_item.collect_warnings()
+            self._schema.errors = schema_item.collect_errors()
+            self._schema.warnings = schema_item.collect_warnings()
 
     def _plumb_questionnaire(self):
         # loops through the Schema and plumbs each item it finds
