@@ -140,6 +140,8 @@ class TemplatePreProcessor(object):
 
     def _augment_questionnaire(self):
         current_location = self._user_journey_manager.get_current_location()
+
+        # @TODO: This needs to be revisited when we reimplement the rendering
         if current_location == 'summary':
             location = self._user_journey_manager._first
             while location.next_page:

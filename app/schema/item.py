@@ -27,8 +27,6 @@ class Item(object):
 
             return is_valid
         else:
-            import pdb
-            pdb.set_trace()
             raise Exception('Cannot validate - incorrect state class')
 
     def augment_with_state(self, state):

@@ -23,8 +23,8 @@
               {% if loop.index == 2 %}
                 {% set question_title = question.title %}
                 {% set answer_value %}
-                  {{question.answers[loop.index0 - 1].label}}: {{question.answers[loop.index0 - 1].value}}<br>
-                  {{answer.label}}: {{answer.value}}
+                  {{question.answers[loop.index0 - 1].label}}: {{question.answers[loop.index0 - 1].input}}<br>
+                  {{answer.label}}: {{answer.input}}
                 {% endset %}
               {% endif %}
             {% elif answer.type == 'Currency' %}
