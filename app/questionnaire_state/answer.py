@@ -22,6 +22,8 @@ class Answer(Item):
                     if self.input:
                         self.value = schema_item.get_typed_value(user_input)
                         self.is_valid = True
+                        self.errors = None
+                        self.warnings = None
                     elif schema_item.mandatory:
                         self.errors = []
                         self.errors.append(schema_item.questionnaire.get_error_message('MANDATORY', schema_item.id))
