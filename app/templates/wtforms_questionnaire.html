@@ -1,16 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends theme('layouts/_survey.html') %}
 
+{% block page_title %}Survey{% endblock %}
 
-{% for field in form %}
-  <H1>New field {{field.name}}</H1>
-{% endfor %}
+{% block survey %}
 
+{% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
 
-</body>
-</html>
+<form action="" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    {% for field in form %}
+
+      {% if field.type not in ['CSRFTokenField', 'HiddenField'] %}
+        <h4>{{ field.label }}</h4>
+        <p>{{field()}}</p>
+      {% endif %}
+    {% endfor %}
+    <button class="btn btn--secondary qa-btn-submit" type="submit" name="action[save_continue]">Save &amp; Continue</button>
+
+</form>
+
+{% endblock %}

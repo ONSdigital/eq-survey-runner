@@ -32,13 +32,13 @@ class QuestionnaireManager(object):
         self._user_journey_manager.go_to_state(location)
         self._pre_processor.initialize()
 
-    def process_incoming_answers(self, location, post_data):
+    def process_incoming_answers(self, location, post_data, user_action):
         # ensure we're in the correct location
         self._user_journey_manager.go_to_state(location)
 
         # process incoming post data
-        user_action, user_answers = self._process_incoming_post_data(post_data)
-
+        # user_action, user_answers = self._process_incoming_post_data(post_data)
+        user_answers = post_data
         # Process the answers and see where to go next
         cleaned_user_answers = {}
         for key, value in user_answers.items():
@@ -51,21 +51,21 @@ class QuestionnaireManager(object):
         current_location = self._user_journey_manager.get_current_location()
 
         # run the validator to update the validation_store
-        if self._validator.validate(cleaned_user_answers):
+        #if self._validator.validate(cleaned_user_answers):
 
-            # process the user action
-            self._user_action_processor.process_action(user_action)
+        # process the user action
+        self._user_action_processor.process_action(user_action)
 
-            # do any routing
-            next_location = self._routing_engine.get_next_location(current_location)
-            logger.debug("next location after routing is %s", next_location)
+        # do any routing
+        next_location = self._routing_engine.get_next_location(current_location)
+        logger.debug("next location after routing is %s", next_location)
 
-            # go to that location
-            self._user_journey_manager.go_to_state(next_location)
-            logger.debug("Going to location %s", next_location)
-        else:
+        # go to that location
+        self._user_journey_manager.go_to_state(next_location)
+        logger.debug("Going to location %s", next_location)
+        #else:
             # bug fix for using back button which then fails validation
-            self._user_journey_manager.go_to_state(current_location)
+         #   self._user_journey_manager.go_to_state(current_location)
 
         self._pre_processor.initialize()
         # now return the location
@@ -117,7 +117,7 @@ class QuestionnaireManager(object):
         if isinstance(value, list):
             return value
 
-        if value:
+        if isinstance(value, str):
             whitespace_removed = value.strip()
             return bleach.clean(whitespace_removed)
         else:

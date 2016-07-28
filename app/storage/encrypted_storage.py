@@ -23,7 +23,7 @@ class EncryptedServerStorageDecorator(AbstractServerStorage):
     def store(self, data, user_id, user_ik):
         self.safe_logging("About to encrypt data %s", data)
         encrypted_data = self.encrypt_data(user_id, user_ik, data)
-        self.safe_logging("Encrypted data %s", encrypted_data)
+        # self.safe_logging("Encrypted data %s", encrypted_data)
         self.server_storage.store(encrypted_data, user_id, user_ik)
 
     def get(self, user_id, user_ik):
