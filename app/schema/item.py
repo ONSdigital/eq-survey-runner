@@ -1,3 +1,6 @@
+from app.questionnaire_state.exceptions import StateException
+
+
 class Item(object):
     '''
     Abstract class for all items in a schema. Subclasses must provide an id and redefine State accordingly
@@ -27,7 +30,7 @@ class Item(object):
 
             return is_valid
         else:
-            raise Exception('Cannot validate - incorrect state class')
+            raise StateException('Cannot validate - incorrect state class')
 
     # @TODO: Once the rendering pipeline is rafactored, this method is a candidate for removal
     def augment_with_state(self, state):

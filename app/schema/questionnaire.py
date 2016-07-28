@@ -1,10 +1,7 @@
 from app.schema.display import Display
 from app.schema.answer import Answer
 from app.validation.messages import messages
-
-
-class QuestionnaireException(Exception):
-    pass
+from app.schema.exceptions import QuestionnaireException
 
 
 class Questionnaire(object):

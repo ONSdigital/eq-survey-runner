@@ -1,6 +1,7 @@
 from app.schema.answer import Answer
 from app.validation.date_type_check import DateTypeCheck
 from datetime import datetime
+from app.schema.exceptions import TypeCheckingException
 
 
 class DateAnswer(Answer):
@@ -18,7 +19,7 @@ class DateAnswer(Answer):
         for checker in self.type_checkers:
             result = checker.validate(user_input)
             if not result.is_valid:
-                raise Exception(result.errors[0])
+                raise TypeCheckingException(result.errors[0])
 
         return self._cast_user_input(user_input)
 

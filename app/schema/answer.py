@@ -1,4 +1,6 @@
 from app.questionnaire_state.answer import Answer as State
+from app.schema.exceptions import TypeCheckingException
+from app.questionnaire_state.exceptions import StateException
 from app.schema.item import Item
 import bleach
 
@@ -41,7 +43,7 @@ class Answer(Item):
             for checker in self.type_checkers:
                 result = checker.validate(user_input)
                 if not result.is_valid:
-                    raise Exception(result.errors[0])
+                    raise TypeCheckingException(result.errors[0])
 
             return self._cast_user_input(user_input)
         else:
@@ -63,7 +65,7 @@ class Answer(Item):
             # Here we just report on whether the answer has passed type checking
             return state.is_valid
         else:
-            raise Exception('Cannot validate - incorrect state class')
+            raise StateException('Cannot validate - incorrect state class')
 
     def augment_with_state(self, state):
         if state.id == self.id:

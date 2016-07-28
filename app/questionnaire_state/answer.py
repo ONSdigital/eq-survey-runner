@@ -1,4 +1,5 @@
 from app.questionnaire_state.item import Item
+from app.schema.exceptions import TypeCheckingException
 
 
 class Answer(Item):
@@ -24,7 +25,7 @@ class Answer(Item):
                 self.is_valid = True
                 self.errors = None
                 self.warnings = None
-            except Exception as e:
+            except TypeCheckingException as e:
                 self.value = None
                 # @TODO: Need to look again at this interface when we come to warnings
                 self.errors = []
