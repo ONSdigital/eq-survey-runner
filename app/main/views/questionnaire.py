@@ -9,10 +9,42 @@ from .. import main_blueprint
 from app.schema.questionnaire import QuestionnaireException
 from app.main.errors import page_not_found, internal_server_error, service_unavailable
 from flask_themes2 import render_theme_template
+from flask import render_template
 from app.metadata.metadata_store import MetaDataStore
+
+from flask_wtf import Form
+from wtforms import RadioField, IntegerField, DateField, SelectField, TextAreaField
 
 
 logger = logging.getLogger(__name__)
+
+
+def generate_form(block):
+    class QuestionnaireForm(Form):
+        pass
+
+    for section in block.sections:
+        for question in section.questions:
+            for answer in question.answers:
+                setattr(QuestionnaireForm, answer.label, get_field(answer))
+
+    return QuestionnaireForm()
+
+def get_field(answer):
+    print(answer.type)
+    if answer.type == 'Radio':
+        field = RadioField(label=answer.label, description=answer.guidance, choices=answer.options)
+    if answer.type == 'Checkbox':
+        field = SelectField(label=answer.label, description=answer.guidance, choices=answer.options)
+    if answer.type == 'Date':
+        field = DateField(label=answer.label, description=answer.guidance)
+    if answer.type == 'Currency':
+        field = IntegerField(label=answer.label, description=answer.guidance)
+    if answer.type == 'PositiveInteger':
+        field = IntegerField(label=answer.label, description=answer.guidance)
+    if answer.type == 'Textarea':
+        field = TextAreaField(label=answer.label, description=answer.guidance)
+    return field
 
 
 @main_blueprint.route('/questionnaire/<eq_id>/<collection_id>/<location>', methods=["GET", "POST"])
@@ -60,13 +92,19 @@ def do_get(questionnaire_manager, location):
     if location == 'thank-you':
         questionnaire_manager.delete_user_data()
 
-    try:
-        theme = context['meta']['survey']['theme']
-        logger.info("Theme selected: {} ".format(theme))
-    except KeyError:
-        logger.info("No theme set ")
-        theme = None
-    return render_theme_template(theme, template, meta=context['meta'], content=context['content'], navigation=context['navigation'])
+    block_id = questionnaire_manager.get_current_location()
+    schema = questionnaire_manager._schema
+
+    if schema.item_exists(block_id):
+        return render_template("wtforms_questionnaire.html", form=generate_form(schema.get_item_by_id(block_id)))
+    else:
+        try:
+            theme = context['meta']['survey']['theme']
+            logger.info("Theme selected: {} ".format(theme))
+        except KeyError:
+            logger.info("No theme set ")
+            theme = None
+        return render_theme_template(theme, template, meta=context['meta'], content=context['content'], navigation=context['navigation'])
 
 
 def do_post(collection_id, eq_id, location, questionnaire_manager):
