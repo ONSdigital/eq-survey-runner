@@ -29,17 +29,16 @@ class Item(object):
         else:
             raise Exception('Cannot validate - incorrect state class')
 
+    # @TODO: Once the rendering pipeline is rafactored, this method is a candidate for removal
     def augment_with_state(self, state):
         if state.id == self.id:
             self.is_valid = state.is_valid
             self.errors = state.errors
             self.warnings = state.warnings
             for child_state in state.children:
-                child_schema = self.questionnaire.get_item_by_id(child_state.id)
-                if child_schema:
+                if self.questionnaire.item_exists(child_state.id):
+                    child_schema = self.questionnaire.get_item_by_id(child_state.id)
                     child_schema.augment_with_state(child_state)
-                else:
-                    raise Exception
 
     def collect_errors(self):
         return self._collect_property('errors')

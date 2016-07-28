@@ -19,7 +19,6 @@ class DateAnswer(Answer):
             result = checker.validate(user_input)
             if not result.is_valid:
                 raise Exception(result.errors[0])
-                return None
 
         return self._cast_user_input(user_input)
 
