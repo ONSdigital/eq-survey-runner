@@ -50,13 +50,13 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Test error messages
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '1\) No one lives that long, not even Yoda')
-        self.assertRegexpMatches(content, '2\) Please only enter whole numbers into the field.')
-        self.assertRegexpMatches(content, '3\) Please only enter whole numbers into the field.')
-        self.assertRegexpMatches(content, '4\) This field is mandatory.')
-        self.assertRegexpMatches(content, '5\) This field is mandatory.')
-        self.assertRegexpMatches(content, '6\) The date entered is not valid')
-        self.assertRegexpMatches(content, '7\) The date entered is not valid')
+        self.assertRegexpMatches(content, 'No one lives that long, not even Yoda')
+        self.assertRegexpMatches(content, 'Please only enter whole numbers into the field.')
+        self.assertRegexpMatches(content, 'Please only enter whole numbers into the field.')
+        self.assertRegexpMatches(content, 'This field is mandatory.')
+        self.assertRegexpMatches(content, 'This field is mandatory.')
+        self.assertRegexpMatches(content, 'The date entered is not valid')
+        self.assertRegexpMatches(content, 'The date entered is not valid')
 
         '''
         Testing
@@ -96,10 +96,10 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Test error messages
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '1\) This field is mandatory')
-        self.assertRegexpMatches(content, '2\) How much, idiot you must be')
-        self.assertRegexpMatches(content, '3\) How can it be negative?')
-        self.assertRegexpMatches(content, '4\) The &#39;to&#39; date must be different to the &#39;from&#39; date.')
+        self.assertRegexpMatches(content, 'This field is mandatory')
+        self.assertRegexpMatches(content, 'How much, idiot you must be')
+        self.assertRegexpMatches(content, 'How can it be negative?')
+        self.assertRegexpMatches(content, 'The &#39;to&#39; date must be different to the &#39;from&#39; date.')
 
         '''
          Testing
@@ -137,8 +137,8 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Test error messages
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '1\) How can it be negative?')
-        self.assertRegexpMatches(content, '2\) The &#39;to&#39; date cannot be before the &#39;from&#39; date.')
+        self.assertRegexpMatches(content, 'How can it be negative?')
+        self.assertRegexpMatches(content, 'The &#39;to&#39; date cannot be before the &#39;from&#39; date.')
 
         # Testing Currency  - Mandatory
 
@@ -172,7 +172,7 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Test error messages
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '1\) This field is mandatory.')
+        self.assertRegexpMatches(content, 'This field is mandatory.')
 
         # Correct all errors
         form_data = {
