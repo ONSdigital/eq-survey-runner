@@ -1,4 +1,5 @@
 from app.questionnaire_state.exceptions import StateException
+from collections import OrderedDict
 
 
 class Item(object):
@@ -50,13 +51,14 @@ class Item(object):
         return self._collect_property('warnings')
 
     def _collect_property(self, property_name):
-        collection = {}
+        collection = OrderedDict()
         for child in self.children:
             child_properties = child._collect_property(property_name)
-            collection = {**collection, **child_properties}
+            for key, value in child_properties.items():
+                collection[key] = value
 
         if hasattr(self, property_name):
             value = getattr(self, property_name)
             if value:
-                collection[self.id] = [value]
+                collection[self.id] = value
         return collection
