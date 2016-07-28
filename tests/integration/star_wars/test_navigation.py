@@ -47,13 +47,13 @@ class TestNavigation(StarWarsTestCase):
         second_page = resp.headers['Location']
 
         # go to the second page
-        self.check_second_page(second_page)
+        self.check_second_quiz_page(second_page)
 
         # now navigate back to the first page
-        self.check_first_page(first_page)
+        self.check_quiz_first_page(first_page)
 
         # now go back to the second page
-        self.check_second_page(second_page)
+        self.check_second_quiz_page(second_page)
 
         # Our answers
         form_data = {

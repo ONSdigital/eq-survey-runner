@@ -1,7 +1,6 @@
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
 
-
 class StarWarsTestCase(IntegrationTestCase):
     def setUp(self):
         super().setUp()
@@ -38,10 +37,111 @@ class StarWarsTestCase(IntegrationTestCase):
         resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
-        first_page = resp.headers['Location']
-        return self.check_first_page(first_page)
+        routing_start = resp.headers['Location']
 
-    def check_first_page(self, first_page):
+        first_page = self.default_routing(routing_start)
+        return self.check_quiz_first_page(first_page)
+
+    def default_routing(self, current_page):
+
+        # navigate back to first page
+        self.navigate_to_page(current_page)
+
+        form_data = {
+
+            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": "Light Side",
+            "action[save_continue]": "Save &amp; Continue"
+        }
+
+        resp = self.submit_page(current_page, form_data)
+        self.assertNotEquals(resp.headers['Location'], current_page)
+        current_page = resp.headers['Location']
+
+        self.routing_pick_your_character_light_side(current_page)
+
+        form_data = {
+
+            "91631df0-4356-4e9f-a9d9-ce8b08d26eb3": "Light Side",
+            "2e0989b8-5185-4ba6-b73f-c126e3a06ba7": "Yes",
+            "action[save_continue]": "Save &amp; Continue"
+        }
+
+        resp = self.submit_page(current_page, form_data)
+        self.assertNotEquals(resp.headers['Location'], current_page)
+        current_page = resp.headers['Location']
+
+        self.routing_select_your_ship_light_side(current_page)
+
+        form_data = {
+
+            "a2c2649a-85ff-4a26-ba3c-e1880f7c807b": "Millennium Falcon",
+            "action[save_continue]": "Save &amp; Continue"
+        }
+
+        resp = self.submit_page(current_page, form_data)
+        self.assertNotEquals(resp.headers['Location'], current_page)
+        current_page = resp.headers['Location']
+        self.check_quiz_first_page(current_page)
+
+        return current_page
+
+    def check_choose_your_side(self, start_page):
+        resp = self.client.get(start_page, follow_redirects=False)
+        self.assertEquals(resp.status_code, 200)
+        content = resp.get_data(True)
+
+        self.assertRegexpMatches(content, 'Choose your side')
+        self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c')
+        return start_page
+
+    def routing_pick_your_character_light_side(self, routing_page):
+
+        resp = self.client.get(routing_page, follow_redirects=False)
+        self.assertEquals(resp.status_code, 200)
+        content = resp.get_data(True)
+
+        self.assertRegexpMatches(content, 'A wise choice young Yedi. Pick your hero')
+        self.assertRegexpMatches(content, '91631df0-4356-4e9f-a9d9-ce8b08d26eb3')
+        self.assertRegexpMatches(content, 'Do you want to pick a ship?')
+        self.assertRegexpMatches(content, '2e0989b8-5185-4ba6-b73f-c126e3a06ba7')
+        return routing_page
+
+    def routing_pick_your_character_dark_side(self, routing_page):
+
+        resp = self.client.get(routing_page, follow_redirects=False)
+        self.assertEquals(resp.status_code, 200)
+        content = resp.get_data(True)
+
+        self.assertRegexpMatches(content, 'Good! Your hate has made you powerful. Pick your baddie')
+        self.assertRegexpMatches(content, '653e6407-43d6-4dfc-8b11-a673a73d602d')
+        self.assertRegexpMatches(content, 'Do you want to pick a ship?')
+        self.assertRegexpMatches(content, 'pel989b8-5185-4ba6-b73f-c126e3a06ba7')
+        return routing_page
+
+    def routing_select_your_ship_light_side(self, routing_page):
+        resp = self.client.get(routing_page, follow_redirects=False)
+        self.assertEquals(resp.status_code, 200)
+        content = resp.get_data(True)
+
+        self.assertRegexpMatches(content, 'Which ship do you want?')
+        self.assertRegexpMatches(content, 'Millennium Falcon')
+        self.assertRegexpMatches(content, 'X-wing')
+        self.assertRegexpMatches(content, 'a2c2649a-85ff-4a26-ba3c-e1880f7c807b')
+        return routing_page
+
+    def routing_select_your_ship_dark_side(self, routing_page):
+
+        resp = self.client.get(routing_page, follow_redirects=False)
+        self.assertEquals(resp.status_code, 200)
+        content = resp.get_data(True)
+
+        self.assertRegexpMatches(content, 'Which ship do you want?')
+        self.assertRegexpMatches(content, 'TIE Fighter')
+        self.assertRegexpMatches(content, 'Death Star')
+        self.assertRegexpMatches(content, 'a5d5ca1a-cf58-4626-be35-dce81297688b')
+        return routing_page
+
+    def check_quiz_first_page(self, first_page):
         resp = self.client.get(first_page, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
@@ -92,7 +192,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
         return first_page
 
-    def check_second_page(self, second_page):
+    def check_second_quiz_page(self, second_page):
         resp = self.client.get(second_page, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 

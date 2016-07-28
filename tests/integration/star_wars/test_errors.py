@@ -36,7 +36,7 @@ class TestPageErrors(StarWarsTestCase):
         # Second page
         second_page = resp.headers['Location']
 
-        self.check_second_page(second_page)
+        self.check_second_quiz_page(second_page)
 
         # Our answers
         form_data = {
