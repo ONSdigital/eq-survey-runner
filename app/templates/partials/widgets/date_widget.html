@@ -1,0 +1,33 @@
+{% set subfields %}
+  <div class="subfields">
+    <div class="field field--select">
+      {% set label = fields['day'].label %}
+      {% include 'partials/forms/label.html' %}
+      {% set select = fields['day'].select %}
+      {% include 'partials/forms/select.html' %}
+    </div>
+    <div class="field field--select">
+      {% set label = fields['month'].label %}
+      {% include 'partials/forms/label.html' %}
+      {% set select = fields['month'].select %}
+      {% include 'partials/forms/select.html' %}
+    </div>
+    <div class="field field--input">
+      {% set label = fields['year'].label %}
+      {% include 'partials/forms/label.html' %}
+      {% set input = fields['year'].input %}
+      {% include 'partials/forms/input.html' %}
+    </div>
+  </div>
+{% endset %}
+
+{% if legend %}
+  <fieldset class="fieldset date">
+    <legend class="legend">
+      <div>{{legend}}</div>
+    </legend>
+    {{subfields|safe}}
+  </fieldset>
+{% else %}
+  {{subfields|safe}}
+{% endif %}

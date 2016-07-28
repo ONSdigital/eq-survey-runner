@@ -1,0 +1,26 @@
+<!-- BEGIN RadioGroupWidget -->
+{% for option in widget.options %}
+  {% set option_id = answer.id ~ "-" ~ loop.index %}
+  <div class="field__item">
+
+    {% set input = {
+      'type': 'checkbox',
+      'value': option.value,
+      'name': answer.name,
+      'id': option_id,
+      'checked': option.selected
+    } %}
+
+    {% include 'partials/forms/input.html' %}
+
+    {% set label = {
+      'inline': true,
+      'for': option_id,
+      'text': option.label
+    } %}
+    {% include 'partials/forms/label.html' %}
+
+  </div>
+
+{% endfor %}
+<!-- END RagioGroupWidget -->

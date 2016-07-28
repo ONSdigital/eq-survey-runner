@@ -1,0 +1,16 @@
+<!-- BEGIN TextWidget -->
+{% set label = {
+  'for': answer.id,
+  'text': answer.label
+} %}
+{% include 'partials/forms/label.html' %}
+
+{% set input = {
+  'type': 'text',
+  'value': (answer.value or "")|e,
+  'name': answer.name,
+  'id': answer.id,
+  'placeholder': answer.placeholder
+} %}
+{% include 'partials/forms/input.html' %}
+<!-- END TextWidget -->

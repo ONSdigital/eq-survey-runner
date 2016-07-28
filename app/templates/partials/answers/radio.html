@@ -1,10 +1,3 @@
 <div class="field field--multi field--{{answer.type|lower}} {{'field--cols' if use_grid}}">
-  {% for option in answer.options %}
-    {% set option_id = answer.id ~ "-" ~ loop.index %}
-    {% set checked %}{% if answer.value and option.value == answer.value %}checked="checked"{% endif %}{% endset %}
-    <div class="field__item">
-      <input class="input input--{{answer.type|lower}}" type="{{answer.type|lower}}" name="{{answer.id}}" id="{{option_id}}" value="{{option.value}}" title="{{option.label}}" {{checked}}>
-      <label class="label label--inline" for="{{option_id}}"><span class="label__inner">{{option.label}}</span></label>
-    </div>
-  {% endfor %}
+  {{ answer.widget.render(answer, answer.state) | safe}}
 </div>

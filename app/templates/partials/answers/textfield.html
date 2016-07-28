@@ -1,4 +1,3 @@
 <div class="field">
-  {{form.label(answer)}}
-  {{form.input('text', question, answer)}}
+  {{ answer.widget.render(answer, answer.state)|safe}}
 </div>
