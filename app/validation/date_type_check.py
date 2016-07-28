@@ -14,7 +14,7 @@ class DateTypeCheck(AbstractValidator):
     def validate(self, user_answer):
         result = ValidationResult(False)
         try:
-            date = time.strptime(user_answer, "%Y/%m/%d")  # NOQA
+            date = time.strptime(user_answer, "%d/%m/%Y")  # NOQA
             return ValidationResult(True)
         except ValueError:
             result.errors.append(AbstractValidator.INVALID_DATE)

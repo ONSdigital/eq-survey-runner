@@ -77,7 +77,7 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertRegexpMatches(content, '(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
         self.assertRegexpMatches(content, '(?s)Which 3 have wielded a green lightsaber?.*?<li class="list__item">Y.*?o.*?d.*?a') # NOQA
         self.assertRegexpMatches(content, '(?s)Which 3 appear in any of the opening crawlers?')
-        self.assertRegexpMatches(content, '(?s)When was The Empire Strikes Back released?.*?From: 1983/05/28.*?To: 1983/05/29') # NOQA
+        self.assertRegexpMatches(content, '(?s)When was The Empire Strikes Back released?.*?From: 28/05/1983.*?To: 29/05/1983') # NOQA
         self.assertRegexpMatches(content, '(?s)What was the total number of Ewokes?.*?')
         self.assertRegexpMatches(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?Wookiees don’t place value in material rewards and refused the medal initially') # NOQA
         self.assertRegexpMatches(content, '>Please check carefully before submission<')

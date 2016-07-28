@@ -13,7 +13,7 @@ class DateAnswer(Answer):
         month = post_data.get(self.id + '-month', '')
         year = post_data.get(self.id + '-year', '')
 
-        user_input = year + '/' + month + '/' + day
+        user_input = day + '/' + month + '/' + year
 
         for checker in self.type_checkers:
             result = checker.validate(user_input)
@@ -24,7 +24,7 @@ class DateAnswer(Answer):
         return self._cast_user_input(user_input)
 
     def _cast_user_input(self, user_input):
-        return datetime.strptime(user_input, "%Y/%m/%d")
+        return datetime.strptime(user_input, "%d/%m/%Y")
 
     def get_user_input(self, post_vars):
-        return post_vars.get(self.id + '-year', '') + '/' + post_vars.get(self.id + '-month', '') + '/' + post_vars.get(self.id + '-day', '')
+        return post_vars.get(self.id + '-day', '') + '/' + post_vars.get(self.id + '-month', '') + '/' + post_vars.get(self.id + '-year', '')
