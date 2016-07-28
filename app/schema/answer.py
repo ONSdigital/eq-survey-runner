@@ -52,6 +52,14 @@ class Answer(Item):
 
     def validate(self, state):
         if isinstance(state, self.get_state_class()):
+
+            # Mandatory check
+            if self.mandatory and state.input is None:
+                state.errors = []
+                state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
+                state.is_valid = False
+                return False
+
             # Here we just report on whether the answer has passed type checking
             return state.is_valid
         else:

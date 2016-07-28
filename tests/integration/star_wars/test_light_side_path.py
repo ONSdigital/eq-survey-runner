@@ -72,7 +72,7 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertRegexpMatches(content, '>Your responses<')
         self.assertRegexpMatches(content, '(?s)How old is Chewy?.*?234')
         self.assertRegexpMatches(content, '(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
-        self.assertRegexpMatches(content, '(?s)How hot is a lightsaver in degrees C?.*?1370')
+        self.assertRegexpMatches(content, '(?s)How hot is a lightsaber in degrees C?.*?1370')
         self.assertRegexpMatches(content, '(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant') # NOQA
         self.assertRegexpMatches(content, '(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
         self.assertRegexpMatches(content, '(?s)Which 3 have wielded a green lightsaber?.*?<li class="list__item">Y.*?o.*?d.*?a') # NOQA

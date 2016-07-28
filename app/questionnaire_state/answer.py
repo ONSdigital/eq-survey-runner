@@ -17,12 +17,6 @@ class Answer(Item):
         # Get the user input
         self.input = schema_item.get_user_input(user_input)
 
-        # Mandatory check
-        if schema_item.mandatory and self.input is None:
-            self.errors = []
-            self.errors.append(schema_item.questionnaire.get_error_message('MANDATORY', schema_item.id))
-            self.is_valid = False
-
         # Try and get the typed value
         if self.input is not None:
             try:

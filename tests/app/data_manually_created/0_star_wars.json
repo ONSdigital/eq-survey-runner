@@ -82,7 +82,7 @@
                               {
                                 "id": "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
                                 "q_code": "3",
-                                "label": "How hot is a lightsaver in degrees C?",
+                                "label": "How hot is a lightsaber in degrees C?",
                                 "guidance": "",
                                 "type": "PositiveInteger",
                                 "options": [],
