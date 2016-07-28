@@ -13,6 +13,11 @@
         "properties": {}
     },
     "eq_id": "0",
+    "messages": {
+      "INTEGER_TOO_LARGE": "Too big, that number is",
+      "NEGATIVE_INTEGER": "Taken it, they have but exist somewhere it must",
+      "NOT_INTEGER": "Cloudy, your answer is"
+    },
     "groups": [
         {
             "blocks": [
