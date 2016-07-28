@@ -12,11 +12,10 @@ class DatabaseStorage(AbstractServerStorage):
     Server side storage using an RDS database (where one column is the entire JSON representation of the questionnaire state)
     '''
     def store(self, data, user_id, user_ik=None):
-        logger.debug("About to store data %s for user %s", data, user_id)
+        logger.debug("About to store data for user %s", user_id)
         if self.has_data(user_id):
             logger.debug("Loading previous data for user %s", user_id)
             questionnaire_state = self._get_object(user_id)
-            logger.debug("Loaded %s", questionnaire_state)
             questionnaire_state.set_data(data)
         else:
             logger.debug("Creating questionnaire state for user %s with data %s", user_id, data)
@@ -32,7 +31,7 @@ class DatabaseStorage(AbstractServerStorage):
         questionnaire_state = self._get_object(user_id)
         if questionnaire_state:
             data = questionnaire_state.get_data()
-            logger.debug("Loaded data %s", data)
+            logger.debug("Loaded data")
             return questionnaire_state.get_data()
         else:
             logger.debug("Return None from get")
