@@ -7,7 +7,6 @@
 <h1 class="u-vh">Monthly Business Survey - Retail Sales Index</h1>
 
 {% set all_errors = content.questionnaire.errors.items() %}
-
 {% if all_errors %}
   {% with %}
 
@@ -18,11 +17,13 @@
     <ul class="list list--bare">
       {% for item_id, errors in all_errors %}
         {% set loop_index = loop.index %}
+        {% if errors %}
         {% for error in errors %}
         <li class="list__item">
-          {{loop_index}}) {{ error }} <a href="#{{item_id}}">{{_('Go to this error')}}</a>
+          {{loop_index}}) {{ error[0] }} <a href="#{{item_id}}">{{_('Go to this error')}}</a>
         </li>
         {% endfor %}
+        {% endif %}
       {% endfor %}
     </ul>
     {% endset %}

@@ -3,6 +3,7 @@ from app.questionnaire_state.state_manager import StateManager
 from app.questionnaire_state.introduction import Introduction as StateIntroduction
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
 from app.questionnaire_state.summary import Summary as StateSummary
+from app.schema.questionnaire import QuestionnaireException
 import logging
 
 
@@ -61,6 +62,9 @@ class UserJourneyManager(object):
             page = page.next_page
         return page
 
+    def is_valid_location(self, location):
+        return location in self._valid_locations
+
     def go_to_state(self, item_id):
         page = self.get_state(item_id)
         logger.debug("go to state %s", item_id)
@@ -104,7 +108,12 @@ class UserJourneyManager(object):
             logger.debug("Current location %s", self.get_current_location())
             if item_id == self._current.item_id:
                 state = self._current.page_state
-                state.update_state(user_input)
+                schema_item = None
+                try:
+                    schema_item = self._schema.get_item_by_id(item_id)
+                except QuestionnaireException:
+                    pass
+                state.update_state(user_input, schema_item)
                 StateManager.save_state(self)
             else:
                 raise ValueError("Updating state for incorrect page")
@@ -181,3 +190,19 @@ class UserJourneyManager(object):
             return answers[id]
         else:
             return None
+
+    def validate(self):
+        # get the current location in the questionnaire
+        current_location = self.get_current_location()
+        if self.is_valid_location(current_location):
+            current_state = self.get_state(current_location)
+            if self._schema.item_exists(current_state.item_id):
+                schema_item = self._schema.get_item_by_id(current_state.item_id)
+
+                return schema_item.validate(current_state.page_state)
+            else:
+                # Item has state, but is not in schema: must be introduction, thank you or summary
+                return True
+        else:
+            # Not a validation location, so can't be valid
+            return False

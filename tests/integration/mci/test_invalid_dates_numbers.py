@@ -57,7 +57,9 @@ class TestInvalidDateNumber(IntegrationTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2017",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "rubbish"
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "rubbish",
+            # User action
+            "action[save_continue]": "Save &amp; Continue"
         }
 
         # We submit the form without a valid turnover value
@@ -76,7 +78,9 @@ class TestInvalidDateNumber(IntegrationTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "10000"
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "10000",
+            # User action
+            "action[save_continue]": "Save &amp; Continue"
         }
 
         # We submit the form without a valid 2nd date
@@ -101,7 +105,9 @@ class TestInvalidDateNumber(IntegrationTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "10000"
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "10000",
+            # User action
+            "action[save_continue]": "Save &amp; Continue"
         }
 
         # We submit the form with the front date later then the to date
@@ -120,7 +126,9 @@ class TestInvalidDateNumber(IntegrationTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000"
+            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            # User action
+            "action[save_continue]": "Save &amp; Continue"
         }
 
         # We submit the form with the dates the same
@@ -128,8 +136,6 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "The &#39;to&#39; date must be different to the &#39;from&#39; date.")
-
-
 
         form_data = {
             # Start Date

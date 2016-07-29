@@ -11,15 +11,13 @@ logger = logging.getLogger(__name__)
 
 
 class QuestionnaireManager(object):
-    def __init__(self, schema, user_journey_manager, validator, validation_store, routing_engine, metadata):
+    def __init__(self, schema, user_journey_manager, routing_engine, metadata):
         self._schema = schema
         self._user_journey_manager = user_journey_manager
-        self._validator = validator
-        self._validation_store = validation_store
         self._metadata = metadata
         self._routing_engine = routing_engine
         self._user_action_processor = UserActionProcessor(self._schema, self._metadata, self._user_journey_manager)
-        self._pre_processor = TemplatePreProcessor(self._schema, self._validation_store, self._user_journey_manager, self._metadata)
+        self._pre_processor = TemplatePreProcessor(self._schema, self._user_journey_manager, self._metadata)
 
     @property
     def submitted(self):
@@ -51,7 +49,7 @@ class QuestionnaireManager(object):
         current_location = self._user_journey_manager.get_current_location()
 
         # run the validator to update the validation_store
-        if self._validator.validate(cleaned_user_answers):
+        if self._user_journey_manager.validate():
 
             # process the user action
             self._user_action_processor.process_action(user_action)
@@ -82,23 +80,7 @@ class QuestionnaireManager(object):
         user_action = None
 
         for key in post_data.keys():
-            if key.endswith('-day'):
-                # collect the matching -month, and -year fields and return a single answer for validation
-                answer_id = key[0:-4]
-                month_key = answer_id + '-month'
-                year_key = answer_id + '-year'
-
-                if month_key not in post_data.keys() or year_key not in post_data.keys():
-                    continue
-
-                # We do not validate here, only concatenate the inputs into a single answer which is validated elsewhere
-                # we concatenate the fields into a date of the format dd/mm/yyyy
-                user_answers[answer_id] = post_data[key] + '/' + post_data[month_key] + '/' + post_data[year_key]
-
-            elif key.endswith('-month') or key.endswith('-year'):
-                # skip theses, they are handled above
-                continue
-            elif key.startswith('action['):
+            if key.startswith('action['):
                 # capture the required action
                 user_action = key[7:-1]
             elif key.endswith('[]'):

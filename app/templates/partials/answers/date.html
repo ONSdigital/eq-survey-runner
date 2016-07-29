@@ -1,5 +1,5 @@
 {% if answer.value %}
-  {% set answer_value = answer.value.split('/') %}
+  {% set answer_value = answer.input.split('/') %}
 {% else %}
   {% set answer_value = "0/0".split('/') %}
 {% endif %}

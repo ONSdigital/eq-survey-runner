@@ -17,6 +17,7 @@ class Question(Item):
         self.templatable_properties = ['title', 'description']
         self.display = Display()
         self.type = None
+        self.messages = {}
 
     def add_answer(self, answer):
         if answer not in self.answers:

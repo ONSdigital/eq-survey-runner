@@ -117,6 +117,10 @@ class SchemaParser(AbstractSchemaParser):
             else:
                 raise SchemaParserException('Questionnaire must contain at least one group')
 
+            if 'messages' in self._schema.keys():
+                # re-use the parse validation method
+                self._parse_validation(questionnaire, self._schema)
+
         return questionnaire
 
     def _parse_introduction(self, intro_schema):
