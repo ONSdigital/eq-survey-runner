@@ -73,63 +73,23 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
         self.assertIsNone(answer_3.value)
 
-    # def test_collect_errors(self):
-    #     # Instantiate the pre_proc using the pre-populated mock objects
-    #     pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager, self.metadata)
-    #     pre_proc.initialize()
-    #
-    #     # Get the answer objects
-    #     answer_1 = self.schema.get_item_by_id('answer-1')
-    #     answer_2 = self.schema.get_item_by_id('answer-2')
-    #     answer_3 = self.schema.get_item_by_id('answer-3')
-    #
-    #     errors = OrderedDict()
-    #     warnings = OrderedDict()
-    #
-    #     with self.assertRaises(AttributeError):
-    #         value = answer_1.is_valid
-    #
-    #     # Augment the items
-    #     pre_proc._collect_errors(answer_1, errors, warnings)
-    #     pre_proc._collect_errors(answer_2, errors, warnings)
-    #     pre_proc._collect_errors(answer_3, errors, warnings)
-    #
-    #     # Check the schema has been augmented correctly
-    #     self.assertTrue(answer_1.is_valid)
-    #     self.assertEquals(len(answer_1.errors), 0)
-    #     self.assertEquals(len(answer_1.warnings), 0)
-    #
-    #     self.assertFalse(answer_2.is_valid)
-    #     self.assertEquals(len(answer_2.errors), 1)
-    #     self.assertEquals(len(answer_2.warnings), 1)
-    #     self.assertEquals(answer_2.errors[0], 'There is an error')
-    #     self.assertEquals(answer_2.warnings[0], 'There is a warning')
-    #
-    #     self.assertFalse(answer_3.is_valid)
-    #     self.assertEquals(len(answer_3.errors), 1)
-    #     self.assertEquals(answer_3.errors[0], 'This is a required field')
+    def test_augment_questionnaire(self):
+        # Instantiate the pre_proc using the pre-populated mock objects
+        pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager, self.metadata)
+        pre_proc.initialize()
 
-    # def test_augment_questionnaire(self):
-    #     # Instantiate the pre_proc using the pre-populated mock objects
-    #     pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager, self.metadata)
-    #     pre_proc.initialize()
-    #
-    #     # check the attributes do not exist
-    #     with self.assertRaises(AttributeError):
-    #         errors = self.schema.errors
-    #     with self.assertRaises(AttributeError):
-    #         warnings = self.schema.warnings
-    #
-    #     # augment the questionnaire
-    #     pre_proc._augment_questionnaire()
-    #
-    #     # check the questionnaire has been augmented correctly
-    #     self.assertIsInstance(self.schema.errors, OrderedDict, 'Errors should be an OrderedDict')
-    #     self.assertIsInstance(self.schema.warnings, OrderedDict, 'Warnings should be an OrderedDict')
-    #
-    #     self.assertListEqual(self.schema.errors['answer-2'], ['There is an error'])
-    #     self.assertListEqual(self.schema.errors['answer-3'], ['This is a required field'])
-    #     self.assertListEqual(self.schema.warnings['answer-2'], ['There is a warning'])
+        # check the attributes do not exist
+        with self.assertRaises(AttributeError):
+            errors = self.schema.errors
+        with self.assertRaises(AttributeError):
+            warnings = self.schema.warnings
+
+        # augment the questionnaire
+        pre_proc._augment_questionnaire()
+
+        # check the questionnaire has been augmented correctly
+        self.assertIsInstance(self.schema.errors, OrderedDict, 'Errors should be an OrderedDict')
+        self.assertIsInstance(self.schema.warnings, OrderedDict, 'Warnings should be an OrderedDict')
 
     def test_build_view_data(self):
         pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager, self.metadata)
@@ -176,6 +136,7 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
         answer_2 = Answer()
         answer_2.id = 'answer-2'
+        answer_2.mandatory = True
         question_2.add_answer(answer_2)
         questionnaire.register(answer_2)
 
