@@ -1,6 +1,6 @@
 from app.schema.display import Display
 from app.schema.answer import Answer
-from app.validation.messages import messages
+from app.validation.error_messages import error_messages
 from app.schema.exceptions import QuestionnaireException
 
 
@@ -71,4 +71,4 @@ class Questionnaire(object):
             return self.messages[error]
 
         # Error message has not been overwritten by the author, use the default
-        return messages[error]
+        return error_messages[error]

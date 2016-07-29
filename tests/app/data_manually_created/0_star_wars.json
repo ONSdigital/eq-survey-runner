@@ -61,8 +61,7 @@
                                     },
                                     "id": "88824eff-7bb6-443f-85cb-8c2db016d44c",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -90,8 +89,7 @@
                                     },
                                     "id": "b8a803ba-2048-46dc-83cf-9ef9000d7a92",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -119,8 +117,7 @@
                                     },
                                     "id": "d8a803ga-2048-46dc-83cf-9ef9000d7a92",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -153,10 +150,7 @@
                                                 }
                                             ],
                                             "q_code": "4",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
+                                            "type": "Radio"
                                         }
                                     ],
                                     "description": "",
@@ -165,8 +159,7 @@
                                     },
                                     "id": "235f0930-47fb-4998-afed-d73167886d63",
                                     "title": "What animal was used to create the engine sound of the Empire's TIE fighters?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -199,10 +192,7 @@
                                                 }
                                             ],
                                             "q_code": "5",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
+                                            "type": "Radio"
                                         }
                                     ],
                                     "description": "",
@@ -211,8 +201,7 @@
                                     },
                                     "id": "def61645-c231-4522-ba2f-273b25507e53",
                                     "title": "Which of these Darth Vader quotes is wrong?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -253,10 +242,7 @@
                                                 }
                                             ],
                                             "q_code": "6",
-                                            "type": "Checkbox",
-                                            "validation": {
-                                                "messages": {}
-                                            }
+                                            "type": "Checkbox"
                                         }
                                     ],
                                     "description": "",
@@ -265,8 +251,7 @@
                                     },
                                     "id": "def6r645-c231-4522-ba2f-273b25507e53",
                                     "title": "Which 3 have wielded a green lightsaber?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -307,10 +292,7 @@
                                                 }
                                             ],
                                             "q_code": "7",
-                                            "type": "Checkbox",
-                                            "validation": {
-                                                "messages": {}
-                                            }
+                                            "type": "Checkbox"
                                         }
                                     ],
                                     "description": "",
@@ -319,8 +301,7 @@
                                     },
                                     "id": "pef6r645-c231-4522-ba2f-273b25507e53",
                                     "title": "Which 3 appear in any of the opening crawlers?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -363,16 +344,13 @@
                                     },
                                     "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
                                     "title": "When was The Empire Strikes Back released?",
-                                    "type": "DateRange",
-                                    "validation": []
+                                    "type": "DateRange"
                                 }
                             ],
-                            "title": "Star Wars Quiz",
-                            "validation": []
+                            "title": "Star Wars Quiz"
                         }
                     ],
-                    "title": "Star Wars",
-                    "validation": []
+                    "title": "Star Wars"
                 },
                 {
                     "display": {
@@ -413,12 +391,10 @@
                                     },
                                     "id": "rt4eedc2-d98c-4d4d-9a7c-997ce10c361f",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "On {exercise.employment_date:%-d %B %Y} how many were employed?",
-                            "validation": []
+                            "title": "On {exercise.employment_date:%-d %B %Y} how many were employed?"
                         },
                         {
                             "description": "",
@@ -441,10 +417,7 @@
                                             "mandatory": true,
                                             "options": [],
                                             "q_code": "10",
-                                            "type": "Textarea",
-                                            "validation": {
-                                                "messages": {}
-                                            }
+                                            "type": "Textarea"
                                         }
                                     ],
                                     "description": "",
@@ -453,8 +426,7 @@
                                     },
                                     "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -479,10 +451,7 @@
                                                 }
                                             ],
                                             "q_code": "43",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
+                                            "type": "Radio"
                                         }
                                     ],
                                     "description": "",
@@ -491,24 +460,20 @@
                                     },
                                     "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
                                     "title": "Do you really think that Chewbacca is {answers.chewies_age} years old?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "",
-                            "validation": []
+                            "title": ""
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 }
             ],
             "display": {
                 "properties": {}
             },
             "id": "14ba4707-321d-441d-8d21-b8367366e766",
-            "title": "",
-            "validation": []
+            "title": ""
         }
     ]
 }

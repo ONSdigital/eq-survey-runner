@@ -1,7 +1,7 @@
 from flask.ext.babel import gettext as _
 
 # Set up default error and warning messages
-messages = {
+error_messages = {
     'NOT_INTEGER': _("Please only enter whole numbers into the field."),
     'NOT_STRING': _("This is not a string."),
     'MANDATORY': _("This field is mandatory."),
