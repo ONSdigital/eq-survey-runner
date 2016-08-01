@@ -10,12 +10,6 @@ export EQ_CLOUDWATCH_LOGGING=False
 
 export EQ_RABBITMQ_ENABLED=False
 
-if [ ! -d "/app/data" ]; then
-  mkdir "app/data"
-fi
-
-python generate_json.py
-
 if [ -z "$EQ_DEV_MODE" ]; then
   export EQ_DEV_MODE=True
 fi
@@ -38,14 +32,13 @@ function display_result {
   fi
 }
 
-flake8
+flake8 --max-complexity 10
 display_result $? 1 "Code style check"
 
-py.test $@
+py.test --cov=app $@
 display_result $? 2 "Unit tests"
 
 # Run front end tests
 npm config set python python2.7
 npm run test
-npm run test_functional_sauce
 display_result $? 1 "Front end tests"
