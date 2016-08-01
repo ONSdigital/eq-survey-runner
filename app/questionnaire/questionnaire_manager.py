@@ -56,7 +56,7 @@ class QuestionnaireManager(object):
 
             # do any routing
             next_location = self._routing_engine.get_next_location(current_location)
-            logger.debug("next location after routing is %s", next_location)
+            logger.info("next location after routing is %s", next_location)
 
             # go to that location
             self._user_journey_manager.go_to_state(next_location)

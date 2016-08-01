@@ -79,4 +79,4 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
         self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/an3b74d1-b687-4051-9634-a8f9ce10ard')
         second_page = resp.headers['Location']
 
-        self.check_second_page(second_page)
+        self.check_second_quiz_page(second_page)

@@ -180,6 +180,7 @@ class SchemaParser(AbstractSchemaParser):
         try:
             block.id = ParserUtils.get_required_string(schema, "id")
             block.title = ParserUtils.get_optional_string(schema, "title")
+            block.routing_rules = ParserUtils.get_optional_array(schema, 'routing_rules')
 
             # register the block
             questionnaire.register(block)
@@ -284,7 +285,6 @@ class SchemaParser(AbstractSchemaParser):
             answer.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
             answer.options = ParserUtils.get_optional_array(schema, 'options')
             answer.alias = ParserUtils.get_optional_string(schema, 'alias')
-
             display = ParserUtils.get_optional(schema, "display")
             if display:
                 answer.display = self._parse_display(display)
