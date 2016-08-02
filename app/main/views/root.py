@@ -1,9 +1,8 @@
 from flask import request, abort, session, redirect
 from flask_login import current_user
 from .. import main_blueprint
-from app.schema_loader.schema_loader import load_schema
-from app.parser.schema_parser_factory import SchemaParserFactory
-from app.questionnaire_state.user_journey_manager import UserJourneyManager
+
+from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
 from app.authentication.authenticator import Authenticator
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.invalid_token_exception import InvalidTokenException
@@ -48,14 +47,7 @@ def login():
             logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
             abort(404)
 
-        # load the schema
-        schema = load_and_parse_schema(eq_id, form_type)
-        if not schema:
-            return errors.page_not_found()
-
-        user_journey_manager = UserJourneyManager.get_instance()
-        if not user_journey_manager:
-            user_journey_manager = UserJourneyManager.new_instance(schema)
+        user_journey_manager = create_questionnaire_manager()
 
         # get the current location of the user
         current_location = user_journey_manager.get_current_location()
@@ -72,21 +64,3 @@ def login():
         return errors.forbidden(e)
     except RuntimeError as e:
         return errors.internal_server_error(e)
-
-
-def load_and_parse_schema(eq_id, form_type):
-    """
-    Use the schema loader to get the schema from disk. Then use the parse to construct the object schema
-    :param eq_id: the id of the questionnaire
-    :param form_type: the form type
-    :return: an object schema
-    """
-    # load the schema
-
-    json_schema = load_schema(eq_id, form_type)
-    if json_schema:
-        parser = SchemaParserFactory.create_parser(json_schema)
-        schema = parser.parse()
-        return schema
-    else:
-        return None

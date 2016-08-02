@@ -1,4 +1,3 @@
-from app.questionnaire_state.user_journey_manager import UserJourneyManager
 import logging
 
 logger = logging.getLogger(__name__)
@@ -12,8 +11,9 @@ class RoutingEngine(object):
     ''' The routing engine will apply any routing rules dependant on where the user is in the schema
     and what answers they have provided.
     '''
-    def __init__(self, schema_model):
+    def __init__(self, schema_model, questionnaire_manager):
         self._schema = schema_model
+        self._questionnaire_manager = questionnaire_manager
 
     def get_next_location(self, current_location):
         if current_location == 'introduction':
@@ -53,11 +53,9 @@ class RoutingEngine(object):
         # There are no more blocks or groups, go to summary
         return 'summary'
 
-    @staticmethod
-    def _process_routing_rules(routing_rules):
+    def _process_routing_rules(self, routing_rules):
 
         logger.debug("Processing routing rules %s", routing_rules)
-        user_journey_manager = UserJourneyManager.get_instance()
 
         try:
             for rule in routing_rules:
@@ -71,7 +69,7 @@ class RoutingEngine(object):
                     when = rule['goto']['when']
                     match_value = when['value']
                     condition = when['condition']
-                    user_answer = user_journey_manager.get_answer(when['id'])
+                    user_answer = self._questionnaire_manager.find_answer(when['id'])
 
                     # Evaluate the condition on the routing rule
                     if condition == 'equals':
@@ -80,7 +78,6 @@ class RoutingEngine(object):
                     if condition == 'not equals':
                         if match_value != user_answer:
                             return goto_id
-
         except:
             logger.error("Routing rules error")
             raise RoutingException('Cannot route: Routing rule not configured correctly')

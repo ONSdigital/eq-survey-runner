@@ -47,36 +47,10 @@ class TestTemplatePreProcessor(unittest.TestCase):
         self.user_journey_manager.store_answer('answer-2', 'Two')
         # We do not provide a answer for answer-3
 
-    def test_augment_answer(self):
-        # Instantiate the pre processor using the pre-populated mock objects
-        pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager, self.metadata)
-        pre_proc.initialize()
-
-        # Get the answer objects
-        answer_1 = self.schema.get_item_by_id('answer-1')
-        answer_2 = self.schema.get_item_by_id('answer-2')
-        answer_3 = self.schema.get_item_by_id('answer-3')
-
-        # Check the attributes do not exist
-        with self.assertRaises(AttributeError):
-            value = answer_1.value
-
-        # Augment the answers
-        pre_proc._augment_answer(answer_1)
-        pre_proc._augment_answer(answer_2)
-        pre_proc._augment_answer(answer_3)
-
-        # Check the schema has been augmented correctly
-        self.assertEquals(answer_1.value, 'One')
-
-        self.assertEquals(answer_2.value, 'Two')
-
-        self.assertIsNone(answer_3.value)
-
     def test_augment_questionnaire(self):
         # Instantiate the pre_proc using the pre-populated mock objects
-        pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager, self.metadata)
-        pre_proc.initialize()
+        pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager)
+        pre_proc.initialize(self.metadata)
 
         # check the attributes do not exist
         with self.assertRaises(AttributeError):
@@ -92,8 +66,8 @@ class TestTemplatePreProcessor(unittest.TestCase):
         self.assertIsInstance(self.schema.warnings, OrderedDict, 'Warnings should be an OrderedDict')
 
     def test_build_view_data(self):
-        pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager, self.metadata)
-        pre_proc.initialize()
+        pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager)
+        pre_proc.initialize(self.metadata)
 
         context = pre_proc.build_view_data()
 
@@ -157,7 +131,7 @@ class MockUserJourneyManager(object):
     def store_answer(self, key, value):
         self._answers[key] = value
 
-    def get_answer(self, key):
+    def find_answer(self, key):
         if key in self._answers.keys():
             return self._answers[key]
         else:
