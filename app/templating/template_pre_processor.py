@@ -87,12 +87,13 @@ class TemplatePreProcessor(object):
 
         if self._schema.introduction and self._schema.introduction.description:
             survey_meta["description"] = self._schema.introduction.description
-            survey_meta["return_by"] = self._format_date(self._metadata.return_by)
-            survey_meta["start_date"] = self._format_date(self._metadata.ref_p_start_date)
-            survey_meta["end_date"] = self._format_date(self._metadata.ref_p_end_date)
-            survey_meta["period_str"] = self._metadata.period_str
-            # employment date is optional
-            survey_meta["employment_date"] = self._format_date(self._metadata.employment_date)
+
+        survey_meta["return_by"] = self._format_date(self._metadata.return_by)
+        survey_meta["start_date"] = self._format_date(self._metadata.ref_p_start_date)
+        survey_meta["end_date"] = self._format_date(self._metadata.ref_p_end_date)
+        survey_meta["period_str"] = self._metadata.period_str
+        # employment date is optional
+        survey_meta["employment_date"] = self._format_date(self._metadata.employment_date)
 
         if self._user_journey_manager.submitted_at:
             logger.debug("Template pre-processor submitted at %s", self._user_journey_manager.submitted_at)
