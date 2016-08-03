@@ -115,7 +115,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sales from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                     "display": {
                                         "properties": {}
                                     },
@@ -152,25 +152,26 @@
                                             "guidance": "",
                                             "id": "66612bbb-bc06-4d38-b32c-e2a113641c8a",
                                             "label": "Internet sales",
-                                            "mandatory": false,
+                                            "mandatory": true,
                                             "options": [],
                                             "q_code": "21",
                                             "type": "Currency",
                                             "validation": {
                                                 "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "MANDATORY": "Please provide a value, even if your value is 0.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
                                                     "NOT_INTEGER": "Please only enter whole numbers into the field."
                                                 }
                                             }
                                         }
                                     ],
-                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
+                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
                                     "display": {
                                         "properties": {}
                                     },
                                     "id": "eb40935b-b771-4082-adc4-37e4c0b04208",
-                                    "title": "Of your total retail turnover, how much were from internet sales?",
+                                    "title": "Of your total retail turnover, what was the value of internet sales?",
                                     "type": "General",
                                     "validation": []
                                 }
@@ -215,7 +216,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "We rely on your commentary to 'tell the story' behind changes in your business's figures. By commenting here it will reduce the need for us to call you.",
+                                    "description": "<div><p>We rely on your commentary to 'tell the story' behind changes in your business's figures. By commenting here it will reduce the need for us to call you.</p><p> 'Changes' means significant changes to you business's total retail turnover figures between: <ul><li>the current and previous reporting period; and/or </li> <li>the current reporting period and the same reporting period last year.</li></ul></div>",
                                     "display": {
                                         "properties": {}
                                     },
