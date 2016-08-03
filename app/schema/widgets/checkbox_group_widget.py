@@ -1,6 +1,9 @@
 from app.schema.widget import Widget
 from flask import render_template
 from app.libs.utils import ObjectFromDict
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class CheckboxGroupWidget(Widget):
@@ -14,8 +17,7 @@ class CheckboxGroupWidget(Widget):
     def render(self, answer_schema, answer_state):
         widget_params = {
             'widget': {
-                'options': self._build_options(answer_schema, answer_state),
-                'allow_other': False
+                'options': self._build_options(answer_schema, answer_state)
             },
             'answer': {
                 'name': self.name,

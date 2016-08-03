@@ -26,5 +26,6 @@ class CurrencyWidget(Widget):
         return render_template('partials/widgets/currency_widget.html', **widget_params)
 
     def get_user_input(self, post_vars):
-        logger.debug('Getting user input for: ' + self.name)
-        return post_vars.get(self.name, None)
+        user_input = post_vars.get(self.name, None)
+        logger.debug('Getting user input for "{}", value is "{}"'.format(self.name, user_input))
+        return user_input

@@ -5,6 +5,7 @@ import json
 from app import settings
 import unittest
 import os
+from werkzeug.datastructures import MultiDict
 
 
 class TestRoutingEngine(unittest.TestCase):
@@ -52,14 +53,14 @@ class TestRoutingEngine(unittest.TestCase):
     def test_routing_with_no_rules(self):
 
         current_block = 'cd3b74d1-b687-4051-9634-a8f9ce10a27d'
-        user_answers = {
+        user_answers = MultiDict({
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "234",
             "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "40",
             "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
             "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Yoda, Qui-Gon Jinn]",
+            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
@@ -68,7 +69,7 @@ class TestRoutingEngine(unittest.TestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "29",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "05",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "1983"
-        }
+        })
 
         next_location = self.update_questionnaire_manager(current_block, user_answers)
         self.assertEqual('an3b74d1-b687-4051-9634-a8f9ce10ard', next_location)
@@ -80,4 +81,3 @@ class TestRoutingEngine(unittest.TestCase):
 
         next_location = self.routing_engine.get_next_location(current_block)
         return next_location
-
