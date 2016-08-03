@@ -87,17 +87,12 @@ class TemplatePreProcessor(object):
 
         if self._schema.introduction and self._schema.introduction.description:
             survey_meta["description"] = self._schema.introduction.description
-
-        try:
-            # Under certain conditions, there is no user so these steps may fail
-            survey_meta["return_by"] = "{dt.day} {dt:%B} {dt.year}".format(dt=self._metadata.return_by)
-            survey_meta["start_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.ref_p_start_date)
-            survey_meta["end_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.ref_p_end_date)
-            survey_meta["employment_date"] = '{dt.day} {dt:%B} {dt.year}'.format(dt=self._metadata.employment_date)
+            survey_meta["return_by"] = self._format_date(self._metadata.return_by)
+            survey_meta["start_date"] = self._format_date(self._metadata.ref_p_start_date)
+            survey_meta["end_date"] = self._format_date(self._metadata.ref_p_end_date)
             survey_meta["period_str"] = self._metadata.period_str
-        except:
-            # But we can silently ignore them under those circumstanes
-            pass
+            # employment date is optional
+            survey_meta["employment_date"] = self._format_date(self._metadata.employment_date)
 
         if self._user_journey_manager.submitted_at:
             logger.debug("Template pre-processor submitted at %s", self._user_journey_manager.submitted_at)
@@ -105,6 +100,17 @@ class TemplatePreProcessor(object):
             survey_meta['submitted_at'] = self._user_journey_manager.submitted_at
 
         return survey_meta
+
+    def _format_date(self, date):
+        formatted_date = None
+        try:
+            # employment date is optional this is why date is checked to see if exists
+            if date:
+                formatted_date = '{dt.day} {dt:%B} {dt.year}'.format(dt=date)
+        except ValueError as e:
+            logger.exception(e)
+            logger.error("Error parsing meta data for %s", date)
+        return formatted_date
 
     def _build_respondent_meta(self):
         respondent_meta = {
