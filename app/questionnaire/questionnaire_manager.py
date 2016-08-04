@@ -4,7 +4,6 @@ from app.questionnaire_state.page import Page
 from app.questionnaire_state.summary import Summary as StateSummary
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
 from app.schema.questionnaire import QuestionnaireException
-from app.metadata.metadata_store import MetaDataStore
 from app.templating.template_pre_processor import TemplatePreProcessor
 from app.routing.routing_engine import RoutingEngine
 from app.questionnaire.user_action_processor import UserActionProcessor
@@ -231,7 +230,6 @@ class QuestionnaireManager(object):
             # convenience method for routing to the first block
             location = self._get_first_block()
         self.go_to_state(location)
-        self._pre_processor.initialize(MetaDataStore.get_instance(current_user))
 
     def process_incoming_answers(self, location, post_data):
         # ensure we're in the correct location
@@ -267,7 +265,6 @@ class QuestionnaireManager(object):
             # bug fix for using back button which then fails validation
             self.go_to_state(current_location)
 
-        self._pre_processor.initialize(MetaDataStore.get_instance(current_user))
         # now return the location
         return self.get_current_location()
 
