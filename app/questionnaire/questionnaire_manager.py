@@ -11,7 +11,6 @@ from app.questionnaire.user_action_processor import UserActionProcessor
 from app.authentication.session_management import session_manager
 from flask_login import current_user
 import logging
-import bleach
 
 
 logger = logging.getLogger(__name__)

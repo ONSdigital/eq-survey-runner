@@ -6,7 +6,7 @@ from app import settings
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.questionnaire.state_manager import InMemoryStateManager
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
-from werkzeug.datastructures from MultiDict
+from werkzeug.datastructures import MultiDict
 
 
 class TestDatabaseStateManager(unittest.TestCase):
