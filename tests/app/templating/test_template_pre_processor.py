@@ -156,6 +156,6 @@ class MockUserJourneyManager(object):
         return 'block-1'
 
     def get_state(self, item_id):
-        block_state = StateBlock('block-1')
+        block_state = StateBlock('block-1', None)
         page = Page('block-1', block_state)
         return page

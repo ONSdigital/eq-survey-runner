@@ -4,7 +4,6 @@ from app.questionnaire_state.page import Page
 from app.questionnaire_state.summary import Summary as StateSummary
 from app.questionnaire_state.confirmation import Confirmation as StateConfirmation
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
-from app.schema.questionnaire import QuestionnaireException
 from app.templating.template_pre_processor import TemplatePreProcessor
 from app.routing.routing_engine import RoutingEngine
 from app.questionnaire.user_action_processor import UserActionProcessor
@@ -119,12 +118,7 @@ class QuestionnaireManager(object):
             logger.debug("Current location %s", self.get_current_location())
             if item_id == self._current.item_id:
                 state = self._current.page_state
-                schema_item = None
-                try:
-                    schema_item = self._schema.get_item_by_id(item_id)
-                except QuestionnaireException:
-                    pass
-                state.update_state(user_input, schema_item)
+                state.update_state(user_input)
                 StateManager.save_state(self)
             else:
                 raise ValueError("Updating state for incorrect page")

@@ -25,7 +25,7 @@ class Answer(Item):
         self.widget = None
 
     def construct_state(self):
-        return State(self.id)
+        return State(self.id, self)
 
     def get_state_class(self):
         return State

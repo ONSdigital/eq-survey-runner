@@ -1,17 +1,17 @@
 
 
 class Item(object):
-    def __init__(self, id):
+    def __init__(self, id, schema_item):
         self.id = id
-        self.sections = []
         self.children = []
         self.is_valid = None
-        self.errors = None
-        self.warnings = None
+        self.errors = []
+        self.warnings = []
+        self.schema_item = schema_item
 
-    def update_state(self, user_input, schema_item):
+    def update_state(self, user_input):
         for child in self.children:
-            child.update_state(user_input, schema_item)
+            child.update_state(user_input)
 
     def get_answers(self):
         answers = []
