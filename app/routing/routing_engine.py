@@ -57,27 +57,23 @@ class RoutingEngine(object):
 
         logger.debug("Processing routing rules %s", routing_rules)
 
-        try:
-            for rule in routing_rules:
-                goto_id = rule['goto']['id']
+        for rule in routing_rules:
+            goto_id = rule['goto']['id']
 
-                # If there isn't a 'when' we just go straight to the id
-                if 'when' not in rule['goto'].keys():
+            # If there isn't a 'when' we just go straight to the id
+            if 'when' not in rule['goto'].keys():
+                return goto_id
+            else:
+                when = rule['goto']['when']
+                match_value = when['value']
+                condition = when['condition']
+                user_answer = self._questionnaire_manager.find_answer(when['id'])
+
+                # Evaluate the condition on the routing rule
+                if condition == 'equals' and match_value == user_answer:
                     return goto_id
-                else:
+                if condition == 'not equals' and match_value != user_answer:
+                    return goto_id
 
-                    when = rule['goto']['when']
-                    match_value = when['value']
-                    condition = when['condition']
-                    user_answer = self._questionnaire_manager.find_answer(when['id'])
-
-                    # Evaluate the condition on the routing rule
-                    if condition == 'equals':
-                        if match_value == user_answer:
-                            return goto_id
-                    if condition == 'not equals':
-                        if match_value != user_answer:
-                            return goto_id
-        except:
-            logger.error("Routing rules error")
-            raise RoutingException('Cannot route: Routing rule not configured correctly')
+        # If we get to here there is at least one missing routing rule
+        raise RoutingException('Routing rules error, a rule is missing')
