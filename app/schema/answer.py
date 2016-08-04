@@ -6,8 +6,8 @@ import bleach
 
 
 class Answer(Item):
-    def __init__(self):
-        self.id = None
+    def __init__(self, answer_id=None):
+        self.id = answer_id
         self.label = ""
         self.guidance = ""
         self.type = None
@@ -22,6 +22,7 @@ class Answer(Item):
         self.options = []
         self.alias = None
         self.type_checkers = []
+        self.widget = None
 
     def construct_state(self):
         return State(self.id)
@@ -30,7 +31,7 @@ class Answer(Item):
         return State
 
     def get_user_input(self, post_vars):
-        user_input = post_vars.get(self.id, None)
+        user_input = self.widget.get_user_input(post_vars)
         if user_input and not str(user_input).isspace() and user_input != '':
             return user_input
         else:
@@ -68,6 +69,9 @@ class Answer(Item):
             raise StateException('Cannot validate - incorrect state class')
 
     def augment_with_state(self, state):
+        # These are her to avoid rebuilding the whole rendering pipeline
+        self.state = state
+
         if state.id == self.id:
             self.is_valid = state.is_valid
             self.errors = state.errors
@@ -80,6 +84,6 @@ class Answer(Item):
         if hasattr(self, property_name):
             value = getattr(self, property_name)
             if value:
-                collection[self.id] = [value]
+                collection[self.id] = value
 
         return collection

@@ -58,7 +58,7 @@ class TestNavigation(StarWarsTestCase):
         # Our answers
         form_data = {
             # People in household
-            "215015b1-f87c-4740-9fd4-f01f707ef558": "Wookiees don’t place value in material rewards and refused the medal initially", # NOQA
+            "215015b1-f87c-4740-9fd4-f01f707ef558": "Wookiees don’t place value in material rewards and refused the medal initially",  # NOQA
             "7587qe9b-f24e-4dc0-ac94-66118b896c10": "Yes",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
@@ -81,13 +81,13 @@ class TestNavigation(StarWarsTestCase):
         self.assertRegexpMatches(content, '(?s)How old is Chewy?.*?234')
         self.assertRegexpMatches(content, '(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
         self.assertRegexpMatches(content, '(?s)How hot is a lightsaber in degrees C?.*?1370')
-        self.assertRegexpMatches(content, '(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant') # NOQA
+        self.assertRegexpMatches(content, '(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant')  # NOQA
         self.assertRegexpMatches(content, '(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
-        self.assertRegexpMatches(content, '(?s)Which 3 have wielded a green lightsaber?.*?<li class="list__item">Y.*?o.*?d.*?a') # NOQA
+        self.assertRegexpMatches(content, '(?s)Which 3 have wielded a green lightsaber?.*?Y.*?o.*?d.*?a')  # NOQA
         self.assertRegexpMatches(content, '(?s)Which 3 appear in any of the opening crawlers?')
-        self.assertRegexpMatches(content, '(?s)When was The Empire Strikes Back released?.*?From: 28/05/1983.*?To: 29/05/1983') # NOQA
+        self.assertRegexpMatches(content, '(?s)When was The Empire Strikes Back released?.*?From: 28/05/1983.*?To: 29/05/1983')  # NOQA
         self.assertRegexpMatches(content, '(?s)What was the total number of Ewokes?.*?')
-        self.assertRegexpMatches(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?Wookiees don’t place value in material rewards and refused the medal initially') # NOQA
+        self.assertRegexpMatches(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?Wookiees don’t place value in material rewards and refused the medal initially')  # NOQA
         self.assertRegexpMatches(content, '>Please check carefully before submission<')
         self.assertRegexpMatches(content, '>Submit answers<')
 

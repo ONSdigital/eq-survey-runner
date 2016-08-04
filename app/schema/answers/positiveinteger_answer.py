@@ -1,11 +1,8 @@
-from app.schema.answer import Answer
+from app.schema.answers.integer_answer import IntegerAnswer
 from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
 
 
-class PositiveIntegerAnswer(Answer):
-    def __init__(self):
-        super().__init__()
+class PositiveIntegerAnswer(IntegerAnswer):
+    def __init__(self, answer_id=None):
+        super().__init__(answer_id)
         self.type_checkers.append(PositiveIntegerTypeCheck())
-
-    def _cast_user_input(self, user_input):
-        return int(user_input)

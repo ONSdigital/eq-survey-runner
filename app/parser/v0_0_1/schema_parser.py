@@ -276,9 +276,9 @@ class SchemaParser(AbstractSchemaParser):
         """
         try:
             answer_type = ParserUtils.get_required_string(schema, 'type')
-            answer = self.answer_factory.create(answer_type.upper())
+            answer_id = ParserUtils.get_required_string(schema, 'id')
+            answer = self.answer_factory.create(answer_type.upper(), answer_id)
             answer.type = answer_type
-            answer.id = ParserUtils.get_required_string(schema, 'id')
             answer.code = ParserUtils.get_required_string(schema, 'q_code')
             answer.label = ParserUtils.get_optional_string(schema, 'label')
             answer.guidance = ParserUtils.get_optional_string(schema, 'guidance')

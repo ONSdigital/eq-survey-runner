@@ -11,7 +11,6 @@ from app.questionnaire.user_action_processor import UserActionProcessor
 from app.authentication.session_management import session_manager
 from flask_login import current_user
 import logging
-import bleach
 
 
 logger = logging.getLogger(__name__)
@@ -239,15 +238,10 @@ class QuestionnaireManager(object):
         self.go_to_state(location)
 
         # process incoming post data
-        user_action, user_answers = self._process_incoming_post_data(post_data)
-
-        # Process the answers and see where to go next
-        cleaned_user_answers = {}
-        for key, value in user_answers.items():
-            cleaned_user_answers[key] = self._clean_input(value)
+        user_action = self._get_user_action(post_data)
 
         # updated state
-        self.update_state(location, user_answers)
+        self.update_state(location, post_data)
 
         # get the current location in the questionnaire
         current_location = self.get_current_location()
@@ -283,35 +277,15 @@ class QuestionnaireManager(object):
     def get_rendering_template(self):
         return self._pre_processor.get_template_name()
 
-    def _process_incoming_post_data(self, post_data):
-        user_answers = {}
+    def _get_user_action(self, post_data):
         user_action = None
 
         for key in post_data.keys():
             if key.startswith('action['):
                 # capture the required action
                 user_action = key[7:-1]
-            elif key.endswith('[]'):
-                # is an array of Checkboxes
-                answer_id = key[:-2]
-                if answer_id not in user_answers.keys():
-                    # copies the whole array
-                    user_answers[answer_id] = post_data.getlist(key)
-            else:
-                # for now assume it is a valid answer id
-                user_answers[key] = post_data[key]
 
-        return user_action, user_answers
-
-    def _clean_input(self, value):
-        if isinstance(value, list):
-            return value
-
-        if value:
-            whitespace_removed = value.strip()
-            return bleach.clean(whitespace_removed)
-        else:
-            return value
+        return user_action
 
     def delete_user_data(self):
         # once the survey has been submitted

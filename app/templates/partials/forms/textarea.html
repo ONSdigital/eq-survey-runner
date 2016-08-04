@@ -1,0 +1,19 @@
+{% set attr = {
+  "class": "input input--textarea js-charlimit-input",
+  "name": textarea.name,
+  "id": textarea.id,
+  "placeholder": textarea.placeholder,
+  "rows": "8",
+  "cols": "60",
+  "data-maxlength": textarea.maxChars
+} %}
+
+{% set answer_helper = textarea.name ~ "-helper" %}
+
+<textarea {{attr|xmlattr}}>{{answer.value}}</textarea>
+
+{% if maxChars %}
+  <div class="input__helper" id="{{answer_helper}}">
+    <span class="js-charlimit-label" data-remaining-msg="{{_('Characters remaining')}}">{{_('Maximum characters')}}</span>: <span class="js-charlimit-msg">{{textarea.maxChars}}</span>
+  </div>
+{% endif %}

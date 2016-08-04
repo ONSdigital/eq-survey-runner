@@ -10,6 +10,7 @@ from app.schema.block import Block
 from app.schema.group import Group
 from app.schema.questionnaire import Questionnaire
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
+from werkzeug.datastructures import MultiDict
 
 
 class TestQuestionnaireManager(SurveyRunnerTestCase):
@@ -52,11 +53,11 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
         block1 = self.questionnaire.children[0].children[0]
         questionnaire_manager.go_to_state(block1.id)
-        user_answers = {}
+        user_answers = MultiDict()
         for section in block1.children:
             for question in section.children:
                 for answer in question.children:
-                      user_answers[answer.id] = "test"
+                    user_answers[answer.id] = "test"
         questionnaire_manager.update_state(block1.id, user_answers)
         self.assertIsNotNone(questionnaire_manager.get_state(block1.id))
 

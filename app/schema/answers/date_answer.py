@@ -2,19 +2,17 @@ from app.schema.answer import Answer
 from app.validation.date_type_check import DateTypeCheck
 from datetime import datetime
 from app.schema.exceptions import TypeCheckingException
+from app.schema.widgets.date_widget import DateWidget
 
 
 class DateAnswer(Answer):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, answer_id=None):
+        super().__init__(answer_id)
         self.type_checkers.append(DateTypeCheck())
+        self.widget = DateWidget(self.id)
 
     def get_typed_value(self, post_data):
-        day = post_data.get(self.id + '-day', '')
-        month = post_data.get(self.id + '-month', '')
-        year = post_data.get(self.id + '-year', '')
-
-        user_input = day + '/' + month + '/' + year
+        user_input = self.get_user_input(post_data)
 
         for checker in self.type_checkers:
             result = checker.validate(user_input)
@@ -27,4 +25,4 @@ class DateAnswer(Answer):
         return datetime.strptime(user_input, "%d/%m/%Y")
 
     def get_user_input(self, post_vars):
-        return post_vars.get(self.id + '-day', '') + '/' + post_vars.get(self.id + '-month', '') + '/' + post_vars.get(self.id + '-year', '')
+        return self.widget.get_user_input(post_vars)

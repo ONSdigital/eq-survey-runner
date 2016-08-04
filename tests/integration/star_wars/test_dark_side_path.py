@@ -1,4 +1,5 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
+from werkzeug.datastructures import MultiDict
 
 
 class TestDarkSidePath(StarWarsTestCase):
@@ -19,15 +20,15 @@ class TestDarkSidePath(StarWarsTestCase):
                            - Invalid (Bad date)
         '''
 
-        form_data = {
+        form_data = MultiDict({
 
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "555555555555555555",
             "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "text",
             "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "###",
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "",
-            "7587eb9b-f24e-4dc0-ac94-66118b896c10" : "",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10":"",
+            "7587eb9b-f24e-4dc0-ac94-66118b896c10": "",
+            "9587eb9b-f24e-4dc0-ac94-66117b896c10": "",
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "",
@@ -38,7 +39,7 @@ class TestDarkSidePath(StarWarsTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
 
             "action[save_continue]": "Save &amp; Continue"
-        }
+        })
 
         # Submit the form
         resp = self.submit_page(first_page, form_data)
@@ -66,14 +67,14 @@ class TestDarkSidePath(StarWarsTestCase):
                Date     - From and to the same
         '''
 
-        form_data = {
+        form_data = MultiDict({
 
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "",
             "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "9999999999999",
             "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "-5",
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Yoda, Qui-Gon Jinn]",
+            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "1",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
@@ -84,7 +85,7 @@ class TestDarkSidePath(StarWarsTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
 
             "action[save_continue]": "Save &amp; Continue"
-        }
+        })
 
         # Submit the form
         resp = self.submit_page(first_page, form_data)
@@ -99,6 +100,7 @@ class TestDarkSidePath(StarWarsTestCase):
         self.assertRegexpMatches(content, 'This field is mandatory')
         self.assertRegexpMatches(content, 'How much, idiot you must be')
         self.assertRegexpMatches(content, 'How can it be negative?')
+        self.assertRegexpMatches(content, '[1-9]\) The &#39;to&#39; date must be different to the &#39;from&#39; date.')
         self.assertRegexpMatches(content, 'The &#39;to&#39; date must be different to the &#39;from&#39; date.')
 
         '''
@@ -107,14 +109,14 @@ class TestDarkSidePath(StarWarsTestCase):
                 Date      - To before From
         '''
 
-        form_data = {
+        form_data = MultiDict({
 
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "430",
             "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "-10",
             "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "",
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Yoda, Qui-Gon Jinn]",
+            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "1",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
@@ -125,7 +127,7 @@ class TestDarkSidePath(StarWarsTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2015",
 
             "action[save_continue]": "Save &amp; Continue"
-        }
+        })
 
         # Submit the form
         resp = self.submit_page(first_page, form_data)
@@ -139,17 +141,18 @@ class TestDarkSidePath(StarWarsTestCase):
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'How can it be negative?')
         self.assertRegexpMatches(content, 'The &#39;to&#39; date cannot be before the &#39;from&#39; date.')
+        self.assertRegexpMatches(content, '[1-9]\) The &#39;to&#39; date cannot be before the &#39;from&#39; date.')
 
         # Testing Currency  - Mandatory
 
-        form_data = {
+        form_data = MultiDict({
 
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "430",
             "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "",
             "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "",
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Yoda, Qui-Gon Jinn]",
+            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "1",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
@@ -160,7 +163,7 @@ class TestDarkSidePath(StarWarsTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2017",
 
             "action[save_continue]": "Save &amp; Continue"
-        }
+        })
 
         # Submit the form
         resp = self.submit_page(first_page, form_data)
@@ -175,7 +178,7 @@ class TestDarkSidePath(StarWarsTestCase):
         self.assertRegexpMatches(content, 'This field is mandatory.')
 
         # Correct all errors
-        form_data = {
+        form_data = MultiDict({
 
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "234",
             "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "40",
@@ -183,7 +186,7 @@ class TestDarkSidePath(StarWarsTestCase):
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
             "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10":"[Luke Skywalker, Yoda, Qui-Gon Jinn]",
+            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
             "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
@@ -194,7 +197,7 @@ class TestDarkSidePath(StarWarsTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "1983",
 
             "action[save_continue]": "Save &amp; Continue"
-        }
+        })
 
         # Submit form with no errors
         resp = self.submit_page(first_page, form_data)

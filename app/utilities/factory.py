@@ -9,10 +9,10 @@ class Factory(object):
     def register_all(self, map):
         self._map = map
 
-    def create(self, key):
+    def create(self, key, *args):
         if key in self._map:
             cls = self._map[key]
-            return cls()
+            return cls(*args)
         else:
             raise ValueError("Key {key} not registered with factory".format(key=key))
 

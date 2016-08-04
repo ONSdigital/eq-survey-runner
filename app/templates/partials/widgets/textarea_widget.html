@@ -1,0 +1,17 @@
+<!-- BEGIN TextareaWidget -->
+{% set label = {
+  'for': answer.id,
+  'text': answer.label
+} %}
+{% include 'partials/forms/label.html' %}
+
+{% set textarea = {
+  'value': (answer.value or "")|e,
+  'name': answer.name,
+  'id': answer.id,
+  'placeholder': answer.placeholder,
+  'aria-describedby': "description-" ~ question.id ~ " guidance-" ~ answer.id ~ "-trigger",
+  'maxChars': answer.maxChars or 2000
+} %}
+{% include 'partials/forms/textarea.html' %}
+<!-- END TextareaWidget -->

@@ -20,7 +20,7 @@
         {% if errors %}
         {% for error in errors %}
         <li class="list__item">
-          {{loop_index}}) {{ error[0] }} <a href="#{{item_id}}">{{_('Go to this error')}}</a>
+          {{loop_index}}) {{ error }} <a href="#{{item_id}}">{{_('Go to this error')}}</a>
         </li>
         {% endfor %}
         {% endif %}
