@@ -7,9 +7,6 @@ logger = logging.getLogger(__name__)
 
 
 class CheckboxGroupWidget(Widget):
-    def __init__(self, name):
-        super().__init__(name)
-
     def get_user_input(self, post_vars):
         # Returns an empty list
         return post_vars.getlist(self.name)

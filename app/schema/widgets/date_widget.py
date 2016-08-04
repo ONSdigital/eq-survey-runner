@@ -8,9 +8,6 @@ logger = logging.getLogger(__name__)
 
 
 class DateWidget(Widget):
-    def __init__(self, name):
-        super().__init__(name)
-
     def _get_days(self, selected_day):
         if selected_day:
             selected_day = int(selected_day)

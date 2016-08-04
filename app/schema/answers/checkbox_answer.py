@@ -23,7 +23,6 @@ class CheckboxAnswer(Answer):
                 state.errors = []
                 state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
                 state.is_valid = False
-                return False
 
             # Here we just report on whether the answer has passed type checking
             return state.is_valid

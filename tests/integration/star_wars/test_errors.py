@@ -42,7 +42,7 @@ class TestPageErrors(StarWarsTestCase):
         # Our answers
         form_data = {
             # Make this data missing
-            "215015b1-f87c-4740-9fd4-f01f707ef558": "", # Required answer
+            "215015b1-f87c-4740-9fd4-f01f707ef558": "",  # Required answer
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
