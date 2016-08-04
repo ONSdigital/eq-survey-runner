@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 KNOWN_TEMPLATES = {
             'introduction': "landing-page.html",
             'summary': "submission.html",
+            'confirmation': "confirmation.html",
             'thank-you': 'thank-you.html'
 }
 
@@ -121,9 +122,10 @@ class TemplatePreProcessor(object):
     def _augment_questionnaire(self):
         current_location = self.questionnaire_manager.get_current_location()
 
-        # @TODO: This needs to be revisited when we reimplement the rendering
-        if current_location == 'summary':
+        # Check to see if we are on the submission page set by the JSON (default is summary)
+        if current_location == self._schema.submission_page:
             location = self.questionnaire_manager._first
+
             while location.next_page:
                 if self._schema.item_exists(location.item_id):
                     location_state = location.page_state

@@ -4,11 +4,11 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class StarWarsTestCase(IntegrationTestCase):
     def setUp(self):
         super().setUp()
-        self.token = create_token('star_wars', '0')
+
 
     def login_and_check_introduction_text(self):
-        resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.token = create_token('star_wars', '0')
+        resp = self.get_first_page()
         self.check_introduction_text(resp)
 
     def check_introduction_text(self, response):
@@ -28,6 +28,11 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, 'Notice is given under section 1 of the Statistics of Trade Act 1947')
         self.assertRegexpMatches(content, 'You are required by law to complete this questionnaire')
         self.assertRegexpMatches(content, 'NB: Your response is legally required')
+
+    def get_first_page(self):
+      resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
+      self.assertEquals(resp.status_code, 200)
+      return resp
 
     def start_questionnaire(self):
         # Go to questionnaire
@@ -85,68 +90,52 @@ class StarWarsTestCase(IntegrationTestCase):
 
         return current_page
 
-    def check_choose_your_side(self, start_page):
-        resp = self.client.get(start_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-        content = resp.get_data(True)
-
+    def check_choose_your_side(self, page):
+        content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Choose your side')
         self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c')
-        return start_page
+        return page
 
-    def routing_pick_your_character_light_side(self, routing_page):
+    def retrieve_content(self, page):
+      response = self.client.get(page, follow_redirects=False)
+      self.assertEquals(response.status_code, 200)
+      content = response.get_data(True)
+      return content
 
-        resp = self.client.get(routing_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-        content = resp.get_data(True)
-
+    def routing_pick_your_character_light_side(self,page):
+        content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'A wise choice young Yedi. Pick your hero')
         self.assertRegexpMatches(content, '91631df0-4356-4e9f-a9d9-ce8b08d26eb3')
         self.assertRegexpMatches(content, 'Do you want to pick a ship?')
         self.assertRegexpMatches(content, '2e0989b8-5185-4ba6-b73f-c126e3a06ba7')
-        return routing_page
+        return page
 
-    def routing_pick_your_character_dark_side(self, routing_page):
-
-        resp = self.client.get(routing_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-        content = resp.get_data(True)
-
+    def routing_pick_your_character_dark_side(self,page):
+        content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Good! Your hate has made you powerful. Pick your baddie')
         self.assertRegexpMatches(content, '653e6407-43d6-4dfc-8b11-a673a73d602d')
         self.assertRegexpMatches(content, 'Do you want to pick a ship?')
         self.assertRegexpMatches(content, 'pel989b8-5185-4ba6-b73f-c126e3a06ba7')
-        return routing_page
+        return page
 
-    def routing_select_your_ship_light_side(self, routing_page):
-        resp = self.client.get(routing_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-        content = resp.get_data(True)
-
+    def routing_select_your_ship_light_side(self, page):
+        content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Which ship do you want?')
         self.assertRegexpMatches(content, 'Millennium Falcon')
         self.assertRegexpMatches(content, 'X-wing')
         self.assertRegexpMatches(content, 'a2c2649a-85ff-4a26-ba3c-e1880f7c807b')
-        return routing_page
+        return page
 
-    def routing_select_your_ship_dark_side(self, routing_page):
-
-        resp = self.client.get(routing_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-        content = resp.get_data(True)
-
+    def routing_select_your_ship_dark_side(self, page):
+        content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Which ship do you want?')
         self.assertRegexpMatches(content, 'TIE Fighter')
         self.assertRegexpMatches(content, 'Death Star')
         self.assertRegexpMatches(content, 'a5d5ca1a-cf58-4626-be35-dce81297688b')
-        return routing_page
+        return page
 
-    def check_quiz_first_page(self, first_page):
-        resp = self.client.get(first_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-
-        # Questionnaire tests
-        content = resp.get_data(True)
+    def check_quiz_first_page(self, page):
+        content = self.retrieve_content(page)
         self.assertRegexpMatches(content, ">Save &amp; Continue<")
         self.assertRegexpMatches(content, 'Star Wars Quiz')
         self.assertRegexpMatches(content, 'May the force be with you young EQ developer')
@@ -190,10 +179,10 @@ class StarWarsTestCase(IntegrationTestCase):
         # Pipe Test for question description
         self.assertRegexpMatches(content, 'It could be between 1 April 2016 and 30 April 2016. But that might just be a test')  # NOQA
 
-        return first_page
+        return page
 
-    def check_second_quiz_page(self, second_page):
-        resp = self.client.get(second_page, follow_redirects=False)
+    def check_second_quiz_page(self, page):
+        resp = self.client.get(page, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
         content = resp.get_data(True)
@@ -230,5 +219,38 @@ class StarWarsTestCase(IntegrationTestCase):
         # Thank you page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '<title>Thank You</title>')
-        self.assertRegexpMatches(content, '(?s)Star Wars.*?Star Wars')
         self.assertRegexpMatches(content, '>Successfully Received<')
+
+    def rouge_one_login_and_check_introduction_text(self):
+        self.token = create_token('rouge_one', '0')
+        response = self.get_first_page()
+        self.rouge_one_check_introduction_text(response)
+
+    def rouge_one_check_introduction_text(self, response):
+        content = response.get_data(True)
+        self.assertRegexpMatches(content, '<title>Introduction</title>')
+        self.assertRegexpMatches(content, '(?s)Rouge One.*?Rouge One')
+        self.assertRegexpMatches(content, 'Good luck in stealing the plans to the Death Star')
+
+    def rouge_one_check_character_page(self, page):
+        content = self.retrieve_content(page)
+        self.assertRegexpMatches(content, 'Who do you want to know more about?')
+        self.assertRegexpMatches(content, 'Jyn Erso')
+        self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-3')
+
+    def rouge_one_check_description_page(self, page):
+        content = self.retrieve_content(page)
+        self.assertRegexpMatches(content, 'An accomplished Rebel Alliance Intelligence Officer')
+        self.assertRegexpMatches(content, 'Do you like this page?')
+        self.assertRegexpMatches(content, '3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-2')
+
+    def rouge_one_check_takings_page(self, page):
+        content = self.retrieve_content(page)
+        self.assertRegexpMatches(content, 'In millions, how much do you think this film will take?')
+        self.assertRegexpMatches(content, 'a04a516d-502d-4068-bbed-a43427c68cd9')
+
+    def rouge_one_check_confirmation_page(self, page):
+        content = self.retrieve_content(page)
+        self.assertRegexpMatches(content, 'Confirmation')
+        self.assertRegexpMatches(content, 'Thank you for your answers, do you wish to submit')
+

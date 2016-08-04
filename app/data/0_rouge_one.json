@@ -1,0 +1,466 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "submission_page" : "confirmation",
+    "survey_id": "023",
+    "title": "Rouge One ",
+    "description": "Test with a confirmation page instead of a summary",
+    "theme": "starwars",
+    "introduction": {
+        "description": "Good luck in stealing the plans to the Death Star"
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "1",
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "ed3e200a-0735-4e8d-9eea-627c1d908697",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "alias": "character",
+                                            "display": {
+                                                "properties": {
+                                                    "columns": true
+                                                }
+                                            },
+                                            "guidance": "",
+                                            "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                            "label": "Who do you want to know more about?",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Jyn Erso",
+                                                    "value": "Jyn Erso"
+                                                },
+                                                {
+                                                    "label": "Cassian Andor",
+                                                    "value": "Cassian Andor"
+                                                },
+                                                {
+                                                    "label": "Bodhi Rook",
+                                                    "value": "Bodhi Rook"
+                                                },
+                                                  {
+                                                    "label": "Orson Krennic",
+                                                    "value": "Orson Krennic"
+                                                }
+
+                                            ],
+                                            "q_code": "1",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Who do you want to know more about?",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                        {
+                            "goto": {
+                                "id" : "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
+                                "when": {
+                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                    "condition": "equals",
+                                    "value":"Jyn Erso"
+                                }
+                            }
+
+                        },
+                        {
+                            "goto": {
+                                "id": "cbb1f973-7fbc-4e96-bd7b-47a8d8056a46",
+                                "when": {
+                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                    "condition": "equals",
+                                    "value":"Cassian Andor"
+                                }
+                            }
+
+                        },
+                        {
+                            "goto": {
+                                "id": "9b091307-e14c-4211-9104-91e3975d6910",
+                                "when": {
+                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                    "condition": "equals",
+                                    "value":"Bodhi Rook"
+                                }
+                            }
+
+                        },
+                        {
+                            "goto": {
+                                "id": "b4f8e11a-dac9-4554-ba44-55fc5c5aebcb",
+                                "when": {
+                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                    "condition": "equals",
+                                    "value":"Orson Krennic"
+                                }
+                            }
+
+                        }
+                    ],
+                    "title": "",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
+                    "sections": [
+                        {
+                            "description": "Putting behind a checkered past by lending her skills to a greater cause, Jyn is impetuous, defiant, and eager to bring the battle to the Empire. Used to operating alone, she finds higher purpose by taking on a desperate mission for the Rebel Alliance.",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "b2b1eb6d-400f-452a-854f-be028600f862",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                                "properties": {
+                                                    "columns": true
+                                                }
+                                            },
+                                            "guidance": "",
+                                            "id": "a2c2649a-85ff-4a26-ba3c-e1880f7c807b",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "2",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "574e5d5e-36b4-44ea-b8f6-09d744552241",
+                                    "title": "Do you like this page?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "{answers.character}",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                        {
+                            "goto": {
+                                "location": "block",
+                                "id" : "5e633f04-073a-44c0-a9da-a7cc2116b937"
+                            }
+                        }
+                    ],
+                    "title": "",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "cbb1f973-7fbc-4e96-bd7b-47a8d8056a46",
+                    "sections": [
+                        {
+                            "description": "An accomplished Rebel Alliance Intelligence Officer with combat field experience, Captain Andor commands respect from his Rebel troops with his ability to keep a cool head under fire and complete his missions with minimal resources",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "bcd67e48-7eec-4766-ab0c-acbaa3a3af01",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                                "properties": {
+                                                    "columns": true
+                                                }
+                                            },
+                                            "guidance": "",
+                                            "id": "3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "3",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "b5c0c1fd-578c-436e-86a8-7d3b1786cb5f",
+                                    "title": "Do you like this page?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "{answers.character}",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                        {
+                            "goto": {
+                                "location": "block",
+                                "id" : "5e633f04-073a-44c0-a9da-a7cc2116b937"
+                            }
+                        }
+                    ],
+                    "title": "",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "9b091307-e14c-4211-9104-91e3975d6910",
+                    "sections": [
+                        {
+                            "description": "A former Imperial pilot, Bodhi has strong piloting and technical skills to use as the pilot of the Rebel squad. Ever practical, but highly anxious, Rook must gather his courage to bring the battle to the Empire.",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "95d5abef-d2c4-4a27-a89b-43f8bfe8f404",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                                "properties": {
+                                                    "columns": true
+                                                }
+                                            },
+                                            "guidance": "",
+                                            "id": "57ff0b3a-d66e-4f06-b6f8-00a4474e4ade",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "4",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "ff1d8559-d5f7-4ba8-95fa-bf76178f4433",
+                                    "title": "Do you like this page?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "{answers.character}",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                        {
+                            "goto": {
+                                "location": "block",
+                                "id" : "5e633f04-073a-44c0-a9da-a7cc2116b937"
+                            }
+                        }
+                    ],
+                    "title": "",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "b4f8e11a-dac9-4554-ba44-55fc5c5aebcb",
+                    "sections": [
+                        {
+                            "description": "An Imperial Military Director who is obsessed with the completion of the long-delayed Death Star project. A cruel but brilliant man, Krennic has staked his reputation on the delivery of the functional battle station to the Emperor.",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "c37363d8-5a2d-479c-8b88-31c23e3f4d44",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                                "properties": {
+                                                    "columns": true
+                                                }
+                                            },
+                                            "guidance": "",
+                                            "id": "216d7f5b-e908-42d4-84b6-036a9f76512e",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "5",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "15beab29-e3b3-42c5-a8ea-ce299504ce66",
+                                    "title": "Do you like this page?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "{answers.character}",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                        {
+                            "goto": {
+                                "location": "block",
+                                "id" : "5e633f04-073a-44c0-a9da-a7cc2116b937"
+                            }
+                        }
+                    ],
+                    "title": "",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "5e633f04-073a-44c0-a9da-a7cc2116b937",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "c50124ac-79f5-40c9-8dc4-af8bef649981",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                            "properties": {
+                                                "columns": true
+                                            }
+                                        },
+                                        "guidance": "",
+                                        "id": "a04a516d-502d-4068-bbed-a43427c68cd9",
+                                        "label": "",
+                                        "mandatory": true,
+                                        "options": [],
+                                        "q_code": "2",
+                                        "type": "Currency",
+                                        "validation": {
+                                            "messages": {
+                                                "INTEGER_TOO_LARGE": "How much, fool you must be",
+                                                "NEGATIVE_INTEGER": "How can it be negative?",
+                                                "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "0ae9664b-601d-4428-8cd4-4738df48b685",
+                                    "title": "In millions, how much do you think this film will take?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "",
+                            "validation": []
+                        }
+                    ],
+                    "title": "",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "82504ab4-de5d-41fd-9a86-9ad5ea483296",
+            "title": "",
+            "validation": []
+        }
+    ]
+}

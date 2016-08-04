@@ -2,6 +2,7 @@ from app.questionnaire.state_manager import StateManager
 from app.questionnaire_state.introduction import Introduction as StateIntroduction
 from app.questionnaire_state.page import Page
 from app.questionnaire_state.summary import Summary as StateSummary
+from app.questionnaire_state.confirmation import Confirmation as StateConfirmation
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
 from app.schema.questionnaire import QuestionnaireException
 from app.templating.template_pre_processor import TemplatePreProcessor
@@ -51,7 +52,11 @@ class QuestionnaireManager(object):
             return None
 
     def _build_valid_locations(self):
-        validate_location = ['thank-you', 'summary']
+        validate_location = ['thank-you']
+
+        # Add the submission page (default is summary)
+        validate_location.append(self._schema.submission_page)
+
         if self._schema.introduction:
             validate_location.append('introduction')
         for group in self._schema.children:
@@ -95,6 +100,8 @@ class QuestionnaireManager(object):
                 state = StateThankYou(item_id)
             elif item_id == 'summary':
                 state = StateSummary(item_id)
+            elif item_id == 'confirmation':
+                state = StateConfirmation(item_id)
             else:
                 item = self._schema.get_item_by_id(item_id)
                 state = item.construct_state()

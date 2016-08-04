@@ -19,6 +19,7 @@ class Questionnaire(object):
         self.display = Display()
         self.aliases = {}
         self.theme = None
+        self.submission_page = 'summary'
         self.messages = {}
 
     def add_group(self, group):
@@ -27,8 +28,10 @@ class Questionnaire(object):
             group.container = self
 
     def get_item_by_id(self, item_id):
+
         if item_id == self.id:
             return self
+
         elif item_id in self.items_by_id.keys():
             return self.items_by_id[item_id]
         else:

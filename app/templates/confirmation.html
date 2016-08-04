@@ -1,0 +1,18 @@
+{% extends 'layouts/_survey.html' -%}
+
+{% block page_title -%}Summary{% endblock -%}
+
+{% block survey -%}
+  <div class="header">
+    <h1 class="header__title h1">Confirmation</h1>
+    <h2 class="header__subtitle">Thank you for your answers, do you wish to submit</h2>
+  </div>
+
+<div>
+  <form action="" method="POST" novalidate>
+    <button class="btn btn--secondary u-mr-s qa-btn-submit-answers" type="submit" name="action[submit_answers]">Submit answers</button>
+    <a class="u-dib" href="first">Change your answers</a>
+  </form>
+</div>
+
+{% endblock -%}
