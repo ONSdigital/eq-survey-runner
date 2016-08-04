@@ -9,19 +9,19 @@ logger = logging.getLogger(__name__)
 
 
 class TemplatePreProcessor(object):
-    def __init__(self, schema, user_journey_manager, metadata):
+    def __init__(self, schema, questionnaire_manager):
         self._schema = schema
-        self._user_journey_manager = user_journey_manager
-        self._metadata = metadata
+        self._questionnaire_manager = questionnaire_manager
+        self._metadata = None
         self._current_block = None
         self._current_group = None
         self._plumber = None
 
-    def initialize(self):
-
+    def initialize(self, metadata):
+        self._metadata = metadata
         # Get the current location or the first block
         try:
-            self._current_block = self._schema.get_item_by_id(self._user_journey_manager.get_current_location())
+            self._current_block = self._schema.get_item_by_id(self._questionnaire_manager.get_current_location())
         except QuestionnaireException:
             self._current_block = self._schema.get_item_by_id(self._schema.groups[0].blocks[0].id)
 
@@ -39,7 +39,7 @@ class TemplatePreProcessor(object):
             'thank-you': 'thank-you.html'
         }
 
-        current_location = self._user_journey_manager.get_current_location()
+        current_location = self._questionnaire_manager.get_current_location()
         if current_location in known_templates.keys():
             return known_templates[current_location]
         else:
@@ -52,7 +52,7 @@ class TemplatePreProcessor(object):
         self._plumb_questionnaire()
 
         # Collect the answers for all pages except the intro and thank you pages
-        current_location = self._user_journey_manager.get_current_location()
+        current_location = self._questionnaire_manager.get_current_location()
         if current_location != 'introduction' and current_location != 'thank-you':
             self._augment_questionnaire()
 
@@ -95,10 +95,10 @@ class TemplatePreProcessor(object):
         # employment date is optional
         survey_meta["employment_date"] = self._format_date(self._metadata.employment_date)
 
-        if self._user_journey_manager.submitted_at:
-            logger.debug("Template pre-processor submitted at %s", self._user_journey_manager.submitted_at)
+        if self._questionnaire_manager.submitted_at:
+            logger.debug("Template pre-processor submitted at %s", self._questionnaire_manager.submitted_at)
             survey_meta['submitted'] = True
-            survey_meta['submitted_at'] = self._user_journey_manager.submitted_at
+            survey_meta['submitted_at'] = self._questionnaire_manager.submitted_at
 
         return survey_meta
 
@@ -132,7 +132,7 @@ class TemplatePreProcessor(object):
     def _build_navigation_meta(self):
         navigation_meta = {
             "history": None,
-            "current_position": self._user_journey_manager.get_current_location(),
+            "current_position": self._questionnaire_manager.get_current_location(),
             "current_block_id": None,
             "current_group_id": None
         }
@@ -142,15 +142,12 @@ class TemplatePreProcessor(object):
 
         return navigation_meta
 
-    def _augment_answer(self, answer):
-        answer.value = self._user_journey_manager.get_answer(answer.id)
-
     def _augment_questionnaire(self):
-        current_location = self._user_journey_manager.get_current_location()
+        current_location = self._questionnaire_manager.get_current_location()
 
         # @TODO: This needs to be revisited when we reimplement the rendering
         if current_location == 'summary':
-            location = self._user_journey_manager._first
+            location = self._questionnaire_manager._first
             while location.next_page:
                 if self._schema.item_exists(location.item_id):
                     location_state = location.page_state
@@ -158,7 +155,7 @@ class TemplatePreProcessor(object):
                     schema_item.augment_with_state(location_state)
                 location = location.next_page
         else:
-            current_state = self._user_journey_manager.get_state(current_location)
+            current_state = self._questionnaire_manager.get_state(current_location)
 
             # This now feels wrong, but I can't think of a better way of doing this without ripping apart the whole rendering pipeline
             schema_item = self._schema.get_item_by_id(current_state.item_id)
@@ -214,7 +211,7 @@ class TemplatePreProcessor(object):
         for alias, item_id in aliases.items():
             # TODO remove this try except
             try:
-                value = self._user_journey_manager.get_answer(item_id)
+                value = self._questionnaire_manager.find_answer(item_id)
             except AttributeError:
                 value = None
             if value is None:
