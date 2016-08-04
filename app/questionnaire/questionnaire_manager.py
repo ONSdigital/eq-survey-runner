@@ -32,17 +32,17 @@ class QuestionnaireManager(object):
         self._schema = schema
         self._current = None  # the latest page
         self._first = None  # the first page in the doubly linked list
-        self._archive = {}  # a dict of completed or discarded pages
+        self._archive = {}  # a dict of discarded pages for later use (if needed)
         self._valid_locations = self._build_valid_locations()
         self._pre_processor = TemplatePreProcessor(self._schema, self)
 
     @staticmethod
     def new_instance(schema):
-        user_journey_manager = QuestionnaireManager(schema)
+        questionnaire_manager = QuestionnaireManager(schema)
         # immediately save it to the database
-        StateManager.save_state(user_journey_manager)
+        StateManager.save_state(questionnaire_manager)
         logger.debug("Constructing new state")
-        return user_journey_manager
+        return questionnaire_manager
 
     @staticmethod
     def get_instance():

@@ -47,10 +47,10 @@ def login():
             logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
             abort(404)
 
-        user_journey_manager = create_questionnaire_manager()
+        questionnaire_manager = create_questionnaire_manager()
 
         # get the current location of the user
-        current_location = user_journey_manager.get_current_location()
+        current_location = questionnaire_manager.get_current_location()
 
         current_user.save()
 
