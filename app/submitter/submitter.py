@@ -35,8 +35,7 @@ class Submitter(object):
         '''
         message, submitted_at = Converter.prepare_answers(user, metadata, schema, answers)
 
-        encrypter = Encrypter()
-        encrypted_message = encrypter.encrypt(message)
+        encrypted_message = self.encrypt_message(message)
 
         sent = self.send(encrypted_message)
 
@@ -56,6 +55,11 @@ class Submitter(object):
     @abstractmethod
     def send_message(self, message, queue):
         return False
+
+    def encrypt_message(self, message):
+        encrypter = Encrypter()
+        encrypted_message = encrypter.encrypt(message)
+        return encrypted_message
 
 
 class LogSubmitter(Submitter):
