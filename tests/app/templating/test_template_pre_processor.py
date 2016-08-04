@@ -47,10 +47,13 @@ class TestTemplatePreProcessor(unittest.TestCase):
         self.user_journey_manager.store_answer('answer-2', 'Two')
         # We do not provide a answer for answer-3
 
+    def get_metadata(self):
+        return self.metadata
+
     def test_augment_questionnaire(self):
         # Instantiate the pre_proc using the pre-populated mock objects
         pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager)
-        pre_proc.initialize(self.metadata)
+        pre_proc._get_metadata = self.get_metadata
 
         # check the attributes do not exist
         with self.assertRaises(AttributeError):
@@ -67,12 +70,12 @@ class TestTemplatePreProcessor(unittest.TestCase):
 
     def test_build_view_data(self):
         pre_proc = TemplatePreProcessor(self.schema, self.user_journey_manager)
-        pre_proc.initialize(self.metadata)
+        pre_proc._get_metadata = self.get_metadata
 
         context = pre_proc.build_view_data()
 
         self.assertIn('meta', context.keys())
-        self.assertIn('content', context.keys())
+        self.assertIn('questionnaire', context.keys())
         self.assertIn('navigation', context.keys())
 
     def _create_schema(self):
