@@ -1,0 +1,31 @@
+$responsive: true;
+
+@import "partials/vars/*.scss";
+@import "theme_vars.scss";
+@import "partials/vendor/normalize.scss";
+@import "eq-sass";
+@import "partials/helpers/**/*.scss";
+// @import "partials/base/**/*.scss";
+@import "partials/base/forms.scss";
+@import "partials/base/global.scss";
+@import "partials/base/sprite.scss";
+@import "partials/base/tables.scss";
+@import "partials/base/typography.scss";
+@import "partials/objects/**/*.scss";
+@import "partials/components/**/*.scss";
+@import "partials/utilities/**/*.scss";
+@import "partials/hacks/**/*.scss";
+
+body {
+  background: #c50b0b;
+}
+
+.bar {
+  background-color: $color-secondary;
+}
+
+.logo {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3rem;
+}
