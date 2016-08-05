@@ -1,0 +1,14 @@
+{% extends 'layouts/_base.html' %}
+
+{%- block styles %}
+<!--[if (gt IE 9) | (IEMobile)]><!-->
+  {%- if request.args.get('fixed') == 'true' %}
+    <link href="{{ url_for('static', filename='css/basetheme/fixed.css') }}" rel="stylesheet">
+  {%- else %}
+    <link href="{{ url_for('static', filename='css/basetheme/responsive.css') }}" rel="stylesheet">
+  {%- endif %}
+<!--<![endif]-->
+<!--[if (lte IE 9) & (!IEMobile)]>
+  <link href="{{ url_for('static', filename='css/basetheme/fixed.css') }}" rel="stylesheet">
+<![endif]-->
+{% endblock styles -%}
