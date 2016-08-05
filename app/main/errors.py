@@ -1,11 +1,15 @@
-from flask import request
-from flask_login import current_user
-from app.main import main_blueprint
-from ua_parser import user_agent_parser
-from app.metadata.metadata_store import MetaDataStore
-from app.libs.utils import convert_tx_id
-from flask.ext.themes2 import render_theme_template
 import logging
+
+from app.libs.utils import convert_tx_id
+from app.main import main_blueprint
+from app.metadata.metadata_store import MetaDataStore
+
+from flask import request
+from flask.ext.themes2 import render_theme_template
+
+from flask_login import current_user
+
+from ua_parser import user_agent_parser
 
 logger = logging.getLogger(__name__)
 

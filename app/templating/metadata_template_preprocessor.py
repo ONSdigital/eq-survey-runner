@@ -1,7 +1,9 @@
-from flask_login import current_user
-from app.metadata.metadata_store import MetaDataStore
-from app.libs.utils import convert_tx_id
 import logging
+
+from app.libs.utils import convert_tx_id
+from app.metadata.metadata_store import MetaDataStore
+
+from flask_login import current_user
 
 logger = logging.getLogger(__name__)
 
@@ -11,7 +13,7 @@ class MetaDataTemplatePreprocessor(object):
     def build_metadata(self, schema):
         render_data = {
             "survey": self._build_survey_meta(schema),
-            "respondent": self._build_respondent_meta()
+            "respondent": self._build_respondent_meta(),
         }
         return render_data
 
@@ -30,8 +32,8 @@ class MetaDataTemplatePreprocessor(object):
             "respondent_id": respondent_id,
             "address": {
                 "name": name,
-                "trading_as": trading_as
-            }
+                "trading_as": trading_as,
+            },
         }
         return respondent_meta
 
@@ -45,7 +47,7 @@ class MetaDataTemplatePreprocessor(object):
             "start_date":  self._format_date(self._get_metadata().ref_p_start_date),
             "end_date": self._format_date(self._get_metadata().ref_p_end_date),
             "employment_date": self._format_date(self._get_metadata().employment_date),
-            "period_str": self._get_metadata().period_str
+            "period_str": self._get_metadata().period_str,
         }
         return survey_meta
 

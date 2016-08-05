@@ -1,6 +1,8 @@
-from verlib import NormalizedVersion
 import importlib
+
 from app.parser.schema_parser_exception import SchemaParserException
+
+from verlib import NormalizedVersion
 
 
 class SchemaParserFactory(object):
@@ -15,7 +17,7 @@ class SchemaParserFactory(object):
 
         """
         return {
-            '0.0.1': 'v0_0_1'
+            '0.0.1': 'v0_0_1',
         }.get(str(version), SchemaParserFactory.DEFAULT_MODULE)
 
     @staticmethod
@@ -49,5 +51,5 @@ class SchemaParserFactory(object):
             parser_class = getattr(importlib.import_module(module_name), class_name)
 
             return parser_class(schema)
-        except:
+        except Exception:
             raise SchemaParserException('Could not create parser for version: ' + version_module)

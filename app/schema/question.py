@@ -1,6 +1,6 @@
+from app.questionnaire_state.question import Question as State
 from app.schema.display import Display
 from app.schema.item import Item
-from app.questionnaire_state.question import Question as State
 
 
 class Question(Item):

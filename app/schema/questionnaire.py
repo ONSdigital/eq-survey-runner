@@ -1,7 +1,7 @@
-from app.schema.display import Display
 from app.schema.answer import Answer
-from app.validation.error_messages import error_messages
+from app.schema.display import Display
 from app.schema.exceptions import QuestionnaireException
+from app.validation.error_messages import error_messages
 
 
 class Questionnaire(object):

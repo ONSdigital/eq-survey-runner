@@ -1,5 +1,6 @@
-from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
 import logging
+
+from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
 
 
 logger = logging.getLogger(__name__)
@@ -14,7 +15,7 @@ class QuestionnaireTemplatePreprocessor(object):
 
         render_data = {
             "meta": metadata_template_preprocessor.build_metadata(schema),
-            "content": state
+            "content": state,
         }
 
         logger.debug("Rendering data is %s", render_data)

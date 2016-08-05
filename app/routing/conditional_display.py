@@ -1,6 +1,6 @@
+import logging
 
 from app.schema.condition import Condition
-import logging
 
 logger = logging.getLogger(__name__)
 

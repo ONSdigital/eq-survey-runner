@@ -1,6 +1,6 @@
 from app.schema.answer import Answer
-from app.validation.integer_type_check import IntegerTypeCheck
 from app.schema.widgets.text_widget import TextWidget
+from app.validation.integer_type_check import IntegerTypeCheck
 
 
 class IntegerAnswer(Answer):

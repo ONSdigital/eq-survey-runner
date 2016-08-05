@@ -1,8 +1,10 @@
-from app.authentication.invalid_token_exception import InvalidTokenException
-from datetime import datetime
-import jsonpickle
 import logging
 import uuid
+from datetime import datetime
+
+from app.authentication.invalid_token_exception import InvalidTokenException
+
+import jsonpickle
 
 logger = logging.getLogger(__name__)
 

@@ -4,24 +4,13 @@
 This module defines the SchemaParser for the v0.0.1 of the survey schema
 
 """
+import copy
+
+import logging
 
 from app.parser.abstract_schema_parser import AbstractSchemaParser
-from app.parser.schema_parser_exception import SchemaParserException
 from app.parser.parser_utils import ParserUtils
-
-from app.schema.questionnaire import Questionnaire
-from app.schema.group import Group
-from app.schema.block import Block
-from app.schema.section import Section
-from app.schema.display import Display
-from app.schema.properties import Properties
-from app.schema.when import When
-from app.schema.skip_condition import SkipCondition
-
-from app.schema.introduction import Introduction
-
-from app.schema.questions.general_question import GeneralQuestion
-from app.schema.questions.date_range_question import DateRangeQuestion
+from app.parser.schema_parser_exception import SchemaParserException
 
 from app.schema.answers.checkbox_answer import CheckboxAnswer
 from app.schema.answers.currency_answer import CurrencyAnswer
@@ -33,10 +22,20 @@ from app.schema.answers.radio_answer import RadioAnswer
 from app.schema.answers.textarea_answer import TextareaAnswer
 from app.schema.answers.textfield_answer import TextfieldAnswer
 
-import logging
-import copy
-from app.utilities.factory import Factory
+from app.schema.block import Block
+from app.schema.display import Display
+from app.schema.group import Group
+from app.schema.introduction import Introduction
+from app.schema.properties import Properties
+from app.schema.questionnaire import Questionnaire
+from app.schema.questions.date_range_question import DateRangeQuestion
+from app.schema.questions.general_question import GeneralQuestion
+from app.schema.section import Section
+from app.schema.skip_condition import SkipCondition
 
+from app.schema.when import When
+
+from app.utilities.factory import Factory
 
 logger = logging.getLogger(__name__)
 
@@ -66,13 +65,13 @@ class SchemaParser(AbstractSchemaParser):
             'POSITIVEINTEGER': PositiveIntegerAnswer,
             'RADIO': RadioAnswer,
             'TEXTAREA': TextareaAnswer,
-            'TEXTFIELD': TextfieldAnswer
+            'TEXTFIELD': TextfieldAnswer,
         })
 
         self.question_factory = Factory()
         self.question_factory.register_all({
             'GENERAL': GeneralQuestion,
-            'DATERANGE': DateRangeQuestion
+            'DATERANGE': DateRangeQuestion,
         })
 
     def get_parser_version(self):

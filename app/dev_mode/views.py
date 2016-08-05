@@ -2,11 +2,15 @@ import logging
 import os
 import time
 
-from flask import render_template, redirect, request, abort
-
-from app.metadata.metadata_store import MetaDataConstants
 from app.dev_mode.jwt_encoder import Encoder
+from app.metadata.metadata_store import MetaDataConstants
 from app.schema_loader.schema_loader import available_schemas
+
+from flask import abort
+from flask import redirect
+from flask import render_template
+from flask import request
+
 from . import dev_mode_blueprint
 
 logger = logging.getLogger(__name__)

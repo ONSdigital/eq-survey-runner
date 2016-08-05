@@ -1,10 +1,12 @@
-from app.questionnaire.questionnaire_manager import QuestionnaireManager
+import logging
+
 from app.main import errors
 from app.metadata.metadata_store import MetaDataStore
 from app.parser.schema_parser_factory import SchemaParserFactory
+from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.schema_loader.schema_loader import load_schema
+
 from flask_login import current_user
-import logging
 
 logger = logging.getLogger(__name__)
 

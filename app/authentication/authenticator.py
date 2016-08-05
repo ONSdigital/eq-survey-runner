@@ -1,14 +1,14 @@
 import logging
-from flask import session
 
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
-from app.metadata.metadata_store import MetaDataStore
 from app.authentication.user_id_generator import UserIDGenerator
+from app.metadata.metadata_store import MetaDataStore
 
+from flask import session
 
 EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
 

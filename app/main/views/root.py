@@ -1,15 +1,21 @@
-from flask import request, abort, session, redirect
-from flask_login import current_user
-from .. import main_blueprint
-
-from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
-from app.authentication.authenticator import Authenticator
-from app.authentication.no_token_exception import NoTokenException
-from app.authentication.invalid_token_exception import InvalidTokenException
-from app.main import errors
-from app.metadata.metadata_store import MetaDataStore
 import logging
 
+from app.authentication.authenticator import Authenticator
+from app.authentication.invalid_token_exception import InvalidTokenException
+from app.authentication.no_token_exception import NoTokenException
+from app.main import errors
+from app.metadata.metadata_store import MetaDataStore
+from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
+
+from flask import abort
+from flask import redirect
+from flask import request
+from flask import session
+
+from flask_login import current_user
+
+
+from .. import main_blueprint
 
 logger = logging.getLogger(__name__)
 

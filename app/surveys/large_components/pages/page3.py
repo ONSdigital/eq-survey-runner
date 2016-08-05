@@ -1,7 +1,7 @@
-from app.schema.block import Block
-from app.schema.section import Section
-from app.schema.question import Question
 from app.schema.answer import Answer
+from app.schema.block import Block
+from app.schema.question import Question
+from app.schema.section import Section
 
 from app.surveys.large_test import test_questionnaire
 
@@ -28,47 +28,47 @@ h1_r.code = "H1"
 h1_r.options = [
     {
         "value": "h1_a",
-        "label": "Me, this is my permanent or family home"
+        "label": "Me, this is my permanent or family home",
     },
     {
         "value": "h1_b",
-        "label": "Family members including partners, children, and babies born on or before 27 March 2011"
+        "label": "Family members including partners, children, and babies born on or before 27 March 2011",
     },
     {
         "value": "h1_c",
-        "label": "Students and/or schoolchildren who live away from home during term time"
+        "label": "Students and/or schoolchildren who live away from home during term time",
     },
     {
         "value": "h1_d",
-        "label": "Housemates, tenants or lodgers"
+        "label": "Housemates, tenants or lodgers",
     },
     {
         "value": "h1_e",
-        "label": "People who usually live outside the UK who are staying in the UK for 3 months or more"
+        "label": "People who usually live outside the UK who are staying in the UK for 3 months or more",
     },
     {
         "value": "h1_f",
-        "label": "People who work away from home within the UK, or are members of the armed forces, if this is their permanent or family home"
+        "label": "People who work away from home within the UK, or are members of the armed forces, if this is their permanent or family home",
     },
     {
         "value": "h1_g",
-        "label": "People staying temporarily outside the UK for less than 12 months"
+        "label": "People staying temporarily outside the UK for less than 12 months",
     },
     {
         "value": "h1_h",
-        "label": "People staying temporarily who usually live in the UK but do not have another UK address, for example, relatives, friends"
+        "label": "People staying temporarily who usually live in the UK but do not have another UK address, for example, relatives, friends",
     },
     {
         "value": "h1_i",
-        "label": "Other people who usually live here, including anyone temporarily away from home"
+        "label": "Other people who usually live here, including anyone temporarily away from home",
     },
 
     # TODO: This option should be exclusive and unset other options
     # TODO: This option should route the respondent to H4
     {
         "value": "h1_j",
-        "label": "No-one usually lives here, for example, this is a second address or holiday home"
-    }
+        "label": "No-one usually lives here, for example, this is a second address or holiday home",
+    },
 ]
 
 h1_q.add_answer(h1_r)
@@ -121,27 +121,27 @@ h4_r.id = "answer-h4"
 h4_r.options = [
     {
         "value": "h4_a",
-        "label": "People who usually live somewhere else in the UK, for example, boy/girlfriends, friends, relatives"
+        "label": "People who usually live somewhere else in the UK, for example, boy/girlfriends, friends, relatives",
     },
     {
         "value": "h4_b",
-        "label": "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere"
+        "label": "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
     },
     {
         "value": "h4_c",
-        "label": "People who usually live outside the UK who are staying in the UK for less than 3 months"
+        "label": "People who usually live outside the UK who are staying in the UK for less than 3 months",
     },
     {
         "value": "h4_d",
-        "label": "People here on holiday"
+        "label": "People here on holiday",
     },
 
     # TODO: This option should be exclusive and unset other options
     # TODO: This option should route the respondent to H6
     {
         "value": "h4_e",
-        "label": "There are no visitors staying overnight here on {exercise.return_by:%-d %B %Y}"
-    }
+        "label": "There are no visitors staying overnight here on {exercise.return_by:%-d %B %Y}",
+    },
 ]
 
 h4_q.add_answer(h4_r)

@@ -2,14 +2,14 @@ import os
 import sys
 import time
 
-from app.metadata.metadata_store import MetaDataConstants
 from app.dev_mode.jwt_encoder import Encoder
+from app.metadata.metadata_store import MetaDataConstants
 
 
 def create_payload(user):
-    EXPIRE_AFTER_SECONDS = 12 * 60 * 60
+    expire_after_seconds = 12 * 60 * 60
     iat = time.time()
-    exp = time.time() + EXPIRE_AFTER_SECONDS
+    exp = time.time() + expire_after_seconds
     return {
             MetaDataConstants.USER_ID.claim_id: user,
             'iat': str(int(iat)),

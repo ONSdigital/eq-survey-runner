@@ -1,10 +1,10 @@
-from app.validation.integer_type_check import IntegerTypeCheck
-from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
-from app.validation.date_type_check import DateTypeCheck
-from app.validation.textarea_type_check import TextAreaTypeCheck
-from app.validation.date_range_check import DateRangeCheck
 from app.schema.answer import Answer
 from app.schema.question import Question
+from app.validation.date_range_check import DateRangeCheck
+from app.validation.date_type_check import DateTypeCheck
+from app.validation.integer_type_check import IntegerTypeCheck
+from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
+from app.validation.textarea_type_check import TextAreaTypeCheck
 
 
 class TypeValidatorFactoryException(Exception):
@@ -28,7 +28,7 @@ class TypeValidatorFactory(object):
             'TEXTAREA': [TextAreaTypeCheck],
             'RADIO': [],
             'CHECKBOX': [],
-            'TEXTFIELD': []
+            'TEXTFIELD': [],
             }
 
         question_validators = {
@@ -41,7 +41,7 @@ class TypeValidatorFactory(object):
             'RADIOS': [],
             'CHECKBOXS': [],
             'CHECKBOXES': [],
-            'GENERAL': []
+            'GENERAL': [],
         }
 
         i_type = item.type.upper()

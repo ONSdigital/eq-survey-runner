@@ -1,8 +1,9 @@
-from app.schema.answer import Answer
-from app.validation.date_type_check import DateTypeCheck
 from datetime import datetime
+
+from app.schema.answer import Answer
 from app.schema.exceptions import TypeCheckingException
 from app.schema.widgets.date_widget import DateWidget
+from app.validation.date_type_check import DateTypeCheck
 
 
 class DateAnswer(Answer):

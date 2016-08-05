@@ -6,7 +6,7 @@ KNOWN_TEMPLATES = {
     'summary': {'template': "submission.html", "preprocessor": SummaryTemplatePreprocessor},
     'confirmation': {'template': "confirmation.html", "preprocessor": QuestionnaireTemplatePreprocessor},
     'thank-you': {'template': "thank-you.html", "preprocessor": QuestionnaireTemplatePreprocessor},
-    'questionnaire': {'template': "questionnaire.html", "preprocessor": QuestionnaireTemplatePreprocessor}
+    'questionnaire': {'template': "questionnaire.html", "preprocessor": QuestionnaireTemplatePreprocessor},
 }
 
 

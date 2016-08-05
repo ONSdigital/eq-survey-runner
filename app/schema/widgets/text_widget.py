@@ -1,6 +1,8 @@
-from app.schema.widget import Widget
-from flask import render_template
 import logging
+
+from app.schema.widget import Widget
+
+from flask import render_template
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +15,7 @@ class TextWidget(Widget):
                 'id': state.schema_item.id,
                 'label': state.schema_item.label or '',
                 'value': state.value or state.input or '',
-                'placeholder': ''
-            }
+                'placeholder': '',
+            },
         }
         return render_template('partials/widgets/text_widget.html', **widget_params)

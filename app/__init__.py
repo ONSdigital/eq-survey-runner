@@ -1,25 +1,36 @@
-from flask import Flask
-from flask import url_for
-from flask_babel import Babel
-from flask_login import LoginManager
-from app.libs.utils import get_locale
-from healthcheck import HealthCheck
-from flaskext.markdown import Markdown
+import json
+import logging
+import os
+import sys
+from datetime import timedelta
+
+from logging.handlers import RotatingFileHandler
+
+from app import settings
+from app.analytics.custom_google_analytics import CustomGoogleAnalytics
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
+from app.libs.utils import get_locale
 from app.submitter.submitter import SubmitterFactory
-from app import settings
-from flask_themes2 import Themes
-from datetime import timedelta
-import watchtower
-import logging
-import sys
-import os
-from logging.handlers import RotatingFileHandler
+
+from flask import Flask
+from flask import url_for
+
 from flask_analytics import Analytics
+
+from flask_babel import Babel
+
+from flask_login import LoginManager
+
+from flask_themes2 import Themes
+
+from flaskext.markdown import Markdown
+
+from healthcheck import HealthCheck
+
 from splunk_handler import SplunkHandler
-from app.analytics.custom_google_analytics import CustomGoogleAnalytics
-import json
+
+import watchtower
 
 SECURE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -27,7 +38,7 @@ SECURE_HEADERS = {
     'Strict-Transport-Security': 'max-age=31536000; includeSubdomains',
     'X-Frame-Options': 'DENY',
     'X-Xss-Protection': '1; mode=block',
-    'X-Content-Type-Options': 'nosniff'
+    'X-Content-Type-Options': 'nosniff',
 }
 
 LOG_NAME = "eq.log"
@@ -171,15 +182,15 @@ def setup_analytics(application):
 
 def configure_logging(application):
     # set up some sane logging, as opposed to what flask does by default
-    FORMAT = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
+    log_format = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
     levels = {
-      'CRITICAL': logging.CRITICAL,
-      'ERROR': logging.ERROR,
-      'WARNING': logging.WARNING,
-      'INFO': logging.INFO,
-      'DEBUG': logging.DEBUG
-      }
-    logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=FORMAT)
+        'CRITICAL': logging.CRITICAL,
+        'ERROR': logging.ERROR,
+        'WARNING': logging.WARNING,
+        'INFO': logging.INFO,
+        'DEBUG': logging.DEBUG,
+    }
+    logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=log_format)
 
     # set the logger for this application and stop using flasks broken solution
     application._logger = logging.getLogger(__name__)

@@ -1,10 +1,13 @@
-from cryptography.hazmat.backends.openssl.backend import backend
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from app.utilities import strings
-
+import base64
 import json
 import os
-import base64
+
+from app.utilities import strings
+
+from cryptography.hazmat.backends.openssl.backend import backend
+from cryptography.hazmat.primitives.ciphers import Cipher
+from cryptography.hazmat.primitives.ciphers import algorithms
+from cryptography.hazmat.primitives.ciphers import modes
 
 
 class JWEEncrypter(object):

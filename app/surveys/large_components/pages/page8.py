@@ -1,7 +1,7 @@
-from app.schema.block import Block
-from app.schema.section import Section
-from app.schema.question import Question
 from app.schema.answer import Answer
+from app.schema.block import Block
+from app.schema.question import Question
+from app.schema.section import Section
 
 from app.surveys.large_test import test_questionnaire
 
@@ -29,31 +29,31 @@ i15_r1.options = [
     # @TODO: Should route to question 13
     {
         "value": "i15_a",
-        "label": "English"
+        "label": "English",
     },
     # @TODO: Should route to question 13
     {
         "value": "i15_b",
-        "label": "Welsh"
+        "label": "Welsh",
     },
     # @TODO: Should route to question 13
     {
         "value": "i15_c",
-        "label": "Scottish"
+        "label": "Scottish",
     },
     # @TODO: Should route to question 13
     {
         "value": "i15_d",
-        "label": "Northern Irish"
+        "label": "Northern Irish",
     },
     {
         "value": "i15_e",
-        "label": "British"
+        "label": "British",
     },
     {
         "value": "i15_f",
-        "label": "Other, write in"
-    }
+        "label": "Other, write in",
+    },
 ]
 
 i15_r2 = Answer()
@@ -87,24 +87,24 @@ i16_r1.label = "White"
 i16_r1.options = [
     {
         "value": "i16_a",
-        "label": "English/Welsh/Scottish/Nortern Irish/Brtitish"
+        "label": "English/Welsh/Scottish/Nortern Irish/Brtitish",
     },
     {
         "value": "i16_b",
-        "label": "Irish"
+        "label": "Irish",
     },
     {
         "value": "i16_c",
-        "label": "Gypsy or Irish Traveller"
+        "label": "Gypsy or Irish Traveller",
     },
     {
         "value": "i16_d",
-        "label": "Irish"
+        "label": "Irish",
     },
     {
         "value": "i16_e",
-        "label": "Any other White background, write in"
-    }
+        "label": "Any other White background, write in",
+    },
 ]
 
 i16_r2 = Answer()
@@ -123,20 +123,20 @@ i16_r3.label = "Mixed/multiple ehthnic groups"
 i16_r3.options = [
     {
         "value": "i16_f",
-        "label": "White and Black Caribbean"
+        "label": "White and Black Caribbean",
     },
     {
         "value": "i16_g",
-        "label": "White and Black African"
+        "label": "White and Black African",
     },
     {
         "value": "i16_h",
-        "label": "White and Asian"
+        "label": "White and Asian",
     },
     {
         "value": "i16_i",
-        "label": "Any other Mixed/Multiple ethnic background, write in"
-    }
+        "label": "Any other Mixed/Multiple ethnic background, write in",
+    },
 ]
 
 i16_r4 = Answer()
@@ -155,24 +155,24 @@ i16_r5.label = "Asian/Asian British"
 i16_r5.options = [
     {
         "value": "i16_j",
-        "label": "Indian"
+        "label": "Indian",
     },
     {
         "value": "i16_k",
-        "label": "Pakistani"
+        "label": "Pakistani",
     },
     {
         "value": "i16_l",
-        "label": "Bangladeshi"
+        "label": "Bangladeshi",
     },
     {
         "value": "i16_m",
-        "label": "Chinese"
+        "label": "Chinese",
     },
     {
         "value": "i16_n",
-        "label": "Any other Asian Background, write in"
-    }
+        "label": "Any other Asian Background, write in",
+    },
 ]
 
 i16_r6 = Answer()
@@ -191,16 +191,16 @@ i16_r7.label = "Black/African/Caribbean/Black British"
 i16_r7.options = [
     {
         "value": "i16_o",
-        "label": "African"
+        "label": "African",
     },
     {
         "value": "i16_p",
-        "label": "Caribbean"
+        "label": "Caribbean",
     },
     {
         "value": "i16_q",
-        "label": "Any other Black/African/Caribbean background, write in"
-    }
+        "label": "Any other Black/African/Caribbean background, write in",
+    },
 ]
 
 i16_r8 = Answer()
@@ -216,12 +216,12 @@ i16_r9.label = "Other ethnic group"
 i16_r9.options = [
     {
         "value": "i16_r",
-        "label": "Arab"
+        "label": "Arab",
     },
     {
         "value": "i16_s",
-        "label": "Any other ethnic group, write in"
-    }
+        "label": "Any other ethnic group, write in",
+    },
 ]
 
 i16_r10 = Answer()
@@ -268,12 +268,12 @@ i18_r1.options = [
     # @TODO Route to question 20
     {
         "value": "english",
-        "label": "English"
+        "label": "English",
     },
     {
         "value": "other",
-        "label": "Other"
-    }
+        "label": "Other",
+    },
 ]
 
 i18_r2 = Answer()
@@ -308,20 +308,20 @@ i19_r.code = 'I19'
 i19_r.options = [
     {
         "value": "i19_a",
-        "label": "Very Well"
+        "label": "Very Well",
     },
     {
         "value": "i19_b",
-        "label": "Well"
+        "label": "Well",
     },
     {
         "value": "i19_c",
-        "label": "Not well"
+        "label": "Not well",
     },
     {
         "value": "i19_d",
-        "label": "Not at all"
-    }
+        "label": "Not at all",
+    },
 ]
 
 i19_q.add_answer(i19_r)
@@ -349,36 +349,36 @@ i20_r1.label = "White"
 i20_r1.options = [
     {
         "value": "i20_a",
-        "label": "No religion"
+        "label": "No religion",
     },
     {
         "value": "i20_b",
-        "label": "Christian (include Church of England, Catholic, Protestant and all other Christian denominations)"
+        "label": "Christian (include Church of England, Catholic, Protestant and all other Christian denominations)",
     },
     {
         "value": "i20_c",
-        "label": "Buddhist"
+        "label": "Buddhist",
     },
     {
         "value": "i20_d",
-        "label": "Hindu"
+        "label": "Hindu",
     },
     {
         "value": "i20_e",
-        "label": "Jewish"
+        "label": "Jewish",
     },
     {
         "value": "i20_f",
-        "label": "Muslim"
+        "label": "Muslim",
     },
     {
         "value": "i20_g",
-        "label": "Sikh"
+        "label": "Sikh",
     },
     {
         "value": "i20_h",
-        "label": "Any other religion, write in"
-    }
+        "label": "Any other religion, write in",
+    },
 ]
 
 i20_r2 = Answer()

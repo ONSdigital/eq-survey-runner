@@ -1,7 +1,9 @@
-import logging
 import json
-from app import settings
+import logging
+
 from datetime import datetime
+
+from app import settings
 
 logger = logging.getLogger(__name__)
 

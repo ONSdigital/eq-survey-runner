@@ -1,8 +1,11 @@
-from app import settings
 import json
-import os
 import logging
+import os
+
+from app import settings
+
 import boto3
+
 import botocore
 
 

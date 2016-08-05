@@ -1,7 +1,8 @@
-from app.schema.answer import Answer
-from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
-from app.schema.widgets.currency_widget import CurrencyWidget
 import logging
+
+from app.schema.answer import Answer
+from app.schema.widgets.currency_widget import CurrencyWidget
+from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
 
 logger = logging.getLogger(__name__)
 

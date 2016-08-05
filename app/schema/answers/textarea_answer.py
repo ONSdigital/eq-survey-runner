@@ -1,6 +1,6 @@
 from app.schema.answer import Answer
-from app.validation.textarea_type_check import TextAreaTypeCheck
 from app.schema.widgets.textarea_widget import TextareaWidget
+from app.validation.textarea_type_check import TextAreaTypeCheck
 
 
 class TextareaAnswer(Answer):

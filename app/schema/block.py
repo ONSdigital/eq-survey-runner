@@ -1,6 +1,6 @@
-from app.schema.item import Item
-from app.schema.display import Display
 from app.questionnaire_state.block import Block as State
+from app.schema.display import Display
+from app.schema.item import Item
 
 
 class Block(Item):

@@ -1,6 +1,7 @@
+import time
+
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
-import time
 
 
 class DateTypeCheck(AbstractValidator):

@@ -1,7 +1,8 @@
+import logging
+
+from app.questionnaire_state.exceptions import StateException
 from app.schema.answer import Answer
 from app.schema.widgets.checkbox_group_widget import CheckboxGroupWidget
-from app.questionnaire_state.exceptions import StateException
-import logging
 
 logger = logging.getLogger(__name__)
 

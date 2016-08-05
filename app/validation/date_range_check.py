@@ -1,7 +1,10 @@
+import logging
+
+from datetime import datetime
+
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
-from datetime import datetime
-import logging
+
 
 logger = logging.getLogger(__name__)
 

@@ -1,8 +1,9 @@
 import copy
-from app.schema.block import Block
-from app.schema.section import Section
-from app.schema.question import Question
+
 from app.schema.answer import Answer
+from app.schema.block import Block
+from app.schema.question import Question
+from app.schema.section import Section
 from app.surveys.mci_0205 import mci_0205
 from app.validation.abstract_validator import AbstractValidator
 
@@ -58,7 +59,7 @@ q11r.mandatory = False
 q11r.messages = {
     "NOT_INTEGER": "Please only enter whole numbers into the field.",
     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
 }
 
 q11.add_answer(q11r)
@@ -84,7 +85,7 @@ q12r.mandatory = False
 q12r.messages = {
     "NOT_INTEGER": "Please only enter whole numbers into the field.",
     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
 }
 
 q12.add_answer(q12r)
@@ -110,7 +111,7 @@ q13r.mandatory = False
 q13r.messages = {
     "NOT_INTEGER": "Please only enter whole numbers into the field.",
     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
 }
 
 q13.add_answer(q13r)
@@ -136,7 +137,7 @@ q14r.mandatory = False
 q14r.messages = {
     "NOT_INTEGER": "Please only enter whole numbers into the field.",
     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
 }
 
 q14.add_answer(q14r)
@@ -163,7 +164,7 @@ q15r.messages = {
     AbstractValidator.MANDATORY: "Please provide a value, even if your value is 0.",
     AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
     AbstractValidator.NEGATIVE_INTEGER: "The value cannot be negative. Please correct your answer.",
-    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer."
+    AbstractValidator.INTEGER_TOO_LARGE: "The maximum value allowed is 9999999999. Please correct your answer.",
 }
 
 q15.add_answer(q15r)

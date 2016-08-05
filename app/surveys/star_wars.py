@@ -1,11 +1,11 @@
-from app.schema.questionnaire import Questionnaire
-from app.schema.group import Group
-from app.schema.block import Block
-from app.schema.section import Section
-from app.schema.question import Question
 from app.schema.answer import Answer
+from app.schema.block import Block
 from app.schema.display import Display
+from app.schema.group import Group
 from app.schema.introduction import Introduction
+from app.schema.question import Question
+from app.schema.questionnaire import Questionnaire
+from app.schema.section import Section
 from app.validation.abstract_validator import AbstractValidator
 
 
@@ -77,7 +77,7 @@ q1r.alias = "chewies_age"
 q1r.messages = {
     AbstractValidator.NOT_INTEGER: "Please enter your age.",
     AbstractValidator.NEGATIVE_INTEGER: "Negative age you can not be.",
-    AbstractValidator.INTEGER_TOO_LARGE: "No one lives that long, not even Yoda"
+    AbstractValidator.INTEGER_TOO_LARGE: "No one lives that long, not even Yoda",
 }
 
 q1.add_answer(q1r)
@@ -103,7 +103,7 @@ q2r.mandatory = True
 q2r.messages = {
     AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
     AbstractValidator.NEGATIVE_INTEGER: "How can it be negative?",
-    AbstractValidator.INTEGER_TOO_LARGE: "How much, idiot you must be"
+    AbstractValidator.INTEGER_TOO_LARGE: "How much, idiot you must be",
 }
 
 q2.add_answer(q2r)
@@ -130,7 +130,7 @@ q3r.mandatory = False
 q3r.messages = {
     AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
     AbstractValidator.NEGATIVE_INTEGER: "How can it be negative?",
-    AbstractValidator.INTEGER_TOO_LARGE: "Thats hotter then the sun, Jar Jar Binks you must be"
+    AbstractValidator.INTEGER_TOO_LARGE: "Thats hotter then the sun, Jar Jar Binks you must be",
 }
 
 q3.add_answer(q3r)
@@ -154,21 +154,21 @@ q4r.guidance = ""
 q4r.type = "Radio"
 q4r.options = [{
                     "value": "Lion",
-                    "label": "Lion"
+                    "label": "Lion",
                 }, {
                     "value": "Elephant",
-                    "label": "Elephant"
+                    "label": "Elephant",
                 }, {
                     "value": "Cow",
-                    "label": "Cow"
+                    "label": "Cow",
                 }, {
                     "value": "Hippo",
-                    "label": "Hippo"
-                }]
+                    "label": "Hippo",
+                }, ]
 q4r.mandatory = True
 q4r_display = Display()
 q4r_display.properties = {
-    "columns": True
+    "columns": True,
 }
 q4r.display = q4r_display
 
@@ -193,22 +193,22 @@ q5r.guidance = ""
 q5r.type = "Radio"
 q5r.options = [{
                     "value": "I've been waiting for you, Obi-Wan",
-                    "label": "I've been waiting for you, Obi-Wan"
+                    "label": "I've been waiting for you, Obi-Wan",
                 }, {
                     "value": "Luke, I am your father",
-                    "label": "Luke, I am your father"
+                    "label": "Luke, I am your father",
                 }, {
                     "value": "Together we can rule the galaxy",
-                    "label": "Together we can rule the galaxy"
+                    "label": "Together we can rule the galaxy",
                 }, {
                     "value": "I find your lack of faith disturbing",
-                    "label": "I find your lack of faith disturbing"
-                }]
+                    "label": "I find your lack of faith disturbing",
+                }, ]
 q5r.mandatory = False
 
 q5r_display = Display()
 q5r_display.properties = {
-    "columns": False
+    "columns": False,
 }
 q5r.display = q5r_display
 
@@ -232,28 +232,28 @@ q6r.guidance = ""
 q6r.type = "Checkbox"
 q6r.options = [{
                     "value": "Luke Skywalker",
-                    "label": "Luke Skywalker"
+                    "label": "Luke Skywalker",
                 }, {
                     "value": "Yoda",
-                    "label": "Yoda"
+                    "label": "Yoda",
                 }, {
                     "value": "Anakin Skywalker",
-                    "label": "Anakin Skywalker"
+                    "label": "Anakin Skywalker",
                 }, {
                     "value": "Rey",
-                    "label": "Rey"
+                    "label": "Rey",
                 }, {
                     "value": "Obi-Wan Kenobi",
-                    "label": "Obi-Wan Kenobi"
+                    "label": "Obi-Wan Kenobi",
                 }, {
                     "value": "Qui-Gon Jinn",
-                    "label": "Qui-Gon Jinn"
-                }]
+                    "label": "Qui-Gon Jinn",
+                }, ]
 q6r.mandatory = True
 
 q6r_display = Display()
 q6r_display.properties = {
-    "columns": True
+    "columns": True,
 }
 q6r.display = q6r_display
 q6.add_answer(q6r)
@@ -277,28 +277,28 @@ q7r.guidance = ""
 q7r.type = "Checkbox"
 q7r.options = [{
                     "value": "Luke Skywalker",
-                    "label": "Luke Skywalker"
+                    "label": "Luke Skywalker",
                 }, {
                     "value": "Han Solo",
-                    "label": "Han Solo"
+                    "label": "Han Solo",
                 }, {
                     "value": "The Emperor",
-                    "label": "The Emperor"
+                    "label": "The Emperor",
                 }, {
                     "value": "R2D2",
-                    "label": "R2D2"
+                    "label": "R2D2",
                 }, {
                     "value": "Senator Amidala",
-                    "label": "Senator Amidala"
+                    "label": "Senator Amidala",
                 }, {
                     "value": "Yoda",
-                    "label": "Yoda"
-                }]
+                    "label": "Yoda",
+                }, ]
 q7r.mandatory = False
 
 q7r_display = Display()
 q7r_display.properties = {
-    "columns": False
+    "columns": False,
 }
 q7r.display = q7r_display
 q7.add_answer(q7r)
@@ -323,7 +323,7 @@ q8r1.options = []
 q8r1.mandatory = True
 q8r1.messages = {
     AbstractValidator.MANDATORY: "Please answer before continuing.",
-    AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer."
+    AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer.",
 }
 
 q8.add_answer(q8r1)
@@ -339,7 +339,7 @@ q8r2.options = []
 q8r2.mandatory = True
 q8r2.messages = {
     AbstractValidator.MANDATORY: "Please answer before continuing.",
-    AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer."
+    AbstractValidator.INVALID_DATE: "The date entered is not valid.  Please correct your answer.",
 }
 
 q8.add_answer(q8r2)
@@ -380,7 +380,7 @@ q9r.mandatory = False
 q9r.messages = {
     AbstractValidator.NOT_INTEGER: "Please only enter whole numbers into the field.",
     AbstractValidator.NEGATIVE_INTEGER: "How can it be negative?",
-    AbstractValidator.INTEGER_TOO_LARGE: "Thats hotter then the sun, Jar Jar Binks you must be"
+    AbstractValidator.INTEGER_TOO_LARGE: "Thats hotter then the sun, Jar Jar Binks you must be",
 }
 
 q9.add_answer(q9r)
@@ -417,7 +417,7 @@ questionnaire.register(q10r)
 
 q10r_display = Display()
 q10r_display.properties = {
-    "max_length": "2000"
+    "max_length": "2000",
 }
 q10r.display = q10r_display
 
@@ -438,16 +438,16 @@ q11r.guidance = ""
 q11r.type = "Radio"
 q11r.options = [{
                     "value": "Yes",
-                    "label": "Yes, Really!"
+                    "label": "Yes, Really!",
                 }, {
                     "value": "No",
-                    "label": "No"
-                }]
+                    "label": "No",
+                }, ]
 q11r.mandatory = True
 q11.add_answer(q11r)
 
 q11r_display = Display()
 q11r_display.properties = {
-    "columns": False
+    "columns": False,
 }
 q11r.display = q11r_display
