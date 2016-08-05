@@ -971,8 +971,8 @@
                                     "type": "General",
                                     "skip_condition": {
                                         "when": {
-                                            "id" : "cccfe681-9969-4175-8ac3-98184ab584237",
-                                            "condition": "equals",
+                                            "id" : "cccfe681-9969-4175-8ac3-98184ab58423",
+                                            "condition": "not equals",
                                             "value":"Bothans"
                                         }
                                     }
