@@ -558,7 +558,28 @@
                             },
                             "id": "017880bc-752d-4a6b-83df-e130409ee660",
                             "questions": [
-                                {
+                              {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "cccfe681-9969-4175-8ac3-98184ab58423",
+                                            "label": "Which species stole the plans to the second Death Star?",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "1054a0de-4878-4d24-b997-7965ad8e3e66",
+                                    "title": "",
+                                    "type": "General"
+                              },
+                              {
                                     "answers": [
                                         {
                                             "alias": "chewies_age",
@@ -889,6 +910,7 @@
                             },
                             "id": "12346782-08a6-4213-9dc9-0780c2996896",
                             "questions": [
+
                                 {
                                     "answers": [
                                         {
@@ -927,6 +949,34 @@
                             },
                             "id": "94546782-08a6-4213-9dc9-0780c2996896",
                             "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "c8d9d66e-6c0a-439e-8ef9-e0d7038be009",
+                                            "label": "What else did the Bothan spies steal for the Rebel Alliance?",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "048e40da-bca4-48e5-9885-0bb6413bef62",
+                                    "title": "The force is strong with you, young Jedi!",
+                                    "type": "General",
+                                    "skip_condition": {
+                                        "when": {
+                                            "id" : "cccfe681-9969-4175-8ac3-98184ab584237",
+                                            "condition": "equals",
+                                            "value":"Bothans"
+                                        }
+                                    }
+                                },
                                 {
                                     "answers": [
                                         {
