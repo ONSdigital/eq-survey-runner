@@ -125,19 +125,19 @@ class TemplatePreProcessor(object):
         # Check to see if we are on the submission page set by the JSON (default is summary)
         if current_location == self._schema.submission_page:
             location = self.questionnaire_manager._first
+            while location.next:
 
-            while location.next_page:
                 if self._schema.item_exists(location.item_id):
-                    location_state = location.page_state
+                    location_state = location.state
                     schema_item = self._schema.get_item_by_id(location.item_id)
                     schema_item.augment_with_state(location_state)
-                location = location.next_page
+                location = location.next
         else:
             current_state = self.questionnaire_manager.get_state(current_location)
 
             # This now feels wrong, but I can't think of a better way of doing this without ripping apart the whole rendering pipeline
             schema_item = self._schema.get_item_by_id(current_state.item_id)
-            schema_item.augment_with_state(current_state.page_state)
+            schema_item.augment_with_state(current_state.state)
 
             self._schema.errors = schema_item.collect_errors()
             self._schema.warnings = schema_item.collect_warnings()

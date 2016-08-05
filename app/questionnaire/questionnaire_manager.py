@@ -1,6 +1,6 @@
 from app.questionnaire.state_manager import StateManager
 from app.questionnaire_state.introduction import Introduction as StateIntroduction
-from app.questionnaire_state.page import Page
+from app.questionnaire_state.node import Node
 from app.questionnaire_state.summary import Summary as StateSummary
 from app.questionnaire_state.confirmation import Confirmation as StateConfirmation
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
@@ -18,19 +18,19 @@ logger = logging.getLogger(__name__)
 class QuestionnaireManager(object):
     '''
     This class represents a user journey through a survey. It models the request/response process of the web application
-    using a doubly linked list. Each node in the list is essentially a page displayed to the user. A new page is created
+    using a doubly linked list. Each node in the list is essentially a page displayed to the user. A new node is created
     by a GET request and subsequently updated via a POST request.
 
     The doubly linked list approach allows us to maintain the path the user has taken through the question. If that path
-    changes we archive off the pages incase the user revists that path.
+    changes we archive off the nodes in case the user revisits that path.
 
     '''
     def __init__(self, schema):
         self.submitted_at = None
         self._schema = schema
-        self._current = None  # the latest page
-        self._first = None  # the first page in the doubly linked list
-        self._archive = {}  # a dict of discarded pages for later use (if needed)
+        self._current = None  # the latest node
+        self._first = None  # the first node in the doubly linked list
+        self._archive = {}  # a dict of discarded nodes for later use (if needed)
         self._valid_locations = self._build_valid_locations()
         self._pre_processor = TemplatePreProcessor(self._schema, self)
 
@@ -65,25 +65,25 @@ class QuestionnaireManager(object):
 
     def get_state(self, item_id):
         # traverse the list and find the state matching this item id
-        page = self._first
-        while page and item_id != page.item_id:
-            page = page.next_page
-        return page
+        node = self._first
+        while node and item_id != node.item_id:
+            node = node.next
+        return node
 
     def is_valid_location(self, location):
         return location in self._valid_locations
 
     def go_to_state(self, item_id):
-        page = self.get_state(item_id)
+        node = self.get_state(item_id)
         logger.debug("go to state %s", item_id)
-        if page:
-            logger.debug("truncating to page %s", item_id)
-            if page.next_page:
-                self._truncate(page.next_page)
+        if node:
+            logger.debug("truncating to node %s", item_id)
+            if node.next:
+                self._truncate(node.next)
             logger.debug("current item %s", item_id)
             StateManager.save_state(self)
         elif item_id in self._archive:
-            # re-append the old page to the head of the list
+            # re-append the old node to the head of the list
             self._append(self._archive[item_id])
         else:
             logger.debug("creating new state for %s", item_id)
@@ -104,8 +104,8 @@ class QuestionnaireManager(object):
             else:
                 item = self._schema.get_item_by_id(item_id)
                 state = item.construct_state()
-            page = Page(item_id, state)
-            self._append(page)
+            node = Node(item_id, state)
+            self._append(node)
             StateManager.save_state(self)
         else:
             raise ValueError("Unsupported location %s", item_id)
@@ -117,46 +117,46 @@ class QuestionnaireManager(object):
             logger.debug("item id is %s", item_id)
             logger.debug("Current location %s", self.get_current_location())
             if item_id == self._current.item_id:
-                state = self._current.page_state
+                state = self._current.state
                 state.update_state(user_input)
                 StateManager.save_state(self)
             else:
-                raise ValueError("Updating state for incorrect page")
+                raise ValueError("Updating state for incorrect node")
         else:
             raise TypeError("Can only handle blocks")
 
-    def _append(self, page):
+    def _append(self, node):
         if not self._first:
-            self._first = page
-            self._current = page
+            self._first = node
+            self._current = node
         else:
-            previous_page = self._current
-            previous_page.next_page = page
-            page.previous_page = previous_page
-            self._current = page
+            previous = self._current
+            previous.next = node
+            node.previous = previous
+            self._current = node
 
-    def _truncate(self, page):
-        logger.debug("Truncate everything after %s", page.item_id)
+    def _truncate(self, node):
+        logger.debug("Truncate everything after %s", node.item_id)
         logger.debug("Current position %s", self._current.item_id)
-        # truncate everything after page and archive it
-        while page != self._current:
-            popped_page = self._pop()
-            logger.debug("Archiving %s", popped_page.item_id)
-            self._archive[popped_page.item_id] = popped_page
-        # finally pop that page
-        self._archive[page.item_id] = self._pop()
-        logger.debug("Finally archiving %s", page.item_id)
+        # truncate everything after node and archive it
+        while node != self._current:
+            popped_node = self._pop()
+            logger.debug("Archiving %s", popped_node.item_id)
+            self._archive[popped_node.item_id] = popped_node
+        # finally pop that node
+        self._archive[node.item_id] = self._pop()
+        logger.debug("Finally archiving %s", node.item_id)
 
     def _pop(self):
-        page = self._current
-        self._current = page.previous_page
+        node = self._current
+        self._current = node.previous
         if self._current:
-            self._current.next_page = None
-        page.previous_page = None
-        return page
+            self._current.next = None
+        node.previous = None
+        return node
 
     def get_current_state(self):
-        return self._current.page_state
+        return self._current.state
 
     def get_current_location(self):
         if self._current:
@@ -178,7 +178,7 @@ class QuestionnaireManager(object):
     def get_answers(self):
         '''
         This method walks the entire list collecting all answers and as such should
-        only be used for the summary page and submission of data. Otherwise use the
+        only be used for the summary node and submission of data. Otherwise use the
         more efficient find_answer(id) method
         :return:
         '''
@@ -186,12 +186,12 @@ class QuestionnaireManager(object):
         # walk the list and collect all the answers
         answers_dict = {}
 
-        page = self._first
+        node = self._first
         answers = []
-        while page:
-            page_answers = page.page_state.get_answers()
-            answers.extend(page_answers)
-            page = page.next_page
+        while node:
+            node_answers = node.state.get_answers()
+            answers.extend(node_answers)
+            node = node.next
 
         for answer in answers:
             answers_dict[answer.id] = answer.input
@@ -214,7 +214,7 @@ class QuestionnaireManager(object):
             if self._schema.item_exists(current_state.item_id):
                 schema_item = self._schema.get_item_by_id(current_state.item_id)
 
-                return schema_item.validate(current_state.page_state)
+                return schema_item.validate(current_state.state)
             else:
                 # Item has state, but is not in schema: must be introduction, thank you or summary
                 return True

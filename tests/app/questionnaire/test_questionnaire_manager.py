@@ -4,7 +4,7 @@ import os
 from app import settings
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.questionnaire.state_manager import InMemoryStateManager
-from app.questionnaire_state.page import Page
+from app.questionnaire_state.node import Node
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.schema.block import Block
 from app.schema.group import Group
@@ -64,9 +64,9 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
     def test_append(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
 
-        page1 = Page("first", None)
-        page2 = Page("second", None)
-        page3 = Page("third", None)
+        page1 = Node("first", None)
+        page2 = Node("second", None)
+        page3 = Node("third", None)
 
         self.assertIsNone(questionnaire_manager._current)
         self.assertIsNone(questionnaire_manager._first)
@@ -74,32 +74,32 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
 
         self.assertEqual(page1, questionnaire_manager._first)
         self.assertEqual(page1, questionnaire_manager._current)
-        self.assertIsNone(page1.previous_page)
-        self.assertIsNone(page1.next_page)
+        self.assertIsNone(page1.previous)
+        self.assertIsNone(page1.next)
 
         questionnaire_manager._append(page2)
         self.assertEqual(page1, questionnaire_manager._first)
         self.assertEqual(page2, questionnaire_manager._current)
-        self.assertIsNone(page1.previous_page)
-        self.assertEqual(page1.next_page, page2)
-        self.assertEqual(page2.previous_page, page1)
-        self.assertIsNone(page2.next_page)
+        self.assertIsNone(page1.previous)
+        self.assertEqual(page1.next, page2)
+        self.assertEqual(page2.previous, page1)
+        self.assertIsNone(page2.next)
 
         questionnaire_manager._append(page3)
         self.assertEqual(page1, questionnaire_manager._first)
         self.assertEqual(page3, questionnaire_manager._current)
-        self.assertEqual(page2.previous_page, page1)
-        self.assertEqual(page2.next_page, page3)
-        self.assertEqual(page3.previous_page, page2)
-        self.assertIsNone(page3.next_page)
+        self.assertEqual(page2.previous, page1)
+        self.assertEqual(page2.next, page3)
+        self.assertEqual(page3.previous, page2)
+        self.assertIsNone(page3.next)
 
     def test_pop(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
 
-        page1 = Page("first", None)
-        page2 = Page("second", None)
-        page3 = Page("third", None)
-        page4 = Page("fourth", None)
+        page1 = Node("first", None)
+        page2 = Node("second", None)
+        page3 = Node("third", None)
+        page4 = Node("fourth", None)
 
         questionnaire_manager._append(page1)
         questionnaire_manager._append(page2)
@@ -111,18 +111,18 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
 
         popped = questionnaire_manager._pop()
         self.assertEqual(page4, popped)
-        self.assertIsNone(popped.previous_page)
-        self.assertIsNone(popped.next_page)
+        self.assertIsNone(popped.previous)
+        self.assertIsNone(popped.next)
         self.assertEqual(page3, questionnaire_manager._current)
-        self.assertIsNone(page3.next_page)
+        self.assertIsNone(page3.next)
 
     def test_truncate(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
 
-        page1 = Page("first", None)
-        page2 = Page("second", None)
-        page3 = Page("third", None)
-        page4 = Page("fourth", None)
+        page1 = Node("first", None)
+        page2 = Node("second", None)
+        page3 = Node("third", None)
+        page4 = Node("fourth", None)
 
         questionnaire_manager._append(page1)
         questionnaire_manager._append(page2)
@@ -140,14 +140,14 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         self.assertEqual(page4, questionnaire_manager._archive["fourth"])
         self.assertEqual(page3, questionnaire_manager._archive["third"])
 
-        self.assertIsNone(page3.next_page)
-        self.assertIsNone(page3.previous_page)
+        self.assertIsNone(page3.next)
+        self.assertIsNone(page3.previous)
 
-        self.assertIsNone(page4.next_page)
-        self.assertIsNone(page4.previous_page)
+        self.assertIsNone(page4.next)
+        self.assertIsNone(page4.previous)
 
         self.assertEqual(page2, questionnaire_manager._current)
-        self.assertIsNone(page2.next_page)
+        self.assertIsNone(page2.next)
 
     def test_get_current_location(self):
         with self.application.test_request_context():

@@ -10,7 +10,7 @@ from app.schema.section import Section
 from app.schema.question import Question
 from app.schema.answer import Answer
 
-from app.questionnaire_state.page import Page
+from app.questionnaire_state.node import Node
 from app.questionnaire_state.block import Block as StateBlock
 
 from collections import OrderedDict
@@ -157,5 +157,5 @@ class MockUserJourneyManager(object):
 
     def get_state(self, item_id):
         block_state = StateBlock('block-1', None)
-        page = Page('block-1', block_state)
+        page = Node('block-1', block_state)
         return page
