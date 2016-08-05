@@ -198,13 +198,13 @@ class QuestionnaireManager(object):
         return answers_dict
 
     def find_answer(self, id):
-        # TODO we need to make this more efficient
-        # The item class really should hold a dict of answer so we have quick lookups
-        answers = self.get_answers()
-        if id in answers:
-            return answers[id]
-        else:
-            return None
+        # walk backwards through the list and check each block for the answer
+        node = self._current
+        while node:
+            if id in node.state.answers:
+                return node.state.answers[id]
+            else:
+                node = node.previous
 
     def validate(self):
         # get the current location in the questionnaire

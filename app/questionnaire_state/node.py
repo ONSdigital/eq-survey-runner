@@ -4,7 +4,8 @@ class Node(object):
         self.previous = None
         self.next = None
 
-        # item in the schema this page relates to
+        # item in the schema this node relates to
         self.item_id = item_id
 
+        # the state of the node, this is usually a Block object
         self.state = state
