@@ -18,7 +18,7 @@ class RoutingEngine(object):
     def get_next_location(self, current_location):
         if current_location == 'introduction':
             next_location = self._schema.groups[0].blocks[0].id
-        elif current_location == 'summary':
+        elif current_location == self._schema.submission_page:
             next_location = 'thank-you'
         else:
             current_block = self._schema.get_item_by_id(current_location)
@@ -50,8 +50,9 @@ class RoutingEngine(object):
                     if index + 1 < len(self._schema.groups):
                         # return the first block in the next group
                         return self._schema.groups[index + 1].blocks[0].id
-        # There are no more blocks or groups, go to summary
-        return 'summary'
+
+        # There are no more blocks or groups, go to submission page (Default is summary)
+        return self._schema.submission_page
 
     def _process_routing_rules(self, routing_rules):
 

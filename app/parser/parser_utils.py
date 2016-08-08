@@ -142,16 +142,16 @@ class ParserUtils(object):
         else:
             return None
 
-    def get_optional_string(obj, key):
+    def get_optional_string(obj, key, default_value=None):
         """Get an optional string property from the dict
 
         Gets the optional string value associated with the key in the dict, or returns
-        None if the key is not found.
+        the default value if the key is not found.
 
         :param obj: A dict on json object
         :param key: The name of the property to retrieve
 
-        :returns: The value if found, otherwise returns None
+        :returns: The value if found, otherwise returns default_value
 
         :raises: A SchemaParserException is raised if the value exists and is not a string
 
@@ -160,7 +160,7 @@ class ParserUtils(object):
         if isinstance(value, str):
             return value
         elif value is None:
-            return None
+            return default_value
         else:
             raise SchemaParserException("Expected string '{field}' is not a string".format(field=key))
 

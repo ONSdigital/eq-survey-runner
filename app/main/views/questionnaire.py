@@ -22,7 +22,6 @@ def survey(eq_id, collection_id, location):
     logger.debug("Requesting location : /questionnaire/%s/%s/%s", eq_id, collection_id, location)
     try:
         questionnaire_manager = create_questionnaire_manager()
-
         # Redirect to thank you page if the questionnaire has already been submitted
         if questionnaire_manager.submitted and location != 'thank-you':
             return do_redirect(eq_id, collection_id, 'thank-you')

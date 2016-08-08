@@ -101,6 +101,7 @@ class SchemaParser(AbstractSchemaParser):
             logger.debug("title: " + questionnaire.title)
             questionnaire.description = ParserUtils.get_required_string(self._schema, "description")
             questionnaire.theme = ParserUtils.get_required_string(self._schema, "theme")
+            questionnaire.submission_page = ParserUtils.get_optional_string(self._schema, "submission_page", questionnaire.submission_page)
 
         except Exception as e:
             logging.error('Error parsing schema')
