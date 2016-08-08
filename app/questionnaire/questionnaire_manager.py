@@ -4,10 +4,11 @@ from app.questionnaire_state.node import Node
 from app.questionnaire_state.summary import Summary as StateSummary
 from app.questionnaire_state.confirmation import Confirmation as StateConfirmation
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
-from app.templating.template_pre_processor import TemplatePreProcessor
+from app.templating.template_register import TemplateRegistry
 from app.routing.routing_engine import RoutingEngine
 from app.questionnaire.user_action_processor import UserActionProcessor
 from app.authentication.session_management import session_manager
+from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from flask_login import current_user
 import logging
 
@@ -32,7 +33,6 @@ class QuestionnaireManager(object):
         self._first = None  # the first node in the doubly linked list
         self._archive = {}  # a dict of discarded nodes for later use (if needed)
         self._valid_locations = self._build_valid_locations()
-        self._pre_processor = TemplatePreProcessor(self._schema, self)
 
     @staticmethod
     def new_instance(schema):
@@ -96,7 +96,7 @@ class QuestionnaireManager(object):
             if item_id == 'introduction':
                 state = StateIntroduction(item_id)
             elif item_id == 'thank-you':
-                state = StateThankYou(item_id)
+                state = StateThankYou(item_id, self.submitted_at)
             elif item_id == 'summary':
                 state = StateSummary(item_id)
             elif item_id == 'confirmation':
@@ -270,10 +270,30 @@ class QuestionnaireManager(object):
         return self.get_current_location()
 
     def get_rendering_context(self):
-        return self._pre_processor.build_view_data()
+        # plumb the data ready for preprocessing
+        self._plumbing_preprocessing()
+
+        # look up the preprocessor and then build the view data
+        preprocessor = TemplateRegistry.get_template_preprocessor(self.get_current_location())
+
+        if self.get_current_location() == 'summary':
+            # the summary is the special case when we need the start of the linked list
+            node = self._first
+        else:
+            # unlike the rest where we need the current node in the list
+            node = self._current
+        return preprocessor.build_view_data(node, self._schema)
+
+    def _plumbing_preprocessing(self):
+        '''
+        Run the current state through the plumbing preprocessor
+        :return:
+        '''
+        plumbing_template_preprocessor = PlumbingPreprocessor()
+        plumbing_template_preprocessor.plumb_current_state(self, self._current.state, self._schema)
 
     def get_rendering_template(self):
-        return self._pre_processor.get_template_name()
+        return TemplateRegistry.get_template_name(self.get_current_location())
 
     def _get_user_action(self, post_data):
         user_action = None

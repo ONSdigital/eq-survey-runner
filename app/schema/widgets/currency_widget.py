@@ -6,17 +6,17 @@ logger = logging.getLogger(__name__)
 
 
 class CurrencyWidget(Widget):
-    def render(self, schema, state):
+    def render(self, state):
         widget_params = {
             'answer': {
                 'name': self.name,
-                'id': schema.id,
-                'label': schema.label,
+                'id': state.schema_item.id,
+                'label': state.schema_item.label,
                 'value': state.input,
                 'placeholder': ''
             },
             'debug': {
-                'schema': schema,
+                'schema': state.schema_item,
                 'state': state
             }
         }

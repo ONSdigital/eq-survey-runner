@@ -5,8 +5,8 @@
 {% block survey %}
 
 <h1 class="u-vh">Monthly Business Survey - Retail Sales Index</h1>
-
-{% set all_errors = questionnaire.errors.items() %}
+{% set state = content %}
+{% set all_errors = state.errors %}
 {% if all_errors %}
   {% with %}
 
@@ -36,15 +36,15 @@
 
 <form action="" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
 
-    {% set group = navigation.current_group %}
+    {% set group = state.schema_item.container %}
 
       <div class="group" id="{{group.id}}">
 
-      {% set block = navigation.current_block %}
+      {% set block = state.schema_item %}
 
         <div class="block" id="{{block.id}}">
 
-        {% for section in block.sections %}
+        {% for section in state.children %}
 
           {% include 'partials/section.html' %}
 

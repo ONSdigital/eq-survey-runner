@@ -68,6 +68,7 @@ class Answer(Item):
         else:
             raise StateException('Cannot validate - incorrect state class')
 
+    # TODO remove this crap
     def augment_with_state(self, state):
         # These are her to avoid rebuilding the whole rendering pipeline
         self.state = state

@@ -3,18 +3,18 @@
 {% set invalid = question.is_valid == False %}
 
 {% set question_titles %}
-  {%- if question.title -%}
-    <div class="question__title">{{question.title}}</div>
+  {%- if question.schema_item.title -%}
+    <div class="question__title">{{question.schema_item.title}}</div>
   {%- endif %}
-  {%- if question.subtitle -%}
-    <div class="question__subtitle">{{question.subtitle}}</div>
+  {%- if question.schema_item.subtitle -%}
+    <div class="question__subtitle">{{question.schema_item.subtitle}}</div>
   {%- endif %}
 {% endset %}
 
 {% set question_description %}
-  {%- if question.description%}
+  {%- if question.schema_item.description%}
     <div class="question__description" id="description-{{question.id}}">
-      {{question.description|safe}}
+      {{question.schema_item.description|safe}}
     </div>
   {% endif %}
 {% endset %}

@@ -6,18 +6,18 @@ logger = logging.getLogger(__name__)
 
 
 class TextareaWidget(Widget):
-    def render(self, schema, state):
+    def render(self, state):
         widget_params = {
             'answer': {
                 'name': self.name,
-                'id': schema.id,
-                'label': schema.label,
+                'id': state.schema_item.id,
+                'label': state.schema_item.label,
                 'value': state.input or '',
                 'placeholder': '',
                 'maxChars': 2000
             },
             'question': {
-                'id': schema.container.id
+                'id': state.schema_item.container.id
             }
         }
         return render_template('partials/widgets/textarea_widget.html', **widget_params)

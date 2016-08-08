@@ -11,15 +11,15 @@ class CheckboxGroupWidget(Widget):
         # Returns an empty list
         return post_vars.getlist(self.name)
 
-    def render(self, answer_schema, answer_state):
+    def render(self, answer_state):
         widget_params = {
             'widget': {
-                'options': self._build_options(answer_schema, answer_state)
+                'options': self._build_options(answer_state.schema_item, answer_state)
             },
             'answer': {
                 'name': self.name,
-                'id': answer_schema.id,
-                'label': answer_schema.label or 'Label'
+                'id': answer_state.schema_item.id,
+                'label': answer_state.schema_item.label or 'Label'
             },
             'debug': {
                 'state': answer_state.__dict__

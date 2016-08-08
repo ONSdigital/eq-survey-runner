@@ -9,6 +9,7 @@ class Item(object):
         self.warnings = []
         self.schema_item = schema_item
         self.answers = {}
+        self.display_on_summary = True
 
     def update_state(self, user_input):
         for child in self.children:

@@ -36,7 +36,7 @@ class DateWidget(Widget):
             }))
         return months
 
-    def render(self, answer_schema, answer_state):
+    def render(self, answer_state):
         if answer_state.input:
             parts = answer_state.input.split('/')
         else:
