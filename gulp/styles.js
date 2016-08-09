@@ -74,15 +74,15 @@ export function styles() {
     }))
     .pipe(gulp.dest(paths.styles.output))
     .pipe(browserSync.reload({ stream: true }))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(minify({
-      calc: false,
-      discardComments: {
-        removeAll: true
-      }
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.styles.output))
+    // .pipe(rename({
+    //   suffix: '.min'
+    // }))
+    // .pipe(minify({
+    //   calc: false,
+    //   discardComments: {
+    //     removeAll: true
+    //   }
+    // }))
+    // .pipe(sourcemaps.write('.'))
+    // .pipe(gulp.dest(paths.styles.output))
 }

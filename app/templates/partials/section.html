@@ -7,8 +7,12 @@
   {% endif %}
 
   {% for question in section.questions %}
+<<<<<<< 06b4e81ffab8e30298d66709f67578c98912d043
     {% if not question.skipped %}
       {% include '/partials/question.html' %}
     {% endif %}
+=======
+    {% include theme('partials/question.html') %}
+>>>>>>> added planets typography styles and amended gulp to compile template and scss themes
   {% endfor %}
 </div>

@@ -89,7 +89,7 @@ gulp.task('listen', () => {
   })
   gulp.watch(paths.images.input, ['build:images'])
   gutil.log(paths.styles.input)
-  gulp.watch(paths.styles.input, ['build:styles'])
+  gulp.watch(paths.styles.input_all, ['build:styles'])
   gulp.watch([paths.scripts.input, `!${paths.scripts.dir}app/**/*`], ['copy:scripts'])
   gulp.watch(paths.templates.input).on('change', browserSync.reload)
 })
