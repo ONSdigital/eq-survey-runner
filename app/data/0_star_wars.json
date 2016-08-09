@@ -1035,6 +1035,140 @@
                                     "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
                                     "title": "Do you really think that Chewbacca is {answers.chewies_age} years old?",
                                     "type": "General"
+                                },
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Awesome, I love them all",
+                                                    "value": "awesome"
+                                                },
+                                                {
+                                                    "label": "I like to pretend they didn't happen",
+                                                    "value": "not so much"
+                                                }
+                                            ],
+                                            "q_code": "44",
+                                            "type": "Radio"
+                                        }
+                                    ],
+                                    "description": "Episodes I-III",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "a3967576-e1a0-4930-9bb4-475157ca5f7c",
+                                    "title": "What do you think of the prequel series?",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": ""
+                        }
+                    ],
+                    "title": ""
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "d45aa634-fed7-42ab-a1d8-dca512b9d834",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b",
+                                            "label": "What is the name of Jar Jar Binks' home planet?",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "45",
+                                            "type": "TextField"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "f2ee7dd4-b63c-45f1-a883-9f89c937ad17",
+                                    "title": "In that case you'll love this question!",
+                                    "type": "General",
+                                    "skip_condition": {
+                                        "when": {
+                                            "id" : "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
+                                            "condition": "equals",
+                                            "value":"awesome"
+                                        }
+                                    }
+                                },
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1",
+                                            "label": "Finally, which  is your favourite film?",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Episode I -The Phantom Menance",
+                                                    "value": "1"
+                                                },
+                                                {
+                                                    "label": "Episode II - Attack of the Clones",
+                                                    "value": "2"
+                                                },
+                                                {
+                                                    "label": "Episode III - Revenge of the Sith",
+                                                    "value": "3"
+                                                },
+                                                {
+                                                    "label": "Episode IV - A New Hope",
+                                                    "value": "4"
+                                                },
+                                                {
+                                                    "label": "Episode V - The Empire Strikes Back",
+                                                    "value": "5"
+                                                },
+                                                {
+                                                    "label": "Episode VI - Return of the Jedi",
+                                                    "value": "6"
+                                                },
+                                                {
+                                                    "label": "Episode VII - The Force Awakens",
+                                                    "value": "7"
+                                                }
+                                            ],
+                                            "q_code": "46",
+                                            "type": "Radio"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "9e104317-6a19-48a5-b70f-7aec92deb90e",
+                                    "title": "Thanks for participating in the survey",
+                                    "type": "General",
+                                    "skip_condition": {
+                                        "when": {
+                                            "id" : "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
+                                            "condition": "equals",
+                                            "value":"yes"
+                                        }
+                                    }
                                 }
                             ],
                             "title": ""
