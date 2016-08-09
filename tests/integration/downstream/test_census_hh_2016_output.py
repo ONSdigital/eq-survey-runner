@@ -1,23 +1,9 @@
-from app.submitter.submitter import SubmitterFactory, Submitter
-from app.submitter.converter import Converter
-from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.downstream.downstream_test_case import DownstreamTestCase
 from tests.integration.create_token import create_token
 from werkzeug.datastructures import MultiDict
 
 
-class MyMockSubmitter(Submitter):
-    def __init__(self):
-        self._message = None
-        self._submitted_at = None
-
-    def send_answers(self, user, metadata, schema, answers):
-        message, submitted_at = Converter.prepare_answers(user, metadata, schema, answers)
-        self._message = message
-        self._submitted_at = submitted_at
-        return submitted_at
-
-
-class TestCensusHH2016OutputFormat(IntegrationTestCase):
+class TestCensusHH2016OutputFormat(DownstreamTestCase):
     '''
     This class tests the eQ application in a black box capacity by feeding
     inputs in and checking the output that would be sent to SDX.
@@ -26,20 +12,9 @@ class TestCensusHH2016OutputFormat(IntegrationTestCase):
     unencrypted message and interrogates it for the census hh 2016 survey.
     '''
 
-    _submitter = MyMockSubmitter()
-
-    @staticmethod
-    def create_submitter():
-        return TestCensusHH2016OutputFormat._submitter
-
     def setUp(self):
         super().setUp()
         self.token = create_token('hh2016', '0')
-        self._old_method = SubmitterFactory.get_submitter
-        SubmitterFactory.get_submitter = TestCensusHH2016OutputFormat.create_submitter
-
-    def tearDown(self):
-        SubmitterFactory.get_submitter = self._old_method
 
     def test_output_format(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
@@ -93,17 +68,15 @@ class TestCensusHH2016OutputFormat(IntegrationTestCase):
         }
 
         self.assertIsNone(TestCensusHH2016OutputFormat._submitter._message)
-        self.assertIsNone(TestCensusHH2016OutputFormat._submitter._submitted_at)
 
         resp = self.client.post(summary_url, data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         self.assertIsNotNone(TestCensusHH2016OutputFormat._submitter._message)
-        self.assertIsNotNone(TestCensusHH2016OutputFormat._submitter._submitted_at)
         self.assertTrue(isinstance(TestCensusHH2016OutputFormat._submitter._message, dict))
 
         # Now check the data
-        message = TestCensusHH2016OutputFormat._submitter._message
+        message = DownstreamTestCase._submitter._message
 
         self.assertIn('data', message.keys())
         self.assertIn('agegroup', message['data'].keys())
