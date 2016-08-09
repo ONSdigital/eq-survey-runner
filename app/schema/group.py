@@ -14,6 +14,7 @@ class Group(object):
         self.questionnaire = None
         self.templatable_properties = []
         self.display = Display()
+        self.skip_condition = None
 
     def add_block(self, block):
         if block not in self.blocks:

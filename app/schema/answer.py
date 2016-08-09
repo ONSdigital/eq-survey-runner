@@ -23,6 +23,7 @@ class Answer(Item):
         self.alias = None
         self.type_checkers = []
         self.widget = None
+        self.skip_condition = None
 
     def construct_state(self):
         return State(self.id, self)

@@ -16,6 +16,7 @@ class Section(Item):
         self.questionnaire = None
         self.templatable_properties = ['title']
         self.display = Display()
+        self.skip_condition = None
 
     def add_question(self, question):
         if question not in self.questions:

@@ -13,6 +13,7 @@ class Item(object):
         self.warnings = []
         self.schema_item = schema_item
         self.answer_store = {}
+        self.skipped = False
         self.display_on_summary = True
 
     def update_state(self, user_input):

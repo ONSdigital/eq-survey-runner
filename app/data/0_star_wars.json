@@ -1047,11 +1047,11 @@
                                             "options": [
                                                 {
                                                     "label": "Awesome, I love them all",
-                                                    "value": "awesome"
+                                                    "value": "Awesome, I love them all"
                                                 },
                                                 {
                                                     "label": "I like to pretend they didn't happen",
-                                                    "value": "not so much"
+                                                    "value": "I like to pretend they didn't happen"
                                                 }
                                             ],
                                             "q_code": "44",
@@ -1109,7 +1109,7 @@
                                         "when": {
                                             "id" : "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
                                             "condition": "equals",
-                                            "value":"awesome"
+                                            "value": "I like to pretend they didn't happen"
                                         }
                                     }
                                 },
@@ -1119,7 +1119,7 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1",
-                                            "label": "Finally, which  is your favourite film?",
+                                            "label": "",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1155,7 +1155,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "",
+                                    "description": "Finally, which  is your favourite film?",
                                     "display": {
                                         "properties": {}
                                     },

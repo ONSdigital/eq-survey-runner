@@ -7,6 +7,13 @@ import os
 import json
 
 
+class MockQuestionnaireManager(QuestionnaireManager):
+
+    def find_answer(self, id):
+        # always return the answer we're expecting for the test to pass
+        return "Bothans"
+
+
 class TestConditionalDisplay(SurveyRunnerTestCase):
 
     def setUp(self):
@@ -17,25 +24,8 @@ class TestConditionalDisplay(SurveyRunnerTestCase):
         parser = SchemaParserFactory.create_parser(json.loads(schema))
         self.questionanaire = parser.parse()
 
-        # replace the questionnaire get instance method
-        self.old_get_instance = QuestionnaireManager.get_instance
-
-        class MockQuestionnaireManager(QuestionnaireManager):
-
-            def find_answer(self, id):
-                # always return the answer we're expecting for the test to pass
-                return "Bothans"
-
-            @staticmethod
-            def get_instance():
-                return MockQuestionnaireManager(self.questionanaire)
-
-        QuestionnaireManager.get_instance = MockQuestionnaireManager.get_instance
-
     def tearDown(self):
         super().tearDown()
-        # reset the old get instance method
-        QuestionnaireManager.get_instance = self.old_get_instance
 
     def test_skip_condition_false(self):
         # find the question with the skip condition
@@ -45,11 +35,9 @@ class TestConditionalDisplay(SurveyRunnerTestCase):
         self.assertIsNotNone(question.skip_condition)
 
         # the condition will fire now as we have answer the question correctly, so we won't skip the question
-        self.assertFalse(ConditionalDisplay.is_skipped(item=question))
+        self.assertFalse(ConditionalDisplay.is_skipped(item=question, questionnaire_manager=MockQuestionnaireManager(self.questionanaire)))
 
     def test_skip_condition_true(self):
-        # reset the old get instance method so the questionnaire manager doesn't return an answer
-        QuestionnaireManager.get_instance = self.old_get_instance
 
         # find the question with the skip condition
         question = self.questionanaire.get_item_by_id("048e40da-bca4-48e5-9885-0bb6413bef62")
@@ -58,4 +46,4 @@ class TestConditionalDisplay(SurveyRunnerTestCase):
         self.assertIsNotNone(question.skip_condition)
 
         # the condition won't fire as we haven't answered any questions, so we will skip the question
-        self.assertTrue(ConditionalDisplay.is_skipped(item=question))
+        self.assertTrue(ConditionalDisplay.is_skipped(item=question, questionnaire_manager=QuestionnaireManager(self.questionanaire)))

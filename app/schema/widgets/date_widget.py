@@ -43,7 +43,7 @@ class DateWidget(Widget):
             parts = [None, None, '']
 
         widget_params = {
-            'legend': answer_schema.label,
+            'legend': answer_state.schema_item.label,
             'fields': {
                 'day': {
                   'label': {

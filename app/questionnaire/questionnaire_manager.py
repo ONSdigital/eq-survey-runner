@@ -9,6 +9,7 @@ from app.routing.routing_engine import RoutingEngine
 from app.questionnaire.user_action_processor import UserActionProcessor
 from app.authentication.session_management import session_manager
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
+from app.routing.conditional_display import ConditionalDisplay
 from flask_login import current_user
 import logging
 
@@ -273,6 +274,9 @@ class QuestionnaireManager(object):
         # plumb the data ready for preprocessing
         self._plumbing_preprocessing()
 
+        # apply any conditional display rules
+        self._conditional_display(self._current.state)
+
         # look up the preprocessor and then build the view data
         preprocessor = TemplateRegistry.get_template_preprocessor(self.get_current_location())
 
@@ -291,6 +295,16 @@ class QuestionnaireManager(object):
         '''
         plumbing_template_preprocessor = PlumbingPreprocessor()
         plumbing_template_preprocessor.plumb_current_state(self, self._current.state, self._schema)
+
+    def _conditional_display(self, item):
+        '''
+        Process any conditional display rules
+        :return:
+        '''
+        if item.schema_item:
+            item.skipped = ConditionalDisplay.is_skipped(item.schema_item, self)
+            for child in item.children:
+                self._conditional_display(child)
 
     def get_rendering_template(self):
         return TemplateRegistry.get_template_name(self.get_current_location())
