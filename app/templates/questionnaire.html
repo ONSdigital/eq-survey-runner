@@ -6,7 +6,7 @@
 
 <h1 class="u-vh">Monthly Business Survey - Retail Sales Index</h1>
 {% set state = content %}
-{% set all_errors = state.errors %}
+{% set all_errors = state.get_errors().items() %}
 {% if all_errors %}
   {% with %}
 
@@ -15,6 +15,7 @@
     {% set alert_body %}
     <p>These <strong>must be corrected</strong> to continue.</p>
     <ul class="list list--bare">
+
       {% for item_id, errors in all_errors %}
         {% set loop_index = loop.index %}
         {% if errors %}

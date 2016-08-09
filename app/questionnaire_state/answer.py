@@ -21,6 +21,7 @@ class Answer(Item):
                 self.is_valid = True
             except TypeCheckingException as e:
                 self.is_valid = False
+                self.errors = []
                 self.errors.append(self.schema_item.questionnaire.get_error_message(str(e), self.id))
 
     def get_answers(self):

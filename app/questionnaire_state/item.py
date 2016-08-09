@@ -1,3 +1,7 @@
+import logging
+from collections import OrderedDict
+
+logger = logging.getLogger(__name__)
 
 
 class Item(object):
@@ -8,7 +12,7 @@ class Item(object):
         self.errors = []
         self.warnings = []
         self.schema_item = schema_item
-        self.answers = {}
+        self.answer_store = {}
         self.display_on_summary = True
 
     def update_state(self, user_input):
@@ -16,7 +20,7 @@ class Item(object):
             child.update_state(user_input)
 
         # once state is updated collect answers
-        self.answers = self._collect_answers()
+        self.answer_store = self._collect_answers()
 
     def _collect_answers(self):
         '''
@@ -33,3 +37,16 @@ class Item(object):
         for child in self.children:
             answers.extend(child.get_answers())
         return answers
+
+    def get_errors(self):
+        logger.debug("get errors called")
+        # copy the errors into a new list
+        errors = OrderedDict()
+        if self.errors:
+            errors[self.id] = self.errors
+
+        # recursively call the child items to do the same
+        for child in self.children:
+            errors.update(child.get_errors())
+        logger.debug("errors list is %s", errors)
+        return errors

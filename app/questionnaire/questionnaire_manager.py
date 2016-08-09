@@ -201,8 +201,8 @@ class QuestionnaireManager(object):
         # walk backwards through the list and check each block for the answer
         node = self._current
         while node:
-            if id in node.state.answers:
-                return node.state.answers[id]
+            if id in node.state.answer_store:
+                return node.state.answer_store[id]
             else:
                 node = node.previous
 
