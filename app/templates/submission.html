@@ -15,7 +15,7 @@
       {%- for section in block.children -%}
 
         {%- for question in section.children -%}
-
+        {% if not question.skipped %}
           {%- for answer in question.children -%}
             {% if question.schema_item.type == 'DateRange' %}
               {% if loop.index == 2 %}
@@ -59,7 +59,7 @@
             {% endif %}
 
           {%- endfor -%}
-
+        {% endif %}
         {% endfor -%}
 
       {% endfor -%}
