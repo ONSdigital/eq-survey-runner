@@ -60,9 +60,6 @@ class Answer(Item):
     def validate(self, state):
         if isinstance(state, self.get_state_class()):
             question = state.parent
-            logger.error(state)
-            logger.error(question)
-            logger.error("Question is skipped %s", question.skipped)
             if question.skipped:
                 # if the question is skipped then its always valid
                 state.is_valid = True

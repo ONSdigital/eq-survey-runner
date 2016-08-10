@@ -11,7 +11,6 @@ class Item(object):
         self.children = []
         self.is_valid = None
         self.errors = []
-        self.warnings = []
         self.schema_item = schema_item
         self.answer_store = {}
         self.skipped = False
@@ -41,7 +40,7 @@ class Item(object):
         return answers
 
     def get_errors(self):
-        logger.debug("get errors called")
+        logger.error("Item get errors called")
         # copy the errors into a new list
         errors = OrderedDict()
         if self.errors:
@@ -50,5 +49,5 @@ class Item(object):
         # recursively call the child items to do the same
         for child in self.children:
             errors.update(child.get_errors())
-        logger.debug("errors list is %s", errors)
+        logger.error("Item errors list is %s", errors)
         return errors

@@ -19,6 +19,7 @@ class Answer(Item):
             try:
                 self.value = self.schema_item.get_typed_value(user_input)
                 self.is_valid = True
+                self.errors = []
             except TypeCheckingException as e:
                 self.is_valid = False
                 self.errors = []
