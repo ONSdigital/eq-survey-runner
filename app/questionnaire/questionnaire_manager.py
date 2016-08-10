@@ -274,8 +274,6 @@ class QuestionnaireManager(object):
         return self.get_current_location()
 
     def get_rendering_context(self):
-        # plumb the data ready for preprocessing
-        self._plumbing_preprocessing()
 
         # apply any conditional display rules
         self._conditional_display(self._current.state)
@@ -286,18 +284,28 @@ class QuestionnaireManager(object):
         if self.get_current_location() == 'summary':
             # the summary is the special case when we need the start of the linked list
             node = self._first
+            # and we also need to plumb the entire schema
+            while node.next:
+                self._plumbing_preprocessing(node)
+                node = node.next
+
+            # reset pointer back to the first node for the preprocessor
+            node = self._first
+
         else:
             # unlike the rest where we need the current node in the list
             node = self._current
+            # and only need to plumb the single page
+            self._plumbing_preprocessing(node)
         return preprocessor.build_view_data(node, self._schema)
 
-    def _plumbing_preprocessing(self):
+    def _plumbing_preprocessing(self, node):
         '''
         Run the current state through the plumbing preprocessor
         :return:
         '''
         plumbing_template_preprocessor = PlumbingPreprocessor()
-        plumbing_template_preprocessor.plumb_current_state(self, self._current.state, self._schema)
+        plumbing_template_preprocessor.plumb_current_state(self, node.state, self._schema)
 
     def _conditional_display(self, item):
         '''
