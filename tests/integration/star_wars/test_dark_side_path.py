@@ -7,7 +7,7 @@ class TestDarkSidePath(StarWarsTestCase):
     def test_dark_side_path(self):
         self.login_and_check_introduction_text()
 
-        first_page = self.start_questionnaire()
+        first_page = self.start_questionnaire_and_navigate_routing()
 
         '''
         Testing

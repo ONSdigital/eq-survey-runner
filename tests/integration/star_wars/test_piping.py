@@ -6,7 +6,7 @@ class TestPiping(StarWarsTestCase):
     def test_piping_employment_date(self):
         self.login_and_check_introduction_text()
 
-        first_page = self.start_questionnaire()
+        first_page = self.start_questionnaire_and_navigate_routing()
 
         # We fill in our answers
         form_data = {
@@ -46,7 +46,7 @@ class TestPiping(StarWarsTestCase):
     def test_piping_an_answer(self):
         self.login_and_check_introduction_text()
 
-        first_page = self.start_questionnaire()
+        first_page = self.start_questionnaire_and_navigate_routing()
 
         # Our answers
         form_data = {

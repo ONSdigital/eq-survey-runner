@@ -7,7 +7,7 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
     def test_check_boxes_mandatory_empty(self):
         self.login_and_check_introduction_text()
 
-        first_page = self.start_questionnaire()
+        first_page = self.start_questionnaire_and_navigate_routing()
 
         # We fill in the survey without a mandatory check box
         form_data = MultiDict()

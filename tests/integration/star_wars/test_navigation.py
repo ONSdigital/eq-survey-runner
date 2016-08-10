@@ -7,7 +7,7 @@ class TestNavigation(StarWarsTestCase):
 
         self.login_and_check_introduction_text()
 
-        first_page = self.start_questionnaire()
+        first_page = self.start_questionnaire_and_navigate_routing()
 
         introduction = '/questionnaire/0/789/introduction'
 
