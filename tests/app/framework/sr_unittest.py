@@ -1,9 +1,13 @@
 import unittest
+from app.parser.schema_parser_factory import SchemaParserFactory
+from app import settings
 from app.authentication.user import User
 from app.storage.storage_factory import StorageFactory
 from flask_login import LoginManager
 from datetime import timedelta
 from flask import Flask
+import os
+import json
 
 login_manager = LoginManager()
 
@@ -27,6 +31,12 @@ class SurveyRunnerTestCase(unittest.TestCase):
         with self.application.test_client() as c:
             with c.session_transaction() as sess:
                 sess['user_id'] = '1'
+
+        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "0_star_wars.json"))
+        schema = schema_file.read()
+        # create a parser
+        parser = SchemaParserFactory.create_parser(json.loads(schema))
+        self.questionnaire = parser.parse()
 
     def tearDown(self):
         with self.application.test_request_context():

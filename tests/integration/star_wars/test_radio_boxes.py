@@ -7,7 +7,7 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
 
         self.login_and_check_introduction_text()
 
-        first_page = self.start_questionnaire()
+        first_page = self.start_questionnaire_and_navigate_routing()
 
         # We fill in the survey without a mandatory radio box
         form_data = {

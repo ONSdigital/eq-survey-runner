@@ -1,6 +1,9 @@
 from app.schema.answer import Answer
 from app.schema.widgets.checkbox_group_widget import CheckboxGroupWidget
 from app.questionnaire_state.exceptions import StateException
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class CheckboxAnswer(Answer):
@@ -18,8 +21,12 @@ class CheckboxAnswer(Answer):
     def validate(self, state):
         if isinstance(state, self.get_state_class()):
 
+            question = state.parent
+            logger.debug("Checkbox Question is skipped %s", question.skipped)
             # Mandatory check
-            if self.mandatory and len(state.input) == 0:
+            if question.skipped:
+                state.is_valid = True
+            elif self.mandatory and len(state.input) == 0:
                 state.errors = []
                 state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
                 state.is_valid = False

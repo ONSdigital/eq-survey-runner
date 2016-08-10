@@ -15,6 +15,8 @@ from app.schema.block import Block
 from app.schema.section import Section
 from app.schema.display import Display
 from app.schema.properties import Properties
+from app.schema.when import When
+from app.schema.skip_condition import SkipCondition
 
 from app.schema.introduction import Introduction
 
@@ -249,6 +251,7 @@ class SchemaParser(AbstractSchemaParser):
             question.id = ParserUtils.get_required_string(schema, "id")
             question.title = ParserUtils.get_required_string(schema, "title")
             question.description = ParserUtils.get_required_string(schema, "description")
+            question.skip_condition = self._parse_skip_condition(ParserUtils.get_optional(schema, "skip_condition"))
             # register the question
             questionnaire.register(question)
 
@@ -264,6 +267,19 @@ class SchemaParser(AbstractSchemaParser):
             raise SchemaParserException('Question must contain at least one answer')
 
         return question
+
+    def _parse_skip_condition(self, skip_condition_schema):
+        if skip_condition_schema:
+            skip_condition = SkipCondition()
+            when_schema = ParserUtils.get_required(skip_condition_schema, "when")
+            when = When()
+            when.condition = ParserUtils.get_required(when_schema, 'condition')
+            when.id = ParserUtils.get_required(when_schema, 'id')
+            when.value = ParserUtils.get_required(when_schema, 'value')
+            skip_condition.when = when
+            return skip_condition
+        else:
+            return None
 
     def _parse_answer(self, schema, questionnaire):
         """Parse a answer element

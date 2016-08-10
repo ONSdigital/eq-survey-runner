@@ -18,6 +18,7 @@ class Question(Item):
         self.display = Display()
         self.type = None
         self.messages = {}
+        self.skip_condition = None
 
     def add_answer(self, answer):
         if answer not in self.answers:

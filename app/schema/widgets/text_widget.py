@@ -6,12 +6,12 @@ logger = logging.getLogger(__name__)
 
 
 class TextWidget(Widget):
-    def render(self, schema, state):
+    def render(self, state):
         widget_params = {
             'answer': {
                 'name': self.name,
-                'id': schema.id,
-                'label': schema.label or '',
+                'id': state.schema_item.id,
+                'label': state.schema_item.label or '',
                 'value': state.input or '',
                 'placeholder': ''
             }

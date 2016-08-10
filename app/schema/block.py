@@ -15,6 +15,8 @@ class Block(Item):
         self.questionnaire = None
         self.templatable_properties = []
         self.display = Display()
+        self.routing_rules = []
+        self.skip_condition = None
 
     def add_section(self, section):
         if section not in self.sections:

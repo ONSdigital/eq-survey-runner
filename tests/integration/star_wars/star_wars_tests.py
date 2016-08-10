@@ -1,10 +1,10 @@
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
 
+
 class StarWarsTestCase(IntegrationTestCase):
     def setUp(self):
         super().setUp()
-
 
     def login_and_check_introduction_text(self):
         self.token = create_token('star_wars', '0')
@@ -30,11 +30,11 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, 'NB: Your response is legally required')
 
     def get_first_page(self):
-      resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
-      self.assertEquals(resp.status_code, 200)
-      return resp
+        resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
+        self.assertEquals(resp.status_code, 200)
+        return resp
 
-    def start_questionnaire(self):
+    def start_questionnaire_and_navigate_routing(self):
         # Go to questionnaire
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
@@ -97,10 +97,10 @@ class StarWarsTestCase(IntegrationTestCase):
         return page
 
     def retrieve_content(self, page):
-      response = self.client.get(page, follow_redirects=False)
-      self.assertEquals(response.status_code, 200)
-      content = response.get_data(True)
-      return content
+        response = self.client.get(page, follow_redirects=False)
+        self.assertEquals(response.status_code, 200)
+        content = response.get_data(True)
+        return content
 
     def routing_pick_your_character_light_side(self,page):
         content = self.retrieve_content(page)

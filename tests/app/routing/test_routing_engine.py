@@ -24,6 +24,9 @@ class TestRoutingEngine(unittest.TestCase):
 
     def test_get_next_location_summary(self):
         next_location = self.routing_engine.get_next_location('an3b74d1-b687-4051-9634-a8f9ce10ard')
+        self.assertEqual('846f8514-fed2-4bd7-8fb2-4b5fcb1622b1', next_location)
+
+        next_location = self.routing_engine.get_next_location('846f8514-fed2-4bd7-8fb2-4b5fcb1622b1')
         self.assertEqual('summary', next_location)
 
     def test_routing_with_rules_with_when(self):

@@ -7,7 +7,7 @@ class TestNavigation(StarWarsTestCase):
 
         self.login_and_check_introduction_text()
 
-        first_page = self.start_questionnaire()
+        first_page = self.start_questionnaire_and_navigate_routing()
 
         introduction = '/questionnaire/0/789/introduction'
 
@@ -65,6 +65,23 @@ class TestNavigation(StarWarsTestCase):
         }
 
         resp = self.submit_page(second_page, form_data)
+
+        # third page
+        third_page = resp.headers['Location']
+        resp = self.navigate_to_page(third_page)
+        content = resp.get_data(True)
+
+        self.assertRegexpMatches(content, "Thanks for participating in the survey")
+
+        form_data = {
+          # final answers
+          "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b": "Naboo",
+          "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1": "5",
+          # User Action
+          "action[save_continue]": "Save &amp; Continue"
+        }
+
+        resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
         self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')

@@ -10,10 +10,10 @@
   {% endset -%}
 
   {%- set answer_fields %}
-    {% if answer.display and answer.display.properties %}
-      {% set use_grid = answer.display.properties.columns  %}
+    {% if answer.schema_item.display and answer.schema_item.display.properties %}
+      {% set use_grid = answer.schema_item.display.properties.columns  %}
     {% endif %}
-    {% include 'partials/answers/' ~ answer.type|lower ~ '.html' %}
+    {% include 'partials/answers/' ~ answer.schema_item.type|lower ~ '.html' %}
   {% endset -%}
 
   {% if invalid %}

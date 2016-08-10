@@ -1,5 +1,4 @@
 from app.questionnaire_state.exceptions import StateException
-from collections import OrderedDict
 
 
 class Item(object):
@@ -9,9 +8,10 @@ class Item(object):
     def construct_state(self):
         state_class = self.get_state_class()
         if state_class:
-            state = state_class(self.id)
+            state = state_class(self.id, self)
             for child in self.children:
                 child_state = child.construct_state()
+                child_state.parent = state
                 state.children.append(child_state)
             return state
         else:
@@ -32,33 +32,3 @@ class Item(object):
             return is_valid
         else:
             raise StateException('Cannot validate - incorrect state class')
-
-    # @TODO: Once the rendering pipeline is rafactored, this method is a candidate for removal
-    def augment_with_state(self, state):
-        if state.id == self.id:
-            self.is_valid = state.is_valid
-            self.errors = state.errors
-            self.warnings = state.warnings
-            for child_state in state.children:
-                if self.questionnaire.item_exists(child_state.id):
-                    child_schema = self.questionnaire.get_item_by_id(child_state.id)
-                    child_schema.augment_with_state(child_state)
-
-    def collect_errors(self):
-        return self._collect_property('errors')
-
-    def collect_warnings(self):
-        return self._collect_property('warnings')
-
-    def _collect_property(self, property_name):
-        collection = OrderedDict()
-        for child in self.children:
-            child_properties = child._collect_property(property_name)
-            for key, value in child_properties.items():
-                collection[key] = value
-
-        if hasattr(self, property_name):
-            value = getattr(self, property_name)
-            if value:
-                collection[self.id] = value
-        return collection

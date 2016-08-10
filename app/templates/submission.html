@@ -9,32 +9,30 @@
   </div>
 
 <div>
-
-  {%- for group in questionnaire.groups -%}
-
-    {%- for block in group.blocks -%}
+    {%- for block in content -%}
       <dl class="dl">
-      {%- for section in block.sections -%}
 
-        {%- for question in section.questions -%}
+      {%- for section in block.children -%}
 
-          {%- for answer in question.answers -%}
-            {% if question.type == 'DateRange' %}
+        {%- for question in section.children -%}
+        {% if not question.skipped %}
+          {%- for answer in question.children -%}
+            {% if question.schema_item.type == 'DateRange' %}
               {% if loop.index == 2 %}
-                {% set question_title = question.title %}
+                {% set question_title = question.schema_item.title %}
                 {% set answer_value %}
-                  {{question.answers[loop.index0 - 1].label}}: {{question.answers[loop.index0 - 1].input}}<br>
-                  {{answer.label}}: {{answer.input}}
+                  {{question.children[loop.index0 - 1].schema_item.label}}: {{question.children[loop.index0 - 1].input}}<br>
+                  {{answer.schema_item.label}}: {{answer.input}}
                 {% endset %}
               {% endif %}
-            {% elif answer.type == 'Currency' %}
-              {% set question_title = question.title or answer.label %}
+            {% elif answer.schema_item.type == 'Currency' %}
+              {% set question_title = question.schema_item.title or answer.schema_item.label %}
               {% set answer_value = answer.value|format_currency if answer.input else 'N/A' %}
-            {% elif answer.type == 'Radio' %}
-               {% set question_title = question.title or answer.label %}
+            {% elif answer.schema_item.type == 'Radio' %}
+               {% set question_title = question.schema_item.title or answer.schema_item.label %}
                {% set answer_value = answer.value %}
-            {% elif answer.type == 'Checkbox' %}
-              {% set question_title = question.title or answer.label %}
+            {% elif answer.schema_item.type == 'Checkbox' %}
+              {% set question_title = question.schema_item.title or answer.schema_item.label %}
               {% set answer_value %}
                 {% if answer.value and answer.value|length > 0 %}
                   <ul class="list list--bullets">
@@ -49,11 +47,11 @@
                 {% endif %}
               {% endset %}
             {% else %}
-              {% set question_title = question.title or answer.label %}
+              {% set question_title = question.schema_item.title or answer.schema_item.label %}
               {% set answer_value = answer.input if answer.input else 'N/A' %}
             {% endif %}
 
-            {% set full_width = 'fw' if answer.type == 'Textarea' %}
+            {% set full_width = 'fw' if answer.schema_item.type == 'Textarea' %}
 
             {% if question_title and answer_value %}
               <dt class="dt {{full_width}} {{loop.index}}"><div>{{question_title|safe}}</div></dt>
@@ -61,14 +59,14 @@
             {% endif %}
 
           {%- endfor -%}
-
+        {% endif %}
         {% endfor -%}
 
       {% endfor -%}
       </dl>
+
     {% endfor -%}
 
-  {% endfor -%}
 
   <form action="" method="POST" novalidate>
     <button class="btn btn--secondary u-mr-s qa-btn-submit-answers" type="submit" name="action[submit_answers]">Submit answers</button>

@@ -8,7 +8,7 @@ class Widget(object):
     def __init__(self, name):
         self.name = name
 
-    def render(self, schema, state):
+    def render(self, state):
         raise NotImplementedError
 
     def get_user_input(self, post_vars):
