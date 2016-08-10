@@ -7,5 +7,5 @@ class Node(object):
         # item in the schema this node relates to
         self.item_id = item_id
 
-        # the state of the node, this is usually a Block object
+        # the state of the node, this is always a Block object
         self.state = state

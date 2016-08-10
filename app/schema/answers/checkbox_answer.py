@@ -22,9 +22,7 @@ class CheckboxAnswer(Answer):
         if isinstance(state, self.get_state_class()):
 
             question = state.parent
-            logger.error("Checkbox Question is skipped %s", question.skipped)
-            logger.error(state)
-            logger.error(question)
+            logger.debug("Checkbox Question is skipped %s", question.skipped)
             # Mandatory check
             if question.skipped:
                 state.is_valid = True

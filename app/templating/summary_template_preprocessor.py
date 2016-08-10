@@ -23,10 +23,10 @@ class SummaryTemplatePreprocessor(object):
 
     def _get_states(self, node):
         # collection of states (essentially populated blocks)
-        states = []
+        states = [node.state]
 
         while node.next:
+            node = node.next
             if node.state.display_on_summary:
                 states.append(node.state)
-            node = node.next
         return states

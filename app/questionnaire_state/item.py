@@ -40,7 +40,7 @@ class Item(object):
         return answers
 
     def get_errors(self):
-        logger.error("Item get errors called")
+        logger.debug("Item get errors called")
         # copy the errors into a new list
         errors = OrderedDict()
         if self.errors:
@@ -49,5 +49,5 @@ class Item(object):
         # recursively call the child items to do the same
         for child in self.children:
             errors.update(child.get_errors())
-        logger.error("Item errors list is %s", errors)
+        logger.debug("Item errors list is %s", errors)
         return errors

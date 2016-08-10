@@ -115,8 +115,8 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         # Check we are on the next page
         content = resp.get_data(True)
-        self.assertNotRegexpMatches(content, 'The force is strong with you, young Jedi')
-        self.assertNotRegexpMatches(content, 'What else did the Bothan spies steal for the Rebel Alliance?')
+        self.assertNotRegex(content, 'The force is strong with you, young Jedi')
+        self.assertNotRegex(content, 'What else did the Bothan spies steal for the Rebel Alliance?')
 
         # Our answers
         form_data = {
@@ -134,5 +134,5 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.navigate_to_page(third_page)
 
         content = resp.get_data(True)
-        self.assertNotRegexpMatches(content, 'In that case you&#39;ll love this question!')
-        self.assertNotRegexpMatches(content, 'What is the name of Jar Jar Binks&#39; home planet?')
+        self.assertNotRegex(content, 'In that case you&#39;ll love this question!')
+        self.assertNotRegex(content, 'What is the name of Jar Jar Binks&#39; home planet?')

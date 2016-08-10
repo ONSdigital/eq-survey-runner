@@ -16,7 +16,7 @@ class MetaDataTemplatePreprocessor(object):
         return render_data
 
     def _build_respondent_meta(self):
-        if current_user:
+        if self._get_metadata():
             respondent_id = self._get_metadata().ru_ref
             name = self._get_metadata().ru_name
             trading_as = self._get_metadata().trad_as
