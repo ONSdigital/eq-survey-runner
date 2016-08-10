@@ -7,6 +7,7 @@ logger = logging.getLogger(__name__)
 class Item(object):
     def __init__(self, id, schema_item):
         self.id = id
+        self.parent = None
         self.children = []
         self.is_valid = None
         self.errors = []

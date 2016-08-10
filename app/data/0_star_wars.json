@@ -1092,7 +1092,7 @@
                                             "guidance": "",
                                             "id": "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b",
                                             "label": "What is the name of Jar Jar Binks' home planet?",
-                                            "mandatory": false,
+                                            "mandatory": true,
                                             "options": [],
                                             "q_code": "45",
                                             "type": "TextField"

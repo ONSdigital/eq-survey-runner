@@ -11,6 +11,7 @@ class Item(object):
             state = state_class(self.id, self)
             for child in self.children:
                 child_state = child.construct_state()
+                child_state.parent = state
                 state.children.append(child_state)
             return state
         else:

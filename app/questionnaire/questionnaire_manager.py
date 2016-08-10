@@ -237,6 +237,9 @@ class QuestionnaireManager(object):
         # ensure we're in the correct location
         self.go_to_state(location)
 
+        # apply any conditional display rules
+        self._conditional_display(self._current.state)
+
         # process incoming post data
         user_action = self._get_user_action(post_data)
 

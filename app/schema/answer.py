@@ -3,6 +3,9 @@ from app.schema.exceptions import TypeCheckingException
 from app.questionnaire_state.exceptions import StateException
 from app.schema.item import Item
 import bleach
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Answer(Item):
@@ -56,13 +59,18 @@ class Answer(Item):
 
     def validate(self, state):
         if isinstance(state, self.get_state_class()):
-
-            # Mandatory check
-            if self.mandatory and state.input is None:
+            question = state.parent
+            logger.error(state)
+            logger.error(question)
+            logger.error("Question is skipped %s", question.skipped)
+            if question.skipped:
+                # if the question is skipped then its always valid
+                state.is_valid = True
+            elif self.mandatory and state.input is None:
+                # Mandatory check
                 state.errors = []
                 state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
                 state.is_valid = False
-                return False
 
             # Here we just report on whether the answer has passed type checking
             return state.is_valid
