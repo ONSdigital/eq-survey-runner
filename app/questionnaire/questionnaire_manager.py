@@ -23,10 +23,8 @@ class QuestionnaireManager(object):
     This class represents a user journey through a survey. It models the request/response process of the web application
     using a doubly linked list. Each node in the list is essentially a page displayed to the user. A new node is created
     by a GET request and subsequently updated via a POST request.
-
     The doubly linked list approach allows us to maintain the path the user has taken through the question. If that path
     changes we archive off the nodes in case the user revisits that path.
-
     '''
     def __init__(self, schema):
         self.submitted_at = None
@@ -358,3 +356,17 @@ class QuestionnaireManager(object):
         current_user.delete_questionnaire_data()
         # and clear out the session state
         session_manager.clear()
+
+    def register_element_in_schema(self, item):
+        self._schema.register(item)
+
+    def check_item_exists_in_schema(self, item_id):
+        return self._schema.item_exists(item_id)
+
+    def get_schema_item_by_id(self, item_id):
+        return self._schema.get_item_by_id(item_id)
+
+    def add_repeating_element(self, item):
+        self._schema.register(item)
+        self._valid_locations.append(item.id)
+        self._create_new_state(item.id)

@@ -42,10 +42,10 @@ class TestRoutingEngine(unittest.TestCase):
         self.assertEqual('summary', next_location)
 
     def test_routing_with_rules_without_when(self):
-        current_block = 'fab02f02-6ce4-4f22-b61f-0c7880009f08'
-        user_answers = {'a5d5ca1a-cf58-4626-be35-dce81297688b': 'Death Star'}
+        current_block = '26f2c4b3-28ac-4072-9f18-a6a6c6f660db'
+        user_answers = {'a2c2649a-85ff-4a26-ba3c-e1880f7c807b': 'X-wing'}
         next_location = self.update_questionnaire_manager(current_block, user_answers)
-        self.assertEqual('cd3b74d1-b687-4051-9634-a8f9ce10a27d', next_location)
+        self.assertEqual('66cd681c-c3cb-4e32-8d51-b98337a6b524', next_location)
 
     def test_routing_with_no_rules(self):
 

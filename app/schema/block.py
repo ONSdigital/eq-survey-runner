@@ -17,6 +17,7 @@ class Block(Item):
         self.display = Display()
         self.routing_rules = []
         self.skip_condition = None
+        self.repetition = 1
 
     def add_section(self, section):
         if section not in self.sections:
