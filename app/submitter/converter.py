@@ -47,6 +47,11 @@ class SubmitterConstants(object):
 
 class Converter(object):
 
+    """
+    Date Format expected by SDX
+    """
+    SDX_DATE_FORMAT = "%d/%m/%Y"
+
     @staticmethod
     def prepare_answers(user, metadata_store, questionnaire, answers):
         """
@@ -73,8 +78,8 @@ class Converter(object):
             },
             "paradata": {},
             "data": {
-              "001": "2016-01-01",
-              "002": "2016-03-30"
+              "001": "01-01-2016",
+              "002": "30-03-2016"
             }
           }
         """
@@ -86,7 +91,7 @@ class Converter(object):
             if item is not None:
                 value = answers[key]
                 if value:
-                    data[item.code] = value
+                    data[item.code] = Converter._encode_value(value)
 
         metadata = {SubmitterConstants.USER_ID_KEY: metadata_store.user_id,
                     SubmitterConstants.RU_REF_KEY: metadata_store.ru_ref}
@@ -111,3 +116,12 @@ class Converter(object):
 
         logging.debug("Converted answer ready for submission %s", json.dumps(payload))
         return payload, submitted_at
+
+    @staticmethod
+    def _encode_value(value):
+        if isinstance(value, int):
+            return str(value)
+        elif isinstance(value, datetime):
+            return value.strftime(Converter.SDX_DATE_FORMAT)
+        else:
+            return value
