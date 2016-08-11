@@ -41,6 +41,8 @@ class TestHappyPath(IntegrationTestCase):
         self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
         self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
         self.assertRegexpMatches(content, ">Save &amp; Continue<")
+        # check with have some guidance
+        self.assertRegexpMatches(content, "alcoholic drink")
 
         # We fill in our answers
         form_data = {
