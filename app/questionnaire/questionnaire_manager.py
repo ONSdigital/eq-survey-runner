@@ -6,7 +6,7 @@ from app.questionnaire_state.confirmation import Confirmation as StateConfirmati
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
 from app.templating.template_register import TemplateRegistry
 from app.routing.routing_engine import RoutingEngine
-from app.questionnaire.user_action_processor import UserActionProcessor
+from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
 from app.authentication.session_management import session_manager
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.routing.conditional_display import ConditionalDisplay
@@ -223,6 +223,26 @@ class QuestionnaireManager(object):
             # Not a validation location, so can't be valid
             return False
 
+    def validate_all_answers(self):
+        node = self._first
+        valid = True
+        while node:
+            schema_item = node.state.schema_item
+            if self._schema.item_exists(node.item_id):
+                valid = schema_item.validate(node.state)
+                if not valid:
+                    current_location = node.item_id
+                    logger.debug("Failed validation with current location %s", current_location)
+                    # if one of the blocks isn't valid
+                    # then move the current pointer to that block so that the user is redirected to that page
+                    self.go_to_state(current_location)
+                    break
+
+                logger.debug("Next node is %s", node.item_id)
+
+            node = node.next
+        return valid
+
     @property
     def submitted(self):
         return self.submitted_at is not None
@@ -246,29 +266,30 @@ class QuestionnaireManager(object):
         # updated state
         self.update_state(location, post_data)
 
-        # get the current location in the questionnaire
-        current_location = self.get_current_location()
-
         # run the validator to update the validation_store
         if self.validate():
 
             # process the user action
-            user_action_processor = UserActionProcessor(self._schema, self)
-            user_action_processor.process_action(user_action)
+            try:
+                user_action_processor = UserActionProcessor(self._schema, self)
+                user_action_processor.process_action(user_action)
 
-            # Create the routing engine
-            routing_engine = RoutingEngine(self._schema, self)
+                # Create the routing engine
+                routing_engine = RoutingEngine(self._schema, self)
 
-            # do any routing
-            next_location = routing_engine.get_next_location(current_location)
-            logger.info("next location after routing is %s", next_location)
+                # do any routing
+                next_location = routing_engine.get_next_location(self.get_current_location())
+                logger.info("next location after routing is %s", next_location)
 
-            # go to that location
-            self.go_to_state(next_location)
-            logger.debug("Going to location %s", next_location)
+                # go to that location
+                self.go_to_state(next_location)
+                logger.debug("Going to location %s", next_location)
+            except UserActionProcessorException as e:
+                logger.error("Error processing user actions")
+                logger.exception(e)
         else:
             # bug fix for using back button which then fails validation
-            self.go_to_state(current_location)
+            self.go_to_state(self.get_current_location())
 
         # now return the location
         return self.get_current_location()

@@ -7,6 +7,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+class UserActionProcessorException(Exception):
+    pass
+
+
 class UserActionProcessor(object):
 
     def __init__(self, schema, questionnaire_manager):
@@ -84,7 +88,14 @@ class SubmitAnswers(UserAction):
 
     def perform_action(self):
         answers = self._questionnaire_manager.get_answers()
-        submitter = SubmitterFactory.get_submitter()
-        submitted_at = submitter.send_answers(current_user, self._metadata, self._schema, answers)
-        logger.debug("setting submitted at %s", submitted_at)
-        self._questionnaire_manager.submitted_at = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
+
+        # check that all the answers we have are valid before submitting the data
+        is_valid = self._questionnaire_manager.validate_all_answers()
+
+        if is_valid:
+            submitter = SubmitterFactory.get_submitter()
+            submitted_at = submitter.send_answers(current_user, self._metadata, self._schema, answers)
+            logger.debug("setting submitted at %s", submitted_at)
+            self._questionnaire_manager.submitted_at = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
+        else:
+            raise UserActionProcessorException("Unable to submit - answers are not valid")
