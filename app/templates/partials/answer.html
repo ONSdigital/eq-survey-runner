@@ -4,7 +4,7 @@
   {% set invalid = answer.is_valid == False %}
 
   {%- set answer_guidance %}
-    {% if answer.guidance %}
+    {% if answer.schema_item.guidance %}
       {% include 'partials/guidance.html' %}
     {% endif %}
   {% endset -%}
