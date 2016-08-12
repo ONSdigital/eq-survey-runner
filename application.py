@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 import os
+
 from app import create_app
-from flask_script import Manager, Server
+
+from flask_script import Manager
+from flask_script import Server
 
 application = create_app(
     os.getenv('EQ_ENVIRONMENT') or 'development'

@@ -1,6 +1,6 @@
+from app.questionnaire_state.section import Section as State
 from app.schema.display import Display
 from app.schema.item import Item
-from app.questionnaire_state.section import Section as State
 
 
 class Section(Item):

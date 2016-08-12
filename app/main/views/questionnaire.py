@@ -1,16 +1,22 @@
 import logging
 
-from flask import request
-from flask_login import login_required, current_user
-from flask import redirect
-from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
-from app.submitter.submission_failed import SubmissionFailedException
-from .. import main_blueprint
-from app.schema.questionnaire import QuestionnaireException
-from app.main.errors import page_not_found, internal_server_error, service_unavailable
-from flask_themes2 import render_theme_template
+from app.main.errors import internal_server_error
+from app.main.errors import page_not_found
+from app.main.errors import service_unavailable
 from app.metadata.metadata_store import MetaDataStore
+from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
+from app.schema.questionnaire import QuestionnaireException
+from app.submitter.submission_failed import SubmissionFailedException
 
+from flask import redirect
+from flask import request
+
+from flask_login import current_user
+from flask_login import login_required
+
+from flask_themes2 import render_theme_template
+
+from .. import main_blueprint
 
 logger = logging.getLogger(__name__)
 

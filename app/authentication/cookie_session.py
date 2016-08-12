@@ -1,5 +1,6 @@
-from flask.sessions import SecureCookieSessionInterface
 import hashlib
+
+from flask.sessions import SecureCookieSessionInterface
 
 
 class SHA256SecureCookieSessionInterface(SecureCookieSessionInterface):

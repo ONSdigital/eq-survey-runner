@@ -9,5 +9,5 @@ error_messages = {
     'NEGATIVE_INTEGER': _("Negative values are not allowed."),
     'INTEGER_TOO_LARGE': _('This number is too big.'),
     'INVALID_DATE_RANGE_TO_BEFORE_FROM': _("The 'to' date cannot be before the 'from' date."),
-    'INVALID_DATE_RANGE_TO_FROM_SAME': _("The 'to' date must be different to the 'from' date.")
+    'INVALID_DATE_RANGE_TO_FROM_SAME': _("The 'to' date must be different to the 'from' date."),
 }

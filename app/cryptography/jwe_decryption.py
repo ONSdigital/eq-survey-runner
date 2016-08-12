@@ -1,10 +1,14 @@
-from cryptography.hazmat.backends.openssl.backend import backend
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.asymmetric import padding
-from app.utilities import strings
 import base64
+
+from app.utilities import strings
+
+from cryptography.hazmat.backends.openssl.backend import backend
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives.ciphers import Cipher
+from cryptography.hazmat.primitives.ciphers import algorithms
+from cryptography.hazmat.primitives.ciphers import modes
 
 
 class JWEDecryptor(object):
@@ -34,7 +38,7 @@ class JWERSAOAEPDecryptor(JWEDecryptor):
         self.private_key = serialization.load_pem_private_key(
             private_key.encode(),
             password=password.encode(),
-            backend=backend
+            backend=backend,
         )
 
     def decrypt(self, token):

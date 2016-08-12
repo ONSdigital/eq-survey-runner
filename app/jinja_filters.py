@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
-import jinja2
+
 import flask
+
+import jinja2
 
 blueprint = flask.Blueprint('filters', __name__)
 

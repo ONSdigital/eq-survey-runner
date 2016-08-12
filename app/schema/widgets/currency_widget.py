@@ -1,6 +1,8 @@
-from app.schema.widget import Widget
-from flask import render_template
 import logging
+
+from app.schema.widget import Widget
+
+from flask import render_template
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +19,7 @@ class CurrencyWidget(Widget):
             },
             'debug': {
                 'schema': state.schema_item,
-                'state': state
-            }
+                'state': state,
+            },
         }
         return render_template('partials/widgets/currency_widget.html', **widget_params)

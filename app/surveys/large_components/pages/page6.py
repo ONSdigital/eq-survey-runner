@@ -1,7 +1,7 @@
-from app.schema.block import Block
-from app.schema.section import Section
-from app.schema.question import Question
 from app.schema.answer import Answer
+from app.schema.block import Block
+from app.schema.question import Question
+from app.schema.section import Section
 
 from app.surveys.large_test import test_questionnaire
 
@@ -28,15 +28,15 @@ h7_r1.code = "H7"
 h7_r1.options = [
     {
         "value": "h7_a",
-        "label": "Detached"
+        "label": "Detached",
     },
     {
         "value": "h7_b",
-        "label": "semi-detached"
+        "label": "semi-detached",
     },
     {
         "value": "h7_c",
-        "label": "terraced (including end-terrace)"
+        "label": "terraced (including end-terrace)",
     },
 ]
 
@@ -48,15 +48,15 @@ h7_r2.code = "H7"
 h7_r2.options = [
     {
         "value": "h7_d",
-        "label": "in a purpose-built block of flats or tenement"
+        "label": "in a purpose-built block of flats or tenement",
     },
     {
         "value": "h7_e",
-        "label": "part of a converted or shared house (including bedsits)"
+        "label": "part of a converted or shared house (including bedsits)",
     },
     {
         "value": "h7_f",
-        "label": "in a commercial building (for example, in an office building, hotel, or over a shop)"
+        "label": "in a commercial building (for example, in an office building, hotel, or over a shop)",
     },
 ]
 
@@ -68,8 +68,8 @@ h7_r3.code = "H7"
 h7_r3.options = [
     {
         "value": "h7_g",
-        "label": "a caravan or other mobile or temporary structure"
-    }
+        "label": "a caravan or other mobile or temporary structure",
+    },
 ]
 
 
@@ -102,12 +102,12 @@ h8_r.code = 'H2'
 h8_r.options = [
     {
         "value": "h8_a",
-        "label": "Yes, all the rooms are behind a door that only this household can use"
+        "label": "Yes, all the rooms are behind a door that only this household can use",
     },
     {
         "value": "h8_b",
-        "label": "No"
-    }
+        "label": "No",
+    },
 ]
 h8_r.guidance = "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use"  # NOQA
 
@@ -190,28 +190,28 @@ h11_r.guidance = "<p>Central heating is a central system that generates heat for
 h11_r.options = [
     {
         "value": "h11_a",
-        "label": "No central heating"
+        "label": "No central heating",
     },
     {
         "value": "h11_b",
-        "label": "Gas"
+        "label": "Gas",
     },
     {
         "value": "h11_c",
-        "label": "Electric (including storage heaters)"
+        "label": "Electric (including storage heaters)",
     },
     {
         "value": "h11_d",
-        "label": "Oil"
+        "label": "Oil",
     },
     {
         "value": "h11_e",
-        "label": "Solid fuel (for example wood, coal)"
+        "label": "Solid fuel (for example wood, coal)",
     },
     {
         "value": "h11_f",
-        "label": "Other central heating"
-    }
+        "label": "Other central heating",
+    },
 ]
 
 
@@ -241,25 +241,25 @@ h12_r.options = [
     # TODO: This option should route to question H14
     {
         "value": "h12_a",
-        "label": "Owns outright"
+        "label": "Owns outright",
     },
     # TODO: This option should route to question H14
     {
         "value": "h12_b",
-        "label": "Owns with a mortgage or loan"
+        "label": "Owns with a mortgage or loan",
     },
     {
         "value": "h12_c",
-        "label": "Part owns and part rent (shared ownership)"
+        "label": "Part owns and part rent (shared ownership)",
     },
     {
         "value": "h12_d",
-        "label": "Rents (with or without housing benefit)"
+        "label": "Rents (with or without housing benefit)",
     },
     {
         "value": "h12_e",
-        "label": "Lives here rent free"
-    }
+        "label": "Lives here rent free",
+    },
 ]
 
 
@@ -288,28 +288,28 @@ h13_r.code = "H13"
 h13_r.options = [
     {
         "value": "h13_a",
-        "label": "Housing association, housing co-operative, charitable trust, registered social landlord"
+        "label": "Housing association, housing co-operative, charitable trust, registered social landlord",
     },
     {
         "value": "h13_b",
-        "label": "Council (local authority)"
+        "label": "Council (local authority)",
     },
     {
         "value": "h13_c",
-        "label": "Private landlord or letting agency"
+        "label": "Private landlord or letting agency",
     },
     {
         "value": "h13_d",
-        "label": "Employer of a household member"
+        "label": "Employer of a household member",
     },
     {
         "value": "h13_e",
-        "label": "Relative or friend of a household member"
+        "label": "Relative or friend of a household member",
     },
     {
         "value": "h13_f",
-        "label": "Other"
-    }
+        "label": "Other",
+    },
 ]
 
 
@@ -338,24 +338,24 @@ h14_r1.code = "H14"
 h14_r1.options = [
     {
         "value": "h14_a",
-        "label": "None"
+        "label": "None",
     },
     {
         "value": "h14_b",
-        "label": "1"
+        "label": "1",
     },
     {
         "value": "h14_c",
-        "label": "2"
+        "label": "2",
     },
     {
         "value": "h14_d",
-        "label": "3"
+        "label": "3",
     },
     {
         "value": "h14_e",
-        "label": "4 or more, write in number"
-    }
+        "label": "4 or more, write in number",
+    },
 ]
 
 h14_r2 = Answer()

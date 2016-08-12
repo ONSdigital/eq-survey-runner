@@ -1,8 +1,10 @@
-from flask_login import current_user
-from app.submitter.submitter import SubmitterFactory
-from app.metadata.metadata_store import MetaDataStore
-from app import settings
 import logging
+
+from app import settings
+from app.metadata.metadata_store import MetaDataStore
+from app.submitter.submitter import SubmitterFactory
+
+from flask_login import current_user
 
 logger = logging.getLogger(__name__)
 

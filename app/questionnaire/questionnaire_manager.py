@@ -1,18 +1,19 @@
+import logging
+
+from app.authentication.session_management import session_manager
+from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.questionnaire.state_manager import StateManager
+from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
+from app.questionnaire_state.confirmation import Confirmation as StateConfirmation
 from app.questionnaire_state.introduction import Introduction as StateIntroduction
 from app.questionnaire_state.node import Node
 from app.questionnaire_state.summary import Summary as StateSummary
-from app.questionnaire_state.confirmation import Confirmation as StateConfirmation
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
-from app.templating.template_register import TemplateRegistry
-from app.routing.routing_engine import RoutingEngine
-from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
-from app.authentication.session_management import session_manager
-from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.routing.conditional_display import ConditionalDisplay
-from flask_login import current_user
-import logging
+from app.routing.routing_engine import RoutingEngine
+from app.templating.template_register import TemplateRegistry
 
+from flask_login import current_user
 
 logger = logging.getLogger(__name__)
 

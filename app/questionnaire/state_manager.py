@@ -1,7 +1,10 @@
-from flask_login import current_user
-from app import settings
-import jsonpickle
 import logging
+
+from app import settings
+
+from flask_login import current_user
+
+import jsonpickle
 
 logger = logging.getLogger(__name__)
 

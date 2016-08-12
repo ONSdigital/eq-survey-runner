@@ -1,6 +1,10 @@
-from flask import render_template, redirect, json
-from . import patternlib_blueprint
 import os
+
+from flask import json
+from flask import redirect
+from flask import render_template
+
+from . import patternlib_blueprint
 
 
 @patternlib_blueprint.route('/pattern-library/')
@@ -23,7 +27,7 @@ def patterns(section='styleguide', pattern='index'):
     def make_section(section_dir, dir, dir_name):
         section = {
           'sections': [],
-          'title': dir_name
+          'title': dir_name,
         }
         for root, dirs, files in os.walk(section_dir):
             files = [f for f in files if not f[0] == '.']
@@ -37,7 +41,7 @@ def patterns(section='styleguide', pattern='index'):
                         section['sections'].append({
                             'url': url,
                             'title': title.replace('-', ' '),
-                            'current': True if (url == pattern) else False
+                            'current': True if (url == pattern) else False,
                         })
         return section
 
@@ -51,8 +55,8 @@ def patterns(section='styleguide', pattern='index'):
         dirs[:] = [d for d in dirs if not d[0] == '.']
         dirs.sort()
         for dir in dirs:
-            dirName = trim(dir)
-            sections[dirName] = make_section(os.path.join(root, dir), dir, dirName)
+            dir_name = trim(dir)
+            sections[dir_name] = make_section(os.path.join(root, dir), dir, dir_name)
 
     pattern_include = untrim(section) + '/' + untrim(pattern) + '.html'
     return render_template('patterns.html', sections=sections, pattern_include=pattern_include, title=pattern_title, data=data)

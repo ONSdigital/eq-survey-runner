@@ -1,7 +1,7 @@
-from app.schema.block import Block
-from app.schema.section import Section
-from app.schema.question import Question
 from app.schema.answer import Answer
+from app.schema.block import Block
+from app.schema.question import Question
+from app.schema.section import Section
 
 from app.surveys.large_test import test_questionnaire
 
@@ -60,12 +60,12 @@ i2_r.code = 'I2'
 i2_r.options = [
     {
         "value": "Male",
-        "label": "Male"
+        "label": "Male",
     },
     {
         "value": "Female",
-        "label": "Female"
-    }
+        "label": "Female",
+    },
 ]
 
 i2_q.add_answer(i2_r)
@@ -112,40 +112,40 @@ i4_r.code = "I4"
 i4_r.options = [
     {
         "value": "i4_a",
-        "label": "Never married and never registered a same-sex civil partnership"
+        "label": "Never married and never registered a same-sex civil partnership",
     },
     {
         "value": "i4_b",
-        "label": "Married"
+        "label": "Married",
     },
     {
         "value": "i4_c",
-        "label": "In a registered same-sex civil partnership"
+        "label": "In a registered same-sex civil partnership",
     },
     {
         "value": "i4_d",
-        "label": "Separated, but still legally married"
+        "label": "Separated, but still legally married",
     },
     {
         "value": "i4_e",
-        "label": "Separated, but still in a same-sex civil partnership"
+        "label": "Separated, but still in a same-sex civil partnership",
     },
     {
         "value": "i4_f",
-        "label": "Divorced"
+        "label": "Divorced",
     },
     {
         "value": "i4_g",
-        "label": "Formerly in a same-sex civil partnership which is now legally dissolved"
+        "label": "Formerly in a same-sex civil partnership which is now legally dissolved",
     },
     {
         "value": "i4_h",
-        "label": "Widowed"
+        "label": "Widowed",
     },
     {
         "value": "i4_i",
-        "label": "Surviving partner from a same-sex civil partnership"
-    }
+        "label": "Surviving partner from a same-sex civil partnership",
+    },
 ]
 
 
@@ -175,32 +175,32 @@ i6_r.code = "I6"
 i6_r.options = [
     {
         "value": "i6_a",
-        "label": "Armed force base address"
+        "label": "Armed force base address",
     },
     {
         "value": "i6_b",
-        "label": "Another address when working away from home"
+        "label": "Another address when working away from home",
     },
     {
         "value": "i6_c",
-        "label": "Student's home address"
+        "label": "Student's home address",
     },
     {
         "value": "i6_d",
-        "label": "Student's term time address"
+        "label": "Student's term time address",
     },
     {
         "value": "i6_e",
-        "label": "Another parents or guardians's address"
+        "label": "Another parents or guardians's address",
     },
     {
         "value": "i6_f",
-        "label": "Holiday home"
+        "label": "Holiday home",
     },
     {
         "value": "i6_g",
-        "label": "Other"
-    }
+        "label": "Other",
+    },
 ]
 
 
@@ -227,13 +227,13 @@ i7_r.code = 'I7'
 i7_r.options = [
     {
         "value": "Yes",
-        "label": "Yes"
+        "label": "Yes",
     },
     # @TODO: Should route to question i()
     {
         "value": "No",
-        "label": "No"
-    }
+        "label": "No",
+    },
 ]
 
 i7_q.add_answer(i7_r)
@@ -260,18 +260,18 @@ i8_r.code = "I8"
 i8_r.options = [
     {
         "value": "i8_a",
-        "label": "At the address on the front of this questionnaire?"
+        "label": "At the address on the front of this questionnaire?",
     },
     # @TODO: Should route to question 43
     {
         "value": "i8_b",
-        "label": "At the address in question 5?"
+        "label": "At the address in question 5?",
     },
     # @TODO: Should route to question 43
     {
         "value": "i8_c",
-        "label": "At another address?"
-    }
+        "label": "At another address?",
+    },
 ]
 
 i8_q.add_answer(i8_r)
@@ -299,31 +299,31 @@ i9_r1.options = [
     # @TODO: Should route to question 13
     {
         "value": "i9_a",
-        "label": "England"
+        "label": "England",
     },
     # @TODO: Should route to question 13
     {
         "value": "i9_b",
-        "label": "Wales"
+        "label": "Wales",
     },
     # @TODO: Should route to question 13
     {
         "value": "i9_c",
-        "label": "Scotland"
+        "label": "Scotland",
     },
     # @TODO: Should route to question 13
     {
         "value": "i9_d",
-        "label": "Northern Ireland"
+        "label": "Northern Ireland",
     },
     {
         "value": "i9_e",
-        "label": "Republic of Ireland"
+        "label": "Republic of Ireland",
     },
     {
         "value": "i9_f",
-        "label": "Elsewhere"
-    }
+        "label": "Elsewhere",
+    },
 ]
 
 i9_r2 = Answer()
@@ -393,16 +393,16 @@ i12_r.code = "I12"
 i12_r.options = [
     {
         "value": "i12_a",
-        "label": "Less than 6 months"
+        "label": "Less than 6 months",
     },
     {
         "value": "i12_b",
-        "label": "6 months or more but less than 12 months"
+        "label": "6 months or more but less than 12 months",
     },
     {
         "value": "i12_c",
-        "label": "12 months or more"
-    }
+        "label": "12 months or more",
+    },
 ]
 
 i12_q.add_answer(i12_r)
@@ -429,24 +429,24 @@ i13_r.code = "I13"
 i13_r.options = [
     {
         "value": "i13_a",
-        "label": "Very good"
+        "label": "Very good",
     },
     {
         "value": "i13_b",
-        "label": "Good"
+        "label": "Good",
     },
     {
         "value": "i13_c",
-        "label": "Fair"
+        "label": "Fair",
     },
     {
         "value": "i13_d",
-        "label": "Bad"
+        "label": "Bad",
     },
     {
         "value": "i13_d",
-        "label": "Very Bad"
-    }
+        "label": "Very Bad",
+    },
 ]
 
 i13_q.add_answer(i13_r)
@@ -474,20 +474,20 @@ i14_r.code = "I14"
 i14_r.options = [
     {
         "value": "i14_a",
-        "label": "No"
+        "label": "No",
     },
     {
         "value": "i14_b",
-        "label": "Yes, 1 - 19 Hours a week"
+        "label": "Yes, 1 - 19 Hours a week",
     },
     {
         "value": "i14_c",
-        "label": "Yes, 20 - 49 Hours a week"
+        "label": "Yes, 20 - 49 Hours a week",
     },
     {
         "value": "i14_d",
-        "label": "Yes, 50 or more hours a week"
-    }
+        "label": "Yes, 50 or more hours a week",
+    },
 ]
 
 i14_q.add_answer(i14_r)

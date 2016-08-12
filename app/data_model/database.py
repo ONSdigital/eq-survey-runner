@@ -1,10 +1,16 @@
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, DateTime, create_engine
-from app import settings
 import datetime
-import logging
 import json
+import logging
+
+from app import settings
+
+from sqlalchemy import Column
+from sqlalchemy import DateTime
+from sqlalchemy import String
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import scoped_session
+from sqlalchemy.orm import sessionmaker
 
 logger = logging.getLogger(__name__)
 

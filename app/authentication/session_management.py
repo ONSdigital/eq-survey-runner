@@ -1,7 +1,10 @@
-from flask import session
-from app.data_model.database import db_session, EQSession
 import logging
 from uuid import uuid4
+
+from app.data_model.database import EQSession
+from app.data_model.database import db_session
+
+from flask import session
 
 USER_ID = "user_id"
 USER_IK = "user_ik"

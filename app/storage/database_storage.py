@@ -1,8 +1,8 @@
-from app.storage.abstract_server_storage import AbstractServerStorage
-from app.data_model.database import QuestionnaireState
-from app.data_model.database import db_session
 import logging
 
+from app.data_model.database import QuestionnaireState
+from app.data_model.database import db_session
+from app.storage.abstract_server_storage import AbstractServerStorage
 
 logger = logging.getLogger(__name__)
 

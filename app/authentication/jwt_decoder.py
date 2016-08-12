@@ -1,15 +1,18 @@
-from cryptography.hazmat.backends.openssl.backend import backend
-from cryptography.hazmat.primitives import serialization
-from cryptography.exceptions import InvalidTag, InternalError
-from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
+import json
+import logging
+
+from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
-from app import settings
+from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
 from app.utilities import strings
 
+from cryptography.exceptions import InternalError
+from cryptography.exceptions import InvalidTag
+from cryptography.hazmat.backends.openssl.backend import backend
+from cryptography.hazmat.primitives import serialization
+
 import jwt
-import logging
-import json
 
 IV_EXPECTED_LENGTH = 12
 CEK_EXPECT_LENGTH = 32
@@ -31,7 +34,7 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
             rrm_public_key_as_bytes = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY)
             self.rrm_public_key = serialization.load_pem_public_key(
                 rrm_public_key_as_bytes,
-                backend=backend
+                backend=backend,
             )
 
     def decode_jwt_token(self, token):

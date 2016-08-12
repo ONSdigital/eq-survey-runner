@@ -142,6 +142,7 @@ class ParserUtils(object):
         else:
             return None
 
+    @staticmethod
     def get_optional_string(obj, key, default_value=None):
         """Get an optional string property from the dict
 
@@ -164,6 +165,7 @@ class ParserUtils(object):
         else:
             raise SchemaParserException("Expected string '{field}' is not a string".format(field=key))
 
+    @staticmethod
     def get_optional_integer(obj, key):
         """Get an optional integer property from the dict
 

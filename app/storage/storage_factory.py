@@ -1,8 +1,9 @@
-from app.storage.database_storage import DatabaseStorage
-from app.storage.memory_storage import InMemoryStorage
-from app.storage.encrypted_storage import EncryptedServerStorageDecorator
-from app import settings
 import logging
+
+from app import settings
+from app.storage.database_storage import DatabaseStorage
+from app.storage.encrypted_storage import EncryptedServerStorageDecorator
+from app.storage.memory_storage import InMemoryStorage
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
-import os
 import logging
-import pytz
+import os
 
+import pytz
 
 logger = logging.getLogger(__name__)
 
@@ -79,13 +79,13 @@ _KEYS = {
 
     # Only used in DEV MODE:
     'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY':   "./jwt-test-keys/sdc-user-authentication-signing-rrm-private-key.pem",
-    'EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY':     "./jwt-test-keys/sdc-user-authentication-encryption-sr-public-key.pem"
+    'EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY':     "./jwt-test-keys/sdc-user-authentication-encryption-sr-public-key.pem",
 }
 
 _PASSWORDS = {
     'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD':   "digitaleq",
     'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD':    "digitaleq",
-    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD':  "digitaleq"
+    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD':  "digitaleq",
 }
 
 # Load keys and passwords, but only allow developer mode defaults if EQ_DEV_MODE

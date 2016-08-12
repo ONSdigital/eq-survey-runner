@@ -1,7 +1,9 @@
-from app.schema.widget import Widget
-from flask import render_template
-from app.libs.utils import ObjectFromDict
 import logging
+
+from app.libs.utils import ObjectFromDict
+from app.schema.widget import Widget
+
+from flask import render_template
 
 logger = logging.getLogger(__name__)
 
@@ -14,16 +16,16 @@ class CheckboxGroupWidget(Widget):
     def render(self, answer_state):
         widget_params = {
             'widget': {
-                'options': self._build_options(answer_state.schema_item, answer_state)
+                'options': self._build_options(answer_state.schema_item, answer_state),
             },
             'answer': {
                 'name': self.name,
                 'id': answer_state.schema_item.id,
-                'label': answer_state.schema_item.label or 'Label'
+                'label': answer_state.schema_item.label or 'Label',
             },
             'debug': {
-                'state': answer_state.__dict__
-            }
+                'state': answer_state.__dict__,
+            },
         }
 
         return render_template('/partials/widgets/checkbox_group_widget.html', **widget_params)
@@ -39,7 +41,7 @@ class CheckboxGroupWidget(Widget):
                 options.append(ObjectFromDict({
                     'value': option['value'],
                     'label': option['label'],
-                    'selected': option_selected
+                    'selected': option_selected,
                 }))
 
         return options

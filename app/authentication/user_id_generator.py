@@ -1,12 +1,15 @@
+import binascii
+import logging
+
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.metadata.metadata_store import MetaDataConstants
-from app.utilities.strings import to_bytes, to_str
+from app.utilities.strings import to_bytes
+from app.utilities.strings import to_str
+
+from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from cryptography.hazmat.backends.openssl.backend import backend
-import logging
-import binascii
 
 logger = logging.getLogger(__name__)
 

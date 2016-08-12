@@ -1,6 +1,8 @@
-from flask_login import UserMixin
-from app.storage.storage_factory import StorageFactory
 import logging
+
+from app.storage.storage_factory import StorageFactory
+
+from flask_login import UserMixin
 
 logger = logging.getLogger(__name__)
 

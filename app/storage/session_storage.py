@@ -1,5 +1,6 @@
-from flask import session
 from app.storage.abstract_server_storage import AbstractServerStorage
+
+from flask import session
 
 QUESTIONNAIRE_DATA = "questionnaire-data"
 

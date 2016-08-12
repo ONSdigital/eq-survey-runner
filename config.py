@@ -1,11 +1,13 @@
 import os
+
 from app import settings
+
 from babel.dates import get_timezone
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 LANGUAGES = {
-    'en': 'English'
+    'en': 'English',
 }
 
 BABEL_DEFAULT_LOCALE = 'en'

@@ -20,7 +20,7 @@ class IntegerTypeCheck(AbstractValidator):
                 return result
 
             result.is_valid = True
-        except:
+        except Exception:
             result.is_valid = False
             result.errors.append(AbstractValidator.NOT_INTEGER)
         return result

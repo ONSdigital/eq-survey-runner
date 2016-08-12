@@ -1,12 +1,15 @@
+import logging
+
+from abc import abstractmethod
+
 from app import settings
 from app.submitter.converter import Converter
 from app.submitter.encrypter import Encrypter
 from app.submitter.submission_failed import SubmissionFailedException
+
 import pika
 import pika.credentials
 import pika.exceptions
-import logging
-from abc import abstractmethod
 
 logger = logging.getLogger(__name__)
 
@@ -113,7 +116,7 @@ class RabbitMQSubmitter(Submitter):
                                               body=message_as_string,
                                               mandatory=True,
                                               properties=pika.BasicProperties(
-                                                  delivery_mode=2
+                                                  delivery_mode=2,
                                               ))
             if published:
                 logger.info("Sent to rabbit mq " + message_as_string)

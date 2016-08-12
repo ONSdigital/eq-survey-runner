@@ -1,8 +1,10 @@
-from app.schema.widget import Widget
-from flask import render_template
 import calendar
-from app.libs.utils import ObjectFromDict
 import logging
+
+from app.libs.utils import ObjectFromDict
+from app.schema.widget import Widget
+
+from flask import render_template
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +20,7 @@ class DateWidget(Widget):
                 'value': day,
                 'text': day,
                 'selected': (selected_day == day),
-                'disabled': False
+                'disabled': False,
             }))
         return days
 
@@ -32,7 +34,7 @@ class DateWidget(Widget):
                 'value': month,
                 'text': calendar.month_name[month],
                 'selected': (selected_month == month),
-                'disabled': False
+                'disabled': False,
             }))
         return months
 
@@ -52,8 +54,8 @@ class DateWidget(Widget):
                   },
                   'select': {
                     'options': self._get_days(parts[0]),
-                    'name': self.name + '-day'
-                  }
+                    'name': self.name + '-day',
+                  },
                 },
                 'month': {
                   'label': {
@@ -62,8 +64,8 @@ class DateWidget(Widget):
                   },
                   'select': {
                     'options': self._get_months(parts[1]),
-                    'name': self.name + '-month'
-                  }
+                    'name': self.name + '-month',
+                  },
                 },
                 'year': {
                   'label': {
@@ -73,11 +75,10 @@ class DateWidget(Widget):
                   'input': {
                     'value': parts[2],
                     'placeholder': 'YYYY',
-                    'name': self.name + '-year'
-                  }
-                }
-
-            }
+                    'name': self.name + '-year',
+                  },
+                },
+            },
         }
 
         return render_template('partials/widgets/date_widget.html', **widget_params)

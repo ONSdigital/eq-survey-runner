@@ -1,6 +1,8 @@
-from flask import request
-from config import LANGUAGES
 import uuid
+
+from config import LANGUAGES
+
+from flask import request
 
 
 def get_locale():

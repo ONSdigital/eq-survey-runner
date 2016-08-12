@@ -17,7 +17,7 @@ class ValidationResult(object):
         return {
             "valid": self.is_valid,
             "errors": self.errors,
-            "warnings": self.warnings
+            "warnings": self.warnings,
         }
 
     def from_dict(self, values):
