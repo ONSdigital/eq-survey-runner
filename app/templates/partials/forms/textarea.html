@@ -10,9 +10,9 @@
 
 {% set answer_helper = textarea.name ~ "-helper" %}
 
-<textarea {{attr|xmlattr}}>{{answer.value}}</textarea>
+<textarea {{attr|xmlattr}}>{{textarea.value}}</textarea>
 
-{% if maxChars %}
+{% if textarea.maxChars %}
   <div class="input__helper" id="{{answer_helper}}">
     <span class="js-charlimit-label" data-remaining-msg="{{_('Characters remaining')}}">{{_('Maximum characters')}}</span>: <span class="js-charlimit-msg">{{textarea.maxChars}}</span>
   </div>
