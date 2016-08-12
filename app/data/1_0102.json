@@ -216,12 +216,12 @@
                                             }
                                         }
                                     ],
-                                    "description": "<div><p>We rely on your commentary to 'tell the story' behind changes in your business's figures. By commenting here it will reduce the need for us to call you.</p><p> 'Changes' means significant changes to you business's total retail turnover figures between: <ul><li>the current and previous reporting period; and/or </li> <li>the current reporting period and the same reporting period last year.</li></ul></div>",
+                                    "description": "<div><p>We rely on your commentary to 'tell the story' behind changes in your business's figures. By commenting here it will reduce the need for us to call you. Comment on significant changes to  the business's total retail turnover figures  from:<ul><li>the previous reporting period</li> <li>the same reporting period last year</li></ul></div>",
                                     "display": {
                                         "properties": {}
                                     },
                                     "id": "d434cea3-00ac-4954-8ad8-ef6bb9e85041",
-                                    "title": "Please indicate the reasons for any changes in the business's total retail turnover",
+                                    "title": "Indicate the reasons for any changes in the business's total retail turnover",
                                     "type": "General",
                                     "validation": []
                                 }
