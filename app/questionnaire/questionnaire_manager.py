@@ -195,7 +195,7 @@ class QuestionnaireManager(object):
             node = node.next
 
         for answer in answers:
-            answers_dict[answer.id] = answer.input
+            answers_dict[answer.id] = answer.value
         return answers_dict
 
     def find_answer(self, id):

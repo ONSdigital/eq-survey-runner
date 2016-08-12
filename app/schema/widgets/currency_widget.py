@@ -12,7 +12,7 @@ class CurrencyWidget(Widget):
                 'name': self.name,
                 'id': state.schema_item.id,
                 'label': state.schema_item.label,
-                'value': state.input,
+                'value': state.value or state.input or '',
                 'placeholder': ''
             },
             'debug': {

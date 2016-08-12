@@ -12,7 +12,7 @@ class TextWidget(Widget):
                 'name': self.name,
                 'id': state.schema_item.id,
                 'label': state.schema_item.label or '',
-                'value': state.input or '',
+                'value': state.value or state.input or '',
                 'placeholder': ''
             }
         }

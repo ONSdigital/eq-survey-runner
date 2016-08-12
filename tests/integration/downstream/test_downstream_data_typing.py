@@ -20,7 +20,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         form_data = MultiDict()
         # Start Date
         form_data.add("6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b", "234")
-        form_data.add("92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c", "40")
+        form_data.add("92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c", "00000000000000000000000000000000040")        # 40
         form_data.add("pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c", "1370")
 
         form_data.add("a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d", "Elephant")
@@ -122,6 +122,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         for key, value in expected.items():
             self.assertIn(key, data.keys())
             self.assertTrue(type(expected[key]) == type(data[key]))  # NOQA
+            self.assertEquals(expected[key], data[key])
             if isinstance(expected[key], list):
                 for item in expected[key]:
                     self.assertIn(item, data[key])
