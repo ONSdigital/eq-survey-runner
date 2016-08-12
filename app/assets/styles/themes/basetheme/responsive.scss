@@ -1,7 +1,10 @@
 $responsive: true;
 
-@import "partials/vars/*.scss";
-@import "theme_vars.scss";
+@import "partials/vars/colors.scss";
+@import "partials/vars/forms.scss";
+@import "partials/vars/grid.scss";
+@import "partials/vars/typography.scss";
+@import "partials/vars/vars.scss";
 @import "partials/vendor/normalize.scss";
 @import "eq-sass";
 @import "partials/helpers/**/*.scss";

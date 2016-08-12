@@ -24,7 +24,7 @@ export const paths = {
   },
   templates: {
     dir: appPath + '/templates/',
-    input: homePath + '/templates/**/*.html'
+    input: [homePath + '/templates/**/*.html', homePath + '/themes/**/*.html']
   },
   svgs: {
     dir: appPath + '/img/',

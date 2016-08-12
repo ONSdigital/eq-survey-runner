@@ -1,14 +1,62 @@
-{% extends 'layouts/_base.html' %}
+<!doctype html>
+<!--[if lt IE 7]>      <html lang="en-gb" dir="ltr" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en-gb" dir="ltr" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-gb" dir="ltr" class="no-js"> <!--<![endif]-->
+  <head>
+    {%- block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>{% block page_title %}{{ _('eQ - Survey Runner') }}{% endblock page_title %}</title>
+    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,600,700,900' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+      <script src="{{ url_for('static', filename='js/vendor/html5shiv.min.js') }}"></script>
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <script src="{{ url_for('static', filename='js/polyfills.js') }}"></script>
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+      <script>document.documentElement.className = document.documentElement.className.replace('no-js','has-js')</script>
+    <!--<![endif]-->
+    {%- block styles %}
+    <!--[if (gt IE 9) | (IEMobile)]><!-->
+      {%- if request.args.get('fixed') == 'true' %}
+        <link href="{{ url_for('static', filename='css/basetheme/fixed.css') }}" rel="stylesheet">
+      {%- else %}
+        <link href="{{ url_for('static', filename='css/basetheme/responsive.css') }}" rel="stylesheet">
+      {%- endif %}
+    <!--<![endif]-->
+    <!--[if (lte IE 9) & (!IEMobile)]>
+      <link href="{{ url_for('static', filename='css/default/fixed.css') }}" rel="stylesheet">
+    <![endif]-->
+    {% endblock styles -%}
+    {% endblock head -%}
+    {{ analytics }}
+  </head>
+  <body>
+    {% block top_bar %}{% endblock %}
 
-{%- block styles %}
-<!--[if (gt IE 9) | (IEMobile)]><!-->
-  {%- if request.args.get('fixed') == 'true' %}
-    <link href="{{ url_for('static', filename='css/basetheme/fixed.css') }}" rel="stylesheet">
-  {%- else %}
-    <link href="{{ url_for('static', filename='css/basetheme/responsive.css') }}" rel="stylesheet">
-  {%- endif %}
-<!--<![endif]-->
-<!--[if (lte IE 9) & (!IEMobile)]>
-  <link href="{{ url_for('static', filename='css/basetheme/fixed.css') }}" rel="stylesheet">
-<![endif]-->
-{% endblock styles -%}
+    {% block content %}{% endblock %}
+
+    <!-- jQuery 1 -->
+  	<!--[if lt IE 9]>
+  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script>window.jQuery || document.write('<script "{{ url_for('static', filename='js/vendor/jquery-1.12.0.min.js') }}"><\/script>')</script>
+  	<![endif]-->
+  	<!-- jQuery 2 -->
+  	<!--[if gte IE 9]><!-->
+  	<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+  	<script>window.jQuery || document.write('<script "{{ url_for('static', filename='js/vendor/jquery-2.2.0.min.js') }}"><\/script>')</script>
+  	<!--<![endif]-->
+
+    <!--[if gte IE 9]><!-->
+    {% block scripts %}
+      <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
+    {% endblock scripts %}
+  	<!--<![endif]-->
+
+    </body>
+</html>

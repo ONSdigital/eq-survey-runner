@@ -4,16 +4,16 @@
 
 {% set question_titles %}
   {%- if question.title -%}
-    <div class="question__title saturn">{{question.title}}</div>
+    <div class="question__title neptune">{{question.title}}</div>
   {%- endif %}
   {%- if question.subtitle -%}
-    <div class="question__subtitle">{{question.subtitle}}</div>
+    <div class="question__subtitle mars">{{question.subtitle}}</div>
   {%- endif %}
 {% endset %}
 
 {% set question_description %}
   {%- if question.description%}
-    <div class="question__description" id="description-{{question.id}}">
+    <div class="question__description mars" id="description-{{question.id}}">
       {{question.description|safe}}
     </div>
   {% endif %}
