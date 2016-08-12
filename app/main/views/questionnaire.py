@@ -77,6 +77,9 @@ def do_get(questionnaire_manager, location):
 
 def do_post(collection_id, eq_id, location, questionnaire_manager):
     logger.debug("POST request question - current location %s", location)
+
+    logger.debug("POST request length %s", request.content_length)
+
     questionnaire_manager.process_incoming_answers(location, request.form)
     next_location = questionnaire_manager.get_current_location()
     metadata = MetaDataStore.get_instance(current_user)
