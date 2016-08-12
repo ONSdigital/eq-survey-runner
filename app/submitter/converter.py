@@ -47,11 +47,6 @@ class SubmitterConstants(object):
 
 class Converter(object):
 
-    """
-    Date Format expected by SDX
-    """
-    SDX_DATE_FORMAT = "%d/%m/%Y"
-
     @staticmethod
     def prepare_answers(user, metadata_store, questionnaire, answers):
         """
@@ -122,6 +117,6 @@ class Converter(object):
         if isinstance(value, int):
             return str(value)
         elif isinstance(value, datetime):
-            return value.strftime(Converter.SDX_DATE_FORMAT)
+            return value.strftime(settings.SDX_DATE_FORMAT)
         else:
             return value
