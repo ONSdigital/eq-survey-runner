@@ -40,7 +40,7 @@ class TestCensusHH2016OutputFormat(DownstreamTestCase):
         form_data = MultiDict({
             '6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b': '4',  # agegroup
             '92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c': '3',  # help1
-            '92e49d94-cbdc-4bcb-adb2-0e0af6c9a07c': 'Warren helped me',  # helpother
+            '92e49d94-cbdc-4bcb-adb2-0e0af6c9a07c': 'someone helped me',  # helpother
             'pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c': '1',  # howcomplete
             'a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d': ['1', '2', '5'],  # device
             'a5dc09e9-36f2-4bf4-97be-c9e6ca8cbe0d': 'Facebook Integration',  # deviceother
@@ -84,7 +84,7 @@ class TestCensusHH2016OutputFormat(DownstreamTestCase):
         self.assertIn('help1', message['data'].keys())
         self.assertEquals('3', message['data']['help1'])
         self.assertIn('helpother', message['data'].keys())
-        self.assertEquals('Warren helped me', message['data']['helpother'])
+        self.assertEquals('someone helped me', message['data']['helpother'])
         self.assertIn('howcomplete', message['data'].keys())
         self.assertEquals('1', message['data']['howcomplete'])
         self.assertIn('device', message['data'].keys())

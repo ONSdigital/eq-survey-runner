@@ -1,10 +1,8 @@
 import logging
 
+from app.routing.routing_exception import RoutingException
+from app.routing.rule_registry import RuleRegistry
 logger = logging.getLogger(__name__)
-
-
-class RoutingException(Exception):
-    pass
 
 
 class RoutingEngine(object):
@@ -23,14 +21,13 @@ class RoutingEngine(object):
         else:
             current_block = self._schema.get_item_by_id(current_location)
             if current_block:
-                current_group = current_block.container
 
                 # Check if there are any routing rules
                 routing_rules = current_block.routing_rules
                 if routing_rules:
-                    return self._process_routing_rules(routing_rules)
+                    return self._process_routing_rules(routing_rules, current_block)
                 else:
-                    next_location = self._basic_routing(current_group, current_block)
+                    next_location = self._basic_routing(current_block)
             else:
                 raise RoutingException('Cannot route: No current block')
         return next_location
@@ -38,8 +35,9 @@ class RoutingEngine(object):
     def get_first_block(self):
         return self._schema.groups[0].blocks[0].id
 
-    def _basic_routing(self, current_group, current_block):
+    def _basic_routing(self, current_block):
         # function for linear routing, i.e it goes to the next block in the JSON
+        current_group = current_block.container
         for index, block in enumerate(current_group.blocks):
             if block.id == current_block.id:
                     if index + 1 < len(current_group.blocks):
@@ -54,27 +52,18 @@ class RoutingEngine(object):
         # There are no more blocks or groups, go to submission page (Default is summary)
         return self._schema.submission_page
 
-    def _process_routing_rules(self, routing_rules):
+    def _process_routing_rules(self, routing_rules, current_block):
 
         logger.debug("Processing routing rules %s", routing_rules)
 
         for rule in routing_rules:
-            goto_id = rule['goto']['id']
 
-            # If there isn't a 'when' we just go straight to the id
-            if 'when' not in rule['goto'].keys():
-                return goto_id
-            else:
-                when = rule['goto']['when']
-                match_value = when['value']
-                condition = when['condition']
-                user_answer = self._questionnaire_manager.find_answer(when['id'])
+            # Work out which rule we need then get it to work out the next location
+            rule_class = RuleRegistry.get_rule(rule)
+            next_location_rule = rule_class(self._questionnaire_manager, rule)
+            next_location = next_location_rule.next_location()
 
-                # Evaluate the condition on the routing rule
-                if condition == 'equals' and match_value == user_answer:
-                    return goto_id
-                if condition == 'not equals' and match_value != user_answer:
-                    return goto_id
+            if next_location:
+                return next_location
 
-        # If we get to here there is at least one missing routing rule
-        raise RoutingException('Routing rules error, a rule is missing')
+        return self._basic_routing(current_block)
