@@ -171,7 +171,7 @@
                                         "properties": {}
                                     },
                                     "id": "eb40935b-b771-4082-adc4-37e4c0b04208",
-                                    "title": "Of your total retail turnover, what was the value of internet sales?",
+                                    "title": "Of the business's total retail turnover, what was the value of internet sales?",
                                     "type": "General",
                                     "validation": []
                                 }
@@ -216,7 +216,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "<div><p>We rely on your commentary to 'tell the story' behind changes in your business's figures. By commenting here it will reduce the need for us to call you. Comment on significant changes to  the business's total retail turnover figures  from:<ul><li>the previous reporting period</li> <li>the same reporting period last year</li></ul></div>",
+                                    "description": "<div><p>We rely on your commentary to 'tell the story' behind changes to the business's figures. By commenting here it will reduce the need for us to call you. Comment on significant changes to the business's total retail turnover figures  from:<ul><li>the previous reporting period</li> <li>the same reporting period last year</li></ul></div>",
                                     "display": {
                                         "properties": {}
                                     },
