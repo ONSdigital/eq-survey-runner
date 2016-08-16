@@ -8,6 +8,9 @@ from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import String
 from sqlalchemy import create_engine
+from sqlalchemy import exc
+from sqlalchemy import event
+from sqlalchemy import select
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
@@ -68,8 +71,32 @@ def create_session_and_engine():
         logger.exception(e)
         raise e
 
-
 db_session, engine = create_session_and_engine()
 base.query = db_session.query_property()
 
 base.metadata.create_all(engine)
+
+
+@event.listens_for(engine, "engine_connect")
+def test_connection(connection, branch):
+    if branch:
+        # "branch" refers to a sub-connection of a connection,
+        # we don't want to bother testing on these.
+        return
+
+    save_should_close_with_result = connection.should_close_with_result
+    connection.should_close_with_result = False
+    try:
+        # Run a SELECT 1 to test the database connection
+        connection.scalar(select([1]))
+    except exc.DBAPIError:
+        try:
+            # try it again, this will recreate a stale or broke connection
+            connection.scalar(select([1]))
+        except exc.DBAPIError:
+            # However if we get a database err again, forcibly close the connection
+            connection.close()
+
+    finally:
+        # restore "close with result"
+        connection.should_close_with_result = save_should_close_with_result

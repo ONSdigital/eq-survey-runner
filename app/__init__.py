@@ -150,6 +150,7 @@ def create_app(config_name):
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
     Themes(application, app_identifier="surveyrunner")
+
     return application
 
 
