@@ -8,18 +8,18 @@ class DateRangeQuestion(Question):
     def validate(self, state):
         is_valid = super().validate(state)
         if is_valid:
+            state.errors = []
+            state.is_valid = True
             from_date = state.children[0].value
             to_date = state.children[1].value
 
             if to_date == from_date:
                 state.is_valid = False
-                state.errors = []
                 state.errors.append(self.questionnaire.get_error_message("INVALID_DATE_RANGE_TO_FROM_SAME", self.id))
                 return False
 
             if to_date < from_date:
                 state.is_valid = False
-                state.errors = []
                 state.errors.append(self.questionnaire.get_error_message("INVALID_DATE_RANGE_TO_BEFORE_FROM", self.id))
                 return False
 
