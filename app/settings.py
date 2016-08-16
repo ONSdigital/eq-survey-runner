@@ -33,6 +33,8 @@ def get_key(key_name):
         return None
 
 EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'False'))
+# max request payload size in bytes
+EQ_MAX_HTTP_POST_CONTENT_LENGTH = 65536
 
 EQ_PROFILING = parse_mode(os.getenv('EQ_PROFILING', 'False'))
 

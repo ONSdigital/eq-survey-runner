@@ -108,6 +108,8 @@ def create_app(config_name):
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
 
+    restrict_content_length(application)
+
     setup_secure_cookies(application)
 
     setup_babel(application)
@@ -321,3 +323,7 @@ def get_minimized_asset(filename):
         elif 'js' in filename:
             filename = filename.replace(".js", ".min.js")
     return filename
+
+
+def restrict_content_length(application):
+    application.config['MAX_CONTENT_LENGTH'] = settings.EQ_MAX_HTTP_POST_CONTENT_LENGTH
