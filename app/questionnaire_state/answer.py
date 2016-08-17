@@ -12,6 +12,7 @@ class Answer(Item):
 
     def update_state(self, user_input):
         # Get the user input
+        self.value = None  # Clear any previous value
         self.input = self.schema_item.get_user_input(user_input)
 
         # Try and get the typed value
