@@ -1,6 +1,7 @@
 import logging
 
 from app.authentication.session_management import session_manager
+from app.metadata.metadata_store import MetaDataStore
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.questionnaire.state_manager import StateManager
 from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
@@ -9,6 +10,7 @@ from app.questionnaire_state.introduction import Introduction as StateIntroducti
 from app.questionnaire_state.node import Node
 from app.questionnaire_state.summary import Summary as StateSummary
 from app.questionnaire_state.thank_you import ThankYou as StateThankYou
+
 from app.routing.conditional_display import ConditionalDisplay
 from app.routing.routing_engine import RoutingEngine
 from app.templating.template_register import TemplateRegistry
@@ -16,6 +18,10 @@ from app.templating.template_register import TemplateRegistry
 from flask_login import current_user
 
 logger = logging.getLogger(__name__)
+
+
+class InvalidLocationException(Exception):
+    pass
 
 
 class QuestionnaireManager(object):
@@ -81,13 +87,13 @@ class QuestionnaireManager(object):
             if node.next:
                 self._truncate(node.next)
             logger.debug("current item %s", item_id)
-            StateManager.save_state(self)
         elif item_id in self._archive:
             # re-append the old node to the head of the list
             self._append(self._archive[item_id])
         else:
             logger.debug("creating new state for %s", item_id)
             self._create_new_state(item_id)
+        StateManager.save_state(self)
 
     def _create_new_state(self, item_id):
 
@@ -106,13 +112,12 @@ class QuestionnaireManager(object):
                 state = item.construct_state()
             node = Node(item_id, state)
             self._append(node)
-            StateManager.save_state(self)
         else:
             raise ValueError("Unsupported location %s", item_id)
         logger.debug("current item id is %s", self._current.item_id)
 
     def update_state(self, item_id, user_input):
-        logger.error("Updating state for item %s", item_id)
+        logger.debug("Updating state for item %s", item_id)
         if item_id in self._valid_locations:
             logger.debug("item id is %s", item_id)
             logger.debug("Current location %s", self.get_current_location())
@@ -250,15 +255,22 @@ class QuestionnaireManager(object):
         return self.submitted_at is not None
 
     def go_to(self, location):
+        if self._current:
+            logger.debug("Attempting to go to location %s with current location as %s", location, self._current.item_id)
         if location == 'first':
             # convenience method for routing to the first block
             location = self._get_first_block()
         elif location == 'previous':
             location = self._previous()
-
+        elif location == 'summary' and self._current.item_id != 'summary':
+            metadata = MetaDataStore.get_instance(current_user)
+            if metadata:
+                logger.warning("User with tx_id %s tried to submit in an invalid state", metadata.tx_id)
+            raise InvalidLocationException()
         self.go_to_state(location)
 
     def process_incoming_answers(self, location, post_data):
+        logger.debug("Processing post data for %s", location)
         # ensure we're in the correct location
         self.go_to_state(location)
 
@@ -284,7 +296,7 @@ class QuestionnaireManager(object):
 
                 # do any routing
                 next_location = routing_engine.get_next_location(self.get_current_location())
-                logger.info("next location after routing is %s", next_location)
+                logger.debug("next location after routing is %s", next_location)
 
                 # go to that location
                 self.go_to_state(next_location)
@@ -297,7 +309,9 @@ class QuestionnaireManager(object):
             self.go_to_state(self.get_current_location())
 
         # now return the location
-        return self.get_current_location()
+        current_location = self.get_current_location()
+        logger.debug("Returning location %s", current_location)
+        return current_location
 
     def get_rendering_context(self):
 
