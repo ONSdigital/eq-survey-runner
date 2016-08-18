@@ -68,18 +68,18 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         page2 = Node("second", None)
         page3 = Node("third", None)
 
-        self.assertIsNone(questionnaire_manager._current)
+        self.assertIsNone(questionnaire_manager._tail)
         self.assertIsNone(questionnaire_manager._first)
         questionnaire_manager._append(page1)
 
         self.assertEqual(page1, questionnaire_manager._first)
-        self.assertEqual(page1, questionnaire_manager._current)
+        self.assertEqual(page1, questionnaire_manager._tail)
         self.assertIsNone(page1.previous)
         self.assertIsNone(page1.next)
 
         questionnaire_manager._append(page2)
         self.assertEqual(page1, questionnaire_manager._first)
-        self.assertEqual(page2, questionnaire_manager._current)
+        self.assertEqual(page2, questionnaire_manager._tail)
         self.assertIsNone(page1.previous)
         self.assertEqual(page1.next, page2)
         self.assertEqual(page2.previous, page1)
@@ -87,7 +87,7 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
 
         questionnaire_manager._append(page3)
         self.assertEqual(page1, questionnaire_manager._first)
-        self.assertEqual(page3, questionnaire_manager._current)
+        self.assertEqual(page3, questionnaire_manager._tail)
         self.assertEqual(page2.previous, page1)
         self.assertEqual(page2.next, page3)
         self.assertEqual(page3.previous, page2)
@@ -107,13 +107,13 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         questionnaire_manager._append(page4)
 
         self.assertEqual(page1, questionnaire_manager._first)
-        self.assertEqual(page4, questionnaire_manager._current)
+        self.assertEqual(page4, questionnaire_manager._tail)
 
         popped = questionnaire_manager._pop()
         self.assertEqual(page4, popped)
         self.assertIsNone(popped.previous)
         self.assertIsNone(popped.next)
-        self.assertEqual(page3, questionnaire_manager._current)
+        self.assertEqual(page3, questionnaire_manager._tail)
         self.assertIsNone(page3.next)
 
     def test_truncate(self):
@@ -130,7 +130,7 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         questionnaire_manager._append(page4)
 
         self.assertEqual(page1, questionnaire_manager._first)
-        self.assertEqual(page4, questionnaire_manager._current)
+        self.assertEqual(page4, questionnaire_manager._tail)
 
         self.assertEqual(0, len(questionnaire_manager._archive))
 
@@ -146,7 +146,7 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         self.assertIsNone(page4.next)
         self.assertIsNone(page4.previous)
 
-        self.assertEqual(page2, questionnaire_manager._current)
+        self.assertEqual(page2, questionnaire_manager._tail)
         self.assertIsNone(page2.next)
 
     def test_get_current_location(self):
