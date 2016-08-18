@@ -175,6 +175,9 @@ class QuestionnaireManager(object):
     def _get_first_block(self):
         return self._schema.groups[0].blocks[0].id
 
+    def _previous(self):
+        return self._current.previous.item_id
+
     def get_answers(self):
         '''
         This method walks the entire list collecting all answers and as such should
@@ -250,6 +253,9 @@ class QuestionnaireManager(object):
         if location == 'first':
             # convenience method for routing to the first block
             location = self._get_first_block()
+        elif location == 'previous':
+            location = self._previous()
+
         self.go_to_state(location)
 
     def process_incoming_answers(self, location, post_data):
