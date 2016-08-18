@@ -5,9 +5,10 @@
 {% block survey %}
 
 <h1 class="u-vh">Monthly Business Survey - Retail Sales Index</h1>
-
-<a class="u-dib" href="previous">Previous</a>
-
+<div class="u-mb-xs">
+  <a href="previous">Previous</a>
+</div>
+<br/>
 {% set state = content %}
 {% set all_errors = state.get_errors().items() %}
 {% if all_errors %}
