@@ -5,6 +5,7 @@ from app.main.errors import page_not_found
 from app.main.errors import service_unavailable
 from app.metadata.metadata_store import MetaDataStore
 from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
+from app.questionnaire.questionnaire_manager import InvalidLocationException
 from app.schema.questionnaire import QuestionnaireException
 from app.submitter.submission_failed import SubmissionFailedException
 
@@ -45,6 +46,8 @@ def survey(eq_id, collection_id, location):
 
     except QuestionnaireException as e:
         return page_not_found(e)
+    except InvalidLocationException as e:
+        return do_redirect(eq_id, collection_id, questionnaire_manager.get_current_location())
     except SubmissionFailedException as e:
         # Rabbit MQ connection issue
         return service_unavailable(e)
