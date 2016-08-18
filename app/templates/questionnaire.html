@@ -5,6 +5,9 @@
 {% block survey %}
 
 <h1 class="u-vh">Monthly Business Survey - Retail Sales Index</h1>
+
+<a class="u-dib" href="previous">Previous</a>
+
 {% set state = content %}
 {% set all_errors = state.get_errors().items() %}
 {% if all_errors %}
@@ -57,6 +60,8 @@
 
 
   <button class="btn btn--secondary qa-btn-submit" type="submit" name="action[save_continue]">Save &amp; Continue</button>
+  <br/>
+  <a class="u-dib" href="previous">Previous</a>
 
 </form>
 

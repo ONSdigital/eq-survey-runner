@@ -33,7 +33,7 @@ def survey(eq_id, collection_id, location):
             return do_redirect(eq_id, collection_id, 'thank-you')
 
         # redirect to the first block if the change your answers link is clicked
-        if location == 'first':
+        if location == 'first' or location == 'previous':
             questionnaire_manager.go_to(location)
             return do_redirect(eq_id, collection_id, questionnaire_manager.get_current_location())
 
