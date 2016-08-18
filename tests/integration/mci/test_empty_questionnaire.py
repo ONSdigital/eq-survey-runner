@@ -21,7 +21,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         # # We are in the Questionnaire
         # content = resp.get_data(True)
         # self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
-        
+
         # We try to access the submission page without entering anything
         resp = self.client.get('/questionnaire/1\/789\/summary', follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
