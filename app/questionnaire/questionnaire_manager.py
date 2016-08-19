@@ -287,49 +287,62 @@ class QuestionnaireManager(object):
             raise InvalidLocationException()
         self.go_to_state(location)
 
+    def is_known_state(self, location):
+        if self._tail.item_id == location:
+            return True
+        node = self._tail
+        while node.previous:
+            if node.item_id == location:
+                return True
+            node = node.previous
+        return False
+
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
         # ensure we're in the correct location
-        self.go_to_state(location)
+        if self.is_known_state(location):
+            self.go_to_state(location)
 
-        # apply any conditional display rules
-        self._conditional_display(self._current.state)
+            # apply any conditional display rules
+            self._conditional_display(self._current.state)
 
-        # process incoming post data
-        user_action = self._get_user_action(post_data)
+            # process incoming post data
+            user_action = self._get_user_action(post_data)
 
-        # updated state
-        self.update_state(location, post_data)
+            # updated state
+            self.update_state(location, post_data)
 
-        # run the validator to update the validation_store
-        if self.validate():
+            # run the validator to update the validation_store
+            if self.validate():
 
-            # process the user action
-            try:
-                user_action_processor = UserActionProcessor(self._schema, self)
-                user_action_processor.process_action(user_action)
+                # process the user action
+                try:
+                    user_action_processor = UserActionProcessor(self._schema, self)
+                    user_action_processor.process_action(user_action)
 
-                # Create the routing engine
-                routing_engine = RoutingEngine(self._schema, self)
+                    # Create the routing engine
+                    routing_engine = RoutingEngine(self._schema, self)
 
-                # do any routing
-                next_location = routing_engine.get_next_location(location)
-                logger.info("next location after routing is %s", next_location)
+                    # do any routing
+                    next_location = routing_engine.get_next_location(location)
+                    logger.info("next location after routing is %s", next_location)
 
-                # go to that location
-                self.go_to_state(next_location)
-                logger.debug("Going to location %s", next_location)
-            except UserActionProcessorException as e:
-                logger.error("Error processing user actions")
-                logger.exception(e)
+                    # go to that location
+                    self.go_to_state(next_location)
+                    logger.debug("Going to location %s", next_location)
+                except UserActionProcessorException as e:
+                    logger.error("Error processing user actions")
+                    logger.exception(e)
+            else:
+                # bug fix for using back button which then fails validation
+                self.go_to_state(self.get_current_location())
+
+            # now return the location
+            current_location = self.get_current_location()
+            logger.debug("Returning location %s", current_location)
+            return current_location
         else:
-            # bug fix for using back button which then fails validation
-            self.go_to_state(self.get_current_location())
-
-        # now return the location
-        current_location = self.get_current_location()
-        logger.debug("Returning location %s", current_location)
-        return current_location
+            raise InvalidLocationException()
 
     def get_rendering_context(self, location):
 
