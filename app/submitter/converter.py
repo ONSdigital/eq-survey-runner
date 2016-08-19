@@ -1,7 +1,7 @@
 import json
 import logging
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app import settings
 
@@ -98,14 +98,14 @@ class Converter(object):
                       SubmitterConstants.PERIOD_KEY: metadata_store.period_id}
 
         paradata = {}
-        submitted_at = datetime.now(settings.EUROPE_LONDON)
+        submitted_at = datetime.now(timezone.utc)
 
         payload = {SubmitterConstants.TX_ID: metadata_store.tx_id,
                    SubmitterConstants.TYPE_KEY: SubmitterConstants.TYPE,
                    SubmitterConstants.VERSION_KEY: SubmitterConstants.VERSION,
                    SubmitterConstants.ORIGIN_KEY: SubmitterConstants.ORIGIN,
                    SubmitterConstants.SURVEY_ID_KEY: survey_id,
-                   SubmitterConstants.SUBMITTED_AT_KEY: submitted_at.strftime(settings.DATETIME_FORMAT),
+                   SubmitterConstants.SUBMITTED_AT_KEY: submitted_at.isoformat(),
                    SubmitterConstants.COLLECTION_KEY: collection,
                    SubmitterConstants.METADATA_KEY: metadata,
                    SubmitterConstants.PARADATA_KEY: paradata,

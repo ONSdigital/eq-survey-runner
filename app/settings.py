@@ -104,8 +104,7 @@ for password_name, dev_default in _PASSWORDS.items():
 # non configurable settings
 # date format when displayed to the user
 DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
-# Date Format for the submitted at date
-DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
 # Date Format expected by SDX
 SDX_DATE_FORMAT = "%d/%m/%Y"
 EUROPE_LONDON = pytz.timezone("Europe/London")

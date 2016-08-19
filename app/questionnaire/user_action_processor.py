@@ -97,7 +97,8 @@ class SubmitAnswers(UserAction):
         if is_valid:
             submitter = SubmitterFactory.get_submitter()
             submitted_at = submitter.send_answers(current_user, self._metadata, self._schema, answers)
-            logger.debug("setting submitted at %s", submitted_at)
-            self._questionnaire_manager.submitted_at = submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
+            local_submitted_at = submitted_at.astimezone(settings.EUROPE_LONDON)
+            logger.debug("setting submitted at %s", local_submitted_at)
+            self._questionnaire_manager.submitted_at = local_submitted_at.strftime(settings.DISPLAY_DATETIME_FORMAT)
         else:
             raise UserActionProcessorException("Unable to submit - answers are not valid")
