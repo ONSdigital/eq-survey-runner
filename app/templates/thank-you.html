@@ -5,24 +5,24 @@
 {% block survey %}
 
   <div class="header u-mb-m u-mb-l@s">
-    <h1 class="header__title">Thank You</h1>
-    <div>{{ meta.survey.title }}</div>
-    <div class="u-fw-b">Successfully Received</div>
+    <h1 class="header__title saturn">Thank You</h1>
+    <div class="mars">{{ meta.survey.title }}</div>
+    <div class="u-fw-b venus">Successfully Received</div>
   </div>
 
   <div class="box box--confirm u-mb-s u-mb-l@s">
-    <strong>{% if content.submitted_at %} Submitted on {{content.submitted_at}}{% endif %}</strong>
-    <p>Transaction ID (Please quote this reference for any support queries)</p>
+    <strong class="venus">{% if content.submitted_at %} Submitted on {{content.submitted_at}}{% endif %}</strong>
+    <p class="mars">Transaction ID (Please quote this reference for any support queries)</p>
     <ul class="box__list">
     {%for id_part in meta.respondent.tx_id%}<li class="box__list__item">{{id_part}}</li>{% endfor %}
     </ul>
-    <p class="u-mb-no">You may wish to save or print this page for your records.</p>
+    <p class="u-mb-no mars">You may wish to save or print this page for your records.</p>
   </div>
 
   <div class="u-ta-c@s">
-    <div>For more information on how we use this data.</div>
-    <p class="u-mb-m@s"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
-    <p>It is now to safe to close this window.</p>
+    <div class="mars">For more information on how we use this data.</div>
+    <p class="u-mb-m@s mars"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
+    <p class="mars">It is now to safe to close this window.</p>
   </div>
 
 {% endblock %}

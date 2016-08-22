@@ -4,17 +4,16 @@
 
 {% set question_titles %}
   {%- if question.schema_item.title -%}
-    <div class="question__title">{{question.schema_item.title}}</div>
+    <div class="question__title neptune">{{question.schema_item.title}}</div>
   {%- endif %}
   {%- if question.schema_item.subtitle -%}
-    <div class="question__subtitle">{{question.schema_item.subtitle}}</div>
+    <div class="question__subtitle mars">{{question.schema_item.subtitle}}</div>
   {%- endif %}
 {% endset %}
 
 {% set question_description %}
   {%- if question.schema_item.description%}
-    <div class="question__description" id="description-{{question.id}}">
-      {{question.schema_item.description|safe}}
+    <div class="question__description mars" id="description-{{question.id}}">
     </div>
   {% endif %}
 {% endset %}
@@ -61,7 +60,7 @@
         {% if question.errors %}
         <ul class="list list--bare">
           {% for error in question.errors %}
-            <li class="list__item" {{form.errorTracking(question.id, error)}}>{{ error }}</li>
+            <li class="list__item venus" {{form.errorTracking(question.id, error)}}>{{ error }}</li>
           {% endfor %}
         </ul>
         {% endif %}

@@ -14,17 +14,17 @@
 {% if all_errors %}
   {% with %}
 
-    {% set alert_title %}<h2 class="alert__title">This page has {{all_errors|length}} errors</h2> {% endset %}
+    {% set alert_title %}<h2 class="alert__title venus">This page has {{all_errors|length}} errors</h2> {% endset %}
 
     {% set alert_body %}
-    <p>These <strong>must be corrected</strong> to continue.</p>
+    <p class="mars">These <strong>must be corrected</strong> to continue.</p>
     <ul class="list list--bare">
 
       {% for item_id, errors in all_errors %}
         {% set loop_index = loop.index %}
         {% if errors %}
         {% for error in errors %}
-        <li class="list__item">
+        <li class="list__item mars">
           {{loop_index}}) {{ error }} <a href="#{{item_id}}">{{_('Go to this error')}}</a>
         </li>
         {% endfor %}
@@ -59,8 +59,7 @@
 
       </div>
 
-
-  <button class="btn btn--secondary qa-btn-submit" type="submit" name="action[save_continue]">Save &amp; Continue</button>
+  <button class="btn btn--secondary qa-btn-submit venus" type="submit" name="action[save_continue]">Save and Continue</button>
   <br/>
   <div class="u-mt-xs">
     <a href="previous">Previous</a>

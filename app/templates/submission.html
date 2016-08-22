@@ -4,8 +4,8 @@
 
 {% block survey -%}
   <div class="header">
-    <h1 class="header__title h1">Your responses</h1>
-    <h2 class="header__subtitle">Please check carefully before submission</h2>
+    <h1 class="header__title saturn">Your responses</h1>
+    <h2 class="header__subtitle mars">Please check carefully before submission</h2>
   </div>
 
 <div>
@@ -54,8 +54,8 @@
             {% set full_width = 'fw' if answer.schema_item.type == 'Textarea' %}
 
             {% if question_title and answer_value %}
-              <dt class="dt {{full_width}} {{loop.index}}"><div>{{question_title|safe}}</div></dt>
-              <dd class="dd {{full_width}} {{loop.index}}">{{answer_value|safe}}</dd>
+              <dt class="dt {{full_width}} {{loop.index}}"><div class="mars">{{question_title|safe}}</div></dt>
+              <dd class="dd {{full_width}} {{loop.index}} mars">{{answer_value|safe}}</dd>
             {% endif %}
 
           {%- endfor -%}
@@ -69,8 +69,8 @@
 
 
   <form action="" method="POST" novalidate>
-    <button class="btn btn--secondary u-mr-s qa-btn-submit-answers" type="submit" name="action[submit_answers]">Submit answers</button>
-    <a class="u-dib" href="first">Change your answers</a>
+    <button class="btn btn--secondary u-mr-s qa-btn-submit-answers venus" type="submit" name="action[submit_answers]">Submit answers</button>
+    <a class="u-dib mars" href="first">Change your answers</a>
   </form>
 </div>
 

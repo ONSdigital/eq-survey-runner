@@ -13,7 +13,12 @@ $responsive: true;
 @import "partials/base/sprite.scss";
 @import "partials/base/tables.scss";
 @import "partials/base/typography.scss";
-@import "partials/objects/**/*.scss";
+@import "partials/objects/grid.scss";
+@import "partials/objects/group.scss";
+@import "partials/objects/header.scss";
+@import "partials/objects/list.scss";
+@import "partials/objects/panel.scss";
+@import "partials/objects/section.scss";
 @import "partials/components/forms/field.scss";
 @import "partials/components/forms/form.scss";
 @import "partials/components/forms/input.scss";
@@ -36,17 +41,3 @@ $responsive: true;
 @import "partials/components/survey-header.scss";
 @import "partials/utilities/**/*.scss";
 @import "partials/hacks/**/*.scss";
-
-body {
-  background: #c50b0b;
-}
-
-.bar {
-  background-color: $color-secondary;
-}
-
-.logo {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 3rem;
-}

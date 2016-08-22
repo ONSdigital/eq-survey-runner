@@ -45,18 +45,18 @@
     <div>
 
       <div class="header">
-        <h1 class="header__title">{{ meta.survey.title }}</h1>
-        <h2 class="header__subtitle">Notice is given under section 1 of the Statistics of Trade Act 1947</h2>
+        <h1 class="header__title jupiter">{{ meta.survey.title }}</h1>
+        <h2 class="header__subtitle venus">Notice is given under section 1 of the Statistics of Trade Act 1947</h2>
       </div>
 
       <div>
-        <p><strong>You are required by law to complete this questionnaire.</strong> If you do not submit this
+        <p class="mars"><strong>You are required by law to complete this questionnaire.</strong> If you do not submit this
           questionnaire by {{ meta.survey.return_by }}, penalties may be incurred (under section 4 of the Statistics of
           Trade Act 1947). All the information you provide is kept strictly confidential. It is illegal for us to
           reveal your data or identify your business to unauthorised persons.</p>
 
         <div class="notice u-mb-s u-mb-m@s">
-          <div class="notice__text">If actual figures are not available, please provide informed estimates.</div>
+          <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
         </div>
 
         {% with accordion_data = [{
@@ -69,12 +69,12 @@
         </div>
         {% endwith %}
 
-        <p><b>Office for National Statistics</b></p>
+        <p class="mars">Office for National Statistics</p>
 
     </div>
 
     <form action="" class="form" role="form" method="POST" novalidate>
-      <button class="btn btn--secondary qa-btn-get-started" type="submit" name="action[start_questionnaire]">Get Started</button>
+      <button class="btn btn--secondary qa-btn-get-started venus" type="submit" name="action[start_questionnaire]">Get Started</button>
     </form>
   </div>
 
