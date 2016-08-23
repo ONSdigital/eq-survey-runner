@@ -1,0 +1,8 @@
+<dt>{{ title }}</dt>
+<dd>
+  <dl>
+  {% for item in items %}
+  {{ item.render() | safe }}
+  {% endfor %}
+  </dl>
+</dd>
