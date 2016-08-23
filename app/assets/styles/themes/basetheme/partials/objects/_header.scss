@@ -1,0 +1,15 @@
+.header {
+  margin: 1rem 0;
+  @include mq(s) {
+    text-align: center;
+    margin: 2rem 0;
+  }
+}
+
+.header__title {
+
+}
+
+.header__subtitle {
+
+}

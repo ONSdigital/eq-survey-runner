@@ -1,0 +1,82 @@
+.accordion {
+  display: block;
+  border: 1px solid $color-borders;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.accordion__item {
+  overflow: hidden;
+  border-bottom: 1px solid $color-borders;
+  &:last-of-type {
+    margin-bottom: -1px;
+  }
+  &.is-closed {
+    border: none;
+  }
+}
+
+.accordion__head {
+  background: $color-lighter-grey;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: none;
+  border-bottom: 1px solid $color-borders;
+  display: block;
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  line-height: 1;
+  @include mq(s) {
+    padding: 1rem;
+  }
+}
+
+.has-js {
+  .accordion__head {
+    &:focus {
+      transition: background 100ms ease-out;
+      background: $color-light-grey;
+      outline: none;
+    }
+  }
+  .is-closed {
+    .accordion__title {
+      &::before {
+        content: "+";
+      }
+    }
+  }
+}
+
+.accordion__title {
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  &::before {
+    font-family: monospace;
+    content: "-";
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+.accordion__body {
+  overflow: hidden;
+  .is-closed & {
+    display: none;
+  }
+}
+
+.accordion__content {
+  padding: 0.75rem;
+  @include mq(s) {
+    padding: 1rem;
+  }
+}
