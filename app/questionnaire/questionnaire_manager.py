@@ -93,9 +93,6 @@ class QuestionnaireManager(object):
         logger.debug("go to state %s", item_id)
         if node:
             self._current = node
-            logger.debug("truncating to node %s", item_id)
-            # if node.next:
-            #     self._truncate(node.next)
             logger.debug("current item %s", item_id)
         elif item_id in self._archive:
             # re-append the old node to the head of the list
@@ -103,8 +100,6 @@ class QuestionnaireManager(object):
         else:
             logger.debug("creating new state for %s", item_id)
             self._create_new_state(item_id)
-        StateManager.save_state(self)
-
         StateManager.save_state(self)
 
     def _create_new_state(self, item_id):

@@ -1,6 +1,7 @@
 import logging
 
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
+from app.templating.summary.block import Block as SummaryBlock
 
 
 logger = logging.getLogger(__name__)
@@ -14,19 +15,21 @@ class SummaryTemplatePreprocessor(object):
 
         render_data = {
             "meta": metadata_template_preprocessor.build_metadata(schema),
-            "content": self._get_states(node),
+            "content": self.build_summary_data(node, schema),
         }
 
         logger.debug("Rendering data is %s", render_data)
 
         return render_data
 
-    def _get_states(self, node):
-        # collection of states (essentially populated blocks)
-        states = [node.state]
+    def build_summary_data(self, node, schema):
+        summary_blocks = []
+
+        if node.state.display_on_summary:
+            summary_blocks.append(SummaryBlock(schema.get_item_by_id(node.item_id), node.state))
 
         while node.next:
             node = node.next
             if node.state.display_on_summary:
-                states.append(node.state)
-        return states
+                summary_blocks.append(SummaryBlock(schema.get_item_by_id(node.item_id), node.state))
+        return summary_blocks

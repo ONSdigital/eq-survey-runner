@@ -9,64 +9,11 @@
   </div>
 
 <div>
+  <dl class="dl">
     {%- for block in content -%}
-      <dl class="dl">
-
-      {%- for section in block.children -%}
-
-        {%- for question in section.children -%}
-        {% if not question.skipped %}
-          {%- for answer in question.children -%}
-            {% if question.schema_item.type == 'DateRange' %}
-              {% if loop.index == 2 %}
-                {% set question_title = question.schema_item.title %}
-                {% set answer_value %}
-                  {{question.children[loop.index0 - 1].schema_item.label}}: {{question.children[loop.index0 - 1].input}}<br>
-                  {{answer.schema_item.label}}: {{answer.input}}
-                {% endset %}
-              {% endif %}
-            {% elif answer.schema_item.type == 'Currency' %}
-              {% set question_title = question.schema_item.title or answer.schema_item.label %}
-              {% set answer_value = answer.value|format_currency if answer.input else 'N/A' %}
-            {% elif answer.schema_item.type == 'Radio' %}
-               {% set question_title = question.schema_item.title or answer.schema_item.label %}
-               {% set answer_value = answer.value %}
-            {% elif answer.schema_item.type == 'Checkbox' %}
-              {% set question_title = question.schema_item.title or answer.schema_item.label %}
-              {% set answer_value %}
-                {% if answer.value and answer.value|length > 0 %}
-                  <ul class="list list--bullets">
-                      {% for answer in answer.value %}
-                        {% if answer %}
-                          <li class="list__item">{{answer}}</li>
-                        {% endif %}
-                      {% endfor %}
-                  </ul>
-                {% else %}
-                  N/A
-                {% endif %}
-              {% endset %}
-            {% else %}
-              {% set question_title = question.schema_item.title or answer.schema_item.label %}
-              {% set answer_value = answer.input if answer.input else 'N/A' %}
-            {% endif %}
-
-            {% set full_width = 'fw' if answer.schema_item.type == 'Textarea' %}
-
-            {% if question_title and answer_value %}
-              <dt class="dt {{full_width}} {{loop.index}}"><div class="mars">{{question_title|safe}}</div></dt>
-              <dd class="dd {{full_width}} {{loop.index}} mars">{{answer_value|safe}}</dd>
-            {% endif %}
-
-          {%- endfor -%}
-        {% endif %}
-        {% endfor -%}
-
-      {% endfor -%}
-      </dl>
-
-    {% endfor -%}
-
+    {{ block.render() | safe }}
+    {%- endfor -%}
+  </dl>
 
   <form action="" method="POST" novalidate>
     <button class="btn btn--secondary u-mr-s qa-btn-submit-answers venus" type="submit" name="action[submit_answers]">Submit answers</button>
