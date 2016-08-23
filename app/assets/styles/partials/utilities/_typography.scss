@@ -24,6 +24,13 @@ $sizes: (
   font-style: italic;
 }
 
+.u-ta-c{
+  text-align: center;
+}
+
+.u-tt-u {
+  text-transform: uppercase;
+}
 @include bp-suffix(u-ta-c) {
   text-align: center;
 }

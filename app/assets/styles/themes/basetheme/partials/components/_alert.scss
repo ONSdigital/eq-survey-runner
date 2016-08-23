@@ -1,0 +1,36 @@
+.alert {
+  border-radius: 3px;
+}
+
+.alert__header {
+  color: $color-white;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 3px 3px 0 0;
+}
+
+.alert__title {
+  color: $color-white;
+  margin: 0;
+  padding: 0;
+}
+
+.alert__body {
+  padding: 1rem;
+}
+
+@mixin alert_type($name, $color) {
+  .alert--#{$name} {
+    border: 1px solid $color;
+    .alert__header {
+      background: $color;
+    }
+    .alert__body {
+      background: tint($color, 90%);
+    }
+  }
+}
+
+@include alert_type(error, $color-red);
+@include alert_type(warn, $color-amber);
+@include alert_type(success, $color-green-dark);

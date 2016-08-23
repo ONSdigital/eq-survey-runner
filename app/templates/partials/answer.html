@@ -22,7 +22,7 @@
         {% if answer.errors %}
         <ul class="list list--bare">
           {% for error in answer.errors %}
-          <li class="list__item" {{form.errorTracking(question.id, error)}}>{{ error }}</li>
+          <li class="list__item venus" {{form.errorTracking(question.id, error)}}>{{ error }}</li>
           {% endfor %}
         </ul>
         {% endif %}

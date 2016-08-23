@@ -19,11 +19,12 @@ export const paths = {
   styles: {
     dir: appPath + '/styles/',
     input: appPath + '/styles/**/{fixed,responsive,patterns}.scss',
+    input_all: appPath + '/styles/**/*.scss',
     output: distPath + '/css/'
   },
   templates: {
     dir: appPath + '/templates/',
-    input: appPath + '/templates/**/*.html'
+    input: [homePath + '/templates/**/*.html', homePath + '/themes/**/*.html']
   },
   svgs: {
     dir: appPath + '/img/',
