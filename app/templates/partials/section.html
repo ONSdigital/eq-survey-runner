@@ -1,9 +1,9 @@
 <div class="section" id="{{section.id}}">
   {% if section.schema_item.title %}
-    <h2 class="section__title">{{section.schema_item.title}}</h2>
+    <h2 class="section__title saturn">{{section.schema_item.title}}</h2>
   {% endif %}
   {% if section.schema_item.description %}
-    <div class="section__description">{{section.schema_item.description|safe}}</div>
+    <div class="section__description mars">{{section.schema_item.description|safe}}</div>
   {% endif %}
 
   {% for question in section.questions %}
