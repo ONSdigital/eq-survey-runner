@@ -14,8 +14,8 @@ class TextAreaTypeCheck(AbstractValidator):
     def validate(self, user_answer):
         result = ValidationResult(False)
         try:
-            str_value = str(user_answer)
-            result.is_valid = not str_value.isspace()
+            isinstance(user_answer, str) == True
+            result.is_valid = not user_answer.isspace()
         except Exception:
             result.is_valid = False
             result.errors.append(AbstractValidator.NOT_STRING)
