@@ -105,8 +105,6 @@ class QuestionnaireManager(object):
             self._create_new_state(item_id)
         StateManager.save_state(self)
 
-        StateManager.save_state(self)
-
     def _create_new_state(self, item_id):
 
         logger.debug("Creating new state for %s", item_id)
