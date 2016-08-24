@@ -1,7 +1,5 @@
 from app.templating.summary.item import Item as SummaryItem
 
-from flask import render_template
-
 
 class Block(object):
     template_name = 'partials/summary/block.html'
@@ -9,14 +7,7 @@ class Block(object):
     def __init__(self, schema, state):
         self.schema = schema
         self.state = state
-
-    def render(self):
-        template_params = {
-            'title': self.schema.title,
-            'items': self.build_summary_items(self.state, self.schema),
-            'id': self.state.id,
-        }
-        return render_template(Block.template_name, **template_params)
+        self.items = self.build_summary_items(self.state, self.schema)
 
     def build_summary_items(self, state, schema):
         items = []
