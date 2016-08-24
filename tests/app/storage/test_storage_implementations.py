@@ -57,6 +57,5 @@ class TestDatabaseStorage(BaseTestStorage):
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
         self.storage = DatabaseStorage()
 
-
 if __name__ == '__main__':
     unittest.main()
