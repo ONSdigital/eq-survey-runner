@@ -9,10 +9,20 @@
   </div>
 
 <div>
-  <dl class="dl">
-    {%- for block in content -%}
-    {{ block.render() | safe }}
-    {%- endfor -%}
+  <dl class="summary">
+  {% for block in content %}
+    <dt class="summary__title saturn">{{block.title | safe}}</dt>
+    <dd class="summary__block">
+      <dl class="summary__items">
+      {% for item in block.items %}
+        <dt class="summary__question summary__question--{{item.type}}">{{item.question | safe}}</dt>
+        <dd class="summary__answer">
+          <a href="{{item.link}}">{{item.answer | safe}}</a>
+        </dd>
+      {% endfor %}
+      </dl>
+    </dd>
+  {% endfor %}
   </dl>
 
   <form action="" method="POST" novalidate>
