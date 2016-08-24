@@ -452,7 +452,6 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "location": "block",
                                 "id" : "fab02f02-6ce4-4f22-b61f-0c7880009f08_1"
                             }
                         }
@@ -519,7 +518,6 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "location": "block",
                                 "id" : "66cd681c-c3cb-4e32-8d51-b98337a6b524"
                             }
                         }
