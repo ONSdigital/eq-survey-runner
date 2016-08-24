@@ -1,7 +1,9 @@
 @import "partials/vars/*.scss";
 @import "partials/vendor/prism";
 @import "partials/helpers/*";
-@import "eq-sass";
+@import "partials/objects/container";
+@import "partials/objects/grid";
+@import "partials/vars/grid";
 @import "gfm.scss";
 
 .ptn {

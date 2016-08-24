@@ -3,7 +3,6 @@ $responsive: true;
 @import "partials/vars/*.scss";
 @import "theme_vars.scss";
 @import "partials/vendor/normalize.scss";
-@import "eq-sass";
 @import "partials/helpers/**/*.scss";
 @import "partials/base/**/*.scss";
 @import "partials/objects/**/*.scss";
