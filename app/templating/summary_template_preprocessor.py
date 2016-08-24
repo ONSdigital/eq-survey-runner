@@ -26,10 +26,15 @@ class SummaryTemplatePreprocessor(object):
         summary_blocks = []
 
         if node.state.display_on_summary:
-            summary_blocks.append(SummaryBlock(schema.get_item_by_id(node.item_id), node.state))
+            for section in node.state.sections:
+                if section.display_on_summary:
+                    summary_blocks.append(SummaryBlock(schema.get_item_by_id(section.id), section))
 
         while node.next:
             node = node.next
             if node.state.display_on_summary:
-                summary_blocks.append(SummaryBlock(schema.get_item_by_id(node.item_id), node.state))
+                for section in node.state.sections:
+                    if section.display_on_summary:
+                        summary_blocks.append(SummaryBlock(schema.get_item_by_id(section.id), section))
+
         return summary_blocks
