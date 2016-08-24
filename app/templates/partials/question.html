@@ -14,7 +14,7 @@
 {% set question_description %}
   {%- if question.schema_item.description%}
     <div class="question__description mars" id="description-{{question.id}}">
-      {{question.schema_item.description}}
+      {{question.schema_item.description|safe}}
     </div>
   {% endif %}
 {% endset %}
