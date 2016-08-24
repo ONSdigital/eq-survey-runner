@@ -68,5 +68,5 @@ def login():
     except InvalidTokenException as e:
         logger.warning("Invalid Token provided")
         return errors.forbidden(e)
-    except RuntimeError as e:
+    except (Exception, RuntimeError) as e:
         return errors.internal_server_error(e)
