@@ -4,21 +4,12 @@ from app.templating.summary.item import Item
 class GeneralSummaryItem(Item):
     def __init__(self, schema, state):
         super().__init__(schema, state)
-        self.template_name = 'partials/summary/items/general.html'
-
-    def get_template_params(self):
-        template_params = {
-            'question': self.schema.title or self.schema.answers[0].label,
-            'link_id': self.schema.container.container.id,
-            'answer': self.prepare_answer()
-        }
-
-        return template_params
+        self.answer = self.prepare_answer()
 
     def prepare_answer(self):
         if len(self.schema.answers) > 1:
             # Currently, the only multi-answer questions (apart from date ranges) are in the census test
-            pass
+            return None
         else:
             answer_type = self.schema.answers[0].type.upper()
             if self.state.answers[0].value:

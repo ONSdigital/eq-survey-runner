@@ -1,7 +1,5 @@
 from app.utilities.factory import Factory
 
-from flask import render_template
-
 
 class Item(object):
     MISSING_VALUE = 'N/A'
@@ -11,6 +9,8 @@ class Item(object):
     def __init__(self, schema, state):
         self.schema = schema
         self.state = state
+        self.question = self.schema.title or self.schema.answers[0].label
+        self.link = self.schema.container.container.id + '#' + self.schema.id
 
     @staticmethod
     def create_item(schema, state):
@@ -23,10 +23,3 @@ class Item(object):
             "GENERAL": GeneralSummaryItem,
         })
         return factory.create(schema.type.upper(), schema, state)
-
-    def get_template_params(self):
-        return {}
-
-    def render(self):
-        template_params = self.get_template_params()
-        return render_template(self.template_name, **template_params)
