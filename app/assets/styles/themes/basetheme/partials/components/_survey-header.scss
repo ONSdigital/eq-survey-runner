@@ -1,0 +1,65 @@
+$bp: 36em;
+// $bp: 32em;
+// $bp: 30rem;
+
+.survey-header {
+  display: block;
+  overflow: hidden;
+  padding: 1.284rem 0rem;
+  @include mq(m) {
+    padding: 1.284rem 0rem;
+  }
+  &:before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 8px;
+    background-color: $color-blue;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  @include mq($bp) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.survey-header__logo {
+  margin-bottom: 1rem;
+  @include mq($bp) {
+    margin-bottom: 0;
+    flex: 1 1 50%;
+  }
+}
+
+.survey-header__info {
+  @include mq($from: xs, $to: m) {
+    max-width: 100%;
+  }
+
+  @include mq($bp) {
+    margin-left: auto;
+    float: right;
+    flex: 1 1 10rem;
+    margin-left: 2rem;
+    position: relative;
+    text-align: right;
+    &:before{
+      content: "";
+      display: block;
+      width: 100%;
+      height: 8px;
+      background-color: $color-green;
+      position: absolute;
+      top:-1.3rem;
+      right: 0;
+    }
+  }
+
+  @include fixed {
+    width: 20em;
+    float: right;
+    position: relative;
+  }
+}
