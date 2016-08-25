@@ -28,36 +28,29 @@
         </div>
       </div>
     </div>
-        <h1 class="saturn">{{ meta.survey.title }}</h1>
-        <h2 class="mars">Notice is given under section 1 of the Statistics of Trade Act 1947</h2>
-
     <div>
-      <p class="mars"><strong>You are required by law to complete this questionnaire.</strong> If you do not submit this
-        questionnaire by {{ meta.survey.return_by }}, penalties may be incurred (under section 4 of the Statistics of
-        Trade Act 1947). All the information you provide is kept strictly confidential. It is illegal for us to
-        reveal your data or identify your business to unauthorised persons.</p>
+      <h2 class="header__title saturn">You will be asked to provide information for the business, including:</h2>
+      <ul>
+        <li>value of total retail turnover</li>
+        <li>value of internet sales</li>
+        <li>numbers of employees</li>
+        <li>reasons for changes to figures</li>
+      </ul>
 
       <div class="notice u-mb-s u-mb-m@s">
         <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
       </div>
-
-      {% with accordion_data = [{
-        "id": "accordion-1",
-        "title": "How is your information used?",
-        "body": meta.survey.description|safe
-      }] %}
-      <div class="u-mb-s u-mb-m@s">
-        {% include 'partials/accordion.html' %}
-      </div>
-      {% endwith %}
-
-      <p class="mars">Office for National Statistics</p>
 
     </div>
 
     <form action="" class="form" role="form" method="POST" novalidate>
       <button class="btn btn--secondary qa-btn-get-started venus" type="submit" name="action[start_questionnaire]">Get Started</button>
     </form>
+    <div class="lock u-mb-s u-mb-m@s">
+      <div class="venus lock__text">We will treat your data securely and confidentially</div>
+    </div>
+    <h2 class="saturn">Legal Information</h2>
+    <p class="mars">You are required to complete this questionnaire. If you do not complete and return this questionnaire by 9 July 2016, penalties may be incurred (under section 4 of the Statistics of Trade Act 1947).</p>
   </div>
 
 
