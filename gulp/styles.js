@@ -1,19 +1,19 @@
 // Styles
 import gulp from 'gulp'
+import gulpif from 'gulp-if'
 import gutil from 'gulp-util'
 import debug from 'gulp-debug'
 import plumber from 'gulp-plumber'
 import sass from 'gulp-sass'
 import sassGlob from 'gulp-sass-glob'
 import minify from 'gulp-cssnano'
-import tap from 'gulp-tap'
 import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
 import pixrem from 'pixrem'
 import scss from 'postcss-scss'
 import pseudoelements from 'postcss-pseudoelements'
 import sourcemaps from 'gulp-sourcemaps'
-import flatten from 'gulp-flatten'
+import lazypipe from 'lazypipe'
 import rename from 'gulp-rename'
 import stylelint from 'stylelint'
 import reporter from 'postcss-reporter'
@@ -35,7 +35,20 @@ export function lint() {
 }
 
 export function styles() {
-  gulp.src(paths.styles.input)
+  const minifyStyles = lazypipe()
+    .pipe(rename, {
+      suffix: '.min'
+    })
+    .pipe(minify, {
+      calc: false,
+      discardComments: {
+        removeAll: true
+      }
+    })
+    .pipe(sourcemaps.write, '.')
+    .pipe(gulp.dest, paths.styles.output)
+
+  return gulp.src(paths.styles.input)
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sassGlob())
@@ -44,7 +57,7 @@ export function styles() {
       outputStyle: 'expanded',
       sourceComments: false,
       includePaths: [
-        './app/assets/styles/',
+        paths.styles.dir,
         './node_modules/eq-sass/',
         './node_modules/gfm.css/source/'
       ],
@@ -74,15 +87,5 @@ export function styles() {
     }))
     .pipe(gulp.dest(paths.styles.output))
     .pipe(browserSync.reload({ stream: true }))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(minify({
-      calc: false,
-      discardComments: {
-        removeAll: true
-      }
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.styles.output))
+    .pipe(gulpif(process.env.EQ_MINIMIZE_ASSETS === 'True', minifyStyles()))
 }
