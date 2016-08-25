@@ -46,15 +46,18 @@ class QuestionnaireManager(object):
         questionnaire_manager = QuestionnaireManager(schema)
         # immediately save it to the database
         StateManager.save_state(questionnaire_manager)
+        questionnaire_manager.go_to(questionnaire_manager.get_first_location())
         logger.debug("Constructing new state")
         return questionnaire_manager
 
     @staticmethod
     def get_instance():
+        logger.error("get instance")
         if StateManager.has_state():
-            logger.debug("StateManager loading state")
+            logger.error("StateManager loading state")
             return StateManager.get_state()
         else:
+            logger.error("Get instance returning None")
             return None
 
     def resolve_location(self, location):
@@ -179,11 +182,11 @@ class QuestionnaireManager(object):
         if self._current:
             current_location = self._current.item_id
         else:
-            current_location = self._get_first_location()
+            current_location = self.get_first_location()
         logger.debug("get current location returning %s", current_location)
         return current_location
 
-    def _get_first_location(self):
+    def get_first_location(self):
         if self._schema.introduction:
             return "introduction"
         else:
@@ -289,10 +292,17 @@ class QuestionnaireManager(object):
             node = node.previous
         return False
 
-    def process_incoming_answers(self, location, post_data):
+    def process_incoming_answers(self, location, post_data, replay=False):
+        logger.debug("QuestionnaireManager first %s", self._current)
+        logger.debug("QuestionnaireManager current %s", self._current)
+        logger.debug("QuestionnaireManager tail %s", self._current)
         logger.debug("Processing post data for %s", location)
         # ensure we're in the correct location
+
         if self.is_known_state(location):
+            if not replay:
+                # if we're not on replay then save the post data for state recovery
+                StateManager.save_post_date(location, post_data)
             self.go_to_state(location)
 
             # apply any conditional display rules
