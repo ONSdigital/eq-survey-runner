@@ -84,11 +84,9 @@ gulp.task('test:a11ym', (done) => {
 gulp.task('listen', () => {
   browserSync.init({
     proxy: process.env.EQ_SURVEY_RUNNER_URL,
-    open: false,
-    files: paths.styles.output
+    open: false
   })
   gulp.watch(paths.images.input, ['build:images'])
-  gutil.log(paths.styles.input)
   gulp.watch(paths.styles.input_all, ['build:styles'])
   gulp.watch([paths.scripts.input, `!${paths.scripts.dir}app/**/*`], ['copy:scripts'])
   gulp.watch(paths.templates.input).on('change', browserSync.reload)
@@ -104,12 +102,6 @@ gulp.task('copy:scripts', () => {
 
 gulp.task('watch:scripts', () => {
   bundle(true)
-})
-
-gulp.task('copy:dist', function() {
-  gulp.src(paths.webfonts.input)
-    .pipe(plumber())
-    .pipe(gulp.dest(paths.webfonts.output))
 })
 
 // Lint scripts
@@ -140,8 +132,7 @@ gulp.task('compile', [
   'bundle:scripts',
   'copy:scripts',
   'build:styles',
-  'build:images',
-  'copy:dist'
+  'build:images'
 ])
 
 /**
@@ -154,7 +145,9 @@ gulp.task('default', [
 // Compile files and generate docs when something changes
 gulp.task('watch', [
   'clean:dist',
-  'compile',
+  'build:sprite',
+  'build:styles',
+  'build:images',
   'watch:scripts',
   'listen'
 ])
