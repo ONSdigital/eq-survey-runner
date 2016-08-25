@@ -93,9 +93,6 @@ class QuestionnaireManager(object):
         logger.debug("go to state %s", item_id)
         if node:
             self._current = node
-            logger.debug("truncating to node %s", item_id)
-            # if node.next:
-            #     self._truncate(node.next)
             logger.debug("current item %s", item_id)
         elif item_id in self._archive:
             # re-append the old node to the head of the list
@@ -147,14 +144,13 @@ class QuestionnaireManager(object):
     def _append(self, node):
         if not self._first:
             self._first = node
-            self._current = node
-            self._tail = node
         else:
             previous = self._current
             previous.next = node
             node.previous = previous
-            self._current = node
-            self._tail = node
+
+        self._current = node
+        self._tail = node
 
     def _truncate(self, node):
         logger.debug("Truncate everything after %s", node.item_id)
