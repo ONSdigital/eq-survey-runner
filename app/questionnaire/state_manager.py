@@ -129,8 +129,8 @@ class DatabaseStateManager(StateManager):
             logger.debug("Replaying post data %s", post_data)
             location = post_data['location']
             data_to_replay = DatabaseStateManager._convert_to_multi_dict(post_data['post_data'])
-            questionnaire_manager.go_to(location)
             location = questionnaire_manager.process_incoming_answers(location, data_to_replay, replay=True)
+            questionnaire_manager.go_to(location)
             logger.debug("Location %s", location)
         logger.debug("Post data replayed")
 
