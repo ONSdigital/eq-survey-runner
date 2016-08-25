@@ -37,6 +37,7 @@ class QuestionnaireManager(object):
         self._schema = schema
         self._current = None  # the latest node
         self._first = None  # the first node in the doubly linked list
+        self._tail = None
         self._archive = {}  # a dict of discarded nodes for later use (if needed)
         self._valid_locations = self._build_valid_locations()
 
@@ -55,6 +56,14 @@ class QuestionnaireManager(object):
             return StateManager.get_state()
         else:
             return None
+
+    def resolve_location(self, location):
+        if location == 'first':
+            return self._get_first_block()
+        elif location == 'previous':
+            return self._current.previous.item_id
+        else:
+            return location
 
     def _build_valid_locations(self):
         validate_location = ['thank-you']
@@ -83,9 +92,7 @@ class QuestionnaireManager(object):
         node = self.get_state(item_id)
         logger.debug("go to state %s", item_id)
         if node:
-            logger.debug("truncating to node %s", item_id)
-            if node.next:
-                self._truncate(node.next)
+            self._current = node
             logger.debug("current item %s", item_id)
         elif item_id in self._archive:
             # re-append the old node to the head of the list
@@ -121,30 +128,35 @@ class QuestionnaireManager(object):
         if item_id in self._valid_locations:
             logger.debug("item id is %s", item_id)
             logger.debug("Current location %s", self.get_current_location())
-            if item_id == self._current.item_id:
-                state = self._current.state
-                state.update_state(user_input)
-                StateManager.save_state(self)
-            else:
-                raise ValueError("Updating state for incorrect node")
+
+            node = self.get_state(item_id)
+            self._current = node
+            state = node.state
+            state.update_state(user_input)
+            # Truncate following nodes
+            if node.next:
+                self._truncate(node.next)
+
+            StateManager.save_state(self)
         else:
             raise TypeError("Can only handle blocks")
 
     def _append(self, node):
         if not self._first:
             self._first = node
-            self._current = node
         else:
             previous = self._current
             previous.next = node
             node.previous = previous
-            self._current = node
+
+        self._current = node
+        self._tail = node
 
     def _truncate(self, node):
         logger.debug("Truncate everything after %s", node.item_id)
         logger.debug("Current position %s", self._current.item_id)
         # truncate everything after node and archive it
-        while node != self._current:
+        while node != self._tail:
             popped_node = self._pop()
             logger.debug("Archiving %s", popped_node.item_id)
             self._archive[popped_node.item_id] = popped_node
@@ -153,10 +165,10 @@ class QuestionnaireManager(object):
         logger.debug("Finally archiving %s", node.item_id)
 
     def _pop(self):
-        node = self._current
-        self._current = node.previous
-        if self._current:
-            self._current.next = None
+        node = self._tail
+        self._tail = node.previous
+        if self._tail:
+            self._tail.next = None
         node.previous = None
         return node
 
@@ -269,59 +281,72 @@ class QuestionnaireManager(object):
             raise InvalidLocationException()
         self.go_to_state(location)
 
+    def is_known_state(self, location):
+        if self._tail.item_id == location:
+            return True
+        node = self._tail
+        while node.previous:
+            if node.item_id == location:
+                return True
+            node = node.previous
+        return False
+
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
         # ensure we're in the correct location
-        self.go_to_state(location)
+        if self.is_known_state(location):
+            self.go_to_state(location)
 
-        # apply any conditional display rules
-        self._conditional_display(self._current.state)
+            # apply any conditional display rules
+            self._conditional_display(self._current.state)
 
-        # process incoming post data
-        user_action = self._get_user_action(post_data)
+            # process incoming post data
+            user_action = self._get_user_action(post_data)
 
-        # updated state
-        self.update_state(location, post_data)
+            # updated state
+            self.update_state(location, post_data)
 
-        # run the validator to update the validation_store
-        if self.validate():
+            # run the validator to update the validation_store
+            if self.validate():
 
-            # process the user action
-            try:
-                user_action_processor = UserActionProcessor(self._schema, self)
-                user_action_processor.process_action(user_action)
+                # process the user action
+                try:
+                    user_action_processor = UserActionProcessor(self._schema, self)
+                    user_action_processor.process_action(user_action)
 
-                # Create the routing engine
-                routing_engine = RoutingEngine(self._schema, self)
+                    # Create the routing engine
+                    routing_engine = RoutingEngine(self._schema, self)
 
-                # do any routing
-                next_location = routing_engine.get_next_location(self.get_current_location())
-                logger.debug("next location after routing is %s", next_location)
+                    # do any routing
+                    next_location = routing_engine.get_next_location(location)
+                    logger.info("next location after routing is %s", next_location)
 
-                # go to that location
-                self.go_to_state(next_location)
-                logger.debug("Going to location %s", next_location)
-            except UserActionProcessorException as e:
-                logger.error("Error processing user actions")
-                logger.exception(e)
+                    # go to that location
+                    self.go_to_state(next_location)
+                    logger.debug("Going to location %s", next_location)
+                except UserActionProcessorException as e:
+                    logger.error("Error processing user actions")
+                    logger.exception(e)
+            else:
+                # bug fix for using back button which then fails validation
+                self.go_to_state(self.get_current_location())
+
+            # now return the location
+            current_location = self.get_current_location()
+            logger.debug("Returning location %s", current_location)
+            return current_location
         else:
-            # bug fix for using back button which then fails validation
-            self.go_to_state(self.get_current_location())
+            raise InvalidLocationException()
 
-        # now return the location
-        current_location = self.get_current_location()
-        logger.debug("Returning location %s", current_location)
-        return current_location
-
-    def get_rendering_context(self):
+    def get_rendering_context(self, location):
 
         # apply any conditional display rules
-        self._conditional_display(self._current.state)
+        self._conditional_display(self.get_state(location).state)
 
         # look up the preprocessor and then build the view data
-        preprocessor = TemplateRegistry.get_template_preprocessor(self.get_current_location())
+        preprocessor = TemplateRegistry.get_template_preprocessor(location)
 
-        if self.get_current_location() == 'summary':
+        if location == 'summary':
             # the summary is the special case when we need the start of the linked list
             node = self._first
             # and we also need to plumb the entire schema
@@ -334,7 +359,7 @@ class QuestionnaireManager(object):
 
         else:
             # unlike the rest where we need the current node in the list
-            node = self._current
+            node = self.get_state(location)
             # and only need to plumb the single page
             self._plumbing_preprocessing(node)
         return preprocessor.build_view_data(node, self._schema)
@@ -357,8 +382,8 @@ class QuestionnaireManager(object):
             for child in item.children:
                 self._conditional_display(child)
 
-    def get_rendering_template(self):
-        return TemplateRegistry.get_template_name(self.get_current_location())
+    def get_rendering_template(self, location):
+        return TemplateRegistry.get_template_name(location)
 
     def _get_user_action(self, post_data):
         user_action = None

@@ -35,8 +35,9 @@ def survey(eq_id, collection_id, location):
 
         # redirect to the first block if the change your answers link is clicked
         if location == 'first' or location == 'previous':
+            location = questionnaire_manager.resolve_location(location)
             questionnaire_manager.go_to(location)
-            return do_redirect(eq_id, collection_id, questionnaire_manager.get_current_location())
+            return do_redirect(eq_id, collection_id, location)
 
         # Process the POST request
         if request.method == 'POST':
@@ -61,8 +62,8 @@ def do_redirect(eq_id, collection_id,  location):
 
 def do_get(questionnaire_manager, location):
     questionnaire_manager.go_to(location)
-    context = questionnaire_manager.get_rendering_context()
-    template = questionnaire_manager.get_rendering_template()
+    context = questionnaire_manager.get_rendering_context(location)
+    template = questionnaire_manager.get_rendering_template(location)
 
     # the special case where a get request modifies state
     if location == 'thank-you':
