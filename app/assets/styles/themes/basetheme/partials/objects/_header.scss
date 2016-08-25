@@ -1,15 +1,21 @@
 .header {
   margin: 1rem 0;
   @include mq(s) {
-    text-align: center;
+    text-align: left;
     margin: 2rem 0;
   }
+  dl{
+    margin: 0 0 1rem 0;
+  }
+  dt{
+    color: $color-very-dark-grey;
+  }
+  dd {
+    margin: 0 0 1rem 0;
+  }
 }
-
 .header__title {
-
-}
-
-.header__subtitle {
-
+  margin-top: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid $color-light-grey;
 }
