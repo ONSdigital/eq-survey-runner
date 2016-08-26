@@ -3,7 +3,9 @@ import logging
 from app.authentication.session_management import session_manager
 from app.metadata.metadata_store import MetaDataStore
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
+from app.questionnaire.state import State
 from app.questionnaire.state_manager import StateManager
+from app.questionnaire.state_recovery import StateRecovery
 from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
 from app.questionnaire_state.confirmation import Confirmation as StateConfirmation
 from app.questionnaire_state.introduction import Introduction as StateIntroduction
@@ -32,33 +34,20 @@ class QuestionnaireManager(object):
     The doubly linked list approach allows us to maintain the path the user has taken through the question. If that path
     changes we archive off the nodes in case the user revisits that path.
     '''
-    def __init__(self, schema):
-        self.submitted_at = None
+    def __init__(self, schema, current=None, first=None, tail=None, archive={}, valid_locations=None, submitted_at=None):
+        self.submitted_at = submitted_at
         self._schema = schema
-        self._current = None  # the latest node
-        self._first = None  # the first node in the doubly linked list
-        self._tail = None
-        self._archive = {}  # a dict of discarded nodes for later use (if needed)
-        self._valid_locations = self._build_valid_locations()
-
-    @staticmethod
-    def new_instance(schema):
-        questionnaire_manager = QuestionnaireManager(schema)
-        # immediately save it to the database
-        StateManager.save_state(questionnaire_manager)
-        questionnaire_manager.go_to(questionnaire_manager.get_first_location())
-        logger.debug("Constructing new state")
-        return questionnaire_manager
-
-    @staticmethod
-    def get_instance():
-        logger.error("get instance")
-        if StateManager.has_state():
-            logger.error("StateManager loading state")
-            return StateManager.get_state()
+        self._current = current  # the latest node
+        self._first = first  # the first node in the doubly linked list
+        self._tail = tail  # the last node in the doubly linked list
+        self._archive = archive  # a dict of discarded nodes for later use (if needed)
+        if valid_locations:
+            self._valid_locations = valid_locations
         else:
-            logger.error("Get instance returning None")
-            return None
+            self._valid_locations = self._build_valid_locations()
+
+    def construct_state(self):
+        return State(self._schema, self._current, self._first, self._tail, self._archive, self.submitted_at, self._valid_locations)
 
     def resolve_location(self, location):
         if location == 'first':
@@ -103,7 +92,7 @@ class QuestionnaireManager(object):
         else:
             logger.debug("creating new state for %s", item_id)
             self._create_new_state(item_id)
-        StateManager.save_state(self)
+        StateManager.save_state(self.construct_state())
 
     def _create_new_state(self, item_id):
 
@@ -140,7 +129,7 @@ class QuestionnaireManager(object):
             if node.next:
                 self._truncate(node.next)
 
-            StateManager.save_state(self)
+            StateManager.save_state(self.construct_state())
         else:
             raise TypeError("Can only handle blocks")
 
@@ -302,7 +291,7 @@ class QuestionnaireManager(object):
         if self.is_known_state(location):
             if not replay:
                 # if we're not on replay then save the post data for state recovery
-                StateManager.save_post_date(location, post_data)
+                StateRecovery.save_post_date(location, post_data)
             self.go_to_state(location)
 
             # apply any conditional display rules

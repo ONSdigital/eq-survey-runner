@@ -4,8 +4,8 @@ from app.main.errors import internal_server_error
 from app.main.errors import page_not_found
 from app.main.errors import service_unavailable
 from app.metadata.metadata_store import MetaDataStore
-from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
 from app.questionnaire.questionnaire_manager import InvalidLocationException
+from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 from app.schema.questionnaire import QuestionnaireException
 from app.submitter.submission_failed import SubmissionFailedException
 
@@ -28,7 +28,7 @@ def survey(eq_id, collection_id, location):
 
     logger.debug("Requesting location : /questionnaire/%s/%s/%s", eq_id, collection_id, location)
     try:
-        questionnaire_manager = create_questionnaire_manager()
+        questionnaire_manager = QuestionnaireManagerFactory.get_instance()
         # Redirect to thank you page if the questionnaire has already been submitted
         if questionnaire_manager.submitted and location != 'thank-you':
             return do_redirect(eq_id, collection_id, 'thank-you')

@@ -5,7 +5,7 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.main import errors
 from app.metadata.metadata_store import MetaDataStore
-from app.questionnaire.create_questionnaire_manager import create_questionnaire_manager
+from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 
 from flask import abort
 from flask import redirect
@@ -53,7 +53,7 @@ def login():
             logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
             abort(404)
 
-        questionnaire_manager = create_questionnaire_manager()
+        questionnaire_manager = QuestionnaireManagerFactory.get_instance()
 
         # get the current location of the user
         current_location = questionnaire_manager.get_current_location()
