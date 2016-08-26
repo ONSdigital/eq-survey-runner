@@ -5,8 +5,6 @@ python:
 - '3.5'
 env:
 - EQ_SCHEMA_BUCKET=""
-before_install:
-  - pip install codecov
 install:
 - ". $HOME/.nvm/nvm.sh"
 - rm -rf node_modules
@@ -22,7 +20,7 @@ before_script:
 script:
 - "./scripts/run_tests.sh"
 # fail travis if under X% test coverage
-# - coverage report --fail-under=80
+- coverage report --fail-under=77
 notifications:
 -  slack: digitaleq:LDxJXRGeVmg3PpdUhp90eY3Z
 addons:
