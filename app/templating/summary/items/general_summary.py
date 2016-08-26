@@ -7,6 +7,8 @@ class GeneralSummaryItem(Item):
         self.answer = self.prepare_answer()
 
     def prepare_answer(self):
+        if len(self.schema.answers) == 0:
+          print(self.schema)
         if len(self.schema.answers) > 1:
             # Currently, the only multi-answer questions (apart from date ranges) are in the census test
             return None
@@ -24,27 +26,30 @@ class GeneralSummaryItem(Item):
                 else:
                     return self.state.answers[0].value
             else:
-                return Item.MISSING_VALUE
+                return None
 
     def _prepare_currency_answer(self, value):
-        return Item.CURRENCY_SYMBOL + str(value)
+        return "£{:,}".format(value)
 
     def _prepare_date_value(self, value):
-        return value.strftime(Item.DATE_FORMAT)
+        return value
 
     def _prepare_radio_value(self, value):
         for option in self.schema.answers[0].options:
             if option['value'] == value:
                 return option['label']
-        return Item.MISSING_VALUE
+        return None
 
     def _prepare_checkbox_values(self, values):
-        labels = []
-        for option in self.schema.answers[0].options:
-            if option['value'] in values:
-                labels.append(option['label'])
+        return self.schema.answers
 
-        if len(labels) == 0:
-            return Item.MISSING_VALUE
-        else:
-            return '<ul><li>' + '</li><li>'.join(labels) + '</li></ul>'
+
+        # labels = []
+        # for option in self.schema.answers[0].options:
+        #     if option['value'] in values:
+        #         labels.append(option['label'])
+        #
+        # if len(labels) == 0:
+        #     return None
+        # else:
+        #     return '<ul><li>' + '</li><li>'.join(labels) + '</li></ul>'
