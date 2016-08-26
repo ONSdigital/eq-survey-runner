@@ -18,7 +18,8 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'tests/karma/spec/**/*.js': ['browserify']
+      'tests/karma/spec/**/*.js': ['browserify'],
+      '*.js': ['coverage']
     },
 
     plugins: [
@@ -29,7 +30,8 @@ module.exports = function(config) {
       'karma-chai-sinon',
       'karma-chai-as-promised',
       'karma-chai',
-      'karma-phantomjs-launcher'
+      'karma-phantomjs-launcher',
+      'karma-coverage'
     ],
 
     browserify: {
@@ -38,14 +40,19 @@ module.exports = function(config) {
       paths: ['./node_modules', './app/assets/js/']
     },
 
-    reporters: ['mocha'],
+    reporters: ['mocha', 'progress', 'coverage'],
 
     browsers: ['PhantomJS'],
 
     coverageReporter: {
-      type: 'html',
-      dir: testDir + '/coverage/'
+      dir : 'coverage/',
+      reporters: [
+        { type: 'html', subdir: 'html' },
+        { type: 'lcovonly', subdir: 'lcov' },
+        { type: 'cobertura', subdir: 'cobertura' }
+      ]
     },
+
 
     mochaReporter: {
       output: 'full'

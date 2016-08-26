@@ -19,6 +19,8 @@ before_script:
 - "./scripts/run_app.sh"
 script:
 - "./scripts/run_tests.sh"
+# fail travis if under X% test coverage
+- coverage report --fail-under=77
 notifications:
 -  slack: digitaleq:LDxJXRGeVmg3PpdUhp90eY3Z
 addons:
@@ -28,4 +30,5 @@ addons:
     access_key:
       secure: WOKiHo0E8e3lKwt8Jt9/T1TW8L2h3+HSjaWdisJ/fzWSxZs9CILxJ75qb61+0kxRragF6ts7a7YQQzZXm44WDoQNJUXe4wp18hKaCO+sqIueuGbWCLQzxe/6gwg3cSVvIdPw7MNkdS4Kxga6iReh9mU4tz0LQ5y6XYJ33t3XxqXvvZPwTOEzWFhRidpKh/ASRLP9iEsOjUdifSQ34Zw4ShS93qKdmOMSECDcekbFMWf47OwDkDUJQFg5TAQinxjBdTnsIcT5g3R1EbR8iS7bf3oesKfYgab2GsYIL4fwLG6oK6Xjj3a+7HSiv6ts5nmgU/OUlDQ+E0asPHKgBEKMVDq0M9l+KKhY2c2Ioaee9doeYa8oi9jhkzhF3OIVYugginQFiBaLkwC+K10yHAeZxjXIeyCCUqz8IpQ8+B7cI93JJzmLUUQWocrc/vXJ7RPkVcSTlUdH8Nyzb/BzAJfvUAUsFjpm1xqokV5M0ZxUeGq66OjXJpPE2gXkpXFObGRkasSQc52Lc6Q7OOfV3mJZ/VdTBUX9mfEjaEZ1dC5E2SpwGtTnubb6AYqgma/Hu01jimnOOqiLzVfxi80JXPzHQhGvCnpxTrfmMHG+Lrdgrte54MsVyZOKo4O7hPHLwTXcV08S0Nck0GPXs/IR4o0paPk0JR4B/YQTojAA/TwH5ak=
 after_success:
- - coveralls -d .coverage -c .coveragerc -y .coveralls.yml
+ - codecov
+ - bash <(curl -s https://codecov.io/bash)
