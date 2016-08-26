@@ -1,0 +1,45 @@
+.box {
+  padding: 2rem 1rem;
+  border: 1px solid $color-borders;
+  border-radius: 3px;
+  max-width: 32em;
+  position: relative;
+
+  &w.confirm {
+    &::before {
+      $size: 2.5rem;
+      background: url("#{$s}/img/icons/icons--check.svg") no-repeat center center;
+      background-color: white;
+      background-size: 2rem;
+      content: "";
+      position: absolute;
+      top: -$size/2;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      margin: auto;
+      width: $size;
+      height: $size;
+      border: 2px solid $color-borders;
+      border-radius: 100%;
+    }
+  }
+}
+
+.box__list{
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  list-style-type: none;
+  padding: 0;
+  margin: 2rem auto;
+}
+.box__list__item {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 0.2rem 0.2rem;
+  text-align: center;
+  margin: 0.2rem;
+  @include mq(m) {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+  }
+}
