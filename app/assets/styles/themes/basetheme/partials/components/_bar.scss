@@ -1,0 +1,32 @@
+.bar {
+  background: $color-dark-blue;
+  color: $color-white;
+  padding: 0.639rem 0;
+  margin-bottom: 0.5rem;
+
+  @include mq(m) {
+    padding: 0.639rem 0;
+    margin-bottom: 2rem;
+  }
+}
+
+.bar__inner {
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.bar__title {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+.bar--hero{
+  .bar__title {
+    display: block;
+    margin: 1rem 0;
+  }
+  .bar__inner {
+    display: block;
+  }
+}

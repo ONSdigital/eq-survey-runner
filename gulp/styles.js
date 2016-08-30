@@ -58,7 +58,6 @@ export function styles() {
       sourceComments: false,
       includePaths: [
         paths.styles.dir,
-        './node_modules/eq-sass/',
         './node_modules/gfm.css/source/'
       ],
       onSuccess: function(msg) {

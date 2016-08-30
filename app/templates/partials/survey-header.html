@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="panel__header survey-header">
+    <div class="logo survey-header__logo">
+      {% block logo %}
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics" class="logo__img" />
+      {% endblock logo %}
+    </div>
+    <div class="info survey-header__info" role="contentinfo">
+      <div class="info__title venus">Survey Help</div>
+      <div class="info__tel">
+        0300 1234 931
+      </div>
+      {% if meta %}
+      <dl class="info__list">
+        <dt class="info__dt first">ID:</dt>
+        <dd class="info__dd">{{ meta.survey.survey_code or 'N/A'}}</dd>
+        <dt class="info__dt">Period:</dt>
+        <dd class="info__dd">{{ meta.survey.period_str or 'N/A'}}</dd>
+        <dt class="info__dt">Ref:</dt>
+        <dd class="info__dd last">{{ meta.respondent.respondent_id or 'N/A'}}</dd>
+      </dl>
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+{% extends theme('layouts/_survey.html') %}
+{% import 'macros/helpers.html' as h %}
+
+{% block page_title %}Introduction{% endblock %}
+
+{% block survey %}
+
+  <div class="header">
+    <h2 class="saturn">Your response is legally required</h2>
+      <div class="grid grid--align-mid">
+        <div class="grid__col col-6@s">
+          <dl>
+            <dt class="mercury u-tt-u">Business name</dt>
+            <dd class="mars">{{ meta.respondent.address.name}}</dd>
+            {% if meta.respondent.address.trading_as %}
+              <dt class="mercury u-tt-u">Trading as</dt>
+              <dd class="mars">{{ meta.respondent.address.trading_as }}</dd>
+            {% endif %}
+          </dl>
+        </div>
+        <div class="grid__col col-6@s">
+          <dl>
+            <dt class="mercury u-tt-u">PERIOD</dt>
+            <dd><span class="mars">{{ meta.survey.start_date }} to {{ meta.survey.end_date}}</dd>
+            <dt class="mercury u-tt-u">PLEASE SUBMIT BY</dt>
+            <dd class="mars">{{ meta.survey.return_by }}</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 class="header__title saturn">You will be asked to provide information for the business, including:</h2>
+      <ul>
+        <li>value of total retail turnover</li>
+        <li>value of internet sales</li>
+        <li>numbers of employees</li>
+        <li>reasons for changes to figures</li>
+      </ul>
+
+      <div class="notice u-mb-s u-mb-m@s">
+        <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
+      </div>
+
+    </div>
+
+    <form action="" class="form" role="form" method="POST" novalidate>
+      <button class="btn btn--secondary qa-btn-get-started venus" type="submit" name="action[start_questionnaire]">Get Started</button>
+    </form>
+    <div class="lock u-mb-s u-mb-m@s">
+      <div class="venus lock__text">We will treat your data securely and confidentially</div>
+    </div>
+    <h2 class="saturn">Legal Information</h2>
+    <p class="mars">You are required to complete this questionnaire. If you do not complete and return this questionnaire by 9 July 2016, penalties may be incurred (under section 4 of the Statistics of Trade Act 1947).</p>
+  </div>
+
+
+{% endblock %}

@@ -124,7 +124,6 @@
     "yargs": "^4.8.1"
   },
   "dependencies": {
-    "eq-sass": "^2.0.0",
     "gfm.css": "^1.1.1",
     "jquery": "./app/assets/js/vendor/jquery-shim",
     "lodash": "^4.6.1",
