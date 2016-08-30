@@ -17,7 +17,7 @@
     {% if all_errors %}
       {% with %}
 
-        {% set alert_title %}<h2 class="alert__title venus">This page has {{all_errors|length}} errors</h2> {% endset %}
+        {% set alert_title %}<h1 class="alert__title venus">This page has {{all_errors|length}} errors</h1> {% endset %}
 
         {% set alert_body %}
         <p class="mars">These <strong>must be corrected</strong> to continue.</p>
@@ -28,7 +28,7 @@
             {% if errors %}
             {% for error in errors %}
             <li class="list__item mars">
-              {{loop_index}}) {{ error }} <a href="#{{item_id}}">{{_('Go to this error')}}</a>
+              {{loop_index}}) <a href="#{{item_id}}">{{ error }}</a>
             </li>
             {% endfor %}
             {% endif %}
