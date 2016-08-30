@@ -1,14 +1,15 @@
 import logging
 
+from app import settings
 
 from flask_login import current_user
-
 
 from werkzeug.datastructures import ImmutableMultiDict, MultiDict
 
 logger = logging.getLogger(__name__)
 
 POST_DATA = "post_data"
+MAX_NO_OF_REPLAYS = settings.EQ_MAX_REPLAY_COUNT
 
 
 class StateRecovery(object):
@@ -25,7 +26,7 @@ class StateRecovery(object):
 
     @staticmethod
     def _convert_to_dict(post_data):
-        logger.error("Multi dict is %s", post_data)
+        logger.debug("Multi dict is %s", post_data)
         return post_data.to_dict(flat=False)
 
     @staticmethod
@@ -42,13 +43,20 @@ class StateRecovery(object):
         questionnaire_manager.go_to(questionnaire_manager.get_first_location())
 
         # basically this replays the post data in order
+        replay_counter = 0
         for post_data in all_post_data:
-            logger.debug("Replaying post data %s", post_data)
-            location = post_data['location']
-            data_to_replay = StateRecovery._convert_to_multi_dict(post_data['post_data'])
-            location = questionnaire_manager.process_incoming_answers(location, data_to_replay, replay=True)
-            questionnaire_manager.go_to(location)
-            logger.debug("Location %s", location)
+            logger.debug("MAX_NO_OF_REPLAYS %s", MAX_NO_OF_REPLAYS)
+            if replay_counter < MAX_NO_OF_REPLAYS:
+                logger.debug("Replay count %s", replay_counter)
+                logger.debug("Replaying post data %s", post_data)
+                location = post_data['location']
+                data_to_replay = StateRecovery._convert_to_multi_dict(post_data['post_data'])
+                location = questionnaire_manager.process_incoming_answers(location, data_to_replay, replay=True)
+                questionnaire_manager.go_to(location)
+                logger.debug("Location %s", location)
+                replay_counter += 1
+            else:
+                logger.error("Exceeded maximum number of replays")
         logger.debug("Post data replayed")
 
         return questionnaire_manager

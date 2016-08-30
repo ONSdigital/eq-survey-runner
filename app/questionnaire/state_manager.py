@@ -14,9 +14,9 @@ STATE = "state"
 class StateManager(object):
     '''
     This class is responsible for saving the state of the User Journey Manager into the database.
-    It does this by pickling the Python object graph into JSON and storing that. Thi means that code
+    It does this by pickling the Python object graph into JSON and storing that. This means that code
     changes between deployments can cause odd behaviour if the database isn't wipe, as when it deserializes
-    state from old python code to new python code attributes can be missing.
+    state from old python code to new python code attributes can be missing. Hence why we have the StateRecovery class
     '''
     @staticmethod
     def has_state():
