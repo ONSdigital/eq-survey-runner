@@ -10,7 +10,7 @@ class Item(object):
         self.schema = schema
         self.state = state
         self.question = self.schema.title or self.schema.answers[0].label
-        self.link = self.schema.container.container.id + '#' + self.schema.id
+        self.link = self.schema.container.container.id + '#' + self.schema.answers[0].id
 
     @staticmethod
     def create_item(schema, state):
