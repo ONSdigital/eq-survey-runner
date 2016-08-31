@@ -7,20 +7,22 @@ class ValidationResult(object):
     def is_valid(self):
         return self.is_valid
 
-    def get_errors(self):
-        return self.errors
+    # not used?
 
-    def get_warnings(self):
-        return self.warnings
+    # def get_errors(self):
+    #     return self.errors
 
-    def to_dict(self):
-        return {
-            "valid": self.is_valid,
-            "errors": self.errors,
-            "warnings": self.warnings,
-        }
+    # def get_warnings(self):
+    #     return self.warnings
 
-    def from_dict(self, values):
-        self.is_valid = values['valid'] or False
-        self.errors = values['errors'] or []
-        self.warnings = values['warnings'] or []
+    # def to_dict(self):
+    #     return {
+    #         "valid": self.is_valid,
+    #         "errors": self.errors,
+    #         "warnings": self.warnings,
+    #     }
+
+    # def from_dict(self, values):
+    #     self.is_valid = values['valid'] or False
+    #     self.errors = values['errors'] or []
+    #     self.warnings = values['warnings'] or []
