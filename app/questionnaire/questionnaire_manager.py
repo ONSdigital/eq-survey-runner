@@ -282,10 +282,8 @@ class QuestionnaireManager(object):
         self.go_to_state(location)
 
     def is_known_state(self, location):
-        if self._tail.item_id == location:
-            return True
         node = self._tail
-        while node.previous:
+        while node:
             if node.item_id == location:
                 return True
             node = node.previous
