@@ -25,8 +25,8 @@
             {% set loop_index = loop.index %}
             {% if errors %}
             {% for error in errors %}
-            <li class="list__item mars">
-              {{loop_index}}) <a href="#{{item_id}}">{{ error }}</a>
+            <li class="list__item mars js-inpagelink" data-inputid="answer-{{item_id}}">
+              {{loop_index}}) <a class="js-inpagelink-trigger" href="#answer-{{item_id}}">{{ error }}</a>
             </li>
             {% endfor %}
             {% endif %}
