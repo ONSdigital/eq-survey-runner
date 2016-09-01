@@ -107,10 +107,6 @@ class TestRouting(RoutingTestCase):
         submitted = self.get_submitted_answers()
         cleaned = MultiDict()
         items = self.get_summary_items()
-
-        import pdb
-        pdb.set_trace()
-
         # group the dates
         for code, value in submitted.items():
             if code.endswith('-day'):
@@ -127,7 +123,10 @@ class TestRouting(RoutingTestCase):
 
         # check the items
         for code, value in cleaned.items():
-            self.assertIn(code, items.keys())
+            if code == '06a6a4b7-6ce4-4687-879d-3443cd8e2ff0':
+                pass # only the code for the 'from' answer in a date range will be found on summary page
+            else:
+                self.assertIn(code, items.keys())
             # self.assertRegexpMatches(items[code], value)
 
     def get_submitted_answers(self):
