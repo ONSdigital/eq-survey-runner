@@ -47,8 +47,9 @@ def login():
         eq_id = metadata.eq_id
         collection_id = metadata.collection_exercise_sid
         form_type = metadata.form_type
+        period_id = metadata.period_id
 
-        logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
+        logger.debug("Requested questionnaire %s for form type %s in Period %s", eq_id, form_type, period_id)
         if not eq_id or not form_type:
             logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
             abort(404)
@@ -60,7 +61,7 @@ def login():
 
         current_user.save()
 
-        return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/' + current_location)
+        return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + current_location)
 
     except NoTokenException as e:
         logger.warning("Unable to authenticate user")

@@ -29,7 +29,7 @@ class TestCensusHH2016OutputFormat(DownstreamTestCase):
         form_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/0/789/introduction', data=form_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/hh2016/201604/789/introduction', data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']

@@ -10,7 +10,7 @@ class TestNavigation(StarWarsTestCase):
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
-        introduction = '/questionnaire/0/789/introduction'
+        introduction = '/questionnaire/0/star_wars/201604/789/introduction'
 
         resp = self.navigate_to_page(introduction)
 
@@ -89,7 +89,7 @@ class TestNavigation(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/star_wars\/201604\/789\/summary$')
 
         summary_url = resp.headers['Location']
 
@@ -113,4 +113,4 @@ class TestNavigation(StarWarsTestCase):
         self.assertRegexpMatches(content, '>Please check carefully before submission.<')
         self.assertRegexpMatches(content, '>Submit answers<')
 
-        self.complete_survey(summary_url)
+        self.complete_survey(summary_url, 'star_wars')
