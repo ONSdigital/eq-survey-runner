@@ -25,7 +25,7 @@ class TestClearError(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/1/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/1/0205/201604/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']

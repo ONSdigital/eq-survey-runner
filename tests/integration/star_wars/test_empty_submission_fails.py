@@ -12,11 +12,11 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         self.start_questionnaire_and_navigate_routing()
 
         # now issue a request to the summary page
-        resp = self.client.get('/questionnaire/0/789/summary', follow_redirects=False)
+        resp = self.client.get('/questionnaire/0/star_wars/201604/789/summary', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # check that we're redirected to the first block as its an empty submission
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/cd3b74d1-b687-4051-9634-a8f9ce10a27d')
+        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/0\/star_wars\/201604\/789\/cd3b74d1-b687-4051-9634-a8f9ce10a27d')
 
         # go to the first page
         first_page = resp.headers['Location']
@@ -96,7 +96,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/0\/star_wars\/201604\/789\/summary$')
 
         summary_url = resp.headers['Location']
 
@@ -122,4 +122,4 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         self.assertRegexpMatches(content, '>Please check carefully before submission<')
         self.assertRegexpMatches(content, '>Submit answers<')
 
-        self.complete_survey(summary_url)
+        self.complete_survey(summary_url, 'star_wars')

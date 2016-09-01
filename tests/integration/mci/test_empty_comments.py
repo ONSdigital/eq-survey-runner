@@ -21,7 +21,7 @@ class TestEmptyComments(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/1/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/1/0203/201604/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -59,7 +59,7 @@ class TestEmptyComments(IntegrationTestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/0203\/201604\/789\/summary$')
 
         summary_url = resp.headers['Location']
 
@@ -80,7 +80,7 @@ class TestEmptyComments(IntegrationTestCase):
         }
         resp = self.client.post(summary_url, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/789\/thank-you$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/0203\/201604\/789\/thank-you$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 
