@@ -24,15 +24,13 @@ export function applyInPageLink(elDetails) {
     focusOnInput(elId)
   })
 
-  return {
-    elId: elId,
-    elTrigger: elTrigger
-  }
+  return {elDetails, elTrigger, elId}
 }
 
 function focusOnInput(elId) {
   const elIdInput = document.getElementById(elId).getElementsByClassName('input')[0]
   elIdInput.focus()
+  return elId
 }
 
 domready(inPageLink)
