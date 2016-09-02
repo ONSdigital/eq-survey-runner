@@ -28,6 +28,18 @@
       background: tint($color, 90%);
     }
   }
+  .response--alert{
+    .alert--#{$name} {
+      border-left: 8px solid $color;
+      .alert__header {
+        color: $color-black;
+        background: tint($color, 90%);
+      }
+      .alert__title {
+        color: $color;
+      }
+    }
+  }
 }
 
 @include alert_type(error, $color-red);
