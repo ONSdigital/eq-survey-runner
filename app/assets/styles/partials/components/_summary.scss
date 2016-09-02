@@ -35,6 +35,9 @@
 .summary__question,
 .summary__answer {
   margin: 0;
+  width: 100%;
+  border: none;
+  text-align: left;
   border-bottom: 1px solid $color-borders;
   @include mq(s) {
     font-size: 1rem;
@@ -43,7 +46,6 @@
     display: inline-block;
     vertical-align: middle;
     font-size: initial;
-    min-height: 5.5rem;
   }
   @include lt-ie8 {
     min-height: 3rem;
@@ -55,13 +57,9 @@
   border-bottom: 1px solid $color-borders;
   display: flex;
   padding: 0.5rem;
+  font-weight: $font-weight-semibold;
   @include mq(s) {
-    width: 60%;
-    max-width: 100%;
     padding: 1rem;
-  }
-  @include lt-ie8 {
-    width: 60%;
   }
   // fixes IE10 wrapping problem
   div {
@@ -76,47 +74,48 @@
   position: relative;
   flex-direction: row;
   justify-content: space-between;
-  @include mq(s) {
-    width: 40%;
-    border-left: 1px solid $color-borders;
-  }
+  overflow: hidden;
 }
 
 .summary__answer-text,
 .summary__edit {
   padding: 0.5rem;
-  display: flex;
   @include mq(s) {
     padding: 1rem;
   }
 }
 
 .summary__answer-text {
-  // flex-shrink: 120;
+  align-items: center;
+  flex: 1 1 auto;
 }
 
 .summary__edit {
   font-size: 0.8rem;
   border-left: 1px solid $color-borders;
   text-align: center;
+  display: flex;
   flex-basis: fit-content;
   flex-shrink: 0;
-}
-
-.summary__question--textarea {
-  border-bottom: 1px solid $color-borders;
-}
-
-.summary__question--textarea,
-.summary__answer--textarea {
-  width: 100%;
-  border: none;
-  text-align: left;
-  border-bottom: 1px solid $color-borders;
-  &.summary__answer {
-    // border-top: 1px solid $color-borders;
+  padding: 0;
+  @include fixed {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
   }
-  @include lt-ie8 {
-    width: 100% !important;
+}
+
+.summary__edit-link {
+  padding: 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: #efefef;
+  }
+  @include fixed {
+    height: 100%;
+    line-height: 3;
+    display: block;
   }
 }

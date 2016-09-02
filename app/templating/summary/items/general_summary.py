@@ -7,8 +7,6 @@ class GeneralSummaryItem(Item):
         self.answer = self.prepare_answer()
 
     def prepare_answer(self):
-        if len(self.schema.answers) == 0:
-          print(self.schema)
         if len(self.schema.answers) > 1:
             # Currently, the only multi-answer questions (apart from date ranges) are in the census test
             return None
@@ -38,18 +36,14 @@ class GeneralSummaryItem(Item):
         for option in self.schema.answers[0].options:
             if option['value'] == value:
                 return option['label']
-        return None
 
     def _prepare_checkbox_values(self, values):
-        return self.schema.answers
+        labels = []
+        for option in self.schema.answers[0].options:
+            if option['value'] in values:
+                labels.append(option['label'])
 
-
-        # labels = []
-        # for option in self.schema.answers[0].options:
-        #     if option['value'] in values:
-        #         labels.append(option['label'])
-        #
-        # if len(labels) == 0:
-        #     return None
-        # else:
-        #     return '<ul><li>' + '</li><li>'.join(labels) + '</li></ul>'
+        if len(labels) == 0:
+            return Item.MISSING_VALUE
+        else:
+            return labels

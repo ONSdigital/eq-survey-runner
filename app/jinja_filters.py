@@ -1,13 +1,17 @@
 from bs4 import BeautifulSoup
 
+import re
+
 import flask
 
 import jinja2
 
+from jinja2 import Markup, escape, contextfilter, evalcontextfilter
+
 blueprint = flask.Blueprint('filters', __name__)
 
 
-@jinja2.contextfilter
+@contextfilter
 @blueprint.app_template_filter()
 def format_currency(context, value):
     return "£{:,}".format(value)
@@ -15,7 +19,7 @@ def format_currency(context, value):
 blueprint.add_app_template_filter(format_currency)
 
 
-@jinja2.contextfilter
+@contextfilter
 @blueprint.app_template_filter()
 def prettify(context, code):
     soup = BeautifulSoup(code)
@@ -24,7 +28,7 @@ def prettify(context, code):
 blueprint.add_app_template_filter(prettify)
 
 
-@jinja2.contextfilter
+@contextfilter
 @blueprint.app_template_filter()
 def dumpobj(context, my_obj):
     if isinstance(my_obj, str) or isinstance(my_obj, int):
@@ -48,7 +52,7 @@ def dumpobj(context, my_obj):
 blueprint.add_app_template_filter(dumpobj)
 
 
-@jinja2.contextfilter
+@contextfilter
 @blueprint.app_template_filter()
 def merge(context, target_obj, dict_args):
     for property in dict_args.keys():
@@ -59,9 +63,48 @@ def merge(context, target_obj, dict_args):
 blueprint.add_app_template_filter(merge)
 
 
-@jinja2.contextfilter
+@contextfilter
 @blueprint.app_template_filter()
 def print_type(context, value):
     return type(value)
 
 blueprint.add_app_template_filter(print_type)
+
+
+@contextfilter
+@blueprint.app_template_filter()
+def linebreaks(context, value):
+    """Converts newlines into <p> and <br />s."""
+    value = re.sub(r'\r\n|\r|\n', '\n', value)
+    paras = re.split('\n{2,}', value)
+    paras = [u'<p>%s</p>' % p.replace('\n', '<br />') for p in paras]
+    paras = u'\n\n'.join(paras)
+    return Markup(paras)
+
+blueprint.add_app_template_filter(linebreaks)
+
+
+@contextfilter
+@blueprint.app_template_filter()
+def linebreaksbr(context, value):
+    """Converts newlines into <p> and <br />s."""
+    value = re.sub(r'\r\n|\r|\n', '\n', value)
+    paras = re.split('\n{2,}', value)
+    paras = [u'%s' % p.replace('\n', '<br />') for p in paras]
+    paras = u'\n\n'.join(paras)
+    return Markup(paras)
+
+blueprint.add_app_template_filter(linebreaksbr)
+
+
+@evalcontextfilter
+@blueprint.app_template_filter()
+def nl2br(context, value):
+    _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
+    result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(escape(value)))
+
+    if context.autoescape:
+        result = Markup(result)
+    return result
+
+blueprint.add_app_template_filter(nl2br)
