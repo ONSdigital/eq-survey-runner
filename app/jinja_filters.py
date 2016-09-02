@@ -71,32 +71,6 @@ def print_type(context, value):
 blueprint.add_app_template_filter(print_type)
 
 
-@contextfilter
-@blueprint.app_template_filter()
-def linebreaks(context, value):
-    """Converts newlines into <p> and <br />s."""
-    value = re.sub(r'\r\n|\r|\n', '\n', value)
-    paras = re.split('\n{2,}', value)
-    paras = [u'<p>%s</p>' % p.replace('\n', '<br />') for p in paras]
-    paras = u'\n\n'.join(paras)
-    return Markup(paras)
-
-blueprint.add_app_template_filter(linebreaks)
-
-
-@contextfilter
-@blueprint.app_template_filter()
-def linebreaksbr(context, value):
-    """Converts newlines into <p> and <br />s."""
-    value = re.sub(r'\r\n|\r|\n', '\n', value)
-    paras = re.split('\n{2,}', value)
-    paras = [u'%s' % p.replace('\n', '<br />') for p in paras]
-    paras = u'\n\n'.join(paras)
-    return Markup(paras)
-
-blueprint.add_app_template_filter(linebreaksbr)
-
-
 @evalcontextfilter
 @blueprint.app_template_filter()
 def nl2br(context, value):
