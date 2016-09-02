@@ -8,7 +8,7 @@ class Item(object):
         self.question = self.schema.title or self.schema.answers[0].label
         self.link = self.schema.container.container.id + '#' + self.schema.id
         if len(self.schema.answers) > 0:
-          self.type = self.schema.answers[0].type.lower()
+            self.type = self.schema.answers[0].type.lower()
 
     @staticmethod
     def create_item(schema, state):

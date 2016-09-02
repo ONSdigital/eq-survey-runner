@@ -1,0 +1,34 @@
+{% extends 'layouts/_survey.html' -%}
+
+{% block page_title -%}Summary{% endblock -%}
+
+{% block survey -%}
+  <div class="header">
+    <h1 class="header__title saturn">Your responses</h1>
+    <h2 class="header__subtitle mars">Please check carefully before submission</h2>
+  </div>
+
+<div>
+  <dl class="summary">
+  {% for block in content %}
+    <dt class="summary__title saturn">{{block.title | safe}}</dt>
+    <dd class="summary__block">
+      <dl class="summary__items">
+      {% for item in block.items %}
+        <dt class="summary__question summary__question--{{item.type}}">{{item.question | safe}}</dt>
+        <dd class="summary__answer">
+          <a href="{{item.link}}">{{item.answer | safe}}</a>
+        </dd>
+      {% endfor %}
+      </dl>
+    </dd>
+  {% endfor %}
+  </dl>
+
+  <form action="" method="POST" novalidate>
+    <button class="btn btn--secondary u-mr-s qa-btn-submit-answers venus" type="submit" name="action[submit_answers]">Submit answers</button>
+    <a class="u-dib mars" href="first">Change your answers</a>
+  </form>
+</div>
+
+{% endblock -%}
