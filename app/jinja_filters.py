@@ -1,7 +1,8 @@
 import re
-import flask
 
 from bs4 import BeautifulSoup
+
+import flask
 
 from jinja2 import Markup, contextfilter, escape, evalcontextfilter
 
