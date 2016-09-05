@@ -6,8 +6,8 @@ class DateRangeSummaryItem(Item):
         super().__init__(schema, state)
         self.answer = [{
           'label': schema.answers[0].label,
-          'value': state.answers[0].value
+          'value': state.answers[0].value,
         }, {
           'label': schema.answers[1].label,
-          'value': state.answers[1].value
+          'value': state.answers[1].value,
         }]

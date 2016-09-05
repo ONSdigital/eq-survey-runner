@@ -1,10 +1,9 @@
-from bs4 import BeautifulSoup
-
 import re
-
 import flask
 
-from jinja2 import Markup, escape, contextfilter, evalcontextfilter
+from bs4 import BeautifulSoup
+
+from jinja2 import Markup, contextfilter, escape, evalcontextfilter
 
 blueprint = flask.Blueprint('filters', __name__)
 
