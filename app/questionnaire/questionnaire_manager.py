@@ -142,16 +142,15 @@ class QuestionnaireManager(object):
             raise TypeError("Can only handle blocks")
 
     def _append(self, node):
-        if not self._first:
-            self._first = node
-            self._current = node
-            self._tail = node
-        else:
+        if self._first:
             previous = self._current
             previous.next = node
             node.previous = previous
-            self._current = node
-            self._tail = node
+        else:
+            self._first = node
+
+        self._current = node
+        self._tail = node
 
     def _truncate(self, node):
         logger.debug("Truncate everything after %s", node.item_id)
