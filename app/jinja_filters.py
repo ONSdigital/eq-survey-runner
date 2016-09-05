@@ -4,8 +4,6 @@ import re
 
 import flask
 
-import jinja2
-
 from jinja2 import Markup, escape, contextfilter, evalcontextfilter
 
 blueprint = flask.Blueprint('filters', __name__)
