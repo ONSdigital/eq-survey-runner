@@ -1,7 +1,7 @@
 from app.utilities.factory import Factory
 
 
-class Item(object):
+class SummaryItem(object):
     def __init__(self, schema, state):
         self.schema = schema
         self.state = state

@@ -1,7 +1,7 @@
-from app.templating.summary.item import Item
+from app.templating.summary.summary_item import SummaryItem
 
 
-class GeneralSummaryItem(Item):
+class GeneralSummaryItem(SummaryItem):
     def __init__(self, schema, state):
         super().__init__(schema, state)
         self.answer = self.prepare_answer()
@@ -44,6 +44,6 @@ class GeneralSummaryItem(Item):
                 labels.append(option['label'])
 
         if len(labels) == 0:
-            return Item.MISSING_VALUE
+            return SummaryItem.MISSING_VALUE
         else:
             return labels

@@ -1,7 +1,7 @@
-from app.templating.summary.item import Item
+from app.templating.summary.summary_item import SummaryItem
 
 
-class DateRangeSummaryItem(Item):
+class DateRangeSummaryItem(SummaryItem):
     def __init__(self, schema, state):
         super().__init__(schema, state)
         self.answer = [{

@@ -1,4 +1,4 @@
-from app.templating.summary.item import Item as SummaryItem
+from app.templating.summary.summary_item import SummaryItem
 
 
 class Block(object):
