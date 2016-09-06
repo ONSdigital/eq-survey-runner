@@ -134,12 +134,12 @@ class QuestionnaireManager(object):
             raise TypeError("Can only handle blocks")
 
     def _append(self, node):
-        if not self._first:
-            self._first = node
-        else:
+        if self._first:
             previous = self._current
             previous.next = node
             node.previous = previous
+        else:
+            self._first = node
 
         self._current = node
         self._tail = node

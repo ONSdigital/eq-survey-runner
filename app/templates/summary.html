@@ -1,0 +1,80 @@
+{% extends theme('layouts/_survey.html') -%}
+
+{% block page_title -%}Summary{% endblock -%}
+
+{% block survey -%}
+<div class="header u-ta-l">
+  <h1 class="header__title saturn">Your responses</h1>
+  <h2 class="header__subtitle mars">Please check carefully before submission.</h2>
+</div>
+
+<div>
+  <dl class="summary">
+  {% for block in content %}
+
+    {% set summary_id = "summary-" ~ loop.index0 %}
+
+    <dt class="summary__title saturn" id="{{summary_id}}">{{block.title | safe}}</dt>
+    <dd class="summary__block">
+      <dl class="summary__items">
+
+      {% for item in block.items %}
+
+        {% set id = summary_id ~ "-" ~ loop.index0 %}
+
+        <dt class="summary__question summary__question--{{item.type}}" id="{{id}}">{{item.question | safe}}</dt>
+        <dd class="summary__answer summary__answer--{{item.type}}">
+
+          <div class="summary__answer-text" id="{{id}}-answer">
+
+            {% if item.type == 'date' %}
+
+              {{item.answer[0].value.strftime('%d %b %Y')}} to {{item.answer[1].value.strftime('%d %b %Y')}}
+
+            {% elif item.type == 'checkbox' %}
+
+              {% if item.answer %}
+
+              <ul class="u-m-no">
+                {% for answer in item.answer %}
+                  <li>{{answer}}</li>
+                {% endfor %}
+              </ul>
+
+              {% else %}
+
+                Not answered
+
+              {% endif %}
+
+            {% elif item.type == 'textarea' %}
+
+              {{item.answer|nl2br or 'Not answered'}}
+
+            {% else %}
+
+              {{item.answer or 'Not answered'}}
+
+            {% endif %}
+
+          </div>
+
+          <div class="summary__edit">
+            <a href="{{item.link}}" class="summary__edit-link" aria-describedby="{{id}} {{id}}-answer">Edit <span class="u-vh">your answer</span></a>
+          </div>
+
+        </dd>
+
+      {% endfor %}
+
+      </dl>
+    </dd>
+  {% endfor %}
+  </dl>
+
+  <form action="" method="POST" novalidate>
+    <button class="btn btn--secondary u-mr-s qa-btn-submit-answers venus" type="submit" name="action[submit_answers]">Submit answers</button>
+  </form>
+</div>
+
+{% endblock -%}
