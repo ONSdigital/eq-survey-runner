@@ -16,7 +16,7 @@ class StateManager(object):
     This class is responsible for saving the state of the User Journey Manager into the database.
     It does this by pickling the Python object graph into JSON and storing that. This means that code
     changes between deployments can cause odd behaviour if the database isn't wipe, as when it deserializes
-    state from old python code to new python code attributes can be missing.
+    state from old python code to new python code attributes can be missing. Hence why we have the StateRecovery class
     '''
     @staticmethod
     def has_state():
@@ -38,6 +38,13 @@ class StateManager(object):
             DatabaseStateManager.save_state(questionnaire_state)
         else:
             InMemoryStateManager.save_state(questionnaire_state)
+
+    @staticmethod
+    def save_post_date(location, post_data):
+        if settings.EQ_SERVER_SIDE_STORAGE_TYPE == 'DATABASE':
+            DatabaseStateManager.save_post_date(location, post_data)
+        else:
+            InMemoryStateManager.save_post_date(location, post_data)
 
 
 class InMemoryStateManager(StateManager):
