@@ -31,6 +31,7 @@ class QuestionnaireManagerFactory(object):
                                                                  valid_locations=state.valid_locations,
                                                                  submitted_at=state.submitted_at)
                 else:
+                    logger.info("Recovering from post data - revision=%s git_ref=%s", state.revision, settings.EQ_GIT_REF)
                     questionnaire_manager = QuestionnaireManager(QuestionnaireManagerFactory._get_schema())
                     StateRecovery.recover_from_post_data(questionnaire_manager)
             else:
