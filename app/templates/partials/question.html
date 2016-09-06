@@ -1,4 +1,4 @@
-{% import 'macros/forms.html' as form %}
+{% import 'macros/helpers.html' as helpers %}
 
 {% set invalid = question.is_valid == False %}
 
@@ -61,7 +61,7 @@
         {% if question.errors %}
         <ul class="list list--bare">
           {% for error in question.errors %}
-            <li class="list__item venus" {{form.errorTracking(question.id, error)}}>{{ error }}</li>
+            <li class="list__item venus" {{helpers.errorTracking(question.id, error)}}>{{ error }}</li>
           {% endfor %}
         </ul>
         {% endif %}
