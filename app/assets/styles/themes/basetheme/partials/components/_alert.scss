@@ -1,12 +1,12 @@
 .alert {
-  border-radius: 3px;
+  border-radius: 0px;
 }
 
 .alert__header {
   color: $color-white;
   margin: 0;
   padding: 0.75rem 1rem;
-  border-radius: 3px 3px 0 0;
+  border-radius: 0;
 }
 
 .alert__title {
@@ -21,12 +21,23 @@
 
 @mixin alert_type($name, $color) {
   .alert--#{$name} {
-    border: 1px solid $color;
     .alert__header {
       background: $color;
     }
     .alert__body {
       background: tint($color, 90%);
+    }
+  }
+  .response--alert{
+    .alert--#{$name} {
+      border-left: 8px solid $color;
+      .alert__header {
+        color: $color-black;
+        background: tint($color, 90%);
+      }
+      .alert__title {
+        color: $color;
+      }
     }
   }
 }

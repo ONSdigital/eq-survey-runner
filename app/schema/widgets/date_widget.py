@@ -55,6 +55,7 @@ class DateWidget(Widget):
                   'select': {
                     'options': self._get_days(parts[0]),
                     'name': self.name + '-day',
+                    'id': self.name + '-day',
                   },
                 },
                 'month': {
@@ -65,6 +66,7 @@ class DateWidget(Widget):
                   'select': {
                     'options': self._get_months(parts[1]),
                     'name': self.name + '-month',
+                    'id': self.name + '-month',
                   },
                 },
                 'year': {
@@ -76,6 +78,7 @@ class DateWidget(Widget):
                     'value': parts[2],
                     'placeholder': 'YYYY',
                     'name': self.name + '-year',
+                    'id': self.name + '-year',
                   },
                 },
             },

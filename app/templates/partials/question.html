@@ -22,7 +22,7 @@
 {% set question_answers %}
   <div class="question__answers">
     {%- for answer in question.answers -%}
-      {% include 'partials/answer.html' %}
+      {% include theme('partials/answer.html') %}
     {%- endfor -%}
   </div>
 {% endset %}
