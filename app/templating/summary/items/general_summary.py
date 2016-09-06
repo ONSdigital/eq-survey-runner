@@ -7,24 +7,23 @@ class GeneralSummaryItem(SummaryItem):
         self.answer = self.prepare_answer()
 
     def prepare_answer(self):
-        if len(self.schema.answers) > 1:
-            # Currently, the only multi-answer questions (apart from date ranges) are in the census test
-            return None
-        else:
+        # Currently, the only multi-answer questions (apart from date ranges) are in the census test
+        if len(self.schema.answers) == 1 and self.state.answers[0].value:
+
             answer_type = self.schema.answers[0].type.upper()
-            if self.state.answers[0].value:
-                if answer_type == 'CURRENCY':
-                    return self._prepare_currency_answer(self.state.answers[0].value)
-                elif answer_type == 'DATE':
-                    return self._prepare_date_value(self.state.answers[0].value)
-                elif answer_type == 'RADIO':
-                    return self._prepare_radio_value(self.state.answers[0].value)
-                elif answer_type == 'CHECKBOX':
-                    return self._prepare_checkbox_values(self.state.answers[0].value)
-                else:
-                    return self.state.answers[0].value
+
+            if answer_type == 'CURRENCY':
+                return self._prepare_currency_answer(self.state.answers[0].value)
+            elif answer_type == 'DATE':
+                return self._prepare_date_value(self.state.answers[0].value)
+            elif answer_type == 'RADIO':
+                return self._prepare_radio_value(self.state.answers[0].value)
+            elif answer_type == 'CHECKBOX':
+                return self._prepare_checkbox_values(self.state.answers[0].value)
             else:
-                return None
+                return self.state.answers[0].value
+
+        return None
 
     def _prepare_currency_answer(self, value):
         return "£{:,}".format(value)
