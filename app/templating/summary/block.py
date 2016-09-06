@@ -9,7 +9,6 @@ class Block(object):
         self.schema = schema
         self.state = state
         self.items = self.build_summary_items(self.state, self.schema)
-        self.title = self.schema.title
 
     def build_summary_items(self, state, schema):
         items = []
