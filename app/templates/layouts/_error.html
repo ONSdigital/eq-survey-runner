@@ -8,18 +8,18 @@
   </div>
 
   <div class="box">
-    <div class="u-fw-b">Sorry, something has gone wrong</div>
+    <div class="u-fw-b">Sorry, something has gone wrong.</div>
 
     {%if tx_id%}
-      <p>Please quote this reference for any support queries</p>
-      <ul class="box__list">
-      {%for id_part in tx_id%}<li class="box__list__item">{{id_part}}</li>{% endfor %}
+      <p>Please quote this reference for any support queries.</p>
+      <ul class="list list--boxes">
+      {%for id_part in tx_id%}<li class="list__item">{{id_part}}</li>{% endfor %}
       </ul>
     {%endif%}
-    <p class="u-m-s u-mb-no">If the problem persists please call the number above.</p>
+    <p class="u-mb-no">If the problem persists please call the number above.</p>
   </div>
 
-  <div class="u-m-m u-ta-c">
+  <div class="u-mt-m u-mb-m">
     <div class="u-fw-b">Your system information</div>
     <div>{{ua.user_agent.family}} ({{ua.user_agent.major or '0'}}.{{ua.user_agent.minor or '0'}}.{{ua.user_agent.patch or '0'}})</div>
     <div>{{ua.os.family}} ({{ua.os.major or '0'}}.{{ua.os.minor or '0'}}.{{ua.os.patch or '0'}})</div>
