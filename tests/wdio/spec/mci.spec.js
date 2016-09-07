@@ -18,39 +18,37 @@ describe('MCI test', function() {
     browser.click('.qa-btn-submit-dev')
   })
 
-  it('The landing page has been reached', function(done) {
+  it('The landing page has been reached', function() {
     const getStartedBtn = browser.element('.qa-btn-get-started')
     getStartedBtn.waitForExist(10000)
     const url = browser.url().value
     expect(url).to.contain('introduction')
     getStartedBtn.click()
-    browser.call(done)
   })
 
-  it('The questionnaire page has been reached', function(done) {
+  it('The questionnaire page has been reached', function() {
     const questionnaireElementExists = browser.isExisting('.qa-questionnaire-form')
     expect(questionnaireElementExists).to.equal(true)
-    browser.call(done)
   })
 
-  it('The form can be filled in and submitted', function(done) {
+  it('The form can be filled in and submitted', function() {
     const submitBtn = browser.element('.qa-btn-submit')
+    const yearFromInput = browser.element('[id="6fd644b0-798e-4a58-a393-a438b32fe637-year"]')
+    const yearToInput = browser.element('[id="06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year"]')
     submitBtn.waitForExist(10000)
-    browser.setValue('#6fd644b0-798e-4a58-a393-a438b32fe637-year', '2016')
-    browser.setValue('#06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year', '2017')
+    yearFromInput.setValue('2016')
+    yearToInput.setValue('2017')
     browser.setValue('.input-type--currency .input', 2000)
     submitBtn.click()
     const url = browser.url().value
     expect(url).to.contain('summary')
-    browser.call(done)
   })
 
-  it('The survey can be completed with "thankyou page" reached', function(done) {
+  it('The survey can be completed with "thankyou page" reached', function() {
     const submitBtn = browser.element('.qa-btn-submit-answers')
     submitBtn.waitForExist(10000)
     submitBtn.click()
     const url = browser.url().value
     expect(url).to.contain('thank-you')
-    browser.call(done)
   })
 })

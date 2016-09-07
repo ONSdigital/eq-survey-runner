@@ -50,7 +50,7 @@ gulp.task('clean:test', () => {
   ])
 })
 
-gulp.task('test:scripts', ['test:scripts:unit'])
+gulp.task('test:scripts', ['test:scripts:unit', 'test:scripts:functional:sauce'])
 
 gulp.task('test:scripts:functional', ['test:scripts:selenium'], (done) => {
   process.env.BASEURL = getEnv()

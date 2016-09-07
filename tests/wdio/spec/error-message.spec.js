@@ -36,8 +36,8 @@ describe('Error messages', function() {
   it('The form can be filled in and submitted to return error', function(done) {
     const submitBtn = browser.element('.qa-btn-submit')
     submitBtn.waitForExist(10000)
-    browser.setValue('#94f368e4-7c6c-4272-a780-8c46328626a2-year', '')
-    browser.setValue('#dc156715-3d48-4af3-afed-7a0a6bb65583-year', '')
+    browser.setValue('[id="94f368e4-7c6c-4272-a780-8c46328626a2-year"]', '')
+    browser.setValue('[id="dc156715-3d48-4af3-afed-7a0a6bb65583-year"]', '')
     submitBtn.click()
     const url = browser.url().value
     expect(url).to.contain('5bce8d8f-0af8-4d35-b77d-744e6179b406')

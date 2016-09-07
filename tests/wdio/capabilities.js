@@ -1,6 +1,7 @@
 const defaultCapabilities = {
   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-  'build': process.env.TRAVIS_BUILD_NUMBER
+  'build': process.env.TRAVIS_BUILD_NUMBER,
+  'public': true
 }
 
 export const chrome = {

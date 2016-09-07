@@ -11,19 +11,21 @@ let config = {
   // Level of logging verbosity: silent | verbose | command | data | result | error
   logLevel: 'verbose',
   maxInstances: 1,
+  doctor: true,
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
-  waitforTimeout: 10000,
+  waitforTimeout: 20000,
   updateJob: true,
   specs: [`${paths.test.wdioSpec}/**/*.spec.js`],
   sync: true,
   capabilities: [{
     name: 'Chrome (local)',
-    browserName: 'chrome'
+    browserName: 'chrome',
+    public: true
   }],
   framework: 'mocha',
-  reporters: ['dot'],
+  reporters: ['dot', 'spec'],
   mochaOpts: {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
@@ -34,7 +36,7 @@ let config = {
 const sauceLabsConfig = {
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
-  capabilities: [chrome, ie11]
+  capabilities: [chrome]
 }
 
 if (process.env.TRAVIS === 'true') {
