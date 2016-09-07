@@ -1,7 +1,7 @@
 import logging
 
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
-from app.templating.summary.block import Block as SummaryBlock
+from app.templating.summary.summary_block import SummaryBlock
 
 
 logger = logging.getLogger(__name__)

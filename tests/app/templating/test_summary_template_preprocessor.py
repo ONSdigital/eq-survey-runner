@@ -40,6 +40,10 @@ class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
         section2 = Section("5", None)
         section3 = Section("6", None)
 
+        section1.title = "Title 1"
+        section2.title = "Title 2"
+        section3.title = "Title 3"
+
         block1 = Block("1", None)
         block2 = Block("2", None)
 

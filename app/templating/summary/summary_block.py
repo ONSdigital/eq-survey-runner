@@ -4,11 +4,12 @@ from app.templating.summary.items.general_summary import GeneralSummaryItem
 from app.utilities.factory import Factory
 
 
-class Block(object):
+class SummaryBlock(object):
     def __init__(self, schema, state):
         self.schema = schema
         self.state = state
         self.items = self.build_summary_items(self.state, self.schema)
+        self.title = self.schema.title
 
     def build_summary_items(self, state, schema):
         items = []
