@@ -10,6 +10,7 @@ class SummaryBlock(object):
         self.state = state
         self.items = self.build_summary_items(self.state, self.schema)
         self.title = self.schema.title
+        self.id = self.schema.id
 
     def build_summary_items(self, state, schema):
         items = []
