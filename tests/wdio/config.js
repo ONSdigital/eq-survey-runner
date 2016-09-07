@@ -16,7 +16,7 @@ let config = {
   baseUrl: process.env.BASEURL,
   waitforTimeout: 10000,
   updateJob: true,
-  specs: [paths.test.wdioSpec],
+  specs: [`${paths.test.wdioSpec}/**/*.spec.js`],
   sync: true,
   capabilities: [{
     name: 'Chrome (local)',
