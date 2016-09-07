@@ -15,7 +15,7 @@ class TestEmptyComments(IntegrationTestCase):
 
         self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '>Get Started<')
-        self.assertRegexpMatches(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
+        self.assertRegexpMatches(content, 'Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         post_data = {
