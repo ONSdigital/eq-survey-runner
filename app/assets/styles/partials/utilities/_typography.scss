@@ -17,22 +17,15 @@ $sizes: (
 }
 
 .u-fw-n {
-  font-weight: normal;;
+  font-weight: normal;
 }
 
 .u-fs-i {
   font-style: italic;
 }
 
-.u-ta-c{
-  text-align: center;
-}
-
 .u-tt-u {
   text-transform: uppercase;
-}
-@include bp-suffix(u-ta-c) {
-  text-align: center;
 }
 
 .u-lighter {

@@ -73,8 +73,6 @@
     background: #fbfbfb;
     @include mq(s) {
       width: 30%;
-      // justify-content: center;
-      // text-align: center;
       border-left: 1px solid $color-borders;
     }
   }
