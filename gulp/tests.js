@@ -5,6 +5,7 @@ import gutil from 'gulp-util'
 import {paths} from './paths'
 import webdriver from 'gulp-webdriver'
 import selenium from 'selenium-standalone'
+import yargs from 'yargs'
 
 const KarmaServer = karma.Server
 
@@ -48,8 +49,12 @@ export function unitTests(done, watch) {
 }
 
 export function functionalTests(done) {
+  const webdriverOpts = {}
+  if (yargs.argv.spec) {
+    webdriverOpts.spec = `${paths.test.wdioSpec}/${yargs.argv.spec}.spec.js`
+  }
   gulp.src(paths.test.wdioConf)
-    .pipe(webdriver())
+    .pipe(webdriver(webdriverOpts))
     .on('error', (err) => {
       if (typeof seleniumServer !== 'undefined') seleniumServer.kill()
       process.exit(1)
