@@ -3,7 +3,6 @@ import os
 
 from app import settings
 from app.parser.schema_parser_factory import SchemaParserFactory
-from app.questionnaire.state_manager import InMemoryStateManager
 from app.questionnaire_state.node import Node
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.schema.block import Block
@@ -22,21 +21,6 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         parser = SchemaParserFactory.create_parser(json.loads(schema))
         self.questionnaire = parser.parse()
         settings.EQ_SERVER_SIDE_STORAGE_TYPE = "IN_MEMORY"
-
-    def test_new_and_get_instance(self):
-        # clear any state
-        InMemoryStateManager.IN_MEMORY_STATE = {}
-
-        # test there is no instance
-        questionnaire_manager = QuestionnaireManager.get_instance()
-        self.assertIsNone(questionnaire_manager)
-
-        # test we can construct an instance
-        questionnaire_manager = QuestionnaireManager.new_instance(self.questionnaire)
-        self.assertIsNotNone(questionnaire_manager)
-
-        # check get now returns one
-        self.assertIsNotNone(QuestionnaireManager.get_instance())
 
     def test_get_state_is_none(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)

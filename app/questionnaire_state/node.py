@@ -9,3 +9,6 @@ class Node(object):
 
         # the state of the node, this is always a Block object
         self.state = state
+
+    def __str__(self):
+        return self.item_id

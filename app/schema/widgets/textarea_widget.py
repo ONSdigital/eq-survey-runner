@@ -16,7 +16,6 @@ class TextareaWidget(Widget):
                 'label': state.schema_item.label,
                 'value': state.input or '',
                 'placeholder': '',
-                'maxChars': 2000,
             },
             'question': {
                 'id': state.schema_item.container.id,

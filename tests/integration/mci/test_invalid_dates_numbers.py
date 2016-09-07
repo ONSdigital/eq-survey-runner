@@ -15,7 +15,16 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We are on the landing page
         content = resp.get_data(True)
+        self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '>Get Started<')
+        self.assertRegexpMatches(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
+
+        # We proceed to the questionnaire
+        post_data = {
+            'action[start_questionnaire]': 'Start Questionnaire'
+        }
+        resp = self.client.post('/questionnaire/' + eq_id + '/789/introduction', data=post_data, follow_redirects=False)
+        self.assertEquals(resp.status_code, 302)
 
         # We proceed to the questionnaire
         resp = self.client.get('/questionnaire/' + eq_id + '/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d', follow_redirects=True)
