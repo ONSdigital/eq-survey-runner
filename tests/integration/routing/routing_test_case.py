@@ -69,7 +69,7 @@ class RoutingTestCase(IntegrationTestCase):
     def get_summary_items(self):
         items = {}
 
-        tags = self._content.select("dd > a")
+        tags = self._content.select("dd a")
         for tag in tags:
             item_id = tag.attrs['href'].split('#')[1]
             items[item_id] = tag.string
