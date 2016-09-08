@@ -1,0 +1,411 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Monthly Business Survey - Retail Sales Index",
+    "description": "RSI Description",
+    "theme": "basetheme",
+    "introduction": {
+        "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>"
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "1",
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "980b148e-0856-4e50-9afe-67a4fa6ae13b",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "b3c2e966-77ec-4373-b3dd-fdafb5a05cbd",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "fad63234-1083-4f6a-826a-20b5df6e4baa",
+                                            "label": "From",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "11",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "c8c4bd92-fd45-4fd1-83b6-18c813de2df2",
+                                            "label": "To",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "12",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "1ce1e40e-64e1-4f9a-bb56-85f04c9e7e5d",
+                                    "title": "What are the dates of the period that you will be reporting for?",
+                                    "type": "DateRange",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Reporting period",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "6c8a2f39-e0d8-406f-b463-2151225abea2",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "fc71d2a7-e5b3-4409-bb66-902efbbf7e20",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "fe88fa9a-3c49-4fbc-9408-a91c0a1cc6d5",
+                                            "label": "Total retail turnover",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "20",
+                                            "type": "Currency",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "MANDATORY": "Please provide a value, even if your value is 0.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li></ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "61c5a553-3ba7-4cd2-bdf0-cd67f011ea6c",
+                                    "title": "For the reporting period, what was the value of the business’s total retail turnover?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Retail turnover",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "0c7c8876-6a63-4251-ac29-b821b3e9b1bc",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "5355deab-0b1e-495d-b4ab-f3e1f7c0c6f1",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "78774493-5b64-45c4-8072-22f1a9638095",
+                                            "label": "Internet sales",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "21",
+                                            "type": "Currency",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "MANDATORY": "Please provide a value, even if your value is 0.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4><ul> <li>VAT</li></ul></div>",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "449774d1-7969-4282-bbce-bceb7e8ba374",
+                                    "title": "Of the business's total retail turnover, what was the value of internet sales?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Internet sales",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "a42b5752-1896-4f52-9d58-320085be92a7",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "a04ed3cc-ddbc-48e0-83c2-630d2b0cb063",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                                "properties": {
+                                                    "max_length": "2000"
+                                                }
+                                            },
+                                            "guidance": "<div><p>Examples of commentary:</p><p><strong>'In-store promotion'</strong></p> <p>Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.</p><strong> 'Special events (e.g. sporting events)'</strong></p><p>This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (e.g., televisions and audio equipment). This led to an increase in sales both in-store and online.</p><p><strong>‘Weather'</strong></p><p>The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.</div>",
+                                            "id": "287e8c33-9d52-4589-9c1c-3db11d0eec20",
+                                            "label": "Comments",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "146",
+                                            "type": "Textarea",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "<div><p>We rely on your commentary to 'tell the story' behind changes to the business's figures. By commenting here it will reduce the need for us to call you. Comment on significant changes to the business's total retail turnover figures  from:<ul><li>the previous reporting period</li> <li>the same reporting period last year</li></ul></div>",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "fe06b609-5200-404b-bd94-da94843e1b8c",
+                                    "title": "Indicate the reasons for any changes in the business's total retail turnover",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Changes in total retail turnover",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "0b29d3f7-5905-43d8-9921-5b353db68104",
+                    "sections": [
+                        {
+                            "description": "<p><b>On {exercise.employment_date:%-d %B %Y} what was the number of employees for {exercise.ru_name}?</b></p><p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> <br/><h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul> </div>",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "2f73e574-2178-4415-afcd-6c07adb75864",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "dc309fdf-eeaf-4f1d-85df-1f5569749ea8",
+                                            "label": "Male employees working more than 30 hours per week",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "51",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "17136377-f52e-4a00-a1d6-039972fc26ab",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                },
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "06909776-3238-4e8b-9a3f-97e5a6b2182f",
+                                            "label": "Male employees working 30 hours or less per week",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "52",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "0afacb86-eaa8-4cb8-8b0e-c869293d7208",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                },
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "a7e2cd8f-54e5-427b-b9e2-ce90613a5dba",
+                                            "label": "Female employees working more than 30 hours per week",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "53",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "1c8ee341-c232-4edc-911d-fad53c13c1cd",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                },
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "bf73b3bc-4d8d-4472-8c1b-ca7680a39469",
+                                            "label": "Female employees working 30 hours or less per week",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "54",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "62a7edd6-dbb6-4f56-86d5-354fc973a6d7",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                },
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "c6881970-98ff-4005-af4a-60bfd9b6179f",
+                                            "label": "Total number of employees",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "50",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "50ecf4e0-25bc-41ca-a354-8523d6a25377",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Employees",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "f74d1147-673c-497a-9616-763829d944ac",
+            "title": "",
+            "validation": []
+        }
+    ]
+}
