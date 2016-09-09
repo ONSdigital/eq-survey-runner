@@ -19,4 +19,4 @@ class TestConfirmationPage(unittest.TestCase):
 
     def test_get_next_location_confirmation(self):
         next_location = self.routing_engine.get_next_location('5e633f04-073a-44c0-a9da-a7cc2116b937')
-        self.assertEqual('confirmation', next_location)
+        self.assertEqual('summary', next_location)
