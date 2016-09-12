@@ -35,30 +35,28 @@ EXPECTED_RESPONSE = json.loads("""
         }
       }""")
 
+JWT = {
+  MetaDataConstants.USER_ID.claim_id: "789473423",
+  MetaDataConstants.FORM_TYPE.claim_id: "0205",
+  MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
+  MetaDataConstants.EQ_ID.claim_id: "1",
+  MetaDataConstants.PERIOD_ID.claim_id: "2016-02-01",
+  MetaDataConstants.PERIOD_STR.claim_id: "2016-01-01",
+  MetaDataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
+  MetaDataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
+  MetaDataConstants.RU_REF.claim_id: "432423423423",
+  MetaDataConstants.RU_NAME.claim_id: "Apple",
+  MetaDataConstants.RETURN_BY.claim_id: "2016-07-07"
+}
 
 class TestConverter(SurveyRunnerTestCase):
-
     def test_prepare_answers(self):
         with self.application.test_request_context():
-            self.maxDiff = None
-
             user = User("1", "2")
 
-            jwt = {
-                MetaDataConstants.USER_ID.claim_id: "789473423",
-                MetaDataConstants.FORM_TYPE.claim_id: "0205",
-                MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
-                MetaDataConstants.EQ_ID.claim_id: "1",
-                MetaDataConstants.PERIOD_ID.claim_id: "2016-02-01",
-                MetaDataConstants.PERIOD_STR.claim_id: "2016-01-01",
-                MetaDataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
-                MetaDataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
-                MetaDataConstants.RU_REF.claim_id: "432423423423",
-                MetaDataConstants.RU_NAME.claim_id: "Apple",
-                MetaDataConstants.RETURN_BY.claim_id: "2016-07-07"
-            }
+            self.maxDiff = None
 
-            metadata = MetaDataStore.save_instance(user, jwt)
+            metadata = MetaDataStore.save_instance(user, JWT)
 
             user_answer = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
 
@@ -107,6 +105,45 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEquals(EXPECTED_RESPONSE["metadata"], answer_object["metadata"])
             self.assertEquals(EXPECTED_RESPONSE["paradata"], answer_object["paradata"])
             self.assertEquals(EXPECTED_RESPONSE["data"], answer_object["data"])
+
+    def test_zero_answers(self):
+        with self.application.test_request_context():
+            self.maxDiff = None
+            user = User("1", "2")
+
+            metadata = MetaDataStore.save_instance(user, JWT)
+
+            user_answer = {"GHI": 0}
+
+            answer = Answer()
+            answer.id = "GHI"
+            answer.code = "003"
+
+            question = Question()
+            question.id = 'question-2'
+            question.add_answer(answer)
+
+            section = Section()
+            section.add_question(question)
+
+            block = Block()
+            block.id = 'block-1'
+            block.add_section(section)
+
+            group = Group()
+            group.id = 'group-1'
+            group.add_block(block)
+
+            questionnaire = Questionnaire()
+            questionnaire.survey_id = "021"
+            questionnaire.add_group(group)
+            questionnaire.register(question)
+            questionnaire.register(answer)
+
+            answer_object, submitted_at = Converter.prepare_answers(metadata, questionnaire, user_answer)
+
+            # Check the converter correctly
+            self.assertEquals("0", answer_object["data"]["003"])
 
 if __name__ == '__main__':
     unittest.main()
