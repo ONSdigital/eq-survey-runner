@@ -11,16 +11,18 @@ class Answer(Item):
         self.input = None
 
     def update_state(self, user_input):
+
+        # Clear any previous value and validation results
+        self.value = None
+        self.is_valid = True
+        self.errors = []
         # Get the user input
-        self.value = None  # Clear any previous value
         self.input = self.schema_item.get_user_input(user_input)
 
         # Try and get the typed value
         if self.input:
             try:
                 self.value = self.schema_item.get_typed_value(user_input)
-                self.is_valid = True
-                self.errors = []
             except TypeCheckingException as e:
                 self.is_valid = False
                 self.errors = []
