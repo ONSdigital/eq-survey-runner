@@ -86,18 +86,18 @@ class TestConverter(SurveyRunnerTestCase):
             group.id = 'group-1'
             group.add_block(block)
 
-            questionniare = Questionnaire()
-            questionniare.survey_id = "021"
-            questionniare.add_group(group)
+            questionnaire = Questionnaire()
+            questionnaire.survey_id = "021"
+            questionnaire.add_group(group)
 
-            questionniare.register(group)
-            questionniare.register(block)
-            questionniare.register(section)
-            questionniare.register(question)
-            questionniare.register(answer_1)
-            questionniare.register(answer_2)
+            questionnaire.register(group)
+            questionnaire.register(block)
+            questionnaire.register(section)
+            questionnaire.register(question)
+            questionnaire.register(answer_1)
+            questionnaire.register(answer_2)
 
-            answer_object, submitted_at = Converter.prepare_answers(metadata, questionniare, user_answer)
+            answer_object, submitted_at = Converter.prepare_answers(metadata, questionnaire, user_answer)
 
             self.assertEquals(EXPECTED_RESPONSE["type"], answer_object["type"])
             self.assertEquals(EXPECTED_RESPONSE["version"], answer_object["version"])
