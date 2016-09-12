@@ -5,6 +5,9 @@ python:
 - '3.5'
 env:
 - EQ_SCHEMA_BUCKET=""
+before_install:
+- sudo apt-get update
+- sudo apt-get install libxml2-dev libxslt-dev
 install:
 - ". $HOME/.nvm/nvm.sh"
 - rm -rf node_modules
@@ -16,9 +19,9 @@ install:
 - pip install --require-hashes -r requirements.txt
 - pip install -r requirements_for_test.txt
 before_script:
-- "./scripts/run_app.sh"
-script:
 - "./scripts/run_tests.sh"
+script:
+- "./scripts/run_app.sh"
 # fail travis if under X% test coverage
 - coverage report --fail-under=77
 notifications:
