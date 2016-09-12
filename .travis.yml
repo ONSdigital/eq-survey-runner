@@ -6,8 +6,8 @@ python:
 env:
 - EQ_SCHEMA_BUCKET=""
 before_install:
-- apt-get update
-- apt-get install libxml2-dev libxslt-dev
+- sudo apt-get update
+- sudo apt-get install libxml2-dev libxslt-dev
 install:
 - ". $HOME/.nvm/nvm.sh"
 - rm -rf node_modules
