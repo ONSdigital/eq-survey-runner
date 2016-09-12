@@ -97,7 +97,7 @@ class TestConverter(SurveyRunnerTestCase):
             questionniare.register(answer_1)
             questionniare.register(answer_2)
 
-            answer_object, submitted_at = Converter.prepare_answers(user, metadata, questionniare, user_answer)
+            answer_object, submitted_at = Converter.prepare_answers(metadata, questionniare, user_answer)
 
             self.assertEquals(EXPECTED_RESPONSE["type"], answer_object["type"])
             self.assertEquals(EXPECTED_RESPONSE["version"], answer_object["version"])

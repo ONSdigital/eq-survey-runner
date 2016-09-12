@@ -50,7 +50,7 @@ class SubmitterConstants(object):
 class Converter(object):
 
     @staticmethod
-    def prepare_answers(user, metadata_store, questionnaire, answers):
+    def prepare_answers(metadata_store, questionnaire, answers):
         """
         Create the JSON answer format for down stream processing
 
