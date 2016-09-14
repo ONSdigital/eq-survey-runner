@@ -120,6 +120,7 @@
     "wdio-mocha-framework": "^0.2.12",
     "wdio-sauce-service": "^0.2.4",
     "wdio-selenium-standalone-service": "0.0.1",
+    "wdio-spec-reporter": "0.0.3",
     "webdriverio": "^4.2.1",
     "yargs": "^4.8.1"
   },
