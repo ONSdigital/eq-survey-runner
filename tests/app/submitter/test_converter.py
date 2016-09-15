@@ -106,7 +106,7 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEquals(EXPECTED_RESPONSE["paradata"], answer_object["paradata"])
             self.assertEquals(EXPECTED_RESPONSE["data"], answer_object["data"])
 
-    def test_zero_answers(self):
+    def test_answer_with_zero(self):
         with self.application.test_request_context():
             self.maxDiff = None
             user = User("1", "2")
