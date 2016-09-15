@@ -5,7 +5,7 @@ from werkzeug.datastructures import MultiDict
 class TestConfirmationPage(StarWarsTestCase):
 
     def test_confirmation_page(self):
-        self.rouge_one_login_and_check_introduction_text()
+        self.rogue_one_login_and_check_introduction_text()
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
@@ -14,7 +14,7 @@ class TestConfirmationPage(StarWarsTestCase):
 
         character_page = response.headers['Location']
 
-        self.rouge_one_check_character_page(character_page)
+        self.rogue_one_check_character_page(character_page)
 
         # Our answers
         form_data = MultiDict()
@@ -30,7 +30,7 @@ class TestConfirmationPage(StarWarsTestCase):
         # Like page
         description_page = resp.headers['Location']
 
-        self.rouge_one_check_description_page(description_page)
+        self.rogue_one_check_description_page(description_page)
 
         # Our answers
         form_data = MultiDict()
@@ -46,7 +46,7 @@ class TestConfirmationPage(StarWarsTestCase):
         # Takings page
         takings_page = resp.headers['Location']
 
-        self.rouge_one_check_takings_page(takings_page)
+        self.rogue_one_check_takings_page(takings_page)
 
         # Our answers
         form_data = MultiDict()
@@ -62,7 +62,7 @@ class TestConfirmationPage(StarWarsTestCase):
         # Confirmation page
         confirmation_page = resp.headers['Location']
 
-        self.rouge_one_check_confirmation_page(confirmation_page)
+        self.rogue_one_check_confirmation_page(confirmation_page)
 
         # User Action
         form_data.add("action[save_continue]", "Save &amp; Continue")
