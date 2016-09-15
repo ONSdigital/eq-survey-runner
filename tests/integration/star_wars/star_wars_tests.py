@@ -285,35 +285,35 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, '<title>Thank You</title>')
         self.assertRegexpMatches(content, '>Successfully Received<')
 
-    def rouge_one_login_and_check_introduction_text(self):
-        self.token = create_token('rouge_one', '0')
+    def rogue_one_login_and_check_introduction_text(self):
+        self.token = create_token('rogue_one', '0')
         response = self.get_first_page()
-        self.rouge_one_check_introduction_text(response)
+        self.rogue_one_check_introduction_text(response)
 
-    def rouge_one_check_introduction_text(self, response):
+    def rogue_one_check_introduction_text(self, response):
         content = response.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '(?s)Rouge One.*?Rouge One')
+        self.assertRegexpMatches(content, '(?s)Rogue One.*?Rogue One')
         self.assertRegexpMatches(content, 'Good luck in stealing the plans to the Death Star')
 
-    def rouge_one_check_character_page(self, page):
+    def rogue_one_check_character_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Who do you want to know more about?')
         self.assertRegexpMatches(content, 'Jyn Erso')
         self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-3')
 
-    def rouge_one_check_description_page(self, page):
+    def rogue_one_check_description_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'An accomplished Rebel Alliance Intelligence Officer')
         self.assertRegexpMatches(content, 'Do you like this page?')
         self.assertRegexpMatches(content, '3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-2')
 
-    def rouge_one_check_takings_page(self, page):
+    def rogue_one_check_takings_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'In millions, how much do you think this film will take?')
         self.assertRegexpMatches(content, 'a04a516d-502d-4068-bbed-a43427c68cd9')
 
-    def rouge_one_check_confirmation_page(self, page):
+    def rogue_one_check_confirmation_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Confirmation')
         self.assertRegexpMatches(content, 'Thank you for your answers, do you wish to submit')
