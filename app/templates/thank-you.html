@@ -5,25 +5,19 @@
 {% block survey %}
 
   <div class="header u-mb-s">
-    <h1 class="header__title jupiter">Submission Successful</h1>
-    <h2 class="header__subtitle saturn">Thank you for submitting the {{ meta.survey.title }}, your responses have been successfully received.</h2>
+    <h1 class="header__title saturn">Submission Successful</h1>
+    <p>Thank you for submitting the {{ meta.survey.title }}, your responses have been successfully received.</p>
   </div>
-
-  {% with %}
-  {% set alert_body %}
-  <strong class="venus">{% if content.submitted_at %} Submitted on {{content.submitted_at}}{% endif %}</strong>
-  <p class="mars">Transaction ID (Please quote this reference for any support queries)</p>
-  {% if meta.respondent %}
-  <ul class="list list--boxes">
-  {%for id_part in meta.respondent.tx_id%}<li class="list__item">{{id_part}}</li>{% endfor %}
-  </ul>
-  {% endif %}
-  <p class="u-mb-no mars">You may wish to save or print this page for your records.</p>
-  {% endset %}
-  {% endwith %}
-
-  {% set alert_types = ["simple", "neutral"] %}
-  {% include 'partials/alert.html' %}
+  <div class="alert alert--simple alert--success alert--spacious">
+    <strong class="venus">{% if content.submitted_at %} Submitted on {{content.submitted_at}}{% endif %}</strong>
+    <p class="mars">Transaction ID (Please quote this reference for any support queries)</p>
+    {% if meta.respondent %}
+    <ul class="list list--boxes">
+    {%for id_part in meta.respondent.tx_id%}<li class="list__item">{{id_part}}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    <p class="u-mb-no mars">You may wish to save or print this page for your records.</p>
+  </div>
   {{answer_guidance|safe}}
 
 

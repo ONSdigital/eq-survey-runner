@@ -22,15 +22,13 @@
   list-style-type: none;
   padding: 0;
   margin: 1rem auto;
-  @include mq(m) {
-    margin: 2rem auto;
-  }
   .list__item {
     border: 1px solid #ccc;
     display: inline-block;
     padding: 0.4rem;
     text-align: center;
     margin: 0.2rem;
+    background: rgba(255, 255, 255, 0.5);
     &:first-child {
       margin-left: 0;
     }

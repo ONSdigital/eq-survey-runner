@@ -50,3 +50,10 @@
     padding: 0;
   }
 }
+
+.alert--spacious {
+  padding: 1rem;
+  @include mq(m) {
+    padding: 2rem;
+  }
+}
