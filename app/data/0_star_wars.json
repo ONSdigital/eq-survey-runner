@@ -7,7 +7,11 @@
     "theme": "starwars",
     "description": "Kitchen sink test for the Star Wars questionnaire",
     "introduction": {
-        "description": "May the force be with you"
+        "description": "May the force be with you",
+        "information_to_provide": [
+            "Yoda's siblings",
+            "Total Yearly cost of Rebel Alliance"
+        ]
     },
     "display": {
         "properties": {}
