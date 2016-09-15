@@ -50,7 +50,7 @@ class SubmitterConstants(object):
 class Converter(object):
 
     @staticmethod
-    def prepare_answers(user, metadata_store, questionnaire, answers):
+    def prepare_answers(metadata_store, questionnaire, answers):
         """
         Create the JSON answer format for down stream processing
 
@@ -87,7 +87,7 @@ class Converter(object):
             item = questionnaire.get_item_by_id(key)
             if item is not None:
                 value = answers[key]
-                if value:
+                if value is not None:
                     data[item.code] = Converter._encode_value(value)
 
         metadata = {SubmitterConstants.USER_ID_KEY: metadata_store.user_id,
