@@ -130,6 +130,7 @@ class SchemaParser(AbstractSchemaParser):
 
         introduction.legal = ParserUtils.get_optional_string(intro_schema, 'legal')
         introduction.description = ParserUtils.get_optional_string(intro_schema, 'description')
+        introduction.information_to_provide = ParserUtils.get_optional_array(intro_schema, 'information_to_provide')
 
         return introduction
 
