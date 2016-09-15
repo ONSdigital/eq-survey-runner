@@ -1,4 +1,4 @@
-.response {
+.answer {
   padding: 0;
   margin-bottom: 1rem;
   @include mq(m) {
@@ -9,6 +9,6 @@
   }
 }
 
-.response__guidance {
+.answer__guidance {
   display: block;
 }

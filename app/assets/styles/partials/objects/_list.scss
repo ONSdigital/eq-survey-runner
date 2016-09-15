@@ -40,3 +40,9 @@
     }
   }
 }
+
+.list--errors {
+  .list__item {
+    color: $color-red;
+  }
+}

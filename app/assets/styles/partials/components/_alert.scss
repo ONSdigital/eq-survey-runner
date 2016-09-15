@@ -1,22 +1,16 @@
 .alert {
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .alert__header {
-  font-size: 0.9rem;
-  font-weight: 700;
   color: $color-white;
   margin: 0;
   padding: 0.75rem 1rem;
-  border-radius: 3px 3px 0 0;
+  border-radius: 0;
 }
 
 .alert__title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: $color-white;
   margin: 0;
-  padding: 0;
 }
 
 .alert__body {
@@ -25,12 +19,14 @@
 
 @mixin alert_type($name, $color) {
   .alert--#{$name} {
-    border: 1px solid $color;
+    background: tint($color, 90%);
     .alert__header {
       background: $color;
     }
-    .alert__body {
-      background: tint($color, 90%);
+  }
+  .alert--simple {
+    &.alert--#{$name} {
+      border-color: $color;
     }
   }
 }
@@ -38,3 +34,19 @@
 @include alert_type(error, $color-red);
 @include alert_type(warn, $color-amber);
 @include alert_type(success, $color-green-dark);
+@include alert_type(neutral, $color-secondary);
+
+.alert--simple {
+  border: none;
+  border-left: 8px solid transparent;
+  color: $color-black;
+  padding: 1rem;
+  .alert__header {
+    background: none;
+    padding: 0 0 1rem;
+  }
+  .alert__body {
+    background: none;
+    padding: 0;
+  }
+}
