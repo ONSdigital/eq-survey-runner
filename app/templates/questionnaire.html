@@ -4,67 +4,69 @@
 
 {% block survey %}
 
-<h1 class="u-vh">Monthly Business Survey - Retail Sales Index</h1>
-<div class="u-mb-xs">
-  <a class="mars" href="previous">Previous</a>
-</div>
-<br/>
-{% set state = content %}
-{% set all_errors = state.get_errors().items() %}
-{% if all_errors %}
-  {% with %}
+<div class="grid">
+  <div class="grid__col col-8@m">
+    <div class="u-mb-xs">
+      <a class="mars" href="previous">Previous</a>
+    </div>
+    <br/>
+    {% set state = content %}
+    {% set all_errors = state.get_errors().items() %}
+    {% if all_errors %}
 
-    {% set alert_title %}<h2 class="alert__title venus">This page has {{all_errors|length}} errors</h2> {% endset %}
-
-    {% set alert_body %}
-    <p class="mars">These <strong>must be corrected</strong> to continue.</p>
-    <ul class="list list--bare">
-
-      {% for item_id, errors in all_errors %}
-        {% set loop_index = loop.index %}
-        {% if errors %}
-        {% for error in errors %}
-        <li class="list__item mars">
-          {{loop_index}}) {{ error }} <a href="#{{item_id}}">{{_('Go to this error')}}</a>
-        </li>
-        {% endfor %}
-        {% endif %}
-      {% endfor %}
-    </ul>
-    {% endset %}
-
-    <div class="u-mb-s u-mb-l@s">{% include 'partials/alert.html' %}</div>
-
-  {% endwith %}
-
-{% endif %}
-
-<form action="" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
-
-    {% set group = state.schema_item.container %}
-
-      <div class="group" id="{{group.id}}">
-
-      {% set block = state.schema_item %}
-
-        <div class="block" id="{{block.id}}">
-
-        {% for section in state.children %}
-
-          {% include 'partials/section.html' %}
-
-        {% endfor %}
-
+      <div class="u-mb-s u-mb-l@s">
+        <div class="alert alert--error">
+          <div class="alert__header">
+            <h1 class="alert__title venus">This page has {{all_errors|length}} errors</h1>
+          </div>
+          <div class="alert__body">
+            <p class="mars">These <strong>must be corrected</strong> to continue.</p>
+            <ul class="list list--bare">
+              {% for item_id, errors in all_errors %}
+                {% set loop_index = loop.index %}
+                {% if errors %}
+                {% for error in errors %}
+                <li class="list__item mars js-inpagelink" data-inputid="{{item_id}}">
+                  {{loop_index}}) <a class="js-inpagelink-trigger" href="#{{item_id}}">{{ error }}</a>
+                </li>
+                {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
         </div>
-
       </div>
 
-  <button class="btn btn--secondary qa-btn-submit venus" type="submit" name="action[save_continue]">Save &amp; Continue</button>
-  <br/>
-  <div class="u-mt-xs">
-    <a class="mars" href="previous">Previous</a>
-  </div>
+    {% endif %}
 
-</form>
+    <form action="" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
+
+        {% set group = state.schema_item.container %}
+
+          <div class="group" id="{{group.id}}">
+
+          {% set block = state.schema_item %}
+
+            <div class="block" id="{{block.id}}">
+
+            {% for section in state.children %}
+
+              {% include 'partials/section.html' %}
+
+            {% endfor %}
+
+            </div>
+
+          </div>
+
+      <button class="btn btn--secondary qa-btn-submit venus" type="submit" name="action[save_continue]">Save &amp; Continue</button>
+      <br/>
+      <div class="u-mt-xs">
+        <a class="mars" href="previous">Previous</a>
+      </div>
+
+    </form>
+  </div>
+</div>
 
 {% endblock %}

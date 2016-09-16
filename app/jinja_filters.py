@@ -9,6 +9,14 @@ blueprint = flask.Blueprint('filters', __name__)
 
 @jinja2.contextfilter
 @blueprint.app_template_filter()
+def strcat(context, mylist, mystr):
+    return [mystr + s for s in mylist]
+
+blueprint.add_app_template_filter(strcat)
+
+
+@jinja2.contextfilter
+@blueprint.app_template_filter()
 def format_currency(context, value):
     return "£{:,}".format(value)
 

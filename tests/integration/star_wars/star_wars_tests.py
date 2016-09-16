@@ -282,8 +282,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
         # Thank you page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Thank You</title>')
-        self.assertRegexpMatches(content, '>Successfully Received<')
+        self.assertRegexpMatches(content, '<title>Submission Successful</title>')
 
     def rogue_one_login_and_check_introduction_text(self):
         self.token = create_token('rogue_one', '0')
