@@ -13,6 +13,8 @@
       const periodID = 'period_id'
       const periodString = '.period_str'
       browser.url('/dev')
+      browser.windowHandleMaximize()
+      browser.deleteCookie()
       browser.waitForExist(userId)
       browser.setValue(userId, 'yoganandkunche')
       browser.waitForExist(collectionSID)
