@@ -35,14 +35,14 @@
       </div>
     </div>
     <div>
+      {% if meta.survey.information_to_provide %}
       <h2 class="header__title saturn">You will be asked to provide information for the business, including:</h2>
       <ul>
-        <li>value of total retail turnover</li>
-        <li>value of internet sales</li>
-        <li>numbers of employees</li>
-        <li>reasons for changes to figures</li>
+        {% for information_item in meta.survey.information_to_provide %}
+          <li>{{ information_item }}</li>
+        {% endfor %}
       </ul>
-
+      {% endif %}
       <div class="notice u-mb-s u-mb-m@s">
         <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
       </div>
