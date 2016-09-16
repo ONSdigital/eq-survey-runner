@@ -1,7 +1,10 @@
 .list {
   margin: 0;
   padding: 0;
-  .list__item:last-child {
+}
+
+.list__item {
+  &:last-child {
     margin: 0;
   }
 }
@@ -12,4 +15,32 @@
 
 .list--bullets {
   margin-left: 1rem;
+}
+
+.list--boxes {
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem auto;
+  .list__item {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 0.4rem;
+    text-align: center;
+    margin: 0.2rem;
+    background: rgba(255, 255, 255, 0.5);
+    &:first-child {
+      margin-left: 0;
+    }
+    @include mq(m) {
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+    }
+  }
+}
+
+.list--errors {
+  .list__item {
+    color: $color-red;
+  }
 }
