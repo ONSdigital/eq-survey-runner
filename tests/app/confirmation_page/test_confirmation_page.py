@@ -10,7 +10,7 @@ import os
 class TestConfirmationPage(unittest.TestCase):
 
     def setUp(self):
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "0_rouge_one.json"))
+        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "0_rogue_one.json"))
         schema = schema_file.read()
         parser = SchemaParserFactory.create_parser(json.loads(schema))
         self.questionnaire = parser.parse()

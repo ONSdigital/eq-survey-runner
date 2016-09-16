@@ -36,7 +36,7 @@ class Submitter(object):
         :return: a datetime object indicating the time it was submitted
         :raise: a submission failed exception
         '''
-        message, submitted_at = Converter.prepare_answers(user, metadata, schema, answers)
+        message, submitted_at = Converter.prepare_answers(metadata, schema, answers)
 
         encrypted_message = self.encrypt_message(message)
 

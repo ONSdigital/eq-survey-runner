@@ -14,7 +14,7 @@ class Section(Item):
         self.questionnaire = None
         self.validation = None
         self.questionnaire = None
-        self.templatable_properties = ['title']
+        self.templatable_properties = ['title', 'description']
         self.display = Display()
         self.skip_condition = None
 
