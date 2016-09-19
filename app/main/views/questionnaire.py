@@ -38,8 +38,8 @@ def survey(eq_id, form_type, period_id, collection_id, location):
         current_survey = eq_id + form_type + period_id + collection_id
         metadata_survey = metadata.eq_id + metadata.form_type + metadata.period_id + metadata.collection_exercise_sid
 
-        if not current_survey == metadata_survey:
-            return system_message(frontend_messages.MULTIPLE_SURVEYS)
+        if current_survey == metadata_survey:
+            return system_message(frontend_messages.messages)
 
         # Redirect to thank you page if the questionnaire has already been submitted
         if questionnaire_manager.submitted and location != 'thank-you':
