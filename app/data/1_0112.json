@@ -246,7 +246,7 @@
                     "id": "0b29d3f7-5905-43d8-9921-5b353db68104",
                     "sections": [
                         {
-                            "description": "<p><b>On {exercise.employment_date:%-d %B %Y} what was the number of employees for {exercise.ru_name}?</b></p><p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> <br/><h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul> </div>",
+                            "description": "<p><b>On {exercise.employment_date:%-d %B %Y} what was the number of employees?</b></p><p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> <br/><h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul> </div>",
                             "display": {
                                 "properties": {}
                             },
@@ -443,7 +443,7 @@
                                         "properties": {}
                                     },
                                     "id": "a30d5bdd-72e6-43ab-91fc-4e63c5174cbb",
-                                    "title": "Explain any significant changes in the number of employees for {exercise.ru_name}",
+                                    "title": "Explain any significant changes in the number of employees",
                                     "type": "General",
                                     "validation": []
                                 }
