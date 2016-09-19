@@ -38,10 +38,13 @@ class MetaDataTemplatePreprocessor(object):
         return respondent_meta
 
     def _build_survey_meta(self, schema):
+        introduction = schema.introduction
+
         survey_meta = {
             "title": schema.title,
             "survey_code": schema.survey_id,
-            "description": self._get_description(schema),
+            "description": self._get_description(introduction),
+            "information_to_provide": self._get_info_to_provide(introduction),
             "theme": schema.theme,
             "return_by": self._format_date(self._get_metadata().return_by),
             "start_date":  self._format_date(self._get_metadata().ref_p_start_date),
@@ -51,11 +54,17 @@ class MetaDataTemplatePreprocessor(object):
         }
         return survey_meta
 
-    def _get_description(self, schema):
-        if schema.introduction and schema.introduction.description:
-            return schema.introduction.description
-        else:
-            return None
+    def _get_info_to_provide(self, introduction):
+        if introduction and introduction.information_to_provide:
+            return introduction.information_to_provide
+
+        return None
+
+    def _get_description(self, introduction):
+        if introduction and introduction.description:
+            return introduction.description
+
+        return None
 
     @staticmethod
     def _format_date(date):

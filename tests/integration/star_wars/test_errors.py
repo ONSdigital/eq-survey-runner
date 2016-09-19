@@ -88,6 +88,6 @@ class TestPageErrors(StarWarsTestCase):
         resp = self.navigate_to_page(first_page)
 
         content = resp.get_data(True)
-        self.assertRegex(content, '<a href="#a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d">Go to this error')
+        self.assertRegex(content, 'href="#a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d"')
         # We DO NOT have the error from page two
-        self.assertNotRegex(content, '<a href="215015b1-f87c-4740-9fd4-f01f707ef558">Go to this error')
+        self.assertNotRegex(content, 'href="215015b1-f87c-4740-9fd4-f01f707ef558"')

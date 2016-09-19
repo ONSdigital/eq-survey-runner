@@ -53,7 +53,7 @@ def available_schemas():
     available_local_schemas(files)
     if settings.EQ_SCHEMA_BUCKET:
         available_s3_schemas(files)
-    return files
+    return sorted(files)
 
 
 def available_local_schemas(files):
