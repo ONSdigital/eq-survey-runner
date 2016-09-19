@@ -30,6 +30,10 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, 'You are required by law to complete this questionnaire')
         self.assertRegexpMatches(content, 'NB: Your response is legally required')
 
+        # Information to provide
+        self.assertRegexpMatches(content, 'Total Yearly cost of Rebel Alliance')
+        self.assertRegexpMatches(content, 'Yoda&#39;s siblings')
+
     def get_first_page(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
