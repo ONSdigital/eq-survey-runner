@@ -20,6 +20,6 @@ def system_message(message):
     if metadata:
         tx_id = convert_tx_id(metadata.tx_id)
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
-    return render_theme_template('default', 'system_message/system_message.html',
+    return render_theme_template('default', 'system_message.html',
                                  message=message,
                                  ua=user_agent, tx_id=tx_id), message
