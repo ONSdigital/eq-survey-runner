@@ -383,7 +383,8 @@
                                                 "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                                    "MANDATORY": "Please provide a value, even if your value is 0."
                                                 }
                                             }
                                         }
@@ -399,6 +400,55 @@
                                 }
                             ],
                             "title": "Employees",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Monthly Business Survey",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "7e2d49eb-ffc7-4a61-a45d-eba336d1d0e6",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "edb9d0f9-effa-46b2-a35b-889394f6e755",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                                "properties": {
+                                                    "max_length": "2000"
+                                                }
+                                            },
+                                            "id": "414699da-1667-44fd-8e98-7606966884db",
+                                            "label": "Comments",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "147",
+                                            "type": "Textarea",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "<div><p>Comment on significant changes in the number of employees from: <ul><li>the previous reporting period</li> <li>the same reporting period last year</li></ul></p></div>",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "a30d5bdd-72e6-43ab-91fc-4e63c5174cbb",
+                                    "title": "Explain any significant changes in the number of employees for {exercise.ru_name}",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Changes in employee figures",
                             "validation": []
                         }
                     ],
