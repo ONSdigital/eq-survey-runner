@@ -319,4 +319,4 @@ class StarWarsTestCase(IntegrationTestCase):
     def rogue_one_check_confirmation_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Summary')
-        self.assertRegexpMatches(content, 'Please check carefully before submission')
+
