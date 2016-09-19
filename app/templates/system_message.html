@@ -1,9 +1,17 @@
-{% extends 'layouts/_error.html' %}
+{% extends 'layouts/_survey.html' %}
 
-{% block page_title %}System Message{% endblock %}
+{% block page_title %}Information{% endblock %}
 
-{% block error_title %}Error{% endblock %}
+{% block main %}
+  <div class="header">
+    <h1 class="header__title">
+      {% block error_title %}Information{% endblock %}
+    </h1>
+  </div>
 
-{% block error_message %}<strong><p>
-  {{message}}
-</p></strong>{% endblock %}
+  <div class="alert alert--simple alert--error alert--spacious">
+    <p><strong>{{message.MULTIPLE_SURVEYS}}</strong></p>
+    <div>{{message.MULTIPLE_SURVEYS_1}}</div>
+  </div>
+
+{% endblock %}

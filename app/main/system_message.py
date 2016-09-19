@@ -22,4 +22,4 @@ def system_message(message):
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
     return render_theme_template('default', 'system_message.html',
                                  message=message,
-                                 ua=user_agent, tx_id=tx_id), message
+                                 ua=user_agent, tx_id=tx_id)
