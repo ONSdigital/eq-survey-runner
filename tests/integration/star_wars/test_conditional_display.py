@@ -67,8 +67,34 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.navigate_to_page(third_page)
 
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'In that case you&#39;ll love this question!')
-        self.assertRegexpMatches(content, 'What is the name of Jar Jar Binks&#39; home planet?')
+        self.assertRegexpMatches(content, 'What is the name of Jar Jar Binks')
+
+
+        form_data = {
+          # final answers
+          "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b": "Naboo",
+          "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1": "5",
+          # User Action
+          "action[save_continue]": "Save &amp; Continue"
+        }
+
+        resp = self.submit_page(third_page, form_data)
+
+        # There are no validation errors
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+
+        summary_url = resp.headers['Location']
+
+        resp = self.navigate_to_page(summary_url)
+
+        # We are on the review answers page
+        content = resp.get_data(True)
+        self.assertRegexpMatches(content, '<title>Summary</title>')
+        self.assertRegexpMatches(content, '>Star Wars</')
+        self.assertRegexpMatches(content, '>Your responses<')
+        self.assertRegexpMatches(content, 'What is the name of Jar Jar Binks')
+
+
 
     def test_conditional_display_questions_non_present(self):
 
@@ -134,5 +160,27 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.navigate_to_page(third_page)
 
         content = resp.get_data(True)
-        self.assertNotRegex(content, 'In that case you&#39;ll love this question!')
-        self.assertNotRegex(content, 'What is the name of Jar Jar Binks&#39; home planet?')
+        self.assertNotRegex(content, 'What is the name of Jar Jar Binks')
+
+        form_data = {
+          # final answers
+          "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1": "5",
+          # User Action
+          "action[save_continue]": "Save &amp; Continue"
+        }
+
+        resp = self.submit_page(third_page, form_data)
+
+        # There are no validation errors
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+
+        summary_url = resp.headers['Location']
+
+        resp = self.navigate_to_page(summary_url)
+
+        # We are on the review answers page
+        content = resp.get_data(True)
+        self.assertRegexpMatches(content, '<title>Summary</title>')
+        self.assertRegexpMatches(content, '>Star Wars</')
+        self.assertRegexpMatches(content, '>Your responses<')
+        self.assertNotRegex(content, 'What is the name of Jar Jar Binks')

@@ -71,7 +71,7 @@ class TestEmptyComments(IntegrationTestCase):
         self.assertRegexpMatches(content, '<title>Summary</title>')
         self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
         self.assertRegexpMatches(content, '>Your responses<')
-        self.assertRegexpMatches(content, '>Please check carefully before submission<')
+        self.assertRegexpMatches(content, 'Please check carefully before submission')
         self.assertRegexpMatches(content, '>Submit answers<')
 
         # We submit our answers

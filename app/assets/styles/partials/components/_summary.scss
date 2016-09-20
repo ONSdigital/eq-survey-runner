@@ -1,0 +1,121 @@
+.summary {
+  display: block;
+}
+
+.summary__title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: $font-weight-bold;
+}
+
+.summary__block {
+  margin: 0;
+  padding: 0;
+}
+
+.summary__items {
+  font-size: 0.9rem;
+  text-align: left;
+  border: 1px solid $color-borders;
+  border-bottom: none;
+  margin: 0 0 2rem;
+  overflow: hidden;
+  border-radius: 3px;
+  @include fixed {
+    font-size: 0;
+  }
+  @include mq(s) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.summary__question,
+.summary__answer {
+  margin: 0;
+  width: 100%;
+  border: none;
+  text-align: left;
+  border-bottom: 1px solid $color-borders;
+  @include mq(s) {
+    font-size: 1rem;
+  }
+  @include fixed {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: initial;
+  }
+  @include lt-ie8 {
+    min-height: 3rem;
+  }
+}
+
+.summary__question {
+  width: 100%;
+  border-bottom: 1px solid $color-borders;
+  display: flex;
+  padding: 0.5rem;
+  font-weight: $font-weight-semibold;
+  @include mq(s) {
+    padding: 1rem;
+  }
+  // fixes IE10 wrapping problem
+  div {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.summary__answer {
+  background: #fbfbfb;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.summary__answer-text,
+.summary__edit {
+  padding: 0.5rem;
+  @include mq(s) {
+    padding: 1rem;
+  }
+}
+
+.summary__answer-text {
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+.summary__edit {
+  font-size: 0.8rem;
+  border-left: 1px solid $color-borders;
+  text-align: center;
+  display: flex;
+  flex-basis: fit-content;
+  flex-shrink: 0;
+  padding: 0;
+  @include fixed {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.summary__edit-link {
+  padding: 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: $color-lighter-grey;
+  }
+  @include fixed {
+    height: 100%;
+    line-height: 3;
+    display: block;
+  }
+}

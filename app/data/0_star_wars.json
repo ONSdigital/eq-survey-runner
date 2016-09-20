@@ -1281,7 +1281,7 @@
                                         "properties": {}
                                     },
                                     "id": "f2ee7dd4-b63c-45f1-a883-9f89c937ad17",
-                                    "title": "In that case you'll love this question!",
+                                    "title": "",
                                     "type": "General",
                                     "skip_condition": {
                                         "when": {
@@ -1333,20 +1333,13 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "Finally, which  is your favourite film?",
+                                    "description": "",
                                     "display": {
                                         "properties": {}
                                     },
                                     "id": "9e104317-6a19-48a5-b70f-7aec92deb90e",
-                                    "title": "Thanks for participating in the survey",
-                                    "type": "General",
-                                    "skip_condition": {
-                                        "when": {
-                                            "id" : "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
-                                            "condition": "equals",
-                                            "value":"yes"
-                                        }
-                                    }
+                                    "title": "Finally, which  is your favourite film?",
+                                    "type": "General"
                                 }
                             ],
                             "title": ""
