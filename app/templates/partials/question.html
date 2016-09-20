@@ -4,10 +4,10 @@
 
 {% set question_titles %}
   {%- if question.schema_item.title -%}
-    <div class="question__title neptune">{{question.schema_item.title}}</div>
+    <h3 class="question__title neptune">{{question.schema_item.title}}</h3>
   {%- endif %}
   {%- if question.schema_item.subtitle -%}
-    <div class="question__subtitle mars">{{question.schema_item.subtitle}}</div>
+    <h4 class="question__subtitle mars">{{question.schema_item.subtitle}}</h4>
   {%- endif %}
 {% endset %}
 
