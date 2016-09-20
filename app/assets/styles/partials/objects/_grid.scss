@@ -2,9 +2,11 @@
   box-sizing: border-box;
   @if $grid-use-letter-spacing-hack {
     letter-spacing: -0.32em;
-  } @else {
+  }
+  @else {
     font-size: 0;
   }
+
   margin-left: -$grid-gutters;
 }
 
@@ -90,6 +92,21 @@
   }
 }
 
+@include bp-suffix(grid--bordered, false) {
+  margin-left: 0;
+  .grid__col {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid $color-borders;
+    border-bottom: 1px solid $color-borders;
+    flex: 1 1 auto;
+    &:first-of-type {
+      border-right: 1px solid $color-borders;
+      padding-left: 0;
+    }
+  }
+}
+
 .grid__col {
   display: inline-block;
   width: 100%;
@@ -99,9 +116,11 @@
   @if $grid-use-letter-spacing-hack {
     letter-spacing: normal;
     word-spacing: normal;
-  } @else {
+  }
+  @else {
     font-size: initial;
   }
+
   padding-left: $grid-gutters;
   .grid--float & {
     float: left;
@@ -128,7 +147,7 @@
 
   @include bp-suffix("pull-#{$column}", false) {
     position: relative;
-    left: 0-$width;
+    left: 0 - $width;
   }
 }
 
@@ -142,7 +161,7 @@
 
 @mixin grid-debug {
   position: relative;
-  &:before {
+  &::before {
     position: absolute;
     top: 0;
     right: 0;
@@ -150,21 +169,21 @@
     bottom: 0;
     content: "";
     background-clip: content-box;
-    background-color: rgba(0,0,0, .05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 }
 
 @mixin grid-debug-col {
   .grid__col {
     background-clip: content-box;
-    background-color: rgba(0,0,0, .05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 }
 
 .u-debug-grid {
   .grid {
     position: relative;
-    &:before {
+    &::before {
       position: absolute;
       top: 0;
       right: 0;
@@ -172,10 +191,10 @@
       bottom: 0;
       content: "";
       background-clip: content-box;
-      background-color: rgba(0,0,0, .05);
+      background-color: rgba(0, 0, 0, 0.05);
     }
   }
   .grid__col {
-    background-color: rgba(0,0,0, .05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 }
