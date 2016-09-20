@@ -1,0 +1,19 @@
+.dl {
+  margin: 0 0 1rem;
+  @include mq(s) {
+    margin-bottom: 0;
+  }
+}
+
+.dl__title {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-very-dark-grey;
+}
+
+.dl__data {
+  margin: 0 0 1rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
