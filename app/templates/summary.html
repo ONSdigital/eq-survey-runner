@@ -24,10 +24,14 @@
 
         {% set id = summary_id ~ "-" ~ loop.index0 %}
 
-        <dt class="summary__question summary__question--{{item.type}}" id="{{id}}">{{item.question | safe}}</dt>
+        <dt class="summary__question summary__question--{{item.type}}" id="{{id}}">{{item.question|safe}}</dt>
         <dd class="summary__answer summary__answer--{{item.type}}">
 
           <div class="summary__answer-text" id="{{id}}-answer">
+
+
+
+
 
             {% if item.type == 'date' %}
 
@@ -49,11 +53,8 @@
 
               {% endif %}
 
-            {% elif item.type == 'textarea' %}
-
-              {{(item.answer or not_answered)|nl2br}}
-
             {% else %}
+
               {% if item.answer is not none %}
                   {{item.answer}}
               {% else %}
