@@ -41,14 +41,6 @@ class TestQuestionFormatters(SurveyRunnerTestCase):
         answer_type = 'CHECKBOX'
         self.check_formatter(answer_type, question_type, expected_format, original_answer)
 
-    def test_general_integer_missing_answer(self):
-
-        original_answer = ''
-        expected_format = None
-        question_type = 'GENERAL'
-        answer_type = 'INTEGER'
-        self.check_formatter(answer_type, question_type, expected_format, original_answer)
-
     def test_general_text_field(self):
 
         original_answer = 'text field test'
