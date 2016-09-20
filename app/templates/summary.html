@@ -54,8 +54,11 @@
               {{(item.answer or not_answered)|nl2br}}
 
             {% else %}
-
-              {{item.answer or not_answered}}
+              {% if item.answer is not none %}
+                  {{item.answer}}
+              {% else %}
+                  {{not_answered}}
+              {% endif %}
 
             {% endif %}
 

@@ -21,7 +21,7 @@ class SummaryItem(object):
 
         user_answer = self.state_answers[0].value
 
-        if user_answer:
+        if user_answer is not None:
             answer_type = self.schema.answers[0].type
 
             # find out if the question type and answer has a formatter
