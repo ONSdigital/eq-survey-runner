@@ -1,4 +1,5 @@
 import logging
+
 from flask.ext.themes2 import render_theme_template
 
 logger = logging.getLogger(__name__)
