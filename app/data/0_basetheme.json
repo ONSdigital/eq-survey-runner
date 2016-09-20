@@ -64,7 +64,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.",
+                                    "description": "<p>If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.</p>",
                                     "display": {
                                         "properties": {}
                                     },
@@ -115,7 +115,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li></ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                    "description": "<p>Round your figures to the nearest £. Even if your figures are zero, please still complete.</p><div><h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li></ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                     "display": {
                                         "properties": {}
                                     },
@@ -166,7 +166,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4><ul> <li>VAT</li></ul></div>",
+                                    "description": "<p>Round your figures to the nearest £. Even if your figures are zero, please still complete.</p><div><h4>Include</h4><ul> <li>VAT</li></ul></div>",
                                     "display": {
                                         "properties": {}
                                     },
