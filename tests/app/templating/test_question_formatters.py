@@ -65,6 +65,14 @@ class TestQuestionFormatters(SurveyRunnerTestCase):
         answer_type = 'POSITIVEINTEGER'
         self.check_formatter(answer_type, question_type, expected_format, original_answer)
 
+    def test_general_positive_integer_zero(self):
+
+        original_answer = 0
+        expected_format = 0
+        question_type = 'GENERAL'
+        answer_type = 'POSITIVEINTEGER'
+        self.check_formatter(answer_type, question_type, expected_format, original_answer)
+
     def test_general_integer(self):
 
         original_answer = '12345'
