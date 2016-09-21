@@ -71,5 +71,5 @@ class TestRouting(IntegrationTestCase):
         post_data = {
           'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/star_wars/201604/789/introduction', data=post_data, follow_redirects=False)
         return resp

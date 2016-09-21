@@ -81,7 +81,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/star_wars\/201604\/789\/summary$')
 
         summary_url = resp.headers['Location']
 
@@ -172,7 +172,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/star_wars\/201604\/789\/summary$')
 
         summary_url = resp.headers['Location']
 
