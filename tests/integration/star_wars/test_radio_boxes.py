@@ -38,7 +38,7 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
 
         # There are validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/cd3b74d1-b687-4051-9634-a8f9ce10a27d')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/star_wars\/201604\/789\/cd3b74d1-b687-4051-9634-a8f9ce10a27d')
 
         resp = self.navigate_to_page(first_page)
 
@@ -78,7 +78,7 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/an3b74d1-b687-4051-9634-a8f9ce10ard')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/star_wars\/201604\/789\/an3b74d1-b687-4051-9634-a8f9ce10ard')
 
         summary_url = resp.headers['Location']
         resp = self.navigate_to_page(summary_url)

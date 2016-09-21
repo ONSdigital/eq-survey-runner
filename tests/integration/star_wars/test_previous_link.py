@@ -9,7 +9,7 @@ class TestPreviousLink(StarWarsTestCase):
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
-        introduction = '/questionnaire/0/789/introduction'
+        introduction = '/questionnaire/0/star_wars/201604/789/introduction'
 
         resp = self.navigate_to_page(introduction)
 
@@ -49,7 +49,7 @@ class TestPreviousLink(StarWarsTestCase):
         # go to the second page
         self.check_second_quiz_page(second_page)
 
-        resp = self.client.get('/questionnaire/0/789/previous', follow_redirects=False)
+        resp = self.client.get('/questionnaire/0/star_wars/201604/789/previous', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertEquals(resp.headers['Location'], first_page)
 
@@ -66,24 +66,24 @@ class TestPreviousLink(StarWarsTestCase):
     def test_previous_link_to_introduction(self):
 
         self.login_and_check_introduction_text()
-        first_page = "http://localhost/questionnaire/0/789/f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"
+        first_page = "http://localhost/questionnaire/0/star_wars/201604/789/f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"
 
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
         # first start the survey
-        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/star_wars/201604/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertEquals(resp.headers['Location'], first_page)
 
         # then click previous
-        resp = self.client.get('/questionnaire/0/789/previous', follow_redirects=False)
+        resp = self.client.get('/questionnaire/0/star_wars/201604/789/previous', follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertEquals(resp.headers['Location'], "http://localhost/questionnaire/0/789/introduction")
+        self.assertEquals(resp.headers['Location'], "http://localhost/questionnaire/0/star_wars/201604/789/introduction")
 
         # then try to start the survey again
-        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/star_wars/201604/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertEquals(resp.headers['Location'], first_page)
 
