@@ -12,10 +12,9 @@ class TextWidget(Widget):
         widget_params = {
             'answer': {
                 'name': self.name,
-                'id': state.schema_item.id,
+                'id': state.schema_item.id + '-input',
                 'label': state.schema_item.label or '',
                 'value': state.value or state.input or '',
-                'placeholder': '',
             },
         }
         return render_template('partials/widgets/text_widget.html', **widget_params)

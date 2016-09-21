@@ -30,6 +30,10 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, 'You are required by law to complete this questionnaire')
         self.assertRegexpMatches(content, 'NB: Your response is legally required')
 
+        # Information to provide
+        self.assertRegexpMatches(content, 'Total Yearly cost of Rebel Alliance')
+        self.assertRegexpMatches(content, 'Yoda&#39;s siblings')
+
     def get_first_page(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
@@ -282,8 +286,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
         # Thank you page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Thank You</title>')
-        self.assertRegexpMatches(content, '>Successfully Received<')
+        self.assertRegexpMatches(content, '<title>Submission Successful</title>')
 
     def rogue_one_login_and_check_introduction_text(self):
         self.token = create_token('rogue_one', '0')
@@ -300,13 +303,13 @@ class StarWarsTestCase(IntegrationTestCase):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Who do you want to know more about?')
         self.assertRegexpMatches(content, 'Jyn Erso')
-        self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-3')
+        self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-input-3')
 
     def rogue_one_check_description_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'An accomplished Rebel Alliance Intelligence Officer')
         self.assertRegexpMatches(content, 'Do you like this page?')
-        self.assertRegexpMatches(content, '3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-2')
+        self.assertRegexpMatches(content, '3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-input-2')
 
     def rogue_one_check_takings_page(self, page):
         content = self.retrieve_content(page)
@@ -315,5 +318,5 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def rogue_one_check_confirmation_page(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'Confirmation')
-        self.assertRegexpMatches(content, 'Thank you for your answers, do you wish to submit')
+        self.assertRegexpMatches(content, 'Summary')
+        self.assertRegexpMatches(content, 'Please check carefully before submission')

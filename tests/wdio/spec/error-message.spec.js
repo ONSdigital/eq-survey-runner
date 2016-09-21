@@ -18,22 +18,20 @@ describe('Error messages', function() {
     browser.click('.qa-btn-submit-dev')
   })
 
-  it('The landing page has been reached', function(done) {
+  it('The landing page has been reached', function() {
     const getStartedBtn = browser.element('.qa-btn-get-started')
     getStartedBtn.waitForExist(10000)
     const url = browser.url().value
     expect(url).to.contain('introduction')
     getStartedBtn.click()
-    browser.call(done)
   })
 
-  it('The questionnaire page has been reached', function(done) {
+  it('The questionnaire page has been reached', function() {
     const questionnaireElementExists = browser.isExisting('.qa-questionnaire-form')
     expect(questionnaireElementExists).to.equal(true)
-    browser.call(done)
   })
 
-  it('The form can be filled in and submitted to return error', function(done) {
+  it('The form can be filled in and submitted to return error', function() {
     const submitBtn = browser.element('.qa-btn-submit')
     submitBtn.waitForExist(10000)
     browser.setValue('[id="94f368e4-7c6c-4272-a780-8c46328626a2-year"]', '')
@@ -41,18 +39,16 @@ describe('Error messages', function() {
     submitBtn.click()
     const url = browser.url().value
     expect(url).to.contain('5bce8d8f-0af8-4d35-b77d-744e6179b406')
-    browser.call(done)
   })
 
-  it('Error link is clicked to take focus to day input', function(done) {
-    const inPageLink = browser.element('.js-inpagelink-trigger')
+  it('Error link is clicked to take focus to day input', function() {
+    const inPageLink = browser.element('.js-inpagelink')
     inPageLink.waitForExist(10000)
     inPageLink.click()
     browser.timeoutsImplicitWait(10000)
     const activeElementValueNumber = browser.elementActive().value.ELEMENT
     const activeElementValue = browser.elementIdAttribute(activeElementValueNumber, "id").value
     expect(activeElementValue).to.contain('94f368e4-7c6c-4272-a780-8c46328626a2-day')
-    browser.call(done)
   })
 
 })

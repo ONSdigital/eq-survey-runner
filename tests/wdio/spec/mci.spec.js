@@ -12,18 +12,16 @@ describe('MCI test', function() {
     browser.waitForExist(userId)
     browser.setValue(userId, getRandomString(10))
     browser.waitForExist(collectionSID)
-    browser.setValue(collectionSID, getRandomString(3))
+    browser.setValue(collectionSID, getRandomString(10))
     browser.waitForExist(selectSchema)
     browser.selectByValue(selectSchema, '1_0205.json')
     browser.click('.qa-btn-submit-dev')
   })
 
   it('The landing page has been reached', function() {
-    const getStartedBtn = browser.element('.qa-btn-get-started')
-    getStartedBtn.waitForExist(10000)
     const url = browser.url().value
     expect(url).to.contain('introduction')
-    getStartedBtn.click()
+    browser.element('.qa-btn-get-started').click()
   })
 
   it('The questionnaire page has been reached', function() {
@@ -32,24 +30,16 @@ describe('MCI test', function() {
   })
 
   it('The form can be filled in and submitted', function() {
-    const submitBtn = browser.element('.qa-btn-submit')
-    const yearFromInput = browser.element('[id="6fd644b0-798e-4a58-a393-a438b32fe637-year"]')
-    const yearToInput = browser.element('[id="06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year"]')
-    const currencyInputs = browser.element('.input-type--currency .input')
-    submitBtn.waitForExist(10000)
-    currencyInputs.waitForExist(10000)
-    yearFromInput.setValue('2016')
-    yearToInput.setValue('2017')
-    browser.setValue('.input-type--currency .input', 2000)
-    submitBtn.click()
+    browser.setValue('[id="6fd644b0-798e-4a58-a393-a438b32fe637-year"]', '2016')
+    browser.setValue('[id="06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year"]', '2017')
+    browser.setValue('[id="e81adc6d-6fb0-4155-969c-d0d646f15345-input"]', '2000')
+    browser.element('.qa-btn-submit').click()
     const url = browser.url().value
     expect(url).to.contain('summary')
   })
 
   it('The survey can be completed with "thankyou page" reached', function() {
-    const submitBtn = browser.element('.qa-btn-submit-answers')
-    submitBtn.waitForExist(10000)
-    submitBtn.click()
+    browser.element('.qa-btn-submit-answers').click()
     const url = browser.url().value
     expect(url).to.contain('thank-you')
   })

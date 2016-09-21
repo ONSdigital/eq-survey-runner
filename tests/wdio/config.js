@@ -1,13 +1,13 @@
 import {paths} from '../../gulp/paths'
 import {chrome, firefox, ie11, ie10, ie9, ie8} from './capabilities'
 
-const useLocalSauceLabs = process.env.SAUCELABS === 'true' || false
+var argv = require('yargs').argv
 
 let config = {
   services: ['selenium-standalone'],
   // Level of logging verbosity: silent | verbose | command | data | result | error
   logLevel: 'command',
-  maxInstances: 1,
+  maxInstances: 2,
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
@@ -15,16 +15,19 @@ let config = {
   updateJob: true,
   specs: [`${paths.test.wdioSpec}/**/*.spec.js`],
   sync: true,
+  connectionRetryTimeout: 90000,
+  connectionRetryCount: 3,
   capabilities: [{
     name: 'Chrome (local)',
-    browserName: 'chrome'
+    browserName: 'chrome',
+    maxInstances: 1
   }],
   framework: 'mocha',
-  reporters: ['dot', 'spec'],
+  reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
-    timeout: 60000
+    timeout: 120000
   }
 }
 
@@ -33,7 +36,7 @@ const sauceLabsConfig = {
   sauceConnect: true,
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
-  capabilities: [chrome, ie11]
+  capabilities: [firefox]
 }
 
 if (process.env.TRAVIS === 'true') {
@@ -41,10 +44,11 @@ if (process.env.TRAVIS === 'true') {
     ...config,
     ...sauceLabsConfig,
     logLevel: 'debug',
-    capabilities: [chrome]
+    capabilities: [firefox],
+    specs: [`${paths.test.wdioSpec}/**/mci.spec.js`]
   }
 } else {
-  if (useLocalSauceLabs) {
+  if (argv.sauce) {
     config = {
       ...config,
       ...sauceLabsConfig

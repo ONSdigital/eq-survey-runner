@@ -173,7 +173,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         # We are on the review answers page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '>Your responses<')
-        self.assertRegexpMatches(content, '>Please check carefully before submission<')
+        self.assertRegexpMatches(content, 'Please check carefully before submission')
         self.assertRegexpMatches(content, '>Submit answers<')
 
         # We submit our answers
@@ -188,4 +188,4 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We are on the thank you page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '>Successfully Received<')
+        self.assertRegexpMatches(content, '<title>Submission Successful</title>')

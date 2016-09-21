@@ -76,7 +76,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         resp = self.navigate_to_page(third_page)
         content = resp.get_data(True)
 
-        self.assertRegexpMatches(content, "Thanks for participating in the survey")
+        self.assertRegexpMatches(content, "Finally, which  is your favourite film?")
 
         form_data = {
           # final answers

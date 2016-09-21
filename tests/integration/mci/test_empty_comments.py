@@ -71,7 +71,7 @@ class TestEmptyComments(IntegrationTestCase):
         self.assertRegexpMatches(content, '<title>Summary</title>')
         self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
         self.assertRegexpMatches(content, '>Your responses<')
-        self.assertRegexpMatches(content, '>Please check carefully before submission<')
+        self.assertRegexpMatches(content, 'Please check carefully before submission')
         self.assertRegexpMatches(content, '>Submit answers<')
 
         # We submit our answers
@@ -86,6 +86,5 @@ class TestEmptyComments(IntegrationTestCase):
 
         # We are on the thank you page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Thank You</title>')
+        self.assertRegexpMatches(content, '<title>Submission Successful</title>')
         self.assertRegexpMatches(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
-        self.assertRegexpMatches(content, '>Successfully Received<')
