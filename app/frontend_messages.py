@@ -13,4 +13,3 @@ MESSAGES = {
 def get_message(message):
     if message in MESSAGES:
         return MESSAGES['multiple-surveys']
-
