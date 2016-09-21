@@ -90,7 +90,7 @@ class TestEmptySubmission(IntegrationTestCase):
         # We are on the review answers page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '>Your responses<')
-        self.assertRegexpMatches(content, '>Please check carefully before submission<')
+        self.assertRegexpMatches(content, 'Please check carefully before submission')
         self.assertRegexpMatches(content, '>Submit answers<')
 
         # We submit our answers

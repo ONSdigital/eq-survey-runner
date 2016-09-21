@@ -5,6 +5,7 @@ from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
 from app.questionnaire_state.node import Node
 from app.questionnaire_state.block import Block
+from app.questionnaire_state.section import Section
 
 
 class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
@@ -33,11 +34,32 @@ class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
     def get_metadata_store(self):
         return self.metadata_store
 
+    # Blocks are recreated from the sections within
     def test_build_view_data(self):
+        section1 = Section("4", None)
+        section2 = Section("5", None)
+        section3 = Section("6", None)
+
+        section1.title = "Title 1"
+        section2.title = "Title 2"
+        section3.title = "Title 3"
+
         block1 = Block("1", None)
         block2 = Block("2", None)
+
+        block1.sections = [section1, section2]
+        block2.sections = [section3]
+
+        self.questionnaire.register(block1)
+        self.questionnaire.register(block2)
+
+        self.questionnaire.register(section1)
+        self.questionnaire.register(section2)
+        self.questionnaire.register(section3)
+
         node1 = Node("1", block1)
         node2 = Node("2", block2)
+
         node1.next = node2
 
         summary_template_preprocessor = SummaryTemplatePreprocessor()
@@ -48,13 +70,13 @@ class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
         self.assertIsNotNone(render_data)
         blocks = render_data['content']
 
-        self.assertTrue(block1 in blocks)
-        self.assertTrue(block2 in blocks)
+        # Pull back all the section states from the blocks
+        states = [block.state for block in blocks]
+
+        self.assertTrue(section1 in states)
+        self.assertTrue(section2 in states)
+        self.assertTrue(section3 in states)
 
         self.assertIsNotNone(render_data['meta'])
 
         MetaDataTemplatePreprocessor._get_metadata = original_get_metadata_method
-
-
-
-
