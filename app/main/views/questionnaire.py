@@ -1,8 +1,10 @@
 import logging
 
+from app import frontend_messages
 from app.main.errors import internal_server_error
 from app.main.errors import page_not_found
 from app.main.errors import service_unavailable
+from app.main.system_message import system_message
 from app.metadata.metadata_store import MetaDataStore
 from app.questionnaire.questionnaire_manager import InvalidLocationException
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
@@ -38,6 +40,7 @@ def survey(eq_id, form_type, period_id, collection_id, location):
 
         if not current_survey == metadata_survey:
             return redirect("/information/multiple-surveys")
+
 
         # Redirect to thank you page if the questionnaire has already been submitted
         if questionnaire_manager.submitted and location != 'thank-you':

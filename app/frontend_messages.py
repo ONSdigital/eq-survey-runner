@@ -1,5 +1,6 @@
 from flask.ext.babel import gettext as _
 
+
 MESSAGES = {
             'multiple-surveys': {
                 'TITLE': _("Information"),
@@ -12,3 +13,4 @@ MESSAGES = {
 def get_message(message):
     if message in MESSAGES:
         return MESSAGES['multiple-surveys']
+
