@@ -8,4 +8,4 @@ coverage:
 
 comment:
   layout: "header, diff"
-  behavior: new
+  behavior: default
