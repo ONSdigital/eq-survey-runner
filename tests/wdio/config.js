@@ -9,7 +9,7 @@ let sauceConnectProcess
 
 let config = {
   // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: 'verbose',
+  logLevel: 'command',
   maxInstances: 1,
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
@@ -23,7 +23,7 @@ let config = {
     browserName: 'chrome'
   }],
   framework: 'mocha',
-  reporters: ['dot'],
+  reporters: ['dot','spec'],
   mochaOpts: {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
