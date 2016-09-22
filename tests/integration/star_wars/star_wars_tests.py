@@ -44,7 +44,7 @@ class StarWarsTestCase(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/star_wars/201604/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         routing_start = resp.headers['Location']
@@ -272,7 +272,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertEquals(resp.status_code, 200)
         return resp
 
-    def complete_survey(self, summary_page):
+    def complete_survey(self, summary_page, form_type_id):
         # Submit answers
         post_data = {
             "action[submit_answers]": "Submit answers"
@@ -280,13 +280,9 @@ class StarWarsTestCase(IntegrationTestCase):
         resp = self.client.post(summary_page, data=post_data, follow_redirects=False)
 
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/thank-you$')
+        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/0\/'+ form_type_id+ '\/201604\/789\/thank-you$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
-
-        # Thank you page
-        content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Submission Successful</title>')
 
     def rogue_one_login_and_check_introduction_text(self):
         self.token = create_token('rogue_one', '0')

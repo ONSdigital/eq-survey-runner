@@ -14,7 +14,7 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/1/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/1/0203/201604/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -77,4 +77,4 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1/0203\/201604\/789\/summary$')

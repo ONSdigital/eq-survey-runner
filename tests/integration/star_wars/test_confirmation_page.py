@@ -9,7 +9,7 @@ class TestConfirmationPage(StarWarsTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        response = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
+        response = self.client.post('/questionnaire/0/rogue_one/201604/789/introduction', data=post_data, follow_redirects=False)
         self.assertEquals(response.status_code, 302)
 
         character_page = response.headers['Location']
@@ -71,4 +71,4 @@ class TestConfirmationPage(StarWarsTestCase):
         resp = self.submit_page(confirmation_page, form_data)
         self.assertNotEquals(resp.headers['Location'], confirmation_page)
 
-        self.complete_survey(confirmation_page)
+        self.complete_survey(confirmation_page, 'rogue_one')
