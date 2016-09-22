@@ -6,6 +6,4 @@ coverage:
         threshold: null
         base: auto
 
-comment:
-  layout: "header, diff"
-  behavior: default
+comment: false
