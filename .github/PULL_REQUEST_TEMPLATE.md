@@ -1,8 +1,5 @@
 ### What is the context of this PR?
-Describe what you have changed and why.
+Describe what you have changed and why, link to other PRs or Issues as appropriate.
 
 ### How to review 
-Describe the steps required to test the changes.
-
-### Who worked on the PR
-Describe who worked on the changes, so that other people can review.
+Describe the steps required to test the changes (include screenshots if appropriate).
