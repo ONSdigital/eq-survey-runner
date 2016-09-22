@@ -6,7 +6,7 @@ var argv = require('yargs').argv
 let config = {
   services: ['selenium-standalone'],
   // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: 'command',
+  logLevel: 'error',
   maxInstances: 2,
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
@@ -44,8 +44,7 @@ if (process.env.TRAVIS === 'true') {
     ...config,
     ...sauceLabsConfig,
     logLevel: 'debug',
-    capabilities: [firefox],
-    specs: [`${paths.test.wdioSpec}/**/mci.spec.js`]
+    capabilities: [firefox]
   }
 } else {
   if (argv.sauce) {
