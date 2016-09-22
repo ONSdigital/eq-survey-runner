@@ -36,7 +36,8 @@ describe('MCI test', function() {
   it('The form can be filled in and submitted', function(done) {
     const submitBtn = browser.element('.qa-btn-submit')
     submitBtn.waitForExist(10000)
-    browser.setValue('#6fd644b0-798e-4a58-a393-a438b32fe637-year', '2016')
+    browser.setValue('[id = 6fd644b0-798e-4a58-a393-a438b32fe637-year]', '2016')
+    browser.debug()
     browser.setValue('#06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year', '2017')
     browser.setValue('.input-type--currency .input', 2000)
     submitBtn.click()
