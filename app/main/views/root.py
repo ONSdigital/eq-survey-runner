@@ -3,7 +3,7 @@ import logging
 from app.authentication.authenticator import Authenticator
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
-from app.frontend_messages import get_message
+from app.frontend_messages import get_messages
 from app.main import errors
 from app.metadata.metadata_store import MetaDataStore
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
@@ -28,9 +28,9 @@ def root():
     return errors.index()
 
 
-@main_blueprint.route('/information/<error>', methods=['GET'])
-def information(error):
-    front_end_message = get_message(error)
+@main_blueprint.route('/information/<system_message>', methods=['GET'])
+def information(system_message):
+    front_end_message = get_messages(system_message)
     if front_end_message:
         logger.debug(front_end_message)
         return render_theme_template('default', 'information.html',

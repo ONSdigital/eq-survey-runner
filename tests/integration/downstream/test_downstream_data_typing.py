@@ -4,7 +4,7 @@ from tests.integration.create_token import create_token
 
 
 from werkzeug.datastructures import MultiDict
-
+from tests.integration import test_urls
 
 class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
     def setUp(self):
@@ -89,7 +89,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/star_wars\/201604\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], test_urls.SUMMARY_STAR_WARS_REGEX)
 
         summary_url = resp.headers['Location']
 

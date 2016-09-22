@@ -1,6 +1,6 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
-
+from tests.integration import test_urls
 
 class TestConfirmationPage(StarWarsTestCase):
 
@@ -9,7 +9,7 @@ class TestConfirmationPage(StarWarsTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        response = self.client.post('/questionnaire/0/rogue_one/201604/789/introduction', data=post_data, follow_redirects=False)
+        response = self.client.post(test_urls.INTRODUCTION_ROUGE_ONE, data=post_data, follow_redirects=False)
         self.assertEquals(response.status_code, 302)
 
         character_page = response.headers['Location']

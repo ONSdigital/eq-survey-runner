@@ -1,5 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.create_token import create_token
+from tests.integration import test_urls
 
 class TestInformationPage(IntegrationTestCase):
 
@@ -16,7 +17,7 @@ class TestInformationPage(IntegrationTestCase):
         resp = self.client.get('/information/test', follow_redirects=False)
         self.assertEquals(resp.status_code, 404)
 
-    def test_different_metadat_store_to_url(self):
+    def test_different_metadata_store_to_url(self):
         # Get a token for the first questionnaire
         token = create_token('0205', '1')
         response1 = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
@@ -43,7 +44,7 @@ class TestInformationPage(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        response = self.client.post('/questionnaire/1/0203/201604/789/introduction', data=post_data, follow_redirects=True)
+        response = self.client.post(test_urls.INTRODUCTION_0203, data=post_data, follow_redirects=True)
         content = response.get_data(True)
         self.assertRegexpMatches(content, 'Information')
         self.assertRegexpMatches(content, 'Unfortunately you can only complete one survey at a time.')

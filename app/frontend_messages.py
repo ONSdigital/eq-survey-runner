@@ -1,5 +1,8 @@
+import logging
+
 from flask.ext.babel import gettext as _
 
+logger = logging.getLogger(__name__)
 
 MESSAGES = {
             'multiple-surveys': {
@@ -10,6 +13,8 @@ MESSAGES = {
             }
 
 
-def get_message(message):
-    if message in MESSAGES:
+def get_messages(system_message):
+    if system_message in MESSAGES:
         return MESSAGES['multiple-surveys']
+    logger.debug("Message not found %s", system_message)
+    return None

@@ -1,7 +1,6 @@
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
-from werkzeug.datastructures import MultiDict
-
+from tests.integration import test_urls
 
 class StarWarsTestCase(IntegrationTestCase):
     def setUp(self):
@@ -44,7 +43,7 @@ class StarWarsTestCase(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/0/star_wars/201604/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post(test_urls.INTRODUCTION_STAR_WARS, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         routing_start = resp.headers['Location']

@@ -1,6 +1,6 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
-
+from tests.integration import test_urls
 
 class TestEmptyCheckBoxes(StarWarsTestCase):
 
@@ -43,7 +43,7 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
 
         # There are validation errors
-        self.assertRegexpMatches(resp.headers['Location'], '/questionnaire/0/star_wars/201604/789/cd3b74d1-b687-4051-9634-a8f9ce10a27d')
+        self.assertRegexpMatches(resp.headers['Location'], test_urls.BLOCK2_STAR_WARS)
 
         resp = self.navigate_to_page(first_page)
 
@@ -89,7 +89,7 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
 
         # There are no validation errors
 
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/star_wars\/201604\/789\/an3b74d1-b687-4051-9634-a8f9ce10ard')
+        self.assertRegexpMatches(resp.headers['Location'], test_urls.QUIZ_2_STAR_WARS_REGEX)
         second_page = resp.headers['Location']
 
         self.check_second_quiz_page(second_page)
