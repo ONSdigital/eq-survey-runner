@@ -75,6 +75,11 @@
   flex-direction: row;
   justify-content: space-between;
   overflow: hidden;
+  p {
+    &:last-of-type {
+      margin: 0;
+    }
+  }
 }
 
 .summary__answer-text,

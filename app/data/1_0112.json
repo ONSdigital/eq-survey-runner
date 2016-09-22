@@ -121,7 +121,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li></ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                    "description": "<p>Round your figures to the nearest £. Even if your figures are zero, please still complete.</p><div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li></ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                     "display": {
                                         "properties": {}
                                     },
@@ -172,7 +172,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "Round your figures to the nearest £. Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4><ul> <li>VAT</li></ul></div>",
+                                    "description": "<p>Round your figures to the nearest £. Even if your figures are zero, please still complete.</p><div> <h4>Include</h4><ul> <li>VAT</li></ul></div>",
                                     "display": {
                                         "properties": {}
                                     },
@@ -246,7 +246,7 @@
                     "id": "0b29d3f7-5905-43d8-9921-5b353db68104",
                     "sections": [
                         {
-                            "description": "<p><b>On {exercise.employment_date:%-d %B %Y} what was the number of employees?</b></p><p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> <br/><h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul> </div>",
+                            "description": "",
                             "display": {
                                 "properties": {}
                             },
@@ -270,20 +270,7 @@
                                                     "NOT_INTEGER": "Please only enter whole numbers into the field."
                                                 }
                                             }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "17136377-f52e-4a00-a1d6-039972fc26ab",
-                                    "title": "",
-                                    "type": "General",
-                                    "validation": []
-                                },
-                                {
-                                    "answers": [
-                                        {
+                                        }, {
                                             "display": {},
                                             "guidance": "",
                                             "id": "06909776-3238-4e8b-9a3f-97e5a6b2182f",
@@ -299,20 +286,7 @@
                                                     "NOT_INTEGER": "Please only enter whole numbers into the field."
                                                 }
                                             }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "0afacb86-eaa8-4cb8-8b0e-c869293d7208",
-                                    "title": "",
-                                    "type": "General",
-                                    "validation": []
-                                },
-                                {
-                                    "answers": [
-                                        {
+                                        }, {
                                             "display": {},
                                             "guidance": "",
                                             "id": "a7e2cd8f-54e5-427b-b9e2-ce90613a5dba",
@@ -328,20 +302,7 @@
                                                     "NOT_INTEGER": "Please only enter whole numbers into the field."
                                                 }
                                             }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "1c8ee341-c232-4edc-911d-fad53c13c1cd",
-                                    "title": "",
-                                    "type": "General",
-                                    "validation": []
-                                },
-                                {
-                                    "answers": [
-                                        {
+                                        }, {
                                             "display": {},
                                             "guidance": "",
                                             "id": "bf73b3bc-4d8d-4472-8c1b-ca7680a39469",
@@ -357,20 +318,7 @@
                                                     "NOT_INTEGER": "Please only enter whole numbers into the field."
                                                 }
                                             }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "62a7edd6-dbb6-4f56-86d5-354fc973a6d7",
-                                    "title": "",
-                                    "type": "General",
-                                    "validation": []
-                                },
-                                {
-                                    "answers": [
-                                        {
+                                        }, {
                                             "display": {},
                                             "guidance": "",
                                             "id": "c6881970-98ff-4005-af4a-60bfd9b6179f",
@@ -389,12 +337,12 @@
                                             }
                                         }
                                     ],
-                                    "description": "",
+                                    "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> <h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul> </div>",
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "50ecf4e0-25bc-41ca-a354-8523d6a25377",
-                                    "title": "",
+                                    "id": "17136377-f52e-4a00-a1d6-039972fc26ab",
+                                    "title": "On {exercise.employment_date:%-d %B %Y} what was the number of employees?",
                                     "type": "General",
                                     "validation": []
                                 }
