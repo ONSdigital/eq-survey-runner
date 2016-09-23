@@ -5,7 +5,7 @@
     "survey_id": "0",
     "title": "2016 Census Test Survey",
     "description": "household",
-    "theme": "basetheme",
+    "theme": "default",
     "introduction": {
         "description": "<p>Thank you for taking part in this Census test.</p><p>Please answer the following questions as the main householder.</p><p>No individuals can be identified from the results</p>"
     },

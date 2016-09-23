@@ -1,22 +1,8 @@
 .panel {
-  background: $color-white;
-  border-radius: 3px;
-  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .panel__header {
-  border-bottom: 1px solid $color-light-grey;
-  padding: 1rem;
-
-  @include mq(m) {
-    padding: 2rem 4rem;
-  }
 }
 
 .panel__body {
-  padding: 1rem;
-
-  @include mq(m) {
-    padding: 2rem 4rem;
-  }
 }
