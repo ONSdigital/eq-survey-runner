@@ -1,9 +1,0 @@
-{
-    "application": "surveyrunner",
-    "identifier": "basetheme",
-    "name": "Base theme",
-    "author": "bennpearson",
-    "description": "Base theme that will become the default theme",
-    "license": "MIT/X11",
-    "version": "1.0.0"
-}

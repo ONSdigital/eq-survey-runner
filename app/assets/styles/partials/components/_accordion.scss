@@ -50,11 +50,9 @@
 }
 
 .accordion__title {
-  font-weight: 700;
   margin: 0;
   display: inline-block;
   vertical-align: middle;
-  font-size: 1rem;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -77,7 +75,6 @@
 }
 
 .accordion__content {
-  font-size: 1rem;
   padding: 0.75rem;
   @include mq(s) {
     padding: 1rem;
