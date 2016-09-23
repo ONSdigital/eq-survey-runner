@@ -45,21 +45,6 @@
     <div>
 
       <div class="header">
-        {% if meta.survey.information_to_provide %}
-        <h3>You will be asked to provide information for the business, including:</h3>
-        <ul>
-          {% for information_item in meta.survey.information_to_provide %}
-            <li>{{ information_item }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        <div class="notice u-mb-s u-mb-m@s">
-          <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
-        </div>
-
-      </div>
-
-      <div class="header">
         <h1 class="header__title saturn">{{ meta.survey.title }}</h1>
         <h2 class="header__subtitle mars">Notice is given under section 1 of the Statistics of Trade Act 1947</h2>
       </div>
@@ -69,6 +54,15 @@
           questionnaire by {{ meta.survey.return_by }}, penalties may be incurred (under section 4 of the Statistics of
           Trade Act 1947). All the information you provide is kept strictly confidential. It is illegal for us to
           reveal your data or identify your business to unauthorised persons.</p>
+
+        {% if meta.survey.information_to_provide %}
+        <h3>You will be asked to provide information for the business, including:</h3>
+        <ul>
+          {% for information_item in meta.survey.information_to_provide %}
+            <li>{{ information_item }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
 
         <div class="notice u-mb-s u-mb-m@s">
           <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
