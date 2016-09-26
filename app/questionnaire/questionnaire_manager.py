@@ -34,7 +34,9 @@ class QuestionnaireManager(object):
     The doubly linked list approach allows us to maintain the path the user has taken through the question. If that path
     changes we archive off the nodes in case the user revisits that path.
     '''
-    def __init__(self, schema, current=None, first=None, tail=None, archive={}, valid_locations=None, submitted_at=None):
+    def __init__(self, schema, current=None, first=None, tail=None, archive=None, valid_locations=None, submitted_at=None):
+        if archive is None:
+            archive = {}
         self.submitted_at = submitted_at
         self._schema = schema
         self._current = current  # the latest node
