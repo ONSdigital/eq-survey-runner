@@ -1,5 +1,5 @@
 # eQ Survey Runner
-[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![Code Issues](https://www.quantifiedcode.com/api/v1/project/1709e9d582cc479a86568a043117d4d0/badge.svg)](https://www.quantifiedcode.com/app/project/1709e9d582cc479a86568a043117d4d0) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner)
+[![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![Code Issues](https://www.quantifiedcode.com/api/v1/project/1709e9d582cc479a86568a043117d4d0/badge.svg)](https://www.quantifiedcode.com/app/project/1709e9d582cc479a86568a043117d4d0) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Dependency Status](https://gemnasium.com/badges/github.com/ONSdigital/eq-survey-runner.svg)](https://gemnasium.com/github.com/ONSdigital/eq-survey-runner)
 
 Based on python 3
 

@@ -24,6 +24,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, '(?s)To be completed by.*?MCI Integration Testing')
         self.assertRegexpMatches(content, '(?s)PLEASE SUBMIT BY.*?6 May 2016')
         self.assertRegexpMatches(content, '(?s)PERIOD.*?1 April 2016.*?30 April 2016')
+        self.assertRegexpMatches(content, 'questionnaire by 6 May 2016, penalties may be incurred')
 
         # Legal checks
         self.assertRegexpMatches(content, 'Notice is given under section 1 of the Statistics of Trade Act 1947')
