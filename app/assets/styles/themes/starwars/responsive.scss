@@ -10,16 +10,12 @@ $responsive: true;
 @import "partials/utilities/**/*.scss";
 @import "partials/hacks/**/*.scss";
 
-body {
-  background: #efefef;
-}
-
 .bar {
-  background-color: $color-secondary;
+  background-color: $color-black;
 }
 
 .logo {
   width: 100%;
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 3rem auto;
 }

@@ -16,20 +16,19 @@ class StarWarsTestCase(IntegrationTestCase):
         # Landing page tests
         content = response.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '(?s)Star Wars.*?Star Wars')
+        self.assertRegexpMatches(content, 'Star Wars')
         self.assertRegexpMatches(content, 'If actual figures are not available, please provide informed estimates.')
-        self.assertRegexpMatches(content, 'How is your information used?')
+        self.assertRegexpMatches(content, 'Legal Information')
         self.assertRegexpMatches(content, '>Get Started<')
         self.assertRegexpMatches(content, '(?s)Trading as.*?Integration Tests')
-        self.assertRegexpMatches(content, '(?s)To be completed by.*?MCI Integration Testing')
+        self.assertRegexpMatches(content, '(?s)Business name.*?MCI Integration Testing')
         self.assertRegexpMatches(content, '(?s)PLEASE SUBMIT BY.*?6 May 2016')
         self.assertRegexpMatches(content, '(?s)PERIOD.*?1 April 2016.*?30 April 2016')
         self.assertRegexpMatches(content, 'questionnaire by 6 May 2016, penalties may be incurred')
 
         # Legal checks
-        self.assertRegexpMatches(content, 'Notice is given under section 1 of the Statistics of Trade Act 1947')
-        self.assertRegexpMatches(content, 'You are required by law to complete this questionnaire')
-        self.assertRegexpMatches(content, 'NB: Your response is legally required')
+        self.assertRegexpMatches(content, 'We will treat your data securely and confidentially')
+        self.assertRegexpMatches(content, 'You are required to complete this questionnaire')
 
         # Information to provide
         self.assertRegexpMatches(content, 'Total Yearly cost of Rebel Alliance')
@@ -297,9 +296,8 @@ class StarWarsTestCase(IntegrationTestCase):
     def rogue_one_check_introduction_text(self, response):
         content = response.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '(?s)Rogue One.*?Rogue One')
-        self.assertRegexpMatches(content, 'Good luck in stealing the plans to the Death Star')
-
+        self.assertRegexpMatches(content, '(?s)Rogue One')
+        
     def rogue_one_check_character_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Who do you want to know more about?')
