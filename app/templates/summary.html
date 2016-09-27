@@ -5,6 +5,8 @@
 {% set not_answered = 'No answer provided' %}
 
 {% block survey -%}
+
+
 <div class="header u-ta-l">
   <h1 class="header__title saturn">Your responses</h1>
   <h2 class="header__subtitle mars">Please check carefully before submission.</h2>
@@ -14,7 +16,9 @@
   <dl class="summary">
   {% for block in content %}
 
-    {% set summary_id = "summary-" ~ loop.index0 %}
+    {% set outer_loop_index = loop.index0 %}
+
+    {% set summary_id = "summary-" ~ outer_loop_index %}
 
     <dt class="summary__title saturn" id="{{summary_id}}">{{block.title | safe}}</dt>
     <dd class="summary__block">
@@ -22,12 +26,14 @@
 
       {% for item in block.items %}
 
-        {% set id = summary_id ~ "-" ~ loop.index0 %}
+        {% set inner_loop_index = loop.index0 %}
+
+        {% set id = summary_id ~ "-" ~ inner_loop_index %}
 
         <dt class="summary__question summary__question--{{item.type}}" id="{{id}}">{{item.question | safe}}</dt>
         <dd class="summary__answer summary__answer--{{item.type}}">
 
-          <div class="summary__answer-text" id="{{id}}-answer">
+          <div class="summary__answer-text" id="{{id}}-answer" data-qa="answer-{{outer_loop_index}}-{{inner_loop_index}} answer-type-{{item.type}}">
 
             {% if item.type == 'date' %}
 
@@ -65,7 +71,7 @@
           </div>
 
           <div class="summary__edit">
-            <a href="{{item.link}}" class="summary__edit-link" aria-describedby="{{id}} {{id}}-answer">Edit <span class="u-vh">your answer</span></a>
+            <a href="{{item.link}}" class="summary__edit-link" aria-describedby="{{id}} {{id}}-answer" data-qa="edit-{{item.type}}">Edit <span class="u-vh">your answer</span></a>
           </div>
 
         </dd>
