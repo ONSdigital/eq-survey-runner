@@ -8,7 +8,7 @@
     "description": "Test with a confirmation page instead of a summary",
     "theme": "default",
     "introduction": {
-        "description": "Good luck in stealing the plans to the Death Star"
+        "description": ""
     },
     "display": {
         "properties": {}

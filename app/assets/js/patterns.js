@@ -1,5 +1,5 @@
+/* global Prism:true */
 
-/*global Prism:true */
 (() => {
   Prism.plugins.NormalizeWhitespace.setDefaults({
     'remove-trailing': true,
