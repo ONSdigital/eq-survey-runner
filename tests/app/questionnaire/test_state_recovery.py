@@ -3,6 +3,7 @@ from app.questionnaire import state_recovery
 from app.questionnaire.state_recovery import StateRecovery, POST_DATA, MAX_NO_OF_REPLAYS
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
+from app.authentication.user import QuestionnaireData
 from unittest.mock import MagicMock
 
 from flask_login import current_user
@@ -18,10 +19,12 @@ class TestStateRecovery(SurveyRunnerTestCase):
             location = "page1"
 
             StateRecovery.save_post_date(location, post_data)
+            data_query = QuestionnaireData(current_user.user_id, current_user.user_ik)
+            questionnaire_data = data_query.get_questionnaire_data()
 
-            self.assertIsNotNone(current_user.get_questionnaire_data())
-            self.assertEqual(post_data, current_user.get_questionnaire_data()[POST_DATA][0]["post_data"])
-            self.assertEqual(location, current_user.get_questionnaire_data()[POST_DATA][0]["location"])
+            self.assertIsNotNone(questionnaire_data)
+            self.assertEqual(post_data, questionnaire_data[POST_DATA][0]["post_data"])
+            self.assertEqual(location, questionnaire_data[POST_DATA][0]["location"])
 
     def test_recover_from_post_data(self):
         with self.application.test_request_context():

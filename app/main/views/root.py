@@ -58,8 +58,6 @@ def login():
         # get the current location of the user
         current_location = questionnaire_manager.get_current_location()
 
-        current_user.save()
-
         return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/' + current_location)
 
     except NoTokenException as e:

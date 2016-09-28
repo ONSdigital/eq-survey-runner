@@ -3,6 +3,7 @@ import uuid
 from datetime import datetime
 
 from app.authentication.invalid_token_exception import InvalidTokenException
+from app.authentication.user import QuestionnaireData
 
 import jsonpickle
 
@@ -97,9 +98,13 @@ class MetaDataStore(object):
                         attr_value = None
                 setattr(metadata, attr_name, attr_value)
 
-            frozen = jsonpickle.encode(metadata)
-            data = user.get_questionnaire_data()
-            data[MetaDataStore.METADATA_KEY] = frozen
+            questionnaire_data = QuestionnaireData(user.user_id, user.user_ik)
+
+            data = questionnaire_data.get_questionnaire_data()
+            data[MetaDataStore.METADATA_KEY] = jsonpickle.encode(metadata)
+
+            questionnaire_data.questionnaire_data = data
+            questionnaire_data.save()
 
             return metadata
         except (RuntimeError, ValueError, TypeError) as e:
@@ -111,13 +116,14 @@ class MetaDataStore(object):
     def get_instance(user):
 
         try:
-            data = user.get_questionnaire_data()
+            questionnaire_data = QuestionnaireData(user.user_id, user.user_ik)
+            data = questionnaire_data.get_questionnaire_data()
+
             if MetaDataStore.METADATA_KEY in data:
                 metadata = data[MetaDataStore.METADATA_KEY]
-                thawed = jsonpickle.decode(metadata)
-                return thawed
+                return jsonpickle.decode(metadata)
             else:
-                raise RuntimeError("No metadata for user %s", user.get_user_id())
+                raise RuntimeError("No metadata for user %s", user.user_id)
         except AttributeError:
             logger.debug("Anonymous user requesting metadata get instance")
             # anonymous user mixin - this happens on the error pages before authentication

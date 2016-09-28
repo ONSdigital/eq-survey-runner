@@ -1,6 +1,7 @@
 import logging
 
 from app import settings
+from app.authentication.user import QuestionnaireData
 
 from flask_login import current_user
 
@@ -67,18 +68,23 @@ class DatabaseStateManager(StateManager):
 
     @staticmethod
     def has_state():
-        questionnaire_data = current_user.get_questionnaire_data()
+        data_query = QuestionnaireData(current_user.user_id, current_user.user_ik)
+        questionnaire_data = data_query.get_questionnaire_data()
+
         return STATE in questionnaire_data.keys()
 
     @staticmethod
     def get_state():
-        questionnaire_data = current_user.get_questionnaire_data()
+        data_query = QuestionnaireData(current_user.user_id, current_user.user_ik)
+        questionnaire_data = data_query.get_questionnaire_data()
         logger.debug("Returning questionnaire data %s", questionnaire_data)
         state = questionnaire_data[STATE]
         return jsonpickle.decode(state)
 
     @staticmethod
     def save_state(questionnaire_state):
-        questionnaire_data = current_user.get_questionnaire_data()
+        data_query = QuestionnaireData(current_user.user_id, current_user.user_ik)
+        questionnaire_data = data_query.get_questionnaire_data()
         questionnaire_data[STATE] = jsonpickle.encode(questionnaire_state)
-        current_user.save()
+        data_query.questionnaire_data = questionnaire_data
+        data_query.save()

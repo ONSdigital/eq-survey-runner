@@ -79,7 +79,7 @@ class SaveContinue(UserAction):
         self.action = 'save_continue'
 
     def perform_action(self):
-        current_user.save()
+        pass
 
 
 class SubmitAnswers(UserAction):

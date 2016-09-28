@@ -1,6 +1,7 @@
 import logging
 
 from app.authentication.session_management import session_manager
+from app.authentication.user import QuestionnaireData
 from app.metadata.metadata_store import MetaDataStore
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.questionnaire.state import State
@@ -395,7 +396,8 @@ class QuestionnaireManager(object):
     def delete_user_data(self):
         # once the survey has been submitted
         # delete all user data from the database
-        current_user.delete_questionnaire_data()
+        qdata = QuestionnaireData(current_user.user_id, current_user.user_ik)
+        qdata.delete_questionnaire_data()
         # and clear out the session state
         session_manager.clear()
 

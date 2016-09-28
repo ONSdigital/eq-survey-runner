@@ -1,6 +1,7 @@
 import logging
 
 from app import settings
+from app.authentication.user import QuestionnaireData
 
 from flask_login import current_user
 
@@ -17,12 +18,13 @@ class StateRecovery(object):
     @staticmethod
     def save_post_date(location, post_data):
         logger.debug("Saving Post Data %s", post_data)
-        questionnaire_data = current_user.get_questionnaire_data()
+        questionnaire = QuestionnaireData(current_user.user_id, current_user.user_ik)
+        questionnaire_data = questionnaire.get_questionnaire_data()
         if POST_DATA not in questionnaire_data:
             questionnaire_data[POST_DATA] = []
 
         questionnaire_data[POST_DATA].append({'location': location, 'post_data': StateRecovery._convert_to_dict(post_data)})
-        current_user.save()
+        questionnaire.save()
 
     @staticmethod
     def _convert_to_dict(post_data):
@@ -34,7 +36,8 @@ class StateRecovery(object):
         logger.debug("Recovering from post data")
 
         logger.debug("Retrieving questionnaire data")
-        questionnaire_data = current_user.get_questionnaire_data()
+        questionnaire = QuestionnaireData(current_user.user_id, current_user.user_ik)
+        questionnaire_data = questionnaire.get_questionnaire_data()
         if POST_DATA not in questionnaire_data:
             questionnaire_data[POST_DATA] = []
 

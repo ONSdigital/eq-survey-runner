@@ -55,17 +55,15 @@ class Authenticator(object):
         user_id = UserIDGenerator.generate_id(token)
         user_ik = UserIDGenerator.generate_ik(token)
 
-        user = User(user_id, user_ik)
-
         # store the user id in the session
         session_manager.store_user_id(user_id)
         # store the user ik in the cookie
         session_manager.store_user_ik(user_ik)
 
+        user = User(user_id, user_ik)
+
         # store the meta data
         metadata = MetaDataStore.save_instance(user, token)
-
-        user.save()
 
         logger.info("User authenticated with tx_id=%s", metadata.tx_id)
 
