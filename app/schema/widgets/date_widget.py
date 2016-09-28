@@ -52,8 +52,9 @@ class DateWidget(Widget):
                     'for': self.name + '-day',
                     'text': 'Day',
                   },
-                  'select': {
-                    'options': self._get_days(parts[0]),
+                  'input': {
+                    'value': parts[0],
+                    'placeholder': 'DD',
                     'name': self.name + '-day',
                     'id': self.name + '-day',
                   },

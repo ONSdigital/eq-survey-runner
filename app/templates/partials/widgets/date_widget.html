@@ -1,33 +1,23 @@
-{% set subfields %}
-  <div class="subfields">
-    <div class="field field--select">
+<fieldset class="fieldset  fieldset--date">
+  <legend class="legend venus">{{legend}}</legend>
+  <div class="fieldset__fields">
+    <div class="field field--input field--day">
       {% set label = fields['day'].label %}
-      {% include 'partials/forms/label.html' %}
-      {% set select = fields['day'].select %}
-      {% include 'partials/forms/select.html' %}
+      <label class="label mercury" for="{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
+      {% set input = fields['day'].input %}
+      {% include 'partials/forms/input.html' %}
     </div>
-    <div class="field field--select">
+    <div class="field field--select field--month">
       {% set label = fields['month'].label %}
-      {% include 'partials/forms/label.html' %}
+      <label class="label mercury" for="{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
       {% set select = fields['month'].select %}
       {% include 'partials/forms/select.html' %}
     </div>
-    <div class="field field--input">
+    <div class="field field--input field--year">
       {% set label = fields['year'].label %}
-      {% include 'partials/forms/label.html' %}
+      <label class="label mercury" for="{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
       {% set input = fields['year'].input %}
       {% include 'partials/forms/input.html' %}
     </div>
   </div>
-{% endset %}
-
-{% if legend %}
-  <fieldset class="fieldset date">
-    <legend class="legend">
-      <div class="venus">{{legend}}</div>
-    </legend>
-    {{subfields|safe}}
-  </fieldset>
-{% else %}
-  {{subfields|safe}}
-{% endif %}
+</fieldset>

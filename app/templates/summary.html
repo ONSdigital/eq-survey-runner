@@ -31,7 +31,9 @@
 
             {% if item.type == 'date' %}
 
-              {{item.answer[0].value.strftime('%d %b %Y')}} to {{item.answer[1].value.strftime('%d %b %Y')}}
+              {% set date_format = '%w %b %Y' %}
+
+              {{item.answer[0].value.strftime(date_format)}} to {{item.answer[1].value.strftime(date_format)}}
 
             {% elif item.type == 'checkbox' %}
 

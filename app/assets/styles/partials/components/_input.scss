@@ -9,8 +9,6 @@ $input-padding: 0.6rem;
   font-size: 1rem;
   border: 1px solid $color-borders;
   border-radius: $input-radius;
-  width: 100%;
-  max-width: 40rem;
 }
 
 .input__helper {
@@ -25,13 +23,16 @@ $input-padding: 0.6rem;
   background: $color-white url("/s/img/icons/icons--chevron-down.svg") no-repeat center right 6px;
   background-size: 1.5rem;
   line-height: 1.4;
-  width: 100%;
   &::-ms-expand {
     display: none;
   }
   @include fixed() {
     padding-right: 0.5rem;
   }
+}
+
+.input--textarea {
+  width: 100%;
 }
 
 .input--radio,
@@ -89,7 +90,6 @@ $input-padding: 0.6rem;
   align-items: center;
   .input {
     border-radius: 0 3px 3px 0;
-    flex: 1;
     line-height: normal;
     position: relative;
     z-index: 1;
