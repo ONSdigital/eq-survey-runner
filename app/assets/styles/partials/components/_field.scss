@@ -54,6 +54,7 @@
   }
 
   .field--day {
+    max-width: 6rem;
     @include fixed {
       width: 7rem;
     }
@@ -61,6 +62,7 @@
 
   .field--month {
     flex: 2;
+    max-width: 10rem;
     @include fixed {
       width: 14rem;
     }
@@ -68,6 +70,7 @@
 
   .field--year {
     margin-right: 0;
+    max-width: 6rem;
     @include fixed {
       width: 7rem;
     }
