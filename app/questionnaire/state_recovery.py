@@ -18,13 +18,12 @@ class StateRecovery(object):
     @staticmethod
     def save_post_date(location, post_data):
         logger.debug("Saving Post Data %s", post_data)
-        questionnaire = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        questionnaire_data = questionnaire.data
-        if POST_DATA not in questionnaire_data:
-            questionnaire_data[POST_DATA] = []
+        store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        if POST_DATA not in store.data:
+            store.data[POST_DATA] = []
 
-        questionnaire_data[POST_DATA].append({'location': location, 'post_data': StateRecovery._convert_to_dict(post_data)})
-        questionnaire.save()
+        store.data[POST_DATA].append({'location': location, 'post_data': post_data.to_dict()})
+        store.save()
 
     @staticmethod
     def _convert_to_dict(post_data):
@@ -36,12 +35,11 @@ class StateRecovery(object):
         logger.debug("Recovering from post data")
 
         logger.debug("Retrieving questionnaire data")
-        questionnaire = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        questionnaire_data = questionnaire.data
-        if POST_DATA not in questionnaire_data:
-            questionnaire_data[POST_DATA] = []
+        store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        if POST_DATA not in store.data:
+            store.data[POST_DATA] = []
 
-        all_post_data = questionnaire_data[POST_DATA]
+        all_post_data = store.data[POST_DATA]
         logger.debug("All post data %s", all_post_data)
         questionnaire_manager.go_to(questionnaire_manager.get_first_location())
 
