@@ -100,7 +100,7 @@ class MetaDataStore(object):
 
             questionnaire_data = QuestionnaireData(user.user_id, user.user_ik)
 
-            data = questionnaire_data.get_questionnaire_data()
+            data = questionnaire_data.data
             data[MetaDataStore.METADATA_KEY] = jsonpickle.encode(metadata)
 
             questionnaire_data.data = data
@@ -117,7 +117,7 @@ class MetaDataStore(object):
 
         try:
             questionnaire_data = QuestionnaireData(user.user_id, user.user_ik)
-            data = questionnaire_data.get_questionnaire_data()
+            data = questionnaire_data.data
 
             if MetaDataStore.METADATA_KEY in data:
                 metadata = data[MetaDataStore.METADATA_KEY]

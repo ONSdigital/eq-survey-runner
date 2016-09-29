@@ -36,11 +36,7 @@ class QuestionnaireData:
             logger.debug("User %s does not have previous data creating", user_id)
             self.save()
 
-    def get_questionnaire_data(self):
-        logger.debug("Returning questionnaire data for %s", self.user_id)
-        return self.data
-
-    def delete_questionnaire_data(self):
+    def delete(self):
         logger.debug("Deleting questionnaire data for %s", self.user_id)
         self.data = {}
         self.storage.delete(self.user_id)

@@ -19,7 +19,7 @@ class StateRecovery(object):
     def save_post_date(location, post_data):
         logger.debug("Saving Post Data %s", post_data)
         questionnaire = QuestionnaireData(current_user.user_id, current_user.user_ik)
-        questionnaire_data = questionnaire.get_questionnaire_data()
+        questionnaire_data = questionnaire.data
         if POST_DATA not in questionnaire_data:
             questionnaire_data[POST_DATA] = []
 
@@ -37,7 +37,7 @@ class StateRecovery(object):
 
         logger.debug("Retrieving questionnaire data")
         questionnaire = QuestionnaireData(current_user.user_id, current_user.user_ik)
-        questionnaire_data = questionnaire.get_questionnaire_data()
+        questionnaire_data = questionnaire.data
         if POST_DATA not in questionnaire_data:
             questionnaire_data[POST_DATA] = []
 

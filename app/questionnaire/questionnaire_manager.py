@@ -397,7 +397,7 @@ class QuestionnaireManager(object):
         # once the survey has been submitted
         # delete all user data from the database
         qdata = QuestionnaireData(current_user.user_id, current_user.user_ik)
-        qdata.delete_questionnaire_data()
+        qdata.delete()
         # and clear out the session state
         session_manager.clear()
 

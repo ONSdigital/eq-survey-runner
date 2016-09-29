@@ -20,7 +20,7 @@ class TestStateRecovery(SurveyRunnerTestCase):
 
             StateRecovery.save_post_date(location, post_data)
             data_query = QuestionnaireData(current_user.user_id, current_user.user_ik)
-            questionnaire_data = data_query.get_questionnaire_data()
+            questionnaire_data = data_query.data
 
             self.assertIsNotNone(questionnaire_data)
             self.assertEqual(post_data, questionnaire_data[POST_DATA][0]["post_data"])
