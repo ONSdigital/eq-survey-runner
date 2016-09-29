@@ -3,7 +3,7 @@ import uuid
 from datetime import datetime
 
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.data_model.questionnaire_data import QuestionnaireData
+from app.data_model.questionnaire_store import get_questionnaire_store
 
 import jsonpickle
 
@@ -98,13 +98,13 @@ class MetaDataStore(object):
                         attr_value = None
                 setattr(metadata, attr_name, attr_value)
 
-            questionnaire_data = QuestionnaireData(user.user_id, user.user_ik)
+            questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
 
-            data = questionnaire_data.data
+            data = questionnaire_store.data
             data[MetaDataStore.METADATA_KEY] = jsonpickle.encode(metadata)
 
-            questionnaire_data.data = data
-            questionnaire_data.save()
+            questionnaire_store.data = data
+            questionnaire_store.save()
 
             return metadata
         except (RuntimeError, ValueError, TypeError) as e:
@@ -116,8 +116,8 @@ class MetaDataStore(object):
     def get_instance(user):
 
         try:
-            questionnaire_data = QuestionnaireData(user.user_id, user.user_ik)
-            data = questionnaire_data.data
+            questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+            data = questionnaire_store.data
 
             if MetaDataStore.METADATA_KEY in data:
                 metadata = data[MetaDataStore.METADATA_KEY]

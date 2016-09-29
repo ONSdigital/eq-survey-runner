@@ -2,10 +2,12 @@ import logging
 
 from app.storage.storage_factory import StorageFactory
 
+from flask import g
+
 logger = logging.getLogger(__name__)
 
 
-class QuestionnaireData:
+class QuestionnaireStore:
 
     def __init__(self, user_id, user_ik):
         self.data = {}
@@ -33,3 +35,15 @@ class QuestionnaireData:
     def save(self):
         logger.debug("Saving user data %s for user id %s", self.data, self.user_id)
         self.storage.store(data=self.data, user_id=self.user_id, user_ik=self.user_ik)
+
+
+def get_questionnaire_store(user_id, user_ik):
+    # Sets up a single QuestionnaireStore instance throughout app.
+    store = getattr(g, '_questionnaire_store', None)
+    if store is None:
+        try:
+            store = g._questionnaire_store = QuestionnaireStore(user_id, user_ik)
+        except Exception as e:
+            logger.error("get_questionnaire_store failed to init", exception=repr(e))
+
+    return store

@@ -1,7 +1,7 @@
 import logging
 
 from app import settings
-from app.data_model.questionnaire_data import QuestionnaireData
+from app.data_model.questionnaire_store import get_questionnaire_store
 
 from flask_login import current_user
 
@@ -18,7 +18,7 @@ class StateRecovery(object):
     @staticmethod
     def save_post_date(location, post_data):
         logger.debug("Saving Post Data %s", post_data)
-        questionnaire = QuestionnaireData(current_user.user_id, current_user.user_ik)
+        questionnaire = get_questionnaire_store(current_user.user_id, current_user.user_ik)
         questionnaire_data = questionnaire.data
         if POST_DATA not in questionnaire_data:
             questionnaire_data[POST_DATA] = []
@@ -36,7 +36,7 @@ class StateRecovery(object):
         logger.debug("Recovering from post data")
 
         logger.debug("Retrieving questionnaire data")
-        questionnaire = QuestionnaireData(current_user.user_id, current_user.user_ik)
+        questionnaire = get_questionnaire_store(current_user.user_id, current_user.user_ik)
         questionnaire_data = questionnaire.data
         if POST_DATA not in questionnaire_data:
             questionnaire_data[POST_DATA] = []
