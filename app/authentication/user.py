@@ -31,7 +31,7 @@ class QuestionnaireData:
 
         if self.storage.has_data(self.user_id):
             logger.debug("User %s has previous data loading", user_id)
-            self.load()
+            self.data = self.storage.get(self.user_id, self.user_ik)
         else:
             logger.debug("User %s does not have previous data creating", user_id)
             self.save()
@@ -44,7 +44,3 @@ class QuestionnaireData:
     def save(self):
         logger.debug("Saving user data %s for user id %s", self.data, self.user_id)
         self.storage.store(data=self.data, user_id=self.user_id, user_ik=self.user_ik)
-
-    def load(self):
-        self.data = self.storage.get(self.user_id, self.user_ik)
-        logger.debug("Loaded questionnaire data %s", self.data)
