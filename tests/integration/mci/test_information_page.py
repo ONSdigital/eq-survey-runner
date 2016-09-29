@@ -1,6 +1,7 @@
-from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.create_token import create_token
-from tests.integration import test_urls
+from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.mci import mci_test_urls
+
 
 class TestInformationPage(IntegrationTestCase):
 
@@ -44,7 +45,7 @@ class TestInformationPage(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        response = self.client.post(test_urls.INTRODUCTION_0203, data=post_data, follow_redirects=True)
+        response = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=True)
         content = response.get_data(True)
         self.assertRegexpMatches(content, 'Information')
         self.assertRegexpMatches(content, 'Unfortunately you can only complete one survey at a time.')

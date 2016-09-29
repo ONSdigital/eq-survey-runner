@@ -28,9 +28,9 @@ def root():
     return errors.index()
 
 
-@main_blueprint.route('/information/<system_message>', methods=['GET'])
-def information(system_message):
-    front_end_message = get_messages(system_message)
+@main_blueprint.route('/information/<message_identifier>', methods=['GET'])
+def information(message_identifier):
+    front_end_message = get_messages(message_identifier)
     if front_end_message:
         logger.debug(front_end_message)
         return render_theme_template('default', 'information.html',

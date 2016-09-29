@@ -1,6 +1,6 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
-from tests.integration import test_urls
+from tests.integration.star_wars import star_wars_test_urls
 
 class TestEmptySubmissionFails(StarWarsTestCase):
 
@@ -12,11 +12,11 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         self.start_questionnaire_and_navigate_routing()
 
         # now issue a request to the summary page
-        resp = self.client.get(test_urls.SUMMARY_STAR_WARS, follow_redirects=False)
+        resp = self.client.get(star_wars_test_urls.STAR_WARS_SUMMARY, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # check that we're redirected to the first block as its an empty submission
-        self.assertRegexpMatches(resp.headers['Location'], test_urls.BLOCK2_STAR_WARS)
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_BLOCK2)
 
         # go to the first page
         first_page = resp.headers['Location']
@@ -96,7 +96,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], test_urls.SUMMARY_STAR_WARS_REGEX)
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 

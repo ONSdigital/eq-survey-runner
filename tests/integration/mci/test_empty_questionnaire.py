@@ -1,6 +1,7 @@
-from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.create_token import create_token
-from tests.integration import test_urls
+from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.mci import mci_test_urls
+
 
 class TestEmptyQuestionnaire(IntegrationTestCase):
 
@@ -20,7 +21,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         self.assertRegexpMatches(content, '>Get Started<')
 
         # We try to access the submission page without entering anything
-        resp = self.client.get(test_urls.SUMMARY_0205, follow_redirects=False)
+        resp = self.client.get(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # Check we are redirected back to the questionnaire
@@ -30,7 +31,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         post_data = {
             'action[submit_answers]': "Submit Answers"
         }
-        resp = self.client.post(test_urls.SUMMARY_0205, data=post_data, follow_redirects=False)
+        resp = self.client.post(mci_test_urls.MCI_0205_SUMMARY, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # Check we are redirected back to the questionnaire

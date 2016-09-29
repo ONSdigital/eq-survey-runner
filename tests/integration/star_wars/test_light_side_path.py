@@ -1,6 +1,6 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
-from tests.integration import test_urls
+from tests.integration.star_wars import star_wars_test_urls
 
 
 class TestLightSidePath(StarWarsTestCase):
@@ -84,7 +84,7 @@ class TestLightSidePath(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], test_urls.SUMMARY_STAR_WARS)
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY)
 
         summary_url = resp.headers['Location']
 

@@ -1,6 +1,6 @@
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
-from tests.integration import test_urls
+from tests.integration.star_wars import star_wars_test_urls
 
 class StarWarsTestCase(IntegrationTestCase):
     def setUp(self):
@@ -43,7 +43,7 @@ class StarWarsTestCase(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(test_urls.INTRODUCTION_STAR_WARS, data=post_data, follow_redirects=False)
+        resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         routing_start = resp.headers['Location']

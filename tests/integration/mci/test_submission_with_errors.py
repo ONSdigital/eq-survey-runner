@@ -1,6 +1,7 @@
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
-from tests.integration import test_urls
+from tests.integration.mci import mci_test_urls
+
 
 class TestSubmissionWithErrors(IntegrationTestCase):
 
@@ -21,7 +22,7 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(test_urls.INTRODUCTION_0205, data=post_data, follow_redirects=False)
+        resp = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -58,7 +59,7 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], test_urls.SUMMARY_0205_REGEX)
+        self.assertRegexpMatches(resp.headers['Location'], mci_test_urls.MCI_0205_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 

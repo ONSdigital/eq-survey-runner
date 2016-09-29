@@ -1,10 +1,10 @@
-from tests.integration.downstream.downstream_test_case import DownstreamTestCase
-from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
-from tests.integration.create_token import create_token
-
-
 from werkzeug.datastructures import MultiDict
-from tests.integration import test_urls
+
+from tests.integration.create_token import create_token
+from tests.integration.downstream.downstream_test_case import DownstreamTestCase
+from tests.integration.star_wars import star_wars_test_urls
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
+
 
 class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
     def setUp(self):
@@ -89,7 +89,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], test_urls.SUMMARY_STAR_WARS_REGEX)
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 

@@ -1,5 +1,5 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
-from tests.integration import test_urls
+from tests.integration.star_wars import star_wars_test_urls
 
 class TestPreviousLink(StarWarsTestCase):
 
@@ -9,7 +9,7 @@ class TestPreviousLink(StarWarsTestCase):
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
-        introduction = test_urls.INTRODUCTION_STAR_WARS
+        introduction = star_wars_test_urls.STAR_WARS_INTRODUCTION
 
         resp = self.navigate_to_page(introduction)
 
@@ -49,7 +49,7 @@ class TestPreviousLink(StarWarsTestCase):
         # go to the second page
         self.check_second_quiz_page(second_page)
 
-        resp = self.client.get(test_urls.PREVIOUS_STAR_WARS, follow_redirects=False)
+        resp = self.client.get(star_wars_test_urls.STAR_WARS_PREVIOUS, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
         self.assertEquals(resp.headers['Location'], first_page)
 
@@ -72,18 +72,18 @@ class TestPreviousLink(StarWarsTestCase):
         }
 
         # first start the survey
-        resp = self.client.post(test_urls.INTRODUCTION_STAR_WARS, data=post_data, follow_redirects=False)
+        resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], test_urls.CHOOSE_YOUR_SIDE_REGEX)
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_CHOOSE_YOUR_SIDE_REGEX)
 
         # then click previous
-        resp = self.client.get(test_urls.PREVIOUS_STAR_WARS, follow_redirects=False)
+        resp = self.client.get(star_wars_test_urls.STAR_WARS_PREVIOUS, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], test_urls.INTRODUCTION_STAR_WARS_REGEX)
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_INTRODUCTION_REGEX)
 
         # then try to start the survey again
-        resp = self.client.post(test_urls.INTRODUCTION_STAR_WARS, data=post_data, follow_redirects=False)
+        resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], test_urls.CHOOSE_YOUR_SIDE_REGEX)
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_CHOOSE_YOUR_SIDE_REGEX)
 
 

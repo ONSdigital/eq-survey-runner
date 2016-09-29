@@ -1,5 +1,6 @@
+from tests.integration.mci import mci_test_urls
 from .test_happy_path import TestHappyPath
-from tests.integration import test_urls
+
 
 class TestBackwardsNavigationAfterSubmission(TestHappyPath):
 
@@ -9,11 +10,11 @@ class TestBackwardsNavigationAfterSubmission(TestHappyPath):
 
     def backwards_navigation(self):
 
-        resp = self.client.get(test_urls.SUMMARY_0205, follow_redirects=False)
+        resp = self.client.get(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=False)
         self.assertEquals(resp.status_code, 401)
 
-        resp = self.client.get(test_urls.BLOCK1_0205, follow_redirects=False)
+        resp = self.client.get(mci_test_urls.MCI_0205_BLOCK1, follow_redirects=False)
         self.assertEquals(resp.status_code, 401)
 
-        resp = self.client.get(test_urls.INTRODUCTION_0205, follow_redirects=False)
+        resp = self.client.get(mci_test_urls.MCI_0205_INTRODUCTION, follow_redirects=False)
         self.assertEquals(resp.status_code, 401)
