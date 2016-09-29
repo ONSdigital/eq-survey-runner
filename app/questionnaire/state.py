@@ -15,8 +15,7 @@ from app import settings
 
 
 class State(object):
-    def __init__(self, schema, current_node, first_node, tail_node, archive, submitted_at, valid_locations):
-        self.schema = schema
+    def __init__(self, current_node, first_node, tail_node, archive, submitted_at, valid_locations):
         self.current = current_node
         self.first = first_node
         self.tail = tail_node

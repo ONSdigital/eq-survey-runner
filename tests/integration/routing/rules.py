@@ -60,7 +60,7 @@ LIGHT_SHIP_NO = [{
                     "user_answer":"Leyoda"
                     }
                 ],
-                "destination_id": "66cd681c-c3cb-4e32-8d51-b98337a6b524"
+                "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
                 }]
 
 
@@ -72,7 +72,7 @@ LIGHT_SHIP_PICK = [{
                     "user_answer":"X-wing"
                     }
                 ],
-                "destination_id": "66cd681c-c3cb-4e32-8d51-b98337a6b524"
+                "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
                 }]
 
 DARK_SHIP_YES = [{
@@ -88,7 +88,7 @@ DARK_SHIP_YES = [{
                     "user_answer":"Darth Vadan"
                     }
                 ],
-                "destination_id": "5ff0d900-530d-4266-8bed-c3d1f11b8d8c"
+                "destination_id": "fab02f02-6ce4-4f22-b61f-0c7880009f08"
                 }]
 
 DARK_SHIP_NO = [{
@@ -104,7 +104,7 @@ DARK_SHIP_NO = [{
                     "user_answer":"Boba Fetewis"
                     }
                 ],
-                "destination_id": "66cd681c-c3cb-4e32-8d51-b98337a6b524"
+                "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
                 }]
 
 DARK_SHIP_PAIN = [{
@@ -123,61 +123,19 @@ DARK_SHIP_PAIN = [{
                 "destination_id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"
                 }]
 
-DARK_SHIP_COUNT = [{
-                "block_id": "5ff0d900-530d-4266-8bed-c3d1f11b8d8c",
-                "answers":[{
-                    "answer":"How many ships do you want?",
-                    "answer_id":"50dd83c9-8de6-4c3b-be24-e85dd290b855",
-                    "user_answer":"2"
-                    }
-                ],
-                "destination_id": "fab02f02-6ce4-4f22-b61f-0c7880009f08_1"
-                }]
 
-DARK_SHIP_PICK_1 = [{
-                "block_id": "fab02f02-6ce4-4f22-b61f-0c7880009f08_1",
+
+DARK_SHIP_PICK = [{
+                "block_id": "fab02f02-6ce4-4f22-b61f-0c7880009f08",
                 "answers":[{
                     "answer":"Which ship do you want?",
-                    "answer_id":"a5d5ca1a-cf58-4626-be35-dce81297688b_1",
+                    "answer_id":"a5d5ca1a-cf58-4626-be35-dce81297688b",
                     "user_answer":"Death Star"
                     }
                 ],
-                "destination_id": "fab02f02-6ce4-4f22-b61f-0c7880009f08_2"
-                }]
-
-DARK_SHIP_PICK_2 = [{
-                "block_id": "fab02f02-6ce4-4f22-b61f-0c7880009f08_2",
-                "answers":[{
-                    "answer":"Which ship do you want?",
-                    "answer_id":"a5d5ca1a-cf58-4626-be35-dce81297688b_2",
-                    "user_answer":"TIE Fighter"
-                    }
-                ],
                 "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
                 }]
 
-
-CRAWLER = [{
-            "block_id": "66cd681c-c3cb-4e32-8d51-b98337a6b524",
-            "answers":[{
-                "answer":"How many starting crawlers do you know?",
-                "answer_id":"8fe76762-d07f-4a1f-a315-0b0385940f8c",
-                "user_answer":"1"
-                }
-            ],
-            "destination_id": "73ca315e-cab0-4b19-a79b-f850884db9e5_1"
-            }]
-
-CRAWLER_1 = [{
-                "block_id": "73ca315e-cab0-4b19-a79b-f850884db9e5_1",
-                "answers":[{
-                    "answer":"Please provide a general description of each crawler you know",
-                    "answer_id":"56b6f367-e84b-43fa-a5e2-19193f223fa0_1",
-                    "user_answer":"Test"
-                    }
-                ],
-                "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
-            }]
 
 QUIZ_PAGE_1 = [{
                 "block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",

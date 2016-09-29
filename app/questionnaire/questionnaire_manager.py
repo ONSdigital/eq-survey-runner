@@ -47,7 +47,7 @@ class QuestionnaireManager(object):
             self._valid_locations = self._build_valid_locations()
 
     def construct_state(self):
-        return State(self._schema, self._current, self._first, self._tail, self._archive, self.submitted_at, self._valid_locations)
+        return State(self._current, self._first, self._tail, self._archive, self.submitted_at, self._valid_locations)
 
     def resolve_location(self, location):
         if location == 'first':

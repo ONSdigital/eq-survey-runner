@@ -48,8 +48,8 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertEquals(resp.status_code, 302)
 
         routing_start = resp.headers['Location']
-        repeating_elements = self.default_routing(routing_start)
-        first_page = self.repeating_elements(repeating_elements)
+
+        first_page = self.default_routing(routing_start)
 
         return self.check_quiz_first_page(first_page)
 
@@ -94,65 +94,6 @@ class StarWarsTestCase(IntegrationTestCase):
         current_page = resp.headers['Location']
 
         return current_page
-
-
-    def repeating_elements(self, repeating_question_page):
-
-        # navigate back to first page
-        self.navigate_to_page(repeating_question_page)
-        self.check_repeating_question(repeating_question_page)
-
-        form_data = {
-
-            "8fe76762-d07f-4a1f-a315-0b0385940f8c": "2",
-            "action[save_continue]": "Save &amp; Continue"
-        }
-
-        resp = self.submit_page(repeating_question_page, form_data)
-        self.assertNotEquals(resp.headers['Location'], repeating_question_page)
-        first_repeat = resp.headers['Location']
-        self.navigate_to_page(first_repeat)
-
-        form_data = {
-
-            "56b6f367-e84b-43fa-a5e2-19193f223fa0_1": "crawler1",
-            "action[save_continue]": "Save &amp; Continue"
-        }
-
-        resp = self.submit_page(first_repeat, form_data)
-        self.assertNotEquals(resp.headers['Location'], first_repeat)
-        self.check_repeating_answer(first_repeat, "56b6f367-e84b-43fa-a5e2-19193f223fa0_1")
-        second_repeat = resp.headers['Location']
-        self.navigate_to_page(second_repeat)
-
-
-        form_data = {
-            "56b6f367-e84b-43fa-a5e2-19193f223fa0_2": "crawler2",
-            "action[save_continue]": "Save &amp; Continue"
-        }
-
-        resp = self.submit_page(second_repeat, form_data)
-        self.assertNotEquals(resp.headers['Location'], second_repeat)
-        questionnaire_page = resp.headers['Location']
-
-        return questionnaire_page
-
-
-    def check_repeating_question(self, repeating_question_page):
-        resp = self.client.get(repeating_question_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-        content = resp.get_data(True)
-
-        self.assertRegexpMatches(content, 'How many starting crawlers do you know?')
-        self.assertRegexpMatches(content, '8fe76762-d07f-4a1f-a315-0b0385940f8c')
-
-
-    def check_repeating_answer(self, repeating_answer_page, question_id):
-        resp = self.client.get(repeating_answer_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
-        content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'Please provide a general description of each crawler you know')
-        self.assertRegexpMatches(content, question_id )
 
 
     def check_choose_your_side(self, start_page):
@@ -297,7 +238,7 @@ class StarWarsTestCase(IntegrationTestCase):
         content = response.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '(?s)Rogue One')
-        
+
     def rogue_one_check_character_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Who do you want to know more about?')
