@@ -19,6 +19,8 @@ class User(UserMixin):
 class QuestionnaireData:
 
     def __init__(self, user_id, user_ik):
+        self.data = {}
+
         if user_id and user_ik:
             self.user_id = user_id
             self.user_ik = user_ik
@@ -32,22 +34,21 @@ class QuestionnaireData:
             self.load()
         else:
             logger.debug("User %s does not have previous data creating", user_id)
-            self.questionnaire_data = {}
             self.save()
 
     def get_questionnaire_data(self):
         logger.debug("Returning questionnaire data for %s", self.user_id)
-        return self.questionnaire_data
+        return self.data
 
     def delete_questionnaire_data(self):
         logger.debug("Deleting questionnaire data for %s", self.user_id)
-        self.questionnaire_data = {}
+        self.data = {}
         self.storage.delete(self.user_id)
 
     def save(self):
-        logger.debug("Saving user data %s for user id %s", self.questionnaire_data, self.user_id)
-        self.storage.store(data=self.questionnaire_data, user_id=self.user_id, user_ik=self.user_ik)
+        logger.debug("Saving user data %s for user id %s", self.data, self.user_id)
+        self.storage.store(data=self.data, user_id=self.user_id, user_ik=self.user_ik)
 
     def load(self):
-        self.questionnaire_data = self.storage.get(self.user_id, self.user_ik)
-        logger.debug("Loaded questionnaire data %s", self.questionnaire_data)
+        self.data = self.storage.get(self.user_id, self.user_ik)
+        logger.debug("Loaded questionnaire data %s", self.data)

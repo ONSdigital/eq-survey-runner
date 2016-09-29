@@ -86,5 +86,5 @@ class DatabaseStateManager(StateManager):
         data_query = QuestionnaireData(current_user.user_id, current_user.user_ik)
         questionnaire_data = data_query.get_questionnaire_data()
         questionnaire_data[STATE] = jsonpickle.encode(questionnaire_state)
-        data_query.questionnaire_data = questionnaire_data
+        data_query.data = questionnaire_data
         data_query.save()

@@ -103,7 +103,7 @@ class MetaDataStore(object):
             data = questionnaire_data.get_questionnaire_data()
             data[MetaDataStore.METADATA_KEY] = jsonpickle.encode(metadata)
 
-            questionnaire_data.questionnaire_data = data
+            questionnaire_data.data = data
             questionnaire_data.save()
 
             return metadata
