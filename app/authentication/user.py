@@ -35,14 +35,6 @@ class QuestionnaireData:
             self.questionnaire_data = {}
             self.save()
 
-    def get_user_id(self):
-        logger.debug("Returning user id %s", self.user_id)
-        return self.user_id
-
-    def get_user_ik(self):
-        logger.debug("Returning user ik %s", self.user_ik)
-        return self.user_ik
-
     def get_questionnaire_data(self):
         logger.debug("Returning questionnaire data for %s", self.user_id)
         return self.questionnaire_data
