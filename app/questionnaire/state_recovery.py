@@ -22,13 +22,8 @@ class StateRecovery(object):
         if POST_DATA not in store.data:
             store.data[POST_DATA] = []
 
-        store.data[POST_DATA].append({'location': location, 'post_data': post_data.to_dict()})
+        store.data[POST_DATA].append({'location': location, 'post_data': post_data.to_dict(flat=False)})
         store.save()
-
-    @staticmethod
-    def _convert_to_dict(post_data):
-        logger.debug("Multi dict is %s", post_data)
-        return post_data.to_dict(flat=False)
 
     @staticmethod
     def recover_from_post_data(questionnaire_manager):
