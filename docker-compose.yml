@@ -1,0 +1,18 @@
+version: '2'
+services:
+  db: 
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=digitaleq
+      - POSTGRES_USER=digitaleq
+      - POSTGRES_DB=runner
+  eq-survey-runner:
+    build: ./eq-survey-runner
+    environment:
+      - EQ_SCHEMA_BUCKET=""
+      - EQ_SERVER_SIDE_STORAGE_DATABASE_URL=postgres://digitaleq:@localhost:5432/runner
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    command: ./scripts/run_app.sh
