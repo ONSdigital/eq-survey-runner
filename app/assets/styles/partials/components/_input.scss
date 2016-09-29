@@ -9,7 +9,13 @@ $input-padding: 0.6rem;
   font-size: 1rem;
   border: 1px solid $color-borders;
   border-radius: $input-radius;
-  width: percentage(4 / 12);
+  width: 100%;
+  @include mq(s) {
+    width: percentage(6 / 12);
+  }
+  @include mq(l) {
+    width: percentage(4 / 12);
+  }
 }
 
 .input__helper {
@@ -86,6 +92,8 @@ $input-padding: 0.6rem;
 }
 
 .input-type {
+  $input-type-width: 2.4rem;
+
   display: flex;
   position: relative;
   align-items: center;
@@ -98,6 +106,12 @@ $input-padding: 0.6rem;
       margin-left: 2.5rem;
       border-left: 0;
     }
+    @include mq(s) {
+      width: calc(#{percentage(6 / 12)} - #{$input-type-width});
+    }
+    @include mq(l) {
+      width: calc(#{percentage(4 / 12)} - #{$input-type-width});
+    }
   }
   &::before {
     content: attr(data-type);
@@ -107,6 +121,7 @@ $input-padding: 0.6rem;
     border-right: none;
     border-radius: $input-radius 0 0 $input-radius;
     padding: $input-padding 0.9rem;
+    width: $input-type-width;
     font-weight: 600;
     font-size: 1rem;
     text-align: center;
