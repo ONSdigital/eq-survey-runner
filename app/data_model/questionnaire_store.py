@@ -44,6 +44,6 @@ def get_questionnaire_store(user_id, user_ik):
         try:
             store = g._questionnaire_store = QuestionnaireStore(user_id, user_ik)
         except Exception as e:
-            logger.error("get_questionnaire_store failed to init", exception=repr(e))
+            logger.error("questionnaire_store failed to init", exception=repr(e))
 
     return store
