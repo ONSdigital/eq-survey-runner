@@ -5,13 +5,15 @@ from app.schema.widget import Widget
 
 from flask import render_template
 
+from werkzeug.datastructures import ImmutableMultiDict
+
 logger = logging.getLogger(__name__)
 
 
 class CheckboxGroupWidget(Widget):
     def get_user_input(self, post_vars):
         # Returns an empty list
-        return post_vars.getlist(self.name)
+        return ImmutableMultiDict(post_vars).getlist(self.name)
 
     def render(self, answer_state):
         widget_params = {

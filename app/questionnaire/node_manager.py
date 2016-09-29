@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 STATE = "state"
 
 
-class StateManager(object):
+class NodeManager(object):
     '''
     This class is responsible for saving the state of the User Journey Manager into the database.
     It does this by pickling the Python object graph into JSON and storing that. This means that code
@@ -21,33 +21,33 @@ class StateManager(object):
     @staticmethod
     def has_state():
         if settings.EQ_SERVER_SIDE_STORAGE_TYPE == 'DATABASE':
-            return DatabaseStateManager.has_state()
+            return DatabaseNodeManager.has_state()
         else:
-            return InMemoryStateManager.has_state()
+            return InMemoryNodeManager.has_state()
 
     @staticmethod
     def get_state():
         if settings.EQ_SERVER_SIDE_STORAGE_TYPE == 'DATABASE':
-            return DatabaseStateManager.get_state()
+            return DatabaseNodeManager.get_state()
         else:
-            return InMemoryStateManager.get_state()
+            return InMemoryNodeManager.get_state()
 
     @staticmethod
-    def save_state(questionnaire_state):
+    def save_navigator(questionnaire_state):
         if settings.EQ_SERVER_SIDE_STORAGE_TYPE == 'DATABASE':
-            DatabaseStateManager.save_state(questionnaire_state)
+            DatabaseNodeManager.save_state(questionnaire_state)
         else:
-            InMemoryStateManager.save_state(questionnaire_state)
+            InMemoryNodeManager.save_state(questionnaire_state)
 
     @staticmethod
     def save_post_date(location, post_data):
         if settings.EQ_SERVER_SIDE_STORAGE_TYPE == 'DATABASE':
-            DatabaseStateManager.save_post_date(location, post_data)
+            DatabaseNodeManager.save_post_date(location, post_data)
         else:
-            InMemoryStateManager.save_post_date(location, post_data)
+            InMemoryNodeManager.save_post_date(location, post_data)
 
 
-class InMemoryStateManager(StateManager):
+class InMemoryNodeManager(NodeManager):
     IN_MEMORY_STATE = {}
 
     @classmethod
@@ -63,7 +63,7 @@ class InMemoryStateManager(StateManager):
         cls.IN_MEMORY_STATE = jsonpickle.encode(questionnaire_state)
 
 
-class DatabaseStateManager(StateManager):
+class DatabaseNodeManager(NodeManager):
 
     @staticmethod
     def has_state():

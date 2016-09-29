@@ -3,7 +3,7 @@ from app.schema.question import Question
 from app.schema.answer import Answer
 from app.schema.block import Block
 from app.schema.section import Section
-from app.questionnaire_state.answer import Answer as StateAnswer
+from app.questionnaire_node.state_answer import Answer as StateAnswer
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
 

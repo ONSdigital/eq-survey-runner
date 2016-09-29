@@ -3,7 +3,7 @@ import os
 
 from app import settings
 from app.parser.schema_parser_factory import SchemaParserFactory
-from app.questionnaire_state.node import Node
+from app.questionnaire_node.node import Node
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.schema.block import Block
 from app.schema.group import Group
@@ -25,25 +25,25 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
     def test_get_state_is_none(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
         block1 = self.questionnaire.children[0].children[0]
-        self.assertIsNone(questionnaire_manager.get_state(block1.id))
+        self.assertIsNone(questionnaire_manager.get_node(block1.id))
 
     def test_create_state(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
         block1 = self.questionnaire.children[0].children[0]
-        questionnaire_manager.go_to_state(block1.id)
-        self.assertIsNotNone(questionnaire_manager.get_state(block1.id))
+        questionnaire_manager.go_to_node(block1.id)
+        self.assertIsNotNone(questionnaire_manager.get_node(block1.id))
 
     def test_update_state(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
         block1 = self.questionnaire.children[0].children[0]
-        questionnaire_manager.go_to_state(block1.id)
+        questionnaire_manager.go_to_node(block1.id)
         user_answers = MultiDict()
         for section in block1.children:
             for question in section.children:
                 for answer in question.children:
                     user_answers[answer.id] = "test"
         questionnaire_manager.update_state(block1.id, user_answers)
-        self.assertIsNotNone(questionnaire_manager.get_state(block1.id))
+        self.assertIsNotNone(questionnaire_manager.get_node(block1.id))
 
     def test_append(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
@@ -172,9 +172,9 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
             schema.add_group(group)
 
             questionnaire_manager = QuestionnaireManager(schema)
-            self.assertRaises(ValueError, questionnaire_manager.go_to_state, 'introduction')
+            self.assertRaises(ValueError, questionnaire_manager.go_to_node, 'introduction')
 
-            questionnaire_manager.go_to_state("block-1")
+            questionnaire_manager.go_to_node("block-1")
             self.assertEquals("block-1", questionnaire_manager.get_current_location())
 
     def test_go_to_invalid_location(self):
@@ -192,5 +192,5 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
             schema.introduction = {'description': 'Some sort of intro'}
 
             questionnaire_manager = QuestionnaireManager(schema)
-            questionnaire_manager.go_to_state("introduction")
+            questionnaire_manager.go_to_node("introduction")
             self.assertEquals("introduction", questionnaire_manager.get_current_location())

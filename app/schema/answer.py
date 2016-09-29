@@ -1,8 +1,9 @@
 import logging
 
-from app.questionnaire_state.answer import Answer as State
-from app.questionnaire_state.exceptions import StateException
+from app.questionnaire_node.exceptions import StateException
+from app.questionnaire_node.state_answer import StateAnswer
 from app.schema.exceptions import TypeCheckingException
+
 from app.schema.item import Item
 
 import bleach
@@ -31,10 +32,10 @@ class Answer(Item):
         self.skip_condition = None
 
     def construct_state(self):
-        return State(self.id, self)
+        return StateAnswer(self.id, self)
 
     def get_state_class(self):
-        return State
+        return StateAnswer
 
     def get_user_input(self, post_vars):
         user_input = self.widget.get_user_input(post_vars)

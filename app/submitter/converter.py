@@ -84,11 +84,13 @@ class Converter(object):
         data = {}
 
         for key in answers.keys():
-            item = questionnaire.get_item_by_id(key)
-            if item is not None:
-                value = answers[key]
-                if value is not None:
-                    data[item.code] = Converter._encode_value(value)
+
+            if "day" not in key and "month" not in key and "year" not in key:
+                item = questionnaire.get_item_by_id(key)
+                if item is not None:
+                    value = answers[key]
+                    if value is not None:
+                        data[item.code] = Converter._encode_value(value)
 
         metadata = {SubmitterConstants.USER_ID_KEY: metadata_store.user_id,
                     SubmitterConstants.RU_REF_KEY: metadata_store.ru_ref}

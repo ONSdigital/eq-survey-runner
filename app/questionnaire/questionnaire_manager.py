@@ -3,15 +3,10 @@ import logging
 from app.authentication.session_management import session_manager
 from app.metadata.metadata_store import MetaDataStore
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
-from app.questionnaire.state import State
-from app.questionnaire.state_manager import StateManager
-from app.questionnaire.state_recovery import StateRecovery
+from app.questionnaire.navigator import Navigator
+from app.questionnaire.node_manager import NodeManager
 from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
-from app.questionnaire_state.confirmation import Confirmation as StateConfirmation
-from app.questionnaire_state.introduction import Introduction as StateIntroduction
-from app.questionnaire_state.node import Node
-from app.questionnaire_state.summary import Summary as StateSummary
-from app.questionnaire_state.thank_you import ThankYou as StateThankYou
+from app.questionnaire_node.node import Node
 
 from app.routing.conditional_display import ConditionalDisplay
 from app.routing.routing_engine import RoutingEngine
@@ -46,8 +41,8 @@ class QuestionnaireManager(object):
         else:
             self._valid_locations = self._build_valid_locations()
 
-    def construct_state(self):
-        return State(self._current, self._first, self._tail, self._archive, self.submitted_at, self._valid_locations)
+    def construct_navigator(self):
+        return Navigator(self._current, self._first, self._tail, self._archive, self.submitted_at, self._valid_locations)
 
     def resolve_location(self, location):
         if location == 'first':
@@ -70,19 +65,16 @@ class QuestionnaireManager(object):
                 validate_location.append(block.id)
         return validate_location
 
-    def get_state(self, item_id):
-        # traverse the list and find the state matching this item id
+    def get_node(self, item_id):
+        # traverse the list and find the node matching this item id
         node = self._first
         while node and item_id != node.item_id:
             node = node.next
         return node
 
-    def is_valid_location(self, location):
-        return location in self._valid_locations
-
-    def go_to_state(self, item_id):
-        node = self.get_state(item_id)
-        logger.debug("go to state %s", item_id)
+    def go_to_node(self, item_id):
+        node = self.get_node(item_id)
+        logger.debug("go to node %s", item_id)
         if node:
             self._current = node
             logger.debug("current item %s", item_id)
@@ -90,46 +82,26 @@ class QuestionnaireManager(object):
             # re-append the old node to the head of the list
             self._append(self._archive[item_id])
         else:
-            logger.debug("creating new state for %s", item_id)
-            self._create_new_state(item_id)
-        StateManager.save_state(self.construct_state())
+            logger.debug("creating new node for %s", item_id)
+            self._create_new_node(item_id)
+        NodeManager.save_navigator(self.construct_navigator())
 
-    def _create_new_state(self, item_id):
+    def _create_new_node(self, item_id):
+        node = Node(item_id)
+        self._append(node)
 
-        logger.debug("Creating new state for %s", item_id)
-        if item_id in self._valid_locations:
-            if item_id == 'introduction':
-                state = StateIntroduction(item_id)
-            elif item_id == 'thank-you':
-                state = StateThankYou(item_id, self.submitted_at)
-            elif item_id == 'summary':
-                state = StateSummary(item_id)
-            elif item_id == 'confirmation':
-                state = StateConfirmation(item_id)
-            else:
-                item = self._schema.get_item_by_id(item_id)
-                state = item.construct_state()
-            node = Node(item_id, state)
-            self._append(node)
-        else:
-            raise ValueError("Unsupported location %s", item_id)
-        logger.debug("current item id is %s", self._current.item_id)
-
-    def update_state(self, item_id, user_input):
-        logger.debug("Updating state for item %s", item_id)
+    def update_node(self, item_id, user_input):
+        logger.debug("Updating node for item %s", item_id)
         if item_id in self._valid_locations:
             logger.debug("item id is %s", item_id)
             logger.debug("Current location %s", self.get_current_location())
-
-            node = self.get_state(item_id)
+            node = self.get_node(item_id)
             self._current = node
-            state = node.state
-            state.update_state(user_input)
+            node.answers = self.clean_user_input(user_input)
             # Truncate following nodes
             if node.next:
                 self._truncate(node.next)
-
-            StateManager.save_state(self.construct_state())
+            NodeManager.save_navigator(self.construct_navigator())
         else:
             raise TypeError("Can only handle blocks")
 
@@ -164,9 +136,6 @@ class QuestionnaireManager(object):
         node.previous = None
         return node
 
-    def get_current_state(self):
-        return self._current.state
-
     def get_current_location(self):
         if self._current:
             current_location = self._current.item_id
@@ -184,51 +153,38 @@ class QuestionnaireManager(object):
     def _get_first_block(self):
         return self._schema.groups[0].blocks[0].id
 
-    def _previous(self):
-        return self._current.previous.item_id
-
     def get_answers(self):
-        '''
-        This method walks the entire list collecting all answers and as such should
-        only be used for the summary node and submission of data. Otherwise use the
-        more efficient find_answer(id) method
-        :return:
-        '''
-
         # walk the list and collect all the answers
         answers_dict = {}
-
         node = self._first
-        answers = []
-        while node:
-            node_answers = node.state.get_answers()
-            answers.extend(node_answers)
-            node = node.next
 
-        for answer in answers:
-            answers_dict[answer.id] = answer.value
+        while node:
+            answers_dict.update(node.answers)
+            node = node.next
         return answers_dict
 
     def find_answer(self, id):
         # walk backwards through the list and check each block for the answer
         node = self._current
+
         while node:
-            if id in node.state.answer_store:
-                return node.state.answer_store[id]
+            if id in node.answers:
+                return node.answers[id]
             else:
                 node = node.previous
 
     def validate(self):
         # get the current location in the questionnaire
         current_location = self.get_current_location()
-        if self.is_valid_location(current_location):
-            current_state = self.get_state(current_location)
-            if self._schema.item_exists(current_state.item_id):
-                schema_item = self._schema.get_item_by_id(current_state.item_id)
+        if current_location in self._valid_locations:
+            node = self.get_node(current_location)
+            if self._schema.item_exists(node.item_id):
+                state, schema_item = self.build_state(node)
+                is_valid = schema_item.validate(state)
+                return is_valid
 
-                return schema_item.validate(current_state.state)
             else:
-                # Item has state, but is not in schema: must be introduction, thank you or summary
+                # Item has node, but is not in schema: must be introduction, thank you or summary
                 return True
         else:
             # Not a validation location, so can't be valid
@@ -237,19 +193,22 @@ class QuestionnaireManager(object):
     def validate_all_answers(self):
         node = self._first
         valid = True
-        while node:
-            schema_item = node.state.schema_item
-            if self._schema.item_exists(node.item_id):
-                valid = schema_item.validate(node.state)
-                if not valid:
-                    current_location = node.item_id
-                    logger.debug("Failed validation with current location %s", current_location)
-                    # if one of the blocks isn't valid
-                    # then move the current pointer to that block so that the user is redirected to that page
-                    self.go_to_state(current_location)
-                    break
 
-                logger.debug("Next node is %s", node.item_id)
+        while node:
+            if self._schema.item_exists(node.item_id):
+                state, schema_item = self.build_state(node)
+
+                if self._schema.item_exists(node.item_id):
+                    valid = schema_item.validate(state)
+                    if not valid:
+                        current_location = node.item_id
+                        logger.error("Failed validation with current location %s", current_location)
+                        # if one of the blocks isn't valid
+                        # then move the current pointer to that block so that the user is redirected to that page
+                        self.go_to_node(current_location)
+                        break
+
+                    logger.debug("Next node is %s", node.item_id)
 
             node = node.next
         return valid
@@ -265,15 +224,15 @@ class QuestionnaireManager(object):
             # convenience method for routing to the first block
             location = self._get_first_block()
         elif location == 'previous':
-            location = self._previous()
+            location = self._current.previous.item_id
         elif location == 'summary' and self._current.item_id != 'summary':
             metadata = MetaDataStore.get_instance(current_user)
             if metadata:
-                logger.warning("User with tx_id %s tried to submit in an invalid state", metadata.tx_id)
+                logger.warning("User with tx_id %s tried to submit in an invalid node", metadata.tx_id)
             raise InvalidLocationException()
-        self.go_to_state(location)
+        self.go_to_node(location)
 
-    def is_known_state(self, location):
+    def is_known_node(self, location):
         node = self._tail
         while node:
             if node.item_id == location:
@@ -288,20 +247,14 @@ class QuestionnaireManager(object):
         logger.debug("Processing post data for %s", location)
         # ensure we're in the correct location
 
-        if self.is_known_state(location):
-            if not replay:
-                # if we're not on replay then save the post data for state recovery
-                StateRecovery.save_post_date(location, post_data)
-            self.go_to_state(location)
-
-            # apply any conditional display rules
-            self._conditional_display(self._current.state)
+        if self.is_known_node(location):
+            self.go_to_node(location)
 
             # process incoming post data
             user_action = self._get_user_action(post_data)
 
-            # updated state
-            self.update_state(location, post_data)
+            # updated node
+            self.update_node(location, post_data)
 
             # run the validator to update the validation_store
             if self.validate():
@@ -319,14 +272,14 @@ class QuestionnaireManager(object):
                     logger.info("next location after routing is %s", next_location)
 
                     # go to that location
-                    self.go_to_state(next_location)
+                    self.go_to_node(next_location)
                     logger.debug("Going to location %s", next_location)
                 except UserActionProcessorException as e:
                     logger.error("Error processing user actions")
                     logger.exception(e)
             else:
                 # bug fix for using back button which then fails validation
-                self.go_to_state(self.get_current_location())
+                self.go_to_node(self.get_current_location())
 
             # now return the location
             current_location = self.get_current_location()
@@ -337,9 +290,6 @@ class QuestionnaireManager(object):
 
     def get_rendering_context(self, location):
 
-        # apply any conditional display rules
-        self._conditional_display(self.get_state(location).state)
-
         # look up the preprocessor and then build the view data
         preprocessor = TemplateRegistry.get_template_preprocessor(location)
 
@@ -348,26 +298,43 @@ class QuestionnaireManager(object):
             node = self._first
             # and we also need to plumb the entire schema
             while node.next:
-                self._plumbing_preprocessing(node)
+                state, schema_item = self.build_state(node)
+                if schema_item:
+                    self._plumbing_preprocessing(state)
+                    self._conditional_display(state)
                 node = node.next
-
             # reset pointer back to the first node for the preprocessor
             node = self._first
 
         else:
             # unlike the rest where we need the current node in the list
-            node = self.get_state(location)
+            node = self.get_node(location)
             # and only need to plumb the single page
-            self._plumbing_preprocessing(node)
-        return preprocessor.build_view_data(node, self._schema)
+            state, schema_item = self.build_state(node)
+            if schema_item:
+                self._plumbing_preprocessing(state)
+                self._conditional_display(state)
 
-    def _plumbing_preprocessing(self, node):
+        return preprocessor.build_view_data(node, self._schema, state)
+
+    def build_state(self, node):
+        state = None
+        schema_item = None
+        if self._schema.item_exists(node.item_id):
+            schema_item = self._schema.get_item_by_id(node.item_id)
+            state = schema_item.construct_state()
+            state.update_state(node.answers)
+        return state, schema_item
+
+
+
+    def _plumbing_preprocessing(self, state):
         '''
         Run the current state through the plumbing preprocessor
         :return:
         '''
         plumbing_template_preprocessor = PlumbingPreprocessor()
-        plumbing_template_preprocessor.plumb_current_state(self, node.state, self._schema)
+        plumbing_template_preprocessor.plumb_current_state(self, state, self._schema)
 
     def _conditional_display(self, item):
         '''
@@ -399,16 +366,13 @@ class QuestionnaireManager(object):
         # and clear out the session state
         session_manager.clear()
 
-    def register_element_in_schema(self, item):
-        self._schema.register(item)
-
-    def check_item_exists_in_schema(self, item_id):
-        return self._schema.item_exists(item_id)
-
     def get_schema_item_by_id(self, item_id):
         return self._schema.get_item_by_id(item_id)
 
-    def add_repeating_element(self, item):
-        self._schema.register(item)
-        self._valid_locations.append(item.id)
-        self._create_new_state(item.id)
+    @staticmethod
+    def clean_user_input(user_input):
+        clean_input = {}
+        for answer in user_input:
+            if not answer.startswith('action['):
+                clean_input[answer] = user_input[answer]
+        return clean_input

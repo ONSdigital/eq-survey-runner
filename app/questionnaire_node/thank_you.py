@@ -1,7 +1,7 @@
-from app.questionnaire_state.item import Item
+from app.questionnaire_node.state_item import StateItem
 
 
-class ThankYou(Item):
+class ThankYou(StateItem):
 
     def __init__(self, id, submitted_at):
         super().__init__(id=id, schema_item=None)

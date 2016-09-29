@@ -76,7 +76,7 @@ def do_get(questionnaire_manager, location):
         logger.info("No theme set ")
         theme = None
 
-    return render_theme_template(theme, template, meta=context['meta'], content=context['content'])
+    return render_theme_template(theme, template, meta=context['meta'], content=context['content'], errors=context['errors'])
 
 
 def do_post(collection_id, eq_id, location, questionnaire_manager):

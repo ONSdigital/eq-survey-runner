@@ -1,7 +1,7 @@
 import logging
 
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
-from app.questionnaire.state_manager import StateManager
+from app.questionnaire.node_manager import NodeManager
 
 from app.utilities.schema import get_schema
 
@@ -14,9 +14,9 @@ class QuestionnaireManagerFactory(object):
     @staticmethod
     def get_instance():
         logger.debug("QuestionManagerFactory - get instance")
-        if StateManager.has_state():
+        if NodeManager.has_state():
             logger.debug("StateManager loading state")
-            state = StateManager.get_state()
+            state = NodeManager.get_state()
 
             questionnaire_manager = QuestionnaireManager(QuestionnaireManagerFactory._get_schema(),
                                                          current=state.current,
@@ -31,7 +31,6 @@ class QuestionnaireManagerFactory(object):
             questionnaire_manager.go_to(questionnaire_manager.get_first_location())
 
         # immediately save it to the database
-        StateManager.save_state(questionnaire_manager.construct_state())
         logger.debug("QuestionnaireManagerFactory savingstate")
         return questionnaire_manager
 

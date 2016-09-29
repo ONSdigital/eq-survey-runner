@@ -73,7 +73,7 @@ class TestRoutingEngine(unittest.TestCase):
 
     def update_questionnaire_manager(self, current_block, user_answers):
 
-        self.questionnaire_manager.go_to_state(current_block)
+        self.questionnaire_manager.go_to_node(current_block)
         self.questionnaire_manager.update_state(current_block, user_answers)
 
         next_location = self.routing_engine.get_next_location(current_block)

@@ -1,6 +1,6 @@
 import logging
 
-from app.questionnaire_state.exceptions import StateException
+from app.questionnaire_node.exceptions import StateException
 from app.schema.answer import Answer
 from app.schema.widgets.checkbox_group_widget import CheckboxGroupWidget
 

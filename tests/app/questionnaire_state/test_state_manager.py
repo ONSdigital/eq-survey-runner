@@ -4,7 +4,7 @@ import unittest
 
 from app import settings
 from app.parser.schema_parser_factory import SchemaParserFactory
-from app.questionnaire.state_manager import InMemoryStateManager
+from app.questionnaire.node_manager import InMemoryNodeManager
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from werkzeug.datastructures import MultiDict
 
@@ -21,14 +21,14 @@ class TestDatabaseStateManager(unittest.TestCase):
         settings.EQ_SERVER_SIDE_STORAGE_TYPE = "IN_MEMORY"
 
     def test_store_and_retrieve(self):
-        database_state_manager = InMemoryStateManager()
+        database_state_manager = InMemoryNodeManager()
 
         # create the questionnaire manager
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
 
         # add some state
         block1 = self.questionnaire.children[0].children[0]
-        questionnaire_manager.go_to_state(block1.id)
+        questionnaire_manager.go_to_node(block1.id)
         user_answers = MultiDict()
         for section in block1.children:
             for question in section.children:

@@ -37,7 +37,7 @@ class Submitter(object):
         :raise: a submission failed exception
         '''
         message, submitted_at = Converter.prepare_answers(metadata, schema, answers)
-
+        logger.error(message)
         encrypted_message = self.encrypt_message(message)
 
         sent = self.send(encrypted_message)

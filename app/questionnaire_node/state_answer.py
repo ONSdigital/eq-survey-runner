@@ -1,8 +1,12 @@
-from app.questionnaire_state.item import Item
+import logging
+
+from app.questionnaire_node.state_item import StateItem
 from app.schema.exceptions import TypeCheckingException
 
+logger = logging.getLogger(__name__)
 
-class Answer(Item):
+
+class StateAnswer(StateItem):
     def __init__(self, id, schema_item):
         super().__init__(id=id, schema_item=schema_item)
         # typed value
@@ -11,7 +15,6 @@ class Answer(Item):
         self.input = None
 
     def update_state(self, user_input):
-
         # Clear any previous value and validation results
         self.value = None
         self.is_valid = True

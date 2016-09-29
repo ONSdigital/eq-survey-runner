@@ -1,4 +1,4 @@
-from app.questionnaire_state.section import Section as State
+from app.questionnaire_node.state_section import StateSection
 from app.schema.display import Display
 from app.schema.item import Item
 
@@ -24,4 +24,4 @@ class Section(Item):
             question.container = self
 
     def get_state_class(self):
-        return State
+        return StateSection

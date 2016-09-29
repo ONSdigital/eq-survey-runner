@@ -3,8 +3,8 @@ from app.templating.questionnaire_template_preprocessor import QuestionnaireTemp
 from app.authentication.user import User
 from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
-from app.questionnaire_state.node import Node
-from app.questionnaire_state.block import Block
+from app.questionnaire_node.node import Node
+from app.questionnaire_node.state_block import Block
 
 
 class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
