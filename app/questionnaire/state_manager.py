@@ -68,23 +68,20 @@ class DatabaseStateManager(StateManager):
 
     @staticmethod
     def has_state():
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        questionnaire_data = questionnaire_store.data
+        store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        questionnaire_data = store.data
 
         return STATE in questionnaire_data.keys()
 
     @staticmethod
     def get_state():
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        questionnaire_data = questionnaire_store.data
-        logger.debug("Returning questionnaire data %s", questionnaire_data)
-        state = questionnaire_data[STATE]
+        store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        state = store.data[STATE]
+        logger.debug("Returning questionnaire state %s", state)
         return jsonpickle.decode(state)
 
     @staticmethod
     def save_state(questionnaire_state):
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        questionnaire_data = questionnaire_store.data
-        questionnaire_data[STATE] = jsonpickle.encode(questionnaire_state)
-        questionnaire_store.data = questionnaire_data
-        questionnaire_store.save()
+        store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        store.data[STATE] = jsonpickle.encode(questionnaire_state)
+        store.save()
