@@ -19,12 +19,11 @@ class TestStateRecovery(SurveyRunnerTestCase):
             location = "page1"
 
             StateRecovery.save_post_date(location, post_data)
-            data_query = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-            questionnaire_data = data_query.data
+            store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
-            self.assertIsNotNone(questionnaire_data)
-            self.assertEqual(post_data, questionnaire_data[POST_DATA][0]["post_data"])
-            self.assertEqual(location, questionnaire_data[POST_DATA][0]["location"])
+            self.assertIsNotNone(store.data)
+            self.assertEqual(post_data, store.data[POST_DATA][0]["post_data"])
+            self.assertEqual(location, store.data[POST_DATA][0]["location"])
 
     def test_recover_from_post_data(self):
         with self.application.test_request_context():
