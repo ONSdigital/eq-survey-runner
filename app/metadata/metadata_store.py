@@ -3,7 +3,7 @@ import uuid
 from datetime import datetime
 
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.authentication.user import QuestionnaireData
+from app.data_model.questionnaire_data import QuestionnaireData
 
 import jsonpickle
 

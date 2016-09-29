@@ -1,7 +1,7 @@
 import logging
 
 from app.authentication.session_management import session_manager
-from app.authentication.user import QuestionnaireData
+from app.data_model.questionnaire_data import QuestionnaireData
 from app.metadata.metadata_store import MetaDataStore
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.questionnaire.state import State

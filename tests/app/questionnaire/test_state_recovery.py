@@ -3,7 +3,7 @@ from app.questionnaire import state_recovery
 from app.questionnaire.state_recovery import StateRecovery, POST_DATA, MAX_NO_OF_REPLAYS
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
-from app.authentication.user import QuestionnaireData
+from app.data_model.questionnaire_data import QuestionnaireData
 from unittest.mock import MagicMock
 
 from flask_login import current_user
