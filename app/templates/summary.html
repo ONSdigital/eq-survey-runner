@@ -31,7 +31,7 @@
 
             {% if item.type == 'date' %}
 
-              {% set date_format = '%w %b %Y' %}
+              {% set date_format = '%d %b %Y' %}
 
               {{item.answer[0].value.strftime(date_format)}} to {{item.answer[1].value.strftime(date_format)}}
 

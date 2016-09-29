@@ -1,5 +1,4 @@
-<fieldset class="fieldset  fieldset--date">
-  <legend class="legend venus">{{legend}}</legend>
+{% set subfields %}
   <div class="fieldset__fields">
     <div class="field field--input field--day">
       {% set label = fields['day'].label %}
@@ -20,4 +19,13 @@
       {% include 'partials/forms/input.html' %}
     </div>
   </div>
-</fieldset>
+{% endset %}
+
+{% if legend %}
+  <fieldset class="fieldset fieldset--date">
+    <legend class="legend venus">{{legend}}</legend>
+    {{subfields|safe}}
+  </fieldset>
+{% else %}
+  {{subfields|safe}}
+{% endif %}
