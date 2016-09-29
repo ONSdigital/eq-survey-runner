@@ -1,5 +1,5 @@
+from app.data_model.metadata_store import MetaDataStore
 from app.libs.utils import ObjectFromDict
-from app.metadata.metadata_store import MetaDataStore
 from app.piping.plumber import Plumber
 
 from flask_login import current_user

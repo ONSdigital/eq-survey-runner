@@ -1,8 +1,8 @@
 import logging
 
+from app.data_model.metadata_store import MetaDataStore
 from app.libs.utils import convert_tx_id
 from app.main import main_blueprint
-from app.metadata.metadata_store import MetaDataStore
 
 from flask import request
 from flask.ext.themes2 import render_theme_template

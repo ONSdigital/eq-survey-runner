@@ -6,7 +6,7 @@ from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
-from app.metadata.metadata_store import MetaDataStore
+from app.data_model.metadata_store import MetaDataStore
 
 from flask import session
 

@@ -3,7 +3,7 @@ import logging
 
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.metadata.metadata_store import MetaDataConstants
+from app.data_model.metadata_store import MetaDataConstants
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 

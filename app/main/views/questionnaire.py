@@ -1,9 +1,9 @@
 import logging
 
+from app.data_model.metadata_store import MetaDataStore
 from app.main.errors import internal_server_error
 from app.main.errors import page_not_found
 from app.main.errors import service_unavailable
-from app.metadata.metadata_store import MetaDataStore
 from app.questionnaire.questionnaire_manager import InvalidLocationException
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 from app.schema.questionnaire import QuestionnaireException

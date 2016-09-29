@@ -1,5 +1,5 @@
 from app.authentication.user_id_generator import UserIDGenerator
-from app.metadata.metadata_store import MetaDataConstants
+from app.data_model.metadata_store import MetaDataConstants
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app import settings
 import unittest

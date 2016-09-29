@@ -1,7 +1,7 @@
 import logging
 
 from app import settings
-from app.metadata.metadata_store import MetaDataStore
+from app.data_model.metadata_store import MetaDataStore
 from app.submitter.submitter import SubmitterFactory
 
 from flask_login import current_user

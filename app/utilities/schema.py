@@ -1,6 +1,6 @@
 import logging
 
-from app.metadata.metadata_store import MetaDataStore
+from app.data_model.metadata_store import MetaDataStore
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.schema_loader.schema_loader import load_schema
 

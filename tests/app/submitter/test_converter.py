@@ -5,7 +5,7 @@ from app.schema.block import Block
 from app.schema.question import Question
 from app.schema.answer import Answer
 from app.authentication.user import User
-from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
+from app.data_model.metadata_store import MetaDataStore, MetaDataConstants
 from app.submitter.converter import Converter
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 

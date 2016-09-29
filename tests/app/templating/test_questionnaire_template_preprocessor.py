@@ -1,7 +1,7 @@
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 from app.templating.questionnaire_template_preprocessor import QuestionnaireTemplatePreprocessor
 from app.authentication.user import User
-from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
+from app.data_model.metadata_store import MetaDataStore, MetaDataConstants
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
 from app.questionnaire_state.node import Node
 from app.questionnaire_state.block import Block

@@ -2,8 +2,8 @@ import os
 import sys
 import time
 
+from app.data_model.metadata_store import MetaDataConstants
 from app.dev_mode.jwt_encoder import Encoder
-from app.metadata.metadata_store import MetaDataConstants
 
 
 def create_payload(user):

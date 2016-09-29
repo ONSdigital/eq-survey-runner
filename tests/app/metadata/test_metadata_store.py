@@ -2,8 +2,8 @@ import unittest
 from app.authentication.user import User
 from app.authentication.invalid_token_exception import InvalidTokenException
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
-from app.metadata.metadata_store import MetaDataStore
-from app.metadata.metadata_store import MetaDataConstants
+from app.data_model.metadata_store import MetaDataStore
+from app.data_model.metadata_store import MetaDataConstants
 
 
 class TestMetadataStore(SurveyRunnerTestCase):

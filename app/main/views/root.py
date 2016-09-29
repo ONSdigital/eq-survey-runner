@@ -3,8 +3,8 @@ import logging
 from app.authentication.authenticator import Authenticator
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
+from app.data_model.metadata_store import MetaDataStore
 from app.main import errors
-from app.metadata.metadata_store import MetaDataStore
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 
 from flask import abort

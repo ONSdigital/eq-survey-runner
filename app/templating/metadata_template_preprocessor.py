@@ -1,7 +1,7 @@
 import logging
 
+from app.data_model.metadata_store import MetaDataStore
 from app.libs.utils import convert_tx_id
-from app.metadata.metadata_store import MetaDataStore
 
 from flask_login import current_user
 

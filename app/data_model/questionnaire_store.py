@@ -39,7 +39,7 @@ class QuestionnaireStore:
 
 def get_questionnaire_store(user_id, user_ik):
     # Sets up a single QuestionnaireStore instance throughout app.
-    store = getattr(g, '_questionnaire_store', None)
+    store = g.get('_questionnaire_store', None)
     if store is None:
         try:
             store = g._questionnaire_store = QuestionnaireStore(user_id, user_ik)

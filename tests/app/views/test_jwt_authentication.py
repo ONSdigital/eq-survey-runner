@@ -4,7 +4,7 @@ import unittest
 
 from app import create_app
 from app import settings
-from app.metadata.metadata_store import MetaDataConstants
+from app.data_model.metadata_store import MetaDataConstants
 from app.dev_mode.jwt_encoder import Encoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 

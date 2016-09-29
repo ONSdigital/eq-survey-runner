@@ -1,8 +1,8 @@
 import logging
 
 from app.authentication.session_management import session_manager
+from app.data_model.metadata_store import MetaDataStore
 from app.data_model.questionnaire_store import get_questionnaire_store
-from app.metadata.metadata_store import MetaDataStore
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.questionnaire.state import State
 from app.questionnaire.state_manager import StateManager
