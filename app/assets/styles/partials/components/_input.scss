@@ -1,4 +1,6 @@
 $input-padding: 0.6rem;
+$input-type-width: 2.4rem;
+$input-width: 15rem;
 
 .input {
   position: relative;
@@ -10,7 +12,9 @@ $input-padding: 0.6rem;
   border: 1px solid $color-borders;
   border-radius: $input-radius;
   width: 100%;
-  max-width: 40rem;
+  @include mq(s) {
+    width: $input-width;
+  }
 }
 
 .input__helper {
@@ -25,13 +29,16 @@ $input-padding: 0.6rem;
   background: $color-white url("/s/img/icons/icons--chevron-down.svg") no-repeat center right 6px;
   background-size: 1.5rem;
   line-height: 1.4;
-  width: 100%;
   &::-ms-expand {
     display: none;
   }
   @include fixed() {
     padding-right: 0.5rem;
   }
+}
+
+.input--textarea {
+  width: 100%;
 }
 
 .input--radio,
@@ -89,10 +96,10 @@ $input-padding: 0.6rem;
   align-items: center;
   .input {
     border-radius: 0 3px 3px 0;
-    flex: 1;
     line-height: normal;
     position: relative;
     z-index: 1;
+    width: calc(#{$input-width} - #{$input-type-width});
     @include fixed {
       margin-left: 2.5rem;
       border-left: 0;
@@ -106,6 +113,7 @@ $input-padding: 0.6rem;
     border-right: none;
     border-radius: $input-radius 0 0 $input-radius;
     padding: $input-padding 0.9rem;
+    width: $input-type-width;
     font-weight: 600;
     font-size: 1rem;
     text-align: center;
