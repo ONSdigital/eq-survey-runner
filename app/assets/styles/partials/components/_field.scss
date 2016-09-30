@@ -7,7 +7,7 @@
   margin-bottom: 0.5rem;
   position: relative;
   display: flex;
-  align-items: flex-start;;
+  align-items: flex-start;
 }
 
 .field--multi {
@@ -25,46 +25,23 @@
   }
 }
 
-.date {
-  $legend-width: 5rem;
+.fieldset--date {
   .legend {
     font-weight: 700;
     display: inline-block;
     width: 100%;
     margin: 0 0 0.5rem;
-
-    @include mq(s) {
-      margin: 2.2rem 0 0;
-      width: 5rem;
-    }
-
-    @include fixed {
-      width: 4rem;
-      float: left;
-      margin-top: 35px;
-    }
-
-    @include lt-ie8 {
-      position: absolute;
-      margin-top: 20px;
-    }
   }
-  .subfields {
+
+  .fieldset__fields {
     display: flex;
     width: 100%;
-
-    @include mq(s) {
-      width: calc(100% - #{$legend-width});
-    }
-
-    @include fixed {
-      width: 30rem;
-      float: right;
-    }
+    flex-direction: row;
   }
+
   .field {
+    margin: 0 0.5rem 0 0;
     flex: 1 1 0;
-    margin-right: 0.5rem;
 
     @include mq(s) {
       margin-right: 1rem;
@@ -77,20 +54,29 @@
   }
 
   .field--day {
+    max-width: 6rem;
     @include fixed {
       width: 7rem;
     }
   }
+
   .field--month {
     flex: 2;
+    max-width: 10rem;
     @include fixed {
       width: 14rem;
     }
   }
+
   .field--year {
     margin-right: 0;
+    max-width: 6rem;
     @include fixed {
       width: 7rem;
     }
+  }
+
+  .input {
+    width: 100%;
   }
 }

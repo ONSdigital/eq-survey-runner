@@ -1,9 +1,9 @@
 {% set attr = {
-  "class": "label " ~ (" label--inline" if label.inline) ~ (" label--small" if label.small),
+  "class": "label venus " ~ (" label--inline" if label.inline) ~ (" label--small" if label.small),
   "for": label.for,
   "id": "label-" ~ label.for
 } %}
 
 <label {{attr|xmlattr}}>
-  <span class="label__inner venus">{{label.text}}</span>
+  <span class="label__inner">{{label.text}}</span>
 </label>

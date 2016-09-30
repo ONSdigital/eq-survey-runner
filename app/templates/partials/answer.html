@@ -1,6 +1,6 @@
 {% import 'macros/helpers.html' as helpers %}
 
-<div class="answer answer--{{answer.type|lower}}" id="{{answer.id}}">
+<div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.id}}">
   {% set invalid = answer.is_valid == False %}
 
   {%- set answer_guidance %}
@@ -17,7 +17,7 @@
   {% endset -%}
 
   {% if invalid %}
-  
+
     <div class="alert alert--simple alert--error">
       <div class="alert__header">
         {% if answer.errors %}
