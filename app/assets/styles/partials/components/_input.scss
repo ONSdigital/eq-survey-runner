@@ -1,4 +1,6 @@
 $input-padding: 0.6rem;
+$input-type-width: 2.4rem;
+$input-width: 15rem;
 
 .input {
   position: relative;
@@ -11,10 +13,7 @@ $input-padding: 0.6rem;
   border-radius: $input-radius;
   width: 100%;
   @include mq(s) {
-    width: percentage(6 / 12);
-  }
-  @include mq(l) {
-    width: percentage(4 / 12);
+    width: $input-width;
   }
 }
 
@@ -92,8 +91,6 @@ $input-padding: 0.6rem;
 }
 
 .input-type {
-  $input-type-width: 2.4rem;
-
   display: flex;
   position: relative;
   align-items: center;
@@ -102,15 +99,10 @@ $input-padding: 0.6rem;
     line-height: normal;
     position: relative;
     z-index: 1;
+    width: calc(#{$input-width} - #{$input-type-width});
     @include fixed {
       margin-left: 2.5rem;
       border-left: 0;
-    }
-    @include mq(s) {
-      width: calc(#{percentage(6 / 12)} - #{$input-type-width});
-    }
-    @include mq(l) {
-      width: calc(#{percentage(4 / 12)} - #{$input-type-width});
     }
   }
   &::before {
