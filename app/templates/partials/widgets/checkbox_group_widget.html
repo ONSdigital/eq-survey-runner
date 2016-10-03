@@ -16,8 +16,10 @@
     {% set label = {
       'inline': true,
       'for': option_id,
-      'text': option.label
+      'text': option.label,
+      'helper': option.helper
     } %}
+
     {% include 'partials/forms/label.html' %}
 
   </div>

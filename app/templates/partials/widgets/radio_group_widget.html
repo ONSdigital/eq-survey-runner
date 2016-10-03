@@ -11,15 +11,17 @@
       'id': option_id,
       'checked': option.selected
     } %}
+
     {% include 'partials/forms/input.html' %}
 
     {% set label = {
       'inline': true,
       'for': option_id,
-      'text': option.label
+      'text': option.label,
+      'helper': option.helper
     } %}
-    {% include 'partials/forms/label.html' %}
 
+    {% include 'partials/forms/label.html' %}
 
   </div>
 
