@@ -4,7 +4,7 @@
 
 {% set not_answered = 'No answer provided' %}
 
-{% block survey -%}
+{% block main -%}
 <div class="header u-ta-l">
   <h1 class="header__title saturn">Your responses</h1>
   <h2 class="header__subtitle mars">Please check carefully before submission.</h2>
@@ -31,7 +31,9 @@
 
             {% if item.type == 'date' %}
 
-              {{item.answer[0].value.strftime('%d %b %Y')}} to {{item.answer[1].value.strftime('%d %b %Y')}}
+              {% set date_format = '%d %b %Y' %}
+
+              {{item.answer[0].value.strftime(date_format)}} to {{item.answer[1].value.strftime(date_format)}}
 
             {% elif item.type == 'checkbox' %}
 

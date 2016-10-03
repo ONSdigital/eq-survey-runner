@@ -43,7 +43,6 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
 
         self.assertEqual(self.questionnaire.title, survey_data['title'])
         self.assertEqual(self.questionnaire.survey_id, survey_data['survey_code'])
-        self.assertEqual(self.questionnaire.introduction.description, survey_data['description'])
         self.assertEqual(self.questionnaire.introduction.information_to_provide, survey_data['information_to_provide'])
         self.assertEqual(self.questionnaire.theme, survey_data['theme'])
         self.assertEqual('7 July 2016', survey_data['return_by'])

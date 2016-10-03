@@ -1,9 +1,9 @@
-from tests.integration.downstream.downstream_test_case import DownstreamTestCase
-from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
-from tests.integration.create_token import create_token
-
-
 from werkzeug.datastructures import MultiDict
+
+from tests.integration.create_token import create_token
+from tests.integration.downstream.downstream_test_case import DownstreamTestCase
+from tests.integration.star_wars import star_wars_test_urls
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
 class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
@@ -89,13 +89,13 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 
         resp = self.navigate_to_page(summary_url)
 
-        self.complete_survey(summary_url)
+        self.complete_survey(summary_url, 'star_wars')
 
         # Get the message that would be sent downstream
         message = DownstreamTestCase._submitter._message

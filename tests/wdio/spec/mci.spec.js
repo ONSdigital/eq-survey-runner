@@ -29,11 +29,15 @@ describe('MCI test', function() {
     expect(questionnaireElementExists).to.equal(true)
   })
 
-  it('The form can be filled in and submitted', function() {
+  it('The form can be filled in and submitted', function(done) {
+    const submitBtn = browser.element('.qa-btn-submit')
+    submitBtn.waitForExist(10000)
+    browser.setValue('[id="6fd644b0-798e-4a58-a393-a438b32fe637-day"]', '01')
     browser.setValue('[id="6fd644b0-798e-4a58-a393-a438b32fe637-year"]', '2016')
+    browser.setValue('[id="06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day"]', '01')
     browser.setValue('[id="06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year"]', '2017')
-    browser.setValue('[id="e81adc6d-6fb0-4155-969c-d0d646f15345-input"]', '2000')
-    browser.element('.qa-btn-submit').click()
+    browser.setValue('.input-type--currency .input', 2000)
+    submitBtn.click()
     const url = browser.url().value
     expect(url).to.contain('summary')
   })

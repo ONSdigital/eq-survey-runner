@@ -1,89 +1,66 @@
 {% extends theme('layouts/_survey.html') %}
+
+{% block top_bar %}
+{% include 'partials/survey-header.html' %}
+{% with is_hero = true %}
+  {% include theme('partials/topbar.html') %}
+{% endwith %}
+{% endblock %}
+
 {% import 'macros/helpers.html' as h %}
 
 {% block page_title %}Introduction{% endblock %}
 
-{% block survey %}
+{% block main %}
 
-  <div>
-
-      <div class="grid grid--align-mid">
-
-        <div class="grid__col col-5@s">
-          <div class="u-mb-s u-mb-no@s">
-            <h5 class="u-mb-no">To be completed by</h5>
-            <div class="u-fs-xs">{{ meta.respondent.address.name}}</div>
-            <div class="u-mt-xs">
-              {% if meta.respondent.address.trading_as %}
-              <h5 class="u-mb-no">Trading as</h5>
-              <div class="u-fs-xs">{{ meta.respondent.address.trading_as }}</div>
-              {% endif %}
-            </div>
-          </div>
-
+  <div class="header">
+    <h2 class="saturn">Your response is legally required</h2>
+      <div class="grid grid--flex grid--bordered@s">
+        <div class="grid__col col-6@s">
+          <dl class="dl">
+            <dt class="dl__title mercury">Business name</dt>
+            <dd class="dl__data mars">{{ meta.respondent.address.name}}</dd>
+            {% if meta.respondent.address.trading_as %}
+              <dt class="dl__title mercury">Trading as</dt>
+              <dd class="dl__data mars">{{ meta.respondent.address.trading_as }}</dd>
+            {% endif %}
+          </dl>
         </div>
-
-        <div class="grid__col col-5@s push-2@s">
-          <div>
-            <div class="u-mb-xs">
-              <h5 class="u-mb-no u-fs-xxs">PLEASE SUBMIT BY</h5>
-              <div class="u-fs-xs u-mb-xs">{{ meta.survey.return_by }}</div>
-            </div>
-            <div class="u-mb-xs">
-              <h5 class="u-mb-no u-fs-xxs">PERIOD</h5>
-              <div>
-                <span class="u-fs-xs">{{ meta.survey.start_date }}</span> <span class="u-fs-xs">to</span> <span class="u-fs-xs">{{ meta.survey.end_date}}</span>
-              </div>
-            </div>
-            <div><strong class="u-fs-xs">NB: Your response is legally required</strong></div>
-          </div>
+        <div class="grid__col col-6@s">
+          <dl class="dl">
+            <dt class="dl__title mercury">PERIOD</dt>
+            <dd class="dl__data">
+              <span class="">{{ meta.survey.start_date }} to {{ meta.survey.end_date}}
+            </dd>
+            <dt class="dl__title mercury">PLEASE SUBMIT BY</dt>
+            <dd class="dl__data mars">{{ meta.survey.return_by }}</dd>
+          </dl>
         </div>
-
       </div>
-
+    </div>
     <div>
-
-      <div class="header">
-        <h1 class="header__title saturn">{{ meta.survey.title }}</h1>
-        <h2 class="header__subtitle mars">Notice is given under section 1 of the Statistics of Trade Act 1947</h2>
+      {% if meta.survey.information_to_provide %}
+      <h2 class="header__title saturn">You will be asked to provide information for the business, including:</h2>
+      <ul>
+        {% for information_item in meta.survey.information_to_provide %}
+          <li>{{ information_item }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="notice u-mb-s u-mb-m@s">
+        <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
       </div>
-
-      <div>
-        <p class="mars"><strong>You are required by law to complete this questionnaire.</strong> If you do not submit this
-          questionnaire by {{ meta.survey.return_by }}, penalties may be incurred (under section 4 of the Statistics of
-          Trade Act 1947). All the information you provide is kept strictly confidential. It is illegal for us to
-          reveal your data or identify your business to unauthorised persons.</p>
-
-        {% if meta.survey.information_to_provide %}
-        <h3>You will be asked to provide information for the business, including:</h3>
-        <ul>
-          {% for information_item in meta.survey.information_to_provide %}
-            <li>{{ information_item }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-
-        <div class="notice u-mb-s u-mb-m@s">
-          <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
-        </div>
-
-        {% with accordion_data = [{
-          "id": "accordion-1",
-          "title": "How is your information used?",
-          "body": meta.survey.description|safe
-        }] %}
-        <div class="u-mb-s u-mb-m@s">
-          {% include 'partials/accordion.html' %}
-        </div>
-        {% endwith %}
-
-        <p class="mars">Office for National Statistics</p>
 
     </div>
 
-    <form action="" class="form" role="form" method="POST" novalidate>
+    <form class="form" method="POST" novalidate>
       <button class="btn btn--secondary qa-btn-get-started venus" type="submit" name="action[start_questionnaire]">Get Started</button>
     </form>
+    <div class="lock u-mb-s u-mb-m@s">
+      <div class="venus lock__text">We will treat your data securely and confidentially</div>
+    </div>
+    <h2 class="saturn">Legal Information</h2>
+    <p class="mars">You are required to complete this questionnaire. If you do not complete and return this questionnaire by {{ meta.survey.return_by }}, penalties may be incurred (under section 4 of the Statistics of Trade Act 1947).</p>
   </div>
 
 

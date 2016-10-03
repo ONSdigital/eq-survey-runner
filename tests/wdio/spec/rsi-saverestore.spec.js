@@ -39,8 +39,10 @@ describe('RSI - Save and restore test', function() {
     expect(questionnaireElementExists).to.equal(true)
     const submitBtn = browser.element('.qa-btn-submit')
     submitBtn.waitForExist(10000)
-    browser.setValue('[id = "94f368e4-7c6c-4272-a780-8c46328626a2-year"]', '2016')
-    browser.setValue('#dc156715-3d48-4af3-afed-7a0a6bb65583-year', '2016')
+    browser.setValue('[id="94f368e4-7c6c-4272-a780-8c46328626a2-day"]', '01')
+    browser.setValue('[id="94f368e4-7c6c-4272-a780-8c46328626a2-year"]', '2016')
+    browser.setValue('[id="dc156715-3d48-4af3-afed-7a0a6bb65583-day"]', '01')
+    browser.setValue('[id="dc156715-3d48-4af3-afed-7a0a6bb65583-year"]', '2016')
     const saveandcontinueBtn2 = browser.element('.qa-btn-submit')
     saveandcontinueBtn2.click();
     const erroralert = browser.element('.alert__body')
@@ -86,7 +88,9 @@ describe('RSI - Save and restore test', function() {
     expect(questionnaireElementExists).to.equal(true)
     const submitBtn = browser.element('.qa-btn-submit')
     submitBtn.waitForExist(10000)
+    browser.setValue('#fad63234-1083-4f6a-826a-20b5df6e4baa-day', '01')
     browser.setValue('#fad63234-1083-4f6a-826a-20b5df6e4baa-year', '2016')
+    browser.setValue('#c8c4bd92-fd45-4fd1-83b6-18c813de2df2-day', '01')
     browser.setValue('#c8c4bd92-fd45-4fd1-83b6-18c813de2df2-year', '2017')
     const saveandcontinueBtn2 = browser.element('.qa-btn-submit')
     saveandcontinueBtn2.click();
@@ -138,7 +142,9 @@ describe('RSI - Save and restore test', function() {
     expect(questionnaireElementExists).to.equal(true)
     const submitBtn = browser.element('.qa-btn-submit')
     submitBtn.waitForExist(10000)
-    browser.setValue('[id = "94f368e4-7c6c-4272-a780-8c46328626a2-year"]', '2016')
+    browser.setValue('[id="94f368e4-7c6c-4272-a780-8c46328626a2-day"]', '01')
+    browser.setValue('[id="94f368e4-7c6c-4272-a780-8c46328626a2-year"]', '2016')
+    browser.setValue('#dc156715-3d48-4af3-afed-7a0a6bb65583-day', '01')
     browser.setValue('#dc156715-3d48-4af3-afed-7a0a6bb65583-year', '2017')
     const saveandcontinueBtn2 = browser.element('.qa-btn-submit')
     saveandcontinueBtn2.click();

@@ -1,21 +1,20 @@
 {% extends 'layouts/_survey.html' %}
 
 {% block top_bar %}
-<!-- Theme selected: Star Wars -->
-{% include 'partials/topbar.html' %}
+  {% include 'partials/topbar.html' %}
+  <!-- Theme selected: Star Wars -->
 {% endblock %}
 
-{% block content %}
-
-<div class="container">
-  <div class="logo">
-    <img src="{{ theme_static('star-wars-logo.svg') }}" alt="Star Wars" class="logo__img" />
-  </div>
-  <div class="panel">
-    <div role="main" class="panel__body" id="main">
-      {% block survey %} {% endblock %}
-    </div>
-  </div>
-</div>
-<!-- Theme selected: Star Wars -->
-{% endblock %}
+{%- block styles %}
+<link href='https://fonts.googleapis.com/css?family=Lato:400,600,700,900' rel='stylesheet' type='text/css'>
+<!--[if (gt IE 9) | (IEMobile)]><!-->
+  {%- if request.args.get('fixed') == 'true' %}
+    <link href="{{ url_for('static', filename='css/starwars/fixed.css') }}" rel="stylesheet">
+  {%- else %}
+    <link href="{{ url_for('static', filename='css/starwars/responsive.css') }}" rel="stylesheet">
+  {%- endif %}
+<!--<![endif]-->
+<!--[if (lte IE 9) & (!IEMobile)]>
+  <link href="{{ url_for('static', filename='css/starwars/fixed.css') }}" rel="stylesheet">
+<![endif]-->
+{% endblock styles -%}
