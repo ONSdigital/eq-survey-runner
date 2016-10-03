@@ -25,14 +25,11 @@ describe('Error messages', function() {
   })
 
   it('Error link is clicked to take focus to day input', function() {
-    const inPageLink = browser.element('.js-inpagelink')
-    inPageLink.waitForExist(10000)
-    inPageLink.click()
+    browser.click('.js-inpagelink')
     browser.timeoutsImplicitWait(10000)
     const activeElementValueNumber = browser.elementActive().value.ELEMENT
     const activeElementValue = browser.elementIdAttribute(activeElementValueNumber, "id").value
     expect(activeElementValue).to.contain('6fd644b0-798e-4a58-a393-a438b32fe637-day')
-    browser.call(done)
   })
 
 })
