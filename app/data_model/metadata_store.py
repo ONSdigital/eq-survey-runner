@@ -75,7 +75,7 @@ class MetaDataStore(object):
         return True, ""
 
     @staticmethod
-    def save_instance(user, token):
+    def save_instance(user_id, user_ik, token):
         try:
             metadata = MetaDataStore()
             # loop around all the constants and add them as attributes of the metadata store object
@@ -98,7 +98,7 @@ class MetaDataStore(object):
                         attr_value = None
                 setattr(metadata, attr_name, attr_value)
 
-            questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+            questionnaire_store = get_questionnaire_store(user_id, user_ik)
 
             data = questionnaire_store.data
             data[MetaDataStore.METADATA_KEY] = jsonpickle.encode(metadata)

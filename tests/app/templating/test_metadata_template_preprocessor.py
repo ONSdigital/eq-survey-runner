@@ -24,8 +24,7 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
             MetaDataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
-            user = User("1", "2")
-            self.metadata_store = MetaDataStore.save_instance(user, self.jwt)
+            self.metadata_store = MetaDataStore.save_instance("1", "2", self.jwt)
 
     def get_metadata_store(self):
           return self.metadata_store

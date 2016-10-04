@@ -52,11 +52,9 @@ JWT = {
 class TestConverter(SurveyRunnerTestCase):
     def test_prepare_answers(self):
         with self.application.test_request_context():
-            user = User("1", "2")
-
             self.maxDiff = None
 
-            metadata = MetaDataStore.save_instance(user, JWT)
+            metadata = MetaDataStore.save_instance("1", "2", JWT)
 
             user_answer = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
 
@@ -109,9 +107,8 @@ class TestConverter(SurveyRunnerTestCase):
     def test_answer_with_zero(self):
         with self.application.test_request_context():
             self.maxDiff = None
-            user = User("1", "2")
 
-            metadata = MetaDataStore.save_instance(user, JWT)
+            metadata = MetaDataStore.save_instance("1", "2", JWT)
 
             user_answer = {"GHI": 0}
 

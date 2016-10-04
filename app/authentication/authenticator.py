@@ -60,14 +60,10 @@ class Authenticator(object):
         # store the user ik in the cookie
         session_manager.store_user_ik(user_ik)
 
-        user = User(user_id, user_ik)
-
         # store the meta data
-        metadata = MetaDataStore.save_instance(user, token)
+        metadata = MetaDataStore.save_instance(user_id, user_ik, token)
 
         logger.info("User authenticated with tx_id=%s", metadata.tx_id)
-
-        return user
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
