@@ -6,6 +6,13 @@ function open_url {
   open -a "/Applications/Google Chrome.app" $1
 }
 
+function run_python {
+    if [ -z "${DOCKER}" ]; then
+      python "$@"
+    else
+      python3 "$@"
+    fi
+}
 
 if [ -n "$VIRTUAL_ENV" ]; then
   echo "Already in virtual environment $VIRTUAL_ENV"
@@ -44,11 +51,11 @@ if [ ! -s "app/static" ]; then
   npm run compile
 fi
 
-url="`python token_generator.py`"
+url="`run_python token_generator.py`"
 
 if [ -z "${TRAVIS}" ]; then
   open_url $url &
-  python application.py runserver
+  run_python application.py runserver
 else
-  python application.py runserver &
+  run_python application.py runserver &
 fi
