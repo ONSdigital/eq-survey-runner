@@ -72,7 +72,7 @@ class TestClearError(IntegrationTestCase):
 
         # Get the page content
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, "The &#39;to&#39; date cannot be before the &#39;from&#39; date.")
+        self.assertRegexpMatches(content, "The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")
 
         # Fill the dates in correctly, but this time miss out the required value
         form_data = {
@@ -104,4 +104,4 @@ class TestClearError(IntegrationTestCase):
         # Get the page content again
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "Please provide a value, even if your value is 0.")
-        self.assertNotRegex(content, "The &#39;to&#39; date cannot be before the &#39;from&#39; date.")
+        self.assertNotRegex(content, "The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")

@@ -47,7 +47,7 @@ describe('RSI - Save and restore test', function() {
     saveandcontinueBtn2.click();
     const erroralert = browser.element('.alert__body')
     const Q1text = erroralert.getText()
-    const experror = 'The \'to\' date must be different to the \'from\' date.'
+    const experror = 'The \'period to\' date must be different to the \'period from\' date.'
     if(Q1text.indexOf(experror) > -1) {
       console.log('Expected Text is present: ' + experror );
     } else {
@@ -128,7 +128,7 @@ describe('RSI - Save and restore test', function() {
     saveandcontinueBtn4.waitForExist(10000)
     const erroralert = browser.element('.alert__body')
     const Q1text = erroralert.getText()
-    const experror = 'The \'to\' date must be different to the \'from\' date.'
+    const experror = 'The \'period to\' date must be different to the \'period from\' date.'
     if(Q1text.indexOf(experror) > -1) {
       console.log('Expected Text is present: ' + experror );
     } else {
