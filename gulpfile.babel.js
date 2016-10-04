@@ -50,22 +50,16 @@ gulp.task('clean:test', () => {
   ])
 })
 
-gulp.task('test:scripts', ['test:scripts:unit'])
+gulp.task('test:scripts', ['test:scripts:unit', 'test:scripts:functional:sauce'])
 
-gulp.task('test:scripts:functional', ['test:scripts:selenium'], (done) => {
+gulp.task('test:scripts:functional', (done) => {
   process.env.BASEURL = getEnv()
-  process.env.SAUCELABS = 'false'
   functionalTests(done)
 })
 
 gulp.task('test:scripts:functional:sauce', (done) => {
   process.env.BASEURL = getEnv()
-  process.env.SAUCELABS = 'true'
   functionalTests(done)
-})
-
-gulp.task('test:scripts:selenium', (done) => {
-  startSeleniumServer(done)
 })
 
 gulp.task('test:scripts:unit', (done) => {

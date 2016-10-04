@@ -12,25 +12,21 @@ describe('MCI test', function() {
     browser.waitForExist(userId)
     browser.setValue(userId, getRandomString(10))
     browser.waitForExist(collectionSID)
-    browser.setValue(collectionSID, getRandomString(3))
+    browser.setValue(collectionSID, getRandomString(10))
     browser.waitForExist(selectSchema)
     browser.selectByValue(selectSchema, '1_0205.json')
     browser.click('.qa-btn-submit-dev')
   })
 
-  it('The landing page has been reached', function(done) {
-    const getStartedBtn = browser.element('.qa-btn-get-started')
-    getStartedBtn.waitForExist(10000)
+  it('The landing page has been reached', function() {
     const url = browser.url().value
     expect(url).to.contain('introduction')
-    getStartedBtn.click()
-    browser.call(done)
+    browser.element('.qa-btn-get-started').click()
   })
 
-  it('The questionnaire page has been reached', function(done) {
+  it('The questionnaire page has been reached', function() {
     const questionnaireElementExists = browser.isExisting('.qa-questionnaire-form')
     expect(questionnaireElementExists).to.equal(true)
-    browser.call(done)
   })
 
   it('The form can be filled in and submitted', function(done) {
@@ -44,15 +40,11 @@ describe('MCI test', function() {
     submitBtn.click()
     const url = browser.url().value
     expect(url).to.contain('summary')
-    browser.call(done)
   })
 
-  it('The survey can be completed with "thankyou page" reached', function(done) {
-    const submitBtn = browser.element('.qa-btn-submit-answers')
-    submitBtn.waitForExist(10000)
-    submitBtn.click()
+  it('The survey can be completed with "thankyou page" reached', function() {
+    browser.element('.qa-btn-submit-answers').click()
     const url = browser.url().value
     expect(url).to.contain('thank-you')
-    browser.call(done)
   })
 })

@@ -297,13 +297,13 @@ class StarWarsTestCase(IntegrationTestCase):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Who do you want to know more about?')
         self.assertRegexpMatches(content, 'Jyn Erso')
-        self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-3')
+        self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-input-3')
 
     def rogue_one_check_description_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'An accomplished Rebel Alliance Intelligence Officer')
         self.assertRegexpMatches(content, 'Do you like this page?')
-        self.assertRegexpMatches(content, '3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-2')
+        self.assertRegexpMatches(content, '3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-input-2')
 
     def rogue_one_check_takings_page(self, page):
         content = self.retrieve_content(page)
