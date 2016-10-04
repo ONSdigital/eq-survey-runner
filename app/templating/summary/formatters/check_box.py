@@ -13,6 +13,9 @@ class CheckBoxFormatter(AbstractFormatter):
 
         for option in schema_answers[0].options:
             if option['value'] in user_answer:
-                answers.append(option['label'])
+                if option['label'] == 'other':
+                    answers.append(user_answer)
+                else:
+                    answers.append(option['label'])
 
         return answers

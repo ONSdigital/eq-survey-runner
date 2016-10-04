@@ -1,0 +1,48 @@
+{% for option in widget.options %}
+
+  {% set option_id = answer.id ~ "-" ~ loop.index %}
+
+  {% set input = {
+    "class": "input input--" ~ widget.type,
+    "type": widget.type,
+    "value": option.value,
+    "name": answer.name,
+    "id": option_id,
+    "checked": "checked" if option.selected
+  } %}
+
+  {% set label = {
+    "class": "label label--inline venus",
+    "for": option_id
+  } %}
+
+  <div class="field__item">
+
+    <input {{input|xmlattr}}>
+    <label {{label|xmlattr}}>{{option.label}}</label>
+
+    {% if option.other %}
+
+      {% set other_label = {
+        "class": "label mercury",
+        "for": option.other.id
+      } %}
+
+      {% set other_input = {
+        "class": "input",
+        "type": "text",
+        "name": answer.name,
+        "id": option_id,
+        "value": option.other.value
+      } %}
+
+      <div class="field__other">
+        <label {{other_label|xmlattr}}>{{option.other.label}}</label>
+        <input {{other_input|xmlattr}}>
+      </div>
+
+    {% endif %}
+
+  </div>
+
+{% endfor %}
