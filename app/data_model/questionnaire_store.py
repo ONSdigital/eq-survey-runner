@@ -4,6 +4,8 @@ from app.storage.storage_factory import StorageFactory
 
 from flask import g
 
+import jsonpickle
+
 logger = logging.getLogger(__name__)
 
 
@@ -35,6 +37,15 @@ class QuestionnaireStore:
     def save(self):
         logger.debug("Saving user data %s for user id %s", self.data, self.user_id)
         self.storage.store(data=self.data, user_id=self.user_id, user_ik=self.user_ik)
+
+    def encode_metadata(self, metadata):
+        self.data["METADATA"] = jsonpickle.encode(metadata)
+
+    def decode_metadata(self):
+        if "METADATA" in self.data:
+            return jsonpickle.decode(self.data["METADATA"])
+        else:
+            raise RuntimeError("No metadata for user %s", self.user_id)
 
 
 def get_questionnaire_store(user_id, user_ik):

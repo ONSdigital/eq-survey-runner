@@ -5,8 +5,6 @@ from datetime import datetime
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.data_model.questionnaire_store import get_questionnaire_store
 
-import jsonpickle
-
 logger = logging.getLogger(__name__)
 
 
@@ -83,7 +81,7 @@ class MetaDataStore(object):
                 attr_name = constant.claim_id
                 logger.debug("MetaDataStore adding attr %s", attr_name)
                 if attr_name in token:
-                    value = token[constant.claim_id]
+                    value = token[attr_name]
                     attr_value = constant.parser(value)
                     logger.debug("with value %s", attr_value)
                 elif constant.mandatory:
@@ -99,11 +97,7 @@ class MetaDataStore(object):
                 setattr(metadata, attr_name, attr_value)
 
             questionnaire_store = get_questionnaire_store(user_id, user_ik)
-
-            data = questionnaire_store.data
-            data[MetaDataStore.METADATA_KEY] = jsonpickle.encode(metadata)
-
-            questionnaire_store.data = data
+            questionnaire_store.encode_metadata(metadata)
             questionnaire_store.save()
 
             return metadata
@@ -117,13 +111,7 @@ class MetaDataStore(object):
 
         try:
             questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-            data = questionnaire_store.data
-
-            if MetaDataStore.METADATA_KEY in data:
-                metadata = data[MetaDataStore.METADATA_KEY]
-                return jsonpickle.decode(metadata)
-            else:
-                raise RuntimeError("No metadata for user %s", user.user_id)
+            return questionnaire_store.decode_metadata()
         except AttributeError:
             logger.debug("Anonymous user requesting metadata get instance")
             # anonymous user mixin - this happens on the error pages before authentication
