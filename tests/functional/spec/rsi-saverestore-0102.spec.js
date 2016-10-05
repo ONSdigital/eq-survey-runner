@@ -40,7 +40,7 @@ describe('RSI - Save and restore test', function() {
       .submit()
 
     // Then
-    expect(reportingPeriod.getAlertText()).to.contain('The \'to\' date must be different to the \'from\' date.')
+    expect(reportingPeriod.getAlertText()).to.contain('The \'period to\' date must be different to the \'period from\' date.')
   })
 
   it('Given a rsi business survey 0102 previously had errors when I resume the survey then I should see those errors', function() {
@@ -57,7 +57,7 @@ describe('RSI - Save and restore test', function() {
     openQuestionnaire('1_0102.json', 'yoganandkunche', collectionId)
 
     // Then
-    expect(reportingPeriod.getAlertText()).to.contain('The \'to\' date must be different to the \'from\' date.')
+    expect(reportingPeriod.getAlertText()).to.contain('The \'period to\' date must be different to the \'period from\' date.')
   })
 
   it('Given a rsi business survey 0102 previously had errors when I correct the errors then I can submit them', function() {
