@@ -42,7 +42,7 @@ class CheckboxGroupWidget(Widget):
                 checkbox_option = {
                     'value': option['value'],
                     'label': option['label'],
-                    'selected': option_selected
+                    'selected': option_selected,
                 }
 
                 if 'description' in option:

@@ -35,7 +35,7 @@ class RadioGroupWidget(Widget):
                 radio_option = {
                     'value': option['value'],
                     'label': option['label'],
-                    'selected': option['value'] == answer_state.input
+                    'selected': option['value'] == answer_state.input,
                 }
 
                 if 'description' in option:
