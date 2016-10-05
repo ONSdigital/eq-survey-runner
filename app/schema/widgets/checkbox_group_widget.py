@@ -38,10 +38,16 @@ class CheckboxGroupWidget(Widget):
                 option_selected = False
                 if answer_state.input:
                     option_selected = option['value'] in answer_state.input
-                options.append(ObjectFromDict({
+
+                checkbox_option = {
                     'value': option['value'],
                     'label': option['label'],
-                    'selected': option_selected,
-                }))
+                    'selected': option_selected
+                }
+
+                if 'description' in option:
+                    checkbox_option['description'] = option['description']
+
+                options.append(ObjectFromDict(checkbox_option))
 
         return options

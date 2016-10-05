@@ -7,9 +7,9 @@
 <label {{attr|xmlattr}}>
   <div class="label__inner">
     {{label.text}}
-    {% if label.helper|length > 0 %}
+    {% if label.description %}
       <br />
-      <span class="label__helper pluto">{{label.helper}}</span>
+      <span class="label__description pluto">{{label.description}}</span>
     {% endif %}
   </div>
 </label>

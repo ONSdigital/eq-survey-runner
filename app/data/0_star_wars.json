@@ -53,15 +53,18 @@
                                             "options": [
                                                 {
                                                     "label": "Light Side",
-                                                    "value": "Light Side"
+                                                    "value": "Light Side",
+                                                    "description": "I am some helper text and I might be a bit <strong>bold in places</strong>."
                                                 },
                                                 {
                                                     "label": "Dark Side",
-                                                    "value": "Dark Side"
+                                                    "value": "Dark Side",
+                                                    "description": "Vestibulum id ligula porta felis euismod semper."
                                                 },
                                                 {
                                                     "label": "I prefer Star Trek",
-                                                    "value": "I prefer Star Trek"
+                                                    "value": "I prefer Star Trek",
+                                                    "description": "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
                                                 }
                                             ],
                                             "q_code": "20",
