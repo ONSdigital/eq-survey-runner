@@ -1,48 +1,44 @@
 import chai from 'chai'
-import {getRandomString} from '../helpers'
+import {getRandomString, startQuestionnaire} from '../helpers'
 
 import devPage from '../pages/dev.page'
 import landingPage from '../pages/landing.page'
 import summaryPage from '../pages/summary.page'
 import thankYou from '../pages/thank-you.page'
-import monthlyBusinessSurveyPage from '../pages/surveys/monthly-business-survey.page'
+import monthlyBusinessSurveyPage from '../pages/surveys/mci/monthly-business-survey.page'
 
 const expect = chai.expect
 
 describe('MCI test', function() {
 
-  before('Progress from the developer page', function() {
+  it('Given the mci business survey 0205 is selected when I start the survey then the landing page is displayed', function() {
+    // Given
     devPage.open()
-      .setUserId(getRandomString(10))
-      .setCollectionId(getRandomString(3))
-      .setSchema('1_0205.json')
-      .submit()
+        .setUserId(getRandomString(10))
+        .setCollectionId(getRandomString(3))
+        .setSchema('1_0205.json')
+
+    // When
+    devPage.submit()
+
+    // Then
+    expect(landingPage.isOpen(), 'Landing page should be open').to.be.true
   })
 
-  it('The landing page has been reached', function(done) {
-    expect(landingPage.isOpen()).to.be.true
-  })
+  it('Given a mci business survey 0205 has been started when I complete the survey then I reach the thank you page', function() {
+    // Given
+    startQuestionnaire('1_0205.json')
 
-  it('The questionnaire page has been reached', function(done) {
-    landingPage.getStarted()
-    expect(monthlyBusinessSurveyPage.isOpen(), 'Survey page should be open').to.be.true
-  })
-
-  it('The form can be filled in and submitted', function(done) {
-    monthlyBusinessSurveyPage.setFromSalesPeriodDay('01')
-      .setFromSalesPeriodYear('2016')
-      .setToSalesPeriodDay('01')
-      .setToSalesPeriodYear('2017')
+    // When
+    monthlyBusinessSurveyPage.setFromReportingPeriodDay('01')
+      .setFromReportingPeriodYear('2016')
+      .setToReportingPeriodDay('01')
+      .setToReportingPeriodYear('2017')
       .setRetailBusinessTurnover(2000)
       .submit()
-  })
-
-  it('The summary is displayed after questionnaire is submitted', function(done) {
-    expect(summaryPage.isOpen(), 'Summary page should be open').to.be.true
     summaryPage.submit()
-  })
 
-  it('The thank you page is displayed after submitting', function(done) {
+    // Then
     expect(thankYou.isOpen(), 'Thank you page should be open').to.be.true
   })
 

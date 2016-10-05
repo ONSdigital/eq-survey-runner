@@ -1,31 +1,25 @@
 import chai from 'chai'
-import {getRandomString} from '../helpers'
-import devPage from '../pages/dev.page'
-import landingPage from '../pages/landing.page'
-import monthlyBusinessSurveyPage from '../pages/surveys/monthly-business-survey.page'
+import {getRandomString, startQuestionnaire} from '../helpers'
+import monthlyBusinessSurveyPage from '../pages/surveys/mci/monthly-business-survey.page'
 
 const expect = chai.expect
 
 describe('Error messages', function() {
-  before('Progress to tge correct page', function() {
-    devPage.open()
-      .setUserId(getRandomString(10))
-      .setCollectionId(getRandomString(3))
-      .setSchema('1_0205.json')
-      .submit()
-    landingPage.getStarted()
-  })
 
-  it('Given the survey contains errors when the error link is clicked then the day input field is focused', function() {
-    monthlyBusinessSurveyPage.setFromSalesPeriodDay('01')
-      .setFromSalesPeriodYear('2016')
-      .setToSalesPeriodDay('01')
-      .setToSalesPeriodYear('2016')
+  it('Given the monthly business survey contains errors when the error link is clicked then the day input field is focused', function() {
+    // Given
+    startQuestionnaire('1_0205.json')
+    monthlyBusinessSurveyPage.setFromReportingPeriodDay('01')
+      .setFromReportingPeriodYear('2016')
+      .setToReportingPeriodDay('01')
+      .setToReportingPeriodYear('2016')
       .submit()
 
+    // When
     monthlyBusinessSurveyPage.focusErrorField()
 
-    expect(getElementId(browser.elementActive())).to.equal(getElementId(monthlyBusinessSurveyPage.getFromSalesPeriodDay()))
+    // Then
+    expect(getElementId(browser.elementActive())).to.equal(getElementId(monthlyBusinessSurveyPage.getFromReportingPeriodDay()))
   })
 
   function getElementId(element) {
