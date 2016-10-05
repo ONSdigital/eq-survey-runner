@@ -9,4 +9,4 @@ class EmployeesPage extends QuestionPage {
 
 }
 
-module.exports = new EmployeesPage()
+export default new EmployeesPage()

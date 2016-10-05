@@ -11,4 +11,4 @@ class QuestionPage {
 
 }
 
-module.exports = QuestionPage
+export default QuestionPage

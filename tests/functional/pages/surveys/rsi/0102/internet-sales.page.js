@@ -9,4 +9,4 @@ class InternetSalesPage extends QuestionPage {
 
 }
 
-module.exports = new InternetSalesPage()
+export default new InternetSalesPage()

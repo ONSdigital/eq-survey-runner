@@ -24,4 +24,4 @@ class ReportingPeriodPage extends QuestionPage {
 
 }
 
-module.exports = new ReportingPeriodPage()
+export default new ReportingPeriodPage()

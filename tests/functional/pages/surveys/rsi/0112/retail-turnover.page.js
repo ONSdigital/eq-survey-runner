@@ -9,4 +9,4 @@ class RetailTurnoverPage extends QuestionPage {
 
 }
 
-module.exports = new RetailTurnoverPage()
+export default new RetailTurnoverPage()

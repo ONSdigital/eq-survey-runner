@@ -9,4 +9,4 @@ class ChangesInRetailTurnoverPage extends QuestionPage {
 
 }
 
-module.exports = new ChangesInRetailTurnoverPage()
+export default new ChangesInRetailTurnoverPage()
