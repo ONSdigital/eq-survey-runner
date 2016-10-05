@@ -94,37 +94,39 @@ $input-width: 15rem;
   display: flex;
   position: relative;
   align-items: center;
-  .input {
-    border-radius: 0 3px 3px 0;
-    line-height: normal;
-    position: relative;
-    z-index: 1;
-    width: calc(#{$input-width} - #{$input-type-width});
-    @include fixed {
-      margin-left: 2.5rem;
-      border-left: 0;
-    }
+}
+
+.input-type__input {
+  border-radius: 0 3px 3px 0;
+  line-height: normal;
+  position: relative;
+  z-index: 1;
+  width: calc(#{$input-width} - #{$input-type-width});
+  @include fixed {
+    margin-left: 2.5rem;
+    border-left: 0;
   }
-  &::before {
-    content: attr(data-type);
-    display: inline-block;
-    background-color: $color-lighter-grey;
+}
+
+.input-type__type {
+  content: attr(data-type);
+  display: inline-block;
+  background-color: $color-lighter-grey;
+  border: 1px solid $color-borders;
+  border-right: none;
+  border-radius: $input-radius 0 0 $input-radius;
+  padding: $input-padding 0.9rem;
+  width: $input-type-width;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  line-height: normal;
+  @include fixed {
+    position: absolute;
+    left: 0;
+    width: 2.5rem;
+    height: 100%;
     border: 1px solid $color-borders;
-    border-right: none;
-    border-radius: $input-radius 0 0 $input-radius;
-    padding: $input-padding 0.9rem;
-    width: $input-type-width;
-    font-weight: 600;
-    font-size: 1rem;
-    text-align: center;
-    line-height: normal;
-    @include fixed {
-      position: absolute;
-      left: 0;
-      width: 2.5rem;
-      height: 100%;
-      border: 1px solid $color-borders;
-      z-index: 2;
-    }
+    z-index: 2;
   }
 }

@@ -235,8 +235,8 @@ class StarWarsTestCase(IntegrationTestCase):
 
         # Date Range question
         self.assertRegexpMatches(content, 'When was The Empire Strikes Back released?')
-        self.assertRegexpMatches(content, 'From')
-        self.assertRegexpMatches(content, 'To')
+        self.assertRegexpMatches(content, 'Period from')
+        self.assertRegexpMatches(content, 'Period to')
         self.assertRegexpMatches(content, 'Day')
         self.assertRegexpMatches(content, 'Month')
         self.assertRegexpMatches(content, 'Year')
@@ -292,7 +292,7 @@ class StarWarsTestCase(IntegrationTestCase):
         content = response.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '(?s)Rogue One')
-        
+
     def rogue_one_check_character_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Who do you want to know more about?')

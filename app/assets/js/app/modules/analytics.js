@@ -2,6 +2,10 @@ import forEach from 'lodash/forEach'
 import domready from './domready'
 
 export default function initAnalytics() {
+  if (typeof ga === 'undefined') {
+    return false
+  }
+
   const errors = document.querySelectorAll('[data-error=true]')
   const guidances = document.querySelectorAll('[data-guidance]')
 
