@@ -1,10 +1,9 @@
-from tests.app.framework.sr_unittest import SurveyRunnerTestCase
-from app.templating.questionnaire_template_preprocessor import QuestionnaireTemplatePreprocessor
-from app.authentication.user import User
-from app.data_model.metadata_store import MetaDataStore, MetaDataConstants
-from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
-from app.questionnaire_state.node import Node
+from app.parser.metadata_parser import MetadataParser, MetadataConstants
 from app.questionnaire_state.block import Block
+from app.questionnaire_state.node import Node
+from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
+from app.templating.questionnaire_template_preprocessor import QuestionnaireTemplatePreprocessor
+from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
 
 class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
@@ -12,22 +11,22 @@ class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
     def setUp(self):
         super().setUp()
         self.jwt = {
-            MetaDataConstants.USER_ID.claim_id: "1",
-            MetaDataConstants.FORM_TYPE.claim_id: "a",
-            MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
-            MetaDataConstants.EQ_ID.claim_id: "2",
-            MetaDataConstants.PERIOD_ID.claim_id: "3",
-            MetaDataConstants.PERIOD_STR.claim_id: "2016-01-01",
-            MetaDataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
-            MetaDataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
-            MetaDataConstants.RU_REF.claim_id: "178324",
-            MetaDataConstants.RU_NAME.claim_id: "Apple",
-            MetaDataConstants.TRAD_AS.claim_id: "Apple",
-            MetaDataConstants.RETURN_BY.claim_id: "2016-07-07",
-            MetaDataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
+            MetadataConstants.USER_ID.claim_id: "1",
+            MetadataConstants.FORM_TYPE.claim_id: "a",
+            MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
+            MetadataConstants.EQ_ID.claim_id: "2",
+            MetadataConstants.PERIOD_ID.claim_id: "3",
+            MetadataConstants.PERIOD_STR.claim_id: "2016-01-01",
+            MetadataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
+            MetadataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
+            MetadataConstants.RU_REF.claim_id: "178324",
+            MetadataConstants.RU_NAME.claim_id: "Apple",
+            MetadataConstants.TRAD_AS.claim_id: "Apple",
+            MetadataConstants.RETURN_BY.claim_id: "2016-07-07",
+            MetadataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
-            self.metadata = MetaDataStore.parse_metadata(self.jwt)
+            self.metadata = MetadataParser.parse_metadata(self.jwt)
 
     def get_metadata_store(self):
         return self.metadata

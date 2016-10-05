@@ -23,7 +23,7 @@ def id_generator():
     return str(uuid.uuid4())
 
 
-class MetaDataConstant(object):
+class MetadataConstant(object):
     def __init__(self, claim_id, mandatory=True, parser=string_parser, generator=None):
         # the claim id from the JWT token
         self.claim_id = claim_id
@@ -35,36 +35,36 @@ class MetaDataConstant(object):
         self.generator = generator
 
 
-class MetaDataConstants(object):
+class MetadataConstants(object):
     """Constant for meta data values"""
-    USER_ID = MetaDataConstant(claim_id='user_id')
-    RU_REF = MetaDataConstant(claim_id='ru_ref')
-    RU_NAME = MetaDataConstant(claim_id='ru_name')
-    EQ_ID = MetaDataConstant(claim_id='eq_id')
-    COLLECTION_EXERCISE_SID = MetaDataConstant(claim_id='collection_exercise_sid')
-    PERIOD_ID = MetaDataConstant(claim_id='period_id')
-    PERIOD_STR = MetaDataConstant(claim_id='period_str')
-    REF_P_START_DATE = MetaDataConstant(claim_id='ref_p_start_date', parser=iso_8601_data_parser)
-    REF_P_END_DATE = MetaDataConstant(claim_id='ref_p_end_date', parser=iso_8601_data_parser)
-    FORM_TYPE = MetaDataConstant(claim_id='form_type')
-    RETURN_BY = MetaDataConstant(claim_id='return_by', parser=iso_8601_data_parser)
-    TRAD_AS = MetaDataConstant(claim_id='trad_as', mandatory=False)
-    EMPLOYMENT_DATE = MetaDataConstant(claim_id='employment_date', mandatory=False, parser=iso_8601_data_parser)
-    TRANSACTION_ID = MetaDataConstant(claim_id='tx_id', mandatory=False, parser=uuid_4_parser, generator=id_generator)
+    USER_ID = MetadataConstant(claim_id='user_id')
+    RU_REF = MetadataConstant(claim_id='ru_ref')
+    RU_NAME = MetadataConstant(claim_id='ru_name')
+    EQ_ID = MetadataConstant(claim_id='eq_id')
+    COLLECTION_EXERCISE_SID = MetadataConstant(claim_id='collection_exercise_sid')
+    PERIOD_ID = MetadataConstant(claim_id='period_id')
+    PERIOD_STR = MetadataConstant(claim_id='period_str')
+    REF_P_START_DATE = MetadataConstant(claim_id='ref_p_start_date', parser=iso_8601_data_parser)
+    REF_P_END_DATE = MetadataConstant(claim_id='ref_p_end_date', parser=iso_8601_data_parser)
+    FORM_TYPE = MetadataConstant(claim_id='form_type')
+    RETURN_BY = MetadataConstant(claim_id='return_by', parser=iso_8601_data_parser)
+    TRAD_AS = MetadataConstant(claim_id='trad_as', mandatory=False)
+    EMPLOYMENT_DATE = MetadataConstant(claim_id='employment_date', mandatory=False, parser=iso_8601_data_parser)
+    TRANSACTION_ID = MetadataConstant(claim_id='tx_id', mandatory=False, parser=uuid_4_parser, generator=id_generator)
 
 
-class MetaDataStore(object):
+class MetadataParser(object):
 
     @staticmethod
     def _get_constants():
-        for attr in dir(MetaDataConstants):
-            constant = getattr(MetaDataConstants, attr)
-            if isinstance(constant, MetaDataConstant):
+        for attr in dir(MetadataConstants):
+            constant = getattr(MetadataConstants, attr)
+            if isinstance(constant, MetadataConstant):
                 yield constant
 
     @staticmethod
     def is_valid(token):
-        for constant in MetaDataStore._get_constants():
+        for constant in MetadataParser._get_constants():
             if constant.mandatory and constant.claim_id not in token:
                 return False, constant.claim_id
         return True, ""
@@ -72,9 +72,9 @@ class MetaDataStore(object):
     @staticmethod
     def parse_metadata(token):
         try:
-            metadata = MetaDataStore()
-            # loop around all the constants and add them as attributes of the metadata store object
-            for constant in MetaDataStore._get_constants():
+            metadata = MetadataParser()
+            # loop around all the constants and add them as attributes of the metadata object
+            for constant in MetadataParser._get_constants():
                 attr_name = constant.claim_id
                 logger.debug("MetaDataStore adding attr %s", attr_name)
                 if attr_name in token:

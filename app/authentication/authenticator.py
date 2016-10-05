@@ -1,13 +1,14 @@
 import logging
 
 from app.authentication.invalid_token_exception import InvalidTokenException
+
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
-from app.data_model.metadata_store import MetaDataStore
 from app.data_model.questionnaire_store import get_questionnaire_store
+from app.parser.metadata_parser import MetadataParser
 
 from flask import session
 
@@ -64,7 +65,7 @@ class Authenticator(object):
         session_manager.store_user_ik(user_ik)
 
         # store the meta data
-        metadata = MetaDataStore.parse_metadata(token)
+        metadata = MetadataParser.parse_metadata(token)
 
         questionnaire_store = get_questionnaire_store(user_id, user_ik)
         questionnaire_store.encode_metadata(metadata)
@@ -79,6 +80,6 @@ class Authenticator(object):
         return token
 
     def _check_user_data(self, token):
-        valid, reason = MetaDataStore.is_valid(token)
+        valid, reason = MetadataParser.is_valid(token)
         if not valid:
             raise InvalidTokenException("Missing value {}".format(reason))
