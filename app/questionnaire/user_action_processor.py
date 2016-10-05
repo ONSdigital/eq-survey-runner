@@ -1,7 +1,7 @@
 import logging
 
 from app import settings
-from app.data_model.metadata_store import MetaDataStore
+from app.data_model.questionnaire_store import get_metadata
 from app.submitter.submitter import SubmitterFactory
 
 from flask_login import current_user
@@ -17,7 +17,7 @@ class UserActionProcessor(object):
 
     def __init__(self, schema, questionnaire_manager):
         self._schema = schema
-        self._metadata = MetaDataStore.get_instance(current_user)
+        self._metadata = get_metadata(current_user)
         self._questionnaire_manager = questionnaire_manager
         self._user_actions = self._build_user_action_chain()
 

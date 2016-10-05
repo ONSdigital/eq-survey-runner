@@ -4,7 +4,6 @@ from app.schema.group import Group
 from app.schema.block import Block
 from app.schema.question import Question
 from app.schema.answer import Answer
-from app.authentication.user import User
 from app.data_model.metadata_store import MetaDataStore, MetaDataConstants
 from app.submitter.converter import Converter
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
@@ -54,7 +53,7 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.maxDiff = None
 
-            metadata = MetaDataStore.save_instance("1", "2", JWT)
+            metadata = MetaDataStore.parse_metadata(JWT)
 
             user_answer = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
 
@@ -108,7 +107,7 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.maxDiff = None
 
-            metadata = MetaDataStore.save_instance("1", "2", JWT)
+            metadata = MetaDataStore.parse_metadata(JWT)
 
             user_answer = {"GHI": 0}
 

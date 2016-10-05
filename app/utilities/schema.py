@@ -1,6 +1,6 @@
 import logging
 
-from app.data_model.metadata_store import MetaDataStore
+from app.data_model.questionnaire_store import get_metadata
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.schema_loader.schema_loader import load_schema
 
@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_schema():
-    metadata = MetaDataStore.get_instance(current_user)
+    metadata = get_metadata(current_user)
 
     eq_id = metadata.eq_id
     form_type = metadata.form_type

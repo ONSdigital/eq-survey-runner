@@ -58,3 +58,13 @@ def get_questionnaire_store(user_id, user_ik):
             logger.error("questionnaire_store failed to init", exception=repr(e))
 
     return store
+
+
+def get_metadata(user):
+    try:
+        questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+        return questionnaire_store.decode_metadata()
+    except AttributeError:
+        logger.debug("Anonymous user requesting metadata get instance")
+        # anonymous user mixin - this happens on the error pages before authentication
+        return None

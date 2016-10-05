@@ -1,8 +1,7 @@
 import logging
 
 from app.authentication.session_management import session_manager
-from app.data_model.metadata_store import MetaDataStore
-from app.data_model.questionnaire_store import get_questionnaire_store
+from app.data_model.questionnaire_store import get_metadata, get_questionnaire_store
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.questionnaire.state import State
 from app.questionnaire.state_manager import StateManager
@@ -268,7 +267,7 @@ class QuestionnaireManager(object):
         elif location == 'previous':
             location = self._previous()
         elif location == 'summary' and self._current.item_id != 'summary':
-            metadata = MetaDataStore.get_instance(current_user)
+            metadata = get_metadata(current_user)
             if metadata:
                 logger.warning("User with tx_id %s tried to submit in an invalid state", metadata.tx_id)
             raise InvalidLocationException()

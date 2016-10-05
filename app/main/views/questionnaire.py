@@ -1,6 +1,6 @@
 import logging
 
-from app.data_model.metadata_store import MetaDataStore
+from app.data_model.questionnaire_store import get_metadata
 from app.main.errors import internal_server_error
 from app.main.errors import page_not_found
 from app.main.errors import service_unavailable
@@ -86,6 +86,6 @@ def do_post(collection_id, eq_id, location, questionnaire_manager):
 
     questionnaire_manager.process_incoming_answers(location, request.form)
     next_location = questionnaire_manager.get_current_location()
-    metadata = MetaDataStore.get_instance(current_user)
+    metadata = get_metadata(current_user)
     logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata.tx_id)
     return redirect('/questionnaire/' + eq_id + '/' + collection_id + '/' + next_location)

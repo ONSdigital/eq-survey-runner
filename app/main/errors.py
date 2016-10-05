@@ -1,6 +1,6 @@
 import logging
 
-from app.data_model.metadata_store import MetaDataStore
+from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import convert_tx_id
 from app.main import main_blueprint
 
@@ -64,7 +64,7 @@ def log_exception(error):
 
 def _render_error_page(status_code):
     tx_id = None
-    metadata = MetaDataStore.get_instance(current_user)
+    metadata = get_metadata(current_user)
     if metadata:
         tx_id = convert_tx_id(metadata.tx_id)
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))

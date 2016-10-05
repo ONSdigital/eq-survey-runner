@@ -7,6 +7,7 @@ from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.metadata_store import MetaDataStore
+from app.data_model.questionnaire_store import get_questionnaire_store
 
 from flask import session
 
@@ -25,8 +26,11 @@ class Authenticator(object):
         logger.debug("Checking for session")
         if session_manager.has_user_id():
             user = User(session_manager.get_user_id(), session_manager.get_user_ik())
-            metadata = MetaDataStore.get_instance(user)
+            questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+            metadata = questionnaire_store.decode_metadata()
+
             logger.info("Session token exists for tx_id=%s", metadata.tx_id)
+
             return user
         else:
             logging.info("Session does not have an authenticated token")
@@ -36,7 +40,6 @@ class Authenticator(object):
         """
         Login using a JWT token, this must be an encrypted JWT.
         :param request: The flask request
-        :return: the decrypted and unencoded token
         """
         # clear the session entry in the database
         session_manager.clear()
@@ -61,7 +64,11 @@ class Authenticator(object):
         session_manager.store_user_ik(user_ik)
 
         # store the meta data
-        metadata = MetaDataStore.save_instance(user_id, user_ik, token)
+        metadata = MetaDataStore.parse_metadata(token)
+
+        questionnaire_store = get_questionnaire_store(user_id, user_ik)
+        questionnaire_store.encode_metadata(metadata)
+        questionnaire_store.save()
 
         logger.info("User authenticated with tx_id=%s", metadata.tx_id)
 

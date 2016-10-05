@@ -1,4 +1,4 @@
-from app.data_model.metadata_store import MetaDataStore
+from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import ObjectFromDict
 from app.piping.plumber import Plumber
 
@@ -60,4 +60,4 @@ class PlumbingPreprocessor(object):
         return ObjectFromDict(values)
 
     def _get_metadata(self):
-        return MetaDataStore.get_instance(current_user)
+        return get_metadata(current_user)

@@ -3,7 +3,6 @@ import uuid
 from datetime import datetime
 
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.data_model.questionnaire_store import get_questionnaire_store
 
 logger = logging.getLogger(__name__)
 
@@ -56,8 +55,6 @@ class MetaDataConstants(object):
 
 class MetaDataStore(object):
 
-    METADATA_KEY = "METADATA"
-
     @staticmethod
     def _get_constants():
         for attr in dir(MetaDataConstants):
@@ -73,7 +70,7 @@ class MetaDataStore(object):
         return True, ""
 
     @staticmethod
-    def save_instance(user_id, user_ik, token):
+    def parse_metadata(token):
         try:
             metadata = MetaDataStore()
             # loop around all the constants and add them as attributes of the metadata store object
@@ -95,24 +92,8 @@ class MetaDataStore(object):
                         logger.debug("No value provide for %s but this is not mandatory, setting to None", attr_name)
                         attr_value = None
                 setattr(metadata, attr_name, attr_value)
-
-            questionnaire_store = get_questionnaire_store(user_id, user_ik)
-            questionnaire_store.encode_metadata(metadata)
-            questionnaire_store.save()
-
             return metadata
         except (RuntimeError, ValueError, TypeError) as e:
-            logger.error("Unable to create Metadata store")
+            logger.error("Unable to parse Metadata")
             logger.exception(e)
             raise InvalidTokenException("Incorrect data in token")
-
-    @staticmethod
-    def get_instance(user):
-
-        try:
-            questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-            return questionnaire_store.decode_metadata()
-        except AttributeError:
-            logger.debug("Anonymous user requesting metadata get instance")
-            # anonymous user mixin - this happens on the error pages before authentication
-            return None

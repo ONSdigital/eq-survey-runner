@@ -3,7 +3,7 @@ import logging
 from app.authentication.authenticator import Authenticator
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
-from app.data_model.metadata_store import MetaDataStore
+from app.data_model.questionnaire_store import get_metadata
 from app.main import errors
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 
@@ -43,7 +43,7 @@ def login():
         authenticator.jwt_login(request)
         logger.debug("Token authenticated - linking to session")
 
-        metadata = MetaDataStore.get_instance(current_user)
+        metadata = get_metadata(current_user)
         eq_id = metadata.eq_id
         collection_id = metadata.collection_exercise_sid
         form_type = metadata.form_type
