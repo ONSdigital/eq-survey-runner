@@ -1,4 +1,4 @@
-from app.templating.summary.formatters.abstract_formater import AbstractFormatter
+from app.templating.summary.formatters.abstract_formatter import AbstractFormatter
 
 
 class RadioButtonFormatter(AbstractFormatter):
