@@ -53,7 +53,7 @@ fi
 
 url="`run_python token_generator.py`"
 
-if [ -z "${TRAVIS}" ]; then
+if [ -z "${TRAVIS}"] || [-z "${DOCKER}"]; then
   open_url $url &
   run_python application.py runserver
 else

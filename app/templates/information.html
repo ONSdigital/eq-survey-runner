@@ -1,0 +1,17 @@
+{% extends 'layouts/_survey.html' %}
+
+{% block page_title %}{{messages.TITLE}}{% endblock %}
+
+{% block main %}
+  <div class="header">
+    <h1 class="header__title">
+      {% block system_message_title %}{{messages.title}}{% endblock %}
+    </h1>
+  </div>
+
+  <div class="alert alert--simple alert--error alert--spacious">
+    <p><strong>{{messages.message}}</strong></p>
+    <div>{{messages.instructions}}</div>
+  </div>
+
+{% endblock %}

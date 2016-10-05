@@ -21,7 +21,7 @@ services:
     networks:
       - eq-env
   eq-survey-runner:
-    build: ./eq-survey-runner
+    build: ./
     environment:
       DOCKER: "True"
       EQ_RABBITMQ_ENABLED: "True"
@@ -29,7 +29,7 @@ services:
       EQ_SERVER_SIDE_STORAGE_DATABASE_URL: postgres://digitaleq:digitaleq@db:5432/runner
       EQ_RABBITMQ_URL: amqp://digitaleq:digitaleq@rabbit:5672/%2F
     volumes:
-      - ./eq-survey-runner:/code
+      - ./:/code
     depends_on:
       - db
       - rabbit

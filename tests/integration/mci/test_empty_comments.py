@@ -1,5 +1,6 @@
-from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.create_token import create_token
+from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.mci import mci_test_urls
 
 
 class TestEmptyComments(IntegrationTestCase):
@@ -21,7 +22,7 @@ class TestEmptyComments(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/1/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post(mci_test_urls.MCI_0203_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -59,7 +60,7 @@ class TestEmptyComments(IntegrationTestCase):
         self.assertEquals(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], mci_test_urls.MCI_0203_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 
@@ -80,7 +81,7 @@ class TestEmptyComments(IntegrationTestCase):
         }
         resp = self.client.post(summary_url, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/789\/thank-you$')
+        self.assertRegexpMatches(resp.headers['Location'], mci_test_urls.MCI_0203_THANKYOU_REGEX)
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 

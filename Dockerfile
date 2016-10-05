@@ -5,9 +5,6 @@ ENV BUILD_PACKAGES="curl build-essential python3-dev libpq-dev ca-certificates l
 
 WORKDIR /code
 
-# Install all dependencies, cleanup and reinstall python 
-# apt's cleanup also uninstalls python, so we have to install again..
-
 RUN apt-get update && apt-get install -y $RUNTIME_PACKAGES $BUILD_PACKAGES \
 	&& curl -sS https://bootstrap.pypa.io/get-pip.py | python3 \
 	&& curl -sL https://deb.nodesource.com/setup_5.x | bash -
