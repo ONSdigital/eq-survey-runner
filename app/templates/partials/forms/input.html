@@ -1,5 +1,5 @@
 {% set attr = {
-  "class": "input input--" ~ (input.valueType if input.valueType|length > 0 else input.type),
+  "class": "input " ~ input.classes,
   "type": input.type,
   "value": input.value,
   "name": input.name,

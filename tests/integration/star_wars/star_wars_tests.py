@@ -1,7 +1,6 @@
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
-from werkzeug.datastructures import MultiDict
-
+from tests.integration.star_wars import star_wars_test_urls
 
 class StarWarsTestCase(IntegrationTestCase):
     def setUp(self):
@@ -44,7 +43,7 @@ class StarWarsTestCase(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         routing_start = resp.headers['Location']
@@ -236,8 +235,8 @@ class StarWarsTestCase(IntegrationTestCase):
 
         # Date Range question
         self.assertRegexpMatches(content, 'When was The Empire Strikes Back released?')
-        self.assertRegexpMatches(content, 'From')
-        self.assertRegexpMatches(content, 'To')
+        self.assertRegexpMatches(content, 'Period from')
+        self.assertRegexpMatches(content, 'Period to')
         self.assertRegexpMatches(content, 'Day')
         self.assertRegexpMatches(content, 'Month')
         self.assertRegexpMatches(content, 'Year')
@@ -272,7 +271,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertEquals(resp.status_code, 200)
         return resp
 
-    def complete_survey(self, summary_page):
+    def complete_survey(self, summary_page, form_type_id):
         # Submit answers
         post_data = {
             "action[submit_answers]": "Submit answers"
@@ -280,13 +279,9 @@ class StarWarsTestCase(IntegrationTestCase):
         resp = self.client.post(summary_page, data=post_data, follow_redirects=False)
 
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/thank-you$')
+        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/0\/'+ form_type_id+ '\/201604\/789\/thank-you$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
-
-        # Thank you page
-        content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Submission Successful</title>')
 
     def rogue_one_login_and_check_introduction_text(self):
         self.token = create_token('rogue_one', '0')
@@ -297,7 +292,7 @@ class StarWarsTestCase(IntegrationTestCase):
         content = response.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
         self.assertRegexpMatches(content, '(?s)Rogue One')
-        
+
     def rogue_one_check_character_page(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Who do you want to know more about?')

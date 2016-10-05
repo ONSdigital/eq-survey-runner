@@ -251,9 +251,6 @@ def setup_cloud_watch_logging(application):
 
 
 def start_dev_mode(application):
-    # import and register the pattern library blueprint
-    from .patternlib import patternlib_blueprint
-    application.register_blueprint(patternlib_blueprint)
     # import and register the dev mode blueprint
     from .dev_mode import dev_mode_blueprint
     application.register_blueprint(dev_mode_blueprint)

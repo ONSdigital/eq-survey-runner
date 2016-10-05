@@ -1,5 +1,6 @@
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.mci import mci_test_urls
 
 
 class TestClearError(IntegrationTestCase):
@@ -25,7 +26,7 @@ class TestClearError(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/1/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -71,7 +72,7 @@ class TestClearError(IntegrationTestCase):
 
         # Get the page content
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, "The &#39;to&#39; date cannot be before the &#39;from&#39; date.")
+        self.assertRegexpMatches(content, "The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")
 
         # Fill the dates in correctly, but this time miss out the required value
         form_data = {
@@ -103,4 +104,4 @@ class TestClearError(IntegrationTestCase):
         # Get the page content again
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "Please provide a value, even if your value is 0.")
-        self.assertNotRegex(content, "The &#39;to&#39; date cannot be before the &#39;from&#39; date.")
+        self.assertNotRegex(content, "The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")
