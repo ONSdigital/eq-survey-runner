@@ -70,7 +70,7 @@ class MetadataParser(object):
         return True, ""
 
     @staticmethod
-    def parse_metadata(token):
+    def parse_token(token):
         try:
             metadata = MetadataParser()
             # loop around all the constants and add them as attributes of the metadata object

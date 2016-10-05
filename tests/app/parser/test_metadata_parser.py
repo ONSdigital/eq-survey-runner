@@ -6,7 +6,7 @@ from app.parser.metadata_parser import MetadataParser
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
 
-class TestMetadataStore(SurveyRunnerTestCase):
+class TestMetadataParser(SurveyRunnerTestCase):
 
     def setUp(self):
         super().setUp()
@@ -25,7 +25,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
             MetadataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
-            self.metadata_store = MetadataParser.parse_metadata(self.jwt)
+            self.metadata_store = MetadataParser.parse_token(self.jwt)
 
     def test_transaction_id(self):
         with self.application.test_request_context():
@@ -221,7 +221,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.parse_metadata(jwt)
+            MetadataParser.parse_token(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_ref_p_end_date(self):
@@ -241,7 +241,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.parse_metadata(jwt)
+            MetadataParser.parse_token(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_return_by(self):
@@ -261,7 +261,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.parse_metadata(jwt)
+            MetadataParser.parse_token(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_missing_ref_p_end_date(self):
@@ -369,7 +369,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.parse_metadata(jwt)
+            MetadataParser.parse_token(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_malformed_tx_id(self):
@@ -391,7 +391,7 @@ class TestMetadataStore(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.parse_metadata(jwt)
+            MetadataParser.parse_token(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
 
