@@ -18,6 +18,8 @@ describe('Error messages', function() {
     // When
     monthlyBusinessSurveyPage.focusErrorField()
 
+    browser.timeoutsImplicitWait(10000)
+
     // Then
     expect(getElementId(browser.elementActive())).to.equal(getElementId(monthlyBusinessSurveyPage.getFromReportingPeriodDay()))
   })

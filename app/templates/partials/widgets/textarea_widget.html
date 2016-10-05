@@ -9,9 +9,8 @@
   'value': (answer.value or "")|e,
   'name': answer.name,
   'id': answer.id,
-  'placeholder': answer.placeholder,
-  'aria-describedby': "description-" ~ question.id ~ " guidance-" ~ answer.id ~ "-trigger",
-  'maxChars': answer.maxChars or 2000
+  'aria-describedby': "description-" ~ question.id ~ " guidance-" ~ answer.id ~ "-trigger"
 } %}
+
 {% include 'partials/forms/textarea.html' %}
 <!-- END TextareaWidget -->
