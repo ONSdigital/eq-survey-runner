@@ -9,7 +9,7 @@
     {{label.text}}
     {% if label.description %}
       <br />
-      <span class="label__description pluto">{{label.description}}</span>
+      <span class="label__description pluto">{{label.description|safe}}</span>
     {% endif %}
   </div>
 </label>
