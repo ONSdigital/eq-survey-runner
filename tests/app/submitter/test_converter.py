@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from app.parser.metadata_parser import MetadataParser, MetadataConstants
+from app.parser.metadata_parser import MetadataParser
 from app.schema.answer import Answer
 from app.schema.block import Block
 from app.schema.group import Group
@@ -35,17 +35,17 @@ EXPECTED_RESPONSE = json.loads("""
       }""")
 
 JWT = {
-  MetadataConstants.USER_ID.claim_id: "789473423",
-  MetadataConstants.FORM_TYPE.claim_id: "0205",
-  MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
-  MetadataConstants.EQ_ID.claim_id: "1",
-  MetadataConstants.PERIOD_ID.claim_id: "2016-02-01",
-  MetadataConstants.PERIOD_STR.claim_id: "2016-01-01",
-  MetadataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
-  MetadataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
-  MetadataConstants.RU_REF.claim_id: "432423423423",
-  MetadataConstants.RU_NAME.claim_id: "Apple",
-  MetadataConstants.RETURN_BY.claim_id: "2016-07-07"
+  "user_id": "789473423",
+  "form_type": "0205",
+  "collection_exercise_sid": "test-sid",
+  "eq_id": "1",
+  "period_id": "2016-02-01",
+  "period_str": "2016-01-01",
+  "ref_p_start_date": "2016-02-02",
+  "ref_p_end_date": "2016-03-03",
+  "ru_ref": "432423423423",
+  "ru_name": "Apple",
+  "return_by": "2016-07-07"
 }
 
 class TestConverter(SurveyRunnerTestCase):

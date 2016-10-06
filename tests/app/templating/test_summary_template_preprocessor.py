@@ -1,4 +1,4 @@
-from app.parser.metadata_parser import MetadataParser, MetadataConstants
+from app.parser.metadata_parser import MetadataParser
 from app.questionnaire_state.block import Block
 from app.questionnaire_state.node import Node
 from app.questionnaire_state.section import Section
@@ -12,19 +12,19 @@ class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
     def setUp(self):
         super().setUp()
         self.jwt = {
-            MetadataConstants.USER_ID.claim_id: "1",
-            MetadataConstants.FORM_TYPE.claim_id: "a",
-            MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
-            MetadataConstants.EQ_ID.claim_id: "2",
-            MetadataConstants.PERIOD_ID.claim_id: "3",
-            MetadataConstants.PERIOD_STR.claim_id: "2016-01-01",
-            MetadataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
-            MetadataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
-            MetadataConstants.RU_REF.claim_id: "178324",
-            MetadataConstants.RU_NAME.claim_id: "Apple",
-            MetadataConstants.TRAD_AS.claim_id: "Apple",
-            MetadataConstants.RETURN_BY.claim_id: "2016-07-07",
-            MetadataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
+            "user_id": "1",
+            "form_type": "a",
+            "collection_exercise_sid": "test-sid",
+            "eq_id": "2",
+            "period_id": "3",
+            "period_str": "2016-01-01",
+            "ref_p_start_date": "2016-02-02",
+            "ref_p_end_date": "2016-03-03",
+            "ru_ref": "178324",
+            "ru_name": "Apple",
+            "trad_as": "Apple",
+            "return_by": "2016-07-07",
+            "transaction_id": "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
             self.metadata = MetadataParser.build_metadata(self.jwt)

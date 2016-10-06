@@ -3,7 +3,6 @@ import os
 import time
 
 from app.dev_mode.jwt_encoder import Encoder
-from app.parser.metadata_parser import MetadataConstants
 from app.schema_loader.schema_loader import available_schemas
 
 from flask import abort
@@ -20,26 +19,25 @@ logger = logging.getLogger(__name__)
 def dev_mode():
     if request.method == "POST":
         form = request.form
-        user = form.get(MetadataConstants.USER_ID.claim_id)
+        user = form.get("user_id")
         exp_time = form.get("exp")
         schema = form.get("schema")
         eq_id, form_type = extract_eq_id_and_form_type(schema)
-        period_str = form.get(MetadataConstants.PERIOD_STR.claim_id)
-        period_id = form.get(MetadataConstants.PERIOD_ID.claim_id)
-        collection_exercise_sid = form.get(MetadataConstants.COLLECTION_EXERCISE_SID.claim_id)
-        ref_p_start_date = form.get(MetadataConstants.REF_P_START_DATE.claim_id)
-        ref_p_end_date = form.get(MetadataConstants.REF_P_END_DATE.claim_id)
-        ru_ref = form.get(MetadataConstants.RU_REF.claim_id)
-        ru_name = form.get(MetadataConstants.RU_NAME.claim_id)
-        trad_as = form.get(MetadataConstants.TRAD_AS.claim_id)
-        return_by = form.get(MetadataConstants.RETURN_BY.claim_id)
-        employment_date = form.get(MetadataConstants.EMPLOYMENT_DATE.claim_id)
+        period_str = form.get("period_str")
+        period_id = form.get("period_id")
+        collection_exercise_sid = form.get("collection_exercise_sid")
+        ref_p_start_date = form.get("ref_p_start_date")
+        ref_p_end_date = form.get("ref_p_end_date")
+        ru_ref = form.get("ru_ref")
+        ru_name = form.get("ru_name")
+        trad_as = form.get("trad_as")
+        return_by = form.get("return_by")
+        employment_date = form.get("employment_date")
         payload = create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid,
                                  ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date)
         return redirect("/session?token=" + generate_token(payload).decode())
     else:
-        return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), MetaDataConstants=MetadataConstants,
-                               available_schemas=available_schemas())
+        return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
 
 
 def extract_eq_id_and_form_type(schema_name):
@@ -72,21 +70,21 @@ def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, coll
     iat = time.time()
     exp = time.time() + float(exp_time)
     return {
-            MetadataConstants.USER_ID.claim_id: user,
+            "user_id": user,
             'iat': str(int(iat)),
             'exp': str(int(exp)),
-            MetadataConstants.EQ_ID.claim_id: eq_id,
-            MetadataConstants.PERIOD_STR.claim_id: period_str,
-            MetadataConstants.PERIOD_ID.claim_id: period_id,
-            MetadataConstants.FORM_TYPE.claim_id: form_type,
-            MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: collection_exercise_sid,
-            MetadataConstants.REF_P_START_DATE.claim_id: ref_p_start_date,
-            MetadataConstants.REF_P_END_DATE.claim_id: ref_p_end_date,
-            MetadataConstants.RU_REF.claim_id: ru_ref,
-            MetadataConstants.RU_NAME.claim_id: ru_name,
-            MetadataConstants.RETURN_BY.claim_id: return_by,
-            MetadataConstants.TRAD_AS.claim_id: trad_as,
-            MetadataConstants.EMPLOYMENT_DATE.claim_id: employment_date}
+            "eq_id": eq_id,
+            "period_str": period_str,
+            "period_id": period_id,
+            "form_type": form_type,
+            "collection_exercise_sid": collection_exercise_sid,
+            "ref_p_start_date": ref_p_start_date,
+            "ref_p_end_date": ref_p_end_date,
+            "ru_ref": ru_ref,
+            "ru_name": ru_name,
+            "return_by": return_by,
+            "trad_as": trad_as,
+            "employment_date": employment_date}
 
 
 def generate_token(payload):

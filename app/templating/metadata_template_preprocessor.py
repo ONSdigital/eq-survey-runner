@@ -18,17 +18,19 @@ class MetaDataTemplatePreprocessor(object):
         return render_data
 
     def _build_respondent_meta(self):
-        if self._get_metadata():
-            respondent_id = self._get_metadata().ru_ref
-            name = self._get_metadata().ru_name
-            trading_as = self._get_metadata().trad_as
+        metadata = self._get_metadata()
+
+        if metadata:
+            respondent_id = metadata["ru_ref"]
+            name = metadata["ru_name"]
+            trading_as = metadata["trad_as"]
         else:
             respondent_id = None
             name = None
             trading_as = None
 
         respondent_meta = {
-            "tx_id": convert_tx_id(self._get_metadata().tx_id),
+            "tx_id": convert_tx_id(metadata["tx_id"]),
             "respondent_id": respondent_id,
             "address": {
                 "name": name,
@@ -39,6 +41,7 @@ class MetaDataTemplatePreprocessor(object):
 
     def _build_survey_meta(self, schema):
         introduction = schema.introduction
+        metadata = self._get_metadata()
 
         survey_meta = {
             "title": schema.title,
@@ -46,11 +49,11 @@ class MetaDataTemplatePreprocessor(object):
             "description": self._get_description(introduction),
             "information_to_provide": self._get_info_to_provide(introduction),
             "theme": schema.theme,
-            "return_by": self._format_date(self._get_metadata().return_by),
-            "start_date":  self._format_date(self._get_metadata().ref_p_start_date),
-            "end_date": self._format_date(self._get_metadata().ref_p_end_date),
-            "employment_date": self._format_date(self._get_metadata().employment_date),
-            "period_str": self._get_metadata().period_str,
+            "return_by": self._format_date(metadata["return_by"]),
+            "start_date":  self._format_date(metadata["ref_p_start_date"]),
+            "end_date": self._format_date(metadata["ref_p_end_date"]),
+            "employment_date": self._format_date(metadata["employment_date"]),
+            "period_str": metadata["period_str"],
         }
         return survey_meta
 
@@ -66,6 +69,9 @@ class MetaDataTemplatePreprocessor(object):
 
         return None
 
+    def _get_metadata(self):
+        return get_metadata(current_user)
+
     @staticmethod
     def _format_date(date):
         formatted_date = None
@@ -77,6 +83,3 @@ class MetaDataTemplatePreprocessor(object):
             logger.exception(e)
             logger.error("Error parsing meta data for %s", date)
         return formatted_date
-
-    def _get_metadata(self):
-        return get_metadata(current_user)

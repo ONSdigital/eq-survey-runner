@@ -30,7 +30,7 @@ class Authenticator(object):
             questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
             metadata = questionnaire_store.decode_metadata()
 
-            logger.info("Session token exists for tx_id=%s", metadata.tx_id)
+            logger.info("Session token exists for tx_id=%s", metadata["tx_id"])
 
             return user
         else:
@@ -71,7 +71,7 @@ class Authenticator(object):
         questionnaire_store.encode_metadata(metadata)
         questionnaire_store.save()
 
-        logger.info("User authenticated with tx_id=%s", metadata.tx_id)
+        logger.info("User authenticated with tx_id=%s", metadata["tx_id"])
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)

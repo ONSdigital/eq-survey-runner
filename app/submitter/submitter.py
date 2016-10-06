@@ -43,7 +43,7 @@ class Submitter(object):
         sent = self.send(encrypted_message)
 
         if sent:
-            logger.info("Responses submitted at %s for tx_id=%s", submitted_at, metadata.tx_id)
+            logger.info("Responses submitted at %s for tx_id=%s", submitted_at, metadata["tx_id"])
             return submitted_at
         else:
             raise SubmissionFailedException()

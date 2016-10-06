@@ -33,16 +33,13 @@ class PlumbingPreprocessor(object):
         '''
         Build the exercise data from the survey metadata
         '''
-        start_date = self._get_metadata().ref_p_start_date
-        end_date = self._get_metadata().ref_p_end_date
-        employment_date = self._get_metadata().employment_date
-        return_by = self._get_metadata().return_by
+        metadata = self._get_metadata()
 
         return ObjectFromDict({
-            "start_date": start_date,
-            "end_date": end_date,
-            "employment_date": employment_date,
-            "return_by": return_by,
+            "start_date": metadata["ref_p_start_date"],
+            "end_date": metadata["ref_p_end_date"],
+            "employment_date": metadata["employment_date"],
+            "return_by": metadata["return_by"],
         })
 
     def _build_answers_piping_context(self, questionnaire_manager, schema):
