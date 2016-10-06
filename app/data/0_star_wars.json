@@ -944,7 +944,8 @@
                                             "options": [
                                                 {
                                                     "label": "Luke Skywalker",
-                                                    "value": "Luke Skywalker"
+                                                    "value": "Luke Skywalker",
+                                                    "description": "The main man"
                                                 },
                                                 {
                                                     "label": "Yoda",
