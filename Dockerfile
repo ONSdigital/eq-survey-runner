@@ -1,6 +1,6 @@
 FROM ubuntu:15.04
 
-ENV RUNTIME_PACKAGES="python3 postgresql python-psycopg2 git"
+ENV RUNTIME_PACKAGES="python3 postgresql python-psycopg2"
 ENV BUILD_PACKAGES="curl build-essential python3-dev libpq-dev ca-certificates libffi-dev libssl-dev"
 
 WORKDIR /code
