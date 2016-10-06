@@ -1,9 +1,10 @@
-from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
-
 from app.libs.utils import ObjectFromDict
+
+from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
 
 
 class CheckboxGroupWidget(MultipleChoiceWidget):
+
     def __init__(self, name):
         super().__init__(name)
         self.type = 'checkbox'
@@ -24,7 +25,7 @@ class CheckboxGroupWidget(MultipleChoiceWidget):
                     'value': option['value'],
                     'label': option['label'],
                     'selected': option_selected,
-                    'other': option['other'] if 'other' in option else None
+                    'other': option['other'] if 'other' in option else None,
                 }))
 
         return options

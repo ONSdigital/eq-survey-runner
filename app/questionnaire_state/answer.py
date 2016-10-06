@@ -23,6 +23,7 @@ class Answer(Item):
         if self.input:
             try:
                 self.value = self.schema_item.get_typed_value(user_input)
+                self.other = self.schema_item.get_other_lvalue(user_input)
             except TypeCheckingException as e:
                 self.is_valid = False
                 self.errors = []

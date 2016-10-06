@@ -43,6 +43,13 @@ class Answer(Item):
         else:
             return None
 
+    def get_other_value(self, post_vars):
+        user_input = self.widget.get_other_input(post_vars)
+        if user_input and not str(user_input).isspace() and user_input != '':
+            return user_input
+        else:
+            return None
+
     def get_typed_value(self, post_vars):
         if self.id in post_vars.keys():
             user_input = bleach.clean(post_vars[self.id])

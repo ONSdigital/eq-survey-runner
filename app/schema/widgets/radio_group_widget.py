@@ -1,5 +1,5 @@
-from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
 from app.libs.utils import ObjectFromDict
+from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
 
 
 class RadioGroupWidget(MultipleChoiceWidget):
@@ -16,7 +16,8 @@ class RadioGroupWidget(MultipleChoiceWidget):
                     'value': option['value'],
                     'label': option['label'],
                     'selected': option['value'] == answer_state.input,
-                    'other': option['other'] if 'other' in option else None
+                    'other': option['other'] if 'other' in option else None,
+                    'othervalue': answer_state.other if hasattr(answer_state, 'other') else None,
                 }))
 
         return options
