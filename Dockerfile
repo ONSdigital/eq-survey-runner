@@ -22,6 +22,4 @@ ADD . /code
 
 RUN npm install && npm run compile
 
-ENV EQ_GIT_REF="git rev-parse HEAD"
-
 ENTRYPOINT python3 application.py runserver
