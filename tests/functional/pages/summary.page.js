@@ -4,12 +4,13 @@ class SummaryPage {
     const url = browser.url().value
     return url.indexOf('summary') > -1
   }
-
-  submit() {
+  static editLinkChangeEmpFig(){
+    browser.click('[aria-describedby="summary-3-0 summary-3-0-answer"]')
+  }
+  static submit() {
     browser.click('.qa-btn-submit-answers')
-    return this
   }
 
 }
 
-export default new SummaryPage()
+export default SummaryPage
