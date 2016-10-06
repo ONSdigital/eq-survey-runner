@@ -23,7 +23,8 @@ services:
   eq-survey-runner:
     build: ./
     environment:
-      DOCKER: "True"
+      EQ_CLOUDWATCH_LOGGING: "False"
+      EQ_DEV_MODE: "True"
       EQ_RABBITMQ_ENABLED: "True"
       EQ_SCHEMA_BUCKET: ""
       EQ_SERVER_SIDE_STORAGE_DATABASE_URL: postgres://digitaleq:digitaleq@db:5432/runner
@@ -37,7 +38,6 @@ services:
       - eq-env
     ports:
       - "5000:5000"
-    command: ./scripts/run_app.sh
 networks:
   eq-env:
     driver: bridge
