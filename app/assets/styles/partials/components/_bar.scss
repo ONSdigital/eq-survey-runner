@@ -1,12 +1,12 @@
 .bar {
-  background: $color-black;
+  background: $color-dark-blue;
   color: $color-white;
-  padding: 0.3rem 0;
+  padding: 0.639rem 0;
   margin-bottom: 0.5rem;
 
   @include mq(m) {
-    padding: 1rem 0;
-    margin-bottom: 3rem;
+    padding: 0.639rem 0;
+    margin-bottom: 2rem;
   }
 }
 
@@ -17,9 +17,16 @@
 }
 
 .bar__title {
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin-bottom: 0;
   display: inline-block;
   vertical-align: middle;
+  margin: 0;
+}
+.bar--hero{
+  .bar__title {
+    display: block;
+    margin: 1rem 0;
+  }
+  .bar__inner {
+    display: block;
+  }
 }

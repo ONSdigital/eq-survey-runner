@@ -1,7 +1,7 @@
 from tests.integration.routing import routes
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
-
+from tests.integration.star_wars import star_wars_test_urls
 
 class TestRouting(IntegrationTestCase):
 
@@ -71,5 +71,5 @@ class TestRouting(IntegrationTestCase):
         post_data = {
           'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/0/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
         return resp

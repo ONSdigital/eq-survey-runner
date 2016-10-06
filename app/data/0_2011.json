@@ -5,7 +5,7 @@
     "survey_id": "Test_Survey",
     "title": "Test Survey",
     "description": "eQ Test survey",
-    "theme": "basetheme",
+    "theme": "default",
     "display": {
         "properties": {}
     },

@@ -1,6 +1,8 @@
-from tests.integration.downstream.downstream_test_case import DownstreamTestCase
-from tests.integration.create_token import create_token
 from werkzeug.datastructures import MultiDict
+
+from tests.integration.create_token import create_token
+from tests.integration.downstream.downstream_test_case import DownstreamTestCase
+from tests.integration.mci import mci_test_urls
 
 
 class TestCensusHH2016OutputFormat(DownstreamTestCase):
@@ -29,7 +31,7 @@ class TestCensusHH2016OutputFormat(DownstreamTestCase):
         form_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/0/789/introduction', data=form_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/hh2016/201604/789/introduction', data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']

@@ -1,0 +1,82 @@
+.field {
+  background: none;
+}
+
+.field__item {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.field--multi {
+  &.field--cols {
+    @include mq(s) {
+      display: flex;
+      flex-wrap: wrap;
+      .field__item {
+        width: 50%;
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.fieldset--date {
+  .legend {
+    font-weight: 700;
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 0.5rem;
+  }
+
+  .fieldset__fields {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  .field {
+    margin: 0 0.5rem 0 0;
+    flex: 1 1 0;
+
+    @include mq(s) {
+      margin-right: 1rem;
+    }
+
+    @include fixed {
+      display: block;
+      float: left;
+    }
+  }
+
+  .field--day {
+    max-width: 6rem;
+    @include fixed {
+      width: 7rem;
+    }
+  }
+
+  .field--month {
+    flex: 2;
+    max-width: 10rem;
+    @include fixed {
+      width: 14rem;
+    }
+  }
+
+  .field--year {
+    margin-right: 0;
+    max-width: 6rem;
+    @include fixed {
+      width: 7rem;
+    }
+  }
+
+  .input {
+    width: 100%;
+  }
+}

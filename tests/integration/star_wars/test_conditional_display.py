@@ -1,5 +1,5 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
-
+from tests.integration.star_wars import star_wars_test_urls
 
 class TestConditionalDisplay(StarWarsTestCase):
 
@@ -41,7 +41,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/an3b74d1-b687-4051-9634-a8f9ce10ard')
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
 
         second_page = resp.headers['Location']
         resp = self.navigate_to_page(second_page)
@@ -81,7 +81,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 
@@ -134,7 +134,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/an3b74d1-b687-4051-9634-a8f9ce10ard')
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
 
         second_page = resp.headers['Location']
         resp = self.navigate_to_page(second_page)
@@ -172,7 +172,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/0\/789\/summary$')
+        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 
