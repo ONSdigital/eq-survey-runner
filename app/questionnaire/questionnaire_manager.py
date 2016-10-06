@@ -206,7 +206,7 @@ class QuestionnaireManager(object):
             node = node.next
 
         for answer in answers:
-            answers_dict[answer.id] = answer.value
+            answers_dict[answer.id] = answer.other if hasattr(answer, 'other') and answer.other else answer.value
         return answers_dict
 
     def find_answer(self, id):
