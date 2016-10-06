@@ -70,13 +70,13 @@ class MetadataParser(object):
         return True, ""
 
     @staticmethod
-    def parse_token(token):
+    def build_metadata(token):
         try:
             metadata = MetadataParser()
             # loop around all the constants and add them as attributes of the metadata object
             for constant in MetadataParser._get_constants():
                 attr_name = constant.claim_id
-                logger.debug("MetaDataStore adding attr %s", attr_name)
+                logger.debug("MetadataParser adding attr %s", attr_name)
                 if attr_name in token:
                     value = token[attr_name]
                     attr_value = constant.parser(value)

@@ -27,9 +27,9 @@ class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
             MetadataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
-            self.metadata = MetadataParser.parse_token(self.jwt)
+            self.metadata = MetadataParser.build_metadata(self.jwt)
 
-    def get_metadata_store(self):
+    def get_metadata(self):
         return self.metadata
 
     # Blocks are recreated from the sections within
@@ -62,7 +62,7 @@ class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
 
         summary_template_preprocessor = SummaryTemplatePreprocessor()
         original_get_metadata_method = MetaDataTemplatePreprocessor._get_metadata
-        MetaDataTemplatePreprocessor._get_metadata = self.get_metadata_store
+        MetaDataTemplatePreprocessor._get_metadata = self.get_metadata
 
         render_data = summary_template_preprocessor.build_view_data(node1, self.questionnaire)
         self.assertIsNotNone(render_data)

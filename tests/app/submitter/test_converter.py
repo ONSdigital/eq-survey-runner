@@ -53,7 +53,7 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.maxDiff = None
 
-            metadata = MetadataParser.parse_token(JWT)
+            metadata = MetadataParser.build_metadata(JWT)
 
             user_answer = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
 
@@ -107,7 +107,7 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.maxDiff = None
 
-            metadata = MetadataParser.parse_token(JWT)
+            metadata = MetadataParser.build_metadata(JWT)
 
             user_answer = {"GHI": 0}
 

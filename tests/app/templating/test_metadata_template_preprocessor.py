@@ -22,14 +22,14 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
             MetadataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
-            self.metadata = MetadataParser.parse_token(self.jwt)
+            self.metadata = MetadataParser.build_metadata(self.jwt)
 
-    def get_metadata_store(self):
+    def get_metadata(self):
           return self.metadata
 
     def test_build_view_data(self):
         metadata_preprocessor = MetaDataTemplatePreprocessor()
-        metadata_preprocessor._get_metadata = self.get_metadata_store
+        metadata_preprocessor._get_metadata = self.get_metadata
 
         render_data = metadata_preprocessor.build_metadata(self.questionnaire)
 
