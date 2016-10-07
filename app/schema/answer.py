@@ -38,13 +38,15 @@ class Answer(Item):
 
     def get_user_input(self, post_vars):
         user_input = self.widget.get_user_input(post_vars)
-        if user_input and not str(user_input).isspace() and user_input != '':
-            return user_input
-        else:
-            return None
+        return self._input_or_none(user_input)
 
     def get_other_value(self, post_vars):
+        if self.type != 'Radio':
+            return None
         user_input = self.widget.get_other_input(post_vars)
+        return self._input_or_none(user_input)
+
+    def _input_or_none(self, user_input):
         if user_input and not str(user_input).isspace() and user_input != '':
             return user_input
         else:
