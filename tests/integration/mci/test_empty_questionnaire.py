@@ -18,7 +18,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
 
         # We are on the landing page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '>Get Started<')
+        self.assertRegexpMatches(content, '>Start survey<')
 
         # We try to access the submission page without entering anything
         resp = self.client.get(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=False)
