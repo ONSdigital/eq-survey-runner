@@ -6,6 +6,10 @@ class ChangesInRetailTurnoverPage extends QuestionPage {
     browser.setValue('[name="568e2c81-b11d-4682-bd89-f170481c9a48"]', changes)
     return this
   }
+  editChangesInRetailTurnover(changes) {
+    browser.setValue('[name="568e2c81-b11d-4682-bd89-f170481c9a48"]', changes)
+    return this
+  }
   getQuestionTextChangeInRetailTurnover() {
     return browser.element('.section__title').getText()
   }
