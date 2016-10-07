@@ -7,7 +7,7 @@ const strTemplate = `<div class="alert alert--error">
   <div class="alert__body">
     <p class="mars">These <strong>must be corrected</strong> to continue.</p>
     <ul class="list list--bare">
-        <li class="list__item mars ${classDetails}" data-inputid="ea08f977-33a8-4933-ad7b-c497997107cf">
+        <li class="list__item mars">
           1) <a class="${classTrigger}" href="#ea08f977-33a8-4933-ad7b-c497997107cf">Please provide a value, even if your value is 0.</a>
         </li>
     </ul>
@@ -27,7 +27,7 @@ const strTemplate = `<div class="alert alert--error">
         <span class="label__inner venus">Total retail turnover</span>
       </label>
       <div class="input-type input-type--currency" data-type="£">
-        <input class="input input--currency" placeholder="" value="" id="ea08f977-33a8-4933-ad7b-c497997107cf" name="ea08f977-33a8-4933-ad7b-c497997107cf" type="text">
+        <input class="input input--currency" id="ea08f977-33a8-4933-ad7b-c497997107cf" name="ea08f977-33a8-4933-ad7b-c497997107cf" type="text">
       </div>
     </div>
   </div>
@@ -46,11 +46,6 @@ describe('In page link', () => {
 
   it('DOM should contain the template', () => {
     expect(document.body.contains(elTemplate)).to.equal(true)
-  })
-
-  it('data-inputid should be present', () => {
-    const elId = elDetails.getAttribute(attrInputId)
-    expect(elId).to.equal("ea08f977-33a8-4933-ad7b-c497997107cf")
   })
 
   it('Input should recieve focus after in page link is clicked', () => {
