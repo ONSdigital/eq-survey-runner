@@ -15,7 +15,6 @@ class TextWidget(Widget):
                 'id': 'state.schema_item.id',
                 'label': state.schema_item.label or '',
                 'value': state.value or state.input or '',
-                'placeholder': '',
             },
         }
         return render_template('partials/widgets/text_widget.html', **widget_params)

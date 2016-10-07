@@ -36,7 +36,7 @@ class MonthlyBusinessSurveyPage extends QuestionPage {
   }
 
   focusErrorField() {
-    browser.element('.js-inpagelink-trigger').click()
+    browser.element('.js-inpagelink').click()
   }
 
 }
