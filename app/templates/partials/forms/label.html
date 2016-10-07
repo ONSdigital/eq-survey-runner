@@ -5,5 +5,11 @@
 } %}
 
 <label {{attr|xmlattr}}>
-  <span class="label__inner">{{label.text}}</span>
+  <div class="label__inner">
+    {{label.text}}
+    {% if label.description %}
+      <br />
+      <span class="label__description pluto">{{label.description|safe}}</span>
+    {% endif %}
+  </div>
 </label>
