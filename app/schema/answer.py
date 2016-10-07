@@ -41,7 +41,7 @@ class Answer(Item):
         return self._input_or_none(user_input)
 
     def get_other_value(self, post_vars):
-        if self.type == 'Radio' or self.type == 'Checkbox':
+        if self.type == 'Radio':
             user_input = self.widget.get_other_input(post_vars)
             return self._input_or_none(user_input)
 
