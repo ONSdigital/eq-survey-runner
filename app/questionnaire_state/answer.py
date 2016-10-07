@@ -9,6 +9,7 @@ class Answer(Item):
         self.value = None
         # actual user input
         self.input = None
+        self.other = None
 
     def update_state(self, user_input):
 
