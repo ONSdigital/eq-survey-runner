@@ -58,7 +58,7 @@ describe('RSI - summary screen edit test', function() {
 
     //Then it should allow to edit the answer
     expect(changeInRetailTurnover.getQuestionTextChangeInRetailTurnover()).to.contain('Changes in total retail turnover')
-    changeInRetailTurnover.editChangesInRetailTurnover('This is to test edit links on summary screen - edited')
+    changeInRetailTurnover.setChangesInRetailTurnover('This is to test edit links on summary screen - edited')
       .submit()
     expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('This is to test edit links on summary screen - edited')
 
