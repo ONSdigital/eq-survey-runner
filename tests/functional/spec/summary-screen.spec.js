@@ -11,9 +11,6 @@ import SummaryPage from '../pages/summary.page'
 const expect = chai.expect
 
 describe('RSI - summary screen edit test', function() {
-  before('Progress from the developer page for 1_0102', function() {
-
-  })
 
   it('Given the RSI business survey 0102 is started when data is entered for the survey then summary screen shows the data entered', function(done) {
 
@@ -26,18 +23,18 @@ describe('RSI - summary screen edit test', function() {
       .setFromReportingPeriodYear(2016)
       .setToReportingPeriodYear(2017)
       .submit()
-      retailTurnoverPage.setRetailTurnover(12345)
-        .submit()
-      internetSalesPage.setInternetSales(1234)
-        .submit()
-      changeInRetailTurnover.setChangesInRetailTurnover('This is to test edit links on summary screen')
-        .submit()
+    retailTurnoverPage.setRetailTurnover(12345)
+      .submit()
+    internetSalesPage.setInternetSales(1234)
+      .submit()
+    changeInRetailTurnover.setChangesInRetailTurnover('This is to test edit links on summary screen')
+      .submit()
 
-        // Then summary screen shows the data entered
-        expect(rsiSummaryPage.getReportingPeriodSummary()).to.contain('02 Jan 2016 to 02 Jan 2017')
-        expect(rsiSummaryPage.getRetailTurnoverSummary()).to.contain('£12,345')
-        expect(rsiSummaryPage.getInternetSalesSummary()).to.contain('£1,234')
-        expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('This is to test edit links on summary screen')
+    // Then summary screen shows the data entered
+    expect(rsiSummaryPage.getReportingPeriodSummary()).to.contain('02 Jan 2016 to 02 Jan 2017')
+    expect(rsiSummaryPage.getRetailTurnoverSummary()).to.contain('£12,345')
+    expect(rsiSummaryPage.getInternetSalesSummary()).to.contain('£1,234')
+    expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('This is to test edit links on summary screen')
   })
 
   it('Given the RSI survery 0102 is saved with answers when edit link is clicked then it should allow to edit the answer ', function(done) {
@@ -49,21 +46,21 @@ describe('RSI - summary screen edit test', function() {
       .setFromReportingPeriodYear(2016)
       .setToReportingPeriodYear(2017)
       .submit()
-      retailTurnoverPage.setRetailTurnover(12345)
-        .submit()
-      internetSalesPage.setInternetSales(1234)
-        .submit()
-      changeInRetailTurnover.setChangesInRetailTurnover('This is to test edit links on summary screen')
-        .submit()
+    retailTurnoverPage.setRetailTurnover(12345)
+      .submit()
+    internetSalesPage.setInternetSales(1234)
+      .submit()
+    changeInRetailTurnover.setChangesInRetailTurnover('This is to test edit links on summary screen')
+      .submit()
 
-        // When edit link is clicked
-        SummaryPage.editLinkChangeEmpFig()
+    // When edit link is clicked
+    SummaryPage.editLinkChangeEmpFig()
 
-        //Then it should allow to edit the answer
-        expect(changeInRetailTurnover.getQuestionTextChangeInRetailTurnover()).to.contain('Changes in total retail turnover')
-        changeInRetailTurnover.setChangesInRetailTurnover('This is to test edit links on summary screen - edited')
-          .submit()
-        expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('This is to test edit links on summary screen - edited')
+    //Then it should allow to edit the answer
+    expect(changeInRetailTurnover.getQuestionTextChangeInRetailTurnover()).to.contain('Changes in total retail turnover')
+    changeInRetailTurnover.setChangesInRetailTurnover('This is to test edit links on summary screen - edited')
+      .submit()
+    expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('This is to test edit links on summary screen - edited')
 
-    })
+  })
 })
