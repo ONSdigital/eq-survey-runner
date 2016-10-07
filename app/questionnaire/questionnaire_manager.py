@@ -206,7 +206,10 @@ class QuestionnaireManager(object):
             node = node.next
 
         for answer in answers:
-            answers_dict[answer.id] = answer.other if answer.other else answer.value
+            if not answer.other:
+                answers_dict[answer.id] = answer.value
+            else:
+                answers_dict[answer.id] = answer.value if isinstance(answer.value, list) else answer.other
         return answers_dict
 
     def find_answer(self, id):

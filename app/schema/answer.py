@@ -41,7 +41,7 @@ class Answer(Item):
         return self._input_or_none(user_input)
 
     def get_other_value(self, post_vars):
-        if self.type == 'Radio':
+        if self.type == 'Radio' or self.type == 'Checkbox':
             user_input = self.widget.get_other_input(post_vars)
             return self._input_or_none(user_input)
 
@@ -78,7 +78,7 @@ class Answer(Item):
                 state.errors = []
                 state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
                 state.is_valid = False
-            elif self.mandatory and (self.type == 'Radio'):
+            elif self.mandatory and self.type == 'Radio':
                 if state.value == 'other' and state.input == 'other' and state.other is None:
                     # Mandatory check
                     state.errors = []
