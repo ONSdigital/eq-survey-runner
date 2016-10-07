@@ -26,51 +26,59 @@
 
         <dt class="summary__question summary__question--{{item.type}}" id="{{id}}">{{item.question | safe}}</dt>
         <dd class="summary__answer summary__answer--{{item.type}}">
+          {% for sub_item in item.sub_items %}
 
-          <div class="summary__answer-text" id="{{id}}-answer">
-
-            {% if item.type == 'date' %}
-
-              {% set date_format = '%d %b %Y' %}
-
-              {{item.answer[0].value.strftime(date_format)}} to {{item.answer[1].value.strftime(date_format)}}
-
-            {% elif item.type == 'checkbox' %}
-
-              {% if item.answer %}
-
-              <ul class="u-m-no">
-                {% for answer in item.answer %}
-                  <li>{{answer}}</li>
-                {% endfor %}
-              </ul>
-
-              {% else %}
-
-                {{not_answered}}
-
-              {% endif %}
-
-            {% elif item.type == 'textarea' %}
-
-              {{(item.answer or not_answered)|nl2br}}
-
-            {% else %}
-              {% if item.answer is not none %}
-                  {{item.answer}}
-              {% else %}
-                  {{not_answered}}
-              {% endif %}
-
+            {% set item_id = id ~ "-" ~ loop.index0 %}
+            {% if item.sub_items|length > 1 %}
+              <dt class="summary__question summary__answer__title--{{sub_item.type}}" id="{{item_id}}">{{sub_item.question | safe}}</dt>
+              <dd class="summary__answer summary__answer--{{item.type}}">
             {% endif %}
 
-          </div>
+            <div class="summary__answer-text" id="{{item_id}}-answer">
 
-          <div class="summary__edit">
-            <a href="{{item.link}}" class="summary__edit-link" aria-describedby="{{id}} {{id}}-answer">Edit <span class="u-vh">your answer</span></a>
-          </div>
+              {% if sub_item.type == 'date' %}
 
-        </dd>
+                {% set date_format = '%d %b %Y' %}
+
+                {{sub_item.answer[0].value.strftime(date_format)}} to {{sub_item.answer[1].value.strftime(date_format)}}
+
+              {% elif sub_item.type == 'checkbox' %}
+
+                {% if sub_item.answer %}
+
+                <ul class="u-m-no">
+                  {% for answer in sub_item.answer %}
+                    <li>{{answer}}</li>
+                  {% endfor %}
+                </ul>
+
+                {% else %}
+
+                  {{not_answered}}
+
+                {% endif %}
+
+              {% elif sub_item.type == 'textarea' %}
+
+                {{(sub_item.answer or not_answered)|nl2br}}
+
+              {% else %}
+                {% if sub_item.answer is not none %}
+                    {{sub_item.answer}}
+                {% else %}
+                    {{not_answered}}
+                {% endif %}
+
+              {% endif %}
+
+            </div>
+
+            <div class="summary__edit">
+              <a href="{{sub_item.link}}" class="summary__edit-link" aria-describedby="{{item_id}} {{item_id}}-answer">Edit <span class="u-vh">your answer</span></a>
+            </div>
+
+          </dd>
+        {% endfor %}
 
       {% endfor %}
 
