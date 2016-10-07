@@ -22,9 +22,15 @@
     display: inline-block;
     vertical-align: middle;
     @include icon('phone');
+
     width: 1.5em;
     height: 1.5em;
     background-size: 2.5em;
+  }
+
+  a {
+    text-decoration: none;
+    color: $color-text;
   }
 }
 
@@ -32,7 +38,7 @@
   display: flex;
   border-top: 1px solid $color-borders;
   padding-top: 0.5em;
-  margin: 0.1em 0 0 0;
+  margin: 0.1em 0 0;
   @include mq(m) {
     display: inline-flex;
   }
