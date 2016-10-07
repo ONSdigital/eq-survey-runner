@@ -178,8 +178,8 @@ class QuestionnaireManager(object):
         current_location = self.get_current_location()
         if current_location in self._valid_locations:
             node = self.get_node(current_location)
-            if self._schema.item_exists(node.item_id):
-                state, schema_item = self.build_state(node)
+            state, schema_item = self.build_state(node)
+            if schema_item:
                 is_valid = schema_item.validate(state)
                 return is_valid
 
@@ -195,20 +195,19 @@ class QuestionnaireManager(object):
         valid = True
 
         while node:
-            if self._schema.item_exists(node.item_id):
-                state, schema_item = self.build_state(node)
 
-                if self._schema.item_exists(node.item_id):
-                    valid = schema_item.validate(state)
-                    if not valid:
-                        current_location = node.item_id
-                        logger.error("Failed validation with current location %s", current_location)
-                        # if one of the blocks isn't valid
-                        # then move the current pointer to that block so that the user is redirected to that page
-                        self.go_to_node(current_location)
-                        break
+            state, schema_item = self.build_state(node)
+            if schema_item:
+                valid = schema_item.validate(state)
+                if not valid:
+                    current_location = node.item_id
+                    logger.error("Failed validation with current location %s", current_location)
+                    # if one of the blocks isn't valid
+                    # then move the current pointer to that block so that the user is redirected to that page
+                    self.go_to_node(current_location)
+                    break
 
-                    logger.debug("Next node is %s", node.item_id)
+                logger.debug("Next node is %s", node.item_id)
 
             node = node.next
         return valid
