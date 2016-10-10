@@ -41,6 +41,7 @@
                                 {
                                     "answers": [
                                         {
+                                            "alias" : "othervalue",
                                             "display": {
                                                 "properties": {
                                                     "columns": false
@@ -96,6 +97,58 @@
                     ],
                     "title": "",
                     "validation": []
+                },
+            {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "an3b74d1-b687-4051-9634-a8f9ce10ard",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "94546782-08a6-4213-9dc9-0780c2996896",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {
+                                                "properties": {
+                                                    "columns": false
+                                                }
+                                            },
+                                            "guidance": "",
+                                            "id": "7587qe9b-f24e-4dc0-ac94-66118b896c10",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Yes, Really!",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "43",
+                                            "type": "Radio"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
+                                    "title": "Do you really want {answers.othervalue} for breakfast?",
+                                    "type": "General"
+                                }],
+                            "title": ""
+                        }
+                    ],
+                    "title": ""
                 }],
             "display": {
                 "properties": {}
