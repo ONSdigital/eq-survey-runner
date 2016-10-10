@@ -8,7 +8,7 @@ import reportingPeriod from '../pages/surveys/rsi/0102/reporting-period.page'
 import retailTurnoverPage from '../pages/surveys/rsi/0102/retail-turnover.page'
 import internetSalesPage from '../pages/surveys/rsi/0102/internet-sales.page'
 import changeInRetailTurnover from '../pages/surveys/rsi/0102/changes-in-retail-turnover.page'
-import summaryPage from '../pages/summary.page'
+import SummaryPage from '../pages/summary.page'
 
 const expect = chai.expect
 
@@ -80,7 +80,7 @@ describe('RSI - Save and restore test', function() {
       .submit()
     changeInRetailTurnover.setChangesInRetailTurnover('No reason')
       .submit()
-    summaryPage.submit()
+    SummaryPage.submit()
 
     // Then
     expect(thankYou.isOpen(), 'Thank you page should be open').to.be.true

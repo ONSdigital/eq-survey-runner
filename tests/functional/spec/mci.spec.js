@@ -3,7 +3,7 @@ import {getRandomString, startQuestionnaire} from '../helpers'
 
 import devPage from '../pages/dev.page'
 import landingPage from '../pages/landing.page'
-import summaryPage from '../pages/summary.page'
+import SummaryPage from '../pages/summary.page'
 import thankYou from '../pages/thank-you.page'
 import monthlyBusinessSurveyPage from '../pages/surveys/mci/monthly-business-survey.page'
 
@@ -36,7 +36,7 @@ describe('MCI test', function() {
       .setToReportingPeriodYear('2017')
       .setRetailBusinessTurnover(2000)
       .submit()
-    summaryPage.submit()
+    SummaryPage.submit()
 
     // Then
     expect(thankYou.isOpen(), 'Thank you page should be open').to.be.true
