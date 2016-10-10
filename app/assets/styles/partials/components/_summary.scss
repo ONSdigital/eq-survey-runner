@@ -101,13 +101,13 @@
 }
 
 .summary__edit {
+  padding: 0 2rem;
   font-size: 0.8rem;
   border-left: 1px solid $color-borders;
   text-align: center;
   display: flex;
-  flex-basis: fit-content;
-  flex-shrink: 0;
-  padding: 0;
+  // flex-basis: fit-content;
+  // flex-shrink: 0;
   @include fixed {
     position: absolute;
     right: 0;
@@ -117,15 +117,8 @@
 }
 
 .summary__edit-link {
-  padding: 0.5rem 2rem;
-  display: flex;
-  align-items: center;
-  &:hover {
-    background-color: $color-lighter-grey;
-  }
-  @include fixed {
-    height: 100%;
-    line-height: 3;
-    display: block;
-  }
+  display: block;
+  line-height: 1rem;
+  padding: 0 0.5rem;
+  align-self: center;
 }

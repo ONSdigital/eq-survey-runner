@@ -22,7 +22,11 @@
 .field__other {
   display: none;
   clear: both;
+  background-color: $color-lighter-grey;
   padding: 0 0.5rem 0.5rem;
+  .has-focus & {
+    background-color: transparent;
+  }
   @include fixed {
     display: block;
   }
@@ -30,7 +34,6 @@
 
 input:checked ~ .field__other {
   display: block;
-  background: $color-lighter-grey;
 }
 
 .field--radio,
@@ -40,8 +43,20 @@ input:checked ~ .field__other {
     border: 1px solid $color-borders;
     border-radius: 0.2rem;
     cursor: pointer;
+    overflow: hidden;
+    position: relative;
     &:hover {
       border-color: $color-dark-grey;
+    }
+    &.is-checked {
+      border-color: $color-dark-grey;
+      background-color: white;
+      box-shadow: 0 0 0 1px $color-dark-grey;
+    }
+    &.has-focus {
+      border-color: $color-focus;
+      background-color: #f5f6ff;
+      box-shadow: 0 0 0 1px $color-focus;
     }
   }
 
