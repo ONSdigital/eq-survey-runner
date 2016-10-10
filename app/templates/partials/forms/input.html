@@ -4,7 +4,8 @@
   "type": input.type,
   "value": input.value,
   "name": input.name,
-  "id": input.id,
+  "id": "input-" ~ input.id,
+  "data-qa": "data-qa-" ~ input.valueType,
   "placeholder": input.placeholder,
   "checked": "checked" if input.checked
 } %}

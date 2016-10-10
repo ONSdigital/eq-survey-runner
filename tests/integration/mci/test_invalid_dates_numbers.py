@@ -17,7 +17,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '>Get Started<')
+        self.assertRegexpMatches(content, '>Start survey<')
         self.assertRegexpMatches(content, 'Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire

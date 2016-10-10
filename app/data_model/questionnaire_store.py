@@ -25,9 +25,6 @@ class QuestionnaireStore:
         if self.storage.has_data(self.user_id):
             logger.debug("User %s has previous data loading", user_id)
             self.data = self.storage.get(self.user_id, self.user_ik)
-        else:
-            logger.debug("User %s does not have previous data creating", user_id)
-            self.save()
 
     def delete(self):
         logger.debug("Deleting questionnaire data for %s", self.user_id)

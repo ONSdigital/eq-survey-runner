@@ -1,9 +1,15 @@
 {% set attr = {
   "class": "label venus " ~ (" label--inline" if label.inline) ~ (" label--small" if label.small),
-  "for": label.for,
+  "for": "input-" ~ label.for,
   "id": "label-" ~ label.for
 } %}
 
 <label {{attr|xmlattr}}>
-  <span class="label__inner">{{label.text}}</span>
+  <div class="label__inner">
+    {{label.text}}
+    {% if label.description %}
+      <br />
+      <span class="label__description pluto">{{label.description|safe}}</span>
+    {% endif %}
+  </div>
 </label>

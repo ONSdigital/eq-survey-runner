@@ -10,7 +10,7 @@ import internetSalesPage from '../pages/surveys/rsi/0112/internet-sales.page'
 import changeInRetailTurnover from '../pages/surveys/rsi/0112/changes-in-retail-turnover.page'
 import employeesPage from '../pages/surveys/rsi/0112/employees.page'
 import changesInEmployeesPage from '../pages/surveys/rsi/0112/changes-in-employees.page'
-import summaryPage from '../pages/summary.page'
+import SummaryPage from '../pages/summary.page'
 
 const expect = chai.expect
 
@@ -90,7 +90,7 @@ describe('RSI - Save and restore test', function() {
       .submit()
     changesInEmployeesPage.setChangesInEmployeesPage('No reason')
       .submit()
-    summaryPage.submit()
+    SummaryPage.submit()
 
     // Then
     expect(thankYou.isOpen(), 'Thank you page should be open').to.be.true

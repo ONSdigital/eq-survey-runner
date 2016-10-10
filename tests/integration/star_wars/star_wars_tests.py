@@ -18,7 +18,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, 'Star Wars')
         self.assertRegexpMatches(content, 'If actual figures are not available, please provide informed estimates.')
         self.assertRegexpMatches(content, 'Legal Information')
-        self.assertRegexpMatches(content, '>Get Started<')
+        self.assertRegexpMatches(content, '>Start survey<')
         self.assertRegexpMatches(content, '(?s)Trading as.*?Integration Tests')
         self.assertRegexpMatches(content, '(?s)Business name.*?MCI Integration Testing')
         self.assertRegexpMatches(content, '(?s)PLEASE SUBMIT BY.*?6 May 2016')

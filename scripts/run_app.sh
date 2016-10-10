@@ -40,8 +40,7 @@ echo "Environment variables in use:"
 env | grep EQ_
 
 if [ ! -s "app/static" ]; then
-  npm install
-  npm run compile
+  echo "WARNING: Frontend compilation needed"
 fi
 
 url="`python token_generator.py`"

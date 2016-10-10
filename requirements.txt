@@ -257,8 +257,8 @@ flake8-debugger==1.4.0 \
 flake8-import-order==0.9.1 \
     --hash=sha256:512b5ca066bbcbcee221fb65e6e80678a445a8cd7faf37911df94c6ae4c20b9b \
     --hash=sha256:a694730975ebd01d945e26737ebab54a640de5b09470b8b3138d049e33ddc1f2
-flake8-mock==0.2 \
-    --hash=sha256:1a92671a7ac847bee629a2e8dec96a3cc20dd7e7a5e572449d76803d4a71bd75
+flake8-mock==0.3 \
+    --hash=sha256:2fa775e7589f4e1ad74f35d60953eb20937f5d7355235e54bf852c6837f2bede
 flake8-tuple==0.2.12 \
     --hash=sha256:63ddd51da80376df5a713ef32b80ce28e70f944f6e54b55c3fd2c59a35c91152
 pycodestyle==2.0.0 \
