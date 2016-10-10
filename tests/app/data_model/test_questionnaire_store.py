@@ -1,5 +1,5 @@
 import unittest
-from app.data_model.questionnaire_store import QuestionnaireStore, get_questionnaire_store
+from app.data_model.questionnaire_store import QuestionnaireStore
 
 
 class TestQuestionnaireStore(unittest.TestCase):
