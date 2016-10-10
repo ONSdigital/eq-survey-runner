@@ -23,6 +23,9 @@
   display: none;
   clear: both;
   padding: 0 0.5rem 0.5rem;
+  @include fixed {
+    display: block;
+  }
 }
 
 input:checked ~ .field__other {
