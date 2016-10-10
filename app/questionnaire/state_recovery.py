@@ -1,6 +1,7 @@
 import logging
 
 from app import settings
+from app.data_model.questionnaire_store import get_questionnaire_store
 
 from flask_login import current_user
 
@@ -17,28 +18,23 @@ class StateRecovery(object):
     @staticmethod
     def save_post_date(location, post_data):
         logger.debug("Saving Post Data %s", post_data)
-        questionnaire_data = current_user.get_questionnaire_data()
-        if POST_DATA not in questionnaire_data:
-            questionnaire_data[POST_DATA] = []
+        store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        if POST_DATA not in store.data:
+            store.data[POST_DATA] = []
 
-        questionnaire_data[POST_DATA].append({'location': location, 'post_data': StateRecovery._convert_to_dict(post_data)})
-        current_user.save()
-
-    @staticmethod
-    def _convert_to_dict(post_data):
-        logger.debug("Multi dict is %s", post_data)
-        return post_data.to_dict(flat=False)
+        store.data[POST_DATA].append({'location': location, 'post_data': post_data.to_dict(flat=False)})
+        store.save()
 
     @staticmethod
     def recover_from_post_data(questionnaire_manager):
         logger.debug("Recovering from post data")
 
         logger.debug("Retrieving questionnaire data")
-        questionnaire_data = current_user.get_questionnaire_data()
-        if POST_DATA not in questionnaire_data:
-            questionnaire_data[POST_DATA] = []
+        store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        if POST_DATA not in store.data:
+            store.data[POST_DATA] = []
 
-        all_post_data = questionnaire_data[POST_DATA]
+        all_post_data = store.data[POST_DATA]
         logger.debug("All post data %s", all_post_data)
         questionnaire_manager.go_to(questionnaire_manager.get_first_location())
 

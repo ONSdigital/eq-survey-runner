@@ -1,12 +1,14 @@
 import logging
 
 from app.authentication.invalid_token_exception import InvalidTokenException
+
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
-from app.metadata.metadata_store import MetaDataStore
+from app.data_model.questionnaire_store import get_questionnaire_store
+from app.parser.metadata_parser import MetadataParser
 
 from flask import session
 
@@ -25,8 +27,11 @@ class Authenticator(object):
         logger.debug("Checking for session")
         if session_manager.has_user_id():
             user = User(session_manager.get_user_id(), session_manager.get_user_ik())
-            metadata = MetaDataStore.get_instance(user)
+            questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+            metadata = questionnaire_store.decode_metadata()
+
             logger.info("Session token exists for tx_id=%s", metadata.tx_id)
+
             return user
         else:
             logging.info("Session does not have an authenticated token")
@@ -36,7 +41,6 @@ class Authenticator(object):
         """
         Login using a JWT token, this must be an encrypted JWT.
         :param request: The flask request
-        :return: the decrypted and unencoded token
         """
         # clear the session entry in the database
         session_manager.clear()
@@ -55,21 +59,19 @@ class Authenticator(object):
         user_id = UserIDGenerator.generate_id(token)
         user_ik = UserIDGenerator.generate_ik(token)
 
-        user = User(user_id, user_ik)
-
         # store the user id in the session
         session_manager.store_user_id(user_id)
         # store the user ik in the cookie
         session_manager.store_user_ik(user_ik)
 
         # store the meta data
-        metadata = MetaDataStore.save_instance(user, token)
+        metadata = MetadataParser.build_metadata(token)
 
-        user.save()
+        questionnaire_store = get_questionnaire_store(user_id, user_ik)
+        questionnaire_store.encode_metadata(metadata)
+        questionnaire_store.save()
 
         logger.info("User authenticated with tx_id=%s", metadata.tx_id)
-
-        return user
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
@@ -78,6 +80,6 @@ class Authenticator(object):
         return token
 
     def _check_user_data(self, token):
-        valid, reason = MetaDataStore.is_valid(token)
+        valid, reason = MetadataParser.is_valid(token)
         if not valid:
             raise InvalidTokenException("Missing value {}".format(reason))
