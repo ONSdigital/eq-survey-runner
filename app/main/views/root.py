@@ -3,9 +3,9 @@ import logging
 from app.authentication.authenticator import Authenticator
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
+from app.data_model.questionnaire_store import get_metadata
 from app.frontend_messages import get_messages
 from app.main import errors
-from app.metadata.metadata_store import MetaDataStore
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 
 from flask import abort
@@ -56,7 +56,7 @@ def login():
         authenticator.jwt_login(request)
         logger.debug("Token authenticated - linking to session")
 
-        metadata = MetaDataStore.get_instance(current_user)
+        metadata = get_metadata(current_user)
         eq_id = metadata.eq_id
         collection_id = metadata.collection_exercise_sid
         form_type = metadata.form_type
@@ -71,8 +71,6 @@ def login():
 
         # get the current location of the user
         current_location = questionnaire_manager.get_current_location()
-
-        current_user.save()
 
         return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + current_location)
 

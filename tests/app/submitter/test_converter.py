@@ -1,16 +1,15 @@
+import json
+import unittest
+
+from app.parser.metadata_parser import MetadataParser, MetadataConstants
+from app.schema.answer import Answer
+from app.schema.block import Block
+from app.schema.group import Group
+from app.schema.question import Question
 from app.schema.questionnaire import Questionnaire
 from app.schema.section import Section
-from app.schema.group import Group
-from app.schema.block import Block
-from app.schema.question import Question
-from app.schema.answer import Answer
-from app.authentication.user import User
-from app.metadata.metadata_store import MetaDataStore, MetaDataConstants
 from app.submitter.converter import Converter
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
-
-import unittest
-import json
 
 EXPECTED_RESPONSE = json.loads("""
       {
@@ -36,27 +35,25 @@ EXPECTED_RESPONSE = json.loads("""
       }""")
 
 JWT = {
-  MetaDataConstants.USER_ID.claim_id: "789473423",
-  MetaDataConstants.FORM_TYPE.claim_id: "0205",
-  MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
-  MetaDataConstants.EQ_ID.claim_id: "1",
-  MetaDataConstants.PERIOD_ID.claim_id: "2016-02-01",
-  MetaDataConstants.PERIOD_STR.claim_id: "2016-01-01",
-  MetaDataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
-  MetaDataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
-  MetaDataConstants.RU_REF.claim_id: "432423423423",
-  MetaDataConstants.RU_NAME.claim_id: "Apple",
-  MetaDataConstants.RETURN_BY.claim_id: "2016-07-07"
+  MetadataConstants.USER_ID.claim_id: "789473423",
+  MetadataConstants.FORM_TYPE.claim_id: "0205",
+  MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
+  MetadataConstants.EQ_ID.claim_id: "1",
+  MetadataConstants.PERIOD_ID.claim_id: "2016-02-01",
+  MetadataConstants.PERIOD_STR.claim_id: "2016-01-01",
+  MetadataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
+  MetadataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
+  MetadataConstants.RU_REF.claim_id: "432423423423",
+  MetadataConstants.RU_NAME.claim_id: "Apple",
+  MetadataConstants.RETURN_BY.claim_id: "2016-07-07"
 }
 
 class TestConverter(SurveyRunnerTestCase):
     def test_prepare_answers(self):
         with self.application.test_request_context():
-            user = User("1", "2")
-
             self.maxDiff = None
 
-            metadata = MetaDataStore.save_instance(user, JWT)
+            metadata = MetadataParser.build_metadata(JWT)
 
             user_answer = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
 
@@ -109,9 +106,8 @@ class TestConverter(SurveyRunnerTestCase):
     def test_answer_with_zero(self):
         with self.application.test_request_context():
             self.maxDiff = None
-            user = User("1", "2")
 
-            metadata = MetaDataStore.save_instance(user, JWT)
+            metadata = MetadataParser.build_metadata(JWT)
 
             user_answer = {"GHI": 0}
 

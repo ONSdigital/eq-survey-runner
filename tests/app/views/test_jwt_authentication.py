@@ -4,8 +4,8 @@ import unittest
 
 from app import create_app
 from app import settings
-from app.metadata.metadata_store import MetaDataConstants
 from app.dev_mode.jwt_encoder import Encoder
+from app.parser.metadata_parser import MetadataConstants
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
@@ -46,19 +46,19 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         iat = time.time()
         exp = time.time() + (5 * 60)
         return {
-                MetaDataConstants.USER_ID.claim_id: 'jimmy',
+                MetadataConstants.USER_ID.claim_id: 'jimmy',
                 'iat': str(int(iat)),
                 'exp': str(int(exp)),
-                MetaDataConstants.EQ_ID.claim_id: '1',
-                MetaDataConstants.PERIOD_STR.claim_id: '2016-01-01',
-                MetaDataConstants.PERIOD_ID.claim_id: '12',
-                MetaDataConstants.FORM_TYPE.claim_id: '0203',
-                MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id: "sid",
-                MetaDataConstants.REF_P_START_DATE.claim_id: "2016-01-01",
-                MetaDataConstants.REF_P_END_DATE.claim_id: "2016-09-01",
-                MetaDataConstants.RU_REF.claim_id: "1234",
-                MetaDataConstants.RU_NAME.claim_id: "Test",
-                MetaDataConstants.RETURN_BY.claim_id: "2016-09-09"}
+                MetadataConstants.EQ_ID.claim_id: '1',
+                MetadataConstants.PERIOD_STR.claim_id: '2016-01-01',
+                MetadataConstants.PERIOD_ID.claim_id: '12',
+                MetadataConstants.FORM_TYPE.claim_id: '0203',
+                MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: "sid",
+                MetadataConstants.REF_P_START_DATE.claim_id: "2016-01-01",
+                MetadataConstants.REF_P_END_DATE.claim_id: "2016-09-01",
+                MetadataConstants.RU_REF.claim_id: "1234",
+                MetadataConstants.RU_NAME.claim_id: "Test",
+                MetadataConstants.RETURN_BY.claim_id: "2016-09-09"}
 
 if __name__ == '__main__':
     unittest.main()
