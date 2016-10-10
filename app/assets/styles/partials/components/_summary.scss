@@ -88,6 +88,7 @@
 .summary__answer-text {
   align-items: center;
   flex: 1 1 auto;
+  word-break: break-all;
 }
 
 .summary__edit {

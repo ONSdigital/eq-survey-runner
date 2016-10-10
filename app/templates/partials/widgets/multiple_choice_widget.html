@@ -19,7 +19,13 @@
   <div class="field__item">
 
     <input {{input|xmlattr}}>
-    <label {{label|xmlattr}}>{{option.label}}</label>
+    <label {{label|xmlattr}}>
+      {{label.text}}
+      {% if label.description %}
+        <br />
+        <span class="label__description pluto">{{label.description|safe}}</span>
+      {% endif %}
+    </label>
 
     {% if option.other %}
 

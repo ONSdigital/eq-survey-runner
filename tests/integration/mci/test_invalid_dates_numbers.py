@@ -17,7 +17,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '>Get Started<')
+        self.assertRegexpMatches(content, '>Start survey<')
         self.assertRegexpMatches(content, 'Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
@@ -124,7 +124,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, "The &#39;to&#39; date cannot be before the &#39;from&#39; date.")
+        self.assertRegexpMatches(content, "The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")
 
         form_data = {
             # Start Date
@@ -145,7 +145,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, "The &#39;to&#39; date must be different to the &#39;from&#39; date.")
+        self.assertRegexpMatches(content, "The &#39;period to&#39; date must be different to the &#39;period from&#39; date.")
 
         form_data = {
             # Start Date

@@ -1,5 +1,8 @@
 .alert {
   border-radius: 0;
+  a {
+    color: $color-blue;
+  }
 }
 
 .alert__header {

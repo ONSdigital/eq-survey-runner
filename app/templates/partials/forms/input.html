@@ -1,10 +1,12 @@
+
 {% set attr = {
-  "class": "input",
+  "class": "input input--" ~ input.type ~ " " ~ input.classes,
   "type": input.type,
   "value": input.value,
   "name": input.name,
   "id": input.id,
-  "placeholder": input.placeholder
+  "placeholder": input.placeholder,
+  "checked": "checked" if input.checked
 } %}
 
 <input {{attr|xmlattr}} />
