@@ -8,7 +8,8 @@
     "value": option.value,
     "name": answer.name,
     "id": option_id,
-    "checked": "checked" if option.selected
+    "checked": "checked" if option.selected,
+    "data-qa": "has-other-option" if option.other
   } %}
 
   {% set label = {
@@ -39,7 +40,8 @@
         "type": "text",
         "name": answer.name,
         "id": option_id,
-        "value": option.othervalue
+        "value": option.othervalue,
+        "data-qa": "other-option"
       } %}
 
       <div class="field__other">
