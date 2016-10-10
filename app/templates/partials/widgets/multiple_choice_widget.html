@@ -20,10 +20,10 @@
 
     <input {{input|xmlattr}}>
     <label {{label|xmlattr}}>
-      {{label.text}}
-      {% if label.description %}
+      {{option.label}}
+      {% if option.description %}
         <br />
-        <span class="label__description pluto">{{label.description|safe}}</span>
+        <span class="label__description pluto">{{option.description|safe}}</span>
       {% endif %}
     </label>
 

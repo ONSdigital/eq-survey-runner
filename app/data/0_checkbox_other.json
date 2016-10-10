@@ -74,6 +74,7 @@
                                                 {
                                                     "label": "Other",
                                                     "value": "other",
+                                                    "description": "Sed posuere consectetur est at lobortis.",
                                                     "other": {
                                                       "label": "Please specify other"
                                                     }
