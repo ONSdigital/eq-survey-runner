@@ -27,7 +27,7 @@ class TestInformationPage(IntegrationTestCase):
         content1 = response1.get_data(True)
 
         self.assertRegexpMatches(content1, '<title>Introduction</title>')
-        self.assertRegexpMatches(content1, '>Get Started<')
+        self.assertRegexpMatches(content1, '>Start survey<')
         self.assertRegexpMatches(content1, 'Monthly Business Survey - Retail Sales Index')
 
         # Open up a second questionnaire
@@ -38,7 +38,7 @@ class TestInformationPage(IntegrationTestCase):
         content2 = response2.get_data(True)
 
         self.assertRegexpMatches(content2, '<title>Introduction</title>')
-        self.assertRegexpMatches(content2, '>Get Started<')
+        self.assertRegexpMatches(content2, '>Start survey<')
         self.assertRegexpMatches(content2, 'Star Wars')
 
         # We try to post to the wrong questionnaire
