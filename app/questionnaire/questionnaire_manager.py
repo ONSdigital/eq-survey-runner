@@ -208,8 +208,14 @@ class QuestionnaireManager(object):
         for answer in answers:
             if not answer.other:
                 answers_dict[answer.id] = answer.value
+            elif answer.other and isinstance(answer.value, list):
+                list_without_other = answer.value[:]
+                if 'other' in list_without_other:
+                    list_without_other.remove('other')
+                answers_dict[answer.id] = list_without_other
             else:
-                answers_dict[answer.id] = answer.value if isinstance(answer.value, list) else answer.other
+                answers_dict[answer.id] = answer.other
+
         return answers_dict
 
     def find_answer(self, id):
