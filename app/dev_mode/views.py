@@ -38,7 +38,7 @@ def dev_mode():
                                  ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date)
         return redirect("/session?token=" + generate_token(payload).decode())
     else:
-        return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), MetaDataConstants=MetadataConstants,
+        return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), MetadataConstants=MetadataConstants,
                                available_schemas=available_schemas())
 
 
