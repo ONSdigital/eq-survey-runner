@@ -30,7 +30,7 @@ class Item(object):
         answers_as_dict = {}
         answers = self.get_answers()
         for answer in answers:
-            answers_as_dict[answer.id] = answer.input
+            answers_as_dict[answer.id] = answer.other if answer.other and answer.value == 'other' else answer.value
         return answers_as_dict
 
     def get_answers(self):
