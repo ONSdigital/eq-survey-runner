@@ -6,7 +6,7 @@ export const getUri = uri => browser.options.baseUrl + uri
 
 export const getRandomString = length => sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length).join('')
 
-export const openQuestionnaire = (schema, userId = getRandomString(10), collectionId = getRandomString(3)) => {
+export const openQuestionnaire = (schema, userId = getRandomString(10), collectionId = getRandomString(10)) => {
   devPage.open()
       .setUserId(userId)
       .setCollectionId(collectionId)
@@ -14,7 +14,7 @@ export const openQuestionnaire = (schema, userId = getRandomString(10), collecti
       .submit()
 }
 
-export const startQuestionnaire = (schema, userId = getRandomString(10), collectionId = getRandomString(3)) => {
+export const startQuestionnaire = (schema, userId = getRandomString(10), collectionId = getRandomString(10)) => {
   openQuestionnaire(schema, userId, collectionId)
   landingPage.getStarted()
 }
