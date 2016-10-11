@@ -2,19 +2,19 @@
   <div class="fieldset__fields">
     <div class="field field--input field--day">
       {% set label = fields['day'].label %}
-      <label class="label mercury" for="{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
+      <label class="label mercury" for="input-{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
       {% set input = fields['day'].input %}
       {% include 'partials/forms/input.html' %}
     </div>
     <div class="field field--select field--month">
       {% set label = fields['month'].label %}
-      <label class="label mercury" for="{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
+      <label class="label mercury" for="input-{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
       {% set select = fields['month'].select %}
       {% include 'partials/forms/select.html' %}
     </div>
     <div class="field field--input field--year">
       {% set label = fields['year'].label %}
-      <label class="label mercury" for="{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
+      <label class="label mercury" for="input-{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
       {% set input = fields['year'].input %}
       {% include 'partials/forms/input.html' %}
     </div>

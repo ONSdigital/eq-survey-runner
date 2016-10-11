@@ -21,12 +21,18 @@ class CheckboxGroupWidget(MultipleChoiceWidget):
                 option_selected = False
                 if answer_state.input:
                     option_selected = option['value'] in answer_state.input
-                options.append(ObjectFromDict({
+
+                checkbox_option = {
                     'value': option['value'],
                     'label': option['label'],
                     'selected': option_selected,
                     'other': option['other'] if 'other' in option else None,
                     'othervalue': answer_state.other if hasattr(answer_state, 'other') else None,
-                }))
+                }
+
+                if 'description' in option:
+                    checkbox_option['description'] = option['description']
+
+                options.append(ObjectFromDict(checkbox_option))
 
         return options

@@ -53,22 +53,17 @@
                                             "options": [
                                                 {
                                                     "label": "Light Side",
-                                                    "value": "Light Side"
+                                                    "value": "Light Side",
+                                                    "description": "I am some helper text and I might be a bit <strong>bold in places</strong>."
                                                 },
                                                 {
                                                     "label": "Dark Side",
-                                                    "value": "Dark Side"
+                                                    "value": "Dark Side",
+                                                    "description": "Vestibulum id ligula porta felis euismod semper."
                                                 },
                                                 {
                                                     "label": "I prefer Star Trek",
                                                     "value": "I prefer Star Trek"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "value": "other",
-                                                    "other": {
-                                                      "label": "Please specify other"
-                                                    }
                                                 }
                                             ],
                                             "q_code": "20",
@@ -948,7 +943,8 @@
                                             "options": [
                                                 {
                                                     "label": "Luke Skywalker",
-                                                    "value": "Luke Skywalker"
+                                                    "value": "Luke Skywalker",
+                                                    "description": "The main man"
                                                 },
                                                 {
                                                     "label": "Yoda",
@@ -1039,7 +1035,7 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
-                                            "label": "From",
+                                            "label": "Period from",
                                             "mandatory": true,
                                             "options": [],
                                             "q_code": "81",
@@ -1055,7 +1051,7 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0",
-                                            "label": "To",
+                                            "label": "Period to",
                                             "mandatory": true,
                                             "options": [],
                                             "q_code": "82",

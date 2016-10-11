@@ -8,7 +8,8 @@
     "value": option.value,
     "name": answer.name,
     "id": option_id,
-    "checked": "checked" if option.selected
+    "checked": "checked" if option.selected,
+    "data-qa": "has-other-option" if option.other
   } %}
 
   {% set label = {
@@ -19,7 +20,13 @@
   <div class="field__item">
 
     <input {{input|xmlattr}}>
-    <label {{label|xmlattr}}>{{option.label}}</label>
+    <label {{label|xmlattr}}>
+      {{option.label}}
+      {% if option.description %}
+        <br />
+        <span class="label__description pluto">{{option.description|safe}}</span>
+      {% endif %}
+    </label>
 
     {% if option.other %}
 
@@ -33,7 +40,8 @@
         "type": "text",
         "name": answer.name,
         "id": option_id,
-        "value": option.othervalue
+        "value": option.othervalue,
+        "data-qa": "other-option"
       } %}
 
       <div class="field__other">

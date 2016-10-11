@@ -9,6 +9,12 @@ input:checked ~ .label {
   background: $color-lighter-grey;
 }
 
+.label__description {
+  line-height: 1.4;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
 .label--inline {
   position: relative;
   font-weight: 400;

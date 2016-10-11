@@ -1,9 +1,9 @@
 import logging
 
+from app.data_model.questionnaire_store import get_metadata
 from app.main.errors import internal_server_error
 from app.main.errors import page_not_found
 from app.main.errors import service_unavailable
-from app.metadata.metadata_store import MetaDataStore
 from app.questionnaire.questionnaire_manager import InvalidLocationException
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 from app.schema.questionnaire import QuestionnaireException
@@ -32,7 +32,7 @@ def survey(eq_id, form_type, period_id, collection_id, location):
         questionnaire_manager = QuestionnaireManagerFactory.get_instance()
 
         # If the metadata doesn't match the current survey, multiple surveys must be open, which we don't support
-        metadata = MetaDataStore.get_instance(current_user)
+        metadata = get_metadata(current_user)
         current_survey = eq_id + form_type + period_id + collection_id
         metadata_survey = metadata.eq_id + metadata.form_type + metadata.period_id + metadata.collection_exercise_sid
 
@@ -95,6 +95,6 @@ def do_post(collection_id, eq_id, form_type, period_id, location, questionnaire_
 
     questionnaire_manager.process_incoming_answers(location, request.form)
     next_location = questionnaire_manager.get_current_location()
-    metadata = MetaDataStore.get_instance(current_user)
+    metadata = get_metadata(current_user)
     logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata.tx_id)
     return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + next_location)
