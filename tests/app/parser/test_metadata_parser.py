@@ -1,9 +1,10 @@
 import unittest
 
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.parser.metadata_parser import MetadataParser
+from app.parser.metadata_parser import MetadataParser, serialise_metadata, deserialise_metadata
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
+import dateutil.parser
 
 class TestMetadataParser(SurveyRunnerTestCase):
 
@@ -24,7 +25,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
             "tx_id": "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
-            self.metadata = MetadataParser.build_metadata(self.jwt)
+            self.metadata = MetadataParser.parse(self.jwt)
 
     def test_transaction_id(self):
         with self.application.test_request_context():
@@ -220,7 +221,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.build_metadata(jwt)
+            MetadataParser.parse(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_ref_p_end_date(self):
@@ -240,7 +241,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.build_metadata(jwt)
+            MetadataParser.parse(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_return_by(self):
@@ -260,7 +261,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.build_metadata(jwt)
+            MetadataParser.parse(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_missing_ref_p_end_date(self):
@@ -368,7 +369,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.build_metadata(jwt)
+            MetadataParser.parse(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
     def test_malformed_tx_id(self):
@@ -390,9 +391,66 @@ class TestMetadataParser(SurveyRunnerTestCase):
         valid, reason = MetadataParser.is_valid(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
-            MetadataParser.build_metadata(jwt)
+            MetadataParser.parse(jwt)
         self.assertIn("Incorrect data in token", ite.exception.value)
 
+    def test_serialise_metadata(self):
+        metadata = MetadataParser.parse(self.jwt)
+        serialised = serialise_metadata(metadata)
+
+        expected = {
+            "user_id": "1",
+            "form_type": "a",
+            "collection_exercise_sid": "test-sid",
+            "eq_id": "2",
+            "period_id": "3",
+            "period_str": "2016-01-01",
+            "ref_p_start_date": "2016-02-02",
+            "ref_p_end_date": "2016-03-03",
+            "ru_ref": "2016-04-04",
+            "ru_name": "Apple",
+            "return_by": "2016-07-07",
+            "tx_id": "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
+        }
+
+        self.assertEquals(expected, serialised)
+
+    def test_deserialise_metadata(self):
+        serialised = {
+            "user_id": "1",
+            "form_type": "a",
+            "collection_exercise_sid": "test-sid",
+            "eq_id": "2",
+            "period_id": "3",
+            "period_str": "2016-01-01",
+            "ref_p_start_date": "2016-02-02T00:00:00",
+            "ref_p_end_date": "2016-03-03T00:00:00",
+            "ru_ref": "2016-04-04",
+            "ru_name": "Apple",
+            "return_by": "2016-07-07T00:00:00",
+            "tx_id": "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f",
+            "trad_as": None,
+            "employment_date": None
+        }
+
+        expected = {
+            "user_id": "1",
+            "form_type": "a",
+            "collection_exercise_sid": "test-sid",
+            "eq_id": "2",
+            "period_id": "3",
+            "period_str": "2016-01-01",
+            "ref_p_start_date": dateutil.parser.parse("2016-02-02T00:00:00"),
+            "ref_p_end_date": dateutil.parser.parse("2016-03-03T00:00:00"),
+            "ru_ref": "2016-04-04",
+            "ru_name": "Apple",
+            "return_by": dateutil.parser.parse("2016-07-07T00:00:00"),
+            "tx_id": "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
+        }
+
+        deserialised = deserialise_metadata(serialised)
+
+        self.assertEquals(expected, deserialised)
 
 if __name__ == '__main__':
     unittest.main()

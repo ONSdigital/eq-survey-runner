@@ -65,7 +65,7 @@ class Authenticator(object):
         session_manager.store_user_ik(user_ik)
 
         # store the meta data
-        metadata = MetadataParser.build_metadata(token)
+        metadata = MetadataParser.parse(token)
 
         questionnaire_store = get_questionnaire_store(user_id, user_ik)
         questionnaire_store.encode_metadata(metadata)
