@@ -45,7 +45,8 @@ class Answer(Item):
             user_input = self.widget.get_other_input(post_vars)
             return self._input_or_none(user_input)
 
-    def _input_or_none(self, user_input):
+    @staticmethod
+    def _input_or_none(user_input):
         if user_input and not str(user_input).isspace() and user_input != '':
             return user_input
         else:
@@ -78,8 +79,7 @@ class Answer(Item):
                 state.errors = []
                 state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
                 state.is_valid = False
-            elif self.mandatory and self.type == 'Radio':
-                if state.value == 'other' and state.input == 'other' and state.other is None:
+            elif self.mandatory and self.type == 'Radio' and state.value == 'other' and state.input == 'other' and state.other is None:
                     # Mandatory check
                     state.errors = []
                     state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
