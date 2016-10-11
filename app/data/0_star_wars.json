@@ -64,6 +64,13 @@
                                                 {
                                                     "label": "I prefer Star Trek",
                                                     "value": "I prefer Star Trek"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "other",
+                                                    "other": {
+                                                      "label": "Please specify other"
+                                                    }
                                                 }
                                             ],
                                             "q_code": "20",

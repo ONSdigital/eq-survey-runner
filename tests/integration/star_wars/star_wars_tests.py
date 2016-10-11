@@ -52,6 +52,17 @@ class StarWarsTestCase(IntegrationTestCase):
 
         return self.check_quiz_first_page(first_page)
 
+    def start_questionnaire(self):
+        # Go to questionnaire
+        post_data = {
+            'action[start_questionnaire]': 'Start Questionnaire'
+        }
+        resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
+        self.assertEquals(resp.status_code, 302)
+
+        first_page = resp.headers['Location']
+        return first_page
+
     def default_routing(self, current_page):
 
         # navigate back to first page
@@ -154,7 +165,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, question_id )
 
 
-    def check_choose_your_side(self, start_page):
+    def mem(self, start_page):
         resp = self.client.get(start_page, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
