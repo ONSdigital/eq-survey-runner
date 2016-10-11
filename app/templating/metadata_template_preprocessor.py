@@ -1,7 +1,7 @@
 import logging
 
+from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import convert_tx_id
-from app.metadata.metadata_store import MetaDataStore
 
 from flask_login import current_user
 
@@ -79,4 +79,4 @@ class MetaDataTemplatePreprocessor(object):
         return formatted_date
 
     def _get_metadata(self):
-        return MetaDataStore.get_instance(current_user)
+        return get_metadata(current_user)

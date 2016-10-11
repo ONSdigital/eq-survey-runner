@@ -3,7 +3,7 @@ import logging
 
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.metadata.metadata_store import MetaDataConstants
+from app.parser.metadata_parser import MetadataConstants
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
@@ -49,10 +49,10 @@ class UserIDGenerator(object):
 
     @staticmethod
     def _get_token_data(token):
-        ru_ref = token.get(MetaDataConstants.RU_REF.claim_id)
-        collection_exercise_sid = token.get(MetaDataConstants.COLLECTION_EXERCISE_SID.claim_id)
-        eq_id = token.get(MetaDataConstants.EQ_ID.claim_id)
-        form_type = token.get(MetaDataConstants.FORM_TYPE.claim_id)
+        ru_ref = token.get(MetadataConstants.RU_REF.claim_id)
+        collection_exercise_sid = token.get(MetadataConstants.COLLECTION_EXERCISE_SID.claim_id)
+        eq_id = token.get(MetadataConstants.EQ_ID.claim_id)
+        form_type = token.get(MetadataConstants.FORM_TYPE.claim_id)
         if ru_ref and collection_exercise_sid and eq_id and form_type:
             return collection_exercise_sid, eq_id, form_type, ru_ref
         else:
