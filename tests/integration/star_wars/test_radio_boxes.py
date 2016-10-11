@@ -99,8 +99,7 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         # We select the 'other' radio input field but do not supply a value for the Other text input.
         form_data = {
             # Start Date
-            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": "other",
-            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": "",
+            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": ["other", ""],
 
             # User Action
             "action[save_continue]": "Save &amp; Continue"
