@@ -30,57 +30,28 @@
 
         <dt class="summary__question summary__question--{{item.type}}" id="{{id}}">{{item.question | safe}}</dt>
         <dd class="summary__answer summary__answer--{{item.type}}">
+
           {% for sub_item in item.sub_items %}
 
             {% set item_id = id ~ "-" ~ loop.index0 %}
-            {% if item.sub_items|length > 1 %}
-              <dt class="summary__question summary__answer__title--{{sub_item.type}}" id="{{item_id}}">{{sub_item.question | safe}}</dt>
-              <dd class="summary__answer summary__answer--{{item.type}}">
-            {% endif %}
+
+            {# {% if item.sub_items|length > 1 %}
+              <dt class="summary__question summary__question--{{sub_item.type}}" id="{{item_id}}">{{sub_item.question | safe}}</dt>
+            {% endif %} #}
 
             <div class="summary__answer-text" id="{{item_id}}-answer" data-qa="answer-{{outer_loop_index}}-{{inner_loop_index}} answer-type-{{item.type}}">
 
-              {% if sub_item.type == 'date' %}
-
-                {% set date_format = '%d %b %Y' %}
-
-                {{sub_item.answer[0].value.strftime(date_format)}} to {{sub_item.answer[1].value.strftime(date_format)}}
-
-              {% elif sub_item.type == 'checkbox' %}
-
-                {% if sub_item.answer %}
-
-                <ul class="u-m-no">
-                  {% for answer in sub_item.answer %}
-                    <li>{{answer}}</li>
-                  {% endfor %}
-                </ul>
-
-                {% else %}
-
-                  {{not_answered}}
-
-                {% endif %}
-
-              {% elif sub_item.type == 'textarea' %}
-
-                {{(sub_item.answer or not_answered)|nl2br}}
-
+              {% if sub_item.answer is not none %}
+                {% include theme('partials/summary/' ~ sub_item.type ~ '.html') %}
               {% else %}
-                {% if sub_item.answer is not none %}
-                    {{sub_item.answer}}
-                {% else %}
-                    {{not_answered}}
-                {% endif %}
-
+                {{not_answered}}
               {% endif %}
 
             </div>
 
             <div class="summary__edit">
-              <a href="{{sub_item.link}}" class="summary__edit-link" aria-describedby="{{item_id}} {{item_id}}-answer" data-qa="edit-{{item.type}}>Edit <span class="u-vh">your answer</span></a>
+              <a href="{{sub_item.link}}" class="summary__edit-link" aria-describedby="{{item_id}} {{item_id}}-answer" data-qa="edit-{{item.type}}">Edit <span class="u-vh">your answer</span></a>
             </div>
-
 
         </dd>
         {% endfor %}
