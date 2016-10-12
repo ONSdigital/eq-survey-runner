@@ -12,6 +12,6 @@ class TestQuestionnaireStore(unittest.TestCase):
     def test_empty_metadata_throws_error(self):
         with self.assertRaises(RuntimeError) as ite:
             qStore = QuestionnaireStore("1", "2")
-            qStore.decode_metadata()
+            qStore.get_metadata()
             self.assertIn("No metadata for user 1", ite.exception.value)
 

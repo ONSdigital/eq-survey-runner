@@ -28,7 +28,7 @@ class Authenticator(object):
         if session_manager.has_user_id():
             user = User(session_manager.get_user_id(), session_manager.get_user_ik())
             questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-            metadata = questionnaire_store.decode_metadata()
+            metadata = questionnaire_store.get_metadata()
 
             logger.info("Session token exists for tx_id=%s", metadata["tx_id"])
 
@@ -68,7 +68,7 @@ class Authenticator(object):
         metadata = parse_metadata(token)
 
         questionnaire_store = get_questionnaire_store(user_id, user_ik)
-        questionnaire_store.encode_metadata(metadata)
+        questionnaire_store.set_metadata(metadata)
         questionnaire_store.save()
 
         logger.info("User authenticated with tx_id=%s", metadata["tx_id"])
