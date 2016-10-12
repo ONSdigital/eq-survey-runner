@@ -2,12 +2,12 @@ import logging
 
 from app.data_model.database import QuestionnaireState
 from app.data_model.database import db_session
-from app.storage.abstract_server_storage import AbstractServerStorage
+from app.storage.abstract_storage import AbstractStorage
 
 logger = logging.getLogger(__name__)
 
 
-class DatabaseStorage(AbstractServerStorage):
+class DatabaseStorage(AbstractStorage):
     '''
     Server side storage using an RDS database (where one column is the entire JSON representation of the questionnaire state)
     '''

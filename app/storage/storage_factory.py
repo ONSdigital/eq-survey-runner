@@ -2,24 +2,17 @@ import logging
 
 from app import settings
 from app.storage.database_storage import DatabaseStorage
-from app.storage.encrypted_storage import EncryptedServerStorageDecorator
-from app.storage.memory_storage import InMemoryStorage
+from app.storage.encrypted_storage import EncryptedStorageDecorator
 
 logger = logging.getLogger(__name__)
 
 
-class StorageFactory(object):
+def get_storage():
+    logger.debug("Using server side storage %s ", settings.EQ_SERVER_SIDE_STORAGE_TYPE)
+    storage = DatabaseStorage()
 
-    @staticmethod
-    def get_storage_mechanism():
-        logger.debug("Using server side storage %s ", settings.EQ_SERVER_SIDE_STORAGE_TYPE)
-        if settings.EQ_SERVER_SIDE_STORAGE_TYPE.upper() == 'DATABASE':
-            storage = DatabaseStorage()
-        else:
-            storage = InMemoryStorage()
+    if settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION:
+        # wrap the storage in an encrypted decorator
+        return EncryptedStorageDecorator(storage)
 
-        if settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION:
-            # wrap the storage in an encrypted decorator
-            return EncryptedServerStorageDecorator(storage)
-        else:
-            return storage
+    return storage

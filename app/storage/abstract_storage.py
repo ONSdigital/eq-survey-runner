@@ -3,7 +3,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class AbstractServerStorage(object):
+class AbstractStorage(object):
     '''
     Interface which facilitates server side storage of questionnaire data
     '''

@@ -5,16 +5,14 @@ import logging
 from app import settings
 from app.cryptography.jwe_decryption import JWEDirDecrypter
 from app.cryptography.jwe_encryption import JWEDirEncrypter
-from app.storage.abstract_server_storage import AbstractServerStorage
+from app.storage.abstract_storage import AbstractStorage
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
 logger = logging.getLogger(__name__)
 
 
-class EncryptedServerStorageDecorator(AbstractServerStorage):
-
-    JSON_DATA_KEY = 'data'
+class EncryptedStorageDecorator(AbstractStorage):
 
     def __init__(self, server_storage):
         self.encryption = JWEDirEncrypter()
@@ -30,7 +28,7 @@ class EncryptedServerStorageDecorator(AbstractServerStorage):
     def get(self, user_id, user_ik):
         data = self.server_storage.get(user_id, user_ik)
         self.safe_logging("About to decrypt data %s", data)
-        if EncryptedServerStorageDecorator.JSON_DATA_KEY in data:
+        if 'data' in data:
             decrypted_data = self.decrypt_data(user_id, user_ik, data)
             self.safe_logging("Decrypted data %s", decrypted_data)
             json_data = json.loads(decrypted_data)
@@ -50,10 +48,10 @@ class EncryptedServerStorageDecorator(AbstractServerStorage):
         :param encrypted_data: the encrypted data
         :return: a dict containing the JSON data
         '''
-        return {EncryptedServerStorageDecorator.JSON_DATA_KEY: encrypted_data}
+        return {'data': encrypted_data}
 
     def unwrap_data(self, encrypted_data):
-        return encrypted_data[EncryptedServerStorageDecorator.JSON_DATA_KEY]
+        return encrypted_data['data']
 
     def _generate_key(self, user_id, user_ik):
         pepper = settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER

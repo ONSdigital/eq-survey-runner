@@ -2,7 +2,7 @@ import unittest
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app import settings
 from app.authentication.user import User
-from app.storage.storage_factory import StorageFactory
+from app.storage.storage_factory import get_storage
 from flask_login import LoginManager
 from datetime import timedelta
 from flask import Flask
@@ -40,4 +40,4 @@ class SurveyRunnerTestCase(unittest.TestCase):
 
     def tearDown(self):
         with self.application.test_request_context():
-            StorageFactory.get_storage_mechanism().clear()
+            get_storage().clear()
