@@ -41,6 +41,9 @@ class Answer(Item):
         return self._input_or_none(user_input)
 
     def get_other_value(self, post_vars):
+        """ Gets the value of the Other input field for a Radio or Checkbox
+
+        :returns a str for the Other value or None"""
         if self.type == 'Radio' or self.type == 'Checkbox':
             user_input = self.widget.get_other_input(post_vars)
             return self._input_or_none(user_input)
