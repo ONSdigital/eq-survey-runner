@@ -5,14 +5,14 @@ import logging
 from app import settings
 from app.cryptography.jwe_decryption import JWEDirDecrypter
 from app.cryptography.jwe_encryption import JWEDirEncrypter
-from app.storage.abstract_storage import AbstractStorage
+from app.storage.storage_medium import StorageMedium
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
 logger = logging.getLogger(__name__)
 
 
-class EncryptedStorageDecorator(AbstractStorage):
+class EncryptedStorage(StorageMedium):
 
     def __init__(self, server_storage):
         self.encryption = JWEDirEncrypter()
