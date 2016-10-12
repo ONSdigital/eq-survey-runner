@@ -17,6 +17,7 @@ class SummaryItem(object):
         state_answers_iterator = iter(state_answers)
         for answer in state_answers_iterator:
             sub_items.append(SummarySubItem(schema, state_answers, question_type, answer))
+            # We skip the second answer for date ranges as it is included by formatter on first answer
             if question_type == 'DATERANGE':
                 next(state_answers_iterator)
         return sub_items
