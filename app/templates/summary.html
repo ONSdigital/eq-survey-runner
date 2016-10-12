@@ -34,7 +34,7 @@
 
             {% set item_id = id ~ "-" ~ loop.index0 %}
             {% if item.sub_items|length > 1 %}
-              <dt class="summary__question summary__answer__title--{{sub_item.type}}" id="{{item_id}}">{{sub_item.question | safe}}</dt>
+              <dt class="summary__question summary__answer__title--{{sub_item.type}}" id="{{item_id}}">{{sub_item.answer_title | safe}}</dt>
               <dd class="summary__answer summary__answer--{{item.type}}">
             {% endif %}
 

@@ -7,7 +7,7 @@ class SummarySubItem:
         self.schema = schema
         self.state_answers = state_answers
         self.answer = answer
-        self.question = answer_schema.label
+        self.answer_title = answer_schema.label
         self.link = schema.container.container.id + '#' + answer.id
         self.type = answer_schema.type.lower()
         self.answer = self.format_answer(answer, question_type)
