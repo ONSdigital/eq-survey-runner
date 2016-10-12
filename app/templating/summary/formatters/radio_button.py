@@ -1,4 +1,4 @@
-from app.templating.summary.formatters.abstract_formater import AbstractFormatter
+from app.templating.summary.formatters.abstract_formatter import AbstractFormatter
 
 
 class RadioButtonFormatter(AbstractFormatter):
@@ -7,4 +7,7 @@ class RadioButtonFormatter(AbstractFormatter):
     def format(schema_answers, state_answers, user_answer):
         for option in schema_answers[0].options:
             if option['value'] == user_answer:
-                return option['label']
+                if option['label'] == 'Other':
+                    return state_answers[0].other if state_answers and state_answers[0].other else user_answer
+                else:
+                    return option['label']

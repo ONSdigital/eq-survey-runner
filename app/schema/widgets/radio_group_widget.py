@@ -1,31 +1,11 @@
-import logging
-
 from app.libs.utils import ObjectFromDict
-from app.schema.widget import Widget
-
-from flask import render_template
-
-logger = logging.getLogger(__name__)
+from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
 
 
-class RadioGroupWidget(Widget):
-    def render(self, answer_state):
-        widget_params = {
-            'widget': {
-                'options': self._build_options(answer_state.schema_item, answer_state),
-                'allow_other': False,
-            },
-            'answer': {
-                'name': self.name,
-                'id': answer_state.schema_item.id,
-                'label': answer_state.schema_item.label or 'Label',
-            },
-            'debug': {
-                'state': answer_state.__dict__,
-            },
-        }
-
-        return render_template('partials/widgets/radio_group_widget.html', **widget_params)
+class RadioGroupWidget(MultipleChoiceWidget):
+    def __init__(self, name):
+        super().__init__(name)
+        self.type = 'radio'
 
     def _build_options(self, answer_schema, answer_state):
         options = []
@@ -36,6 +16,8 @@ class RadioGroupWidget(Widget):
                     'value': option['value'],
                     'label': option['label'],
                     'selected': option['value'] == answer_state.input,
+                    'other': option['other'] if 'other' in option else None,
+                    'other_value': answer_state.other if hasattr(answer_state, 'other') else None,
                 }
 
                 if 'description' in option:

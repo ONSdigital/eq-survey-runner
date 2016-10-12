@@ -9,6 +9,7 @@ class Answer(Item):
         self.value = None
         # actual user input
         self.input = None
+        self.other = None
 
     def update_state(self, user_input):
 
@@ -23,6 +24,7 @@ class Answer(Item):
         if self.input:
             try:
                 self.value = self.schema_item.get_typed_value(user_input)
+                self.other = self.schema_item.get_other_value(user_input)
             except TypeCheckingException as e:
                 self.is_valid = False
                 self.errors = []
