@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from app.parser.metadata_parser import MetadataParser
+from app.parser.metadata_parser import parse_metadata
 from app.schema.answer import Answer
 from app.schema.block import Block
 from app.schema.group import Group
@@ -53,7 +53,7 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.maxDiff = None
 
-            metadata = MetadataParser.parse(JWT)
+            metadata = parse_metadata(JWT)
 
             user_answer = {"ABC": "2016-01-01", "DEF": "2016-03-30"}
 
@@ -107,7 +107,7 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.maxDiff = None
 
-            metadata = MetadataParser.parse(JWT)
+            metadata = parse_metadata(JWT)
 
             user_answer = {"GHI": 0}
 

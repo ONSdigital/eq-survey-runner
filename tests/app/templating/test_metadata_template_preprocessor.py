@@ -1,4 +1,4 @@
-from app.parser.metadata_parser import MetadataParser
+from app.parser.metadata_parser import parse_metadata
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
@@ -22,7 +22,7 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
             "transaction_id": "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
-            self.metadata = MetadataParser.parse(self.jwt)
+            self.metadata = parse_metadata(self.jwt)
 
     def get_metadata(self):
           return self.metadata

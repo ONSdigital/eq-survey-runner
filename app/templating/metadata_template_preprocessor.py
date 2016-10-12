@@ -2,6 +2,7 @@ import logging
 
 from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import convert_tx_id
+from app.parser.metadata_parser import iso_8601_data_parser
 
 from flask_login import current_user
 
@@ -73,13 +74,14 @@ class MetaDataTemplatePreprocessor(object):
         return get_metadata(current_user)
 
     @staticmethod
-    def _format_date(date):
+    def _format_date(input_date_string):
         formatted_date = None
         try:
             # employment date is optional this is why date is checked to see if exists
-            if date:
-                formatted_date = '{dt.day} {dt:%B} {dt.year}'.format(dt=date)
+            if input_date_string:
+                input_date = iso_8601_data_parser(input_date_string)
+                formatted_date = '{dt.day} {dt:%B} {dt.year}'.format(dt=input_date)
         except ValueError as e:
             logger.exception(e)
-            logger.error("Error parsing meta data for %s", date)
+            logger.error("Error parsing meta data for %s", input_date_string)
         return formatted_date
