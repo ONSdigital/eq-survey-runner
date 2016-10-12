@@ -38,7 +38,7 @@ class Answer(Item):
 
     def get_user_input(self, post_vars):
         user_input = self.widget.get_user_input(post_vars)
-        return self._input_or_none(user_input)
+        return self._user_input_or_none_if_empty(user_input)
 
     def get_other_value(self, post_vars):
         """ Gets the value of the Other input field for a Radio or Checkbox
@@ -46,10 +46,10 @@ class Answer(Item):
         :returns a str for the Other value or None"""
         if self.type == 'Radio' or self.type == 'Checkbox':
             user_input = self.widget.get_other_input(post_vars)
-            return self._input_or_none(user_input)
+            return self._user_input_or_none_if_empty(user_input)
 
     @staticmethod
-    def _input_or_none(user_input):
+    def _user_input_or_none_if_empty(user_input):
         if user_input and not str(user_input).isspace() and user_input != '':
             return user_input
         else:
@@ -78,17 +78,16 @@ class Answer(Item):
                 # if the question is skipped then its always valid
                 state.is_valid = True
             elif self.mandatory and state.input is None:
-                # Mandatory check
-                state.errors = []
-                state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
-                state.is_valid = False
+                self.mandatory_error(state)
             elif self.mandatory and self.type == 'Radio' and state.value == 'other' and state.input == 'other' and state.other is None:
-                    # Mandatory check
-                    state.errors = []
-                    state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
-                    state.is_valid = False
+                self.mandatory_error(state)
 
             # Here we just report on whether the answer has passed type checking
             return state.is_valid
         else:
             raise StateException('Cannot validate - incorrect state class')
+
+    def mandatory_error(self, state):
+        state.errors = []
+        state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
+        state.is_valid = False

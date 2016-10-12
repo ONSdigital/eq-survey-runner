@@ -27,7 +27,7 @@ class CheckboxGroupWidget(MultipleChoiceWidget):
                     'label': option['label'],
                     'selected': option_selected,
                     'other': option['other'] if 'other' in option else None,
-                    'othervalue': answer_state.other if hasattr(answer_state, 'other') else None,
+                    'other_value': answer_state.other if hasattr(answer_state, 'other') else None,
                 }
 
                 if 'description' in option:

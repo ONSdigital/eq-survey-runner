@@ -165,7 +165,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, question_id )
 
 
-    def mem(self, start_page):
+    def check_choose_your_side(self, start_page):
         resp = self.client.get(start_page, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)

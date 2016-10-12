@@ -209,10 +209,10 @@ class QuestionnaireManager(object):
             if not answer.other:
                 answers_dict[answer.id] = answer.value
             elif answer.other and isinstance(answer.value, list):
-                list_without_other = answer.value[:]
-                if 'other' in list_without_other:
-                    list_without_other.remove('other')
-                answers_dict[answer.id] = list_without_other
+                answer_values = answer.value[:]
+                if 'other' in answer_values:
+                    answer_values.remove('other')
+                answers_dict[answer.id] = answer_values
             else:
                 answers_dict[answer.id] = answer.other
 

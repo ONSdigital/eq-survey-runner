@@ -28,13 +28,9 @@ class CheckboxAnswer(Answer):
             if question.skipped:
                 state.is_valid = True
             elif self.mandatory and len(state.input) == 0:
-                state.errors = []
-                state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
-                state.is_valid = False
+                super(CheckboxAnswer, self).mandatory_error(state)
             elif self.mandatory and 'other' in state.input and not state.other:
-                state.errors = []
-                state.errors.append(self.questionnaire.get_error_message('MANDATORY', self.id))
-                state.is_valid = False
+                super(CheckboxAnswer, self).mandatory_error(state)
 
             # Here we just report on whether the answer has passed type checking
             return state.is_valid
