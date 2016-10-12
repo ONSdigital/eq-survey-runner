@@ -11,16 +11,16 @@
 </div>
 
 <div>
-  <dl class="summary">
+  <div class="summary">
   {% for block in content %}
 
     {% set outer_loop_index = loop.index0 %}
 
     {% set summary_id = "summary-" ~ outer_loop_index %}
 
-    <dt class="summary__title saturn" id="{{summary_id}}">{{block.title | safe}}</dt>
-    <dd class="summary__block">
-      <dl class="summary__items">
+    <h2 class="summary__title saturn" id="{{summary_id}}">{{block.title|safe}}</h2>
+    <div class="summary__block">
+      <div class="summary__items">
 
       {% for item in block.items %}
 
@@ -28,40 +28,40 @@
 
         {% set id = summary_id ~ "-" ~ inner_loop_index %}
 
-        <dt class="summary__question summary__question--{{item.type}}" id="{{id}}">{{item.question | safe}}</dt>
-        <dd class="summary__answer summary__answer--{{item.type}}">
+        <div class="summary__question" id="{{id}}">
+          {{item.question|safe}}
+        </div>
 
-          {% for sub_item in item.sub_items %}
+        {% for sub_item in item.sub_items %}
 
-            {% set item_id = id ~ "-" ~ loop.index0 %}
-
-            {# {% if item.sub_items|length > 1 %}
-              <dt class="summary__question summary__question--{{sub_item.type}}" id="{{item_id}}">{{sub_item.question | safe}}</dt>
-            {% endif %} #}
-
-            <div class="summary__answer-text" id="{{item_id}}-answer" data-qa="answer-{{outer_loop_index}}-{{inner_loop_index}} answer-type-{{item.type}}">
-
-              {% if sub_item.answer is not none %}
-                {% include theme('partials/summary/' ~ sub_item.type ~ '.html') %}
-              {% else %}
-                {{not_answered}}
-              {% endif %}
-
+          {% if item.sub_items|length > 1 %}
+            <div class="summary__question summary__question--sub">
+              {{sub_item.question|safe}}
             </div>
+          {% endif %}
 
+          <div class="summary__answer">
+            {% set item_id = id ~ "-" ~ loop.index0 %}
+            <div class="summary__answer-text" id="{{item_id}}-answer" data-qa="answer-{{outer_loop_index}}-{{inner_loop_index}} answer-type-{{item.type}}">
+              {%- if sub_item.answer is none -%}
+                {{not_answered}}
+              {%- else -%}
+                {% include theme('partials/summary/' ~ sub_item.type ~ '.html') %}
+              {%- endif -%}
+            </div>
             <div class="summary__edit">
               <a href="{{sub_item.link}}" class="summary__edit-link" aria-describedby="{{item_id}} {{item_id}}-answer" data-qa="edit-{{item.type}}">Edit <span class="u-vh">your answer</span></a>
             </div>
+          </div>
 
-        </dd>
         {% endfor %}
 
       {% endfor %}
 
-      </dl>
-    </dd>
+      </div>
+    </div>
   {% endfor %}
-  </dl>
+  </div>
 
   <form action="" method="POST" novalidate>
     <button class="btn btn--secondary u-mr-s qa-btn-submit-answers venus" type="submit" name="action[submit_answers]">Submit answers</button>
