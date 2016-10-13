@@ -40,7 +40,7 @@ class QuestionnaireManager(object):
         self._current = current  # the latest node
         self._first = first  # the first node in the doubly linked list
         self._tail = tail  # the last node in the doubly linked list
-        self._archive = archive or []  # a dict of discarded nodes for later use (if needed)
+        self._archive = archive or {}  # a dict of discarded nodes for later use (if needed)
         if valid_locations:
             self._valid_locations = valid_locations
         else:
