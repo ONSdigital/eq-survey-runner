@@ -21,6 +21,7 @@
   margin: 0 0 2rem;
   overflow: hidden;
   border-radius: 3px;
+
   @include fixed {
     font-size: 0;
   }
@@ -55,6 +56,7 @@
 .summary__question {
   width: 100%;
   border-bottom: 1px solid $color-borders;
+  background-color: $color-lighter-grey;
   display: flex;
   padding: 0.5rem;
   font-weight: $font-weight-semibold;
@@ -68,13 +70,17 @@
   }
 }
 
+.summary__question--sub {
+  background-color: transparent;
+}
+
 .summary__answer {
-  background: #fbfbfb;
   display: flex;
   position: relative;
   flex-direction: row;
   justify-content: space-between;
   overflow: hidden;
+  width: 100%;
 }
 
 .summary__answer-text,
@@ -89,6 +95,9 @@
   align-items: center;
   flex: 1 1 auto;
   word-break: break-all;
+  p:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .summary__edit {
