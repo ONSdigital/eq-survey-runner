@@ -1,0 +1,89 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Multiple answers per question",
+    "description": "A survey containing questions which have more than one answer",
+    "theme": "default",
+    "introduction": {
+        "description": "",
+        "information_to_provide": [
+          "Personal details"
+        ]
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "1",
+    "groups": [
+        {
+            "blocks": [
+
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "personal_details_block",
+                    "sections": [
+                        {
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "personal_details_section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "first_name_answer",
+                                            "label": "What is your first name",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "Textfield",
+                                            "validation": {
+                                              }
+                                        },
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "surname_answer",
+                                            "label": "What is your surname",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "2",
+                                            "type": "Textfield",
+                                            "validation": {
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "personal_details_question",
+                                    "title": "Tell me about yourself",
+                                    "description" : "Answer the question with multiple answers",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Multiple questions",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Multiple questions",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "multiple_questions_group",
+            "title": "",
+            "validation": []
+        }
+    ]
+}
