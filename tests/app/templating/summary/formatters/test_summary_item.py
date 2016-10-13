@@ -10,37 +10,37 @@ class TestSummaryItem(TestCase):
 
     def test_create_summary_item(self):
         # Given
-        schema = mock.MagicMock()
-        schema.answers[0].type = 'positiveinteger'
+        question_schema = mock.MagicMock()
+        question_schema.answers[0].type = 'positiveinteger'
         answer = Mock()
         answers = Mock()
         answers.__iter__ = Mock(return_value=iter([answer]))
 
         # When
-        item = SummaryItem(schema, answers, 'GENERAL')
+        item = SummaryItem(question_schema, answers, 'GENERAL')
 
         # Then
         self.assertEquals(len(item.sub_items), 1)
 
     def test_create_date_range_summary_item(self):
         # Given
-        schema = mock.MagicMock()
-        schema.answers[0].type = 'date'
+        question_schema = mock.MagicMock()
+        question_schema.answers[0].type = 'date'
         from_date_answer = Mock()
         to_date_answer = Mock()
         answers = Mock()
         answers.__iter__ = Mock(return_value=iter([from_date_answer, to_date_answer]))
 
         # When
-        item = SummaryItem(schema, answers, 'DATERANGE')
+        item = SummaryItem(question_schema, answers, 'DATERANGE')
 
         # Then
         self.assertEquals(len(item.sub_items), 1, 'Only one sub answer should be created for both dates')
 
     def test_create_multiple_date_range_summary_item(self):
         # Given
-        schema = mock.MagicMock()
-        schema.answers[0].type = 'date'
+        question_schema = mock.MagicMock()
+        question_schema.answers[0].type = 'date'
         first_from_date_answer = Mock()
         first_to_date_answer = Mock()
         second_from_date_answer = Mock()
@@ -50,7 +50,7 @@ class TestSummaryItem(TestCase):
                                                      second_to_date_answer]))
 
         # When
-        item = SummaryItem(schema, answers, 'DATERANGE')
+        item = SummaryItem(question_schema, answers, 'DATERANGE')
 
         # Then
         self.assertEquals(len(item.sub_items), 2, 'Only two sub answer should be created for both dates ranges')
