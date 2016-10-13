@@ -2,8 +2,6 @@ from app.storage.database_storage import DatabaseStorage
 from app import settings
 import unittest
 
-USER_ID = "1"
-
 
 class TestDatabaseStorage(unittest.TestCase):
 
@@ -18,29 +16,29 @@ class TestDatabaseStorage(unittest.TestCase):
 
     def test_store(self):
         data = {'test': 'test'}
-        self.assertIsNone(self.storage.store(data, USER_ID))
-        self.assertTrue(self.storage.has_data(USER_ID))
+        self.assertIsNone(self.storage.store(data, "1", "2"))
+        self.assertTrue(self.storage.has_data("1"))
 
     def test_get(self):
         data = {'test': 'test'}
-        self.storage.store(data, USER_ID)
-        self.assertEqual(data, self.storage.get(USER_ID))
+        self.storage.store(data, "1", "2")
+        self.assertEqual(data, self.storage.get("1", "2"))
 
     def test_delete(self):
         data = {'test': 'test'}
-        self.storage.store(data, USER_ID)
-        self.assertEqual(data, self.storage.get(USER_ID))
-        self.storage.delete(USER_ID)
-        self.assertFalse(self.storage.has_data(USER_ID))
-        self.assertIsNone(self.storage.get(USER_ID))
+        self.storage.store(data, "1", "2")
+        self.assertEqual(data, self.storage.get("1", "2"))
+        self.storage.delete("1")
+        self.assertFalse(self.storage.has_data("1"))
+        self.assertIsNone(self.storage.get("1", "2"))
 
     def test_clear(self):
         data = {'test': 'test'}
-        self.storage.store(data, USER_ID)
-        self.assertEqual(data, self.storage.get(USER_ID))
+        self.storage.store(data, "1", "2")
+        self.assertEqual(data, self.storage.get("1", "2"))
         self.storage.clear()
-        self.assertFalse(self.storage.has_data(USER_ID))
-        self.assertIsNone(self.storage.get(USER_ID))
+        self.assertFalse(self.storage.has_data("1"))
+        self.assertIsNone(self.storage.get("1", "2"))
 
 if __name__ == '__main__':
     unittest.main()
