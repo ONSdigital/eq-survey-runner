@@ -21,7 +21,7 @@ describe('Error messages', function() {
     expect(multipleAnswerSummaryPage.getSurname()).to.equal('Solo')
   })
 
-  it('Given I complete a survey has multiple answers for a question when I edit an answer then I appear on the page to edit my answer', function() {
+  it('Given I complete a survey that has multiple answers for a question when I edit an answer then I appear on the page to edit my answer', function() {
     // Given
     startQuestionnaire('multiple_answers.json')
     personalDetailsPage.setFirstName('Han')
