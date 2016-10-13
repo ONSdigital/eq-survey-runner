@@ -1,13 +1,12 @@
 from app.storage.encrypted_storage import EncryptedStorage
 from app.storage.database_storage import DatabaseStorage
-from app.authentication.user_id_generator import UserIDGenerator
 from app import settings
 
 
 import unittest
 
 
-class TestEncryptedServerStorageDecorator(unittest.TestCase):
+class TestEncryptedStorage(unittest.TestCase):
 
     def test_generate_cek(self):
         encrypted = EncryptedStorage(DatabaseStorage())
