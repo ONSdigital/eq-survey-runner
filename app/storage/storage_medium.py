@@ -9,11 +9,11 @@ class StorageMedium(metaclass=ABCMeta):
     Interface which facilitates storage of questionnaire data
     '''
     @abstractmethod
-    def store(self, data, user_id, user_ik=None):
+    def store(self, data, user_id, user_ik):
         pass
 
     @abstractmethod
-    def get(self, user_id, user_ik=None):
+    def get(self, user_id, user_ik):
         pass
 
     @abstractmethod

@@ -55,8 +55,8 @@ class TestEncryptedStorage(unittest.TestCase):
         self.assertEquals(data, encrypted.get(user_id, user_ik))
 
         # check the underlying store has the encrypted version
-        self.assertIsNotNone(storage.get(user_id))
-        self.assertNotEquals(data, storage.get(user_id))
+        self.assertIsNotNone(storage.get(user_id, user_ik))
+        self.assertNotEquals(data, storage.get(user_id, user_ik))
 
 if __name__ == '__main__':
     unittest.main()
