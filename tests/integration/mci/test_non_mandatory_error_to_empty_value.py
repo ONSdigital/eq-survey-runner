@@ -35,9 +35,7 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2017",
             # Non Mandatory field but fails validation as should be Integer
-            "bb8168e6-2272-450d-b5a7-d3170508efb2" : "failing test",
-            # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            "e81adc6d-6fb0-4155-969c-d0d646f15345" : "failing test",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
