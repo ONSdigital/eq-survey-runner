@@ -80,6 +80,6 @@ class Authenticator(object):
         return token
 
     def _check_user_data(self, token):
-        valid, reason = is_valid_metadata(token)
+        valid, field = is_valid_metadata(token)
         if not valid:
-            raise InvalidTokenException("Missing value {}".format(reason))
+            raise InvalidTokenException("Missing value {}".format(field))
