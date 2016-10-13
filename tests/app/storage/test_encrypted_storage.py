@@ -34,14 +34,7 @@ class TestEncryptedStorage(unittest.TestCase):
 
     def test_generate_cek_different_pepper(self):
         cek1 = generate_key("user1", "user_ik_1")
-        settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER = "test"
-        cek2 = generate_key("user1", "user_ik_1")
-        self.assertNotEquals(cek1, cek2)
-
-    def test_generate_cek_different_pepper(self):
-        cek1 = generate_key("user1", "user_ik_1")
-        settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER = "test"
-        cek2 = generate_key("user1", "user_ik_1")
+        cek2 = generate_key("user1", "user_ik_1", "test")
         self.assertNotEquals(cek1, cek2)
 
     def test_store_and_get(self):
