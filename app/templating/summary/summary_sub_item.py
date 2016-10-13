@@ -6,7 +6,6 @@ class SummarySubItem:
         answer_schema = schema.questionnaire.get_item_by_id(answer.id)
         self.schema = schema
         self.state_answers = state_answers
-        self.answer = answer
         self.answer_title = answer_schema.label
         self.link = schema.container.container.id + '#' + answer.id
         self.type = answer_schema.type.lower()
@@ -16,7 +15,7 @@ class SummarySubItem:
     def format_answer(self, answer, question_type):
         user_answer = answer.value
 
-        if user_answer:
+        if user_answer is not None:
             # find out if the question type and answer has a formatter
             formatter = FormatterRegistry.get_formatter(question_type, self.type)
             if formatter:
