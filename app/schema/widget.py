@@ -15,3 +15,11 @@ class Widget(object):
         user_input = post_vars.get(self.name, None)
         logger.debug('Getting user input for "{}", value is "{}"'.format(self.name, user_input))
         return user_input
+
+    def get_other_input(self, post_vars):
+        if not hasattr(post_vars, 'getlist'):
+            return None
+        list_of_values = post_vars.getlist(self.name)
+        user_input = list_of_values[-1:][0] if len(list_of_values) > 0 else None
+        logger.debug('Getting user input for "{}", value is "{}"'.format(self.name, user_input))
+        return user_input

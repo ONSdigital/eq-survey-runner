@@ -1,9 +1,13 @@
 import json
+from unittest.mock import MagicMock
+
 import os
 
 from app import settings
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.questionnaire_state.node import Node
+from app.questionnaire_state.answer import Answer
+from app.questionnaire_state.question import Question
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.schema.block import Block
 from app.schema.group import Group
@@ -26,6 +30,84 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)
         block1 = self.questionnaire.children[0].children[0]
         self.assertIsNone(questionnaire_manager.get_state(block1.id))
+
+    def test_single_value_answer_with_other_returns_other(self):
+        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+
+        answer_id = 'radio_answer_id'
+        answer_input = 'other'
+        answer_other_value = 'Some expected other value'
+
+        self._set_up_other_fixture(answer_id, answer_input, answer_other_value, questionnaire_manager)
+
+        # Get the answers and assert that the expected value is returned
+        answers = questionnaire_manager.get_answers()
+        self.assertFalse(len(answers) == 0)
+        self.assertIn(answer_id, answers)
+        self.assertEqual(answers[answer_id], answer_other_value)
+
+    @staticmethod
+    def _set_up_other_fixture(answer_id, answer_input, other_value, questionnaire_manager):
+        # Mock the question and answer
+        question = Question('question_id', None)
+        answer = Answer(answer_id, None)
+        answer.input = answer_input
+        answer.value = answer_input
+        answer.other = other_value
+        # Make mock answer a child of mock question
+        question.children.append(answer)
+        # Mock a Block and set the question as it's root element.
+        first_page = Node('first_page', question)
+        questionnaire_manager._first = first_page
+
+    def test_single_value_answer_without_other_returns_value(self):
+        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+
+        answer_id = 'radio_answer_id'
+        answer_input = 'radio_option_1'
+        answer_other_value = None
+
+        self._set_up_other_fixture(answer_id, answer_input, answer_other_value, questionnaire_manager)
+
+        # Get the answers and assert that the expected value is returned
+        answers = questionnaire_manager.get_answers()
+        self.assertFalse(len(answers) == 0)
+        self.assertIn(answer_id, answers)
+        self.assertEqual(answers[answer_id], answer_input)
+
+    def test_multiple_value_answer_with_other_returns_expected_values(self):
+        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+
+        answer_id = 'checkbox_answer_id'
+        answer_input = original_list = ['item1', 'item2', 'other', 'Some entered value']
+        answer_other_value = 'Some entered value'
+
+        expected_list = ['item1', 'item2', 'Some entered value']
+
+        self._set_up_other_fixture(answer_id, answer_input, answer_other_value, questionnaire_manager)
+
+        # Get the answers and assert that the expected value is returned
+        answers = questionnaire_manager.get_answers()
+        self.assertFalse(len(answers) == 0)
+        self.assertIn(answer_id, answers)
+        self.assertEqual(answers[answer_id], expected_list)
+
+    def test_multiple_value_answer_without_other_returns_expected_values(self):
+        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+
+        answer_id = 'checkbox_answer_id'
+        answer_input = original_list = ['item1', 'item2', 'item3']
+        answer_other_value = None
+
+        expected_list = ['item1', 'item2', 'item3']
+
+        self._set_up_other_fixture(answer_id, answer_input, answer_other_value, questionnaire_manager)
+
+        # Get the answers and assert that the expected value is returned
+        answers = questionnaire_manager.get_answers()
+        self.assertFalse(len(answers) == 0)
+        self.assertIn(answer_id, answers)
+        self.assertEqual(answers[answer_id], expected_list)
 
     def test_create_state(self):
         questionnaire_manager = QuestionnaireManager(self.questionnaire)

@@ -1,6 +1,6 @@
 import logging
 
-from app.templating.summary.formatters.abstract_formater import AbstractFormatter
+from app.templating.summary.formatters.abstract_formatter import AbstractFormatter
 
 logger = logging.getLogger(__name__)
 
@@ -13,6 +13,9 @@ class CheckBoxFormatter(AbstractFormatter):
 
         for option in schema_answers[0].options:
             if option['value'] in user_answer:
-                answers.append(option['label'])
+                if option['value'] == 'other':
+                    answers.append(state_answers[0].other if state_answers and state_answers[0].other else user_answer)
+                else:
+                    answers.append(option['label'])
 
         return answers
