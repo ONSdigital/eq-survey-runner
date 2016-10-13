@@ -46,7 +46,7 @@
               {%- if sub_item.answer is none -%}
                 {{not_answered}}
               {%- else -%}
-                {% include theme('partials/summary/' ~ sub_item.type ~ '.html') %}
+                {% include theme(['partials/summary/' ~ sub_item.type ~ '.html', 'partials/summary/default.html']) %}
               {%- endif -%}
             </div>
             <div class="summary__edit">
