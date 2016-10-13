@@ -12,6 +12,24 @@ from app.utilities.strings import to_str
 logger = logging.getLogger(__name__)
 
 
+def _safe_logging(msg, param):
+    if settings.EQ_DEV_MODE:
+        logger.debug(msg, param)
+
+
+def generate_key(user_id, user_ik):
+    pepper = settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER
+    sha256 = hashlib.sha256()
+    sha256.update(to_str(user_id).encode('utf-8'))
+    sha256.update(to_str(user_ik).encode('utf-8'))
+    sha256.update(to_str(pepper).encode('utf-8'))
+
+    # we only need the first 32 characters for the CEK
+    cek = sha256.hexdigest()[:32]
+    _safe_logging("Generated cek is %s", cek)
+    return to_bytes(cek)
+
+
 class EncryptedStorage(StorageMedium):
 
     def __init__(self, server_storage):
@@ -20,50 +38,30 @@ class EncryptedStorage(StorageMedium):
         self.server_storage = server_storage
 
     def store(self, data, user_id, user_ik):
-        self.safe_logging("About to encrypt data %s", data)
+        _safe_logging("About to encrypt data %s", data)
         encrypted_data = self.encrypt_data(user_id, user_ik, data)
-        self.safe_logging("Encrypted data %s", encrypted_data)
+        _safe_logging("Encrypted data %s", encrypted_data)
         self.server_storage.store(encrypted_data, user_id, user_ik)
 
     def get(self, user_id, user_ik):
         data = self.server_storage.get(user_id, user_ik)
-        self.safe_logging("About to decrypt data %s", data)
+        _safe_logging("About to decrypt data %s", data)
         if 'data' in data:
             decrypted_data = self.decrypt_data(user_id, user_ik, data)
-            self.safe_logging("Decrypted data %s", decrypted_data)
+            _safe_logging("Decrypted data %s", decrypted_data)
             json_data = json.loads(decrypted_data)
             return json_data
         else:
             return {}
 
     def encrypt_data(self, user_id, user_ik, data):
-        return self.wrap_data(self.encryption.encrypt(json.dumps(data), self._generate_key(user_id, user_ik)))
+        sha_key = generate_key(user_id, user_ik)
+        encrypted = self.encryption.encrypt(json.dumps(data), sha_key)
+        return {'data': encrypted}
 
-    def decrypt_data(self, user_id, user_ik, data):
-        return self.decryption.decrypt(self.unwrap_data(data), self._generate_key(user_id, user_ik))
-
-    def wrap_data(self, encrypted_data):
-        '''
-        Wraps the encrypted data as a JSON structure so we can reuse the storage classes
-        :param encrypted_data: the encrypted data
-        :return: a dict containing the JSON data
-        '''
-        return {'data': encrypted_data}
-
-    def unwrap_data(self, encrypted_data):
-        return encrypted_data['data']
-
-    def _generate_key(self, user_id, user_ik):
-        pepper = settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER
-        sha256 = hashlib.sha256()
-        sha256.update(to_str(user_id).encode('utf-8'))
-        sha256.update(to_str(user_ik).encode('utf-8'))
-        sha256.update(to_str(pepper).encode('utf-8'))
-
-        # we only need the first 32 characters for the CEK
-        cek = sha256.hexdigest()[:32]
-        self.safe_logging("Generated cek is %s", cek)
-        return to_bytes(cek)
+    def decrypt_data(self, user_id, user_ik, encrypted_data):
+        sha_key = generate_key(user_id, user_ik)
+        return self.decryption.decrypt(encrypted_data['data'], sha_key)
 
     def has_data(self, user_id):
         return self.server_storage.has_data(user_id)
@@ -73,10 +71,3 @@ class EncryptedStorage(StorageMedium):
 
     def clear(self):
         self.server_storage.clear()
-
-    def safe_logging(self, msg, param):
-        '''
-        Only log when DEV mode is enabled and at DEBUG log level
-        '''
-        if settings.EQ_DEV_MODE:
-            logger.debug(msg, param)
