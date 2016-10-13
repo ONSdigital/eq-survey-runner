@@ -1,34 +1,17 @@
-import logging
-
 from app.libs.utils import ObjectFromDict
-from app.schema.widget import Widget
 
-from flask import render_template
-
-logger = logging.getLogger(__name__)
+from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
 
 
-class CheckboxGroupWidget(Widget):
+class CheckboxGroupWidget(MultipleChoiceWidget):
+
+    def __init__(self, name):
+        super().__init__(name)
+        self.type = 'checkbox'
+
     def get_user_input(self, post_vars):
         # Returns an empty list
         return post_vars.getlist(self.name)
-
-    def render(self, answer_state):
-        widget_params = {
-            'widget': {
-                'options': self._build_options(answer_state.schema_item, answer_state),
-            },
-            'answer': {
-                'name': self.name,
-                'id': answer_state.schema_item.id,
-                'label': answer_state.schema_item.label or 'Label',
-            },
-            'debug': {
-                'state': answer_state.__dict__,
-            },
-        }
-
-        return render_template('/partials/widgets/checkbox_group_widget.html', **widget_params)
 
     def _build_options(self, answer_schema, answer_state):
         options = []
@@ -43,6 +26,8 @@ class CheckboxGroupWidget(Widget):
                     'value': option['value'],
                     'label': option['label'],
                     'selected': option_selected,
+                    'other': option['other'] if 'other' in option else None,
+                    'other_value': answer_state.other if hasattr(answer_state, 'other') else None,
                 }
 
                 if 'description' in option:

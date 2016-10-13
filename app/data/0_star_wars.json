@@ -43,7 +43,7 @@
                                         {
                                             "display": {
                                                 "properties": {
-                                                    "columns": true
+                                                    "columns": false
                                                 }
                                             },
                                             "guidance": "",
@@ -63,8 +63,14 @@
                                                 },
                                                 {
                                                     "label": "I prefer Star Trek",
-                                                    "value": "I prefer Star Trek",
-                                                    "description": "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
+                                                    "value": "I prefer Star Trek"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "other",
+                                                    "other": {
+                                                      "label": "Please specify other"
+                                                    }
                                                 }
                                             ],
                                             "q_code": "20",
