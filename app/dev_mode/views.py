@@ -36,8 +36,8 @@ def dev_mode():
         payload = create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid,
                                  ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date)
         return redirect("/session?token=" + generate_token(payload).decode())
-    else:
-        return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
+
+    return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
 
 
 def extract_eq_id_and_form_type(schema_name):
