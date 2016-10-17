@@ -38,8 +38,8 @@ class MetadataField(object):
     def generate(self):
         if self._generator:
             return self._generator()
-        elif not self.mandatory:
-            return None
+
+        return None
 
 metadata_fields = {
   "user_id": MetadataField(),
