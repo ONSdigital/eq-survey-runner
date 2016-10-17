@@ -3,6 +3,8 @@ import logging
 from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import convert_tx_id
 from app.main import main_blueprint
+from app.schema.exceptions import QuestionnaireException
+from app.submitter.submission_failed import SubmissionFailedException
 
 from flask import request
 from flask.ext.themes2 import render_theme_template
@@ -39,21 +41,24 @@ def forbidden(error=None):
 
 
 @main_blueprint.app_errorhandler(404)
+@main_blueprint.app_errorhandler(QuestionnaireException)
 def page_not_found(error=None):
     log_exception(error)
     return _render_error_page(404)
 
 
-@main_blueprint.app_errorhandler(500)
-def internal_server_error(error=None):
-    log_exception(error)
-    return _render_error_page(500)
-
-
 @main_blueprint.app_errorhandler(503)
+@main_blueprint.app_errorhandler(SubmissionFailedException)
 def service_unavailable(error=None):
     log_exception(error)
     return _render_error_page(503)
+
+
+@main_blueprint.app_errorhandler(500)
+@main_blueprint.app_errorhandler(Exception)
+def internal_server_error(error=None):
+    log_exception(error)
+    return _render_error_page(500)
 
 
 def log_exception(error):

@@ -49,19 +49,9 @@ class QuestionnaireManager(object):
     def construct_state(self):
         return State(self._schema, self._current, self._first, self._tail, self._archive, self.submitted_at, self._valid_locations)
 
-    def resolve_location(self, location):
-        if location == 'first':
-            return self._get_first_block()
-        elif location == 'previous':
-            return self._current.previous.item_id
-        else:
-            return location
-
     def _build_valid_locations(self):
-        validate_location = ['thank-you']
-
         # Add the submission page (default is summary)
-        validate_location.append(self._schema.submission_page)
+        validate_location = ['thank-you', self._schema.submission_page]
 
         if self._schema.introduction:
             validate_location.append('introduction')
@@ -181,6 +171,9 @@ class QuestionnaireManager(object):
         else:
             return self._get_first_block()
 
+    def get_previous_location(self):
+        return self._current.previous.item_id
+
     def _get_first_block(self):
         return self._schema.groups[0].blocks[0].id
 
@@ -270,10 +263,7 @@ class QuestionnaireManager(object):
     def go_to(self, location):
         if self._current:
             logger.debug("Attempting to go to location %s with current location as %s", location, self._current.item_id)
-        if location == 'first':
-            # convenience method for routing to the first block
-            location = self._get_first_block()
-        elif location == 'previous':
+        if location == 'previous':
             location = self._previous()
         elif location == 'summary' and self._current.item_id != 'summary':
             metadata = get_metadata(current_user)

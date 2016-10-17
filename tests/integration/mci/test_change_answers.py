@@ -77,8 +77,3 @@ class TestHappyPath(IntegrationTestCase):
         self.assertRegexpMatches(content, '>Your responses<')
         self.assertRegexpMatches(content, 'Please check carefully before submission')
         self.assertRegexpMatches(content, '>Submit answers<')
-
-        resp = self.client.get('/questionnaire/' + eq_id + '/' + form_type_id + '/201604/789/first', follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
-
-        self.assertEquals(resp.headers['Location'], block_one_url)
