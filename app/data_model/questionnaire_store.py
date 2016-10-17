@@ -37,6 +37,8 @@ class QuestionnaireStore:
     def metadata(self):
         if "METADATA" in self.data:
             return self.data["METADATA"]
+        else:
+            raise RuntimeError("No metadata for user %s", self.user_id)
 
     @metadata.setter
     def metadata(self, metadata):
@@ -56,10 +58,9 @@ def get_questionnaire_store(user_id, user_ik):
 
 
 def get_metadata(user):
-    try:
-        questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-        return questionnaire_store.metadata
-    except AttributeError:
+    if user.is_anonymous:
         logger.debug("Anonymous user requesting metadata get instance")
-        # anonymous user mixin - this happens on the error pages before authentication
         return None
+
+    questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+    return questionnaire_store.metadata
