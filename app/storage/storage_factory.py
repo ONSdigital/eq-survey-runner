@@ -13,6 +13,6 @@ def get_storage():
 
     if settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION:
         # wrap the storage in an encrypted decorator
-        return EncryptedStorage(storage)
+        return EncryptedStorage()
 
     return storage

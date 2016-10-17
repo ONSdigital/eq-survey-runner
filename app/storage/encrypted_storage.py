@@ -5,7 +5,7 @@ import logging
 from app import settings
 from app.cryptography.jwe_decryption import JWEDirDecrypter
 from app.cryptography.jwe_encryption import JWEDirEncrypter
-from app.storage.storage_medium import StorageMedium
+from app.storage.database_storage import DatabaseStorage
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
@@ -29,21 +29,20 @@ def generate_key(user_id, user_ik, pepper=settings.EQ_SERVER_SIDE_STORAGE_ENCRYP
     return to_bytes(cek)
 
 
-class EncryptedStorage(StorageMedium):
+class EncryptedStorage(DatabaseStorage):
 
-    def __init__(self, server_storage):
+    def __init__(self):
         self.encryption = JWEDirEncrypter()
         self.decryption = JWEDirDecrypter()
-        self.server_storage = server_storage
 
     def store(self, data, user_id, user_ik):
         _safe_logging("About to encrypt data %s", data)
         encrypted_data = self.encrypt_data(user_id, user_ik, data)
         _safe_logging("Encrypted data %s", encrypted_data)
-        self.server_storage.store(encrypted_data, user_id, user_ik)
+        super(EncryptedStorage, self).store(encrypted_data, user_id)
 
     def get(self, user_id, user_ik):
-        data = self.server_storage.get(user_id, user_ik)
+        data = super(EncryptedStorage, self).get(user_id)
         _safe_logging("About to decrypt data %s", data)
         if 'data' in data:
             decrypted_data = self.decrypt_data(user_id, user_ik, data)
@@ -61,12 +60,3 @@ class EncryptedStorage(StorageMedium):
     def decrypt_data(self, user_id, user_ik, encrypted_data):
         sha_key = generate_key(user_id, user_ik)
         return self.decryption.decrypt(encrypted_data['data'], sha_key)
-
-    def has_data(self, user_id):
-        return self.server_storage.has_data(user_id)
-
-    def delete(self, user_id):
-        self.server_storage.delete(user_id)
-
-    def clear(self):
-        self.server_storage.clear()

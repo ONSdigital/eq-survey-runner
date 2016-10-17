@@ -1,6 +1,4 @@
 from app.storage.encrypted_storage import EncryptedStorage, generate_key
-from app.storage.database_storage import DatabaseStorage
-from app import settings
 
 
 import unittest
@@ -38,18 +36,13 @@ class TestEncryptedStorage(unittest.TestCase):
         self.assertNotEquals(cek1, cek2)
 
     def test_store_and_get(self):
-        storage = DatabaseStorage()
-        encrypted = EncryptedStorage(storage)
+        encrypted = EncryptedStorage()
         user_id = '1'
         user_ik = '2'
         data = "test"
         encrypted.store(data, user_id, user_ik)
         # check we can decrypt the data
         self.assertEquals(data, encrypted.get(user_id, user_ik))
-
-        # check the underlying store has the encrypted version
-        self.assertIsNotNone(storage.get(user_id, user_ik))
-        self.assertNotEquals(data, storage.get(user_id, user_ik))
 
 if __name__ == '__main__':
     unittest.main()
