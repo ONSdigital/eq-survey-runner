@@ -1,5 +1,5 @@
 import logging
-
+from functools import wraps
 
 from app.data_model.questionnaire_store import get_metadata
 from app.questionnaire.questionnaire_manager import InvalidLocationException
@@ -18,17 +18,26 @@ from .. import main_blueprint
 logger = logging.getLogger(__name__)
 
 
-@main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/<location>', methods=["GET"])
-@login_required
-def get_questionnaire(eq_id, form_type, period_id, collection_id, location):
-    logger.debug("Get location : /questionnaire/%s/%s/%s/%s/%s", eq_id, form_type, period_id, collection_id, location)
-    questionnaire_manager = QuestionnaireManagerFactory.get_instance()
-    try:
-        if not same_survey(collection_id, eq_id, form_type, period_id):
+def check_survey_state(func):
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        questionnaire_manager = QuestionnaireManagerFactory.get_instance()
+        if not same_survey(kwargs['eq_id'], kwargs['form_type'], kwargs['period_id'], kwargs['collection_id']):
             return redirect("/information/multiple-surveys")
         elif questionnaire_manager.submitted:
-            return do_redirect(eq_id, form_type, period_id, collection_id, 'thank-you')
+            return do_redirect(kwargs['eq_id'], kwargs['form_type'], kwargs['period_id'], kwargs['collection_id'], 'thank-you')
+        else:
+            return func(*args, **kwargs)
 
+    return decorated_function
+
+
+@main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/<location>', methods=["GET"])
+@login_required
+@check_survey_state
+def get_questionnaire(eq_id, form_type, period_id, collection_id, location):
+    questionnaire_manager = QuestionnaireManagerFactory.get_instance()
+    try:
         return render_page(location, questionnaire_manager)
     except InvalidLocationException:
         return do_redirect(eq_id, form_type, period_id, collection_id, questionnaire_manager.get_current_location())
@@ -36,16 +45,10 @@ def get_questionnaire(eq_id, form_type, period_id, collection_id, location):
 
 @main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/<location>', methods=["POST"])
 @login_required
+@check_survey_state
 def post_questionnaire(eq_id, form_type, period_id, collection_id, location):
-    logger.debug("Post location : /questionnaire/%s/%s/%s/%s/%s", eq_id, form_type, period_id, collection_id, location)
     questionnaire_manager = QuestionnaireManagerFactory.get_instance()
-    if not same_survey(collection_id, eq_id, form_type, period_id):
-        return redirect("/information/multiple-surveys")
-    elif questionnaire_manager.submitted:
-        return do_redirect(eq_id, form_type, period_id, collection_id, 'thank-you')
-
     try:
-        logger.debug("POST current location %s", location)
         logger.debug("POST request length %s", request.content_length)
 
         questionnaire_manager.process_incoming_answers(location, request.form)
@@ -59,13 +62,9 @@ def post_questionnaire(eq_id, form_type, period_id, collection_id, location):
 
 @main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/previous', methods=['GET'])
 @login_required
+@check_survey_state
 def go_to_previous_page(eq_id, form_type, period_id, collection_id):
     questionnaire_manager = QuestionnaireManagerFactory.get_instance()
-    if not same_survey(collection_id, eq_id, form_type, period_id):
-        return redirect("/information/multiple-surveys")
-    elif questionnaire_manager.submitted:
-        return do_redirect(eq_id, form_type, period_id, collection_id, 'thank-you')
-
     previous_location = questionnaire_manager.get_previous_location()
     questionnaire_manager.go_to(previous_location)
     return do_redirect(eq_id, form_type, period_id, collection_id, previous_location)
@@ -76,7 +75,7 @@ def go_to_previous_page(eq_id, form_type, period_id, collection_id):
 def get_thank_you(eq_id, form_type, period_id, collection_id):
     # Delete user data on request of thank you page.
     questionnaire_manager = QuestionnaireManagerFactory.get_instance()
-    if not same_survey(collection_id, eq_id, form_type, period_id):
+    if not same_survey(eq_id, form_type, period_id, collection_id):
         return redirect("/information/multiple-surveys")
 
     page = render_page('thank-you', questionnaire_manager)
@@ -88,7 +87,7 @@ def do_redirect(eq_id, form_type, period_id, collection_id,  location):
     return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + location)
 
 
-def same_survey(collection_id, eq_id, form_type, period_id):
+def same_survey(eq_id, form_type, period_id, collection_id):
     metadata = get_metadata(current_user)
     current_survey = eq_id + form_type + period_id + collection_id
     metadata_survey = metadata.eq_id + metadata.form_type + metadata.period_id + metadata.collection_exercise_sid
