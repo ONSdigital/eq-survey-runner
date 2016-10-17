@@ -38,10 +38,6 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         # We submit the form
         resp = self.submit_page(first_page, form_data)
 
-        # There are validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_BLOCK2)
-        resp = self.navigate_to_page(first_page)
-
         # We stay on the current page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'Star Wars Quiz')
@@ -85,34 +81,3 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         # Check we are on the next page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'Why doesn&#39;t Chewbacca receive a medal at the end of A New Hope?')
-
-    def test_radio_boxes_other_is_mandatory(self):
-        """
-        When user selects other as an option they should provide a value
-        Failure to provide an other value should result in an error.
-        """
-
-        self.login_and_check_introduction_text()
-
-        first_page = self.start_questionnaire()
-
-        # We select the 'other' radio input field but do not supply a value for the Other text input.
-        form_data = {
-            # Start Date
-            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": ["other", ""],
-
-            # User Action
-            "action[save_continue]": "Save &amp; Continue"
-        }
-
-        # We submit the form
-        resp = self.submit_page(first_page, form_data)
-
-        # There are validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_CHOOSE_YOUR_SIDE_REGEX)
-        resp = self.navigate_to_page(first_page)
-
-        # We stay on the current page
-        content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'This page has 1 errors')
-        self.assertRegexpMatches(content, 'This field is mandatory.')

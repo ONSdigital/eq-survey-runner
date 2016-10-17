@@ -44,11 +44,6 @@ class TestDarkSidePath(StarWarsTestCase):
         # Submit the form
         resp = self.submit_page(first_page, form_data)
 
-        # Check we stay on the page
-        self.assertEquals(resp.headers['Location'], first_page)
-
-        resp = self.navigate_to_page(first_page)
-
         # Test error messages
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'No one lives that long, not even Yoda')
@@ -90,11 +85,6 @@ class TestDarkSidePath(StarWarsTestCase):
         # Submit the form
         resp = self.submit_page(first_page, form_data)
 
-        # Check we stay on the page
-        self.assertEquals(resp.headers['Location'], first_page)
-
-        resp = self.navigate_to_page(first_page)
-
         # Test error messages
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'This field is mandatory')
@@ -131,11 +121,6 @@ class TestDarkSidePath(StarWarsTestCase):
         # Submit the form
         resp = self.submit_page(first_page, form_data)
 
-        # Check we stay on the page
-        self.assertEquals(resp.headers['Location'], first_page)
-
-        resp = self.navigate_to_page(first_page)
-
         # Test error messages
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'How can it be negative?')
@@ -165,11 +150,6 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Submit the form
         resp = self.submit_page(first_page, form_data)
-
-        # Check we stay on the page
-        self.assertEquals(resp.headers['Location'], first_page)
-
-        resp = self.navigate_to_page(first_page)
 
         # Test error messages
         content = resp.get_data(True)

@@ -11,7 +11,9 @@
     </div>
     <br/>
     {% set state = content %}
+
     {% set all_errors = state.get_errors().items() %}
+
     {% if all_errors %}
 
       <div class="u-mb-s u-mb-l@s">

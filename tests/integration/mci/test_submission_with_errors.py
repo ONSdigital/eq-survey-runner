@@ -90,8 +90,8 @@ class TestSubmissionWithErrors(IntegrationTestCase):
           }
 
         resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'],block_one_url)
+        self.assertEquals(resp.status_code, 200)
+
         # We submit our answers
         post_data = {
             "action[submit_answers]": "Submit answers"

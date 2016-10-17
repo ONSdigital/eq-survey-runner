@@ -1,7 +1,7 @@
 import logging
 
-from app.questionnaire_state.answer import Answer as State
 from app.questionnaire_state.exceptions import StateException
+from app.questionnaire_state.state_answer import StateAnswer
 from app.schema.exceptions import TypeCheckingException
 from app.schema.item import Item
 
@@ -31,12 +31,13 @@ class Answer(Item):
         self.skip_condition = None
 
     def construct_state(self):
-        return State(self.id, self)
+        return StateAnswer(self.id, self)
 
     def get_state_class(self):
-        return State
+        return StateAnswer
 
     def get_user_input(self, post_vars):
+
         user_input = self.widget.get_user_input(post_vars)
         return self.check_user_input(user_input)
 
@@ -55,18 +56,16 @@ class Answer(Item):
         else:
             return None
 
-    def get_typed_value(self, post_vars):
-        if self.id in post_vars.keys():
-            user_input = bleach.clean(post_vars[self.id])
+    def type_validation(self, input):
 
-            for checker in self.type_checkers:
-                result = checker.validate(user_input)
-                if not result.is_valid:
-                    raise TypeCheckingException(result.errors[0])
+        user_input = bleach.clean(input)
 
-            return self._cast_user_input(user_input)
-        else:
-            return None
+        for checker in self.type_checkers:
+            result = checker.validate(user_input)
+            if not result.is_valid:
+                raise TypeCheckingException(result.errors[0])
+
+        return self._cast_user_input(user_input)
 
     def _cast_user_input(self, user_input):
         return user_input
@@ -81,6 +80,16 @@ class Answer(Item):
                 self.mandatory_error(state)
             elif self.mandatory and self.type == 'Radio' and state.input == 'other' and state.other is None:
                 self.mandatory_error(state)
+
+            # Try and get the typed value
+
+            if state.input:
+                try:
+                    state.value = self.type_validation(state.input)
+                except TypeCheckingException as e:
+                    state.is_valid = False
+                    state.errors = []
+                    state.errors.append(self.questionnaire.get_error_message(str(e), self.id))
 
             # Here we just report on whether the answer has passed type checking
             return state.is_valid

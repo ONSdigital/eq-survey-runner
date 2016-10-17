@@ -1,9 +1,11 @@
 from app.parser.metadata_parser import parse_metadata
-from app.questionnaire_state.block import Block
-from app.questionnaire_state.node import Node
-from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
-from app.templating.questionnaire_template_preprocessor import QuestionnaireTemplatePreprocessor
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
+from app.templating.questionnaire_template_preprocessor import QuestionnaireTemplatePreprocessor
+
+from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
+from app.questionnaire_state.node import Node
+from app.questionnaire_state.state_block import StateBlock
+
 
 
 class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
@@ -32,14 +34,16 @@ class TestQuestionnaireTemplatePreprocessor(SurveyRunnerTestCase):
         return self.metadata
 
     def test_build_view_data(self):
-        block = Block("1", None)
-        node = Node("1", block)
+        block = StateBlock("1", None)
+        node = Node("1")
 
         questionnaire_template_preprocessor = QuestionnaireTemplatePreprocessor()
         original_get_metadata_method = MetaDataTemplatePreprocessor._get_metadata
-        MetaDataTemplatePreprocessor._get_metadata = self.get_metadata
 
-        render_data = questionnaire_template_preprocessor.build_view_data(node, self.questionnaire)
+        MetaDataTemplatePreprocessor._get_metadata = self.get_metadata
+        state_items = [block]
+        render_data = questionnaire_template_preprocessor.build_view_data(node, self.questionnaire, state_items)
+
         self.assertIsNotNone(render_data)
         self.assertEqual(block, render_data['content'])
 
