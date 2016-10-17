@@ -10,7 +10,7 @@ class DatabaseStorage:
     '''
     Server side storage using an RDS database (where one column is the entire JSON representation of the questionnaire state)
     '''
-    def store(self, data, user_id):
+    def store(self, data, user_id, user_ik=None):
         logger.debug("About to store data %s for user %s", data, user_id)
         if self.has_data(user_id):
             logger.debug("Loading previous data for user %s", user_id)
@@ -26,7 +26,7 @@ class DatabaseStorage:
         db_session.commit()
         logger.debug("Committed")
 
-    def get(self, user_id):
+    def get(self, user_id, user_ik=None):
         logger.debug("Loading questionnaire state for user %s", user_id)
         questionnaire_state = self._get_object(user_id)
         if questionnaire_state:
