@@ -2,6 +2,9 @@
   border-radius: 0;
   a {
     color: $color-secondary;
+    &:focus {
+      color: white;
+    }
   }
 }
 

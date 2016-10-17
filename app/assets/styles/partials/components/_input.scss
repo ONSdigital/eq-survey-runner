@@ -20,6 +20,11 @@ $input-width: 15rem;
     border-color: $color-focus;
     box-shadow: 0 0 0 1px $color-focus;
   }
+  @include fixed() {
+    &:focus {
+      outline: 2px solid $color-focus;
+    }
+  }
 }
 
 .input__helper {
@@ -70,6 +75,9 @@ $input-width: 15rem;
   @include fixed() {
     border: none;
     background: none;
+    &:focus {
+      outline: 2px solid $color-focus;
+    }
   }
 }
 
