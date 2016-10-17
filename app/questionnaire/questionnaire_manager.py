@@ -1,7 +1,6 @@
 import logging
 
-from app.authentication.session_management import session_manager
-from app.data_model.questionnaire_store import get_metadata, get_questionnaire_store
+from app.data_model.questionnaire_store import get_metadata
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.questionnaire.state import State
 from app.questionnaire.state_manager import StateManager
@@ -390,14 +389,6 @@ class QuestionnaireManager(object):
                 user_action = key[7:-1]
 
         return user_action
-
-    def delete_user_data(self):
-        # once the survey has been submitted
-        # delete all user data from the database
-        qdata = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        qdata.delete()
-        # and clear out the session state
-        session_manager.clear()
 
     def register_element_in_schema(self, item):
         self._schema.register(item)

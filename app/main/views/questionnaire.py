@@ -1,7 +1,8 @@
 import logging
 from functools import wraps
 
-from app.data_model.questionnaire_store import get_metadata
+from app.authentication.session_management import session_manager
+from app.data_model.questionnaire_store import get_metadata, get_questionnaire_store
 from app.questionnaire.questionnaire_manager import InvalidLocationException
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 
@@ -79,8 +80,13 @@ def get_thank_you(eq_id, form_type, period_id, collection_id):
         return redirect("/information/multiple-surveys")
 
     page = render_page('thank-you', questionnaire_manager)
-    questionnaire_manager.delete_user_data()
+    delete_user_data()
     return page
+
+
+def delete_user_data():
+    get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
+    session_manager.clear()
 
 
 def do_redirect(eq_id, form_type, period_id, collection_id,  location):
