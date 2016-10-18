@@ -1,17 +1,12 @@
 import json
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, Mock
 
 import os
 
 from app import settings
 from app.parser.schema_parser_factory import SchemaParserFactory
-
-from app.questionnaire_state.state_answer import StateAnswer
-from app.questionnaire_state.state_question import StateQuestion
-
-from app.questionnaire_state.node import Node
-
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
+from app.questionnaire_state.node import Node
 from app.schema.block import Block
 from app.schema.group import Group
 from app.schema.questionnaire import Questionnaire
@@ -187,3 +182,49 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
             questionnaire_manager = QuestionnaireManager(schema)
             questionnaire_manager.go_to_node("introduction")
             self.assertEquals("introduction", questionnaire_manager.get_current_location())
+
+    def test_update_node_answers_should_use_other_value_if_present(self):
+        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+
+        mock_answer = MagicMock()
+        mock_answer.id = 'answer id'
+        mock_answer.other = 'other value'
+        mock_answer.value = 'other'
+
+        questionnaire_manager.state = Mock()
+        questionnaire_manager.state.get_answers = MagicMock(return_value=[mock_answer])
+
+        mock_node = MagicMock()
+        questionnaire_manager.update_node_answers(mock_node)
+
+        self.assertEquals(1, len(mock_node.answers))
+        self.assertEquals({'answer id': 'other value'}, mock_node.answers)
+
+    def test_update_node_answers_should_use_input_value_when_no_other_value(self):
+        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+
+        mock_answer = MagicMock()
+        mock_answer.id = 'answer id'
+        mock_answer.other = None
+        mock_answer.value = 'input value'
+
+        questionnaire_manager.state = Mock()
+        questionnaire_manager.state.get_answers = MagicMock(return_value=[mock_answer])
+
+        mock_node = MagicMock()
+        questionnaire_manager.update_node_answers(mock_node)
+
+        self.assertEquals(1, len(mock_node.answers))
+        self.assertEquals({'answer id': 'input value'}, mock_node.answers)
+
+    def test_update_node_answers_returns_empty_dict_when_no_answers(self):
+        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+
+        questionnaire_manager.state = Mock()
+        questionnaire_manager.state.get_answers = MagicMock(return_value=[])
+
+        mock_node = MagicMock()
+        questionnaire_manager.update_node_answers(mock_node)
+
+        self.assertEquals(0, len(mock_node.answers))
+        self.assertEquals({}, mock_node.answers)
