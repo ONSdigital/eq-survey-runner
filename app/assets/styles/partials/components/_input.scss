@@ -38,7 +38,7 @@ $input-width: 15rem;
   padding: $input-padding 2rem $input-padding 0.5rem;
   background: $color-white url("/s/img/icons/icons--chevron-down.svg") no-repeat center right 6px;
   background-size: 1.5rem;
-  line-height: 1.4;
+  line-height: 1.25rem;
   &::-ms-expand {
     display: none;
   }
@@ -152,6 +152,7 @@ $input-width: 15rem;
   line-height: normal;
   position: absolute;
   left: 1px;
+  top: 1px;
   z-index: 2;
   @include fixed {
     position: absolute;
