@@ -33,6 +33,7 @@ services:
       EQ_SCHEMA_BUCKET: ""
       EQ_SERVER_SIDE_STORAGE_DATABASE_URL: postgres://digitaleq:digitaleq@db:5432/runner
       EQ_RABBITMQ_URL: amqp://digitaleq:digitaleq@rabbit:5672/%2F
+    restart: always
     volumes:
       - ./:/code
     depends_on:

@@ -22,4 +22,4 @@ ADD . /code
 
 RUN npm install && npm run compile
 
-ENTRYPOINT sleep 5; python3 application.py runserver
+ENTRYPOINT python3 application.py runserver

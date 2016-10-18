@@ -112,13 +112,16 @@ eb open
 
 ## Run with Docker
 
+To use docker to run eq-survey-runner you first need to build the container (this may take a few minutes on first run)
 ```
 docker-compose build
 ```
-
+You can then start the containers.
 ```
 docker-compose up -d
 ```
+
+When the containers are running you are able to access the application as normal, and code changes will be reflected in the running application
 
 ## Internationalisation
 
