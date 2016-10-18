@@ -2,6 +2,7 @@ import logging
 
 from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import convert_tx_id
+from app.parser.metadata_parser import iso_8601_data_parser
 
 from flask_login import current_user
 
@@ -18,17 +19,19 @@ class MetaDataTemplatePreprocessor(object):
         return render_data
 
     def _build_respondent_meta(self):
-        if self._get_metadata():
-            respondent_id = self._get_metadata().ru_ref
-            name = self._get_metadata().ru_name
-            trading_as = self._get_metadata().trad_as
+        metadata = self._get_metadata()
+
+        if metadata:
+            respondent_id = metadata["ru_ref"]
+            name = metadata["ru_name"]
+            trading_as = metadata["trad_as"]
         else:
             respondent_id = None
             name = None
             trading_as = None
 
         respondent_meta = {
-            "tx_id": convert_tx_id(self._get_metadata().tx_id),
+            "tx_id": convert_tx_id(metadata["tx_id"]),
             "respondent_id": respondent_id,
             "address": {
                 "name": name,
@@ -39,6 +42,7 @@ class MetaDataTemplatePreprocessor(object):
 
     def _build_survey_meta(self, schema):
         introduction = schema.introduction
+        metadata = self._get_metadata()
 
         survey_meta = {
             "title": schema.title,
@@ -46,11 +50,11 @@ class MetaDataTemplatePreprocessor(object):
             "description": self._get_description(introduction),
             "information_to_provide": self._get_info_to_provide(introduction),
             "theme": schema.theme,
-            "return_by": self._format_date(self._get_metadata().return_by),
-            "start_date":  self._format_date(self._get_metadata().ref_p_start_date),
-            "end_date": self._format_date(self._get_metadata().ref_p_end_date),
-            "employment_date": self._format_date(self._get_metadata().employment_date),
-            "period_str": self._get_metadata().period_str,
+            "return_by": self._format_date(metadata["return_by"]),
+            "start_date":  self._format_date(metadata["ref_p_start_date"]),
+            "end_date": self._format_date(metadata["ref_p_end_date"]),
+            "employment_date": self._format_date(metadata["employment_date"]),
+            "period_str": metadata["period_str"],
         }
         return survey_meta
 
@@ -66,17 +70,18 @@ class MetaDataTemplatePreprocessor(object):
 
         return None
 
+    def _get_metadata(self):
+        return get_metadata(current_user)
+
     @staticmethod
-    def _format_date(date):
+    def _format_date(input_date_string):
         formatted_date = None
         try:
             # employment date is optional this is why date is checked to see if exists
-            if date:
-                formatted_date = '{dt.day} {dt:%B} {dt.year}'.format(dt=date)
+            if input_date_string:
+                input_date = iso_8601_data_parser(input_date_string)
+                formatted_date = '{dt.day} {dt:%B} {dt.year}'.format(dt=input_date)
         except ValueError as e:
             logger.exception(e)
-            logger.error("Error parsing meta data for %s", date)
+            logger.error("Error parsing meta data for %s", input_date_string)
         return formatted_date
-
-    def _get_metadata(self):
-        return get_metadata(current_user)

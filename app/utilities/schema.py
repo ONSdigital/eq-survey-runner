@@ -12,8 +12,8 @@ logger = logging.getLogger(__name__)
 def get_schema():
     metadata = get_metadata(current_user)
 
-    eq_id = metadata.eq_id
-    form_type = metadata.form_type
+    eq_id = metadata["eq_id"]
+    form_type = metadata["form_type"]
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
     schema = load_and_parse_schema(eq_id, form_type)

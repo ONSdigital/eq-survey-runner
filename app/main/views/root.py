@@ -57,10 +57,11 @@ def login():
         logger.debug("Token authenticated - linking to session")
 
         metadata = get_metadata(current_user)
-        eq_id = metadata.eq_id
-        collection_id = metadata.collection_exercise_sid
-        form_type = metadata.form_type
-        period_id = metadata.period_id
+
+        eq_id = metadata["eq_id"]
+        collection_id = metadata["collection_exercise_sid"]
+        form_type = metadata["form_type"]
+        period_id = metadata["period_id"]
 
         logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
         if not eq_id or not form_type:

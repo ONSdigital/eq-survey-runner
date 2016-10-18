@@ -8,7 +8,7 @@ from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.questionnaire_store import get_questionnaire_store
-from app.parser.metadata_parser import MetadataParser
+from app.parser.metadata_parser import is_valid_metadata, parse_metadata
 
 from flask import session
 
@@ -28,9 +28,9 @@ class Authenticator(object):
         if session_manager.has_user_id():
             user = User(session_manager.get_user_id(), session_manager.get_user_ik())
             questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-            metadata = questionnaire_store.decode_metadata()
+            metadata = questionnaire_store.metadata
 
-            logger.info("Session token exists for tx_id=%s", metadata.tx_id)
+            logger.info("Session token exists for tx_id=%s", metadata["tx_id"])
 
             return user
         else:
@@ -65,13 +65,13 @@ class Authenticator(object):
         session_manager.store_user_ik(user_ik)
 
         # store the meta data
-        metadata = MetadataParser.build_metadata(token)
+        metadata = parse_metadata(token)
 
         questionnaire_store = get_questionnaire_store(user_id, user_ik)
-        questionnaire_store.encode_metadata(metadata)
+        questionnaire_store.metadata = metadata
         questionnaire_store.save()
 
-        logger.info("User authenticated with tx_id=%s", metadata.tx_id)
+        logger.info("User authenticated with tx_id=%s", metadata["tx_id"])
 
     def _jwt_decrypt(self, request):
         encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
@@ -80,6 +80,6 @@ class Authenticator(object):
         return token
 
     def _check_user_data(self, token):
-        valid, reason = MetadataParser.is_valid(token)
+        valid, field = is_valid_metadata(token)
         if not valid:
-            raise InvalidTokenException("Missing value {}".format(reason))
+            raise InvalidTokenException("Missing value {}".format(field))

@@ -11,10 +11,6 @@ def iso_8601_data_parser(iso_8601_string):
     return datetime.strptime(iso_8601_string, "%Y-%m-%d")
 
 
-def string_parser(plain_string):
-    return plain_string
-
-
 def uuid_4_parser(plain_string):
     return str(uuid.UUID(plain_string))
 
@@ -23,77 +19,70 @@ def id_generator():
     return str(uuid.uuid4())
 
 
-class MetadataConstant(object):
-    def __init__(self, claim_id, mandatory=True, parser=string_parser, generator=None):
-        # the claim id from the JWT token
-        self.claim_id = claim_id
+class MetadataField(object):
+    def __init__(self, mandatory=True, validator=None, generator=None):
         # the function to convert the value from the jwt into the required data type
-        self.parser = parser
+        self._validator = validator
+        # the function to execute if the value should be auto-generated
+        self._generator = generator
         # flag to indicate if the value must exist in the jwt token
         self.mandatory = mandatory
-        # the function to execute if the value should be auto-generated
-        self.generator = generator
+
+    def validate(self, original_value):
+        if self.mandatory and original_value is None:
+            raise ValueError("Missing mandatory field value")
+        if self._validator:
+            # The parser methods throw exceptions on incorrect data
+            self._validator(original_value)
+
+    def generate(self):
+        if self._generator:
+            return self._generator()
+
+        return None
+
+metadata_fields = {
+  "user_id": MetadataField(),
+  "ru_ref": MetadataField(),
+  "ru_name": MetadataField(),
+  "eq_id": MetadataField(),
+  "collection_exercise_sid": MetadataField(),
+  "period_id": MetadataField(),
+  "period_str": MetadataField(),
+  "ref_p_start_date": MetadataField(validator=iso_8601_data_parser),
+  "ref_p_end_date": MetadataField(validator=iso_8601_data_parser),
+  "form_type": MetadataField(),
+  "return_by": MetadataField(validator=iso_8601_data_parser),
+  "trad_as": MetadataField(mandatory=False),
+  "employment_date": MetadataField(mandatory=False, validator=iso_8601_data_parser),
+  "tx_id": MetadataField(mandatory=False, validator=uuid_4_parser, generator=id_generator),
+}
 
 
-class MetadataConstants(object):
-    """Constant for meta data values"""
-    USER_ID = MetadataConstant(claim_id='user_id')
-    RU_REF = MetadataConstant(claim_id='ru_ref')
-    RU_NAME = MetadataConstant(claim_id='ru_name')
-    EQ_ID = MetadataConstant(claim_id='eq_id')
-    COLLECTION_EXERCISE_SID = MetadataConstant(claim_id='collection_exercise_sid')
-    PERIOD_ID = MetadataConstant(claim_id='period_id')
-    PERIOD_STR = MetadataConstant(claim_id='period_str')
-    REF_P_START_DATE = MetadataConstant(claim_id='ref_p_start_date', parser=iso_8601_data_parser)
-    REF_P_END_DATE = MetadataConstant(claim_id='ref_p_end_date', parser=iso_8601_data_parser)
-    FORM_TYPE = MetadataConstant(claim_id='form_type')
-    RETURN_BY = MetadataConstant(claim_id='return_by', parser=iso_8601_data_parser)
-    TRAD_AS = MetadataConstant(claim_id='trad_as', mandatory=False)
-    EMPLOYMENT_DATE = MetadataConstant(claim_id='employment_date', mandatory=False, parser=iso_8601_data_parser)
-    TRANSACTION_ID = MetadataConstant(claim_id='tx_id', mandatory=False, parser=uuid_4_parser, generator=id_generator)
+def parse_metadata(metadata_to_check):
+    parsed = {}
+    try:
+        for key, field in metadata_fields.items():
+            logger.debug("parse_metadata: Adding attr %s", key)
+            if key in metadata_to_check:
+                attr_value = metadata_to_check[key]
+                field.validate(attr_value)
+                logger.debug("with value %s", attr_value)
+            else:
+                logger.debug("Generating value for %s", key)
+                attr_value = field.generate()
+
+            parsed[key] = attr_value
+    except (RuntimeError, ValueError, TypeError) as e:
+        logger.error("parse_metadata: Unable to parse")
+        logger.exception(e)
+        raise InvalidTokenException("Incorrect data in token")
+
+    return parsed
 
 
-class MetadataParser(object):
-
-    @staticmethod
-    def _get_constants():
-        for attr in dir(MetadataConstants):
-            constant = getattr(MetadataConstants, attr)
-            if isinstance(constant, MetadataConstant):
-                yield constant
-
-    @staticmethod
-    def is_valid(token):
-        for constant in MetadataParser._get_constants():
-            if constant.mandatory and constant.claim_id not in token:
-                return False, constant.claim_id
-        return True, ""
-
-    @staticmethod
-    def build_metadata(token):
-        try:
-            metadata = MetadataParser()
-            # loop around all the constants and add them as attributes of the metadata object
-            for constant in MetadataParser._get_constants():
-                attr_name = constant.claim_id
-                logger.debug("MetadataParser adding attr %s", attr_name)
-                if attr_name in token:
-                    value = token[attr_name]
-                    attr_value = constant.parser(value)
-                    logger.debug("with value %s", attr_value)
-                elif constant.mandatory:
-                    logger.warning("Missing constant value for %s", constant.claim_id)
-                    raise ValueError("Missing constant value %s".format(constant.claim_id))
-                else:
-                    if constant.generator:
-                        logger.debug("Generating value for %s", attr_name)
-                        attr_value = constant.generator()
-                    else:
-                        logger.debug("No value provide for %s but this is not mandatory, setting to None", attr_name)
-                        attr_value = None
-                setattr(metadata, attr_name, attr_value)
-            return metadata
-        except (RuntimeError, ValueError, TypeError) as e:
-            logger.error("Unable to parse Metadata")
-            logger.exception(e)
-            raise InvalidTokenException("Incorrect data in token")
+def is_valid_metadata(metadata):
+    for key, field in metadata_fields.items():
+        if field.mandatory and key not in metadata:
+            return False, key
+    return True, ""

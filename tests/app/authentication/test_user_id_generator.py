@@ -3,7 +3,6 @@ import unittest
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.user_id_generator import UserIDGenerator
-from app.parser.metadata_parser import MetadataConstants
 
 
 class TestUserIDGenerator(unittest.TestCase):
@@ -89,10 +88,10 @@ class TestUserIDGenerator(unittest.TestCase):
 
     def create_token(self, eq_id, collection_exercise_sid, ru_ref, form_type):
         return {
-                MetadataConstants.EQ_ID.claim_id: eq_id,
-                MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: collection_exercise_sid,
-                MetadataConstants.RU_REF.claim_id: ru_ref,
-                MetadataConstants.FORM_TYPE.claim_id: form_type}
+                "eq_id": eq_id,
+                "collection_exercise_sid": collection_exercise_sid,
+                "ru_ref": ru_ref,
+                "form_type": form_type}
 
 if __name__ == '__main__':
     unittest.main()
