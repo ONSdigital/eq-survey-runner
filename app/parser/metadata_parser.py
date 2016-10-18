@@ -42,20 +42,20 @@ class MetadataField(object):
         return None
 
 metadata_fields = {
-  "user_id": MetadataField(),
-  "ru_ref": MetadataField(),
-  "ru_name": MetadataField(),
-  "eq_id": MetadataField(),
-  "collection_exercise_sid": MetadataField(),
-  "period_id": MetadataField(),
-  "period_str": MetadataField(),
-  "ref_p_start_date": MetadataField(validator=iso_8601_data_parser),
-  "ref_p_end_date": MetadataField(validator=iso_8601_data_parser),
-  "form_type": MetadataField(),
-  "return_by": MetadataField(validator=iso_8601_data_parser),
-  "trad_as": MetadataField(mandatory=False),
-  "employment_date": MetadataField(mandatory=False, validator=iso_8601_data_parser),
-  "tx_id": MetadataField(mandatory=False, validator=uuid_4_parser, generator=id_generator),
+    "user_id": MetadataField(),
+    "ru_ref": MetadataField(),
+    "ru_name": MetadataField(),
+    "eq_id": MetadataField(),
+    "collection_exercise_sid": MetadataField(),
+    "period_id": MetadataField(),
+    "period_str": MetadataField(),
+    "ref_p_start_date": MetadataField(validator=iso_8601_data_parser),
+    "ref_p_end_date": MetadataField(validator=iso_8601_data_parser),
+    "form_type": MetadataField(),
+    "return_by": MetadataField(validator=iso_8601_data_parser),
+    "trad_as": MetadataField(mandatory=False),
+    "employment_date": MetadataField(mandatory=False, validator=iso_8601_data_parser),
+    "tx_id": MetadataField(mandatory=False, validator=uuid_4_parser, generator=id_generator),
 }
 
 
