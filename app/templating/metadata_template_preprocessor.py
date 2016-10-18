@@ -79,3 +79,4 @@ class MetaDataTemplatePreprocessor(object):
 
         if formatted_date:
             return '{dt.day} {dt:%B} {dt.year}'.format(dt=formatted_date)
+        return None
