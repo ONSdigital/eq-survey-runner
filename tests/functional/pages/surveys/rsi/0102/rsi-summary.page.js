@@ -19,7 +19,7 @@ class RSISummaryPage extends SummaryPage {
   }
 
   editLinkChangeInRetailTurnover(){
-    browser.click('[aria-describedby="summary-3-0 summary-3-0-answer"]')
+    browser.click('[aria-describedby="summary-3-0-0 summary-3-0-0-answer"]')
   }
 
 }

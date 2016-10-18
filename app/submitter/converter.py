@@ -90,17 +90,17 @@ class Converter(object):
                 if value is not None:
                     data[item.code] = Converter._encode_value(value)
 
-        metadata = {SubmitterConstants.USER_ID_KEY: metadata_store.user_id,
-                    SubmitterConstants.RU_REF_KEY: metadata_store.ru_ref}
+        metadata = {SubmitterConstants.USER_ID_KEY: metadata_store['user_id'],
+                    SubmitterConstants.RU_REF_KEY: metadata_store['ru_ref']}
 
-        collection = {SubmitterConstants.EXERCISE_SID_KEY: metadata_store.collection_exercise_sid,
-                      SubmitterConstants.INSTRUMENT_KEY: metadata_store.form_type,
-                      SubmitterConstants.PERIOD_KEY: metadata_store.period_id}
+        collection = {SubmitterConstants.EXERCISE_SID_KEY: metadata_store['collection_exercise_sid'],
+                      SubmitterConstants.INSTRUMENT_KEY: metadata_store['form_type'],
+                      SubmitterConstants.PERIOD_KEY: metadata_store['period_id']}
 
         paradata = {}
         submitted_at = datetime.now(timezone.utc)
 
-        payload = {SubmitterConstants.TX_ID: metadata_store.tx_id,
+        payload = {SubmitterConstants.TX_ID: metadata_store['tx_id'],
                    SubmitterConstants.TYPE_KEY: SubmitterConstants.TYPE,
                    SubmitterConstants.VERSION_KEY: SubmitterConstants.VERSION,
                    SubmitterConstants.ORIGIN_KEY: SubmitterConstants.ORIGIN,

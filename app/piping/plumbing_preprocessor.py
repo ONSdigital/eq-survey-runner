@@ -1,5 +1,6 @@
 from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import ObjectFromDict
+from app.parser.metadata_parser import iso_8601_data_parser
 from app.piping.plumber import Plumber
 
 from flask_login import current_user
@@ -33,16 +34,13 @@ class PlumbingPreprocessor(object):
         '''
         Build the exercise data from the survey metadata
         '''
-        start_date = self._get_metadata().ref_p_start_date
-        end_date = self._get_metadata().ref_p_end_date
-        employment_date = self._get_metadata().employment_date
-        return_by = self._get_metadata().return_by
+        metadata = self._get_metadata()
 
         return ObjectFromDict({
-            "start_date": start_date,
-            "end_date": end_date,
-            "employment_date": employment_date,
-            "return_by": return_by,
+            "start_date": iso_8601_data_parser(metadata["ref_p_start_date"]),
+            "end_date": iso_8601_data_parser(metadata["ref_p_end_date"]),
+            "employment_date": iso_8601_data_parser(metadata["employment_date"]),
+            "return_by": iso_8601_data_parser(metadata["return_by"]),
         })
 
     def _build_answers_piping_context(self, questionnaire_manager, schema):

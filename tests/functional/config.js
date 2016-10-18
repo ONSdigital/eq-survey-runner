@@ -1,82 +1,57 @@
 import {paths} from '../../gulp/paths'
 import {chrome, firefox, ie11, ie10, ie9, ie8} from './capabilities'
-import Promise from 'promise'
-import sauceConnectLauncher from 'sauce-connect-launcher'
 
-const useLocalSauceLabs = process.env.SAUCELABS === 'true' || false
-
-let sauceConnectProcess
+var argv = require('yargs').argv
 
 let config = {
+  services: ['selenium-standalone'],
   // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: 'command',
-  maxInstances: 1,
+  logLevel: 'error',
+  maxInstances: 2,
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
-  waitforTimeout: 10000,
+  waitforTimeout: 20000,
   updateJob: true,
   specs: [`${paths.test.wdioSpec}/**/*.spec.js`],
   sync: true,
+  connectionRetryTimeout: 90000,
+  connectionRetryCount: 3,
   capabilities: [{
     name: 'Chrome (local)',
-    browserName: 'chrome'
+    browserName: 'chrome',
+    maxInstances: 1
   }],
   framework: 'mocha',
-  reporters: ['dot','spec'],
+  reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
-    timeout: 60000
+    timeout: 120000
   }
 }
 
 const sauceLabsConfig = {
+  services: ['sauce'],
+  sauceConnect: true,
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
-  capabilities: [chrome, ie11]
+  capabilities: [firefox]
 }
 
 if (process.env.TRAVIS === 'true') {
   config = {
     ...config,
     ...sauceLabsConfig,
-    logLevel: 'debug'
+    logLevel: 'debug',
+    capabilities: [firefox],
+    specs: ['mci', 'rsi-saverestore-0112'].map(spec => `${paths.test.wdioSpec}/${spec}.spec.js`)
   }
 } else {
-  if (useLocalSauceLabs) {
+  if (argv.sauce) {
     config = {
       ...config,
-      ...sauceLabsConfig,
-      onPrepare: function() {
-        return new Promise(function(resolve, reject) {
-          sauceConnectLauncher({
-            username: process.env.SAUCE_USERNAME,
-            accessKey: process.env.SAUCE_ACCESS_KEY
-          }, function(err, process) {
-            if (err) {
-              console.log(err)
-              reject(err)
-            } else {
-              console.log('Sauce Connect is ready.')
-              sauceConnectProcess = process
-              resolve()
-            }
-          })
-        }).catch(function(err) {
-          console.error(err.message)
-          if (sauceConnectProcess) {
-            sauceConnectProcess.close()
-          }
-        })
-      },
-      onComplete: function() {
-        if (typeof sauceConnectProcess !== 'undefined') {
-          sauceConnectProcess.close(function() {
-            console.log('Closed Sauce Connect process.')
-          })
-        }
-      }
+      ...sauceLabsConfig
     }
   }
 }

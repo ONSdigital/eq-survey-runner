@@ -5,7 +5,6 @@ import unittest
 from app import create_app
 from app import settings
 from app.dev_mode.jwt_encoder import Encoder
-from app.parser.metadata_parser import MetadataConstants
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
@@ -46,19 +45,19 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         iat = time.time()
         exp = time.time() + (5 * 60)
         return {
-                MetadataConstants.USER_ID.claim_id: 'jimmy',
+                "user_id": 'jimmy',
                 'iat': str(int(iat)),
                 'exp': str(int(exp)),
-                MetadataConstants.EQ_ID.claim_id: '1',
-                MetadataConstants.PERIOD_STR.claim_id: '2016-01-01',
-                MetadataConstants.PERIOD_ID.claim_id: '12',
-                MetadataConstants.FORM_TYPE.claim_id: '0203',
-                MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: "sid",
-                MetadataConstants.REF_P_START_DATE.claim_id: "2016-01-01",
-                MetadataConstants.REF_P_END_DATE.claim_id: "2016-09-01",
-                MetadataConstants.RU_REF.claim_id: "1234",
-                MetadataConstants.RU_NAME.claim_id: "Test",
-                MetadataConstants.RETURN_BY.claim_id: "2016-09-09"}
+                "eq_id": '1',
+                "period_str": '2016-01-01',
+                "period_id": '12',
+                "form_type": '0203',
+                "collection_exercise_sid": "sid",
+                "ref_p_start_date": "2016-01-01",
+                "ref_p_end_date": "2016-09-01",
+                "ru_ref": "1234",
+                "ru_name": "Test",
+                "return_by": "2016-09-09"}
 
 if __name__ == '__main__':
     unittest.main()

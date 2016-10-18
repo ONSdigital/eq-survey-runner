@@ -55,7 +55,7 @@ def post_questionnaire(eq_id, form_type, period_id, collection_id, location):
 
     next_location = questionnaire_manager.get_current_location()
     metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata.tx_id)
+    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
     return do_redirect(eq_id, form_type, period_id, collection_id, next_location)
 
 
@@ -110,7 +110,7 @@ def do_redirect(eq_id, form_type, period_id, collection_id,  location):
 def same_survey(eq_id, form_type, period_id, collection_id):
     metadata = get_metadata(current_user)
     current_survey = eq_id + form_type + period_id + collection_id
-    metadata_survey = metadata.eq_id + metadata.form_type + metadata.period_id + metadata.collection_exercise_sid
+    metadata_survey = metadata["eq_id"] + metadata["form_type"] + metadata["period_id"] + metadata["collection_exercise_sid"]
     return current_survey == metadata_survey
 
 

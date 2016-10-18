@@ -1,9 +1,8 @@
+from unittest import mock
+
+from mock import Mock, MagicMock
+
 from app.templating.summary.summary_item import SummaryItem
-from app.schema.question import Question
-from app.schema.answer import Answer
-from app.schema.block import Block
-from app.schema.section import Section
-from app.questionnaire_state.answer import Answer as StateAnswer
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
 
@@ -74,23 +73,19 @@ class TestQuestionFormatters(SurveyRunnerTestCase):
         self.check_formatter(answer_type, question_type, expected_format, original_answer)
 
     def check_formatter(self, answer_type, question_type, expected_format, original_answer):
-
-        block = Block()
-        block.id = 'b1'
-        section = Section()
-        section.id = 's1'
-        section.container = block
-        question = Question()
-        question.type = question_type
-        question.id = 'q1'
-        question.container = section
-        answer = Answer()
-        answer.type = answer_type
-        answer.id = 'a1'
-        answer.label = 'label'
+        answer = Mock()
+        answer.value = original_answer
+        answer.id = 'answerid'
+        answers = Mock()
+        answers.__iter__ = Mock(return_value=iter([answer]))
+        answer_schema = Mock()
+        answer_schema.type.lower = Mock(return_value=answer_type)
+        question_schema = MagicMock()
+        question_schema.questionnaire.get_item_by_id = Mock(return_value=answer_schema)
+        question_schema.container.container.id = 'blockid'
 
         if answer_type == 'CHECKBOX' or answer_type == 'RADIO':
-            answer.options = [{
+            question_schema.answers[0].options = [{
                               "label": "label_test_1",
                               "value": "value_test_1"
                               },
@@ -103,12 +98,6 @@ class TestQuestionFormatters(SurveyRunnerTestCase):
                               "value": "value_test_3"
                               }]
 
-        question.answers = [answer]
-        state_answer = StateAnswer(question.id, question)
-        state_answer.value = original_answer
-        state_answers = [state_answer]
-        section.questions = [question]
-
-        summary_item = SummaryItem(question, state_answers, question.type)
-        self.assertEqual(summary_item.answer, expected_format)
-        self.assertEqual(summary_item.link, block.id + "#" + answer.id)
+        summary_item = SummaryItem(question_schema, answers, question_type)
+        self.assertEqual(summary_item.sub_items[0].answer, expected_format)
+        self.assertEqual(summary_item.sub_items[0].link, 'blockid#answerid')
