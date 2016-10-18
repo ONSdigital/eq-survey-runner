@@ -1,6 +1,6 @@
 import logging
 
-from app.storage.storage_factory import StorageFactory
+from app.storage.storage_factory import get_storage
 
 from flask import g
 
@@ -18,7 +18,7 @@ class QuestionnaireStore:
         else:
             raise ValueError("No user_id or user_ik found in session")
 
-        self.storage = StorageFactory.get_storage_mechanism()
+        self.storage = get_storage()
 
         if self.storage.has_data(self.user_id):
             logger.debug("User %s has previous data loading", user_id)
