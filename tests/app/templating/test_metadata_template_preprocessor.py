@@ -1,4 +1,4 @@
-from app.parser.metadata_parser import MetadataParser, MetadataConstants
+from app.parser.metadata_parser import parse_metadata
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
@@ -7,22 +7,22 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
     def setUp(self):
         super().setUp()
         self.jwt = {
-            MetadataConstants.USER_ID.claim_id: "1",
-            MetadataConstants.FORM_TYPE.claim_id: "a",
-            MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: "test-sid",
-            MetadataConstants.EQ_ID.claim_id: "2",
-            MetadataConstants.PERIOD_ID.claim_id: "3",
-            MetadataConstants.PERIOD_STR.claim_id: "2016-01-01",
-            MetadataConstants.REF_P_START_DATE.claim_id: "2016-02-02",
-            MetadataConstants.REF_P_END_DATE.claim_id: "2016-03-03",
-            MetadataConstants.RU_REF.claim_id: "178324",
-            MetadataConstants.RU_NAME.claim_id: "Apple",
-            MetadataConstants.TRAD_AS.claim_id: "Apple",
-            MetadataConstants.RETURN_BY.claim_id: "2016-07-07",
-            MetadataConstants.TRANSACTION_ID.claim_id: "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
+            "user_id": "1",
+            "form_type": "a",
+            "collection_exercise_sid": "test-sid",
+            "eq_id": "2",
+            "period_id": "3",
+            "period_str": "2016-01-01",
+            "ref_p_start_date": "2016-02-02",
+            "ref_p_end_date": "2016-03-03",
+            "ru_ref": "178324",
+            "ru_name": "Apple",
+            "trad_as": "Apple",
+            "return_by": "2016-07-07",
+            "transaction_id": "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
         with self.application.test_request_context():
-            self.metadata = MetadataParser.build_metadata(self.jwt)
+            self.metadata = parse_metadata(self.jwt)
 
     def get_metadata(self):
           return self.metadata
@@ -46,11 +46,11 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
         self.assertEqual('2 February 2016', survey_data['start_date'])
         self.assertEqual('3 March 2016', survey_data['end_date'])
         self.assertIsNone(survey_data['employment_date'])
-        self.assertEqual(self.jwt[MetadataConstants.PERIOD_STR.claim_id], survey_data['period_str'])
+        self.assertEqual(self.jwt["period_str"], survey_data['period_str'])
 
         respondent = render_data['respondent']
         self.assertIsNotNone(respondent)
 
-        self.assertEqual(self.jwt[MetadataConstants.RU_REF.claim_id], respondent['respondent_id'])
-        self.assertEqual(self.jwt[MetadataConstants.RU_NAME.claim_id], respondent['address']['name'])
-        self.assertEqual(self.jwt[MetadataConstants.TRAD_AS.claim_id], respondent['address']['trading_as'])
+        self.assertEqual(self.jwt["ru_ref"], respondent['respondent_id'])
+        self.assertEqual(self.jwt["ru_name"], respondent['address']['name'])
+        self.assertEqual(self.jwt["trad_as"], respondent['address']['trading_as'])

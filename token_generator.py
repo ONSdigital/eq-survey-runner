@@ -3,7 +3,6 @@ import sys
 import time
 
 from app.dev_mode.jwt_encoder import Encoder
-from app.parser.metadata_parser import MetadataConstants
 
 
 def create_payload(user):
@@ -11,20 +10,20 @@ def create_payload(user):
     iat = time.time()
     exp = time.time() + expire_after_seconds
     return {
-            MetadataConstants.USER_ID.claim_id: user,
+            "user_id": user,
             'iat': str(int(iat)),
             'exp': str(int(exp)),
-            MetadataConstants.EQ_ID.claim_id: '1',
-            MetadataConstants.PERIOD_STR.claim_id: '2016-01-01',
-            MetadataConstants.PERIOD_ID.claim_id: '2016-01-01',
-            MetadataConstants.FORM_TYPE.claim_id: '0205',
-            MetadataConstants.COLLECTION_EXERCISE_SID.claim_id: "789",
-            MetadataConstants.REF_P_START_DATE.claim_id: "2016-01-01",
-            MetadataConstants.REF_P_END_DATE.claim_id: "2016-09-01",
-            MetadataConstants.RU_REF.claim_id: "12346789012A",
-            MetadataConstants.RU_NAME.claim_id: "Apple",
-            MetadataConstants.RETURN_BY.claim_id: "2016-04-30",
-            MetadataConstants.EMPLOYMENT_DATE.claim_id: "2016-06-10"}
+            "eq_id": '1',
+            "period_str": '2016-01-01',
+            "period_id": '2016-01-01',
+            "form_type": '0205',
+            "collection_exercise_sid": "789",
+            "ref_p_start_date": "2016-01-01",
+            "ref_p_end_date": "2016-09-01",
+            "ru_ref": "12346789012A",
+            "ru_name": "Apple",
+            "return_by": "2016-04-30",
+            "employment_date": "2016-06-10"}
 
 
 def generate_token():

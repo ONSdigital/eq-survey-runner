@@ -278,7 +278,7 @@ class QuestionnaireManager(object):
         elif location == 'summary' and self._current.item_id != 'summary':
             metadata = get_metadata(current_user)
             if metadata:
-                logger.warning("User with tx_id %s tried to submit in an invalid state", metadata.tx_id)
+                logger.warning("User with tx_id %s tried to submit in an invalid state", metadata["tx_id"])
             raise InvalidLocationException()
         self.go_to_state(location)
 
