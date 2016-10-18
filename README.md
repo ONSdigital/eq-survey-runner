@@ -110,6 +110,16 @@ This will create the environment and spin up the application . Once the applicat
 eb open
 ```
 
+## Run with Docker
+
+```
+docker-compose build
+```
+
+```
+docker-compose up -d
+```
+
 ## Internationalisation
 
 We use flask-babel to do internationalisation.  To extract messages from source, in the project root run the following command.

@@ -1,5 +1,7 @@
 version: '2'
+
 services:
+
   rabbit:
     image: rabbitmq:3-management
     ports:
@@ -10,7 +12,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: digitaleq
       RABBITMQ_DEFAULT_PASS: digitaleq
-  db: 
+
+  db:
     image: postgres
     environment:
       POSTGRES_PASSWORD: digitaleq
@@ -20,6 +23,7 @@ services:
       - "5433:5432"
     networks:
       - eq-env
+
   eq-survey-runner:
     build: ./
     environment:
@@ -38,6 +42,8 @@ services:
       - eq-env
     ports:
       - "5000:5000"
+
+
 networks:
   eq-env:
     driver: bridge
