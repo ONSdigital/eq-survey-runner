@@ -22,6 +22,18 @@ class StateAnswer(StateItem):
         self.input = self.schema_item.get_user_input(user_input)
         self.value = self.schema_item.get_user_input(user_input)
         self.other = self.schema_item.get_other_value(user_input)
+        if self.schema_item.type == 'Radio' and self.input:
+            self._restore_other_value(user_input)
+
+    def _restore_other_value(self, user_input):
+        # Get radio options from the schema.
+        for option in self.schema_item.options:
+            # If the radio answer has an Other option...
+            if option['label'] == 'Other' and 'other' in option and self.input not in [option['value'] for option in self.schema_item.options]:
+                # Input is not a pre-defined answer so it must be the user-entered value for other
+                self.input = 'other'
+                self.value = 'other'
+                self.other = self.schema_item.get_user_input(user_input)
 
     def get_answers(self):
         return [self]

@@ -26,3 +26,12 @@ class MultipleChoiceWidget(Widget):
         }
 
         return render_template('/partials/widgets/multiple_choice_widget.html', **widget_params)
+
+    def get_other_input(self, post_vars):
+        if len(post_vars) == 0:
+            return None
+
+        other_values = post_vars.getlist(self.name) if hasattr(post_vars, 'getlist') else post_vars.get(self.name)
+        other_value = other_values[-1:][0] if isinstance(other_values, list) and len(other_values) > 0 else None
+        logger.debug('Getting user input for "{}", value is "{}"'.format(self.name, other_value))
+        return other_value

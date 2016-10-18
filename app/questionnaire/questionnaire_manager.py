@@ -201,7 +201,8 @@ class QuestionnaireManager(object):
     def update_node_answers(self, node):
         answer_dict = {}
         for answer in self.state.get_answers():
-            answer_dict[answer.id] = answer.value
+            answer_value = answer.other if answer.value == 'other' and answer.other else answer.value
+            answer_dict[answer.id] = answer_value
         node.answers = answer_dict
 
     def validate_all_answers(self):
@@ -327,7 +328,9 @@ class QuestionnaireManager(object):
         if self.schema_item:
             self._plumbing_preprocessing(self.state)
             self._conditional_display(self.state)
-        state_items.append(self.state)
+
+        if self.state not in state_items:
+            state_items.append(self.state)
 
         return preprocessor.build_view_data(node, self._schema, state_items)
 
