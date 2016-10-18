@@ -153,9 +153,6 @@ class QuestionnaireManager(object):
         node.previous = None
         return node
 
-    def get_current_state(self):
-        return self._current.state
-
     def get_current_location(self):
         if self._current:
             current_location = self._current.item_id
@@ -175,9 +172,6 @@ class QuestionnaireManager(object):
 
     def _get_first_block(self):
         return self._schema.groups[0].blocks[0].id
-
-    def _previous(self):
-        return self._current.previous.item_id
 
     def get_answers(self):
         '''
@@ -255,15 +249,11 @@ class QuestionnaireManager(object):
             node = node.next
         return valid
 
-    @property
-    def submitted(self):
-        return self.submitted_at is not None
-
     def go_to(self, location):
         if self._current:
             logger.debug("Attempting to go to location %s with current location as %s", location, self._current.item_id)
         if location == 'previous':
-            location = self._previous()
+            location = self.get_previous_location()
         elif location == 'summary' and self._current.item_id != 'summary':
             metadata = get_metadata(current_user)
             if metadata:
@@ -334,29 +324,32 @@ class QuestionnaireManager(object):
             raise InvalidLocationException()
 
     def get_rendering_context(self, location):
-
         # apply any conditional display rules
         self._conditional_display(self.get_state(location).state)
 
         # look up the preprocessor and then build the view data
         preprocessor = TemplateRegistry.get_template_preprocessor(location)
 
-        if location == 'summary':
-            # the summary is the special case when we need the start of the linked list
-            node = self._first
-            # and we also need to plumb the entire schema
-            while node.next:
-                self._plumbing_preprocessing(node)
-                node = node.next
+        node = self.get_state(location)
+        self._plumbing_preprocessing(node)
+        return preprocessor.build_view_data(node, self._schema)
 
-            # reset pointer back to the first node for the preprocessor
-            node = self._first
+    def get_summary_rendering_context(self):
+        # apply any conditional display rules
+        self._conditional_display(self.get_state('summary').state)
 
-        else:
-            # unlike the rest where we need the current node in the list
-            node = self.get_state(location)
-            # and only need to plumb the single page
+        # look up the preprocessor and then build the view data
+        preprocessor = TemplateRegistry.get_template_preprocessor('summary')
+
+        # the summary is the special case when we need the start of the linked list
+        node = self._first
+        # and we also need to plumb the entire schema
+        while node.next:
             self._plumbing_preprocessing(node)
+            node = node.next
+
+        # reset pointer back to the first node for the preprocessor
+        node = self._first
         return preprocessor.build_view_data(node, self._schema)
 
     def _plumbing_preprocessing(self, node):
@@ -376,9 +369,6 @@ class QuestionnaireManager(object):
             item.skipped = ConditionalDisplay.is_skipped(item.schema_item, self)
             for child in item.children:
                 self._conditional_display(child)
-
-    def get_rendering_template(self, location):
-        return TemplateRegistry.get_template_name(location)
 
     def _get_user_action(self, post_data):
         user_action = None
