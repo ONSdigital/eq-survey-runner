@@ -19,9 +19,7 @@ $input-width: 15rem;
     outline: none;
     border-color: $color-focus;
     box-shadow: 0 0 0 1px $color-focus;
-  }
-  @include fixed() {
-    &:focus {
+    @include fixed() {
       outline: 2px solid $color-focus;
     }
   }
@@ -161,5 +159,9 @@ $input-width: 15rem;
     height: 100%;
     border: 1px solid $color-borders;
     z-index: 2;
+  }
+  @include ie7 {
+    width: 1.15rem;
+    height: 1.15rem;
   }
 }

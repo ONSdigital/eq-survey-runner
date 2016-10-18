@@ -96,6 +96,7 @@ input:checked ~ .field__other {
   .field {
     margin: 0 0.5rem 0 0;
     flex: 1 1 0;
+    clear: right;
 
     @include mq(s) {
       margin-right: 1rem;
@@ -104,13 +105,21 @@ input:checked ~ .field__other {
     @include fixed {
       display: block;
       float: left;
+      width: 100%;
+      margin-right: 1rem;
+    }
+
+    @include ie7() {
+      input {
+        width: 80%;
+      }
     }
   }
 
   .field--day {
     max-width: 6rem;
     @include fixed {
-      width: 7rem;
+      width: 6rem;
     }
   }
 
@@ -118,7 +127,7 @@ input:checked ~ .field__other {
     flex: 2;
     max-width: 10rem;
     @include fixed {
-      width: 14rem;
+      width: 10rem;
     }
   }
 
@@ -126,7 +135,7 @@ input:checked ~ .field__other {
     margin-right: 0;
     max-width: 6rem;
     @include fixed {
-      width: 7rem;
+      width: 6rem;
     }
   }
 
