@@ -34,13 +34,13 @@ class QuestionnaireManager(object):
     The doubly linked list approach allows us to maintain the path the user has taken through the question. If that path
     changes we archive off the nodes in case the user revisits that path.
     '''
-    def __init__(self, schema, current=None, first=None, tail=None, archive={}, valid_locations=None, submitted_at=None):
+    def __init__(self, schema, current=None, first=None, tail=None, archive=None, valid_locations=None, submitted_at=None):
         self.submitted_at = submitted_at
         self._schema = schema
         self._current = current  # the latest node
         self._first = first  # the first node in the doubly linked list
         self._tail = tail  # the last node in the doubly linked list
-        self._archive = archive  # a dict of discarded nodes for later use (if needed)
+        self._archive = archive or {}  # a dict of discarded nodes for later use (if needed)
         if valid_locations:
             self._valid_locations = valid_locations
         else:
@@ -278,7 +278,7 @@ class QuestionnaireManager(object):
         elif location == 'summary' and self._current.item_id != 'summary':
             metadata = get_metadata(current_user)
             if metadata:
-                logger.warning("User with tx_id %s tried to submit in an invalid state", metadata.tx_id)
+                logger.warning("User with tx_id %s tried to submit in an invalid state", metadata["tx_id"])
             raise InvalidLocationException()
         self.go_to_state(location)
 

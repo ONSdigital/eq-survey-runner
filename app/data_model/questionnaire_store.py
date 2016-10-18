@@ -4,8 +4,6 @@ from app.storage.storage_factory import StorageFactory
 
 from flask import g
 
-import jsonpickle
-
 logger = logging.getLogger(__name__)
 
 
@@ -35,14 +33,16 @@ class QuestionnaireStore:
         logger.debug("Saving user data %s for user id %s", self.data, self.user_id)
         self.storage.store(data=self.data, user_id=self.user_id, user_ik=self.user_ik)
 
-    def encode_metadata(self, metadata):
-        self.data["METADATA"] = jsonpickle.encode(metadata)
-
-    def decode_metadata(self):
+    @property
+    def metadata(self):
         if "METADATA" in self.data:
-            return jsonpickle.decode(self.data["METADATA"])
+            return self.data["METADATA"]
         else:
             raise RuntimeError("No metadata for user %s", self.user_id)
+
+    @metadata.setter
+    def metadata(self, metadata):
+        self.data["METADATA"] = metadata
 
 
 def get_questionnaire_store(user_id, user_ik):
@@ -58,10 +58,9 @@ def get_questionnaire_store(user_id, user_ik):
 
 
 def get_metadata(user):
-    try:
-        questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-        return questionnaire_store.decode_metadata()
-    except AttributeError:
+    if user.is_anonymous:
         logger.debug("Anonymous user requesting metadata get instance")
-        # anonymous user mixin - this happens on the error pages before authentication
         return None
+
+    questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+    return questionnaire_store.metadata

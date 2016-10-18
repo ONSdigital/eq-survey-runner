@@ -34,7 +34,7 @@ def survey(eq_id, form_type, period_id, collection_id, location):
         # If the metadata doesn't match the current survey, multiple surveys must be open, which we don't support
         metadata = get_metadata(current_user)
         current_survey = eq_id + form_type + period_id + collection_id
-        metadata_survey = metadata.eq_id + metadata.form_type + metadata.period_id + metadata.collection_exercise_sid
+        metadata_survey = metadata["eq_id"] + metadata["form_type"] + metadata["period_id"] + metadata["collection_exercise_sid"]
 
         if not current_survey == metadata_survey:
             return redirect("/information/multiple-surveys")
@@ -96,5 +96,5 @@ def do_post(collection_id, eq_id, form_type, period_id, location, questionnaire_
     questionnaire_manager.process_incoming_answers(location, request.form)
     next_location = questionnaire_manager.get_current_location()
     metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata.tx_id)
+    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
     return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + next_location)
