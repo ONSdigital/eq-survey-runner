@@ -2,7 +2,7 @@ import logging
 
 from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import convert_tx_id
-from app.main import main_blueprint
+from app.main.views.questionnaire import questionnaire_blueprint
 from app.schema.exceptions import QuestionnaireException
 from app.submitter.submission_failed import SubmissionFailedException
 
@@ -16,46 +16,46 @@ from ua_parser import user_agent_parser
 logger = logging.getLogger(__name__)
 
 
-@main_blueprint.app_errorhandler(200)
+@questionnaire_blueprint.app_errorhandler(200)
 def index(error=None):
     log_exception(error)
     return _render_error_page(200)
 
 
-@main_blueprint.app_errorhandler(400)
+@questionnaire_blueprint.app_errorhandler(400)
 def bad_request(error=None):
     log_exception(error)
     return _render_error_page(400)
 
 
-@main_blueprint.app_errorhandler(401)
+@questionnaire_blueprint.app_errorhandler(401)
 def unauthorized(error=None):
     log_exception(error)
     return _render_error_page(401)
 
 
-@main_blueprint.app_errorhandler(403)
+@questionnaire_blueprint.app_errorhandler(403)
 def forbidden(error=None):
     log_exception(error)
     return _render_error_page(403)
 
 
-@main_blueprint.app_errorhandler(404)
-@main_blueprint.app_errorhandler(QuestionnaireException)
+@questionnaire_blueprint.app_errorhandler(404)
+@questionnaire_blueprint.app_errorhandler(QuestionnaireException)
 def page_not_found(error=None):
     log_exception(error)
     return _render_error_page(404)
 
 
-@main_blueprint.app_errorhandler(503)
-@main_blueprint.app_errorhandler(SubmissionFailedException)
+@questionnaire_blueprint.app_errorhandler(503)
+@questionnaire_blueprint.app_errorhandler(SubmissionFailedException)
 def service_unavailable(error=None):
     log_exception(error)
     return _render_error_page(503)
 
 
-@main_blueprint.app_errorhandler(500)
-@main_blueprint.app_errorhandler(Exception)
+@questionnaire_blueprint.app_errorhandler(500)
+@questionnaire_blueprint.app_errorhandler(Exception)
 def internal_server_error(error=None):
     log_exception(error)
     return _render_error_page(500)

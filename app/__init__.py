@@ -261,9 +261,13 @@ def start_dev_mode(application):
 
 def add_blueprints(application):
     # import and regsiter the main application blueprint
-    from .main import main_blueprint
-    application.register_blueprint(main_blueprint)
-    main_blueprint.config = application.config.copy()
+    from .main.views.questionnaire import questionnaire_blueprint
+    application.register_blueprint(questionnaire_blueprint)
+    questionnaire_blueprint.config = application.config.copy()
+
+    from .main.views.root import root_blueprint
+    application.register_blueprint(root_blueprint)
+    root_blueprint.config = application.config.copy()
 
     from app.jinja_filters import blueprint as filter_blueprint
     application.register_blueprint(filter_blueprint)

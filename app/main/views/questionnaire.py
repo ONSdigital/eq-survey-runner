@@ -10,15 +10,19 @@ from app.templating.template_register import TemplateRegistry
 
 from flask import redirect
 from flask import request
+from flask import Blueprint
 
 from flask_login import current_user
 from flask_login import login_required
 
 from flask_themes2 import render_theme_template
 
-from .. import main_blueprint
-
 logger = logging.getLogger(__name__)
+
+
+questionnaire_blueprint = Blueprint(name='questionnaire',
+                                    import_name=__name__,
+                                    url_prefix='/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/')
 
 
 def check_survey_state(func):
@@ -36,14 +40,20 @@ def check_survey_state(func):
     return decorated_function
 
 
-@main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/<location>', methods=["GET"])
+@questionnaire_blueprint.after_request
+def add_cache_control(response):
+    response.cache_control.no_cache = True
+    return response
+
+
+@questionnaire_blueprint.route('<location>', methods=["GET"])
 @login_required
 @check_survey_state
 def get_questionnaire(eq_id, form_type, period_id, collection_id, location):
     return get_page(collection_id, eq_id, form_type, period_id, location)
 
 
-@main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/<location>', methods=["POST"])
+@questionnaire_blueprint.route('<location>', methods=["POST"])
 @login_required
 @check_survey_state
 def post_questionnaire(eq_id, form_type, period_id, collection_id, location):
@@ -59,7 +69,7 @@ def post_questionnaire(eq_id, form_type, period_id, collection_id, location):
     return do_redirect(eq_id, form_type, period_id, collection_id, next_location)
 
 
-@main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/previous', methods=['GET'])
+@questionnaire_blueprint.route('previous', methods=['GET'])
 @login_required
 @check_survey_state
 def go_to_previous_page(eq_id, form_type, period_id, collection_id):
@@ -72,7 +82,7 @@ def go_to_previous_page(eq_id, form_type, period_id, collection_id):
     return do_redirect(eq_id, form_type, period_id, collection_id, previous_location)
 
 
-@main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/thank-you', methods=["GET"])
+@questionnaire_blueprint.route('thank-you', methods=["GET"])
 @login_required
 def get_thank_you(eq_id, form_type, period_id, collection_id):
     if not same_survey(eq_id, form_type, period_id, collection_id):
@@ -84,7 +94,7 @@ def get_thank_you(eq_id, form_type, period_id, collection_id):
     return page
 
 
-@main_blueprint.route('/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/summary', methods=["GET"])
+@questionnaire_blueprint.route('summary', methods=["GET"])
 @login_required
 @check_survey_state
 def get_summary(eq_id, form_type, period_id, collection_id):
