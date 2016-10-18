@@ -6,5 +6,8 @@
 
   a {
     color: $color-very-dark-grey;
+    &:focus {
+      color: white;
+    }
   }
 }

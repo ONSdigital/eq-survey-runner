@@ -14,6 +14,7 @@
   }
   &::before {
     $size: 2rem;
+
     speak: none;
     content: "";
     background: url("#{$s}/img/icons/icons--info-circle.svg") no-repeat center center;
@@ -23,6 +24,13 @@
     height: $size;
     vertical-align: middle;
     display: inline-block;
+  }
+
+  &:focus {
+    outline: none;
+    &::before {
+      filter: invert(1);
+    }
   }
 
   .no-js & {

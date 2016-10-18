@@ -8,28 +8,24 @@ $color-lighter-grey: #f5f5f5;
 
 // brand
 
-$color-blue: #003d59;
-$color-green: #a8bd3a;
-$color-primary: $color-green;
-$color-green-dark: #677424;
-$color-secondary: $color-blue;
+$color-primary: #a8bd3a;
+$color-primary-dark: #677424;
+$color-secondary: #033e58;
 
-$color-light-blue: tint($color-blue, 40);
+$color-light-blue: tint($color-secondary, 40);
 
 $color-red: #c50b0b;
 $color-yellow: yellow;
 $color-amber: #fe781f;
+$color-blue: #4263c2;
 
 // assignment
 
 $color-text: $color-black;
 $color-text-light: $color-very-dark-grey;
-$color-links: #385bba;
+$color-links: $color-blue;
+$color-focus: $color-blue;
 $color-borders: $color-grey;
 $color-placeholder: lighten($color-text-light, 40%);
 
 $color-errors: $color-red;
-
-$color-dark-blue: #033e58;
-$color-lighter-blue: #4263c2;
-$color-dark-highlight: #4361aa;
