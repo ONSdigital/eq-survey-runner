@@ -9,7 +9,6 @@ def to_date(input_date_string, date_format="%Y-%m-%d"):
     formatted_date = None
 
     try:
-        # employment date is optional this is why string is checked
         if input_date_string:
             formatted_date = datetime.strptime(input_date_string, date_format)
     except ValueError as e:
