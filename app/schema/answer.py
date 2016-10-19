@@ -56,7 +56,7 @@ class Answer(Item):
         else:
             return None
 
-    def type_validation(self, input):
+    def get_typed_value(self, input):
 
         user_input = bleach.clean(input)
 
@@ -85,7 +85,7 @@ class Answer(Item):
 
             if state.input:
                 try:
-                    state.value = self.type_validation(state.input)
+                    state.value = self.get_typed_value(state.input)
                 except TypeCheckingException as e:
                     state.is_valid = False
                     state.errors = []

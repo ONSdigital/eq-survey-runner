@@ -37,7 +37,6 @@ class QuestionnaireManager(object):
         self._tail = tail  # the last node in the doubly linked list
         self._archive = archive or {}  # a dict of discarded nodes for later use (if needed)
         self.state = None
-        self.schema_item = None
 
         if valid_locations:
             self._valid_locations = valid_locations
@@ -183,9 +182,9 @@ class QuestionnaireManager(object):
             node = self._current
             self.build_state(node, post_data)
 
-            if self.schema_item:
+            if self.state:
                 self._conditional_display(self.state)
-                is_valid = self.schema_item.validate(self.state)
+                is_valid = self.state.schema_item.validate(self.state)
                 # Todo, this doesn't feel right, validation is casting the user values to their type.
                 # Save the answers to the node after validation
                 self.update_node_answers(node)
@@ -211,12 +210,12 @@ class QuestionnaireManager(object):
 
         while node:
             self.build_state(node, node.answers)
-            if self.schema_item:
+            if self.state:
                 self._conditional_display(self.state)
-                is_valid = self.schema_item.validate(self.state)
+                is_valid = self.state.schema_item.validate(self.state)
                 if not is_valid:
                     location = node.item_id
-                    logger.error("Failed validation with current location %s", location)
+                    logger.debug("Failed validation with current location %s", location)
                     # if one of the blocks isn't valid
                     # then move the current pointer to that block so that the user is redirected to that page
                     self.go_to_node(location)
@@ -315,7 +314,7 @@ class QuestionnaireManager(object):
                 # and we also need to plumb the entire schema
                 while node.next:
                     self.build_state(node, node.answers)
-                    if self.schema_item:
+                    if self.state:
                         self._plumbing_preprocessing(self.state)
                         self._conditional_display(self.state)
                         state_items.append(self.state)
@@ -325,7 +324,7 @@ class QuestionnaireManager(object):
             else:
                 self.build_state(node, node.answers)
 
-        if self.schema_item:
+        if self.state:
             self._plumbing_preprocessing(self.state)
             self._conditional_display(self.state)
 
@@ -337,10 +336,9 @@ class QuestionnaireManager(object):
     def build_state(self, node, answers):
         # Build the state from the linked list and the answers
         self.state = None
-        self.schema_item = None
         if self._schema.item_exists(node.item_id):
-            self.schema_item = self._schema.get_item_by_id(node.item_id)
-            self.state = self.schema_item.construct_state()
+            schema_item = self._schema.get_item_by_id(node.item_id)
+            self.state = schema_item.construct_state()
             self.state.update_state(answers)
 
     def _plumbing_preprocessing(self, state):

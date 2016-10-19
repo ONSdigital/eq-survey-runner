@@ -12,7 +12,7 @@ class CheckboxAnswer(Answer):
         super().__init__(answer_id)
         self.widget = CheckboxGroupWidget(self.id)
 
-    def type_validation(self, post_vars):
+    def get_typed_value(self, post_vars):
         # We cannot type cast a list of values, so just return the user_input
         return self.get_user_input(post_vars)
 

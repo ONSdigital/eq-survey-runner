@@ -12,7 +12,7 @@ class DateAnswer(Answer):
         self.type_checkers.append(DateTypeCheck())
         self.widget = DateWidget(self.id)
 
-    def type_validation(self, post_data):
+    def get_typed_value(self, post_data):
 
         user_input = self.get_user_input(post_data)
 

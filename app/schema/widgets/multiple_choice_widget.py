@@ -32,7 +32,7 @@ class MultipleChoiceWidget(Widget):
         Depending on which part of the processing is being done, POST or GET, this post_vars
         passed to this method can either be an ImmutableMultiDict or a plain dict object.
         :param post_vars:
-        :return: The other input value, if present or None.
+        :return: The other input value, if present, 'Other' if other selected but no value, or None.
         """
         if len(post_vars) == 0:
             return None
@@ -41,4 +41,12 @@ class MultipleChoiceWidget(Widget):
         posted_data = post_vars.getlist(self.name) if is_immutable_multi_dict else post_vars.get(self.name)
 
         has_multiple_values = isinstance(posted_data, list) and len(posted_data) > 0
-        return posted_data[-1:][0] if has_multiple_values else None
+
+        other_value = str(posted_data[-1:][0]).strip() if has_multiple_values else None
+
+        if other_value is not None and len(other_value) > 0:
+            return other_value
+        elif other_value is not None:
+            return 'Other'
+        else:
+            return None
