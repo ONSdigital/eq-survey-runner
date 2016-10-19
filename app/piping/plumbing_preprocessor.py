@@ -1,15 +1,24 @@
+import logging
+
+
 from app.data_model.questionnaire_store import get_metadata
 from app.libs.utils import ObjectFromDict
-from app.parser.metadata_parser import iso_8601_data_parser
 from app.piping.plumber import Plumber
 
+from app.utilities.date_utils import to_date
+
 from flask_login import current_user
+
+logger = logging.getLogger(__name__)
 
 
 class PlumbingPreprocessor(object):
 
     def plumb_current_state(self, questionnaire_manager, state, schema):
-        piping_context = self._build_piping_context(questionnaire_manager, schema)
+        piping_context = {
+            "exercise": self._build_exercise(),
+            "answers": self._build_answers(questionnaire_manager, schema),
+        }
 
         plumber = Plumber(piping_context)
 
@@ -23,27 +32,20 @@ class PlumbingPreprocessor(object):
             # recursively plumb each child
             self._plumb(plumber, child)
 
-    def _build_piping_context(self, questionnaire_manager, schema):
-        piping_context = {
-            "exercise": self._build_exercise_piping_context(),
-            "answers": self._build_answers_piping_context(questionnaire_manager, schema),
-        }
-        return piping_context
-
-    def _build_exercise_piping_context(self):
+    def _build_exercise(self):
         '''
         Build the exercise data from the survey metadata
         '''
-        metadata = self._get_metadata()
+        metadata = get_metadata(current_user)
 
         return ObjectFromDict({
-            "start_date": iso_8601_data_parser(metadata["ref_p_start_date"]),
-            "end_date": iso_8601_data_parser(metadata["ref_p_end_date"]),
-            "employment_date": iso_8601_data_parser(metadata["employment_date"]),
-            "return_by": iso_8601_data_parser(metadata["return_by"]),
+            "start_date": to_date(metadata["ref_p_start_date"]),
+            "end_date": to_date(metadata["ref_p_end_date"]),
+            "employment_date": to_date(metadata["employment_date"]),
+            "return_by": to_date(metadata["return_by"]),
         })
 
-    def _build_answers_piping_context(self, questionnaire_manager, schema):
+    def _build_answers(self, questionnaire_manager, schema):
         '''
         Get the answer values for all aliased elements and make them available for piping.
         Where answers are not available, use an empty string
@@ -56,6 +58,3 @@ class PlumbingPreprocessor(object):
                 value = ""  # Empty string
             values[alias] = value
         return ObjectFromDict(values)
-
-    def _get_metadata(self):
-        return get_metadata(current_user)
