@@ -2,12 +2,15 @@
 
 {% set invalid = question.is_valid == False %}
 
+{% set question_title = question.schema_item.title %}
+{% set question_subtitle = question.schema_item.subtitle %}
+
 {% set question_titles %}
   {%- if question.schema_item.title -%}
-    <span class="question__title neptune">{{question.schema_item.title}}</span>
+    <h3 class="question__title neptune">{{question.schema_item.title}}</h3>
   {%- endif %}
   {%- if question.schema_item.subtitle -%}
-    <span class="question__subtitle mars">{{question.schema_item.subtitle}}</span>
+    <h4 class="question__subtitle mars">{{question.schema_item.subtitle}}</h4>
   {%- endif %}
 {% endset %}
 
@@ -27,7 +30,7 @@
   </div>
 {% endset %}
 
-<div class="question question--{{question.type|lower}}" id="{{question.id}}">
+<div class="question" id="{{question.id}}">
 
   {% set question_markup %}
 
