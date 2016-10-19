@@ -79,15 +79,15 @@ input:checked ~ .field__other {
   }
 }
 
-.fieldset--date {
-  .legend {
+.fieldgroup--date {
+  .fieldgroup__title {
     font-weight: 700;
     display: inline-block;
     width: 100%;
     margin: 0 0 0.5rem;
   }
 
-  .fieldset__fields {
+  .fieldgroup__fields {
     display: flex;
     width: 100%;
     flex-direction: row;
