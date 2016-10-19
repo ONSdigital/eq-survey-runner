@@ -269,6 +269,10 @@ def add_blueprints(application):
     application.register_blueprint(root_blueprint)
     root_blueprint.config = application.config.copy()
 
+    from .main.views.errors import errors_blueprint
+    application.register_blueprint(errors_blueprint)
+    errors_blueprint.config = application.config.copy()
+
     from app.jinja_filters import blueprint as filter_blueprint
     application.register_blueprint(filter_blueprint)
 

@@ -324,6 +324,9 @@ class QuestionnaireManager(object):
             raise InvalidLocationException()
 
     def get_rendering_context(self, location):
+        if location == 'summary':
+            return self._get_summary_rendering_context()
+
         # apply any conditional display rules
         self._conditional_display(self.get_state(location).state)
 
@@ -334,7 +337,7 @@ class QuestionnaireManager(object):
         self._plumbing_preprocessing(node)
         return preprocessor.build_view_data(node, self._schema)
 
-    def get_summary_rendering_context(self):
+    def _get_summary_rendering_context(self):
         # apply any conditional display rules
         self._conditional_display(self.get_state('summary').state)
 

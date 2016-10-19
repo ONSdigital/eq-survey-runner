@@ -98,14 +98,7 @@ def get_thank_you(eq_id, form_type, period_id, collection_id):
 @login_required
 @check_survey_state
 def get_summary(eq_id, form_type, period_id, collection_id):
-    questionnaire_manager = QuestionnaireManagerFactory.get_instance()
-    try:
-        questionnaire_manager.go_to('summary')
-    except InvalidLocationException:
-        return do_redirect(eq_id, form_type, period_id, collection_id, questionnaire_manager.get_current_location())
-    context = questionnaire_manager.get_summary_rendering_context()
-    template = get_rendering_template('summary')
-    return render_template(template, context)
+    return get_page(collection_id, eq_id, form_type, period_id, 'summary')
 
 
 def delete_user_data():
