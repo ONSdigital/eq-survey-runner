@@ -54,12 +54,12 @@
                                                 {
                                                     "label": "Light Side",
                                                     "value": "Light Side",
-                                                    "description": "I am some helper text and I might be a bit <strong>bold in places</strong>."
+                                                    "description": "The light side of the Force, also commonly known as the Ashla by ancient Force-sensitives on Tython, or simply the Force, was the side of the Force aligned with honesty, compassion, mercy, self-sacrifice, and other positive emotions."
                                                 },
                                                 {
                                                     "label": "Dark Side",
                                                     "value": "Dark Side",
-                                                    "description": "Vestibulum id ligula porta felis euismod semper."
+                                                    "description": "The dark side of the Force, called Bogan or Boga by ancient Force-sensitives on Tython, was an aspect of the Force."
                                                 },
                                                 {
                                                     "label": "I prefer Star Trek",
@@ -85,7 +85,7 @@
                                         "properties": {}
                                     },
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
-                                    "title": "",
+                                    "title": "Which side of the force are you on?",
                                     "type": "General",
                                     "validation": []
                                 }
