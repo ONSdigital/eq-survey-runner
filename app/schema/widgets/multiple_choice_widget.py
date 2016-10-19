@@ -28,10 +28,17 @@ class MultipleChoiceWidget(Widget):
         return render_template('/partials/widgets/multiple_choice_widget.html', **widget_params)
 
     def get_other_input(self, post_vars):
+        """
+        Depending on which part of the processing is being done, POST or GET, this post_vars
+        passed to this method can either be an ImmutableMultiDict or a plain dict object.
+        :param post_vars:
+        :return: The other input value, if present or None.
+        """
         if len(post_vars) == 0:
             return None
 
-        other_values = post_vars.getlist(self.name) if hasattr(post_vars, 'getlist') else post_vars.get(self.name)
-        other_value = other_values[-1:][0] if isinstance(other_values, list) and len(other_values) > 0 else None
-        logger.debug('Getting user input for "{}", value is "{}"'.format(self.name, other_value))
-        return other_value
+        is_immutable_multi_dict = hasattr(post_vars, 'getlist')
+        posted_data = post_vars.getlist(self.name) if is_immutable_multi_dict else post_vars.get(self.name)
+
+        has_multiple_values = isinstance(posted_data, list) and len(posted_data) > 0
+        return posted_data[-1:][0] if has_multiple_values else None
