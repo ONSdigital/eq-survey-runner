@@ -121,7 +121,8 @@ You can then start the containers.
 docker-compose up -d
 ```
 
-When the containers are running you are able to access the application as normal, and code changes will be reflected in the running application
+When the containers are running you are able to access the application as normal, and code changes will be reflected in the running application.
+However, any new dependencies that are added would require a re-build.
 
 ## Internationalisation
 
