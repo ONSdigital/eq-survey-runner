@@ -22,15 +22,19 @@
 .field__other {
   display: none;
   clear: both;
+  background-color: $color-lighter-grey;
   padding: 0 0.5rem 0.5rem;
+  .has-focus & {
+    background-color: transparent;
+  }
   @include fixed {
     display: block;
+    background-color: white;
   }
 }
 
 input:checked ~ .field__other {
   display: block;
-  background: $color-lighter-grey;
 }
 
 .field--radio,
@@ -40,8 +44,20 @@ input:checked ~ .field__other {
     border: 1px solid $color-borders;
     border-radius: 0.2rem;
     cursor: pointer;
+    overflow: hidden;
+    position: relative;
     &:hover {
       border-color: $color-dark-grey;
+    }
+    &.is-checked {
+      border-color: $color-dark-grey;
+      background-color: white;
+      box-shadow: 0 0 0 1px $color-dark-grey;
+    }
+    &.has-focus {
+      border-color: $color-focus;
+      background-color: #f5f6ff;
+      box-shadow: 0 0 0 1px $color-focus;
     }
   }
 
@@ -80,6 +96,7 @@ input:checked ~ .field__other {
   .field {
     margin: 0 0.5rem 0 0;
     flex: 1 1 0;
+    clear: right;
 
     @include mq(s) {
       margin-right: 1rem;
@@ -88,13 +105,21 @@ input:checked ~ .field__other {
     @include fixed {
       display: block;
       float: left;
+      width: 100%;
+      margin-right: 1rem;
+    }
+
+    @include ie7() {
+      input {
+        width: 80%;
+      }
     }
   }
 
   .field--day {
     max-width: 6rem;
     @include fixed {
-      width: 7rem;
+      width: 6rem;
     }
   }
 
@@ -102,7 +127,7 @@ input:checked ~ .field__other {
     flex: 2;
     max-width: 10rem;
     @include fixed {
-      width: 14rem;
+      width: 10rem;
     }
   }
 
@@ -110,7 +135,7 @@ input:checked ~ .field__other {
     margin-right: 0;
     max-width: 6rem;
     @include fixed {
-      width: 7rem;
+      width: 6rem;
     }
   }
 

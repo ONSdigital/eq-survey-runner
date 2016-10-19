@@ -3,7 +3,7 @@
   {% set option_id = answer.id ~ "-" ~ loop.index %}
 
   {% set input = {
-    "class": "input input--" ~ widget.type,
+    "class": "input input--" ~ widget.type ~ " js-focusable",
     "type": widget.type,
     "value": option.value,
     "name": answer.name,
@@ -17,14 +17,14 @@
     "for": option_id
   } %}
 
-  <div class="field__item">
+  <div class="field__item js-focusable-box">
 
     <input {{input|xmlattr}}>
     <label {{label|xmlattr}}>
       {{option.label}}
       {% if option.description %}
         <br />
-        <span class="label__description pluto">{{option.description|safe}}</span>
+        <span class="label__description label__inner pluto">{{option.description|safe}}</span>
       {% endif %}
     </label>
 
@@ -36,7 +36,7 @@
       } %}
 
       {% set other_input = {
-        "class": "input",
+        "class": "input js-focusable",
         "type": "text",
         "name": answer.name,
         "id": option_id,

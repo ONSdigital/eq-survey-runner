@@ -1,7 +1,10 @@
 .alert {
   border-radius: 0;
   a {
-    color: $color-blue;
+    color: $color-secondary;
+    &:focus {
+      color: white;
+    }
   }
 }
 
@@ -36,7 +39,7 @@
 
 @include alert_type(error, $color-red);
 @include alert_type(warn, $color-amber);
-@include alert_type(success, $color-green-dark);
+@include alert_type(success, $color-primary-dark);
 @include alert_type(neutral, $color-secondary);
 
 .alert--simple {

@@ -113,13 +113,13 @@
 }
 
 .ptn-grid {
-  background: tint($color-blue, 70);
+  background: tint($color-secondary, 70);
   padding: $grid-gutters $grid-gutters 0 $grid-gutters;
   margin-bottom: $grid-gutters;
 }
 
 .ptn-col {
-  background: tint($color-blue, 60);
+  background: tint($color-secondary, 60);
   padding: 7px;
   margin-bottom: $grid-gutters;
   color: $color-white;
@@ -176,7 +176,7 @@ pre[class*="language-"] {
   }
   .ptn-code-toggle-label {
     display: inline-block;
-    color: $color-blue;
+    color: $color-secondary;
     font-size: 0.8rem;
     &::after {
       content: " \00BB";

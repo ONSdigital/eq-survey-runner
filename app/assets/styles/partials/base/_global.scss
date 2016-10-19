@@ -27,6 +27,11 @@ a {
   &:hover {
     text-decoration: underline;
   }
+  &:focus {
+    color: white;
+    background-color: $color-focus;
+    outline: 3px solid $color-focus;
+  }
 }
 
 main,

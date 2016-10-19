@@ -9,11 +9,14 @@
   display: inline-block;
   text-rendering: optimizeLegibility;
   text-decoration: none;
-  &:focus,
   &:hover {
     text-decoration: none;
     color: $color;
     background-color: darken($bg, 5%);
+  }
+  &:focus {
+    background-color: $color-focus;
+    outline: none;
   }
 }
 
