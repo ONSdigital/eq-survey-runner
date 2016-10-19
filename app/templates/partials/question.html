@@ -6,16 +6,17 @@
 {% set question_subtitle = question.schema_item.subtitle %}
 
 {% set question_titles %}
-  {%- if question.schema_item.title -%}
-    <h3 class="question__title neptune">{{question.schema_item.title}}</h3>
+  {%- if question_title -%}
+    <h2 class="question__title neptune">{{question_title}}</h2>
   {%- endif %}
-  {%- if question.schema_item.subtitle -%}
-    <h4 class="question__subtitle mars">{{question.schema_item.subtitle}}</h4>
+  {%- if question_subtitle -%}
+    <br />
+    <h3 class="question__subtitle mars">{{question_subtitle}}</h3>
   {%- endif %}
 {% endset %}
 
 {% set question_description %}
-  {%- if question.schema_item.description%}
+  {%- if question.schema_item.description %}
     <div class="question__description mars" id="description-{{question.id}}">
       {{question.schema_item.description|safe}}
     </div>
@@ -39,7 +40,13 @@
       <fieldset class="question__fieldset">
 
         <legend class="question__legend">
-          {{question_titles|safe}}
+          {%- if question_title -%}
+            <span class="question__title neptune">{{question_title}}</span>
+          {%- endif %}
+          {%- if question_subtitle -%}
+            <br />
+            <span class="question__subtitle venus">{{question_subtitle}}</span>
+          {%- endif %}
         </legend>
 
         {{question_description|safe}}

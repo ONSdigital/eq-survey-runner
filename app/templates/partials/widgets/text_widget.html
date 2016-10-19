@@ -9,7 +9,7 @@
   'type': 'text',
   'value': (answer.value or "")|e,
   'name': answer.name,
-  'id': answer.id,
+  'id': 'input-' ~ answer.id,
   'placeholder': answer.placeholder
 } %}
 {% include 'partials/forms/input.html' %}
