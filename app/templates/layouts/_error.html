@@ -7,24 +7,28 @@
     <h1 class="header__title saturn">Error {{status_code}}</h1>
   </div>
 
-  <div class="alert alert--simple alert--error alert--spacious">
-    <strong>Sorry, something has gone wrong.</strong>
-    {%- if tx_id -%}
-      <p>Please quote this reference for any support queries.</p>
-      <ul class="list list--boxes">
-        {%- for id_part in tx_id -%}
-          <li class="list__item">{{id_part}}</li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
-    <p class="u-mb-no">If the problem persists please call the number above.</p>
-  </div>
+  <div class="grid">
+    <div class="grid__col col-8@m">
+      <div class="alert alert--simple alert--error alert--spacious">
+        <strong>Sorry, something has gone wrong.</strong>
+        {%- if tx_id -%}
+          <p>Please quote this reference for any support queries.</p>
+          <ul class="list list--boxes">
+            {%- for id_part in tx_id -%}
+              <li class="list__item">{{id_part}}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        <p class="u-mb-no">If the problem persists please call the number above.</p>
+      </div>
 
-  {{answer_guidance|safe}}
+      {{answer_guidance|safe}}
 
-  <div class="u-mt-m u-mb-m">
-    <div class="u-fw-b">Your system information</div>
-    <div>{{ua.user_agent.family}} ({{ua.user_agent.major or '0'}}.{{ua.user_agent.minor or '0'}}.{{ua.user_agent.patch or '0'}})</div>
-    <div>{{ua.os.family}} ({{ua.os.major or '0'}}.{{ua.os.minor or '0'}}.{{ua.os.patch or '0'}})</div>
+      <div class="u-mt-m u-mb-s">
+        <div class="u-fw-b">Your system information</div>
+        <div>{{ua.user_agent.family}} ({{ua.user_agent.major or '0'}}.{{ua.user_agent.minor or '0'}}.{{ua.user_agent.patch or '0'}})</div>
+        <div>{{ua.os.family}} ({{ua.os.major or '0'}}.{{ua.os.minor or '0'}}.{{ua.os.patch or '0'}})</div>
+      </div>
+    </div>
   </div>
 {% endblock %}
