@@ -270,9 +270,9 @@ class QuestionnaireManager(object):
         return False
 
     def process_incoming_answers(self, location, post_data, replay=False):
-        logger.debug("QuestionnaireManager first %s", self._current)
+        logger.debug("QuestionnaireManager first %s", self._first)
         logger.debug("QuestionnaireManager current %s", self._current)
-        logger.debug("QuestionnaireManager tail %s", self._current)
+        logger.debug("QuestionnaireManager tail %s", self._tail)
         logger.debug("Processing post data for %s", location)
         # ensure we're in the correct location
 
