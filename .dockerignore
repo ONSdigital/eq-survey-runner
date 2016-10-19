@@ -1,3 +1,49 @@
-node_modules/*
 .git
+.idea
 Dockerfile
+docker-compose.yml
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+coverage/
+
+.cache
+
+*.log
+eq.log.*
+
+# Virtualenvs
+env
+env*
+venv
+
+# intellij
+.idea/
+*.ipr
+*.iml
+*.iws
+
+.DS_Store
+
+node_modules/
+app/static/
+tests/results
+tests/coverage
+tests/a11y
+
+app/styles/base/_sprite.scss
+
+## OS X
+._*
+.Spotlight-V100
+.Trashes
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+newrelic.ini
