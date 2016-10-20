@@ -36,17 +36,20 @@
     {% endblock head -%}
     {{ analytics }}
   </head>
-  <body>
+  <body class="page">
+    <div class="page__content">
 
-    <div class="skip">
-      <a class="skip__link" href="#main">Skip to content</a>
+      <div class="skip">
+        <a class="skip__link" href="#main">Skip to content</a>
+      </div>
+
+      {% block top_bar %}{% endblock %}
+
+      {% block content %}{% endblock %}
+
     </div>
-    
-    {% block top_bar %}{% endblock %}
 
-    {% block content %}{% endblock %}
-
-    <div class="footer" role="contentinfo">
+    <div class="footer page__footer" role="contentinfo">
       <div class="container">
         <div class="pluto">&copy; <a href="https://www.ons.gov.uk/" target="_blank">Office for National Statistics 2016</a></div>
       </div>

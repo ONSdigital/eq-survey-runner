@@ -1,0 +1,9 @@
+.page {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.page__content {
+  flex: 1 0 auto;
+}
