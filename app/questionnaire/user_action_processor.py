@@ -1,7 +1,7 @@
 import logging
 
 from app import settings
-from app.data_model.questionnaire_store import get_metadata
+from app.globals import get_metadata
 from app.submitter.submitter import SubmitterFactory
 
 from flask_login import current_user

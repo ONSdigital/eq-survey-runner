@@ -19,23 +19,24 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "0_star_wars.json"))
         schema = schema_file.read()
         # create a parser
-        parser = SchemaParserFactory.create_parser(json.loads(schema))
+        self.json = json.loads(schema)
+        parser = SchemaParserFactory.create_parser(self.json)
         self.questionnaire = parser.parse()
         settings.EQ_SERVER_SIDE_STORAGE_TYPE = "IN_MEMORY"
 
     def test_get_state_is_none(self):
-        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+        questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
         block1 = self.questionnaire.children[0].children[0]
         self.assertIsNone(questionnaire_manager.get_node(block1.id))
 
     def test_create_state(self):
-        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+        questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
         block1 = self.questionnaire.children[0].children[0]
         questionnaire_manager.go_to_node(block1.id)
         self.assertIsNotNone(questionnaire_manager.get_node(block1.id))
 
     def test_append(self):
-        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+        questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
 
         page1 = Node("first")
         page2 = Node("second")
@@ -67,7 +68,7 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         self.assertIsNone(page3.next)
 
     def test_pop(self):
-        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+        questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
 
         page1 = Node("first")
         page2 = Node("second")
@@ -90,7 +91,7 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         self.assertIsNone(page3.next)
 
     def test_truncate(self):
-        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+        questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
 
         page1 = Node("first")
         page2 = Node("second")
@@ -124,26 +125,16 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
 
     def test_get_current_location(self):
         with self.application.test_request_context():
-            schema = Questionnaire()
-            group = Group()
-            group.id = 'group-1'
-            schema.register(group)
-            block = Block()
-            block.id = 'block-1'
-            schema.register(block)
-            group.add_block(block)
-            schema.add_group(group)
-
-            questionnaire_manager = QuestionnaireManager(schema)
+            questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
             #  brand new session shouldn't have a current location
-            self.assertEquals('block-1', questionnaire_manager.get_current_location())
+            self.assertEquals('introduction', questionnaire_manager.get_current_location())
 
     def test_get_current_location_with_intro(self):
         with self.application.test_request_context():
             schema = Questionnaire()
             schema.introduction = "anything"
 
-            questionnaire_manager = QuestionnaireManager(schema)
+            questionnaire_manager = QuestionnaireManager(schema, json=self.json)
 
             #  brand new session shouldn't have a current location
             self.assertEquals("introduction", questionnaire_manager.get_current_location())
@@ -160,7 +151,7 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
             group.add_block(block)
             schema.add_group(group)
 
-            questionnaire_manager = QuestionnaireManager(schema)
+            questionnaire_manager = QuestionnaireManager(schema, json=self.json)
 
             questionnaire_manager.go_to_node("block-1")
             self.assertEquals("block-1", questionnaire_manager.get_current_location())
@@ -179,12 +170,12 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
 
             schema.introduction = {'description': 'Some sort of intro'}
 
-            questionnaire_manager = QuestionnaireManager(schema)
+            questionnaire_manager = QuestionnaireManager(schema, json=self.json)
             questionnaire_manager.go_to_node("introduction")
             self.assertEquals("introduction", questionnaire_manager.get_current_location())
 
     def test_update_node_answers_should_use_other_value_if_present(self):
-        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+        questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
 
         mock_answer = MagicMock()
         mock_answer.id = 'answer id'
@@ -201,7 +192,7 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         self.assertEquals({'answer id': 'other value'}, mock_node.answers)
 
     def test_update_node_answers_should_use_input_value_when_no_other_value(self):
-        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+        questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
 
         mock_answer = MagicMock()
         mock_answer.id = 'answer id'
@@ -218,7 +209,7 @@ class TestQuestionnaireManager(SurveyRunnerTestCase):
         self.assertEquals({'answer id': 'input value'}, mock_node.answers)
 
     def test_update_node_answers_returns_empty_dict_when_no_answers(self):
-        questionnaire_manager = QuestionnaireManager(self.questionnaire)
+        questionnaire_manager = QuestionnaireManager(self.questionnaire, json=self.json)
 
         questionnaire_manager.state = Mock()
         questionnaire_manager.state.get_answers = MagicMock(return_value=[])

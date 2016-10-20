@@ -1,6 +1,6 @@
 import logging
 
-from app.data_model.questionnaire_store import get_metadata
+from app.globals import get_metadata
 from app.libs.utils import convert_tx_id
 from app.utilities.date_utils import to_date
 
