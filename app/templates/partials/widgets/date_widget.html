@@ -1,5 +1,5 @@
 {% set subfields %}
-  <div class="fieldset__fields">
+  <div class="fieldgroup__fields">
     <div class="field field--input field--day">
       {% set label = fields['day'].label %}
       <label class="label mercury" for="input-{{label.for}}" id="label-{{label.for}}">{{label.text}}</label>
@@ -22,8 +22,8 @@
 {% endset %}
 
 {% if legend %}
-  <fieldset class="fieldset fieldset--date">
-    <legend class="legend venus">{{legend}}</legend>
+  <fieldset class="fieldgroup fieldgroup--date">
+    <legend class="fieldgroup__title venus">{{legend}}</legend>
     {{subfields|safe}}
   </fieldset>
 {% else %}
