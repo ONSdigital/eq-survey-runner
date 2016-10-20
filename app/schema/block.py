@@ -1,4 +1,4 @@
-from app.questionnaire_state.block import Block as State
+from app.questionnaire_state.state_block import StateBlock
 from app.schema.display import Display
 from app.schema.item import Item
 
@@ -25,4 +25,4 @@ class Block(Item):
             section.container = self
 
     def get_state_class(self):
-        return State
+        return StateBlock

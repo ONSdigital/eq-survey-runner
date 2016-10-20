@@ -1,7 +1,7 @@
-from app.questionnaire_state.item import Item
+from app.questionnaire_state.state_item import StateItem
 
 
-class Section(Item):
+class StateSection(StateItem):
     def __init__(self, id, schema_item):
         super().__init__(id=id, schema_item=schema_item)
         self.questions = []

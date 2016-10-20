@@ -70,9 +70,9 @@ def do_redirect(eq_id, form_type, period_id, collection_id,  location):
     return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + location)
 
 
-def do_get(questionnaire_manager, location):
+def do_get(questionnaire_manager, location, is_valid=True):
     questionnaire_manager.go_to(location)
-    context = questionnaire_manager.get_rendering_context(location)
+    context = questionnaire_manager.get_rendering_context(location, is_valid)
     template = questionnaire_manager.get_rendering_template(location)
 
     # the special case where a get request modifies state
@@ -92,9 +92,12 @@ def do_post(collection_id, eq_id, form_type, period_id, location, questionnaire_
     logger.debug("POST request question - current location %s", location)
 
     logger.debug("POST request length %s", request.content_length)
-
-    questionnaire_manager.process_incoming_answers(location, request.form)
+    is_valid = questionnaire_manager.process_incoming_answers(location, request.form)
     next_location = questionnaire_manager.get_current_location()
-    metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-    return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + next_location)
+
+    if is_valid:
+        metadata = get_metadata(current_user)
+        logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
+        return do_redirect(eq_id, form_type, period_id, collection_id, next_location)
+    else:
+        return do_get(questionnaire_manager, next_location, is_valid)

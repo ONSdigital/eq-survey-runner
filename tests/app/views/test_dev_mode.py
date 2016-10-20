@@ -7,7 +7,7 @@ def test_dev_mode_submission(survey_runner):
     # Use the parameters from the dev page
     response = survey_runner.test_client().post('/dev', data=dict(
       exp="1800",
-      schema="1_0102.json",
+      schema="0_star_wars.json",
       period_str="May 2016",
       period_id="201605",
       collection_exercise_sid="789",

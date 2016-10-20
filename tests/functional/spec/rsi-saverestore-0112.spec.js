@@ -47,25 +47,6 @@ describe('RSI - Save and restore test', function() {
     expect(retailTurnoverPage.getAlertText()).to.contain('Please only enter whole numbers into the field.')
   })
 
-  it('Given a rsi business survey 0112 previously had errors when I resume the survey then I should see those errors', function() {
-    // Given
-    const collectionId = getRandomString(5)
-    startQuestionnaire('1_0112.json', 'yoganandkunche', collectionId)
-    reportingPeriod.setFromReportingPeriodDay('01')
-      .setFromReportingPeriodYear('2016')
-      .setToReportingPeriodDay('01')
-      .setToReportingPeriodYear('2017')
-      .submit()
-    retailTurnoverPage.setRetailTurnover('test')
-      .submit()
-
-    // When
-    openQuestionnaire('1_0112.json', 'yoganandkunche', collectionId)
-
-    // Then
-    expect(reportingPeriod.getAlertText()).to.contain('Please only enter whole numbers into the field.')
-  })
-
   it('Given a rsi business survey 0112 previously had errors when I correct the errors then I can submit them', function() {
     // Given
     const collectionId = getRandomString(5)

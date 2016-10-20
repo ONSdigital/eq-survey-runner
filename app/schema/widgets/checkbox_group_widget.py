@@ -2,6 +2,8 @@ from app.libs.utils import ObjectFromDict
 
 from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
 
+from werkzeug.datastructures import ImmutableMultiDict
+
 
 class CheckboxGroupWidget(MultipleChoiceWidget):
 
@@ -11,7 +13,7 @@ class CheckboxGroupWidget(MultipleChoiceWidget):
 
     def get_user_input(self, post_vars):
         # Returns an empty list
-        return post_vars.getlist(self.name)
+        return ImmutableMultiDict(post_vars).getlist(self.name)
 
     def _build_options(self, answer_schema, answer_state):
         options = []

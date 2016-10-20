@@ -88,6 +88,16 @@ class DateWidget(Widget):
         return render_template('partials/widgets/date_widget.html', **widget_params)
 
     def get_user_input(self, post_vars):
-        user_input = post_vars.get(self.name + '-day', '') + '/' + post_vars.get(self.name + '-month', '') + '/' + post_vars.get(self.name + '-year', '')
-        logger.debug('Getting user input for "{}", value is "{}"'.format(self.name, user_input))
-        return user_input
+        # Todo, this needs a refactor, we currently have 3 types being passed in post_vars: datetime, string and dict
+        if isinstance(post_vars, dict):
+            if post_vars.get(self.name):
+                try:
+                    user_input = post_vars.get(self.name).strftime('%d/%m/%Y')
+                except AttributeError:
+                    return post_vars.get(self.name)
+            else:
+                user_input = post_vars.get(self.name + '-day', '') + '/' \
+                              + post_vars.get(self.name + '-month', '') + '/' + post_vars.get(self.name + '-year', '')
+            return user_input
+        else:
+            return post_vars

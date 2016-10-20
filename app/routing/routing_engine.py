@@ -55,7 +55,6 @@ class RoutingEngine(object):
     def _process_routing_rules(self, routing_rules, current_block):
 
         logger.debug("Processing routing rules %s", routing_rules)
-
         for rule in routing_rules:
 
             # Work out which rule we need then get it to work out the next location
