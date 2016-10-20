@@ -7,6 +7,9 @@
 
 input:checked ~ .label {
   background: $color-lighter-grey;
+  .has-focus & {
+    background-color: transparent;
+  }
 }
 
 .label__description {
@@ -16,7 +19,6 @@ input:checked ~ .label {
 }
 
 .label--inline {
-  position: relative;
   font-weight: 400;
   padding: 0.5rem 0.5rem 0.5rem 2rem;
   display: block;
@@ -27,8 +29,8 @@ input:checked ~ .label {
   }
 }
 
-.field--textarea {
-  .label {
+.label {
+  .field--textarea & {
     font-weight: 400;
     margin-bottom: 2rem;
   }

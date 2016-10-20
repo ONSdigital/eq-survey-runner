@@ -1,10 +1,9 @@
 from app.routing.routing_exception import RoutingException
 from app.routing.rules.goto_block_rule import GotoBlockRule
-from app.routing.rules.repeating_element_rule import RepeatingElementRule
+
 
 KNOWN_RULES = {
     'goto': GotoBlockRule,
-    'repeat': RepeatingElementRule,
 }
 
 

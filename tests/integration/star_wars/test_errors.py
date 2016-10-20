@@ -49,12 +49,6 @@ class TestPageErrors(StarWarsTestCase):
 
         resp = self.submit_page(second_page, form_data)
 
-        # There are validation errors
-        self.assertEquals(resp.headers['Location'], second_page)
-
-        # Go back to the first page
-        self.navigate_to_page(first_page)
-
         # We fill in our answers missing one required field
         form_data = {
 
@@ -81,11 +75,6 @@ class TestPageErrors(StarWarsTestCase):
 
         # We submit the form
         resp = self.submit_page(first_page, form_data)
-
-        # We have a validation error
-        self.assertEquals(resp.headers['Location'], first_page)
-
-        resp = self.navigate_to_page(first_page)
 
         content = resp.get_data(True)
         self.assertRegex(content, 'href="#a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d"')

@@ -37,15 +37,20 @@
     {{ analytics }}
   </head>
   <body>
+
+    <div class="skip">
+      <a class="skip__link" href="#main">Skip to content</a>
+    </div>
+    
     {% block top_bar %}{% endblock %}
 
     {% block content %}{% endblock %}
 
-    <footer class="footer">
+    <div class="footer" role="contentinfo">
       <div class="container">
         <div class="pluto">&copy; <a href="https://www.ons.gov.uk/" target="_blank">Office for National Statistics 2016</a></div>
       </div>
-    </footer>
+    </div>
 
     <!-- jQuery 1 -->
   	<!--[if lt IE 9]>

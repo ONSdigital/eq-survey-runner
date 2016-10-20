@@ -50,7 +50,7 @@ def add_cache_control(response):
 @login_required
 @check_survey_state
 def get_questionnaire(eq_id, form_type, period_id, collection_id, location):
-    return get_page(collection_id, eq_id, form_type, period_id, location)
+    return go_to_page(collection_id, eq_id, form_type, period_id, location)
 
 
 @questionnaire_blueprint.route('<location>', methods=["POST"])
@@ -59,7 +59,9 @@ def get_questionnaire(eq_id, form_type, period_id, collection_id, location):
 def post_questionnaire(eq_id, form_type, period_id, collection_id, location):
     questionnaire_manager = QuestionnaireManagerFactory.get_instance()
     try:
-        questionnaire_manager.process_incoming_answers(location, request.form)
+        valid = questionnaire_manager.process_incoming_answers(location, request.form)
+        if not valid:
+            return get_page(questionnaire_manager, location, False)
     except InvalidLocationException:
         return do_redirect(eq_id, form_type, period_id, collection_id, questionnaire_manager.get_current_location())
 
@@ -88,7 +90,7 @@ def get_thank_you(eq_id, form_type, period_id, collection_id):
     if not same_survey(eq_id, form_type, period_id, collection_id):
         return redirect("/information/multiple-surveys")
 
-    page = get_page(collection_id, eq_id, form_type, period_id, 'thank-you')
+    page = go_to_page(collection_id, eq_id, form_type, period_id, 'thank-you')
     # Delete user data on request of thank you page.
     delete_user_data()
     return page
@@ -98,7 +100,7 @@ def get_thank_you(eq_id, form_type, period_id, collection_id):
 @login_required
 @check_survey_state
 def get_summary(eq_id, form_type, period_id, collection_id):
-    return get_page(collection_id, eq_id, form_type, period_id, 'summary')
+    return go_to_page(collection_id, eq_id, form_type, period_id, 'summary')
 
 
 def delete_user_data():
@@ -117,13 +119,17 @@ def same_survey(eq_id, form_type, period_id, collection_id):
     return current_survey == metadata_survey
 
 
-def get_page(collection_id, eq_id, form_type, period_id, location):
+def go_to_page(collection_id, eq_id, form_type, period_id, location, is_valid=True):
     questionnaire_manager = QuestionnaireManagerFactory.get_instance()
     try:
         questionnaire_manager.go_to(location)
     except InvalidLocationException:
         return do_redirect(eq_id, form_type, period_id, collection_id, questionnaire_manager.get_current_location())
-    context = questionnaire_manager.get_rendering_context(location)
+    return get_page(questionnaire_manager, location, is_valid)
+
+
+def get_page(questionnaire_manager, location, is_valid):
+    context = questionnaire_manager.get_rendering_context(location, is_valid)
     template = get_rendering_template(location)
     return render_template(template, context)
 

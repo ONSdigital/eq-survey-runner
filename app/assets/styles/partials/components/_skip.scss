@@ -3,6 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 999999;
 }
 
 .skip__link {
@@ -14,7 +15,7 @@
   top: -30px;
   transition: top 100ms;
   color: $color-white;
-  background: $color-blue;
+  background: $color-secondary;
   font-weight: 600;
   font-size: 1.1rem;
   &:focus {

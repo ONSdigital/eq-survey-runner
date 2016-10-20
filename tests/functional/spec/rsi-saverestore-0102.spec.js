@@ -43,23 +43,6 @@ describe('RSI - Save and restore test', function() {
     expect(reportingPeriod.getAlertText()).to.contain('The \'period to\' date must be different to the \'period from\' date.')
   })
 
-  it('Given a rsi business survey 0102 previously had errors when I resume the survey then I should see those errors', function() {
-    // Given
-    const collectionId = getRandomString(5)
-    startQuestionnaire('1_0102.json', 'yoganandkunche', collectionId)
-    reportingPeriod.setFromReportingPeriodDay('01')
-      .setFromReportingPeriodYear('2016')
-      .setToReportingPeriodDay('01')
-      .setToReportingPeriodYear('2016')
-      .submit()
-
-    // When
-    openQuestionnaire('1_0102.json', 'yoganandkunche', collectionId)
-
-    // Then
-    expect(reportingPeriod.getAlertText()).to.contain('The \'period to\' date must be different to the \'period from\' date.')
-  })
-
   it('Given a rsi business survey 0102 previously had errors when I correct the errors then I can submit them', function() {
     // Given
     const collectionId = getRandomString(5)
