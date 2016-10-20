@@ -13,7 +13,7 @@ class CheckboxAnswer(Answer):
         self.widget = CheckboxGroupWidget(self.id)
 
     def get_typed_value(self, post_vars):
-        # We cannot tyoe cast a list of values, so just return the user_input
+        # We cannot type cast a list of values, so just return the user_input
         return self.get_user_input(post_vars)
 
     def get_user_input(self, post_vars):
@@ -21,7 +21,6 @@ class CheckboxAnswer(Answer):
 
     def validate(self, state):
         if isinstance(state, self.get_state_class()):
-
             question = state.parent
             logger.debug("Checkbox Question is skipped %s", question.skipped)
             # Mandatory check

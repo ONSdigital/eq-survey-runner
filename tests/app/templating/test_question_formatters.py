@@ -3,6 +3,7 @@ from unittest import mock
 from mock import Mock, MagicMock
 
 from app.templating.summary.summary_item import SummaryItem
+
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
 

@@ -6,7 +6,7 @@ from app import settings
 import unittest
 import os
 from werkzeug.datastructures import MultiDict
-
+from app.questionnaire_state.node import Node
 
 class TestRoutingEngine(unittest.TestCase):
 
@@ -25,27 +25,29 @@ class TestRoutingEngine(unittest.TestCase):
     def test_get_next_location_summary(self):
         next_location = self.routing_engine.get_next_location('an3b74d1-b687-4051-9634-a8f9ce10ard')
         self.assertEqual('846f8514-fed2-4bd7-8fb2-4b5fcb1622b1', next_location)
-
         next_location = self.routing_engine.get_next_location('846f8514-fed2-4bd7-8fb2-4b5fcb1622b1')
         self.assertEqual('summary', next_location)
 
     def test_routing_with_rules_with_when(self):
-        current_block = 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'
+        current_block_id = 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'
         user_answers = {'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c': 'Dark Side'}
-        next_location = self.update_questionnaire_manager(current_block, user_answers)
+        node = Node(current_block_id)
+        next_location = self.update_questionnaire_manager(user_answers, node)
         self.assertEqual('923ccc84-9d47-4a02-8ebc-1e9d14fcf10b', next_location)
 
     def test_routing_with_rules_with_when_to_summary(self):
-        current_block = 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'
+        current_block_id = 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'
         user_answers = {'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c': 'I prefer Star Trek'}
-        next_location = self.update_questionnaire_manager(current_block, user_answers)
+        node = Node(current_block_id)
+        next_location = self.update_questionnaire_manager(user_answers, node)
         self.assertEqual('summary', next_location)
 
     def test_routing_with_rules_without_when(self):
         current_block = '26f2c4b3-28ac-4072-9f18-a6a6c6f660db'
         user_answers = {'a2c2649a-85ff-4a26-ba3c-e1880f7c807b': 'X-wing'}
-        next_location = self.update_questionnaire_manager(current_block, user_answers)
-        self.assertEqual('66cd681c-c3cb-4e32-8d51-b98337a6b524', next_location)
+        node = Node(current_block)
+        next_location = self.update_questionnaire_manager(user_answers, node)
+        self.assertEqual('cd3b74d1-b687-4051-9634-a8f9ce10a27d', next_location)
 
     def test_routing_with_no_rules(self):
 
@@ -67,14 +69,14 @@ class TestRoutingEngine(unittest.TestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "05",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "1983"
         })
+        node = Node(current_block)
 
-        next_location = self.update_questionnaire_manager(current_block, user_answers)
+        next_location = self.update_questionnaire_manager(user_answers, node)
         self.assertEqual('an3b74d1-b687-4051-9634-a8f9ce10ard', next_location)
 
-    def update_questionnaire_manager(self, current_block, user_answers):
-
-        self.questionnaire_manager.go_to_state(current_block)
-        self.questionnaire_manager.update_state(current_block, user_answers)
-
-        next_location = self.routing_engine.get_next_location(current_block)
+    def update_questionnaire_manager(self, user_answers, node):
+        self.questionnaire_manager.go_to_node(node.item_id)
+        self.questionnaire_manager._current.answers = user_answers
+        self.questionnaire_manager.build_state(node, node.answers)
+        next_location = self.routing_engine.get_next_location(node.item_id)
         return next_location

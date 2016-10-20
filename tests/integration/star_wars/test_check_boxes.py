@@ -42,11 +42,6 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
         # We submit the form
         resp = self.submit_page(first_page, form_data)
 
-        # There are validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_BLOCK2)
-
-        resp = self.navigate_to_page(first_page)
-
         # We stay on the current page
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'Star Wars Quiz')

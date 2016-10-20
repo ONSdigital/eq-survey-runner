@@ -61,13 +61,6 @@ class TestClearError(IntegrationTestCase):
 
         # We submit the form
         resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
-
-        # We are back on the page with validation errors
-        self.assertRegexpMatches(resp.headers['Location'], block_one_url)
-
-        # Follow the redirect back
-        resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
         # Get the page content
@@ -92,13 +85,6 @@ class TestClearError(IntegrationTestCase):
 
         # We submit the form
         resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
-
-        # We are back on the page with validation errors
-        self.assertRegexpMatches(resp.headers['Location'], block_one_url)
-
-        # Follow the redirect back
-        resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
         # Get the page content again

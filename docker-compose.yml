@@ -1,5 +1,7 @@
 version: '2'
+
 services:
+
   rabbit:
     image: rabbitmq:3-management
     ports:
@@ -10,8 +12,9 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: digitaleq
       RABBITMQ_DEFAULT_PASS: digitaleq
-  db: 
-    image: postgres
+
+  db:
+    image: postgres:9.4
     environment:
       POSTGRES_PASSWORD: digitaleq
       POSTGRES_USER: digitaleq
@@ -20,6 +23,7 @@ services:
       - "5433:5432"
     networks:
       - eq-env
+
   eq-survey-runner:
     build: ./
     environment:
@@ -29,6 +33,7 @@ services:
       EQ_SCHEMA_BUCKET: ""
       EQ_SERVER_SIDE_STORAGE_DATABASE_URL: postgres://digitaleq:digitaleq@db:5432/runner
       EQ_RABBITMQ_URL: amqp://digitaleq:digitaleq@rabbit:5672/%2F
+    restart: always
     volumes:
       - ./:/code
     depends_on:
@@ -38,6 +43,8 @@ services:
       - eq-env
     ports:
       - "5000:5000"
+
+
 networks:
   eq-env:
     driver: bridge
