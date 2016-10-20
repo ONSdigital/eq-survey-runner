@@ -98,6 +98,6 @@ def do_post(collection_id, eq_id, form_type, period_id, location, questionnaire_
     if is_valid:
         metadata = get_metadata(current_user)
         logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-        return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + next_location)
+        return do_redirect(eq_id, form_type, period_id, collection_id, next_location)
     else:
         return do_get(questionnaire_manager, next_location, is_valid)
