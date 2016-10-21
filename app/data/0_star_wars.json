@@ -54,12 +54,12 @@
                                                 {
                                                     "label": "Light Side",
                                                     "value": "Light Side",
-                                                    "description": "I am some helper text and I might be a bit <strong>bold in places</strong>."
+                                                    "description": "The light side of the Force, also commonly known as the Ashla by ancient Force-sensitives on Tython, or simply the Force, was the side of the Force aligned with honesty, compassion, mercy, self-sacrifice, and other positive emotions."
                                                 },
                                                 {
                                                     "label": "Dark Side",
                                                     "value": "Dark Side",
-                                                    "description": "Vestibulum id ligula porta felis euismod semper."
+                                                    "description": "The dark side of the Force, called Bogan or Boga by ancient Force-sensitives on Tython, was an aspect of the Force."
                                                 },
                                                 {
                                                     "label": "I prefer Star Trek",
@@ -85,7 +85,7 @@
                                         "properties": {}
                                     },
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
-                                    "title": "",
+                                    "title": "Which side of the force are you on?",
                                     "type": "General",
                                     "validation": []
                                 }
@@ -249,7 +249,7 @@
                         },
                         {
                             "goto": {
-                                "id": "66cd681c-c3cb-4e32-8d51-b98337a6b524",
+                                "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
                                 "when": {
                                     "id" : "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
                                     "condition": "equals",
@@ -371,7 +371,7 @@
                                         "routing_rules":[
                         {
                             "goto": {
-                                "id" : "5ff0d900-530d-4266-8bed-c3d1f11b8d8c",
+                                "id" : "fab02f02-6ce4-4f22-b61f-0c7880009f08",
                                 "when": {
                                     "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
                                     "condition": "equals",
@@ -382,7 +382,7 @@
                         },
                         {
                             "goto": {
-                                "id": "66cd681c-c3cb-4e32-8d51-b98337a6b524",
+                                "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
                                 "when": {
                                     "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
                                     "condition": "equals",
@@ -401,72 +401,6 @@
                                 }
                             }
 
-                        }
-                    ],
-                    "title": "",
-                    "validation": []
-                },
-                {
-                    "display": {
-                        "properties": {}
-                    },
-                    "id": "5ff0d900-530d-4266-8bed-c3d1f11b8d8c",
-                    "sections": [
-                        {
-                            "description": "",
-                            "display": {
-                                "properties": {}
-                            },
-                            "id": "aff50222-8978-495f-9684-e3a1d60c5d70",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "display": {
-                                                "properties": {
-                                                    "columns": true
-                                                }
-                                            },
-                                            "guidance": "",
-                                            "id": "50dd83c9-8de6-4c3b-be24-e85dd290b855",
-                                            "label": "How many ships do you want?",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "1",
-                                                    "value": "1"
-                                                },
-                                                {
-                                                    "label": "2",
-                                                    "value": "2"
-                                                }
-                                            ],
-                                            "q_code": "35",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "1335d8e2-013e-4dba-a493-5fc7e1019d39",
-                                    "title": "How many ships do you want?",
-                                    "type": "General",
-                                    "validation": []
-                                }
-                            ],
-                            "title": "",
-                            "validation": []
-                        }
-                    ],
-                    "routing_rules":[
-                        {
-                            "goto": {
-                                "id" : "fab02f02-6ce4-4f22-b61f-0c7880009f08_1"
-                            }
                         }
                     ],
                     "title": "",
@@ -531,7 +465,7 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "id" : "66cd681c-c3cb-4e32-8d51-b98337a6b524"
+                                "id" : "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
                             }
                         }
                     ],
@@ -542,14 +476,14 @@
                     "display": {
                         "properties": {}
                     },
-                    "id": "fab02f02-6ce4-4f22-b61f-0c7880009f08_1",
+                    "id": "fab02f02-6ce4-4f22-b61f-0c7880009f08",
                     "sections": [
                         {
                             "description": "",
                             "display": {
                                 "properties": {}
                             },
-                            "id": "cc8ab489-4ad1-4d89-b60f-b13d550fa591_1",
+                            "id": "cc8ab489-4ad1-4d89-b60f-b13d550fa591",
                             "questions": [
                                 {
                                     "answers": [
@@ -560,7 +494,7 @@
                                                 }
                                             },
                                             "guidance": "",
-                                            "id": "a5d5ca1a-cf58-4626-be35-dce81297688b_1",
+                                            "id": "a5d5ca1a-cf58-4626-be35-dce81297688b",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -584,7 +518,7 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "cb8f691d-7925-4131-a19b-9eeef592ceea_1",
+                                    "id": "cb8f691d-7925-4131-a19b-9eeef592ceea",
                                     "title": "Which ship do you want?",
                                     "type": "General",
                                     "validation": []
@@ -596,136 +530,8 @@
                     ],
                     "routing_rules":[
                         {
-                            "repeat": {
-                                "answer_id" : "50dd83c9-8de6-4c3b-be24-e85dd290b855",
-                                "goto": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
-                            }
-                        }
-                    ],
-                    "title": "",
-                    "validation": []
-                },
-                {
-                    "display": {
-                        "properties": {}
-                    },
-                    "id": "66cd681c-c3cb-4e32-8d51-b98337a6b524",
-                    "sections": [
-                        {
-                            "description": "",
-                            "display": {
-                                "properties": {}
-                            },
-                            "id": "e9ac71cf-2ec0-4035-ba38-289ca9fa7896",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "display": {
-                                                "properties": {
-                                                    "columns": true
-                                                }
-                                            },
-                                            "guidance": "",
-                                            "id": "8fe76762-d07f-4a1f-a315-0b0385940f8c",
-                                            "label": "How many starting crawlers do you know?",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "30",
-                                            "type": "PositiveInteger",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "4818d4fa-f4c4-4d6d-8d70-d7319e91e354",
-                                    "title": "",
-                                    "type": "General",
-                                    "validation": []
-                                }
-                            ],
-                            "title": "",
-                            "validation": []
-                        }
-                    ],
-                    "routing_rules":[
-                                {
-                                    "goto": {
-                                        "id" : "73ca315e-cab0-4b19-a79b-f850884db9e5_1",
-                                        "when": {
-                                            "id" : "8fe76762-d07f-4a1f-a315-0b0385940f8c",
-                                            "condition": "not equals",
-                                            "value":"0"
-                                        }
-                                    },
-                                    "goto": {
-                                        "id" : "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
-                                        "when": {
-                                            "id" : "8fe76762-d07f-4a1f-a315-0b0385940f8c",
-                                            "condition": "equals",
-                                            "value":"0"
-                                        }
-                                    }
-                                }
-                            ],
-                    "title": "",
-                    "validation": []
-                },
-                {
-                    "display": {
-                        "properties": {}
-                    },
-                    "id": "73ca315e-cab0-4b19-a79b-f850884db9e5_1",
-                    "sections": [
-                        {
-                            "description": "",
-                            "display": {
-                                "properties": {}
-                            },
-                            "id": "e41cada8-9b84-469b-9414-0935797ecf7d_1",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "display": {
-                                                "properties": {
-                                                    "columns": true
-                                                }
-                                            },
-                                            "guidance": "",
-                                            "id": "56b6f367-e84b-43fa-a5e2-19193f223fa0_1",
-                                            "label": "Please provide a general description of each crawler you know",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "31",
-                                            "type": "Textarea",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "691bba28-d701-4570-b2f1-9070a1515d6a_1",
-                                    "title": "",
-                                    "type": "General",
-                                    "validation": []
-                                }
-                            ],
-                            "title": "",
-                            "validation": []
-                        }
-                    ],
-                    "routing_rules":[
-                        {
-                            "repeat": {
-                                "answer_id" : "8fe76762-d07f-4a1f-a315-0b0385940f8c"
+                            "goto": {
+                                "id" : "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
                             }
                         }
                     ],
@@ -1036,7 +842,7 @@
                                     "title": "Which 3 appear in any of the opening crawlers?",
                                     "type": "General"
                                 },
-                                {
+                              {
                                     "answers": [
                                         {
                                             "display": {},

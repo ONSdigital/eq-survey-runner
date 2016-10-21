@@ -1,4 +1,4 @@
-from app.questionnaire_state.question import Question as State
+from app.questionnaire_state.state_question import StateQuestion
 from app.schema.display import Display
 from app.schema.item import Item
 
@@ -26,4 +26,4 @@ class Question(Item):
             answer.container = self
 
     def get_state_class(self):
-        return State
+        return StateQuestion

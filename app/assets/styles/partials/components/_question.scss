@@ -28,7 +28,9 @@
 
 .question__title {
   clear: both;
-  display: block;
+  // NOTE: do not enable display block as it breaks any instance
+  //       where this appears inside a `legend`
+  // display: block;
   color: inherit;
   margin-bottom: 0.5rem;
 }

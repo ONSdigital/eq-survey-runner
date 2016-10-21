@@ -32,14 +32,14 @@
 
       {% set other_label = {
         "class": "label mercury",
-        "for": option.other.id
+        "for": option_id ~ "-other"
       } %}
 
       {% set other_input = {
         "class": "input js-focusable",
         "type": "text",
         "name": answer.name,
-        "id": option_id,
+        "id": option_id ~ "-other",
         "value": option.other_value,
         "data-qa": "other-option"
       } %}

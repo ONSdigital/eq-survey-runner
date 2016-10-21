@@ -1,9 +1,29 @@
 # eQ Survey Runner
 [![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![Code Issues](https://www.quantifiedcode.com/api/v1/project/1709e9d582cc479a86568a043117d4d0/badge.svg)](https://www.quantifiedcode.com/app/project/1709e9d582cc479a86568a043117d4d0) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Dependency Status](https://gemnasium.com/badges/github.com/ONSdigital/eq-survey-runner.svg)](https://gemnasium.com/github.com/ONSdigital/eq-survey-runner)
 
-Based on python 3
+## Run with Docker
+
+To get eq-survey-runner running the following command will build and run the containers 
+```
+docker-compose up -d
+```
+
+When the containers are running you are able to access the application as normal, and code changes will be reflected in the running application.
+However, any new dependencies that are added would require a re-build.
+
+To rebuild the eq-survey-runner container, the following command can be used.
+```
+docker-compose build
+```
+
+If you need to rebuild the container from scratch to re-load any dependencies then you can run the following
+```
+docker-compose build --no-cache
+```
+
 
 ## Setup
+Based on python 3
 
 If using virtualenvwrapper (if not, you should be), create a new virtual env for python3
 
