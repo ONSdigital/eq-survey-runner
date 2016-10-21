@@ -1,0 +1,78 @@
+
+.page-header {
+  background: $color-purple;
+  margin: 0;
+  padding: 0.5rem;
+  position: relative;
+  min-height: 10rem;
+  overflow: hidden;
+  color: white;
+
+  &::before {
+    content: none;
+  }
+
+  @include mq(m) {
+    margin: 0 0 2rem;
+  }
+}
+
+.page-header__logo {
+  position: absolute;
+  top: 0;
+  left: -0.7rem;
+  width: 12.5rem;
+}
+
+.page-header__titles {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.page-header__title {
+  font-weight: $font-weight-semibold;
+  margin: 0 0 0.2rem;
+  display: inline-block;
+}
+
+.page-header__subtitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: $font-weight-regular;
+  @include mq(m) {
+    font-size: 1.4rem;
+  }
+}
+
+.page-header__help {
+  display: inline-block;
+}
+
+.help {
+  text-align: right;
+  float: right;
+}
+
+.help__title {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  @include mq(m) {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.help__link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.8rem;
+  &:last-of-type {
+    border-left: 1px solid white;
+    padding-left: 1rem;
+    margin-left: 1rem;
+  }
+
+  @include mq(m) {
+    font-size: 1rem;
+  }
+}

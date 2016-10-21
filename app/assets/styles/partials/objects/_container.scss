@@ -1,11 +1,14 @@
 .container {
-	max-width: $grid-max-width;
-	margin: 0 auto;
-	padding: 0 $grid-gutters / 2;
+  max-width: $grid-max-width;
+  margin: 0 auto;
+  padding: 0 $grid-gutters / 2;
   box-sizing: border-box;
-	@if not $responsive {
-		width: $grid-max-width;
-	}
+  @if not $responsive {
+    width: $grid-max-width;
+  }
+  @else {
+    width: 100%;
+  }
   @include mq(m) {
     padding: 0 $grid-gutters;
   }

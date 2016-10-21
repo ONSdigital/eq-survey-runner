@@ -1,0 +1,36 @@
+.footer {
+  display: block;
+}
+
+.footer__logos {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.footer__crest {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.footer__nav {
+  display: block;
+
+  &.nav {
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav__item {
+    padding-left: 0;
+    margin-left: 0;
+    display: inline-block;
+    border-right: 1px solid $color-borders;
+    padding-right: 0.5rem;
+    margin-right: 0.5rem;
+
+    &:last-of-type {
+      border: none;
+    }
+  }
+}
