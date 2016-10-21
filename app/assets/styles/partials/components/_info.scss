@@ -27,10 +27,13 @@
     height: 1.5em;
     background-size: 2.5em;
   }
+}
 
-  a {
-    text-decoration: none;
-    color: $color-text;
+.info__link {
+  text-decoration: none;
+  color: $color-text;
+  &:focus {
+    color: white;
   }
 }
 
@@ -41,9 +44,6 @@
   margin: 0.1em 0 0;
   @include mq(m) {
     display: inline-flex;
-  }
-  @include lt-ie9 {
-    // padding-top: 0;
   }
 }
 
