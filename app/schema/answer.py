@@ -51,7 +51,7 @@ class Answer(Item):
 
     @staticmethod
     def check_user_input(user_input):
-        if user_input and not str(user_input).isspace() and user_input != '':
+        if user_input is not None and not str(user_input).isspace() and user_input != '':
             return user_input
         else:
             return None

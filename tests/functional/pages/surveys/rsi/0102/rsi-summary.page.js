@@ -22,6 +22,10 @@ class RSISummaryPage extends SummaryPage {
     browser.click('[aria-describedby="summary-3-0-0 summary-3-0-0-answer"]')
   }
 
+  editLinkChangeInternetSales(){
+    browser.click('[aria-describedby="summary-2-0-0 summary-2-0-0-answer"]')
+  }
+
 }
 
 export default new RSISummaryPage()

@@ -63,4 +63,29 @@ describe('RSI - summary screen edit test', function() {
     expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('This is to test edit links on summary screen - edited')
 
   })
+  it('Given the RSI survery 0102 when a 0 is entered in a currency field then the summary screen should show £0 and the original page should show 0', function(done) {
+
+    //Given the RSI business survey 0102 is started
+    startQuestionnaire('1_0102.json')
+
+    // when data is entered for the survey
+    reportingPeriod.setFromReportingPeriodDay(2)
+      .setToReportingPeriodDay(2)
+      .setFromReportingPeriodYear(2016)
+      .setToReportingPeriodYear(2017)
+      .submit()
+    retailTurnoverPage.setRetailTurnover(1000)
+      .submit()
+    internetSalesPage.setInternetSales(0)
+      .submit()
+    changeInRetailTurnover.setChangesInRetailTurnover('')
+      .submit()
+
+    // Then summary screen and the original page shows the data entered
+    expect(rsiSummaryPage.getRetailTurnoverSummary()).to.contain('£1,000')
+    expect(rsiSummaryPage.getInternetSalesSummary()).to.contain('£' + 0)
+    rsiSummaryPage.editLinkChangeInternetSales()
+    expect(internetSalesPage.getInternetSales()).to.contain('0')
+
+      })
 })
