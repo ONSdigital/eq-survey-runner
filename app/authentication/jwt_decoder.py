@@ -37,20 +37,6 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
                 backend=backend,
             )
 
-    def decode_jwt_token(self, token):
-        try:
-            if token:
-                logging.debug("Decoding JWT " + strings.to_str(token))
-                self._check_payload(strings.to_str(token))
-                token = jwt.decode(token, verify=False)
-                return token
-            else:
-                raise NoTokenException("JWT Missing")
-        except jwt.DecodeError as e:
-            raise InvalidTokenException(repr(e))
-        except ValueError as e:
-            raise InvalidTokenException(repr(e))
-
     def decode_signed_jwt_token(self, signed_token):
         try:
             if signed_token:

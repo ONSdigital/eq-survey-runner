@@ -1,7 +1,6 @@
 import logging
 
-from app.authentication.session_management import session_manager
-from app.data_model.questionnaire_store import get_metadata, get_questionnaire_store
+from app.data_model.questionnaire_store import get_metadata
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
 from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
 from app.questionnaire.user_journey import UserJourney
@@ -46,19 +45,9 @@ class QuestionnaireManager(object):
     def construct_user_journey(self):
         return UserJourney(self._current, self._first, self._tail, self._archive, self.submitted_at, self._valid_locations)
 
-    def resolve_location(self, location):
-        if location == 'first':
-            return self._get_first_block()
-        elif location == 'previous':
-            return self._current.previous.item_id
-        else:
-            return location
-
     def _build_valid_locations(self):
-        validate_location = ['thank-you']
-
         # Add the submission page (default is summary)
-        validate_location.append(self._schema.submission_page)
+        validate_location = ['thank-you', self._schema.submission_page]
 
         if self._schema.introduction:
             validate_location.append('introduction')
@@ -152,6 +141,9 @@ class QuestionnaireManager(object):
         else:
             return self._get_first_block()
 
+    def get_previous_location(self):
+        return self._current.previous.item_id
+
     def _get_first_block(self):
         return self._schema.groups[0].blocks[0].id
 
@@ -226,18 +218,11 @@ class QuestionnaireManager(object):
             node = node.next
         return valid
 
-    @property
-    def submitted(self):
-        return self.submitted_at is not None
-
     def go_to(self, location):
         if self._current:
             logger.debug("Attempting to go to location %s with current location as %s", location, self._current.item_id)
-        if location == 'first':
-            # convenience method for routing to the first block
-            location = self._get_first_block()
-        elif location == 'previous':
-            location = self._current.previous.item_id
+        if location == 'previous':
+            location = self.get_previous_location()
         elif location == 'summary' and self._current.item_id != 'summary':
             metadata = get_metadata(current_user)
             if metadata:
@@ -254,9 +239,9 @@ class QuestionnaireManager(object):
         return False
 
     def process_incoming_answers(self, location, post_data, replay=False):
-        logger.debug("QuestionnaireManager first %s", self._current)
+        logger.debug("QuestionnaireManager first %s", self._first)
         logger.debug("QuestionnaireManager current %s", self._current)
-        logger.debug("QuestionnaireManager tail %s", self._current)
+        logger.debug("QuestionnaireManager tail %s", self._tail)
         logger.debug("Processing post data for %s", location)
         # ensure we're in the correct location
 
@@ -302,25 +287,11 @@ class QuestionnaireManager(object):
             raise InvalidLocationException()
 
     def get_rendering_context(self, location, is_valid=True):
-
-        # look up the preprocessor and then build the view data
-        preprocessor = TemplateRegistry.get_template_preprocessor(location)
         node = self._current
         state_items = []
         if is_valid:
             if location == 'summary':
-                # the summary is the special case when we need the start of the linked list
-                node = self._first
-                # and we also need to plumb the entire schema
-                while node.next:
-                    self.build_state(node, node.answers)
-                    if self.state:
-                        self._plumbing_preprocessing(self.state)
-                        self._conditional_display(self.state)
-                        state_items.append(self.state)
-                    node = node.next
-                # reset pointer back to the first node for the preprocessor
-                node = self._first
+                return self._get_summary_rendering_context()
             else:
                 self.build_state(node, node.answers)
 
@@ -331,6 +302,25 @@ class QuestionnaireManager(object):
         if self.state not in state_items:
             state_items.append(self.state)
 
+        # look up the preprocessor and then build the view data
+        preprocessor = TemplateRegistry.get_template_preprocessor(location)
+        return preprocessor.build_view_data(node, self._schema, state_items)
+
+    def _get_summary_rendering_context(self):
+        state_items = []
+        # the summary is the special case when we need the start of the linked list
+        node = self._first
+        # We need to plumb the entire schema
+        while node.next:
+            self.build_state(node, node.answers)
+            if self.state:
+                self._plumbing_preprocessing(self.state)
+                self._conditional_display(self.state)
+                state_items.append(self.state)
+            node = node.next
+
+        # look up the preprocessor and then build the view data
+        preprocessor = TemplateRegistry.get_template_preprocessor('summary')
         return preprocessor.build_view_data(node, self._schema, state_items)
 
     def build_state(self, node, answers):
@@ -355,9 +345,6 @@ class QuestionnaireManager(object):
             for child in item.children:
                 self._conditional_display(child)
 
-    def get_rendering_template(self, location):
-        return TemplateRegistry.get_template_name(location)
-
     def _get_user_action(self, post_data):
         user_action = None
 
@@ -367,14 +354,6 @@ class QuestionnaireManager(object):
                 user_action = key[7:-1]
 
         return user_action
-
-    def delete_user_data(self):
-        # once the survey has been submitted
-        # delete all user data from the database
-        qdata = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        qdata.delete()
-        # and clear out the session state
-        session_manager.clear()
 
     def get_schema_item_by_id(self, item_id):
         return self._schema.get_item_by_id(item_id)

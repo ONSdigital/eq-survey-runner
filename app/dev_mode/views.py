@@ -5,10 +5,11 @@ import time
 from app.dev_mode.jwt_encoder import Encoder
 from app.schema_loader.schema_loader import available_schemas
 
-from flask import abort
 from flask import redirect
 from flask import render_template
 from flask import request
+
+from werkzeug.exceptions import NotFound
 
 from . import dev_mode_blueprint
 
@@ -62,7 +63,7 @@ def extract_eq_id_and_form_type(schema_name):
     except Exception as e:
         logger.exception(e)
         logger.error("Invalid schema file %s", schema_name)
-        abort(404)
+        raise NotFound
 
 
 def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid, ref_p_start_date,
