@@ -14,20 +14,6 @@ class JWTDecodeTest(unittest.TestCase):
         settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
 
-    def test_decode(self):
-        decoder = JWTDecryptor()
-        token = decoder.decode_jwt_token(VALID_JWT)
-        self.assertEquals("jimmy", token.get("user"))
-
-    def test_decode_with_no_token(self):
-        decoder = JWTDecryptor()
-        self.assertRaises(NoTokenException, decoder.decode_jwt_token, None)
-
-    def test_decode_with_invalid_token(self):
-        decoder = JWTDecryptor()
-        token = "asdasdasdasd"
-        self.assertRaises(InvalidTokenException, decoder.decode_jwt_token, token)
-
     def test_decode_signed_jwt_token(self):
         decoder = JWTDecryptor()
         token = decoder.decode_signed_jwt_token(VALID_SIGNED_JWT)
