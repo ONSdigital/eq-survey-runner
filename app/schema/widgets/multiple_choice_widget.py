@@ -40,13 +40,13 @@ class MultipleChoiceWidget(Widget):
         is_immutable_multi_dict = hasattr(post_vars, 'getlist')
         posted_data = post_vars.getlist(self.name) if is_immutable_multi_dict else post_vars.get(self.name)
 
-        has_multiple_values = isinstance(posted_data, list) and len(posted_data) > 0
+        has_multiple_values = isinstance(posted_data, list) and len(posted_data) > 1
 
         other_value = str(posted_data[-1:][0]).strip() if has_multiple_values else None
 
         if other_value is not None and len(other_value) > 0:
             return other_value
-        elif other_value is not None:
+        elif other_value is not None and len(other_value) == 0:
             return 'Other'
         else:
             return None
