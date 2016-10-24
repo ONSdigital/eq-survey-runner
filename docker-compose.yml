@@ -35,7 +35,7 @@ services:
       EQ_RABBITMQ_URL: amqp://digitaleq:digitaleq@rabbit:5672/%2F
     restart: always
     volumes:
-      - ./:/code
+      - ./app:/code/app
     depends_on:
       - db
       - rabbit

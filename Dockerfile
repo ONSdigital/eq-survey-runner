@@ -15,11 +15,15 @@ RUN apt-get install -y nodejs
 RUN npm install --global gulp-cli
 
 ADD requirements.txt /code/requirements.txt
+ADD package.json /code/package.json
+ADD app/assets /code/app/assets
 
 RUN pip3 install -U -I -r /code/requirements.txt
 
+RUN npm install
+
 ADD . /code
 
-RUN npm install && npm run compile
+RUN npm run compile
 
 ENTRYPOINT python3 application.py runserver

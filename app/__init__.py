@@ -99,7 +99,7 @@ class AWSReverseProxied(object):
 
 
 def create_app(config_name):
-    application = Flask(__name__, static_url_path='/s')
+    application = Flask(__name__, static_url_path='/s', static_folder='../static')
     headers = {'Content-Type': 'application/json',
                'Cache-Control': 'no-cache, no-store, must-revalidate',
                'Pragma': 'no-cache',

@@ -49,7 +49,7 @@ venv
 .DS_Store
 
 node_modules/
-app/static/
+static/
 tests/results
 tests/coverage
 tests/a11y
