@@ -1,0 +1,21 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Census",
+    "theme": "census",
+    "description": "",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "0",
+    "messages": {},
+    "groups": [
+
+    ]
+}
