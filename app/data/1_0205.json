@@ -193,7 +193,7 @@
 					"questions": [{
 						"id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
 						"title": "",
-						"description": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
+						"description": "Please explain any movements in your data, for example, sale held, branches opened or sold, extreme weather, or temporary closure of shop",
 						"type": "General",
 						"answers": [{
 							"id": "215015b1-f87c-4740-9fd4-f01f707ef558",

@@ -324,7 +324,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "Please explain any movements in your data e.g. sale held, branches opened or sold, extreme weather, or temporary closure of shop",
+                                    "description": "Please explain any movements in your data, for example, sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                                     "display": {
                                         "properties": {}
                                     },
