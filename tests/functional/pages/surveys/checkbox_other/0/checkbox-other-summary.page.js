@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import SummaryPage from '../../../summary.page'
 
-class CheckboxOtherSummaryPage extends QuestionPage {
+class CheckboxOtherSummaryPage extends SummaryPage {
 
   getPizzaToppingAnswer() {
       var answer = browser.element('#summary-0-0-0-answer');

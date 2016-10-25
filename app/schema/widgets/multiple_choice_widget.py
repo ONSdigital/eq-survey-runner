@@ -44,9 +44,4 @@ class MultipleChoiceWidget(Widget):
 
         other_value = str(posted_data[-1:][0]).strip() if has_multiple_values else None
 
-        if other_value is not None and len(other_value) > 0:
-            return other_value
-        elif other_value is not None and len(other_value) == 0:
-            return 'Other'
-        else:
-            return None
+        return other_value if other_value is not None and len(other_value) > 0 else None

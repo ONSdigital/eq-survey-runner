@@ -22,9 +22,7 @@ describe('Multiple choice "other" option', function() {
 
      // When
      PizzaToppingsPage.submit();
-     expect(PizzaBasesPage.isVisible()).to.be.true
-     PizzaBasesPage.setPizzaBase('thin');
-     PizzaBasesPage.submit();
+     PizzaBasesPage.selectPizzaBase('thin').submit();
 
      // Then
      expect(CheckboxOtherSummaryPage.getPizzaToppingAnswer()).to.equal('No answer provided')
@@ -37,12 +35,9 @@ describe('Multiple choice "other" option', function() {
      startQuestionnaire('0_checkbox_other.json')
 
      // When
-     PizzaToppingsPage.selectOther();
-     PizzaToppingsPage.submit();
+     PizzaToppingsPage.selectOther().submit();
 
-     expect(PizzaBasesPage.isVisible()).to.be.true
-     PizzaBasesPage.setPizzaBase('deep pan');
-     PizzaBasesPage.submit();
+     PizzaBasesPage.selectPizzaBase('deep pan').submit();
 
      // Then
      expect(CheckboxOtherSummaryPage.getPizzaToppingAnswer()).to.have.string('Other');
@@ -55,13 +50,9 @@ describe('Multiple choice "other" option', function() {
      startQuestionnaire('0_checkbox_other.json')
 
      // When
-     PizzaToppingsPage.selectOther();
-     PizzaToppingsPage.inputOtherValue('The other value')
-     PizzaToppingsPage.submit();
+     PizzaToppingsPage.selectOther().setOtherValue('The other value').submit();
 
-     expect(PizzaBasesPage.isVisible()).to.be.true
-     PizzaBasesPage.setPizzaBase('deep pan');
-     PizzaBasesPage.submit();
+     PizzaBasesPage.selectPizzaBase('deep pan').submit();
 
      // Then
      expect(CheckboxOtherSummaryPage.getPizzaToppingAnswer()).to.have.string('The other value');

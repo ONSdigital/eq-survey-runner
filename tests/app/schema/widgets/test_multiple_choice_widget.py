@@ -28,7 +28,7 @@ class TestMultipleChoiceWidget(TestCase):
 
     def test_get_other_input_when_other_selected_but_no_value_specified(self):
         post_vars = {'multiple_choice_widget': ['Other', '']}
-        assert self.widget.get_other_input(post_vars) == 'Other'
+        assert self.widget.get_other_input(post_vars) is None
 
     def test_get_other_input_with_multi_dict(self):
         post_vars = MagicMock()
@@ -41,7 +41,7 @@ class TestMultipleChoiceWidget(TestCase):
         post_vars = MagicMock()
         post_vars.getlist = MagicMock(return_value=['Other', ''])
         post_vars.__len__ = MagicMock(return_value=2)
-        assert self.widget.get_other_input(post_vars) == 'Other'
+        assert self.widget.get_other_input(post_vars) is None
         post_vars.getlist.assert_called_once_with('multiple_choice_widget')
 
     def test_get_other_input_single_value_returns_none(self):
@@ -51,7 +51,7 @@ class TestMultipleChoiceWidget(TestCase):
 
     def test_get_other_value_when_blank_returns_other(self):
         post_vars = {'multiple_choice_widget': ['Other', '       ']}
-        assert self.widget.get_other_input(post_vars) == 'Other'
+        assert self.widget.get_other_input(post_vars) is None
 
     def test_get_other_value_when_single_value_called_other_returns_none(self):
         post_vars = {'multiple_choice_widget': ['Other']}

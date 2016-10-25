@@ -43,7 +43,7 @@
           <div class="summary__answer">
             {% set item_id = id ~ "-" ~ loop.index0 %}
             <div class="summary__answer-text" id="{{item_id}}-answer" data-qa="answer-{{outer_loop_index}}-{{inner_loop_index}} answer-type-{{item.type}}">
-              {%- if not sub_item.answer -%}
+              {%- if sub_item.answer is none -%}
                 {{not_answered}}
               {%- else -%}
                 {% include theme(['partials/summary/' ~ sub_item.type ~ '.html', 'partials/summary/default.html']) %}

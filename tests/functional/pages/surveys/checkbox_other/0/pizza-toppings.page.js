@@ -7,7 +7,7 @@ class PizzaToppingsPage extends QuestionPage {
       return this;
   }
 
-  inputOtherValue(text) {
+  setOtherValue(text) {
       browser.setValue('input[id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-6-other"]', text);
       return this;
   }
