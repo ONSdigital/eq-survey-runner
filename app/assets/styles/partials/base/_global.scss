@@ -21,6 +21,10 @@ img {
   // margin-bottom: $base-line-height;
 }
 
+abbr[title] {
+  border: none;
+}
+
 a {
   color: $color-links;
   text-decoration: underline;
