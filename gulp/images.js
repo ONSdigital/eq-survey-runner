@@ -30,24 +30,10 @@ export function sprite() {
           sprite: `${paths.images.output}/sprite.svg`,
           render: {
             scss: {
-              dest: `${paths.styles.dir}/base/_sprite.scss`
+              dest: `${paths.styles.dir}/partials/base/_sprite.scss`
             }
           }
         }
-        // symbol: {
-        //   dest: '.',
-        //   sprite: `${paths.images.output}/sprite-symbol.svg`,
-        //   example: false,
-        //   // example: {
-        //   //   template: `${paths.svgs.dir}/icons/tmpl.html`,
-        //   //   dest: `${paths.app}/patternlib/templates/pattern_lib/1-styleguide/99-icons.html`
-        //   // },
-        //   render: {
-        //     scss: {
-        //       dest: `${paths.styles.dir}/base/_sprite-symbol.scss`
-        //     }
-        //   }
-        // }
       }
     }))
     .on('error', function(err) {

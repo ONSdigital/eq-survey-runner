@@ -26,7 +26,7 @@ export function lint() {
   gulp.src(paths.styles.input)
     .pipe(postcss([
       stylelint({
-        ignoreFiles: [`${paths.styles.dir}/base/_sprite.scss`]
+        ignoreFiles: [`${paths.styles.dir}/partials/base/_sprite.scss`]
       }),
       reporter({ clearMessages: true })
     ], {
