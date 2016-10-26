@@ -49,12 +49,12 @@ venv
 .DS_Store
 
 node_modules/
-app/static/
+static/
 tests/results
 tests/coverage
 tests/a11y
 
-app/styles/base/_sprite.scss
+app/assets/styles/partials/base/_sprite.scss
 
 ## OS X
 ._*

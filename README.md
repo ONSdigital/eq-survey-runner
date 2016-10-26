@@ -74,7 +74,7 @@ There are a few additional npm tasks:
 
 Command                                    | Task
 -------------------------------------------|----------------------
-`npm run compile`                          | Build the assets (js, css, img) into `/app/static`
+`npm run compile`                          | Build the assets (js, css, img) into `/static`
 `npm run dev`                              | Build assets and watch for changes. Runs Browsersync.
 `npm run test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance
 `npm run test_unit`                        | Watches the unit tests via Karma
