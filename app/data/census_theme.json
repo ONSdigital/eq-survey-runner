@@ -1,11 +1,11 @@
 {
     "mime_type": "application/json/ons/eq",
-    "questionnaire_id": "0",
+    "questionnaire_id": "23",
     "schema_version": "0.0.1",
-    "survey_id": "0",
-    "title": "Census",
-    "theme": "census",
+    "survey_id": "023",
+    "title": "Census Theme",
     "description": "",
+    "theme": "census",
     "introduction": {
         "description": "",
         "information_to_provide": []
@@ -13,9 +13,78 @@
     "display": {
         "properties": {}
     },
-    "eq_id": "0",
-    "messages": {},
+    "eq_id": "1",
     "groups": [
+        {
+            "blocks": [
 
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "block",
+                    "sections": [
+                        {
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                              "display": {
+                                                  "properties": {
+                                                      "columns": false
+                                                  }
+                                              },
+                                              "guidance": "",
+                                              "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                              "label": "",
+                                              "mandatory": true,
+                                              "options": [
+                                                  {
+                                                      "label": "Yes",
+                                                      "value": "Yes"
+                                                  },
+                                                  {
+                                                      "label": "No",
+                                                      "value": "No",
+                                                      "description": "For example this is a holiday home."
+                                                  }
+                                              ],
+                                              "q_code": "20",
+                                              "type": "Radio",
+                                              "validation": {
+                                                  "messages": {}
+                                              }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "pquestion",
+                                    "title": "Is this your permanent home?",
+                                    "description" : "",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Household",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Household",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "multiple_questions_group",
+            "title": "",
+            "validation": []
+        }
     ]
 }
