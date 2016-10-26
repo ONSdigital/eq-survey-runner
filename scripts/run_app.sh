@@ -39,8 +39,9 @@ fi
 echo "Environment variables in use:"
 env | grep EQ_
 
-if [ ! -s "app/static" ]; then
+if [ ! -s "static" ]; then
   echo "WARNING: Frontend compilation needed"
+  exit 1
 fi
 
 url="`python token_generator.py`"
