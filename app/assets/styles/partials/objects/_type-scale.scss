@@ -1,0 +1,40 @@
+.jupiter {
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1.2;
+  @include mq(m) {
+    font-size: 2rem;
+  }
+}
+
+.saturn {
+  font-size: 1.556rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.neptune {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.venus {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.mars {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.mercury {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.pluto {
+  font-size: 0.8rem;
+  font-weight: 400;
+}

@@ -1,0 +1,42 @@
+{% extends 'layouts/_survey.html' %}
+
+{%- block styles %}
+<!--[if (gt IE 9) | (IEMobile)]><!-->
+  {%- if request.args.get('fixed') == 'true' %}
+    <link href="{{ url_for('static', filename='css/census/fixed.css') }}" rel="stylesheet">
+  {%- else %}
+    <link href="{{ url_for('static', filename='css/census/responsive.css') }}" rel="stylesheet">
+  {%- endif %}
+<!--<![endif]-->
+<!--[if (lte IE 9) & (!IEMobile)]>
+  <link href="{{ url_for('static', filename='css/census/fixed.css') }}" rel="stylesheet">
+<![endif]-->
+{% endblock styles -%}
+
+{% block footer %}
+
+<div class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__logos">
+      <div class="footer__logo">
+        <img src="{{ theme_static('ons-logo.svg') }}" alt="Office for National Statistics" />
+      </div>
+      <div class="footer__crest">
+        <img src="{{ theme_static('crown-logo.svg') }}" alt="" />
+      </div>
+    </div>
+    <ul class="footer__nav nav">
+      <li class="nav__item">
+        <a class="nav__link" href="https://www.ons.gov.uk/help/cookiesandprivacy">Privacy</a>
+      </li>
+      <li class="nav__item">
+        <a class="nav__link" href="https://www.ons.gov.uk/help/termsandconditions">Terms and Conditions</a>
+      </li>
+      <li class="nav__item">
+        <a class="nav__link" href="https://www.ons.gov.uk/help/accessibility">Accessibility Statement</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{% endblock %}
