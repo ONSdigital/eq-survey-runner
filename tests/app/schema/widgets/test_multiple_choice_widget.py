@@ -1,5 +1,6 @@
 from unittest import TestCase
-from unittest.mock import MagicMock
+
+from werkzeug.datastructures import MultiDict
 
 from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
 
@@ -10,13 +11,8 @@ class TestMultipleChoiceWidget(TestCase):
         self.widget = MultipleChoiceWidget('multiple_choice_widget')
 
     def test_get_other_input_returns_none_for_empty_input(self):
-
-        mock_dict = MagicMock()
-        mock_dict.getlist = MagicMock(return_value=[])
-        mock_dict.__len__ = MagicMock(return_value=0)
-
         assert self.widget.get_other_input({}) is None
-        assert self.widget.get_other_input(mock_dict) is None
+        assert self.widget.get_other_input(MultiDict()) is None
 
     def test_get_other_input_with_single_value(self):
         post_vars = {'answer': 'answer_value'}
@@ -31,18 +27,16 @@ class TestMultipleChoiceWidget(TestCase):
         assert self.widget.get_other_input(post_vars) is None
 
     def test_get_other_input_with_multi_dict(self):
-        post_vars = MagicMock()
-        post_vars.getlist = MagicMock(return_value=['Other', 'Other value'])
-        post_vars.__len__ = MagicMock(return_value=2)
+        post_vars = MultiDict()
+        post_vars.add('multiple_choice_widget', 'Other')
+        post_vars.add('multiple_choice_widget', 'Other value')
         assert self.widget.get_other_input(post_vars) == 'Other value'
-        post_vars.getlist.assert_called_once_with('multiple_choice_widget')
 
     def test_get_other_input_with_multi_dict_no_other_value(self):
-        post_vars = MagicMock()
-        post_vars.getlist = MagicMock(return_value=['Other', ''])
-        post_vars.__len__ = MagicMock(return_value=2)
+        post_vars = MultiDict()
+        post_vars.add('multiple_choice_widget', 'Other')
+        post_vars.add('multiple_choice_widget', '')
         assert self.widget.get_other_input(post_vars) is None
-        post_vars.getlist.assert_called_once_with('multiple_choice_widget')
 
     def test_get_other_input_single_value_returns_none(self):
         post_vars = {'multiple_choice_widget': ['Some value']}
@@ -50,7 +44,9 @@ class TestMultipleChoiceWidget(TestCase):
         assert self.widget.get_user_input(post_vars) == ['Some value']
 
     def test_get_other_value_when_blank_returns_other(self):
-        post_vars = {'multiple_choice_widget': ['Other', '       ']}
+        post_vars = MultiDict()
+        post_vars.add('multiple_choice_widget', 'Other')
+        post_vars.add('multiple_choice_widget', '       ')
         assert self.widget.get_other_input(post_vars) is None
 
     def test_get_other_value_when_single_value_called_other_returns_none(self):
