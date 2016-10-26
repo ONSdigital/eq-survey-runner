@@ -1,80 +1,15 @@
 import re
 
-from bs4 import BeautifulSoup
-
 import flask
 
-from jinja2 import Markup, contextfilter, escape, evalcontextfilter
+from jinja2 import Markup, escape, evalcontextfilter
 
 blueprint = flask.Blueprint('filters', __name__)
 
 
-@contextfilter
 @blueprint.app_template_filter()
-def strcat(context, mylist, mystr):
-    return [mystr + s for s in mylist]
-
-blueprint.add_app_template_filter(strcat)
-
-
-@contextfilter
-@blueprint.app_template_filter()
-def format_currency(context, value):
+def format_currency(value):
     return "£{:,}".format(value)
-
-blueprint.add_app_template_filter(format_currency)
-
-
-@contextfilter
-@blueprint.app_template_filter()
-def prettify(context, code):
-    soup = BeautifulSoup(code)
-    return soup.html.body.contents[0].prettify()
-
-blueprint.add_app_template_filter(prettify)
-
-
-@contextfilter
-@blueprint.app_template_filter()
-def dumpobj(context, my_obj):
-    if isinstance(my_obj, str) or isinstance(my_obj, int):
-        return my_obj
-
-    variables = vars(my_obj)
-    output = {}
-    for key, value in variables.items():
-        if key == 'container':
-            output[key] = value
-        elif isinstance(value, str) or isinstance(value, int):
-            output[key] = value
-        elif '__dict__' in dir(value):
-            output[key] = dumpobj(None, value)
-        elif '__iter__' in dir(value):
-            output[key] = []
-            for item in value:
-                output[key].append(dumpobj(None, item))
-    return output
-
-blueprint.add_app_template_filter(dumpobj)
-
-
-@contextfilter
-@blueprint.app_template_filter()
-def merge(context, target_obj, dict_args):
-    for property in dict_args.keys():
-        setattr(target_obj, property, dict_args[property])
-    return target_obj
-
-
-blueprint.add_app_template_filter(merge)
-
-
-@contextfilter
-@blueprint.app_template_filter()
-def print_type(context, value):
-    return type(value)
-
-blueprint.add_app_template_filter(print_type)
 
 
 @evalcontextfilter
@@ -87,4 +22,18 @@ def nl2br(context, value):
         result = Markup(result)
     return result
 
-blueprint.add_app_template_filter(nl2br)
+
+@blueprint.app_template_filter()
+def pretty_date(value):
+    return value.strftime('%-d %B %Y')
+
+
+def pretty_short_date(value):
+    return value.strftime('%d %b %Y')
+
+
+@blueprint.app_template_filter()
+def pretty_date_range(value):
+    from_date = pretty_short_date(value['from'])
+    to_date = pretty_short_date(value['to'])
+    return '{from_date} to {to_date}'.format(from_date=from_date, to_date=to_date)

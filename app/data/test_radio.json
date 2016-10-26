@@ -159,7 +159,7 @@
                                         "properties": {}
                                     },
                                     "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
-                                    "title": "What would you like with your {answers.othervalue}?",
+                                        "title": "Do you really want {{answers.othervalue}} for breakfast?",
                                     "type": "General"
                                 }],
                             "title": ""

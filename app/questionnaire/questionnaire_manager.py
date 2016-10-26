@@ -1,14 +1,16 @@
+import json
 import logging
 
 from app.globals import get_metadata
-from app.piping.plumbing_preprocessor import PlumbingPreprocessor
+from app.piping.plumbing_preprocessor import PlumbingPreprocessor, get_schema_template_context
 from app.questionnaire.navigator import Navigator, evaluate_rule
 from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
 from app.questionnaire.user_journey import UserJourney
 from app.questionnaire.user_journey_manager import UserJourneyManager
 from app.questionnaire_state.node import Node
+from app.templating.model_builder import build_questionnaire_model, build_summary_model
 
-from app.templating.template_register import TemplateRegistry
+from flask import render_template_string
 
 from flask_login import current_user
 
@@ -275,7 +277,7 @@ class QuestionnaireManager(object):
         state_items = []
         if is_valid:
             if location == 'summary':
-                return self._get_summary_rendering_context()
+                return self.get_summary_rendering_context()
             else:
                 self.build_state(node, node.answers)
 
@@ -287,25 +289,13 @@ class QuestionnaireManager(object):
             state_items.append(self.state)
 
         # look up the preprocessor and then build the view data
-        preprocessor = TemplateRegistry.get_template_preprocessor(location)
-        return preprocessor.build_view_data(node, self._schema, state_items)
+        return build_questionnaire_model(self._json, state_items)
 
-    def _get_summary_rendering_context(self):
-        state_items = []
-        # the summary is the special case when we need the start of the linked list
-        node = self._first
-        # We need to plumb the entire schema
-        while node.next:
-            self.build_state(node, node.answers)
-            if self.state:
-                self._plumbing_preprocessing(self.state)
-                self._conditional_display(self.state)
-                state_items.append(self.state)
-            node = node.next
-
+    def get_summary_rendering_context(self):
+        schema_template_context = get_schema_template_context(self, self._schema)
+        rendered_questionnaire_schema_json = render_template_string(json.dumps(self._json), **schema_template_context)
         # look up the preprocessor and then build the view data
-        preprocessor = TemplateRegistry.get_template_preprocessor('summary')
-        return preprocessor.build_view_data(node, self._schema, state_items)
+        return build_summary_model(json.loads(rendered_questionnaire_schema_json))
 
     def build_state(self, node, answers):
         # Build the state from the linked list and the answers

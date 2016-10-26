@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from app.parser.metadata_parser import parse_metadata
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
@@ -24,24 +26,21 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.metadata = parse_metadata(self.jwt)
 
-    def get_metadata(self):
-          return self.metadata
-
     def test_build_view_data(self):
         metadata_preprocessor = MetaDataTemplatePreprocessor()
-        metadata_preprocessor._get_metadata = self.get_metadata
 
-        render_data = metadata_preprocessor.build_metadata(self.questionnaire)
+        with patch('app.templating.metadata_template_preprocessor.get_metadata', return_value=self.metadata):
+            render_data = metadata_preprocessor.build_metadata(self.schema_json)
 
         self.assertIsNotNone(render_data)
 
         survey_data = render_data['survey']
         self.assertIsNotNone(survey_data)
 
-        self.assertEqual(self.questionnaire.title, survey_data['title'])
-        self.assertEqual(self.questionnaire.survey_id, survey_data['survey_code'])
-        self.assertEqual(self.questionnaire.introduction.information_to_provide, survey_data['information_to_provide'])
-        self.assertEqual(self.questionnaire.theme, survey_data['theme'])
+        self.assertEqual(self.schema_json['title'], survey_data['title'])
+        self.assertEqual(self.schema_json['survey_id'], survey_data['survey_code'])
+        self.assertEqual(self.schema_json['introduction']['information_to_provide'], survey_data['information_to_provide'])
+        self.assertEqual(self.schema_json['theme'], survey_data['theme'])
         self.assertEqual('7 July 2016', survey_data['return_by'])
         self.assertEqual('2 February 2016', survey_data['start_date'])
         self.assertEqual('3 March 2016', survey_data['end_date'])

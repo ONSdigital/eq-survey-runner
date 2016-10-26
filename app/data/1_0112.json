@@ -70,7 +70,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.",
+                                    "description": "If possible, this should be for the period {{exercise.start_date|pretty_date}} to {{exercise.end_date|pretty_date}}.",
                                     "display": {
                                         "properties": {}
                                     },
@@ -345,7 +345,7 @@
                                         "properties": {}
                                     },
                                     "id": "17136377-f52e-4a00-a1d6-039972fc26ab",
-                                    "title": "On {exercise.employment_date:%-d %B %Y} what was the number of employees?",
+                                    "title": "On {{exercise.employment_date|pretty_date}} what was the number of employees?",
                                     "description" : "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> <br/><h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul> </div>",
                                     "type": "General",
                                     "validation": []
