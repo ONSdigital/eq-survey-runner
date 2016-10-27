@@ -49,7 +49,7 @@
                                             "guidance": "",
                                             "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
                                             "label": "",
-                                            "mandatory": false,
+                                            "mandatory": true,
                                             "options": [
                                                 {
                                                     "label": "Cheese",
