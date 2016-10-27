@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {getRandomString, startQuestionnaire} from '../helpers'
+import {getRandomString, startQuestionnaire, getElementId} from '../helpers'
 import monthlyBusinessSurveyPage from '../pages/surveys/mci/monthly-business-survey.page'
 
 const expect = chai.expect
@@ -21,9 +21,4 @@ describe('Error messages', function() {
     // Then
     expect(getElementId(browser.elementActive())).to.equal(getElementId(monthlyBusinessSurveyPage.getFromReportingPeriodDay()))
   })
-
-  function getElementId(element) {
-    return browser.elementIdAttribute(element.value.ELEMENT, "id").value
-  }
-
 })

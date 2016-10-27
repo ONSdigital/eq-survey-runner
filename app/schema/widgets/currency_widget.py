@@ -14,8 +14,8 @@ class CurrencyWidget(Widget):
                 'name': self.name,
                 'id': state.schema_item.id,
                 'label': state.schema_item.label,
-                'value': state.value or state.input or '',
-                'placeholder': ''
+                'value': state.value if state.value is not None else '',
+                'placeholder': '',
             },
             'debug': {
                 'schema': state.schema_item,

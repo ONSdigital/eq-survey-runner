@@ -6,7 +6,9 @@ class InternetSalesPage extends QuestionPage {
     browser.setValue('[name="66612bbb-bc06-4d38-b32c-e2a113641c8a"]', sales)
     return this
   }
-
+   getInternetSales() {
+    return browser.element('[name="66612bbb-bc06-4d38-b32c-e2a113641c8a"]').getValue()
+   }
 }
 
 export default new InternetSalesPage()

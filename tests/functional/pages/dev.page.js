@@ -20,7 +20,7 @@ class DevPage {
     return this
   }
 
-  submit = function() {
+  submit() {
     browser.click('.qa-btn-submit-dev')
     return this
   }

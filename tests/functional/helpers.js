@@ -18,3 +18,7 @@ export const startQuestionnaire = (schema, userId = getRandomString(10), collect
   openQuestionnaire(schema, userId, collectionId)
   landingPage.getStarted()
 }
+
+export function getElementId(element) {
+    return browser.elementIdAttribute(element.value.ELEMENT, "id").value
+  }
