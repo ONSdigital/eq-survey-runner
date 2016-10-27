@@ -21,6 +21,7 @@ from app.schema.answers.positiveinteger_answer import PositiveIntegerAnswer
 from app.schema.answers.radio_answer import RadioAnswer
 from app.schema.answers.textarea_answer import TextareaAnswer
 from app.schema.answers.textfield_answer import TextfieldAnswer
+from app.schema.answers.composite_answer import CompositeAnswer
 
 from app.schema.block import Block
 from app.schema.display import Display
@@ -66,6 +67,7 @@ class SchemaParser(AbstractSchemaParser):
             'RADIO': RadioAnswer,
             'TEXTAREA': TextareaAnswer,
             'TEXTFIELD': TextfieldAnswer,
+            'COMPOSITE': CompositeAnswer
         })
 
         self.question_factory = Factory()
@@ -297,7 +299,7 @@ class SchemaParser(AbstractSchemaParser):
             answer_id = ParserUtils.get_required_string(schema, 'id')
             answer = self.answer_factory.create(answer_type.upper(), answer_id)
             answer.type = answer_type
-            answer.code = ParserUtils.get_required_string(schema, 'q_code')
+            answer.codecode = ParserUtils.get_required_string(schema, 'q_code')
             answer.label = ParserUtils.get_optional_string(schema, 'label')
             answer.guidance = ParserUtils.get_optional_string(schema, 'guidance')
             answer.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')

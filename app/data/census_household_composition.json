@@ -42,6 +42,22 @@
                                   "validation": [],
                                   "answers": [
                                     {
+                                        "id": "composite_answer",
+                                        "type": "Composite",
+                                        "q_code": "9999",
+                                        "mandatory": false,
+                                        "answers": [{
+                                          "display": {},
+                                          "id": "414699da-1667-44fd-8e98-7606966884db",
+                                          "label": "First name",
+                                          "mandatory": true,
+                                          "options": [],
+                                          "q_code": "1",
+                                          "type": "Textfield",
+                                          "validation": {}
+                                        }]
+                                    },
+                                    {
                                         "display": {},
                                         "id": "414699da-1667-44fd-8e98-7606966884db",
                                         "label": "First name",
