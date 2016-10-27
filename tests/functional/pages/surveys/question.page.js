@@ -9,6 +9,10 @@ class QuestionPage {
     return this
   }
 
+  errorExists(){
+    return browser.isExisting('.js-inpagelink')
+  }
+
 }
 
 export default QuestionPage

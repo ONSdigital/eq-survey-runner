@@ -1,11 +1,11 @@
 import SummaryPage from '../../summary.page'
 
-class OtherOptionsSummary extends SummaryPage {
+class RadioSummaryPage extends SummaryPage {
 
-  getOtherRadioSummary() {
+  getPage1Answer() {
     return browser.element('[data-qa="answer-0-0 answer-type-radio"]').getText()
   }
 
 }
 
-export default new OtherOptionsSummary()
+export default new RadioSummaryPage()

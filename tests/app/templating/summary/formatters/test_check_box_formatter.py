@@ -4,7 +4,7 @@ from unittest.mock import Mock, MagicMock
 from app.templating.summary.formatters.check_box import CheckBoxFormatter
 
 
-class TestCheckBox(TestCase):
+class TestCheckBoxFormatter(TestCase):
 
     def test_formatter_outputs_other_if_other_selected_but_no_value_specified(self):
 

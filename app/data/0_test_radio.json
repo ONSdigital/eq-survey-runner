@@ -5,11 +5,11 @@
     "survey_id": "0",
     "title": "Other input fields",
     "theme": "default",
-    "description": "A questionnaire to demo checkbox field Other input.",
+    "description": "A questionnaire to demo radio field Other input.",
     "introduction": {
         "description": "",
         "information_to_provide": [
-            "Pizza toppings",
+            "Breakfast foods",
             "Other info"
         ]
     },
@@ -41,6 +41,7 @@
                                 {
                                     "answers": [
                                         {
+                                            "alias" : "othervalue",
                                             "display": {
                                                 "properties": {
                                                     "columns": false
@@ -48,106 +49,31 @@
                                             },
                                             "guidance": "",
                                             "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                            "label": "",
-                                            "mandatory": false,
+                                            "label": "What is your favourite breakfast food",
+                                            "mandatory": true,
                                             "options": [
                                                 {
-                                                    "label": "Cheese",
-                                                    "value": "Cheese"
+                                                    "label": "Bacon",
+                                                    "value": "Bacon"
                                                 },
                                                 {
-                                                    "label": "Ham",
-                                                    "value": "Ham"
+                                                    "label": "Eggs",
+                                                    "value": "Eggs"
                                                 },
                                                 {
-                                                    "label": "Pineapple",
-                                                    "value": "Pineapple"
-                                                },
-                                                {
-                                                    "label": "Tuna",
-                                                    "value": "Tuna"
-                                                },
-                                                {
-                                                    "label": "Pepperoni",
-                                                    "value": "Pepperoni"
+                                                    "label": "Sausage",
+                                                    "value": "Sausage"
                                                 },
                                                 {
                                                     "label": "Other",
                                                     "value": "other",
-                                                    "description": "Sed posuere consectetur est at lobortis.",
+                                                    "description": "An answer is required.",
                                                     "other": {
                                                       "label": "Please specify other"
                                                     }
                                                 }
                                             ],
                                             "q_code": "20",
-                                            "type": "Checkbox",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
-                                    "title": "Which pizza toppings do you like?",
-                                    "type": "General",
-                                    "validation": []
-                                }
-                            ],
-                            "title": "Pizza toppings",
-                            "validation": []
-                        }
-                    ],
-                    "routing_rules":[
-                    ],
-                    "title": "",
-                    "validation": []
-                }, {
-                    "display": {
-                        "properties": {}
-                    },
-                    "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1",
-                    "sections": [
-                        {
-                            "description": "",
-                            "display": {
-                                "properties": {}
-                            },
-                            "id": "ed3e200a-0735-4e8d-9eea-627c1d908696",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "display": {
-                                                "properties": {
-                                                    "columns": false
-                                                }
-                                            },
-                                            "guidance": "",
-                                            "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Deep pan",
-                                                    "value": "deep pan"
-                                                },
-                                                {
-                                                    "label": "Thin",
-                                                    "value": "thin"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "value": "other",
-                                                    "other": {
-                                                      "label": "Please specify other"
-                                                    }
-                                                }
-                                            ],
-                                            "q_code": "21",
                                             "type": "Radio",
                                             "validation": {
                                                 "messages": {}
@@ -158,13 +84,13 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2811",
-                                    "title": "What is you favourite pizza base?",
+                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
+                                    "title": "",
                                     "type": "General",
                                     "validation": []
                                 }
                             ],
-                            "title": "Pizza bases",
+                            "title": "What is your favourite breakfast food",
                             "validation": []
                         }
                     ],
@@ -172,11 +98,79 @@
                     ],
                     "title": "",
                     "validation": []
+                },
+            {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "an3b74d1-b687-4051-9634-a8f9ce10ard",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "94546782-08a6-4213-9dc9-0780c2996896",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "alias" : "",
+                                            "display": {
+                                                "properties": {
+                                                    "columns": false
+                                                }
+                                            },
+                                            "guidance": "",
+                                            "id": "7587qe9b-f24e-4dc0-ac94-66118b896c10",
+                                            "label": "What is your favourite breakfast food",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Toast",
+                                                    "value": "Toast"
+                                                },
+                                                {
+                                                    "label": "Coffee",
+                                                    "value": "Coffee"
+                                                },
+                                                {
+                                                    "label": "Tea",
+                                                    "value": "Tea"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "other",
+                                                    "description": "This is not mandatory.",
+                                                    "other": {
+                                                      "label": "Please specify other"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
+                                    "title": "What would you like with your {answers.othervalue}?",
+                                    "type": "General"
+                                }],
+                            "title": ""
+                        }
+                    ],
+                    "title": ""
                 }],
             "display": {
                 "properties": {}
             },
-            "id": "14ba4707-321d-441d-8d21-b8367366e761",
+            "id": "14ba4707-321d-441d-8d21-b8367366e766",
             "title": ""
         }
     ]
