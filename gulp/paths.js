@@ -4,8 +4,7 @@
 
 export const homePath = './app'
 export const appPath = './app/assets'
-export const distPath = homePath + '/static'
-
+export const distPath = './static'
 
 export const paths = {
   app: appPath,
