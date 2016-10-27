@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y $RUNTIME_PACKAGES $BUILD_PACKAGES \
 	&& curl -sL https://deb.nodesource.com/setup_5.x | bash -
 
 RUN apt-get install -y nodejs
-RUN npm install --global gulp-cli
+RUN yarn install --global gulp-cli
 
 ADD requirements.txt /code/requirements.txt
 ADD package.json /code/package.json
@@ -20,10 +20,10 @@ ADD app/assets /code/app/assets
 
 RUN pip3 install -U -I -r /code/requirements.txt
 
-RUN npm install
+RUN yarn install
 
 ADD . /code
 
-RUN npm run compile
+RUN yarn compile
 
 ENTRYPOINT python3 application.py runserver

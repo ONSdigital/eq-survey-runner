@@ -40,5 +40,5 @@ display_result $? 2 "Unit tests"
 
 # Run front end tests
 npm config set python python2.7
-npm run test
+yarn test
 display_result $? 1 "Front end tests"

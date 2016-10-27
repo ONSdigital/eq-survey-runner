@@ -1,12 +1,11 @@
 import gulp from 'gulp'
 import gutil from 'gulp-util'
 import del from 'del'
-import plumber from 'gulp-plumber'
 import yargs from 'yargs'
 
 import {paths} from './gulp/paths'
 import {copyScripts, bundle, lint as lintScripts} from './gulp/scripts'
-import {unitTests, functionalTests, startSeleniumServer} from './gulp/tests'
+import {unitTests, functionalTests } from './gulp/tests'
 import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
@@ -39,7 +38,7 @@ gulp.task('lint:styles', () => {
 gulp.task('clean:dist', () => {
   del.sync([
     paths.output
-  ])
+  ], { force: true })
 })
 
 // Remove pre-existing content from text folders
@@ -47,7 +46,7 @@ gulp.task('clean:test', () => {
   del.sync([
     paths.test.coverage,
     paths.test.results
-  ])
+  ], { force: true })
 })
 
 gulp.task('test:scripts', ['test:scripts:unit', 'test:scripts:functional:sauce'])
