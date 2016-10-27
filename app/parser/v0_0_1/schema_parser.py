@@ -72,6 +72,7 @@ class SchemaParser(AbstractSchemaParser):
         self.question_factory.register_all({
             'GENERAL': GeneralQuestion,
             'DATERANGE': DateRangeQuestion,
+            'HOUSEHOLD': DateRangeQuestion,
         })
 
     def get_parser_version(self):
