@@ -39,6 +39,15 @@
    {%- endif %}
  </div>
 {% endset %}
+
+{% set question_actions %}
+<div class="question__actions">
+  {%- if question.schema_item.id == 'household-question' %}
+  <button class="btn btn--border--census add-entity venus" type="submit" name="">Add another person</button>
+  {%- endif %}
+</div>
+{% endset %}
+
 <div class="question" id="{{question.id}}">
 
   {% set question_markup %}
@@ -92,6 +101,8 @@
   {% else %}
 
     {{question_markup|safe}}
+
+    {{question_actions|safe}}
 
   {% endif %}
 
