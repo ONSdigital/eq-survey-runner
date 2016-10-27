@@ -16,9 +16,6 @@ class CheckboxAnswer(Answer):
         # We cannot type cast a list of values, so just return the user_input
         return self.get_user_input(post_vars)
 
-    def get_user_input(self, post_vars):
-        return self.widget.get_user_input(post_vars)
-
     def validate(self, state):
         if isinstance(state, self.get_state_class()):
             question = state.parent
@@ -26,12 +23,20 @@ class CheckboxAnswer(Answer):
             # Mandatory check
             if question.skipped:
                 state.is_valid = True
-            elif self.mandatory and len(state.input) == 0:
+            elif self.mandatory and state.input is None:
                 super(CheckboxAnswer, self).mandatory_error(state)
-            elif self.mandatory and 'other' in state.input and not state.other:
+            elif self.mandatory and state.input is not None and len(state.input) == 0:
+                super(CheckboxAnswer, self).mandatory_error(state)
+            elif self.mandatory and state.input is not None and 'other' in state.input and not state.other:
                 super(CheckboxAnswer, self).mandatory_error(state)
 
             # Here we just report on whether the answer has passed type checking
             return state.is_valid
         else:
             raise StateException('Cannot validate - incorrect state class')
+
+    @staticmethod
+    def check_user_input(user_input):
+        return user_input if (Answer.check_user_input(user_input) and
+                              user_input != [''] and
+                              user_input != [None]) else None
