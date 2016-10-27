@@ -67,20 +67,20 @@ npm install
 
 Compile the project with
 ```
-npm run compile
+yarn compile
 ```
 
 There are a few additional npm tasks:
 
 Command                                    | Task
 -------------------------------------------|----------------------
-`npm run compile`                          | Build the assets (js, css, img) into `/static`
-`npm run dev`                              | Build assets and watch for changes. Runs Browsersync.
-`npm run test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance
-`npm run test_unit`                        | Watches the unit tests via Karma
-`npm run test_functional`                  | Runs the functional tests through a local Selenium instance (requires app running on localhost:5000)
-`npm run test_functional_sauce`            | Runs the functional tests through Sauce Labs (requires app running on localhost:5000)
-`npm run lint`                             | Lints the JS, reporting errors/warnings.
+`yarn compile`                          | Build the assets (js, css, img) into `/static`
+`yarn dev`                              | Build assets and watch for changes. Runs Browsersync.
+`yarn test`                             | Runs the unit tests through Karma and the functional tests through a local Selenium instance
+`yarn test_unit`                        | Watches the unit tests via Karma
+`yarn test_functional`                  | Runs the functional tests through a local Selenium instance (requires app running on localhost:5000)
+`yarn test_functional_sauce`            | Runs the functional tests through Sauce Labs (requires app running on localhost:5000)
+`yarn lint`                             | Lints the JS, reporting errors/warnings.
 
 ---
 
@@ -93,7 +93,7 @@ The functional tests can be executed with a couple of options.
 
 These options can be combined with `test_functional` or `test_functional_sauce`, eg:
 
-`npm run test_functional_sauce -- --env=preprod --spec=mci` Will run the MCI spec against preprod via SauceLabs.
+`yarn test_functional_sauce -- --env=preprod --spec=mci` Will run the MCI spec against preprod via SauceLabs.
 
 ## Deployment with elastic beanstalk
 
