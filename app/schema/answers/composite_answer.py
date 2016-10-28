@@ -8,3 +8,7 @@ class CompositeAnswer(Answer):
         super(CompositeAnswer, self).__init__(answer_id)
         self.widget = CompositeWidget(name=self.id, widgets=widgets)
         self.answers = answers
+
+    def add_children(self, answers=None):
+        self.answers = answers
+        self.widget = CompositeWidget(name=self.id, widgets=[answer.widget for answer in answers])

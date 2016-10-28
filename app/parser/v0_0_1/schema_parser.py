@@ -265,7 +265,16 @@ class SchemaParser(AbstractSchemaParser):
 
         if 'answers' in schema.keys():
             for answer_schema in schema['answers']:
-                question.add_answer(self._parse_answer(answer_schema, questionnaire))
+                if answer_schema['type'] == 'Composite':
+                    child_answers = []
+                    for child_answer in answer_schema['answers']:
+                        child_answers.append(self._parse_answer(child_answer, questionnaire))
+
+                    composite_answer = self._parse_answer(answer_schema, questionnaire)
+                    composite_answer.add_children(child_answers)
+                    question.add_answer(composite_answer)
+                else:
+                    question.add_answer(self._parse_answer(answer_schema, questionnaire))
         else:
             raise SchemaParserException('Question must contain at least one answer')
 
