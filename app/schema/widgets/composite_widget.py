@@ -1,3 +1,4 @@
+import ast
 import logging
 
 from app.schema.widget import Widget
@@ -10,7 +11,6 @@ class CompositeWidget(Widget):
     def __init__(self, name=None, widgets=None):
         super(CompositeWidget, self).__init__(name)
         self.widgets = widgets
-        self._index = 0
 
     def render(self, state):
         composite_template = ''
@@ -21,14 +21,28 @@ class CompositeWidget(Widget):
         return composite_template
 
     def get_user_input(self, post_vars):
-        user_input = post_vars.get(self.name, None)
-        logger.debug('Getting user input for "{}", value is "{}"'.format(self.name, user_input))
-        return user_input
+
+        if post_vars is None or len(post_vars) == 0:
+            return None
+
+        is_post = True
+        data = post_vars
+        if not hasattr(post_vars, 'getlist'):
+            # During GET post_vars is a dict that we need to unpack.
+            data = ast.literal_eval(post_vars[self.name])[self.name]
+            is_post = False
+
+        widget_input = {}
+        for child_widget in self.widgets:
+            key = self.name + '-' + child_widget.name if is_post else child_widget.name
+            widget_input[child_widget.name] = data.get(key)
+
+        return {self.name: widget_input}
 
     def _create_widget_params(self, state, index):
         widget_params = {
             'answer': {
-                'name': ''.join([self.name, '-', str(self._index), '-', self.widgets[index].name]),
+                'name': ''.join([self.name, '-', self.widgets[index].name]),
                 'id': state.schema_item.answers[index].id,
                 'label': state.schema_item.answers[index].label,
                 'value': state.input or '',
