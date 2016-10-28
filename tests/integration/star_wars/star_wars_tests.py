@@ -155,7 +155,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def check_quiz_first_page(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, ">Save &amp; Continue<")
+        self.assertRegexpMatches(content, ">Save and continue<")
         self.assertRegexpMatches(content, 'Star Wars Quiz')
         self.assertRegexpMatches(content, 'May the force be with you young EQ developer')
 

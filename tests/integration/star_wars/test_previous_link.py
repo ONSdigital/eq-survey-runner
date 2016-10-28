@@ -56,7 +56,7 @@ class TestPreviousLink(StarWarsTestCase):
         resp = self.client.get(resp.headers['Location'])
 
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, ">Save &amp; Continue<")
+        self.assertRegexpMatches(content, ">Save and continue<")
         self.assertRegexpMatches(content, 'Star Wars Quiz')
         self.assertRegexpMatches(content, 'May the force be with you young EQ developer')
 

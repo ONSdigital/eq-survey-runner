@@ -35,7 +35,7 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         self.assertRegexpMatches(content, '<title>Survey</title>')
         self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
         self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
-        self.assertRegexpMatches(content, ">Save &amp; Continue<")
+        self.assertRegexpMatches(content, ">Save and continue<")
 
         # We fill in our answers
         form_data = {

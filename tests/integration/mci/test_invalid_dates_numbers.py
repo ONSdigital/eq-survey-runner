@@ -34,7 +34,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         # We are in the Questionnaire
         content = resp.get_data(True)
         self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
-        self.assertRegexpMatches(content, ">Save &amp; Continue<")
+        self.assertRegexpMatches(content, ">Save and continue<")
 
         form_data = {
             # Start Date
