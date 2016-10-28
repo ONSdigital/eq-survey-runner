@@ -2,8 +2,9 @@ import logging
 
 from app.authentication.authenticator import Authenticator
 from app.frontend_messages import get_messages
-from app.globals import get_metadata
-from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
+from app.globals import get_answers, get_completed_blocks, get_metadata
+from app.questionnaire.questionnaire_manager import QuestionnaireManager
+from app.utilities.schema import get_schema
 
 from flask import redirect
 from flask import request
@@ -73,9 +74,10 @@ def login():
         logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
         raise NotFound
 
-    questionnaire_manager = QuestionnaireManagerFactory.get_instance()
+    json, schema = get_schema()
+    questionnaire_manager = QuestionnaireManager(schema, json=json)
 
-    # get the current location of the user
-    current_location = questionnaire_manager.get_current_location()
+    navigator = questionnaire_manager.navigator
+    current_location = navigator.get_latest_location(get_answers(current_user), get_completed_blocks(current_user))
 
     return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + current_location)

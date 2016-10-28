@@ -1,24 +1,28 @@
 import logging
 
+from app.globals import get_answers
 from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
 
 from app.templating.summary.section import Section
 
 from flask import g
 
+from flask_login import current_user
+
 logger = logging.getLogger(__name__)
 
 
-def build_questionnaire_model(questionnaire_schema, state_items):
+def build_questionnaire_model(questionnaire_schema, state_item):
     '''
     :param questionnaire_schema: variable substituted questionnaire schema
     :param state_items:
+    :param previous_location:
     :return: context dict for questionnaire page variable substitution.
     '''
     metadata_template_preprocessor = MetaDataTemplatePreprocessor()
     render_data = {
       "meta": metadata_template_preprocessor.build_metadata(questionnaire_schema),
-      "content": state_items[0],
+      "content": state_item,
     }
 
     logger.debug("Rendering data is %s", render_data)
@@ -29,6 +33,7 @@ def build_questionnaire_model(questionnaire_schema, state_items):
 def build_summary_model(questionnaire_schema):
     '''
     :param questionnaire_schema: variable substituted questionnaire schema
+    :param previous_location:
     :return: context dict for summary page variable substitution.
     '''
     metadata_template_preprocessor = MetaDataTemplatePreprocessor()
@@ -45,7 +50,7 @@ def build_summary_model(questionnaire_schema):
 
 def _build_summary(questionnaire_schema):
     q_manager = g.questionnaire_manager
-    answers = q_manager.get_answers()
+    answers = get_answers(current_user)
     path = q_manager.navigator.get_routing_path(answers)
     sections = []
     for group in questionnaire_schema['groups']:

@@ -82,10 +82,9 @@ class Answer(Item):
                 self.mandatory_error(state)
 
             # Try and get the typed value
-
             if state.input:
                 try:
-                    state.value = self.get_typed_value(state.input)
+                    state.value = state.other or self.get_typed_value(state.input)
                 except TypeCheckingException as e:
                     state.is_valid = False
                     state.errors = []

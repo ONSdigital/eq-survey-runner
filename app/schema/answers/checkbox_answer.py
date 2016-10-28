@@ -31,6 +31,7 @@ class CheckboxAnswer(Answer):
                 super(CheckboxAnswer, self).mandatory_error(state)
 
             # Here we just report on whether the answer has passed type checking
+            state.value = self.get_typed_value(state.input)
             return state.is_valid
         else:
             raise StateException('Cannot validate - incorrect state class')
