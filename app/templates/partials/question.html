@@ -26,8 +26,8 @@
 {% set question_answers %}
  <div class="question__answers">
    {%- if question.schema_item.id == 'household-question' %}
-     {%- for i in range(3) %}
-       <h3>Person {{i + 1}}</h3>
+     {%- for answer in question.answers %}
+       <h3>Person {{ loop.index }}</h3>
        {%- for answer in question.answers -%}
          {% include theme('partials/answer.html') %}
        {%- endfor -%}

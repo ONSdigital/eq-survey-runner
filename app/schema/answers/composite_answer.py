@@ -4,10 +4,10 @@ from app.schema.widgets.composite_widget import CompositeWidget
 
 class CompositeAnswer(Answer):
 
-    def __init__(self, answer_id=None, answers=None, widgets=None):
+    def __init__(self, answer_id=None):
         super(CompositeAnswer, self).__init__(answer_id)
-        self.widget = CompositeWidget(name=self.id, widgets=widgets)
-        self.answers = answers
+        self.answers = None
+        self.widget = None
 
     def add_children(self, answers=None):
         self.answers = answers
