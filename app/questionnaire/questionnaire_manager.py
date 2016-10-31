@@ -1,4 +1,5 @@
 import logging
+import copy
 
 from app.data_model.questionnaire_store import get_metadata
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
@@ -370,4 +371,11 @@ class QuestionnaireManager(object):
         household_question_schema = self._schema.get_item_by_id('household-question')
         household_question = self.state.find_state_item(household_question_schema)
 
-        household_question.children.append(new_person_answer)
+        state_answers = household_question.children
+        num_answers = len(state_answers)
+
+        new_composite_answer = copy.deepcopy(new_person_answer.schema_item)
+        new_composite_answer.widget.name += str(num_answers)
+
+        new_person_answer.schema_item = new_composite_answer
+        state_answers.append(new_person_answer)
