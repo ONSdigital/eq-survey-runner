@@ -8,7 +8,7 @@ const expect = chai.expect
 
 describe('Radio button with "other" option', function() {
 
-  var radio_schema = '0_test_radio.json';
+  var radio_schema = 'test_radio.json';
 
   it('Given an "other" option is available, when the user clicks the "other" option then other input should be visible', function() {
     //Given
