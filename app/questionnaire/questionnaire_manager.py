@@ -357,3 +357,15 @@ class QuestionnaireManager(object):
 
     def get_schema_item_by_id(self, item_id):
         return self._schema.get_item_by_id(item_id)
+
+    def add_household_answer(self):
+        if self.state is None:
+            return
+
+        # TODO This probably needs to be moved somewhere else...
+        # TODO Probably also need to guard for conditions like item not found etc...
+        household_answer = self._schema.get_item_by_id('person')
+        new_person_answer = household_answer.construct_state()
+
+        household_question = self._schema.get_item_by_id('household-question')
+        household_question.add_new_answer(new_person_answer)

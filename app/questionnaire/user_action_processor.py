@@ -82,7 +82,7 @@ class AddAnotherPerson(UserAction):
         self._questionnaire_manager = questionnaire_manager
 
     def perform_action(self):
-        pass
+        self._questionnaire_manager.add_household_answer()
 
 class SaveContinue(UserAction):
     def __init__(self, schema, metadata):
