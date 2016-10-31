@@ -2,6 +2,7 @@ from app.templating.summary.formatters.check_box import CheckBoxFormatter
 from app.templating.summary.formatters.currency import CurrencyFormatter
 from app.templating.summary.formatters.date_range import DateRangeFormatter
 from app.templating.summary.formatters.radio_button import RadioButtonFormatter
+from app.templating.summary.formatters.person_name import PersonNameFormatter
 
 
 KNOWN_FORMATTERS = {
@@ -12,6 +13,9 @@ KNOWN_FORMATTERS = {
     },
     "DATERANGE": {
                 'DATE': DateRangeFormatter,
+    },
+    "HOUSEHOLD": {
+                'COMPOSITE': PersonNameFormatter,
     },
 }
 

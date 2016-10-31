@@ -45,7 +45,7 @@ class CompositeWidget(Widget):
                 'name': ''.join([self.name, '-', self.widgets[index].name]),
                 'id': state.schema_item.answers[index].id,
                 'label': state.schema_item.answers[index].label,
-                'value': state.input or '',
+                'value': state.input['person'][self.widgets[index].name] or '',
             },
             'question': {
                 'id': state.schema_item.container.id,
