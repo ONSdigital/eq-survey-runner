@@ -8,6 +8,6 @@ class RadioButtonFormatter(AbstractFormatter):
         for option in schema_answers[0].options:
             if option['value'] == user_answer:
                 if option['label'] == 'Other':
-                    return state_answers[0].other if state_answers and state_answers[0].other else user_answer
+                    return state_answers[0].other if state_answers and state_answers[0].other else option['label']
                 else:
                     return option['label']

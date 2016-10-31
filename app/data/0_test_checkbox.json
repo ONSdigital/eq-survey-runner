@@ -5,11 +5,11 @@
     "survey_id": "0",
     "title": "Other input fields",
     "theme": "default",
-    "description": "A questionnaire to demo radio field Other input.",
+    "description": "A questionnaire to demo checkbox field Other input.",
     "introduction": {
         "description": "",
         "information_to_provide": [
-            "Breakfast foods",
+            "Pizza toppings",
             "Other info"
         ]
     },
@@ -41,7 +41,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "alias" : "othervalue",
                                             "display": {
                                                 "properties": {
                                                     "columns": false
@@ -49,31 +48,40 @@
                                             },
                                             "guidance": "",
                                             "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                            "label": "What is your favourite breakfast food",
+                                            "label": "",
                                             "mandatory": true,
                                             "options": [
                                                 {
-                                                    "label": "Bacon",
-                                                    "value": "Bacon"
+                                                    "label": "Cheese",
+                                                    "value": "Cheese"
                                                 },
                                                 {
-                                                    "label": "Eggs",
-                                                    "value": "Eggs"
+                                                    "label": "Ham",
+                                                    "value": "Ham"
                                                 },
                                                 {
-                                                    "label": "Sausage",
-                                                    "value": "Sausage"
+                                                    "label": "Pineapple",
+                                                    "value": "Pineapple"
+                                                },
+                                                {
+                                                    "label": "Tuna",
+                                                    "value": "Tuna"
+                                                },
+                                                {
+                                                    "label": "Pepperoni",
+                                                    "value": "Pepperoni"
                                                 },
                                                 {
                                                     "label": "Other",
                                                     "value": "other",
+                                                    "description": "Choose any other topping",
                                                     "other": {
                                                       "label": "Please specify other"
                                                     }
                                                 }
                                             ],
                                             "q_code": "20",
-                                            "type": "Radio",
+                                            "type": "Checkbox",
                                             "validation": {
                                                 "messages": {}
                                             }
@@ -84,12 +92,12 @@
                                         "properties": {}
                                     },
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
-                                    "title": "",
+                                    "title": "Which pizza toppings would you like?",
                                     "type": "General",
                                     "validation": []
                                 }
                             ],
-                            "title": "What is your favourite breakfast food",
+                            "title": "Mandatory other option",
                             "validation": []
                         }
                     ],
@@ -97,19 +105,18 @@
                     ],
                     "title": "",
                     "validation": []
-                },
-            {
+                }, {
                     "display": {
                         "properties": {}
                     },
-                    "id": "an3b74d1-b687-4051-9634-a8f9ce10ard",
+                    "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1",
                     "sections": [
                         {
                             "description": "",
                             "display": {
                                 "properties": {}
                             },
-                            "id": "94546782-08a6-4213-9dc9-0780c2996896",
+                            "id": "ed3e200a-0735-4e8d-9eea-627c1d908696",
                             "questions": [
                                 {
                                     "answers": [
@@ -120,40 +127,69 @@
                                                 }
                                             },
                                             "guidance": "",
-                                            "id": "7587qe9b-f24e-4dc0-ac94-66118b896c10",
+                                            "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23",
                                             "label": "",
-                                            "mandatory": true,
+                                            "mandatory": false,
                                             "options": [
                                                 {
-                                                    "label": "Yes, Really!",
-                                                    "value": "Yes"
+                                                    "label": "Cheese",
+                                                    "value": "Cheese"
                                                 },
                                                 {
-                                                    "label": "No",
-                                                    "value": "No"
+                                                    "label": "Ham",
+                                                    "value": "Ham"
+                                                },
+                                                {
+                                                    "label": "Pineapple",
+                                                    "value": "Pineapple"
+                                                },
+                                                {
+                                                    "label": "Tuna",
+                                                    "value": "Tuna"
+                                                },
+                                                {
+                                                    "label": "Pepperoni",
+                                                    "value": "Pepperoni"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "other",
+                                                    "description": "Choose any other topping",
+                                                    "other": {
+                                                      "label": "Please specify other"
+                                                    }
                                                 }
                                             ],
-                                            "q_code": "43",
-                                            "type": "Radio"
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
                                         }
                                     ],
                                     "description": "",
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
-                                    "title": "Do you really want {answers.othervalue} for breakfast?",
-                                    "type": "General"
-                                }],
-                            "title": ""
+                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2811",
+                                    "title": "What extra toppings would you like?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Non mandatory other option",
+                            "validation": []
                         }
                     ],
-                    "title": ""
+                    "routing_rules":[
+                    ],
+                    "title": "",
+                    "validation": []
                 }],
             "display": {
                 "properties": {}
             },
-            "id": "14ba4707-321d-441d-8d21-b8367366e766",
+            "id": "14ba4707-321d-441d-8d21-b8367366e761",
             "title": ""
         }
     ]
