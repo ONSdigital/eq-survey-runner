@@ -13,7 +13,11 @@ class RoutingEngine(object):
         self._schema = schema_model
         self._questionnaire_manager = questionnaire_manager
 
-    def get_next_location(self, current_location):
+    def get_next_location(self, current_location, user_action=None):
+
+        if user_action is not None and user_action == 'add_another_person':
+            return current_location
+
         if current_location == 'introduction':
             next_location = self._schema.groups[0].blocks[0].id
         elif current_location == self._schema.submission_page:
