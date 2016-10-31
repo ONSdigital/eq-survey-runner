@@ -45,7 +45,7 @@ class CompositeWidget(Widget):
                 'name': ''.join([self.name, '-', self.widgets[index].name]),
                 'id': state.schema_item.answers[index].id,
                 'label': state.schema_item.answers[index].label,
-                'value': state.input['person'][self.widgets[index].name] or '',
+                'value': state.input['person'][self.widgets[index].name] if state.input is not None else '',
             },
             'question': {
                 'id': state.schema_item.container.id,
