@@ -58,6 +58,9 @@ def post_questionnaire(eq_id, form_type, period_id, collection_id, location):
         return render_page(location, False)
 
     next_location = g.questionnaire_manager.get_current_location()
+    if next_location == location:
+        return render_page(location, False)
+
     metadata = get_metadata(current_user)
     logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
     return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, next_location)

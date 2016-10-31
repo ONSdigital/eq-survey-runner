@@ -367,5 +367,7 @@ class QuestionnaireManager(object):
         household_answer = self._schema.get_item_by_id('person')
         new_person_answer = household_answer.construct_state()
 
-        household_question = self._schema.get_item_by_id('household-question')
-        household_question.add_new_answer(new_person_answer)
+        household_question_schema = self._schema.get_item_by_id('household-question')
+        household_question = self.state.find_state_item(household_question_schema)
+
+        household_question.children.append(new_person_answer)

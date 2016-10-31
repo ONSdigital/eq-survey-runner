@@ -18,6 +18,13 @@ class StateItem(object):
         for child in self.children:
             child.update_state(user_input)
 
+    def find_state_item(self, schema_item):
+        for child in self.children:
+            if child.schema_item == schema_item:
+                return child
+            else:
+                return child.find_state_item(schema_item)
+
     def get_answers(self):
         answers = []
         for child in self.children:
