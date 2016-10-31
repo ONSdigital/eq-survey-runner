@@ -1,7 +1,8 @@
 import logging
 
 from app.authentication.session_management import session_manager
-from app.data_model.questionnaire_store import get_metadata, get_questionnaire_store
+from app.globals import get_metadata, get_questionnaire_store
+
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 from app.templating.template_register import TemplateRegistry
 
@@ -66,7 +67,10 @@ def post_questionnaire(eq_id, form_type, period_id, collection_id, location):
 @questionnaire_blueprint.route('previous', methods=['GET'])
 @login_required
 def go_to_previous_page(eq_id, form_type, period_id, collection_id):
-    previous_location = g.questionnaire_manager.get_previous_location()
+    q_manager = g.questionnaire_manager
+    current_location = q_manager.get_current_location()
+    answers = q_manager.get_answers()
+    previous_location = q_manager.navigator.get_previous_location(answers, current_location)
     g.questionnaire_manager.go_to(previous_location)
     return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, previous_location)
 

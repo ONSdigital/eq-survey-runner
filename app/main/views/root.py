@@ -1,8 +1,8 @@
 import logging
 
 from app.authentication.authenticator import Authenticator
-from app.data_model.questionnaire_store import get_metadata
 from app.frontend_messages import get_messages
+from app.globals import get_metadata
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 
 from flask import redirect

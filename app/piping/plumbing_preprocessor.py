@@ -1,7 +1,7 @@
 import logging
 
 
-from app.data_model.questionnaire_store import get_metadata
+from app.globals import get_metadata
 from app.libs.utils import ObjectFromDict
 from app.piping.plumber import Plumber
 

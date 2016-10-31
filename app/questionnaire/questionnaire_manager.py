@@ -1,14 +1,13 @@
 import logging
 
-from app.data_model.questionnaire_store import get_metadata
+from app.globals import get_metadata
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor
+from app.questionnaire.navigator import Navigator, evaluate_rule
 from app.questionnaire.user_action_processor import UserActionProcessor, UserActionProcessorException
 from app.questionnaire.user_journey import UserJourney
 from app.questionnaire.user_journey_manager import UserJourneyManager
 from app.questionnaire_state.node import Node
 
-from app.routing.conditional_display import ConditionalDisplay
-from app.routing.routing_engine import RoutingEngine
 from app.templating.template_register import TemplateRegistry
 
 from flask_login import current_user
@@ -28,8 +27,9 @@ class QuestionnaireManager(object):
     The doubly linked list approach allows us to maintain the path the user has taken through the question. If that path
     changes we archive off the nodes in case the user revisits that path.
     '''
-    def __init__(self, schema, current=None, first=None, tail=None, archive=None, valid_locations=None, submitted_at=None):
+    def __init__(self, schema, current=None, first=None, tail=None, archive=None, valid_locations=None, submitted_at=None, json=None):
         self.submitted_at = submitted_at
+        self._json = json
         self._schema = schema
         self._current = current  # the latest node
         self._first = first  # the first node in the doubly linked list
@@ -41,6 +41,8 @@ class QuestionnaireManager(object):
             self._valid_locations = valid_locations
         else:
             self._valid_locations = self._build_valid_locations()
+
+        self.navigator = Navigator(self._json)
 
     def construct_user_journey(self):
         return UserJourney(self._current, self._first, self._tail, self._archive, self.submitted_at, self._valid_locations)
@@ -129,23 +131,8 @@ class QuestionnaireManager(object):
 
     def get_current_location(self):
         if self._current:
-            current_location = self._current.item_id
-        else:
-            current_location = self.get_first_location()
-        logger.debug("get current location returning %s", current_location)
-        return current_location
-
-    def get_first_location(self):
-        if self._schema.introduction:
-            return "introduction"
-        else:
-            return self._get_first_block()
-
-    def get_previous_location(self):
-        return self._current.previous.item_id
-
-    def _get_first_block(self):
-        return self._schema.groups[0].blocks[0].id
+            return self._current.item_id
+        return self.navigator.get_first_location()
 
     def get_answers(self):
         # walk the list and collect all the answers
@@ -222,7 +209,7 @@ class QuestionnaireManager(object):
         if self._current:
             logger.debug("Attempting to go to location %s with current location as %s", location, self._current.item_id)
         if location == 'previous':
-            location = self.get_previous_location()
+            location = self.navigator.get_previous_location(self.get_answers(), current_location_id=location)
         elif location == 'summary' and self._current.item_id != 'summary':
             metadata = get_metadata(current_user)
             if metadata:
@@ -262,11 +249,8 @@ class QuestionnaireManager(object):
                     user_action_processor = UserActionProcessor(self._schema, self)
                     user_action_processor.process_action(user_action)
 
-                    # Create the routing engine
-                    routing_engine = RoutingEngine(self._schema, self)
-
                     # do any routing
-                    next_location = routing_engine.get_next_location(location)
+                    next_location = self.navigator.get_next_location(self.get_answers(), location)
                     logger.info("next location after routing is %s", next_location)
 
                     # go to that location
@@ -341,7 +325,15 @@ class QuestionnaireManager(object):
 
         if item.schema_item:
 
-            item.skipped = ConditionalDisplay.is_skipped(item.schema_item, self)
+            item.skipped = False
+
+            if hasattr(item.schema_item, 'skip_condition') and item.schema_item.skip_condition:
+                rule = item.schema_item.skip_condition.__dict__
+                rule['when'] = rule['when'].__dict__
+                answer = self.find_answer(rule['when']['id'])
+
+                item.skipped = evaluate_rule(rule, answer)
+
             for child in item.children:
                 self._conditional_display(child)
 

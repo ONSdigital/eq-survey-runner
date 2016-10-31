@@ -7,7 +7,7 @@ from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_management import session_manager
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
-from app.data_model.questionnaire_store import get_questionnaire_store
+from app.globals import get_questionnaire_store
 from app.parser.metadata_parser import is_valid_metadata, parse_metadata
 
 from flask import session
