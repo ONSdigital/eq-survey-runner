@@ -28,9 +28,7 @@
    {%- if question.schema_item.id == 'household-question' %}
      {%- for answer in question.answers %}
        <h3>Person {{ loop.index }}</h3>
-       {%- for answer in question.answers -%}
          {% include theme('partials/answer.html') %}
-       {%- endfor -%}
      {%- endfor %}
    {%- else %}
      {%- for answer in question.answers -%}
