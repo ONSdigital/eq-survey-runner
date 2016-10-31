@@ -5,12 +5,12 @@ class Item(object):
     '''
     Abstract class for all items in a schema. Subclasses must provide an id and redefine State accordingly
     '''
-    def construct_state(self):
+    def construct_state(self, answers=None):
         state_class = self.get_state_class()
         if state_class:
             state = state_class(self.id, self)
             for child in self.children:
-                child_state = child.construct_state()
+                child_state = child.construct_state(answers)
                 child_state.parent = state
                 state.children.append(child_state)
             return state
