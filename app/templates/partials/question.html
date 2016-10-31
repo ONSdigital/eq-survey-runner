@@ -43,7 +43,7 @@
 {% set question_actions %}
 <div class="question__actions">
   {%- if question.schema_item.id == 'household-question' %}
-  <button class="btn btn--border--census add-entity venus" type="submit" name="">Add another person</button>
+  <button class="btn btn--border--census add-entity venus" type="submit" name="action[add_another_person]">Add another person</button>
   {%- endif %}
 </div>
 {% endset %}

@@ -24,9 +24,10 @@ class UserActionProcessor(object):
     def _build_user_action_chain(self):
         # builds the chain of responsibility
         start_questionnaire = StartQuestionnaire(self._schema, self._metadata)
+        add_another_person = AddAnotherPerson(self._schema, self._metadata, self._questionnaire_manager)
         save_continue = SaveContinue(self._schema, self._metadata)
         submit = SubmitAnswers(self._schema, self._metadata, self._questionnaire_manager)
-        start_questionnaire.set_next_action(save_continue).set_next_action(submit)
+        start_questionnaire.set_next_action(add_another_person).set_next_action(save_continue).set_next_action(submit)
         return start_questionnaire
 
     def process_action(self, action):
@@ -72,6 +73,16 @@ class StartQuestionnaire(UserAction):
     def perform_action(self):
         pass
 
+
+class AddAnotherPerson(UserAction):
+
+    def __init__(self, schema, metadata, questionnaire_manager):
+        super(AddAnotherPerson, self).__init__(schema, metadata)
+        self.action = 'add_another_person'
+        self._questionnaire_manager = questionnaire_manager
+
+    def perform_action(self):
+        pass
 
 class SaveContinue(UserAction):
     def __init__(self, schema, metadata):
