@@ -20,7 +20,7 @@ class CompositeWidget(Widget):
 
         return composite_template
 
-    def get_user_input(self, post_vars):
+    def get_user_input(self, post_vars, index=0):
 
         if post_vars is None or len(post_vars) == 0:
             return None
@@ -34,18 +34,21 @@ class CompositeWidget(Widget):
 
         widget_input = {}
         for child_widget in self.widgets:
-            key = self.name + '-' + child_widget.name if is_post else child_widget.name
+            key = self._get_key_name(index) + '-' + child_widget.name if is_post else child_widget.name
             widget_input[child_widget.name] = data.get(key)
 
-        return {self.name: widget_input}
+        return {self._get_key_name(index): widget_input}
 
-    def _create_widget_params(self, state, index):
+    def _get_key_name(self, index):
+        return self.name if index == 0 else self.name + str(index)
+
+    def _create_widget_params(self, state, widget_offset):
         widget_params = {
             'answer': {
-                'name': ''.join([self.name, '-', self.widgets[index].name]),
-                'id': state.schema_item.answers[index].id,
-                'label': state.schema_item.answers[index].label,
-                'value': state.input['person'][self.widgets[index].name] if state.input is not None else '',
+                'name': ''.join([self.name, '-', self.widgets[widget_offset].name]),
+                'id': state.schema_item.answers[widget_offset].id,
+                'label': state.schema_item.answers[widget_offset].label,
+                'value': state.input[[key if key.startswith('person') else '' for key in state.input][0]][self.widgets[widget_offset].name] if state.input is not None else '',
             },
             'question': {
                 'id': state.schema_item.container.id,

@@ -12,3 +12,6 @@ class CompositeAnswer(Answer):
     def add_children(self, answers=None):
         self.answers = answers
         self.widget = CompositeWidget(name=self.id, widgets=[answer.widget for answer in answers])
+
+    def get_user_input(self, post_vars, index=0):
+        return self.widget.get_user_input(post_vars, index)

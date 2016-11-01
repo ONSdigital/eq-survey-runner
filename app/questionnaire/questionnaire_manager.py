@@ -192,9 +192,12 @@ class QuestionnaireManager(object):
 
     def update_node_answers(self, node):
         answer_dict = {}
-        for answer in self.state.get_answers():
+        for index, answer in enumerate(self.state.get_answers()):
             answer_value = answer.other if answer.value == 'other' and answer.other else answer.value
-            answer_dict[answer.id] = answer_value
+
+            key = answer.id + str(index) if answer.id in answer_dict else answer.id
+            answer_dict[key] = answer_value
+
         node.answers = answer_dict
 
     def validate_all_answers(self):

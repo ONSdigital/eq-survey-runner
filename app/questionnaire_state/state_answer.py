@@ -12,11 +12,7 @@ class StateAnswer(StateItem):
         self.other = None
 
     def update_state(self, user_input):
-
-        # Clear any previous value and validation results
-        self.value = None
-        self.is_valid = True
-        self.errors = []
+        self.clear_errors()
         # Get the user input
         # Todo, there shouldn't be a need for both self.input and self.value, but self.value gets changed later in the code
         self.input = self.schema_item.get_user_input(user_input)
@@ -24,6 +20,12 @@ class StateAnswer(StateItem):
         self.other = self.schema_item.get_other_value(user_input)
         if self.schema_item.type == 'Radio' and self.input:
             self._restore_other_value(user_input)
+
+    def clear_errors(self):
+        # Clear any previous value and validation results
+        self.value = None
+        self.is_valid = True
+        self.errors = []
 
     def _restore_other_value(self, user_input):
         # Get radio options from the schema.
@@ -39,6 +41,11 @@ class StateAnswer(StateItem):
                     self.input = 'other'
                     self.value = 'other'
                     self.other = self.schema_item.get_user_input(user_input)
+
+    def update_state_for_household_question(self, answers, index):
+        self.clear_errors()
+        self.input = self.schema_item.get_user_input(answers, index)
+        self.value = self.schema_item.get_user_input(answers, index)
 
     def get_answers(self):
         return [self]

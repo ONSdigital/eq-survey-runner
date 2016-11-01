@@ -15,8 +15,11 @@ class StateItem(object):
         self.display_on_summary = True
 
     def update_state(self, user_input):
-        for child in self.children:
-            child.update_state(user_input)
+        if hasattr(self.schema_item, 'type') and self.schema_item.type == 'Household':
+            self.update_state_for_household_question(user_input)
+        else:
+            for child in self.children:
+                child.update_state(user_input)
 
     def find_state_item(self, schema_item):
         for child in self.children:
@@ -44,3 +47,7 @@ class StateItem(object):
 
         logger.debug("Item errors list is %s", errors)
         return errors
+
+    def update_state_for_household_question(self, answers):
+        for index, child in enumerate(self.children):
+            child.update_state_for_household_question(answers, index)
