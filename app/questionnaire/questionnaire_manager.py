@@ -12,6 +12,8 @@ from app.routing.conditional_display import ConditionalDisplay
 from app.routing.routing_engine import RoutingEngine
 from app.templating.template_register import TemplateRegistry
 
+from flask import request
+
 from flask_login import current_user
 
 logger = logging.getLogger(__name__)
@@ -382,3 +384,12 @@ class QuestionnaireManager(object):
 
         new_person_answer.schema_item = new_composite_answer
         state_answers.append(new_person_answer)
+
+    def remove_person(self):
+        if self.state is None:
+            return
+
+        index_to_remove = request.form.get('remove')
+        answer = self.state.get_answers()[int(index_to_remove)]
+        question = answer.parent
+        question.children.remove(answer)

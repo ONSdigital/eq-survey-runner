@@ -15,7 +15,7 @@ class RoutingEngine(object):
 
     def get_next_location(self, current_location, user_action=None):
 
-        if user_action is not None and user_action == 'add_another_person':
+        if user_action is not None and user_action == 'add_another_person' or user_action == 'remove_person':
             return current_location
 
         if current_location == 'introduction':
