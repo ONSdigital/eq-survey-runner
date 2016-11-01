@@ -392,4 +392,4 @@ class QuestionnaireManager(object):
         index_to_remove = request.form.get('remove')
         answer = self.state.get_answers()[int(index_to_remove)]
         question = answer.parent
-        question.children.remove(answer)
+        question.remove_answer(answer)
