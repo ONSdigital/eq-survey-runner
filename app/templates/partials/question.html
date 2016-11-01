@@ -29,8 +29,7 @@
      {%- for answer in question.answers %}
        <h3>Person {{ loop.index }}
          {% if loop.index > 1 %}
-         <input type="hidden" name="remove" value="{{ loop.index0 }}" />
-         &nbsp;(<button style="background:none!important; font-weight: normal !important; color: #4263c2; border:none; padding:0!important; font: inherit; cursor: pointer;" href="#" name="action[remove_person]">Remove</button>)
+         &nbsp;(<button style="background:none!important; font-weight: normal !important; color: #4263c2; border:none; padding:0!important; font: inherit; cursor: pointer;" href="#" name="action[remove_person]" value="{{ loop.index0 }}">Remove</button>)
          {% endif %}
        </h3>
          {% include theme('partials/answer.html') %}

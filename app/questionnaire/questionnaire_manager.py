@@ -389,7 +389,7 @@ class QuestionnaireManager(object):
         if self.state is None:
             return
 
-        index_to_remove = request.form.get('remove')
+        index_to_remove = request.form.get('action[remove_person]')
         answer = self.state.get_answers()[int(index_to_remove)]
         question = answer.parent
         question.remove_answer(answer)
