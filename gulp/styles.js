@@ -57,8 +57,7 @@ export function styles() {
       outputStyle: 'expanded',
       sourceComments: false,
       includePaths: [
-        paths.styles.dir,
-        './node_modules/gfm.css/source/'
+        paths.styles.dir
       ],
       onSuccess: function(msg) {
         gutil.log('Done', gutil.colors.cyan(msg))

@@ -54,7 +54,7 @@ tests/results
 tests/coverage
 tests/a11y
 
-app/assets/styles/partials/base/_sprite.scss
+**/_sprite.scss
 
 ## OS X
 ._*

@@ -17,7 +17,7 @@ export const paths = {
   },
   styles: {
     dir: appPath + '/styles/',
-    input: appPath + '/styles/**/{fixed,responsive,patterns}.scss',
+    input: appPath + '/styles/**/{fixed,responsive}.scss',
     input_all: appPath + '/styles/**/*.scss',
     output: distPath + '/css/'
   },

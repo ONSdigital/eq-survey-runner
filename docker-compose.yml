@@ -14,7 +14,7 @@ services:
       RABBITMQ_DEFAULT_PASS: digitaleq
 
   db:
-    image: postgres:9.4
+    image: postgres:9.5
     environment:
       POSTGRES_PASSWORD: digitaleq
       POSTGRES_USER: digitaleq
