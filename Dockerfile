@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y $RUNTIME_PACKAGES $BUILD_PACKAGES \
 	&& curl -sL https://deb.nodesource.com/setup_5.x | bash -
 
 RUN apt-get install -y nodejs
+RUN npm install --global yarn
 RUN yarn install --global gulp-cli
 
 ADD requirements.txt /code/requirements.txt
