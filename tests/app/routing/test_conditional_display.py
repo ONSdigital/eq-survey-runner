@@ -1,15 +1,6 @@
-from app.routing.conditional_display import ConditionalDisplay
-
-from app.questionnaire.questionnaire_manager import QuestionnaireManager
+from app.questionnaire.navigator import evaluate_rule
 
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
-
-
-class MockQuestionnaireManager(QuestionnaireManager):
-
-    def find_answer(self, id):
-        # always return the answer we're expecting for the test to pass
-        return "Bothans"
 
 
 class TestConditionalDisplay(SurveyRunnerTestCase):
@@ -21,22 +12,42 @@ class TestConditionalDisplay(SurveyRunnerTestCase):
         super().tearDown()
 
     def test_skip_condition_false(self):
-        # find the question with the skip condition
+        answer = "Bothans"
+        # find the question with the 'not equals' skip condition
         question = self.questionnaire.get_item_by_id("048e40da-bca4-48e5-9885-0bb6413bef62")
+        rule = question.skip_condition.__dict__
+        rule['when'] = rule['when'].__dict__
 
         # check the parse has set up the skip condition
         self.assertIsNotNone(question.skip_condition)
 
         # the condition will fire now as we have answer the question correctly, so we won't skip the question
-        self.assertFalse(ConditionalDisplay.is_skipped(item=question, questionnaire_manager=MockQuestionnaireManager(self.questionnaire)))
+        self.assertFalse(evaluate_rule(rule, answer))
 
     def test_skip_condition_true(self):
+        answer = "Some other answer"
 
-        # find the question with the skip condition
+        # find the question with the 'not equals' skip condition
         question = self.questionnaire.get_item_by_id("048e40da-bca4-48e5-9885-0bb6413bef62")
+        rule = question.skip_condition.__dict__
+        rule['when'] = rule['when'].__dict__
 
         # check the parse has set up the skip condition
         self.assertIsNotNone(question.skip_condition)
 
         # the condition won't fire as we haven't answered any questions, so we will skip the question
-        self.assertTrue(ConditionalDisplay.is_skipped(item=question, questionnaire_manager=QuestionnaireManager(self.questionnaire)))
+        self.assertTrue(evaluate_rule(rule, answer))
+
+    def test_skip_condition_blank(self):
+        answer = ""
+
+        # find the question with the 'not equals' skip condition
+        question = self.questionnaire.get_item_by_id("048e40da-bca4-48e5-9885-0bb6413bef62")
+        rule = question.skip_condition.__dict__
+        rule['when'] = rule['when'].__dict__
+
+        # check the parse has set up the skip condition
+        self.assertIsNotNone(question.skip_condition)
+
+        # the condition won't fire as we haven't answered any questions, so we will skip the question
+        self.assertTrue(evaluate_rule(rule, answer))

@@ -2,7 +2,7 @@ import logging
 
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
-from app.data_model.questionnaire_store import get_metadata
+from app.globals import get_metadata
 from app.libs.utils import convert_tx_id
 from app.questionnaire.questionnaire_manager import InvalidLocationException
 from app.schema.exceptions import QuestionnaireException

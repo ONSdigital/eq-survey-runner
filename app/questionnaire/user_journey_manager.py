@@ -1,7 +1,7 @@
 import logging
 
 from app import settings
-from app.data_model.questionnaire_store import get_questionnaire_store
+from app.globals import get_questionnaire_store
 
 from flask_login import current_user
 

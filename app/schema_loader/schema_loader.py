@@ -27,44 +27,52 @@ def load_schema(eq_id, form_type):
     # form type is mandatory JWT claim, but it isn't needed when getting schemas from the schema bucket
     # in that case default it to -1 and ignore it
     if form_type and form_type != "-1":
-        schema_key = "{}_{}.json".format(eq_id, form_type)
-    else:
-        schema_key = "{}.json".format(eq_id)
+        return load_schema_file("{}_{}.json".format(eq_id, form_type))
+
+    return load_s3_schema_file("{}.json".format(eq_id))
+
+
+def load_s3_schema_file(schema_file):
+    if settings.EQ_SCHEMA_BUCKET:
+        try:
+            s3 = boto3.resource('s3')
+            schema = s3.Object(settings.EQ_SCHEMA_BUCKET, schema_file)
+            jsn_schema = schema.get()['Body']
+            return json.loads(jsn_schema.read().decode("utf-8"))
+        except botocore.exceptions.ClientError as e:
+            logging.error("S3 error: %s", e.response['Error']['Code'])
+    return None
+
+
+def load_schema_file(schema_file):
     try:
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, schema_key), encoding="utf8")
-        return json.load(schema_file)
+        schema_path = os.path.join(settings.EQ_SCHEMA_DIRECTORY, schema_file)
+        with open(schema_path, encoding="utf8") as json_data:
+            return json.load(json_data)
     except FileNotFoundError:
-        if settings.EQ_SCHEMA_BUCKET:
-            try:
-                s3 = boto3.resource('s3')
-                schema = s3.Object(settings.EQ_SCHEMA_BUCKET, schema_key)
-                jsn_schema = schema.get()['Body']
-                return json.loads(jsn_schema.read().decode("utf-8"))
-            except botocore.exceptions.ClientError as e:
-                logging.error("S3 error: %s", e.response['Error']['Code'])
-                return None
-        else:
-            logging.error("No file exists for eq-id %s and form type %s", eq_id, form_type)
-            return None
+        logging.error("No schema file exists %s", schema_file)
+        return None
 
 
 def available_schemas():
-    files = []
-    available_local_schemas(files)
+    files = available_local_schemas()
     if settings.EQ_SCHEMA_BUCKET:
-        available_s3_schemas(files)
+        files.extend(available_s3_schemas())
     return sorted(files)
 
 
-def available_local_schemas(files):
+def available_local_schemas():
+    files = []
     for file in os.listdir(settings.EQ_SCHEMA_DIRECTORY):
         if os.path.isfile(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file)):
             # ignore hidden file
             if file.endswith(".json"):
                 files.append(file)
+    return files
 
 
-def available_s3_schemas(files):
+def available_s3_schemas():
+    files = []
     try:
         s3 = boto3.resource('s3')
         schemas_bucket = s3.Bucket(settings.EQ_SCHEMA_BUCKET)
@@ -72,3 +80,4 @@ def available_s3_schemas(files):
             files.append(key.key)
     except botocore.exceptions.ClientError as e:
         logging.error("S3 error: %s", e.response['Error']['Code'])
+    return files

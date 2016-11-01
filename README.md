@@ -3,7 +3,7 @@
 
 ## Run with Docker
 
-To get eq-survey-runner running the following command will build and run the containers 
+To get eq-survey-runner running the following command will build and run the containers
 ```
 docker-compose up -d
 ```
@@ -57,7 +57,7 @@ This will generate a JWT for you to log into the application. The script prints 
 
 The front-end toolkit uses nodejs, npm and gulp.
 
-Install nodejs `5.4.x`. Make sure npm is installed with `npm`.
+Install nodejs `6.7.1`. Make sure npm is installed with `npm`.
 
 Install dependencies with:
 
@@ -94,6 +94,8 @@ The functional tests can be executed with a couple of options.
 These options can be combined with `test_functional` or `test_functional_sauce`, eg:
 
 `yarn test_functional_sauce -- --env=preprod --spec=mci` Will run the MCI spec against preprod via SauceLabs.
+
+*NOTE:* You will need the appropriate environment variables to be able to connect to SauceLabs.
 
 ## Deployment with elastic beanstalk
 
@@ -190,6 +192,8 @@ EQ_SECRET_KEY - The Flask secret key for signing cookies
 EQ_PROFILING - Enables or disables profiling (True/False) Default False/Disabled
 EQ_UA_ID - The Google Analytics ID
 EQ_SCHEMA_BUCKET - The name of the bucket in S3 where to look to find schemas
+SAUCE_USERNAME - Sauce Labs username
+SAUCE_ACCESS_KEY Sauce Labs private key
 ```
 ## Loading schemas from S3
 
