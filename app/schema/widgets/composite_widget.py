@@ -29,7 +29,8 @@ class CompositeWidget(Widget):
         data = post_vars
         if not hasattr(post_vars, 'getlist'):
             # During GET post_vars is a dict that we need to unpack.
-            data = ast.literal_eval(post_vars[self.name])[self.name]
+            key = self._get_key_name(index)
+            data = ast.literal_eval(post_vars[key])[key]
             is_post = False
 
         widget_input = {}
@@ -43,12 +44,13 @@ class CompositeWidget(Widget):
         return self.name if index == 0 else self.name + str(index)
 
     def _create_widget_params(self, state, widget_offset):
+        person_key = [key if key.startswith('person') else '' for key in state.input][0] if state.input else self.name
         widget_params = {
             'answer': {
-                'name': ''.join([self.name, '-', self.widgets[widget_offset].name]),
+                'name': '-'.join([person_key, self.widgets[widget_offset].name]),
                 'id': state.schema_item.answers[widget_offset].id,
                 'label': state.schema_item.answers[widget_offset].label,
-                'value': state.input[[key if key.startswith('person') else '' for key in state.input][0]][self.widgets[widget_offset].name] if state.input is not None else '',
+                'value': state.input[person_key][self.widgets[widget_offset].name] if state.input is not None else '',
             },
             'question': {
                 'id': state.schema_item.container.id,
