@@ -45,6 +45,7 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
         self.assertEqual('2 February 2016', survey_data['start_date'])
         self.assertEqual('3 March 2016', survey_data['end_date'])
         self.assertIsNone(survey_data['employment_date'])
+        self.assertIsNone(survey_data['region_code'])
         self.assertEqual(self.jwt["period_str"], survey_data['period_str'])
 
         respondent = render_data['respondent']

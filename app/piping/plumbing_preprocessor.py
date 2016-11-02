@@ -34,6 +34,7 @@ def _build_exercise():
         "end_date": to_date(metadata["ref_p_end_date"]),
         "employment_date": to_date(metadata["employment_date"]),
         "return_by": to_date(metadata["return_by"]),
+        "region_code": metadata["region_code"],
     }
 
 
