@@ -2,6 +2,8 @@ import logging
 
 import re
 
+from flask import render_template_string
+
 logger = logging.getLogger(__name__)
 
 
@@ -24,12 +26,12 @@ class Plumber(object):
                 self._plumb(item, templatable_property)
 
     def _needs_plumbing(self, item, templatable_property):
-        '''
+        '''PlumbingPreprocessor
         Returns a boolean indication of whether a string replacement is needed
         '''
         value = getattr(item, templatable_property)
         if value is not None:
-            pattern = re.compile("\{.+\}")
+            pattern = re.compile("\{\{.+\}\}")
             needs_plumbing = pattern.search(value)
             if needs_plumbing is not None:
                 return True
@@ -41,10 +43,10 @@ class Plumber(object):
         '''
         if hasattr(item, templatable_property):
             logger.debug('Piping property "{}" of item "{}"'.format(templatable_property, item.id))
-            template = getattr(item, templatable_property)
+            template_string = getattr(item, templatable_property)
             try:
                 formatting_data = self._context
-                plumbed_value = template.format(**formatting_data)
+                plumbed_value = render_template_string(template_string, **formatting_data)
                 setattr(item, templatable_property, plumbed_value)
             except KeyError:
                 logger.warn('Property "{}" of item "{}" cannot be piped'.format(templatable_property, item.id))

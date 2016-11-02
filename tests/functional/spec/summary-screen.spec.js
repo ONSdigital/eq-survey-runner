@@ -87,5 +87,5 @@ describe('RSI - summary screen edit test', function() {
     rsiSummaryPage.editLinkChangeInternetSales()
     expect(internetSalesPage.getInternetSales()).to.contain('0')
 
-      })
+  })
 })

@@ -11,15 +11,16 @@ logger = logging.getLogger(__name__)
 
 class MetaDataTemplatePreprocessor(object):
 
-    def build_metadata(self, schema):
+    def build_metadata(self, questionnaire_schema):
         render_data = {
-            "survey": self._build_survey_meta(schema),
+            "survey": self._build_survey_meta(questionnaire_schema),
             "respondent": self._build_respondent_meta(),
         }
         return render_data
 
-    def _build_respondent_meta(self):
-        metadata = self._get_metadata()
+    @staticmethod
+    def _build_respondent_meta():
+        metadata = get_metadata(current_user)
 
         if metadata:
             respondent_id = metadata["ru_ref"]
@@ -40,16 +41,16 @@ class MetaDataTemplatePreprocessor(object):
         }
         return respondent_meta
 
-    def _build_survey_meta(self, schema):
-        introduction = schema.introduction
-        metadata = self._get_metadata()
+    def _build_survey_meta(self, questionnaire_schema):
+        introduction = questionnaire_schema['introduction']
+        metadata = get_metadata(current_user)
 
         survey_meta = {
-            "title": schema.title,
-            "survey_code": schema.survey_id,
+            "title": questionnaire_schema['title'],
+            "survey_code": questionnaire_schema['survey_id'],
             "description": self._get_description(introduction),
             "information_to_provide": self._get_info_to_provide(introduction),
-            "theme": schema.theme,
+            "theme": questionnaire_schema['theme'],
             "return_by": self._format_date(metadata["return_by"]),
             "start_date":  self._format_date(metadata["ref_p_start_date"]),
             "end_date": self._format_date(metadata["ref_p_end_date"]),
@@ -58,20 +59,19 @@ class MetaDataTemplatePreprocessor(object):
         }
         return survey_meta
 
-    def _get_info_to_provide(self, introduction):
-        if introduction and introduction.information_to_provide:
-            return introduction.information_to_provide
+    @staticmethod
+    def _get_info_to_provide(introduction):
+        if introduction and introduction.get('information_to_provide') is not None:
+            return introduction['information_to_provide']
 
         return None
 
-    def _get_description(self, introduction):
-        if introduction and introduction.description:
-            return introduction.description
+    @staticmethod
+    def _get_description(introduction):
+        if introduction and introduction['description']:
+            return introduction['description']
 
         return None
-
-    def _get_metadata(self):
-        return get_metadata(current_user)
 
     @staticmethod
     def _format_date(input_date_string):

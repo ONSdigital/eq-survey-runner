@@ -35,7 +35,8 @@ class SurveyRunnerTestCase(unittest.TestCase):
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "0_star_wars.json"))
         schema = schema_file.read()
         # create a parser
-        parser = SchemaParserFactory.create_parser(json.loads(schema))
+        self.schema_json = json.loads(schema)
+        parser = SchemaParserFactory.create_parser(self.schema_json)
         self.questionnaire = parser.parse()
 
     def tearDown(self):

@@ -70,7 +70,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "If possible, this should be for the period {exercise.start_date:%-d %B %Y} to {exercise.end_date:%-d %B %Y}.",
+                                    "description": "If possible, this should be for the period {{exercise.start_date|pretty_date}} to {{exercise.end_date|pretty_date}}.",
                                     "display": {
                                         "properties": {}
                                     },
@@ -502,7 +502,7 @@
                                     "validation": []
                                 }
                             ],
-                            "title": "On {exercise.employment_date:%-d %B %Y} what was the number of employees for the business?",
+                            "title": "On {{exercise.employment_date|pretty_date}} what was the number of employees for the business?",
                             "validation": []
                         }
                     ],

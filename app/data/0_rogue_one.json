@@ -184,7 +184,7 @@
                                     "validation": []
                                 }
                             ],
-                            "title": "{answers.character}",
+                            "title": "{{answers.character}}",
                             "validation": []
                         }
                     ],
@@ -251,7 +251,7 @@
                                     "validation": []
                                 }
                             ],
-                            "title": "{answers.character}",
+                            "title": "{{answers.character}}",
                             "validation": []
                         }
                     ],
@@ -318,7 +318,7 @@
                                     "validation": []
                                 }
                             ],
-                            "title": "{answers.character}",
+                            "title": "{{answers.character}}",
                             "validation": []
                         }
                     ],
@@ -385,7 +385,7 @@
                                     "validation": []
                                 }
                             ],
-                            "title": "{answers.character}",
+                            "title": "{{answers.character}}",
                             "validation": []
                         }
                     ],

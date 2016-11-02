@@ -3,15 +3,15 @@ import SummaryPage from '../../summary.page'
 class MultipleAnswerSummaryPage {
 
   getFirstName() {
-    return browser.element('[id="summary-0-0-0-answer"]').getText()
+    return browser.element('[data-qa="first_name_answer-answer"]').getText()
   }
 
   editSurname() {
-    browser.element('[href="personal_details_block#surname_answer"]').click()
+    browser.element('[data-qa="surname_answer-edit"]').click()
   }
 
   getSurname() {
-    return browser.element('[id="summary-0-0-1-answer"]').getText()
+    return browser.element('[data-qa="surname_answer-answer"]').getText()
   }
 
 }

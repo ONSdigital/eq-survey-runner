@@ -1,3 +1,5 @@
+from json import JSONDecodeError
+
 from app.schema_loader import schema_loader
 import json
 import jsonschema
@@ -27,7 +29,7 @@ class TestSchemaValidation(unittest.TestCase):
 
             json_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file), encoding="utf8")
 
-            error = self.validate_json_against_schema(file, json.load(json_file), schema)
+            error = self.validate_json_against_schema(file, json_file, schema)
 
             if error:
                 errors.append(error)
@@ -38,11 +40,14 @@ class TestSchemaValidation(unittest.TestCase):
 
             self.fail("{} Schema Validation Errors.".format(len(errors)))
 
-    def validate_json_against_schema(self, file, json_to_validate, schema):
+    def validate_json_against_schema(self, file, json_file, schema):
         try:
+            json_to_validate = json.load(json_file)
             validate(json_to_validate, schema)
         except jsonschema.exceptions.ValidationError as e:
             return "Schema Validation Error! File [{}] does not validate against schema. Error [{}]".format(file, e)
+        except JSONDecodeError as e:
+            return "JSON Parse Error! Could not parse [{}]. Error [{}]".format(file, e)
 
 
 if __name__ == '__main__':

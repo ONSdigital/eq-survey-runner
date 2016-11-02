@@ -2,9 +2,9 @@ import logging
 
 from app.authentication.session_management import session_manager
 from app.globals import get_metadata, get_questionnaire_store
-
 from app.questionnaire.questionnaire_manager_factory import QuestionnaireManagerFactory
 from app.templating.template_register import TemplateRegistry
+
 
 from flask import redirect
 from flask import request
