@@ -43,8 +43,7 @@ if (process.env.TRAVIS === 'true') {
   config = {
     ...config,
     logLevel: 'debug',
-    capabilities: [chrome],
-    specs: ['mci', 'rsi-saverestore-0112'].map(spec => `${paths.test.wdioSpec}/${spec}.spec.js`)
+    capabilities: [chrome]
   }
 } else {
   if (argv.sauce) {
