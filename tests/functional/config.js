@@ -42,10 +42,8 @@ const sauceLabsConfig = {
 if (process.env.TRAVIS === 'true') {
   config = {
     ...config,
-    ...sauceLabsConfig,
     logLevel: 'debug',
-    capabilities: [firefox],
-    specs: ['mci', 'rsi-saverestore-0112'].map(spec => `${paths.test.wdioSpec}/${spec}.spec.js`)
+    capabilities: [chrome]
   }
 } else {
   if (argv.sauce) {
