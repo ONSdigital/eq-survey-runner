@@ -41,3 +41,17 @@ class QuestionnaireStore:
     @metadata.setter
     def metadata(self, metadata):
         self.data["METADATA"] = metadata
+
+    @property
+    def answers(self):
+        if "ANSWERS" not in self.data:
+            self.data["ANSWERS"] = {}
+
+        return self.data["ANSWERS"]
+
+    @property
+    def completed_blocks(self):
+        if "COMPLETED_BLOCKS" not in self.data:
+            self.data["COMPLETED_BLOCKS"] = []
+
+        return self.data["COMPLETED_BLOCKS"]

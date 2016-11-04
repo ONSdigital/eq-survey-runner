@@ -12,7 +12,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         self.assertEquals(resp.status_code, 302)
         intro_page_url = resp.headers['Location']
 
-        # We try to access the submission page without entering anything
+        # Navigate to the Introduction Page
         resp = self.client.get(intro_page_url, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
@@ -20,19 +20,29 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         content = resp.get_data(True)
         self.assertRegexpMatches(content, '>Start survey<')
 
+        post_data = {
+          'action[start_questionnaire]': "Submit Answers"
+        }
+
+        # Submit the Introduction page to get the first question page
+        resp = self.client.post(intro_page_url, data=post_data, follow_redirects=False)
+        self.assertEquals(resp.status_code, 302)
+
+        first_question_page = resp.headers['Location']
+
         # We try to access the submission page without entering anything
         resp = self.client.get(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # Check we are redirected back to the questionnaire
-        self.assertRegexpMatches(resp.headers['Location'], 'introduction')
+        self.assertEqual(resp.headers['Location'], first_question_page)
 
         # We try posting to the submission page without our answers
         post_data = {
             'action[submit_answers]': "Submit Answers"
         }
-        resp = self.client.post(mci_test_urls.MCI_0205_SUMMARY, data=post_data, follow_redirects=False)
+        resp = self.client.post(mci_test_urls.MCI_0205_SUBMIT, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # Check we are redirected back to the questionnaire
-        self.assertRegexpMatches(resp.headers['Location'], 'introduction')
+        self.assertEqual(resp.headers['Location'], first_question_page)

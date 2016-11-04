@@ -71,7 +71,7 @@ class TestCensusHH2016OutputFormat(DownstreamTestCase):
 
         self.assertIsNone(TestCensusHH2016OutputFormat._submitter._message)
 
-        resp = self.client.post(summary_url, data=form_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/0/hh2016/201604/789/submit-answers', data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         self.assertIsNotNone(TestCensusHH2016OutputFormat._submitter._message)

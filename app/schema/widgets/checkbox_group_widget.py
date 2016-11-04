@@ -12,8 +12,11 @@ class CheckboxGroupWidget(MultipleChoiceWidget):
         self.type = 'checkbox'
 
     def get_user_input(self, post_vars):
-        # Returns an empty list
-        return ImmutableMultiDict(post_vars).getlist(self.name)
+
+        if isinstance(post_vars, dict):
+            return ImmutableMultiDict(post_vars).getlist(self.name)
+
+        return post_vars
 
     def _build_options(self, answer_schema, answer_state):
         options = []

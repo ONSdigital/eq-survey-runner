@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from app.schema.answer import Answer
 from app.schema.exceptions import TypeCheckingException
 from app.schema.widgets.date_widget import DateWidget
@@ -22,9 +20,6 @@ class DateAnswer(Answer):
                 raise TypeCheckingException(result.errors[0])
 
         return self._cast_user_input(user_input)
-
-    def _cast_user_input(self, user_input):
-        return datetime.strptime(user_input, "%d/%m/%Y")
 
     def get_user_input(self, post_vars):
         return self.widget.get_user_input(post_vars)

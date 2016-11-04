@@ -1,5 +1,7 @@
 import re
 
+from datetime import datetime
+
 import flask
 
 from jinja2 import Markup, escape, evalcontextfilter
@@ -29,7 +31,7 @@ def pretty_date(value):
 
 
 def pretty_short_date(value):
-    return value.strftime('%d %b %Y')
+    return datetime.strptime(value, "%d/%m/%Y").strftime('%d %b %Y')
 
 
 @blueprint.app_template_filter()

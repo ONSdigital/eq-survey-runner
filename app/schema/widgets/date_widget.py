@@ -92,12 +92,16 @@ class DateWidget(Widget):
         if isinstance(post_vars, dict):
             if post_vars.get(self.name):
                 try:
-                    user_input = post_vars.get(self.name).strftime('%d/%m/%Y')
+                    return post_vars.get(self.name).strftime('%d/%m/%Y')
                 except AttributeError:
                     return post_vars.get(self.name)
             else:
-                user_input = post_vars.get(self.name + '-day', '') + '/' \
-                              + post_vars.get(self.name + '-month', '') + '/' + post_vars.get(self.name + '-year', '')
-            return user_input
+                day = post_vars.get(self.name + '-day', '')
+                month = post_vars.get(self.name + '-month', '')
+                year = post_vars.get(self.name + '-year', '')
+
+                # if day or month or year:
+                return "{}/{}/{}".format(day, month, year)
+
         else:
             return post_vars

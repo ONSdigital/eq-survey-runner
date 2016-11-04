@@ -55,7 +55,10 @@ describe('RSI - Save and restore test', function() {
 
     // When
     openQuestionnaire('1_0102.json', 'yoganandkunche', collectionId)
-    reportingPeriod.setToReportingPeriodYear('2017')
+    reportingPeriod.setFromReportingPeriodDay('01')
+      .setFromReportingPeriodYear('2016')
+      .setToReportingPeriodDay('01')
+      .setToReportingPeriodYear('2017')
       .submit()
     retailTurnoverPage.setRetailTurnover('2000')
       .submit()
