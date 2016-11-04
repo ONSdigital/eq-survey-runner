@@ -2,7 +2,6 @@ from unittest import TestCase
 
 import mock
 
-from app.templating.model_builder import build_summary_model
 from app.templating.summary.section import Section
 
 
