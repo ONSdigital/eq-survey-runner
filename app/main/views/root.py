@@ -67,7 +67,6 @@ def login():
     eq_id = metadata["eq_id"]
     collection_id = metadata["collection_exercise_sid"]
     form_type = metadata["form_type"]
-    period_id = metadata["period_id"]
 
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
     if not eq_id or not form_type:
@@ -80,4 +79,4 @@ def login():
     navigator = questionnaire_manager.navigator
     current_location = navigator.get_latest_location(get_answers(current_user), get_completed_blocks(current_user))
 
-    return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + period_id + '/' + collection_id + '/' + current_location)
+    return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + collection_id + '/' + current_location)
