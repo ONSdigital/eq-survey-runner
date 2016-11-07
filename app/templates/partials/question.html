@@ -24,12 +24,49 @@
 {% endset %}
 
 {% set question_answers %}
-  <div class="question__answers">
-    {%- for answer in question.answers -%}
-      {% include theme('partials/answer.html') %}
-    {%- endfor -%}
-  </div>
+ <div class="question__answers">
+   {%- if question.schema_item.type == 'RepeatingAnswer' %}
+     {%- for answer in question.answers %}
+       <h3>Person {{ loop.index }}
+         {% if loop.index > 1 %}
+         &nbsp;(<button style="background:none!important; font-weight: normal !important; color: #4263c2; border:none; padding:0!important; font: inherit; cursor: pointer;" href="#" name="action[remove_person]" value="{{ loop.index0 }}">Remove</button>)
+         {% endif %}
+       </h3>
+         {% include theme('partials/answer.html') %}
+     {%- endfor %}
+   {%- else %}
+     {%- for answer in question.answers -%}
+       {% include theme('partials/answer.html') %}
+     {%- endfor -%}
+   {%- endif %}
+ </div>
 {% endset %}
+
+{% set question_actions %}
+<style>
+.btn--border--census {
+    background-color: #fff;
+    color: #6E2585;
+    border: none;
+    padding: 13px 48px;
+    margin: 2em 0 1em 0;
+    border-radius: 3px;
+    display: inline-block;
+    text-rendering: optimizeLegibility;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    border: 3px solid #6E2585;
+    padding: 10px 42px;
+}
+</style>
+<div class="question__actions">
+  {%- if question.schema_item.type == 'RepeatingAnswer' %}
+  <button class="btn btn--border--census add-entity venus" type="submit" name="action[add_answer]">Add another person</button>
+  {%- endif %}
+</div>
+{% endset %}
+
 
 <div class="question" id="{{question.id}}">
 
@@ -84,6 +121,8 @@
   {% else %}
 
     {{question_markup|safe}}
+
+    {{question_actions|safe}}
 
   {% endif %}
 
