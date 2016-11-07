@@ -130,8 +130,7 @@ class QuestionnaireManager(object):
             item.skipped = False
 
             if hasattr(item.schema_item, 'skip_condition') and item.schema_item.skip_condition:
-                rule = item.schema_item.skip_condition.__dict__
-                rule['when'] = rule['when'].__dict__
+                rule = item.schema_item.skip_condition.as_dict()
                 answer = get_answers(current_user).get(rule['when']['id'])
 
                 item.skipped = evaluate_rule(rule, answer)
