@@ -26,6 +26,10 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
                                     import_name=__name__,
                                     url_prefix='/questionnaire/<eq_id>/<form_type>/<period_id>/<collection_id>/')
 
+action_blueprint = Blueprint(name='action',
+                             import_name=__name__,
+                             url_prefix='/action/<eq_id>/<form_type>/<period_id>/<collection_id>/')
+
 
 @questionnaire_blueprint.before_request
 @login_required
@@ -100,6 +104,21 @@ def submit_answers(eq_id, form_type, period_id, collection_id):
         return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, 'thank-you')
     else:
         return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, invalid_location)
+
+
+@action_blueprint.route('<location>', methods=["POST"])
+@login_required
+def post_action(eq_id, form_type, period_id, collection_id, location):
+    return "post successful"
+    # valid = g.questionnaire_manager.process_incoming_answers(location, request.form)
+    # if not valid:
+    #     return render_page(location, False)
+    #
+    # navigator = g.questionnaire_manager.navigator
+    # next_location = navigator.get_next_location(get_answers(current_user), location)
+    # metadata = get_metadata(current_user)
+    # logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
+    # return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, next_location)
 
 
 def delete_user_data():

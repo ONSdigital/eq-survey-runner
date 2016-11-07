@@ -56,6 +56,10 @@ class MetaDataTemplatePreprocessor(object):
             "end_date": self._format_date(metadata["ref_p_end_date"]),
             "employment_date": self._format_date(metadata["employment_date"]),
             "period_str": metadata["period_str"],
+            "collection_id": metadata["collection_exercise_sid"],
+            "eq_id": metadata["eq_id"],
+            "form_type": metadata["form_type"],
+            "period_id": metadata["period_id"],
         }
         return survey_meta
 

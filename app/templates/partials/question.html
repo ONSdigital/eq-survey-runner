@@ -62,7 +62,10 @@
 </style>
 <div class="question__actions">
   {%- if question.schema_item.type == 'RepeatingAnswer' %}
-  <button class="btn btn--border--census add-entity venus" type="submit" name="action[add_answer]">Add another person</button>
+  <button class="btn btn--border--census add-entity venus" type="submit"
+          formaction="{{ url_for('action.post_action', eq_id=meta.survey.eq_id, collection_id=meta.survey.collection_id,
+            form_type=meta.survey.form_type, period_id=meta.survey.period_id, location=content.id) }}"
+          name="action[add_answer]">Add another person</button>
   {%- endif %}
 </div>
 {% endset %}
