@@ -106,19 +106,18 @@ def submit_answers(eq_id, form_type, period_id, collection_id):
         return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, invalid_location)
 
 
-@action_blueprint.route('<location>', methods=["POST"])
+@action_blueprint.route('<location>/add', methods=["POST"])
 @login_required
-def post_action(eq_id, form_type, period_id, collection_id, location):
-    return "post successful"
-    # valid = g.questionnaire_manager.process_incoming_answers(location, request.form)
-    # if not valid:
-    #     return render_page(location, False)
-    #
-    # navigator = g.questionnaire_manager.navigator
-    # next_location = navigator.get_next_location(get_answers(current_user), location)
-    # metadata = get_metadata(current_user)
-    # logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-    # return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, next_location)
+def add_answer(eq_id, form_type, period_id, collection_id, location):
+    # TODO Process the user action
+    return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location)
+
+
+@action_blueprint.route('<location>/remove', methods=["POST"])
+@login_required
+def remove_answer(eq_id, form_type, period_id, collection_id, location):
+    # TODO Process the user action
+    return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location)
 
 
 def delete_user_data():
@@ -127,7 +126,7 @@ def delete_user_data():
 
 
 def redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location):
-    return redirect(url_for('.get_questionnaire',
+    return redirect(url_for('questionnaire.get_questionnaire',
                             eq_id=eq_id,
                             form_type=form_type,
                             period_id=period_id,
