@@ -13,7 +13,8 @@ RETURN_BY = "2016-05-06"
 TRAD_AS = "Integration Tests"
 EMPLOYMENT_P_DATE = "1983-06-02"
 
-def create_token(form_type_id, eq_id, start_date=None, end_date=None, employment_date=None):
+
+def create_token(form_type_id, eq_id, start_date=None, end_date=None, employment_date=None, region_code=None):
         user = USER
         exp_time = 3600                         # one hour from now
         eq_id = eq_id
@@ -37,6 +38,7 @@ def create_token(form_type_id, eq_id, start_date=None, end_date=None, employment
         else:
             ref_p_employment_date = employment_date
 
+
         ru_ref = RU_REF
         ru_name = RU_NAME
         trad_as = TRAD_AS
@@ -44,6 +46,6 @@ def create_token(form_type_id, eq_id, start_date=None, end_date=None, employment
 
         payload = create_payload(user, exp_time, eq_id, period_str, period_id,
                                  form_type, collection_exercise_sid, ref_p_start_date,
-                                 ref_p_end_date, ru_ref, ru_name, trad_as, return_by, ref_p_employment_date)
+                                 ref_p_end_date, ru_ref, ru_name, trad_as, return_by, ref_p_employment_date, region_code)
 
         return generate_token(payload)
