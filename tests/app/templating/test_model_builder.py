@@ -23,7 +23,8 @@ class TestBuildModel(unittest.TestCase):
                 'trad_as': 'Apple',
                 'tx_id': '12345678-1234-5678-1234-567812345678',
                 'period_str': '201610',
-                'employment_date': '2016-10-10'}
+                'employment_date': '2016-10-10',
+                }
 
     def setUp(self):
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "0_star_wars.json"))
