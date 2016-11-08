@@ -10,20 +10,14 @@ class AnswerStore(object):
 
     def add_answer(self, answer):
         if self.exists(answer):
-            self._insert_or_update(answer)
+            self._update_answer(answer)
         else:
             self.answers.append(answer)
 
-    def _insert_or_update(self, answer):
-        is_new_instance = True
+    def _update_answer(self, answer):
         for existing in self.find_existing(answer):
-            if AnswerStore._same_instance(answer, existing):
-                existing['value'] = answer['value']
-                is_new_instance = False
-                break
-
-        if is_new_instance:
-            self.answers.append(answer)
+            existing['value'] = answer['value']
+            break
 
     def find_existing(self, answer):
         found = []
@@ -43,8 +37,13 @@ class AnswerStore(object):
     def _same_answer(first, second):
         return (first['block'] == second['block'] and
                 first['question'] == second['question'] and
-                first['answer'] == second['answer'])
+                first['answer'] == second['answer'] and
+                first['answer_instance'] == second['answer_instance'])
 
-    @staticmethod
-    def _same_instance(first, second):
-        return first['answer_instance'] == second['answer_instance']
+    def find_by_question(self, question_id):
+        result = []
+        for existing in self.answers:
+            if existing['question'] == question_id:
+                result.append(existing)
+
+        return result

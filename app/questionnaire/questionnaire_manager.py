@@ -110,7 +110,7 @@ class QuestionnaireManager(object):
         self.state = None
         if self._schema.item_exists(item_id):
             schema_item = self._schema.get_item_by_id(item_id)
-            self.state = schema_item.construct_state()
+            self.state = schema_item.construct_state(answers)
             self.state.update_state(answers)
 
     def get_state_answers(self, item_id):
@@ -165,6 +165,7 @@ class QuestionnaireManager(object):
 
         new_answer_state.schema_item = new_answer_schema
         new_answer_state.parent = question_state
+        new_answer_state.instance = number_of_answers
 
         question_answers.append(new_answer_state)
 

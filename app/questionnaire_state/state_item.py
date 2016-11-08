@@ -13,6 +13,7 @@ class StateItem(object):
         self.schema_item = schema_item
         self.skipped = False
         self.display_on_summary = True
+        self.instance = 0
 
     def update_state(self, user_input):
         for child in self.children:
