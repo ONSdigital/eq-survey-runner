@@ -1,0 +1,198 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Test Repeating",
+    "description": "",
+    "theme": "default",
+    "eq_id": "1",
+    "introduction": {
+        "description": ""
+    },
+    "groups": [{
+        "blocks": [{
+            "id": "980b148e-0856-4e50-9afe-67a4fa6ae13b",
+            "title": "Block 1",
+            "sections": [{
+                "title": "Dummy Question",
+                "description": "",
+                "id": "b3c2e966-77ec-4373-b3dd-fdafb5a05cbd",
+                "questions": [{
+                    "id": "df9e9a50-912b-4c9e-9a75-1e7b78b2d87f",
+                    "title": "First Question",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "q_code": "1",
+                        "guidance": "",
+                        "id": "fad63234-1083-4f6a-826a-20b5df6e4baa",
+                        "label": "First input",
+                        "mandatory": true,
+                        "type": "PositiveInteger",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY": "Please answer before continuing."
+                            }
+                        }
+                    }]
+                }]
+            }]
+        }, {
+            "id": "0c7c8876-6a63-4251-ac29-b821b3e9b1bc",
+            "title": "Block 2",
+            "sections": [{
+                "title": "No of Iterations",
+                "description": "",
+                "id": "5355deab-0b1e-495d-b4ab-f3e1f7c0c6f1",
+                "questions": [{
+                    "id": "269e6c4a-4e27-4469-b4db-91537fae4629",
+                    "title": "Second Question",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "q_code": "2",
+                        "guidance": "",
+                        "id": "78774493-5b64-45c4-8072-22f1a9638095",
+                        "label": "How many time are we going to repeat?",
+                        "mandatory": true,
+                        "type": "PositiveInteger",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY": "Please answer before continuing."
+                            }
+                        }
+                    }]
+                }]
+            }]
+        }],
+        "id": "f74d1147-673c-497a-9616-763829d944ac",
+        "title": "Group 1"
+    }, {
+        "blocks": [{
+            "id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
+            "title": "Block 3",
+            "sections": [{
+                "title": "Repeating Block",
+                "description": "",
+                "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
+                "questions": [{
+                    "id": "c1d9976e-d031-4fab-96fc-1d37d4a8b86b",
+                    "title": "First Question, Second Group",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "options": [
+                            {
+                                "label": "Question 2",
+                                "value": "Question 2",
+                                "description": ""
+                            },
+                            {
+                                "label": "Question 3",
+                                "value": "Question 3",
+                                "description": ""
+                            }
+                        ],
+                        "q_code": "3",
+                        "guidance": "",
+                        "id": "680f2ff9-d5a5-4057-b1cd-9fde2660b244",
+                        "label": "First input",
+                        "mandatory": true,
+                        "type": "Radio",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY": "Please answer before continuing."
+                            }
+                        }
+                    }]
+                }]
+            }],
+            "routing_rules":[
+                {
+                    "goto": {
+                        "id" : "a7dcbb30-1187-4276-a49c-9284730ba4ed",
+                        "when": {
+                            "id" : "680f2ff9-d5a5-4057-b1cd-9fde2660b244",
+                            "condition": "equals",
+                            "value":"Question 2"
+                        }
+                    }
+
+                },
+                {
+                    "goto": {
+                        "id": "b6a470c7-f9cd-46dd-91fe-ee3c820dae71",
+                        "when": {
+                            "id" : "680f2ff9-d5a5-4057-b1cd-9fde2660b244",
+                            "condition": "equals",
+                            "value":"Question 3"
+                        }
+                    }
+
+                }
+            ]
+        }, {
+            "id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
+            "title": "Block 4",
+            "sections": [{
+                "title": "",
+                "description": "",
+                "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                "questions": [{
+                    "id": "31ec5b0a-094b-44ca-9807-9090c1b849f5",
+                    "title": "Second Question, Second Group",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "q_code": "4",
+                        "guidance": "",
+                        "id": "5667e5eb-f9d3-4482-9257-edf752000708",
+                        "label": "Second input",
+                        "mandatory": true,
+                        "type": "PositiveInteger",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY": "Please answer before continuing."
+                            }
+                        }
+                    }]
+                }]
+            }]
+        }, {
+            "id": "b6a470c7-f9cd-46dd-91fe-ee3c820dae71",
+            "title": "Block 5",
+            "sections": [{
+                "title": "",
+                "description": "",
+                "id": "9b9d5386-5e2f-46cb-9456-92f35254d7b1",
+                "questions": [{
+                    "id": "e4407328-e5ab-4d5d-afe0-12c9b33d5e21",
+                    "title": "Third Question, Second Group",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "q_code": "5",
+                        "guidance": "",
+                        "id": "eccada31-f214-4bf2-9239-11487914c9d3",
+                        "label": "Second input",
+                        "mandatory": true,
+                        "type": "PositiveInteger",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY": "Please answer before continuing."
+                            }
+                        }
+                    }]
+                }]
+            }]
+        }],
+        "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+        "title": "Group 2",
+        "routing_rules": [{
+            "repeat": {
+                "answer_id": "78774493-5b64-45c4-8072-22f1a9638095"
+            }
+        }]
+    }]
+}
