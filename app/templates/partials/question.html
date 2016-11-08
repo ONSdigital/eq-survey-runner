@@ -30,9 +30,14 @@
        <h3>Person {{ loop.index }}
          {% if loop.index > 1 %}
          &nbsp;(<button style="background:none!important; font-weight: normal !important; color: #4263c2; border:none; padding:0!important; font: inherit; cursor: pointer;"
-                        formaction="{{ url_for('action.remove_answer', eq_id=meta.survey.eq_id, collection_id=meta.survey.collection_id,
-                          form_type=meta.survey.form_type, period_id=meta.survey.period_id, location=content.id) }}"
-                        href="#" name="action[remove_person]" value="{{ loop.index0 }}">Remove</button>)
+                        formaction="{{ url_for('action.remove_answer',
+                          eq_id=meta.survey.eq_id,
+                          collection_id=meta.survey.collection_id,
+                          form_type=meta.survey.form_type,
+                          period_id=meta.survey.period_id,
+                          location=content.id,
+                          question=question.schema_item.id) }}"
+                        href="#" name="action[remove_answer]" value="{{ loop.index0 }}">Remove</button>)
          {% endif %}
        </h3>
          {% include theme('partials/answer.html') %}
@@ -66,8 +71,13 @@
 <div class="question__actions">
   {%- if question.schema_item.type == 'RepeatingAnswer' %}
   <button class="btn btn--border--census add-entity venus" type="submit"
-          formaction="{{ url_for('action.add_answer', eq_id=meta.survey.eq_id, collection_id=meta.survey.collection_id,
-            form_type=meta.survey.form_type, period_id=meta.survey.period_id, location=content.id) }}"
+          formaction="{{ url_for('action.add_answer',
+            eq_id=meta.survey.eq_id,
+            collection_id=meta.survey.collection_id,
+            form_type=meta.survey.form_type,
+            period_id=meta.survey.period_id,
+            location=content.id,
+            question=question.schema_item.id) }}"
           name="action[add_answer]">Add another person</button>
   {%- endif %}
 </div>

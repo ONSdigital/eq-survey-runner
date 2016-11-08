@@ -42,3 +42,18 @@ class StateAnswer(StateItem):
 
     def get_answers(self):
         return [self]
+
+    def flatten(self):
+        """
+        Returns the answer in a flattened structure.
+        The structure should be specified as a dict and contain enough values to uniquely identify the answer.
+        :return:
+        """
+        flattened_answer = {
+            'block': self.parent.parent.parent.id,
+            'question': self.parent.id,
+            'answer': self.id,
+            'answer_instance': 0,
+            'value': self.input
+        }
+        return flattened_answer

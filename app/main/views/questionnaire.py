@@ -32,6 +32,7 @@ action_blueprint = Blueprint(name='action',
 
 
 @questionnaire_blueprint.before_request
+@action_blueprint.before_request
 @login_required
 def check_survey_state():
     json, schema = get_schema()
@@ -42,6 +43,7 @@ def check_survey_state():
 
 
 @questionnaire_blueprint.after_request
+@action_blueprint.after_request
 def add_cache_control(response):
     response.cache_control.no_cache = True
     return response
@@ -106,18 +108,20 @@ def submit_answers(eq_id, form_type, period_id, collection_id):
         return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, invalid_location)
 
 
-@action_blueprint.route('<location>/add', methods=["POST"])
+@action_blueprint.route('<location>/<question>/add', methods=["POST"])
 @login_required
-def add_answer(eq_id, form_type, period_id, collection_id, location):
-    # TODO Process the user action
-    return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location)
+def add_answer(eq_id, form_type, period_id, collection_id, location, question):
+    success = g.questionnaire_manager.add_answer(location, question, request.form)
+
+    return render_page(location, success)
 
 
-@action_blueprint.route('<location>/remove', methods=["POST"])
+@action_blueprint.route('<location>/<question>/remove', methods=["POST"])
 @login_required
-def remove_answer(eq_id, form_type, period_id, collection_id, location):
-    # TODO Process the user action
-    return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location)
+def remove_answer(eq_id, form_type, period_id, collection_id, location, question):
+    success = g.questionnaire_manager.remove_answer(location, question, request.form)
+
+    return render_page(location, success)
 
 
 def delete_user_data():

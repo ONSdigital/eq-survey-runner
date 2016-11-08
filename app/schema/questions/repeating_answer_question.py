@@ -7,3 +7,4 @@ class RepeatingAnswerQuestion(Question):
     """
     def __init__(self):
         super().__init__()
+        self.max_repeats = None

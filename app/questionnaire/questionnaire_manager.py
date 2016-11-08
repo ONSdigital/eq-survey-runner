@@ -1,3 +1,4 @@
+import copy
 import json
 import logging
 
@@ -66,18 +67,20 @@ class QuestionnaireManager(object):
         # run the validator to update the validation_store
         if is_valid:
 
-            # Store answers in QuestionnaireStore
-            questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-
-            for answer in self.get_state_answers(location):
-                questionnaire_store.answers[answer.id] = answer.value
-
-            if location not in questionnaire_store.completed_blocks:
-                questionnaire_store.completed_blocks.append(location)
-
-            questionnaire_store.save()
+            self.update_questionnaire_store(location)
 
         return is_valid
+
+    def update_questionnaire_store(self, location):
+        # Store answers in QuestionnaireStore
+        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        for answer in self.get_state_answers(location):
+            questionnaire_store.answers.add_answer(answer.flatten())
+
+        if location not in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.append(location)
+
+        questionnaire_store.save()
 
     def get_rendering_context(self, location, is_valid=True):
 
@@ -143,3 +146,35 @@ class QuestionnaireManager(object):
 
     def get_schema(self):
         return self._schema
+
+    def add_answer(self, block, question, post_data):
+        if self.state is None:
+            self.process_incoming_answers(block, post_data)
+
+        answer_schema = self._schema.get_item_by_id('414699da-1667-44fd-8e98-7606966884db')
+        new_answer_state = answer_schema.construct_state()
+
+        question_schema = self._schema.get_item_by_id(question)
+        question_state = self.state.find_state_item(question_schema)
+
+        question_answers = question_state.children
+        number_of_answers = len(question_answers)
+
+        new_answer_schema = copy.deepcopy(new_answer_state.schema_item)
+        new_answer_schema.widget.name += str(number_of_answers)
+
+        new_answer_state.schema_item = new_answer_schema
+        new_answer_state.parent = question_state
+
+        question_answers.append(new_answer_state)
+
+        self.update_questionnaire_store(block)
+
+    def remove_answer(self, block, question, post_data):
+        if self.state is None:
+            self.process_incoming_answers(block, post_data)
+
+        index_to_remove = post_data.get('action[remove_answer]')
+        answer = self.state.get_answers()[int(index_to_remove)]
+        question = answer.parent
+        question.remove_answer(answer)

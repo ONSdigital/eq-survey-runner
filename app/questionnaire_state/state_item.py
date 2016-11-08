@@ -37,3 +37,10 @@ class StateItem(object):
 
         logger.debug("Item errors list is %s", errors)
         return errors
+
+    def find_state_item(self, schema_item):
+        for child in self.children:
+            if child.schema_item == schema_item:
+                return child
+            else:
+                return child.find_state_item(schema_item)
