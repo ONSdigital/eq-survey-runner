@@ -76,7 +76,7 @@ class Navigator:
         :param path: The known path as a list which has been visited already
         :return: A list of block ids followed through the survey
         """
-        if block_id in Navigator.CLOSING_INTERSTITIAL_PATH:
+        if block_id in cls.CLOSING_INTERSTITIAL_PATH:
             return path
 
         path.append(block_id)
