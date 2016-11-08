@@ -269,7 +269,7 @@ class TestNavigator(unittest.TestCase):
         navigator = Navigator(survey)
 
         # Force some empty routing rules
-        navigator.blocks[0]['routing_rules'] = []
+        navigator.survey_json['groups'][0]['blocks'][0]['routing_rules'] = []
 
         expected_path = [
           'introduction',
@@ -299,3 +299,72 @@ class TestNavigator(unittest.TestCase):
         }
 
         self.assertFalse('summary' in navigator.get_location_path(answers))
+
+    def test_repeating_groups(self):
+        survey = load_schema_file("test_repeating_household.json")
+        navigator = Navigator(survey)
+
+        expected_path = [
+            '980b148e-0856-4e50-9afe-67a4fa6ae13b',
+            '0c7c8876-6a63-4251-ac29-b821b3e9b1bc',
+            '96682325-47ab-41e4-a56e-8315a19ffe2a',
+            'a7dcbb30-1187-4276-a49c-9284730ba4ed',
+            '96682325-47ab-41e4-a56e-8315a19ffe2a',
+            'a7dcbb30-1187-4276-a49c-9284730ba4ed'
+        ]
+
+        answers = {
+            "78774493-5b64-45c4-8072-22f1a9638095": "2"
+        }
+
+        self.assertEqual(expected_path, navigator.get_routing_path(answers))
+
+    def test_repeating_groups_previous_location(self):
+        survey = load_schema_file("test_repeating_household.json")
+        navigator = Navigator(survey)
+
+        expected_path = [
+            '980b148e-0856-4e50-9afe-67a4fa6ae13b',
+            '0c7c8876-6a63-4251-ac29-b821b3e9b1bc',
+            '96682325-47ab-41e4-a56e-8315a19ffe2a',
+            'a7dcbb30-1187-4276-a49c-9284730ba4ed',
+            '96682325-47ab-41e4-a56e-8315a19ffe2a',
+            'a7dcbb30-1187-4276-a49c-9284730ba4ed',
+            '96682325-47ab-41e4-a56e-8315a19ffe2a',
+            'a7dcbb30-1187-4276-a49c-9284730ba4ed'
+        ]
+
+        current_location = expected_path[4]
+        current_iteration = 2
+
+        expected_previous_location = expected_path[3]
+
+        answers = {
+            "78774493-5b64-45c4-8072-22f1a9638095": "3"
+        }
+
+        self.assertEqual(expected_previous_location, navigator.get_previous_location(answers, current_location, current_iteration))
+
+    def test_repeating_groups_next_location(self):
+        survey = load_schema_file("test_repeating_household.json")
+        navigator = Navigator(survey)
+
+        expected_path = [
+            '980b148e-0856-4e50-9afe-67a4fa6ae13b',
+            '0c7c8876-6a63-4251-ac29-b821b3e9b1bc',
+            '96682325-47ab-41e4-a56e-8315a19ffe2a',
+            'a7dcbb30-1187-4276-a49c-9284730ba4ed',
+            '96682325-47ab-41e4-a56e-8315a19ffe2a',
+            'a7dcbb30-1187-4276-a49c-9284730ba4ed',
+            '96682325-47ab-41e4-a56e-8315a19ffe2a',
+            'a7dcbb30-1187-4276-a49c-9284730ba4ed'
+        ]
+
+        current_location = expected_path[-1]
+        current_iteration = 2
+
+        answers = {
+            "78774493-5b64-45c4-8072-22f1a9638095": "3"
+        }
+
+        self.assertEqual('summary', navigator.get_next_location(answers, current_location, current_iteration))

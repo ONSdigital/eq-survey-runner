@@ -44,24 +44,66 @@ def add_cache_control(response):
     return response
 
 
-@questionnaire_blueprint.route('<location>', methods=["GET"])
+@questionnaire_blueprint.route('<block_id>', methods=["GET"])
 @login_required
-def get_questionnaire(eq_id, form_type, collection_id, location):
-    return render_page(location, True)
+def get_block(eq_id, form_type, collection_id, block_id):
+    context = g.questionnaire_manager.get_rendering_context(block_id, True)
+    template = TemplateRegistry.get_template_name(block_id)
+    navigator = g.questionnaire_manager.navigator
+    answers = get_answers(current_user)
+    previous_location = navigator.get_previous_location(answers, block_id)
+
+    return render_template(template, context, previous_location)
 
 
-@questionnaire_blueprint.route('<location>', methods=["POST"])
+@questionnaire_blueprint.route('<block_id>/<iteration>', methods=["GET"])
 @login_required
-def post_questionnaire(eq_id, form_type, collection_id, location):
-    valid = g.questionnaire_manager.process_incoming_answers(location, request.form)
+def get_block_iteration(eq_id, form_type, collection_id, block_id, iteration):
+    context = g.questionnaire_manager.get_rendering_context(block_id, True)
+    template = TemplateRegistry.get_template_name(block_id)
+    navigator = g.questionnaire_manager.navigator
+    answers = get_answers(current_user)
+
+    previous_location = navigator.get_previous_location(answers, block_id, int(iteration))
+
+    return render_template(template, context, previous_location)
+
+
+@questionnaire_blueprint.route('<block_id>', defaults={'iteration': 0}, methods=["POST"])
+@questionnaire_blueprint.route('<block_id>/<iteration>', methods=["POST"])
+@login_required
+def post_block_iteration(eq_id, form_type, collection_id, block_id, iteration):
+    valid = g.questionnaire_manager.process_incoming_answers(block_id, request.form)
+
     if not valid:
-        return render_page(location, False)
+        return render_page(block_id, False)
+
+    iteration = int(iteration)
+    completed_blocks = get_completed_blocks(current_user)
+
+    logger.info("Location %s", block_id)
+    logger.info("Visited blocks %s", str(completed_blocks))
+    logger.info("current_iteration is %d", iteration)
 
     navigator = g.questionnaire_manager.navigator
-    next_location = navigator.get_next_location(get_answers(current_user), location)
+    answers = get_answers(current_user)
+    next_block_id = navigator.get_next_location(answers, block_id, iteration)
+
+    logger.info("Next block appears %d times in history", completed_blocks.count(next_block_id))
+    logger.info("Next block appears %d times in path", navigator.block_in_path_count(answers, next_block_id))
+
+    next_iteration = 0
+
+    if completed_blocks.count(next_block_id) > 0 and navigator.block_in_path_count(answers, next_block_id) > 1:
+        next_iteration = completed_blocks.count(next_block_id)
+
+    logger.info("Next iteration is %d", next_iteration)
+
     metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
+
+    logger.info("Redirecting user to next location %s with tx_id=%s", next_block_id, metadata["tx_id"])
+
+    return redirect_to_block(eq_id, form_type, collection_id, next_block_id)
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -71,7 +113,7 @@ def get_summary(eq_id, form_type, collection_id):
     latest_location = navigator.get_latest_location(get_answers(current_user), get_completed_blocks(current_user))
     if latest_location is 'summary':
         return render_page('summary', True)
-    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, latest_location)
+    return redirect_to_block(eq_id, form_type, collection_id, latest_location)
 
 
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
@@ -97,9 +139,10 @@ def submit_answers(eq_id, form_type, collection_id):
     if is_valid:
         submitter = SubmitterFactory.get_submitter()
         submitter.send_answers(get_metadata(current_user), g.questionnaire_manager.get_schema(), answers)
-        return redirect_to_questionnaire_page(eq_id, form_type, collection_id, 'thank-you')
+
+        return redirect_to_block(eq_id, form_type, collection_id, 'thank-you')
     else:
-        return redirect_to_questionnaire_page(eq_id, form_type, collection_id, invalid_location)
+        return redirect_to_block(eq_id, form_type, collection_id, invalid_location)
 
 
 def delete_user_data():
@@ -107,12 +150,19 @@ def delete_user_data():
     session_manager.clear()
 
 
-def redirect_to_questionnaire_page(eq_id, form_type, collection_id, location):
-    return redirect(url_for('.get_questionnaire',
-                            eq_id=eq_id,
-                            form_type=form_type,
-                            collection_id=collection_id,
-                            location=location))
+def redirect_to_block(eq_id, form_type, collection_id, block_id, iteration=0):
+    kwargs = {
+        "eq_id": eq_id,
+        "form_type": form_type,
+        "collection_id": collection_id,
+        "block_id": block_id,
+    }
+    if iteration == 0:
+        return redirect(url_for('.get_block', **kwargs))
+
+    kwargs['iteration'] = iteration
+
+    return redirect(url_for('.get_block_iteration', **kwargs))
 
 
 def same_survey(eq_id, form_type, collection_id):
