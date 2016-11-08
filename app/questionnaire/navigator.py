@@ -238,13 +238,11 @@ class Navigator:
         :param completed_blocks:
         :return:
         """
-        latest_location = self.get_first_location()
-
         if completed_blocks:
             answers = answers or {}
             incomplete_blocks = [item for item in self.get_location_path(answers) if item not in completed_blocks]
 
             if incomplete_blocks:
-                latest_location = incomplete_blocks[0]
+                return incomplete_blocks[0]
 
-        return latest_location
+        return self.get_first_location()
