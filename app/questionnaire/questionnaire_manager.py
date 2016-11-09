@@ -75,7 +75,7 @@ class QuestionnaireManager(object):
         # Store answers in QuestionnaireStore
         questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
         for answer in self.get_state_answers(location):
-            questionnaire_store.answers.add_answer(answer.flatten())
+            questionnaire_store.answers.add(answer.flatten())
 
         if location not in questionnaire_store.completed_blocks:
             questionnaire_store.completed_blocks.append(location)
