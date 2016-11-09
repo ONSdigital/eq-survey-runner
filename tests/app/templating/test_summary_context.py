@@ -25,11 +25,10 @@ class TestSummaryContext(unittest.TestCase):
     def test_build_summary_rendering_context(self):
         answers = MagicMock()
         routing_path = ['f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0']
-        questionnaire_manager = Mock()
-        questionnaire_manager.navigator.get_routing_path = Mock(return_value=routing_path)
+        navigator = Mock()
+        navigator.get_routing_path = Mock(return_value=routing_path)
 
-        with patch('app.templating.summary_context.g'), \
-                patch('app.templating.summary_context.get_questionnaire_manager', return_value=questionnaire_manager):
+        with patch('app.templating.summary_context.get_navigator', return_value=navigator):
             context = build_summary_rendering_context(self.schema_json, answers)
 
         self.assertEqual(len(context), 1)
