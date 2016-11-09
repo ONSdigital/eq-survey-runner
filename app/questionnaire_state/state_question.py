@@ -25,5 +25,15 @@ class StateQuestion(StateItem):
                     answer_id_and_value[child.id] = answer_instance[0]['value']
 
                 child.update_state(answer_id_and_value)
+
+        elif self.schema_item.type == 'RepeatingAnswer':
+            for child in self.children:
+                key = child.id
+                key += '' if child.instance == 0 else str(child.instance)
+                answer_id_and_value = {
+                  child.id: user_input.get(key)
+                }
+                child.update_state(answer_id_and_value)
+
         else:
             super(StateQuestion, self).update_state(user_input)
