@@ -6,6 +6,7 @@ from app.globals import get_answers, get_questionnaire_store
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor, get_schema_template_context
 from app.questionnaire.navigator import Navigator, evaluate_rule
 from app.templating.model_builder import build_questionnaire_model, build_summary_model
+from app.data_model.answer_store import AnswerStore
 
 from flask import render_template_string
 
@@ -89,7 +90,8 @@ class QuestionnaireManager(object):
                 return self.get_summary_rendering_context()
             else:
                 # apply page answers?
-                self.build_state(location, get_answers(current_user))
+                self.build_state(location, AnswerStore.as_key_value_pairs(
+                    get_answers(current_user).find_by_block(location)))
 
         if self.state:
             self._plumbing_preprocessing()

@@ -91,3 +91,19 @@ class AnswerStore(object):
                 result.append(existing)
 
         return result
+
+    def find_by_block(self, block_id):
+        result = []
+        for existing in self.answers:
+            if existing['block'] == block_id:
+                result.append(existing)
+
+        return result
+
+    @staticmethod
+    def as_key_value_pairs(answers):
+        result = {}
+        for answer in answers:
+            answer_id = answer['answer'] + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
+            result[answer_id] = answer['value']
+        return result
