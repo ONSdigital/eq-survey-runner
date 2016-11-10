@@ -19,6 +19,33 @@ class TestAnswerStore(unittest.TestCase):
 
         self.assertEqual(self.store.count(answer), 1)
 
+    def test_adds_multidict_answer(self):
+        answer = {
+            'block_id': "3",
+            'answer_id': "4",
+            'question_id': "5",
+            'answer_instance': 1,
+            'value': [23, 45, 67],
+        }
+
+        self.store.add(answer)
+        found = self.store.find(answer)
+
+        self.assertEqual(found[0]['value'], [23, 45, 67])
+
+        answer = {
+            'block_id': "3",
+            'answer_id': "4",
+            'question_id': "5",
+            'answer_instance': 1,
+            'value': ['23', '45', '67'],
+        }
+
+        self.store.add(answer)
+        found = self.store.find(answer)
+
+        self.assertEqual(found[0]['value'], ['23', '45', '67'])
+
     def test_finds_answer(self):
         answer = {
             'block_id': "3",

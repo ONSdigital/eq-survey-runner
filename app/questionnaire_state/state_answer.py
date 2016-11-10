@@ -44,11 +44,10 @@ class StateAnswer(StateItem):
         return [self]
 
     def flatten(self):
-        flattened_answer = {
-            'block': self.parent.parent.parent.id,
-            'question': self.parent.id,
-            'answer': self.id,
+        return {
+            'block_id': self.parent.parent.parent.id,
+            'question_id': self.parent.id,
+            'answer_id': self.id,
             'answer_instance': self.instance,
-            'value': self.input
+            'value': self.value if self.value else None,
         }
-        return flattened_answer

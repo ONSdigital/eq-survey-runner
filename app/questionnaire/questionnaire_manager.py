@@ -2,7 +2,7 @@ import copy
 import json
 import logging
 
-from app.globals import get_answers, get_questionnaire_store
+from app.globals import get_answer_store, get_answers, get_questionnaire_store
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor, get_schema_template_context
 from app.questionnaire.navigator import Navigator, evaluate_rule
 from app.templating.model_builder import build_questionnaire_model, build_summary_model
@@ -53,7 +53,7 @@ class QuestionnaireManager(object):
         answers = get_answers(current_user)
 
         for location in self.navigator.get_location_path(answers):
-            is_valid = self.validate(location, get_answers(current_user))
+            is_valid = self.validate(location, answers)
 
             if not is_valid:
                 logger.debug("Failed validation with current location %s", location)
@@ -61,13 +61,24 @@ class QuestionnaireManager(object):
 
         return True, None
 
+    def update_questionnaire_store(self, location):
+        # Store answers in QuestionnaireStore
+        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+        for answer in self.get_state_answers(location):
+            questionnaire_store.answers.add(answer.flatten())
+
+        if location not in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.append(location)
+
+        questionnaire_store.save()
+
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
 
         is_valid = self.validate(location, post_data)
         # run the validator to update the validation_store
         if is_valid:
-
             self.update_questionnaire_store(location)
 
         return is_valid
@@ -89,9 +100,12 @@ class QuestionnaireManager(object):
             if location == 'summary':
                 return self.get_summary_rendering_context()
             else:
+                answer_store = get_answer_store(current_user)
+
                 # apply page answers?
-                self.build_state(location, AnswerStore.as_key_value_pairs(
-                    get_answers(current_user).find_by_block(location)))
+                self.build_state(location, AnswerStore.as_key_value_pairs(answer_store.filter({
+                    'block_id': location,
+                })))
 
         if self.state:
             self._plumbing_preprocessing()

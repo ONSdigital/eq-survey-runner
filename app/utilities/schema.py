@@ -23,7 +23,7 @@ def get_schema():
     json_schema, schema = load_and_parse_schema(eq_id, form_type)
     if not json_schema:
         raise ValueError("No schema available")
-    logger.debug("Constructing brand new User Journey Manager")
+
     return json_schema, schema
 
 

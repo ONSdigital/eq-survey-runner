@@ -1,7 +1,7 @@
 import logging
 
-from app.storage.storage_factory import get_storage
 from app.data_model.answer_store import AnswerStore
+from app.storage.storage_factory import get_storage
 
 logger = logging.getLogger(__name__)
 
@@ -43,7 +43,7 @@ class QuestionnaireStore:
         data = {
             "METADATA": self.metadata,
             "ANSWERS": self.answers.answers,
-            "COMPLETED_BLOCKS": self.completed_blocks
+            "COMPLETED_BLOCKS": self.completed_blocks,
         }
         logger.debug("Saving user data %s for user id %s", data, self.user_id)
         self.storage.store(data=data, user_id=self.user_id, user_ik=self.user_ik)

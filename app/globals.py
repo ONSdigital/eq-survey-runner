@@ -1,5 +1,6 @@
 import logging
 
+from app.data_model.answer_store import AnswerStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 
 from flask import g
@@ -28,9 +29,16 @@ def get_metadata(user):
     return questionnaire_store.metadata
 
 
+def get_answer_store(user):
+    questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
+
+    return questionnaire_store.answers
+
+
 def get_answers(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-    return questionnaire_store.answers
+
+    return AnswerStore.as_key_value_pairs(questionnaire_store.answers.answers)
 
 
 def get_completed_blocks(user):

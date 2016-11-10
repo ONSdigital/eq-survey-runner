@@ -12,8 +12,6 @@ from app.parser.metadata_parser import is_valid_metadata, parse_metadata
 
 from flask import session
 
-EQ_URL_QUERY_STRING_JWT_FIELD_NAME = 'token'
-
 logger = logging.getLogger(__name__)
 
 
@@ -47,7 +45,7 @@ class Authenticator(object):
         # also clear the secure cookie data
         session.clear()
 
-        if request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME) is None:
+        if request.args.get('token') is None:
             raise NoTokenException("Please provide a token")
         token = self._jwt_decrypt(request)
 
@@ -74,7 +72,7 @@ class Authenticator(object):
         logger.info("User authenticated with tx_id=%s", metadata["tx_id"])
 
     def _jwt_decrypt(self, request):
-        encrypted_token = request.args.get(EQ_URL_QUERY_STRING_JWT_FIELD_NAME)
+        encrypted_token = request.args.get('token')
         decoder = JWTDecryptor()
         token = decoder.decrypt_jwt_token(encrypted_token)
         return token

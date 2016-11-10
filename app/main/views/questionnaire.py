@@ -96,7 +96,7 @@ def get_thank_you(eq_id, form_type, period_id, collection_id):
 @login_required
 def submit_answers(eq_id, form_type, period_id, collection_id):
     answers = get_answers(current_user)
-
+    logging.debug(str(answers))
     # check that all the answers we have are valid before submitting the data
     is_valid, invalid_location = g.questionnaire_manager.validate_all_answers()
 
