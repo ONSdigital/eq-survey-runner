@@ -21,7 +21,6 @@ RUN yarn global add gulp-cli
 ADD requirements.txt /code/requirements.txt
 ADD package.json /code/package.json
 ADD app/assets /code/app/assets
-RUN yarn
 
 RUN pip3 install -U -I -r /code/requirements.txt
 

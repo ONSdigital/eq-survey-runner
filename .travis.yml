@@ -26,9 +26,7 @@ cache:
   - $HOME/.yarn-cache
 install:
 - ". $HOME/.nvm/nvm.sh"
-- rm -rf node_modules
 - nvm install v6.9.1
-- yarn
 - pip install -U pip wheel
 - pip install --require-hashes -r requirements.txt
 - pip install -r requirements_for_test.txt
