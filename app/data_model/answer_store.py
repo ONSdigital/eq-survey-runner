@@ -27,9 +27,10 @@ class AnswerStore(object):
         :param answer: A dict of flattened answer details.
         :return:
         """
-        for existing in self.find(answer):
-            existing['value'] = answer['value']
-            break
+        for index, existing in enumerate(self.answers):
+            if self.same(existing, answer):
+                self.answers[index]['value'] = answer['value']
+                break
 
     def find(self, answer):
         """
@@ -40,8 +41,8 @@ class AnswerStore(object):
         """
         found = []
         for existing in self.answers:
-            if AnswerStore.same(answer, existing):
-                found.append(answer)
+            if self.same(answer, existing):
+                found.append(existing)
 
         return found
 
@@ -63,8 +64,8 @@ class AnswerStore(object):
         """
         return len(self.find(answer))
 
-    @staticmethod
-    def same(first, second):
+    @classmethod
+    def same(cls, first, second):
         """
         Check to see if two answers are the same.
         Two answers are considered the same if they share the same block, question, answer and instance Id.
@@ -73,10 +74,20 @@ class AnswerStore(object):
         :param second: A dict of flattened answer details.
         :return: True if both answers are the same, otherwise False.
         """
-        return (first['block'] == second['block'] and
-                first['question'] == second['question'] and
-                first['answer'] == second['answer'] and
+        return (first['block_id'] == second['block_id'] and
+                first['question_id'] == second['question_id'] and
+                first['answer_id'] == second['answer_id'] and
                 first['answer_instance'] == second['answer_instance'])
+
+    def filter(self, filter_vars):
+        filtered = []
+        for answer in self.answers:
+            matches = True
+            for k, v in filter_vars.items():
+                matches = matches and answer[k] == v
+            if matches:
+                filtered.append(answer)
+        return filtered
 
     def find_by_question(self, question_id):
         """
@@ -87,7 +98,7 @@ class AnswerStore(object):
         """
         result = []
         for existing in self.answers:
-            if existing['question'] == question_id:
+            if existing['question_id'] == question_id:
                 result.append(existing)
 
         return result
@@ -95,7 +106,7 @@ class AnswerStore(object):
     def find_by_block(self, block_id):
         result = []
         for existing in self.answers:
-            if existing['block'] == block_id:
+            if existing['block_id'] == block_id:
                 result.append(existing)
 
         return result
