@@ -55,14 +55,14 @@ This will generate a JWT for you to log into the application. The script prints 
 
 ### Front-end Toolkit
 
-The front-end toolkit uses nodejs, npm and gulp.
+The front-end toolkit uses nodejs, yarn and gulp.
 
 Install nodejs `6.7.1`. Make sure npm is installed with `npm`.
 
-Install dependencies with:
+Install yarn with:
 
 ```
-npm install
+npm install yarn --global
 ```
 
 Compile the project with
