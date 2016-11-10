@@ -10,6 +10,7 @@ from app import settings
 from app.analytics.custom_google_analytics import CustomGoogleAnalytics
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
+from app.data_model.database import db_session
 from app.libs.utils import get_locale
 from app.submitter.submitter import SubmitterFactory
 
@@ -150,6 +151,10 @@ def create_app(config_name):
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
     Themes(application, app_identifier="surveyrunner")
+
+    @application.teardown_appcontext
+    def shutdown_session(exception=None):
+        db_session.remove()
 
     return application
 

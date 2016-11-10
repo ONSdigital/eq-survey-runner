@@ -6,6 +6,8 @@ from app.data_model.database import db_session
 
 from flask import session
 
+from sqlalchemy.exc import SQLAlchemyError
+
 USER_ID = "user_id"
 USER_IK = "user_ik"
 EQ_SESSION_ID = "eq-session-id"
@@ -18,60 +20,13 @@ class NoUniqueIDError(RuntimeError):
     pass
 
 
-class SessionManagement(object):
+class DatabaseSessionManager:
+
     def store_user_id(self, user_id):
         """
         Store a user's id for retrieval later
         :param user_id: the user id
         """
-        pass
-
-    def has_user_id(self):
-        """
-        Checks if a user has a stored id
-        :return: boolean value
-        """
-        pass
-
-    def clear(self):
-        """
-        Removes a user id from the session
-        """
-        pass
-
-    def get_user_id(self):
-        """
-        Retrieves a user's id
-        :return: the user's JWT
-        """
-        pass
-
-    def store_user_ik(self, user_ik):
-        '''
-        Store a user's ik in the cookie for retrieval later
-        :param user_ik: the user ik
-        '''
-        pass
-
-    def has_user_ik(self):
-        """
-        Checks if a user has a stored ik
-        :return: boolean value
-        """
-        logger.debug("SessionManager has_user_ik() - session %s", session)
-        pass
-
-    def get_user_ik(self):
-        """
-        Retrieves a user's id
-        :return: the user's JWT
-        """
-        pass
-
-
-class DatabaseSessionManager(SessionManagement):
-
-    def store_user_id(self, user_id):
         logger.debug("DatabaseSessionManager store_user_id() - session %s", session)
         if EQ_SESSION_ID not in session:
             eq_session_id = self.create_session_id()
@@ -84,12 +39,21 @@ class DatabaseSessionManager(SessionManagement):
             logger.debug("Found eq_session_id %s in session", eq_session_id)
             eq_session = self._get_object(eq_session_id)
             logger.debug("Loaded object eq session %s", eq_session)
-        logger.debug("About to commit to database")
-        db_session.add(eq_session)
-        db_session.commit()
-        logger.debug("Committed")
+            logger.debug("About to commit to database")
+
+        try:
+            db_session.add(eq_session)
+            db_session.commit()
+            logger.debug("Committed")
+        except SQLAlchemyError:
+            db_session.rollback()
+            raise
 
     def has_user_id(self):
+        """
+        Checks if a user has a stored id
+        :return: boolean value
+        """
         logger.debug("DatabaseSessionManager has_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
@@ -99,17 +63,29 @@ class DatabaseSessionManager(SessionManagement):
             return count > 0
 
     def clear(self):
+        """
+        Removes a user id from the session
+        """
         logger.debug("DatabaseSessionManager remove_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
             eq_session = self._get_object(eq_session_id)
             logger.debug("About to delete entry from eq_session table %s", eq_session)
-            db_session.delete(eq_session)
-            db_session.commit()
+
+            try:
+                db_session.delete(eq_session)
+                db_session.commit()
+            except SQLAlchemyError:
+                db_session.rollback()
+                raise
         else:
             logger.warning("No eq session id exists")
 
     def get_user_id(self):
+        """
+        Retrieves a user's id
+        :return: the user's JWT
+        """
         logger.debug("DatabaseSessionManager get_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
@@ -173,15 +149,6 @@ class DatabaseSessionManager(SessionManagement):
             return session[USER_IK]
         else:
             return None
-
-    def delete_all(self):
-        """
-        Clears all session mapping data. Use with caution
-        :return:
-        """
-        logger.warning("About to delete all session data")
-        EQSession.query.delete()
-        logger.warning("Deleted all session data")
 
 
 session_manager = DatabaseSessionManager()
