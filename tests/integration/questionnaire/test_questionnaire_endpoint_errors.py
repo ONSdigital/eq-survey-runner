@@ -13,5 +13,5 @@ class TestQuestionnaireEndpointErrors(IntegrationTestCase):
         resp = self.client.get(mci_test_urls.MCI_0205_BASE + 'test', follow_redirects=False)
 
         # Then
-        self.assertEquals(resp.status_code, 500)
-        self.assertRegex(resp.get_data(as_text=True), 'Error 500')
+        self.assertEquals(resp.status_code, 404)
+        self.assertRegex(resp.get_data(as_text=True), 'Error 404')
