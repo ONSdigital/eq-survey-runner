@@ -103,7 +103,7 @@ def post_block_iteration(eq_id, form_type, collection_id, block_id, iteration):
 
     logger.info("Redirecting user to next location %s with tx_id=%s", next_block_id, metadata["tx_id"])
 
-    return redirect_to_block(eq_id, form_type, collection_id, next_block_id)
+    return redirect_to_block(eq_id, form_type, collection_id, next_block_id, next_iteration)
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
