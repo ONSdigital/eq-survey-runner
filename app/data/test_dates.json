@@ -1,0 +1,124 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Date formats",
+    "description": "A test schema for different date formats",
+    "theme": "default",
+    "introduction": {
+        "description": "",
+        "information_to_provide": [
+          "dates"
+        ]
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "0",
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "b10c8c7a-97fe-4bee-a4fb-e75f3a6f56c0",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "7352fd10-bb24-407a-9f13-23cc8b1cb51d",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "5b12aea2-ae3b-467d-9291-4d803a444d25",
+                                            "label": "Period from",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "11",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "ce42c1f7-a32a-46d5-8183-f54e38616617",
+                                            "label": "Period to",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "12",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "e9130586-f72a-4b68-8373-885ad51d6cd5",
+                                    "title": "Date range",
+                                    "type": "DateRange",
+                                    "validation": []
+                                },
+                              {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "eade17ef-3ec6-46c2-afc7-dffeb07e2e5e",
+                                            "label": "Date",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "11",
+                                            "type": "MonthYearDate",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "9858220e-0514-4868-984f-8bb2481fde8f",
+                                    "title": "Date with month and year",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Date Examples",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Date Examples",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "a23d36db-6b07-4ce0-94b2-a843369511e3",
+            "title": "",
+            "validation": []
+        }
+    ]
+}
