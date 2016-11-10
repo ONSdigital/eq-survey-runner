@@ -1,3 +1,4 @@
+import copy
 from app.schema.question import Question
 
 
@@ -28,6 +29,12 @@ class RepeatingAnswerQuestion(Question):
                 answer_state = schema_answer.construct_state(schema_answers)
                 answer_state.parent = state
                 answer_state.instance = i
+
+                new_answer_schema = copy.deepcopy(schema_answer)
+                new_answer_schema.widget.name += str(i) if i > 0 else ''
+
+                answer_state.schema_item = new_answer_schema
+
                 state.children.append(answer_state)
 
         return state
