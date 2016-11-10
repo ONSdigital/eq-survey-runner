@@ -17,6 +17,7 @@ class DateWidget(Widget):
         days = []
         for day in range(1, 32):
             days.append(ObjectFromDict({
+                'type': 'text',
                 'value': day,
                 'text': day,
                 'selected': (selected_day == day),
@@ -53,6 +54,7 @@ class DateWidget(Widget):
                     'text': 'Day',
                   },
                   'input': {
+                    'type': 'text',
                     'value': parts[0],
                     'placeholder': 'DD',
                     'name': self.name + '-day',
@@ -76,6 +78,7 @@ class DateWidget(Widget):
                     'text': 'Year',
                   },
                   'input': {
+                    'type': 'text',
                     'value': parts[2],
                     'placeholder': 'YYYY',
                     'name': self.name + '-year',
