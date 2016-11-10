@@ -8,10 +8,7 @@
     "description": "A questionnaire to demo radio field Other input.",
     "introduction": {
         "description": "",
-        "information_to_provide": [
-            "Breakfast foods",
-            "Other info"
-        ]
+        "information_to_provide": []
     },
     "display": {
         "properties": {}

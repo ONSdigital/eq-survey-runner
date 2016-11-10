@@ -1,0 +1,83 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Other input fields",
+    "theme": "default",
+    "description": "A questionnaire to demo checkbox field Other input.",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "0",
+    "messages": {
+      "INTEGER_TOO_LARGE": "Number is too large",
+      "NEGATIVE_INTEGER": "Number cannot be less than zero",
+      "NOT_INTEGER": "Please enter an integer"
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "block",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "answer",
+                                            "label": "Date",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "11",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "question",
+                                    "title": "What is your date of birth?",
+                                    "type": "DateRange",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Date Test",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                    ],
+                    "title": "",
+                    "validation": []
+                }],
+            "display": {
+                "properties": {}
+            },
+            "id": "group",
+            "title": ""
+        }
+    ]
+}
