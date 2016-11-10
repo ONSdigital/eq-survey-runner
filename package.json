@@ -12,10 +12,7 @@
   },
   "scripts": {
     "start": "gulp watch",
-    "server": "python application.py runserver",
-    "vf": "vf activate eq-survey-runner",
-    "dev": "gulp watch",
-    "compile": "gulp compile",
+    "compile": "yarn && gulp compile",
     "lint": "gulp lint",
     "test": "gulp test",
     "test_unit": "gulp test:scripts:unit:watch",
