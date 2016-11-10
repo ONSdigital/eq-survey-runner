@@ -28,17 +28,21 @@
    {%- if question.schema_item.type == 'RepeatingAnswer' %}
      {%- for answer in question.answers %}
        <h3>Person {{ loop.index }}
-         {% if loop.index > 1 %}
-         &nbsp;(<button style="background:none!important; font-weight: normal !important; color: #4263c2; border:none; padding:0!important; font: inherit; cursor: pointer;"
-                        formaction="{{ url_for('action.remove_answer',
-                          eq_id=meta.survey.eq_id,
-                          collection_id=meta.survey.collection_id,
-                          form_type=meta.survey.form_type,
-                          period_id=meta.survey.period_id,
-                          location=content.id,
-                          question=question.schema_item.id) }}"
-                        href="#" name="action[remove_answer]" value="{{ loop.index0 }}">Remove</button>)
-         {% endif %}
+         <small>(
+         {%- if loop.index == 1 -%}
+            You
+         {%- else -%}
+         <button class="btn btn--link"
+            formaction="{{ url_for('action.remove_answer',
+              eq_id=meta.survey.eq_id,
+              collection_id=meta.survey.collection_id,
+              form_type=meta.survey.form_type,
+              period_id=meta.survey.period_id,
+              location=content.id,
+              question=question.schema_item.id) }}"
+            name="action[remove_answer]" value="{{ loop.index0 }}">Remove <span class="u-vh">Person {{loop.index0}}</span></button>
+         {%- endif -%}
+         )</small>
        </h3>
          {% include theme('partials/answer.html') %}
      {%- endfor %}
@@ -51,26 +55,10 @@
 {% endset %}
 
 {% set question_actions %}
-<style>
-.btn--border--census {
-    background-color: #fff;
-    color: #6E2585;
-    border: none;
-    padding: 13px 48px;
-    margin: 2em 0 1em 0;
-    border-radius: 3px;
-    display: inline-block;
-    text-rendering: optimizeLegibility;
-    text-decoration: none;
-    cursor: pointer;
-    text-align: center;
-    border: 3px solid #6E2585;
-    padding: 10px 42px;
-}
-</style>
+
 <div class="question__actions">
   {%- if question.schema_item.type == 'RepeatingAnswer' %}
-  <button class="btn btn--border--census add-entity venus" type="submit"
+  <button class="btn btn--border btn--secondary venus" type="submit"
           formaction="{{ url_for('action.add_answer',
             eq_id=meta.survey.eq_id,
             collection_id=meta.survey.collection_id,

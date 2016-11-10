@@ -49,6 +49,13 @@
   clear: both;
 }
 
+.question__actions {
+  margin-top: 1rem;
+  @include mq(s) {
+    margin-top: 2rem;
+  }
+}
+
 .question__answers {
   clear: both;
 }
