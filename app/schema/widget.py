@@ -13,9 +13,6 @@ class Widget(object):
         raise NotImplementedError
 
     def get_user_input(self, post_vars):
-        if isinstance(post_vars, AnswerStore):
-            return None
-
         user_input = post_vars.get(self.name, None)
         logger.debug('Getting user input for "{}", value is "{}"'.format(self.name, user_input))
         return user_input

@@ -104,6 +104,7 @@ class AnswerStore(object):
     def as_key_value_pairs(answers):
         result = {}
         for answer in answers:
-            answer_id = answer['answer'] + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
+            answer_id = answer['answer']
+            answer_id += str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
             result[answer_id] = answer['value']
         return result
