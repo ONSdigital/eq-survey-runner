@@ -6,6 +6,9 @@ class TestAnswerStore(unittest.TestCase):
     def setUp(self):
         self.store = AnswerStore()
 
+    def tearDown(self):
+        self.store.clear()
+
     def test_adds_answer(self):
         answer = {
             'block_id': "3",
@@ -133,3 +136,27 @@ class TestAnswerStore(unittest.TestCase):
         })
 
         self.assertEqual(len(filtered), 1)
+
+    def test_serialises_answers(self):
+        answer_1 = {
+            'block_id': "1",
+            'answer_id': "2",
+            'question_id': "3",
+            'answer_instance': 1,
+            'value': 25,
+        }
+        answer_2 = {
+            'block_id': "1",
+            'answer_id': "5",
+            'question_id': "6",
+            'answer_instance': 1,
+            'value': 65,
+        }
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        self.assertEqual(AnswerStore.as_key_value_pairs(self.store.answers), {
+            "21": 25,
+            "51": 65
+        })

@@ -111,11 +111,16 @@ class AnswerStore(object):
 
         return result
 
+    def clear(self):
+        self.answers.clear()
+
     @staticmethod
     def as_key_value_pairs(answers):
         result = {}
         for answer in answers:
             answer_id = answer['answer_id']
             answer_id += str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
+
             result[answer_id] = answer['value']
+
         return result
