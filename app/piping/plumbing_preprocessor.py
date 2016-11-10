@@ -1,7 +1,7 @@
 import logging
 
 
-from app.globals import get_metadata
+from app.globals import get_answers, get_metadata
 from app.piping.plumber import Plumber
 
 from app.utilities.date_utils import to_date
@@ -34,6 +34,7 @@ def _build_exercise():
         "end_date": to_date(metadata["ref_p_end_date"]),
         "employment_date": to_date(metadata["employment_date"]),
         "return_by": to_date(metadata["return_by"]),
+        "region_code": metadata["region_code"],
     }
 
 
@@ -45,7 +46,7 @@ def _build_answers(questionnaire_manager, schema):
     aliases = schema.aliases
     values = {}
     for alias, item_id in aliases.items():
-        value = questionnaire_manager.find_answer(item_id)
+        value = get_answers(current_user).get(item_id)
         if value is None:
             value = ""  # Empty string
         values[alias] = value

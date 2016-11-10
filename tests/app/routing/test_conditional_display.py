@@ -15,39 +15,33 @@ class TestConditionalDisplay(SurveyRunnerTestCase):
         answer = "Bothans"
         # find the question with the 'not equals' skip condition
         question = self.questionnaire.get_item_by_id("048e40da-bca4-48e5-9885-0bb6413bef62")
-        rule = question.skip_condition.__dict__
-        rule['when'] = rule['when'].__dict__
 
         # check the parse has set up the skip condition
-        self.assertIsNotNone(question.skip_condition)
+        self.assertIsNotNone(question.skip_condition.as_dict())
 
         # the condition will fire now as we have answer the question correctly, so we won't skip the question
-        self.assertFalse(evaluate_rule(rule, answer))
+        self.assertFalse(evaluate_rule(question.skip_condition.as_dict(), answer))
 
     def test_skip_condition_true(self):
         answer = "Some other answer"
 
         # find the question with the 'not equals' skip condition
         question = self.questionnaire.get_item_by_id("048e40da-bca4-48e5-9885-0bb6413bef62")
-        rule = question.skip_condition.__dict__
-        rule['when'] = rule['when'].__dict__
 
         # check the parse has set up the skip condition
-        self.assertIsNotNone(question.skip_condition)
+        self.assertIsNotNone(question.skip_condition.as_dict())
 
         # the condition won't fire as we haven't answered any questions, so we will skip the question
-        self.assertTrue(evaluate_rule(rule, answer))
+        self.assertTrue(evaluate_rule(question.skip_condition.as_dict(), answer))
 
     def test_skip_condition_blank(self):
         answer = ""
 
         # find the question with the 'not equals' skip condition
         question = self.questionnaire.get_item_by_id("048e40da-bca4-48e5-9885-0bb6413bef62")
-        rule = question.skip_condition.__dict__
-        rule['when'] = rule['when'].__dict__
 
         # check the parse has set up the skip condition
         self.assertIsNotNone(question.skip_condition)
 
         # the condition won't fire as we haven't answered any questions, so we will skip the question
-        self.assertTrue(evaluate_rule(rule, answer))
+        self.assertTrue(evaluate_rule(question.skip_condition.as_dict(), answer))

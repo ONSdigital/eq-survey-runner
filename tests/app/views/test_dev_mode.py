@@ -18,6 +18,7 @@ def test_dev_mode_submission(survey_runner):
       ref_p_end_date="2016-05-31",
       return_by="2016-06-12",
       employment_date="2016-06-10",
+      region_code="GB-GBN",
       user_id="test"
     ), follow_redirects=True)
     assert response.status_code == 200

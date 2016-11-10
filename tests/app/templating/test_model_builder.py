@@ -23,7 +23,8 @@ class TestBuildModel(unittest.TestCase):
                 'trad_as': 'Apple',
                 'tx_id': '12345678-1234-5678-1234-567812345678',
                 'period_str': '201610',
-                'employment_date': '2016-10-10'}
+                'employment_date': '2016-10-10',
+                }
 
     def setUp(self):
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "0_star_wars.json"))
@@ -33,6 +34,7 @@ class TestBuildModel(unittest.TestCase):
 
     def test_build_summary_model(self):
         with patch('app.templating.metadata_template_preprocessor.get_metadata', return_value=TestBuildModel.metadata), \
+                patch('app.templating.model_builder.get_answers', return_value=Mock(return_value={})), \
                 patch('app.templating.model_builder.g', return_value=mock.MagicMock()), \
                 patch('app.templating.metadata_template_preprocessor.to_date', return_value=datetime.datetime.now()):
             render_data = build_summary_model(self.schema_json)
@@ -42,9 +44,9 @@ class TestBuildModel(unittest.TestCase):
 
     def test_build_summary_model_sections(self):
         with patch('app.templating.metadata_template_preprocessor.get_metadata', return_value=TestBuildModel.metadata), \
+                patch('app.templating.model_builder.get_answers', return_value=Mock(return_value={'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c': 'Light Side'})), \
                 patch('app.templating.model_builder.g') as mock_g, \
                 patch('app.templating.metadata_template_preprocessor.to_date', return_value=datetime.datetime.now()):
-            mock_g.questionnaire_manager.get_answers = Mock(return_value={'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c': 'Light Side'})
             mock_g.questionnaire_manager.navigator.get_routing_path = Mock(return_value={'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'})
             render_data = build_summary_model(self.schema_json)
 
@@ -63,8 +65,8 @@ class TestBuildModel(unittest.TestCase):
 
         # When
         with patch('app.templating.metadata_template_preprocessor.get_metadata', return_value=TestBuildModel.metadata), \
+                patch('app.templating.model_builder.get_answers', return_value=Mock(return_value={'1': 'For answer 1'})), \
                 patch('app.templating.model_builder.g') as mock_g:
-            mock_g.questionnaire_manager.get_answers = Mock(return_value={'1': 'For answer 1'})
             mock_g.questionnaire_manager.navigator.get_routing_path = Mock(return_value=['1'])
             summary = build_summary_model(schema)
 
@@ -73,14 +75,13 @@ class TestBuildModel(unittest.TestCase):
         self.assertEqual(summary['content'][0].id, 'section1')
 
     def test_build_questionnaire_model(self):
-        block = StateBlock("1", None)
-        state_items = [block]
+        state_item = StateBlock("1", None)
 
         with patch('app.templating.metadata_template_preprocessor.get_metadata', return_value=TestBuildModel.metadata), \
                 patch('app.templating.metadata_template_preprocessor.to_date', return_value=datetime.datetime.now()):
-            render_data = build_questionnaire_model(self.schema_json, state_items)
+            render_data = build_questionnaire_model(self.schema_json, state_item)
 
         self.assertIsNotNone(render_data)
-        self.assertEqual(block, render_data['content'])
+        self.assertEqual(state_item, render_data['content'])
 
         self.assertIsNotNone(render_data['meta'])

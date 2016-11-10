@@ -172,3 +172,21 @@ class Navigator:
 
             if current_location_index != 0:
                 return location_path[current_location_index - 1]
+
+    def get_latest_location(self, answers=None, completed_blocks=None):
+        """
+        Returns the latest 'location' based on the location path and previously completed blocks
+        :param answers:
+        :param completed_blocks:
+        :return:
+        """
+        latest_location = self.get_first_location()
+
+        if completed_blocks:
+            answers = answers or {}
+            incomplete_blocks = [item for item in self.get_location_path(answers) if item not in completed_blocks]
+
+            if incomplete_blocks:
+                latest_location = incomplete_blocks[0]
+
+        return latest_location

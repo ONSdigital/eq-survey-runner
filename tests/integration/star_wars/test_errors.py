@@ -1,3 +1,4 @@
+from tests.integration.create_token import create_token
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
 
@@ -80,3 +81,20 @@ class TestPageErrors(StarWarsTestCase):
         self.assertRegex(content, 'href="#a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d"')
         # We DO NOT have the error from page two
         self.assertNotRegex(content, 'href="215015b1-f87c-4740-9fd4-f01f707ef558"')
+
+    def test_skip_question_errors(self):
+        # Given on the page with skip question with skip condition
+        self.token = create_token('skip_condition', 'test')
+        self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
+        post_data = {'action[start_questionnaire]': 'Start Questionnaire'}
+        self.client.post('/questionnaire/test/skip_condition/201604/789/introduction', data=post_data, follow_redirects=True)
+        post_data = {'food-answer': 'Bacon', 'action[save_continue]': 'Save &amp; Continue'}
+        self.client.post('/questionnaire/test/skip_condition/201604/789/food-block', data=post_data, follow_redirects=True)
+
+        # When submit no answers which is invalid
+        post_data = {'action[save_continue]': 'Save &amp; Continue'}
+        resp = self.client.post('/questionnaire/test/skip_condition/789/drink-block', data=post_data)
+
+        # Then errors exists on page
+        self.assertEqual(resp.status_code, 200)
+        self.assertRegex(resp.get_data(True), 'This page has 1 errors')

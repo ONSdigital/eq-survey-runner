@@ -26,10 +26,9 @@ class SubmitterFactory(object):
 
 class Submitter(object):
 
-    def send_answers(self, user, metadata, schema, answers):
+    def send_answers(self, metadata, schema, answers):
         '''
         Sends the answers to rabbit mq and returns a timestamp for submission
-        :param user: the current user:
         :param metadata: The metadata for the survey
         :param schema: The current schema
         :param answers: The user's answers

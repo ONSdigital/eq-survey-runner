@@ -55,6 +55,7 @@ class MetaDataTemplatePreprocessor(object):
             "start_date":  self._format_date(metadata["ref_p_start_date"]),
             "end_date": self._format_date(metadata["ref_p_end_date"]),
             "employment_date": self._format_date(metadata["employment_date"]),
+            "region_code": metadata["region_code"] if 'region_code' in metadata else None,
             "period_str": metadata["period_str"],
         }
         return survey_meta

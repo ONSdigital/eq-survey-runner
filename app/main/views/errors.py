@@ -4,21 +4,16 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
 from app.libs.utils import convert_tx_id
-from app.questionnaire.questionnaire_manager import InvalidLocationException
 from app.schema.exceptions import QuestionnaireException
 from app.submitter.submission_failed import SubmissionFailedException
 
 from flask import request
 from flask import Blueprint
-from flask import url_for
-from flask import g
 from flask.ext.themes2 import render_theme_template
 
 from flask_login import current_user
 
 from ua_parser import user_agent_parser
-
-from werkzeug.utils import redirect
 
 logger = logging.getLogger(__name__)
 
@@ -55,21 +50,6 @@ def page_not_found(error=None):
 def service_unavailable(error=None):
     log_exception(error)
     return _render_error_page(503)
-
-
-@errors_blueprint.app_errorhandler(InvalidLocationException)
-def invalid_location(error=None):
-    log_exception(error)
-    values = request.view_args
-    try:
-        return redirect(url_for('questionnaire.get_questionnaire',
-                                eq_id=values["eq_id"],
-                                form_type=values["form_type"],
-                                period_id=values["period_id"],
-                                collection_id=values["collection_id"],
-                                location=g.questionnaire_manager.get_current_location()))
-    except KeyError:
-        return internal_server_error(error)
 
 
 @errors_blueprint.app_errorhandler(Exception)

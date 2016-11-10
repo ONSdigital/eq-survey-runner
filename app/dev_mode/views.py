@@ -34,8 +34,9 @@ def dev_mode():
         trad_as = form.get("trad_as")
         return_by = form.get("return_by")
         employment_date = form.get("employment_date")
+        region_code = form.get("region_code")
         payload = create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid,
-                                 ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date)
+                                 ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date, region_code)
         return redirect("/session?token=" + generate_token(payload).decode())
 
     return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
@@ -67,7 +68,7 @@ def extract_eq_id_and_form_type(schema_name):
 
 
 def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid, ref_p_start_date,
-                   ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date):
+                   ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date, region_code):
     iat = time.time()
     exp = time.time() + float(exp_time)
     return {
@@ -85,7 +86,8 @@ def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, coll
             "ru_name": ru_name,
             "return_by": return_by,
             "trad_as": trad_as,
-            "employment_date": employment_date}
+            "employment_date": employment_date,
+            "region_code": region_code}
 
 
 def generate_token(payload):

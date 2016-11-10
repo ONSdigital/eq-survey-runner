@@ -18,8 +18,8 @@ class TestJinjaFilters(TestCase):
 
     def test_format_pretty_date_range(self):
         # Given
-        date_range = {'from': datetime.strptime('01/01/17', '%d/%m/%y'),
-                      'to': datetime.strptime('01/01/18', '%d/%m/%y')}
+        date_range = {'from': '01/01/2017',
+                      'to': '01/01/2018'}
         # When
         pretty_value = pretty_date_range(date_range)
 
