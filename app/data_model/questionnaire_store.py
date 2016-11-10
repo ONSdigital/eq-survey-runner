@@ -1,5 +1,6 @@
 import logging
 
+from app.data_model.answer_store import AnswerStore
 from app.storage.storage_factory import get_storage
 
 logger = logging.getLogger(__name__)
@@ -8,7 +9,10 @@ logger = logging.getLogger(__name__)
 class QuestionnaireStore:
 
     def __init__(self, user_id, user_ik):
-        self.data = {}
+
+        self.metadata = {}
+        self.answer_store = AnswerStore()
+        self.completed_blocks = []
 
         if user_id and user_ik:
             self.user_id = user_id
@@ -20,38 +24,26 @@ class QuestionnaireStore:
 
         if self.storage.has_data(self.user_id):
             logger.debug("User %s has previous data loading", user_id)
-            self.data = self.storage.get(self.user_id, self.user_ik)
+            data = self.storage.get(self.user_id, self.user_ik)
+
+            if 'METADATA' in data:
+                self.metadata = data['METADATA']
+
+            if 'ANSWERS' in data:
+                self.answer_store.answers = data['ANSWERS']
+
+            if 'COMPLETED_BLOCKS' in data:
+                self.completed_blocks = data['COMPLETED_BLOCKS']
 
     def delete(self):
         logger.debug("Deleting questionnaire data for %s", self.user_id)
-        self.data = {}
         self.storage.delete(self.user_id)
 
     def save(self):
-        logger.debug("Saving user data %s for user id %s", self.data, self.user_id)
-        self.storage.store(data=self.data, user_id=self.user_id, user_ik=self.user_ik)
-
-    @property
-    def metadata(self):
-        if "METADATA" in self.data:
-            return self.data["METADATA"]
-        else:
-            raise RuntimeError("No metadata for user %s", self.user_id)
-
-    @metadata.setter
-    def metadata(self, metadata):
-        self.data["METADATA"] = metadata
-
-    @property
-    def answers(self):
-        if "ANSWERS" not in self.data:
-            self.data["ANSWERS"] = {}
-
-        return self.data["ANSWERS"]
-
-    @property
-    def completed_blocks(self):
-        if "COMPLETED_BLOCKS" not in self.data:
-            self.data["COMPLETED_BLOCKS"] = []
-
-        return self.data["COMPLETED_BLOCKS"]
+        data = {
+            "METADATA": self.metadata,
+            "ANSWERS": self.answer_store.answers,
+            "COMPLETED_BLOCKS": self.completed_blocks,
+        }
+        logger.debug("Saving user data %s for user id %s", data, self.user_id)
+        self.storage.store(data=data, user_id=self.user_id, user_ik=self.user_ik)

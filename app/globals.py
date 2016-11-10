@@ -28,9 +28,14 @@ def get_metadata(user):
     return questionnaire_store.metadata
 
 
-def get_answers(user):
+def get_answer_store(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
-    return questionnaire_store.answers
+
+    return questionnaire_store.answer_store
+
+
+def get_answers(user):
+    return get_answer_store(user).map()
 
 
 def get_completed_blocks(user):

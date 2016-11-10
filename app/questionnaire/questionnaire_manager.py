@@ -55,7 +55,7 @@ class QuestionnaireManager(object):
         answers = get_answers(current_user)
 
         for location in self.navigator.get_location_path(answers):
-            is_valid = self.validate(location, get_answers(current_user))
+            is_valid = self.validate(location, answers)
 
             if not is_valid:
                 logger.debug("Failed validation with current location %s", location)
@@ -63,23 +63,25 @@ class QuestionnaireManager(object):
 
         return True, None
 
+    def update_questionnaire_store(self, location):
+        # Store answers in QuestionnaireStore
+        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+        for answer in self.get_state_answers(location):
+            questionnaire_store.answer_store.add_or_update(answer.flatten())
+
+        if location not in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.append(location)
+
+        questionnaire_store.save()
+
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
 
         is_valid = self.validate(location, post_data)
         # run the validator to update the validation_store
         if is_valid:
-
-            # Store answers in QuestionnaireStore
-            questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-
-            for answer in self.get_state_answers(location):
-                questionnaire_store.answers[answer.id] = answer.value
-
-            if location not in questionnaire_store.completed_blocks:
-                questionnaire_store.completed_blocks.append(location)
-
-            questionnaire_store.save()
+            self.update_questionnaire_store(location)
 
         return is_valid
 
