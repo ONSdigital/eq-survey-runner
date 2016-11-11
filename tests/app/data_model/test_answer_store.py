@@ -1,5 +1,5 @@
 import unittest
-from app.data_model.questionnaire_store import AnswerStore
+from app.data_model.answer_store import AnswerStore
 
 
 class TestAnswerStore(unittest.TestCase):
@@ -80,6 +80,25 @@ class TestAnswerStore(unittest.TestCase):
 
         self.assertEqual(self.store.same(answer_1, answer_2), True)
 
+    def test_add_inserts_instances(self):
+        answer_1 = {
+            'block_id': "3",
+            'answer_id': "4",
+            'question_id': "5",
+            'answer_instance': 1,
+            'value': 25,
+        }
+        self.store.add(answer_1)
+        answer_1['answer_instance'] = 2
+
+        self.store.add(answer_1)
+
+        answer_1['answer_instance'] = 3
+
+        self.store.add(answer_1)
+
+        self.assertEqual(len(self.store.answers), 3)
+
     def test_updates_answer(self):
         answer_1 = {
             'block_id': "3",
@@ -97,7 +116,6 @@ class TestAnswerStore(unittest.TestCase):
         }
 
         self.store.add(answer_1)
-
         self.store.update(answer_2)
 
         self.assertEqual(self.store.count(answer_2), 1)
@@ -157,8 +175,8 @@ class TestAnswerStore(unittest.TestCase):
         self.store.add(answer_2)
 
         expected_answers = {
-            "21": 25,
-            "51": 65
+            "2_1": 25,
+            "5_1": 65
         }
 
         self.assertEqual(self.store.map(), expected_answers)
@@ -183,9 +201,37 @@ class TestAnswerStore(unittest.TestCase):
         self.store.add(answer_2)
 
         expected_answers = {
-            "51": 65
+            "5_1": 65
         }
 
         self.assertEqual(self.store.map({
             "question_id": "6"
         }), expected_answers)
+
+    def test_returns_ordered_map(self):
+        answer = {
+            'block_id': "1",
+            'answer_id': "2",
+            'question_id': "3",
+            'value': 25,
+        }
+
+        for i in range(0, 1000):
+            answer['answer_instance'] = i
+
+            self.store.add(answer)
+
+        last_instance = -1
+
+        self.assertEqual(len(self.store.answers), 1000)
+
+        mapped = self.store.map()
+
+        for key, v in mapped.items():
+            pos = key.find('_')
+
+            instance = 0 if pos == -1 else int(key[pos + 1:])
+
+            self.assertGreater(instance, last_instance)
+
+            last_instance = instance

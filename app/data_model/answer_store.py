@@ -1,3 +1,8 @@
+import re
+
+from collections import OrderedDict
+
+
 class AnswerStore(object):
     """
     An object that stores the flattened structure of AnswerStates.
@@ -5,7 +10,6 @@ class AnswerStore(object):
     """
 
     def __init__(self, existing_answers=[]):
-        super(AnswerStore, self).__init__()
         self.answers = existing_answers
 
     def add(self, answer):
@@ -15,10 +19,12 @@ class AnswerStore(object):
         :param answer: A dict of flattened answer details.
         :return: None.
         """
-        if self.exists(answer):
+        answer_to_add = answer.copy()
+
+        if self.exists(answer_to_add):
             self.update(answer)
         else:
-            self.answers.append(answer)
+            self.answers.append(answer_to_add)
 
     def update(self, answer):
         """
@@ -74,8 +80,8 @@ class AnswerStore(object):
         """
         return len(self.find(answer))
 
-    @classmethod
-    def same(cls, first, second):
+    @staticmethod
+    def same(first, second):
         """
         Check to see if two answers are the same.
         Two answers are considered the same if they share the same block, question, answer and instance Id.
@@ -91,7 +97,7 @@ class AnswerStore(object):
 
     def filter(self, filter_vars):
         """
-        Helper method to find all answers in the answer store for a given set of id matches.
+        Find all answers in the answer store for a given set of filter parameter matches.
 
         :param filter_vars: The filter parameters to match against.
         :return: A list of answer instances that match the filter.
@@ -110,14 +116,29 @@ class AnswerStore(object):
         self.answers.clear()
 
     def map(self, filter_vars=None):
+        """
+        Maps the answers in this store to a dictionary of key, value answers. Keys include instance
+        id's when the instance id is non zero.
+
+        :param filter_vars:
+        :return:
+        """
         result = {}
 
         answers = self.filter(filter_vars) if filter_vars else self.answers
 
         for answer in answers:
             answer_id = answer['answer_id']
-            answer_id += str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
+            answer_id += "_" + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
 
             result[answer_id] = answer['value']
 
-        return result
+        return OrderedDict(sorted(result.items(), key=lambda t: natural_order(t[0])))
+
+
+def atoi(text):
+    return int(text) if text.isdigit() else text
+
+
+def natural_order(key):
+    return [atoi(c) for c in re.split('(\d+)', key)]
