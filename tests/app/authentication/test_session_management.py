@@ -1,4 +1,4 @@
-from app.authentication.session_management import DatabaseSessionManager
+from app.authentication.session_manager import SessionManager
 from flask import Flask
 import unittest
 from datetime import timedelta
@@ -14,7 +14,7 @@ class BaseSessionManagerTest(unittest.TestCase):
         self.application = application
         # Use an in memory database
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
-        self.session_manager = DatabaseSessionManager()
+        self.session_manager = SessionManager()
 
     def test_has_token_empty(self):
         with self.application.test_request_context():

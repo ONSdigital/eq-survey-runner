@@ -40,3 +40,5 @@ class TemplateRenderer:
         for child in state.children:
             self.render_state(child, context)
         return state
+
+renderer = TemplateRenderer()
