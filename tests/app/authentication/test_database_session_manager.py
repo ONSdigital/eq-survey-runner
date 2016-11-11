@@ -3,7 +3,7 @@ import unittest
 from mock import patch, Mock
 from sqlalchemy.exc import IntegrityError
 
-from app.authentication.session_management import DatabaseSessionManager, EQ_SESSION_ID
+from app.authentication.session_manager import SessionManager, EQ_SESSION_ID
 
 
 class TestDatabaseSessionManager(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestDatabaseSessionManager(unittest.TestCase):
     @staticmethod
     def test_store_user_id_rollback():
         # Given
-        session_manager = DatabaseSessionManager()
+        session_manager = SessionManager()
         user_id = "1"
 
         with patch('app.authentication.session_management.session'), \
@@ -30,7 +30,7 @@ class TestDatabaseSessionManager(unittest.TestCase):
     @staticmethod
     def test_clear_rollback():
         # Given
-        session_manager = DatabaseSessionManager()
+        session_manager = SessionManager()
 
         with patch('app.authentication.session_management.session') as flask_session, \
                 patch('app.authentication.session_management.db_session', autospec=True) as db_session:

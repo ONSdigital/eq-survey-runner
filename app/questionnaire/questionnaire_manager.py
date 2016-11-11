@@ -3,7 +3,7 @@ import logging
 from app.globals import get_answers, get_metadata, get_questionnaire_store
 from app.questionnaire.navigator import Navigator, evaluate_rule
 from app.templating.schema_context import build_schema_context
-from app.templating.template_renderer import TemplateRenderer
+from app.templating.template_renderer import renderer
 
 from flask import g
 
@@ -31,7 +31,6 @@ class QuestionnaireManager(object):
         self.state = None
 
         self.navigator = Navigator(self._json)
-        self.renderer = TemplateRenderer()
 
     def validate(self, location, post_data):
 
@@ -94,7 +93,7 @@ class QuestionnaireManager(object):
             self._conditional_display(self.state)
         if self.state:
             context = build_schema_context(get_metadata(current_user), self._schema.aliases, answers)
-            self.renderer.render_state(self.state, context)
+            renderer.render_state(self.state, context)
 
     def get_state_answers(self, item_id):
         # get the answers from the state

@@ -1,6 +1,6 @@
 import logging
 
-from app.authentication.session_management import session_manager
+from app.authentication.session_manager import session_manager
 from app.globals import get_answers, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
 from app.submitter.submitter import SubmitterFactory
@@ -8,7 +8,7 @@ from app.templating.introduction_context import get_introduction_context
 from app.templating.metadata_context import build_metadata_context
 from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
-from app.templating.template_renderer import TemplateRenderer
+from app.templating.template_renderer import renderer
 from app.utilities.schema import get_schema
 
 from flask import redirect
@@ -24,9 +24,6 @@ from flask_themes2 import render_theme_template
 
 
 logger = logging.getLogger(__name__)
-
-
-renderer = TemplateRenderer()
 
 
 questionnaire_blueprint = Blueprint(name='questionnaire',

@@ -18,7 +18,7 @@ class NoUniqueIDError(RuntimeError):
     pass
 
 
-class DatabaseSessionManager:
+class SessionManager:
 
     def store_user_id(self, user_id):
         """
@@ -140,4 +140,4 @@ class DatabaseSessionManager:
             return None
 
 
-session_manager = DatabaseSessionManager()
+session_manager = SessionManager()
