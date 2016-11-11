@@ -1,7 +1,8 @@
 {% import 'macros/helpers.html' as helpers %}
 
-<div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.id}}">
-  {% set invalid = answer.is_valid == False %}
+{% set invalid = answer.is_valid == False %}
+
+<div class="answer answer--{{answer.schema_item.type|lower}} {{'js-has-errors' if invalid}}" id="{{answer.id}}">
 
   {%- set answer_guidance %}
     {% if answer.schema_item.guidance %}
@@ -10,10 +11,12 @@
   {% endset -%}
 
   {%- set answer_fields %}
-    {% if answer.schema_item.display and answer.schema_item.display.properties %}
-      {% set use_grid = answer.schema_item.display.properties.columns %}
-    {% endif %}
-    {% include 'partials/answers/' ~ answer.schema_item.type|lower ~ '.html' %}
+    <div class="answer__fields js-fields">
+      {% if answer.schema_item.display and answer.schema_item.display.properties %}
+        {% set use_grid = answer.schema_item.display.properties.columns %}
+      {% endif %}
+      {% include 'partials/answers/' ~ answer.schema_item.type|lower ~ '.html' %}
+    </div>
   {% endset -%}
 
   {% if invalid %}
@@ -36,8 +39,8 @@
     {{answer_guidance|safe}}
 
   {% else %}
-
     {{answer_fields|safe}}
+
     {{answer_guidance|safe}}
 
   {% endif %}
