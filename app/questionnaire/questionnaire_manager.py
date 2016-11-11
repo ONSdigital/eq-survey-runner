@@ -154,21 +154,28 @@ class QuestionnaireManager(object):
         if self.state is None:
             self.process_incoming_answers(block, post_data)
 
-        answer_schema = self._schema.get_item_by_id('414699da-1667-44fd-8e98-7606966884db')
-        new_answer_state = answer_schema.construct_state()
-
         question_schema = self._schema.get_item_by_id(question)
         question_state = self.state.find_state_item(question_schema)
 
+        answer_schema = question_schema.answers[0]  # Single answer for now.
+        new_answer_state = answer_schema.construct_state()
+
         question_answers = question_state.children
-        number_of_answers = len(question_answers)
+
+        answer_store = get_answer_store(current_user)
+        existing = answer_store.filter({
+          'answer_id': answer_schema.id,
+        })
+
+        last_answer = existing[-1:]
+        next_instance_id = 0 if len(last_answer) == 0 else int(last_answer[0]['answer_instance']) + 1
 
         new_answer_schema = copy.deepcopy(new_answer_state.schema_item)
-        new_answer_schema.widget.name += str(number_of_answers)
+        new_answer_schema.widget.name += '_' + str(next_instance_id)
 
         new_answer_state.schema_item = new_answer_schema
         new_answer_state.parent = question_state
-        new_answer_state.instance = number_of_answers
+        new_answer_state.instance = next_instance_id
 
         question_answers.append(new_answer_state)
 
