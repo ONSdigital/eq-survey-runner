@@ -195,3 +195,7 @@ class QuestionnaireManager(object):
         answer = self.state.get_answers()[int(index_to_remove)]
         question = answer.parent
         question.remove_answer(answer)
+
+        answer_store = get_answer_store(current_user)
+        answer_store.remove(answer.flatten())
+        self.update_questionnaire_store(block)

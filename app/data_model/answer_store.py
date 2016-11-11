@@ -32,6 +32,16 @@ class AnswerStore(object):
                 self.answers[index]['value'] = answer['value']
                 break
 
+    def remove(self, answer):
+        """
+        Removes an answer from the answer store.
+
+        :param answer: A dict of flattened answer details.
+        """
+        found_answers = self.find(answer)
+        for found in found_answers:
+            self.answers.remove(found)
+
     def find(self, answer):
         """
         Finds all instances of an answer.

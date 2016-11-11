@@ -11,30 +11,39 @@ class RepeatingAnswerQuestion(Question):
         self.max_repeats = None
 
     def construct_state(self, answers=None):
-        return self._construct_state_from_dict(answers)
-
-    def _construct_state_from_dict(self, post_vars=None):
         schema_answers = [schema_answer for schema_answer in self.answers]
 
         state_class = self.get_state_class()
-        state = state_class(self.id, self)
+        question_state = state_class(self.id, self)
 
-        for schema_answer in schema_answers:
-            instances = list(filter(None, [name if name.startswith(schema_answer.id) else None for name in post_vars]))
+        for answer_schema in schema_answers:
+            answer_instances = \
+                sorted(
+                    list(
+                        filter(None, [id if id.startswith(answer_schema.id) else None for id in answers])
+                    )
+                )
 
-            number_of_instances = len(instances)
-            repeat = 1 if number_of_instances == 0 else number_of_instances
+            num_instances = len(answer_instances)
+            repeat = 1 if num_instances == 0 else num_instances
 
             for i in range(repeat):
-                answer_state = schema_answer.construct_state(schema_answers)
-                answer_state.parent = state
-                answer_state.instance = i
+                answer_state = answer_schema.construct_state(schema_answers)
+                answer_state.parent = question_state
 
-                new_answer_schema = copy.deepcopy(schema_answer)
-                new_answer_schema.widget.name += str(i) if i > 0 else ''
+                if num_instances == 0:
+                    instance_id = i
+                else:
+                    current_instance = answer_instances[i]
+                    instance_suffix = current_instance.replace(answer_schema.id, '')
+                    instance_id = 0 if instance_suffix == '' else int(instance_suffix)
 
+                answer_state.instance = instance_id
+
+                new_answer_schema = copy.deepcopy(answer_schema)
+                new_answer_schema.widget.name += str(instance_id) if instance_id > 0 else ''
                 answer_state.schema_item = new_answer_schema
 
-                state.children.append(answer_state)
+                question_state.children.append(answer_state)
 
-        return state
+        return question_state
