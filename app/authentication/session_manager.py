@@ -9,13 +9,8 @@ from flask import session
 USER_ID = "user_id"
 USER_IK = "user_ik"
 EQ_SESSION_ID = "eq-session-id"
-MAX_RETRY = 10
 
 logger = logging.getLogger(__name__)
-
-
-class NoUniqueIDError(RuntimeError):
-    pass
 
 
 class SessionManager:
@@ -27,7 +22,7 @@ class SessionManager:
         """
         logger.debug("SessionManager store_user_id() - session %s", session)
         if EQ_SESSION_ID not in session:
-            eq_session_id = self.create_session_id()
+            eq_session_id = str(uuid4())
             logger.debug("Created new eq session id %s", eq_session_id)
             session[EQ_SESSION_ID] = eq_session_id
             eq_session = EQSession(eq_session_id, user_id)
@@ -83,28 +78,19 @@ class SessionManager:
         else:
             return None
 
-    def create_session_id(self):
-        for x in range(0, MAX_RETRY):
-            new_session_id = str(uuid4())
-            if self.check_unique(new_session_id):
-                return new_session_id
-
-        logger.error("Unable to generate a unique session id before the retry count %s was reached", MAX_RETRY)
-        raise NoUniqueIDError()
-
-    def check_unique(self, new_session_id):
-        return self.run_count(new_session_id) == 0
-
-    def _get_object(self, eq_session_id):
+    @staticmethod
+    def _get_object(eq_session_id):
         logger.debug("Get the EQ Session object for eq session id %s", eq_session_id)
         return EQSession.query.filter(EQSession.eq_session_id == eq_session_id).first()
 
-    def run_count(self, eq_session_id):
+    @staticmethod
+    def run_count(eq_session_id):
         logger.debug("Running count query for eq session id %s", eq_session_id)
         count = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).count()
         return count
 
-    def store_user_ik(self, user_ik):
+    @staticmethod
+    def store_user_ik(user_ik):
         '''
         Store a user's ik in the cookie for retrieval later
         :param user_ik: the user ik
@@ -113,7 +99,8 @@ class SessionManager:
         if USER_IK not in session:
             session[USER_IK] = user_ik
 
-    def has_user_ik(self):
+    @staticmethod
+    def has_user_ik():
         """
         Checks if a user has a stored ik
         :return: boolean value

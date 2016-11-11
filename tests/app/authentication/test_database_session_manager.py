@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 from app.authentication.session_manager import SessionManager, EQ_SESSION_ID
 
 
-class TestDatabaseSessionManager(unittest.TestCase):
+class TestSessionManager(unittest.TestCase):
 
     @staticmethod
     def test_store_user_id_rollback():
@@ -14,8 +14,8 @@ class TestDatabaseSessionManager(unittest.TestCase):
         session_manager = SessionManager()
         user_id = "1"
 
-        with patch('app.authentication.session_management.session'), \
-                patch('app.authentication.session_management.db_session', autospec=True) as db_session:
+        with patch('app.authentication.session_manager.session'), \
+                patch('app.authentication.session_manager.db_session', autospec=True) as db_session:
             db_session.commit.side_effect = IntegrityError(Mock(), Mock(), Mock())
 
             # When
@@ -32,8 +32,8 @@ class TestDatabaseSessionManager(unittest.TestCase):
         # Given
         session_manager = SessionManager()
 
-        with patch('app.authentication.session_management.session') as flask_session, \
-                patch('app.authentication.session_management.db_session', autospec=True) as db_session:
+        with patch('app.authentication.session_manager.session') as flask_session, \
+                patch('app.authentication.session_manager.db_session', autospec=True) as db_session:
             # Mocking flask session dict lookup
             flask_session.__contains__ = Mock(return_value=True)
             flask_session.__getitem__ = Mock(side_effect={EQ_SESSION_ID, '1'})
