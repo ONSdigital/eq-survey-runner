@@ -1,4 +1,5 @@
 import copy
+
 from app.schema.question import Question
 
 
@@ -17,12 +18,7 @@ class RepeatingAnswerQuestion(Question):
         question_state = state_class(self.id, self)
 
         for answer_schema in schema_answers:
-            answer_instances = \
-                sorted(
-                    list(
-                        filter(None, [id if id.startswith(answer_schema.id) else None for id in answers])
-                    )
-                )
+            answer_instances = sorted(list(filter(None, [answer_id if answer_id.startswith(answer_schema.id) else None for answer_id in answers])))
 
             num_instances = len(answer_instances)
             repeat = 1 if num_instances == 0 else num_instances

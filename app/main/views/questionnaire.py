@@ -111,7 +111,7 @@ def submit_answers(eq_id, form_type, period_id, collection_id):
 @action_blueprint.route('<location>/<question>/add', methods=["POST"])
 @login_required
 def add_answer(eq_id, form_type, period_id, collection_id, location, question):
-    success = g.questionnaire_manager.add_answer(location, question, request.form)
+    g.questionnaire_manager.add_answer(location, question, request.form)
 
     return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location)
 
@@ -119,7 +119,7 @@ def add_answer(eq_id, form_type, period_id, collection_id, location, question):
 @action_blueprint.route('<location>/<question>/remove', methods=["POST"])
 @login_required
 def remove_answer(eq_id, form_type, period_id, collection_id, location, question):
-    success = g.questionnaire_manager.remove_answer(location, question, request.form)
+    g.questionnaire_manager.remove_answer(location, question, request.form)
 
     return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location)
 

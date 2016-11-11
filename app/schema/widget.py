@@ -1,7 +1,5 @@
 import logging
 
-from app.data_model.answer_store import AnswerStore
-
 logger = logging.getLogger(__name__)
 
 

@@ -1,5 +1,4 @@
 from app.questionnaire_state.state_item import StateItem
-from app.data_model.answer_store import AnswerStore
 
 
 class StateQuestion(StateItem):
