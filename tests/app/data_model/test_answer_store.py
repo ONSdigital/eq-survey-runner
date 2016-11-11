@@ -156,7 +156,7 @@ class TestAnswerStore(unittest.TestCase):
         self.store.add(answer_1)
         self.store.add(answer_2)
 
-        self.assertEqual(AnswerStore.as_key_value_pairs(self.store.answers), {
+        self.assertEqual(AnswerStore.items(self.store.answers), {
             "21": 25,
             "51": 65
         })

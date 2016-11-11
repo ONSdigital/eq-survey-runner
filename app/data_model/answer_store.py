@@ -90,43 +90,29 @@ class AnswerStore(object):
                 first['answer_instance'] == second['answer_instance'])
 
     def filter(self, filter_vars):
+        """
+        Helper method to find all answers in the answer store for a given set of id matches.
+
+        :param filter_vars: The filter parameters to match against.
+        :return: A list of answer instances that match the filter.
+        """
         filtered = []
         for answer in self.answers:
             matches = True
             for k, v in filter_vars.items():
-                matches = matches and answer[k] == v
+                if k in ['block_id', 'question_id', 'answer_id', 'answer_instance']:
+                    matches = matches and answer[k] == v
             if matches:
                 filtered.append(answer)
         return filtered
-
-    def find_by_question(self, question_id):
-        """
-        Helper method to find all answers in the answer store for a given question Id.
-
-        :param question_id: The question Id.
-        :return: A list of answer instances if the question has answers, otherwise an empty list.
-        """
-        result = []
-        for existing in self.answers:
-            if existing['question_id'] == question_id:
-                result.append(existing)
-
-        return result
-
-    def find_by_block(self, block_id):
-        result = []
-        for existing in self.answers:
-            if existing['block_id'] == block_id:
-                result.append(existing)
-
-        return result
 
     def clear(self):
         self.answers.clear()
 
     @staticmethod
-    def as_key_value_pairs(answers):
+    def items(answers):
         result = {}
+
         for answer in answers:
             answer_id = answer['answer_id']
             answer_id += str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''

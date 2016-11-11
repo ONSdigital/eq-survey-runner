@@ -91,7 +91,7 @@ class QuestionnaireManager(object):
                 answer_store = get_answer_store(current_user)
 
                 # apply page answers?
-                self.build_state(location, AnswerStore.as_key_value_pairs(answer_store.filter({
+                self.build_state(location, AnswerStore.items(answer_store.filter({
                     'block_id': location,
                 })))
 
