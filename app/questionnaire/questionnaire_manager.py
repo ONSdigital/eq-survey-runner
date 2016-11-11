@@ -2,7 +2,6 @@ import copy
 import json
 import logging
 
-from app.data_model.answer_store import AnswerStore
 from app.globals import get_answer_store, get_answers, get_questionnaire_store
 from app.piping.plumbing_preprocessor import PlumbingPreprocessor, get_schema_template_context
 from app.questionnaire.navigator import Navigator, evaluate_rule
@@ -91,9 +90,9 @@ class QuestionnaireManager(object):
                 answer_store = get_answer_store(current_user)
 
                 # apply page answers?
-                self.build_state(location, AnswerStore.items(answer_store.filter({
+                self.build_state(location, answer_store.map({
                     'block_id': location,
-                })))
+                }))
 
         if self.state:
             self._plumbing_preprocessing()

@@ -1,6 +1,5 @@
 import logging
 
-from app.data_model.answer_store import AnswerStore
 from app.data_model.questionnaire_store import QuestionnaireStore
 
 from flask import g
@@ -38,7 +37,7 @@ def get_answer_store(user):
 def get_answers(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
 
-    return AnswerStore.items(questionnaire_store.answers.answers)
+    return questionnaire_store.answers.map()
 
 
 def get_completed_blocks(user):

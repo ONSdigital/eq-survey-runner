@@ -137,7 +137,7 @@ class TestAnswerStore(unittest.TestCase):
 
         self.assertEqual(len(filtered), 1)
 
-    def test_serialises_answers(self):
+    def test_maps_answers(self):
         answer_1 = {
             'block_id': "1",
             'answer_id': "2",
@@ -156,7 +156,36 @@ class TestAnswerStore(unittest.TestCase):
         self.store.add(answer_1)
         self.store.add(answer_2)
 
-        self.assertEqual(AnswerStore.items(self.store.answers), {
+        expected_answers = {
             "21": 25,
             "51": 65
-        })
+        }
+
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_maps_and_filters_answers(self):
+        answer_1 = {
+            'block_id': "1",
+            'answer_id': "2",
+            'question_id': "3",
+            'answer_instance': 1,
+            'value': 25,
+        }
+        answer_2 = {
+            'block_id': "1",
+            'answer_id': "5",
+            'question_id': "6",
+            'answer_instance': 1,
+            'value': 65,
+        }
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        expected_answers = {
+            "51": 65
+        }
+
+        self.assertEqual(self.store.map({
+            "question_id": "6"
+        }), expected_answers)

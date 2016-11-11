@@ -109,9 +109,10 @@ class AnswerStore(object):
     def clear(self):
         self.answers.clear()
 
-    @staticmethod
-    def items(answers):
+    def map(self, filter_vars=None):
         result = {}
+
+        answers = self.filter(filter_vars) if filter_vars else self.answers
 
         for answer in answers:
             answer_id = answer['answer_id']
