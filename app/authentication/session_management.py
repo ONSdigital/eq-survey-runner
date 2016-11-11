@@ -1,12 +1,10 @@
 import logging
 from uuid import uuid4
 
-from app.data_model.database import EQSession
+from app.data_model.database import EQSession, commit_or_rollback
 from app.data_model.database import db_session
 
 from flask import session
-
-from sqlalchemy.exc import SQLAlchemyError
 
 USER_ID = "user_id"
 USER_IK = "user_ik"
@@ -39,15 +37,10 @@ class DatabaseSessionManager:
             logger.debug("Found eq_session_id %s in session", eq_session_id)
             eq_session = self._get_object(eq_session_id)
             logger.debug("Loaded object eq session %s", eq_session)
-            logger.debug("About to commit to database")
 
-        try:
+        logger.debug("About to commit to database")
+        with commit_or_rollback(db_session):
             db_session.add(eq_session)
-            db_session.commit()
-            logger.debug("Committed")
-        except SQLAlchemyError:
-            db_session.rollback()
-            raise
 
     def has_user_id(self):
         """
@@ -72,12 +65,8 @@ class DatabaseSessionManager:
             eq_session = self._get_object(eq_session_id)
             logger.debug("About to delete entry from eq_session table %s", eq_session)
 
-            try:
+            with commit_or_rollback(db_session):
                 db_session.delete(eq_session)
-                db_session.commit()
-            except SQLAlchemyError:
-                db_session.rollback()
-                raise
         else:
             logger.warning("No eq session id exists")
 

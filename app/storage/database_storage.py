@@ -1,6 +1,6 @@
 import logging
 
-from app.data_model.database import QuestionnaireState
+from app.data_model.database import QuestionnaireState, commit_or_rollback
 from app.data_model.database import db_session
 
 from sqlalchemy.exc import SQLAlchemyError
@@ -25,13 +25,8 @@ class DatabaseStorage:
 
         logger.debug("Committing questionnaire state")
 
-        try:
+        with commit_or_rollback(db_session):
             db_session.add(questionnaire_state)
-            db_session.commit()
-            logger.debug("Committed")
-        except SQLAlchemyError:
-            db_session.rollback()
-            raise
 
     def get(self, user_id, user_ik=None):
         logger.debug("Loading questionnaire state for user %s", user_id)
@@ -58,13 +53,9 @@ class DatabaseStorage:
         logger.debug("About to delete users %s data", user_id)
         if self.has_data(user_id):
             questionnaire_state = self._get_object(user_id)
-            try:
+            with commit_or_rollback(db_session):
                 db_session.delete(questionnaire_state)
-                db_session.commit()
-                logger.debug("Deleted")
-            except SQLAlchemyError:
-                db_session.rollback()
-                raise
+            logger.debug("Deleted")
 
     def clear(self):
         logger.warning("About to delete all questionnaire data")
