@@ -25,7 +25,7 @@ class SessionManager:
         Store a user's id for retrieval later
         :param user_id: the user id
         """
-        logger.debug("DatabaseSessionManager store_user_id() - session %s", session)
+        logger.debug("SessionManager store_user_id() - session %s", session)
         if EQ_SESSION_ID not in session:
             eq_session_id = self.create_session_id()
             logger.debug("Created new eq session id %s", eq_session_id)
@@ -47,7 +47,7 @@ class SessionManager:
         Checks if a user has a stored id
         :return: boolean value
         """
-        logger.debug("DatabaseSessionManager has_user_id() - session %s", session)
+        logger.debug("SessionManager has_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
 
@@ -59,7 +59,7 @@ class SessionManager:
         """
         Removes a user id from the session
         """
-        logger.debug("DatabaseSessionManager remove_user_id() - session %s", session)
+        logger.debug("SessionManager remove_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
             eq_session = self._get_object(eq_session_id)
@@ -75,7 +75,7 @@ class SessionManager:
         Retrieves a user's id
         :return: the user's JWT
         """
-        logger.debug("DatabaseSessionManager get_user_id() - session %s", session)
+        logger.debug("SessionManager get_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
             eq_session = self._get_object(eq_session_id)
@@ -87,14 +87,10 @@ class SessionManager:
         for x in range(0, MAX_RETRY):
             new_session_id = str(uuid4())
             if self.check_unique(new_session_id):
-                break
-            else:
-                new_session_id = None
-        if new_session_id:
-            return new_session_id
-        else:
-            logger.error("Unable to generate a unique session id before the retry count %s was reached", MAX_RETRY)
-            raise NoUniqueIDError()
+                return new_session_id
+
+        logger.error("Unable to generate a unique session id before the retry count %s was reached", MAX_RETRY)
+        raise NoUniqueIDError()
 
     def check_unique(self, new_session_id):
         return self.run_count(new_session_id) == 0
