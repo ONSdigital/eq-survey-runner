@@ -1,19 +1,27 @@
-import json
 import logging
 
-from app.globals import get_answers, get_questionnaire_store
-from app.piping.plumbing_preprocessor import PlumbingPreprocessor, get_schema_template_context
+from app.globals import get_answers, get_metadata, get_questionnaire_store
 from app.questionnaire.navigator import Navigator, evaluate_rule
-from app.templating.model_builder import build_questionnaire_model, build_summary_model
+from app.templating.schema_context import build_schema_context
+from app.templating.template_renderer import TemplateRenderer
 
-from flask import render_template_string
+from flask import g
 
 from flask_login import current_user
 
 logger = logging.getLogger(__name__)
 
 
+def get_questionnaire_manager(schema, schema_json):
+    questionnaire_manager = g.get('_questionnaire_manager')
+    if questionnaire_manager is None:
+        questionnaire_manager = g._questionnaire_manager = QuestionnaireManager(schema, schema_json)
+
+    return questionnaire_manager
+
+
 class QuestionnaireManager(object):
+
     '''
     This class represents a user journey through a survey. It models the request/response process of the web application
     '''
@@ -23,6 +31,7 @@ class QuestionnaireManager(object):
         self.state = None
 
         self.navigator = Navigator(self._json)
+        self.renderer = TemplateRenderer()
 
     def validate(self, location, post_data):
 
@@ -33,12 +42,8 @@ class QuestionnaireManager(object):
             self.build_state(location, post_data)
 
             if self.state:
-                self._conditional_display(self.state)
-                is_valid = self.state.schema_item.validate(self.state)
                 # Todo, this doesn't feel right, validation is casting the user values to their type.
-
-                return is_valid
-
+                return self.state.schema_item.validate(self.state)
             else:
                 # Item has node, but is not in schema: must be introduction, thank you or summary
                 return True
@@ -79,29 +84,6 @@ class QuestionnaireManager(object):
 
         return is_valid
 
-    def get_rendering_context(self, location, is_valid=True):
-
-        if is_valid:
-            if location == 'summary':
-                return self.get_summary_rendering_context()
-            else:
-                # apply page answers?
-                self.build_state(location, get_answers(current_user))
-
-        if self.state:
-            self._plumbing_preprocessing()
-            self._conditional_display(self.state)
-
-        # look up the preprocessor and then build the view data
-        return build_questionnaire_model(self._json, self.state)
-
-    def get_summary_rendering_context(self):
-        schema_template_context = get_schema_template_context(self, self._schema)
-        rendered_questionnaire_schema_json = render_template_string(json.dumps(self._json), **schema_template_context)
-
-        # look up the preprocessor and then build the view data
-        return build_summary_model(json.loads(rendered_questionnaire_schema_json))
-
     def build_state(self, item_id, answers):
         # Build the state from the answers
         self.state = None
@@ -109,6 +91,10 @@ class QuestionnaireManager(object):
             schema_item = self._schema.get_item_by_id(item_id)
             self.state = schema_item.construct_state()
             self.state.update_state(answers)
+            self._conditional_display(self.state)
+        if self.state:
+            context = build_schema_context(get_metadata(current_user), self._schema.aliases, answers)
+            self.renderer.render_state(self.state, context)
 
     def get_state_answers(self, item_id):
         # get the answers from the state
@@ -116,11 +102,6 @@ class QuestionnaireManager(object):
             return self.state.get_answers()
 
         return []
-
-    def _plumbing_preprocessing(self):
-        # Run the current state through the plumbing preprocessor
-        plumbing_template_preprocessor = PlumbingPreprocessor()
-        plumbing_template_preprocessor.plumb_current_state(self, self.state, self._schema)
 
     def _conditional_display(self, item):
         # Process any conditional display rules
