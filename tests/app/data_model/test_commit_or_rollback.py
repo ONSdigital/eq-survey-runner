@@ -8,9 +8,10 @@ from app.data_model.database import commit_or_rollback
 
 class TestCommitOrRollback(TestCase):
 
-    def test_commit_after_inserts(self):
+    @staticmethod
+    def test_commit_after_inserts():
         # Given
-        with patch('app.data_model.database.db_session') as db_session:
+        with patch('app.data_model.database.db_session', autospec=True) as db_session:
 
             # When db_session action within commit_or_rollback
             with commit_or_rollback(db_session):
@@ -19,9 +20,10 @@ class TestCommitOrRollback(TestCase):
             # Then .add() followed by .commit()
             db_session.assert_has_calls([call.add('data'), call.commit()])
 
-    def test_rollback_after_commit_fail(self):
+    @staticmethod
+    def test_rollback_after_commit_fail():
         # Given
-        with patch('app.data_model.database.db_session') as db_session:
+        with patch('app.data_model.database.db_session', autospec=True) as db_session:
             db_session.commit.side_effect = IntegrityError(Mock(), Mock(), Mock())
 
             try:

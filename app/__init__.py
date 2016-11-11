@@ -153,7 +153,7 @@ def create_app(config_name):
     Themes(application, app_identifier="surveyrunner")
 
     @application.teardown_appcontext
-    def shutdown_session(exception=None):
+    def shutdown_session(exception=None):    # pylint: disable=unused-argument
         db_session.remove()
 
     return application

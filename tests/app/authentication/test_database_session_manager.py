@@ -1,6 +1,6 @@
 import unittest
 
-from mock import patch, Mock, MagicMock
+from mock import patch, Mock
 from sqlalchemy.exc import IntegrityError
 
 from app.authentication.session_management import DatabaseSessionManager, EQ_SESSION_ID
@@ -8,13 +8,14 @@ from app.authentication.session_management import DatabaseSessionManager, EQ_SES
 
 class TestDatabaseSessionManager(unittest.TestCase):
 
-    def test_store_user_id_rollback(self):
+    @staticmethod
+    def test_store_user_id_rollback():
         # Given
         session_manager = DatabaseSessionManager()
         user_id = "1"
 
         with patch('app.authentication.session_management.session'), \
-                patch('app.authentication.session_management.db_session') as db_session:
+                patch('app.authentication.session_management.db_session', autospec=True) as db_session:
             db_session.commit.side_effect = IntegrityError(Mock(), Mock(), Mock())
 
             # When
@@ -23,15 +24,16 @@ class TestDatabaseSessionManager(unittest.TestCase):
             except IntegrityError:
                 pass
 
-        # Then
-        db_session.rollback.assert_called_once_with()
+            # Then
+            db_session.rollback.assert_called_once_with()
 
-    def test_clear_rollback(self):
+    @staticmethod
+    def test_clear_rollback():
         # Given
         session_manager = DatabaseSessionManager()
 
         with patch('app.authentication.session_management.session') as flask_session, \
-                patch('app.authentication.session_management.db_session') as db_session:
+                patch('app.authentication.session_management.db_session', autospec=True) as db_session:
             # Mocking flask session dict lookup
             flask_session.__contains__ = Mock(return_value=True)
             flask_session.__getitem__ = Mock(side_effect={EQ_SESSION_ID, '1'})
@@ -43,5 +45,5 @@ class TestDatabaseSessionManager(unittest.TestCase):
             except IntegrityError:
                 pass
 
-        # Then
-        db_session.rollback.assert_called_once_with()
+            # Then
+            db_session.rollback.assert_called_once_with()

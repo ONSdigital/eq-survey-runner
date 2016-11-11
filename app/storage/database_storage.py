@@ -3,8 +3,6 @@ import logging
 from app.data_model.database import QuestionnaireState, commit_or_rollback
 from app.data_model.database import db_session
 
-from sqlalchemy.exc import SQLAlchemyError
-
 logger = logging.getLogger(__name__)
 
 

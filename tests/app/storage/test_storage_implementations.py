@@ -46,7 +46,7 @@ class TestDatabaseStorage(unittest.TestCase):
         # Given
         data = {'test': 'test'}
 
-        with patch('app.storage.database_storage.db_session') as db_session:
+        with patch('app.storage.database_storage.db_session', autospec=True) as db_session:
             db_session.commit.side_effect = IntegrityError(Mock(), Mock(), Mock())
 
             # When
@@ -55,15 +55,15 @@ class TestDatabaseStorage(unittest.TestCase):
             except IntegrityError:
                 pass
 
-        # Then
-        db_session.rollback.assert_called_once_with()
+            # Then
+            db_session.rollback.assert_called_once_with()
 
     def test_delete_rollback(self):
         # Given
         data = {'test': 'test'}
         self.storage.store(data, "1")
 
-        with patch('app.storage.database_storage.db_session') as db_session:
+        with patch('app.storage.database_storage.db_session', autospec=True) as db_session:
             db_session.commit.side_effect = IntegrityError(Mock(), Mock(), Mock())
 
             # When
@@ -72,8 +72,8 @@ class TestDatabaseStorage(unittest.TestCase):
             except IntegrityError:
                 pass
 
-        # Then
-        db_session.rollback.assert_called_once_with()
+            # Then
+            db_session.rollback.assert_called_once_with()
 
 
 if __name__ == '__main__':
