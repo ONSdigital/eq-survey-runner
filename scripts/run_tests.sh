@@ -35,7 +35,7 @@ function display_result {
 flake8 --max-complexity 10 --count
 display_result $? 1 "Code style check"
 
-py.test --cov=app $@ $1
+py.test --cov=app --cov-report xml $@ $1
 display_result $? 2 "Unit tests"
 
 # Run front end tests
