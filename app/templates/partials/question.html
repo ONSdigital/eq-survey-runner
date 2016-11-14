@@ -38,7 +38,6 @@
               eq_id=meta.survey.eq_id,
               collection_id=meta.survey.collection_id,
               form_type=meta.survey.form_type,
-              period_id=meta.survey.period_id,
               location=content.id,
               question=question.schema_item.id) }}"
             name="action[remove_answer]" value="{{ loop.index0 }}">Remove <span class="u-vh">Person {{loop.index0}}</span></button>
@@ -69,7 +68,6 @@
             eq_id=meta.survey.eq_id,
             collection_id=meta.survey.collection_id,
             form_type=meta.survey.form_type,
-            period_id=meta.survey.period_id,
             location=content.id,
             question=question.schema_item.id) }}"
           name="action[add_answer]">Add another person</button>

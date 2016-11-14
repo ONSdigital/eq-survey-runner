@@ -32,7 +32,7 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 
 action_blueprint = Blueprint(name='action',
                              import_name=__name__,
-                             url_prefix='/action/<eq_id>/<form_type>/<period_id>/<collection_id>/')
+                             url_prefix='/action/<eq_id>/<form_type>/<collection_id>/')
 
 
 @questionnaire_blueprint.before_request
@@ -127,18 +127,18 @@ def submit_answers(eq_id, form_type, collection_id):
 
 @action_blueprint.route('<location>/<question>/add', methods=["POST"])
 @login_required
-def add_answer(eq_id, form_type, period_id, collection_id, location, question):
-    g.questionnaire_manager.add_answer(location, question, request.form)
+def add_answer(eq_id, form_type, collection_id, location, question):
+    get_questionnaire_manager(g.schema, g.schema_json).add_answer(location, question, request.form)
 
-    return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location)
+    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
 
 
 @action_blueprint.route('<location>/<question>/remove', methods=["POST"])
 @login_required
-def remove_answer(eq_id, form_type, period_id, collection_id, location, question):
-    g.questionnaire_manager.remove_answer(location, question, request.form)
+def remove_answer(eq_id, form_type, collection_id, location, question):
+    get_questionnaire_manager(g.schema, g.schema_json).remove_answer(location, question, request.form)
 
-    return redirect_to_questionnaire_page(eq_id, form_type, period_id, collection_id, location)
+    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
 
 
 def _delete_user_data():
