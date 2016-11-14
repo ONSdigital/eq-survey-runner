@@ -9,8 +9,8 @@ class AnswerStore(object):
     It is referenced by the answers property in the QuestionnaireStore.
     """
 
-    def __init__(self, existing_answers=[]):
-        self.answers = existing_answers
+    def __init__(self, existing_answers=None):
+        self.answers = existing_answers if existing_answers is not None else []
 
     def add(self, answer):
         """
