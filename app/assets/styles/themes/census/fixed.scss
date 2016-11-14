@@ -5,6 +5,7 @@ $responsive: false;
 $grid-max-width: 800px;
 
 @import "partials/vars/*.scss";
+@import "theme_vars.scss";
 @import "partials/vendor/normalize.scss";
 @import "partials/helpers/**/*.scss";
 @import "partials/base/**/*.scss";
@@ -12,3 +13,6 @@ $grid-max-width: 800px;
 @import "partials/components/**/*.scss";
 @import "partials/utilities/**/*.scss";
 @import "partials/hacks/**/*.scss";
+
+@import "./components/page-header.scss";
+@import "./components/footer.scss";

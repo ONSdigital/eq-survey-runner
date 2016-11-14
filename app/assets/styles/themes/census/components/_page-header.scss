@@ -1,78 +1,129 @@
-
 .page-header {
   background: $color-purple;
-  margin: 0;
-  padding: 0.5rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
   position: relative;
-  min-height: 10rem;
   overflow: hidden;
   color: white;
-
+  display: block;
   &::before {
     content: none;
   }
 
   @include mq(m) {
-    margin: 0 0 2rem;
+    margin: 0 0 1rem;
+  }
+}
+
+.page-header__container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: 100%;
+  @include mq(m) {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
 
 .page-header__logo {
-  position: absolute;
-  top: 0;
-  left: -0.7rem;
-  width: 12.5rem;
-}
-
-.page-header__titles {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.page-header__title {
-  font-weight: $font-weight-semibold;
-  margin: 0 0 0.2rem;
-  display: inline-block;
-}
-
-.page-header__subtitle {
-  margin: 0 0 0.5rem;
-  font-size: 1.1rem;
-  font-weight: $font-weight-regular;
+  margin-bottom: 0;
+  margin-right: auto;
+  width: 7rem;
+  @include mq(s) {
+    width: 10rem;
+  }
   @include mq(m) {
-    font-size: 1.4rem;
+    width: auto;
+  }
+  @include fixed() {
+    background: url("/_themes/census/logo.png") no-repeat left center;
+    width: 221px;
+    height: 51px;
+    background-size: auto;
+    img {
+      display: none;
+    }
+  }
+}
+
+.page-header__btn {
+  text-align: right;
+  line-height: 1;
+  color: white;
+  margin: 0 0 0 2rem;
+  @include mq($from: xs, $to: s) {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem !important;
+  }
+  @include fixed() {
+    float: right;
+    margin-top: 1rem;
   }
 }
 
 .page-header__help {
-  display: inline-block;
-}
-
-.help {
-  text-align: right;
-  float: right;
-}
-
-.help__title {
-  font-size: 0.9rem;
-  margin-bottom: 0;
-  @include mq(m) {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+  padding: 0;
+  background: darken($color-purple, 9%);
+  overflow: hidden;
+  transition: max-height 300ms ease-in;
+  height: auto;
+  .has-js & {
+    max-height: 40rem;
+    &.is-closed {
+      max-height: 0;
+      transition: max-height 200ms ease-out;
+    }
+  }
+  @include mq(xs, s) {
+    .mars,
+    .venus {
+      font-size: 0.8rem;
+    }
+  }
+  @include fixed {
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+  }
+  a {
+    color: white;
+    text-decoration: underline;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
+  .page-header__container {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    @include mq(m) {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    @include fixed {
+      height: 100%;
+      position: relative;
+    }
   }
 }
 
-.help__link {
-  color: white;
-  text-decoration: none;
-  font-size: 0.8rem;
-  &:last-of-type {
-    border-left: 1px solid white;
-    padding-left: 1rem;
-    margin-left: 1rem;
+.page-header__title {
+  display: none;
+  @include fixed {
+    display: inline;
   }
+}
 
-  @include mq(m) {
-    font-size: 1rem;
+.page-header__nav {
+  margin-left: auto;
+  @include fixed {
+    display: inline;
   }
 }

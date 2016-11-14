@@ -1,36 +1,100 @@
-.footer {
-  display: block;
-}
-
-.footer__logos {
+.footer--census {
+  background: white;
+  height: auto;
+  padding: 0;
+  margin: 2rem 0 0;
+  background-color: transparent;
   position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.footer__crest {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.footer__nav {
-  display: block;
-
-  &.nav {
-    list-style: none;
-    padding: 0;
+  color: $color-text;
+  .footer__container {
+    overflow: hidden;
+  }
+  .footer__logo {
+    display: block;
+    margin: 0 0 1rem;
+    width: 150px;
+    @include mq(m) {
+      width: 220px;
+    }
+    @include fixed {
+      background: url("/_themes/census/ons-logo.png") no-repeat left top;
+      width: 250px;
+      height: 51px;
+      background-size: auto;
+      img {
+        display: none;
+      }
+    }
   }
 
-  .nav__item {
-    padding-left: 0;
-    margin-left: 0;
-    display: inline-block;
-    border-right: 1px solid $color-borders;
-    padding-right: 0.5rem;
-    margin-right: 0.5rem;
-
-    &:last-of-type {
-      border: none;
+  .footer__help {
+    background: $color-purple;
+    color: white;
+    padding: 0.5rem 0;
+    @include mq(xs, s) {
+      height: 4px;
+      padding: 0;
+      overflow: hidden;
     }
+    @include mq(s) {
+      padding: 0.5rem 0;
+    }
+    @include mq(m) {
+      padding: 1rem 0;
+    }
+    @include fixed {
+      height: auto;
+    }
+    a {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+
+  .footer__nav {
+    border-top: 1px solid $color-borders;
+    margin: 0 0 0.5rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    list-style: none;
+    @include mq(xs, s) {
+      .nav__item {
+        font-size: 10px;
+        margin: 0;
+        padding: 0 0.25rem;
+        &:first-child {
+          padding-left: 0;
+        }
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+      .nav__link {
+        letter-spacing: -0.01rem;
+      }
+    }
+    @include mq(m) {
+      margin: 0 0 2rem;
+    }
+    @include fixed() {
+      margin: 0 0 2rem;
+      .nav__item {
+        font-size: 1rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .footer__helpnav {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  .footer__back {
+    float: right;
+    position: relative;
+    top: -0.1rem;
+    width: auto;
+    display: block;
   }
 }

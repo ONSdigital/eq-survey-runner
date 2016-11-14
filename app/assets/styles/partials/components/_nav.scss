@@ -1,0 +1,51 @@
+.nav {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.nav--horizontal {
+  font-size: 0;
+  .nav__item {
+    font-size: 1rem;
+    display: inline-block;
+    margin: 0 0 0 0.5rem;
+    padding: 0 0.5rem 0 0;
+    position: relative;
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      height: 1em;
+      width: 1px;
+      background-color: $color-borders;
+      right: -1px;
+      bottom: 0;
+      top: 0;
+      margin: auto;
+    }
+    &:first-child {
+      margin-left: 0;
+      padding-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border: none;
+    }
+    @include fixed() {
+      border-right: 1px solid $color-borders;
+    }
+  }
+  .nav__link {
+    display: inline-block;
+  }
+}
+
+.nav__link {
+  color: $color-text;
+  text-decoration: none;
+  margin: 0;
+  &:hover {
+    color: $color-links;
+  }
+}

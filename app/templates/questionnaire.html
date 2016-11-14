@@ -6,10 +6,10 @@
 
 <div class="grid">
   <div class="grid__col col-8@m">
-    <div class="u-mb-xs">
+    <div class="u-mb-xs u-mb-m@m">
       <a id="top-previous" class="mars" href="{{previous_location}}">Previous</a>
     </div>
-    <br/>
+
     {% set state = content %}
 
     {% set all_errors = state.get_errors().items() %}
@@ -62,7 +62,6 @@
           </div>
 
       <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">Save and continue</button>
-      <br/>
       <div class="u-mt-xs">
         <a id="bottom-previous" class="mars" href="{{previous_location}}">Previous</a>
       </div>

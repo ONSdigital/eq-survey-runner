@@ -1,0 +1,19 @@
+.external {
+  // vertical-align: middle;
+  padding-right: 1.2em;
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    content: " ";
+    background: url("/s/img/icons/icons--external-link.svg") no-repeat center center;
+    background-size: 1.9em;
+    background-color: transparent !important;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+  }
+}
