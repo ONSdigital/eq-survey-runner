@@ -49,5 +49,5 @@ class StateAnswer(StateItem):
             'question_id': self.parent.id,
             'answer_id': self.id,
             'answer_instance': self.instance,
-            'value': self.value if self.value else None,
+            'value': self.value,
         }
