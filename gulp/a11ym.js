@@ -43,7 +43,7 @@ function gulpA11ym(url, opts, cb) {
 }
 
 export default function(done) {
-  gulpA11ym('http://localhost:5000/landing-page', {
+  gulpA11ym('http://localhost:5000/introduction', {
     output: './tests/a11y/'
   }, done)
 }

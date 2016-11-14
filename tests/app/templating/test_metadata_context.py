@@ -1,11 +1,9 @@
-from unittest.mock import patch
-
 from app.parser.metadata_parser import parse_metadata
-from app.templating.metadata_template_preprocessor import MetaDataTemplatePreprocessor
+from app.templating.metadata_context import build_metadata_context
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 
 
-class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
+class TestMetadataContext(SurveyRunnerTestCase):
     def setUp(self):
         super().setUp()
         self.jwt = {
@@ -26,25 +24,19 @@ class TestMetadataTemplatePreprocessor(SurveyRunnerTestCase):
         with self.application.test_request_context():
             self.metadata = parse_metadata(self.jwt)
 
-    def test_build_view_data(self):
-        metadata_preprocessor = MetaDataTemplatePreprocessor()
-
-        with patch('app.templating.metadata_template_preprocessor.get_metadata', return_value=self.metadata):
-            render_data = metadata_preprocessor.build_metadata(self.schema_json)
+    def test_build_metadata_context(self):
+        render_data = build_metadata_context(self.metadata)
 
         self.assertIsNotNone(render_data)
 
         survey_data = render_data['survey']
         self.assertIsNotNone(survey_data)
 
-        self.assertEqual(self.schema_json['title'], survey_data['title'])
-        self.assertEqual(self.schema_json['survey_id'], survey_data['survey_code'])
-        self.assertEqual(self.schema_json['introduction']['information_to_provide'], survey_data['information_to_provide'])
-        self.assertEqual(self.schema_json['theme'], survey_data['theme'])
-        self.assertEqual('7 July 2016', survey_data['return_by'])
-        self.assertEqual('2 February 2016', survey_data['start_date'])
-        self.assertEqual('3 March 2016', survey_data['end_date'])
+        self.assertEqual('7 July 2016', survey_data['return_by'].strftime('%-d %B %Y'))
+        self.assertEqual('2 February 2016', survey_data['start_date'].strftime('%-d %B %Y'))
+        self.assertEqual('3 March 2016', survey_data['end_date'].strftime('%-d %B %Y'))
         self.assertIsNone(survey_data['employment_date'])
+        self.assertIsNone(survey_data['region_code'])
         self.assertEqual(self.jwt["period_str"], survey_data['period_str'])
 
         respondent = render_data['respondent']

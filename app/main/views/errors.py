@@ -60,16 +60,22 @@ def internal_server_error(error=None):
 
 def log_exception(error):
     if error:
-        logger.error(error)
-        logger.exception(error)
+        tx_id = get_tx_id()
+        message = 'An error has occurred with tx_id [{}]: {}'.format(''.join(tx_id), error) if tx_id else 'An error has occurred: {}'.format(error)
+        logger.exception(message)
 
 
 def _render_error_page(status_code):
-    tx_id = None
-    metadata = get_metadata(current_user)
-    if metadata:
-        tx_id = convert_tx_id(metadata["tx_id"])
+    tx_id = get_tx_id()
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
     return render_theme_template('default', 'errors/error.html',
                                  status_code=status_code,
                                  ua=user_agent, tx_id=tx_id), status_code
+
+
+def get_tx_id():
+    tx_id = None
+    metadata = get_metadata(current_user)
+    if metadata:
+        tx_id = convert_tx_id(metadata["tx_id"])
+    return tx_id

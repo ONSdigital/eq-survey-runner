@@ -1,6 +1,7 @@
 import datetime
 import json
 import logging
+from contextlib import contextmanager
 
 from app import settings
 
@@ -11,6 +12,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import exc
 from sqlalchemy import event
 from sqlalchemy import select
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
@@ -100,3 +102,14 @@ def test_connection(connection, branch):
     finally:
         # restore "close with result"
         connection.should_close_with_result = save_should_close_with_result
+
+
+@contextmanager
+def commit_or_rollback(database_session):
+    try:
+        yield database_session
+        database_session.commit()
+        logger.debug("Committed")
+    except SQLAlchemyError:
+        database_session.rollback()
+        raise

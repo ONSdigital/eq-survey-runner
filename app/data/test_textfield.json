@@ -1,0 +1,76 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Other input fields",
+    "theme": "default",
+    "description": "A questionnaire to test textfields",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "0",
+    "messages": {
+      "INTEGER_TOO_LARGE": "Number is too large",
+      "NEGATIVE_INTEGER": "Number cannot be less than zero",
+      "NOT_INTEGER": "Please enter an integer"
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "block",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "section",
+                            "questions": [
+                              {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "answer",
+                                            "label": "What is your name?",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "question",
+                                    "title": "",
+                                    "type": "General"
+                              }
+                            ],
+                            "title": "Date Test",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                    ],
+                    "title": "",
+                    "validation": []
+                }],
+            "display": {
+                "properties": {}
+            },
+            "id": "group",
+            "title": ""
+        }
+    ]
+}

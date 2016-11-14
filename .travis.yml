@@ -1,10 +1,12 @@
 language: python
 sudo: required
 dist: trusty
-python:
-- '3.5'
+python: '3.5'
 env:
-- EQ_SCHEMA_BUCKET=""
+    global:
+    - EQ_SCHEMA_BUCKET=""
+    # Codacy
+    - secure: q3hyZhRj24C5sT7T0ViTDCwhT8eVjpanTf6BkPPBI43/6NBJeF1vi4/LkfJMQa0qwYibu5zB8jtkk2VsqGRMGvj9fMufOKXGqebOsPYWUJl1MZM3t7OZS57xF9wBUenZwx1oyb/VPrFB56ctGny1XEbF4l47NmbKWD1iMWG1f3Y6PCJ7o8o62v0irmfbdYFTsWjipCQlCrKZm+KVWZD25egIDJMDpq9e0nYNoSW+5fMXDGOtV20/U/rcmW5Lfn06ppJ0C4CaKHuM+MzZtZJwtiCI2TqF0ihQl7ry7YgpqEZLPHQYQ5npIpecxP1f/6ebcAPdKKkJ2Ccutrv/7IFlJo7rWLTB7mzJ4ep11HCdo3mL+JREp1HUJLeEngXFC3lKRXPHKukUxe4Lkz1/g6kdwCUZxajGTwML84FHmqoZxKGMKhMN+0n6rO8wEUR32q4+JbO5z/oQGhtjQZkogq8vWY6+/aq328hsbmy72s23AiX+BQUHqk2QFs3T9FQiqwn4OqqX4JKzmHs838LT+dUTFgH+mWo0lalxa3Pr7cJAwhn97VSnIdU9JTC8RyPWbAHkah78PXlL9guHI1nzQTjTcMm/yTlmtE2NxTSY+ZGIV+O5pcJm3HkAjZvNi/0jjDWwBHs/rZgj1t7Eoueh8dPTSZ12LmqKuBpvkrzLKcs2zt4=
 before_install:
 # install Chromedriver
 - export CHROME_BIN=/usr/bin/google-chrome
@@ -22,27 +24,24 @@ before_install:
 - sudo apt-get update -qq
 - sudo apt-get install -y -qq yarn
 cache:
+  pip: true
   directories:
   - $HOME/.yarn-cache
 install:
-- ". $HOME/.nvm/nvm.sh"
-- rm -rf node_modules
+- . $HOME/.nvm/nvm.sh
 - nvm install v6.9.1
-- yarn
 - pip install -U pip wheel
 - pip install --require-hashes -r requirements.txt
 - pip install -r requirements_for_test.txt
 before_script:
 - yarn compile
-- "./scripts/run_app.sh"
+- ./scripts/run_app.sh
 script:
-- "./scripts/run_tests.sh"
-# fail travis if under X% test coverage
-- coverage report --fail-under=77
-notifications:
-- slack: digitaleq:LDxJXRGeVmg3PpdUhp90eY3Z
+- ./scripts/run_tests.sh
 after_success:
 - bash <(curl -s https://codecov.io/bash)
+- pip install codacy-coverage
+- python-codacy-coverage -r coverage.xml
 branches:
   only:
-    - master
+  - master

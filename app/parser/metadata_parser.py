@@ -55,6 +55,7 @@ metadata_fields = {
     "return_by": MetadataField(validator=iso_8601_data_parser),
     "trad_as": MetadataField(mandatory=False),
     "employment_date": MetadataField(mandatory=False, validator=iso_8601_data_parser),
+    "region_code": MetadataField(mandatory=False),
     "tx_id": MetadataField(mandatory=False, validator=uuid_4_parser, generator=id_generator),
 }
 
@@ -77,7 +78,6 @@ def parse_metadata(metadata_to_check):
         logger.error("parse_metadata: Unable to parse")
         logger.exception(e)
         raise InvalidTokenException("Incorrect data in token")
-
     return parsed
 
 

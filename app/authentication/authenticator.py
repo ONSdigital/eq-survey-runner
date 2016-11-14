@@ -4,7 +4,7 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
-from app.authentication.session_management import session_manager
+from app.authentication.session_manager import session_manager
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_questionnaire_store

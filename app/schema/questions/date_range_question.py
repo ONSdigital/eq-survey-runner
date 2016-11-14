@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from app.schema.question import Question
 
 
@@ -10,8 +12,8 @@ class DateRangeQuestion(Question):
         if is_valid:
             state.errors = []
             state.is_valid = True
-            from_date = state.children[0].value
-            to_date = state.children[1].value
+            from_date = datetime.strptime(state.children[0].value, "%d/%m/%Y")
+            to_date = datetime.strptime(state.children[1].value, "%d/%m/%Y")
 
             if to_date == from_date:
                 state.is_valid = False

@@ -4,27 +4,34 @@
 
 {% block main %}
 
-  <div class="header u-mb-s">
-    <h1 class="header__title saturn">Submission Successful</h1>
-    <p>Thank you for submitting the {{ meta.survey.title }}, your responses have been successfully received.</p>
-  </div>
-  <div class="alert alert--simple alert--success alert--spacious">
-    <strong class="venus">{% if content.submitted_at %} Submitted on {{content.submitted_at}}{% endif %}</strong>
-    <p class="mars">Transaction ID (Please quote this reference for any support queries)</p>
-    {% if meta.respondent %}
-    <ul class="list list--boxes">
-    {%for id_part in meta.respondent.tx_id%}<li class="list__item">{{id_part}}</li>{% endfor %}
-    </ul>
-    {% endif %}
-    <p class="u-mb-no mars">You may wish to save or print this page for your records.</p>
-  </div>
-  {{answer_guidance|safe}}
+  <div class="grid">
+    <div class="grid__col col-8@m">
 
+      <div class="header u-mb-s">
+        <h1 class="header__title saturn">Submission Successful</h1>
+        <p>Thank you for submitting the {{ schema['title'] }}, your responses have been successfully received.</p>
+      </div>
 
-  <div class="u-mt-s">
-    <div class="mars">For more information on how we use this data.</div>
-    <p class="u-mb-m@s mars"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
-    <p class="mars">It is now safe to close this window.</p>
+      <div class="alert alert--simple alert--success alert--spacious">
+        <strong class="venus">{% if content.submitted_at %} Submitted on {{content.submitted_at}}{% endif %}</strong>
+        <p class="mars">Transaction ID (Please quote this reference for any support queries)</p>
+        {% if meta.respondent %}
+        <ul class="list list--boxes">
+        {%for id_part in meta.respondent.tx_id%}<li class="list__item">{{id_part}}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        <p class="u-mb-no mars">You may wish to save or print this page for your records.</p>
+      </div>
+
+      {{answer_guidance|safe}}
+
+      <div class="u-mt-s">
+        <div class="mars">For more information on how we use this data.</div>
+        <p class="u-mb-m@s mars"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
+        <p class="mars">It is now safe to close this window.</p>
+      </div>
+
+    </div>
   </div>
 
 {% endblock %}
