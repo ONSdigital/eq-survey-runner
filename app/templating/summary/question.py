@@ -25,14 +25,10 @@ class Question:
         answers_iterator = iter(answer_schema)
         for answer_schema in answers_iterator:
             if question_schema['type'] == 'RepeatingAnswer':
-                answer_instances = {}
                 for k, v in answers.items():
                     if k.startswith(answer_schema['id']):
-                        answer_instances[k] = v
-
-                for answer_instance in answer_instances.keys():
-                    answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator, answer_instance)
-                    summary_answers.append(Answer(block_id, answer_schema, answer))
+                        answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator, k)
+                        summary_answers.append(Answer(block_id, answer_schema, answer))
 
             else:
                 answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator)
