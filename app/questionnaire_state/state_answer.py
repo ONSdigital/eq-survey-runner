@@ -1,4 +1,4 @@
-
+from app.data_model.answer_store import Answer
 from app.questionnaire_state.state_item import StateItem
 
 
@@ -42,3 +42,11 @@ class StateAnswer(StateItem):
 
     def get_answers(self):
         return [self]
+
+    def flatten(self):
+        return Answer(
+            block_id=self.parent.parent.parent.id,
+            answer_id=self.id,
+            answer_instance=self.instance,
+            value=self.value,
+        )

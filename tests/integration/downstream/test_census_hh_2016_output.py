@@ -2,7 +2,6 @@ from werkzeug.datastructures import MultiDict
 
 from tests.integration.create_token import create_token
 from tests.integration.downstream.downstream_test_case import DownstreamTestCase
-from tests.integration.mci import mci_test_urls
 
 
 class TestCensusHH2016OutputFormat(DownstreamTestCase):
@@ -18,9 +17,13 @@ class TestCensusHH2016OutputFormat(DownstreamTestCase):
         super().setUp()
         self.token = create_token('hh2016', '0')
 
-    def test_output_format(self):
+    def get_first_page(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
+        return resp
+
+    def test_output_format(self):
+        resp = self.get_first_page()
 
         # We are on the landing page
         content = resp.get_data(True)

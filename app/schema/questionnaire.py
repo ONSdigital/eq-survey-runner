@@ -28,10 +28,8 @@ class Questionnaire(object):
             group.container = self
 
     def get_item_by_id(self, item_id):
-
         if item_id == self.id:
             return self
-
         elif item_id in self.items_by_id.keys():
             return self.items_by_id[item_id]
         else:
@@ -69,7 +67,7 @@ class Questionnaire(object):
         if error in schema_item.messages.keys():
             return schema_item.messages[error]
 
-        # Try get the erro message from the quetionnaire
+        # Try get the error message from the questionnaire
         if error in self.messages.keys():
             return self.messages[error]
 
