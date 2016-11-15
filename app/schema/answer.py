@@ -30,7 +30,7 @@ class Answer(Item):
         self.widget = None
         self.skip_condition = None
 
-    def construct_state(self, answers=None):
+    def construct_state(self):
         return StateAnswer(self.id, self)
 
     def get_state_class(self):

@@ -1,5 +1,3 @@
-import logging
-
 from app.schema.answer import Answer
 from app.schema.display import Display
 from app.schema.exceptions import QuestionnaireException

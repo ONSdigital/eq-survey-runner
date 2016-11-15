@@ -19,8 +19,8 @@ class Answer(object):
         :return: True if both answers match, otherwise False.
         """
         return self.block_id == answer.block_id and \
-               self.answer_id == answer.answer_id and \
-               self.answer_instance == answer.answer_instance
+            self.answer_id == answer.answer_id and \
+            self.answer_instance == answer.answer_instance
 
     def matches_dict(self, answer_dict):
         """
@@ -196,8 +196,8 @@ class AnswerStore(object):
         :param answer: A dict of flattened answer details.
         """
         index = self.find(answer)
-        del self.answers[index]
-
+        if index:
+            del self.answers[index]
 
 
 def number_else_string(text):

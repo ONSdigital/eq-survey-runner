@@ -91,7 +91,7 @@ class QuestionnaireManager(object):
         self.state = None
         if self._schema.item_exists(item_id):
             schema_item = self._schema.get_item_by_id(item_id)
-            self.state = schema_item.construct_state(answers)
+            self.state = schema_item.construct_state()
             self.state.update_state(answers)
             self._conditional_display(self.state)
         if self.state:
@@ -147,9 +147,7 @@ class QuestionnaireManager(object):
         new_answer = answer_schema.construct_state()
 
         answer_store = get_answer_store(current_user)
-        existing = answer_store.filter({
-          'answer_id': answer_schema.id,
-        })
+        existing = answer_store.filter(answer_id=answer_schema.id)
         last_answer = existing[-1:]
         next_instance_id = 0 if len(last_answer) == 0 else int(last_answer[0]['answer_instance']) + 1
         new_answer_schema = copy.deepcopy(new_answer.schema_item)

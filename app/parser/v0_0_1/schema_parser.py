@@ -30,7 +30,6 @@ from app.schema.properties import Properties
 from app.schema.questionnaire import Questionnaire
 from app.schema.questions.date_range_question import DateRangeQuestion
 from app.schema.questions.general_question import GeneralQuestion
-from app.schema.questions.repeating_answer_question import RepeatingAnswerQuestion
 from app.schema.section import Section
 from app.schema.skip_condition import SkipCondition
 
@@ -73,7 +72,7 @@ class SchemaParser(AbstractSchemaParser):
         self.question_factory.register_all({
             'GENERAL': GeneralQuestion,
             'DATERANGE': DateRangeQuestion,
-            'REPEATINGANSWER': RepeatingAnswerQuestion,
+            'REPEATINGANSWER': GeneralQuestion,
         })
 
     def get_parser_version(self):
