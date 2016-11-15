@@ -1,0 +1,139 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Test Conditional Routing",
+    "description": "",
+    "theme": "default",
+    "eq_id": "1",
+    "introduction": {
+        "description": ""
+    },
+    "groups": [{
+        "blocks": [{
+            "id": "conditional-routing-block",
+            "title": "Test Conditional Routing",
+            "sections": [{
+                "title": "Conditional Routing Test",
+                "description": "",
+                "id": "conditional-routing-section",
+                "questions": [{
+                    "id": "conditional-routing-question",
+                    "title": "Do you drink coffee?",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "options": [
+                            {
+                                "label": "Yes",
+                                "value": "yes",
+                                "description": ""
+                            },
+                            {
+                                "label": "No, I prefer tea",
+                                "value": "no",
+                                "description": ""
+                            }
+                        ],
+                        "q_code": "1",
+                        "guidance": "",
+                        "id": "conditional-routing-answer",
+                        "label": "Which conditional question should we jump to?",
+                        "mandatory": true,
+                        "type": "Radio",
+                        "validation": {
+                            "messages": {
+                                "MANDATORY": "Please answer before continuing."
+                            }
+                        }
+                    }]
+                }]
+            }],
+            "routing_rules":[
+                {
+                    "goto": {
+                        "id" : "response-yes",
+                        "when": {
+                            "id" : "conditional-routing-answer",
+                            "condition": "equals",
+                            "value":"yes"
+                        }
+                    }
+
+                },
+                {
+                    "goto": {
+                        "id": "response-no",
+                        "when": {
+                            "id" : "conditional-routing-answer",
+                            "condition": "equals",
+                            "value":"no"
+                        }
+                    }
+
+                }
+            ]
+        },
+        {
+            "id": "response-yes",
+            "title": "You responded yes",
+            "sections": [{
+                "title": "Yes, I do drink coffee",
+                "description": "",
+                "id": "response-yes-section",
+                "questions": [{
+                    "id": "response-yes-question",
+                    "title": "How many cups of coffee do you drink a day?",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "display": {},
+                        "id": "response-yes-number-of-cups",
+                        "label": "Number of cups",
+                        "mandatory": true,
+                        "options": [],
+                        "q_code": "2",
+                        "type": "PositiveInteger",
+                        "validation": {}
+                    }]
+                }]
+            }],
+            "routing_rules":[
+                {
+                    "goto": {
+                        "id" : "summary"
+                    }
+
+                }
+            ]
+        },
+        {
+            "id": "response-no",
+            "title": "You responded no",
+            "sections": [{
+                "title": "No, I prefer tea",
+                "description": "",
+                "id": "response-no-section",
+                "questions": [{
+                    "id": "response-no-question",
+                    "title": "How many cups of tea do you drink a day?",
+                    "description": "",
+                    "type": "General",
+                    "answers": [{
+                        "display": {},
+                        "id": "response-no-number-of-cups",
+                        "label": "Number of cups",
+                        "mandatory": true,
+                        "options": [],
+                        "q_code": "2",
+                        "type": "PositiveInteger",
+                        "validation": {}
+                    }]
+                }]
+            }]
+        }],
+        "id": "conditional-routing-within-group",
+        "title": "Conditional routing within group"
+    }]
+}

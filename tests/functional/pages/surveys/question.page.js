@@ -13,6 +13,10 @@ class QuestionPage {
     return browser.isExisting('.js-inpagelink')
   }
 
+  previous(){
+    return browser.click('a[name="previous"]')
+  }
+
 }
 
 export default QuestionPage

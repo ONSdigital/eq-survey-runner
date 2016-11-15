@@ -10,7 +10,7 @@ class TestQuestionnaireEndpointErrors(IntegrationTestCase):
         self.client.get('/session?token=' + token.decode(), follow_redirects=False)
 
         # When
-        resp = self.client.get(mci_test_urls.MCI_0205_BASE + 'test', follow_redirects=False)
+        resp = self.client.get(mci_test_urls.MCI_0205_BASE + 'some_group/0/test', follow_redirects=False)
 
         # Then
         self.assertEquals(resp.status_code, 404)
