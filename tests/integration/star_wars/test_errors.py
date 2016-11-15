@@ -89,11 +89,11 @@ class TestPageErrors(StarWarsTestCase):
         post_data = {'action[start_questionnaire]': 'Start Questionnaire'}
         self.client.post('/questionnaire/test/skip_condition/201604/789/introduction', data=post_data, follow_redirects=True)
         post_data = {'food-answer': 'Bacon', 'action[save_continue]': 'Save &amp; Continue'}
-        self.client.post('/questionnaire/test/skip_condition/201604/789/food-block', data=post_data, follow_redirects=True)
+        self.client.post('/questionnaire/test/skip_condition/201604/789/breakfast/0/food-block', data=post_data, follow_redirects=True)
 
         # When submit no answers which is invalid
         post_data = {'action[save_continue]': 'Save &amp; Continue'}
-        resp = self.client.post('/questionnaire/test/skip_condition/789/drink-block', data=post_data)
+        resp = self.client.post('/questionnaire/test/skip_condition/789/breakfast/0/drink-block', data=post_data)
 
         # Then errors exists on page
         self.assertEqual(resp.status_code, 200)

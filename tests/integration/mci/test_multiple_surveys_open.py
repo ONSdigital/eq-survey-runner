@@ -15,7 +15,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
         }
 
         first_survey_resp = self.client.post('/questionnaire/1/0205/789/introduction', data=post_data, follow_redirects=False)
-        self.assertRegexpMatches(first_survey_resp.headers['Location'], r'\/questionnaire\/1\/0205\/789\/cd3b74d1-b687-4051-9634-a8f9ce10a27d$')
+        self.assertRegexpMatches(first_survey_resp.headers['Location'], r'\/questionnaire\/1\/0205\/789\/14ba4707-321d-441d-8d21-b8367366e766\/0\/cd3b74d1-b687-4051-9634-a8f9ce10a27d$')
 
         # We start the second survey
         second_survey_token = create_token('0203', '1')
@@ -26,7 +26,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
         }
 
         second_survey_resp = self.client.post('/questionnaire/1/0203/789/introduction', data=post_data, follow_redirects=False)
-        self.assertRegexpMatches(second_survey_resp.headers['Location'], r'\/questionnaire\/1\/0203\/789\/cd3b74d1-b687-4051-9634-a8f9ce10a27d$')
+        self.assertRegexpMatches(second_survey_resp.headers['Location'], r'\/questionnaire\/1\/0203\/789\/14ba4707-321d-441d-8d21-b8367366e766\/0\/cd3b74d1-b687-4051-9634-a8f9ce10a27d$')
 
         # We now try to post to the first survey, which is out of date
         form_data = {

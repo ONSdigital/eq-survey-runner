@@ -42,7 +42,7 @@
               {%- endif -%}
             </div>
             <div class="summary__edit">
-              <a href="{{answer.link}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit">Edit <span class="u-vh">your answer</span></a>
+              <a href="{{ url_for('questionnaire.get_block', eq_id=meta.survey.eq_id, form_type=meta.survey.form_type, collection_id=meta.survey.collection_exercise_sid, group_id=section.group_id, group_instance=section.group_instance, block_id=section.block_id) }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit">Edit <span class="u-vh">your answer</span></a>
             </div>
           </div>
 

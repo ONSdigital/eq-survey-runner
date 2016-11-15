@@ -41,6 +41,9 @@ def _build_respondent_meta(metadata):
 
 def _build_survey_meta(metadata):
     return {
+        "eq_id": metadata['eq_id'],
+        "collection_exercise_sid": metadata['collection_exercise_sid'],
+        "form_type": metadata['form_type'],
         "return_by": to_date(metadata["return_by"]),
         "start_date":  to_date(metadata["ref_p_start_date"]),
         "end_date": to_date(metadata["ref_p_end_date"]),
