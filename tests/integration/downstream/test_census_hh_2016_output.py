@@ -2,7 +2,6 @@ from werkzeug.datastructures import MultiDict
 
 from tests.integration.create_token import create_token
 from tests.integration.downstream.downstream_test_case import DownstreamTestCase
-from tests.integration.mci import mci_test_urls
 
 
 class TestCensusHH2016OutputFormat(DownstreamTestCase):

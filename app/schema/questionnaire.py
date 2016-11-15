@@ -30,8 +30,6 @@ class Questionnaire(object):
             group.container = self
 
     def get_item_by_id(self, item_id):
-        logging.debug("Key: %s, items %s" % (item_id, str(self.items_by_id)))
-
         if item_id == self.id:
             return self
         elif item_id in self.items_by_id.keys():

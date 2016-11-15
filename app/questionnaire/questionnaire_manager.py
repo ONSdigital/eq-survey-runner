@@ -64,6 +64,18 @@ class QuestionnaireManager(object):
 
         return True, None
 
+    def update_questionnaire_store(self, location):
+        # Store answers in QuestionnaireStore
+        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+        for answer in self.get_state_answers(location):
+            questionnaire_store.answer_store.add_or_update(answer.flatten())
+
+        if location not in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.append(location)
+
+        questionnaire_store.save()
+
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
 
@@ -73,17 +85,6 @@ class QuestionnaireManager(object):
             self.update_questionnaire_store(location)
 
         return is_valid
-
-    def update_questionnaire_store(self, location):
-        # Store answers in QuestionnaireStore
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        for answer in self.get_state_answers(location):
-            questionnaire_store.answers.add(answer.flatten())
-
-        if location not in questionnaire_store.completed_blocks:
-            questionnaire_store.completed_blocks.append(location)
-
-        questionnaire_store.save()
 
     def build_state(self, item_id, answers):
         # Build the state from the answers

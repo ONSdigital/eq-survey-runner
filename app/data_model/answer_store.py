@@ -3,26 +3,67 @@ import re
 from collections import OrderedDict
 
 
+class Answer(object):
+    def __init__(self, answer_id, block_id, value, answer_instance=0):
+        self.answer_id = answer_id
+        self.block_id = block_id
+        self.answer_instance = answer_instance
+        self.value = value
+
+    def matches(self, answer):
+        """
+        Check to see if two answers match.
+        Two answers are considered to match if they share the same block, answer and instance id.
+
+        :param answer: An answer to compare
+        :return: True if both answers match, otherwise False.
+        """
+        return self.block_id == answer.block_id and \
+               self.answer_id == answer.answer_id and \
+               self.answer_instance == answer.answer_instance
+
+    def matches_dict(self, answer_dict):
+        """
+        Check to see if a dict describes an answer the same as this object.
+
+        :param answer_dict: A dict providing
+        :return:
+        """
+
+        return self.matches(Answer(
+            answer_dict['answer_id'],
+            answer_dict['block_id'],
+            "",
+            answer_dict['answer_instance'],
+        ))
+
+
 class AnswerStore(object):
     """
-    An object that stores the flattened structure of AnswerStates.
-    It is referenced by the answers property in the QuestionnaireStore.
+    An object that stores and updates a collection of answers, ready for serialisation
+    via the Questionnaire Store.
     """
 
     def __init__(self, existing_answers=None):
-        self.answers = existing_answers if existing_answers is not None else []
+        self.answers = existing_answers or []
+
+    @staticmethod
+    def _validate(answer):
+        if not isinstance(answer, Answer):
+            raise TypeError("Method only supports Answer argument type")
 
     def add(self, answer):
         """
         Add a new answer into the answer store.
 
         :param answer: A dict of flattened answer details.
-        :return: None.
         """
-        answer_to_add = answer.copy()
+        self._validate(answer)
 
-        if self.exists(answer_to_add):
-            self.update(answer)
+        answer_to_add = answer.__dict__.copy()
+
+        if self.exists(answer):
+            raise ValueError("Answer instance already exists in store")
         else:
             self.answers.append(answer_to_add)
 
@@ -31,36 +72,53 @@ class AnswerStore(object):
         Update the value of an answer already in the answer store.
 
         :param answer: A dict of flattened answer details.
-        :return:
         """
-        for index, existing in enumerate(self.answers):
-            if self.same(existing, answer):
-                self.answers[index]['value'] = answer['value']
-                break
+        position = self.find(answer)
 
-    def remove(self, answer):
-        """
-        Removes an answer from the answer store.
+        if position is None:
+            raise ValueError("Answer instance does not exist in store")
+        else:
+            self.answers[position]['value'] = answer.value
 
-        :param answer: A dict of flattened answer details.
+    def add_or_update(self, answer):
         """
-        found_answers = self.find(answer)
-        for found in found_answers:
-            self.answers.remove(found)
+        Add a new answer into the answer store, or update if it exists.
+
+        :param answer: An answer object.
+        """
+        if self.exists(answer):
+            self.update(answer)
+        else:
+            self.add(answer)
+
+    def get(self, answer):
+        """
+        Returns the value of an answer.
+
+        :param answer: The ids for the answer to return
+        :return: The value of the answer found
+        """
+        position = self.find(answer)
+
+        if position is None:
+            raise ValueError("Answer instance does not exist in store")
+        else:
+            return self.answers[position]['value']
 
     def find(self, answer):
         """
-        Finds all instances of an answer.
+        Returns the position of an answer if it exists
 
-        :param answer: A dict of flattened answer details.
-        :return:
+        :param answer: The answer to search for
+        :return: The position the answer exists at, None if it doesn't exist
         """
-        found = []
-        for existing in self.answers:
-            if self.same(answer, existing):
-                found.append(existing)
+        self._validate(answer)
 
-        return found
+        for index, existing in enumerate(self.answers):
+            if answer.matches_dict(existing):
+                return index
+
+        return None
 
     def exists(self, answer):
         """
@@ -69,7 +127,7 @@ class AnswerStore(object):
         :param answer: A dict of flattened answer details.
         :return: True if the answer is in the store, False if not.
         """
-        return self.count(answer) > 0
+        return self.find(answer) is not None
 
     def count(self, answer):
         """
@@ -78,35 +136,29 @@ class AnswerStore(object):
         :param answer: A dict of flattened answer details.
         :return: 0 if the answer doesn't exist, otherwise the number of instances.
         """
-        return len(self.find(answer))
+        self._validate(answer)
 
-    @staticmethod
-    def same(first, second):
-        """
-        Check to see if two answers are the same.
-        Two answers are considered the same if they share the same block, question, answer and instance Id.
+        return len(self.filter(answer.answer_id, answer.block_id, answer.answer_instance))
 
-        :param first: A dict of flattened answer details
-        :param second: A dict of flattened answer details.
-        :return: True if both answers are the same, otherwise False.
-        """
-        return (first['block_id'] == second['block_id'] and
-                first['question_id'] == second['question_id'] and
-                first['answer_id'] == second['answer_id'] and
-                first['answer_instance'] == second['answer_instance'])
-
-    def filter(self, filter_vars):
+    def filter(self, answer_id=None, block_id=None, answer_instance=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
 
-        :param filter_vars: The filter parameters to match against.
-        :return: A list of answer instances that match the filter.
+        :param answer_id:
+        :param block_id:
+        :param answer_instance:
+        :return:
         """
         filtered = []
+        filter_vars = {
+            "answer_id": answer_id,
+            "block_id": block_id,
+            "answer_instance": answer_instance,
+        }
         for answer in self.answers:
             matches = True
             for k, v in filter_vars.items():
-                if k in ['block_id', 'question_id', 'answer_id', 'answer_instance']:
+                if v is not None:
                     matches = matches and answer[k] == v
             if matches:
                 filtered.append(answer)
@@ -115,17 +167,19 @@ class AnswerStore(object):
     def clear(self):
         self.answers.clear()
 
-    def map(self, filter_vars=None):
+    def map(self, answer_id=None, block_id=None, answer_instance=None):
         """
         Maps the answers in this store to a dictionary of key, value answers. Keys include instance
         id's when the instance id is non zero.
 
-        :param filter_vars:
+        :param answer_id:
+        :param block_id:
+        :param answer_instance:
         :return:
         """
         result = {}
-
-        answers = self.filter(filter_vars) if filter_vars else self.answers
+        use_filter = (answer_id or block_id or answer_instance) is not None
+        answers = self.filter(answer_id, block_id, answer_instance) if use_filter else self.answers
 
         for answer in answers:
             answer_id = answer['answer_id']
@@ -135,10 +189,25 @@ class AnswerStore(object):
 
         return OrderedDict(sorted(result.items(), key=lambda t: natural_order(t[0])))
 
+    def remove(self, answer):
+        """
+        Removes an answer from the answer store.
 
-def atoi(text):
+        :param answer: A dict of flattened answer details.
+        """
+        index = self.find(answer)
+        del self.answers[index]
+
+
+
+def number_else_string(text):
     return int(text) if text.isdigit() else text
 
 
 def natural_order(key):
-    return [atoi(c) for c in re.split('(\d+)', key)]
+    """
+    Orders a set of items according to
+    :param key:
+    :return:
+    """
+    return [number_else_string(c) for c in re.split('(\d+)', key)]

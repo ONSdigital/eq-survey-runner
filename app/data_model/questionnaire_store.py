@@ -10,9 +10,9 @@ class QuestionnaireStore:
 
     def __init__(self, user_id, user_ik):
 
-        self.metadata_store = {}
+        self.metadata = {}
         self.answer_store = AnswerStore()
-        self.completed_block_store = []
+        self.completed_blocks = []
 
         if user_id and user_ik:
             self.user_id = user_id
@@ -33,7 +33,7 @@ class QuestionnaireStore:
                 self.answer_store.answers = data['ANSWERS']
 
             if 'COMPLETED_BLOCKS' in data:
-                self.completed_block_store = data['COMPLETED_BLOCKS']
+                self.completed_blocks = data['COMPLETED_BLOCKS']
 
     def delete(self):
         logger.debug("Deleting questionnaire data for %s", self.user_id)
@@ -42,24 +42,8 @@ class QuestionnaireStore:
     def save(self):
         data = {
             "METADATA": self.metadata,
-            "ANSWERS": self.answers.answers,
+            "ANSWERS": self.answer_store.answers,
             "COMPLETED_BLOCKS": self.completed_blocks,
         }
         logger.debug("Saving user data %s for user id %s", data, self.user_id)
         self.storage.store(data=data, user_id=self.user_id, user_ik=self.user_ik)
-
-    @property
-    def metadata(self):
-        return self.metadata_store
-
-    @metadata.setter
-    def metadata(self, metadata):
-        self.metadata_store = metadata
-
-    @property
-    def answers(self):
-        return self.answer_store
-
-    @property
-    def completed_blocks(self):
-        return self.completed_block_store
