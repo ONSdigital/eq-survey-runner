@@ -1,7 +1,7 @@
 import copy
 import logging
 
-from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
+from app.globals import get_answers, get_metadata, get_questionnaire_store
 from app.questionnaire.navigator import Navigator, evaluate_rule
 from app.templating.schema_context import build_schema_context
 from app.templating.template_renderer import renderer
@@ -127,7 +127,7 @@ class QuestionnaireManager(object):
     def get_schema(self):
         return self._schema
 
-    def add_answer(self, block, question, post_data):
+    def add_answer(self, block, question, post_data, answer_store):
         if self.state is None:
             self.process_incoming_answers(block, post_data)
 
@@ -135,18 +135,17 @@ class QuestionnaireManager(object):
         question_state = self.state.find_state_item(question_schema)
 
         answer_schema = question_schema.answers[0]  # Single answer for now.
-        new_answer = self._create_new_answer(answer_schema, question_state)
+        new_answer = self._create_new_answer(answer_schema, question_state, answer_store)
 
         question_answers = question_state.children
         question_answers.append(new_answer)
 
         self.update_questionnaire_store(block)
 
-    @classmethod
-    def _create_new_answer(cls, answer_schema, question_state):
+    @staticmethod
+    def _create_new_answer(answer_schema, question_state, answer_store):
         new_answer = answer_schema.construct_state()
 
-        answer_store = get_answer_store(current_user)
         existing = answer_store.filter(answer_id=answer_schema.id)
         last_answer = existing[-1:]
         next_instance_id = 0 if len(last_answer) == 0 else int(last_answer[0]['answer_instance']) + 1
@@ -157,7 +156,7 @@ class QuestionnaireManager(object):
         new_answer.instance = next_instance_id
         return new_answer
 
-    def remove_answer(self, block, question, post_data):
+    def remove_answer(self, block, post_data, answer_store):
         if self.state is None:
             self.process_incoming_answers(block, post_data)
 
@@ -166,6 +165,5 @@ class QuestionnaireManager(object):
         question = answer.parent
         question.remove_answer(answer)
 
-        answer_store = get_answer_store(current_user)
         answer_store.remove(answer.flatten())
         self.update_questionnaire_store(block)

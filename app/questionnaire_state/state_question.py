@@ -13,9 +13,6 @@ class StateQuestion(StateItem):
         if answer in self.answers:
             self.answers.remove(answer)
 
-        if answer in self.children:
-            self.children.remove(answer)
-
     def update_state(self, user_input):
 
         if self.schema_item.type == 'RepeatingAnswer':
@@ -27,7 +24,7 @@ class StateQuestion(StateItem):
                 num_instances = len(answer_instances)
 
                 if num_instances > 1:
-                    for index, value in enumerate(answer_instances):
+                    for index in range(num_instances):
                         if index == 0:
                             child.update_state(user_input)
                         else:
@@ -52,8 +49,8 @@ class StateQuestion(StateItem):
         self.children.append(new_answer)
         return new_answer
 
-    @classmethod
-    def _get_instance_id(cls, answer_instances, answer_id, index):
+    @staticmethod
+    def _get_instance_id(answer_instances, answer_id, index):
         num_instances = len(answer_instances)
         if num_instances == 0:
             instance_id = index

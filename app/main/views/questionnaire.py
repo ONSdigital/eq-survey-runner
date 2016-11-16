@@ -1,7 +1,7 @@
 import logging
 
 from app.authentication.session_manager import session_manager
-from app.globals import get_answers, get_completed_blocks, get_metadata, get_questionnaire_store
+from app.globals import get_answer_store, get_answers, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
 from app.submitter.submitter import SubmitterFactory
 from app.templating.introduction_context import get_introduction_context
@@ -128,7 +128,8 @@ def submit_answers(eq_id, form_type, collection_id):
 @action_blueprint.route('<location>/<question>/add', methods=["POST"])
 @login_required
 def add_answer(eq_id, form_type, collection_id, location, question):
-    get_questionnaire_manager(g.schema, g.schema_json).add_answer(location, question, request.form)
+    answer_store = get_answer_store(current_user)
+    get_questionnaire_manager(g.schema, g.schema_json).add_answer(location, question, request.form, answer_store)
 
     return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
 
@@ -136,7 +137,8 @@ def add_answer(eq_id, form_type, collection_id, location, question):
 @action_blueprint.route('<location>/<question>/remove', methods=["POST"])
 @login_required
 def remove_answer(eq_id, form_type, collection_id, location, question):
-    get_questionnaire_manager(g.schema, g.schema_json).remove_answer(location, question, request.form)
+    answer_store = get_answer_store(current_user)
+    get_questionnaire_manager(g.schema, g.schema_json).remove_answer(location, request.form, answer_store)
 
     return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
 
