@@ -57,6 +57,9 @@ class DateWidget(Widget):
                     'text': 'Month',
                 },
                 'select': {
+                    'mandatory': False,   # This needs wiring up
+                    'placeholder': 'Select month',
+                    'selected': bool(month),
                     'options': self._get_months(month),
                     'name': self.name + '-month',
                     'id': self.name + '-month',
