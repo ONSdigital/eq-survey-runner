@@ -2813,17 +2813,12 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "id" : "jobseeker",
+                                "id" : "household-member-completed",
                                 "when": {
                                     "id" : "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "not equals",
                                     "value":"none of the above"
                                 }
-                            }
-                        },
-                        {
-                            "goto": {
-                                "id" : "household-member-completed"
                             }
                         }
                     ]
