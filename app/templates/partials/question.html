@@ -27,43 +27,40 @@
  <div class="question__answers">
    {%- if question.schema_item.type == 'RepeatingAnswer' %}
      {%- for answer in question.answers %}
-        <div class="question__answer js-household-person">
-       <h3 class="neptune">Person <span class="js-household-loopindex">{{ loop.index }}</span>
-         <small>(
-         {%- if loop.index == 1 -%}
-            <span class="js-household-action">{{ _('You') }}</span>
-         {%- else -%}
-         <button class="btn btn--link"
-            formaction="{{ url_for('action.remove_answer',
-              eq_id=meta.survey.eq_id,
-              collection_id=meta.survey.collection_id,
-              form_type=meta.survey.form_type,
-              location=content.id,
-              question=question.schema_item.id) }}"
-            name="action[remove_answer]" value="{{ loop.index0 }}">{{ _('Remove') }} <span class="u-vh">{{ _('Person') }} {{loop.index0}}</span></button>
-         {%- endif -%}
-         )</small>
-       </h3>
-       {% include theme('partials/answer.html') %}
+       <div class="question__answer js-household-person">
+         <h3 class="neptune">Person <span class="js-household-loopindex">{{ loop.index }}</span>
+           <small>(
+           {%- if loop.index == 1 -%}
+              <span class="js-household-action">{{ _('You') }}</span>
+           {%- else -%}
+           <button class="btn btn--link"
+              formaction="{{ url_for('action.remove_answer',
+                eq_id=meta.survey.eq_id,
+                collection_id=meta.survey.collection_id,
+                form_type=meta.survey.form_type,
+                location=content.id,
+                question=question.schema_item.id) }}"
+              name="action[remove_answer]" value="{{ loop.index0 }}">{{ _('Remove') }} <span class="u-vh">{{ _('Person') }} {{loop.index0}}</span></button>
+           {%- endif -%}
+           )</small>
+         </h3>
+         {% include theme('partials/answer.html') %}
        </div>
      {%- endfor %}
    {%- else %}
-    <div class="question__answers">
      {%- for answer in question.answers -%}
       <div class="question__answer">
        {% include theme('partials/answer.html') %}
      </div>
      {%- endfor -%}
-     </div>
    {%- endif %}
  </div>
 {% endset %}
 
 {% set question_actions %}
-
-<div class="question__actions">
   {%- if question.schema_item.type == 'RepeatingAnswer' %}
-  <button class="btn btn--border btn--secondary venus js-household-btn" type="submit"
+  <div class="question__actions">
+    <button class="btn btn--border btn--secondary venus js-household-btn" type="submit"
           formaction="{{ url_for('action.add_answer',
             eq_id=meta.survey.eq_id,
             collection_id=meta.survey.collection_id,
@@ -71,8 +68,8 @@
             location=content.id,
             question=question.schema_item.id) }}"
           name="action[add_answer]">{{ _('Add another person') }}</button>
+  </div>
   {%- endif %}
-</div>
 {% endset %}
 
 
@@ -129,7 +126,6 @@
   {% else %}
 
     {{question_markup|safe}}
-
     {{question_actions|safe}}
 
   {% endif %}
