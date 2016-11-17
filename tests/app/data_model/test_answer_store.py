@@ -14,6 +14,8 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
 
@@ -27,6 +29,8 @@ class TestAnswerStore(unittest.TestCase):
                 "block_id": "3",
                 "answer_id":"4",
                 "answer_instance": 1,
+                "group_id":"5",
+                "group_instance": 1,
                 "value": 25,
             })
 
@@ -37,6 +41,8 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
         self.store.add(answer_1)
@@ -51,6 +57,8 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
 
@@ -64,6 +72,8 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
 
@@ -77,12 +87,16 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
 
         answer_2 = Answer(
             block_id="4",
             answer_id="5",
+            group_id="6",
+            group_instance=1,
             value=56,
         )
 
@@ -97,6 +111,8 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=[23, 45, 67],
         )
 
@@ -110,12 +126,16 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
         answer_2 = Answer(
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=65,
         )
 
@@ -126,6 +146,8 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
         self.store.add(answer_1)
@@ -145,12 +167,16 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
         answer_2 = Answer(
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=65,
         )
 
@@ -163,6 +189,8 @@ class TestAnswerStore(unittest.TestCase):
             block_id="3",
             answer_id="4",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
         )
 
         self.assertEqual(store_match, [answer_2.__dict__])
@@ -173,12 +201,16 @@ class TestAnswerStore(unittest.TestCase):
             block_id="1",
             answer_id="2",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
         answer_2 = Answer(
             block_id="1",
             answer_id="5",
             answer_instance=1,
+            group_id="6",
+            group_instance=1,
             value=65,
         )
 
@@ -193,18 +225,26 @@ class TestAnswerStore(unittest.TestCase):
 
         self.assertEqual(len(filtered), 1)
 
+        filtered = self.store.filter(group_id="6")
+
+        self.assertEqual(len(filtered), 1)
+
     def test_maps_answers(self):
 
         answer_1 = Answer(
             block_id="1",
             answer_id="2",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
         answer_2 = Answer(
             block_id="1",
             answer_id="5",
             answer_instance=1,
+            group_id="6",
+            group_instance=1,
             value=65,
         )
 
@@ -223,12 +263,16 @@ class TestAnswerStore(unittest.TestCase):
             block_id="1",
             answer_id="2",
             answer_instance=1,
+            group_id="5",
+            group_instance=1,
             value=25,
         )
         answer_2 = Answer(
             block_id="1",
             answer_id="5",
             answer_instance=1,
+            group_id="6",
+            group_instance=1,
             value=65,
         )
 
@@ -245,6 +289,8 @@ class TestAnswerStore(unittest.TestCase):
         answer = Answer(
             block_id="1",
             answer_id="2",
+            group_id="5",
+            group_instance=1,
             value=25,
         )
 
