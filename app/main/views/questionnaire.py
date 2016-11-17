@@ -150,13 +150,13 @@ def get_household_relationships(eq_id, form_type, collection_id):
                             eq_id=eq_id,
                             form_type=form_type,
                             collection_id=collection_id,
-                            iteration='1'))
+                            group_instance='0'))
 
 
-@questionnaire_blueprint.route('household-relationships/<iteration>/relationships', methods=["GET"])
+@questionnaire_blueprint.route('household-relationships/<group_instance>/relationships', methods=["GET"])
 @login_required
-def get_household_relationship_iteration(eq_id, form_type, collection_id, iteration):
-    get_questionnaire_manager(g.schema, g.schema_json).build_state('relationships', get_answers(current_user))
+def get_household_relationship_iteration(eq_id, form_type, collection_id, group_instance):
+    get_questionnaire_manager(g.schema, g.schema_json).build_state('relationships', get_answers(current_user), group_instance)
     repeats = len(get_answer_store(current_user).filter(answer_id='household-names'))
     # Skip relationships if one person
     if repeats == 1:
@@ -169,22 +169,22 @@ def get_household_relationship_iteration(eq_id, form_type, collection_id, iterat
     return _render_template('relationships', get_questionnaire_manager(g.schema, g.schema_json).state, template='questionnaire')
 
 
-@questionnaire_blueprint.route('household-relationships/<iteration>/relationships', methods=["POST"])
+@questionnaire_blueprint.route('household-relationships/<group_instance>/relationships', methods=["POST"])
 @login_required
-def submit_relationships(eq_id, form_type, collection_id, iteration):
+def submit_relationships(eq_id, form_type, collection_id, group_instance):
     repeats = len(get_answer_store(current_user).filter(answer_id='household'))
-    if int(iteration) < repeats:
+    valid = get_questionnaire_manager(g.schema, g.schema_json).process_incoming_answers('relationships', request.form, group_instance)
+    if not valid:
+        return _render_template('relationships', get_questionnaire_manager(g.schema, g.schema_json).state,
+                                template='questionnaire')
+
+    if int(group_instance) < repeats - 1:
         return redirect(url_for('questionnaire.get_household_relationship_iteration',
                         eq_id=eq_id,
                         form_type=form_type,
                         collection_id=collection_id,
-                        iteration=int(iteration) + 1))
+                        group_instance=int(group_instance) + 1))
     else:
-        valid = get_questionnaire_manager(g.schema, g.schema_json).process_incoming_answers('relationships', request.form)
-        if not valid:
-            return _render_template('relationships', get_questionnaire_manager(g.schema, g.schema_json).state,
-                                    template='questionnaire')
-
         navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
         next_location = navigator.get_next_location(get_answers(current_user), 'relationships')
         metadata = get_metadata(current_user)

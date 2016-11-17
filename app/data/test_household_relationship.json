@@ -92,7 +92,7 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "relationship",
-                                            "label": "How is {{answers.household}} related to {{answers.household}} ",
+                                            "label": "{{answers.household}} is the ... of {{answers.household}} ",
                                             "mandatory": true,
                                             "options": [
                                                 {
@@ -122,7 +122,7 @@
                                     },
                                     "id": "relationship-question",
                                     "title": "",
-                                    "type": "RepeatingReferenceAnswer"
+                                    "type": "HouseholdRelationship"
                               }
                             ],
                             "title": "People in house",

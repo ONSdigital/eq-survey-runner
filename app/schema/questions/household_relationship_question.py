@@ -6,7 +6,7 @@ from app.globals import get_answer_store
 from app.schema.question import Question
 
 
-class RepeatingReferenceAnswerQuestion(Question):
+class HouseholdRelationshipQuestion(Question):
     """
     A Question type that supports repeating answers.
     """

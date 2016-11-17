@@ -16,9 +16,9 @@ class StateItem(object):
         self.answer_instance = 0
         self.group_instance = 0
 
-    def update_state(self, user_input):
+    def update_state(self, user_input, group_instance=0):
         for child in self.children:
-            child.update_state(user_input)
+            child.update_state(user_input, group_instance)
 
     def get_answers(self):
         answers = []

@@ -11,7 +11,7 @@ class StateAnswer(StateItem):
         self.input = None
         self.other = None
 
-    def update_state(self, user_input):
+    def update_state(self, user_input, group_instance=0):
 
         # Clear any previous value and validation results
         self.value = None
@@ -24,6 +24,7 @@ class StateAnswer(StateItem):
         self.other = self.schema_item.get_other_value(user_input)
         if self.schema_item.type == 'Radio' and self.input:
             self._restore_other_value(user_input)
+        self.group_instance = group_instance
 
     def _restore_other_value(self, user_input):
         # Get radio options from the schema.

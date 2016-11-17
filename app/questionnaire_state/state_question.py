@@ -13,8 +13,7 @@ class StateQuestion(StateItem):
         if answer in self.answers:
             self.answers.remove(answer)
 
-    def update_state(self, user_input):
-
+    def update_state(self, user_input, group_instance=0):
         if self.schema_item.type == 'RepeatingAnswer':
             state_answers = self.children[:]
 
@@ -26,14 +25,14 @@ class StateQuestion(StateItem):
                 if num_instances > 1:
                     for index in range(num_instances):
                         if index == 0:
-                            child.update_state(user_input)
+                            child.update_state(user_input, group_instance)
                         else:
                             new_answer = self._add_new_answer(child.schema_item, index, answer_instances)
                             new_answer.update_state(user_input)
                 else:
                     child.update_state(user_input)
         else:
-            super(StateQuestion, self).update_state(user_input)
+            super(StateQuestion, self).update_state(user_input, group_instance)
 
     def _add_new_answer(self, answer_schema, index, instances):
         new_answer = answer_schema.construct_state()
