@@ -157,6 +157,18 @@ def get_household_relationships(eq_id, form_type, collection_id):
 @login_required
 def get_household_relationship_iteration(eq_id, form_type, collection_id, group_instance):
     get_questionnaire_manager(g.schema, g.schema_json).build_state('relationships', get_answers(current_user), group_instance)
+    household_answers = get_answer_store(current_user).filter(answer_id='household')
+    current_person = get_answer_store(current_user).filter(answer_id='household', answer_instance=int(group_instance))[0]
+    household_answers.remove(current_person)
+    question_schema = g.schema.get_item_by_id('relationship-question')
+    household_question = get_questionnaire_manager(g.schema, g.schema_json).state.find_state_item(question_schema)
+    for i, answer in enumerate(household_question.children):
+        context = {
+            "person1": current_person['value'],
+            "person2": household_answers[i]['value']
+        }
+        answer.schema_item.label = renderer.render(answer.schema_item.label, **context)
+
     repeats = len(get_answer_store(current_user).filter(answer_id='household-names'))
     # Skip relationships if one person
     if repeats == 1:

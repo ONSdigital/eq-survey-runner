@@ -35,7 +35,7 @@
                                   "display": {
                                       "properties": {}
                                   },
-                                  "id": "question",
+                                  "id": "household-question",
                                   "title": "Who usually lives here?",
                                   "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
                                   "type": "RepeatingAnswer",
@@ -92,7 +92,7 @@
                                             "display": {},
                                             "guidance": "",
                                             "id": "relationship",
-                                            "label": "{{answers.household}} is the ... of {{answers.household}} ",
+                                            "label": "{{person1}} is the ... of {{person2}} ",
                                             "mandatory": true,
                                             "options": [
                                                 {
