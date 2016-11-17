@@ -1,3 +1,8 @@
+{% set label = {
+  'for': answer.id,
+  'text': answer.label
+} %}
+{% include 'partials/forms/label.html' %}
 {% for option in widget.options %}
 
   {% set option_id = answer.id ~ "-" ~ loop.index %}

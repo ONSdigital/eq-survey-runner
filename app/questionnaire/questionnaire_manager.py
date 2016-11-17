@@ -33,13 +33,13 @@ class QuestionnaireManager(object):
 
         self.navigator = Navigator(self._json)
 
-    def validate(self, location, post_data):
+    def validate(self, location, post_data, group_instance=0):
 
         answers = get_answers(current_user)
 
         if location in self.navigator.get_location_path(answers):
 
-            self.build_state(location, post_data)
+            self.build_state(location, post_data, group_instance)
 
             if self.state:
                 # Todo, this doesn't feel right, validation is casting the user values to their type.
@@ -76,23 +76,23 @@ class QuestionnaireManager(object):
 
         questionnaire_store.save()
 
-    def process_incoming_answers(self, location, post_data):
+    def process_incoming_answers(self, location, post_data, group_instance=0):
         logger.debug("Processing post data for %s", location)
 
-        is_valid = self.validate(location, post_data)
+        is_valid = self.validate(location, post_data, group_instance)
         # run the validator to update the validation_store
         if is_valid:
             self.update_questionnaire_store(location)
 
         return is_valid
 
-    def build_state(self, item_id, answers):
+    def build_state(self, item_id, answers, group_instance=0):
         # Build the state from the answers
         self.state = None
         if self._schema.item_exists(item_id):
             schema_item = self._schema.get_item_by_id(item_id)
             self.state = schema_item.construct_state()
-            self.state.update_state(answers)
+            self.state.update_state(answers, group_instance)
             self._conditional_display(self.state)
         if self.state:
             context = build_schema_context(get_metadata(current_user), self._schema.aliases, answers)

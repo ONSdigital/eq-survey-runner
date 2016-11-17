@@ -143,6 +143,67 @@ def remove_answer(eq_id, form_type, collection_id, location, question):
     return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
 
 
+@questionnaire_blueprint.route('relationships', methods=["GET"])
+@login_required
+def get_household_relationships(eq_id, form_type, collection_id):
+    return redirect(url_for('questionnaire.get_household_relationship_iteration',
+                            eq_id=eq_id,
+                            form_type=form_type,
+                            collection_id=collection_id,
+                            group_instance='0'))
+
+
+@questionnaire_blueprint.route('household-relationships/<group_instance>/relationships', methods=["GET"])
+@login_required
+def get_household_relationship_iteration(eq_id, form_type, collection_id, group_instance):
+    get_questionnaire_manager(g.schema, g.schema_json).build_state('relationships', get_answers(current_user), group_instance)
+    household_answers = get_answer_store(current_user).filter(answer_id='household')
+    current_person = get_answer_store(current_user).filter(answer_id='household', answer_instance=int(group_instance))[0]
+    household_answers.remove(current_person)
+    question_schema = g.schema.get_item_by_id('relationship-question')
+    household_question = get_questionnaire_manager(g.schema, g.schema_json).state.find_state_item(question_schema)
+    for i, answer in enumerate(household_question.children):
+        context = {
+            "person1": current_person['value'],
+            "person2": household_answers[i]['value']
+        }
+        answer.schema_item.label = renderer.render(answer.schema_item.label, **context)
+
+    repeats = len(get_answer_store(current_user).filter(answer_id='household-names'))
+    # Skip relationships if one person
+    if repeats == 1:
+        get_questionnaire_manager(g.schema, g.schema_json).update_questionnaire_store('relationships')
+        navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
+        next_location = navigator.get_next_location(get_answers(current_user), 'relationships')
+        metadata = get_metadata(current_user)
+        logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
+        return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
+    return _render_template('relationships', get_questionnaire_manager(g.schema, g.schema_json).state, template='questionnaire')
+
+
+@questionnaire_blueprint.route('household-relationships/<group_instance>/relationships', methods=["POST"])
+@login_required
+def submit_relationships(eq_id, form_type, collection_id, group_instance):
+    repeats = len(get_answer_store(current_user).filter(answer_id='household'))
+    valid = get_questionnaire_manager(g.schema, g.schema_json).process_incoming_answers('relationships', request.form, group_instance)
+    if not valid:
+        return _render_template('relationships', get_questionnaire_manager(g.schema, g.schema_json).state,
+                                template='questionnaire')
+
+    if int(group_instance) < repeats - 1:
+        return redirect(url_for('questionnaire.get_household_relationship_iteration',
+                        eq_id=eq_id,
+                        form_type=form_type,
+                        collection_id=collection_id,
+                        group_instance=int(group_instance) + 1))
+    else:
+        navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
+        next_location = navigator.get_next_location(get_answers(current_user), 'relationships')
+        metadata = get_metadata(current_user)
+        logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
+        return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
+
+
 def _delete_user_data():
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
     session_manager.clear()
