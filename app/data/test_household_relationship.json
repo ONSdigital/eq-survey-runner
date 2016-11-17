@@ -1,0 +1,144 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Census Theme",
+    "description": "",
+    "theme": "census",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "1",
+    "groups": [
+        {
+            "blocks": [
+
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "block",
+                    "sections": [
+                        {
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "section",
+                            "questions": [
+                                {
+                                  "description": "",
+                                  "display": {
+                                      "properties": {}
+                                  },
+                                  "id": "question",
+                                  "title": "Who usually lives here?",
+                                  "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
+                                  "type": "RepeatingAnswer",
+                                  "validation": [],
+                                  "answers": [
+                                    {
+                                        "display": {},
+                                        "id": "household",
+                                        "alias": "household",
+                                        "label": "Full Name",
+                                        "mandatory": true,
+                                        "options": [],
+                                        "q_code": "1",
+                                        "type": "Textfield",
+                                        "validation": {}
+                                    }
+                                  ]
+
+                                }
+                            ],
+                            "title": "Household",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Household",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "multiple_questions_group",
+            "title": "",
+            "validation": []
+        },
+        {
+            "blocks": [
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "relationships",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "relationship-section",
+                            "questions": [
+                              {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "relationship",
+                                            "label": "How is {{answers.household}} related to {{answers.household}} ",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Mother",
+                                                    "value": "Mother"
+                                                },
+                                                {
+                                                    "label": "Father",
+                                                    "value": "Father"
+                                                },
+                                                {
+                                                    "label": "Daughter",
+                                                    "value": "Daughter"
+                                                },
+                                                {
+                                                    "label": "Son",
+                                                    "value": "Son"
+                                                }
+                                            ],
+                                            "q_code": "1",
+                                            "type": "Radio"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "relationship-question",
+                                    "title": "",
+                                    "type": "RepeatingReferenceAnswer"
+                              }
+                            ],
+                            "title": "People in house",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                    ],
+                    "title": "",
+                    "validation": []
+                }],
+            "display": {
+                "properties": {}
+            },
+            "id": "household-relationships",
+            "title": ""
+        }
+    ]
+}

@@ -143,6 +143,55 @@ def remove_answer(eq_id, form_type, collection_id, location, question):
     return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
 
 
+@questionnaire_blueprint.route('relationships', methods=["GET"])
+@login_required
+def get_household_relationships(eq_id, form_type, collection_id):
+    return redirect(url_for('questionnaire.get_household_relationship_iteration',
+                            eq_id=eq_id,
+                            form_type=form_type,
+                            collection_id=collection_id,
+                            iteration='1'))
+
+
+@questionnaire_blueprint.route('household-relationships/<iteration>/relationships', methods=["GET"])
+@login_required
+def get_household_relationship_iteration(eq_id, form_type, collection_id, iteration):
+    get_questionnaire_manager(g.schema, g.schema_json).build_state('relationships', get_answers(current_user))
+    repeats = len(get_answer_store(current_user).filter(answer_id='household-names'))
+    # Skip relationships if one person
+    if repeats == 1:
+        get_questionnaire_manager(g.schema, g.schema_json).update_questionnaire_store('relationships')
+        navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
+        next_location = navigator.get_next_location(get_answers(current_user), 'relationships')
+        metadata = get_metadata(current_user)
+        logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
+        return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
+    return _render_template('relationships', get_questionnaire_manager(g.schema, g.schema_json).state, template='questionnaire')
+
+
+@questionnaire_blueprint.route('household-relationships/<iteration>/relationships', methods=["POST"])
+@login_required
+def submit_relationships(eq_id, form_type, collection_id, iteration):
+    repeats = len(get_answer_store(current_user).filter(answer_id='household'))
+    if int(iteration) < repeats:
+        return redirect(url_for('questionnaire.get_household_relationship_iteration',
+                        eq_id=eq_id,
+                        form_type=form_type,
+                        collection_id=collection_id,
+                        iteration=int(iteration) + 1))
+    else:
+        valid = get_questionnaire_manager(g.schema, g.schema_json).process_incoming_answers('relationships', request.form)
+        if not valid:
+            return _render_template('relationships', get_questionnaire_manager(g.schema, g.schema_json).state,
+                                    template='questionnaire')
+
+        navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
+        next_location = navigator.get_next_location(get_answers(current_user), 'relationships')
+        metadata = get_metadata(current_user)
+        logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
+        return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
+
+
 def _delete_user_data():
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
     session_manager.clear()

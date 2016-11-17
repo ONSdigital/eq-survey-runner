@@ -23,7 +23,7 @@ class Answer(Item):
         self.questionnaire = None
         self.display = None
         self.messages = {}
-        self.templatable_properties = []
+        self.templatable_properties = ['label']
         self.options = []
         self.alias = None
         self.type_checkers = []
