@@ -16,6 +16,7 @@ from app.schema.answers.checkbox_answer import CheckboxAnswer
 from app.schema.answers.currency_answer import CurrencyAnswer
 from app.schema.answers.date_answer import DateAnswer
 from app.schema.answers.integer_answer import IntegerAnswer
+from app.schema.answers.month_year_date_answer import MonthYearDateAnswer
 from app.schema.answers.percentage_answer import PercentageAnswer
 from app.schema.answers.positiveinteger_answer import PositiveIntegerAnswer
 from app.schema.answers.radio_answer import RadioAnswer
@@ -60,6 +61,7 @@ class SchemaParser(AbstractSchemaParser):
             'CHECKBOX': CheckboxAnswer,
             'CURRENCY': CurrencyAnswer,
             'DATE': DateAnswer,
+            'MONTHYEARDATE': MonthYearDateAnswer,
             'INTEGER': IntegerAnswer,
             'PERCENTAGE': PercentageAnswer,
             'POSITIVEINTEGER': PositiveIntegerAnswer,

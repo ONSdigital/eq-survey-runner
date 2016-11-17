@@ -10,22 +10,77 @@ logger = logging.getLogger(__name__)
 
 
 class DateWidget(Widget):
-    def _get_days(self, selected_day):
-        if selected_day:
-            selected_day = int(selected_day)
 
-        days = []
-        for day in range(1, 32):
-            days.append(ObjectFromDict({
-                'type': 'text',
-                'value': day,
-                'text': day,
-                'selected': (selected_day == day),
-                'disabled': False,
-            }))
-        return days
+    def render(self, answer_state):
 
-    def _get_months(self, selected_month):
+        if answer_state.input:
+            parts = answer_state.input.split('/')
+        else:
+            parts = ['', None, '']
+
+        widget_params = {}
+        widget_params['legend'] = answer_state.schema_item.label
+        widget_params['fields'] = self._get_date_fields(parts)
+
+        return render_template('partials/widgets/date_widget.html', **widget_params)
+
+    def _get_date_fields(self, parts):
+
+        fields = {}
+        fields['day'] = self._get_day_field(parts[0])
+        fields['month'] = self._get_month_field(parts[1])
+        fields['year'] = self._get_year_field(parts[2])
+
+        return fields
+
+    def _get_day_field(self, day):
+
+        return {
+              'label': {
+                  'for': self.name + '-day',
+                  'text': 'Day',
+                  },
+              'input': {
+                  'type': 'text',
+                  'value': day,
+                  'placeholder': 'DD',
+                  'name': self.name + '-day',
+                  'id': self.name + '-day',
+                  },
+                }
+
+    def _get_month_field(self, month):
+
+        return {
+                'label': {
+                    'for': self.name + '-month',
+                    'text': 'Month',
+                },
+                'select': {
+                    'options': self._get_months(month),
+                    'name': self.name + '-month',
+                    'id': self.name + '-month',
+                  },
+                }
+
+    def _get_year_field(self, year):
+
+        return {
+                'label': {
+                    'for': self.name + '-year',
+                    'text': 'Year',
+                },
+                'input': {
+                    'value': year,
+                    'type': 'text',
+                    'placeholder': 'YYYY',
+                    'name': self.name + '-year',
+                    'id': self.name + '-year',
+                  },
+                }
+
+    @staticmethod
+    def _get_months(selected_month):
         if selected_month:
             selected_month = int(selected_month)
 
@@ -38,57 +93,6 @@ class DateWidget(Widget):
                 'disabled': False,
             }))
         return months
-
-    def render(self, answer_state):
-        if answer_state.input:
-            parts = answer_state.input.split('/')
-        else:
-            parts = [None, None, '']
-
-        widget_params = {
-            'legend': answer_state.schema_item.label,
-            'fields': {
-                'day': {
-                  'label': {
-                    'for': self.name + '-day',
-                    'text': 'Day',
-                  },
-                  'input': {
-                    'type': 'text',
-                    'value': parts[0],
-                    'placeholder': 'DD',
-                    'name': self.name + '-day',
-                    'id': self.name + '-day',
-                  },
-                },
-                'month': {
-                  'label': {
-                    'for': self.name + '-month',
-                    'text': 'Month',
-                  },
-                  'select': {
-                    'options': self._get_months(parts[1]),
-                    'name': self.name + '-month',
-                    'id': self.name + '-month',
-                  },
-                },
-                'year': {
-                  'label': {
-                    'for': self.name + '-year',
-                    'text': 'Year',
-                  },
-                  'input': {
-                    'type': 'text',
-                    'value': parts[2],
-                    'placeholder': 'YYYY',
-                    'name': self.name + '-year',
-                    'id': self.name + '-year',
-                  },
-                },
-            },
-        }
-
-        return render_template('partials/widgets/date_widget.html', **widget_params)
 
     def get_user_input(self, post_vars):
         # Todo, this needs a refactor, we currently have 3 types being passed in post_vars: datetime, string and dict
