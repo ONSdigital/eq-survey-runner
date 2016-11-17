@@ -7,35 +7,28 @@ from app.questionnaire.questionnaire_manager import QuestionnaireManager, Naviga
 class TestQuestionnaireManager(TestCase):
 
     def test_add_answer_adds_answer_to_question(self):
-
+        # Given
         new_answer = MagicMock()
-        self.questionnaire_manager._create_new_answer = MagicMock(return_value=new_answer)
+        self.questionnaire_manager._create_new_answer_state = MagicMock(return_value=new_answer)
 
         question = MagicMock()
-        question.children = MagicMock()
         self.questionnaire_manager.state.find_state_item = MagicMock(return_value=question)
 
-        post_data = {
-            'action[add_answer]': '',
-        }
-
-        with patch.object(question.children, 'append') as mock:
-            self.questionnaire_manager.add_answer('block', 'question', post_data, self.answer_store)
-            mock.assert_called_with(new_answer)
+        # When
+        self.questionnaire_manager.add_answer('block', 'question', self.answer_store)
+        question.answers.append.assert_called_with(new_answer)
 
     def test_add_answer_updates_answer_store(self):
-
+        # Given
         question = MagicMock()
-        question.children = MagicMock()
         self.questionnaire_manager.state.find_state_item = MagicMock(return_value=question)
+        self.questionnaire_manager.update_questionnaire_store = MagicMock()
 
-        post_data = {
-            'action[add_answer]': '',
-        }
+        # When
+        self.questionnaire_manager.add_answer('block', 'question', self.answer_store)
 
-        with patch.object(self.questionnaire_manager, 'update_questionnaire_store') as mock:
-            self.questionnaire_manager.add_answer('block', 'question', post_data, self.answer_store)
-            mock.assert_called_with('block')
+        # Then
+        self.questionnaire_manager.update_questionnaire_store.assert_called_with('block')
 
     def test_remove_answer_detaches_answer_from_question(self):
         post_data = {
@@ -73,7 +66,7 @@ class TestQuestionnaireManager(TestCase):
 
 
         # When
-        new_answer = self.questionnaire_manager._create_new_answer(answer_schema, question_state, self.answer_store)
+        new_answer = self.questionnaire_manager._create_new_answer_state(answer_schema, question_state, self.answer_store)
 
         # Then
         self.assertEqual(new_answer.schema_item.widget.name, 'answer_0')
@@ -101,7 +94,7 @@ class TestQuestionnaireManager(TestCase):
 
         self.answer_store.filter = MagicMock(return_value=existing_answers)
         # When
-        new_answer = self.questionnaire_manager._create_new_answer(answer_schema, question_state, self.answer_store)
+        new_answer = self.questionnaire_manager._create_new_answer_state(answer_schema, question_state, self.answer_store)
 
         # Then
         self.assertEqual(new_answer.schema_item.widget.name, 'answer_2')

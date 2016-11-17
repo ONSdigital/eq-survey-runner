@@ -128,8 +128,9 @@ def submit_answers(eq_id, form_type, collection_id):
 @action_blueprint.route('<location>/<question>/add', methods=["POST"])
 @login_required
 def add_answer(eq_id, form_type, collection_id, location, question):
-    answer_store = get_answer_store(current_user)
-    get_questionnaire_manager(g.schema, g.schema_json).add_answer(location, question, request.form, answer_store)
+    questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
+    questionnaire_manager.process_incoming_answers(location, request.form)
+    questionnaire_manager.add_answer(location, question, get_answer_store(current_user))
 
     return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
 

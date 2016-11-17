@@ -127,23 +127,19 @@ class QuestionnaireManager(object):
     def get_schema(self):
         return self._schema
 
-    def add_answer(self, block, question, post_data, answer_store):
-        if self.state is None:
-            self.process_incoming_answers(block, post_data)
-
-        question_schema = self._schema.get_item_by_id(question)
+    def add_answer(self, block_id, question_id, answer_store):
+        question_schema = self._schema.get_item_by_id(question_id)
         question_state = self.state.find_state_item(question_schema)
 
-        answer_schema = question_schema.answers[0]  # Single answer for now.
-        new_answer = self._create_new_answer(answer_schema, question_state, answer_store)
+        existing_answer_schema = question_schema.answers[0]  # Single answer for now.
+        new_answer_state = self._create_new_answer_state(existing_answer_schema, question_state, answer_store)
 
-        question_answers = question_state.children
-        question_answers.append(new_answer)
+        question_state.answers.append(new_answer_state)
 
-        self.update_questionnaire_store(block)
+        self.update_questionnaire_store(block_id)
 
     @staticmethod
-    def _create_new_answer(answer_schema, question_state, answer_store):
+    def _create_new_answer_state(answer_schema, question_state, answer_store):
         new_answer = answer_schema.construct_state()
 
         existing = answer_store.filter(answer_id=answer_schema.id)

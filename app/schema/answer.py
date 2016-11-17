@@ -1,3 +1,4 @@
+import copy
 import logging
 
 from app.questionnaire_state.exceptions import StateException
@@ -32,6 +33,18 @@ class Answer(Item):
 
     def construct_state(self):
         return StateAnswer(self.id, self)
+
+    def create_new_answer_state(self, answer_instance=None, parent=None):
+        new_answer_state = self.construct_state()
+        new_answer_state.parent = parent
+        new_answer_state.answer_instance = answer_instance
+
+        new_answer_schema = copy.deepcopy(self)
+        new_answer_schema.widget.name += '_' + str(answer_instance) if answer_instance > 0 else ''
+        new_answer_state.schema_item = new_answer_schema
+
+        parent.children.append(new_answer_state)
+        return new_answer_state
 
     def get_state_class(self):
         return StateAnswer

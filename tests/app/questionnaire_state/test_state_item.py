@@ -7,7 +7,7 @@ from app.questionnaire_state.state_item import StateItem
 
 class TestStateItem(TestCase):
 
-    def test_find_schema_item_returns_if_found(self):
+    def test_find_schema_item_finds_item_in_question(self):
         # Given
         schema_item = MagicMock()
 
@@ -24,7 +24,7 @@ class TestStateItem(TestCase):
         # Then
         self.assertEqual(result, child)
 
-    def test_find_schema_item_recursive_call_if_not_found(self):
+    def test_find_schema_item_finds_item_in_block(self):
         # Given
         block_schema = MagicMock()
         question_schema = MagicMock()

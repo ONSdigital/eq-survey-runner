@@ -1,7 +1,15 @@
 import unittest
 
 from mock import MagicMock
+
 from app.questionnaire_state.state_question import StateQuestion
+
+
+def side_effect_create_answer_state(answer_instance, parent):
+    new_answer = MagicMock()
+    new_answer.answer_instance = answer_instance
+    parent.answers.append(new_answer)
+    return new_answer
 
 
 class TestStateQuestion(unittest.TestCase):
@@ -54,18 +62,19 @@ class TestStateQuestion(unittest.TestCase):
 
     def test_update_state_initialise_repeating(self):
 
-        question = StateQuestion('question_id', MagicMock())
-        question.schema_item.type = 'RepeatingAnswer'
+        question_state = StateQuestion('question_id', MagicMock())
+        question_state.schema_item.type = 'RepeatingAnswer'
 
-        answer1 = MagicMock()
-        answer1.schema_item.id = 'answer_id'
-        question.answers.append(answer1)
+        answer_state = MagicMock()
+        answer_state.schema_item.id = 'answer_id'
+        answer_state.schema_item.create_new_answer_state = MagicMock(side_effect=side_effect_create_answer_state)
 
-        question.update_state({
+        question_state.answers.append(answer_state)
+        question_state.update_state({
             'answer_id': 'answer_value',
             'answer_id_1': 'answer_value_1'
         })
-        self.assertEqual(len(question.children), 2)
+        self.assertEqual(len(question_state.answers), 2)
 
     def test_update_state_single_answer(self):
 
@@ -87,9 +96,11 @@ class TestStateQuestion(unittest.TestCase):
 
         answer1 = MagicMock()
         answer1.schema_item.id = 'answer_one'
+        answer1.schema_item.create_new_answer_state = MagicMock(side_effect=side_effect_create_answer_state)
 
         answer2 = MagicMock()
         answer2.schema_item.id = 'answer_two'
+        answer2.schema_item.create_new_answer_state = MagicMock(side_effect=side_effect_create_answer_state)
 
         answer3 = MagicMock()
         answer3.schema_item.id = 'answer_three'
@@ -105,7 +116,20 @@ class TestStateQuestion(unittest.TestCase):
 
         self.assertEqual(len(question.children), 3)
 
-        question.answers.clear()
+    def test_update_state_multiple_repeating_answers(self):
+        question = StateQuestion('question_id', MagicMock())
+        question.schema_item.type = 'RepeatingAnswer'
+
+        answer1 = MagicMock()
+        answer1.schema_item.id = 'answer_one'
+        answer1.schema_item.create_new_answer_state = MagicMock(side_effect=side_effect_create_answer_state)
+
+        answer2 = MagicMock()
+        answer2.schema_item.id = 'answer_two'
+        answer2.schema_item.create_new_answer_state = MagicMock(side_effect=side_effect_create_answer_state)
+
+        answer3 = MagicMock()
+        answer3.schema_item.id = 'answer_three'
 
         question.answers.append(answer1)
         question.answers.append(answer2)
@@ -120,7 +144,7 @@ class TestStateQuestion(unittest.TestCase):
             'answer_three': 'answer_three_value',
         })
 
-        self.assertEqual(len(question.children), 6)
+        self.assertEqual(len(question.answers), 6)
 
     def test_update_state_non_repeating_multiple_answers(self):
         question = StateQuestion('question_id', MagicMock())
@@ -148,5 +172,5 @@ class TestStateQuestion(unittest.TestCase):
 
     def test_get_instance_id_when_no_existing_answers_should_return_zero(self):
         question = StateQuestion('question_id', MagicMock())
-        new_instance_id = question._get_instance_id([], 'answer', 0)
+        new_instance_id = question._next_answer_instance_id([], 'answer', 0)
         self.assertEqual(new_instance_id, 0)
