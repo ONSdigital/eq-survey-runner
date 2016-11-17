@@ -39,3 +39,8 @@ def pretty_date_range(value):
     from_date = pretty_short_date(value['from'])
     to_date = pretty_short_date(value['to'])
     return '{from_date} to {to_date}'.format(from_date=from_date, to_date=to_date)
+
+
+@blueprint.app_template_filter()
+def pretty_month_year_date(value):
+    return datetime.strptime(value, "%m/%Y").strftime('%b %Y')
