@@ -52,3 +52,9 @@ class TestMultipleChoiceWidget(TestCase):
     def test_get_other_value_when_single_value_called_other_returns_none(self):
         post_vars = {'multiple_choice_widget': ['Other']}
         assert self.widget.get_other_input(post_vars) is None
+
+    def test_get_other_input_with_multi_dict_other_not_selected(self):
+        post_vars = MultiDict()
+        post_vars.add('multiple_choice_widget', 'Another Option')
+        post_vars.add('multiple_choice_widget', 'Other value')
+        assert self.widget.get_other_input(post_vars) is None

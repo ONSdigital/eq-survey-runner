@@ -42,6 +42,8 @@ class MultipleChoiceWidget(Widget):
 
         has_multiple_values = isinstance(posted_data, list) and len(posted_data) > 1
 
-        other_value = str(posted_data[-1:][0]).strip() if has_multiple_values else None
+        is_other_selected = str(posted_data[:1][0]).strip().lower() == 'other' if has_multiple_values else False
+
+        other_value = str(posted_data[-1:][0]).strip() if is_other_selected else None
 
         return other_value if other_value is not None and len(other_value) > 0 else None
