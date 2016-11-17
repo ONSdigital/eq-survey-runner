@@ -1,0 +1,2684 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "",
+    "schema_version": "0.0.1",
+    "survey_id": "",
+    "title": "Census England Individual Schema",
+    "description": "Census England Individual Schema",
+    "theme": "census",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "census",
+    "groups": [
+        {
+            "id": "household-member",
+            "title": "Household Member Details",
+            "display": {
+                "properties": {}
+            },
+            "validation": [],
+            "blocks": [
+                {
+                    "type": "interstitial",
+                    "id": "household-member-begin",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [
+                        {
+                            "title": "John Doe",
+                            "validation": [],
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "household-member-begin-section",
+                            "questions": [
+                                {
+                                    "id": "household-member-begin-question",
+                                    "title": "1. The following questions are for:",
+                                    "type": "General",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "answers": [],
+                                    "validation": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "details-correct",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "details-correct-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "details-correct-display-name",
+                                    "title": "The following questions are for:",
+                                    "type": "General",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "answers": [],
+                                    "validation": []
+                                },
+                                {
+                                    "id": "details-correct-question",
+                                    "title": "1. Are these details correct, including any middle name(s)?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "details-correct-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes - this is my full name",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No - I need to change my name",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "correct-name",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "correct-name-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "correct-name-question",
+                                    "title": "1a. What is your correct name?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "validation": [],
+                                    "answers": [
+                                        {
+                                            "id": "correct-name-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "sex",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "sex-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "sex-question",
+                                    "title": "2. What is your sex?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "sex-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Male",
+                                                    "value": "Male"
+                                                },
+                                                {
+                                                    "label": "Female",
+                                                    "value": "Female"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "date-of-birth",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "date-of-birth-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "date-of-birth-question",
+                                    "title": "3. What is your date of birth?",
+                                    "description": "For example 20 March 2014",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "validation": [],
+                                    "answers": [
+                                        {
+                                            "id": "date-of-birth-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "over-16",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "over-16-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "over-16-question",
+                                    "title": "3a. Are you aged 16 or over?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "over-16-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "marital-status",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "marital-status-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "marital-status-question",
+                                    "title": "4. On 9 April 2017, what is your legal marital or same-sex civil partnership status?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "marital-status-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Never married and never registered a same-sex civil partnership",
+                                                    "value": "NeverMarried"
+                                                },
+                                                {
+                                                    "label": "Married",
+                                                    "value": "Married"
+                                                },
+                                                {
+                                                    "label": "In a registered same-sex civil partnership",
+                                                    "value": "CivilPartnership"
+                                                },
+                                                {
+                                                    "label": "Separated, but still legally married",
+                                                    "value": "SeparatedMarried"
+                                                },
+                                                {
+                                                    "label": "Separated, but still legally in a same-sex civil partnership",
+                                                    "value": "SeparatedCivilPartnership"
+                                                },
+                                                {
+                                                    "label": "Divorced",
+                                                    "value": "Divorced"
+                                                },
+                                                {
+                                                    "label": "Formerly in a same-sex civil partnership which is now legally dissolved",
+                                                    "value": "DissolvedCivilPartnership"
+                                                },
+                                                {
+                                                    "label": "Widowed",
+                                                    "value": "Widowed"
+                                                },
+                                                {
+                                                    "label": "Surviving partner from a same-sex civil partnership",
+                                                    "value": "SurvivingPartner"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "another-address",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "another-address-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "another-address-question",
+                                    "title": "5. Do you stay at another address for more than 30 days a year?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "another-address-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                },
+                                                {
+                                                    "label": "Yes, an address within the UK",
+                                                    "value": "YesWithinUK"
+                                                },
+                                                {
+                                                    "label": "Yes, an address outside the UK (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please enter country"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "other-address",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "other-address-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "other-address-question",
+                                    "title": "5a. Enter details of the other UK address where you stay more than 30 days a year",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "validation": [],
+                                    "answers": [
+                                        {
+                                            "id": "other-address-answer-building",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "Building",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        },
+                                        {
+                                            "id": "other-address-answer-street",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "Street",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        },
+                                        {
+                                            "id": "other-address-answer-city",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "Town or city",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        },
+                                        {
+                                            "id": "other-address-answer-county",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "County (optional)",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        },
+                                        {
+                                            "id": "other-address-answer-postcode",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "Postcode",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "address-type",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "address-type-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "address-type-question",
+                                    "title": "6. What is that address?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "address-type-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Armed forces base address",
+                                                    "value": "Armed forces base address"
+                                                },
+                                                {
+                                                    "label": "Another address when working away from home",
+                                                    "value": "Another address when working away from home"
+                                                },
+                                                {
+                                                    "label": "Student’s home address",
+                                                    "value": "Student’s home address"
+                                                },
+                                                {
+                                                    "label": "Student’s term time address",
+                                                    "value": "Student’s term time address"
+                                                },
+                                                {
+                                                    "label": "Another parent or guardian’s address",
+                                                    "value": "Another parent or guardian’s address"
+                                                },
+                                                {
+                                                    "label": "Holiday home",
+                                                    "value": "Holiday home"
+                                                },
+                                                {
+                                                    "label": "Other (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Guidance wording to be agreed"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "in-education",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "in-education-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "in-education-question",
+                                    "title": "7. Are you a schoolchild or student in full-time education?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "in-education-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "term-time-location",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "term-time-location-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "term-time-location-question",
+                                    "title": "8. During term time, do you live:",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "term-time-location-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "at this address",
+                                                    "value": "at this address"
+                                                },
+                                                {
+                                                    "label": "at another address",
+                                                    "value": "at another address"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "country-of-birth",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "country-of-birth-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "country-of-birth-england-question",
+                                    "title": "9. What is your country of birth?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "country-of-birth-england-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "England",
+                                                    "value": "England"
+                                                },
+                                                {
+                                                    "label": "Wales",
+                                                    "value": "Wales"
+                                                },
+                                                {
+                                                    "label": "Scotland",
+                                                    "value": "Scotland"
+                                                },
+                                                {
+                                                    "label": "Northern Ireland",
+                                                    "value": "Northern Ireland"
+                                                },
+                                                {
+                                                    "label": "Republic of Ireland",
+                                                    "value": "Republic of Ireland"
+                                                },
+                                                {
+                                                    "label": "Elsewhere (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Enter current name of country"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "country-of-birth-wales-question",
+                                    "title": "9. What is your country of birth?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "country-of-birth-wales-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Wales",
+                                                    "value": "Wales"
+                                                },
+                                                {
+                                                    "label": "England",
+                                                    "value": "England"
+                                                },
+                                                {
+                                                    "label": "Scotland",
+                                                    "value": "Scotland"
+                                                },
+                                                {
+                                                    "label": "Northern Ireland",
+                                                    "value": "Northern Ireland"
+                                                },
+                                                {
+                                                    "label": "Republic of Ireland",
+                                                    "value": "Republic of Ireland"
+                                                },
+                                                {
+                                                    "label": "Elsewhere (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Enter current name of country"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "arrive-in-uk",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "arrive-in-uk-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "arrive-in-uk-question",
+                                    "title": "10. If you were not born in the United Kingdom, when did you most recently arrive to live here?",
+                                    "description": "Exclude short visits away from the UK",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "validation": [],
+                                    "answers": [
+                                        {
+                                            "id": "arrive-in-uk-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "length-of-stay",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "length-of-stay-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "length-of-stay-question",
+                                    "title": "11. Including the time you have already spent here, how long do you intend to stay in the United Kingdom?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "length-of-stay-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Less than 6 months",
+                                                    "value": "Less than 6 months"
+                                                },
+                                                {
+                                                    "label": "6 months or more but less than 12 months",
+                                                    "value": "6 months or more but less than 12 months"
+                                                },
+                                                {
+                                                    "label": "12 months or more",
+                                                    "value": "12 months or more"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "carer",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "carer-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "carer-question",
+                                    "title": "12. Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
+                                    "description": "<div> <ul> <li>Long-term physical or mental ill-health/disability?</li> <li>Problems related to old age?</li></ul> Exclude  anything you do as part of your paid employment</div>",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "carer-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                },
+                                                {
+                                                    "label": "Yes, 1 -19 hours a week",
+                                                    "value": "Yes, 1 -19 hours a week"
+                                                },
+                                                {
+                                                    "label": "Yes, 20 - 49 hours a week",
+                                                    "value": "Yes, 20 - 49 hours a week"
+                                                },
+                                                {
+                                                    "label": "Yes, 50 or more hours a week",
+                                                    "value": "Yes, 50 or more hours a week"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "national-identity",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "national-identity-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "national-identity-question",
+                                    "title": "13. How would you describe your national identity?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "national-identity-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "Select all that apply",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "English",
+                                                    "value": "English"
+                                                },
+                                                {
+                                                    "label": "Welsh",
+                                                    "value": "Welsh"
+                                                },
+                                                {
+                                                    "label": "Scottish",
+                                                    "value": "Scottish"
+                                                },
+                                                {
+                                                    "label": "Northern Irish",
+                                                    "value": "Northern Irish"
+                                                },
+                                                {
+                                                    "label": "British",
+                                                    "value": "British"
+                                                },
+                                                {
+                                                    "label": "Other (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please describe your national identity"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "ethnic-group",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "ethnic-group-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "ethnic-group-question",
+                                    "title": "14. What is your ethnic group?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "ethnic-group-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "White",
+                                                    "value": "White",
+                                                    "description": "Including English/Welsh/ Scottish/ Northern Irish/ British, Irish, Gypsy or Irish Traveller or any other White background"
+                                                },
+                                                {
+                                                    "label": "Mixed/ multiple ethnic groups",
+                                                    "value": "Mixed/ multiple ethnic groups",
+                                                    "description": "Including White and Black Caribbean, White and Black African,  White and Asian or any other Mixed/multiple ethnic background"
+                                                },
+                                                {
+                                                    "label": "Asian/ Asian British",
+                                                    "value": "Asian/ Asian British",
+                                                    "description": "Including Indian, Pakistani, Bangladeshi, Chinese or any other Asian background"
+                                                },
+                                                {
+                                                    "label": "Black/African/ Caribbean/ Black British",
+                                                    "value": "Black/African/ Caribbean/ Black British",
+                                                    "description": "Including African, Caribbean or any other Black/ African/ Caribbean background"
+                                                },
+                                                {
+                                                    "label": "Other ethnic group",
+                                                    "value": "Other ethnic group",
+                                                    "description": "Including Arab or any other ethnic group"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "white-ethnic-group",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "white-ethnic-group-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "white-ethnic-group-question",
+                                    "title": "14a. Which one best describes your White ethnic group or background?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "white-ethnic-group-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "English /  Welsh / Scottish /  Northern Irish /  British",
+                                                    "value": "English /  Welsh / Scottish /  Northern Irish /  British"
+                                                },
+                                                {
+                                                    "label": "Irish",
+                                                    "value": "Irish"
+                                                },
+                                                {
+                                                    "label": "Gypsy or Irish Traveller",
+                                                    "value": "Gypsy or Irish Traveller"
+                                                },
+                                                {
+                                                    "label": "Any other White background (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please specify other White background"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "mixed-ethnic-group",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "mixed-ethnic-group-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "mixed-ethnic-group-question",
+                                    "title": "14a. Which one best describes your Mixed/ multiple ethnic group or background?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "mixed-ethnic-group-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "White and Black Caribbean",
+                                                    "value": "White and Black Caribbean"
+                                                },
+                                                {
+                                                    "label": "White and Black African",
+                                                    "value": "White and Black African"
+                                                },
+                                                {
+                                                    "label": "White and Asian",
+                                                    "value": "White and Asian"
+                                                },
+                                                {
+                                                    "label": "Any other Mixed/ multiple ethnic background (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please specify other Mixed multiple ethnic background"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "asian-ethnic-group",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "asian-ethnic-group-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "asian-ethnic-group-question",
+                                    "title": "14a. Which one best describes your Asian/  Asian British ethnic group or background?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "asian-ethnic-group-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Indian",
+                                                    "value": "Indian"
+                                                },
+                                                {
+                                                    "label": "Pakistani",
+                                                    "value": "Pakistani"
+                                                },
+                                                {
+                                                    "label": "Bangladeshi",
+                                                    "value": "Bangladeshi"
+                                                },
+                                                {
+                                                    "label": "Chinese",
+                                                    "value": "Chinese"
+                                                },
+                                                {
+                                                    "label": "Any other Asian background (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please specify other Asian/Asian British background"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "black-ethnic-group",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "black-ethnic-group-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "black-ethnic-group-question",
+                                    "title": "14a. Which one best describes your Black/  African/  Caribbean/ Black British ethnic group or background?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "black-ethnic-group-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "African",
+                                                    "value": "African"
+                                                },
+                                                {
+                                                    "label": "Caribbean",
+                                                    "value": "Caribbean"
+                                                },
+                                                {
+                                                    "label": "Any other Black/ African/ Caribbean background (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please specify other Black / African / Caribbean / Black British background"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "other-ethnic-group",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "other-ethnic-group-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "other-ethnic-group-question",
+                                    "title": "14a. Which one best describes your Other ethnic group or background?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "other-ethnic-group-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Arab",
+                                                    "value": "Arab"
+                                                },
+                                                {
+                                                    "label": "Any other ethnic group (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please specify Other ethnic background"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "sexual-identity",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "sexual-identity-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "sexual-identity-question",
+                                    "title": "15. Which of the following options best describes how you think of yourself?",
+                                    "description": "This question is voluntary",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "sexual-identity-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Heterosexual or Straight",
+                                                    "value": "Heterosexual or Straight"
+                                                },
+                                                {
+                                                    "label": "Gay or Lesbian",
+                                                    "value": "Gay or Lesbian"
+                                                },
+                                                {
+                                                    "label": "Bisexual",
+                                                    "value": "Bisexual"
+                                                },
+                                                {
+                                                    "label": "Other (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Wording to be agreed with Pete Betts??"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "language",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "language-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "language-question",
+                                    "title": "16. What is your main language",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "language-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "English",
+                                                    "value": "English"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "Other",
+                                                    "description": "Including British Sign Language",
+                                                    "other": {
+                                                      "label": "Please specify"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "language-welsh-question",
+                                    "title": "16. What is your main language",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "language-welsh-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "English or Welsh",
+                                                    "value": "English or Welsh"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "Other",
+                                                    "description": "Including British Sign Language",
+                                                    "other": {
+                                                      "label": "Please specify"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "english",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "english-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "english-question",
+                                    "title": "17. How well can you speak English?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "english-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Very well",
+                                                    "value": "Very well"
+                                                },
+                                                {
+                                                    "label": "Well",
+                                                    "value": "Well"
+                                                },
+                                                {
+                                                    "label": "Not well",
+                                                    "value": "Not well"
+                                                },
+                                                {
+                                                    "label": "Not at all",
+                                                    "value": "Not at all"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "religion",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "religion-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "religion-question",
+                                    "title": "18. What is your religion?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "religion-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "No religion",
+                                                    "value": "No religion"
+                                                },
+                                                {
+                                                    "label": "Christian (Including Church of England, Catholic, Protestant and all other Christian denominations)",
+                                                    "value": "Christian (Including Church of England, Catholic, Protestant and all other Christian denominations)"
+                                                },
+                                                {
+                                                    "label": "Buddhist",
+                                                    "value": "Buddhist"
+                                                },
+                                                {
+                                                    "label": "Hindu",
+                                                    "value": "Hindu"
+                                                },
+                                                {
+                                                    "label": "Jewish",
+                                                    "value": "Jewish"
+                                                },
+                                                {
+                                                    "label": "Muslim",
+                                                    "value": "Muslim"
+                                                },
+                                                {
+                                                    "label": "Sikh",
+                                                    "value": "Sikh"
+                                                },
+                                                {
+                                                    "label": "Any other religion (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please specify your religion"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "religion-welsh-question",
+                                    "title": "18. What is your religion?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "religion-welsh-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "No religion",
+                                                    "value": "No religion"
+                                                },
+                                                {
+                                                    "label": "Christian (all denominations)",
+                                                    "value": "Christian (all denominations)"
+                                                },
+                                                {
+                                                    "label": "Buddhist",
+                                                    "value": "Buddhist"
+                                                },
+                                                {
+                                                    "label": "Hindu",
+                                                    "value": "Hindu"
+                                                },
+                                                {
+                                                    "label": "Jewish",
+                                                    "value": "Jewish"
+                                                },
+                                                {
+                                                    "label": "Muslim",
+                                                    "value": "Muslim"
+                                                },
+                                                {
+                                                    "label": "Sikh",
+                                                    "value": "Sikh"
+                                                },
+                                                {
+                                                    "label": "Any other religion (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please specify your religion"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "past-usual-address",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "past-usual-address-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "past-usual-address-question",
+                                    "title": "19. One year ago, what was your usual address?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "past-usual-address-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "This address",
+                                                    "value": "This address"
+                                                },
+                                                {
+                                                    "label": "Student term time or boarding school address ithe UK",
+                                                    "value": "Student term time or boarding school address ithe UK"
+                                                },
+                                                {
+                                                    "label": "Another address in the UK",
+                                                    "value": "Another address in the UK"
+                                                },
+                                                {
+                                                    "label": "An address outside the UK (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please enter the country"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "last-year-address",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "last-year-address-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "last-year-address-question",
+                                    "title": "20. Enter details of your address one year ago",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "validation": [],
+                                    "answers": [
+                                        {
+                                            "id": "last-year-address-answer-building",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "Building",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        },
+                                        {
+                                            "id": "last-year-address-answer-street",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "Street",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        },
+                                        {
+                                            "id": "last-year-address-answer-city",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "Town or city",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        },
+                                        {
+                                            "id": "last-year-address-answer-county",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "County (optional)",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        },
+                                        {
+                                            "id": "last-year-address-answer-postcode",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "label": "Postcode",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "passports",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "passports-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "passports-question",
+                                    "title": "21. What passports do you hold?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "passports-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "United Kingdom",
+                                                    "value": "United Kingdom"
+                                                },
+                                                {
+                                                    "label": "Irish",
+                                                    "value": "Irish"
+                                                },
+                                                {
+                                                    "label": "None",
+                                                    "value": "None"
+                                                },
+                                                {
+                                                    "label": "Other (please specify)",
+                                                    "value": "Other",
+                                                    "other": {
+                                                      "label": "Please specify other passports held"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "disability",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "disability-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "disability-question",
+                                    "title": "22. Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
+                                    "description": "Include Problems related to old age",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "disability-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes, limited a lot",
+                                                    "value": "Yes, limited a lot"
+                                                },
+                                                {
+                                                    "label": "Yes, limited a little",
+                                                    "value": "Yes, limited a little"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "qualifications",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "qualifications-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "qualifications-question",
+                                    "title": "23. Thinking of any studies, exams or qualifications, which of the following do you have?",
+                                    "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "qualifications-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "5 or more  GCSEs (grades A-Star to C) or O-Levels (passes) or CSEs (grade 1), School Certificate, One A-Level, 2 to 3 AS-Levels or VCEs, Higher Diploma",
+                                                    "value": "5 or more  GCSEs (grades A-Star to C) or O-Levels (passes) or CSEs (grade 1), School Certificate, One A-Level, 2 to 3 AS-Levels or VCEs, Higher Diploma"
+                                                },
+                                                {
+                                                    "label": "1 to 4 GCSEs or O-Levels or CSEs (any grades), Entry level, Foundation Diploma",
+                                                    "value": "1 to 4 GCSEs or O-Levels or CSEs (any grades), Entry level, Foundation Diploma"
+                                                },
+                                                {
+                                                    "label": "2 or more  A-Levels, 4 or more  AS-levels or VCEs, Higher School Certificate, Advanced Diploma",
+                                                    "value": "2 or more  A-Levels, 4 or more  AS-levels or VCEs, Higher School Certificate, Advanced Diploma"
+                                                },
+                                                {
+                                                    "label": "Apprenticeship (trade, advanced, foundation or modern)",
+                                                    "value": "Apprenticeship (trade, advanced, foundation or modern)"
+                                                },
+                                                {
+                                                    "label": "NVQ level one, Foundation GNVQ, Basic Skills",
+                                                    "value": "NVQ level one, Foundation GNVQ, Basic Skills"
+                                                },
+                                                {
+                                                    "label": "NVQ level two, Intermediate GNVQ, City and Guilds Craft, BTEC First, RSA Diploma",
+                                                    "value": "NVQ level two, Intermediate GNVQ, City and Guilds Craft, BTEC First, RSA Diploma"
+                                                },
+                                                {
+                                                    "label": "NVQ Level three, Advanced GNVQ, City and Guilds Advanced Craft, ONC, OND, BTEC National, RSA Advanced Diploma",
+                                                    "value": "NVQ Level three, Advanced GNVQ, City and Guilds Advanced Craft, ONC, OND, BTEC National, RSA Advanced Diploma"
+                                                },
+                                                {
+                                                    "label": "NVQ Level four to five, HNC, HND, RSA Higher Diploma, BTEC Higher, Foundation degree",
+                                                    "value": "NVQ Level four to five, HNC, HND, RSA Higher Diploma, BTEC Higher, Foundation degree"
+                                                },
+                                                {
+                                                    "label": "Other vocational or work-related qualifications",
+                                                    "value": "Other vocational or work-related qualifications"
+                                                },
+                                                {
+                                                    "label": "Undergraduate Degree",
+                                                    "value": "Undergraduate Degree"
+                                                },
+                                                {
+                                                    "label": "Postgraduate Certificate/Diploma",
+                                                    "value": "Postgraduate Certificate/Diploma"
+                                                },
+                                                {
+                                                    "label": "Masters Degree",
+                                                    "value": "Masters Degree"
+                                                },
+                                                {
+                                                    "label": "Doctorate Degree (for example PhD)",
+                                                    "value": "Doctorate Degree (for example PhD)"
+                                                },
+                                                {
+                                                    "label": "Professional qualification (for example teaching, nursing, accountancy)",
+                                                    "value": "Professional qualification (for example teaching, nursing, accountancy)"
+                                                },
+                                                {
+                                                    "label": "Foreign qualifications (UK equivalent not known)",
+                                                    "value": "Foreign qualifications (UK equivalent not known)"
+                                                },
+                                                {
+                                                    "label": "No qualifications",
+                                                    "value": "No qualifications"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "qualifications-welsh-question",
+                                    "title": "23. Thinking of any studies, exams or qualifications, which of the following do you have?",
+                                    "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "qualifications-welsh-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "More than five  GCSEs (grades A-Star to C) or O Levels (passes) or CSEs (grade 1), School Certificate, One A-Level, two to three AS-Levels or VCEs,  Intermediate or National Welsh Baccalaureate (Level two)",
+                                                    "value": "More than five  GCSEs (grades A-Star to C) or O Levels (passes) or CSEs (grade 1), School Certificate, One A-Level, two to three AS-Levels or VCEs,  Intermediate or National Welsh Baccalaureate (Level two)"
+                                                },
+                                                {
+                                                    "label": "One to four  GCSEs or O Levels or CSEs (any grades), Entry level, Foundation Welsh Baccalaureate (level one)",
+                                                    "value": "One to four  GCSEs or O Levels or CSEs (any grades), Entry level, Foundation Welsh Baccalaureate (level one)"
+                                                },
+                                                {
+                                                    "label": "More than two  A-Levels, more than four  AS-levels or VCEs, Higher School Certificate, Advanced Welsh Baccalaureate (level three)",
+                                                    "value": "More than two  A-Levels, more than four  AS-levels or VCEs, Higher School Certificate, Advanced Welsh Baccalaureate (level three)"
+                                                },
+                                                {
+                                                    "label": "Apprenticeship (foundation, modern or higher)",
+                                                    "value": "Apprenticeship (foundation, modern or higher)"
+                                                },
+                                                {
+                                                    "label": "NVQ level one, Foundation GNVQ, Essential or Key  Skills",
+                                                    "value": "NVQ level one, Foundation GNVQ, Essential or Key  Skills"
+                                                },
+                                                {
+                                                    "label": "NVQ level two, Intermediate GNVQ, City and Guilds Craft, BTEC First, RSA Diploma",
+                                                    "value": "NVQ level two, Intermediate GNVQ, City and Guilds Craft, BTEC First, RSA Diploma"
+                                                },
+                                                {
+                                                    "label": "NVQ Level three, Advanced GNVQ, City and Guilds Advanced Craft, ONC, OND, BTEC National, RSA Advanced Diploma",
+                                                    "value": "NVQ Level three, Advanced GNVQ, City and Guilds Advanced Craft, ONC, OND, BTEC National, RSA Advanced Diploma"
+                                                },
+                                                {
+                                                    "label": "NVQ Level four to five, HNC, HND, RSA Higher Diploma, BTEC Higher",
+                                                    "value": "NVQ Level four to five, HNC, HND, RSA Higher Diploma, BTEC Higher"
+                                                },
+                                                {
+                                                    "label": "Other vocational or work-related qualifications",
+                                                    "value": "Other vocational or work-related qualifications"
+                                                },
+                                                {
+                                                    "label": "Undergraduate Degree",
+                                                    "value": "Undergraduate Degree"
+                                                },
+                                                {
+                                                    "label": "Postgraduate Certificate/Diploma",
+                                                    "value": "Postgraduate Certificate/Diploma"
+                                                },
+                                                {
+                                                    "label": "Masters Degree",
+                                                    "value": "Masters Degree"
+                                                },
+                                                {
+                                                    "label": "Doctorate Degree (for example PhD)",
+                                                    "value": "Doctorate Degree (for example PhD)"
+                                                },
+                                                {
+                                                    "label": "Professional qualification (for example teaching, nursing, accountancy)",
+                                                    "value": "Professional qualification (for example teaching, nursing, accountancy)"
+                                                },
+                                                {
+                                                    "label": "Foreign qualifications (UK equivalent not known)",
+                                                    "value": "Foreign qualifications (UK equivalent not known)"
+                                                },
+                                                {
+                                                    "label": "No qualifications",
+                                                    "value": "No qualifications"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "volunteering",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "volunteering-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "volunteering-question",
+                                    "title": "24. Thinking of the last 12 months, have you taken part in any volunteering for any groups, clubs or organisations?",
+                                    "description": "Exclude any Court ordered activities",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "volunteering-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                },
+                                                {
+                                                    "label": "Yes, at least once a week",
+                                                    "value": "Yes, at least once a week"
+                                                },
+                                                {
+                                                    "label": "Yes, less than once a week but at least once a month",
+                                                    "value": "Yes, less than once a week but at least once a month"
+                                                },
+                                                {
+                                                    "label": "Yes, less often",
+                                                    "value": "Yes, less often"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "employment-type",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "employment-type-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "employment-type-question",
+                                    "title": "25. Last week were you:",
+                                    "description": "Select all that apply <br /> Include any paid work, including casual or temporary work, even if only for one hour",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "employment-type-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "working as an employee",
+                                                    "value": "working as an employee"
+                                                },
+                                                {
+                                                    "label": "on a government sponsored training scheme",
+                                                    "value": "on a government sponsored training scheme"
+                                                },
+                                                {
+                                                    "label": "self-employed or freelance",
+                                                    "value": "self-employed or freelance"
+                                                },
+                                                {
+                                                    "label": "working paid or unpaid for you own or your family’s business",
+                                                    "value": "working paid or unpaid for you own or your family’s business"
+                                                },
+                                                {
+                                                    "label": "away from work ill, on maternity leave, on holiday or temporarily laid off",
+                                                    "value": "away from work ill, on maternity leave, on holiday or temporarily laid off"
+                                                },
+                                                {
+                                                    "label": "doing any other kind of paid work",
+                                                    "value": "doing any other kind of paid work"
+                                                },
+                                                {
+                                                    "label": "none of the above",
+                                                    "value": "none of the above"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "jobseeker",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "jobseeker-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "jobseeker-question",
+                                    "title": "26. Were you actively looking for any kind of paid work during the last four weeks?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "jobseeker-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "job-availability",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "job-availability-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "job-availability-question",
+                                    "title": "27. If a job had been available last week, could you have started it within two weeks?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "job-availability-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "job-pending",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "validation": [],
+                    "sections": [
+                        {
+                            "id": "job-pending-section",
+                            "title": "John Doe",
+                            "display": {
+                                "properties": {}
+                            },
+                            "validation": [],
+                            "questions": [
+                                {
+                                    "id": "job-pending-question",
+                                    "title": "28. Last week, were you waiting to start a job already obtained?",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "job-pending-answer",
+                                            "display": {
+                                                "properties": {}
+                                            },
+                                            "guidance": "",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
