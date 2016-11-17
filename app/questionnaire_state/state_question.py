@@ -40,7 +40,7 @@ class StateQuestion(StateItem):
         new_answer.parent = self
 
         instance_id = self._get_instance_id(instances, answer_schema.id, index)
-        new_answer.instance = instance_id
+        new_answer.answer_instance = instance_id
 
         new_answer_schema = copy.deepcopy(answer_schema)
         new_answer_schema.widget.name += '_' + str(instance_id) if instance_id > 0 else ''

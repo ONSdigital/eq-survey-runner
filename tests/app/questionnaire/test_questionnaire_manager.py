@@ -77,7 +77,7 @@ class TestQuestionnaireManager(TestCase):
 
         # Then
         self.assertEqual(new_answer.schema_item.widget.name, 'answer_0')
-        self.assertEqual(new_answer.instance, 0)
+        self.assertEqual(new_answer.answer_instance, 0)
 
     def test_create_new_answer_with_existing_answers(self):
         # Given
@@ -105,7 +105,7 @@ class TestQuestionnaireManager(TestCase):
 
         # Then
         self.assertEqual(new_answer.schema_item.widget.name, 'answer_2')
-        self.assertEqual(new_answer.instance, 2)
+        self.assertEqual(new_answer.answer_instance, 2)
 
     def setUp(self):
         # Override some behaviours that are difficult to mock.

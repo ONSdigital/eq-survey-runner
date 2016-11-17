@@ -153,7 +153,7 @@ class QuestionnaireManager(object):
         new_answer_schema.widget.name += '_' + str(next_instance_id)
         new_answer.schema_item = new_answer_schema
         new_answer.parent = question_state
-        new_answer.instance = next_instance_id
+        new_answer.answer_instance = next_instance_id
         return new_answer
 
     def remove_answer(self, block, post_data, answer_store):

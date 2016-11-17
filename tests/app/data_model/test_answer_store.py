@@ -316,12 +316,14 @@ class TestAnswerStore(unittest.TestCase):
 
     def test_remove_answer(self):
         answer_1 = Answer(
+            group_id="1",
             block_id="1",
             answer_id="2",
             answer_instance=1,
             value=25,
         )
         answer_2 = Answer(
+            group_id="1",
             block_id="1",
             answer_id="5",
             answer_instance=1,
@@ -345,12 +347,14 @@ class TestAnswerStore(unittest.TestCase):
 
     def test_remove_answer_(self):
         answer_1 = Answer(
+            group_id="1",
             block_id="1",
             answer_id="2",
             answer_instance=1,
             value=25,
         )
         answer_2 = Answer(
+            group_id="1",
             block_id="1",
             answer_id="5",
             answer_instance=1,
@@ -374,18 +378,21 @@ class TestAnswerStore(unittest.TestCase):
 
     def test_remove_answer_that_does_not_exist(self):
         answer_1 = Answer(
+            group_id="1",
             block_id="1",
             answer_id="1",
             answer_instance=1,
             value=25,
         )
         answer_2 = Answer(
+            group_id="1",
             block_id="1",
             answer_id="2",
             answer_instance=1,
             value=65,
         )
         answer_3 = Answer(
+            group_id="1",
             block_id="1",
             answer_id="3",
             answer_instance=1,
