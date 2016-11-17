@@ -26,21 +26,26 @@ def nl2br(context, value):
 
 
 @blueprint.app_template_filter()
-def pretty_date(value):
+def format_date(value):
     return value.strftime('%-d %B %Y')
 
 
-def pretty_short_date(value):
-    return datetime.strptime(value, "%d/%m/%Y").strftime('%d %b %Y')
+def format_str_as_short_date(value):
+    return datetime.strptime(value, "%d/%m/%Y").strftime('%d %B %Y')
 
 
 @blueprint.app_template_filter()
-def pretty_date_range(value):
-    from_date = pretty_short_date(value['from'])
-    to_date = pretty_short_date(value['to'])
+def format_str_as_date_range(value):
+    from_date = format_str_as_short_date(value['from'])
+    to_date = format_str_as_short_date(value['to'])
     return '{from_date} to {to_date}'.format(from_date=from_date, to_date=to_date)
 
 
 @blueprint.app_template_filter()
-def pretty_month_year_date(value):
-    return datetime.strptime(value, "%m/%Y").strftime('%b %Y')
+def format_str_as_month_year_date(value):
+    return datetime.strptime(value, "%m/%Y").strftime('%B %Y')
+
+
+@blueprint.app_template_filter()
+def format_str_as_date(value):
+    return format_str_as_short_date(value)

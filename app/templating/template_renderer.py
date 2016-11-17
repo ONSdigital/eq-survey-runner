@@ -1,6 +1,6 @@
 import json
 
-from app.jinja_filters import pretty_date
+from app.jinja_filters import format_date
 
 from jinja2 import Environment
 
@@ -8,7 +8,7 @@ from jinja2 import Environment
 class TemplateRenderer:
     def __init__(self):
         self.environment = Environment()
-        self.environment.filters['pretty_date'] = pretty_date
+        self.environment.filters['format_date'] = format_date
 
     def render(self, renderable, **context):
         """

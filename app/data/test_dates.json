@@ -103,6 +103,34 @@
                                     "title": "Date with month and year",
                                     "type": "General",
                                     "validation": []
+                                    },
+                                    {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "a51b1c7b-3f25-49dd-9275-2ea742eee510",
+                                            "label": "Date",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "11",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "question",
+                                    "title": "Single date type",
+                                    "type": "General",
+                                    "validation": []
                                 }
                             ],
                             "title": "Date Examples",

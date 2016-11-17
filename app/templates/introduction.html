@@ -32,10 +32,10 @@
           <dl class="dl">
             <dt class="dl__title mercury">PERIOD</dt>
             <dd class="dl__data mars">
-              <span class="">{{ meta.survey.start_date|pretty_date }} to {{ meta.survey.end_date|pretty_date}}
+              <span class="">{{ meta.survey.start_date|format_date }} to {{ meta.survey.end_date|format_date}}
             </dd>
             <dt class="dl__title mercury">PLEASE SUBMIT BY</dt>
-            <dd class="dl__data mars">{{ meta.survey.return_by|pretty_date}}</dd>
+            <dd class="dl__data mars">{{ meta.survey.return_by|format_date}}</dd>
           </dl>
         </div>
       </div>
@@ -62,7 +62,7 @@
       <div class="venus lock__text">We will treat your data securely and confidentially</div>
     </div>
     <h2 class="saturn">Legal Information</h2>
-    <p class="mars">You are required to complete this questionnaire. If you do not complete and return this questionnaire by {{ meta.survey.return_by|pretty_date }}, penalties may be incurred (under section 4 of the Statistics of Trade Act 1947).</p>
+    <p class="mars">You are required to complete this questionnaire. If you do not complete and return this questionnaire by {{ meta.survey.return_by|format_date }}, penalties may be incurred (under section 4 of the Statistics of Trade Act 1947).</p>
   </div>
 
 

@@ -19,11 +19,15 @@ describe('Date checks', function() {
               .setToReportingPeriodDay(3)
               .setToReportingPeriodYear(2017)
               .setMonthYearYear(2018)
+              .setDateOfBirthDay(4)
+              .setDateOfBirthYear(1999)
               .submit()
 
             // Then the summary screen shows the dates entered formatted
-            expect(SummaryPage.getDateRangeSummary()).to.contain('01 Jan 2016 to 03 Jan 2017')
-            expect(SummaryPage.getMonthYearDateSummary()).to.contain('Jan 2018')
+            expect(SummaryPage.getDateRangeSummary()).to.contain('01 January 2016 to 03 January 2017')
+            expect(SummaryPage.getMonthYearDateSummary()).to.contain('January 2018')
+            expect(SummaryPage.getDateOfBirth()).to.contain('04 January 1999')
+
         })
 
 
@@ -38,6 +42,8 @@ describe('Date checks', function() {
               .setToReportingPeriodDay(1)
               .setToReportingPeriodYear(2015)
               .setMonthYearYear(2018)
+              .setDateOfBirthDay(4)
+              .setDateOfBirthYear(1999)
               .submit()
 
             // Then an error message is shown
@@ -56,6 +62,8 @@ describe('Date checks', function() {
               .setToReportingPeriodDay(1)
               .setToReportingPeriodYear(2016)
               .setMonthYearYear(2018)
+              .setDateOfBirthDay(4)
+              .setDateOfBirthYear(1999)
               .submit()
 
             // Then an error message is shown
@@ -74,6 +82,8 @@ describe('Date checks', function() {
               .setToReportingPeriodDay(3)
               .setToReportingPeriodYear('')
               .setMonthYearYear(2018)
+              .setDateOfBirthDay(4)
+              .setDateOfBirthYear(1999)
               .submit()
 
             // Then an error message is shown
@@ -92,6 +102,8 @@ describe('Date checks', function() {
               .setToReportingPeriodDay(3)
               .setToReportingPeriodYear(2017)
               .setMonthYearYear('')
+              .setDateOfBirthDay(4)
+              .setDateOfBirthYear(1999)
               .submit()
 
             // Then an error message is shown
@@ -110,6 +122,8 @@ describe('Date checks', function() {
               .setToReportingPeriodDay(3)
               .setToReportingPeriodYear(2017)
               .setMonthYearYear('')
+              .setDateOfBirthDay(4)
+              .setDateOfBirthYear(1999)
               .submit()
 
             expect(DatesPage.getAlertText()).to.contain('The date entered is not valid. Please correct your answer.')
@@ -121,9 +135,23 @@ describe('Date checks', function() {
               .setToReportingPeriodDay(3)
               .setToReportingPeriodYear(2017)
               .setMonthYearYear('2018')
+              .setDateOfBirthDay(4)
+              .setDateOfBirthYear(1999)
               .submit()
 
-            expect(SummaryPage.getDateRangeSummary()).to.contain('01 Jan 2016 to 03 Jan 2017')
-            expect(SummaryPage.getMonthYearDateSummary()).to.contain('Jan 2018')
+            expect(SummaryPage.getDateRangeSummary()).to.contain('01 January 2016 to 03 January 2017')
+            expect(SummaryPage.getMonthYearDateSummary()).to.contain('January 2018')
+      })
+
+      it('Given the test_dates survey is selected, when a user clicks the day label then the day subfield should gain the focus', function() {
+
+            // Given the test_dates survey is selected
+            startQuestionnaire('test_dates.json')
+
+            // When a user clicks the day label
+            DatesPage.dayLabel.click()
+
+            // Then the day subfield should gain the focus
+            expect(browser.hasFocus(DatesPage.dayInput.selector)).to.be.true
       })
 })

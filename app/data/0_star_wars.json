@@ -877,7 +877,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "It could be between {{exercise.start_date|pretty_date}} and {{exercise.end_date|pretty_date}}. But that might just be a test",
+                                    "description": "It could be between {{exercise.start_date|format_date}} and {{exercise.end_date|format_date}}. But that might just be a test",
                                     "display": {
                                         "properties": {}
                                     },
@@ -934,7 +934,7 @@
                                     "type": "General"
                                 }
                             ],
-                            "title": "On {{exercise.employment_date|pretty_date}} how many were employed?"
+                            "title": "On {{exercise.employment_date|format_date}} how many were employed?"
                         },
                         {
                             "description": "",
