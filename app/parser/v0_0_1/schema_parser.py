@@ -251,7 +251,7 @@ class SchemaParser(AbstractSchemaParser):
             question.type = question_type
             question.id = ParserUtils.get_required_string(schema, "id")
             question.title = ParserUtils.get_required_string(schema, "title")
-            question.description = ParserUtils.get_required_string(schema, "description")
+            question.description = ParserUtils.get_optional_string(schema, "description")
             question.skip_condition = self._parse_skip_condition(ParserUtils.get_optional(schema, "skip_condition"))
             # register the question
             questionnaire.register(question)

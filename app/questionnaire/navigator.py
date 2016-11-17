@@ -16,6 +16,8 @@ def evaluate_rule(rule, answer_value):
     match_value = when['value']
     condition = when['condition']
 
+    # answer_to_test = answer[0] if (isinstance(answer, list) and len(answer) == 1) else answer
+
     # Evaluate the condition on the routing rule
     if condition == 'equals' and match_value == answer_value:
         return True
