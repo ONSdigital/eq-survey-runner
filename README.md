@@ -186,6 +186,7 @@ EQ_CLOUDWATCH_LOGGING - feature flag to enable AWS cloudwatch logging
 EQ_GIT_REF - the latest git ref of HEAD on master
 EQ_SR_LOG_GROUP - The name of the log group to create (defaults to `username-local` for local development)
 EQ_LOG_LEVEL - The default logging level (defaults to 'INFO' for local development)
+EQ_WERKZEUG_LOG_LEVEL - The default logging level for werkzeug (defaults to 'INFO' for local development)
 EQ_SCHEMA_DIRECTORY - The directory that contains the schema files
 EQ_SESSION_TIMEOUT - The duration of the flask session, defaults to 30 minutes
 EQ_SECRET_KEY - The Flask secret key for signing cookies

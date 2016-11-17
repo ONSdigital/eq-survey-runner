@@ -42,7 +42,7 @@ const sauceLabsConfig = {
 if (process.env.TRAVIS === 'true') {
   config = {
     ...config,
-    logLevel: 'debug',
+    logLevel: 'silent',
     capabilities: [chrome]
   }
 } else {
