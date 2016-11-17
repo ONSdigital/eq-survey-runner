@@ -4,22 +4,26 @@ from collections import OrderedDict
 
 
 class Answer(object):
-    def __init__(self, answer_id, block_id, value, answer_instance=0):
-        self.answer_id = answer_id
+    def __init__(self, group_id, block_id, answer_id, value, group_instance=0, answer_instance=0):
+        self.group_id = group_id
         self.block_id = block_id
+        self.answer_id = answer_id
+        self.group_instance = group_instance
         self.answer_instance = answer_instance
         self.value = value
 
     def matches(self, answer):
         """
         Check to see if two answers match.
-        Two answers are considered to match if they share the same block, answer and instance id.
+        Two answers are considered to match if they share the same block_id, answer, answer_instance, group_id and group_instance.
 
         :param answer: An answer to compare
         :return: True if both answers match, otherwise False.
         """
-        return self.block_id == answer.block_id and \
+        return self.group_id == answer.group_id and \
+            self.block_id == answer.block_id and \
             self.answer_id == answer.answer_id and \
+            self.group_instance == answer.group_instance and \
             self.answer_instance == answer.answer_instance
 
     def matches_dict(self, answer_dict):
@@ -31,9 +35,11 @@ class Answer(object):
         """
 
         return self.matches(Answer(
-            answer_dict['answer_id'],
+            answer_dict['group_id'],
             answer_dict['block_id'],
+            answer_dict['answer_id'],
             "",
+            answer_dict['group_instance'],
             answer_dict['answer_instance'],
         ))
 
@@ -137,22 +143,26 @@ class AnswerStore(object):
         """
         self._validate(answer)
 
-        return len(self.filter(answer.answer_id, answer.block_id, answer.answer_instance))
+        return len(self.filter(answer.group_id, answer.block_id, answer.answer_id, answer.group_instance, answer.answer_instance))
 
-    def filter(self, answer_id=None, block_id=None, answer_instance=None):
+    def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
 
         :param answer_id:
         :param block_id:
+        :param group_id:
         :param answer_instance:
+        :param group_instance:
         :return:
         """
         filtered = []
         filter_vars = {
             "answer_id": answer_id,
             "block_id": block_id,
+            "group_id": group_id,
             "answer_instance": answer_instance,
+            "group_instance": group_instance,
         }
         for answer in self.answers:
             matches = True
@@ -166,19 +176,21 @@ class AnswerStore(object):
     def clear(self):
         self.answers.clear()
 
-    def map(self, answer_id=None, block_id=None, answer_instance=None):
+    def map(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
         """
         Maps the answers in this store to a dictionary of key, value answers. Keys include instance
         id's when the instance id is non zero.
 
         :param answer_id:
         :param block_id:
+        :param group_id:
         :param answer_instance:
+        :param group_instance:
         :return:
         """
         result = {}
-        use_filter = (answer_id or block_id or answer_instance) is not None
-        answers = self.filter(answer_id, block_id, answer_instance) if use_filter else self.answers
+        use_filter = (group_id or block_id or answer_id or group_instance or answer_instance) is not None
+        answers = self.filter(group_id, block_id, answer_id, group_instance, answer_instance) if use_filter else self.answers
 
         for answer in answers:
             answer_id = answer['answer_id']
