@@ -134,6 +134,8 @@ def create_app(config_name):
 
     configure_logging(application)
 
+    login_manager.init_app(application)
+
     if settings.EQ_DEV_MODE:
         # TODO fix health check so it no longer sends message to queue
         add_health_check(application, headers)
@@ -209,21 +211,24 @@ def configure_logging(application):
     if settings.EQ_CLOUDWATCH_LOGGING:
         setup_cloud_watch_logging(application)
 
+    # Set werkzeug logging level
+    if settings.EQ_WERKZEUG_LOG_LEVEL:
+        werkzeug_logger = logging.getLogger('werkzeug')
+        werkzeug_logger.setLevel(level=levels[settings.EQ_WERKZEUG_LOG_LEVEL])
+
     # setup file logging
     rotating_log_file = RotatingFileHandler(
-      LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
+        LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
     logging.getLogger().addHandler(rotating_log_file)
 
     # setup splunk logging
     if settings.EQ_SPLUNK_LOGGING:
         setup_splunk_logging()
-    application.logger.debug("Initializing login manager for application")
-    login_manager.init_app(application)
-    application.logger.debug("Login Manager initialized")
 
-    # workaround flask crazy logging mechanism
+    # workaround flask crazy logging mechanism (https://github.com/pallets/flask/issues/641)
     application.logger_name = "nowhere"
-    application.logger
+    # the line below is required to trigger disabling the logger
+    application.logger  # pylint: disable=pointless-statement
 
 
 def setup_splunk_logging():
@@ -285,7 +290,7 @@ def add_blueprints(application):
 def setup_secure_cookies(application):
     application.secret_key = settings.EQ_SECRET_KEY
     application.permanent_session_lifetime = timedelta(
-      seconds=settings.EQ_SESSION_TIMEOUT)
+        seconds=settings.EQ_SESSION_TIMEOUT)
     application.session_interface = SHA256SecureCookieSessionInterface()
     application.config['SESSION_COOKIE_SECURE'] = True
 
@@ -298,7 +303,7 @@ def setup_babel(application):
 
 def add_health_check(application, headers):
     application.healthcheck = HealthCheck(
-      application, '/healthcheck', success_headers=headers, failed_headers=headers)
+        application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)
     application.healthcheck.add_check(git_revision)
 
