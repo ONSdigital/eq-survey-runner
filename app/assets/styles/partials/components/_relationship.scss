@@ -1,0 +1,39 @@
+.has-js {
+  .question--householdrelationship {
+    .question__answer {
+      border-top: 1px solid $color-borders;
+      padding: 1rem 0;
+      margin: 0;
+      &:last-of-type {
+        border-bottom: 1px solid $color-borders;
+      }
+      &.is-closed {
+        .js-accordion-body {
+          display: none;
+        }
+      }
+    }
+    .question__edit {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+    }
+
+    .js-accordion-body {
+      clear: both;
+      margin-top: 1rem;
+    }
+
+    .field__item {
+      width: calc(50% - 0.3rem);
+      min-width: 0;
+      margin: 0 0.3rem 0.3rem 0;
+      vertical-align: top;
+    }
+
+    .label {
+      // margin: 0;
+    }
+  }
+
+}
