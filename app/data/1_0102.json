@@ -69,7 +69,7 @@
                                             }
                                         }
                                     ],
-                                    "description": "If possible, this should be for the period {{exercise.start_date|pretty_date}} to {{exercise.end_date|pretty_date}}.",
+                                    "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
                                     "display": {
                                         "properties": {}
                                     },
