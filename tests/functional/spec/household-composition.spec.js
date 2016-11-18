@@ -21,7 +21,7 @@ describe('Household composition question for census test.', function() {
     expect(HouseholdCompositionSummary.isNameDisplayed('Person One')).to.be.true
   })
 
-  it('Given no people added, when enter a name and add another person, then there should be two input fields displayed.', function() {
+  it('Given no people added, when I enter another name, then there should be two input fields displayed.', function() {
     //Given
     startQuestionnaire(household_composition_schema)
 
@@ -31,21 +31,6 @@ describe('Household composition question for census test.', function() {
     // Then
     expect(HouseholdCompositionPage.isInputVisible(0)).to.be.true
     expect(HouseholdCompositionPage.isInputVisible(1)).to.be.true
-  })
-
-  it('Given two people added, when submitted, both names should appear on summary.', function() {
-    //Given
-    startQuestionnaire(household_composition_schema)
-
-    //When
-    HouseholdCompositionPage
-        .setPersonName(0, 'Person One')
-        .addPerson()
-        .setPersonName(1, 'Person Two')
-        .submit()
-
-    // Then
-    expect(HouseholdCompositionSummary.areNamesDisplayed(['Person One', 'Person Two'])).to.be.true
   })
 
   it('Given three people added, when submitted, all three names should appear on summary.', function() {

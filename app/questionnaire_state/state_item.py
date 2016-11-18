@@ -46,3 +46,5 @@ class StateItem(object):
                 return child
             else:
                 return child.find_state_item(schema_item)
+
+        return None

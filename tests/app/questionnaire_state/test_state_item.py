@@ -42,3 +42,25 @@ class TestStateItem(TestCase):
 
         # Then
         self.assertEqual(result, answer)
+
+    def test_find_schema_item_schema_item_not_found(self):
+        # Given
+        block_schema = MagicMock()
+        question_schema = MagicMock()
+        answer_schema = MagicMock()
+
+        block = StateItem('block_id', block_schema)
+        question = StateItem('question_id', question_schema)
+        answer = StateItem('answer_id', answer_schema)
+
+        block.children = [question]
+        question.children = [answer]
+
+        not_found_schema = MagicMock()
+
+        # When
+        result = block.find_state_item(not_found_schema)
+
+        # Then
+        self.assertIsNone(result)
+

@@ -270,10 +270,6 @@ def add_blueprints(application):
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()
 
-    from .main.views.questionnaire import action_blueprint
-    application.register_blueprint(action_blueprint)
-    action_blueprint.config = application.config.copy()
-
     from .main.views.root import root_blueprint
     application.register_blueprint(root_blueprint)
     root_blueprint.config = application.config.copy()

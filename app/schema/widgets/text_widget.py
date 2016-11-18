@@ -12,7 +12,7 @@ class TextWidget(Widget):
         widget_params = {
             'answer': {
                 'name': self.name,
-                'id': state.schema_item.id,
+                'id': self.get_id(state),
                 'label': state.schema_item.label or '',
                 'value': state.value if state.value is not None else '',
             },

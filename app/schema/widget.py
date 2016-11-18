@@ -17,3 +17,8 @@ class Widget(object):
 
     def get_other_input(self, post_vars):
         pass
+
+    @staticmethod
+    def get_id(state):
+        schema_id_with_suffix = '_'.join([state.schema_item.id, str(state.answer_instance)])
+        return state.schema_item.id if state.answer_instance == 0 else schema_id_with_suffix

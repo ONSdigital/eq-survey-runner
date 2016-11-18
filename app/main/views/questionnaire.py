@@ -30,13 +30,8 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
                                     import_name=__name__,
                                     url_prefix='/questionnaire/<eq_id>/<form_type>/<collection_id>/')
 
-action_blueprint = Blueprint(name='action',
-                             import_name=__name__,
-                             url_prefix='/action/<eq_id>/<form_type>/<collection_id>/')
-
 
 @questionnaire_blueprint.before_request
-@action_blueprint.before_request
 @login_required
 def check_survey_state():
     g.schema_json, g.schema = get_schema()
@@ -47,7 +42,6 @@ def check_survey_state():
 
 
 @questionnaire_blueprint.after_request
-@action_blueprint.after_request
 def add_cache_control(response):
     response.cache_control.no_cache = True
     return response
@@ -77,11 +71,7 @@ def post_questionnaire(eq_id, form_type, collection_id, location):
     if not valid:
         return _render_template(location, get_questionnaire_manager(g.schema, g.schema_json).state, template='questionnaire')
 
-    navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
-    next_location = navigator.get_next_location(get_answers(current_user), location)
-    metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
+    return _go_to_next_block(current_location=location, eq_id=eq_id, form_type=form_type, collection_id=collection_id)
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -125,23 +115,35 @@ def submit_answers(eq_id, form_type, collection_id):
         return redirect_to_questionnaire_page(eq_id, form_type, collection_id, invalid_location)
 
 
-@action_blueprint.route('<location>/<question>/add', methods=["POST"])
+@questionnaire_blueprint.route('household-composition', methods=["POST"])
 @login_required
-def add_answer(eq_id, form_type, collection_id, location, question):
+def post_household_composition(eq_id, form_type, collection_id):
     questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
-    questionnaire_manager.process_incoming_answers(location, request.form)
-    questionnaire_manager.add_answer(location, question, get_answer_store(current_user))
-
-    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
-
-
-@action_blueprint.route('<location>/<question>/remove', methods=["POST"])
-@login_required
-def remove_answer(eq_id, form_type, collection_id, location, question):
     answer_store = get_answer_store(current_user)
-    get_questionnaire_manager(g.schema, g.schema_json).remove_answer(location, request.form, answer_store)
+    valid = questionnaire_manager.process_incoming_answers('household-composition', request.form)
 
-    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, location)
+    if 'action[add_answer]' in request.form:
+        questionnaire_manager.add_answer('household-composition', 'question', answer_store)
+        return redirect_to_questionnaire_page(eq_id, form_type, collection_id, 'household-composition')
+
+    elif 'action[remove_answer]' in request.form:
+        index_to_remove = request.form.get('action[remove_answer]')
+        questionnaire_manager.remove_answer('household-composition', answer_store, index_to_remove)
+        return redirect_to_questionnaire_page(eq_id, form_type, collection_id, 'household-composition')
+
+    if not valid:
+        return _render_template('household-composition', questionnaire_manager.state, template='questionnaire')
+
+    return _go_to_next_block(current_location='household-composition', eq_id=eq_id,
+                             form_type=form_type, collection_id=collection_id)
+
+
+def _go_to_next_block(current_location, eq_id, form_type, collection_id, ):
+    navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
+    next_location = navigator.get_next_location(get_answers(current_user), current_location)
+    metadata = get_metadata(current_user)
+    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
+    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
 
 
 def _delete_user_data():

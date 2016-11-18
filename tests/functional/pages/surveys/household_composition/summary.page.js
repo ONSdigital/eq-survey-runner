@@ -3,17 +3,17 @@ import SummaryPage from '../../summary.page'
 class HouseholdCompositionSummary extends SummaryPage {
 
   clickEdit() {
-    browser.click('[data-qa="414699da-1667-44fd-8e98-7606966884db-edit"]')
+    browser.click('[data-qa="household-full-name-edit"]')
     return this
   }
 
   isNameDisplayed(name) {
-    return browser.element('[data-qa="414699da-1667-44fd-8e98-7606966884db-answer"]').getText() === name
+    return browser.element('[data-qa="household-full-name-answer"]').getText() === name
   }
 
   areNamesDisplayed(names) {
     var allNamesDisplayed = true
-    var elements = browser.elements('[data-qa="414699da-1667-44fd-8e98-7606966884db-answer"]')
+    var elements = browser.elements('[data-qa="household-full-name-answer"]')
     var name
     for (name in names) {
       var nameFound = false

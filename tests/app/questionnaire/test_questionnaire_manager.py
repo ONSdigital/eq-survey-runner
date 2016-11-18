@@ -6,17 +6,27 @@ from app.questionnaire.questionnaire_manager import QuestionnaireManager, Naviga
 
 class TestQuestionnaireManager(TestCase):
 
-    def test_add_answer_adds_answer_to_question(self):
+    def test_add_answer_creates_new_answer_state(self):
         # Given
-        new_answer = MagicMock()
-        self.questionnaire_manager._create_new_answer_state = MagicMock(return_value=new_answer)
+        answer_schema = MagicMock()
 
-        question = MagicMock()
-        self.questionnaire_manager.state.find_state_item = MagicMock(return_value=question)
+        question_schema = MagicMock()
+        question_schema.answers = [answer_schema]
+
+        self.questionnaire_manager._schema.get_item_by_id = MagicMock(return_value=question_schema)
+        self.questionnaire_manager._get_next_answer_instance = MagicMock(return_value=1)
+
+        new_answer_state = MagicMock()
+        self.questionnaire_manager._create_new_answer_state = MagicMock(return_value=new_answer_state)
+
+        question_state = MagicMock()
+        self.questionnaire_manager.state.find_state_item = MagicMock(return_value=question_state)
 
         # When
         self.questionnaire_manager.add_answer('block', 'question', self.answer_store)
-        question.answers.append.assert_called_with(new_answer)
+
+        # Then
+        answer_schema.create_new_answer_state.assert_called_with(answer_instance=1, parent=question_state)
 
     def test_add_answer_updates_answer_store(self):
         # Given
@@ -31,74 +41,76 @@ class TestQuestionnaireManager(TestCase):
         self.questionnaire_manager.update_questionnaire_store.assert_called_with('block')
 
     def test_remove_answer_detaches_answer_from_question(self):
-        post_data = {
-            'action[remove_answer]': '1',
-        }
-
         answer_to_remove = self.answers[1]
 
         with patch.object(self.question, 'remove_answer') as mock:
-            self.questionnaire_manager.remove_answer('block', post_data, self.answer_store)
+            self.questionnaire_manager.remove_answer('block', self.answer_store, 1)
             mock.assert_called_with(answer_to_remove)
 
     def test_remove_answer_removes_from_answer_store(self):
-        post_data = {
-            'action[remove_answer]': '1',
-        }
-
         answer_to_remove = self.answers[1]
         flattened_answer = answer_to_remove.flatten()
 
         with patch.object(self.answer_store, 'remove') as mock:
-            self.questionnaire_manager.remove_answer('block', post_data, self.answer_store)
+            self.questionnaire_manager.remove_answer('block', self.answer_store, 1)
             mock.assert_called_with(flattened_answer)
 
-    def test_create_new_answer_no_previous_answers(self):
+    def test_get_next_answer_instance_no_previous_answers(self):
         # Given
+        qm = self.questionnaire_manager
+        answer_store = MagicMock()
         answer_schema = MagicMock()
-        answer_schema.widget.name = 'answer'
-
-        answer_state = MagicMock()
-        answer_state.schema_item = answer_schema
-
-        answer_schema.construct_state = MagicMock(return_value=answer_state)
-        question_state = MagicMock()
-
+        answers = []
+        answer_store.filter = MagicMock(return_value=answers)
 
         # When
-        new_answer = self.questionnaire_manager._create_new_answer_state(answer_schema, question_state, self.answer_store)
+        next_id = qm._get_next_answer_instance(answer_store, answer_schema)
 
         # Then
-        self.assertEqual(new_answer.schema_item.widget.name, 'answer_0')
-        self.assertEqual(new_answer.answer_instance, 0)
+        self.assertEqual(next_id, 0)
 
-    def test_create_new_answer_with_existing_answers(self):
+    def test_get_next_answer_instance_one_previous_answer(self):
         # Given
+        qm = self.questionnaire_manager
+        answer_store = MagicMock()
         answer_schema = MagicMock()
-        answer_schema.widget.name = 'answer'
+        answers = [{'answer_instance': '0'}]
+        answer_store.filter = MagicMock(return_value=answers)
 
-        answer_state = MagicMock()
-        answer_state.schema_item = answer_schema
-
-        answer_schema.construct_state = MagicMock(return_value=answer_state)
-        question_state = MagicMock()
-
-        existing_answers = [{
-            'answer_id': 'answer',
-            'answer_instance': '0',
-        },
-        {
-            'answer_id': 'answer',
-            'answer_instance': '1',
-        }]
-
-        self.answer_store.filter = MagicMock(return_value=existing_answers)
         # When
-        new_answer = self.questionnaire_manager._create_new_answer_state(answer_schema, question_state, self.answer_store)
+        next_id = qm._get_next_answer_instance(answer_store, answer_schema)
 
         # Then
-        self.assertEqual(new_answer.schema_item.widget.name, 'answer_2')
-        self.assertEqual(new_answer.answer_instance, 2)
+        self.assertEqual(next_id, 1)
+
+    def test_get_next_answer_instance_two_previous_answers(self):
+        # Given
+        qm = self.questionnaire_manager
+        answer_store = MagicMock()
+        answer_schema = MagicMock()
+        answers = [{'answer_instance': '0'}, {'answer_instance': '1'}]
+        answer_store.filter = MagicMock(return_value=answers)
+
+        # When
+        next_id = qm._get_next_answer_instance(answer_store, answer_schema)
+
+        # Then
+        self.assertEqual(next_id, 2)
+
+    def test_get_next_answer_instance_one_more_than_previous_answers(self):
+        # Given
+        qm = self.questionnaire_manager
+        answer_store = MagicMock()
+        answer_schema = MagicMock()
+        answers = [{'answer_instance': '5'}]
+        answer_store.filter = MagicMock(return_value=answers)
+
+        # When
+        next_id = qm._get_next_answer_instance(answer_store, answer_schema)
+
+        # Then
+        self.assertEqual(next_id, 6)
+
 
     def setUp(self):
         # Override some behaviours that are difficult to mock.

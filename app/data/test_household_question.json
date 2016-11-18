@@ -22,7 +22,7 @@
                     "display": {
                         "properties": {}
                     },
-                    "id": "block",
+                    "id": "household-composition",
                     "sections": [
                         {
                             "display": {
@@ -43,7 +43,7 @@
                                   "answers": [
                                     {
                                         "display": {},
-                                        "id": "414699da-1667-44fd-8e98-7606966884db",
+                                        "id": "household-full-name",
                                         "label": "Full Name",
                                         "mandatory": true,
                                         "options": [],

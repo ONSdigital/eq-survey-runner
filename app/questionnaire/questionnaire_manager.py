@@ -1,4 +1,3 @@
-import copy
 import logging
 
 from app.globals import get_answers, get_metadata, get_questionnaire_store
@@ -131,32 +130,21 @@ class QuestionnaireManager(object):
         question_schema = self._schema.get_item_by_id(question_id)
         question_state = self.state.find_state_item(question_schema)
 
-        existing_answer_schema = question_schema.answers[0]  # Single answer for now.
-        new_answer_state = self._create_new_answer_state(existing_answer_schema, question_state, answer_store)
+        answer_schema = question_schema.answers[0]  # Single answer for now.
 
-        question_state.answers.append(new_answer_state)
+        next_answer_instance_id = self._get_next_answer_instance(answer_store, answer_schema)
+        answer_schema.create_new_answer_state(answer_instance=next_answer_instance_id, parent=question_state)
 
         self.update_questionnaire_store(block_id)
 
     @staticmethod
-    def _create_new_answer_state(answer_schema, question_state, answer_store):
-        new_answer = answer_schema.construct_state()
+    def _get_next_answer_instance(answer_store, existing_answer_schema):
+        existing_answers = answer_store.filter(answer_id=existing_answer_schema.id)
+        last_answer = existing_answers[-1:]
+        next_answer_instance_id = 0 if len(last_answer) == 0 else int(last_answer[0]['answer_instance']) + 1
+        return next_answer_instance_id
 
-        existing = answer_store.filter(answer_id=answer_schema.id)
-        last_answer = existing[-1:]
-        next_instance_id = 0 if len(last_answer) == 0 else int(last_answer[0]['answer_instance']) + 1
-        new_answer_schema = copy.deepcopy(new_answer.schema_item)
-        new_answer_schema.widget.name += '_' + str(next_instance_id)
-        new_answer.schema_item = new_answer_schema
-        new_answer.parent = question_state
-        new_answer.answer_instance = next_instance_id
-        return new_answer
-
-    def remove_answer(self, block, post_data, answer_store):
-        if self.state is None:
-            self.process_incoming_answers(block, post_data)
-
-        index_to_remove = post_data.get('action[remove_answer]')
+    def remove_answer(self, block, answer_store, index_to_remove):
         answer = self.state.get_answers()[int(index_to_remove)]
         question = answer.parent
         question.remove_answer(answer)

@@ -33,14 +33,10 @@
            {%- if loop.index == 1 -%}
               <span class="js-household-action">{{ _('You') }}</span>
            {%- else -%}
-           <button class="btn btn--link"
-              formaction="{{ url_for('action.remove_answer',
-                eq_id=meta.survey.eq_id,
-                collection_id=meta.survey.collection_id,
-                form_type=meta.survey.form_type,
-                location=content.id,
-                question=question.schema_item.id) }}"
-              name="action[remove_answer]" value="{{ loop.index0 }}">{{ _('Remove') }} <span class="u-vh">{{ _('Person') }} {{loop.index0}}</span></button>
+               <button class="btn btn--link" name="action[remove_answer]"
+                       value="{{ loop.index0 }}">{{ _('Remove') }}
+                   <span class="u-vh">{{ _('Person') }} {{loop.index0}}</span>
+               </button>
            {%- endif -%}
            )</small>
          </h3>
@@ -61,12 +57,6 @@
   {%- if question.schema_item.type == 'RepeatingAnswer' %}
   <div class="question__actions">
     <button class="btn btn--border btn--secondary venus js-household-btn" type="submit"
-          formaction="{{ url_for('action.add_answer',
-            eq_id=meta.survey.eq_id,
-            collection_id=meta.survey.collection_id,
-            form_type=meta.survey.form_type,
-            location=content.id,
-            question=question.schema_item.id) }}"
           name="action[add_answer]">{{ _('Add another person') }}</button>
   </div>
   {%- endif %}

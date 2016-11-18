@@ -25,7 +25,7 @@ class Question:
         answers_iterator = iter(answer_schema)
         for answer_schema in answers_iterator:
             if question_schema['type'] == 'RepeatingAnswer':
-                for k, v in answers.items():
+                for k, _ in answers.items():
                     if k.startswith(answer_schema['id']):
                         answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator, k)
                         summary_answers.append(Answer(block_id, answer_schema, answer))
