@@ -60,4 +60,6 @@ function toggleAccordion(elAccordion) {
   }
 }
 
-domready(accordion)
+domready(() => {
+  accordion()
+})
