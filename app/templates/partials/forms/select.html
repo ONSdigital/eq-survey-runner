@@ -1,4 +1,5 @@
 <select class='input input--select' id='input-{{select.name}}' name='{{select.name}}'>
+
   {% if not (select.selected and select.mandatory) %}
       <option value="">{{select.placeholder}}</option>
   {% endif %}
