@@ -16,7 +16,7 @@ class HouseholdCompositionPage extends QuestionPage {
   }
 
   getInputFieldName(index) {
-    var field = '414699da-1667-44fd-8e98-7606966884db'
+    var field = 'household'
     if (index > 0) {
       field = field + '_' + index
     }

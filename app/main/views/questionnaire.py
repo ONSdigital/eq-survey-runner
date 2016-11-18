@@ -164,8 +164,8 @@ def get_household_relationship_iteration(eq_id, form_type, collection_id, group_
     household_question = get_questionnaire_manager(g.schema, g.schema_json).state.find_state_item(question_schema)
     for i, answer in enumerate(household_question.children):
         context = {
-            "person1": current_person['value'],
-            "person2": household_answers[i]['value']
+            "person": current_person['value'],
+            "other_person": household_answers[i]['value']
         }
         answer.schema_item.label = renderer.render(answer.schema_item.label, **context)
 

@@ -83,11 +83,11 @@
 
         <legend class="question__legend">
           {%- if question_title -%}
-            <span class="question__title neptune">{{question_title}}</span>
+            <span id="title-{{question.id}}" class="question__title neptune">{{question_title}}</span>
           {%- endif %}
           {%- if question_subtitle -%}
             <br />
-            <span class="question__subtitle venus">{{question_subtitle}}</span>
+            <span id="subtitle-{{question.id}}" class="question__subtitle venus">{{question_subtitle}}</span>
           {%- endif %}
         </legend>
 
