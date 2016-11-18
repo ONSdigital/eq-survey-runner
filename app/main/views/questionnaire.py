@@ -169,9 +169,11 @@ def get_household_relationship_iteration(eq_id, form_type, collection_id, group_
         }
         answer.schema_item.label = renderer.render(answer.schema_item.label, **context)
 
-    repeats = len(get_answer_store(current_user).filter(answer_id='household-names'))
+    context = {"person": current_person['value']}
+    household_question.schema_item.title = renderer.render(household_question.schema_item.title, **context)
+    repeats = len(get_answer_store(current_user).filter(answer_id='household'))
     # Skip relationships if one person
-    if repeats == 1:
+    if repeats <= 1:
         get_questionnaire_manager(g.schema, g.schema_json).update_questionnaire_store('relationships')
         navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
         next_location = navigator.get_next_location(get_answers(current_user), 'relationships')

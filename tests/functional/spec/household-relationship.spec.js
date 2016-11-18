@@ -3,6 +3,7 @@ import {startQuestionnaire} from '../helpers'
 
 import HouseholdCompositionPage from '../pages/surveys/household_composition/household-composition.page'
 import HouseholdRelationshipPage from '../pages/surveys/relationship/household-relationship.page'
+import SummaryPage from '../pages/summary.page'
 
 const expect = chai.expect
 
@@ -61,6 +62,18 @@ describe('Household relationship', function() {
 
       // Then
       expect(HouseholdRelationshipPage.getQuestionTitle()).to.have.string('Describe how Joe Bloggs is related to the others')
+   })
+
+   it('Given I am on the household page when I enter Joe Bloggs then I should not have to enter relationship details', function() {
+      // Given
+      startQuestionnaire(schema)
+      HouseholdCompositionPage.setPersonName(0, 'Joe Bloggs')
+
+      // When
+      HouseholdCompositionPage.submit()
+
+      // Then
+      expect(SummaryPage.isOpen()).to.be.true
    })
 
 })

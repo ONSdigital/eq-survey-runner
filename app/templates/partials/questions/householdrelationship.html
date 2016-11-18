@@ -10,13 +10,13 @@
 
         <div class="question__answer">
 
-            <div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.id}}">
+            <div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.schema_item.id}}">
 
                 <div class="answer__fields">
 
                     <fieldset class="field field--radio field--cols">
 
-                        <legend class="venus u-mb-s u-f-no">
+                        <legend id="legend-{{answer.schema_item.id}}" class="venus u-mb-s u-f-no">
                             {{legend[0]}} <span class="highlight">...</span> {{legend[1]}}
                         </legend>
 

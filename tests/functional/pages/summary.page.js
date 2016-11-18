@@ -1,6 +1,6 @@
 class SummaryPage {
 
-  isOpen() {
+  static isOpen() {
     const url = browser.url().value
     return url.indexOf('summary') > -1
   }

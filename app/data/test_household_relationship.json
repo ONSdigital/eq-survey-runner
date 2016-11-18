@@ -121,7 +121,7 @@
                                         "properties": {}
                                     },
                                     "id": "relationship-question",
-                                    "title": "Describe how {{person}} is related to the others",
+                                    "title": "Describe how {{person|default('{{person}}')}} is related to the others",
                                     "type": "HouseholdRelationship"
                               }
                             ],

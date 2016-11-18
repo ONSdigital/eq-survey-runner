@@ -3,7 +3,7 @@ import QuestionPage from '../question.page'
 class HouseholdCompositionPage extends QuestionPage {
 
   getRelationshipLabelAt(index) {
-    var id = this.buildAnswerId('#label-relationship', index)
+    var id = this.buildAnswerId('#legend-relationship', index)
     return browser.element(id).getText()
   }
 
