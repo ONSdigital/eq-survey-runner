@@ -97,6 +97,7 @@ class DateWidget(Widget):
         return months
 
     def get_user_input(self, post_vars):
+
         # Todo, this needs a refactor, we currently have 3 types being passed in post_vars: datetime, string and dict
         if isinstance(post_vars, dict):
             if post_vars.get(self.name):
