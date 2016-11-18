@@ -1,0 +1,37 @@
+{% import 'macros/helpers.html' as helpers %}
+
+<div class="question question--householdrelationship" id="{{question.id}}">
+
+  <fieldset class="question__fieldset">
+
+    <legend class="question__legend">
+      <span class="question__title neptune">{{question_title}}</span>
+    </legend>
+
+    {{question_description|safe}}
+
+    <div class="question__answers">
+
+      {%- for answer in question.answers -%}
+
+       <div class="question__answer">
+
+         <div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.id}}">
+
+           <div class="answer__fields">
+
+             {% include 'partials/answers/radio.html' %}
+
+           </div>
+
+         </div>
+
+      </div>
+
+      {%- endfor -%}
+
+    </div>
+
+  </fieldset>
+
+</div>

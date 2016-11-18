@@ -116,16 +116,16 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "",
+                                    "description": "If members are not related, select the ‘unrelated’ option, including foster parents and foster children.",
                                     "display": {
                                         "properties": {}
                                     },
                                     "id": "relationship-question",
-                                    "title": "",
+                                    "title": "Describe how {{person1}} is related to other members of the household.",
                                     "type": "HouseholdRelationship"
                               }
                             ],
-                            "title": "People in house",
+                            "title": "Who lives here?",
                             "validation": []
                         }
                     ],
