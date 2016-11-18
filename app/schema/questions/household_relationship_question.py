@@ -12,17 +12,16 @@ class HouseholdRelationshipQuestion(Question):
     """
     def __init__(self):
         super().__init__()
-        self.max_repeats = None
 
     def construct_state(self):
-        reference_answer = len(get_answer_store(current_user).filter(answer_id='household')) - 1
+        number_in_household = len(get_answer_store(current_user).filter(answer_id='household')) - 1
         schema_answers = [schema_answer for schema_answer in self.answers]
 
         state_class = self.get_state_class()
         question_state = state_class(self.id, self)
 
         for answer_schema in schema_answers:
-            for i in range(reference_answer):
+            for i in range(number_in_household):
                 answer_state = answer_schema.construct_state()
                 answer_state.parent = question_state
                 answer_state.instance = i
