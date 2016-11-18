@@ -17,22 +17,47 @@ class TestMonthYearDateAnswer(IntegrationTestCase):
     def tearDown(self):
         self.app_context.pop()
 
-    def test_month_year_date_answer(self):
+    def test_month_year_date_answer_mandatory_without_place_holder(self):
         user_answer = '2/2016'
-        response = self.render_widget(user_answer)
+        is_mandatory = True
+        response = self.render_widget(user_answer, is_mandatory)
         self.assertRegexpMatches(response, 'February')
         self.assertRegexpMatches(response, '2016')
+        self.assertRegexpMatches(response, 'Select month')
 
-    def testmonth_year_date_answer_none_input(self):
+    def test_month_year_date_answer_mandatory_with_place_holder(self):
         user_answer = None
-        self.render_widget(user_answer)
+        is_mandatory = True
+        response = self.render_widget(user_answer, is_mandatory)
+        self.assertRegexpMatches(response, 'Select month')
 
-    def render_widget(self, user_answer):
+    def test_month_year_date_answer_non_mandatory_with_place_holder(self):
+        user_answer = '2/2016'
+        is_mandatory = False
+        response = self.render_widget(user_answer, is_mandatory)
+        self.assertRegexpMatches(response, 'Select month')
+
+    def test_month_year_date_answer_none_input(self):
+        user_answer = None
+        self.render_widget(user_answer, False)
+
+    def test_month_year_date_answer_non_mandatory(self):
+        date_widget = MonthYearDateAnswer('1234')
+        response = date_widget.get_user_input({'1234-month':'', '1234-year':''})
+        self.assertIsNone(response)
+
+    def test_month_year_date_answer_mandatory(self):
+        date_widget = MonthYearDateAnswer('1234')
+        response = date_widget.get_user_input({'1234-month':'1', '1234-year':'2017'})
+        self.assertRegexpMatches(response, "1/2017")
+
+    def render_widget(self, user_answer, is_mandatory):
         month_year_date_widget = MonthYearDateWidget('1234')
         month_year_date_answer = MonthYearDateAnswer()
 
         answer_state = StateAnswer('1', month_year_date_answer)
         answer_state.schema_item.label = 'Date month year Label'
+        answer_state.schema_item.mandatory = is_mandatory
         answer_state.schema_item.type = "DateMonthYear"
         answer_state.input = user_answer
 

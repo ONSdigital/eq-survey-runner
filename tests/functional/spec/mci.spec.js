@@ -31,8 +31,10 @@ describe('MCI test', function() {
 
     // When
     monthlyBusinessSurveyPage.setFromReportingPeriodDay('01')
+      .setFromReportingPeriodMonth(1)
       .setFromReportingPeriodYear('2016')
       .setToReportingPeriodDay('01')
+      .setToReportingPeriodMonth(1)
       .setToReportingPeriodYear('2017')
       .setRetailBusinessTurnover(2000)
       .submit()

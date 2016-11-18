@@ -16,7 +16,7 @@ class DatesPage extends QuestionPage {
   }
 
   setDateOfBirthMonth(month) {
-    browser.setValue('[name="a51b1c7b-3f25-49dd-9275-2ea742eee510-month"]', month)
+    browser.selectByValue('[name="a51b1c7b-3f25-49dd-9275-2ea742eee510-month"]', month)
     return this
   }
 
@@ -31,7 +31,7 @@ class DatesPage extends QuestionPage {
   }
 
   setFromReportingPeriodMonth(month) {
-    browser.setValue('[name="5b12aea2-ae3b-467d-9291-4d803a444d25-month"]', month)
+    browser.selectByValue('[name="5b12aea2-ae3b-467d-9291-4d803a444d25-month"]', month)
     return this
   }
 
@@ -46,7 +46,7 @@ class DatesPage extends QuestionPage {
   }
 
   setToReportingPeriodMonth(month) {
-    browser.setValue('[name="ce42c1f7-a32a-46d5-8183-f54e38616617-month"]', month)
+    browser.selectByValue('[name="ce42c1f7-a32a-46d5-8183-f54e38616617-month"]', month)
     return this
   }
 
@@ -56,7 +56,7 @@ class DatesPage extends QuestionPage {
   }
 
   setMonthYearMonth(month) {
-    browser.setValue('[name="eade17ef-3ec6-46c2-afc7-dffeb07e2e5e-month"]', month)
+    browser.selectByValue('[name="eade17ef-3ec6-46c2-afc7-dffeb07e2e5e-month"]', month)
     return this
   }
 

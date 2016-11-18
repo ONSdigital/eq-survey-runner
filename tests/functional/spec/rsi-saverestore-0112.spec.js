@@ -36,8 +36,10 @@ describe('RSI - Save and restore test', function() {
 
     // When
     reportingPeriod.setFromReportingPeriodDay('01')
+      .setFromReportingPeriodMonth(1)
       .setFromReportingPeriodYear('2016')
       .setToReportingPeriodDay('01')
+      .setToReportingPeriodMonth(1)
       .setToReportingPeriodYear('2017')
       .submit()
     retailTurnoverPage.setRetailTurnover('test')
@@ -52,8 +54,10 @@ describe('RSI - Save and restore test', function() {
     const collectionId = getRandomString(5)
     startQuestionnaire('1_0112.json', 'yoganandkunche', collectionId)
     reportingPeriod.setFromReportingPeriodDay('01')
+      .setFromReportingPeriodMonth(1)
       .setFromReportingPeriodYear('2016')
       .setToReportingPeriodDay('01')
+      .setToReportingPeriodMonth(1)
       .setToReportingPeriodYear('2016')
       .submit()
 
@@ -61,8 +65,10 @@ describe('RSI - Save and restore test', function() {
     openQuestionnaire('1_0112.json', 'yoganandkunche', collectionId)
 
     reportingPeriod.setFromReportingPeriodDay('01')
+      .setFromReportingPeriodMonth(1)
       .setFromReportingPeriodYear('2016')
       .setToReportingPeriodDay('01')
+      .setToReportingPeriodMonth(1)
       .setToReportingPeriodYear('2017')
       .submit()
     retailTurnoverPage.setRetailTurnover('2000')

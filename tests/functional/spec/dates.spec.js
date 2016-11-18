@@ -15,18 +15,23 @@ describe('Date checks', function() {
 
             // When dates are entered
             DatesPage.setFromReportingPeriodDay(1)
+              .setFromReportingPeriodMonth(3)
               .setFromReportingPeriodYear(2016)
               .setToReportingPeriodDay(3)
+              .setToReportingPeriodMonth(5)
               .setToReportingPeriodYear(2017)
+              .setMonthYearMonth(4)
               .setMonthYearYear(2018)
               .setDateOfBirthDay(4)
+              .setDateOfBirthMonth(1)
               .setDateOfBirthYear(1999)
               .submit()
 
             // Then the summary screen shows the dates entered formatted
-            expect(SummaryPage.getDateRangeSummary()).to.contain('01 January 2016 to 03 January 2017')
-            expect(SummaryPage.getMonthYearDateSummary()).to.contain('January 2018')
+            expect(SummaryPage.getDateRangeSummary()).to.contain('01 March 2016 to 03 May 2017')
+            expect(SummaryPage.getMonthYearDateSummary()).to.contain('April 2018')
             expect(SummaryPage.getDateOfBirth()).to.contain('04 January 1999')
+            expect(SummaryPage.getNonMandatoryDate()).to.contain('No answer provided')
 
         })
 
@@ -38,11 +43,14 @@ describe('Date checks', function() {
 
             // When the from date is greater than the to date
             DatesPage.setFromReportingPeriodDay(1)
+              .setFromReportingPeriodMonth(1)
               .setFromReportingPeriodYear(2016)
               .setToReportingPeriodDay(1)
+              .setToReportingPeriodMonth(1)
               .setToReportingPeriodYear(2015)
               .setMonthYearYear(2018)
               .setDateOfBirthDay(4)
+              .setDateOfBirthMonth(1)
               .setDateOfBirthYear(1999)
               .submit()
 
@@ -58,11 +66,14 @@ describe('Date checks', function() {
 
             // When the from date and the to date are the same
             DatesPage.setFromReportingPeriodDay(1)
+              .setFromReportingPeriodMonth(1)
               .setFromReportingPeriodYear(2016)
               .setToReportingPeriodDay(1)
+              .setToReportingPeriodMonth(1)
               .setToReportingPeriodYear(2016)
               .setMonthYearYear(2018)
               .setDateOfBirthDay(4)
+              .setDateOfBirthMonth(1)
               .setDateOfBirthYear(1999)
               .submit()
 
@@ -78,11 +89,14 @@ describe('Date checks', function() {
 
             // When an invalid date is entered in a date range
             DatesPage.setFromReportingPeriodDay(1)
+              .setFromReportingPeriodMonth(1)
               .setFromReportingPeriodYear(2016)
               .setToReportingPeriodDay(3)
+              .setToReportingPeriodMonth(1)
               .setToReportingPeriodYear('')
               .setMonthYearYear(2018)
               .setDateOfBirthDay(4)
+              .setDateOfBirthMonth(1)
               .setDateOfBirthYear(1999)
               .submit()
 
@@ -98,11 +112,15 @@ describe('Date checks', function() {
 
             // When the year (month year type) is left empty
             DatesPage.setFromReportingPeriodDay(1)
+              .setFromReportingPeriodMonth(1)
               .setFromReportingPeriodYear(2016)
+              .setToReportingPeriodMonth(1)
               .setToReportingPeriodDay(3)
               .setToReportingPeriodYear(2017)
+              .setMonthYearMonth(1)
               .setMonthYearYear('')
               .setDateOfBirthDay(4)
+              .setDateOfBirthMonth(1)
               .setDateOfBirthYear(1999)
               .submit()
 
@@ -118,11 +136,15 @@ describe('Date checks', function() {
 
             // When an error message is shown
             DatesPage.setFromReportingPeriodDay(1)
+              .setFromReportingPeriodMonth(1)
               .setFromReportingPeriodYear(2016)
               .setToReportingPeriodDay(3)
+              .setToReportingPeriodMonth(1)
               .setToReportingPeriodYear(2017)
+              .setMonthYearMonth(1)
               .setMonthYearYear('')
               .setDateOfBirthDay(4)
+              .setDateOfBirthMonth(1)
               .setDateOfBirthYear(1999)
               .submit()
 
@@ -131,16 +153,21 @@ describe('Date checks', function() {
 
             // Then when it is corrected, it goes to the summary page and the information is correct
              DatesPage.setFromReportingPeriodDay(1)
+              .setFromReportingPeriodMonth(1)
               .setFromReportingPeriodYear(2016)
               .setToReportingPeriodDay(3)
+              .setToReportingPeriodMonth(1)
               .setToReportingPeriodYear(2017)
+              .setMonthYearMonth(6)
               .setMonthYearYear('2018')
               .setDateOfBirthDay(4)
+              .setDateOfBirthMonth(1)
               .setDateOfBirthYear(1999)
               .submit()
 
             expect(SummaryPage.getDateRangeSummary()).to.contain('01 January 2016 to 03 January 2017')
-            expect(SummaryPage.getMonthYearDateSummary()).to.contain('January 2018')
+            expect(SummaryPage.getMonthYearDateSummary()).to.contain('June 2018')
+
       })
 
       it('Given the test_dates survey is selected, when a user clicks the day label then the day subfield should gain the focus', function() {

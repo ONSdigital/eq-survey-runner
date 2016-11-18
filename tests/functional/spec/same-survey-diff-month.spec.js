@@ -32,6 +32,8 @@ describe('RSI - Multiple months of one form type being worked on at the same tim
 
         reportingPeriod.setFromReportingPeriodDay(1)
           .setToReportingPeriodDay(1)
+          .setFromReportingPeriodMonth(1)
+          .setToReportingPeriodMonth(1)
           .setFromReportingPeriodYear(2016)
           .setToReportingPeriodYear(2017)
 
@@ -50,6 +52,8 @@ describe('RSI - Multiple months of one form type being worked on at the same tim
 
         reportingPeriod.setFromReportingPeriodDay(2)
           .setToReportingPeriodDay(2)
+          .setFromReportingPeriodMonth(1)
+          .setToReportingPeriodMonth(1)
           .setFromReportingPeriodYear(2018)
           .setToReportingPeriodYear(2019)
           .submit()

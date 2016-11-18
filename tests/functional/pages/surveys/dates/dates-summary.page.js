@@ -10,8 +10,12 @@ class RSISummaryPage extends SummaryPage {
     return browser.element('[data-qa="eade17ef-3ec6-46c2-afc7-dffeb07e2e5e-answer"]').getText()
   }
 
-  getDateOfBirth(){
+  getDateOfBirth() {
     return browser.element('[data-qa="a51b1c7b-3f25-49dd-9275-2ea742eee510-answer"]').getText()
+  }
+
+  getNonMandatoryDate() {
+    return browser.element('[data-qa="98fa9cec-e0bb-471e-80e3-1ff3d9242ef8-answer"]').getText()
   }
 }
 

@@ -49,7 +49,7 @@
                                             "validation": {
                                                 "messages": {
                                                     "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                                    "MANDATORY": "Please answer before continuing."
+                                                    "MANDATORY": "Please provide an answer to continue."
                                                 }
                                             }
                                         },
@@ -65,7 +65,7 @@
                                             "validation": {
                                                 "messages": {
                                                     "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                                    "MANDATORY": "Please answer before continuing."
+                                                    "MANDATORY": "Please provide an answer to continue."
                                                 }
                                             }
                                         }
