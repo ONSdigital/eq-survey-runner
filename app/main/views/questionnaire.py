@@ -174,11 +174,11 @@ def get_household_relationship_iteration(eq_id, form_type, collection_id, group_
 @questionnaire_blueprint.route('household-relationships/<group_instance>/relationships', methods=["POST"])
 @login_required
 def submit_relationships(eq_id, form_type, collection_id, group_instance):
-    number_in_household = len(get_answer_store(current_user).filter(answer_id='household'))
     valid = get_questionnaire_manager(g.schema, g.schema_json).process_incoming_answers('relationships', request.form, group_instance)
     if not valid:
         return _render_relationships_template(group_instance)
 
+    number_in_household = len(get_answer_store(current_user).filter(answer_id='household'))
     relationships_answered = int(group_instance) + 1
     if relationships_answered == number_in_household:
         navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
