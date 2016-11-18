@@ -21,5 +21,6 @@ def build_summary_rendering_context(schema_json, answers):
     for group in schema_json['groups']:
         for block in group['blocks']:
             if block['id'] in path:
-                sections.extend([Section(block['id'], section, answers) for section in block['sections']])
+                if "type" not in block or block['type'] != "interstitial":
+                    sections.extend([Section(block['id'], section, answers) for section in block['sections']])
     return sections
