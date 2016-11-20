@@ -9,6 +9,10 @@ class RSISummaryPage extends SummaryPage {
   getMonthYearDateSummary() {
     return browser.element('[data-qa="eade17ef-3ec6-46c2-afc7-dffeb07e2e5e-answer"]').getText()
   }
+
+  getDateOfBirth(){
+    return browser.element('[data-qa="a51b1c7b-3f25-49dd-9275-2ea742eee510-answer"]').getText()
+  }
 }
 
 export default new RSISummaryPage()

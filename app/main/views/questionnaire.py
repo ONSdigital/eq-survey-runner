@@ -59,9 +59,15 @@ def get_introduction(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('<location>', methods=["GET"])
 @login_required
 def get_questionnaire(eq_id, form_type, collection_id, location):
-    get_questionnaire_manager(g.schema, g.schema_json).build_state(location, get_answers(current_user))
+    questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
-    return _render_template(location, get_questionnaire_manager(g.schema, g.schema_json).state, template='questionnaire')
+    questionnaire_manager.build_state(location, get_answers(current_user))
+
+    block = g.schema.get_item_by_id(location)
+
+    template = block.type if block and block.type else 'questionnaire'
+
+    return _render_template(location, get_questionnaire_manager(g.schema, g.schema_json).state, template=template)
 
 
 @questionnaire_blueprint.route('<location>', methods=["POST"])

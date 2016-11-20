@@ -17,6 +17,12 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo $DIR
 
 
+if [ "${TRAVIS}" ]; then
+  # Reduce logging on TRAVIS builds
+  export EQ_LOG_LEVEL=WARNING
+  export EQ_WERKZEUG_LOG_LEVEL=WARNING
+fi
+
 # Output the current git revision
 if [ -z "$EQ_GIT_REF" ]; then
   export EQ_GIT_REF=`git rev-parse HEAD`

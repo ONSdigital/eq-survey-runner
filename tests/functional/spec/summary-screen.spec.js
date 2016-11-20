@@ -31,7 +31,7 @@ describe('RSI - summary screen edit test', function() {
       .submit()
 
     // Then summary screen shows the data entered
-    expect(rsiSummaryPage.getReportingPeriodSummary()).to.contain('02 Jan 2016 to 02 Jan 2017')
+    expect(rsiSummaryPage.getReportingPeriodSummary()).to.contain('02 January 2016 to 02 January 2017')
     expect(rsiSummaryPage.getRetailTurnoverSummary()).to.contain('£12,345')
     expect(rsiSummaryPage.getInternetSalesSummary()).to.contain('£1,234')
     expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('This is to test edit links on summary screen')

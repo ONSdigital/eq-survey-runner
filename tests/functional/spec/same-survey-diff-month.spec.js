@@ -68,7 +68,7 @@ describe('RSI - Multiple months of one form type being worked on at the same tim
         changeInRetailTurnover.setChangesInRetailTurnover('Test comment')
             .submit()
 
-        expect(rsiSummaryPage.getReportingPeriodSummary()).to.contain('02 Jan 2018 to 02 Jan 2019')
+        expect(rsiSummaryPage.getReportingPeriodSummary()).to.contain('02 January 2018 to 02 January 2019')
         expect(rsiSummaryPage.getRetailTurnoverSummary()).to.contain('£12,345')
         expect(rsiSummaryPage.getInternetSalesSummary()).to.contain('£1,234')
         expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('Test comment')
