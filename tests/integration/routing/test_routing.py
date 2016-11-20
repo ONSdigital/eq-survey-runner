@@ -3,6 +3,7 @@ from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.star_wars import star_wars_test_urls
 
+
 class TestRouting(IntegrationTestCase):
 
     def setUp(self):
@@ -53,15 +54,15 @@ class TestRouting(IntegrationTestCase):
     def generate_form_data(self, rule, content):
         # each page needs data to submit, that information is stored in the rule
         form_data = {}
-        rule_assertions =[]
+        rule_assertions = []
         for answer in rule['answers']:
-            form_data[answer['answer_id']]= answer['user_answer']
+            form_data[answer['answer_id']] = answer['user_answer']
             # We need to assert the answer is on the page
             self.assertRegexpMatches(content, answer['answer'])
             # We also need to prepare the assertions for the summary page
             rule_assertions.append(answer['user_answer'])
             rule_assertions.append(answer['answer'])
-        form_data["action[save_continue]"]= "Save &amp; Continue"
+        form_data["action[save_continue]"] = "Save &amp; Continue"
 
         return form_data, rule_assertions
 

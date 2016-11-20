@@ -7,7 +7,8 @@ class RadioGroupWidget(MultipleChoiceWidget):
         super().__init__(name)
         self.type = 'radio'
 
-    def _build_options(self, answer_schema, answer_state):
+    @staticmethod
+    def _build_options(answer_schema, answer_state):
         options = []
 
         if answer_schema.options:

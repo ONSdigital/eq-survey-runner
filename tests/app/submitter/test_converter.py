@@ -48,6 +48,7 @@ JWT = {
   "return_by": "2016-07-07"
 }
 
+
 class TestConverter(SurveyRunnerTestCase):
     def test_prepare_answers(self):
         with self.application.test_request_context():

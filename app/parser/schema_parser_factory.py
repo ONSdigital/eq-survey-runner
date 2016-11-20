@@ -34,6 +34,8 @@ class SchemaParserFactory(object):
         :raises: A SchemaParserException is raised if an appropriate parser cannot be instantiated
 
         """
+        version_module = "unknown"
+
         try:
             if "schema_version" in schema.keys():
                 # get the schema version number

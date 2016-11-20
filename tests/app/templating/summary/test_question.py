@@ -1,4 +1,3 @@
-from datetime import datetime
 from unittest import TestCase
 
 import mock
@@ -79,7 +78,7 @@ class TestQuestion(TestCase):
         third_date_answer_schema = {'id': 'answer_3', 'label': 'First period', 'type': 'date'}
         fourth_date_answer_schema = {'id': 'answer_4', 'label': 'Second period', 'type': 'date'}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'DateRange', 'answers':
-            [first_date_answer_schema, second_date_answer_schema, third_date_answer_schema, fourth_date_answer_schema]}
+                           [first_date_answer_schema, second_date_answer_schema, third_date_answer_schema, fourth_date_answer_schema]}
 
         # When
         question = Question('1', question_schema, answers)

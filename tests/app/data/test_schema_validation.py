@@ -40,7 +40,8 @@ class TestSchemaValidation(unittest.TestCase):
 
             self.fail("{} Schema Validation Errors.".format(len(errors)))
 
-    def validate_json_against_schema(self, file, json_file, schema):
+    @staticmethod
+    def validate_json_against_schema(file, json_file, schema):
         try:
             json_to_validate = json.load(json_file)
             validate(json_to_validate, schema)

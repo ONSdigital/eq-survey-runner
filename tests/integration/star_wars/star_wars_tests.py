@@ -2,6 +2,7 @@ from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.star_wars import star_wars_test_urls
 
+
 class StarWarsTestCase(IntegrationTestCase):
     def setUp(self):
         super().setUp()
@@ -64,7 +65,6 @@ class StarWarsTestCase(IntegrationTestCase):
         return first_page
 
     def default_routing(self, current_page):
-
         # navigate back to first page
         self.navigate_to_page(current_page)
 
@@ -105,7 +105,6 @@ class StarWarsTestCase(IntegrationTestCase):
 
         return current_page
 
-
     def check_choose_your_side(self, start_page):
         resp = self.client.get(start_page, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
@@ -121,7 +120,7 @@ class StarWarsTestCase(IntegrationTestCase):
         content = response.get_data(True)
         return content
 
-    def routing_pick_your_character_light_side(self,page):
+    def routing_pick_your_character_light_side(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'A wise choice young Yedi. Pick your hero')
         self.assertRegexpMatches(content, '91631df0-4356-4e9f-a9d9-ce8b08d26eb3')
@@ -129,7 +128,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, '2e0989b8-5185-4ba6-b73f-c126e3a06ba7')
         return page
 
-    def routing_pick_your_character_dark_side(self,page):
+    def routing_pick_your_character_dark_side(self, page):
         content = self.retrieve_content(page)
         self.assertRegexpMatches(content, 'Good! Your hate has made you powerful. Pick your baddie')
         self.assertRegexpMatches(content, '653e6407-43d6-4dfc-8b11-a673a73d602d')
@@ -168,7 +167,8 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, '92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c')
 
         # Radio box question
-        self.assertRegexpMatches(content, 'What animal was used to create the engine sound of the Empire&#39;s TIE fighters?')  # NOQA
+        self.assertRegexpMatches(content,
+                                 'What animal was used to create the engine sound of the Empire&#39;s TIE fighters?')  # NOQA
         self.assertRegexpMatches(content, 'Lion')
         self.assertRegexpMatches(content, 'Cow')
         self.assertRegexpMatches(content, 'Elephant')
@@ -196,7 +196,8 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, '06a6a4b7-6ce4-4687-879d-3443cd8e2ff0')
 
         # Pipe Test for question description
-        self.assertRegexpMatches(content, 'It could be between 1 April 2016 and 30 April 2016. But that might just be a test')  # NOQA
+        self.assertRegexpMatches(content,
+                                 'It could be between 1 April 2016 and 30 April 2016. But that might just be a test')  # NOQA
 
         return page
 
@@ -230,7 +231,7 @@ class StarWarsTestCase(IntegrationTestCase):
         resp = self.client.post(summary_page, data=post_data, follow_redirects=False)
 
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/0\/'+ form_type_id+ '\/789\/thank-you$')
+        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/0\/' + form_type_id + '\/789\/thank-you$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 

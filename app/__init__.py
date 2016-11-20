@@ -59,15 +59,9 @@ def rabbitmq_available():
         return False, "rabbit mq unavailable"
 
 
-def get_git_revision():
-    git_revision = settings.EQ_GIT_REF
-    return git_revision
-
-GIT_REVISION = get_git_revision()
-
-
 def git_revision():
-    return True, GIT_REVISION
+    return True, settings.EQ_GIT_REF
+
 
 login_manager = LoginManager()
 
@@ -99,7 +93,7 @@ class AWSReverseProxied(object):
         return self.app(environ, start_response)
 
 
-def create_app(config_name):
+def create_app():
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
     headers = {'Content-Type': 'application/json',
                'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -116,14 +110,14 @@ def create_app(config_name):
     setup_babel(application)
 
     @application.after_request
-    def apply_caching(response):
+    def apply_caching(response):  # pylint: disable=unused-variable
         for k, v in SECURE_HEADERS.items():
             response.headers[k] = v
 
         return response
 
     @application.context_processor
-    def override_url_for():
+    def override_url_for():  # pylint: disable=unused-variable
         return dict(url_for=versioned_url_for)
 
     application.wsgi_app = AWSReverseProxied(application.wsgi_app)
@@ -142,7 +136,7 @@ def create_app(config_name):
         start_dev_mode(application)
 
     # always add safe health check
-    add_safe_health_check(application, headers)
+    add_safe_health_check(application)
 
     if settings.EQ_PROFILING:
         setup_profiling(application)
@@ -155,7 +149,7 @@ def create_app(config_name):
     Themes(application, app_identifier="surveyrunner")
 
     @application.teardown_appcontext
-    def shutdown_session(exception=None):    # pylint: disable=unused-variable
+    def shutdown_session(exception=None):  # pylint: disable=unused-variable,unused-argument
         db_session.remove()
 
     return application
@@ -165,7 +159,6 @@ def setup_profiling(application):
     # Setup profiling
 
     from werkzeug.contrib.profiler import ProfilerMiddleware, MergeStream
-    import os
 
     profiling_dir = "profiling"
 
@@ -203,7 +196,7 @@ def configure_logging(application):
     logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=log_format)
 
     # set the logger for this application and stop using flasks broken solution
-    application._logger = logging.getLogger(__name__)
+    application._logger = logging.getLogger(__name__)  # pylint: disable=protected-access
 
     # turn boto logging to critical as it logs far too much and it's only used
     # for cloudwatch logging
@@ -262,7 +255,7 @@ def setup_cloud_watch_logging(application):
 
 def start_dev_mode(application):
     # import and register the dev mode blueprint
-    from .dev_mode import dev_mode_blueprint
+    from .dev_mode.views import dev_mode_blueprint
     application.register_blueprint(dev_mode_blueprint)
     application.debug = True
     # Not in dev mode, so use secure_session_cookies
@@ -308,9 +301,9 @@ def add_health_check(application, headers):
     application.healthcheck.add_check(git_revision)
 
 
-def add_safe_health_check(application, headers):
+def add_safe_health_check(application):
     @application.route('/status')
-    def safe_health_check():
+    def safe_health_check():  # pylint: disable=unused-variable
         data = {'status': 'OK'}
         return json.dumps(data)
 
@@ -328,11 +321,11 @@ def versioned_url_for(endpoint, **values):
 
 
 def get_minimized_asset(filename):
-    '''
+    """
     If we're in production and it's a js or css file, return the minified version.
     :param filename: the original filename
     :return: the new file name will be .min.css or .min.js
-    '''
+    """
     if settings.EQ_MINIMIZE_ASSETS:
         if 'css' in filename:
             filename = filename.replace(".css", ".min.css")

@@ -6,7 +6,7 @@ from tests.integration.mci import mci_test_urls
 class TestEmptySubmission(IntegrationTestCase):
 
     def test_empty_submission_205(self):
-        self.empty_submission('0205','1')
+        self.empty_submission('0205', '1')
 
     def empty_submission(self, form_type_id, eq_id):
         # Get a token
