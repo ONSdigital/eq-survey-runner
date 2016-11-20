@@ -9,5 +9,6 @@ class TextareaAnswer(Answer):
         self.type_checkers.append(TextAreaTypeCheck())
         self.widget = TextareaWidget(self.id)
 
-    def _cast_user_input(self, user_input):
+    @staticmethod
+    def _cast_user_input(user_input):
         return str(user_input)

@@ -4,7 +4,6 @@ from app.templating.summary.answer import Answer
 
 
 class Question:
-
     def __init__(self, block_id, question_schema, answers):
         self.id = question_schema['id']
         self.type = question_schema['type']
@@ -76,8 +75,8 @@ class Question:
         next_answer = next(answers_iterator)
         to_date = answers[next_answer['id']]
         return {
-          'from': answer,
-          'to': to_date,
+            'from': answer,
+            'to': to_date,
         }
 
     @staticmethod

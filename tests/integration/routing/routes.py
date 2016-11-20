@@ -41,6 +41,7 @@ ROUTES = (
             )
         )
 
+
 def get_all_routes():
     return ROUTES
 

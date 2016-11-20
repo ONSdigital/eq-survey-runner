@@ -7,9 +7,9 @@ logger = logging.getLogger(__name__)
 
 
 class DatabaseStorage:
-    '''
+    """
     Server side storage using an RDS database (where one column is the entire JSON representation of the questionnaire state)
-    '''
+    """
     def store(self, data, user_id, user_ik=None):
         logger.debug("About to store data %s for user %s", data, user_id)
         if self.has_data(user_id):
@@ -37,11 +37,13 @@ class DatabaseStorage:
             logger.debug("Return None from get")
             return None
 
-    def _get_object(self, user_id):
+    @staticmethod
+    def _get_object(user_id):
         logger.debug("Get the questionnaire object for user %s", user_id)
         return QuestionnaireState.query.filter(QuestionnaireState.user_id == user_id).first()
 
-    def has_data(self, user_id):
+    @staticmethod
+    def has_data(user_id):
         logger.debug("Running count query for user %s", user_id)
         count = QuestionnaireState.query.filter(QuestionnaireState.user_id == user_id).count()
         logger.debug("Number of entries for user %s is %s", user_id, count)
@@ -55,7 +57,8 @@ class DatabaseStorage:
                 db_session.delete(questionnaire_state)
             logger.debug("Deleted")
 
-    def clear(self):
+    @staticmethod
+    def clear():
         logger.warning("About to delete all questionnaire data")
         QuestionnaireState.query.delete()
         logger.warning("Deleted all questionnaire data")

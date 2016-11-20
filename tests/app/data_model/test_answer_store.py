@@ -27,9 +27,9 @@ class TestAnswerStore(unittest.TestCase):
         with self.assertRaises(TypeError) as ite:
             self.store.add({
                 "block_id": "3",
-                "answer_id":"4",
+                "answer_id": "4",
                 "answer_instance": 1,
-                "group_id":"5",
+                "group_id": "5",
                 "group_instance": 1,
                 "value": 25,
             })

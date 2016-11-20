@@ -5,12 +5,12 @@ from flask.ext.babel import gettext as _
 logger = logging.getLogger(__name__)
 
 MESSAGES = {
-            'multiple-surveys': {
-                'title': _("Information"),
-                'message': _("Unfortunately you can only complete one survey at a time."),
-                'instructions': _("Close this window to continue with your current survey."),
-                },
-            }
+    'multiple-surveys': {
+        'title': _("Information"),
+        'message': _("Unfortunately you can only complete one survey at a time."),
+        'instructions': _("Close this window to continue with your current survey."),
+    },
+}
 
 
 def get_messages(message_identifier):

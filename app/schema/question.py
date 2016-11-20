@@ -4,8 +4,8 @@ from app.schema.item import Item
 
 
 class Question(Item):
-    def __init__(self):
-        self.id = None
+    def __init__(self, id=None):
+        super().__init__(id)
         self.title = None
         self.description = ""
         self.answers = []

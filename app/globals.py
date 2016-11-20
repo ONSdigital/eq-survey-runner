@@ -14,7 +14,7 @@ def get_questionnaire_store(user_id, user_ik):
     if store is None:
         try:
             store = g._questionnaire_store = QuestionnaireStore(user_id, user_ik)
-        except Exception as e:
+        except ValueError as e:
             logger.error("questionnaire_store failed to init", exception=repr(e))
 
     return store

@@ -11,7 +11,7 @@ class IntegrationTestCase(unittest.TestCase):
         settings.EQ_SERVER_SIDE_STORAGE_TYPE = "DATABASE"
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
 
-        self.application = create_app('development')
+        self.application = create_app()
         self.client = self.application.test_client()
 
     def tearDown(self):

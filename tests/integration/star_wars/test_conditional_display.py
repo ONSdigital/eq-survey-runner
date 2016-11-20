@@ -1,6 +1,7 @@
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from tests.integration.star_wars import star_wars_test_urls
 
+
 class TestConditionalDisplay(StarWarsTestCase):
 
     def test_conditional_display_questions_present(self):
@@ -16,11 +17,11 @@ class TestConditionalDisplay(StarWarsTestCase):
 
             # Start Date
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "234",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c" : "40",
+            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "40",
             "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "7587eb9b-f24e-4dc0-ac94-66118b896c10" : "Luke, I am your father",
+            "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
             "9587eb9b-f24e-4dc0-ac94-66117b896c10": "[Luke Skywalker, Yoda, Qui-Gon Jinn]",
 
 
@@ -69,7 +70,6 @@ class TestConditionalDisplay(StarWarsTestCase):
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'What is the name of Jar Jar Binks')
 
-
         form_data = {
           # final answers
           "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b": "Naboo",
@@ -94,8 +94,6 @@ class TestConditionalDisplay(StarWarsTestCase):
         self.assertRegexpMatches(content, '>Your responses<')
         self.assertRegexpMatches(content, 'What is the name of Jar Jar Binks')
 
-
-
     def test_conditional_display_questions_non_present(self):
 
         self.login_and_check_introduction_text()
@@ -113,7 +111,7 @@ class TestConditionalDisplay(StarWarsTestCase):
             "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
 
             "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "7587eb9b-f24e-4dc0-ac94-66118b896c10" : "Luke, I am your father",
+            "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
             "9587eb9b-f24e-4dc0-ac94-66117b896c10": "[Luke Skywalker, Yoda, Qui-Gon Jinn]",
 
 

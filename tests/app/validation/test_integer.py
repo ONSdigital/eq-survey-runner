@@ -72,6 +72,5 @@ class IntegerTest(unittest.TestCase):
         self.assertEquals(len(result.warnings),  0)
 
 
-
 if __name__ == '__main__':
     unittest.main()

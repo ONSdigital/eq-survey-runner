@@ -164,6 +164,15 @@ class JWTTest(unittest.TestCase):
             decoder.decode_signed_jwt_token(jwt)
         self.assertIn("Multiple kid Headers", ite.exception.value)
 
+    def test_jose_header_contains_invalid_kid(self):
+        header = base64.urlsafe_b64encode(b'{"alg":"RS256", "kid":"UNKNOWN", "typ":"JWT"}')
+        jwt = header.decode() + "." + jwtio_payload + "." + jwtio_signature
+
+        decoder = JWTDecryptor()
+        with self.assertRaises(InvalidTokenException) as ite:
+            decoder.decode_signed_jwt_token(jwt)
+        self.assertIn("Invalid Key Identifier", ite.exception.value)
+
     def test_signature_not_2048_bits(self):
         jwt = jwtio_header + "." + jwtio_payload + "." + base64.urlsafe_b64encode(os.urandom(255)).decode()
 

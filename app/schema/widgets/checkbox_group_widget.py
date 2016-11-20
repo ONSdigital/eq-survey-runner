@@ -18,7 +18,8 @@ class CheckboxGroupWidget(MultipleChoiceWidget):
 
         return post_vars
 
-    def _build_options(self, answer_schema, answer_state):
+    @staticmethod
+    def _build_options(answer_schema, answer_state):
         options = []
 
         if answer_schema.options:
