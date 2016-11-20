@@ -42,11 +42,11 @@ class TestHouseholdQuestion(IntegrationTestCase):
         resp = self.navigate_to_page(page)
         content = resp.get_data(True)
 
-        self.assertRegexpMatches(content, 'Your responses')
-        self.assertRegexpMatches(content, 'Person One')
-        self.assertRegexpMatches(content, 'Person Two')
-        self.assertRegexpMatches(content, 'Person Three')
-        self.assertRegexpMatches(content, 'Person Four')
+        self.assertRegex(content, 'Your responses')
+        self.assertRegex(content, 'Person One')
+        self.assertRegex(content, 'Person Two')
+        self.assertRegex(content, 'Person Three')
+        self.assertRegex(content, 'Person Four')
 
     def remove_answer(self, page):
         # Add first person
@@ -63,11 +63,11 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         resp = self.navigate_to_page(page)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'household-full-name')
-        self.assertRegexpMatches(content, 'household-full-name_2')
-        self.assertRegexpMatches(content, 'household-full-name_3')
+        self.assertRegex(content, 'household-full-name')
+        self.assertRegex(content, 'household-full-name_2')
+        self.assertRegex(content, 'household-full-name_3')
 
-        self.assertNotRegexpMatches(content, 'household-full-name_1')
+        self.assertNotRegex(content, 'household-full-name_1')
 
     def add_answers(self):
         self.login_and_check_introduction_text()
@@ -84,7 +84,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         resp = self.navigate_to_page(first_page)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'household-full-name_1')
+        self.assertRegex(content, 'household-full-name_1')
 
         # Add second person
         form_data = MultiDict()
@@ -98,8 +98,8 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         resp = self.navigate_to_page(first_page)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'household-full-name_1')
-        self.assertRegexpMatches(content, 'household-full-name_2')
+        self.assertRegex(content, 'household-full-name_1')
+        self.assertRegex(content, 'household-full-name_2')
 
         # Add third person
         form_data = MultiDict()
@@ -114,9 +114,9 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         resp = self.navigate_to_page(first_page)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'household-full-name_1')
-        self.assertRegexpMatches(content, 'household-full-name_2')
-        self.assertRegexpMatches(content, 'household-full-name_3')
+        self.assertRegex(content, 'household-full-name_1')
+        self.assertRegex(content, 'household-full-name_2')
+        self.assertRegex(content, 'household-full-name_3')
 
         return first_page
 
@@ -135,7 +135,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
     def check_introduction_text(self, response):
         content = response.get_data(True)
-        self.assertRegexpMatches(content, '<li>Household questions.</li>')
+        self.assertRegex(content, '<li>Household questions.</li>')
 
     def start_questionnaire(self):
         # Go to questionnaire
