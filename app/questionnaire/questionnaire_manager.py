@@ -133,7 +133,9 @@ class QuestionnaireManager(object):
         answer_schema = question_schema.answers[0]  # Single answer for now.
 
         next_answer_instance_id = self._get_next_answer_instance(answer_store, answer_schema)
-        answer_schema.create_new_answer_state(answer_instance=next_answer_instance_id, parent=question_state)
+        new_answer_state = answer_schema.create_new_answer_state(question_state.answers, next_answer_instance_id)
+        new_answer_state.parent = question_state
+        question_state.append(new_answer_state)
 
         self.update_questionnaire_store(block_id)
 
