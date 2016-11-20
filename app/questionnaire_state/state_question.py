@@ -1,6 +1,8 @@
+import copy
 import re
 
 from app.data_model.answer_store import natural_order
+from app.questionnaire_state.state_answer import StateAnswer
 from app.questionnaire_state.state_item import StateItem
 
 
@@ -26,11 +28,20 @@ class StateQuestion(StateItem):
         for answer_id, answer_index in self._iterate_over_instance_ids(user_input):
             for answer_schema in self.schema_item.answers:
                 if answer_schema.id == answer_id:
-                    new_state = answer_schema.create_new_answer_state(self.answers, answer_index)
-                    if new_state:
-                        new_state.parent = self
-                        self.answers.append(new_state)
+                    self.create_new_answer_state(answer_schema, answer_index)
                     break
+
+    def create_new_answer_state(self, answer_schema, answer_instance):
+        for answer_state in self.answers:
+            if answer_schema.id == answer_state.id and answer_instance == answer_state.answer_instance:
+                return None
+
+        new_answer_schema = copy.deepcopy(answer_schema)
+        new_answer_schema.widget.name += '_' + str(answer_instance) if answer_instance > 0 else ''
+        new_answer_state = StateAnswer(new_answer_schema.id, new_answer_schema)
+        new_answer_state.answer_instance = answer_instance
+        new_answer_state.parent = self
+        self.answers.append(new_answer_state)
 
     @classmethod
     def _iterate_over_instance_ids(cls, user_input):

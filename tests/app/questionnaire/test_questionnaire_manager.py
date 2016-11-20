@@ -26,7 +26,7 @@ class TestQuestionnaireManager(TestCase):
         self.questionnaire_manager.add_answer('block', 'question', self.answer_store)
 
         # Then
-        answer_schema.create_new_answer_state.assert_called_with(question_state.answers, 1)
+        question_state.create_new_answer_state.assert_called_with(answer_schema, 1)
 
     def test_add_answer_updates_answer_store(self):
         # Given
