@@ -17,21 +17,30 @@ import jwt
 KID = 'EDCSR'
 
 
-class Encrypter (JWEEncrypter):
-    def __init__(self):
-        private_key_bytes = strings.to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY)
-        public_key_bytes = strings.to_bytes(settings.EQ_SUBMISSION_SDX_PUBLIC_KEY)
-        self.private_key = serialization.load_pem_private_key(private_key_bytes,
-                                                              password=strings.to_bytes(settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD),
-                                                              backend=backend)
+class Encrypter(JWEEncrypter):
 
-        self.public_key = serialization.load_pem_public_key(public_key_bytes, backend=backend)
+    def __init__(self,
+                 private_key=settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY,
+                 private_key_password=settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD,
+                 public_key=settings.EQ_SUBMISSION_SDX_PUBLIC_KEY):
+
+        self._load_keys(private_key, private_key_password, public_key)
 
         # first generate a random key
         self.cek = os.urandom(32)  # 256 bit random CEK
 
         # now generate a random IV
         self.iv = os.urandom(12)  # 96 bit random IV
+
+    def _load_keys(self, private_key, private_key_password, public_key):
+        private_key_bytes = strings.to_bytes(private_key)
+        private_key_password_bytes = strings.to_bytes(private_key_password)
+        public_key_bytes = strings.to_bytes(public_key)
+
+        self.private_key = serialization.load_pem_private_key(data=private_key_bytes,
+                                                              password=private_key_password_bytes,
+                                                              backend=backend)
+        self.public_key = serialization.load_pem_public_key(data=public_key_bytes, backend=backend)
 
     def _jwe_protected_header(self):
         return self._base_64_encode(b'{"alg":"RSA-OAEP","enc":"A256GCM"}')

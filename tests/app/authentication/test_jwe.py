@@ -29,7 +29,7 @@ class JWETest(unittest.TestCase):
     def test_missing_algorithm(self):
         jwe_protected_header = b'{"enc":"A256GCM"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -39,7 +39,7 @@ class JWETest(unittest.TestCase):
     def test_invalid_algorithm(self):
         jwe_protected_header = b'{"alg":"PBES2_HS256_A128KW","enc":"A256GCM"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -50,7 +50,7 @@ class JWETest(unittest.TestCase):
         jwe_protected_header = b'{"alg":"RSA-OAEP"}'
 
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -60,7 +60,7 @@ class JWETest(unittest.TestCase):
     def test_invalid_enc(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","enc":"A128GCM"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -70,7 +70,7 @@ class JWETest(unittest.TestCase):
     def test_jwe_header_contains_alg_twice(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","alg":"RSA-OAEP","enc":"A256GCM"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -80,7 +80,7 @@ class JWETest(unittest.TestCase):
     def test_jwe_header_only_contains_alg_and_enc(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","enc":"A256GCM", "test":"test"}'
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -93,7 +93,7 @@ class JWETest(unittest.TestCase):
         encoder = Encoder()
         encrypted_key = encoder._encrypted_key(cek)
         encrypted_key = encrypted_key[0:len(encrypted_key) - 2]
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), cek=cek, encrypted_key=encrypted_key)
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), cek=cek, encrypted_key=encrypted_key)
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -104,7 +104,7 @@ class JWETest(unittest.TestCase):
         cek = os.urandom(24)
 
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), cek=cek)
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), cek=cek)
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -115,7 +115,7 @@ class JWETest(unittest.TestCase):
         iv = os.urandom(45)
 
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), iv=iv)
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), iv=iv)
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -124,7 +124,7 @@ class JWETest(unittest.TestCase):
 
     def test_authentication_tag_not_128_bits(self):
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), tag=os.urandom(10))
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), tag=os.urandom(10))
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -133,15 +133,15 @@ class JWETest(unittest.TestCase):
 
     def test_authentication_tag_corrupted(self):
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode(), tag=b'adssadsadsadsadasdasdasads')
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), tag=b'adssadsadsadsadasdasdasads')
 
         decoder = JWTDecryptor()
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             decoder.decrypt_jwt_token(jwe.decode())
 
     def test_cipher_text_corrupted(self):
         encoder = Encoder()
-        jwe = encoder.encrypt(VALID_SIGNED_JWT.encode())
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode())
 
         tokens = jwe.decode().split('.')
         jwe_protected_header = tokens[0]
@@ -154,7 +154,7 @@ class JWETest(unittest.TestCase):
         reassembled = jwe_protected_header + "." + encrypted_key + "." + encoded_iv + "." + corrupted_cipher + "." + encoded_tag
 
         decoder = JWTDecryptor()
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             decoder.decrypt_jwt_token(reassembled)
 
 if __name__ == '__main__':

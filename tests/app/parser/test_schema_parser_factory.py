@@ -20,10 +20,6 @@ class SchemaParserFactoryTest(unittest.TestCase):
 
         try:
             SchemaParserFactory.create_parser(schema)
-
             self.fail('Tried to instantiate a parser for an invalid schema version')
-        except SchemaParserException as spe:
+        except SchemaParserException:
             assert True
-
-        except:
-            self.fail('An unexpected exception was raised')

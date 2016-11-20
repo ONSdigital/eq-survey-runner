@@ -10,7 +10,7 @@ from app import create_app
 class TestMonthYearDateAnswer(IntegrationTestCase):
 
     def setUp(self):
-        self.app = create_app("test")
+        self.app = create_app()
         self.app_context = self.app.app_context()
         self.app_context.push()
 

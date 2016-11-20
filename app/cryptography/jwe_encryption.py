@@ -12,7 +12,8 @@ from cryptography.hazmat.primitives.ciphers import modes
 
 class JWEEncrypter(object):
 
-    def _base_64_encode(self, text):
+    @staticmethod
+    def _base_64_encode(text):
         # strip the trailing = as they are padding to make the result a multiple of 4
         # the RFC does the same, as do other base64 libraries so this is a safe operation
         return base64.urlsafe_b64encode(text).decode().strip("=").encode()

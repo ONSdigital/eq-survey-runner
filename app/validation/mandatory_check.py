@@ -4,13 +4,12 @@ from app.validation.validation_result import ValidationResult
 
 class MandatoryCheck(AbstractValidator):
 
-    """
-    Validate that a field is mandatory
-    :param user_answer: The answer the user provided for the response
-    :return: ValidationResult(): An object containing the result of the validation
-    """
-
     def validate(self, user_answer):
+        """
+        Validate that a field is mandatory
+        :param user_answer: The answer the user provided for the response
+        :return: ValidationResult(): An object containing the result of the validation
+        """
         validation_result = ValidationResult()
         validation_result.is_valid = False
 
@@ -32,8 +31,6 @@ class MandatoryCheck(AbstractValidator):
                 # We've found a valid entry in the list, bail out
                 return
 
-    def _validate_single(self, user_answer, validation_result):
-        if user_answer and not str(user_answer).isspace():
-            validation_result.is_valid = True
-        else:
-            validation_result.is_valid = False
+    @staticmethod
+    def _validate_single(user_answer, validation_result):
+        validation_result.is_valid = user_answer and not str(user_answer).isspace()

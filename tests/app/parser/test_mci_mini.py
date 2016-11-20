@@ -13,7 +13,8 @@ import unittest
 
 
 class MciMiniParsingTest(unittest.TestCase):
-    def test_mci_mini(self):
+    @staticmethod
+    def test_mci_mini():
         # Load the json file as a dict
         schema_file = open(os.path.join(os.path.dirname(__file__), 'test_schemas/mci-mini.json'))
         schema = schema_file.read()

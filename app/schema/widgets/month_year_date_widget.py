@@ -16,18 +16,16 @@ class MonthYearDateWidget(DateWidget):
         else:
             parts = [None, '']
 
-        widget_params = {}
-        widget_params['legend'] = answer_state.schema_item.label
-        widget_params['fields'] = self._get_date_fields(parts)
+        widget_params = {
+            'legend': answer_state.schema_item.label,
+            'fields': self._get_date_fields(parts)}
 
         return render_template('partials/widgets/date_widget.html', **widget_params)
 
     def _get_date_fields(self, parts):
 
-        fields = {}
-        fields['month'] = self._get_month_field(parts[0])
-        fields['year'] = self._get_year_field(parts[1])
-        return fields
+        return {'month': self._get_month_field(parts[0]),
+                'year': self._get_year_field(parts[1])}
 
     def get_user_input(self, post_vars):
 

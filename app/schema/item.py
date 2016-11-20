@@ -1,10 +1,20 @@
+from abc import ABCMeta, abstractmethod
+
 from app.questionnaire_state.exceptions import StateException
 
 
-class Item(object):
-    '''
+class Item(metaclass=ABCMeta):
+    """
     Abstract class for all items in a schema. Subclasses must provide an id and redefine State accordingly
-    '''
+    """
+    def __init__(self, id):
+        """
+        id, children and questionnaire must be set by derived classes
+        """
+        self.id = id
+        self.children = None
+        self.questionnaire = None
+
     def construct_state(self):
         state_class = self.get_state_class()
         if state_class:
@@ -17,8 +27,9 @@ class Item(object):
         else:
             return None
 
+    @abstractmethod
     def get_state_class(self):
-        pass
+        raise NotImplementedError
 
     def validate(self, state):
 

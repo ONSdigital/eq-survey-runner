@@ -22,9 +22,9 @@ def get_questionnaire_manager(schema, schema_json):
 
 class QuestionnaireManager(object):
 
-    '''
+    """
     This class represents a user journey through a survey. It models the request/response process of the web application
-    '''
+    """
     def __init__(self, schema, json=None):
         self._json = json
         self._schema = schema
