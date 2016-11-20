@@ -20,7 +20,7 @@ class TestTemplateRenderer(unittest.TestCase):
         self.assertEqual(rendered_state.schema_item.title, 'Hello Joe Bloggs')
 
     def test_render_date(self):
-        date = '{{date|pretty_date}}'
+        date = '{{date|format_date}}'
         context = {'date': datetime.strptime('01/01/2017', '%d/%m/%Y')}
 
         rendered = TemplateRenderer().render(date, **context)

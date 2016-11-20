@@ -1,0 +1,157 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Interstitial Pages",
+    "theme": "default",
+    "description": "A questionnaire to demo interstitial pages.",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "0",
+    "messages": {
+        "INTEGER_TOO_LARGE": "Number is too large",
+        "NEGATIVE_INTEGER": "Number cannot be less than zero",
+        "NOT_INTEGER": "Please enter an integer"
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "breakfast-block",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "breakfast-section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "favourite-breakfast",
+                                            "label": "What is your favourite breakfast food",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "favourite-breakfast-question",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "What is your favourite breakfast food",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules": [
+                    ],
+                    "title": "",
+                    "validation": []
+                },
+                {
+                    "type": "interstitial",
+                    "id": "breakfast-interstitial",
+                    "title": "Breakfast Interstitial Page",
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "interstitial-section",
+                            "questions": [
+                                {
+                                    "description": "You have successfully completed the breakfast section. Next we want to know about your lunch.",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "answers": [],
+                                    "id": "interstitial-question",
+                                    "title": "Breakfast Interstitial Page",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Breakfast Interstitial Page",
+                            "validation": []
+                        }
+                    ]
+                },
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "lunch-block",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "lunch-section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "favourite-lunch",
+                                            "label": "What is your favourite lunchtime food",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "favourite-lunch-question",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "What is your favourite lunchtime food",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules": [
+                    ],
+                    "title": "",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "favourite-foods",
+            "title": ""
+        }
+    ]
+}

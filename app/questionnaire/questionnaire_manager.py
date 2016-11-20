@@ -93,7 +93,6 @@ class QuestionnaireManager(object):
             self.state = schema_item.construct_state()
             self.state.update_state(answers)
             self._conditional_display(self.state)
-        if self.state:
             context = build_schema_context(get_metadata(current_user), self._schema.aliases, answers)
             renderer.render_state(self.state, context)
 

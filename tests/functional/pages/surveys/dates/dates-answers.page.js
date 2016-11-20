@@ -2,6 +2,29 @@ import QuestionPage from '../question.page'
 
 class DatesPage extends QuestionPage {
 
+  get dayInput() {
+    return browser.element('#input-a51b1c7b-3f25-49dd-9275-2ea742eee510-day')
+  }
+
+  get dayLabel() {
+    return browser.element('#label-a51b1c7b-3f25-49dd-9275-2ea742eee510-day')
+  }
+
+  setDateOfBirthDay(day) {
+    browser.setValue('[name="a51b1c7b-3f25-49dd-9275-2ea742eee510-day"]', day)
+    return this
+  }
+
+  setDateOfBirthMonth(month) {
+    browser.setValue('[name="a51b1c7b-3f25-49dd-9275-2ea742eee510-month"]', month)
+    return this
+  }
+
+  setDateOfBirthYear(year) {
+    browser.setValue('[name="a51b1c7b-3f25-49dd-9275-2ea742eee510-year"]', year)
+    return this
+  }
+
   setFromReportingPeriodDay(day) {
     browser.setValue('[name="5b12aea2-ae3b-467d-9291-4d803a444d25-day"]', day)
     return this
@@ -9,7 +32,7 @@ class DatesPage extends QuestionPage {
 
   setFromReportingPeriodMonth(month) {
     browser.setValue('[name="5b12aea2-ae3b-467d-9291-4d803a444d25-month"]', month)
-  return this
+    return this
   }
 
   setFromReportingPeriodYear(year) {

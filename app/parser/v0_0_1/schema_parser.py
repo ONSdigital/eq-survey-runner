@@ -186,6 +186,7 @@ class SchemaParser(AbstractSchemaParser):
         try:
             block.id = ParserUtils.get_required_string(schema, "id")
             block.title = ParserUtils.get_optional_string(schema, "title")
+            block.type = ParserUtils.get_optional_string(schema, "type")
             block.routing_rules = ParserUtils.get_optional_array(schema, 'routing_rules')
 
             # register the block
