@@ -36,7 +36,7 @@ class StateQuestion(StateItem):
     def _iterate_over_instance_ids(cls, user_input):
 
         answer_instance_ids = [key for key in user_input]
-        answer_instance_ids = sorted(answer_instance_ids, key=lambda t: natural_order(t))
+        answer_instance_ids = sorted(answer_instance_ids, key=natural_order)
 
         for answer_instance_id in answer_instance_ids:
             answer_id, answer_index = cls._extract_answer_instance_id(answer_instance_id)
