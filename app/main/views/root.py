@@ -2,8 +2,7 @@ import logging
 
 from app.authentication.authenticator import Authenticator
 from app.frontend_messages import get_messages
-from app.globals import get_answers, get_completed_blocks, get_metadata
-from app.questionnaire.questionnaire_manager import QuestionnaireManager
+from app.globals import get_answers, get_completed_blocks, get_metadata, get_navigator
 from app.utilities.schema import get_schema
 
 from flask import redirect
@@ -74,9 +73,8 @@ def login():
         raise NotFound
 
     json, schema = get_schema()
-    questionnaire_manager = QuestionnaireManager(schema, json=json)
 
-    navigator = questionnaire_manager.navigator
+    navigator = get_navigator(json)
     current_location = navigator.get_latest_location(get_answers(current_user), get_completed_blocks(current_user))
 
     return redirect('/questionnaire/' + eq_id + '/' + form_type + '/' + collection_id + '/' + current_location)

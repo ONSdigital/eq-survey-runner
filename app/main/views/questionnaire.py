@@ -1,7 +1,7 @@
 import logging
 
 from app.authentication.session_manager import session_manager
-from app.globals import get_answer_store, get_answers, get_completed_blocks, get_metadata, get_questionnaire_store
+from app.globals import get_answer_store, get_answers, get_completed_blocks, get_metadata, get_navigator, get_questionnaire_store
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
 from app.submitter.submitter import SubmitterFactory
 from app.templating.introduction_context import get_introduction_context
@@ -59,7 +59,8 @@ def get_introduction(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('<location>', methods=["GET"])
 @login_required
 def get_questionnaire(eq_id, form_type, collection_id, location):
-    questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
+    navigator = get_navigator(g.schema_json)
+    questionnaire_manager = get_questionnaire_manager(navigator, g.schema, g.schema_json)
 
     questionnaire_manager.build_state(location, get_answers(current_user))
 
@@ -67,15 +68,17 @@ def get_questionnaire(eq_id, form_type, collection_id, location):
 
     template = block.type if block and block.type else 'questionnaire'
 
-    return _render_template(location, get_questionnaire_manager(g.schema, g.schema_json).state, template=template)
+    return _render_template(location, questionnaire_manager.state, template=template)
 
 
 @questionnaire_blueprint.route('<location>', methods=["POST"])
 @login_required
 def post_questionnaire(eq_id, form_type, collection_id, location):
-    valid = get_questionnaire_manager(g.schema, g.schema_json).process_incoming_answers(location, request.form)
+    navigator = get_navigator(g.schema_json)
+    questionnaire_manager = get_questionnaire_manager(navigator, g.schema, g.schema_json)
+    valid = questionnaire_manager.process_incoming_answers(location, request.form)
     if not valid:
-        return _render_template(location, get_questionnaire_manager(g.schema, g.schema_json).state, template='questionnaire')
+        return _render_template(location, questionnaire_manager.state, template='questionnaire')
 
     return _go_to_next_block(current_location=location, eq_id=eq_id, form_type=form_type, collection_id=collection_id)
 
@@ -83,7 +86,7 @@ def post_questionnaire(eq_id, form_type, collection_id, location):
 @questionnaire_blueprint.route('summary', methods=["GET"])
 @login_required
 def get_summary(eq_id, form_type, collection_id):
-    navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
+    navigator = get_navigator(g.schema_json)
     latest_location = navigator.get_latest_location(get_answers(current_user), get_completed_blocks(current_user))
     if latest_location is 'summary':
         metadata = get_metadata(current_user)
@@ -95,13 +98,27 @@ def get_summary(eq_id, form_type, collection_id):
     return redirect_to_questionnaire_page(eq_id, form_type, collection_id, latest_location)
 
 
+@questionnaire_blueprint.route('confirmation', methods=["GET"])
+@login_required
+def get_confirmation(eq_id, form_type, collection_id):
+    navigator = get_navigator(g.schema_json)
+    latest_location = navigator.get_latest_location(get_answers(current_user), get_completed_blocks(current_user))
+    if latest_location == 'confirmation':
+        metadata = get_metadata(current_user)
+        answers = get_answers(current_user)
+        schema_json = _render_schema(g.schema_json, answers, metadata)
+        return _render_template('confirmation', get_questionnaire_manager(navigator, g.schema, g.schema_json).state, rendered_schema_json=schema_json)
+    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, latest_location)
+
+
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
 @login_required
 def get_thank_you(eq_id, form_type, collection_id):
     if not _same_survey(eq_id, form_type, collection_id):
         return redirect("/information/multiple-surveys")
 
-    thank_you_page = _render_template('thank-you', get_questionnaire_manager(g.schema, g.schema_json).state)
+    navigator = get_navigator(g.schema_json)
+    thank_you_page = _render_template('thank-you', get_questionnaire_manager(navigator, g.schema, g.schema_json).state)
     # Delete user data on request of thank you page.
     _delete_user_data()
     return thank_you_page
@@ -110,8 +127,9 @@ def get_thank_you(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('submit-answers', methods=["POST"])
 @login_required
 def submit_answers(eq_id, form_type, collection_id):
+    navigator = get_navigator(g.schema_json)
     # check that all the answers we have are valid before submitting the data
-    is_valid, invalid_location = get_questionnaire_manager(g.schema, g.schema_json).validate_all_answers()
+    is_valid, invalid_location = get_questionnaire_manager(navigator, g.schema, g.schema_json).validate_all_answers()
 
     if is_valid:
         submitter = SubmitterFactory.get_submitter()
@@ -124,7 +142,8 @@ def submit_answers(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('household-composition', methods=["POST"])
 @login_required
 def post_household_composition(eq_id, form_type, collection_id):
-    questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
+    navigator = get_navigator(g.schema_json)
+    questionnaire_manager = get_questionnaire_manager(navigator, g.schema, g.schema_json)
     answer_store = get_answer_store(current_user)
     valid = questionnaire_manager.process_incoming_answers('household-composition', request.form)
 
@@ -145,7 +164,7 @@ def post_household_composition(eq_id, form_type, collection_id):
 
 
 def _go_to_next_block(current_location, eq_id, form_type, collection_id):
-    navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
+    navigator = get_navigator(g.schema_json)
     next_location = navigator.get_next_location(get_answers(current_user), current_location)
     metadata = get_metadata(current_user)
     logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
@@ -176,7 +195,7 @@ def _render_template(location, context, rendered_schema_json=None, template=None
     metadata = get_metadata(current_user)
     answers = get_answers(current_user)
     metadata_context = build_metadata_context(metadata)
-    previous_location = get_questionnaire_manager(g.schema, g.schema_json).navigator.get_previous_location(answers, location)
+    previous_location = get_navigator(g.schema_json).get_previous_location(answers, location)
     schema_json = rendered_schema_json or _render_schema(g.schema_json, answers, metadata)
     try:
         theme = schema_json['theme']

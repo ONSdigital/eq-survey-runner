@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from mock import MagicMock, patch
-from app.questionnaire.questionnaire_manager import QuestionnaireManager, Navigator
+from app.questionnaire.questionnaire_manager import QuestionnaireManager
 
 
 class TestQuestionnaireManager(TestCase):
@@ -114,10 +114,8 @@ class TestQuestionnaireManager(TestCase):
 
     def setUp(self):
         # Override some behaviours that are difficult to mock.
-        self.original_Navigator_init = Navigator.__init__
         self.original_update_questionnaire_store = QuestionnaireManager.update_questionnaire_store
 
-        Navigator.__init__ = MagicMock(return_value=None)
         QuestionnaireManager.update_questionnaire_store = MagicMock(return_value=None)
 
         # Class under test.
@@ -146,5 +144,4 @@ class TestQuestionnaireManager(TestCase):
 
     def tearDown(self):
         # Reset some behaviours.
-        Navigator.__init__ = self.original_Navigator_init
         QuestionnaireManager.update_questionnaire_store = self.original_update_questionnaire_store

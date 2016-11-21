@@ -1,7 +1,7 @@
 import logging
 
 from app.globals import get_answers, get_metadata, get_questionnaire_store
-from app.questionnaire.navigator import Navigator, evaluate_rule
+from app.questionnaire.navigator import evaluate_rule
 from app.templating.schema_context import build_schema_context
 from app.templating.template_renderer import renderer
 
@@ -12,10 +12,10 @@ from flask_login import current_user
 logger = logging.getLogger(__name__)
 
 
-def get_questionnaire_manager(schema, schema_json):
+def get_questionnaire_manager(navigator, schema, schema_json):
     questionnaire_manager = g.get('_questionnaire_manager')
     if questionnaire_manager is None:
-        questionnaire_manager = g._questionnaire_manager = QuestionnaireManager(schema, schema_json)
+        questionnaire_manager = g._questionnaire_manager = QuestionnaireManager(navigator, schema, schema_json)
 
     return questionnaire_manager
 
@@ -25,12 +25,12 @@ class QuestionnaireManager(object):
     '''
     This class represents a user journey through a survey. It models the request/response process of the web application
     '''
-    def __init__(self, schema, json=None):
+    def __init__(self, navigator, schema, json=None):
         self._json = json
         self._schema = schema
         self.state = None
 
-        self.navigator = Navigator(self._json)
+        self.navigator = navigator
 
     def validate(self, location, post_data):
 
