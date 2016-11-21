@@ -7,5 +7,6 @@ class PercentageAnswer(Answer):
         super().__init__(answer_id)
         self.widget = TextWidget(self.id)
 
-    def _cast_user_input(self, user_input):
+    @staticmethod
+    def _cast_user_input(user_input):
         return float(user_input)

@@ -48,7 +48,7 @@ class TestPageErrors(StarWarsTestCase):
             "action[save_continue]": "Save &amp; Continue"
         }
 
-        resp = self.submit_page(second_page, form_data)
+        self.submit_page(second_page, form_data)
 
         # We fill in our answers missing one required field
         form_data = {

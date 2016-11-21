@@ -1,6 +1,7 @@
 from .test_light_side_path import TestLightSidePath
 from tests.integration.star_wars import star_wars_test_urls
 
+
 class TestBackwardsNavigationAfterSubmission(TestLightSidePath):
 
     def test_backwards_navigation_star_wars(self):

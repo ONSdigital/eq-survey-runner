@@ -211,4 +211,4 @@ def natural_order(key):
     :param key:
     :return:
     """
-    return [number_else_string(c) for c in re.split('(\d+)', key)]
+    return [number_else_string(c) for c in re.split(r'(\d+)', key)]

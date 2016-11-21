@@ -9,13 +9,13 @@ class TestMonthYearDateAnswer(TestCase):
 
     def test_month_year_date_answer(self):
         month_year_date_answer = MonthYearDateAnswer('1234')
-        post_data = {'1234':'1/2000'}
+        post_data = {'1234': '1/2000'}
         result = month_year_date_answer.get_typed_value(post_data)
         self.assertEquals(result, '1/2000')
 
     def test_month_year_date_answer_incomplete_date(self):
         month_year_date_answer = MonthYearDateAnswer('1234')
-        post_data = {'1234':'1/'}
+        post_data = {'1234': '1/'}
         self.assertRaises(TypeCheckingException, month_year_date_answer.get_typed_value, post_data)
 
     def test_month_year_date_answer_text_empty(self):

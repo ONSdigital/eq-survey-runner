@@ -2,6 +2,7 @@ from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
 from tests.integration.star_wars import star_wars_test_urls
 
+
 class TestEmptyCheckBoxes(StarWarsTestCase):
 
     def test_check_boxes_mandatory_empty(self):
@@ -10,8 +11,6 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
         first_page = self.start_questionnaire_and_navigate_routing()
 
         # We fill in the survey without a mandatory check box
-        form_data = MultiDict()
-        # Start Date
         form_data = MultiDict()
         # Start Date
         form_data.add("6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b", "234")
@@ -50,8 +49,6 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
         self.assertRegexpMatches(content, 'This field is mandatory.')
 
         # We correct the error
-        form_data = MultiDict()
-        # Start Date
         form_data = MultiDict()
         # Start Date
         form_data.add("6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b", "234")

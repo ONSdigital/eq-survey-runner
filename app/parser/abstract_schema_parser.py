@@ -15,14 +15,6 @@ from abc import ABCMeta, abstractmethod
 
 
 class AbstractSchemaParser(metaclass=ABCMeta):
-    """
-    Instantiates a parser with the Schema
-
-    :param schema: The schema to parse
-    """
-    @abstractmethod
-    def __init__(self, schema):
-        raise NotImplementedError()
 
     """Get the version of the schema parser
 
@@ -33,12 +25,11 @@ class AbstractSchemaParser(metaclass=ABCMeta):
     def get_parser_version(self):
         raise NotImplementedError()
 
-    """Parse the schema and return an object schema, the root of which will be a
-    Questionnaire object
-
-    :returns: Questionnaire object
-
-    """
     @abstractmethod
     def parse(self):
+        """Parse the schema and return an object schema, the root of which will be a
+        Questionnaire object
+
+        :returns: Questionnaire object
+        """
         raise NotImplementedError()

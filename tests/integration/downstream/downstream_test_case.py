@@ -4,6 +4,7 @@ from app.submitter.submitter import SubmitterFactory, Submitter
 
 
 class MyMockSubmitter(Submitter):
+
     def __init__(self):
         self._message = None
         self._submitted_at = None
@@ -12,18 +13,22 @@ class MyMockSubmitter(Submitter):
         self._message = message
         return True
 
-    def encrypt_message(self, message):
+    @staticmethod
+    def encrypt_message(message):
         return message
 
     def get_message(self):
         return self._message
 
+    def send_message(self, message, queue):
+        pass
+
 
 class DownstreamTestCase(IntegrationTestCase):
-    '''
+    """
     Overrides the application SubmitterFactory to provide our own which
     allows the message to be captured and interrogated.
-    '''
+    """
     _submitter = MyMockSubmitter()
 
     @staticmethod

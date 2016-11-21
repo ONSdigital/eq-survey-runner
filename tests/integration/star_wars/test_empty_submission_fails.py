@@ -2,6 +2,7 @@ from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
 from tests.integration.star_wars import star_wars_test_urls
 
+
 class TestEmptySubmissionFails(StarWarsTestCase):
 
     def test_empty_submission_fails(self):

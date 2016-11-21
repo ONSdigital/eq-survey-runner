@@ -86,24 +86,6 @@ class TestMetadataParser(SurveyRunnerTestCase):
     def test_is_valid_fails_missing_form_type(self):
         jwt = {
             "user_id": "1",
-            "form_type": "a",
-            "collection_exercise_sid": "test-sid",
-            "eq_id": "2",
-            "period_id": "3",
-            "period_str": "2016-01-01",
-            "ref_p_start_date": "2016-02-02",
-            "ref_p_end_date": "2016-03-03",
-            "ru_ref": "2016-04-04",
-            "ru_name": "Apple",
-            "return_by": "2016-07-07"
-        }
-        valid, field = is_valid_metadata(jwt)
-        self.assertFalse(valid)
-        self.assertEquals("form_type", field)
-
-    def test_is_valid_fails_missing_form_type(self):
-        jwt = {
-            "user_id": "1",
             "collection_exercise_sid": "test-sid",
             "eq_id": "2",
             "period_id": "3",

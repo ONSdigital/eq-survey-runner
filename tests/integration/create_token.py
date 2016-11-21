@@ -38,7 +38,6 @@ def create_token(form_type_id, eq_id, start_date=None, end_date=None, employment
         else:
             ref_p_employment_date = employment_date
 
-
         ru_ref = RU_REF
         ru_name = RU_NAME
         trad_as = TRAD_AS
