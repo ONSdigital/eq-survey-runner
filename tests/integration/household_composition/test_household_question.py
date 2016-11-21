@@ -6,7 +6,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestHouseholdQuestion(IntegrationTestCase):
 
-    IntroductionPage = '/questionnaire/test/household_question/789/introduction'
+    INTRODUCTION_PAGE = '/questionnaire/test/household_question/789/introduction'
 
     def setUp(self):
         super(TestHouseholdQuestion, self).setUp()
@@ -142,7 +142,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(self.IntroductionPage, data=post_data, follow_redirects=False)
+        resp = self.client.post(self.INTRODUCTION_PAGE, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         return resp.headers['Location']

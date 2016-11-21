@@ -26,7 +26,7 @@ class Question:
         answers_iterator = iter(answer_schema)
         for answer_schema in answers_iterator:
             if question_schema['type'] == 'RepeatingAnswer':
-                for answer_id, answer_index in StateQuestion.iterate_over_instance_ids(answers.keys()):
+                for answer_id, _ in StateQuestion.iterate_over_instance_ids(answers.keys()):
                     if answer_schema['id'] == answer_id:
                         answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator, answer_id)
                         summary_answers.append(Answer(block_id, answer_schema, answer))
