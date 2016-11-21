@@ -38,8 +38,8 @@ class StateQuestion(StateItem):
 
         new_answer_schema = copy.deepcopy(answer_schema)
         suffix = '_' + str(answer_instance) if answer_instance > 0 else ''
-        new_answer_schema.widget.id += suffix
-        new_answer_schema.widget.name += suffix
+        widget_id = answer_schema.id + suffix
+        new_answer_schema.widget = type(answer_schema.widget)(widget_id)
         new_answer_state = StateAnswer(new_answer_schema.id, new_answer_schema)
         new_answer_state.answer_instance = answer_instance
         new_answer_state.parent = self

@@ -5,6 +5,7 @@ from mock import MagicMock
 from app.questionnaire_state.state_answer import StateAnswer
 from app.questionnaire_state.state_question import StateQuestion
 from app.schema.answer import Answer
+from app.schema.widgets.text_widget import TextWidget
 
 
 def side_effect_create_answer_state(answer_instance, parent):
@@ -95,7 +96,7 @@ class TestStateQuestion(unittest.TestCase):
         question_state = StateQuestion('question_id', MagicMock())
         question_state.schema_item.type = 'RepeatingAnswer'
         question_state.schema_item.answers = [Answer('answer_id')]
-        question_state.schema_item.answers[0].widget = MagicMock()
+        question_state.schema_item.answers[0].widget = TextWidget('answer_id')
 
         answer_state = MagicMock()
         answer_state.id = 'answer_id'
@@ -129,8 +130,8 @@ class TestStateQuestion(unittest.TestCase):
         answer1 = Answer('answer_one')
         answer2 = Answer('answer_two')
 
-        answer1.widget = MagicMock()
-        answer2.widget = MagicMock()
+        answer1.widget = TextWidget('answer_one')
+        answer2.widget = TextWidget('answer_two')
 
         question.schema_item.answers = [answer1, answer2]
 
@@ -159,7 +160,7 @@ class TestStateQuestion(unittest.TestCase):
         answers = []
         for x in range(3):
             answer = Answer('answer'+str(x))
-            answer.widget = MagicMock()
+            answer.widget = TextWidget('answer' + str(x))
             answers.append(answer)
         question_state.schema_item.answers = answers
 
