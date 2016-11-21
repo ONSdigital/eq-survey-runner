@@ -59,12 +59,18 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         token_as_str = strings.to_str(token)
         if token_as_str.count(".") != 2:
             raise InvalidTokenException("Invalid Token")
-        self._check_headers(token_as_str)
-        self._check_payload(token_as_str)
-        return
+
+        # header_data, payload_data, signature_data
+        header_data, payload_data, _ = token_as_str.split('.', maxsplit=2)
+
+        self._check_headers(header_data)
+        self._check_header_values(token_as_str)
+        self._check_payload(payload_data)
 
     @staticmethod
-    def _check_header_values(header):
+    def _check_header_values(token):
+        header = jwt.get_unverified_header(token)
+
         if not header:
             raise InvalidTokenException("Missing Headers")
         if not header.get('typ'):
@@ -80,8 +86,7 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         if header.get('kid').upper() != 'EDCRRM':
             raise InvalidTokenException("Invalid Key Identifier")
 
-    def _check_headers(self, token):
-        header_data, _, _ = token.split('.', maxsplit=2)  # header_data, payload_data, signature_data
+    def _check_headers(self, header_data):
         try:
             headers = self._base64_decode(header_data)
             if not headers:
@@ -91,9 +96,6 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
             raise InvalidTokenException("Corrupted Header")
         except ValueError as e:
             raise InvalidTokenException(repr(e))
-
-        header = jwt.get_unverified_header(token)
-        self._check_header_values(header)
 
     def _check_for_duplicates(self, headers):
         headers_as_str = strings.to_str(headers)
@@ -109,9 +111,8 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
                 store[key] = value
         return store
 
-    def _check_payload(self, token):
+    def _check_payload(self, payload_data):
         try:
-            _, payload_data, _ = token.split('.', maxsplit=2)  # header_data, payload_data, signature_data
             payload = self._base64_decode(payload_data)
             if not payload:
                 raise InvalidTokenException("Missing Payload")
