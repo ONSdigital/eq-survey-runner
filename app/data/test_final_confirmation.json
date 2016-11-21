@@ -1,0 +1,85 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Final confirmation to submit",
+    "theme": "default",
+    "description": "A questionnaire to demo final confirmation to submit.",
+    "introduction": {
+        "description": ""
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "0",
+    "messages": {
+        "INTEGER_TOO_LARGE": "Number is too large",
+        "NEGATIVE_INTEGER": "Number cannot be less than zero",
+        "NOT_INTEGER": "Please enter an integer"
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "ed3e200a-0735-4e8d-9eea-627c1d908697",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                            "label": "What is your favourite breakfast food",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
+                                    "title": "",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "What is your favourite breakfast food",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules": [
+                    ],
+                    "title": "",
+                    "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [],
+                    "id": "confirmation",
+                    "title": ""
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "14ba4707-321d-441d-8d21-b8367366e766",
+            "title": ""
+        }
+    ]
+}

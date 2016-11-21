@@ -1,10 +1,7 @@
 import logging
 
-from app.questionnaire.questionnaire_manager import get_questionnaire_manager
+from app.globals import get_navigator
 from app.templating.summary.section import Section
-
-
-from flask import g
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +13,7 @@ def build_summary_rendering_context(schema_json, answers):
     :param answers: all of the answers to the questionnaire
     :return: questionnaire summary context
     """
-    path = get_questionnaire_manager(g.schema, schema_json).navigator.get_routing_path(answers)
+    path = get_navigator(schema_json).get_routing_path(answers)
     sections = []
     for group in schema_json['groups']:
         for block in group['blocks']:

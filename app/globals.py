@@ -1,6 +1,7 @@
 import logging
 
 from app.data_model.questionnaire_store import QuestionnaireStore
+from app.questionnaire.navigator import Navigator
 
 from flask import g
 
@@ -41,3 +42,11 @@ def get_answers(user):
 def get_completed_blocks(user):
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
     return questionnaire_store.completed_blocks
+
+
+def get_navigator(schema_json):
+    navigator = g.get('_navigator')
+    if navigator is None:
+        navigator = g._navigator = Navigator(schema_json)
+
+    return navigator
