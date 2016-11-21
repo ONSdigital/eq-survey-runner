@@ -45,7 +45,7 @@ class DateWidget(Widget):
                   'value': day,
                   'placeholder': 'DD',
                   'name': self.name + '-day',
-                  'id': self.name + '-day',
+                  'id': self.id + '-day',
                   },
                 }
 

@@ -28,13 +28,10 @@ class Questionnaire(object):
             group.container = self
 
     def get_item_by_id(self, item_id):
-        answer_without_instance_id = item_id.split('_')[0]
         if item_id == self.id:
             return self
         elif item_id in self.items_by_id.keys():
             return self.items_by_id[item_id]
-        elif answer_without_instance_id in self.items_by_id.keys():
-            return self.items_by_id[answer_without_instance_id]
         else:
             raise QuestionnaireException('Unknown id \'{}\''.format(item_id))
 

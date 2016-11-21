@@ -8,7 +8,7 @@ from app.questionnaire_state.state_item import StateItem
 
 class StateQuestion(StateItem):
     def __init__(self, id, schema_item):
-        super(StateQuestion, self).__init__(id=id, schema_item=schema_item)
+        super().__init__(id=id, schema_item=schema_item)
         self.answers = []
         self.children = self.answers
 
@@ -22,10 +22,10 @@ class StateQuestion(StateItem):
             for state_answer in self.answers:
                 state_answer.update_state(user_input)
         else:
-            super(StateQuestion, self).update_state(user_input)
+            super().update_state(user_input)
 
     def build_repeating_state(self, user_input):
-        for answer_id, answer_index in self._iterate_over_instance_ids(user_input):
+        for answer_id, answer_index in self.iterate_over_instance_ids(user_input.keys()):
             for answer_schema in self.schema_item.answers:
                 if answer_schema.id == answer_id:
                     self.create_new_answer_state(answer_schema, answer_index)
@@ -37,17 +37,23 @@ class StateQuestion(StateItem):
                 return None
 
         new_answer_schema = copy.deepcopy(answer_schema)
-        new_answer_schema.widget.name += '_' + str(answer_instance) if answer_instance > 0 else ''
+        suffix = '_' + str(answer_instance) if answer_instance > 0 else ''
+        new_answer_schema.widget.id += suffix
+        new_answer_schema.widget.name += suffix
         new_answer_state = StateAnswer(new_answer_schema.id, new_answer_schema)
         new_answer_state.answer_instance = answer_instance
         new_answer_state.parent = self
         self.answers.append(new_answer_state)
 
     @classmethod
-    def _iterate_over_instance_ids(cls, user_input):
+    def iterate_over_instance_ids(cls, answer_instances):
+        """
+        Iterates over a collection of answer instances yielding the answer Id and answer instance Id.
+        :param answer_instances: A list of raw answer_instance_ids
+        :return: Tuple containing the answer Id and answer instance Id.
+        """
 
-        answer_instance_ids = [key for key in user_input]
-        answer_instance_ids = sorted(answer_instance_ids, key=natural_order)
+        answer_instance_ids = sorted(answer_instances, key=natural_order)
 
         for answer_instance_id in answer_instance_ids:
             answer_id, answer_index = cls._extract_answer_instance_id(answer_instance_id)

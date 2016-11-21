@@ -84,7 +84,8 @@ class Converter(object):
         data = {}
 
         for key in answers.keys():
-            item = questionnaire.get_item_by_id(key)
+            key_without_index = key.rsplit('_', 1)[0]
+            item = questionnaire.get_item_by_id(key_without_index)
             if item is not None:
                 value = answers[key]
                 if value is not None:

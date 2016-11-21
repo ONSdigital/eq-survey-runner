@@ -28,7 +28,7 @@
    {%- if question.schema_item.type == 'RepeatingAnswer' %}
      {%- for answer in question.answers %}
        <div class="question__answer js-household-person">
-         <h3 class="neptune">Person <span class="js-household-loopindex">{{ loop.index }}</span>
+         <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
            <small>(
            {%- if loop.index == 1 -%}
               <span class="js-household-action">{{ _('You') }}</span>

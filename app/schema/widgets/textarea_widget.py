@@ -12,7 +12,7 @@ class TextareaWidget(Widget):
         widget_params = {
             'answer': {
                 'name': self.name,
-                'id': state.schema_item.id,
+                'id': self.id,
                 'label': state.schema_item.label,
                 'value': state.input or '',
             },

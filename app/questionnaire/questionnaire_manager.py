@@ -130,14 +130,14 @@ class QuestionnaireManager(object):
         question_state = self.state.find_state_item(question_schema)
 
         for answer_schema in question_schema.answers:
-            next_answer_instance_id = self._get_next_answer_instance(answer_store, answer_schema)
+            next_answer_instance_id = self._get_next_answer_instance(answer_store, answer_schema.id)
             question_state.create_new_answer_state(answer_schema, next_answer_instance_id)
 
         self.update_questionnaire_store(block_id)
 
     @staticmethod
-    def _get_next_answer_instance(answer_store, existing_answer_schema):
-        existing_answers = answer_store.filter(answer_id=existing_answer_schema.id)
+    def _get_next_answer_instance(answer_store, answer_id):
+        existing_answers = answer_store.filter(answer_id=answer_id)
         last_answer = existing_answers[-1:]
         next_answer_instance_id = 0 if len(last_answer) == 0 else int(last_answer[0]['answer_instance']) + 1
         return next_answer_instance_id

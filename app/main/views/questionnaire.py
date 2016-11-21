@@ -144,7 +144,7 @@ def post_household_composition(eq_id, form_type, collection_id):
                              form_type=form_type, collection_id=collection_id)
 
 
-def _go_to_next_block(current_location, eq_id, form_type, collection_id, ):
+def _go_to_next_block(current_location, eq_id, form_type, collection_id):
     navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
     next_location = navigator.get_next_location(get_answers(current_user), current_location)
     metadata = get_metadata(current_user)

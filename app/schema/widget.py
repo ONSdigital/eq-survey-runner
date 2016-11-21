@@ -4,8 +4,9 @@ logger = logging.getLogger(__name__)
 
 
 class Widget(object):
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, schema_item_id):
+        self.id = schema_item_id
+        self.name = schema_item_id
 
     def render(self, state):
         raise NotImplementedError
@@ -17,8 +18,3 @@ class Widget(object):
 
     def get_other_input(self, post_vars):
         pass
-
-    @staticmethod
-    def get_id(state):
-        schema_id_with_suffix = '_'.join([state.schema_item.id, str(state.answer_instance)])
-        return state.schema_item.id if state.answer_instance == 0 else schema_id_with_suffix
