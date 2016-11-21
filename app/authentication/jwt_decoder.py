@@ -55,7 +55,8 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
                 jwt.exceptions.InvalidIssuedAtError) as e:
             raise InvalidTokenException(repr(e))
 
-    def _check_token(self, token):
+    @classmethod
+    def _check_token(cls, token):
         token_as_str = strings.to_str(token)
         if token_as_str.count(".") != 2:
             raise InvalidTokenException("Invalid Token")
@@ -63,14 +64,30 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         # header_data, payload_data, signature_data
         header_data, payload_data, _ = token_as_str.split('.', maxsplit=2)
 
-        self._check_headers(header_data)
-        self._check_header_values(token_as_str)
-        self._check_payload(payload_data)
+        cls._check_headers(header_data)
+        cls._check_header_values(token_as_str)
+        cls._check_payload(payload_data)
+
+    @classmethod
+    def _check_headers(cls, header_data):
+        try:
+            headers = cls._base64_decode(header_data)
+            if not headers:
+                raise InvalidTokenException("Missing Headers")
+            cls._check_for_duplicates(headers)
+        except UnicodeDecodeError:
+            raise InvalidTokenException("Corrupted Header")
+        except ValueError as e:
+            raise InvalidTokenException(repr(e))
+
+    @classmethod
+    def _check_for_duplicates(cls, headers):
+        headers_as_str = strings.to_str(headers)
+        json.loads(headers_as_str, object_pairs_hook=cls._raise_exception_on_duplicates)
 
     @staticmethod
     def _check_header_values(token):
         header = jwt.get_unverified_header(token)
-
         if not header:
             raise InvalidTokenException("Missing Headers")
         if not header.get('typ'):
@@ -86,21 +103,6 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         if header.get('kid').upper() != 'EDCRRM':
             raise InvalidTokenException("Invalid Key Identifier")
 
-    def _check_headers(self, header_data):
-        try:
-            headers = self._base64_decode(header_data)
-            if not headers:
-                raise InvalidTokenException("Missing Headers")
-            self._check_for_duplicates(headers)
-        except UnicodeDecodeError:
-            raise InvalidTokenException("Corrupted Header")
-        except ValueError as e:
-            raise InvalidTokenException(repr(e))
-
-    def _check_for_duplicates(self, headers):
-        headers_as_str = strings.to_str(headers)
-        json.loads(headers_as_str, object_pairs_hook=self._raise_exception_on_duplicates)
-
     @staticmethod
     def _raise_exception_on_duplicates(ordered_pairs):
         store = {}
@@ -111,9 +113,10 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
                 store[key] = value
         return store
 
-    def _check_payload(self, payload_data):
+    @classmethod
+    def _check_payload(cls, payload_data):
         try:
-            payload = self._base64_decode(payload_data)
+            payload = cls._base64_decode(payload_data)
             if not payload:
                 raise InvalidTokenException("Missing Payload")
             payload_decoded = payload.decode()
@@ -158,8 +161,9 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         except (jwt.DecodeError, InvalidTag, InternalError, ValueError, AssertionError) as e:
             raise InvalidTokenException(repr(e))
 
-    def __check_jwe_protected_header(self, header):
-        header = self._base64_decode(header).decode()
+    @classmethod
+    def __check_jwe_protected_header(cls, header):
+        header = cls._base64_decode(header).decode()
         header_data = json.loads(header)
         if not header_data.get("alg"):
             raise InvalidTokenException("Missing Algorithm")
