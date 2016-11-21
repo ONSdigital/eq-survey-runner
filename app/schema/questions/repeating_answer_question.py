@@ -6,5 +6,6 @@ class RepeatingAnswerQuestion(Question):
     def __init__(self):
         super().__init__()
 
-    def get_state_class(self):
+    @staticmethod
+    def get_state_class():
         return RepeatingAnswerStateQuestion
