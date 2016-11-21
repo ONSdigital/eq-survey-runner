@@ -4,3 +4,4 @@ mock==1.0.1
 coverage==4.2b1
 pytest-cov==2.3.0
 jsonschema==2.5.1
+pylint==1.6.4
