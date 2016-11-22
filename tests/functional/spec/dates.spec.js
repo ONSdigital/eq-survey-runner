@@ -27,6 +27,7 @@ describe('Date checks', function() {
             expect(SummaryPage.getDateRangeSummary()).to.contain('01 January 2016 to 03 January 2017')
             expect(SummaryPage.getMonthYearDateSummary()).to.contain('January 2018')
             expect(SummaryPage.getDateOfBirth()).to.contain('04 January 1999')
+            expect(SummaryPage.getNonMandatoryDate()).to.contain('No answer provided')
 
         })
 
@@ -141,6 +142,7 @@ describe('Date checks', function() {
 
             expect(SummaryPage.getDateRangeSummary()).to.contain('01 January 2016 to 03 January 2017')
             expect(SummaryPage.getMonthYearDateSummary()).to.contain('January 2018')
+
       })
 
       it('Given the test_dates survey is selected, when a user clicks the day label then the day subfield should gain the focus', function() {

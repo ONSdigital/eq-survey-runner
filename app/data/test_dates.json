@@ -76,7 +76,7 @@
                                     "type": "DateRange",
                                     "validation": []
                                 },
-                              {
+                                {
                                     "answers": [
                                         {
                                             "display": {},
@@ -103,8 +103,8 @@
                                     "title": "Date with month and year",
                                     "type": "General",
                                     "validation": []
-                                    },
-                                    {
+                                },
+                                {
                                     "answers": [
                                         {
                                             "display": {},
@@ -127,8 +127,36 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "question",
+                                    "id": "3b7d43d1-8e0e-499d-928e-7cd78be8525e",
                                     "title": "Single date type",
+                                    "type": "General",
+                                    "validation": []
+                                },
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "98fa9cec-e0bb-471e-80e3-1ff3d9242ef8",
+                                            "label": "Date",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "17",
+                                            "type": "Date",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "cb2c75b7-6a2c-4e47-9303-ff6246d8f752",
+                                    "title": "Non Mandatory",
                                     "type": "General",
                                     "validation": []
                                 }

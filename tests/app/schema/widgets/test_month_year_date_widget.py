@@ -23,9 +23,19 @@ class TestMonthYearDateAnswer(IntegrationTestCase):
         self.assertRegexpMatches(response, 'February')
         self.assertRegexpMatches(response, '2016')
 
-    def testmonth_year_date_answer_none_input(self):
+    def test_month_year_date_answer_none_input(self):
         user_answer = None
         self.render_widget(user_answer)
+
+    def test_month_year_date_answer_non_mandatory(self):
+        date_widget = MonthYearDateAnswer('1234')
+        response = date_widget.get_user_input({'1234-month':'', '1234-year':''})
+        self.assertIsNone(response)
+
+    def test_month_year_date_answer_mandatory(self):
+        date_widget = MonthYearDateAnswer('1234')
+        response = date_widget.get_user_input({'1234-month':'1', '1234-year':'2017'})
+        self.assertRegexpMatches(response, "1/2017")
 
     def render_widget(self, user_answer):
         month_year_date_widget = MonthYearDateWidget('1234')

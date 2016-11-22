@@ -1,12 +1,17 @@
 <select class='input input--select' id='input-{{select.name}}' name='{{select.name}}'>
+
+  {% if not (select.selected and select.mandatory) %}
+      <option value="">{{select.placeholder}}</option>
+  {% endif %}
+
   {%- for option in select.options -%}
 
     <option {{{
       "value": option.value,
-      "my-attr": option.selected,
       "selected": "selected" if option.selected,
       "disabled": "disabled" if option.disabled
     }|xmlattr}}>{{option.text}}</option>
+
   {%- endfor -%}
 
 </select>
