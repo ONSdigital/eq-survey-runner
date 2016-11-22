@@ -106,24 +106,6 @@ def get_introduction(eq_id, form_type, collection_id):
     return _render_template('introduction', get_introduction_context(schema_json), rendered_schema_json=schema_json)
 
 
-@questionnaire_blueprint.route('summary', methods=["GET"])
-@login_required
-def get_summary(eq_id, form_type, collection_id):
-    navigator = Navigator(g.schema_json, get_answer_store(current_user))
-
-    answer_store = get_answer_store(current_user)
-    latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
-
-    if latest_location['block_id'] is 'summary':
-        metadata = get_metadata(current_user)
-        answers = get_answers(current_user)
-        schema_json = _render_schema(g.schema_json, answers, metadata)
-        summary_context = build_summary_rendering_context(schema_json, answer_store)
-        return _render_template('summary', summary_context, rendered_schema_json=schema_json)
-
-    return redirect_to_block(eq_id, form_type, collection_id, latest_location['group_id'], latest_location['group_instance'], latest_location['block_id'])
-
-
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
 @login_required
 def post_interstitial(eq_id, form_type, collection_id, block_id):
@@ -155,6 +137,24 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
     return redirect_to_block(eq_id, form_type, collection_id, next_group_id, next_group_instance, next_block_id)
 
 
+@questionnaire_blueprint.route('summary', methods=["GET"])
+@login_required
+def get_summary(eq_id, form_type, collection_id):
+
+    answer_store = get_answer_store(current_user)
+    navigator = Navigator(g.schema_json, answer_store)
+    latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
+
+    if latest_location['block_id'] is 'summary':
+        metadata = get_metadata(current_user)
+        answers = get_answers(current_user)
+        schema_json = _render_schema(g.schema_json, answers, metadata)
+        summary_context = build_summary_rendering_context(schema_json, answer_store)
+        return _render_template('summary', summary_context, rendered_schema_json=schema_json)
+
+    return redirect_to_block(eq_id, form_type, collection_id, latest_location['group_id'], latest_location['group_instance'], latest_location['block_id'])
+
+
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
 @login_required
 def get_confirmation(eq_id, form_type, collection_id):
@@ -163,10 +163,13 @@ def get_confirmation(eq_id, form_type, collection_id):
     latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     if latest_location['block_id'] == 'confirmation':
+        q_manager = get_questionnaire_manager(g.schema, g.schema_json)
         metadata = get_metadata(current_user)
         answers = get_answers(current_user)
         schema_json = _render_schema(g.schema_json, answers, metadata)
-        return _render_template('confirmation', get_questionnaire_manager(navigator, g.schema, g.schema_json).state, rendered_schema_json=schema_json)
+
+        return _render_template('confirmation', q_manager.state, rendered_schema_json=schema_json)
+
     return redirect_to_block(eq_id, form_type, collection_id, latest_location['group_id'], latest_location['group_instance'], latest_location['block_id'])
 
 
@@ -270,13 +273,16 @@ def redirect_to_thank_you(eq_id, form_type, collection_id):
                             collection_id=collection_id))
 
 
+def redirect_to_confirmation(eq_id, form_type, collection_id):
+    return redirect(url_for('.get_confirmation',
+                            eq_id=eq_id,
+                            form_type=form_type,
+                            collection_id=collection_id))
+
+
 def redirect_to_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
-    if block_id == 'summary':
-        return redirect_to_summary(eq_id, form_type, collection_id)
-    elif block_id == 'introduction':
-        return redirect_to_introduction(eq_id, form_type, collection_id)
-    elif block_id == 'thank-you':
-        return redirect_to_thank_you(eq_id, form_type, collection_id)
+    if block_id in ['summary', 'introduction', 'confirmation', 'thank-you']:
+        return redirect(interstitial_url(eq_id, form_type, collection_id, block_id))
 
     return redirect(url_for('.get_block',
                             eq_id=eq_id,
@@ -285,6 +291,30 @@ def redirect_to_block(eq_id, form_type, collection_id, group_id, group_instance,
                             group_id=group_id,
                             group_instance=group_instance,
                             block_id=block_id))
+
+
+def interstitial_url(eq_id, form_type, collection_id, block_id):
+    if block_id == 'summary':
+        return url_for('.get_summary',
+                       eq_id=eq_id,
+                       form_type=form_type,
+                       collection_id=collection_id,
+                       )
+    elif block_id == 'introduction':
+        return url_for('.get_introduction',
+                       eq_id=eq_id,
+                       form_type=form_type,
+                       collection_id=collection_id)
+    elif block_id == 'confirmation':
+        return url_for('.get_confirmation',
+                       eq_id=eq_id,
+                       form_type=form_type,
+                       collection_id=collection_id)
+    elif block_id == 'thank-you':
+        return url_for('.get_thank_you',
+                       eq_id=eq_id,
+                       form_type=form_type,
+                       collection_id=collection_id)
 
 
 def _same_survey(eq_id, form_type, collection_id):
@@ -303,7 +333,20 @@ def _render_template(location, context, rendered_schema_json=None, template=None
     previous_location = navigator.get_previous_location(current_block_id=location)
     schema_json = rendered_schema_json or _render_schema(g.schema_json, answers, metadata)
 
-    previous_location = None if previous_location is None else previous_location['block_id']
+    if previous_location is not None:
+        previous_url = url_for('.get_block',
+                               eq_id=metadata['eq_id'],
+                               form_type=metadata['form_type'],
+                               collection_id=metadata['collection_exercise_sid'],
+                               group_id=previous_location['group_id'],
+                               group_instance=previous_location['group_instance'],
+                               block_id=previous_location['block_id'])
+    else:
+        previous_url = url_for('.get_introduction',
+                               eq_id=metadata['eq_id'],
+                               form_type=metadata['form_type'],
+                               collection_id=metadata['collection_exercise_sid'],
+                               )
 
     try:
         theme = schema_json['theme']
@@ -316,7 +359,7 @@ def _render_template(location, context, rendered_schema_json=None, template=None
 
     return render_theme_template(theme, template, meta=metadata_context,
                                  content=context,
-                                 previous_location=previous_location,
+                                 previous_location=previous_url,
                                  schema=schema_json)
 
 
