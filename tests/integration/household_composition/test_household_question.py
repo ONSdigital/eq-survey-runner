@@ -34,12 +34,12 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("household-full-name_3", 'Person Four')
         form_data.add("action[save_continue]", "") # Remove person two.
         resp = self.client.post(page, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEquals(resp.status_code, 302)
 
         summary_page = resp.headers['Location']
         self.assertNotEqual(page, summary_page)
 
-        resp = self.navigate_to_page(page)
+        resp = self.navigate_to_page(summary_page)
         content = resp.get_data(True)
 
         self.assertRegex(content, 'Your responses')
