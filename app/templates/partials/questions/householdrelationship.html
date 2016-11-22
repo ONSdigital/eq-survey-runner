@@ -4,25 +4,32 @@
 
     <h2 class="question__title neptune" id="title-{{question.id}}">{{question_title}}</h2> {{question_description|safe}}
 
-    <div class="question__answers">
+    <div class="question__answers js-relationship">
 
-        {%- for answer in question.answers -%} {% set legend = answer.schema_item.label.split('...') %}
+        {%- for answer in question.answers -%}
 
-        <div class="question__answer">
+        {% set legend = answer.schema_item.label.split('...') %}
+
+        <div class="question__answer js-relationship-item">
 
             <div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.schema_item.id}}">
 
                 <div class="answer__fields">
 
-                    <fieldset class="field field--radio field--cols">
+                    <fieldset class="field field--radio household__field">
 
                         <legend id="legend-{{answer.schema_item.id}}" class="venus u-mb-s u-f-no">
-                            {{legend[0]}} <span class="highlight">...</span> {{legend[1]}}
+                            {{legend[0]}} <span class="highlight js-relationship-trigger">...</span> {{legend[1]}}
                         </legend>
-
-                        {{ answer.schema_item.widget.render(answer) | safe}}
+                        <div class="js-relationship-body">
+                          {{ answer.schema_item.widget.render(answer) | safe}}
+                        </div>
 
                     </fieldset>
+
+                    <button class="btn btn--link question__edit js-relationship-editbtn" data-close="{{_('Close')}}">
+                      {{_('Edit')}}
+                    </button>
 
                 </div>
 
