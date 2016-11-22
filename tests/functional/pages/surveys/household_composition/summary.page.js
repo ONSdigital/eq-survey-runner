@@ -12,12 +12,12 @@ class HouseholdCompositionSummary extends SummaryPage {
   }
 
   getHouseholdNames() {
-    var household_names = [];
-    var elements = browser.elements('[data-qa="household-full-name-answer"]');
+    var householdNames = []
+    var elements = browser.elements('[data-qa="household-full-name-answer"]')
     elements.value.forEach((elem) => {
-        household_names.push(browser.elementIdText(elem.ELEMENT).value)
-    });
-    return household_names
+      householdNames.push(browser.elementIdText(elem.ELEMENT).value)
+    })
+    return householdNames
   }
 }
 
