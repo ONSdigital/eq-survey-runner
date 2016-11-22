@@ -17,7 +17,7 @@ class MultipleChoiceWidget(Widget):
             },
             'answer': {
                 'name': self.name,
-                'id': answer_state.schema_item.id,
+                'id': self.id,
                 'label': answer_state.schema_item.label or 'Label',
             },
             'debug': {

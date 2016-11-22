@@ -18,6 +18,18 @@
     background-color: $color-focus;
     outline: none;
   }
+
+  &.btn--border {
+    background: $color;
+    border: 3px solid $bg;
+    color: $bg;
+    padding: 0.5rem 2rem;
+    &:hover,
+    &:focus {
+      background: $bg;
+      color: $color;
+    }
+  }
 }
 
 .btn {
@@ -35,6 +47,27 @@
 .btn--lg {
   font-weight: $font-weight-semibold;
   padding: 0.9rem 5rem;
+}
+
+.btn--link {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  color: $color-links;
+  background: transparent;
+  cursor: pointer;
+  font-size: inherit;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+    color: $color-links;
+    background: transparent;
+  }
+  &:focus,
+  &:active {
+    color: white;
+    background: $color-links;
+  }
 }
 
 .btn-group {

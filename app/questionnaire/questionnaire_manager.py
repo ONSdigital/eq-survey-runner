@@ -124,3 +124,28 @@ class QuestionnaireManager(object):
 
     def get_schema(self):
         return self._schema
+
+    def add_answer(self, block_id, question_id, answer_store):
+        question_schema = self._schema.get_item_by_id(question_id)
+        question_state = self.state.find_state_item(question_schema)
+
+        for answer_schema in question_schema.answers:
+            next_answer_instance_id = self._get_next_answer_instance(answer_store, answer_schema.id)
+            question_state.create_new_answer_state(answer_schema, next_answer_instance_id)
+
+        self.update_questionnaire_store(block_id)
+
+    @staticmethod
+    def _get_next_answer_instance(answer_store, answer_id):
+        existing_answers = answer_store.filter(answer_id=answer_id)
+        last_answer = existing_answers[-1:]
+        next_answer_instance_id = 0 if len(last_answer) == 0 else int(last_answer[0]['answer_instance']) + 1
+        return next_answer_instance_id
+
+    def remove_answer(self, block, answer_store, index_to_remove):
+        answer = self.state.get_answers()[int(index_to_remove)]
+        question = answer.parent
+        question.remove_answer(answer)
+
+        answer_store.remove(answer.flatten())
+        self.update_questionnaire_store(block)

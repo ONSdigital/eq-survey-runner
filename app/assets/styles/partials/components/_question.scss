@@ -49,12 +49,29 @@
   clear: both;
 }
 
+.question__actions {
+  margin-top: 1rem;
+  @include mq(s) {
+    margin-top: 2rem;
+  }
+}
+
 .question__answers {
   clear: both;
 }
 
 .question__answer {
   margin: 0 0 2rem;
+  transition: opacity 300ms ease-in-out, transform 100ms ease-out;
+  opacity: 1;
+  transform: translateX(0);
+  &.is-hidden {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+  &.is-removed {
+    opacity: 0.5;
+  }
   &:last-of-type {
     margin-bottom: 0;
   }

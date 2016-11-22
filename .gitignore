@@ -67,3 +67,6 @@ tests/a11y
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 newrelic.ini
+
+# Added to prevent committing coverage reports.
+htmlcov/

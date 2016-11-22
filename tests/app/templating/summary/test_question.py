@@ -1,4 +1,3 @@
-from datetime import datetime
 from unittest import TestCase
 
 import mock
@@ -267,3 +266,20 @@ class TestQuestion(TestCase):
 
         # Then
         self.assertFalse(question.is_skipped(answers))
+
+    def test_build_answers_repeating_answers(self):
+        # Given
+        answers = {
+            'answer': 'value',
+            'answer_1': 'value1',
+            'answer_2': 'value2',
+        }
+        answer_schema = {'id': 'answer', 'title': '', 'type': '', 'label': ''}
+        question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'RepeatingAnswer',
+                           'answers': [answer_schema]}
+
+        # When
+        question = Question('1', question_schema, answers)
+
+        # Then
+        self.assertEqual(len(question.answers), 3)
