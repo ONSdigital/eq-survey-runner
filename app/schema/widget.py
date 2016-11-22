@@ -1,12 +1,12 @@
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 
 class Widget(object):
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, schema_item_id):
+        self.id = schema_item_id
+        self.name = schema_item_id
 
     def render(self, state):
         raise NotImplementedError

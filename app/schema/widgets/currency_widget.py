@@ -12,7 +12,7 @@ class CurrencyWidget(Widget):
         widget_params = {
             'answer': {
                 'name': self.name,
-                'id': state.schema_item.id,
+                'id': self.id,
                 'label': state.schema_item.label,
                 'value': state.value if state.value is not None else '',
                 'placeholder': '',

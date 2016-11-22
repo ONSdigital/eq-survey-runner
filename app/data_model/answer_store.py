@@ -49,6 +49,7 @@ class AnswerStore(object):
     An object that stores and updates a collection of answers, ready for serialisation
     via the Questionnaire Store.
     """
+
     def __init__(self, existing_answers=None):
         self.answers = existing_answers or []
 
@@ -199,6 +200,16 @@ class AnswerStore(object):
             result[answer_id] = answer['value']
 
         return OrderedDict(sorted(result.items(), key=lambda t: natural_order(t[0])))
+
+    def remove(self, answer):
+        """
+        Removes an answer from the answer store.
+
+        :param answer: A dict of flattened answer details.
+        """
+        index = self.find(answer)
+        if index:
+            del self.answers[index]
 
 
 def number_else_string(text):

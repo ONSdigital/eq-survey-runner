@@ -1,7 +1,7 @@
 import logging
 
 from app.authentication.session_manager import session_manager
-from app.globals import get_answers, get_completed_blocks, get_metadata, get_navigator, get_questionnaire_store
+from app.globals import get_answer_store, get_answers, get_completed_blocks, get_metadata, get_navigator, get_questionnaire_store
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
 from app.submitter.submitter import SubmitterFactory
 from app.templating.introduction_context import get_introduction_context
@@ -80,10 +80,7 @@ def post_questionnaire(eq_id, form_type, collection_id, location):
     if not valid:
         return _render_template(location, questionnaire_manager.state, template='questionnaire')
 
-    next_location = navigator.get_next_location(get_answers(current_user), location)
-    metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
+    return _go_to_next_block(current_location=location, eq_id=eq_id, form_type=form_type, collection_id=collection_id)
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -142,13 +139,45 @@ def submit_answers(eq_id, form_type, collection_id):
         return redirect_to_questionnaire_page(eq_id, form_type, collection_id, invalid_location)
 
 
+@questionnaire_blueprint.route('household-composition', methods=["POST"])
+@login_required
+def post_household_composition(eq_id, form_type, collection_id):
+    navigator = get_navigator(g.schema_json)
+    questionnaire_manager = get_questionnaire_manager(navigator, g.schema, g.schema_json)
+    answer_store = get_answer_store(current_user)
+    valid = questionnaire_manager.process_incoming_answers('household-composition', request.form)
+
+    if 'action[add_answer]' in request.form:
+        questionnaire_manager.add_answer('household-composition', 'question', answer_store)
+        return get_questionnaire(eq_id, form_type, collection_id, 'household-composition')
+
+    elif 'action[remove_answer]' in request.form:
+        index_to_remove = request.form.get('action[remove_answer]')
+        questionnaire_manager.remove_answer('household-composition', answer_store, index_to_remove)
+        return get_questionnaire(eq_id, form_type, collection_id, 'household-composition')
+
+    if not valid:
+        return _render_template('household-composition', questionnaire_manager.state, template='questionnaire')
+
+    return _go_to_next_block(current_location='household-composition', eq_id=eq_id,
+                             form_type=form_type, collection_id=collection_id)
+
+
+def _go_to_next_block(current_location, eq_id, form_type, collection_id):
+    navigator = get_navigator(g.schema_json)
+    next_location = navigator.get_next_location(get_answers(current_user), current_location)
+    metadata = get_metadata(current_user)
+    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
+    return redirect_to_questionnaire_page(eq_id, form_type, collection_id, next_location)
+
+
 def _delete_user_data():
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
     session_manager.clear()
 
 
 def redirect_to_questionnaire_page(eq_id, form_type, collection_id, location):
-    return redirect(url_for('.get_questionnaire',
+    return redirect(url_for('questionnaire.get_questionnaire',
                             eq_id=eq_id,
                             form_type=form_type,
                             collection_id=collection_id,

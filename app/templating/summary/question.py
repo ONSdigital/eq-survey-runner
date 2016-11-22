@@ -1,4 +1,5 @@
 from app.questionnaire.navigator import evaluate_rule
+from app.questionnaire_state.state_repeating_answer_question import RepeatingAnswerStateQuestion
 from app.templating.summary.answer import Answer
 
 
@@ -24,13 +25,21 @@ class Question:
         summary_answers = []
         answers_iterator = iter(answer_schema)
         for answer_schema in answers_iterator:
-            answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator)
-            summary_answers.append(Answer(block_id, answer_schema, answer))
+            if question_schema['type'] == 'RepeatingAnswer':
+                for answer_id, answer_index in RepeatingAnswerStateQuestion.iterate_over_instance_ids(answers.keys()):
+                    if answer_schema['id'] == answer_id:
+                        key = answer_id if answer_index == 0 else '_'.join([answer_id, str(answer_index)])
+                        answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator, key)
+                        summary_answers.append(Answer(block_id, answer_schema, answer))
+
+            else:
+                answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator)
+                summary_answers.append(Answer(block_id, answer_schema, answer))
         return summary_answers
 
     @classmethod
-    def _build_answer(cls, question_schema, answer_schema, answers, answers_iterator):
-        answer = answers.get(answer_schema['id'])
+    def _build_answer(cls, question_schema, answer_schema, answers, answers_iterator, answer_id=None):
+        answer = answers.get(answer_schema['id'] if answer_id is None else answer_id)
 
         if answer is None:
             return None

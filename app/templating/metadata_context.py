@@ -47,4 +47,7 @@ def _build_survey_meta(metadata):
         "employment_date": to_date(metadata["employment_date"]),
         "region_code": metadata["region_code"] if 'region_code' in metadata else None,
         "period_str": metadata["period_str"],
+        "eq_id": metadata["eq_id"],
+        "collection_id": metadata["collection_exercise_sid"],
+        "form_type": metadata["form_type"],
     }
