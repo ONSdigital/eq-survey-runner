@@ -116,9 +116,6 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         return first_page
 
-    def test_regular_submit(self):
-        pass
-
     def login_and_check_introduction_text(self):
         self.token = create_token('household_question', 'test')
         resp = self.get_first_page()
