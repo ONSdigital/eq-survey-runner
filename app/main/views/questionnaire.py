@@ -179,8 +179,9 @@ def submit_relationships(eq_id, form_type, collection_id, group_instance):
         return _render_relationships_template(group_instance)
 
     number_in_household = len(get_answer_store(current_user).filter(answer_id='household'))
-    relationships_answered = int(group_instance) + 1
-    if relationships_answered == number_in_household:
+    relationships_answered = len(get_answer_store(current_user).filter(answer_id='relationship', answer_instance=0))
+    all_but_last_person_answered = relationships_answered == number_in_household - 1
+    if all_but_last_person_answered:
         navigator = get_questionnaire_manager(g.schema, g.schema_json).navigator
         next_location = navigator.get_next_location(get_answers(current_user), 'relationships')
         metadata = get_metadata(current_user)
@@ -240,11 +241,10 @@ def _render_schema(schema_json, answers, metadata):
 
 
 def _render_relationships_template(group_instance):
-    current_person = get_answer_store(current_user).filter(answer_id='household', answer_instance=int(group_instance))[
-        0]
+    current_person = get_answer_store(current_user).filter(answer_id='household', answer_instance=int(group_instance))[0]
     question_schema = g.schema.get_item_by_id('relationship-question')
     household_question = get_questionnaire_manager(g.schema, g.schema_json).state.find_state_item(question_schema)
-    _render_relationship_answer_labels(current_person, household_question)
+    _render_relationship_answer_labels(current_person, household_question, group_instance)
     _render_relationship_question(current_person, household_question)
     return _render_template('relationships', get_questionnaire_manager(g.schema, g.schema_json).state,
                             template='questionnaire')
@@ -255,12 +255,13 @@ def _render_relationship_question(current_person, household_question):
     household_question.schema_item.title = renderer.render(household_question.schema_item.title, **context)
 
 
-def _render_relationship_answer_labels(current_person, household_question):
+def _render_relationship_answer_labels(current_person, household_question, group_instance):
     household_answers = get_answer_store(current_user).filter(answer_id='household')
-    household_answers.remove(current_person)
+    # Remove people who have answered
+    people_to_answer = [household_answer for household_answer in household_answers if household_answer['answer_instance'] > int(group_instance)]
     for i, answer in enumerate(household_question.children):
         context = {
             "person": current_person['value'],
-            "other_person": household_answers[i]['value']
+            "other_person": people_to_answer[i]['value']
         }
         answer.schema_item.label = renderer.render(answer.schema_item.label, **context)

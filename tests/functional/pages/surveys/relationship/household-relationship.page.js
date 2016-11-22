@@ -17,6 +17,12 @@ class HouseholdCompositionPage extends QuestionPage {
      return this
   }
 
+  setMotherRelationship(index, relationshipIndex) {
+     var id = this.buildRelationshipAnswerId(index, 1)
+     browser.element(id).click()
+     return this
+  }
+
   setSonRelationship(index, relationshipIndex) {
      var id = this.buildRelationshipAnswerId(index, 4)
      browser.element(id).click()
