@@ -46,7 +46,7 @@ class Answer(Item):
 
         :returns a str for the Other value or None"""
         if self.type == 'Radio' or self.type == 'Checkbox':
-            user_input = self.widget.get_other_input(post_vars)
+            user_input = self.widget.get_other_input(post_vars, self.options)
             return self.check_user_input(user_input)
 
     @staticmethod

@@ -19,19 +19,23 @@ class CheckboxAnswer(Answer):
     def validate(self, state):
         if isinstance(state, self.get_state_class()):
             question = state.parent
+            options = state.schema_item.options
             logger.debug("Checkbox Question is skipped %s", question.skipped)
             # Mandatory check
+
             if question.skipped:
                 state.is_valid = True
-            elif self.mandatory and state.input is None:
-                super(CheckboxAnswer, self).mandatory_error(state)
-            elif self.mandatory and state.input is not None and len(state.input) == 0:
-                super(CheckboxAnswer, self).mandatory_error(state)
-            elif self.mandatory and state.input is not None and 'other' in state.input and not state.other:
-                super(CheckboxAnswer, self).mandatory_error(state)
+            elif self.mandatory:
+                if not state.input:
+                    super(CheckboxAnswer, self).mandatory_error(state)
+                elif 'other' not in state.input and not self._valid_option_selected(state.input, options):
+                    super(CheckboxAnswer, self).mandatory_error(state)
+                elif 'other' in state.input and not self.widget.find_other_value(state.input, options):
+                    super(CheckboxAnswer, self).mandatory_error(state)
 
             # Here we just report on whether the answer has passed type checking
             state.value = self.get_typed_value(state.input)
+
             return state.is_valid
         else:
             raise StateException('Cannot validate - incorrect state class')
@@ -41,3 +45,14 @@ class CheckboxAnswer(Answer):
         return user_input if (Answer.check_user_input(user_input) and
                               user_input != [''] and
                               user_input != [None]) else None
+
+    @staticmethod
+    def _valid_option_selected(state_input, options):
+        # Check to see if the user input is one of the options in the schema
+        valid_option_selected = False
+        if state_input:
+            for answer in state_input:
+                if answer and any(option['value'] == answer for option in options) and answer != 'other':
+                    valid_option_selected = True
+                    break
+        return valid_option_selected
