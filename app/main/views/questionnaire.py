@@ -149,7 +149,7 @@ def get_summary(eq_id, form_type, collection_id):
         metadata = get_metadata(current_user)
         answers = get_answers(current_user)
         schema_json = _render_schema(g.schema_json, answers, metadata)
-        summary_context = build_summary_rendering_context(schema_json, answer_store)
+        summary_context = build_summary_rendering_context(schema_json, answer_store, metadata)
         return _render_template('summary', summary_context, rendered_schema_json=schema_json)
 
     return redirect_to_block(eq_id, form_type, collection_id, latest_location['group_id'], latest_location['group_instance'], latest_location['block_id'])

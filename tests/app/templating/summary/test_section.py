@@ -18,6 +18,12 @@ def build_question_schema(id, answer_schemas):
 
 class TestSection(TestCase):
 
+    metadata = {
+        'collection_exercise_sid': '789',
+        'form_type': '0102',
+        'eq_id': '1',
+    }
+
     def test_create_section(self):
         # Given
         answers = mock.MagicMock()
@@ -26,7 +32,7 @@ class TestSection(TestCase):
         section_schema = {'id': 'section_id', 'title': 'A section title', 'questions': [question_schema]}
 
         # When
-        section = Section('0', '0', '1', section_schema, answers)
+        section = Section(section_schema, answers, "some_link")
 
         # Then
         self.assertEqual(section.id, 'section_id')
@@ -43,7 +49,7 @@ class TestSection(TestCase):
         section_schema = {'id': 'section_id', 'title': 'A section title', 'questions': [first_question_schema, second_question_schema]}
 
         # When
-        section = Section('0', '0', '1', section_schema, answers)
+        section = Section(section_schema, answers, "some_link")
 
         # Then
         self.assertEqual(len(section.questions), 2)
