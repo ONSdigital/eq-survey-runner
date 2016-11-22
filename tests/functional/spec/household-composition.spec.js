@@ -5,6 +5,7 @@ import HouseholdCompositionPage from '../pages/surveys/household_composition/hou
 import HouseholdCompositionSummary from '../pages/surveys/household_composition/summary.page'
 
 const expect = chai.expect
+const assert = chai.assert
 
 describe('Household composition question for census test.', function() {
 
@@ -47,7 +48,10 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    expect(HouseholdCompositionSummary.areNamesDisplayed(['Person One', 'Person Two', 'Person Three'])).to.be.true
+    var names = HouseholdCompositionSummary.getHouseholdNames()
+    assert.include(names, 'Person One')
+    assert.include(names, 'Person Two')
+    assert.include(names, 'Person Three')
   })
 
  it('Given two people added, when I remove second person, only first person should appear on summary.', function() {
@@ -62,14 +66,17 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    expect(HouseholdCompositionSummary.areNamesDisplayed(['Person One', 'Person Two'])).to.be.true
+    var names = HouseholdCompositionSummary.getHouseholdNames()
+    assert.include(names, 'Person One')
+    assert.include(names, 'Person Two')
 
     // When
     HouseholdCompositionSummary.clickEdit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then
-    expect(HouseholdCompositionSummary.areNamesDisplayed(['Person One'])).to.be.true
+    names = HouseholdCompositionSummary.getHouseholdNames()
+    assert.include(names, 'Person One')
   })
 
    it('Given three people added, when I remove second person, first and third person should appear on summary.', function() {
@@ -86,14 +93,19 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    expect(HouseholdCompositionSummary.areNamesDisplayed(['Person One', 'Person Two', 'Person Three'])).to.be.true
+    var names = HouseholdCompositionSummary.getHouseholdNames()
+    assert.include(names, 'Person One')
+    assert.include(names, 'Person Two')
+    assert.include(names, 'Person Three')
 
     // When
     HouseholdCompositionSummary.clickEdit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then
-    expect(HouseholdCompositionSummary.areNamesDisplayed(['Person One', 'Person Three'])).to.be.true
+    names = HouseholdCompositionSummary.getHouseholdNames()
+    assert.include(names, 'Person One')
+    assert.include(names, 'Person Three')
   })
 
 })

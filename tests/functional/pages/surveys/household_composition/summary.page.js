@@ -11,26 +11,14 @@ class HouseholdCompositionSummary extends SummaryPage {
     return browser.element('[data-qa="household-full-name-answer"]').getText() === name
   }
 
-  areNamesDisplayed(names) {
-    var allNamesDisplayed = true
-    var elements = browser.elements('[data-qa="household-full-name-answer"]')
-    var name
-    for (name in names) {
-      var nameFound = false
-      var i
-      for (i = 0; i < elements.length; i++) {
-        if (elements[i].getText() === name) {
-          nameFound = true
-        }
-        allNamesDisplayed &= nameFound
-        if (!allNamesDisplayed) {
-          break
-        }
-      }
-    }
-    return allNamesDisplayed
+  getHouseholdNames() {
+    var household_names = [];
+    var elements = browser.elements('[data-qa="household-full-name-answer"]');
+    elements.value.forEach((elem) => {
+        household_names.push(browser.elementIdText(elem.ELEMENT).value)
+    });
+    return household_names
   }
-
 }
 
 export default new HouseholdCompositionSummary()
