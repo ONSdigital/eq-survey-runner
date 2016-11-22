@@ -99,6 +99,12 @@ def login():
                                 form_type=form_type,
                                 collection_id=collection_id,
                                 ))
+    elif current_location['block_id'] == 'confirmation':
+        return redirect(url_for('questionnaire.get_confirmation',
+                                eq_id=eq_id,
+                                form_type=form_type,
+                                collection_id=collection_id,
+                                ))
 
     return redirect(url_for('questionnaire.get_block',
                             eq_id=eq_id,
