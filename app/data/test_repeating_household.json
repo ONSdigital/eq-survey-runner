@@ -5,73 +5,69 @@
     "survey_id": "023",
     "title": "Test Repeating",
     "description": "",
-    "theme": "default",
+    "theme": "census",
     "eq_id": "1",
     "introduction": {
         "description": ""
     },
     "groups": [{
-        "blocks": [{
-            "id": "980b148e-0856-4e50-9afe-67a4fa6ae13b",
-            "title": "Block 1",
-            "sections": [{
-                "title": "Dummy Question",
-                "description": "",
-                "id": "b3c2e966-77ec-4373-b3dd-fdafb5a05cbd",
-                "questions": [{
-                    "id": "df9e9a50-912b-4c9e-9a75-1e7b78b2d87f",
-                    "title": "First Question",
-                    "description": "",
-                    "type": "General",
-                    "answers": [{
-                        "q_code": "1",
-                        "guidance": "",
-                        "id": "fad63234-1083-4f6a-826a-20b5df6e4baa",
-                        "label": "First input",
-                        "mandatory": true,
-                        "type": "PositiveInteger",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please answer before continuing."
-                            }
+            "blocks": [
+
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "household-composition",
+                    "sections": [
+                        {
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "section",
+                            "questions": [
+                                {
+                                  "description": "",
+                                  "display": {
+                                      "properties": {}
+                                  },
+                                  "id": "question",
+                                  "title": "Who usually lives here?",
+                                  "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
+                                  "type": "RepeatingAnswer",
+                                  "validation": [],
+                                  "answers": [
+                                    {
+                                        "display": {},
+                                        "id": "household-full-name",
+                                        "label": "Full Name",
+                                        "mandatory": true,
+                                        "options": [],
+                                        "q_code": "1",
+                                        "type": "Textfield",
+                                        "validation": {}
+                                    }
+                                  ]
+
+                                }
+                            ],
+                            "title": "Household",
+                            "validation": []
                         }
-                    }]
-                }]
-            }]
-        }, {
-            "id": "0c7c8876-6a63-4251-ac29-b821b3e9b1bc",
-            "title": "Block 2",
-            "sections": [{
-                "title": "No of Iterations",
-                "description": "",
-                "id": "5355deab-0b1e-495d-b4ab-f3e1f7c0c6f1",
-                "questions": [{
-                    "id": "269e6c4a-4e27-4469-b4db-91537fae4629",
-                    "title": "Second Question",
-                    "description": "",
-                    "type": "General",
-                    "answers": [{
-                        "q_code": "2",
-                        "guidance": "",
-                        "id": "78774493-5b64-45c4-8072-22f1a9638095",
-                        "label": "How many time are we going to repeat?",
-                        "mandatory": true,
-                        "type": "PositiveInteger",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please answer before continuing."
-                            }
-                        }
-                    }]
-                }]
-            }]
-        }],
-        "id": "f74d1147-673c-497a-9616-763829d944ac",
-        "title": "Group 1"
+                    ],
+                    "title": "Household",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "multiple-questions-group",
+            "title": "",
+            "validation": []
     }, {
         "blocks": [{
             "id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-            "title": "Block 3",
+            "title": "Block 2",
             "sections": [{
                 "title": "Repeating Block",
                 "description": "",
@@ -98,7 +94,7 @@
             }]
         }, {
             "id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-            "title": "Block 4",
+            "title": "Block 3",
             "sections": [{
                 "title": "",
                 "description": "",
@@ -128,8 +124,8 @@
         "title": "Group 2",
         "routing_rules": [{
             "repeat": {
-                "type": "answer_value",
-                "answer_id": "78774493-5b64-45c4-8072-22f1a9638095"
+                "type": "answer_count",
+                "answer_id": "household-full-name"
             }
         }]
     }]
