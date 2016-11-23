@@ -24,7 +24,7 @@ class TestSummaryContext(unittest.TestCase):
                 }
 
     def setUp(self):
-        self.app = create_app("test")
+        self.app = create_app()
         self.app.config['SERVER_NAME'] = "test"
         self.app_context = self.app.app_context()
         self.app_context.push()
