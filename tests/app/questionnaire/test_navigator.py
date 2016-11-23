@@ -735,3 +735,86 @@ class TestNavigator(unittest.TestCase):
         self.assertEqual(summary_block, navigator.get_next_location(current_group_id=current_group_id,
                                                                     current_block_id=current_block_id,
                                                                     current_iteration=current_iteration))
+
+    def test_repeating_groups_conditional_next_location(self):
+        survey = load_schema_file("test_routing_and_repeating_household.json")
+
+        expected_path = [
+            {
+                'group_instance': 0,
+                'group_id': 'repeat-value-group',
+                'block_id': 'introduction'
+            },
+            {
+                "block_id": "no-of-repeats",
+                "group_id": "repeat-value-group",
+                'group_instance': 0
+            },
+            {
+                "block_id": "repeated-block",
+                "group_id": "repeated-group",
+                'group_instance': 0
+            },
+            {
+                "block_id": "conditional-block-1",
+                "group_id": "repeated-group",
+                'group_instance': 0
+            },
+            {
+                'block_id': 'conditional-block-2',
+                'group_id': 'repeated-group',
+                'group_instance': 0
+            },
+            {
+                "block_id": "repeated-block",
+                "group_id": "repeated-group",
+                'group_instance': 1
+            },
+            {
+                "block_id": "conditional-block-2",
+                "group_id": "repeated-group",
+                'group_instance': 1
+            },
+            {
+                'block_id': 'summary',
+                'group_id': 'repeated-group',
+                'group_instance': 0
+            },
+            {
+                'block_id': 'thank-you',
+                'group_id': 'repeated-group',
+                'group_instance': 0
+            }
+        ]
+
+        answer_1 = Answer(
+            group_id="repeat-value-group",
+            block_id="no-of-repeats",
+            answer_id="no-of-repeats-answer",
+            value="2"
+        )
+
+        answer_2 = Answer(
+            group_id="repeated-group",
+            group_instance=0,
+            block_id="repeated-block",
+            answer_id="conditional-answer",
+            value="Question 2"
+        )
+
+        answer_3 = Answer(
+            group_id="repeated-group",
+            group_instance=1,
+            block_id="repeated-block",
+            answer_id="conditional-answer",
+            value="Question 3"
+        )
+
+        answers = AnswerStore()
+        answers.add(answer_1)
+        answers.add(answer_2)
+        answers.add(answer_3)
+
+        navigator = Navigator(survey, answers)
+
+        self.assertEqual(expected_path, navigator.get_location_path())
