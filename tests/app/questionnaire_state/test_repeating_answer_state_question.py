@@ -3,7 +3,7 @@ from unittest import TestCase
 from mock import MagicMock
 
 from app.questionnaire_state.state_answer import StateAnswer
-from app.questionnaire_state.state_repeating_answer_question import RepeatingAnswerStateQuestion, _extract_answer_instance_id
+from app.questionnaire_state.state_repeating_answer_question import RepeatingAnswerStateQuestion, extract_answer_instance_id
 from app.schema.answer import Answer
 from app.schema.widgets.text_widget import TextWidget
 
@@ -112,38 +112,38 @@ class TestRepeatingAnswerStateQuestion(TestCase):
         self.assertEqual(len(question_state.answers), 6)
 
     def test_extract_answer_instance_id(self):
-        answer_id, answer_index = _extract_answer_instance_id('')
+        answer_id, answer_index = extract_answer_instance_id('')
         self.assertEqual(answer_id, '')
         self.assertEqual(answer_index, 0)
 
-        answer_id, answer_index = _extract_answer_instance_id('abcdefg')
+        answer_id, answer_index = extract_answer_instance_id('abcdefg')
         self.assertEqual(answer_id, 'abcdefg')
         self.assertEqual(answer_index, 0)
 
-        answer_id, answer_index = _extract_answer_instance_id('abcdefg_')
+        answer_id, answer_index = extract_answer_instance_id('abcdefg_')
         self.assertEqual(answer_id, 'abcdefg_')
         self.assertEqual(answer_index, 0)
 
-        answer_id, answer_index = _extract_answer_instance_id('abcdefg_0')
+        answer_id, answer_index = extract_answer_instance_id('abcdefg_0')
         self.assertEqual(answer_id, 'abcdefg')
         self.assertEqual(answer_index, 0)
 
-        answer_id, answer_index = _extract_answer_instance_id('abcdefg_1')
+        answer_id, answer_index = extract_answer_instance_id('abcdefg_1')
         self.assertEqual(answer_id, 'abcdefg')
         self.assertEqual(answer_index, 1)
 
-        answer_id, answer_index = _extract_answer_instance_id('abcdefg_1_2')
+        answer_id, answer_index = extract_answer_instance_id('abcdefg_1_2')
         self.assertEqual(answer_id, 'abcdefg_1')
         self.assertEqual(answer_index, 2)
 
-        answer_id, answer_index = _extract_answer_instance_id('_1')
+        answer_id, answer_index = extract_answer_instance_id('_1')
         self.assertEqual(answer_id, '_1')
         self.assertEqual(answer_index, 0)
 
-        answer_id, answer_index = _extract_answer_instance_id('1234_1')
+        answer_id, answer_index = extract_answer_instance_id('1234_1')
         self.assertEqual(answer_id, '1234')
         self.assertEqual(answer_index, 1)
 
-        answer_id, answer_index = _extract_answer_instance_id('abcdefg_12345')
+        answer_id, answer_index = extract_answer_instance_id('abcdefg_12345')
         self.assertEqual(answer_id, 'abcdefg')
         self.assertEqual(answer_index, 12345)

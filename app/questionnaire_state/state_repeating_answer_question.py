@@ -36,8 +36,8 @@ class RepeatingAnswerStateQuestion(StateQuestion):
         new_answer_state.parent = self
         self.answers.append(new_answer_state)
 
-    @classmethod
-    def iterate_over_instance_ids(cls, answer_instances):
+    @staticmethod
+    def iterate_over_instance_ids(answer_instances):
         """
         Iterates over a collection of answer instances yielding the answer Id and answer instance Id.
         :param answer_instances: A list of raw answer_instance_ids
@@ -47,11 +47,11 @@ class RepeatingAnswerStateQuestion(StateQuestion):
         answer_instance_ids = sorted(answer_instances, key=natural_order)
 
         for answer_instance_id in answer_instance_ids:
-            answer_id, answer_index = _extract_answer_instance_id(answer_instance_id)
+            answer_id, answer_index = extract_answer_instance_id(answer_instance_id)
             yield answer_id, answer_index
 
 
-def _extract_answer_instance_id(answer_instance_id):
+def extract_answer_instance_id(answer_instance_id):
     matches = re.match(r'^(.+?)_(\d+)$', answer_instance_id)
     if matches:
         answer_id, index = matches.groups()
