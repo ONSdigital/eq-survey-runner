@@ -27,14 +27,14 @@ class SubmitterFactory(object):
 class Submitter(object):
 
     def send_answers(self, metadata, schema, answers):
-        '''
+        """
         Sends the answers to rabbit mq and returns a timestamp for submission
         :param metadata: The metadata for the survey
         :param schema: The current schema
         :param answers: The user's answers
         :return: a datetime object indicating the time it was submitted
         :raise: a submission failed exception
-        '''
+        """
         message, submitted_at = Converter.prepare_answers(metadata, schema, answers)
         encrypted_message = self.encrypt_message(message)
 
@@ -57,10 +57,9 @@ class Submitter(object):
     def send_message(self, message, queue):
         return False
 
-    def encrypt_message(self, message):
-        encrypter = Encrypter()
-        encrypted_message = encrypter.encrypt(message)
-        return encrypted_message
+    @staticmethod
+    def encrypt_message(message):
+        return Encrypter().encrypt(message)
 
 
 class LogSubmitter(Submitter):
@@ -85,7 +84,7 @@ class RabbitMQSubmitter(Submitter):
                 self.connection = pika.BlockingConnection(pika.URLParameters(settings.EQ_RABBITMQ_URL_SECONDARY))
             except pika.exceptions.AMQPError as err:
                 logger.error('Unable to connect to Prime Message Server')
-                logger.info("Unable to open Secondary Rabbit MQ connection to %s, ERROR: %s ".format(settings.EQ_RABBITMQ_URL_SECONDARY, repr(e)))
+                logger.info("Unable to open Secondary Rabbit MQ connection to %s, ERROR: %s", settings.EQ_RABBITMQ_URL_SECONDARY, repr(e))
                 logger.error("Attempting failover to secondary")
                 raise err
 
@@ -97,12 +96,12 @@ class RabbitMQSubmitter(Submitter):
             logger.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
 
     def send_message(self, message, queue):
-        '''
+        """
         Sends a message to rabbit mq and returns a true or false depending on if it was successful
         :param message: The message to send to the rabbit mq queue
         :param queue: the name of the queue
         :return: a boolean value indicating if it was successful
-        '''
+        """
         message_as_string = str(message)
         logger.info("Sending messaging " + message_as_string)
         try:

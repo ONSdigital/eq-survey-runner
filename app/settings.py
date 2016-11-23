@@ -14,20 +14,15 @@ def ensure_min(value, minimum):
         return value
 
 
-def parse_mode(str):
-    return str.upper() != 'FALSE'
+def parse_mode(string):
+    return string.upper() != 'FALSE'
 
 
-def get_key(key_name):
-    if key_name:
-        """
-        TODO remove these once the encrypted key story is finished
-        :return:
-        """
-        logger.debug("Opening file %", key_name)
-        key = open(key_name, 'r')
+def get_key(_key_name):
+    if _key_name:
+        logger.debug("Opening file %s", _key_name)
+        key = open(_key_name, 'r')
         contents = key.read()
-        logger.debug("Key is %s", contents)
         return contents
     else:
         return None

@@ -1,5 +1,7 @@
 import logging
 
+from abc import ABCMeta, abstractmethod
+
 from app.schema.widget import Widget
 
 from flask import render_template
@@ -7,7 +9,19 @@ from flask import render_template
 logger = logging.getLogger(__name__)
 
 
-class MultipleChoiceWidget(Widget):
+class MultipleChoiceWidget(Widget, metaclass=ABCMeta):
+
+    def __init__(self, name="MultipleChoiceWidget"):
+        """
+        self.type must be defined by derived classes
+        """
+        super().__init__(name)
+        self.type = None
+
+    @staticmethod
+    @abstractmethod
+    def _build_options(schema_item, answer_state):
+        raise NotImplementedError
 
     def render(self, answer_state):
         widget_params = {

@@ -151,6 +151,7 @@ class ParserUtils(object):
 
         :param obj: A dict on json object
         :param key: The name of the property to retrieve
+        :param default_value: Value to use if nothing to parse
 
         :returns: The value if found, otherwise returns default_value
 

@@ -11,7 +11,7 @@ class TestTemplateRenderer(unittest.TestCase):
     def test_render_state_item(self):
         question = Question()
         question.title = 'Hello {{name}}'
-        question.templatable_properties= ['title']
+        question.templatable_properties = ['title']
         state = StateQuestion('id', question)
         context = {'name': 'Joe Bloggs'}
 

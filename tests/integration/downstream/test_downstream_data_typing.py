@@ -93,7 +93,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
 
         summary_url = resp.headers['Location']
 
-        resp = self.navigate_to_page(summary_url)
+        self.navigate_to_page(summary_url)
 
         self.complete_survey(star_wars_test_urls.STAR_WARS_SUBMIT, 'star_wars')
 

@@ -32,7 +32,7 @@ def generate_token():
     user = os.getenv('USER', 'UNKNOWN')
     payload = create_payload(user)
     token = encoder.encode(payload)
-    encrypted_token = encoder.encrypt(token)
+    encrypted_token = encoder.encrypt_token(token)
     return encrypted_token
 
 if __name__ == '__main__':

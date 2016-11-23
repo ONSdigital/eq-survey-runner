@@ -9,91 +9,64 @@ class ParserUtilsTest(unittest.TestCase):
             "property": 'tada!'
         }
 
-        try:
-            self.assertEqual(ParserUtils.get_required(schema, 'property'), 'tada!')
-        except:
-            self.fail('An unexpected exception was thrown')
+        self.assertEqual(ParserUtils.get_required(schema, 'property'), 'tada!')
 
-        with self.assertRaises(SchemaParserException) as spe:
-            notfound = ParserUtils.get_required(schema, 'notfound')
+        with self.assertRaises(SchemaParserException):
+            ParserUtils.get_required(schema, 'notfound')
 
     def test_get_required_string(self):
         schema = {
             "string": "value"
         }
 
-        try:
-            string = ParserUtils.get_required_string(schema, 'string')
-            self.assertEqual(string, 'value')
-            self.assertTrue(isinstance(string, str))
-        except:
-            self.fail('An unexpected exception was raised')
+        string = ParserUtils.get_required_string(schema, 'string')
+        self.assertEqual(string, 'value')
+        self.assertTrue(isinstance(string, str))
 
-        with self.assertRaises(SchemaParserException) as spe:
-            notfound = ParserUtils.get_required_string(schema, 'notfound')
+        with self.assertRaises(SchemaParserException):
+            ParserUtils.get_required_string(schema, 'notfound')
 
     def test_get_required_integer(self):
         schema = {
             "integer": 5
         }
 
-        try:
-            integer = ParserUtils.get_required_integer(schema, 'integer')
-            self.assertEqual(integer, 5)
-            self.assertTrue(isinstance(integer, int))
-        except:
-            self.fail('An unexpected exception was raised')
+        integer = ParserUtils.get_required_integer(schema, 'integer')
+        self.assertEqual(integer, 5)
+        self.assertTrue(isinstance(integer, int))
 
-        with self.assertRaises(SchemaParserException) as spe:
-            notfound = ParserUtils.get_required_string(schema, 'notfound')
+        with self.assertRaises(SchemaParserException):
+            ParserUtils.get_required_string(schema, 'notfound')
 
     def test_get_optional(self):
         schema = {
             "property": 'tada!'
         }
 
-        try:
-            self.assertEqual(ParserUtils.get_optional(schema, 'property'), 'tada!')
-        except:
-            self.fail('An unexpected exception was thrown')
-
-        try:
-            notfound = ParserUtils.get_optional(schema, 'notfound')
-            self.assertIsNone(notfound)
-        except:
-            self.fail('An unexpected exception was thrown')
+        self.assertEqual(ParserUtils.get_optional(schema, 'property'), 'tada!')
+        notfound = ParserUtils.get_optional(schema, 'notfound')
+        self.assertIsNone(notfound)
 
     def test_get_optional_string(self):
         schema = {
             "string": "value"
         }
 
-        try:
-            string = ParserUtils.get_optional_string(schema, 'string')
-            self.assertEqual(string, 'value')
-            self.assertTrue(isinstance(string, str))
-        except:
-            self.fail('An unexpected exception was raised')
+        string = ParserUtils.get_optional_string(schema, 'string')
+        self.assertEqual(string, 'value')
+        self.assertTrue(isinstance(string, str))
 
-        try:
-            notfound = ParserUtils.get_optional_string(schema, 'notfound')
-            self.assertIsNone(notfound)
-        except:
-            self.fail('An unexpected exception was thrown')
+        notfound = ParserUtils.get_optional_string(schema, 'notfound')
+        self.assertIsNone(notfound)
 
     def test_get_optional_integer(self):
         schema = {
             "integer": 5
         }
-        try:
-            integer = ParserUtils.get_optional_integer(schema, 'integer')
-            self.assertEqual(integer, 5)
-            self.assertTrue(isinstance(integer, int))
-        except:
-            self.fail('An unexpected exception was raised')
 
-        try:
-            notfound = ParserUtils.get_optional_integer(schema, 'notfound')
-            self.assertIsNone(notfound)
-        except:
-            self.fail('An unexpected exception was thrown')
+        integer = ParserUtils.get_optional_integer(schema, 'integer')
+        self.assertEqual(integer, 5)
+        self.assertTrue(isinstance(integer, int))
+
+        notfound = ParserUtils.get_optional_integer(schema, 'notfound')
+        self.assertIsNone(notfound)

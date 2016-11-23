@@ -19,15 +19,15 @@ CEK_EXPECT_LENGTH = 32
 
 
 class JWTDecryptor(JWERSAOAEPDecryptor):
-    '''
+    """
     JWT signed with JWS RS256 And encrypted with JWE RSA-OAEP
-    '''
+    """
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         if settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY is None or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY is None \
                 or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD is None:
-                self.logger.fatal('KEYMAT not configured correctly.')
-                raise OSError('KEYMAT not configured correctly.')
+            self.logger.fatal('KEYMAT not configured correctly.')
+            raise OSError('KEYMAT not configured correctly.')
         else:
             super().__init__(settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY, settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD)
             # oddly the python cryptography library needs these as bytes string
@@ -59,11 +59,18 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         token_as_str = strings.to_str(token)
         if token_as_str.count(".") != 2:
             raise InvalidTokenException("Invalid Token")
-        self._check_headers(token_as_str)
-        self._check_payload(token_as_str)
-        return
 
-    def _check_header_values(self, header):
+        # header_data, payload_data, signature_data
+        header_data, payload_data, _ = token_as_str.split('.', maxsplit=2)
+
+        self._check_headers(header_data)
+        self._check_header_values(token_as_str)
+        self._check_payload(payload_data)
+
+    @staticmethod
+    def _check_header_values(token):
+        header = jwt.get_unverified_header(token)
+
         if not header:
             raise InvalidTokenException("Missing Headers")
         if not header.get('typ'):
@@ -72,15 +79,14 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
             raise InvalidTokenException("Missing Algorithm")
         if not header.get('kid'):
             raise InvalidTokenException("Missing kid")
-        if "JWT" != header.get('typ').upper():
+        if header.get('typ').upper() != 'JWT':
             raise InvalidTokenException("Invalid Type")
-        if "RS256" != header.get('alg').upper():
+        if header.get('alg').upper() != 'RS256':
             raise InvalidTokenException("Invalid Algorithm")
-        if "EDCRRM" != header.get('kid').upper():
+        if header.get('kid').upper() != 'EDCRRM':
             raise InvalidTokenException("Invalid Key Identifier")
 
-    def _check_headers(self, token):
-        header_data, payload_data, signature_data = token.split('.', maxsplit=2)
+    def _check_headers(self, header_data):
         try:
             headers = self._base64_decode(header_data)
             if not headers:
@@ -91,14 +97,12 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         except ValueError as e:
             raise InvalidTokenException(repr(e))
 
-        header = jwt.get_unverified_header(token)
-        self._check_header_values(header)
-
     def _check_for_duplicates(self, headers):
         headers_as_str = strings.to_str(headers)
         json.loads(headers_as_str, object_pairs_hook=self._raise_exception_on_duplicates)
 
-    def _raise_exception_on_duplicates(self, ordered_pairs):
+    @staticmethod
+    def _raise_exception_on_duplicates(ordered_pairs):
         store = {}
         for key, value in ordered_pairs:
             if key in store:
@@ -107,9 +111,8 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
                 store[key] = value
         return store
 
-    def _check_payload(self, token):
+    def _check_payload(self, payload_data):
         try:
-            header_data, payload_data, signature_data = token.split('.', maxsplit=2)
             payload = self._base64_decode(payload_data)
             if not payload:
                 raise InvalidTokenException("Missing Payload")
@@ -167,8 +170,10 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         if header_data.get("enc") != "A256GCM":
             raise InvalidTokenException("Invalid Encoding")
 
-    def _check_iv_length(self, iv):
+    @staticmethod
+    def _check_iv_length(iv):
         return len(iv) == IV_EXPECTED_LENGTH
 
-    def _check_cek_length(self, cek):
+    @staticmethod
+    def _check_cek_length(cek):
         return len(cek) == CEK_EXPECT_LENGTH

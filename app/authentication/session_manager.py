@@ -91,10 +91,10 @@ class SessionManager:
 
     @staticmethod
     def store_user_ik(user_ik):
-        '''
+        """
         Store a user's ik in the cookie for retrieval later
         :param user_ik: the user ik
-        '''
+        """
         logger.debug("SessionManager store_user_ik() - session %s", session)
         if USER_IK not in session:
             session[USER_IK] = user_ik

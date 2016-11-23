@@ -5,8 +5,8 @@ from tests.integration.mci import mci_test_urls
 
 class TestSubmissionWithErrors(IntegrationTestCase):
 
-  def test_submission_with_errors(self):
-    # Get a token
+    def test_submission_with_errors(self):
+        # Get a token
         token = create_token('0205', '1')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
@@ -61,6 +61,6 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         }
         resp = self.client.post(mci_test_urls.MCI_0205_SUBMIT, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'],block_one_url)
+        self.assertRegexpMatches(resp.headers['Location'], block_one_url)
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)

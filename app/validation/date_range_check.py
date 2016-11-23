@@ -11,16 +11,15 @@ logger = logging.getLogger(__name__)
 
 class DateRangeCheck(AbstractValidator):
 
-    """
-    Validate that the users answer is a valid date range
-    :param user_answers: The answer the user provided for the response
-    :return: ValidationResult(): An object containing the result of the validation
-    """
-
     def validate(self, user_answers):
+        """
+        Validate that the users answer is a valid date range
+        :param user_answers: The answer the user provided for the response
+        :return: ValidationResult(): An object containing the result of the validation
+        """
 
         result = ValidationResult(False)
-        logger.debug('Type Checking question date range with data {}'.format(user_answers))
+        logger.debug('Type Checking question date range with data %s', user_answers)
 
         try:
 

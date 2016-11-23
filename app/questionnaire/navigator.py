@@ -140,7 +140,8 @@ class Navigator:
             blocks.extend([block for block in group['blocks']])
         return blocks
 
-    def get_first_location(self):
+    @staticmethod
+    def get_first_location():
         return Navigator.PRECEEDING_INTERSTITIAL_PATH[0]
 
     def get_next_location(self, answers=None, current_location_id=None):

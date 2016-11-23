@@ -5,13 +5,13 @@ from tests.integration.downstream.downstream_test_case import DownstreamTestCase
 
 
 class TestCensusHH2016OutputFormat(DownstreamTestCase):
-    '''
+    """
     This class tests the eQ application in a black box capacity by feeding
     inputs in and checking the output that would be sent to SDX.
 
     Specifically, it injects a new version of the submitter which captures the
     unencrypted message and interrogates it for the census hh 2016 survey.
-    '''
+    """
 
     def setUp(self):
         super().setUp()
@@ -64,7 +64,7 @@ class TestCensusHH2016OutputFormat(DownstreamTestCase):
 
         summary_url = resp.headers['Location']
 
-        resp = self.client.get(summary_url, follow_redirects=False)
+        self.client.get(summary_url, follow_redirects=False)
 
         self.assertTrue(summary_url.endswith('summary'))
 

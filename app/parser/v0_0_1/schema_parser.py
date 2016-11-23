@@ -94,8 +94,6 @@ class SchemaParser(AbstractSchemaParser):
         :raises: A SchemaParserException if there is a problem while parsing the schema
 
         """
-        questionnaire = None
-
         try:
             questionnaire = Questionnaire()
             questionnaire.id = ParserUtils.get_required_string(self._schema, "questionnaire_id")
@@ -113,23 +111,23 @@ class SchemaParser(AbstractSchemaParser):
             logging.info(e)
             raise e
 
-        if questionnaire:
-            if "introduction" in self._schema.keys():
-                questionnaire.introduction = self._parse_introduction(self._schema['introduction'])
+        if "introduction" in self._schema.keys():
+            questionnaire.introduction = self._parse_introduction(self._schema['introduction'])
 
-            if "groups" in self._schema.keys():
-                for group_schema in self._schema['groups']:
-                    questionnaire.add_group(self._parse_group(group_schema, questionnaire))
-            else:
-                raise SchemaParserException('Questionnaire must contain at least one group')
+        if "groups" in self._schema.keys():
+            for group_schema in self._schema['groups']:
+                questionnaire.add_group(self._parse_group(group_schema, questionnaire))
+        else:
+            raise SchemaParserException('Questionnaire must contain at least one group')
 
-            if 'messages' in self._schema.keys():
-                # re-use the parse validation method
-                self._parse_validation(questionnaire, self._schema)
+        if 'messages' in self._schema.keys():
+            # re-use the parse validation method
+            self._parse_validation(questionnaire, self._schema)
 
         return questionnaire
 
-    def _parse_introduction(self, intro_schema):
+    @staticmethod
+    def _parse_introduction(intro_schema):
         introduction = Introduction()
 
         introduction.legal = ParserUtils.get_optional_string(intro_schema, 'legal')
@@ -148,8 +146,6 @@ class SchemaParser(AbstractSchemaParser):
         :raises: SchemaParserException
 
         """
-        group = None
-
         try:
             group = Group()
 
@@ -273,7 +269,8 @@ class SchemaParser(AbstractSchemaParser):
 
         return question
 
-    def _parse_skip_condition(self, skip_condition_schema):
+    @staticmethod
+    def _parse_skip_condition(skip_condition_schema):
         if skip_condition_schema:
             skip_condition = SkipCondition()
             when_schema = ParserUtils.get_required(skip_condition_schema, "when")
@@ -324,7 +321,8 @@ class SchemaParser(AbstractSchemaParser):
 
         return answer
 
-    def _parse_validation(self, answer, schema):
+    @staticmethod
+    def _parse_validation(answer, schema):
         if 'messages' in schema.keys():
             messages = schema['messages']
 
@@ -345,7 +343,8 @@ class SchemaParser(AbstractSchemaParser):
 
         return display
 
-    def _parse_properties(self, schema):
+    @staticmethod
+    def _parse_properties(schema):
         """
          Parse a properties element
         :param schema: the properties element

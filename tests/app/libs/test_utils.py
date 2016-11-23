@@ -1,6 +1,7 @@
 import unittest
 from app.libs.utils import ObjectFromDict
 
+
 class ObjectFromDictTest(unittest.TestCase):
     def test_simple_object(self):
         simple_dict = {
