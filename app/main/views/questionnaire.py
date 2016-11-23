@@ -252,32 +252,19 @@ def _delete_user_data():
 
 
 def redirect_to_introduction(eq_id, form_type, collection_id):
-    return redirect(url_for('.get_introduction',
-                            eq_id=eq_id,
-                            form_type=form_type,
-                            collection_id=collection_id,
-                            ))
+    return redirect(interstitial_url(eq_id, form_type, collection_id, 'introduction'))
 
 
 def redirect_to_summary(eq_id, form_type, collection_id):
-    return redirect(url_for('.get_summary',
-                            eq_id=eq_id,
-                            form_type=form_type,
-                            collection_id=collection_id))
+    return redirect(interstitial_url(eq_id, form_type, collection_id, 'summary'))
 
 
 def redirect_to_thank_you(eq_id, form_type, collection_id):
-    return redirect(url_for('.get_thank_you',
-                            eq_id=eq_id,
-                            form_type=form_type,
-                            collection_id=collection_id))
+    return redirect(interstitial_url(eq_id, form_type, collection_id, 'thank-you'))
 
 
 def redirect_to_confirmation(eq_id, form_type, collection_id):
-    return redirect(url_for('.get_confirmation',
-                            eq_id=eq_id,
-                            form_type=form_type,
-                            collection_id=collection_id))
+    return redirect(interstitial_url(eq_id, form_type, collection_id, 'confirmation'))
 
 
 def redirect_to_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
