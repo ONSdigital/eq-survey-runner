@@ -8,7 +8,7 @@ class Answer(object):
         valid = (group_id or answer_id or block_id or value) is not None
 
         if not valid:
-            raise ValueError("Missing one of 'answer_id', 'group_id', 'block_id' or 'value' for Answer")
+            raise ValueError("At least one of 'answer_id', 'group_id', 'block_id' or 'value' must be set for Answer")
 
         self.group_id = group_id
         self.block_id = block_id
