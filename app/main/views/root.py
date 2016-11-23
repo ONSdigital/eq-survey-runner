@@ -76,7 +76,7 @@ def login():
         logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
         raise NotFound
 
-    json, schema = get_schema()
+    json, _ = get_schema()
 
     navigator = Navigator(json, get_answer_store(current_user))
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
@@ -85,26 +85,22 @@ def login():
         return redirect(url_for('questionnaire.get_introduction',
                                 eq_id=eq_id,
                                 form_type=form_type,
-                                collection_id=collection_id,
-                                ))
+                                collection_id=collection_id))
     elif current_location['block_id'] == 'summary':
         return redirect(url_for('questionnaire.get_summary',
                                 eq_id=eq_id,
                                 form_type=form_type,
-                                collection_id=collection_id,
-                                ))
+                                collection_id=collection_id))
     elif current_location['block_id'] == 'thank-you':
         return redirect(url_for('questionnaire.get_thank_you',
                                 eq_id=eq_id,
                                 form_type=form_type,
-                                collection_id=collection_id,
-                                ))
+                                collection_id=collection_id))
     elif current_location['block_id'] == 'confirmation':
         return redirect(url_for('questionnaire.get_confirmation',
                                 eq_id=eq_id,
                                 form_type=form_type,
-                                collection_id=collection_id,
-                                ))
+                                collection_id=collection_id))
 
     return redirect(url_for('questionnaire.get_block',
                             eq_id=eq_id,

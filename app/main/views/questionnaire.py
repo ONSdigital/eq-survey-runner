@@ -285,8 +285,7 @@ def interstitial_url(eq_id, form_type, collection_id, block_id):
         return url_for('.get_summary',
                        eq_id=eq_id,
                        form_type=form_type,
-                       collection_id=collection_id,
-                       )
+                       collection_id=collection_id)
     elif block_id == 'introduction':
         return url_for('.get_introduction',
                        eq_id=eq_id,
@@ -332,8 +331,7 @@ def _render_template(location, context, rendered_schema_json=None, template=None
         previous_url = url_for('.get_introduction',
                                eq_id=metadata['eq_id'],
                                form_type=metadata['form_type'],
-                               collection_id=metadata['collection_exercise_sid'],
-                               )
+                               collection_id=metadata['collection_exercise_sid'])
 
     try:
         theme = schema_json['theme']
