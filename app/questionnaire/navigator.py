@@ -206,10 +206,10 @@ class Navigator:
                 for rule in group['routing_rules']:
                     if 'repeat' in rule.keys():
                         no_of_times = evaluate_repeat(rule['repeat'], self.answer_store)
-                        for i in range(no_of_times - 1):
+                        for i in range(1, no_of_times):
                             blocks.extend([{
                                 "group_id": group['id'],
-                                "group_instance": i + 1,
+                                "group_instance": i,
                                 "block": block,
                             } for block in group['blocks']])
         return blocks
