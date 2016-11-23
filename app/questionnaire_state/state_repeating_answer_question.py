@@ -47,16 +47,16 @@ class RepeatingAnswerStateQuestion(StateQuestion):
         answer_instance_ids = sorted(answer_instances, key=natural_order)
 
         for answer_instance_id in answer_instance_ids:
-            answer_id, answer_index = cls._extract_answer_instance_id(answer_instance_id)
+            answer_id, answer_index = _extract_answer_instance_id(answer_instance_id)
             yield answer_id, answer_index
 
-    @staticmethod
-    def _extract_answer_instance_id(answer_instance_id):
-        matches = re.match(r'^(.+?)_(\d+)$', answer_instance_id)
-        if matches:
-            answer_id, index = matches.groups()
-        else:
-            answer_id = answer_instance_id
-            index = 0
 
-        return answer_id, int(index)
+def _extract_answer_instance_id(answer_instance_id):
+    matches = re.match(r'^(.+?)_(\d+)$', answer_instance_id)
+    if matches:
+        answer_id, index = matches.groups()
+    else:
+        answer_id = answer_instance_id
+        index = 0
+
+    return answer_id, int(index)
