@@ -199,9 +199,9 @@ def _render_template(location, context, rendered_schema_json=None, template=None
     schema_json = rendered_schema_json or _render_schema(g.schema_json, answers, metadata)
     try:
         theme = schema_json['theme']
-        logger.debug("Theme selected: {} ".format(theme))
+        logger.debug("Theme selected: %s", theme)
     except KeyError:
-        logger.info("No theme set ")
+        logger.info("No theme set")
         theme = None
 
     template = '{}.html'.format(template or location)

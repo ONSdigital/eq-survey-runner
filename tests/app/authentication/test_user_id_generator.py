@@ -63,30 +63,31 @@ class TestUserIDGenerator(unittest.TestCase):
         self.assertNotEqual(user_id_1, user_id_2)
 
     def test_generate_id_throws_invalid_token_exception(self):
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_id(self.create_token('1', '2', None, '4'))
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_id(self.create_token('1', None, '3', '4'))
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_id(self.create_token(None, '2', '3', '4'))
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_id(self.create_token(None, None, None, '4'))
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_id(self.create_token(None, None, None, None))
 
     def test_generate_ik_throws_invalid_token_exception(self):
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_ik(self.create_token('1', '2', None, '4'))
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_ik(self.create_token('1', None, '3', '4'))
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_ik(self.create_token(None, '2', '3', '4'))
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_ik(self.create_token(None, None, None, '4'))
-        with self.assertRaises(InvalidTokenException) as ite:
+        with self.assertRaises(InvalidTokenException):
             UserIDGenerator.generate_ik(self.create_token(None, None, None, None))
 
-    def create_token(self, eq_id, collection_exercise_sid, ru_ref, form_type):
+    @staticmethod
+    def create_token(eq_id, collection_exercise_sid, ru_ref, form_type):
         return {
                 "eq_id": eq_id,
                 "collection_exercise_sid": collection_exercise_sid,

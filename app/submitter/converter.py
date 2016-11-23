@@ -56,6 +56,7 @@ class Converter(object):
         """
         Create the JSON answer format for down stream processing
 
+        :param metadata_store: the metadata store
         :param questionnaire: the questionnaire schema
         :param answers: the users answers as a dict of id/value
         :return: a JSON object in the following format:

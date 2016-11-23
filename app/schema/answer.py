@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 class Answer(Item):
     def __init__(self, answer_id=None):
-        self.id = answer_id
+        super().__init__(answer_id)
         self.label = ""
         self.guidance = ""
         self.type = None
@@ -56,9 +56,9 @@ class Answer(Item):
         else:
             return None
 
-    def get_typed_value(self, input):
+    def get_typed_value(self, raw_input):
 
-        user_input = bleach.clean(input)
+        user_input = bleach.clean(raw_input)
 
         for checker in self.type_checkers:
             result = checker.validate(user_input)
@@ -67,7 +67,8 @@ class Answer(Item):
 
         return self._cast_user_input(user_input)
 
-    def _cast_user_input(self, user_input):
+    @staticmethod
+    def _cast_user_input(user_input):
         return user_input
 
     def validate(self, state):

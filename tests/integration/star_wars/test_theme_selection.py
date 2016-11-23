@@ -7,7 +7,6 @@ class TestThemeSelection(TestLightSidePath):
     specified in the test survey schema.
     """
 
-
     def test_theme(self):
         """
         Theme Test case

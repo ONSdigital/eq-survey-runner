@@ -16,7 +16,7 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
-        self.app = create_app("testing")
+        self.app = create_app()
         self.app_context = self.app.app_context()
         self.app_context.push()
         self.client = self.app.test_client(use_cookies=False)
@@ -37,11 +37,12 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         encoder = Encoder()
         payload = self.create_payload()
         token = encoder.encode(payload)
-        encrypted_token = encoder.encrypt(token)
+        encrypted_token = encoder.encrypt_token(token)
         response = self.client.get('/session?token=' + encrypted_token.decode())
         self.assertEquals(302, response.status_code)
 
-    def create_payload(self):
+    @staticmethod
+    def create_payload():
         iat = time.time()
         exp = time.time() + (5 * 60)
         return {

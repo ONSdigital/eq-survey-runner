@@ -17,7 +17,8 @@ logger = logging.getLogger(__name__)
 
 class Authenticator(object):
 
-    def check_session(self):
+    @staticmethod
+    def check_session():
         """
         Checks for the present of the JWT in the users sessions
         :return: A user object if a JWT token is available in the session
@@ -71,13 +72,15 @@ class Authenticator(object):
 
         logger.info("User authenticated with tx_id=%s", metadata["tx_id"])
 
-    def _jwt_decrypt(self, request):
+    @staticmethod
+    def _jwt_decrypt(request):
         encrypted_token = request.args.get('token')
         decoder = JWTDecryptor()
         token = decoder.decrypt_jwt_token(encrypted_token)
         return token
 
-    def _check_user_data(self, token):
+    @staticmethod
+    def _check_user_data(token):
         valid, field = is_valid_metadata(token)
         if not valid:
             raise InvalidTokenException("Missing value {}".format(field))

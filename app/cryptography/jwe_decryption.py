@@ -13,7 +13,8 @@ from cryptography.hazmat.primitives.ciphers import modes
 
 class JWEDecryptor(object):
 
-    def _decrypt_cipher_text(self, cipher_text, iv, key, tag, jwe_protected_header):
+    @staticmethod
+    def _decrypt_cipher_text(cipher_text, iv, key, tag, jwe_protected_header):
         cipher = Cipher(algorithms.AES(key), modes.GCM(iv, tag), backend=backend)
         decryptor = cipher.decryptor()
         decryptor.authenticate_additional_data(jwe_protected_header.encode())

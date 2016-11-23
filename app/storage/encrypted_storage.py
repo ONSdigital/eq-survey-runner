@@ -29,11 +29,11 @@ class EncryptedStorage(DatabaseStorage):
         self.encryption = JWEDirEncrypter()
         self.decryption = JWEDirDecrypter()
 
-    def store(self, data, user_id, user_ik):
+    def store(self, data, user_id, user_ik=None):
         encrypted_data = self.encrypt_data(user_id, user_ik, data)
         super(EncryptedStorage, self).store(encrypted_data, user_id)
 
-    def get(self, user_id, user_ik):
+    def get(self, user_id, user_ik=None):
         data = super(EncryptedStorage, self).get(user_id)
         if 'data' in data:
             decrypted_data = self.decrypt_data(user_id, user_ik, data)

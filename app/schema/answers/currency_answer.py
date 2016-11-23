@@ -13,5 +13,6 @@ class CurrencyAnswer(Answer):
         self.type_checkers.append(PositiveIntegerTypeCheck())
         self.widget = CurrencyWidget(self.id)
 
-    def _cast_user_input(self, user_input):
+    @staticmethod
+    def _cast_user_input(user_input):
         return int(user_input)

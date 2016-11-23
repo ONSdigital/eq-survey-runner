@@ -1,11 +1,7 @@
-import os
-
 from app import settings
 from app.submitter.encrypter import Encrypter
-from app.utilities import strings
 
 from cryptography.hazmat.backends.openssl.backend import backend
-from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers import algorithms
 from cryptography.hazmat.primitives.ciphers import modes
@@ -15,7 +11,7 @@ import jwt
 KID = 'EDCRRM'
 
 
-class Encoder (Encrypter):
+class Encoder(Encrypter):
     def __init__(self):
         if settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY is None:
             raise Exception("EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY is None (check EQ_DEV_MODE?)")
@@ -24,23 +20,15 @@ class Encoder (Encrypter):
         if settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY is None:
             raise Exception("EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY is None (check EQ_DEV_MODE?)")
 
-        private_key = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY)
-        private_key_password = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD)
-        public_key = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY)
-        self.private_key = serialization.load_pem_private_key(private_key, password=private_key_password, backend=backend)
-        self.public_key = serialization.load_pem_public_key(public_key, backend=backend)
-
-        # first generate a random key
-        self.cek = os.urandom(32)  # 256 bit random CEK
-
-        # now generate a random IV
-        self.iv = os.urandom(12)  # 96 bit random IV
+        super().__init__(private_key=settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY,
+                         private_key_password=settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD,
+                         public_key=settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY)
 
     def encode(self, payload):
         return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': KID, 'typ': 'jwt'})
 
-    def encrypt(self, text, jwe_protected_header=None, cek=None, iv=None, encrypted_key=None, tag=None):
-        '''
+    def encrypt_token(self, text, jwe_protected_header=None, cek=None, iv=None, encrypted_key=None, tag=None):
+        """
         Overloading this method for test purposes, this allows us to modify the encrypted contents to test
         the decoder.
         :param text: the text to encrypt
@@ -50,7 +38,7 @@ class Encoder (Encrypter):
         :param encrypted_key: the encrypted cek, providing this overrides the encrypted internal one
         :param tag: the authentication tag, providing this overrides the generated one
         :return: an encoded and encrypted text
-        '''
+        """
         if jwe_protected_header is None:
             jwe_protected_header = self._jwe_protected_header()
         if cek is None:

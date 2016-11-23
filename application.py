@@ -7,9 +7,7 @@ from app import create_app
 from flask_script import Manager
 from flask_script import Server
 
-application = create_app(
-    os.getenv('EQ_ENVIRONMENT') or 'development'
-)
+application = create_app()
 
 manager = Manager(application)
 port = int(os.environ.get('PORT', 5000))

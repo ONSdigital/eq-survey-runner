@@ -6,8 +6,8 @@ class Factory(object):
     def register(self, key, cls):
         self._map[key] = cls
 
-    def register_all(self, map):
-        self._map = map
+    def register_all(self, _map):
+        self._map = _map
 
     def create(self, key, *args):
         if key in self._map:
