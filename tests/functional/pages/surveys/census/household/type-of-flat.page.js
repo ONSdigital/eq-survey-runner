@@ -2,17 +2,17 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class TypeOfFlatPage extends MultipleChoiceWithOtherPage {
 
-  clickInAPurposeBuiltBlockOfFlatsOrTenement() {
+  clickTypeOfFlatAnswerInAPurposeBuiltBlockOfFlatsOrTenement() {
     browser.element('[id="type-of-flat-answer-1"]').click()
     return this
   }
 
-  clickPartOfAConvertedOrSharedHouseIncludingBedsits() {
+  clickTypeOfFlatAnswerPartOfAConvertedOrSharedHouseIncludingBedsits() {
     browser.element('[id="type-of-flat-answer-2"]').click()
     return this
   }
 
-  clickInACommercialBuildingForExampleInAnOfficeBuildingHotelOrOverAShop() {
+  clickTypeOfFlatAnswerInACommercialBuildingForExampleInAnOfficeBuildingHotelOrOverAShop() {
     browser.element('[id="type-of-flat-answer-3"]').click()
     return this
   }

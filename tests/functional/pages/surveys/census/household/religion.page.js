@@ -2,82 +2,82 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class ReligionPage extends MultipleChoiceWithOtherPage {
 
-  clickNoReligion() {
+  clickReligionAnswerNoReligion() {
     browser.element('[id="religion-answer-1"]').click()
     return this
   }
 
-  clickChristianIncludingChurchOfEnglandCatholicProtestantAndAllOtherChristianDenominations() {
+  clickReligionAnswerChristianIncludingChurchOfEnglandCatholicProtestantAndAllOtherChristianDenominations() {
     browser.element('[id="religion-answer-2"]').click()
     return this
   }
 
-  clickBuddhist() {
+  clickReligionAnswerBuddhist() {
     browser.element('[id="religion-answer-3"]').click()
     return this
   }
 
-  clickHindu() {
+  clickReligionAnswerHindu() {
     browser.element('[id="religion-answer-4"]').click()
     return this
   }
 
-  clickJewish() {
+  clickReligionAnswerJewish() {
     browser.element('[id="religion-answer-5"]').click()
     return this
   }
 
-  clickMuslim() {
+  clickReligionAnswerMuslim() {
     browser.element('[id="religion-answer-6"]').click()
     return this
   }
 
-  clickSikh() {
+  clickReligionAnswerSikh() {
     browser.element('[id="religion-answer-7"]').click()
     return this
   }
 
-  clickOther() {
+  clickReligionAnswerOther() {
     browser.element('[id="religion-answer-8"]').click()
     return this
   }
 
-  clickNoReligion() {
+  clickReligionWelshAnswerNoReligion() {
     browser.element('[id="religion-welsh-answer-1"]').click()
     return this
   }
 
-  clickChristianAllDenominations() {
+  clickReligionWelshAnswerChristianAllDenominations() {
     browser.element('[id="religion-welsh-answer-2"]').click()
     return this
   }
 
-  clickBuddhist() {
+  clickReligionWelshAnswerBuddhist() {
     browser.element('[id="religion-welsh-answer-3"]').click()
     return this
   }
 
-  clickHindu() {
+  clickReligionWelshAnswerHindu() {
     browser.element('[id="religion-welsh-answer-4"]').click()
     return this
   }
 
-  clickJewish() {
+  clickReligionWelshAnswerJewish() {
     browser.element('[id="religion-welsh-answer-5"]').click()
     return this
   }
 
-  clickMuslim() {
+  clickReligionWelshAnswerMuslim() {
     browser.element('[id="religion-welsh-answer-6"]').click()
     return this
   }
 
-  clickSikh() {
+  clickReligionWelshAnswerSikh() {
     browser.element('[id="religion-welsh-answer-7"]').click()
     return this
   }
 
-  clickOther() {
+  clickReligionWelshAnswerOther() {
     browser.element('[id="religion-welsh-answer-8"]').click()
     return this
   }

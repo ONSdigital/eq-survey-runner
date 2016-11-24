@@ -2,27 +2,27 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class OccupationPage extends MultipleChoiceWithOtherPage {
 
-  clickRetiredWhetherReceivingAPensionOrNot() {
+  clickOccupationAnswerRetiredWhetherReceivingAPensionOrNot() {
     browser.element('[id="occupation-answer-1"]').click()
     return this
   }
 
-  clickAStudent() {
+  clickOccupationAnswerAStudent() {
     browser.element('[id="occupation-answer-2"]').click()
     return this
   }
 
-  clickLookingAfterHomeOrFamily() {
+  clickOccupationAnswerLookingAfterHomeOrFamily() {
     browser.element('[id="occupation-answer-3"]').click()
     return this
   }
 
-  clickLongTermSickOrDisabled() {
+  clickOccupationAnswerLongTermSickOrDisabled() {
     browser.element('[id="occupation-answer-4"]').click()
     return this
   }
 
-  clickOther() {
+  clickOccupationAnswerOther() {
     browser.element('[id="occupation-answer-5"]').click()
     return this
   }

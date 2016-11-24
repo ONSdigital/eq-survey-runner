@@ -2,27 +2,27 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class UnderstandWelshPage extends MultipleChoiceWithOtherPage {
 
-  clickUnderstandSpokenWelsh() {
+  clickUnderstandWelshAnswerUnderstandSpokenWelsh() {
     browser.element('[id="understand-welsh-answer-1"]').click()
     return this
   }
 
-  clickSpeakWelsh() {
+  clickUnderstandWelshAnswerSpeakWelsh() {
     browser.element('[id="understand-welsh-answer-2"]').click()
     return this
   }
 
-  clickReadWelsh() {
+  clickUnderstandWelshAnswerReadWelsh() {
     browser.element('[id="understand-welsh-answer-3"]').click()
     return this
   }
 
-  clickWriteWelsh() {
+  clickUnderstandWelshAnswerWriteWelsh() {
     browser.element('[id="understand-welsh-answer-4"]').click()
     return this
   }
 
-  clickNoneOfTheAbove() {
+  clickUnderstandWelshAnswerNoneOfTheAbove() {
     browser.element('[id="understand-welsh-answer-5"]').click()
     return this
   }

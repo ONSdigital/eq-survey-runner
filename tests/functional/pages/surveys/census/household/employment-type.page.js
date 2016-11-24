@@ -2,37 +2,37 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class EmploymentTypePage extends MultipleChoiceWithOtherPage {
 
-  clickWorkingAsAnEmployee() {
+  clickEmploymentTypeAnswerWorkingAsAnEmployee() {
     browser.element('[id="employment-type-answer-1"]').click()
     return this
   }
 
-  clickOnAGovernmentSponsoredTrainingScheme() {
+  clickEmploymentTypeAnswerOnAGovernmentSponsoredTrainingScheme() {
     browser.element('[id="employment-type-answer-2"]').click()
     return this
   }
 
-  clickSelfEmployedOrFreelance() {
+  clickEmploymentTypeAnswerSelfEmployedOrFreelance() {
     browser.element('[id="employment-type-answer-3"]').click()
     return this
   }
 
-  clickWorkingPaidOrUnpaidForYouOwnOrYourFamilySBusiness() {
+  clickEmploymentTypeAnswerWorkingPaidOrUnpaidForYouOwnOrYourFamilySBusiness() {
     browser.element('[id="employment-type-answer-4"]').click()
     return this
   }
 
-  clickAwayFromWorkIllOnMaternityLeaveOnHolidayOrTemporarilyLaidOff() {
+  clickEmploymentTypeAnswerAwayFromWorkIllOnMaternityLeaveOnHolidayOrTemporarilyLaidOff() {
     browser.element('[id="employment-type-answer-5"]').click()
     return this
   }
 
-  clickDoingAnyOtherKindOfPaidWork() {
+  clickEmploymentTypeAnswerDoingAnyOtherKindOfPaidWork() {
     browser.element('[id="employment-type-answer-6"]').click()
     return this
   }
 
-  clickNoneOfTheAbove() {
+  clickEmploymentTypeAnswerNoneOfTheAbove() {
     browser.element('[id="employment-type-answer-7"]').click()
     return this
   }

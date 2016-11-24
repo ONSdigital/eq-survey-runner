@@ -2,32 +2,32 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class LandlordPage extends MultipleChoiceWithOtherPage {
 
-  clickHousingAssociationHousingCoOperativeCharitableTrustRegisteredSocialLandlord() {
+  clickLandlordAnswerHousingAssociationHousingCoOperativeCharitableTrustRegisteredSocialLandlord() {
     browser.element('[id="landlord-answer-1"]').click()
     return this
   }
 
-  clickCouncilLocalAuthority() {
+  clickLandlordAnswerCouncilLocalAuthority() {
     browser.element('[id="landlord-answer-2"]').click()
     return this
   }
 
-  clickPrivateLandlordOrLettingAgency() {
+  clickLandlordAnswerPrivateLandlordOrLettingAgency() {
     browser.element('[id="landlord-answer-3"]').click()
     return this
   }
 
-  clickEmployerOfAHouseholdMember() {
+  clickLandlordAnswerEmployerOfAHouseholdMember() {
     browser.element('[id="landlord-answer-4"]').click()
     return this
   }
 
-  clickRelativeOrFriendOfAHouseholdMember() {
+  clickLandlordAnswerRelativeOrFriendOfAHouseholdMember() {
     browser.element('[id="landlord-answer-5"]').click()
     return this
   }
 
-  clickOther() {
+  clickLandlordAnswerOther() {
     browser.element('[id="landlord-answer-6"]').click()
     return this
   }

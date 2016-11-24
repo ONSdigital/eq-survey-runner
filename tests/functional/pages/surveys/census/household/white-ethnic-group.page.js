@@ -2,22 +2,22 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class WhiteEthnicGroupPage extends MultipleChoiceWithOtherPage {
 
-  clickEnglishWelshScottishNorthernIrishBritish() {
+  clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish() {
     browser.element('[id="white-ethnic-group-answer-1"]').click()
     return this
   }
 
-  clickIrish() {
+  clickWhiteEthnicGroupAnswerIrish() {
     browser.element('[id="white-ethnic-group-answer-2"]').click()
     return this
   }
 
-  clickGypsyOrIrishTraveller() {
+  clickWhiteEthnicGroupAnswerGypsyOrIrishTraveller() {
     browser.element('[id="white-ethnic-group-answer-3"]').click()
     return this
   }
 
-  clickOther() {
+  clickWhiteEthnicGroupAnswerOther() {
     browser.element('[id="white-ethnic-group-answer-4"]').click()
     return this
   }

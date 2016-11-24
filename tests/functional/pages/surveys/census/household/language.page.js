@@ -2,22 +2,22 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class LanguagePage extends MultipleChoiceWithOtherPage {
 
-  clickEnglish() {
+  clickLanguageAnswerEnglish() {
     browser.element('[id="language-answer-1"]').click()
     return this
   }
 
-  clickOther() {
+  clickLanguageAnswerOther() {
     browser.element('[id="language-answer-2"]').click()
     return this
   }
 
-  clickEnglishOrWelsh() {
+  clickLanguageWelshAnswerEnglishOrWelsh() {
     browser.element('[id="language-welsh-answer-1"]').click()
     return this
   }
 
-  clickOther() {
+  clickLanguageWelshAnswerOther() {
     browser.element('[id="language-welsh-answer-2"]').click()
     return this
   }

@@ -2,27 +2,27 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class AsianEthnicGroupPage extends MultipleChoiceWithOtherPage {
 
-  clickIndian() {
+  clickAsianEthnicGroupAnswerIndian() {
     browser.element('[id="asian-ethnic-group-answer-1"]').click()
     return this
   }
 
-  clickPakistani() {
+  clickAsianEthnicGroupAnswerPakistani() {
     browser.element('[id="asian-ethnic-group-answer-2"]').click()
     return this
   }
 
-  clickBangladeshi() {
+  clickAsianEthnicGroupAnswerBangladeshi() {
     browser.element('[id="asian-ethnic-group-answer-3"]').click()
     return this
   }
 
-  clickChinese() {
+  clickAsianEthnicGroupAnswerChinese() {
     browser.element('[id="asian-ethnic-group-answer-4"]').click()
     return this
   }
 
-  clickOther() {
+  clickAsianEthnicGroupAnswerOther() {
     browser.element('[id="asian-ethnic-group-answer-5"]').click()
     return this
   }

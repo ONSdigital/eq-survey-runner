@@ -2,62 +2,62 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class CountryOfBirthPage extends MultipleChoiceWithOtherPage {
 
-  clickEngland() {
+  clickCountryOfBirthEnglandAnswerEngland() {
     browser.element('[id="country-of-birth-england-answer-1"]').click()
     return this
   }
 
-  clickWales() {
+  clickCountryOfBirthEnglandAnswerWales() {
     browser.element('[id="country-of-birth-england-answer-2"]').click()
     return this
   }
 
-  clickScotland() {
+  clickCountryOfBirthEnglandAnswerScotland() {
     browser.element('[id="country-of-birth-england-answer-3"]').click()
     return this
   }
 
-  clickNorthernIreland() {
+  clickCountryOfBirthEnglandAnswerNorthernIreland() {
     browser.element('[id="country-of-birth-england-answer-4"]').click()
     return this
   }
 
-  clickRepublicOfIreland() {
+  clickCountryOfBirthEnglandAnswerRepublicOfIreland() {
     browser.element('[id="country-of-birth-england-answer-5"]').click()
     return this
   }
 
-  clickOther() {
+  clickCountryOfBirthEnglandAnswerOther() {
     browser.element('[id="country-of-birth-england-answer-6"]').click()
     return this
   }
 
-  clickWales() {
+  clickCountryOfBirthWalesAnswerWales() {
     browser.element('[id="country-of-birth-wales-answer-1"]').click()
     return this
   }
 
-  clickEngland() {
+  clickCountryOfBirthWalesAnswerEngland() {
     browser.element('[id="country-of-birth-wales-answer-2"]').click()
     return this
   }
 
-  clickScotland() {
+  clickCountryOfBirthWalesAnswerScotland() {
     browser.element('[id="country-of-birth-wales-answer-3"]').click()
     return this
   }
 
-  clickNorthernIreland() {
+  clickCountryOfBirthWalesAnswerNorthernIreland() {
     browser.element('[id="country-of-birth-wales-answer-4"]').click()
     return this
   }
 
-  clickRepublicOfIreland() {
+  clickCountryOfBirthWalesAnswerRepublicOfIreland() {
     browser.element('[id="country-of-birth-wales-answer-5"]').click()
     return this
   }
 
-  clickOther() {
+  clickCountryOfBirthWalesAnswerOther() {
     browser.element('[id="country-of-birth-wales-answer-6"]').click()
     return this
   }

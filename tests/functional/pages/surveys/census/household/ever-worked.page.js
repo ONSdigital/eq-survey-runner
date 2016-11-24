@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class EverWorkedPage extends MultipleChoiceWithOtherPage {
 
-  clickYes() {
+  clickEverWorkedAnswerYes() {
     browser.element('[id="ever-worked-answer-1"]').click()
     return this
   }
 
-  clickNo() {
+  clickEverWorkedAnswerNo() {
     browser.element('[id="ever-worked-answer-2"]').click()
     return this
   }

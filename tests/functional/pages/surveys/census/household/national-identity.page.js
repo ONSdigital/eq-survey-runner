@@ -2,32 +2,32 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class NationalIdentityPage extends MultipleChoiceWithOtherPage {
 
-  clickEnglish() {
+  clickNationalIdentityAnswerEnglish() {
     browser.element('[id="national-identity-answer-1"]').click()
     return this
   }
 
-  clickWelsh() {
+  clickNationalIdentityAnswerWelsh() {
     browser.element('[id="national-identity-answer-2"]').click()
     return this
   }
 
-  clickScottish() {
+  clickNationalIdentityAnswerScottish() {
     browser.element('[id="national-identity-answer-3"]').click()
     return this
   }
 
-  clickNorthernIrish() {
+  clickNationalIdentityAnswerNorthernIrish() {
     browser.element('[id="national-identity-answer-4"]').click()
     return this
   }
 
-  clickBritish() {
+  clickNationalIdentityAnswerBritish() {
     browser.element('[id="national-identity-answer-5"]').click()
     return this
   }
 
-  clickOther() {
+  clickNationalIdentityAnswerOther() {
     browser.element('[id="national-identity-answer-6"]').click()
     return this
   }

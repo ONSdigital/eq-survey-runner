@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class JobPendingPage extends MultipleChoiceWithOtherPage {
 
-  clickYes() {
+  clickJobPendingAnswerYes() {
     browser.element('[id="job-pending-answer-1"]').click()
     return this
   }
 
-  clickNo() {
+  clickJobPendingAnswerNo() {
     browser.element('[id="job-pending-answer-2"]').click()
     return this
   }

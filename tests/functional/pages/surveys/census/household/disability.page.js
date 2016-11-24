@@ -2,17 +2,17 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class DisabilityPage extends MultipleChoiceWithOtherPage {
 
-  clickYesLimitedALot() {
+  clickDisabilityAnswerYesLimitedALot() {
     browser.element('[id="disability-answer-1"]').click()
     return this
   }
 
-  clickYesLimitedALittle() {
+  clickDisabilityAnswerYesLimitedALittle() {
     browser.element('[id="disability-answer-2"]').click()
     return this
   }
 
-  clickNo() {
+  clickDisabilityAnswerNo() {
     browser.element('[id="disability-answer-3"]').click()
     return this
   }

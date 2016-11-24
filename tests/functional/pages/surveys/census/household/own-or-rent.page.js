@@ -2,27 +2,27 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class OwnOrRentPage extends MultipleChoiceWithOtherPage {
 
-  clickOwnsOutright() {
+  clickOwnOrRentAnswerOwnsOutright() {
     browser.element('[id="own-or-rent-answer-1"]').click()
     return this
   }
 
-  clickOwnsWithAMortgageOrLoan() {
+  clickOwnOrRentAnswerOwnsWithAMortgageOrLoan() {
     browser.element('[id="own-or-rent-answer-2"]').click()
     return this
   }
 
-  clickPartOwnsAndPartRentsSharedOwnership() {
+  clickOwnOrRentAnswerPartOwnsAndPartRentsSharedOwnership() {
     browser.element('[id="own-or-rent-answer-3"]').click()
     return this
   }
 
-  clickRentsWithOrWithoutHousingBenefit() {
+  clickOwnOrRentAnswerRentsWithOrWithoutHousingBenefit() {
     browser.element('[id="own-or-rent-answer-4"]').click()
     return this
   }
 
-  clickLivesHereRentFree() {
+  clickOwnOrRentAnswerLivesHereRentFree() {
     browser.element('[id="own-or-rent-answer-5"]').click()
     return this
   }

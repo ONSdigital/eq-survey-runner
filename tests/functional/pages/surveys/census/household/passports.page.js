@@ -2,22 +2,22 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class PassportsPage extends MultipleChoiceWithOtherPage {
 
-  clickUnitedKingdom() {
+  clickPassportsAnswerUnitedKingdom() {
     browser.element('[id="passports-answer-1"]').click()
     return this
   }
 
-  clickIrish() {
+  clickPassportsAnswerIrish() {
     browser.element('[id="passports-answer-2"]').click()
     return this
   }
 
-  clickNone() {
+  clickPassportsAnswerNone() {
     browser.element('[id="passports-answer-3"]').click()
     return this
   }
 
-  clickOther() {
+  clickPassportsAnswerOther() {
     browser.element('[id="passports-answer-4"]').click()
     return this
   }

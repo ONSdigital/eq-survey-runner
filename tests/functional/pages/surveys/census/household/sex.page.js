@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class SexPage extends MultipleChoiceWithOtherPage {
 
-  clickMale() {
+  clickSexAnswerMale() {
     browser.element('[id="sex-answer-1"]').click()
     return this
   }
 
-  clickFemale() {
+  clickSexAnswerFemale() {
     browser.element('[id="sex-answer-2"]').click()
     return this
   }

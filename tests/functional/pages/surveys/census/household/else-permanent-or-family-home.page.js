@@ -2,16 +2,16 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class ElsePermanentOrFamilyHomePage extends MultipleChoiceWithOtherPage {
 
-  clickYes() {
+  clickElsePermanentOrFamilyHomeAnswerYes() {
     browser.element('[id="else-permanent-or-family-home-answer-1"]').click()
     return this
   }
 
-  clickNo() {
+  clickElsePermanentOrFamilyHomeAnswerNo() {
     browser.element('[id="else-permanent-or-family-home-answer-2"]').click()
     return this
   }
 
-§}
+}
 
 export default new ElsePermanentOrFamilyHomePage()

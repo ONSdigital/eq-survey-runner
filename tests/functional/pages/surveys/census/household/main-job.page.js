@@ -2,17 +2,17 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class MainJobPage extends MultipleChoiceWithOtherPage {
 
-  clickAnEmployee() {
+  clickMainJobAnswerAnEmployee() {
     browser.element('[id="main-job-answer-1"]').click()
     return this
   }
 
-  clickSelfEmployedOrFreelanceWithoutEmployees() {
+  clickMainJobAnswerSelfEmployedOrFreelanceWithoutEmployees() {
     browser.element('[id="main-job-answer-2"]').click()
     return this
   }
 
-  clickSelfEmployedWithEmployees() {
+  clickMainJobAnswerSelfEmployedWithEmployees() {
     browser.element('[id="main-job-answer-3"]').click()
     return this
   }

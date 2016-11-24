@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class Over16Page extends MultipleChoiceWithOtherPage {
 
-  clickYes() {
+  clickOver16AnswerYes() {
     browser.element('[id="over-16-answer-1"]').click()
     return this
   }
 
-  clickNo() {
+  clickOver16AnswerNo() {
     browser.element('[id="over-16-answer-2"]').click()
     return this
   }

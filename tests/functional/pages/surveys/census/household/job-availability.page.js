@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class JobAvailabilityPage extends MultipleChoiceWithOtherPage {
 
-  clickYes() {
+  clickJobAvailabilityAnswerYes() {
     browser.element('[id="job-availability-answer-1"]').click()
     return this
   }
 
-  clickNo() {
+  clickJobAvailabilityAnswerNo() {
     browser.element('[id="job-availability-answer-2"]').click()
     return this
   }

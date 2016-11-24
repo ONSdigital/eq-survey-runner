@@ -2,47 +2,47 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class MaritalStatusPage extends MultipleChoiceWithOtherPage {
 
-  clickNeverMarriedAndNeverRegisteredASameSexCivilPartnership() {
+  clickMaritalStatusAnswerNeverMarriedAndNeverRegisteredASameSexCivilPartnership() {
     browser.element('[id="marital-status-answer-1"]').click()
     return this
   }
 
-  clickMarried() {
+  clickMaritalStatusAnswerMarried() {
     browser.element('[id="marital-status-answer-2"]').click()
     return this
   }
 
-  clickInARegisteredSameSexCivilPartnership() {
+  clickMaritalStatusAnswerInARegisteredSameSexCivilPartnership() {
     browser.element('[id="marital-status-answer-3"]').click()
     return this
   }
 
-  clickSeparatedButStillLegallyMarried() {
+  clickMaritalStatusAnswerSeparatedButStillLegallyMarried() {
     browser.element('[id="marital-status-answer-4"]').click()
     return this
   }
 
-  clickSeparatedButStillLegallyInASameSexCivilPartnership() {
+  clickMaritalStatusAnswerSeparatedButStillLegallyInASameSexCivilPartnership() {
     browser.element('[id="marital-status-answer-5"]').click()
     return this
   }
 
-  clickDivorced() {
+  clickMaritalStatusAnswerDivorced() {
     browser.element('[id="marital-status-answer-6"]').click()
     return this
   }
 
-  clickFormerlyInASameSexCivilPartnershipWhichIsNowLegallyDissolved() {
+  clickMaritalStatusAnswerFormerlyInASameSexCivilPartnershipWhichIsNowLegallyDissolved() {
     browser.element('[id="marital-status-answer-7"]').click()
     return this
   }
 
-  clickWidowed() {
+  clickMaritalStatusAnswerWidowed() {
     browser.element('[id="marital-status-answer-8"]').click()
     return this
   }
 
-  clickSurvivingPartnerFromASameSexCivilPartnership() {
+  clickMaritalStatusAnswerSurvivingPartnerFromASameSexCivilPartnership() {
     browser.element('[id="marital-status-answer-9"]').click()
     return this
   }

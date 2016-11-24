@@ -2,22 +2,22 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class SexualIdentityPage extends MultipleChoiceWithOtherPage {
 
-  clickHeterosexualOrStraight() {
+  clickSexualIdentityAnswerHeterosexualOrStraight() {
     browser.element('[id="sexual-identity-answer-1"]').click()
     return this
   }
 
-  clickGayOrLesbian() {
+  clickSexualIdentityAnswerGayOrLesbian() {
     browser.element('[id="sexual-identity-answer-2"]').click()
     return this
   }
 
-  clickBisexual() {
+  clickSexualIdentityAnswerBisexual() {
     browser.element('[id="sexual-identity-answer-3"]').click()
     return this
   }
 
-  clickOther() {
+  clickSexualIdentityAnswerOther() {
     browser.element('[id="sexual-identity-answer-4"]').click()
     return this
   }

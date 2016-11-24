@@ -75,7 +75,7 @@ def process_options(answer_id, options, page_spec):
     for index, option in enumerate(options):
         option_name = generate_camel_case_from_id(option['value'])
         option_id = "{name}-{index}".format(name=answer_id, index=index+1)
-        page_spec.write(CHECKBOX_RADIO_CLICKER.replace("{optionName}", option_name).replace("{optionId}", option_id))
+        page_spec.write(CHECKBOX_RADIO_CLICKER.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
 
 
 def process_answer(answer, page_spec):

@@ -2,22 +2,22 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class VolunteeringPage extends MultipleChoiceWithOtherPage {
 
-  clickNo() {
+  clickVolunteeringAnswerNo() {
     browser.element('[id="volunteering-answer-1"]').click()
     return this
   }
 
-  clickYesAtLeastOnceAWeek() {
+  clickVolunteeringAnswerYesAtLeastOnceAWeek() {
     browser.element('[id="volunteering-answer-2"]').click()
     return this
   }
 
-  clickYesLessThanOnceAWeekButAtLeastOnceAMonth() {
+  clickVolunteeringAnswerYesLessThanOnceAWeekButAtLeastOnceAMonth() {
     browser.element('[id="volunteering-answer-3"]').click()
     return this
   }
 
-  clickYesLessOften() {
+  clickVolunteeringAnswerYesLessOften() {
     browser.element('[id="volunteering-answer-4"]').click()
     return this
   }

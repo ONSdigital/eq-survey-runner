@@ -2,32 +2,32 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class CentralHeatingPage extends MultipleChoiceWithOtherPage {
 
-  clickGas() {
+  clickCentralHeatingAnswerGas() {
     browser.element('[id="central-heating-answer-1"]').click()
     return this
   }
 
-  clickElectricIncludingStorageHeaters() {
+  clickCentralHeatingAnswerElectricIncludingStorageHeaters() {
     browser.element('[id="central-heating-answer-2"]').click()
     return this
   }
 
-  clickOil() {
+  clickCentralHeatingAnswerOil() {
     browser.element('[id="central-heating-answer-3"]').click()
     return this
   }
 
-  clickSolidFuelForExampleWoodCoal() {
+  clickCentralHeatingAnswerSolidFuelForExampleWoodCoal() {
     browser.element('[id="central-heating-answer-4"]').click()
     return this
   }
 
-  clickOtherCentralHeating() {
+  clickCentralHeatingAnswerOtherCentralHeating() {
     browser.element('[id="central-heating-answer-5"]').click()
     return this
   }
 
-  clickNoCentralHeating() {
+  clickCentralHeatingAnswerNoCentralHeating() {
     browser.element('[id="central-heating-answer-6"]').click()
     return this
   }

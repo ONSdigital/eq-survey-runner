@@ -2,17 +2,17 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class AnotherAddressPage extends MultipleChoiceWithOtherPage {
 
-  clickNo() {
+  clickAnotherAddressAnswerNo() {
     browser.element('[id="another-address-answer-1"]').click()
     return this
   }
 
-  clickYesAnAddressWithinTheUk() {
+  clickAnotherAddressAnswerYesAnAddressWithinTheUk() {
     browser.element('[id="another-address-answer-2"]').click()
     return this
   }
 
-  clickOther() {
+  clickAnotherAddressAnswerOther() {
     browser.element('[id="another-address-answer-3"]').click()
     return this
   }

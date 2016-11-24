@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class EveryoneAtAddressConfirmationPage extends MultipleChoiceWithOtherPage {
 
-  clickYes() {
+  clickEveryoneAtAddressConfirmationAnswerYes() {
     browser.element('[id="everyone-at-address-confirmation-answer-1"]').click()
     return this
   }
 
-  clickNoINeedToAddAnotherPerson() {
+  clickEveryoneAtAddressConfirmationAnswerNoINeedToAddAnotherPerson() {
     browser.element('[id="everyone-at-address-confirmation-answer-2"]').click()
     return this
   }

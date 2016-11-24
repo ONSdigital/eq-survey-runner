@@ -2,37 +2,37 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class AddressTypePage extends MultipleChoiceWithOtherPage {
 
-  clickArmedForcesBaseAddress() {
+  clickAddressTypeAnswerArmedForcesBaseAddress() {
     browser.element('[id="address-type-answer-1"]').click()
     return this
   }
 
-  clickAnotherAddressWhenWorkingAwayFromHome() {
+  clickAddressTypeAnswerAnotherAddressWhenWorkingAwayFromHome() {
     browser.element('[id="address-type-answer-2"]').click()
     return this
   }
 
-  clickStudentSHomeAddress() {
+  clickAddressTypeAnswerStudentSHomeAddress() {
     browser.element('[id="address-type-answer-3"]').click()
     return this
   }
 
-  clickStudentSTermTimeAddress() {
+  clickAddressTypeAnswerStudentSTermTimeAddress() {
     browser.element('[id="address-type-answer-4"]').click()
     return this
   }
 
-  clickAnotherParentOrGuardianSAddress() {
+  clickAddressTypeAnswerAnotherParentOrGuardianSAddress() {
     browser.element('[id="address-type-answer-5"]').click()
     return this
   }
 
-  clickHolidayHome() {
+  clickAddressTypeAnswerHolidayHome() {
     browser.element('[id="address-type-answer-6"]').click()
     return this
   }
 
-  clickOther() {
+  clickAddressTypeAnswerOther() {
     browser.element('[id="address-type-answer-7"]').click()
     return this
   }

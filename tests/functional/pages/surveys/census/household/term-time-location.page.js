@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class TermTimeLocationPage extends MultipleChoiceWithOtherPage {
 
-  clickAtThisAddress() {
+  clickTermTimeLocationAnswerAtThisAddress() {
     browser.element('[id="term-time-location-answer-1"]').click()
     return this
   }
 
-  clickAtAnotherAddress() {
+  clickTermTimeLocationAnswerAtAnotherAddress() {
     browser.element('[id="term-time-location-answer-2"]').click()
     return this
   }

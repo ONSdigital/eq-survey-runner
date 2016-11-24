@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class SelfContainedAccommodationPage extends MultipleChoiceWithOtherPage {
 
-  clickYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse() {
+  clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse() {
     browser.element('[id="self-contained-accommodation-answer-1"]').click()
     return this
   }
 
-  clickNo() {
+  clickSelfContainedAccommodationAnswerNo() {
     browser.element('[id="self-contained-accommodation-answer-2"]').click()
     return this
   }

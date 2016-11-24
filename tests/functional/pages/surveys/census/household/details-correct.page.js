@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class DetailsCorrectPage extends MultipleChoiceWithOtherPage {
 
-  clickYesThisIsMyFullName() {
+  clickDetailsCorrectAnswerYesThisIsMyFullName() {
     browser.element('[id="details-correct-answer-1"]').click()
     return this
   }
 
-  clickNoINeedToChangeMyName() {
+  clickDetailsCorrectAnswerNoINeedToChangeMyName() {
     browser.element('[id="details-correct-answer-2"]').click()
     return this
   }

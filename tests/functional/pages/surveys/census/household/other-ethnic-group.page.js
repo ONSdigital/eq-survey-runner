@@ -2,12 +2,12 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class OtherEthnicGroupPage extends MultipleChoiceWithOtherPage {
 
-  clickArab() {
+  clickOtherEthnicGroupAnswerArab() {
     browser.element('[id="other-ethnic-group-answer-1"]').click()
     return this
   }
 
-  clickOther() {
+  clickOtherEthnicGroupAnswerOther() {
     browser.element('[id="other-ethnic-group-answer-2"]').click()
     return this
   }

@@ -2,17 +2,17 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class TypeOfHousePage extends MultipleChoiceWithOtherPage {
 
-  clickDetached() {
+  clickTypeOfHouseAnswerDetached() {
     browser.element('[id="type-of-house-answer-1"]').click()
     return this
   }
 
-  clickSemiDetached() {
+  clickTypeOfHouseAnswerSemiDetached() {
     browser.element('[id="type-of-house-answer-2"]').click()
     return this
   }
 
-  clickTerraced() {
+  clickTypeOfHouseAnswerTerraced() {
     browser.element('[id="type-of-house-answer-3"]').click()
     return this
   }
