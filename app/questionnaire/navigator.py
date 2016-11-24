@@ -150,8 +150,9 @@ class Navigator:
         blocks = self.get_blocks()
         routing_path = routing_path or self.build_path(blocks, self.first_group_id, 0, self.first_block_id, [])
         last_routing_block_id = routing_path[-1]['block_id']
+        last_block_id = blocks[-1]['block']['id']
 
-        if blocks[-1]['block']['id'] == last_routing_block_id:
+        if last_block_id == last_routing_block_id:
             return True
 
         routing_block_id_index = next(index for (index, b) in enumerate(blocks) if b['block']["id"] == last_routing_block_id)
