@@ -6,7 +6,7 @@ class TestAnswer(unittest.TestCase):
     def test_raises_error_on_invalid(self):
 
         with self.assertRaises(ValueError) as ite:
-            answer = Answer()
+            Answer()
 
         self.assertIn("At least one of 'answer_id', 'group_id', 'block_id' or 'value' must be set for Answer", str(ite.exception))
 
