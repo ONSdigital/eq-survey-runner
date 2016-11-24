@@ -4,6 +4,8 @@ import logging
 from datetime import datetime, timezone
 
 from app import settings
+from app.questionnaire_state.state_repeating_answer_question import extract_answer_instance_id
+
 
 logger = logging.getLogger(__name__)
 
@@ -85,8 +87,8 @@ class Converter(object):
         data = {}
 
         for key in answers.keys():
-            key_without_index = key.rsplit('_', 1)[0]
-            item = questionnaire.get_item_by_id(key_without_index)
+            answer_id, _ = extract_answer_instance_id(key)
+            item = questionnaire.get_item_by_id(answer_id)
             if item is not None:
                 value = answers[key]
                 if value is not None:
