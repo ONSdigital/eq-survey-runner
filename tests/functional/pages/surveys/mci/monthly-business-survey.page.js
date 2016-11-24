@@ -11,6 +11,11 @@ class MonthlyBusinessSurveyPage extends QuestionPage {
     return this
   }
 
+  setFromReportingPeriodMonth(month) {
+    browser.selectByValue('[name="6fd644b0-798e-4a58-a393-a438b32fe637-month"]', month)
+    return this
+  }
+
   getFromReportingPeriodDay() {
     return browser.element('[name="6fd644b0-798e-4a58-a393-a438b32fe637-day"]');
   }
@@ -22,6 +27,11 @@ class MonthlyBusinessSurveyPage extends QuestionPage {
 
   setToReportingPeriodDay(day) {
     browser.setValue('[name="06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day"]', day)
+    return this
+  }
+
+  setToReportingPeriodMonth(month) {
+    browser.selectByValue('[name="06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month"]', month)
     return this
   }
 

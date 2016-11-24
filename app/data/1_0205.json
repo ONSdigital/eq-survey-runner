@@ -16,7 +16,7 @@
 		]
 	},
 	"messages": {
-		"MANDATORY": "Please answer before continuing.",
+		"MANDATORY": "Please provide an answer to continue.",
 		"INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
 		"NOT_INTEGER": "Please only enter whole numbers into the field.",
 		"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",

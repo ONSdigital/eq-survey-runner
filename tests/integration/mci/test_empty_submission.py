@@ -55,7 +55,7 @@ class TestEmptySubmission(IntegrationTestCase):
         resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, "The date entered is not valid.  Please correct your answer.")
+        self.assertRegexpMatches(content, "Please provide an answer to continue.")
         self.assertRegexpMatches(content, "Please provide a value, even if your value is 0.")
 
         # We try to access the submission page without correction

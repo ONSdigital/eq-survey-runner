@@ -1,12 +1,13 @@
 <select class='input input--select' id='input-{{select.name}}' name='{{select.name}}'>
+
   {%- for option in select.options -%}
 
     <option {{{
       "value": option.value,
-      "my-attr": option.selected,
       "selected": "selected" if option.selected,
       "disabled": "disabled" if option.disabled
     }|xmlattr}}>{{option.text}}</option>
+
   {%- endfor -%}
 
 </select>

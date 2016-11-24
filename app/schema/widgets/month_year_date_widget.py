@@ -18,13 +18,13 @@ class MonthYearDateWidget(DateWidget):
 
         widget_params = {
             'legend': answer_state.schema_item.label,
-            'fields': self._get_date_fields(parts)}
+            'fields': self._get_date_fields(parts, answer_state.schema_item.mandatory)}
 
         return render_template('partials/widgets/date_widget.html', **widget_params)
 
-    def _get_date_fields(self, parts):
+    def _get_date_fields(self, parts, is_mandatory):
 
-        return {'month': self._get_month_field(parts[0]),
+        return {'month': self._get_month_field(parts[0], is_mandatory),
                 'year': self._get_year_field(parts[1])}
 
     def get_user_input(self, post_vars):
@@ -39,7 +39,10 @@ class MonthYearDateWidget(DateWidget):
                 month = post_vars.get(self.name + '-month', '')
                 year = post_vars.get(self.name + '-year', '')
 
-                return "{}/{}".format(month, year)
+                if month or year:
+                    return "{}/{}".format(month, year)
+                else:
+                    return None
 
         else:
             return post_vars
