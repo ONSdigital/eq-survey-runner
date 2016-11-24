@@ -47,18 +47,16 @@
     transition: max-height 300ms ease-out 50ms;
   }
 
-  @include mq($from: xs, $to: s) {
-    input {
-      width: 0;
-      opacity: 0;
-    }
+  input {
+    width: 0;
+    opacity: 0;
+  }
 
-    label {
-      padding-left: 1rem;
-      font-size: 0.8rem;
-      @include mq(m) {
-        font-size: 1rem;
-      }
+  label {
+    padding-left: 1rem;
+    font-size: 0.8rem;
+    @include mq(m) {
+      font-size: 1rem;
     }
   }
 
@@ -70,23 +68,18 @@
     vertical-align: top;
     opacity: 0;
     transition: opacity 100ms ease-out;
+    color: $color-links;
+
     &:nth-child(2n) {
       margin-right: 0;
     }
 
-    // &:hover {
-    //   background: $color-secondary !important;
-    //   border-color: $color-secondary !important;
-    //   color: white !important;
-    //   box-shadow: none !important;
-    //   label {
-    //     background: transparent !important;
-    //   }
-    // }
-    //
-    &:focus {
-      // background: $color-focus;
-      border-color: $color-dark-grey;
+    &:hover {
+      border-color: $color-links-hover;
+      color: $color-links-hover;
+      label {
+        background: transparent !important;
+      }
     }
 
     @for $i from 20 through 1 {
