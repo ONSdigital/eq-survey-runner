@@ -239,11 +239,7 @@ class Navigator:
         }
 
         if this_block in self.location_path:
-            # Get blocks to be visited
-            block_ids = [index for (index, path_item) in enumerate(self.location_path) if path_item['block_id'] == current_block_id]
-
-            # Return the index of the block id to be visited
-            return block_ids[current_iteration]
+            return self.location_path.index(this_block)
         return -1
 
     def get_next_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
