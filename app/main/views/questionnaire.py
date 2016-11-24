@@ -130,13 +130,12 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
     next_location = navigator.get_next_location(current_block_id=block_id, current_iteration=0, current_group_id=this_block['group_id'])
     metadata = get_metadata(current_user)
 
-    next_block_id = None if next_location is None else next_location['block_id']
-    next_group_id = None if next_location is None else next_location['group_id']
-    next_group_instance = None if next_location is None else next_location['group_instance']
+    if next_location is None:
+        return redirect_to_summary(eq_id, form_type, collection_id)
 
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
-    return redirect_to_block(eq_id, form_type, collection_id, next_group_id, next_group_instance, next_block_id)
+    return redirect_to_block(eq_id, form_type, collection_id, next_location['group_id'], next_location['group_instance'], next_location['block_id'])
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -313,9 +312,9 @@ def _render_template(block_id, context, rendered_schema_json=None, template=None
     previous_location = navigator.get_previous_location(current_block_id=block_id)
     schema_json = rendered_schema_json or _render_schema(g.schema_json, answers, metadata)
 
-    if previous_location is None:
-        previous_url = None
-    else:
+    previous_url = None
+
+    if previous_location is not None:
         previous_url = url_for('.get_block',
                                eq_id=metadata['eq_id'],
                                form_type=metadata['form_type'],
