@@ -17,15 +17,6 @@ class MainJobTypePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setMainJobTypeAnswer(value) {
-    browser.setValue('[name="main-job-type-answer"]', value)
-    return this
-  }
-
-  getMainJobTypeAnswer(value) {
-    return browser.element('[name="main-job-type-answer"]').getValue()
-  }
-
 }
 
 export default new MainJobTypePage()

@@ -12,15 +12,6 @@ class InEducationPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setInEducationAnswer(value) {
-    browser.setValue('[name="in-education-answer"]', value)
-    return this
-  }
-
-  getInEducationAnswer(value) {
-    return browser.element('[name="in-education-answer"]').getValue()
-  }
-
 }
 
 export default new InEducationPage()

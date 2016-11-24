@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class EmploymentTypePage extends QuestionPage {
+class EmploymentTypePage extends MultipleChoiceWithOtherPage {
 
   clickWorkingAsAnEmployee() {
     browser.element('[id="employment-type-answer-1"]').click()
@@ -35,15 +35,6 @@ class EmploymentTypePage extends QuestionPage {
   clickNoneOfTheAbove() {
     browser.element('[id="employment-type-answer-7"]').click()
     return this
-  }
-
-  setEmploymentTypeAnswer(value) {
-    browser.setValue('[name="employment-type-answer"]', value)
-    return this
-  }
-
-  getEmploymentTypeAnswer(value) {
-    return browser.element('[name="employment-type-answer"]').getValue()
   }
 
 }

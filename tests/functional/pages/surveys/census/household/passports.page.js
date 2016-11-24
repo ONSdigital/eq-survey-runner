@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class PassportsPage extends QuestionPage {
+class PassportsPage extends MultipleChoiceWithOtherPage {
 
   clickUnitedKingdom() {
     browser.element('[id="passports-answer-1"]').click()
@@ -20,15 +20,6 @@ class PassportsPage extends QuestionPage {
   clickOther() {
     browser.element('[id="passports-answer-4"]').click()
     return this
-  }
-
-  setPassportsAnswer(value) {
-    browser.setValue('[name="passports-answer"]', value)
-    return this
-  }
-
-  getPassportsAnswer(value) {
-    return browser.element('[name="passports-answer"]').getValue()
   }
 
 }

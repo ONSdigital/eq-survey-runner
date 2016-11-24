@@ -82,19 +82,21 @@ def process_answer(answer, page_spec):
     if answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
         process_options(answer['id'], answer['options'], page_spec)
 
-    if answer['type'] == 'Date':
+    elif answer['type'] == 'Date':
         answer_name = generate_camel_case_from_id(answer['id'])
-        page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answer['id'] + '-day'))
-        page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answer['id'] + '-day'))
-        page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answer['id'] + '-month'))
-        page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answer['id'] + '-month'))
-        page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answer['id'] + '-year'))
-        page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answer['id'] + '-year'))
+        page_spec.write(_write_date_answer(answer_name, answer['id']))
 
-    else:
+    elif answer['type'] == 'MonthYearDate':
+        answer_name = generate_camel_case_from_id(answer['id'])
+        page_spec.write(_write_month_year_date_answer(answer_name, answer['id']))
+
+    elif answer['type'] == 'TextField' or answer['type'] == 'Integer' or answer['type'] == 'Textarea':
         answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
         page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+
+    else:
+        raise Exception('Answer type [%s] not configured' % answer['type'])
 
 
 def process_question(question, page_spec):
@@ -110,12 +112,28 @@ def process_section(section, page_spec):
     for question in section['questions']:
         process_question(question, page_spec)
 
+def _write_date_answer(answer_name, answerId):
+    return \
+        ANSWER_SETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answerId + '-day') + \
+        ANSWER_GETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answerId + '-day') + \
+        ANSWER_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
+        ANSWER_GETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
+        ANSWER_SETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year') + \
+        ANSWER_GETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year')
 
-def find_kv(block, key, value):
+def _write_month_year_date_answer(answer_name, answerId):
+    return \
+        ANSWER_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
+        ANSWER_GETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
+        ANSWER_SETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year') + \
+        ANSWER_GETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year')
+
+
+def find_kv(block, key, values):
     for section in block['sections']:
         for question in section['questions']:
             for answer in question['answers']:
-                if key in answer and answer[key] == value:
+                if key in answer and answer[key] in values:
                     return True
 
     return False
@@ -130,20 +148,20 @@ def process_block(block, dir_out, spec_out):
     logger.info("Creating %s...", page_path)
 
     with open(page_path, 'w') as page_spec:
-        radio_check = find_kv(block, 'type', 'Radio')
+        muntiple_choice_check = find_kv(block, 'type', ['Radio', 'Checkbox'])
 
         page_name = generate_camel_case_from_id(block['id'])
 
         header = HEADER
-        header = header.replace("{basePage}", "QuestionPage" if not radio_check else "MultipleChoiceWithOtherPage")
-        header = header.replace("{basePageFile}", "question.page" if not radio_check else "multiple-choice.page")
+        header = header.replace("{basePage}", "QuestionPage" if not muntiple_choice_check else "MultipleChoiceWithOtherPage")
+        header = header.replace("{basePageFile}", "question.page" if not muntiple_choice_check else "multiple-choice.page")
 
         page_spec.write(header)
 
         class_name = CLASS_NAME
         class_name = class_name.replace("{pageName}", page_name)
-        class_name = class_name.replace("{basePage}", "QuestionPage" if not radio_check else "MultipleChoiceWithOtherPage")
-        class_name = class_name.replace("{basePageFile}", "question.page" if not radio_check else "multiple-choice.page")
+        class_name = class_name.replace("{basePage}", "QuestionPage" if not muntiple_choice_check else "MultipleChoiceWithOtherPage")
+        class_name = class_name.replace("{basePageFile}", "question.page" if not muntiple_choice_check else "multiple-choice.page")
 
         page_spec.write(class_name)
 

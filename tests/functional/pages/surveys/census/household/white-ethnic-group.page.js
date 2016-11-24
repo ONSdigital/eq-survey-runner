@@ -22,15 +22,6 @@ class WhiteEthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setWhiteEthnicGroupAnswer(value) {
-    browser.setValue('[name="white-ethnic-group-answer"]', value)
-    return this
-  }
-
-  getWhiteEthnicGroupAnswer(value) {
-    return browser.element('[name="white-ethnic-group-answer"]').getValue()
-  }
-
 }
 
 export default new WhiteEthnicGroupPage()

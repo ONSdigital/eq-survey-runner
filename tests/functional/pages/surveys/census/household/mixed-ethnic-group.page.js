@@ -22,15 +22,6 @@ class MixedEthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setMixedEthnicGroupAnswer(value) {
-    browser.setValue('[name="mixed-ethnic-group-answer"]', value)
-    return this
-  }
-
-  getMixedEthnicGroupAnswer(value) {
-    return browser.element('[name="mixed-ethnic-group-answer"]').getValue()
-  }
-
 }
 
 export default new MixedEthnicGroupPage()

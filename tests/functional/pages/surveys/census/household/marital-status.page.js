@@ -47,15 +47,6 @@ class MaritalStatusPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setMaritalStatusAnswer(value) {
-    browser.setValue('[name="marital-status-answer"]', value)
-    return this
-  }
-
-  getMaritalStatusAnswer(value) {
-    return browser.element('[name="marital-status-answer"]').getValue()
-  }
-
 }
 
 export default new MaritalStatusPage()

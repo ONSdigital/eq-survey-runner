@@ -27,15 +27,6 @@ class OwnOrRentPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setOwnOrRentAnswer(value) {
-    browser.setValue('[name="own-or-rent-answer"]', value)
-    return this
-  }
-
-  getOwnOrRentAnswer(value) {
-    return browser.element('[name="own-or-rent-answer"]').getValue()
-  }
-
 }
 
 export default new OwnOrRentPage()

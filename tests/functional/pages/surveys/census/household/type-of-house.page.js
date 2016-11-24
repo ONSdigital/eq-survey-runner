@@ -17,15 +17,6 @@ class TypeOfHousePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setTypeOfHouseAnswer(value) {
-    browser.setValue('[name="type-of-house-answer"]', value)
-    return this
-  }
-
-  getTypeOfHouseAnswer(value) {
-    return browser.element('[name="type-of-house-answer"]').getValue()
-  }
-
 }
 
 export default new TypeOfHousePage()

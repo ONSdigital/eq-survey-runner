@@ -12,15 +12,6 @@ class DetailsCorrectPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setDetailsCorrectAnswer(value) {
-    browser.setValue('[name="details-correct-answer"]', value)
-    return this
-  }
-
-  getDetailsCorrectAnswer(value) {
-    return browser.element('[name="details-correct-answer"]').getValue()
-  }
-
 }
 
 export default new DetailsCorrectPage()

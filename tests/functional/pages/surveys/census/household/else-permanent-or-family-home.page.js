@@ -12,15 +12,6 @@ class ElsePermanentOrFamilyHomePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setElsePermanentOrFamilyHomeAnswer(value) {
-    browser.setValue('[name="else-permanent-or-family-home-answer"]', value)
-    return this
-  }
-
-  getElsePermanentOrFamilyHomeAnswer(value) {
-    return browser.element('[name="else-permanent-or-family-home-answer"]').getValue()
-  }
-
-}
+§}
 
 export default new ElsePermanentOrFamilyHomePage()

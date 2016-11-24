@@ -17,15 +17,6 @@ class TypeOfAccommodationPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setTypeOfAccommodationAnswer(value) {
-    browser.setValue('[name="type-of-accommodation-answer"]', value)
-    return this
-  }
-
-  getTypeOfAccommodationAnswer(value) {
-    return browser.element('[name="type-of-accommodation-answer"]').getValue()
-  }
-
 }
 
 export default new TypeOfAccommodationPage()

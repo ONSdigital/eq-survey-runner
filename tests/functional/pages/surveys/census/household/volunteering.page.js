@@ -22,15 +22,6 @@ class VolunteeringPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setVolunteeringAnswer(value) {
-    browser.setValue('[name="volunteering-answer"]', value)
-    return this
-  }
-
-  getVolunteeringAnswer(value) {
-    return browser.element('[name="volunteering-answer"]').getValue()
-  }
-
 }
 
 export default new VolunteeringPage()

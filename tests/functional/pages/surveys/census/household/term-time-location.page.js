@@ -12,15 +12,6 @@ class TermTimeLocationPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setTermTimeLocationAnswer(value) {
-    browser.setValue('[name="term-time-location-answer"]', value)
-    return this
-  }
-
-  getTermTimeLocationAnswer(value) {
-    return browser.element('[name="term-time-location-answer"]').getValue()
-  }
-
 }
 
 export default new TermTimeLocationPage()

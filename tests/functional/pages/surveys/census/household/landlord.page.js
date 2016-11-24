@@ -32,15 +32,6 @@ class LandlordPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setLandlordAnswer(value) {
-    browser.setValue('[name="landlord-answer"]', value)
-    return this
-  }
-
-  getLandlordAnswer(value) {
-    return browser.element('[name="landlord-answer"]').getValue()
-  }
-
 }
 
 export default new LandlordPage()

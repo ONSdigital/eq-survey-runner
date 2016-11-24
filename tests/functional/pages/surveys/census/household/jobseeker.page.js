@@ -12,15 +12,6 @@ class JobseekerPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setJobseekerAnswer(value) {
-    browser.setValue('[name="jobseeker-answer"]', value)
-    return this
-  }
-
-  getJobseekerAnswer(value) {
-    return browser.element('[name="jobseeker-answer"]').getValue()
-  }
-
 }
 
 export default new JobseekerPage()

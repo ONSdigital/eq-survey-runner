@@ -27,15 +27,6 @@ class EthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setEthnicGroupAnswer(value) {
-    browser.setValue('[name="ethnic-group-answer"]', value)
-    return this
-  }
-
-  getEthnicGroupAnswer(value) {
-    return browser.element('[name="ethnic-group-answer"]').getValue()
-  }
-
 }
 
 export default new EthnicGroupPage()

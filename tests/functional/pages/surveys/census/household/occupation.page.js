@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class OccupationPage extends QuestionPage {
+class OccupationPage extends MultipleChoiceWithOtherPage {
 
   clickRetiredWhetherReceivingAPensionOrNot() {
     browser.element('[id="occupation-answer-1"]').click()
@@ -25,15 +25,6 @@ class OccupationPage extends QuestionPage {
   clickOther() {
     browser.element('[id="occupation-answer-5"]').click()
     return this
-  }
-
-  setOccupationAnswer(value) {
-    browser.setValue('[name="occupation-answer"]', value)
-    return this
-  }
-
-  getOccupationAnswer(value) {
-    return browser.element('[name="occupation-answer"]').getValue()
   }
 
 }

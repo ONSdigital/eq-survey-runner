@@ -22,15 +22,6 @@ class CarerPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setCarerAnswer(value) {
-    browser.setValue('[name="carer-answer"]', value)
-    return this
-  }
-
-  getCarerAnswer(value) {
-    return browser.element('[name="carer-answer"]').getValue()
-  }
-
 }
 
 export default new CarerPage()

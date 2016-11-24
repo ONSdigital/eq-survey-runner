@@ -12,15 +12,6 @@ class VisitorSexPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setVisitorSexAnswer(value) {
-    browser.setValue('[name="visitor-sex-answer"]', value)
-    return this
-  }
-
-  getVisitorSexAnswer(value) {
-    return browser.element('[name="visitor-sex-answer"]').getValue()
-  }
-
 }
 
 export default new VisitorSexPage()

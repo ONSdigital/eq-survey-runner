@@ -12,15 +12,6 @@ class PermanentOrFamilyHomePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setPermanentOrFamilyHomeAnswer(value) {
-    browser.setValue('[name="permanent-or-family-home-answer"]', value)
-    return this
-  }
-
-  getPermanentOrFamilyHomeAnswer(value) {
-    return browser.element('[name="permanent-or-family-home-answer"]').getValue()
-  }
-
 }
 
 export default new PermanentOrFamilyHomePage()

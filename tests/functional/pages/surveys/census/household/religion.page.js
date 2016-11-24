@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class ReligionPage extends QuestionPage {
+class ReligionPage extends MultipleChoiceWithOtherPage {
 
   clickNoReligion() {
     browser.element('[id="religion-answer-1"]').click()
@@ -42,15 +42,6 @@ class ReligionPage extends QuestionPage {
     return this
   }
 
-  setReligionAnswer(value) {
-    browser.setValue('[name="religion-answer"]', value)
-    return this
-  }
-
-  getReligionAnswer(value) {
-    return browser.element('[name="religion-answer"]').getValue()
-  }
-
   clickNoReligion() {
     browser.element('[id="religion-welsh-answer-1"]').click()
     return this
@@ -89,15 +80,6 @@ class ReligionPage extends QuestionPage {
   clickOther() {
     browser.element('[id="religion-welsh-answer-8"]').click()
     return this
-  }
-
-  setReligionWelshAnswer(value) {
-    browser.setValue('[name="religion-welsh-answer"]', value)
-    return this
-  }
-
-  getReligionWelshAnswer(value) {
-    return browser.element('[name="religion-welsh-answer"]').getValue()
   }
 
 }

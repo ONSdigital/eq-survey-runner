@@ -37,15 +37,6 @@ class AddressTypePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setAddressTypeAnswer(value) {
-    browser.setValue('[name="address-type-answer"]', value)
-    return this
-  }
-
-  getAddressTypeAnswer(value) {
-    return browser.element('[name="address-type-answer"]').getValue()
-  }
-
 }
 
 export default new AddressTypePage()

@@ -12,15 +12,6 @@ class JobAvailabilityPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setJobAvailabilityAnswer(value) {
-    browser.setValue('[name="job-availability-answer"]', value)
-    return this
-  }
-
-  getJobAvailabilityAnswer(value) {
-    return browser.element('[name="job-availability-answer"]').getValue()
-  }
-
 }
 
 export default new JobAvailabilityPage()

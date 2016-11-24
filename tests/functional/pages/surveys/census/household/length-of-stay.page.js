@@ -17,15 +17,6 @@ class LengthOfStayPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setLengthOfStayAnswer(value) {
-    browser.setValue('[name="length-of-stay-answer"]', value)
-    return this
-  }
-
-  getLengthOfStayAnswer(value) {
-    return browser.element('[name="length-of-stay-answer"]').getValue()
-  }
-
 }
 
 export default new LengthOfStayPage()

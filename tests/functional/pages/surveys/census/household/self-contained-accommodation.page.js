@@ -12,15 +12,6 @@ class SelfContainedAccommodationPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setSelfContainedAccommodationAnswer(value) {
-    browser.setValue('[name="self-contained-accommodation-answer"]', value)
-    return this
-  }
-
-  getSelfContainedAccommodationAnswer(value) {
-    return browser.element('[name="self-contained-accommodation-answer"]').getValue()
-  }
-
 }
 
 export default new SelfContainedAccommodationPage()

@@ -22,15 +22,6 @@ class EnglishPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setEnglishAnswer(value) {
-    browser.setValue('[name="english-answer"]', value)
-    return this
-  }
-
-  getEnglishAnswer(value) {
-    return browser.element('[name="english-answer"]').getValue()
-  }
-
 }
 
 export default new EnglishPage()

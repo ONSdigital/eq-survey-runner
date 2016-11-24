@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class UnderstandWelshPage extends QuestionPage {
+class UnderstandWelshPage extends MultipleChoiceWithOtherPage {
 
   clickUnderstandSpokenWelsh() {
     browser.element('[id="understand-welsh-answer-1"]').click()
@@ -25,15 +25,6 @@ class UnderstandWelshPage extends QuestionPage {
   clickNoneOfTheAbove() {
     browser.element('[id="understand-welsh-answer-5"]').click()
     return this
-  }
-
-  setUnderstandWelshAnswer(value) {
-    browser.setValue('[name="understand-welsh-answer"]', value)
-    return this
-  }
-
-  getUnderstandWelshAnswer(value) {
-    return browser.element('[name="understand-welsh-answer"]').getValue()
   }
 
 }

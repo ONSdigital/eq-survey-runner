@@ -12,15 +12,6 @@ class JobPendingPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setJobPendingAnswer(value) {
-    browser.setValue('[name="job-pending-answer"]', value)
-    return this
-  }
-
-  getJobPendingAnswer(value) {
-    return browser.element('[name="job-pending-answer"]').getValue()
-  }
-
 }
 
 export default new JobPendingPage()

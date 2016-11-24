@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class QualificationsPage extends QuestionPage {
+class QualificationsPage extends MultipleChoiceWithOtherPage {
 
   click5OrMoreGcsesGradesAStarToCOrOLevelsPassesOrCsesGrade1SchoolCertificateOneALevel2To3AsLevelsOrVcesHigherDiploma() {
     browser.element('[id="qualifications-answer-1"]').click()
@@ -82,15 +82,6 @@ class QualificationsPage extends QuestionPage {
     return this
   }
 
-  setQualificationsAnswer(value) {
-    browser.setValue('[name="qualifications-answer"]', value)
-    return this
-  }
-
-  getQualificationsAnswer(value) {
-    return browser.element('[name="qualifications-answer"]').getValue()
-  }
-
   clickMoreThanFiveGcsesGradesAStarToCOrOLevelsPassesOrCsesGrade1SchoolCertificateOneALevelTwoToThreeAsLevelsOrVcesIntermediateOrNationalWelshBaccalaureateLevelTwo() {
     browser.element('[id="qualifications-welsh-answer-1"]').click()
     return this
@@ -169,15 +160,6 @@ class QualificationsPage extends QuestionPage {
   clickNoQualifications() {
     browser.element('[id="qualifications-welsh-answer-16"]').click()
     return this
-  }
-
-  setQualificationsWelshAnswer(value) {
-    browser.setValue('[name="qualifications-welsh-answer"]', value)
-    return this
-  }
-
-  getQualificationsWelshAnswer(value) {
-    return browser.element('[name="qualifications-welsh-answer"]').getValue()
   }
 
 }

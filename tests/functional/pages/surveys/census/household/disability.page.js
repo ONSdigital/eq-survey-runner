@@ -17,15 +17,6 @@ class DisabilityPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setDisabilityAnswer(value) {
-    browser.setValue('[name="disability-answer"]', value)
-    return this
-  }
-
-  getDisabilityAnswer(value) {
-    return browser.element('[name="disability-answer"]').getValue()
-  }
-
 }
 
 export default new DisabilityPage()

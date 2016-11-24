@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class SexualIdentityPage extends QuestionPage {
+class SexualIdentityPage extends MultipleChoiceWithOtherPage {
 
   clickHeterosexualOrStraight() {
     browser.element('[id="sexual-identity-answer-1"]').click()
@@ -20,15 +20,6 @@ class SexualIdentityPage extends QuestionPage {
   clickOther() {
     browser.element('[id="sexual-identity-answer-4"]').click()
     return this
-  }
-
-  setSexualIdentityAnswer(value) {
-    browser.setValue('[name="sexual-identity-answer"]', value)
-    return this
-  }
-
-  getSexualIdentityAnswer(value) {
-    return browser.element('[name="sexual-identity-answer"]').getValue()
   }
 
 }

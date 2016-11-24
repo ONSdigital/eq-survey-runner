@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class VisitorUkResidentPage extends QuestionPage {
+class VisitorUkResidentPage extends MultipleChoiceWithOtherPage {
 
   clickYes() {
     browser.element('[id="visitor-uk-resident-answer-1"]').click()
@@ -10,15 +10,6 @@ class VisitorUkResidentPage extends QuestionPage {
   clickOther() {
     browser.element('[id="visitor-uk-resident-answer-2"]').click()
     return this
-  }
-
-  setVisitorUkResidentAnswer(value) {
-    browser.setValue('[name="visitor-uk-resident-answer"]', value)
-    return this
-  }
-
-  getVisitorUkResidentAnswer(value) {
-    return browser.element('[name="visitor-uk-resident-answer"]').getValue()
   }
 
 }

@@ -27,15 +27,6 @@ class AsianEthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setAsianEthnicGroupAnswer(value) {
-    browser.setValue('[name="asian-ethnic-group-answer"]', value)
-    return this
-  }
-
-  getAsianEthnicGroupAnswer(value) {
-    return browser.element('[name="asian-ethnic-group-answer"]').getValue()
-  }
-
 }
 
 export default new AsianEthnicGroupPage()

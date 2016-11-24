@@ -12,15 +12,6 @@ class EveryoneAtAddressConfirmationPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setEveryoneAtAddressConfirmationAnswer(value) {
-    browser.setValue('[name="everyone-at-address-confirmation-answer"]', value)
-    return this
-  }
-
-  getEveryoneAtAddressConfirmationAnswer(value) {
-    return browser.element('[name="everyone-at-address-confirmation-answer"]').getValue()
-  }
-
 }
 
 export default new EveryoneAtAddressConfirmationPage()

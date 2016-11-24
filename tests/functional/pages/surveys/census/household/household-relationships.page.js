@@ -7,15 +7,6 @@ class HouseholdRelationshipsPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setHouseholdRelationshipsAnswer(value) {
-    browser.setValue('[name="household-relationships-answer"]', value)
-    return this
-  }
-
-  getHouseholdRelationshipsAnswer(value) {
-    return browser.element('[name="household-relationships-answer"]').getValue()
-  }
-
 }
 
 export default new HouseholdRelationshipsPage()

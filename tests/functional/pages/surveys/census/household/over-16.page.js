@@ -12,15 +12,6 @@ class Over16Page extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setOver16Answer(value) {
-    browser.setValue('[name="over-16-answer"]', value)
-    return this
-  }
-
-  getOver16Answer(value) {
-    return browser.element('[name="over-16-answer"]').getValue()
-  }
-
 }
 
 export default new Over16Page()

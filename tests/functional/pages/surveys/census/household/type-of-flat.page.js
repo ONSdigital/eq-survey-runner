@@ -17,15 +17,6 @@ class TypeOfFlatPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setTypeOfFlatAnswer(value) {
-    browser.setValue('[name="type-of-flat-answer"]', value)
-    return this
-  }
-
-  getTypeOfFlatAnswer(value) {
-    return browser.element('[name="type-of-flat-answer"]').getValue()
-  }
-
 }
 
 export default new TypeOfFlatPage()

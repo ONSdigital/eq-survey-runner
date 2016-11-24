@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class NationalIdentityPage extends QuestionPage {
+class NationalIdentityPage extends MultipleChoiceWithOtherPage {
 
   clickEnglish() {
     browser.element('[id="national-identity-answer-1"]').click()
@@ -30,15 +30,6 @@ class NationalIdentityPage extends QuestionPage {
   clickOther() {
     browser.element('[id="national-identity-answer-6"]').click()
     return this
-  }
-
-  setNationalIdentityAnswer(value) {
-    browser.setValue('[name="national-identity-answer"]', value)
-    return this
-  }
-
-  getNationalIdentityAnswer(value) {
-    return browser.element('[name="national-identity-answer"]').getValue()
   }
 
 }

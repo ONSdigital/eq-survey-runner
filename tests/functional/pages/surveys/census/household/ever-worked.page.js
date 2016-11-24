@@ -12,15 +12,6 @@ class EverWorkedPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setEverWorkedAnswer(value) {
-    browser.setValue('[name="ever-worked-answer"]', value)
-    return this
-  }
-
-  getEverWorkedAnswer(value) {
-    return browser.element('[name="ever-worked-answer"]').getValue()
-  }
-
 }
 
 export default new EverWorkedPage()

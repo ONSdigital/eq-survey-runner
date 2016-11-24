@@ -1,6 +1,6 @@
-import QuestionPage from '../../question.page'
+import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
-class CentralHeatingPage extends QuestionPage {
+class CentralHeatingPage extends MultipleChoiceWithOtherPage {
 
   clickGas() {
     browser.element('[id="central-heating-answer-1"]').click()
@@ -30,15 +30,6 @@ class CentralHeatingPage extends QuestionPage {
   clickNoCentralHeating() {
     browser.element('[id="central-heating-answer-6"]').click()
     return this
-  }
-
-  setCentralHeatingAnswer(value) {
-    browser.setValue('[name="central-heating-answer"]', value)
-    return this
-  }
-
-  getCentralHeatingAnswer(value) {
-    return browser.element('[name="central-heating-answer"]').getValue()
   }
 
 }

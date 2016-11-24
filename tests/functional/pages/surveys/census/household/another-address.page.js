@@ -17,15 +17,6 @@ class AnotherAddressPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setAnotherAddressAnswer(value) {
-    browser.setValue('[name="another-address-answer"]', value)
-    return this
-  }
-
-  getAnotherAddressAnswer(value) {
-    return browser.element('[name="another-address-answer"]').getValue()
-  }
-
 }
 
 export default new AnotherAddressPage()
