@@ -265,7 +265,7 @@ class Navigator:
         """
         current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
 
-        if current_location_index != -1 and current_location_index != 0:
+        if current_location_index > 0:
             return self.location_path[current_location_index - 1]
 
     def get_latest_location(self, completed_blocks=None):
