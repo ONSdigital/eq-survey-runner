@@ -1,50 +1,107 @@
-.has-js {
-  .question--householdrelationship {
-    .question__answer {
-      border-top: 1px solid $color-borders;
-      padding: 1rem 0 0;
-      margin: 0;
-      &:last-of-type {
-        border-bottom: 1px solid $color-borders;
-      }
-      &.is-closed {
-        .js-relationship-body {
-          display: none;
-        }
-      }
-    }
+.relationship {
+  display: block;
+}
 
-    .input {
+.relationship__title {
+  padding-right: 2rem;
+  line-height: 1.2;
+}
+
+.relationship__item {
+  border-top: 1px solid $color-borders;
+  padding: 1rem 0;
+  margin: 0;
+  position: relative;
+  &:last-of-type {
+    border-bottom: 1px solid $color-borders;
+  }
+}
+
+.relationship__edit {
+  position: absolute;
+  right: 0;
+  top: 1.1rem;
+  display: inline-block;
+  line-height: 1;
+}
+
+.relationship__field {
+  display: block;
+}
+
+.relationship__options {
+  font-size: 0;
+  clear: both;
+  max-height: 0;
+  // opacity: 0;
+  margin: 0;
+  padding: 0 1px;
+  pointer-events: none;
+  overflow: hidden;
+  transition: max-height 300ms ease-out 50ms;
+  .is-open & {
+    max-height: 100rem;
+    height: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transition: max-height 300ms ease-out 50ms;
+  }
+
+  @include mq($from: xs, $to: s) {
+    input {
       width: 0;
       opacity: 0;
     }
 
-    .label {
+    label {
       padding-left: 1rem;
-    }
-
-    .question__edit {
-      position: absolute;
-      right: 0;
-      top: 1.2rem;
-      display: inline-block;
-    }
-
-    .js-relationship-body {
-      clear: both;
-      margin-bottom: 1rem;
-    }
-
-    .field__item {
-      width: calc(50% - 0.3rem);
-      min-width: 0;
-      margin: 0 0.3rem 0.3rem 0;
-      vertical-align: top;
-    }
-
-    .label {
-      // margin: 0;
+      font-size: 0.8rem;
+      @include mq(m) {
+        font-size: 1rem;
+      }
     }
   }
 
+  .field__item {
+    font-size: initial;
+    width: calc(50% - 0.15rem);
+    min-width: 0;
+    margin: 0 0.3rem 0.3rem 0;
+    vertical-align: top;
+    opacity: 0;
+    transition: opacity 100ms ease-out;
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+
+    // &:hover {
+    //   background: $color-secondary !important;
+    //   border-color: $color-secondary !important;
+    //   color: white !important;
+    //   box-shadow: none !important;
+    //   label {
+    //     background: transparent !important;
+    //   }
+    // }
+    //
+    &:focus {
+      // background: $color-focus;
+      border-color: $color-dark-grey;
+    }
+
+    @for $i from 20 through 1 {
+      &:nth-of-type(#{$i}) {
+        transition-delay: $i * 25ms;
+      }
+    }
+
+    .is-open & {
+      opacity: 1;
+      @for $i from 1 through 20 {
+        &:nth-of-type(#{$i}) {
+          transition-delay: $i * 25ms;
+        }
+      }
+    }
+  }
 }

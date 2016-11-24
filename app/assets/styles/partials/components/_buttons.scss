@@ -50,7 +50,7 @@
 }
 
 .btn--link {
-  padding: 0;
+  padding: 0.1rem;
   margin: 0;
   display: inline-block;
   color: $color-links;
@@ -63,8 +63,7 @@
     color: $color-links;
     background: transparent;
   }
-  &:focus,
-  &:active {
+  &:focus {
     color: white;
     background: $color-links;
   }
