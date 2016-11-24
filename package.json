@@ -126,6 +126,7 @@
     "yargs": "^5.0.0"
   },
   "dependencies": {
+    "events": "^1.1.1",
     "jquery": "github:hamishtaplin/jquery-browserify-shim",
     "lodash": "^4.6.1"
   }

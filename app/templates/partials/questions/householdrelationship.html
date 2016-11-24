@@ -1,39 +1,34 @@
 {% import 'macros/helpers.html' as helpers %}
 
-<div class="question question--householdrelationship" id="{{question.id}}">
+<div class="relationship">
 
-    <h2 class="question__title neptune" id="title-{{question.id}}">{{question_title}}</h2> {{question_description|safe}}
+    <h2 class="neptune">{{question_title}}</h2> {{question_description|safe}}
 
-    <div class="question__answers js-relationship">
+    <div class="js-relationship">
 
         {%- for answer in question.answers -%}
 
         {% set legend = answer.schema_item.label.split('...') %}
 
-        <div class="question__answer js-relationship-item">
+        <div class="relationship__item js-relationship-item" data-name="{{legend[1]}}">
 
-            <div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.schema_item.id}}">
+            <fieldset class="field field--radio relationship__field">
 
-                <div class="answer__fields">
+              <button class="btn btn--link relationship__edit js-relationship-editbtn u-hidden" data-close="{{_('Close')}}">
+                {{_('Edit')}}
+              </button>
 
-                    <fieldset class="field field--radio household__field">
+                <legend class="relationship__title  venus u-f-no">
+                  {{legend[0]}} <span class="highlight js-relationship-legend">...</span> {{legend[1]}}
+                </legend>
 
-                        <legend id="legend-{{answer.schema_item.id}}" class="venus u-mb-s u-f-no">
-                            {{legend[0]}} <span class="highlight js-relationship-trigger">...</span> {{legend[1]}}
-                        </legend>
-                        <div class="js-relationship-body">
-                          {{ answer.schema_item.widget.render(answer) | safe}}
-                        </div>
-
-                    </fieldset>
-
-                    <button class="btn btn--link question__edit js-relationship-editbtn" data-close="{{_('Close')}}">
-                      {{_('Edit')}}
-                    </button>
-
+                <div class="relationship__options js-relationship-body">
+                  <div class="u-mt-s">
+                    {{ answer.schema_item.widget.render(answer) | safe}}
+                  </div>
                 </div>
 
-            </div>
+            </fieldset>
 
         </div>
 
