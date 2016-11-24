@@ -42,6 +42,29 @@ def evaluate_goto(goto_rule, answers, group_instance):
         return False
     return True
 
+# def evaluate_metadata_rule(goto_rule, metadata):
+#     meta_index = goto_rule['when']['meta']
+#     if _contains_in_dict(metadata, meta_index):
+#         metadata_value = _get_from_dict(metadata, meta_index)
+#         return evaluate_rule(goto_rule, metadata_value)
+#
+#
+# def _get_from_dict(d, keys):
+#     if "." in keys:
+#         key, rest = keys.split(".", 1)
+#         return _get_from_dict(d[key], rest)
+#     else:
+#         return d[keys]
+#
+#
+# def _contains_in_dict(d, keys):
+#     if "." in keys:
+#         key, rest = keys.split(".", 1)
+#         if key not in d:
+#             return False
+#         return _contains_in_dict(d[key], rest)
+#     else:
+#         return keys in d
 
 def evaluate_repeat(repeat_rule, answers):
     """
@@ -109,8 +132,17 @@ class Navigator:
         if 'routing_rules' in block and len(block['routing_rules']) > 0:
             for rule in block['routing_rules']:
                 is_goto_rule = 'goto' in rule and 'when' in rule['goto'].keys() or 'id' in rule['goto'].keys()
-                if is_goto_rule and evaluate_goto(rule['goto'], self.answer_store, group_instance):
-                    return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
+                if is_goto_rule:
+
+                    if 'id' in rule['goto']['when']:
+                        result = evaluate_goto(rule['goto'], self.answer_store, group_instance)
+
+                    # if 'meta' in rule['goto']['when']:
+                    #     result = evaluate_metadata_rule(goto_rule, metadata)
+
+                    if result:
+                        return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
+
         # If this isn't the last block in the set evaluated
         elif block_id_index != len(blocks) - 1:
             next_block_id = blocks[block_id_index + 1]['block']['id']
