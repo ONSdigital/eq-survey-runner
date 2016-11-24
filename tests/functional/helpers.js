@@ -20,26 +20,26 @@ export const startQuestionnaire = (schema, userId = getRandomString(10), collect
 }
 
 export function getElementId(element) {
-    return browser.elementIdAttribute(element.value.ELEMENT, "id").value
-  }
+  return browser.elementIdAttribute(element.value.ELEMENT, "id").value
+}
 
 export const getBlockId = () => {
-    return getLocation().blockId
+  return getLocation().blockId
 }
 
 export const getRepeatedGroup = () => {
-    return getLocation().repeatedGroup
+  return getLocation().repeatedGroup
 }
 
 export const getLocation= () => {
    // Matches: /(groupId)/(blockId)
-   var regexp = /questionnaire.+\/(\d+)\/(.+)$/g
-   var matches = regexp.exec(browser.getUrl())
+  var regexp = /questionnaire.+\/(\d+)\/(.+)$/g
+  var matches = regexp.exec(browser.getUrl())
 
-   if (matches != null) {
-      return {
-         'repeatedGroup': matches[1],
-         'blockId': matches[2]
-      }
-   }
+  if (matches != null) {
+    return {
+      'repeatedGroup': matches[1],
+      'blockId': matches[2]
+    }
+  }
 }

@@ -1,0 +1,6 @@
+<div class="field field--radio {{'field--cols' if use_grid}}">
+  <fieldset>
+    <legend class="u-vh">{{question_title}}</legend>
+    {{ answer.schema_item.widget.render(answer) | safe}}
+  </fieldset>
+</div>

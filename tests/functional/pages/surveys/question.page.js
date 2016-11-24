@@ -9,11 +9,11 @@ class QuestionPage {
     return this
   }
 
-  errorExists(){
+  errorExists() {
     return browser.isExisting('.js-inpagelink')
   }
 
-  previous(){
+  previous() {
     return browser.click('a[name="previous"]')
   }
 

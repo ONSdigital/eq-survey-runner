@@ -1,0 +1,60 @@
+{% set label = {
+  'for': answer.id,
+  'text': _(answer.label, current_person=answer.current_person, other_person=answer.other_person)
+} %}
+{% include 'partials/forms/label.html' %}{% for option in widget.options %}
+
+  {% set option_id = answer.id ~ "-" ~ loop.index %}
+
+  {% set input = {
+    "class": "input input--" ~ widget.type ~ " js-focusable",
+    "type": widget.type,
+    "value": option.value,
+    "name": answer.name,
+    "id": option_id,
+    "checked": "checked" if option.selected,
+    "data-qa": "has-other-option" if option.other
+  } %}
+
+  {% set label = {
+    "class": "label label--inline venus",
+    "for": option_id
+  } %}
+
+  <div class="field__item js-focusable-box">
+
+    <input {{input|xmlattr}}>
+    <label {{label|xmlattr}}>
+      {{option.label}}
+      {% if option.description %}
+        <br />
+        <span class="label__description label__inner pluto">{{option.description|safe}}</span>
+      {% endif %}
+    </label>
+
+    {% if option.other %}
+
+      {% set other_label = {
+        "class": "label mercury",
+        "for": option_id ~ "-other"
+      } %}
+
+      {% set other_input = {
+        "class": "input js-focusable",
+        "type": "text",
+        "name": answer.name,
+        "id": option_id ~ "-other",
+        "value": option.other_value,
+        "data-qa": "other-option"
+      } %}
+
+      <div class="field__other">
+        <label {{other_label|xmlattr}}>{{option.other.label}}</label>
+        <input {{other_input|xmlattr}}>
+      </div>
+
+    {% endif %}
+
+  </div>
+
+{% endfor %}

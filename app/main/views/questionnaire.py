@@ -55,8 +55,14 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
     answer_store = get_answer_store(current_user)
     answers = answer_store.map(group_id=group_id, group_instance=group_instance, block_id=block_id)
 
+    this_block = {
+        'group_id': group_id,
+        'group_instance': group_instance,
+        'block_id': block_id,
+    }
+
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
-    q_manager.build_state(block_id, answers)
+    q_manager.build_state(this_block, answers)
 
     block = g.schema.get_item_by_id(block_id)
     template = block.type if block and block.type else 'questionnaire'
@@ -77,7 +83,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     }
 
     valid_location = this_block in navigator.get_location_path()
-    valid_data = q_manager.validate(block_id, request.form)
+    valid_data = q_manager.validate(this_block, request.form)
 
     if not valid_location or not valid_data:
         return _render_template(q_manager.state, group_id, group_instance, block_id, template='questionnaire')
