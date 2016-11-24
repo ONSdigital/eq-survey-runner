@@ -624,7 +624,7 @@ class TestNavigator(unittest.TestCase):
 
         answer = Answer(
             group_id="multiple-questions-group",
-            group_instance=0,
+            answer_instance=0,
             answer_id="household-full-name",
             block_id="household-composition",
             value="Joe Bloggs"
@@ -632,7 +632,7 @@ class TestNavigator(unittest.TestCase):
 
         answer_2 = Answer(
             group_id="multiple-questions-group",
-            group_instance=1,
+            answer_instance=1,
             answer_id="household-full-name",
             block_id="household-composition",
             value="Sophie Bloggs"
@@ -673,15 +673,33 @@ class TestNavigator(unittest.TestCase):
                 "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
                 "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
                 'group_instance': 0
+            },
+            {
+                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
+                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                'group_instance': 1
+            },
+            {
+                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
+                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                'group_instance': 1
             }
         ]
 
         answer = Answer(
             group_id="multiple-questions-group",
-            group_instance=0,
+            answer_instance=0,
             answer_id="household-full-name",
             block_id="household-composition",
             value="Joe Bloggs"
+        )
+
+        answer_2 = Answer(
+            group_id="multiple-questions-group",
+            answer_instance=1,
+            answer_id="household-full-name",
+            block_id="household-composition",
+            value="Sophie Bloggs"
         )
 
         current_group_id = expected_path[-1]["group_id"]
@@ -690,6 +708,7 @@ class TestNavigator(unittest.TestCase):
 
         answers = AnswerStore()
         answers.add(answer)
+        answers.add(answer_2)
 
         navigator = Navigator(survey, answers)
 
