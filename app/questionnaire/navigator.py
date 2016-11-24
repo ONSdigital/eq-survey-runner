@@ -74,6 +74,7 @@ class Navigator:
         self.first_block_id = self.get_first_block_id()
         self.first_group_id = self.get_first_group_id()
         self.last_group_id = self.get_last_group_id()
+        self.location_path = self.get_location_path()
 
     def build_path(self, blocks, group_id, group_instance, block_id, path):
         """
@@ -119,6 +120,15 @@ class Navigator:
 
             return self.build_path(blocks, next_group_id, next_group_instance, next_block_id, path)
         return path
+
+    def update_answer_store(self, answer_store):
+        """
+        Updates the answer store and dependant location_path to the supplied answer_store
+        :param answer_store:
+        :return:
+        """
+        self.answer_store = answer_store
+        self.location_path = self.get_location_path()
 
     def get_routing_path(self):
         """
@@ -218,6 +228,23 @@ class Navigator:
     def get_first_location(cls):
         return cls.PRECEEDING_INTERSTITIAL_PATH[0]
 
+    def _get_current_location_index(self, current_group_id, current_block_id, current_iteration):
+        current_group_id = current_group_id or self.first_group_id
+
+        this_block = {
+            "block_id": current_block_id,
+            "group_id": current_group_id,
+            "group_instance": current_iteration,
+        }
+
+        if this_block in self.location_path:
+            # Get blocks to be visited
+            block_ids = [index for (index, path_item) in enumerate(self.location_path) if path_item['block_id'] == current_block_id]
+
+            # Return the index of the block id to be visited
+            return block_ids[current_iteration]
+        return -1
+
     def get_next_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
         """
         Returns the next 'location' to visit given a set of user answers
@@ -226,25 +253,10 @@ class Navigator:
         :param current_iteration:
         :return:
         """
-        current_group_id = current_group_id or self.first_group_id
-        location_path = self.get_location_path()
+        current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
 
-        this_block = {
-            "block_id": current_block_id,
-            "group_id": current_group_id,
-            "group_instance": current_iteration,
-        }
-
-        if this_block in location_path:
-
-            # Get blocks to be visited
-            block_ids = [index for (index, path_item) in enumerate(location_path) if path_item['block_id'] == current_block_id]
-
-            # Return the index of the block id to be visited
-            current_location_index = block_ids[current_iteration]
-
-            if current_location_index < len(location_path) - 1:
-                return location_path[current_location_index + 1]
+        if current_location_index != -1 and current_location_index < len(self.location_path) - 1:
+            return self.location_path[current_location_index + 1]
 
     def get_previous_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
         """
@@ -254,24 +266,10 @@ class Navigator:
         :param current_iteration:
         :return:
         """
-        current_group_id = current_group_id or self.first_group_id
-        location_path = self.get_location_path()
+        current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
 
-        this_block = {
-            "block_id": current_block_id,
-            "group_id": current_group_id,
-            "group_instance": current_iteration,
-        }
-
-        if this_block in location_path:
-            # Get blocks to be visited
-            block_ids = [index for (index, path_item) in enumerate(location_path) if path_item['block_id'] == current_block_id]
-
-            # Return the index of the block id to be visited
-            current_location_index = block_ids[current_iteration]
-
-            if current_location_index != 0:
-                return location_path[current_location_index - 1]
+        if current_location_index != -1 and current_location_index != 0:
+            return self.location_path[current_location_index - 1]
 
     def get_latest_location(self, completed_blocks=None):
         """

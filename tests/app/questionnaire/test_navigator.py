@@ -702,8 +702,8 @@ class TestNavigator(unittest.TestCase):
                                                                     current_block_id=current_block_id,
                                                                     current_iteration=current_iteration))
 
-    def test_repeating_groups_conditional_next_location(self):
-        survey = load_schema_file("test_routing_and_repeating_household.json")
+    def test_repeating_groups_conditional_location_path(self):
+        survey = load_schema_file("test_repeating_and_conditional_routing.json")
 
         expected_path = [
             {

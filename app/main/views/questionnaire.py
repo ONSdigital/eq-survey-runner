@@ -84,6 +84,8 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     else:
         q_manager.update_questionnaire_store(this_block)
 
+    navigator.update_answer_store(get_answer_store(current_user))
+
     next_location = navigator.get_next_location(current_group_id=group_id, current_iteration=group_instance, current_block_id=block_id)
 
     metadata = get_metadata(current_user)
@@ -229,14 +231,14 @@ def post_household_composition(eq_id, form_type, collection_id):
     if not valid:
         return _render_template('household-composition', questionnaire_manager.state, template='questionnaire')
 
-    return _go_to_next_block(current_location=this_block, eq_id=eq_id,
+    return _go_to_next_block(current_block_id=this_block, eq_id=eq_id,
                              form_type=form_type, collection_id=collection_id)
 
 
-def _go_to_next_block(current_location, eq_id, form_type, collection_id):
+def _go_to_next_block(current_block_id, eq_id, form_type, collection_id):
     navigator = Navigator(g.schema_json, get_answer_store(current_user))
 
-    next_location = navigator.get_next_location(current_block_id=current_location)
+    next_location = navigator.get_next_location(current_block_id=current_block_id)
 
     if next_location is None:
         return redirect_to_summary(eq_id, form_type, collection_id)
