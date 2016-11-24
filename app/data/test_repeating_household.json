@@ -69,19 +69,19 @@
             "id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
             "title": "Block 2",
             "sections": [{
-                "title": "Repeating Block",
+                "title": "Repeating Section",
                 "description": "",
                 "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
                 "questions": [{
                     "id": "c1d9976e-d031-4fab-96fc-1d37d4a8b86b",
-                    "title": "First Question, Second Group",
+                    "title": "",
                     "description": "",
                     "type": "General",
                     "answers": [{
                         "q_code": "3",
                         "guidance": "",
                         "id": "680f2ff9-d5a5-4057-b1cd-9fde2660b244",
-                        "label": "First input",
+                        "label": "What is their age?",
                         "mandatory": true,
                         "type": "PositiveInteger",
                         "validation": {
@@ -96,19 +96,19 @@
             "id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
             "title": "Block 3",
             "sections": [{
-                "title": "",
+                "title": "Repeating Section",
                 "description": "",
                 "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
                 "questions": [{
                     "id": "31ec5b0a-094b-44ca-9807-9090c1b849f5",
-                    "title": "Second Question, Second Group",
+                    "title": "",
                     "description": "",
                     "type": "General",
                     "answers": [{
                         "q_code": "4",
                         "guidance": "",
                         "id": "5667e5eb-f9d3-4482-9257-edf752000708",
-                        "label": "Second input",
+                        "label": "What is their shoe size?",
                         "mandatory": true,
                         "type": "PositiveInteger",
                         "validation": {

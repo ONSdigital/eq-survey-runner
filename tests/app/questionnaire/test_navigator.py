@@ -722,12 +722,12 @@ class TestNavigator(unittest.TestCase):
                 'group_instance': 0
             },
             {
-                "block_id": "conditional-block-1",
+                "block_id": "age-block",
                 "group_id": "repeated-group",
                 'group_instance': 0
             },
             {
-                'block_id': 'conditional-block-2',
+                'block_id': 'shoe-size-block',
                 'group_id': 'repeated-group',
                 'group_instance': 0
             },
@@ -737,7 +737,7 @@ class TestNavigator(unittest.TestCase):
                 'group_instance': 1
             },
             {
-                "block_id": "conditional-block-2",
+                "block_id": "shoe-size-block",
                 "group_id": "repeated-group",
                 'group_instance': 1
             },
@@ -765,7 +765,7 @@ class TestNavigator(unittest.TestCase):
             group_instance=0,
             block_id="repeated-block",
             answer_id="conditional-answer",
-            value="Question 2"
+            value="Age and Shoe Size"
         )
 
         answer_3 = Answer(
@@ -773,7 +773,7 @@ class TestNavigator(unittest.TestCase):
             group_instance=1,
             block_id="repeated-block",
             answer_id="conditional-answer",
-            value="Question 3"
+            value="Shoe Size Only"
         )
 
         answers = AnswerStore()
