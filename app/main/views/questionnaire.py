@@ -304,16 +304,18 @@ def _same_survey(eq_id, form_type, collection_id):
     return current_survey == metadata_survey
 
 
-def _render_template(location, context, rendered_schema_json=None, template=None):
+def _render_template(block_id, context, rendered_schema_json=None, template=None):
     metadata = get_metadata(current_user)
     answers = get_answers(current_user)
     metadata_context = build_metadata_context(metadata)
 
     navigator = Navigator(g.schema_json, get_answer_store(current_user))
-    previous_location = navigator.get_previous_location(current_block_id=location)
+    previous_location = navigator.get_previous_location(current_block_id=block_id)
     schema_json = rendered_schema_json or _render_schema(g.schema_json, answers, metadata)
 
-    if previous_location is not None:
+    if previous_location is None:
+        previous_url = None
+    else:
         previous_url = url_for('.get_block',
                                eq_id=metadata['eq_id'],
                                form_type=metadata['form_type'],
@@ -321,11 +323,6 @@ def _render_template(location, context, rendered_schema_json=None, template=None
                                group_id=previous_location['group_id'],
                                group_instance=previous_location['group_instance'],
                                block_id=previous_location['block_id'])
-    else:
-        previous_url = url_for('.get_introduction',
-                               eq_id=metadata['eq_id'],
-                               form_type=metadata['form_type'],
-                               collection_id=metadata['collection_exercise_sid'])
 
     try:
         theme = schema_json['theme']
@@ -334,7 +331,7 @@ def _render_template(location, context, rendered_schema_json=None, template=None
         logger.info("No theme set")
         theme = None
 
-    template = '{}.html'.format(template or location)
+    template = '{}.html'.format(template or block_id)
 
     return render_theme_template(theme, template, meta=metadata_context,
                                  content=context,
