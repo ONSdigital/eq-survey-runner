@@ -2818,12 +2818,17 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "id" : "household-member-completed",
+                                "id" : "jobseeker",
                                 "when": {
                                     "id" : "employment-type-answer",
-                                    "condition": "not equals",
+                                    "condition": "equals",
                                     "value":"none of the above"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id" : "household-member-completed"
                             }
                         }
                     ]
