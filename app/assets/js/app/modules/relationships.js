@@ -79,7 +79,6 @@ class HouseholdRelationship extends EventEmitter {
   }
 
   close = () => {
-
     if (this.answered) {
       this.editBtn.classList.remove('u-hidden')
     }
