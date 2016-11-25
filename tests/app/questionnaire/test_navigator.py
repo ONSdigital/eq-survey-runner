@@ -568,6 +568,7 @@ class TestNavigator(unittest.TestCase):
         answer = Answer(
             group_id="multiple-questions-group",
             group_instance=0,
+            answer_instance=0,
             answer_id="household-full-name",
             block_id="household-composition",
             value="Joe Bloggs"
@@ -575,7 +576,8 @@ class TestNavigator(unittest.TestCase):
 
         answer_2 = Answer(
             group_id="multiple-questions-group",
-            group_instance=1,
+            group_instance=0,
+            answer_instance=1,
             answer_id="household-full-name",
             block_id="household-composition",
             value="Sophie Bloggs"
@@ -583,7 +585,8 @@ class TestNavigator(unittest.TestCase):
 
         answer_3 = Answer(
             group_id="multiple-questions-group",
-            group_instance=2,
+            group_instance=0,
+            answer_instance=2,
             answer_id="household-full-name",
             block_id="household-composition",
             value="Gregg Bloggs"
