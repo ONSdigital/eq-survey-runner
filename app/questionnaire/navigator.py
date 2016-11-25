@@ -36,14 +36,9 @@ def evaluate_goto(goto_rule, answers, group_instance):
         answer_index = goto_rule['when']['id']
         filtered = answers.filter(answer_id=answer_index, group_instance=group_instance)
         if len(filtered) == 1:
-            answer = filtered[0]
-            if evaluate_rule(goto_rule, answer['value']):
-                return True
-        else:
-            return False
-    elif 'id' in goto_rule.keys():
-        return True
-    return None
+            return evaluate_rule(goto_rule, filtered[0]['value'])
+        return False
+    return True
 
 
 def evaluate_repeat(repeat_rule, answers):
@@ -107,12 +102,9 @@ class Navigator:
 
         if 'routing_rules' in block and len(block['routing_rules']) > 0:
             for rule in block['routing_rules']:
-                if 'goto' in rule:
-                    should_go = evaluate_goto(rule['goto'], self.answer_store, group_instance)
-                    if should_go is True:
-                        return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
-                    elif should_go is False:
-                        return path
+                is_goto_rule = 'goto' in rule and 'when' in rule['goto'].keys() or 'id' in rule['goto'].keys()
+                if is_goto_rule and evaluate_goto(rule['goto'], self.answer_store, group_instance):
+                    return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
         # If this isn't the last block in the set evaluated
         elif block_id_index != len(blocks) - 1:
             next_block_id = blocks[block_id_index + 1]['block']['id']
