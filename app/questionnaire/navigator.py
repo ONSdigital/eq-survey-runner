@@ -113,6 +113,7 @@ class Navigator:
                         return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
                     elif should_go is False:
                         return path
+        # If this isn't the last block in the set evaluated
         elif block_id_index != len(blocks) - 1:
             next_block_id = blocks[block_id_index + 1]['block']['id']
             next_group_id = blocks[block_id_index + 1]['group_id']
@@ -133,12 +134,9 @@ class Navigator:
     def get_routing_path(self):
         """
         Returns a list of the block ids visited based on answers provided
-        :return: List of block ids
+        :return: List of block location dicts
         """
-        routing_path = []
-        blocks = self.get_blocks()
-
-        return self.build_path(blocks, self.first_group_id, 0, self.first_block_id, routing_path)
+        return self.build_path(self.get_blocks(), self.first_group_id, 0, self.first_block_id, [])
 
     def can_reach_summary(self, routing_path=None):
         """
@@ -169,11 +167,9 @@ class Navigator:
     def get_location_path(self):
         """
         Returns a list of url locations visited based on answers provided
-        :return:
+        :return: List of block location dicts, with preceeding/closing interstitial pages included
         """
-        blocks = self.get_blocks()
-        routing_path = self.build_path(blocks, self.first_group_id, 0, self.first_block_id, [])
-
+        routing_path = self.get_routing_path()
         can_reach_summary = self.can_reach_summary(routing_path)
 
         # Make sure we don't update original
@@ -248,25 +244,27 @@ class Navigator:
         :param current_group_id:
         :param current_block_id:
         :param current_iteration:
-        :return:
+        :return: The next location as a dict
         """
         current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
 
         if current_location_index != -1 and current_location_index < len(self.location_path) - 1:
             return self.location_path[current_location_index + 1]
+        return None
 
     def get_previous_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
         """
         Returns the next 'location' to visit given a set of user answers
         :param current_group_id:
         :param current_block_id:
-        :param current_iteration:
+        :return: The previous location as a dict
         :return:
         """
         current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
 
         if current_location_index > 0:
             return self.location_path[current_location_index - 1]
+        return None
 
     def get_latest_location(self, completed_blocks=None):
         """
