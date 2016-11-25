@@ -25,6 +25,19 @@ class TestNavigator(unittest.TestCase):
 
         self.assertEqual(navigator.get_first_group_id(), first_group_id)
 
+    def test_next_block(self):
+        survey = load_schema_file("1_0102.json")
+
+        current_block_id = "7418732e-12fb-4270-8307-5682ac63bfae"
+        next_block = {
+            "block_id": "02ed26ad-4cfc-4e29-a946-630476228b2c",
+            "group_id": "07f40cd2-0704-4804-9f32-19309089a51b",
+            "group_instance": 0
+        }
+
+        navigator = Navigator(survey)
+        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
+
     def test_previous_block(self):
         survey = load_schema_file("1_0102.json")
 
@@ -81,63 +94,6 @@ class TestNavigator(unittest.TestCase):
         actual_next_block = navigator.get_next_location(current_block_id=current_block_id)
 
         self.assertEqual(actual_next_block["block_id"], expected_next_block["block_id"])
-
-    def test_previous_with_conditional_path(self):
-        survey = load_schema_file("0_star_wars.json")
-
-        expected_path = [
-            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-            {"block_id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"},
-            {"block_id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"},
-            {"block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"},
-            {"block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"},
-            {"block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"}
-        ]
-
-        answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-            value="Dark Side"
-        )
-        answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
-            answer_id="pel989b8-5185-4ba6-b73f-c126e3a06ba7",
-            value="Can I be a pain and have a goodies ship",
-        )
-
-        answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
-
-        current_block_id = expected_path[3]["block_id"]
-        expected_previous_block = expected_path[2]
-
-        navigator = Navigator(survey, answers)
-        actual_previous_block = navigator.get_previous_location(current_block_id=current_block_id)
-
-        self.assertEqual(actual_previous_block["block_id"], expected_previous_block['block_id'])
-
-        current_block_id = expected_path[2]["block_id"]
-        expected_previous_block = expected_path[1]
-
-        actual_previous_block = navigator.get_previous_location(current_block_id=current_block_id)
-
-        self.assertEqual(actual_previous_block["block_id"], expected_previous_block['block_id'])
-
-    def test_next_block(self):
-        survey = load_schema_file("1_0102.json")
-
-        current_block_id = "7418732e-12fb-4270-8307-5682ac63bfae"
-        next_block = {
-            "block_id": "02ed26ad-4cfc-4e29-a946-630476228b2c",
-            "group_id": "07f40cd2-0704-4804-9f32-19309089a51b",
-            "group_instance": 0
-        }
-
-        navigator = Navigator(survey)
-        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
 
     def test_routing_basic_path(self):
         survey = load_schema_file("1_0112.json")
@@ -235,45 +191,6 @@ class TestNavigator(unittest.TestCase):
 
         self.assertEqual(routing_path, expected_path)
 
-    def test_previous_with_conditional_routing(self):
-        survey = load_schema_file("0_star_wars.json")
-
-        expected_path = [
-            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-            {"block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a"},
-            {"block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"},
-            {"block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"},
-            {"block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"}
-        ]
-
-        for v in expected_path:
-            v['group_id'] = "14ba4707-321d-441d-8d21-b8367366e766"
-            v['group_instance'] = 0
-
-        current_block_id = expected_path[2]["block_id"]
-        expected_previous_block = expected_path[1]
-
-        answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-            value="Light Side"
-        )
-        answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="96682325-47ab-41e4-a56e-8315a19ffe2a",
-            answer_id="2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
-            value="No",
-        )
-
-        answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
-
-        navigator = Navigator(survey, answers)
-
-        self.assertEqual(navigator.get_previous_location(current_block_id=current_block_id), expected_previous_block)
-
     def test_get_next_location_introduction(self):
         survey = load_schema_file("0_star_wars.json")
 
@@ -331,11 +248,56 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey)
 
-        next_location = navigator.get_previous_location(current_block_id='f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0')
+        first_block_id = 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'
+        next_location = navigator.get_previous_location(current_block_id=first_block_id)
 
         self.assertEqual('introduction', next_location['block_id'])
 
-    def test_get_previous_location_conditional(self):
+    def test_previous_with_conditional_path(self):
+        survey = load_schema_file("0_star_wars.json")
+
+        expected_path = [
+            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
+            {"block_id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"},
+            {"block_id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"},
+            {"block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"},
+            {"block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"},
+            {"block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"}
+        ]
+
+        answer_1 = Answer(
+            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            value="Dark Side"
+        )
+        answer_2 = Answer(
+            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            block_id="923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
+            answer_id="pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+            value="Can I be a pain and have a goodies ship",
+        )
+
+        answers = AnswerStore()
+        answers.add(answer_1)
+        answers.add(answer_2)
+
+        current_block_id = expected_path[3]["block_id"]
+        expected_previous_block = expected_path[2]
+
+        navigator = Navigator(survey, answers)
+        actual_previous_block = navigator.get_previous_location(current_block_id=current_block_id)
+
+        self.assertEqual(actual_previous_block["block_id"], expected_previous_block['block_id'])
+
+        current_block_id = expected_path[2]["block_id"]
+        expected_previous_block = expected_path[1]
+
+        actual_previous_block = navigator.get_previous_location(current_block_id=current_block_id)
+
+        self.assertEqual(actual_previous_block["block_id"], expected_previous_block['block_id'])
+
+    def test_previous_with_conditional_path_alternative(self):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
@@ -351,7 +313,7 @@ class TestNavigator(unittest.TestCase):
             v['group_instance'] = 0
 
         current_block_id = expected_path[2]["block_id"]
-        expected_previous_location = expected_path[1]
+        expected_previous_block = expected_path[1]
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
@@ -372,16 +334,7 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, answers)
 
-        self.assertEqual(navigator.get_previous_location(current_block_id=current_block_id), expected_previous_location)
-
-        current_block_id = expected_path[0]["block_id"]
-        expected_previous_location = {
-            "block_id": 'introduction',
-            "group_id": "14ba4707-321d-441d-8d21-b8367366e766",
-            "group_instance": 0
-        }
-
-        self.assertEqual(navigator.get_previous_location(current_block_id=current_block_id), expected_previous_location)
+        self.assertEqual(navigator.get_previous_location(current_block_id=current_block_id), expected_previous_block)
 
     def test_next_location_goto_summary(self):
         survey = load_schema_file("0_star_wars.json")
