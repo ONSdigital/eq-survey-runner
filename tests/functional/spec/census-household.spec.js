@@ -94,7 +94,7 @@ describe('Example Test', function () {
         landingPage.getStarted()
     }
 
-    it('Given a census household survey without sexual identity, When i enter valid data, Then the survey should submit successfully', function () {
+    it('Given Respondent Home has identified the respondent should have the Household Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function () {
         openAndStartQuestionnaire('census_household.json')
 
         // who-lives-here
@@ -155,8 +155,7 @@ describe('Example Test', function () {
         expect(ThankYou.isOpen()).to.be.true
     })
 
-
-    it('Given a census household survey with sexual identity, When i enter valid data, Then the survey should submit successfully', function () {
+    it('Given Respondent Home has identified the respondent should have the Household Questionnaire with the sexual id question, When I complete the EQ, Then I should be asked the sexual id question', function () {
         openAndStartQuestionnaire('census_household.json', true)
 
         // who-lives-here
