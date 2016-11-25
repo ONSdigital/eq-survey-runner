@@ -66,7 +66,7 @@
             "validation": []
     }, {
         "blocks": [{
-            "id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
+            "id": "repeating-block-1",
             "title": "Block 2",
             "sections": [{
                 "title": "Repeating Section",
@@ -93,7 +93,7 @@
                 }]
             }]
         }, {
-            "id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
+            "id": "repeating-block-2",
             "title": "Block 3",
             "sections": [{
                 "title": "Repeating Section",
@@ -120,7 +120,7 @@
                 }]
             }]
         }],
-        "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+        "id": "repeating-group",
         "title": "Group 2",
         "routing_rules": [{
             "repeat": {

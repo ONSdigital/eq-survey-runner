@@ -243,7 +243,7 @@ class TestNavigator(unittest.TestCase):
 
         self.assertEqual(expected_next_location, next_location)
 
-    def test_get_previous_location(self):
+    def test_get_previous_location_introduction(self):
         survey = load_schema_file("0_star_wars.json")
 
         navigator = Navigator(survey)
@@ -442,23 +442,23 @@ class TestNavigator(unittest.TestCase):
                 'group_instance': 0
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 0
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 0
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 1
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 1
             }
         ]
@@ -487,33 +487,33 @@ class TestNavigator(unittest.TestCase):
                 'group_instance': 0
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 0
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 0
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 1
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 1
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 2
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 2
             }
         ]
@@ -565,23 +565,23 @@ class TestNavigator(unittest.TestCase):
                 'group_instance': 0
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 0
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 0
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 1
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 1
             }
         ]
@@ -629,23 +629,23 @@ class TestNavigator(unittest.TestCase):
                 'group_instance': 0
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 0
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 0
             },
             {
-                "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
                 'group_instance': 1
             },
             {
-                "block_id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
-                "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
                 'group_instance': 1
             }
         ]
@@ -677,7 +677,7 @@ class TestNavigator(unittest.TestCase):
         navigator = Navigator(survey, answers)
 
         summary_block = {
-            "group_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            "group_id": "repeating-group",
             "block_id": 'summary',
             "group_instance": 0
         }
