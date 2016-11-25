@@ -18,12 +18,6 @@ def build_question_schema(id, answer_schemas):
 
 class TestSection(TestCase):
 
-    metadata = {
-        'collection_exercise_sid': '789',
-        'form_type': '0102',
-        'eq_id': '1',
-    }
-
     def test_create_section(self):
         # Given
         answers = mock.MagicMock()
@@ -37,6 +31,7 @@ class TestSection(TestCase):
         # Then
         self.assertEqual(section.id, 'section_id')
         self.assertEqual(section.title, 'A section title')
+        self.assertEqual(section.link, "some_link")
         self.assertEqual(len(section.questions), 1)
 
     def test_create_section_with_multiple_questions(self):
