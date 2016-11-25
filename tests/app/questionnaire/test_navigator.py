@@ -10,18 +10,26 @@ class TestNavigator(unittest.TestCase):
     def test_first_block(self):
         survey = load_schema_file("1_0102.json")
 
-        first_group_id = "07f40cd2-0704-4804-9f32-19309089a51b"
         first_block_id = "5bce8d8f-0af8-4d35-b77d-744e6179b406"
 
         navigator = Navigator(survey)
 
         self.assertEqual(navigator.get_first_block_id(), first_block_id)
+
+    def test_first_group(self):
+        survey = load_schema_file("1_0102.json")
+
+        first_group_id = "07f40cd2-0704-4804-9f32-19309089a51b"
+
+        navigator = Navigator(survey)
+
         self.assertEqual(navigator.get_first_group_id(), first_group_id)
 
     def test_previous_block(self):
         survey = load_schema_file("1_0102.json")
 
         current_block_id = "02ed26ad-4cfc-4e29-a946-630476228b2c"
+
         previous_block = {
             "block_id": "7418732e-12fb-4270-8307-5682ac63bfae",
             "group_id": "07f40cd2-0704-4804-9f32-19309089a51b",
