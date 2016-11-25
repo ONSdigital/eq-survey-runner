@@ -228,7 +228,7 @@ class Navigator:
 
         if this_block in self.location_path:
             return self.location_path.index(this_block)
-        return -1
+        return None
 
     def get_next_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
         """
@@ -240,7 +240,7 @@ class Navigator:
         """
         current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
 
-        if current_location_index != -1 and current_location_index < len(self.location_path) - 1:
+        if current_location_index is not None and current_location_index < len(self.location_path) - 1:
             return self.location_path[current_location_index + 1]
         return None
 
@@ -254,7 +254,7 @@ class Navigator:
         """
         current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
 
-        if current_location_index > 0:
+        if current_location_index is not None and current_location_index != 0:
             return self.location_path[current_location_index - 1]
         return None
 
