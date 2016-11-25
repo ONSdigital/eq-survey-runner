@@ -23,9 +23,9 @@
   padding: 1rem;
 }
 
-@mixin alert_type($name, $color) {
+@mixin alert_type($name, $color, $color-tint:tint($color, 90%)) {
   .alert--#{$name} {
-    background: tint($color, 90%);
+    background: $color-tint;
     .alert__header {
       background: $color;
     }
@@ -40,7 +40,7 @@
 @include alert_type(error, $color-red);
 @include alert_type(warn, $color-amber);
 @include alert_type(success, $color-primary-dark);
-@include alert_type(neutral, $color-secondary);
+@include alert_type(neutral, $color-secondary, #f5f6ff);
 
 .alert--simple {
   border: none;
