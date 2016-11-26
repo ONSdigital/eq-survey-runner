@@ -61,7 +61,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
     block = g.schema.get_item_by_id(block_id)
     template = block.type if block and block.type else 'questionnaire'
 
-    return _render_template(block_id, q_manager.state, template=template)
+    return _render_template(q_manager.state, group_id, group_instance, block_id, template=template)
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
@@ -80,7 +80,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     valid_data = q_manager.validate(block_id, request.form)
 
     if not valid_location or not valid_data:
-        return _render_template(block_id, q_manager.state, template='questionnaire')
+        return _render_template(q_manager.state, group_id, group_instance, block_id, template='questionnaire')
     else:
         q_manager.update_questionnaire_store(this_block)
 
@@ -96,7 +96,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
-    return redirect_to_block(eq_id, form_type, collection_id, next_group_id, next_group_instance, next_block_id)
+    return redirect(block_url(eq_id, form_type, collection_id, next_group_id, next_group_instance, next_block_id))
 
 
 @questionnaire_blueprint.route('introduction', methods=["GET"])
@@ -105,7 +105,8 @@ def get_introduction(eq_id, form_type, collection_id):
     metadata = get_metadata(current_user)
     answers = get_answers(current_user)
     schema_json = _render_schema(g.schema_json, answers, metadata)
-    return _render_template('introduction', get_introduction_context(schema_json), rendered_schema_json=schema_json)
+
+    return _render_template(get_introduction_context(schema_json), block_id='introduction', rendered_schema_json=schema_json)
 
 
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
@@ -125,7 +126,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
     # Don't care if data is valid because there isn't any for interstitial
     if not valid_location:
-        return _render_template(block_id, q_manager.state, template='questionnaire')
+        return _render_template(q_manager.state, this_block['group_id'], this_block['group_instance'], block_id, template='questionnaire')
 
     next_location = navigator.get_next_location(current_block_id=block_id, current_iteration=0, current_group_id=this_block['group_id'])
     metadata = get_metadata(current_user)
@@ -135,7 +136,10 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
-    return redirect_to_block(eq_id, form_type, collection_id, next_location['group_id'], next_location['group_instance'], next_location['block_id'])
+    return redirect(block_url(eq_id, form_type, collection_id,
+                              group_id=next_location['group_id'],
+                              group_instance=next_location['group_instance'],
+                              block_id=next_location['block_id']))
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -151,9 +155,16 @@ def get_summary(eq_id, form_type, collection_id):
         answers = get_answers(current_user)
         schema_json = _render_schema(g.schema_json, answers, metadata)
         summary_context = build_summary_rendering_context(schema_json, answer_store, metadata)
-        return _render_template('summary', summary_context, rendered_schema_json=schema_json)
+        return _render_template(summary_context,
+                                group_id=latest_location['group_id'],
+                                group_instance=latest_location['group_instance'],
+                                block_id=latest_location['block_id'],
+                                rendered_schema_json=schema_json)
 
-    return redirect_to_block(eq_id, form_type, collection_id, latest_location['group_id'], latest_location['group_instance'], latest_location['block_id'])
+    return redirect(block_url(eq_id, form_type, collection_id,
+                              group_id=latest_location['group_id'],
+                              group_instance=latest_location['group_instance'],
+                              block_id=latest_location['block_id']))
 
 
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
@@ -169,9 +180,16 @@ def get_confirmation(eq_id, form_type, collection_id):
         answers = get_answers(current_user)
         schema_json = _render_schema(g.schema_json, answers, metadata)
 
-        return _render_template('confirmation', q_manager.state, rendered_schema_json=schema_json)
+        return _render_template(q_manager.state,
+                                group_id=latest_location['group_id'],
+                                group_instance=latest_location['group_instance'],
+                                block_id=latest_location['block_id'],
+                                rendered_schema_json=schema_json)
 
-    return redirect_to_block(eq_id, form_type, collection_id, latest_location['group_id'], latest_location['group_instance'], latest_location['block_id'])
+    return redirect(block_url(eq_id, form_type, collection_id,
+                              group_id=latest_location['group_id'],
+                              group_instance=latest_location['group_instance'],
+                              block_id=latest_location['block_id']))
 
 
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
@@ -180,7 +198,7 @@ def get_thank_you(eq_id, form_type, collection_id):
     if not _same_survey(eq_id, form_type, collection_id):
         return redirect("/information/multiple-surveys")
 
-    thank_you_page = _render_template('thank-you', get_questionnaire_manager(g.schema, g.schema_json).state)
+    thank_you_page = _render_template(get_questionnaire_manager(g.schema, g.schema_json).state, block_id='thank-you')
     # Delete user data on request of thank you page.
     _delete_user_data()
     return thank_you_page
@@ -198,10 +216,10 @@ def submit_answers(eq_id, form_type, collection_id):
         submitter.send_answers(get_metadata(current_user), g.schema, get_answers(current_user))
         return redirect_to_thank_you(eq_id, form_type, collection_id)
     else:
-        return redirect_to_block(eq_id, form_type, collection_id,
-                                 invalid_location['group_id'],
-                                 invalid_location['group_instance'],
-                                 invalid_location['block_id'])
+        return redirect(block_url(eq_id, form_type, collection_id,
+                                  group_id=invalid_location['group_id'],
+                                  group_instance=invalid_location['group_instance'],
+                                  block_id=invalid_location['block_id']))
 
 
 @questionnaire_blueprint.route('multiple-questions-group/0/household-composition', methods=["POST"])
@@ -228,7 +246,7 @@ def post_household_composition(eq_id, form_type, collection_id):
         return get_block(eq_id, form_type, collection_id, 'multiple-questions-group', 0, 'household-composition')
 
     if not valid:
-        return _render_template('household-composition', questionnaire_manager.state, template='questionnaire')
+        return _render_template(questionnaire_manager.state, 'multiple-questions-group', 0, 'household-composition', template='questionnaire')
 
     return _go_to_next_block(current_block_id=this_block, eq_id=eq_id,
                              form_type=form_type, collection_id=collection_id)
@@ -244,7 +262,10 @@ def _go_to_next_block(current_block_id, eq_id, form_type, collection_id):
 
     metadata = get_metadata(current_user)
     logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-    return redirect_to_block(eq_id, form_type, collection_id, next_location['group_id'], next_location['group_instance'], next_location['block_id'])
+    return redirect(block_url(eq_id, form_type, collection_id,
+                              group_id=next_location['group_id'],
+                              group_instance=next_location['group_instance'],
+                              block_id=next_location['block_id']))
 
 
 def _delete_user_data():
@@ -258,19 +279,6 @@ def redirect_to_summary(eq_id, form_type, collection_id):
 
 def redirect_to_thank_you(eq_id, form_type, collection_id):
     return redirect(interstitial_url(eq_id, form_type, collection_id, 'thank-you'))
-
-
-def redirect_to_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
-    if block_id in ['summary', 'introduction', 'confirmation', 'thank-you']:
-        return redirect(interstitial_url(eq_id, form_type, collection_id, block_id))
-
-    return redirect(url_for('.get_block',
-                            eq_id=eq_id,
-                            form_type=form_type,
-                            collection_id=collection_id,
-                            group_id=group_id,
-                            group_instance=group_instance,
-                            block_id=block_id))
 
 
 def interstitial_url(eq_id, form_type, collection_id, block_id):
@@ -296,6 +304,18 @@ def interstitial_url(eq_id, form_type, collection_id, block_id):
                        collection_id=collection_id)
 
 
+def block_url(eq_id, form_type, collection_id, group_id, group_instance, block_id):
+    if Navigator.is_interstitial_block(block_id):
+        return interstitial_url(eq_id, form_type, collection_id, block_id)
+    return url_for('.get_block',
+                   eq_id=eq_id,
+                   form_type=form_type,
+                   collection_id=collection_id,
+                   group_id=group_id,
+                   group_instance=group_instance,
+                   block_id=block_id)
+
+
 def _same_survey(eq_id, form_type, collection_id):
     metadata = get_metadata(current_user)
     current_survey = eq_id + form_type + collection_id
@@ -303,25 +323,28 @@ def _same_survey(eq_id, form_type, collection_id):
     return current_survey == metadata_survey
 
 
-def _render_template(block_id, context, rendered_schema_json=None, template=None):
+def _render_template(context, group_id=None, group_instance=0, block_id=None, rendered_schema_json=None, template=None):
     metadata = get_metadata(current_user)
     answers = get_answers(current_user)
     metadata_context = build_metadata_context(metadata)
 
     navigator = Navigator(g.schema_json, get_answer_store(current_user))
-    previous_location = navigator.get_previous_location(current_block_id=block_id)
+    group_id = group_id or navigator.get_first_group_id()
+
+    previous_location = navigator.get_previous_location(current_group_id=group_id,
+                                                        current_block_id=block_id,
+                                                        current_iteration=group_instance)
     schema_json = rendered_schema_json or _render_schema(g.schema_json, answers, metadata)
 
     previous_url = None
 
     if previous_location is not None:
-        previous_url = url_for('.get_block',
-                               eq_id=metadata['eq_id'],
-                               form_type=metadata['form_type'],
-                               collection_id=metadata['collection_exercise_sid'],
-                               group_id=previous_location['group_id'],
-                               group_instance=previous_location['group_instance'],
-                               block_id=previous_location['block_id'])
+        previous_url = block_url(eq_id=metadata['eq_id'],
+                                 form_type=metadata['form_type'],
+                                 collection_id=metadata['collection_exercise_sid'],
+                                 group_id=previous_location['group_id'],
+                                 group_instance=previous_location['group_instance'],
+                                 block_id=previous_location['block_id'])
 
     try:
         theme = schema_json['theme']

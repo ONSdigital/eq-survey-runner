@@ -555,6 +555,26 @@ class TestNavigator(unittest.TestCase):
 
         self.assertEqual(expected_path, navigator.get_routing_path())
 
+    def test_repeating_groups_previous_location_introduction(self):
+        survey = load_schema_file("test_repeating_household.json")
+
+        expected_path = [
+            {
+                'block_id': 'introduction',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0
+            },
+            {
+                "block_id": "household-composition",
+                "group_id": "multiple-questions-group",
+                'group_instance': 0
+            }
+        ]
+
+        navigator = Navigator(survey, AnswerStore())
+
+        self.assertEqual(navigator.get_previous_location(current_block_id='household-composition'), expected_path[0])
+
     def test_repeating_groups_previous_location(self):
         survey = load_schema_file("test_repeating_household.json")
 

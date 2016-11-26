@@ -71,6 +71,10 @@ class Navigator:
         self.last_group_id = self.get_last_group_id()
         self.location_path = self.get_location_path()
 
+    @classmethod
+    def is_interstitial_block(cls, block_id):
+        return block_id in cls.PRECEEDING_INTERSTITIAL_PATH or block_id in cls.CLOSING_INTERSTITIAL_PATH
+
     def build_path(self, blocks, group_id, group_instance, block_id, path):
         """
         Recursive method which visits all the blocks and returns path taken
