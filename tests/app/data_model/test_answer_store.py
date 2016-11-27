@@ -2,6 +2,55 @@ import unittest
 from app.data_model.answer_store import Answer, AnswerStore
 
 
+class TestAnswer(unittest.TestCase):
+    def test_raises_error_on_invalid(self):
+
+        with self.assertRaises(ValueError) as ite:
+            Answer()
+
+        self.assertIn("At least one of 'answer_id', 'group_id', 'block_id' or 'value' must be set for Answer", str(ite.exception))
+
+    def test_matches_answer(self):
+        answer_1 = Answer(
+            block_id="3",
+            answer_id="4",
+            answer_instance=1,
+            group_id="5",
+            group_instance=1,
+            value=25,
+        )
+        answer_2 = Answer(
+            block_id="3",
+            answer_id="4",
+            answer_instance=1,
+            group_id="5",
+            group_instance=1,
+            value=65,
+        )
+
+        self.assertEqual(answer_1.matches(answer_2), True)
+
+    def test_matches_answer_dict(self):
+        answer_1 = Answer(
+            block_id="3",
+            answer_id="4",
+            answer_instance=1,
+            group_id="5",
+            group_instance=1,
+            value=25,
+        )
+        answer_2 = {
+            "block_id": "3",
+            "answer_id": "4",
+            "answer_instance": 1,
+            "group_id": "5",
+            "group_instance": 1,
+            "value": 25,
+        }
+
+        self.assertEqual(answer_1.matches_dict(answer_2), True)
+
+
 class TestAnswerStore(unittest.TestCase):
     def setUp(self):
         self.store = AnswerStore()
@@ -24,6 +73,7 @@ class TestAnswerStore(unittest.TestCase):
         self.assertEqual(self.store.count(answer), 1)
 
     def test_raises_error_on_invalid(self):
+
         with self.assertRaises(TypeError) as ite:
             self.store.add({
                 "block_id": "3",
@@ -120,26 +170,6 @@ class TestAnswerStore(unittest.TestCase):
         value = self.store.get(answer_1)
 
         self.assertEqual(value, [23, 45, 67])
-
-    def test_matches_answer(self):
-        answer_1 = Answer(
-            block_id="3",
-            answer_id="4",
-            answer_instance=1,
-            group_id="5",
-            group_instance=1,
-            value=25,
-        )
-        answer_2 = Answer(
-            block_id="3",
-            answer_id="4",
-            answer_instance=1,
-            group_id="5",
-            group_instance=1,
-            value=65,
-        )
-
-        self.assertEqual(answer_1.matches(answer_2), True)
 
     def test_add_inserts_instances(self):
         answer_1 = Answer(

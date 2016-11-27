@@ -4,7 +4,12 @@ from collections import OrderedDict
 
 
 class Answer(object):
-    def __init__(self, group_id, block_id, answer_id, value, group_instance=0, answer_instance=0):
+    def __init__(self, group_id=None, block_id=None, answer_id=None, value=None, group_instance=0, answer_instance=0):
+        valid = (group_id or answer_id or block_id or value) is not None
+
+        if not valid:
+            raise ValueError("At least one of 'answer_id', 'group_id', 'block_id' or 'value' must be set for Answer")
+
         self.group_id = group_id
         self.block_id = block_id
         self.answer_id = answer_id

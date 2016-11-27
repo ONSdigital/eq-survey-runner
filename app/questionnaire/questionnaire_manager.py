@@ -1,7 +1,8 @@
 import logging
 
-from app.globals import get_answers, get_metadata, get_questionnaire_store
-from app.questionnaire.navigator import evaluate_rule
+from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
+from app.questionnaire.navigator import Navigator, evaluate_rule
+
 from app.templating.schema_context import build_schema_context
 from app.templating.template_renderer import renderer
 
@@ -12,10 +13,10 @@ from flask_login import current_user
 logger = logging.getLogger(__name__)
 
 
-def get_questionnaire_manager(navigator, schema, schema_json):
+def get_questionnaire_manager(schema, schema_json):
     questionnaire_manager = g.get('_questionnaire_manager')
     if questionnaire_manager is None:
-        questionnaire_manager = g._questionnaire_manager = QuestionnaireManager(navigator, schema, schema_json)
+        questionnaire_manager = g._questionnaire_manager = QuestionnaireManager(schema, schema_json)
 
     return questionnaire_manager
 
@@ -25,40 +26,31 @@ class QuestionnaireManager(object):
     """
     This class represents a user journey through a survey. It models the request/response process of the web application
     """
-    def __init__(self, navigator, schema, json=None):
+    def __init__(self, schema, json=None):
         self._json = json
         self._schema = schema
         self.state = None
 
-        self.navigator = navigator
-
     def validate(self, location, post_data):
 
-        answers = get_answers(current_user)
+        self.build_state(location, post_data)
 
-        if location in self.navigator.get_location_path(answers):
-
-            self.build_state(location, post_data)
-
-            if self.state:
-                # Todo, this doesn't feel right, validation is casting the user values to their type.
-                return self.state.schema_item.validate(self.state)
-            else:
-                # Item has node, but is not in schema: must be introduction, thank you or summary
-                return True
+        if self.state:
+            # Todo, this doesn't feel right, validation is casting the user values to their type.
+            return self.state.schema_item.validate(self.state)
         else:
-            # Not a validation location, so can't be valid
-            return False
+            # Item has node, but is not in schema: must be introduction, thank you or summary
+            return True
 
     def validate_all_answers(self):
+        navigator = Navigator(self._json, get_answer_store(current_user))
 
-        answers = get_answers(current_user)
-
-        for location in self.navigator.get_location_path(answers):
-            is_valid = self.validate(location, answers)
+        for location in navigator.get_location_path():
+            answers = get_answers(current_user)
+            is_valid = self.validate(location['block_id'], answers)
 
             if not is_valid:
-                logger.debug("Failed validation with current location %s", location)
+                logger.debug("Failed validation with current location %s", str(location))
                 return False, location
 
         return True, None
@@ -67,7 +59,9 @@ class QuestionnaireManager(object):
         # Store answers in QuestionnaireStore
         questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
-        for answer in self.get_state_answers(location):
+        for answer in self.get_state_answers(location['block_id']):
+            answer.group_id = location['group_id']
+            answer.group_instance = location['group_instance']
             questionnaire_store.answer_store.add_or_update(answer.flatten())
 
         if location not in questionnaire_store.completed_blocks:
@@ -78,7 +72,7 @@ class QuestionnaireManager(object):
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
 
-        is_valid = self.validate(location, post_data)
+        is_valid = self.validate(location['block_id'], post_data)
         # run the validator to update the validation_store
         if is_valid:
             self.update_questionnaire_store(location)
@@ -89,11 +83,15 @@ class QuestionnaireManager(object):
         # Build the state from the answers
         self.state = None
         if self._schema.item_exists(item_id):
+            metadata = get_metadata(current_user)
+            all_answers = get_answers(current_user)
             schema_item = self._schema.get_item_by_id(item_id)
+
             self.state = schema_item.construct_state()
             self.state.update_state(answers)
             self._conditional_display(self.state)
-            context = build_schema_context(get_metadata(current_user), self._schema.aliases, answers)
+
+            context = build_schema_context(metadata, self._schema.aliases, all_answers)
             renderer.render_state(self.state, context)
 
     def get_state_answers(self, item_id):
@@ -125,7 +123,7 @@ class QuestionnaireManager(object):
     def get_schema(self):
         return self._schema
 
-    def add_answer(self, block_id, question_id, answer_store):
+    def add_answer(self, location, question_id, answer_store):
         question_schema = self._schema.get_item_by_id(question_id)
         question_state = self.state.find_state_item(question_schema)
 
@@ -133,7 +131,7 @@ class QuestionnaireManager(object):
             next_answer_instance_id = self._get_next_answer_instance(answer_store, answer_schema.id)
             question_state.create_new_answer_state(answer_schema, next_answer_instance_id)
 
-        self.update_questionnaire_store(block_id)
+        self.update_questionnaire_store(location)
 
     @staticmethod
     def _get_next_answer_instance(answer_store, answer_id):
@@ -142,10 +140,10 @@ class QuestionnaireManager(object):
         next_answer_instance_id = 0 if len(last_answer) == 0 else int(last_answer[0]['answer_instance']) + 1
         return next_answer_instance_id
 
-    def remove_answer(self, block, answer_store, index_to_remove):
+    def remove_answer(self, location, answer_store, index_to_remove):
         answer = self.state.get_answers()[int(index_to_remove)]
         question = answer.parent
         question.remove_answer(answer)
 
         answer_store.remove(answer.flatten())
-        self.update_questionnaire_store(block)
+        self.update_questionnaire_store(location)

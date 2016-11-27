@@ -14,7 +14,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(question.id, 'question_id')
@@ -28,7 +28,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(question.id, 'question_id')
@@ -44,7 +44,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [first_answer_schema, second_answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(len(question.answers), 2)
@@ -60,7 +60,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'DateRange', 'answers': [first_date_answer_schema, second_date_answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(len(question.answers), 1)
@@ -81,7 +81,7 @@ class TestQuestion(TestCase):
                            [first_date_answer_schema, second_date_answer_schema, third_date_answer_schema, fourth_date_answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(len(question.answers), 2)
@@ -105,7 +105,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(len(question.answers[0].value), 2)
@@ -130,7 +130,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(len(question.answers[0].value), 1)
@@ -154,7 +154,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(len(question.answers[0].value), 2)
@@ -172,7 +172,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(question.answers[0].value, None)
@@ -195,7 +195,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(question.answers[0].value, 'Other option label')
@@ -218,7 +218,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(question.answers[0].value, 'I want to be on the dark side')
@@ -234,7 +234,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(question.answers[0].value, None)
@@ -248,7 +248,7 @@ class TestQuestion(TestCase):
                            'skip_condition': skip_condition}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertTrue(question.is_skipped(answers))
@@ -262,7 +262,7 @@ class TestQuestion(TestCase):
                            'skip_condition': skip_condition}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertFalse(question.is_skipped(answers))
@@ -279,7 +279,7 @@ class TestQuestion(TestCase):
                            'answers': [answer_schema]}
 
         # When
-        question = Question('1', question_schema, answers)
+        question = Question(question_schema, answers)
 
         # Then
         self.assertEqual(len(question.answers), 3)
