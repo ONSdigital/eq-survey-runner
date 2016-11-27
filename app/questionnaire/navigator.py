@@ -16,8 +16,6 @@ def evaluate_rule(rule, answer_value):
     match_value = when['value']
     condition = when['condition']
 
-    # answer_to_test = answer[0] if (isinstance(answer, list) and len(answer) == 1) else answer
-
     # Evaluate the condition on the routing rule
     if condition == 'equals' and match_value == answer_value:
         return True
@@ -26,7 +24,7 @@ def evaluate_rule(rule, answer_value):
     return False
 
 
-def evaluate_goto(goto_rule, answers, group_instance):
+def evaluate_goto(goto_rule, metadata, answers, group_instance):
     """
     Determine whether a goto rule will be satisfied based on a given answer
     :param goto_rule:
@@ -35,36 +33,40 @@ def evaluate_goto(goto_rule, answers, group_instance):
     :return:
     """
     if 'when' in goto_rule.keys():
-        answer_index = goto_rule['when']['id']
-        filtered = answers.filter(answer_id=answer_index, group_instance=group_instance)
-        if len(filtered) == 1:
-            return evaluate_rule(goto_rule, filtered[0]['value'])
+
+        if 'id' in goto_rule['when']:
+            answer_index = goto_rule['when']['id']
+            filtered = answers.filter(answer_id=answer_index, group_instance=group_instance)
+            if len(filtered) == 1:
+                return evaluate_rule(goto_rule, filtered[0]['value'])
+
+        if 'meta' in goto_rule['when']:
+            meta_index = goto_rule['when']['meta']
+            if _contains_in_dict(metadata, meta_index):
+                metadata_value = _get_from_dict(metadata, meta_index)
+                return evaluate_rule(goto_rule, metadata_value)
+
         return False
     return True
 
-# def evaluate_metadata_rule(goto_rule, metadata):
-#     meta_index = goto_rule['when']['meta']
-#     if _contains_in_dict(metadata, meta_index):
-#         metadata_value = _get_from_dict(metadata, meta_index)
-#         return evaluate_rule(goto_rule, metadata_value)
-#
-#
-# def _get_from_dict(d, keys):
-#     if "." in keys:
-#         key, rest = keys.split(".", 1)
-#         return _get_from_dict(d[key], rest)
-#     else:
-#         return d[keys]
-#
-#
-# def _contains_in_dict(d, keys):
-#     if "." in keys:
-#         key, rest = keys.split(".", 1)
-#         if key not in d:
-#             return False
-#         return _contains_in_dict(d[key], rest)
-#     else:
-#         return keys in d
+
+def _get_from_dict(d, keys):
+    if "." in keys:
+        key, rest = keys.split(".", 1)
+        return _get_from_dict(d[key], rest)
+    else:
+        return d[keys]
+
+
+def _contains_in_dict(d, keys):
+    if "." in keys:
+        key, rest = keys.split(".", 1)
+        if key not in d:
+            return False
+        return _contains_in_dict(d[key], rest)
+    else:
+        return keys in d
+
 
 def evaluate_repeat(repeat_rule, answers):
     """
@@ -88,8 +90,9 @@ class Navigator:
     PRECEEDING_INTERSTITIAL_PATH = ['introduction']
     CLOSING_INTERSTITIAL_PATH = ['summary', 'thank-you']
 
-    def __init__(self, survey_json, answer_store=None):
+    def __init__(self, survey_json, metadata, answer_store=None):
         self.answer_store = answer_store or AnswerStore()
+        self.metadata = metadata
         self.survey_json = survey_json
         self.first_block_id = self.get_first_block_id()
         self.first_group_id = self.get_first_group_id()
@@ -132,16 +135,8 @@ class Navigator:
         if 'routing_rules' in block and len(block['routing_rules']) > 0:
             for rule in block['routing_rules']:
                 is_goto_rule = 'goto' in rule and 'when' in rule['goto'].keys() or 'id' in rule['goto'].keys()
-                if is_goto_rule:
-
-                    if 'id' in rule['goto']['when']:
-                        result = evaluate_goto(rule['goto'], self.answer_store, group_instance)
-
-                    # if 'meta' in rule['goto']['when']:
-                    #     result = evaluate_metadata_rule(goto_rule, metadata)
-
-                    if result:
-                        return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
+                if is_goto_rule and evaluate_goto(rule['goto'], self.metadata, self.answer_store, group_instance):
+                    return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
 
         # If this isn't the last block in the set evaluated
         elif block_id_index != len(blocks) - 1:
@@ -183,7 +178,8 @@ class Navigator:
         if last_block_id == last_routing_block_id:
             return True
 
-        routing_block_id_index = next(index for (index, b) in enumerate(blocks) if b['block']["id"] == last_routing_block_id)
+        routing_block_id_index = next(
+            index for (index, b) in enumerate(blocks) if b['block']["id"] == last_routing_block_id)
 
         last_routing_block = blocks[routing_block_id_index]['block']
 
@@ -191,7 +187,7 @@ class Navigator:
             for rule in last_routing_block['routing_rules']:
                 goto_rule = rule['goto']
                 if 'id' in goto_rule.keys() and goto_rule['id'] == 'summary':
-                    return evaluate_goto(goto_rule, self.answer_store, 0)
+                    return evaluate_goto(goto_rule, self.metadata, self.answer_store, 0)
         return False
 
     def get_location_path(self):
@@ -204,10 +200,10 @@ class Navigator:
 
         # Make sure we don't update original
         location_path = [{
-            "block_id": block_id,
-            "group_id": self.first_group_id,
-            "group_instance": 0,
-        } for block_id in Navigator.PRECEEDING_INTERSTITIAL_PATH]
+                             "block_id": block_id,
+                             "group_id": self.first_group_id,
+                             "group_instance": 0,
+                         } for block_id in Navigator.PRECEEDING_INTERSTITIAL_PATH]
 
         location_path += routing_path
 
@@ -234,10 +230,10 @@ class Navigator:
         blocks = []
         for group in self.survey_json['groups']:
             blocks.extend([{
-                "group_id": group['id'],
-                "group_instance": 0,
-                "block": block,
-            } for block in group['blocks']])
+                               "group_id": group['id'],
+                               "group_instance": 0,
+                               "block": block,
+                           } for block in group['blocks']])
 
             if 'routing_rules' in group:
                 for rule in group['routing_rules']:
@@ -245,10 +241,10 @@ class Navigator:
                         no_of_times = evaluate_repeat(rule['repeat'], self.answer_store)
                         for i in range(1, no_of_times):
                             blocks.extend([{
-                                "group_id": group['id'],
-                                "group_instance": i,
-                                "block": block,
-                            } for block in group['blocks']])
+                                               "group_id": group['id'],
+                                               "group_instance": i,
+                                               "block": block,
+                                           } for block in group['blocks']])
         return blocks
 
     @classmethod

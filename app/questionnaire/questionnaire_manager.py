@@ -43,7 +43,7 @@ class QuestionnaireManager(object):
             return True
 
     def validate_all_answers(self):
-        navigator = Navigator(self._json, get_answer_store(current_user))
+        navigator = Navigator(self._json, get_metadata(current_user), get_answer_store(current_user))
 
         for location in navigator.get_location_path():
             answers = get_answers(current_user)

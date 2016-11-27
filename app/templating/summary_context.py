@@ -16,7 +16,7 @@ def build_summary_rendering_context(schema_json, answer_store, metadata):
     :param metadata: all of the metadata
     :return: questionnaire summary context
     """
-    navigator = Navigator(schema_json, answer_store)
+    navigator = Navigator(schema_json, metadata, answer_store)
     path = navigator.get_routing_path()
     sections = []
     for group in schema_json['groups']:

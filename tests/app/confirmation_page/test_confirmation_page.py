@@ -15,7 +15,7 @@ class TestConfirmationPage(unittest.TestCase):
         answer_store = AnswerStore()
         answer_store.add(answer)
 
-        navigator = Navigator(load_schema_file("0_rogue_one.json"), answer_store)
+        navigator = Navigator(load_schema_file("0_rogue_one.json"), {}, answer_store)
         next_location = navigator.get_next_location(current_block_id=last_block_id)
 
         self.assertEqual('summary', next_location['block_id'])

@@ -78,7 +78,7 @@ def login():
 
     json, _ = get_schema()
 
-    navigator = Navigator(json, get_answer_store(current_user))
+    navigator = Navigator(json, get_metadata(current_user), get_answer_store(current_user))
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     if current_location['block_id'] == 'introduction':
