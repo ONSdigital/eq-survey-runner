@@ -363,7 +363,7 @@
                         },
                         {
                             "goto": {
-                                "id": "number-of-bedrooms",
+                                "id": "self-contained-accommodation",
                                 "when": {
                                     "id" : "type-of-accommodation-answer",
                                     "condition": "equals",
@@ -642,12 +642,7 @@
                         },
                         {
                             "goto": {
-                                "id" : "number-of-vehicles",
-                                "when": {
-                                    "id" : "own-or-rent-answer",
-                                    "condition": "equals",
-                                    "value":""
-                                }
+                                "id" : "landlord"
                             }
                         }
                     ]
