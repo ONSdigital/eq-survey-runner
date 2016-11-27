@@ -94,6 +94,9 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     next_group_id = None if next_location is None else next_location['group_id']
     next_group_instance = None if next_location is None else next_location['group_instance']
 
+    if next_block_id == 'confirmation':
+        return redirect_to_confirmation(eq_id, form_type, collection_id)
+
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
     return redirect(block_url(eq_id, form_type, collection_id, next_group_id, next_group_instance, next_block_id))
@@ -279,6 +282,10 @@ def redirect_to_summary(eq_id, form_type, collection_id):
 
 def redirect_to_thank_you(eq_id, form_type, collection_id):
     return redirect(interstitial_url(eq_id, form_type, collection_id, 'thank-you'))
+
+
+def redirect_to_confirmation(eq_id, form_type, collection_id):
+    return redirect(interstitial_url(eq_id, form_type, collection_id, 'confirmation'))
 
 
 def interstitial_url(eq_id, form_type, collection_id, block_id):
