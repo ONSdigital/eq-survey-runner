@@ -43,16 +43,22 @@ class Questionnaire(object):
             raise QuestionnaireException('{} is a duplicate id'.format(item.id))
 
         self.items_by_id[item.id] = item
-        self._register_alias(item)
 
         # Build the two-way relationship
         item.questionnaire = self
+
+    def register_aliases(self):
+        for item in self.items_by_id.values():
+            self._register_alias(item)
 
     def _register_alias(self, item):
         # Register the alias if the item has one
         if isinstance(item, Answer) and item.alias is not None:
             if item.alias not in self.aliases.keys():
-                self.aliases[item.alias] = item.id
+                self.aliases[item.alias] = {
+                    "answer_id": item.id,
+                    "repeats": item.type == 'Checkbox' or item.container.type == 'RepeatingAnswer',
+                }
             elif self.aliases[item.alias] != item.id:
                 raise QuestionnaireException('{} is not a unique alias'.format(item.alias))
 

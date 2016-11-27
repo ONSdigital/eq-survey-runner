@@ -57,7 +57,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
     answers = answer_store.map(group_id=group_id, group_instance=group_instance, block_id=block_id)
 
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
-    q_manager.build_state(block_id, answers)
+    q_manager.build_state(block_id, answers, group_instance)
 
     block = g.schema.get_item_by_id(block_id)
     template = block.type if block and block.type else 'questionnaire'
@@ -152,7 +152,7 @@ def get_summary(eq_id, form_type, collection_id):
 
     if latest_location['block_id'] is 'summary':
         metadata = get_metadata(current_user)
-        answers = get_answers(current_user)
+        answers = get_answer_store(current_user)
         schema_context = build_schema_context(metadata, g.schema.aliases, answers)
         rendered_schema_json = renderer.render(g.schema_json, **schema_context)
         summary_context = build_summary_rendering_context(rendered_schema_json, answer_store, metadata)

@@ -124,6 +124,8 @@ class SchemaParser(AbstractSchemaParser):
             # re-use the parse validation method
             self._parse_validation(questionnaire, self._schema)
 
+        questionnaire.register_aliases()
+
         return questionnaire
 
     @staticmethod

@@ -30,13 +30,14 @@
                                   "display": {
                                       "properties": {}
                                   },
-                                  "id": "question",
+                                  "id": "household-composition-question",
                                   "title": "Who usually lives here?",
                                   "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
                                   "type": "RepeatingAnswer",
                                   "validation": [],
                                   "answers": [
                                     {
+                                        "alias": "person_full_name",
                                         "display": {},
                                         "id": "household-full-name",
                                         "label": "Full Name",
@@ -44,7 +45,8 @@
                                         "options": [],
                                         "q_code": "1",
                                         "type": "Textfield",
-                                        "validation": {}
+                                        "validation": {},
+                                        "repeats": true
                                     }
                                   ]
 
@@ -69,7 +71,7 @@
             "id": "repeating-block-1",
             "title": "Block 2",
             "sections": [{
-                "title": "Repeating Section",
+                "title": "{{answers.person_full_name[group_instance]}}",
                 "description": "",
                 "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
                 "questions": [{
@@ -80,7 +82,7 @@
                     "answers": [{
                         "q_code": "3",
                         "guidance": "",
-                        "id": "680f2ff9-d5a5-4057-b1cd-9fde2660b244",
+                        "id": "what-is-your-age",
                         "label": "What is their age?",
                         "mandatory": true,
                         "type": "PositiveInteger",
@@ -96,7 +98,7 @@
             "id": "repeating-block-2",
             "title": "Block 3",
             "sections": [{
-                "title": "Repeating Section",
+                "title": "{{answers.person_full_name[group_instance]}}",
                 "description": "",
                 "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
                 "questions": [{
@@ -107,7 +109,7 @@
                     "answers": [{
                         "q_code": "4",
                         "guidance": "",
-                        "id": "5667e5eb-f9d3-4482-9257-edf752000708",
+                        "id": "what-is-your-shoe-size",
                         "label": "What is their shoe size?",
                         "mandatory": true,
                         "type": "PositiveInteger",
