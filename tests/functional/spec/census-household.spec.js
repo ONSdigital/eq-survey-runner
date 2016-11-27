@@ -78,7 +78,7 @@ import ThankYou from '../pages/thank-you.page'
 
 const expect = chai.expect
 
-describe('Example Test', function () {
+describe('Census Household', function () {
 
     const openAndStartQuestionnaire = (schema, sexual_identity = false, region = 'GB-ENG') => {
         devPage.open()
