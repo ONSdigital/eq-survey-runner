@@ -12,7 +12,7 @@ class DateOfBirthPage extends QuestionPage {
   }
 
   setDateOfBirthAnswerMonth(value) {
-    browser.setValue('[name="date-of-birth-answer-month"]', value)
+    browser.selectByValue('[name="date-of-birth-answer-month"]', value)
     return this
   }
 

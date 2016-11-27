@@ -103,7 +103,7 @@ describe('Example Test', function () {
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
         Sex.clickSexAnswerMale().submit()
-        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerYear(1980).submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
         Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
@@ -129,7 +129,7 @@ describe('Example Test', function () {
         NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
         VisitorName.setVisitorNameAnswer("Jane Doe").submit()
         VisitorSex.clickVisitorSexAnswerFemale().submit()
-        VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerYear(1990).submit()
+        VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(5).setVisitorDateOfBirthAnswerYear(1990).submit()
         VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
         VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
 
