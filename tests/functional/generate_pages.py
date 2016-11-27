@@ -148,20 +148,20 @@ def process_block(block, dir_out, spec_out):
     logger.info("Creating %s...", page_path)
 
     with open(page_path, 'w') as page_spec:
-        muntiple_choice_check = find_kv(block, 'type', ['Radio', 'Checkbox'])
+        multiple_choice_check = find_kv(block, 'type', ['Radio', 'Checkbox'])
 
         page_name = generate_camel_case_from_id(block['id'])
 
         header = HEADER
-        header = header.replace("{basePage}", "QuestionPage" if not muntiple_choice_check else "MultipleChoiceWithOtherPage")
-        header = header.replace("{basePageFile}", "question.page" if not muntiple_choice_check else "multiple-choice.page")
+        header = header.replace("{basePage}", "QuestionPage" if not multiple_choice_check else "MultipleChoiceWithOtherPage")
+        header = header.replace("{basePageFile}", "question.page" if not multiple_choice_check else "multiple-choice.page")
 
         page_spec.write(header)
 
         class_name = CLASS_NAME
         class_name = class_name.replace("{pageName}", page_name)
-        class_name = class_name.replace("{basePage}", "QuestionPage" if not muntiple_choice_check else "MultipleChoiceWithOtherPage")
-        class_name = class_name.replace("{basePageFile}", "question.page" if not muntiple_choice_check else "multiple-choice.page")
+        class_name = class_name.replace("{basePage}", "QuestionPage" if not multiple_choice_check else "MultipleChoiceWithOtherPage")
+        class_name = class_name.replace("{basePageFile}", "question.page" if not multiple_choice_check else "multiple-choice.page")
 
         page_spec.write(class_name)
 
