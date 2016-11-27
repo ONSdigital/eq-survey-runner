@@ -13,7 +13,7 @@ import {startQuestionnaire} from '../helpers'
 
 """
 
-SPEC_PAGE_IMPORT = r"""import {pageName} from '../pages/surveys/census/household/{pageFile}'
+SPEC_PAGE_IMPORT = r"""import {pageName} from '{pageDir}{pageFile}'
 """
 
 SPEC_CHAI_HEADER = r"""
@@ -172,6 +172,7 @@ def process_block(block, dir_out, spec_out):
 
         with open(spec_out, 'a') as template_spec:
             header = SPEC_PAGE_IMPORT
+            header = header.replace("{pageDir}", dir_out)
             header = header.replace("{pageName}", page_name)
             header = header.replace("{pageFile}", page_filename)
             template_spec.write(header)
