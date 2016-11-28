@@ -78,7 +78,7 @@
                     "title": "Who lives here?",
                     "sections": [
                         {
-                            "id": "else-permanent-or-family-home_section",
+                            "id": "else-permanent-or-family-home-section",
                             "title": "Who lives here?",
                             "questions": [
                                 {
@@ -209,7 +209,7 @@
                                 "when": {
                                     "id" : "everyone-at-address-confirmation-answer",
                                     "condition": "equals",
-                                    "value":"Not"
+                                    "value":"No - I need to add another person"
                                 }
                             }
                         }
@@ -1242,6 +1242,16 @@
                                     "value":"No"
                                 }
                             }
+                        },
+                        {
+                            "goto": {
+                                "id" : "term-time-location",
+                                "when": {
+                                    "id" : "in-education-answer",
+                                    "condition": "equals",
+                                    "value":"Yes"
+                                }
+                            }
                         }
                     ]
                 },
@@ -1466,6 +1476,11 @@
                                     "condition": "equals",
                                     "value":"Northern Ireland"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id" : "arrive-in-uk"
                             }
                         }
                     ]
@@ -3385,7 +3400,7 @@
                                                 }
                                             ],
                                             "q_code": "20",
-                                            "type": "Checkbox"
+                                            "type": "Radio"
                                         }
                                     ]
                                 }
