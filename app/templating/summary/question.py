@@ -16,7 +16,7 @@ class Question:
     def is_skipped(self, all_answers):
         if self.skip_condition is not None:
             answer = all_answers.get(self.skip_condition['when']['id'])
-            return evaluate_rule(self.skip_condition, answer)
+            return evaluate_rule(self.skip_condition['when'], answer)
 
         return False
 

@@ -60,14 +60,14 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "who-lives-at-this-address",
+                                "id": "household-composition",
                                 "when": {
-                                    "id" : "permanent-or-family-home-answer",
+                                    "id": "permanent-or-family-home-answer",
                                     "condition": "equals",
-                                    "value":"Yes"
+                                    "value": "Yes"
                                 }
                             }
                         },
@@ -75,9 +75,9 @@
                             "goto": {
                                 "id": "else-permanent-or-family-home",
                                 "when": {
-                                    "id" : "permanent-or-family-home-answer",
+                                    "id": "permanent-or-family-home-answer",
                                     "condition": "equals",
-                                    "value":"No"
+                                    "value": "No"
                                 }
                             }
                         }
@@ -130,14 +130,14 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "who-lives-at-this-address",
+                                "id": "household-composition",
                                 "when": {
-                                    "id" : "else-permanent-or-family-home-answer",
+                                    "id": "else-permanent-or-family-home-answer",
                                     "condition": "equals",
-                                    "value":"Yes"
+                                    "value": "Yes"
                                 }
                             }
                         },
@@ -145,24 +145,24 @@
                             "goto": {
                                 "id": "overnight-visitors",
                                 "when": {
-                                    "id" : "else-permanent-or-family-home-answer",
+                                    "id": "else-permanent-or-family-home-answer",
                                     "condition": "equals",
-                                    "value":"No"
+                                    "value": "No"
                                 }
                             }
                         }
                     ]
                 },
                 {
-                    "id": "who-lives-at-this-address",
+                    "id": "household-composition",
                     "title": "Who lives here?",
                     "sections": [
                         {
-                            "id": "who-lives-at-this-address-section",
+                            "id": "household-composition-section",
                             "title": "Who lives here?",
                             "questions": [
                                 {
-                                    "id": "who-lives-at-this-address-question",
+                                    "id": "household-composition-question",
                                     "title": "2. List the names of everyone who lives at this address",
                                     "guidance": [
                                         {
@@ -175,10 +175,10 @@
                                              ]
                                         }
                                     ],
-                                    "type": "General",
+                                    "type": "RepeatingAnswer",
                                     "answers": [
                                         {
-                                            "id": "who-lives-at-this-address-answer",
+                                            "id": "household-composition-answer",
                                             "mandatory": false,
                                             "q_code": "20",
                                             "type": "TextField"
@@ -236,22 +236,22 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "overnight-visitors",
+                                "id": "overnight-visitors",
                                 "when": {
-                                    "id" : "everyone-at-address-confirmation-answer",
+                                    "id": "everyone-at-address-confirmation-answer",
                                     "condition": "equals",
-                                    "value":"Yes"
+                                    "value": "Yes"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id": "who-lives-at-this-address",
+                                "id": "household-composition",
                                 "when": {
-                                    "id" : "everyone-at-address-confirmation-answer",
+                                    "id": "everyone-at-address-confirmation-answer",
                                     "condition": "equals",
                                     "value":"No - I need to add another person"
                                 }
@@ -393,14 +393,14 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "type-of-house",
+                                "id": "type-of-house",
                                 "when": {
-                                    "id" : "type-of-accommodation-answer",
+                                    "id": "type-of-accommodation-answer",
                                     "condition": "equals",
-                                    "value":"Whole house or bungalow"
+                                    "value": "Whole house or bungalow"
                                 }
                             }
                         },
@@ -408,9 +408,9 @@
                             "goto": {
                                 "id": "type-of-flat",
                                 "when": {
-                                    "id" : "type-of-accommodation-answer",
+                                    "id": "type-of-accommodation-answer",
                                     "condition": "equals",
-                                    "value":"Flat, maisonette or apartment"
+                                    "value": "Flat, maisonette or apartment"
                                 }
                             }
                         },
@@ -418,9 +418,9 @@
                             "goto": {
                                 "id": "self-contained-accommodation",
                                 "when": {
-                                    "id" : "type-of-accommodation-answer",
+                                    "id": "type-of-accommodation-answer",
                                     "condition": "equals",
-                                    "value":"Caravan or other mobile or temporary structure"
+                                    "value": "Caravan or other mobile or temporary structure"
                                 }
                             }
                         }
@@ -464,10 +464,10 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "self-contained-accommodation"
+                                "id": "self-contained-accommodation"
                             }
                         }
                     ]
@@ -680,24 +680,24 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "number-of-vehicles",
+                                "id": "number-of-vehicles",
                                 "when": {
-                                    "id" : "own-or-rent-answer",
+                                    "id": "own-or-rent-answer",
                                     "condition": "equals",
-                                    "value":"Owns outright"
+                                    "value": "Owns outright"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "number-of-vehicles",
+                                "id": "number-of-vehicles",
                                 "when": {
-                                    "id" : "own-or-rent-answer",
+                                    "id": "own-or-rent-answer",
                                     "condition": "equals",
-                                    "value":"Owns with a mortgage or loan"
+                                    "value": "Owns with a mortgage or loan"
                                 }
                             }
                         },
@@ -875,14 +875,14 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "sex",
+                                "id": "sex",
                                 "when": {
-                                    "id" : "details-correct-answer",
+                                    "id": "details-correct-answer",
                                     "condition": "equals",
-                                    "value":"Yes - this is my full name"
+                                    "value": "Yes - this is my full name"
                                 }
                             }
                         }
@@ -1113,40 +1113,40 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "other-address",
+                                "id": "other-address",
                                 "when": {
-                                    "id" : "another-address-answer",
+                                    "id": "another-address-answer",
                                     "condition": "equals",
-                                    "value":"Yes, an address within the UK"
+                                    "value": "Yes, an address within the UK"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "in-education",
+                                "id": "in-education",
                                 "when": {
-                                    "id" : "another-address-answer",
+                                    "id": "another-address-answer",
                                     "condition": "equals",
-                                    "value":"No"
+                                    "value": "No"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "in-education",
+                                "id": "in-education",
                                 "when": {
-                                    "id" : "another-address-answer",
+                                    "id": "another-address-answer",
                                     "condition": "equals",
-                                    "value":""
+                                    "value": ""
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "address-type"
+                                "id": "address-type"
                             }
                         }
                     ]
@@ -1297,24 +1297,14 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "country-of-birth",
+                                "id": "country-of-birth",
                                 "when": {
-                                    "id" : "in-education-answer",
+                                    "id": "in-education-answer",
                                     "condition": "equals",
-                                    "value":"No"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
-                                "id" : "term-time-location",
-                                "when": {
-                                    "id" : "in-education-answer",
-                                    "condition": "equals",
-                                    "value":"Yes"
+                                    "value": "No"
                                 }
                             }
                         }
@@ -1354,14 +1344,14 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "household-member-completed",
+                                "id": "household-member-completed",
                                 "when": {
-                                    "id" : "term-time-location-answer",
+                                    "id": "term-time-location-answer",
                                     "condition": "equals",
-                                    "value":"at another address"
+                                    "value": "at another address"
                                 }
                             }
                         }
@@ -1415,7 +1405,14 @@
                                             "q_code": "20",
                                             "type": "Radio"
                                         }
-                                    ]
+                                    ],
+                                    "skip_condition": {
+                                        "when": {
+                                            "meta": "region_code",
+                                            "condition": "equals",
+                                            "value": "GB-WLS"
+                                        }
+                                    }
                                 },
                                 {
                                     "id": "country-of-birth-wales-question",
@@ -1457,95 +1454,97 @@
                                             "q_code": "20",
                                             "type": "Radio"
                                         }
-                                    ]
+                                    ],
+                                    "skip_condition": {
+                                        "when": {
+                                            "meta": "region_code",
+                                            "condition": "not equals",
+                                            "value": "GB-WLS"
+                                        }
+                                    }
                                 }
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "carer",
+                                "id": "carer",
                                 "when": {
-                                    "id" : "country-of-birth-england-answer",
+                                    "id": "country-of-birth-england-answer",
                                     "condition": "equals",
-                                    "value":"England"
+                                    "value": "England"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "carer",
+                                "id": "carer",
                                 "when": {
-                                    "id" : "country-of-birth-england-answer",
+                                    "id": "country-of-birth-england-answer",
                                     "condition": "equals",
-                                    "value":"Wales"
+                                    "value": "Wales"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "carer",
+                                "id": "carer",
                                 "when": {
-                                    "id" : "country-of-birth-england-answer",
+                                    "id": "country-of-birth-england-answer",
                                     "condition": "equals",
-                                    "value":"Scotland"
+                                    "value": "Scotland"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "carer",
+                                "id": "carer",
                                 "when": {
-                                    "id" : "country-of-birth-england-answer",
+                                    "id": "country-of-birth-england-answer",
                                     "condition": "equals",
-                                    "value":"Northern Ireland"
+                                    "value": "Northern Ireland"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "carer",
+                                "id": "carer",
                                 "when": {
-                                    "id" : "country-of-birth-wales-answer",
+                                    "id": "country-of-birth-wales-answer",
                                     "condition": "equals",
-                                    "value":"Wales"
+                                    "value": "Wales"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "carer",
+                                "id": "carer",
                                 "when": {
-                                    "id" : "country-of-birth-wales-answer",
+                                    "id": "country-of-birth-wales-answer",
                                     "condition": "equals",
-                                    "value":"England"
+                                    "value": "England"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "carer",
+                                "id": "carer",
                                 "when": {
-                                    "id" : "country-of-birth-wales-answer",
+                                    "id": "country-of-birth-wales-answer",
                                     "condition": "equals",
-                                    "value":"Scotland"
+                                    "value": "Scotland"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "carer",
+                                "id": "carer",
                                 "when": {
-                                    "id" : "country-of-birth-wales-answer",
+                                    "id": "country-of-birth-wales-answer",
                                     "condition": "equals",
-                                    "value":"Northern Ireland"
+                                    "value": "Northern Ireland"
                                 }
-                            }
-                        },
-                        {
-                            "goto": {
-                                "id" : "arrive-in-uk"
                             }
                         }
                     ]
@@ -1774,54 +1773,54 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "white-ethnic-group",
+                                "id": "white-ethnic-group",
                                 "when": {
-                                    "id" : "ethnic-group-answer",
+                                    "id": "ethnic-group-answer",
                                     "condition": "equals",
-                                    "value":"White"
+                                    "value": "White"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "mixed-ethnic-group",
+                                "id": "mixed-ethnic-group",
                                 "when": {
-                                    "id" : "ethnic-group-answer",
+                                    "id": "ethnic-group-answer",
                                     "condition": "equals",
-                                    "value":"Mixed/ multiple ethnic groups"
+                                    "value": "Mixed/ multiple ethnic groups"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "asian-ethnic-group",
+                                "id": "asian-ethnic-group",
                                 "when": {
-                                    "id" : "ethnic-group-answer",
+                                    "id": "ethnic-group-answer",
                                     "condition": "equals",
-                                    "value":"Asian/ Asian British"
+                                    "value": "Asian/ Asian British"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "black-ethnic-group",
+                                "id": "black-ethnic-group",
                                 "when": {
-                                    "id" : "ethnic-group-answer",
+                                    "id": "ethnic-group-answer",
                                     "condition": "equals",
-                                    "value":"Black/African/ Caribbean/ Black British"
+                                    "value": "Black/African/ Caribbean/ Black British"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "other-ethnic-group",
+                                "id": "other-ethnic-group",
                                 "when": {
-                                    "id" : "ethnic-group-answer",
+                                    "id": "ethnic-group-answer",
                                     "condition": "equals",
-                                    "value":"Other ethnic group"
+                                    "value": "Other ethnic group"
                                 }
                             }
                         }
@@ -1872,10 +1871,20 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id": "sexual-identity"
+                                "id": "sexual-identity",
+                                "when": {
+                                    "meta" : "variant_flags.sexual_identity",
+                                    "condition": "equals",
+                                    "value":"true"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "understand-welsh"
                             }
                         }
                     ]
@@ -1925,10 +1934,20 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id": "sexual-identity"
+                                "id": "sexual-identity",
+                                "when": {
+                                    "meta" : "variant_flags.sexual_identity",
+                                    "condition": "equals",
+                                    "value":"true"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "understand-welsh"
                             }
                         }
                     ]
@@ -1982,10 +2001,20 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id": "sexual-identity"
+                                "id": "sexual-identity",
+                                "when": {
+                                    "meta" : "variant_flags.sexual_identity",
+                                    "condition": "equals",
+                                    "value":"true"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "understand-welsh"
                             }
                         }
                     ]
@@ -2031,10 +2060,20 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id": "sexual-identity"
+                                "id": "sexual-identity",
+                                "when": {
+                                    "meta" : "variant_flags.sexual_identity",
+                                    "condition": "equals",
+                                    "value":"true"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "understand-welsh"
                             }
                         }
                     ]
@@ -2074,6 +2113,23 @@
                                     ]
                                 }
                             ]
+                        }
+                    ],
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "sexual-identity",
+                                "when": {
+                                    "meta" : "variant_flags.sexual_identity",
+                                    "condition": "equals",
+                                    "value":"true"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "understand-welsh"
+                            }
                         }
                     ]
                 },
@@ -2205,7 +2261,14 @@
                                             "q_code": "20",
                                             "type": "Radio"
                                         }
-                                    ]
+                                    ],
+                                    "skip_condition": {
+                                        "when": {
+                                            "meta": "region_code",
+                                            "condition": "equals",
+                                            "value": "GB-WLS"
+                                        }
+                                    }
                                 },
                                 {
                                     "id": "language-welsh-question",
@@ -2232,29 +2295,36 @@
                                             "q_code": "20",
                                             "type": "Radio"
                                         }
-                                    ]
+                                    ],
+                                    "skip_condition": {
+                                        "when": {
+                                            "meta": "region_code",
+                                            "condition": "not equals",
+                                            "value": "GB-WLS"
+                                        }
+                                    }
                                 }
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "religion",
+                                "id": "religion",
                                 "when": {
-                                    "id" : "language-answer",
+                                    "id": "language-answer",
                                     "condition": "equals",
-                                    "value":"English"
+                                    "value": "English"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "religion",
+                                "id": "religion",
                                 "when": {
-                                    "id" : "language-welsh-answer",
+                                    "id": "language-welsh-answer",
                                     "condition": "equals",
-                                    "value":"English or Welsh"
+                                    "value": "English or Welsh"
                                 }
                             }
                         }
@@ -2359,7 +2429,14 @@
                                             "q_code": "20",
                                             "type": "Checkbox"
                                         }
-                                    ]
+                                    ],
+                                    "skip_condition": {
+                                        "when": {
+                                            "meta": "region_code",
+                                            "condition": "equals",
+                                            "value": "GB-WLS"
+                                        }
+                                    }
                                 },
                                 {
                                     "id": "religion-welsh-question",
@@ -2409,7 +2486,14 @@
                                             "q_code": "20",
                                             "type": "Checkbox"
                                         }
-                                    ]
+                                    ],
+                                    "skip_condition": {
+                                        "when": {
+                                            "meta": "region_code",
+                                            "condition": "not equals",
+                                            "value": "GB-WLS"
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -2460,30 +2544,30 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "last-year-address",
+                                "id": "last-year-address",
                                 "when": {
-                                    "id" : "past-usual-address-answer",
+                                    "id": "past-usual-address-answer",
                                     "condition": "equals",
-                                    "value":"Student term time or boarding school address in the UK"
+                                    "value": "Student term time or boarding school address in the UK"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "last-year-address",
+                                "id": "last-year-address",
                                 "when": {
-                                    "id" : "past-usual-address-answer",
+                                    "id": "past-usual-address-answer",
                                     "condition": "equals",
-                                    "value":"Another address in the UK"
+                                    "value": "Another address in the UK"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "passports"
+                                "id": "passports"
                             }
                         }
                     ]
@@ -2718,7 +2802,14 @@
                                             "q_code": "20",
                                             "type": "Checkbox"
                                         }
-                                    ]
+                                    ],
+                                    "skip_condition": {
+                                        "when": {
+                                            "meta": "region_code",
+                                            "condition": "equals",
+                                            "value": "GB-WLS"
+                                        }
+                                    }
                                 },
                                 {
                                     "id": "qualifications-welsh-question",
@@ -2798,7 +2889,14 @@
                                             "q_code": "20",
                                             "type": "Checkbox"
                                         }
-                                    ]
+                                    ],
+                                    "skip_condition": {
+                                        "when": {
+                                            "meta": "region_code",
+                                            "condition": "not equals",
+                                            "value": "GB-WLS"
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -2912,20 +3010,20 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "jobseeker",
+                                "id": "jobseeker",
                                 "when": {
-                                    "id" : "employment-type-answer",
+                                    "id": "employment-type-answer",
                                     "condition": "equals",
-                                    "value":"none of the above"
+                                    "value": "none of the above"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id" : "household-member-completed"
+                                "id": "household-member-completed"
                             }
                         }
                     ]
@@ -3283,7 +3381,6 @@
                                                     "label": "Not working for an organisation",
                                                     "value": "Not working for an organisation",
                                                     "description": "For example self-employed freelance or work (worked) for a private individual"
-
                                                 }
                                             ],
                                             "q_code": "20",
@@ -3294,14 +3391,14 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "household-member-completed",
+                                "id": "household-member-completed",
                                 "when": {
-                                    "id" : "main-job-type-answer",
+                                    "id": "main-job-type-answer",
                                     "condition": "equals",
-                                    "value":"Not working for an organisation"
+                                    "value": "Not working for an organisation"
                                 }
                             }
                         }
@@ -3517,7 +3614,7 @@
                                                 }
                                             ],
                                             "q_code": "20",
-                                            "type": "Radio"
+                                            "type": "Checkbox"
                                         }
                                     ]
                                 }

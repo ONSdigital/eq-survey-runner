@@ -30,6 +30,16 @@ class DevPage {
     return this
   }
 
+  setRegionCode(region) {
+    browser.selectByValue('.qa-region-code', region)
+    return this
+  }
+
+  checkSexualIdentity() {
+    browser.click('.qa-sexual-identity')
+    return this
+  }
+
   submit() {
     browser.click('.qa-btn-submit-dev')
     return this

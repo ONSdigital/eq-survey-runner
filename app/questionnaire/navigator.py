@@ -6,14 +6,13 @@ from app.helpers.schema_helper import SchemaHelper
 logger = logging.getLogger(__name__)
 
 
-def evaluate_rule(rule, answer_value):
+def evaluate_rule(when, answer_value):
     """
     Determine whether a rule will be satisfied based on a given answer
-    :param rule:
+    :param when:
     :param answer_value:
     :return:
     """
-    when = rule['when']
     match_value = when['value']
     condition = when['condition']
 
@@ -25,21 +24,53 @@ def evaluate_rule(rule, answer_value):
     return False
 
 
-def evaluate_goto(goto_rule, answers, group_instance):
+def evaluate_goto(goto_rule, metadata, answers, group_instance):
     """
     Determine whether a goto rule will be satisfied based on a given answer
     :param goto_rule:
+    :param metadata
     :param answers:
     :param group_instance:
     :return:
     """
     if 'when' in goto_rule.keys():
-        answer_index = goto_rule['when']['id']
-        filtered = answers.filter(answer_id=answer_index, group_instance=group_instance)
-        if len(filtered) == 1:
-            return evaluate_rule(goto_rule, filtered[0]['value'])
+
+        when = goto_rule['when']
+
+        if 'id' in when:
+            answer_index = when['id']
+            filtered = answers.filter(answer_id=answer_index, group_instance=group_instance)
+            if len(filtered) == 1:
+                return evaluate_rule(when, filtered[0]['value'])
+
+        elif 'meta' in when:
+            key = when['meta']
+            value = get_metadata_value(metadata, key)
+            return evaluate_rule(when, value)
+
         return False
     return True
+
+
+def get_metadata_value(metadata, keys):
+    if not _contains_in_dict(metadata, keys):
+        return None
+
+    if "." in keys:
+        key, rest = keys.split(".", 1)
+        return get_metadata_value(metadata[key], rest)
+    else:
+        return metadata[keys]
+
+
+def _contains_in_dict(metadata, keys):
+    if "." in keys:
+        key, rest = keys.split(".", 1)
+        if key not in metadata:
+            return False
+        return _contains_in_dict(metadata[key], rest)
+    else:
+        return keys in metadata
 
 
 def evaluate_repeat(repeat_rule, answers):
@@ -64,8 +95,9 @@ class Navigator:
     PRECEEDING_INTERSTITIAL_PATH = ['introduction']
     CLOSING_INTERSTITIAL_PATH = ['summary', 'thank-you']
 
-    def __init__(self, survey_json, answer_store=None):
+    def __init__(self, survey_json, metadata, answer_store=None):
         self.answer_store = answer_store or AnswerStore()
+        self.metadata = metadata
         self.survey_json = survey_json
 
         self.first_block_id = SchemaHelper.get_first_block_id(self.survey_json)
@@ -109,8 +141,9 @@ class Navigator:
         if 'routing_rules' in block and len(block['routing_rules']) > 0:
             for rule in block['routing_rules']:
                 is_goto_rule = 'goto' in rule and 'when' in rule['goto'].keys() or 'id' in rule['goto'].keys()
-                if is_goto_rule and evaluate_goto(rule['goto'], self.answer_store, group_instance):
+                if is_goto_rule and evaluate_goto(rule['goto'], self.metadata, self.answer_store, group_instance):
                     return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
+
         # If this isn't the last block in the set evaluated
         elif block_id_index != len(blocks) - 1:
             next_block_id = blocks[block_id_index + 1]['block']['id']
@@ -151,7 +184,8 @@ class Navigator:
         if last_block_id == last_routing_block_id:
             return True
 
-        routing_block_id_index = next(index for (index, b) in enumerate(blocks) if b['block']["id"] == last_routing_block_id)
+        routing_block_id_index = next(
+            index for (index, b) in enumerate(blocks) if b['block']["id"] == last_routing_block_id)
 
         last_routing_block = blocks[routing_block_id_index]['block']
 
@@ -159,7 +193,7 @@ class Navigator:
             for rule in last_routing_block['routing_rules']:
                 goto_rule = rule['goto']
                 if 'id' in goto_rule.keys() and goto_rule['id'] == 'summary':
-                    return evaluate_goto(goto_rule, self.answer_store, 0)
+                    return evaluate_goto(goto_rule, self.metadata, self.answer_store, 0)
         return False
 
     def get_location_path(self):
