@@ -2,6 +2,7 @@ import logging
 
 from app.authentication.session_manager import session_manager
 from app.globals import get_answer_store, get_answers, get_completed_blocks, get_metadata, get_questionnaire_store
+from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.navigator import Navigator
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
 from app.submitter.submitter import SubmitterFactory
@@ -116,7 +117,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
     this_block = {
         'block_id': block_id,
-        'group_id': navigator.get_first_group_id(),
+        'group_id': SchemaHelper.get_first_group_id(g.schema_json),
         'group_instance': 0,
     }
 
@@ -327,7 +328,7 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     metadata_context = build_metadata_context(metadata)
 
     navigator = Navigator(g.schema_json, get_answer_store(current_user))
-    group_id = group_id or navigator.get_first_group_id()
+    group_id = group_id or SchemaHelper.get_first_group_id(g.schema_json)
 
     previous_location = navigator.get_previous_location(current_group_id=group_id,
                                                         current_block_id=block_id,
