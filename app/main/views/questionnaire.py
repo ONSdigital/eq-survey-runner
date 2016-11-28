@@ -105,11 +105,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 @questionnaire_blueprint.route('introduction', methods=["GET"])
 @login_required
 def get_introduction(eq_id, form_type, collection_id):
-    metadata = get_metadata(current_user)
-    answers = get_answers(current_user)
-    schema_json = _render_schema(g.schema_json, answers, metadata)
-
-    return _render_template(get_introduction_context(schema_json), block_id='introduction', rendered_schema_json=schema_json)
+    return _render_template(get_introduction_context(g.schema_json), block_id='introduction')
 
 
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
@@ -156,13 +152,13 @@ def get_summary(eq_id, form_type, collection_id):
     if latest_location['block_id'] is 'summary':
         metadata = get_metadata(current_user)
         answers = get_answers(current_user)
-        schema_json = _render_schema(g.schema_json, answers, metadata)
-        summary_context = build_summary_rendering_context(schema_json, answer_store, metadata)
+        schema_context = build_schema_context(metadata, g.schema.aliases, answers)
+        rendered_schema_json = renderer.render(g.schema_json, **schema_context)
+        summary_context = build_summary_rendering_context(rendered_schema_json, answer_store, metadata)
         return _render_template(summary_context,
                                 group_id=latest_location['group_id'],
                                 group_instance=latest_location['group_instance'],
-                                block_id=latest_location['block_id'],
-                                rendered_schema_json=schema_json)
+                                block_id=latest_location['block_id'])
 
     return redirect(block_url(eq_id, form_type, collection_id,
                               group_id=latest_location['group_id'],
@@ -179,15 +175,11 @@ def get_confirmation(eq_id, form_type, collection_id):
 
     if latest_location['block_id'] == 'confirmation':
         q_manager = get_questionnaire_manager(g.schema, g.schema_json)
-        metadata = get_metadata(current_user)
-        answers = get_answers(current_user)
-        schema_json = _render_schema(g.schema_json, answers, metadata)
 
         return _render_template(q_manager.state,
                                 group_id=latest_location['group_id'],
                                 group_instance=latest_location['group_instance'],
-                                block_id=latest_location['block_id'],
-                                rendered_schema_json=schema_json)
+                                block_id=latest_location['block_id'])
 
     return redirect(block_url(eq_id, form_type, collection_id,
                               group_id=latest_location['group_id'],
@@ -330,9 +322,8 @@ def _same_survey(eq_id, form_type, collection_id):
     return current_survey == metadata_survey
 
 
-def _render_template(context, group_id=None, group_instance=0, block_id=None, rendered_schema_json=None, template=None):
+def _render_template(context, group_id=None, group_instance=0, block_id=None, template=None):
     metadata = get_metadata(current_user)
-    answers = get_answers(current_user)
     metadata_context = build_metadata_context(metadata)
 
     navigator = Navigator(g.schema_json, get_answer_store(current_user))
@@ -341,7 +332,6 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, re
     previous_location = navigator.get_previous_location(current_group_id=group_id,
                                                         current_block_id=block_id,
                                                         current_iteration=group_instance)
-    schema_json = rendered_schema_json or _render_schema(g.schema_json, answers, metadata)
 
     previous_url = None
 
@@ -354,7 +344,7 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, re
                                  block_id=previous_location['block_id'])
 
     try:
-        theme = schema_json['theme']
+        theme = g.schema_json['theme']
         logger.debug("Theme selected: %s", theme)
     except KeyError:
         logger.info("No theme set")
@@ -365,9 +355,4 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, re
     return render_theme_template(theme, template, meta=metadata_context,
                                  content=context,
                                  previous_location=previous_url,
-                                 schema=schema_json)
-
-
-def _render_schema(schema_json, answers, metadata):
-    schema_context = build_schema_context(metadata, g.schema.aliases, answers)
-    return renderer.render(schema_json, **schema_context)
+                                 schema=g.schema_json)
