@@ -191,7 +191,7 @@ def process_schema(in_schema, out_dir, spec_out):
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
-        print("Usage: {} <schema.json> </outdir/>".format(sys.argv[0]))
+        print("Usage: {} <schema.json> </outdir/> <spec_out>".format(sys.argv[0]))
         print("Example: {} ./app/data/census_household.json ./tests/functional/pages/surveys/census/ ./tests/functional/spec/census-test.spec.js".format(sys.argv[0]))
         exit(1)
 

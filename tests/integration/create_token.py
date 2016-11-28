@@ -42,9 +42,11 @@ def create_token(form_type_id, eq_id, start_date=None, end_date=None, employment
         ru_name = RU_NAME
         trad_as = TRAD_AS
         return_by = RETURN_BY
+        variant_flags = None
 
         payload = create_payload(user, exp_time, eq_id, period_str, period_id,
                                  form_type, collection_exercise_sid, ref_p_start_date,
-                                 ref_p_end_date, ru_ref, ru_name, trad_as, return_by, ref_p_employment_date, region_code)
+                                 ref_p_end_date, ru_ref, ru_name, trad_as, return_by, ref_p_employment_date,
+                                 region_code, variant_flags)
 
         return generate_token(payload)

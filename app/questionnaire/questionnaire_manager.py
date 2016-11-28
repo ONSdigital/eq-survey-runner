@@ -43,7 +43,7 @@ class QuestionnaireManager(object):
             return True
 
     def validate_all_answers(self):
-        navigator = Navigator(self._json, get_answer_store(current_user))
+        navigator = Navigator(self._json, get_metadata(current_user), get_answer_store(current_user))
 
         for location in navigator.get_location_path():
             answers = get_answers(current_user)
@@ -110,9 +110,13 @@ class QuestionnaireManager(object):
 
             if hasattr(item.schema_item, 'skip_condition') and item.schema_item.skip_condition:
                 rule = item.schema_item.skip_condition.as_dict()
-                answer = get_answers(current_user).get(rule['when']['id'])
 
-                item.skipped = evaluate_rule(rule, answer)
+                if 'id' in rule['when'] and rule['when']['id']:
+                    answer = get_answers(current_user).get(rule['when']['id'])
+                    item.skipped = evaluate_rule(rule, answer)
+
+                # if 'meta' in rule['when'] and rule['when']['meta']:
+                #     item.skipped = evaluate_rule(rule, get_metadata(current_user))
 
             for child in item.children:
                 self._conditional_display(child)

@@ -1,7 +1,11 @@
 from unittest import TestCase
 
-from mock import MagicMock, patch
+from mock import MagicMock, Mock, patch
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
+from app.questionnaire_state.state_item import StateItem
+from app.schema.section import Section
+from app.schema.skip_condition import SkipCondition
+from app.schema.when import When
 
 
 class TestQuestionnaireManager(TestCase):
@@ -145,3 +149,47 @@ class TestQuestionnaireManager(TestCase):
     def tearDown(self):
         # Reset some behaviours.
         QuestionnaireManager.update_questionnaire_store = self.original_update_questionnaire_store
+
+    def test_conditional_display_skips_when_equals(self):
+
+        with patch('app.globals.get_answer_store') as get_answer_store:
+            answers = {'12345': 'yes'}
+            get_answer_store().map = Mock(return_value=answers)
+
+            skip = SkipCondition()
+            skip.when = When()
+
+            skip.when.id = '12345'
+            skip.when.condition = 'equals'
+            skip.when.value = 'yes'
+
+            section = Section()
+            section.skip_condition = skip
+
+            state_item = StateItem(id='', schema_item=section)
+
+            self.questionnaire_manager._conditional_display(state_item)
+
+            self.assertEqual(state_item.skipped, True)
+
+    def test_conditional_display_skips_when_not_equals(self):
+
+        with patch('app.globals.get_answer_store') as get_answer_store:
+            answers = {'12345': 'yes'}
+            get_answer_store().map = Mock(return_value=answers)
+
+            skip = SkipCondition()
+            skip.when = When()
+
+            skip.when.id = '12345'
+            skip.when.condition = 'not equals'
+            skip.when.value = 'no'
+
+            section = Section()
+            section.skip_condition = skip
+
+            state_item = StateItem(id='', schema_item=section)
+
+            self.questionnaire_manager._conditional_display(state_item)
+
+            self.assertEqual(state_item.skipped, True)

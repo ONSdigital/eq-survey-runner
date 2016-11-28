@@ -276,7 +276,8 @@ class SchemaParser(AbstractSchemaParser):
             when_schema = ParserUtils.get_required(skip_condition_schema, "when")
             when = When()
             when.condition = ParserUtils.get_required(when_schema, 'condition')
-            when.id = ParserUtils.get_required(when_schema, 'id')
+            when.id = ParserUtils.get_optional(when_schema, 'id')
+            when.meta = ParserUtils.get_optional(when_schema, 'meta')
             when.value = ParserUtils.get_required(when_schema, 'value')
             skip_condition.when = when
             return skip_condition

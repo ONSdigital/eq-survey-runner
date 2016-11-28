@@ -1,9 +1,11 @@
 import chai from 'chai'
-import {startQuestionnaire} from '../helpers'
+import {getRandomString} from '../helpers'
+import devPage from '../pages/dev.page'
+import landingPage from '../pages/landing.page'
 
 import PermanentOrFamilyHome from '../pages/surveys/census/household/permanent-or-family-home.page.js'
 import ElsePermanentOrFamilyHome from '../pages/surveys/census/household/else-permanent-or-family-home.page.js'
-import WhoLivesAtThisAddress from '../pages/surveys/census/household/who-lives-at-this-address.page.js'
+import HouseholdComposition from '../pages/surveys/census/household/household-composition.page.js'
 import EveryoneAtAddressConfirmation from '../pages/surveys/census/household/everyone-at-address-confirmation.page.js'
 import OvernightVisitors from '../pages/surveys/census/household/overnight-visitors.page.js'
 import HouseholdRelationships from '../pages/surveys/census/household/household-relationships.page.js'
@@ -76,14 +78,89 @@ import ThankYou from '../pages/thank-you.page'
 
 const expect = chai.expect
 
-describe('Example Test', function () {
+describe('Census Household', function () {
 
-    it('Given a census household survey, When i enter valid data, Then the survey should submit successfully', function () {
-        startQuestionnaire('census_household.json')
+    const openAndStartQuestionnaire = (schema, sexual_identity = false, region = 'GB-ENG') => {
+        devPage.open()
+            .setUserId(getRandomString(10))
+            .setCollectionId(getRandomString(10))
+            .setSchema(schema)
+            .setRegionCode(region)
+
+        if (sexual_identity)
+            devPage.checkSexualIdentity()
+
+        devPage.submit()
+        landingPage.getStarted()
+    }
+
+    it('Given Respondent Home has identified the respondent should have the Household Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function () {
+        openAndStartQuestionnaire('census_household.json')
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        WhoLivesAtThisAddress.setWhoLivesAtThisAddressAnswer("John Smith").submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
+        HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
+        TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
+        SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
+        NumberOfBedrooms.setNumberOfBedroomsAnswer(3).submit()
+        CentralHeating.clickCentralHeatingAnswerGas().submit()
+        OwnOrRent.clickOwnOrRentAnswerOwnsOutright().submit()
+        NumberOfVehicles.setNumberOfVehiclesAnswer(2).submit()
+        HouseholdAndAccommodationCompleted.submit()
+
+        // household-member
+        HouseholdMemberBegin.submit()
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
+        Over16.clickOver16AnswerYes().submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        // SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
+        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
+        Language.clickLanguageAnswerEnglish().submit()
+        Religion.clickReligionAnswerNoReligion().submit()
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        Disability.clickDisabilityAnswerNo().submit()
+        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        HouseholdMemberCompleted.submit()
+
+        // visitors
+        NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
+        VisitorName.setVisitorNameAnswer("Jane Doe").submit()
+        VisitorSex.clickVisitorSexAnswerFemale().submit()
+        VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(5).setVisitorDateOfBirthAnswerYear(1990).submit()
+        VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
+        VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+    })
+
+    it('Given Respondent Home has identified the respondent should have the Household Questionnaire with the sexual id question, When I complete the EQ, Then I should be asked the sexual id question', function () {
+        openAndStartQuestionnaire('census_household.json', true)
+
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -130,6 +207,68 @@ describe('Example Test', function () {
         VisitorName.setVisitorNameAnswer("Jane Doe").submit()
         VisitorSex.clickVisitorSexAnswerFemale().submit()
         VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(5).setVisitorDateOfBirthAnswerYear(1990).submit()
+        VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
+        VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+    })
+
+
+    it('Given a census household survey with welsh region, When i enter valid data, Then the survey should submit successfully', function () {
+        openAndStartQuestionnaire('census_household.json', false, 'GB-WLS')
+
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
+        HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
+        TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
+        SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
+        NumberOfBedrooms.setNumberOfBedroomsAnswer(3).submit()
+        CentralHeating.clickCentralHeatingAnswerGas().submit()
+        OwnOrRent.clickOwnOrRentAnswerOwnsOutright().submit()
+        NumberOfVehicles.setNumberOfVehiclesAnswer(2).submit()
+        HouseholdAndAccommodationCompleted.submit()
+
+        // household-member
+        HouseholdMemberBegin.submit()
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(4).setDateOfBirthAnswerYear(1980).submit()
+        Over16.clickOver16AnswerYes().submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthWalesAnswerWales().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        // SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
+        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
+        Language.clickLanguageWelshAnswerEnglishOrWelsh().submit()
+        Religion.clickReligionWelshAnswerNoReligion().submit()
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        Disability.clickDisabilityAnswerNo().submit()
+        Qualifications.clickQualificationsWelshAnswerUndergraduateDegree().submit()
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        HouseholdMemberCompleted.submit()
+
+        // visitors
+        NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
+        VisitorName.setVisitorNameAnswer("Jane Doe").submit()
+        VisitorSex.clickVisitorSexAnswerFemale().submit()
+        VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(7).setVisitorDateOfBirthAnswerYear(1990).submit()
         VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
         VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
 
