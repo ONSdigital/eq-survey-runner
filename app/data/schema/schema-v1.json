@@ -166,7 +166,6 @@
                                 "required": [
                                   "id",
                                   "q_code",
-                                  "label",
                                   "type",
                                   "mandatory"
                                 ]

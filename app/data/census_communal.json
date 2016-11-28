@@ -1,0 +1,61 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "",
+    "schema_version": "0.0.1",
+    "survey_id": "",
+    "title": "Census England Communal Schema",
+    "description": "Census England Communal Schema",
+    "theme": "census",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "census",
+    "groups": [
+        {
+            "id": "household-member",
+            "title": "Household Member Details",
+            "display": {
+                "properties": {}
+            },
+            "validation": [],
+            "blocks": [
+                {
+                    "type": "interstitial",
+                    "id": "household-member-begin",
+                    "title": "John Doe",
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [
+                        {
+                            "title": "John Doe",
+                            "validation": [],
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "household-member-begin-section",
+                            "questions": [
+                                {
+                                    "id": "household-member-begin-question",
+                                    "title": "1. The following questions are for:",
+                                    "type": "General",
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "answers": [],
+                                    "validation": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
