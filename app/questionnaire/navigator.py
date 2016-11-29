@@ -1,6 +1,7 @@
 import logging
 
 from app.data_model.answer_store import AnswerStore
+from app.helpers.schema_helper import SchemaHelper
 
 logger = logging.getLogger(__name__)
 
@@ -66,9 +67,10 @@ class Navigator:
     def __init__(self, survey_json, answer_store=None):
         self.answer_store = answer_store or AnswerStore()
         self.survey_json = survey_json
-        self.first_block_id = self.get_first_block_id()
-        self.first_group_id = self.get_first_group_id()
-        self.last_group_id = self.get_last_group_id()
+
+        self.first_block_id = SchemaHelper.get_first_block_id(self.survey_json)
+        self.first_group_id = SchemaHelper.get_first_group_id(self.survey_json)
+        self.last_group_id = SchemaHelper.get_last_group_id(self.survey_json)
         self.location_path = self.get_location_path()
 
     @classmethod
@@ -187,34 +189,23 @@ class Navigator:
 
         return location_path
 
-    def get_first_group_id(self):
-        return self.survey_json['groups'][0]['id']
-
-    def get_last_group_id(self):
-        return self.survey_json['groups'][-1]['id']
-
-    def get_first_block_id(self):
-        return self.survey_json['groups'][0]['blocks'][0]['id']
-
     def get_blocks(self):
         blocks = []
-        for group in self.survey_json['groups']:
+        for group_index, group in enumerate(SchemaHelper.get_groups(self.survey_json)):
             blocks.extend([{
                 "group_id": group['id'],
                 "group_instance": 0,
                 "block": block,
             } for block in group['blocks']])
 
-            if 'routing_rules' in group:
-                for rule in group['routing_rules']:
-                    if 'repeat' in rule.keys():
-                        no_of_times = evaluate_repeat(rule['repeat'], self.answer_store)
-                        for i in range(1, no_of_times):
-                            blocks.extend([{
-                                "group_id": group['id'],
-                                "group_instance": i,
-                                "block": block,
-                            } for block in group['blocks']])
+            for rule in SchemaHelper.get_repeat_rules(group):
+                no_of_times = evaluate_repeat(rule['repeat'], self.answer_store)
+                for i in range(1, no_of_times):
+                    blocks.extend([{
+                        "group_id": group['id'],
+                        "group_instance": i,
+                        "block": block,
+                    } for block in group['blocks']])
         return blocks
 
     @classmethod
@@ -277,6 +268,6 @@ class Navigator:
 
         return {
             'block_id': self.get_first_location(),
-            'group_id': self.get_first_group_id(),
+            'group_id': SchemaHelper.get_first_group_id(self.survey_json),
             'group_instance': 0,
         }

@@ -7,24 +7,6 @@ from app.data_model.answer_store import Answer, AnswerStore
 
 class TestNavigator(unittest.TestCase):
 
-    def test_first_block(self):
-        survey = load_schema_file("1_0102.json")
-
-        first_block_id = "5bce8d8f-0af8-4d35-b77d-744e6179b406"
-
-        navigator = Navigator(survey)
-
-        self.assertEqual(navigator.get_first_block_id(), first_block_id)
-
-    def test_first_group(self):
-        survey = load_schema_file("1_0102.json")
-
-        first_group_id = "07f40cd2-0704-4804-9f32-19309089a51b"
-
-        navigator = Navigator(survey)
-
-        self.assertEqual(navigator.get_first_group_id(), first_group_id)
-
     def test_next_block(self):
         survey = load_schema_file("1_0102.json")
 
@@ -370,6 +352,9 @@ class TestNavigator(unittest.TestCase):
     def test_next_location_empty_routing_rules(self):
         survey = load_schema_file("test_checkbox.json")
 
+        # Force some empty routing rules
+        survey['groups'][0]['blocks'][0]['routing_rules'] = []
+
         expected_path = [
           {"block_id": "introduction"},
           {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
@@ -398,9 +383,6 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_2)
 
         navigator = Navigator(survey, answers)
-
-        # Force some empty routing rules
-        navigator.survey_json['groups'][0]['blocks'][0]['routing_rules'] = []
 
         current_block_id = expected_path[1]["block_id"]
         expected_next_location = expected_path[2]
