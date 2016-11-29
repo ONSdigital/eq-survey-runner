@@ -95,9 +95,9 @@ class Navigator:
     PRECEEDING_INTERSTITIAL_PATH = ['introduction']
     CLOSING_INTERSTITIAL_PATH = ['summary', 'thank-you']
 
-    def __init__(self, survey_json, metadata, answer_store=None):
+    def __init__(self, survey_json, metadata=None, answer_store=None):
         self.answer_store = answer_store or AnswerStore()
-        self.metadata = metadata
+        self.metadata = metadata or {}
         self.survey_json = survey_json
 
         self.first_block_id = SchemaHelper.get_first_block_id(self.survey_json)
