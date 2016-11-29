@@ -84,13 +84,22 @@
                             "validation": []
                         },
                         {
-                            "description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (\u00a3) pound</p><h4>Include</h4><ul><li>VAT</li><li>Internet Sales</li></ul>",
+                            "description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (\u00a3) pound</p>",
                             "display": {
                                 "properties": {}
                             },
                             "id": "d9d25a21-41b8-42b2-ac7b-fb21b1036d71",
                             "questions": [
                                 {
+                                    "guidance": [
+                                        {
+                                            "title": "Include",
+                                            "list": [
+                                                "VAT",
+                                                "Internet Sales"
+                                            ]
+                                        }
+                                    ],
                                     "answers": [
                                         {
                                             "display": {},
@@ -349,13 +358,32 @@
                     "id": "2d24cb72-5598-4c3e-bd53-1d21bb12455f",
                     "sections": [
                         {
-                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> </div> <div> <h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li><b>working</b> owners who are not paid via PAYE</li></ul> </div>",
+                            "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                             "display": {
                                 "properties": {}
                             },
                             "id": "c528d24b-d0dd-45cd-91af-380b61a5725d",
                             "questions": [
                                 {
+                                    "guidance": [
+                                        {
+                                            "title": "Include",
+                                            "list": [
+                                                "all workers paid directly from this business\u2019s payroll(s)",
+                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude",
+                                            "list": [
+                                                "agency workers paid directly from the agency payroll",
+                                                "voluntary workers",
+                                                "former employees only receiving pension",
+                                                "self-employed workers",
+                                                "<b>working</b> owners who are not paid via PAYE"
+                                            ]
+                                        }
+                                    ],
                                     "answers": [
                                         {
                                             "display": {},

@@ -1,0 +1,216 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Question Guidance Test",
+    "theme": "default",
+    "description": "A questionnaire to test question guidance content",
+    "introduction": {},
+    "eq_id": "0",
+    "groups": [
+        {
+            "id": "group",
+            "title": "",
+            "blocks": [
+                {
+                    "id": "block-test-guidance-all",
+                    "title": "",
+                    "sections": [
+                        {
+                            "id": "section-test-guidance-all",
+                            "title": "Section: Test guidance all",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "id": "question-test-guidance-all",
+                                    "title": "Question: Test guidance all",
+                                    "description": "<p>Testing all features of the guidance block enabled together</p>",
+                                    "guidance": [
+                                        {
+                                            "title": "Include",
+                                            "description": "<p>Guidance <b>include</b> description text</p>",
+                                            "list": [
+                                                "Item Include 1",
+                                                "Item Include 2",
+                                                "Item Include 3",
+                                                "Item Include 4"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude",
+                                            "description": "<p>Guidance <b>exclude</b> description text</p>",
+                                            "list": [
+                                                "Item Exclude 1",
+                                                "Item Exclude 2",
+                                                "Item Exclude 3",
+                                                "Item Exclude 4"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Other",
+                                            "description": "<p>Guidance <b>other</b> description text</p>",
+                                            "list": [
+                                                "Item Other 1",
+                                                "Item Other 2",
+                                                "Item Other 3",
+                                                "Item Other 4"
+                                            ]
+                                        }
+                                    ],
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "answer-test-guidance-all",
+                                            "label": "Text question",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "block-test-guidance-title",
+                    "title": "",
+                    "sections": [
+                        {
+                            "id": "section-test-guidance-title",
+                            "title": "Section: Test guidance title",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "id": "question-test-guidance-title",
+                                    "title": "Question: Test guidance title",
+                                    "description": "<p>Testing combinations of the title within guidance</p>",
+                                    "guidance": [
+                                        {
+                                            "title": "This one has a description but no list",
+                                            "description": "<p>No list items below this text</p>"
+                                        },
+                                        {
+                                            "title": "This one has no list or description"
+                                        }
+                                    ],
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "answer-test-guidance-title",
+                                            "label": "Text question",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "block-test-guidance-description",
+                    "title": "",
+                    "sections": [
+                        {
+                            "id": "section-test-guidance-description",
+                            "title": "Section: Test guidance descriptions",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "id": "question-test-guidance-description",
+                                    "title": "Question: Test guidance descriptions",
+                                    "description": "<p>Tests the descriptions within guidance</p>",
+                                    "guidance": [
+                                        {
+                                            "description": "<p>No title above this text, list below</p>",
+                                            "list": [
+                                                "Item Include 1",
+                                                "Item Include 2",
+                                                "Item Include 3",
+                                                "Item Include 4"
+                                            ]
+                                        },
+                                        {
+                                            "description": "<p>Just description, no title above this text, no list below</p>"
+                                        }
+                                    ],
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "answer-test-guidance-description",
+                                            "label": "Text question",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "block-test-guidance-lists",
+                    "title": "",
+                    "sections": [
+                        {
+                            "id": "section-test-guidance-lists",
+                            "title": "Section: Test guidance lists",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "id": "question-test-guidance-lists",
+                                    "title": "Question: Test guidance lists (with no question description below)",
+                                    "guidance": [
+                                        {
+                                            "title": "Title, no description, list follows",
+                                            "list": [
+                                                "Item Include 1",
+                                                "Item Include 2",
+                                                "Item Include 3",
+                                                "Item Include 4"
+                                            ]
+                                        },
+                                        {
+                                            "list": [
+                                                "List with no title or description 1",
+                                                "List with no title or description 2",
+                                                "List with no title or description 3",
+                                                "List with no title or description 4"
+                                            ]
+                                        }
+                                    ],
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "answer-test-guidance-lists",
+                                            "label": "Text question",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

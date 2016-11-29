@@ -121,7 +121,26 @@
                                             }
                                         }
                                     ],
-                                    "description": "Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li></ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                    "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
+                                    "guidance": [
+                                        {
+                                            "title": "Include",
+                                            "list": [
+                                                "VAT",
+                                                "internet sales"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude",
+                                            "list": [
+                                                "revenue from mobile phone network commission and top up",
+                                                "sales from catering facilities used by customers",
+                                                "lottery sales and commission from lottery sales",
+                                                "sales of car accessories and motor vehicles",
+                                                "NHS receipts"
+                                            ]
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },
@@ -172,7 +191,13 @@
                                             }
                                         }
                                     ],
-                                    "description": "Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.<div><br/> <h4>Include</h4><ul> <li>VAT</li></ul></div>",
+                                    "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
+                                    "guidance": [
+                                        {
+                                            "title": "Include",
+                                            "list": [ "VAT" ]
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },
@@ -222,7 +247,16 @@
                                             }
                                         }
                                     ],
-                                    "description": "<div><p>We rely on your commentary to 'tell the story' behind changes to the business's figures. By commenting here it will reduce the need for us to call you. Comment on significant changes to the business's total retail turnover figures  from:<ul><li>the previous reporting period</li> <li>the same reporting period last year</li></ul></div>",
+                                    "description": "<p>We rely on your commentary to 'tell the story' behind changes to the business's figures.</p><p>By commenting here it will reduce the need for us to call you.</p>",
+                                    "guidance": [
+                                        {
+                                            "description": "<p>Comment on significant changes to the business's total retail turnover figures from:</p>",
+                                            "list": [
+                                                "the previous reporting period",
+                                                "the same reporting period last year"
+                                            ]
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },
@@ -340,13 +374,31 @@
                                           }
                                       }
                                     ],
-                                    "description": "",
                                     "display": {
                                         "properties": {}
                                     },
                                     "id": "17136377-f52e-4a00-a1d6-039972fc26ab",
                                     "title": "On {{exercise.employment_date|format_date}} what was the number of employees?",
-                                    "description" : "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p><div> <h4>Include:</h4> <ul> <li>all workers paid directly from this business\u2019s payroll(s)</li> <li>those temporarily absent but still being paid, for example on maternity leave</li></ul> <br/><h4>Exclude:</h4> <ul> <li>agency workers paid directly from the agency payroll</li><li>voluntary workers</li><li>former employees only receiving pension</li><li>self-employed workers</li><li>working owners who are not paid via PAYE</li></ul> </div>",
+                                    "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
+                                    "guidance": [
+                                        {
+                                            "title": "Include",
+                                            "list": [
+                                                "all workers paid directly from this business's payroll(s)",
+                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                            ]
+                                        },
+                                        {
+                                            "title": "Exclude",
+                                            "list": [
+                                                "agency workers paid directly from the agency payroll",
+                                                "voluntary workers",
+                                                "former employees only receiving pension",
+                                                "self-employed workers",
+                                                "working owners who are not paid via PAYE"
+                                            ]
+                                        }
+                                    ],
                                     "type": "General",
                                     "validation": []
                                 }
@@ -390,7 +442,16 @@
                                             }
                                         }
                                     ],
-                                    "description": "<div><p>Comment on significant changes in the number of employees from: <ul><li>the previous reporting period</li> <li>the same reporting period last year</li></ul></p></div>",
+                                    "description": "",
+                                    "guidance": [
+                                        {
+                                            "description": "<p>Comment on significant changes in the number of employees from:</p>",
+                                            "list": [
+                                                "the previous reporting period",
+                                                "the same reporting period last year"
+                                            ]
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },

@@ -25,7 +25,17 @@
                                 {
                                     "id": "permanent-or-family-home-question",
                                     "title": "1. Does anyone live here as their permanent or family home?",
-                                    "description": "<div> <h4>Include</h4> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April  2017</li> <li>Students and, or school children who live away from home during term time</li> <li>Housemates tenants or lodgers</li></ul> </div>",
+                                    "guidance": [
+                                        {
+                                             "title": "Include",
+                                             "list": [
+                                                 "Yourself, if this is your permanent or family home",
+                                                 "Family members including partners, children and babies born on or before 9 April 2017",
+                                                 "Students and, or school children who live away from home during term time",
+                                                 "Housemates tenants or lodgers"
+                                             ]
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -84,7 +94,19 @@
                                 {
                                     "id": "else-permanent-or-family-home-question",
                                     "title": "1a. Is there anyone else who lives here as their permanent or family home?",
-                                    "description": "<div> <h4>Include</h4> <ul> <li>People who usually live outside the UK who are staying in the UK for three months or more</li> <li>People who work away from home within the UK  if this is their permanent or family home</li> <li>Members of the Armed Forces if this is their permanent or family home</li> <li>People who are temporarily outside the UK for less than 12 months</li> <li>People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends</li> <li>Other people who usually live here, including anyone temporarily away from home</li></ul> </div>",
+                                    "guidance": [
+                                        {
+                                             "title": "Include",
+                                             "list": [
+                                                 "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
+                                                 "People who work away from home within the UK  if this is their permanent or family home",
+                                                 "Members of the Armed Forces if this is their permanent or family home",
+                                                 "People who are temporarily outside the UK for <b>less than 12 months</b>",
+                                                 "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
+                                                 "Other people who usually live here, including anyone temporarily away from home "
+                                             ]
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -142,7 +164,17 @@
                                 {
                                     "id": "who-lives-at-this-address-question",
                                     "title": "2. List the names of everyone who lives at this address",
-                                    "description": "<div> <h4>Include</h4> <ul> <li>Yourself, if this is your permanent or family home</li> <li>Family members including partners, children and babies born on or before 9 April  2017</li> <li>Students and, or school children who live away from home during term time</li> <li>Housemates tenants or lodgers</li></ul> </div>",
+                                    "guidance": [
+                                        {
+                                             "title": "Include",
+                                             "list": [
+                                                 "Yourself, if this is your permanent or family home",
+                                                 "Family members including partners, children and babies born on or before 9 April 2017",
+                                                 "Students and, or school children who live away from home during term time",
+                                                 "Housemates tenants or lodgers"
+                                             ]
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -168,7 +200,19 @@
                                 {
                                     "id": "everyone-at-address-confirmation-question",
                                     "title": "3. Is this everyone for whom this address is their permanent or family home?",
-                                    "description": "<div> <h4>Include</h4> <ul> <li>People who usually live outside the UK who are staying in the UK for three months or more</li> <li>People who work away from home within the UK  if this is their permanent or family home</li> <li>Members of the Armed Forces if this is their permanent or family home</li> <li>People who are temporarily outside the UK for less than 12 months</li> <li>People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends</li> <li>Other people who usually live here, including anyone temporarily away from home</li></ul> </div>",
+                                    "guidance": [
+                                        {
+                                             "title": "Include",
+                                             "list": [
+                                                 "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
+                                                 "People who work away from home within the UK  if this is their permanent or family home",
+                                                 "Members of the Armed Forces if this is their permanent or family home",
+                                                 "People who are temporarily outside the UK for <b>less than 12 months</b>",
+                                                 "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
+                                                 "Other people who usually live here, including anyone temporarily away from home"
+                                             ]
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -226,7 +270,17 @@
                                 {
                                     "id": "overnight-visitors-question",
                                     "title": "4 How many visitors are staying overnight here on 9th April 2017?",
-                                    "description": "<div> <h4>Include</h4> <ul> <li>People who usually live somewhere else in the UK. For example, boy or girl friends, relatives</li> <li>People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere</li> <li><People who usually live outside the UK who are visiting the UK for less than three months/li> <li>People here on holiday</li></ul> </div>",
+                                    "guidance": [
+                                        {
+                                             "title": "Include",
+                                             "list": [
+                                                 "People who usually live somewhere else in the UK. For example, boy or girl friends, relatives",
+                                                 "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
+                                                 "People who usually live outside the UK who are visiting the UK for less than three months",
+                                                 "People here on holiday"
+                                             ]
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -253,7 +307,6 @@
                                 {
                                     "id": "household-relationships-question",
                                     "title": "5. How are members of this household related to each other?",
-                                    "description": "<div> <h4>Include</h4> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April  2017</li> <li>Students and, or school children who live away from home during term time</li> <li>Housemates tenants or lodgers</li></ul> </div>",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -469,7 +522,11 @@
                                 {
                                     "id": "self-contained-accommodation-question",
                                     "title": "2. Is this household’s accommodation self-contained?",
-                                    "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use",
+                                    "guidance": [
+                                        {
+                                            "description": "This means that all the rooms, including the kitchen, bathroom and toilet, are behind a door that only this household can use"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -505,7 +562,11 @@
                                 {
                                     "id": "number-of-bedrooms-question",
                                     "title": "3. How many bedrooms are available for use only by this household?",
-                                    "description": "Include all rooms built or converted for use as bedrooms, even if they’re not currently used as bedrooms",
+                                    "guidance": [
+                                        {
+                                            "description": "Include all rooms built or converted for use as bedrooms, even if they’re not currently used as bedrooms"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -709,7 +770,11 @@
                                 {
                                     "id": "number-of-vehicles-question",
                                     "title": "7. In total, how many cars or vans are owned, or available for use, by members of this household?",
-                                    "description": "Include any company cars or vans available for private use",
+                                    "guidance": [
+                                        {
+                                            "description": "Include any company cars or vans available for private use"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1496,7 +1561,11 @@
                                 {
                                     "id": "arrive-in-uk-question",
                                     "title": "10. If you were not born in the United Kingdom, when did you most recently arrive to live here?",
-                                    "description": "Exclude short visits away from the UK",
+                                    "guidance": [
+                                        {
+                                            "description": "Exclude short visits away from the UK"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1561,7 +1630,12 @@
                                 {
                                     "id": "carer-question",
                                     "title": "12. Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
-                                    "description": "<div> <ul> <li>Long-term physical or mental ill-health/disability?</li> <li>Problems related to old age?</li></ul> Exclude  anything you do as part of your paid employment</div>",
+                                    "description": "<div><ul><li>Long-term physical or mental ill-health/disability?</li><li>Problems related to old age?</li></ul></div>",
+                                    "guidance": [
+                                        {
+                                           "description": "Exclude anything you do as part of your paid employment"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2525,7 +2599,11 @@
                                 {
                                     "id": "disability-question",
                                     "title": "23. Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
-                                    "description": "Include Problems related to old age",
+                                    "guidance": [
+                                        {
+                                            "description": "Include Problems related to old age"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2737,7 +2815,11 @@
                                 {
                                     "id": "volunteering-question",
                                     "title": "25. Thinking of the last 12 months, have you taken part in any volunteering for any groups, clubs or organisations?",
-                                    "description": "Exclude any Court ordered activities",
+                                    "guidance": [
+                                        {
+                                            "description": "Exclude any Court ordered activities"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2781,7 +2863,12 @@
                                 {
                                     "id": "employment-type-question",
                                     "title": "26. Last week were you:",
-                                    "description": "Select all that apply <br /> Include any paid work, including casual or temporary work, even if only for one hour",
+                                    "description": "Select all that apply",
+                                    "guidance": [
+                                        {
+                                            "description": "Include any paid work, including casual or temporary work, even if only for one hour"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3042,7 +3129,11 @@
                                 {
                                     "id": "main-job-question",
                                     "title": "32. In your main job, are (were) you:",
-                                    "description": "If you are not working answer the remaining questions about your last main job. <br />Your main job is the job which you usually work (worked) the most hours",
+                                    "guidance": [
+                                        {
+                                            "description": "<p>If you are not working answer the remaining questions about your last main job.</p><p>Your main job is the job which you usually work (worked) the most hours</p>"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3082,7 +3173,11 @@
                                 {
                                     "id": "job-title-question",
                                     "title": "33. What is (was) your full and specific job title?",
-                                    "description": "For example, primary school teacher, car mechanic, district nurse, structural engineer <br />Do not state your grade or pay band",
+                                    "guidance": [
+                                        {
+                                            "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p>"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3135,7 +3230,15 @@
                                 {
                                     "id": "employers-business-question",
                                     "title": "35. At your workplace what is (was) the main activity of your employer or business?",
-                                    "description": "For example, primary education, repairing cars, contract catering, computer servicing <br />If you are (were) a civil servant, write government <br />If you are (were) a local government officer, write local government officer, write local government and give the name of the department within the local authority",
+                                    "guidance": [
+                                        {
+                                            "list": [
+                                                "For example, <b>primary education, repairing cars, contract catering, computer servicing</b>",
+                                                "If you are (were) a civil servant, write <b>government</b>",
+                                                "If you are (were) a local government officer, write local government officer, write <b>local government</b> and give the name of the department within the local authority"
+                                            ]
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3215,7 +3318,11 @@
                                 {
                                     "id": "business-name-question",
                                     "title": "36a. What is (was) the name of the organisation or business you work (worked) for?",
-                                    "description": "If you were self-employed in your own business write in the business name",
+                                    "guidance": [
+                                        {
+                                            "description": "If you were self-employed in your own business write in the business name"
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3268,7 +3375,17 @@
                                 {
                                     "id": "number-of-visitors-question",
                                     "title": "Please confirm number of visitors staying overnight here on 9th April 2017",
-                                    "description": "<div> <h4>Include</h4> <ul> <li>People who usually live somewhere else in the UK. For example, boy or girl friends, relatives</li> <li>People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere</li> <li>People who usually live outside the UK who are visiting the UK for less than three months</li> <li>People here on holiday</li></ul> </div>",
+                                    "guidance": [
+                                        {
+                                             "title": "Include",
+                                             "list": [
+                                                 "People who usually live somewhere else in the UK. For example, boy or girl friends, relatives",
+                                                 "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
+                                                 "People who usually live outside the UK who are visiting the UK for less than three months",
+                                                 "People here on holiday "
+                                             ]
+                                        }
+                                    ],
                                     "type": "General",
                                     "answers": [
                                         {

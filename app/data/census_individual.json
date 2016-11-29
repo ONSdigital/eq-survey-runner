@@ -898,7 +898,11 @@
                                 {
                                     "id": "arrive-in-uk-question",
                                     "title": "10. If you were not born in the United Kingdom, when did you most recently arrive to live here?",
-                                    "description": "Exclude short visits away from the UK",
+                                    "guidance":[
+                                        {
+                                            "description": "Exclude short visits away from the UK"
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },
@@ -1002,7 +1006,12 @@
                                 {
                                     "id": "carer-question",
                                     "title": "12. Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
-                                    "description": "<div> <ul> <li>Long-term physical or mental ill-health/disability?</li> <li>Problems related to old age?</li></ul> Exclude  anything you do as part of your paid employment</div>",
+                                    "description": "<div> <ul> <li>Long-term physical or mental ill-health/disability?</li> <li>Problems related to old age?</li></ul></div>",
+                                    "guidance": [
+                                        {
+                                             "description": "Exclude anything you do as part of your paid employment"
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },
@@ -2133,7 +2142,11 @@
                                 {
                                     "id": "disability-question",
                                     "title": "22. Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
-                                    "description": "Include Problems related to old age",
+                                    "guidance": [
+                                        {
+                                            "description": "Include Problems related to old age"
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },
@@ -2394,7 +2407,11 @@
                                 {
                                     "id": "volunteering-question",
                                     "title": "24. Thinking of the last 12 months, have you taken part in any volunteering for any groups, clubs or organisations?",
-                                    "description": "Exclude any Court ordered activities",
+                                    "guidance": [
+                                        {
+                                            "description": "Exclude any Court ordered activities"
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },
@@ -2457,7 +2474,12 @@
                                 {
                                     "id": "employment-type-question",
                                     "title": "25. Last week were you:",
-                                    "description": "Select all that apply <br /> Include any paid work, including casual or temporary work, even if only for one hour",
+                                    "description": "Select all that apply",
+                                    "guidance": [
+                                        {
+                                            "description": "Include any paid work, including casual or temporary work, even if only for one hour"
+                                        }
+                                    ],
                                     "display": {
                                         "properties": {}
                                     },
