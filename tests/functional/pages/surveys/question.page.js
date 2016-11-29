@@ -14,7 +14,7 @@ class QuestionPage {
   }
 
   previous(){
-    return browser.click('a[name="previous"]')
+    return browser.click('a[id="top-previous"]')
   }
 
 }
