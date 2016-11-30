@@ -16,7 +16,6 @@
         }
       },
       "required": [
-        "id",
         "condition",
         "value"
       ]
