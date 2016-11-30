@@ -2,26 +2,37 @@
   .question--householdrelationship {
     .question__answer {
       border-top: 1px solid $color-borders;
-      padding: 1rem 0;
+      padding: 1rem 0 0;
       margin: 0;
       &:last-of-type {
         border-bottom: 1px solid $color-borders;
       }
       &.is-closed {
-        .js-accordion-body {
+        .js-relationship-body {
           display: none;
         }
       }
     }
-    .question__edit {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
+
+    .input {
+      width: 0;
+      opacity: 0;
     }
 
-    .js-accordion-body {
+    .label {
+      padding-left: 1rem;
+    }
+
+    .question__edit {
+      position: absolute;
+      right: 0;
+      top: 1.2rem;
+      display: inline-block;
+    }
+
+    .js-relationship-body {
       clear: both;
-      margin-top: 1rem;
+      margin-bottom: 1rem;
     }
 
     .field__item {
