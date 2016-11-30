@@ -257,6 +257,7 @@ class SchemaParser(AbstractSchemaParser):
             question.title = ParserUtils.get_required_string(schema, "title")
             question.description = ParserUtils.get_optional_string(schema, "description")
             question.skip_condition = self._parse_skip_condition(ParserUtils.get_optional(schema, "skip_condition"))
+            question.guidance = ParserUtils.get_optional(schema, "guidance")
             # register the question
             questionnaire.register(question)
 
@@ -280,7 +281,8 @@ class SchemaParser(AbstractSchemaParser):
             when_schema = ParserUtils.get_required(skip_condition_schema, "when")
             when = When()
             when.condition = ParserUtils.get_required(when_schema, 'condition')
-            when.id = ParserUtils.get_required(when_schema, 'id')
+            when.id = ParserUtils.get_optional(when_schema, 'id')
+            when.meta = ParserUtils.get_optional(when_schema, 'meta')
             when.value = ParserUtils.get_required(when_schema, 'value')
             skip_condition.when = when
             return skip_condition

@@ -49,6 +49,11 @@
   clear: both;
 }
 
+.question__guidance {
+  margin-bottom: 1rem;
+  clear: both;
+}
+
 .question__actions {
   margin-top: 1rem;
   @include mq(s) {

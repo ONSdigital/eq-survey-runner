@@ -16,7 +16,6 @@
         }
       },
       "required": [
-        "id",
         "condition",
         "value"
       ]
@@ -107,6 +106,26 @@
                             },
                             "description": {
                               "type": "string"
+                            },
+                            "guidance": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "list": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
                             },
                             "skip_condition": {
                               "type": "object",

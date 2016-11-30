@@ -7,24 +7,6 @@ from app.data_model.answer_store import Answer, AnswerStore
 
 class TestNavigator(unittest.TestCase):
 
-    def test_first_block(self):
-        survey = load_schema_file("1_0102.json")
-
-        first_block_id = "5bce8d8f-0af8-4d35-b77d-744e6179b406"
-
-        navigator = Navigator(survey)
-
-        self.assertEqual(navigator.get_first_block_id(), first_block_id)
-
-    def test_first_group(self):
-        survey = load_schema_file("1_0102.json")
-
-        first_group_id = "07f40cd2-0704-4804-9f32-19309089a51b"
-
-        navigator = Navigator(survey)
-
-        self.assertEqual(navigator.get_first_group_id(), first_group_id)
-
     def test_next_block(self):
         survey = load_schema_file("1_0102.json")
 
@@ -83,7 +65,7 @@ class TestNavigator(unittest.TestCase):
         current_block_id = expected_path[1]["block_id"]
         expected_next_block = expected_path[2]
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
         actual_next_block = navigator.get_next_location(current_block_id=current_block_id)
 
         self.assertEqual(actual_next_block["block_id"], expected_next_block["block_id"])
@@ -148,7 +130,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_1)
         answers.add(answer_2)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
         routing_path = navigator.get_routing_path()
 
         self.assertEqual(routing_path, expected_path)
@@ -186,7 +168,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_1)
         answers.add(answer_2)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
         routing_path = navigator.get_routing_path()
 
         self.assertEqual(routing_path, expected_path)
@@ -220,7 +202,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_1)
         answers.add(answer_2)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         current_block_id = 'an3b74d1-b687-4051-9634-a8f9ce10ard'
 
@@ -285,7 +267,7 @@ class TestNavigator(unittest.TestCase):
         current_block_id = expected_path[3]["block_id"]
         expected_previous_block = expected_path[2]
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
         actual_previous_block = navigator.get_previous_location(current_block_id=current_block_id)
 
         self.assertEqual(actual_previous_block["block_id"], expected_previous_block['block_id'])
@@ -332,7 +314,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_1)
         answers.add(answer_2)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         self.assertEqual(navigator.get_previous_location(current_block_id=current_block_id), expected_previous_block)
 
@@ -358,7 +340,7 @@ class TestNavigator(unittest.TestCase):
         )
         answers = AnswerStore()
         answers.add(answer)
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         current_block_id = expected_path[1]["block_id"]
         expected_next_location = expected_path[2]
@@ -369,6 +351,9 @@ class TestNavigator(unittest.TestCase):
 
     def test_next_location_empty_routing_rules(self):
         survey = load_schema_file("test_checkbox.json")
+
+        # Force some empty routing rules
+        survey['groups'][0]['blocks'][0]['routing_rules'] = []
 
         expected_path = [
           {"block_id": "introduction"},
@@ -397,10 +382,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_1)
         answers.add(answer_2)
 
-        navigator = Navigator(survey, answers)
-
-        # Force some empty routing rules
-        navigator.survey_json['groups'][0]['blocks'][0]['routing_rules'] = []
+        navigator = Navigator(survey, answer_store=answers)
 
         current_block_id = expected_path[1]["block_id"]
         expected_next_location = expected_path[2]
@@ -421,7 +403,7 @@ class TestNavigator(unittest.TestCase):
         answers = AnswerStore()
         answers.add(answer)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         self.assertFalse({
             'block_id': 'summary',
@@ -473,7 +455,7 @@ class TestNavigator(unittest.TestCase):
         answers = AnswerStore()
         answers.add(answer)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         self.assertEqual(expected_path, navigator.get_routing_path())
 
@@ -501,7 +483,7 @@ class TestNavigator(unittest.TestCase):
         answers = AnswerStore()
         answers.add(answer)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         self.assertEqual(expected_path, navigator.get_routing_path())
 
@@ -579,7 +561,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_2)
         answers.add(answer_3)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         self.assertEqual(expected_path, navigator.get_routing_path())
 
@@ -629,7 +611,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer)
         answers.add(answer_2)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         self.assertEqual(expected_path, navigator.get_routing_path())
 
@@ -649,7 +631,7 @@ class TestNavigator(unittest.TestCase):
             }
         ]
 
-        navigator = Navigator(survey, AnswerStore())
+        navigator = Navigator(survey)
 
         self.assertEqual(navigator.get_previous_location(current_block_id='household-composition'), expected_path[0])
 
@@ -711,7 +693,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer)
         answers.add(answer_2)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         self.assertEqual(expected_previous_location, navigator.get_previous_location(current_group_id=current_group_id,
                                                                                      current_block_id=current_block_id,
@@ -772,7 +754,7 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer)
         answers.add(answer_2)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         summary_block = {
             "group_id": "repeating-group",
@@ -862,6 +844,74 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_2)
         answers.add(answer_3)
 
-        navigator = Navigator(survey, answers)
+        navigator = Navigator(survey, answer_store=answers)
 
         self.assertEqual(expected_path, navigator.get_location_path())
+
+    def test_next_with_conditional_path_based_on_metadata(self):
+        survey = load_schema_file("test_metadata_routing.json")
+
+        expected_path = [
+            {
+                "block_id": "block1",
+                "group_id": "group1",
+                'group_instance': 0
+            },
+            {
+                "block_id": "block3",
+                "group_id": "group1",
+                'group_instance': 0
+            }
+        ]
+
+        current_group_id = expected_path[0]["group_id"]
+        current_block_id = expected_path[0]["block_id"]
+        current_iteration = expected_path[0]["group_instance"]
+
+        expected_next_block_id = expected_path[1]
+
+        metadata = {
+            "variant_flags": {
+                "flag_1": "true"
+            }
+        }
+
+        navigator = Navigator(survey, metadata=metadata)
+
+        self.assertEqual(expected_next_block_id, navigator.get_next_location(current_group_id=current_group_id,
+                                                                    current_block_id=current_block_id,
+                                                                    current_iteration=current_iteration))
+
+    def test_next_with_conditional_path_when_value_not_in_metadata(self):
+        survey = load_schema_file("test_metadata_routing.json")
+
+        expected_path = [
+            {
+                "block_id": "block1",
+                "group_id": "group1",
+                'group_instance': 0
+            },
+            {
+                "block_id": "block2",
+                "group_id": "group1",
+                'group_instance': 0
+            }
+        ]
+
+        current_group_id = expected_path[0]["group_id"]
+        current_block_id = expected_path[0]["block_id"]
+        current_iteration = expected_path[0]["group_instance"]
+
+        expected_next_block_id = expected_path[1]
+
+        metadata = {
+            "variant_flags": {
+            }
+        }
+
+        navigator = Navigator(survey, metadata=metadata)
+
+        self.assertEqual(expected_next_block_id, navigator.get_next_location(current_group_id=current_group_id,
+                                                                    current_block_id=current_block_id,
+                                                                    current_iteration=current_iteration))
+

@@ -58,8 +58,17 @@
 				}, {
 					"id": "d9d25a21-41b8-42b2-ac7b-fb21b1036d71",
 					"title": "Commodities - Retail Turnover",
-					"description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (£) pound</p><h4>Include</h4><ul><li>VAT</li><li>Internet Sales</li></ul>",
+					"description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (£) pound</p>",
 					"questions": [{
+                        "guidance": [
+                            {
+                                "title": "Include",
+                                "list": [
+                                    "VAT",
+                                    "Internet Sales"
+                                ]
+                            }
+                        ],
 						"id": "eedb9f9f-2f2e-41f4-9186-ba7110d9e6a4",
 						"title": "",
 						"description": "",

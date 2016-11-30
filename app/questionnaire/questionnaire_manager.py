@@ -1,7 +1,7 @@
 import logging
 
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
-from app.questionnaire.navigator import Navigator, evaluate_rule
+from app.questionnaire.navigator import Navigator, evaluate_rule, get_metadata_value
 
 from app.templating.schema_context import build_schema_context
 from app.templating.template_renderer import renderer
@@ -43,7 +43,7 @@ class QuestionnaireManager(object):
             return True
 
     def validate_all_answers(self):
-        navigator = Navigator(self._json, get_answer_store(current_user))
+        navigator = Navigator(self._json, get_metadata(current_user), get_answer_store(current_user))
 
         for location in navigator.get_location_path():
             answers = get_answers(current_user)
@@ -111,9 +111,15 @@ class QuestionnaireManager(object):
 
             if hasattr(item.schema_item, 'skip_condition') and item.schema_item.skip_condition:
                 rule = item.schema_item.skip_condition.as_dict()
-                answer = get_answers(current_user).get(rule['when']['id'])
+                when = rule['when']
 
-                item.skipped = evaluate_rule(rule, answer)
+                if 'id' in when and when['id']:
+                    answer = get_answers(current_user).get(when['id'])
+                    item.skipped = evaluate_rule(when, answer)
+
+                if 'meta' in when and when['meta']:
+                    value = get_metadata_value(get_metadata(current_user), when['meta'])
+                    item.skipped = evaluate_rule(when, value)
 
             for child in item.children:
                 self._conditional_display(child)

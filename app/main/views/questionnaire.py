@@ -2,6 +2,7 @@ import logging
 
 from app.authentication.session_manager import session_manager
 from app.globals import get_answer_store, get_answers, get_completed_blocks, get_metadata, get_questionnaire_store
+from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.navigator import Navigator
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
 from app.submitter.submitter import SubmitterFactory
@@ -73,7 +74,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
 def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
-    navigator = Navigator(g.schema_json, get_answer_store(current_user))
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
     this_block = {
@@ -117,12 +118,12 @@ def get_introduction(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
 @login_required
 def post_interstitial(eq_id, form_type, collection_id, block_id):
-    navigator = Navigator(g.schema_json, get_answer_store(current_user))
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
     this_block = {
         'block_id': block_id,
-        'group_id': navigator.get_first_group_id(),
+        'group_id': SchemaHelper.get_first_group_id(g.schema_json),
         'group_instance': 0,
     }
 
@@ -152,7 +153,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 def get_summary(eq_id, form_type, collection_id):
 
     answer_store = get_answer_store(current_user)
-    navigator = Navigator(g.schema_json, answer_store)
+    navigator = Navigator(g.schema_json, get_metadata(current_user), answer_store)
     latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     if latest_location['block_id'] is 'summary':
@@ -175,7 +176,7 @@ def get_summary(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
 @login_required
 def get_confirmation(eq_id, form_type, collection_id):
-    navigator = Navigator(g.schema_json, get_answer_store(current_user))
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
 
     latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
@@ -238,7 +239,7 @@ def post_household_composition(eq_id, form_type, collection_id):
     valid = questionnaire_manager.process_incoming_answers(this_block, request.form)
 
     if 'action[add_answer]' in request.form:
-        questionnaire_manager.add_answer(this_block, 'question', answer_store)
+        questionnaire_manager.add_answer(this_block, 'household-composition-question', answer_store)
         return get_block(eq_id, form_type, collection_id, 'multiple-questions-group', 0, 'household-composition')
 
     elif 'action[remove_answer]' in request.form:
@@ -254,7 +255,7 @@ def post_household_composition(eq_id, form_type, collection_id):
 
 
 def _go_to_next_block(current_block_id, eq_id, form_type, collection_id):
-    navigator = Navigator(g.schema_json, get_answer_store(current_user))
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
 
     next_location = navigator.get_next_location(current_block_id=current_block_id)
 
@@ -332,8 +333,8 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
-    navigator = Navigator(g.schema_json, get_answer_store(current_user))
-    group_id = group_id or navigator.get_first_group_id()
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    group_id = group_id or SchemaHelper.get_first_group_id(g.schema_json)
 
     previous_location = navigator.get_previous_location(current_group_id=group_id,
                                                         current_block_id=block_id,

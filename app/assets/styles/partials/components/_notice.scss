@@ -5,6 +5,7 @@
   font-weight: 700;
   &::before {
     $size: 2rem;
+
     content: " ";
     display: inline-block;
     vertical-align: middle;

@@ -3,11 +3,11 @@
   margin-top: 3rem;
   background-color: $color-light-grey;
   color: $color-very-dark-grey;
+}
 
-  a {
-    color: $color-very-dark-grey;
-    &:focus {
-      color: white;
-    }
+.footer__link {
+  color: $color-very-dark-grey;
+  &:focus {
+    color: white;
   }
 }

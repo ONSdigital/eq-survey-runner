@@ -5,6 +5,7 @@
 {% endblock %}
 
 {%- block styles %}
+<link href='https://fonts.googleapis.com/css?family=Lato:400,600,700,900' rel='stylesheet' type='text/css'>
 <!--[if (gt IE 9) | (IEMobile)]><!-->
   {%- if request.args.get('fixed') == 'true' %}
     <link href="{{ url_for('static', filename='css/census/fixed.css') }}" rel="stylesheet">
@@ -18,29 +19,5 @@
 {% endblock styles -%}
 
 {% block footer %}
-
-<div class="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer__logos">
-      <div class="footer__logo">
-        <img src="{{ theme_static('ons-logo.svg') }}" alt="Office for National Statistics" />
-      </div>
-      <div class="footer__crest">
-        <img src="{{ theme_static('crown-logo.svg') }}" alt="" />
-      </div>
-    </div>
-    <ul class="footer__nav nav">
-      <li class="nav__item">
-        <a class="nav__link" href="https://www.ons.gov.uk/help/cookiesandprivacy">Privacy</a>
-      </li>
-      <li class="nav__item">
-        <a class="nav__link" href="https://www.ons.gov.uk/help/termsandconditions">Terms and Conditions</a>
-      </li>
-      <li class="nav__item">
-        <a class="nav__link" href="https://www.ons.gov.uk/help/accessibility">Accessibility Statement</a>
-      </li>
-    </ul>
-  </div>
-</div>
-
+  {% include theme('partials/footer.html') %}
 {% endblock %}

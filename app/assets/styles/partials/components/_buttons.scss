@@ -1,4 +1,4 @@
-@mixin btn($bg, $color) {
+@mixin btn($bg, $color, $color-hover: $color) {
   background-color: $bg;
   color: $color;
   border: none;
@@ -11,7 +11,7 @@
   text-decoration: none;
   &:hover {
     text-decoration: none;
-    color: $color;
+    color: $color-hover;
     background-color: darken($bg, 5%);
   }
   &:focus {
@@ -20,14 +20,15 @@
   }
 
   &.btn--border {
+    font-weight: $font-weight-semibold;
     background: $color;
-    border: 3px solid $bg;
+    border: 2px solid $bg;
     color: $bg;
     padding: 0.5rem 2rem;
     &:hover,
     &:focus {
       background: $bg;
-      color: $color;
+      color: $color-hover;
     }
   }
 }
@@ -42,6 +43,10 @@
 
 .btn--neutral {
   @include btn($color-dark-grey, $color-white);
+}
+
+.btn--light {
+  @include btn($color-white, transparent, $color-secondary);
 }
 
 .btn--lg {
