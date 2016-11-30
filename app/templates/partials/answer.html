@@ -11,7 +11,7 @@
   {% endset -%}
   
   {%- set answer_fields %}
-    <div class="answer__fields js-fields">
+    <div class="answer__fields">
       {% if answer.schema_item.display and answer.schema_item.display.properties %}
         {% set use_grid = answer.schema_item.display.properties.columns %}
       {% endif %}
@@ -40,8 +40,6 @@
 
   {% else %}
     {{answer_fields|safe}}
-
     {{answer_guidance|safe}}
-
   {% endif %}
 </div>
