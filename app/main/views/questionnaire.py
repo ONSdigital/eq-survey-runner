@@ -218,15 +218,15 @@ def submit_answers(eq_id, form_type, collection_id):
                                   block_id=invalid_location['block_id']))
 
 
-@questionnaire_blueprint.route('multiple-questions-group/0/household-composition', methods=["POST"])
+@questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
 @login_required
-def post_household_composition(eq_id, form_type, collection_id):
+def post_household_composition(eq_id, form_type, collection_id, group_id):
     questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
     answer_store = get_answer_store(current_user)
 
     this_block = {
         'block_id': 'household-composition',
-        'group_id': 'multiple-questions-group',
+        'group_id': group_id,
         'group_instance': 0,
     }
 
@@ -234,15 +234,15 @@ def post_household_composition(eq_id, form_type, collection_id):
 
     if 'action[add_answer]' in request.form:
         questionnaire_manager.add_answer(this_block, 'household-composition-question', answer_store)
-        return get_block(eq_id, form_type, collection_id, 'multiple-questions-group', 0, 'household-composition')
+        return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
 
     elif 'action[remove_answer]' in request.form:
         index_to_remove = request.form.get('action[remove_answer]')
         questionnaire_manager.remove_answer(this_block, answer_store, index_to_remove)
-        return get_block(eq_id, form_type, collection_id, 'multiple-questions-group', 0, 'household-composition')
+        return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
 
     if not valid:
-        return _render_template(questionnaire_manager.state, 'multiple-questions-group', 0, 'household-composition', template='questionnaire')
+        return _render_template(questionnaire_manager.state, group_id, 0, 'household-composition', template='questionnaire')
 
     return _go_to_next_block(current_block_id=this_block, eq_id=eq_id,
                              form_type=form_type, collection_id=collection_id)

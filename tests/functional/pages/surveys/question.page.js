@@ -17,6 +17,10 @@ class QuestionPage {
     return browser.click('a[id="top-previous"]')
   }
 
+  getDisplayedName() {
+    return browser.getText('h1[class="section__title saturn"]')
+  }
+
 }
 
 export default QuestionPage
