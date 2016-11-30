@@ -40,7 +40,7 @@ input:checked ~ .field__other {
 .field--multiplechoice {
   .field__item {
     background: white;
-    border: 1px solid $color-borders;
+    border: 1px solid #999;
     border-radius: 0.2rem;
     cursor: pointer;
     overflow: hidden;
@@ -48,7 +48,7 @@ input:checked ~ .field__other {
     &:hover {
       border-color: $color-dark-grey;
       // background-color: white;
-      box-shadow: 0 0 0 1px $color-dark-grey;
+      box-shadow: none;
     }
     &.has-focus {
       color: $color-text;
@@ -62,6 +62,7 @@ input:checked ~ .field__other {
       box-shadow: 0 0 0 1px $color-links-hover;
       &:hover {
         border-color: $color-text;
+        background-color: #eee;
         box-shadow: 0 0 0 1px $color-text;
       }
     }

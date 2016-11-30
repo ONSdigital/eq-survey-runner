@@ -43,7 +43,7 @@ class HouseholdRelationship extends EventEmitter {
   }
 
   setRelationship(relationship) {
-    this.legend.innerHTML = relationship
+    this.legend.innerHTML = relationship.toLowerCase()
     this.answered = true
   }
 

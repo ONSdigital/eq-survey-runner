@@ -38,7 +38,7 @@
                                         "display": {},
                                         "id": "household-full-name",
                                         "label": "Full Name",
-                                        "mandatory": true,
+                                        "mandatory": false,
                                         "options": [],
                                         "q_code": "1",
                                         "type": "Textfield",
@@ -86,7 +86,7 @@
                                             "label": "%(current_person)s is the ... of %(other_person)s",
                                             "display": {},
                                             "guidance": "",
-                                            "mandatory": true,
+                                            "mandatory": false,
                                             "q_code": "2",
                                             "type": "Relationship",
                                             "options": [
