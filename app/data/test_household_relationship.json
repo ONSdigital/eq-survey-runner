@@ -3,39 +3,32 @@
     "questionnaire_id": "23",
     "schema_version": "0.0.1",
     "survey_id": "023",
-    "title": "Census Theme",
+    "title": "Household relationship",
     "description": "",
     "theme": "census",
     "introduction": {
         "description": "",
         "information_to_provide": []
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "1",
     "groups": [
         {
+            "id": "multiple-questions-group",
+            "title": "",
+            "validation": [],
             "blocks": [
-
                 {
-                    "display": {
-                        "properties": {}
-                    },
-                    "id": "block",
+                    "id": "household-composition",
+                    "title": "Household",
+                    "validation": [],
                     "sections": [
                         {
-                            "display": {
-                                "properties": {}
-                            },
-                            "id": "section",
+                            "id": "household",
+                            "title": "Household",
+                            "validation": [],
                             "questions": [
                                 {
-                                  "description": "",
-                                  "display": {
-                                      "properties": {}
-                                  },
-                                  "id": "household-question",
+                                  "id": "question",
                                   "title": "Who usually lives here?",
                                   "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
                                   "type": "RepeatingAnswer",
@@ -43,102 +36,105 @@
                                   "answers": [
                                     {
                                         "display": {},
-                                        "id": "household",
-                                        "alias": "household",
+                                        "id": "household-full-name",
                                         "label": "Full Name",
-                                        "mandatory": true,
+                                        "mandatory": false,
                                         "options": [],
                                         "q_code": "1",
                                         "type": "Textfield",
                                         "validation": {}
                                     }
                                   ]
-
                                 }
-                            ],
-                            "title": "Household",
-                            "validation": []
+                            ]
                         }
-                    ],
-                    "title": "Household",
-                    "validation": []
+                    ]
                 }
-            ],
-            "display": {
-                "properties": {}
-            },
-            "id": "multiple_questions_group",
-            "title": "",
-            "validation": []
+            ]
         },
         {
+            "id": "household-relationships",
+            "title": "",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_count_minus_one",
+                        "answer_id": "household-full-name"
+                    }
+                }
+            ],
             "blocks": [
                 {
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "relationships",
+                    "title": "",
+                    "validation": [],
                     "sections": [
                         {
-                            "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "relationship-section",
+                            "title": "Who lives here?",
+                            "validation": [],
+                            "description": "",
                             "questions": [
-                              {
+                                {
+                                    "id": "relationship-question",
+                                    "title": "Describe how this person is related to the others",
+                                    "description": "If members are not related, select the ‘unrelated’ option, including foster parents and foster children.",
+                                    "type": "Relationship",
                                     "answers": [
                                         {
+                                            "id": "who-is-related",
+                                            "label": "%(current_person)s is the ... of %(other_person)s",
                                             "display": {},
                                             "guidance": "",
-                                            "id": "relationship",
-                                            "label": "{{person1}} is the ... of {{person2}} ",
-                                            "mandatory": true,
+                                            "mandatory": false,
+                                            "q_code": "2",
+                                            "type": "Relationship",
                                             "options": [
                                                 {
-                                                    "label": "Mother",
-                                                    "value": "Mother"
+                                                    "label": "Husband or wife",
+                                                    "value": "Husband or wife"
                                                 },
                                                 {
-                                                    "label": "Father",
-                                                    "value": "Father"
+                                                    "label": "Partner",
+                                                    "value": "Partner"
                                                 },
                                                 {
-                                                    "label": "Daughter",
-                                                    "value": "Daughter"
+                                                    "label": "Mother or father",
+                                                    "value": "Mother or father"
                                                 },
                                                 {
-                                                    "label": "Son",
-                                                    "value": "Son"
+                                                    "label": "Son or daughter",
+                                                    "value": "Son or daughter"
+                                                },
+                                                {
+                                                    "label": "Brother or sister",
+                                                    "value": "Brother or sister"
+                                                },
+                                                {
+                                                    "label": "Relation - other",
+                                                    "value": "Relation - other"
+                                                },
+                                                {
+                                                    "label": "Grandparent",
+                                                    "value": "Grandparent"
+                                                },
+                                                {
+                                                    "label": "Grandchild",
+                                                    "value": "Grandchild"
+                                                },
+                                                {
+                                                    "label": "Unrelated",
+                                                    "value": "Unrelated"
                                                 }
-                                            ],
-                                            "q_code": "1",
-                                            "type": "Radio"
+                                            ]
                                         }
-                                    ],
-                                    "description": "If members are not related, select the ‘unrelated’ option, including foster parents and foster children.",
-                                    "display": {
-                                        "properties": {}
-                                    },
-                                    "id": "relationship-question",
-                                    "title": "Describe how {{person1}} is related to other members of the household.",
-                                    "type": "HouseholdRelationship"
-                              }
-                            ],
-                            "title": "Who lives here?",
-                            "validation": []
+                                    ]
+                                }
+                            ]
                         }
-                    ],
-                    "routing_rules":[
-                    ],
-                    "title": "",
-                    "validation": []
-                }],
-            "display": {
-                "properties": {}
-            },
-            "id": "household-relationships",
-            "title": ""
+                    ]
+                }
+            ]
         }
     ]
 }

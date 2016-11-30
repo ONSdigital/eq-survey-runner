@@ -50,7 +50,7 @@
 }
 
 .btn--link {
-  padding: 0;
+  padding: 0.1rem;
   margin: 0;
   display: inline-block;
   color: $color-links;
@@ -60,11 +60,10 @@
   text-decoration: underline;
   &:hover {
     text-decoration: underline;
-    color: $color-links;
+    color: $color-links-hover;
     background: transparent;
   }
-  &:focus,
-  &:active {
+  &:focus {
     color: white;
     background: $color-links;
   }

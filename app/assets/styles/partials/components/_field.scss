@@ -37,8 +37,7 @@ input:checked ~ .field__other {
   display: block;
 }
 
-.field--radio,
-.field--checkbox {
+.field--multiplechoice {
   .field__item {
     background: white;
     border: 1px solid $color-borders;
@@ -48,16 +47,23 @@ input:checked ~ .field__other {
     position: relative;
     &:hover {
       border-color: $color-dark-grey;
-    }
-    &.is-checked {
-      border-color: $color-dark-grey;
-      background-color: white;
+      // background-color: white;
       box-shadow: 0 0 0 1px $color-dark-grey;
     }
     &.has-focus {
+      color: $color-text;
       border-color: $color-focus;
       background-color: #f5f6ff;
       box-shadow: 0 0 0 1px $color-focus;
+    }
+    &.is-checked {
+      color: $color-text;
+      border-color: $color-links-hover;
+      box-shadow: 0 0 0 1px $color-links-hover;
+      &:hover {
+        border-color: $color-text;
+        box-shadow: 0 0 0 1px $color-text;
+      }
     }
   }
 
