@@ -1,1 +1,14 @@
-<svg width="33" height="34" viewBox="0 0 33 34" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><title>external-link</title><desc>Created with Sketch.</desc><path d="M0 .607v32.787h32.787v-8.197h-4.098v4.098h-24.59v-24.59h4.098v-4.098h-8.197zm16.393 0l6.148 6.148-10.246 10.246 4.098 4.098 10.246-10.246 6.148 6.148v-16.393h-16.393z" sketch:type="MSShapeGroup" fill="#000"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+    <title>Page-1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="external-link" fill="#FFFFFF">
+            <g>
+                <path d="M0,0 L0,14 L14,14 L14,10.5 L12.25,10.5 L12.25,12.25 L1.75,12.25 L1.75,1.75 L3.5,1.75 L3.5,0 L0,0 L0,0 Z M7,0 L9.625,2.625 L5.25,7 L7,8.75 L11.375,4.375 L14,7 L14,0 L7,0 L7,0 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

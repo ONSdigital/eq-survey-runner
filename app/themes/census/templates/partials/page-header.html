@@ -1,18 +1,23 @@
 <div class="page-header page-header--census">
-  <div class="container">
-    <div class="page-header__logo logo">
-      <img src="{{ theme_static('logo.svg') }}" alt="2017 Census" class="logo__img" />
+  <div class="page-header__help is-closed js-help-body">
+    <div class="page-header__container container">
+      <div class="page-header__title ">{{_('Help and support')}} &ndash;</div>
+      <ul class="page-header__nav nav nav--horizontal">
+        <li class="nav__item">
+          <span class="mars" role="presentation">{{_('Call')}} </span> <a class="venus nav__link" href="tel:0800123456789"><span class="u-vh">For help call </span>0800 123 456789</a>
+        </li>
+        <li class="nav__item">
+          <a class="venus nav__link external" href="#" rel="ext">{{_('Online Help')}}</a>
+        </li>
+      </ul>
     </div>
-
-    <div class="page-header__titles">
-      <h1 class="page-header__title jupiter">Household Questionnaire</h1>
-      <h2 class="page-header__subtitle">England</h2>
+  </div>
+  <div class="page-header__container container">
+    <div class="page-header__logo">
+      <img src="{{ theme_static('logo.svg') }}" alt="2017 Census" />
     </div>
-
-    <div class="page-header__help help">
-      <div class="help__title venus">Help and Support</div>
-      <a class="help__link" href="tel:08001234567"><span class="u-vh">For telephone support call </span>0800 123 4567</a>
-      <a class="help__link" href="#">Online help</a>
-    </div>
+    <button class="page-header__btn btn btn--light btn--border js-help-btn u-hidden">
+      {{_('Help and support')}}
+    </button>
   </div>
 </div>
