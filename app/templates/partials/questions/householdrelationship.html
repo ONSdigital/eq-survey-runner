@@ -2,33 +2,47 @@
 
 <div class="question question--householdrelationship" id="{{question.id}}">
 
+  <h2 class="question__title neptune" id="title-{{question.id}}">{{question_title}}</h2>
+
+  {{question_description|safe}}
+
   <fieldset class="question__fieldset">
 
-    <legend class="question__legend">
+    <!-- <legend class="question__legend">
       <span class="question__title neptune">{{question_title}}</span>
-    </legend>
+    </legend> -->
 
-    {{question_description|safe}}
-
-    <div class="question__answers">
+      <div class="question__answers">
 
       {%- for answer in question.answers -%}
 
-       <div class="question__answer">
+        {% set legend = answer.schema_item.label.split('...') %}
 
-         <div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.id}}">
+         <div class="question__answer">
 
-           <div class="answer__fields">
+           <div class="answer answer--{{answer.schema_item.type|lower}}" id="{{answer.id}}">
 
-             {% include 'partials/answers/radio.html' %}
+             <div class="answer__fields">
+
+               <fieldset class="field field--radio field--cols">
+
+                 <legend class="venus u-mb-s u-f-no">
+                   {{legend[0]}} <span class="highlight">...</span> {{legend[1]}}
+                 </legend>
+
+                 {{ answer.schema_item.widget.render(answer) | safe}}
+
+               </fieldset>
+
+             </div>
 
            </div>
 
          </div>
 
-      </div>
-
       {%- endfor -%}
+
+      </div>
 
     </div>
 
