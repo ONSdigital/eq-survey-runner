@@ -3,8 +3,8 @@ import QuestionPage from '../question.page'
 class HouseholdRelationshipPage extends QuestionPage {
 
   getRelationshipLabelAt(index) {
-    var id = this.buildAnswerId('#label-who-is-related', index)
-    return browser.element(id).getText()
+    var elementId = browser.elements('[id="relationship-title"]').value[index]
+    return browser.elementIdText(elementId.ELEMENT).value
   }
 
   setHusbandOrWifeRelationship(index, relationshipIndex) {
@@ -26,16 +26,12 @@ class HouseholdRelationshipPage extends QuestionPage {
   }
 
   buildRelationshipAnswerId(index, relationshipId) {
-    var id = this.buildAnswerId('#who-is-related', index)
+    var id = '#who-is-related'
+    if (index > 0) {
+      id += '_' + index
+    }
     id += '-' + relationshipId
     return id
-  }
-
-  buildAnswerId(answerId, index) {
-    if (index > 0) {
-      answerId += '_' + index
-    }
-    return answerId
   }
 
 }
