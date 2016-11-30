@@ -39,12 +39,12 @@ class HouseholdRelationship extends EventEmitter {
     let selection = this.el.querySelector('input:checked')
     if (selection) {
       this.setRelationship(selection.value)
-      this.answered = true
     }
   }
 
   setRelationship(relationship) {
     this.legend.innerHTML = relationship
+    this.answered = true
   }
 
   onFocus = e => {
@@ -121,6 +121,8 @@ class HouseholdRelationships {
     let firstUnansweredItem = this.items.filter(item => !item.answered)[0]
     if (firstUnansweredItem !== undefined) {
       firstUnansweredItem.open()
+    } else {
+      this.items.map(item => item.close())
     }
   }
 
