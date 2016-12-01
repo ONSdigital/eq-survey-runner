@@ -24,6 +24,8 @@ from flask_login import login_required
 
 from flask_themes2 import render_theme_template
 
+from werkzeug.exceptions import NotFound
+
 
 logger = logging.getLogger(__name__)
 
@@ -95,18 +97,17 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
     next_location = navigator.get_next_location(current_group_id=group_id, current_iteration=group_instance, current_block_id=block_id)
 
+    if next_location is None:
+        raise NotFound
+
     metadata = get_metadata(current_user)
 
-    next_block_id = None if next_location is None else next_location['block_id']
-    next_group_id = None if next_location is None else next_location['group_id']
-    next_group_instance = None if next_location is None else next_location['group_instance']
-
-    if next_block_id == 'confirmation':
+    if next_location['block_id'] == 'confirmation':
         return redirect_to_confirmation(eq_id, form_type, collection_id)
 
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
-    return redirect(block_url(eq_id, form_type, collection_id, next_group_id, next_group_instance, next_block_id))
+    return redirect(block_url(eq_id, form_type, collection_id, next_location['group_id'], next_location['group_instance'], next_location['block_id']))
 
 
 @questionnaire_blueprint.route('introduction', methods=["GET"])
@@ -138,7 +139,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
     metadata = get_metadata(current_user)
 
     if next_location is None:
-        return redirect_to_summary(eq_id, form_type, collection_id)
+        raise NotFound
 
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
@@ -250,17 +251,19 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
     if not valid:
         return _render_template(questionnaire_manager.state, group_id, 0, 'household-composition', template='questionnaire')
 
-    return _go_to_next_block(current_block_id=this_block, eq_id=eq_id,
+    return _go_to_next_block(location=this_block, eq_id=eq_id,
                              form_type=form_type, collection_id=collection_id)
 
 
-def _go_to_next_block(current_block_id, eq_id, form_type, collection_id):
+def _go_to_next_block(location, eq_id, form_type, collection_id):
     navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
 
-    next_location = navigator.get_next_location(current_block_id=current_block_id)
+    next_location = navigator.get_next_location(current_block_id=location['block_id'],
+                                                current_group_id=location['group_id'],
+                                                current_iteration=location['group_instance'])
 
     if next_location is None:
-        return redirect_to_summary(eq_id, form_type, collection_id)
+        raise NotFound
 
     metadata = get_metadata(current_user)
     logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
