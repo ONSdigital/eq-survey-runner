@@ -7,6 +7,7 @@
     "title": "Multiple answers per question",
     "description": "A survey containing questions which have more than one answer",
     "theme": "default",
+    "navigation" : false,
     "introduction": {
         "description": "",
         "information_to_provide": [
@@ -22,6 +23,7 @@
             "blocks": [
 
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },

@@ -6,6 +6,7 @@
     "survey_id": "0",
     "title": "Star Wars",
     "theme": "starwars",
+    "navigation" : false,
     "description": "Kitchen sink test for the Star Wars questionnaire",
     "introduction": {
         "description": "",
@@ -27,6 +28,7 @@
         {
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -139,6 +141,7 @@
                     "validation": []
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -268,6 +271,7 @@
                     "validation": []
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -413,6 +417,7 @@
                     "validation": []
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -479,6 +484,7 @@
                     "validation": []
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -545,6 +551,7 @@
                     "validation": []
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -898,6 +905,7 @@
                     "title": "Star Wars"
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -1073,6 +1081,7 @@
                     "title": ""
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },

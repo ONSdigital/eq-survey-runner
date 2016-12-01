@@ -303,3 +303,56 @@ class Navigator:
             'group_id': SchemaHelper.get_first_group_id(self.survey_json),
             'group_instance': 0,
         }
+
+    def get_front_end_navigation(self, group_id, group_instance, completed_blocks):
+
+        navigation = []
+
+        for group in self.survey_json['groups']:
+
+            repeating_rule = self.get_repeating_rule(group)
+            last_questionnaire_block = self.get_last_questionnaire_block_in_group(group)
+
+            # We only want to show groups that have questionnaire blocks in, interstitial groups are excluded
+            if last_questionnaire_block:
+
+                if repeating_rule:
+                    no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
+                    answer_id = repeating_rule['answer_id']
+                    answers = self.answer_store.filter(answer_id=answer_id)
+
+                    for i in range(no_of_repeats):
+                        if answers[i]['value']:
+                            navigation.append({
+                                'link_name': answers[i]['value'],
+                                'path': str(group['id']) + '/' + str(i) + '/' + str(group['blocks'][0]['id']),
+                                'completed': any(item for item in completed_blocks if item['group_instance'] == i and
+                                                 item["block_id"] == last_questionnaire_block),
+                                'current_location': group['id'] == group_id and i == group_instance,
+                                'repeating': True
+
+                            })
+                else:
+                    navigation.append({
+                        'link_name': group['title'],
+                        'path': str(group['id']) + '/0/' + str(group['blocks'][0]['id']),
+                        'completed': any(item for item in completed_blocks
+                                         if item["block_id"] == last_questionnaire_block),
+                        'current_location': group['id'] == group_id,
+                        'repeating': False,
+                    })
+        return navigation
+
+    @staticmethod
+    def get_last_questionnaire_block_in_group(group):
+        for block in group['blocks'][::-1]:
+            if block['type'] == 'questionnaire':
+                return block['id']
+        return None
+
+    @staticmethod
+    def get_repeating_rule(group):
+        if 'routing_rules' in group:
+                for rule in group['routing_rules']:
+                    if 'repeat' in rule.keys():
+                        return rule['repeat']

@@ -7,6 +7,7 @@
     "title": "Census England Individual Schema",
     "description": "Census England Individual Schema",
     "theme": "census",
+    "navigation" : false,
     "introduction": {
         "description": "",
         "information_to_provide": []
@@ -18,6 +19,90 @@
             "title": "Household Member Details",
             "blocks": [
                 {
+                    "type": "interstitial",
+                    "id": "household-member-begin",
+                    "title": "John Doe",
+                    "sections": [
+                        {
+                            "title": "John Doe",
+                            "id": "household-member-begin-section",
+                            "questions": [
+                                {
+                                    "id": "household-member-begin-question",
+                                    "title": "1. The following questions are for:",
+                                    "type": "General",
+                                    "answers": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "questionnaire",
+                    "id": "details-correct",
+                    "title": "John Doe",
+                    "sections": [
+                        {
+                            "id": "details-correct-section",
+                            "title": "John Doe",
+                            "questions": [
+                                {
+                                    "id": "details-correct-display-name",
+                                    "title": "The following questions are for:",
+                                    "type": "General",
+                                    "answers": []
+                                },
+                                {
+                                    "id": "details-correct-question",
+                                    "title": "1. Are these details correct, including any middle name(s)?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "details-correct-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes - this is my full name",
+                                                    "value": "Yes - this is my full name"
+                                                },
+                                                {
+                                                    "label": "No - I need to change my name",
+                                                    "value": "No - I need to change my name"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "sex",
+                                "when": {
+                                    "id": "details-correct-answer",
+                                    "condition": "equals",
+                                    "value": "Yes - this is my full name"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "correct-name",
+                                "when": {
+                                    "id": "details-correct-answer",
+                                    "condition": "equals",
+                                    "value": "No - I need to change my name"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "questionnaire",
                     "id": "correct-name",
                     "title": "Correct name",
                     "sections": [
@@ -44,6 +129,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "sex",
                     "title": "Sex",
                     "sections": [
@@ -79,6 +165,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "date-of-birth",
                     "title": "Date of birth",
                     "sections": [
@@ -105,6 +192,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "over-16",
                     "title": "Over 16",
                     "sections": [
@@ -140,6 +228,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "marital-status",
                     "title": "Marital status",
                     "sections": [
@@ -203,6 +292,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "another-address",
                     "title": "Another address",
                     "sections": [
@@ -272,6 +362,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "other-address",
                     "title": "Other address",
                     "sections": [
@@ -326,6 +417,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "address-type",
                     "title": "Address type",
                     "sections": [
@@ -384,6 +476,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "in-education",
                     "title": "In education",
                     "sections": [
@@ -441,6 +534,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "term-time-location",
                     "title": "Term time location",
                     "sections": [
@@ -498,6 +592,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "country-of-birth",
                     "title": "Country of birth",
                     "sections": [
@@ -695,6 +790,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "arrive-in-uk",
                     "title": "Arrive in UK",
                     "sections": [
@@ -726,6 +822,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "length-of-stay",
                     "title": "Length of stay",
                     "sections": [
@@ -765,6 +862,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "carer",
                     "title": "Carer",
                     "sections": [
@@ -814,6 +912,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "national-identity",
                     "title": "National identity",
                     "sections": [
@@ -869,6 +968,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "ethnic-group",
                     "title": "ethnic group",
                     "sections": [
@@ -978,6 +1078,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "white-ethnic-group",
                     "title": "White ethnic group",
                     "sections": [
@@ -1051,6 +1152,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "mixed-ethnic-group",
                     "title": "Mixed ethnic group",
                     "sections": [
@@ -1124,6 +1226,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "asian-ethnic-group",
                     "title": "Asian ethnic group",
                     "sections": [
@@ -1201,6 +1304,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "black-ethnic-group",
                     "title": "Black ethnic group",
                     "sections": [
@@ -1270,6 +1374,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "other-ethnic-group",
                     "title": "Other ethnic group",
                     "sections": [
@@ -1335,6 +1440,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "sexual-identity",
                     "title": "Sexual identity",
                     "sections": [
@@ -1382,6 +1488,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "understand-welsh",
                     "title": "Understand welsh",
                     "sections": [
@@ -1430,6 +1537,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "language",
                     "title": "Language",
                     "sections": [
@@ -1537,6 +1645,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "english",
                     "title": "English",
                     "sections": [
@@ -1580,6 +1689,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "religion",
                     "title": "Religion",
                     "sections": [
@@ -1706,6 +1816,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "past-usual-address",
                     "title": "Past usuall address",
                     "sections": [
@@ -1779,6 +1890,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "last-year-address",
                     "title": "Last year address",
                     "sections": [
@@ -1833,6 +1945,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "passports",
                     "title": "Passports",
                     "sections": [
@@ -1879,6 +1992,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "disability",
                     "title": "Disability",
                     "sections": [
@@ -1923,6 +2037,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "qualifications",
                     "title": "Qualifications",
                     "sections": [
@@ -2109,6 +2224,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "volunteering",
                     "title": "Volunteering",
                     "sections": [
@@ -2157,6 +2273,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "employment-type",
                     "title": "Employment type",
                     "sections": [
@@ -2235,6 +2352,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "jobseeker",
                     "title": "Jobseeker",
                     "sections": [
@@ -2270,6 +2388,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-availability",
                     "title": "Job availability",
                     "sections": [
@@ -2305,6 +2424,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-pending",
                     "title": "Job pending",
                     "sections": [
@@ -2340,6 +2460,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "occupation",
                     "title": "Occupation",
                     "sections": [
@@ -2388,6 +2509,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "ever-worked",
                     "title": "Ever worked",
                     "sections": [
@@ -2423,6 +2545,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "main-job",
                     "title": "Main job",
                     "sections": [
@@ -2463,6 +2586,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-title",
                     "title": "Job title",
                     "sections": [
@@ -2490,6 +2614,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-description",
                     "title": "Job description",
                     "sections": [
@@ -2516,6 +2641,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "employers-business",
                     "title": "Employers business",
                     "sections": [
@@ -2543,6 +2669,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "main-job-type",
                     "title": "Main job type",
                     "sections": [
@@ -2600,6 +2727,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "business-name",
                     "title": "Business name",
                     "sections": [
