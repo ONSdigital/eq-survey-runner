@@ -18,7 +18,6 @@
     "groups": [
         {
             "blocks": [
-
                 {
                     "display": {
                         "properties": {}
@@ -29,7 +28,7 @@
                             "display": {
                                 "properties": {}
                             },
-                            "id": "section",
+                            "id": "composition-section",
                             "questions": [
                                 {
                                   "description": "",
@@ -45,6 +44,7 @@
                                     {
                                         "display": {},
                                         "id": "household-full-name",
+                                        "alias": "person_full_name",
                                         "label": "Full Name",
                                         "mandatory": true,
                                         "options": [],
@@ -62,6 +62,83 @@
                     ],
                     "title": "Household",
                     "validation": []
+                },
+                {
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [
+                        {
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "further-section",
+                            "questions": [
+                                {
+                                  "description": "",
+                                  "display": {
+                                      "properties": {}
+                                  },
+                                  "id": "household-composition-further",
+                                  "title": "Is there anyone else for whom this address is their permanent or family home?",
+                                  "description": "<br> <div> <h3>Include:</h3><ul><li>People who live outside the UK who are staying in the UK for three months or more </li><li>People who work away from home within the UK</li><li>Members of the Armed Forces if this is their permanent or family home</li><li>People who are temporarily outside the UK for less than 12 months</li><li>People staying temporarily and usually live in the UK but do not have another UK address, for example relatives friends</li><li>Other people who usually live here, including anyone temporarily away from home</li></ul> </div>",
+                                  "type": "General",
+                                  "validation": [],
+                                  "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "household-composition-add-another",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Yes - I need to add a person",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "4",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                  ]
+
+                                }
+                            ],
+                            "title": "Who lives here?",
+                            "description": "<h3>There {{answers.person_full_name|length|pluralize('is', 'are')}} <strong class='strong-census'>{{answers.person_full_name|length}} {{answers.person_full_name|length|pluralize('person', 'people')}}</strong> in your household. </h3><div class='name-of-person'>{% for name in answers.person_full_name %}<div id='entity-list__{{loop.index}}'><div class='box--entity__person mars'>{{name}}</div></div>{% endfor %}</div>",
+                            "validation": []
+                        }],
+                        "routing_rules":[
+                            {
+                                "goto": {
+                                    "id" : "household-composition",
+                                    "when": {
+                                        "id" : "household-composition-add-another",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "id": "summary",
+                                    "when": {
+                                        "id" : "household-composition-add-another",
+                                        "condition": "equals",
+                                        "value":"No"
+                                    }
+                                }
+
+                            }
+                        ],
+                    "id": "household-summary",
+                    "title": ""
                 }
             ],
             "display": {

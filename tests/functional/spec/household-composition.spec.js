@@ -71,7 +71,7 @@ describe('Household composition question for census test.', function() {
     assert.include(names, 'Person Two')
 
     // When
-    HouseholdCompositionSummary.clickEdit()
+    HouseholdCompositionSummary.clickAddAnother().submit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then
@@ -99,7 +99,7 @@ describe('Household composition question for census test.', function() {
     assert.include(names, 'Person Three')
 
     // When
-    HouseholdCompositionSummary.clickEdit()
+    HouseholdCompositionSummary.clickAddAnother().submit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then

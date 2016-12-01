@@ -144,10 +144,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
-    return redirect(block_url(eq_id, form_type, collection_id,
-                              group_id=next_location['group_id'],
-                              group_instance=next_location['group_instance'],
-                              block_id=next_location['block_id']))
+    return redirect(location_url(eq_id, form_type, collection_id, next_location))
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -169,10 +166,7 @@ def get_summary(eq_id, form_type, collection_id):
                                 group_instance=latest_location['group_instance'],
                                 block_id=latest_location['block_id'])
 
-    return redirect(block_url(eq_id, form_type, collection_id,
-                              group_id=latest_location['group_id'],
-                              group_instance=latest_location['group_instance'],
-                              block_id=latest_location['block_id']))
+    return redirect(location_url(eq_id, form_type, collection_id, latest_location))
 
 
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
@@ -234,6 +228,7 @@ def submit_answers(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
 @login_required
 def post_household_composition(eq_id, form_type, collection_id, group_id):
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
     answer_store = get_answer_store(current_user)
 
@@ -257,26 +252,9 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
     if not valid:
         return _render_template(questionnaire_manager.state, group_id, 0, 'household-composition', template='questionnaire')
 
-    return _go_to_next_block(location=this_block, eq_id=eq_id,
-                             form_type=form_type, collection_id=collection_id)
+    next_location = navigator.get_next_location(current_block_id='household-composition', current_iteration=0, current_group_id=group_id)
 
-
-def _go_to_next_block(location, eq_id, form_type, collection_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
-
-    next_location = navigator.get_next_location(current_block_id=location['block_id'],
-                                                current_group_id=location['group_id'],
-                                                current_iteration=location['group_instance'])
-
-    if next_location is None:
-        raise NotFound
-
-    metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-    return redirect(block_url(eq_id, form_type, collection_id,
-                              group_id=next_location['group_id'],
-                              group_instance=next_location['group_instance'],
-                              block_id=next_location['block_id']))
+    return redirect(location_url(eq_id, form_type, collection_id, next_location))
 
 
 def _delete_user_data():
@@ -317,6 +295,15 @@ def interstitial_url(eq_id, form_type, collection_id, block_id):
                        eq_id=eq_id,
                        form_type=form_type,
                        collection_id=collection_id)
+
+
+def location_url(eq_id, form_type, collection_id, location):
+    return block_url(eq_id=eq_id,
+                     form_type=form_type,
+                     collection_id=collection_id,
+                     group_id=location['group_id'],
+                     group_instance=location['group_instance'],
+                     block_id=location['block_id'])
 
 
 def block_url(eq_id, form_type, collection_id, group_id, group_instance, block_id):

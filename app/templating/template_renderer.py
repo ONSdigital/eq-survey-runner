@@ -1,6 +1,6 @@
 import json
 
-from app.jinja_filters import format_date
+from app.jinja_filters import format_date, pluralize
 
 from jinja2 import Environment
 
@@ -9,6 +9,7 @@ class TemplateRenderer:
     def __init__(self):
         self.environment = Environment()
         self.environment.filters['format_date'] = format_date
+        self.environment.filters['pluralize'] = pluralize
 
     def render(self, renderable, **context):
         """
