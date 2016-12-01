@@ -54,3 +54,15 @@ def format_str_as_date(value):
 @blueprint.app_template_filter()
 def format_household_member_name(names):
     return ' '.join(map(lambda name: name.strip(), filter(None, names)))
+
+
+@blueprint.app_template_filter()
+def format_household_summary(names):
+    if len(names) > 0:
+        person_list = '<ul>'
+        for first_name, middle_name, last_name in zip(names[0], names[1], names[2]):
+            person_list += '<li>{}</li>'.format(format_household_member_name([first_name, middle_name, last_name]))
+        person_list += '</ul>'
+
+        return person_list
+    return ''

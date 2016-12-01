@@ -1,4 +1,4 @@
-import {openAndStartCensusQuestionnaire} from '../../../helpers'
+import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
 import HouseholdComposition from '../../../pages/surveys/census/household/household-composition.page.js'
@@ -40,7 +40,7 @@ import Jobseeker from '../../../pages/surveys/census/household/jobseeker.page.js
 
 describe('ArriveInUk', function () {
   it('Given I am answering question 28.	Last week were you.., When I dont not select any response, Then I am routed to 29. Were you actively looking for...?', function () {
-      openAndStartCensusQuestionnaire('census_household.json')
+      startCensusQuestionnaire('census_household.json')
 
       // who-lives-here
       PermanentOrFamilyHome

@@ -1,6 +1,6 @@
 import unittest
 
-from app.questionnaire.navigator import evaluate_rule, Navigator
+from app.questionnaire.navigator import Navigator
 from app.schema_loader.schema_loader import load_schema_file
 from app.data_model.answer_store import Answer, AnswerStore
 
@@ -897,8 +897,8 @@ class TestNavigator(unittest.TestCase):
         navigator = Navigator(survey, metadata=metadata)
 
         self.assertEqual(expected_next_block_id, navigator.get_next_location(current_group_id=current_group_id,
-                                                                    current_block_id=current_block_id,
-                                                                    current_iteration=current_iteration))
+                                                                             current_block_id=current_block_id,
+                                                                             current_iteration=current_iteration))
 
     def test_next_with_conditional_path_when_value_not_in_metadata(self):
         survey = load_schema_file("test_metadata_routing.json")
@@ -930,25 +930,138 @@ class TestNavigator(unittest.TestCase):
         navigator = Navigator(survey, metadata=metadata)
 
         self.assertEqual(expected_next_block_id, navigator.get_next_location(current_group_id=current_group_id,
-                                                                    current_block_id=current_block_id,
-                                                                    current_iteration=current_iteration))
+                                                                             current_block_id=current_block_id,
+                                                                             current_iteration=current_iteration))
 
-    def test_evaluate_rule_uses_single_value_from_list(self):
-        when = {
-            "value": 'singleAnswer',
-            "condition": 'equals'
-        }
+    def test_routing_backwards_loops_to_previous_block(self):
+        survey = load_schema_file("test_household_question.json")
 
-        list_of_answers = ['singleAnswer']
+        expected_path = [{
+            'group_instance': 0,
+            'group_id': 'multiple-questions-group',
+            'block_id': 'introduction'
+        }, {
+            'group_instance': 0,
+            'group_id': 'multiple-questions-group',
+            'block_id': 'household-composition'
+        }, {
+            'group_instance': 0,
+            'group_id': 'multiple-questions-group',
+            'block_id': 'household-summary'
+        }, {
+            'group_instance': 0,
+            'group_id': 'multiple-questions-group',
+            'block_id': 'household-composition'
+        }]
 
-        self.assertTrue(evaluate_rule(when, list_of_answers))
+        current_group_id = expected_path[2]["group_id"]
+        current_block_id = expected_path[2]["block_id"]
+        current_iteration = expected_path[2]["group_instance"]
 
-    def test_evaluate_rule_uses_multiple_values_in_list_returns_false(self):
-        when = {
-            "value": 'firstAnswer',
-            "condition": 'equals'
-        }
+        expected_next_location = expected_path[3]
 
-        list_of_answers = ['firstAnswer', 'secondAnswer']
+        answers = AnswerStore()
 
-        self.assertFalse(evaluate_rule(when, list_of_answers))
+        answer_1 = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            block_id="household-composition",
+            answer_id="household-full-name",
+            answer_instance=0,
+            value="Joe Bloggs"
+        )
+
+        answer_2 = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            block_id="household-composition",
+            answer_id="household-full-name",
+            answer_instance=1,
+            value="Sophie Bloggs"
+        )
+
+        answer_3 = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            block_id="household-summary",
+            answer_id="household-composition-add-another",
+            answer_instance=0,
+            value="No"
+        )
+
+        answers.add(answer_1)
+        answers.add(answer_2)
+        answers.add(answer_3)
+
+        navigator = Navigator(survey, answer_store=answers)
+
+        self.assertEqual(expected_next_location, navigator.get_next_location(current_group_id=current_group_id,
+                                                                             current_block_id=current_block_id,
+                                                                             current_iteration=current_iteration))
+
+    def test_routing_backwards_continues_to_summary_when_complete(self):
+        survey = load_schema_file("test_household_question.json")
+
+        expected_path = [{
+            'group_instance': 0,
+            'group_id': 'multiple-questions-group',
+            'block_id': 'introduction'
+        }, {
+            'group_instance': 0,
+            'group_id': 'multiple-questions-group',
+            'block_id': 'household-composition'
+        }, {
+            'group_instance': 0,
+            'group_id': 'multiple-questions-group',
+            'block_id': 'household-summary'
+        }, {
+            'group_instance': 0,
+            'group_id': 'multiple-questions-group',
+            'block_id': 'summary'
+        }]
+
+        current_group_id = expected_path[2]["group_id"]
+        current_block_id = expected_path[2]["block_id"]
+        current_iteration = expected_path[2]["group_instance"]
+
+        expected_next_location = expected_path[3]
+
+        answers = AnswerStore()
+
+        answer_1 = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            block_id="household-composition",
+            answer_id="household-full-name",
+            answer_instance=0,
+            value="Joe Bloggs"
+        )
+
+        answer_2 = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            block_id="household-composition",
+            answer_id="household-full-name",
+            answer_instance=1,
+            value="Sophie Bloggs"
+        )
+
+        answer_3 = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            block_id="household-summary",
+            answer_id="household-composition-add-another",
+            answer_instance=0,
+            value="Yes"
+        )
+
+        answers.add(answer_1)
+        answers.add(answer_2)
+        answers.add(answer_3)
+
+        navigator = Navigator(survey, answer_store=answers)
+
+        self.assertEqual(expected_next_location, navigator.get_next_location(current_group_id=current_group_id,
+                                                                             current_block_id=current_block_id,
+                                                                             current_iteration=current_iteration))
+

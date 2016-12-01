@@ -1,7 +1,6 @@
 import json
 
-from app.jinja_filters import format_date
-from app.jinja_filters import format_household_member_name
+from app.jinja_filters import format_date, format_household_member_name, format_household_summary
 
 from jinja2 import Environment
 
@@ -11,6 +10,7 @@ class TemplateRenderer:
         self.environment = Environment()
         self.environment.filters['format_date'] = format_date
         self.environment.filters['format_household_name'] = format_household_member_name
+        self.environment.filters['format_household_summary'] = format_household_summary
 
     def render(self, renderable, **context):
         """
