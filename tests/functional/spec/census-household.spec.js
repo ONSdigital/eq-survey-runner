@@ -260,5 +260,88 @@ describe('Census Household', function () {
         expect(ThankYou.isOpen()).to.be.true
     })
 
+    it('Given a census household survey, When one person in household, Then persons name should appear on member details pages.', function () {
+        openAndStartCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+
+        // who-lives-here
+        var person = 'John Smith'
+
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setPersonName(0, person).submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
+        HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
+        TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
+        SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
+        NumberOfBedrooms.setNumberOfBedroomsAnswer(3).submit()
+        CentralHeating.clickCentralHeatingAnswerGas().submit()
+        OwnOrRent.clickOwnOrRentAnswerOwnsOutright().submit()
+        NumberOfVehicles.setNumberOfVehiclesAnswer(2).submit()
+        HouseholdAndAccommodationCompleted.submit()
+
+        // household-member
+        HouseholdMemberBegin.submit()
+        expect(HouseholdMemberBegin.getDisplayedName()).to.equal(person)
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        expect(DetailsCorrect.getDisplayedName()).to.equal(person)
+        Sex.clickSexAnswerMale().submit()
+        expect(Sex.getDisplayedName()).to.equal(person)
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(4).setDateOfBirthAnswerYear(1980).submit()
+        expect(DateOfBirth.getDisplayedName()).to.equal(person)
+        Over16.clickOver16AnswerYes().submit()
+        expect(Over16.getDisplayedName()).to.equal(person)
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        expect(MaritalStatus.getDisplayedName()).to.equal(person)
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        expect(AnotherAddress.getDisplayedName()).to.equal(person)
+        InEducation.clickInEducationAnswerNo().submit()
+        expect(InEducation.getDisplayedName()).to.equal(person)
+        CountryOfBirth.clickCountryOfBirthWalesAnswerWales().submit()
+        expect(CountryOfBirth.getDisplayedName()).to.equal(person)
+        Carer.clickCarerAnswerNo().submit()
+        expect(Carer.getDisplayedName()).to.equal(person)
+        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        expect(NationalIdentity.getDisplayedName()).to.equal(person)
+        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
+        expect(EthnicGroup.getDisplayedName()).to.equal(person)
+        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        expect(WhiteEthnicGroup.getDisplayedName()).to.equal(person)
+        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
+        expect(UnderstandWelsh.getDisplayedName()).to.equal(person)
+        Language.clickLanguageWelshAnswerEnglishOrWelsh().submit()
+        expect(Language.getDisplayedName()).to.equal(person)
+        Religion.clickReligionWelshAnswerNoReligion().submit()
+        expect(Religion.getDisplayedName()).to.equal(person)
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        expect(PastUsualAddress.getDisplayedName()).to.equal(person)
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        expect(Passports.getDisplayedName()).to.equal(person)
+        Disability.clickDisabilityAnswerNo().submit()
+        expect(Disability.getDisplayedName()).to.equal(person)
+        Qualifications.clickQualificationsWelshAnswerUndergraduateDegree().submit()
+        expect(Qualifications.getDisplayedName()).to.equal(person)
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        expect(Volunteering.getDisplayedName()).to.equal(person)
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        HouseholdMemberCompleted.submit()
+
+        // visitors
+        NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
+        VisitorName.setVisitorNameAnswer("Jane Doe").submit()
+        VisitorSex.clickVisitorSexAnswerFemale().submit()
+        VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(7).setVisitorDateOfBirthAnswerYear(1990).submit()
+        VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
+        VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+    })
+
 })
 

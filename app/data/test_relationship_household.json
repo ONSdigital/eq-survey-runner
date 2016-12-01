@@ -83,7 +83,7 @@
                                     "answers": [
                                         {
                                             "id": "who-is-related",
-                                            "label": "%(current_person)s is the ... of %(other_person)s",
+                                            "label": "%(current_person)s is the &hellip; of %(other_person)s",
                                             "display": {},
                                             "guidance": "",
                                             "mandatory": false,

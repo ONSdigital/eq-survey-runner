@@ -1,4 +1,4 @@
-{% set legend = _(answer.label, current_person=answer.current_person, other_person=answer.other_person).split('...') %}
+{% set legend = _(answer.label, current_person=answer.current_person, other_person=answer.other_person).split('&hellip;') %}
 
 <fieldset class="field field--selectionbtn field--multiplechoice relationship__field">
 
@@ -7,7 +7,7 @@
   </button>
 
     <legend id="relationship-title" class="relationship__title  venus u-f-no">
-      <span>{{legend[0]}}</span> <span class="highlight js-relationship-legend">&nbsp; ... &nbsp;</span> <span>{{legend[1]}}</span>
+      <span>{{legend[0]}}</span> <span class="highlight js-relationship-legend">&nbsp; &hellip; &nbsp;</span> <span>{{legend[1]}}</span>
     </legend>
 
     <div class="relationship__options js-relationship-body">
