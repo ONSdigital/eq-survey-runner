@@ -13,12 +13,6 @@ class HouseholdRelationshipPage extends QuestionPage {
     return this
   }
 
-  setPartnerRelationship(index, relationshipIndex) {
-    var id = this.buildRelationshipAnswerId(index, 2)
-    browser.element(id).click()
-    return this
-  }
-
   setSonOrDaughterRelationship(index, relationshipIndex) {
     var id = this.buildRelationshipAnswerId(index, 4)
     browser.element(id).click()

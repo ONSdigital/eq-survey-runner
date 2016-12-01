@@ -74,7 +74,7 @@ describe('Household relationship', function() {
       .submit()
 
     // When
-    HouseholdRelationshipPage.setPartnerRelationship(0)
+    HouseholdRelationshipPage.setHusbandOrWifeRelationship(0)
       .submit()
 
     // Then
