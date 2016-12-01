@@ -151,5 +151,5 @@ class QuestionnaireManager(object):
         question = answer.parent
         question.remove_answer(answer)
 
-        answer_store.remove(answer.flatten())
+        answer_store.remove_answer(answer.flatten())
         self.update_questionnaire_store(location)

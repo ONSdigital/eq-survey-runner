@@ -55,7 +55,7 @@ class TestQuestionnaireManager(TestCase):
         answer_to_remove = self.answers[1]
         flattened_answer = answer_to_remove.flatten()
 
-        with patch.object(self.answer_store, 'remove') as mock:
+        with patch.object(self.answer_store, 'remove_answer') as mock:
             self.questionnaire_manager.remove_answer('block', self.answer_store, 1)
             mock.assert_called_with(flattened_answer)
 

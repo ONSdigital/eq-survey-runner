@@ -206,7 +206,7 @@ class AnswerStore(object):
 
         return OrderedDict(sorted(result.items(), key=lambda t: natural_order(t[0])))
 
-    def remove(self, answer):
+    def remove_answer(self, answer):
         """
         Removes an answer from the answer store.
 
@@ -215,6 +215,26 @@ class AnswerStore(object):
         index = self.find(answer)
         if index:
             del self.answers[index]
+
+    def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+        """
+        Removes answer(s) from the answer store.
+
+        :param answer_id:
+        :param block_id:
+        :param group_id:
+        :param answer_instance:
+        :param group_instance:
+        """
+        use_filter = (group_id or block_id or answer_id or group_instance or answer_instance) is not None
+        answers = self.filter(group_id, block_id, answer_id, group_instance, answer_instance) if use_filter else self.answers
+        for answer in answers:
+            answer_store_answer = Answer(group_id=answer['group_id'],
+                                         group_instance=answer['group_instance'],
+                                         block_id=answer['block_id'],
+                                         answer_id=answer['answer_id'],
+                                         answer_instance=answer['answer_instance'])
+            self.remove_answer(answer_store_answer)
 
 
 def number_else_string(text):

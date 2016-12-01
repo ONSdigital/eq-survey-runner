@@ -230,6 +230,11 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
         'group_instance': 0,
     }
 
+    if 'action[save_continue]' in request.form:
+        answer_store.remove(block_id='household-composition')
+        answer_store.remove(block_id='household-relationships')
+        answer_store.remove(group_id='household-member')
+
     valid = questionnaire_manager.process_incoming_answers(this_block, request.form)
 
     if 'action[add_answer]' in request.form:

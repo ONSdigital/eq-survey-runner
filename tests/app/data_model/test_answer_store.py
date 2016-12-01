@@ -369,7 +369,7 @@ class TestAnswerStore(unittest.TestCase):
         }
         self.assertEqual(self.store.map(), expected_answers)
 
-        self.store.remove(answer_2)
+        self.store.remove_answer(answer_2)
         expected_answers = {
             "2_1": 25,
         }
@@ -407,5 +407,5 @@ class TestAnswerStore(unittest.TestCase):
         }
         self.assertEqual(self.store.map(), expected_answers)
 
-        self.store.remove(answer_3)
+        self.store.remove_answer(answer_3)
         self.assertEqual(self.store.map(), expected_answers)
