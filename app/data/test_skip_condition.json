@@ -5,6 +5,7 @@
    "survey_id":"0",
    "title":"Test skip condition",
    "theme":"default",
+    "navigation" : false,
    "description":"A questionnaire to test skip condition.",
    "introduction":{
       "description":"",
@@ -24,6 +25,7 @@
       {
          "blocks":[
             {
+               "type": "questionnaire",
                "display":{
                   "properties":{
 
@@ -100,6 +102,7 @@
                ]
             },
             {
+                "type": "questionnaire",
                "display":{
                   "properties":{
 

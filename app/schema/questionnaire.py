@@ -21,6 +21,7 @@ class Questionnaire(object):
         self.theme = None
         self.submission_page = 'summary'
         self.messages = {}
+        self.navigation = False
 
     def add_group(self, group):
         if group not in self.groups:

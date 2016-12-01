@@ -5,6 +5,7 @@
     "survey_id": "0",
     "title": "Other input fields",
     "theme": "default",
+    "navigation" : false,
     "description": "A questionnaire to demo radio field Other input.",
     "introduction": {
         "description": "",
@@ -23,6 +24,7 @@
         {
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -97,6 +99,7 @@
                     "validation": []
                 },
             {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },

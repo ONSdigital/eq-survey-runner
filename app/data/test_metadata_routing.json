@@ -6,6 +6,7 @@
     "title": "Census England Household Schema",
     "description": "Census England Household Schema",
     "theme": "census",
+    "navigation" : false,
     "introduction": {
     },
     "eq_id": "census",
@@ -15,6 +16,7 @@
             "title": "Group 1",
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "block1",
                     "title": "Block 1",
                     "sections": [
@@ -57,6 +59,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "block2",
                     "title": "Block 2",
                     "sections": [
@@ -82,6 +85,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "block3",
                     "title": "Block 3",
                     "sections": [

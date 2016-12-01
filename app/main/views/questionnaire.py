@@ -338,7 +338,7 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
 
     navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     group_id = group_id or SchemaHelper.get_first_group_id(g.schema_json)
-
+    front_end_navigation = navigator.get_front_end_navigation(group_id, group_instance, get_completed_blocks(current_user))
     previous_location = navigator.get_previous_location(current_group_id=group_id,
                                                         current_block_id=block_id,
                                                         current_iteration=group_instance)
@@ -365,4 +365,5 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     return render_theme_template(theme, template, meta=metadata_context,
                                  content=context,
                                  previous_location=previous_url,
+                                 navigation=front_end_navigation,
                                  schema=g.schema_json)

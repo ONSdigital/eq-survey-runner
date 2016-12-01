@@ -915,3 +915,110 @@ class TestNavigator(unittest.TestCase):
                                                                     current_block_id=current_block_id,
                                                                     current_iteration=current_iteration))
 
+    def test_navigation_no_blocks_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        navigator = Navigator(survey)
+
+        completed_blocks = []
+
+        user_navigation = [
+            {
+                'completed': False,
+                'current_location': True,
+                'link_name': 'Property Details',
+                'repeating': False,
+                'path': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f/0/6330dcfe-3b23-425d-8104-b725c6b7f398'
+            },
+            {
+                'completed': False,
+                'current_location': False,
+                'link_name': 'Household Details',
+                'repeating': False,
+                'path': 'multiple-questions-group/0/household-composition'
+            },
+            {
+                'completed': False,
+                'current_location': False,
+                'link_name': 'Extra Cover',
+                'repeating': False,
+                'path': '3edd9ac8-0ea7-419f-831e-2c84450b41b9/0/824a5298-024f-4ce2-9780-54326c6f66c0'
+            },
+            {
+                'completed': False,
+                'current_location': False,
+                'link_name': 'Payment Details',
+                'repeating': False,
+                'path': 'd650262d-6172-4344-8371-316afecab08f/0/4e4f756b-3e84-43cc-97ac-8d31d708c9b8'
+            }
+        ]
+
+        self.assertEqual(navigator.get_front_end_navigation('b13c36f9-8b1b-4f3d-997e-5fea82a4036f',0, completed_blocks), user_navigation)
+
+    def test_navigation_two_groups_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        navigator = Navigator(survey)
+
+        completed_blocks = [
+            {
+                'block_id': 'introduction',
+                'group_instance': 0,
+                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+            },
+            {
+                'group_instance': 0,
+                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398',
+                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'cd6a5727-8cab-4737-aa4e-d666d98b3f92',
+                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'personal-interstitial',
+                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+            },
+            {
+                'group_instance': 0,
+                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0',
+                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'ea651fa7-6b9d-4b6f-ba72-79133f312039',
+                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+            }
+        ]
+
+        user_navigation = [
+            {
+                'completed': True,
+                'current_location': True,
+                'link_name': 'Property Details',
+                'repeating': False,
+                'path': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f/0/6330dcfe-3b23-425d-8104-b725c6b7f398'
+            },
+            {
+                'completed': False,
+                'current_location': False,
+                'link_name': 'Household Details',
+                'repeating': False,
+                'path': 'multiple-questions-group/0/household-composition'
+            },
+            {
+                'completed': True,
+                'current_location': False,
+                'link_name': 'Extra Cover',
+                'repeating': False, 'path':
+                '3edd9ac8-0ea7-419f-831e-2c84450b41b9/0/824a5298-024f-4ce2-9780-54326c6f66c0'
+            },
+            {
+                'completed': False,
+                'current_location': False,
+                'link_name': 'Payment Details',
+                'repeating': False,
+                'path': 'd650262d-6172-4344-8371-316afecab08f/0/4e4f756b-3e84-43cc-97ac-8d31d708c9b8'
+            }
+        ]
+        self.assertEqual(navigator.get_front_end_navigation('b13c36f9-8b1b-4f3d-997e-5fea82a4036f', 0, completed_blocks), user_navigation)

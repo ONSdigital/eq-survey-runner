@@ -3,10 +3,11 @@
 	"schema_version": "0.0.1",
 	"questionnaire_id": "23",
 	"eq_id": "1",
-  "survey_id": "023",
+    "survey_id": "023",
 	"title": "Monthly Business Survey - Retail Sales Index",
 	"description": "MCI Description",
 	"theme": "default",
+    "navigation" : false,
 	"introduction": {
 		"description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
 		"information_to_provide": [
@@ -26,6 +27,7 @@
 		"id": "14ba4707-321d-441d-8d21-b8367366e766",
 		"title": "",
 		"blocks": [{
+            "type": "questionnaire",
 			"id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
 			"title": "Monthly Business Survey",
 			"sections": [{

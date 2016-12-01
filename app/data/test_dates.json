@@ -6,6 +6,7 @@
     "title": "Date formats",
     "description": "A test schema for different date formats",
     "theme": "default",
+    "navigation" : false,
     "introduction": {
         "description": "",
         "information_to_provide": [
@@ -20,6 +21,7 @@
         {
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },

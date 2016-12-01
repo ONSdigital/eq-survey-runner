@@ -6,6 +6,7 @@
     "title": "Census England Individual Schema",
     "description": "Census England Individual Schema",
     "theme": "census",
+    "navigation" : false,
     "introduction": {
         "description": "",
         "information_to_provide": []
@@ -36,6 +37,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "details-correct",
                     "title": "John Doe",
                     "sections": [
@@ -99,6 +101,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "correct-name",
                     "title": "John Doe",
                     "sections": [
@@ -124,6 +127,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "sex",
                     "title": "John Doe",
                     "sections": [
@@ -159,6 +163,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "date-of-birth",
                     "title": "John Doe",
                     "sections": [
@@ -185,6 +190,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "over-16",
                     "title": "John Doe",
                     "sections": [
@@ -220,6 +226,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "marital-status",
                     "title": "John Doe",
                     "sections": [
@@ -283,6 +290,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "another-address",
                     "title": "John Doe",
                     "sections": [
@@ -352,6 +360,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "other-address",
                     "title": "John Doe",
                     "sections": [
@@ -406,6 +415,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "address-type",
                     "title": "John Doe",
                     "sections": [
@@ -464,6 +474,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "in-education",
                     "title": "John Doe",
                     "sections": [
@@ -521,6 +532,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "term-time-location",
                     "title": "John Doe",
                     "sections": [
@@ -578,6 +590,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "country-of-birth",
                     "title": "John Doe",
                     "sections": [
@@ -775,6 +788,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "arrive-in-uk",
                     "title": "John Doe",
                     "sections": [
@@ -806,6 +820,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "length-of-stay",
                     "title": "John Doe",
                     "sections": [
@@ -845,6 +860,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "carer",
                     "title": "John Doe",
                     "sections": [
@@ -895,6 +911,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "national-identity",
                     "title": "John Doe",
                     "sections": [
@@ -950,6 +967,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "ethnic-group",
                     "title": "John Doe",
                     "sections": [
@@ -1054,6 +1072,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "white-ethnic-group",
                     "title": "John Doe",
                     "sections": [
@@ -1117,6 +1136,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "mixed-ethnic-group",
                     "title": "John Doe",
                     "sections": [
@@ -1180,6 +1200,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "asian-ethnic-group",
                     "title": "John Doe",
                     "sections": [
@@ -1247,6 +1268,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "black-ethnic-group",
                     "title": "John Doe",
                     "sections": [
@@ -1306,6 +1328,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "other-ethnic-group",
                     "title": "John Doe",
                     "sections": [
@@ -1361,6 +1384,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "sexual-identity",
                     "title": "John Doe",
                     "sections": [
@@ -1408,6 +1432,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "understand-welsh",
                     "title": "John Doe",
                     "sections": [
@@ -1456,6 +1481,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "language",
                     "title": "John Doe",
                     "sections": [
@@ -1563,6 +1589,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "english",
                     "title": "John Doe",
                     "sections": [
@@ -1606,6 +1633,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "religion",
                     "title": "John Doe",
                     "sections": [
@@ -1732,6 +1760,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "past-usual-address",
                     "title": "John Doe",
                     "sections": [
@@ -1805,6 +1834,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "last-year-address",
                     "title": "John Doe",
                     "sections": [
@@ -1859,6 +1889,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "passports",
                     "title": "John Doe",
                     "sections": [
@@ -1905,6 +1936,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "disability",
                     "title": "John Doe",
                     "sections": [
@@ -1951,6 +1983,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "qualifications",
                     "title": "John Doe",
                     "sections": [
@@ -2137,6 +2170,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "volunteering",
                     "title": "John Doe",
                     "sections": [
@@ -2187,6 +2221,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "employment-type",
                     "title": "John Doe",
                     "sections": [
@@ -2267,6 +2302,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "jobseeker",
                     "title": "John Doe",
                     "sections": [
@@ -2302,6 +2338,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-availability",
                     "title": "John Doe",
                     "sections": [
@@ -2337,6 +2374,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-pending",
                     "title": "John Doe",
                     "sections": [
@@ -2372,6 +2410,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "occupation",
                     "title": "John Doe",
                     "sections": [
@@ -2420,6 +2459,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "ever-worked",
                     "title": "John Doe",
                     "sections": [
@@ -2455,6 +2495,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "main-job",
                     "title": "John Doe",
                     "sections": [
@@ -2495,6 +2536,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-title",
                     "title": "John Doe",
                     "sections": [
@@ -2522,6 +2564,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-description",
                     "title": "John Doe",
                     "sections": [
@@ -2548,6 +2591,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "employers-business",
                     "title": "John Doe",
                     "sections": [
@@ -2575,6 +2619,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "main-job-type",
                     "title": "John Doe",
                     "sections": [
@@ -2632,6 +2677,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "business-name",
                     "title": "John Doe",
                     "sections": [

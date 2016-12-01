@@ -6,12 +6,14 @@
     "title": "Test Conditional Routing",
     "description": "",
     "theme": "default",
+    "navigation" : false,
     "eq_id": "1",
     "introduction": {
         "description": ""
     },
     "groups": [{
         "blocks": [{
+            "type": "questionnaire",
             "id": "conditional-routing-block",
             "title": "Test Conditional Routing",
             "sections": [{
@@ -76,6 +78,7 @@
             ]
         },
         {
+            "type": "questionnaire",
             "id": "response-yes",
             "title": "You responded yes",
             "sections": [{
@@ -109,6 +112,7 @@
             ]
         },
         {
+            "type": "questionnaire",
             "id": "response-no",
             "title": "You responded no",
             "sections": [{
