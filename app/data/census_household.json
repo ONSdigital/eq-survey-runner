@@ -178,7 +178,7 @@
                                     "type": "RepeatingAnswer",
                                     "answers": [
                                         {
-                                            "id": "household-composition-answer",
+                                            "id": "household-full-name",
                                             "alias": "person_full_name",
                                             "mandatory": false,
                                             "q_code": "20",
