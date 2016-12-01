@@ -391,7 +391,13 @@
                             ]
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "id": "who-lives-here-interstitial",
+            "title": "Who lives here?",
+            "blocks": [
                 {
                     "type": "interstitial",
                     "id": "who-lives-here-completed",
