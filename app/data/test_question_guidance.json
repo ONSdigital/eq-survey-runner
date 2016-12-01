@@ -6,6 +6,7 @@
     "survey_id": "0",
     "title": "Question Guidance Test",
     "theme": "default",
+    "navigation" : false,
     "description": "A questionnaire to test question guidance content",
     "introduction": {},
     "eq_id": "0",
@@ -15,6 +16,7 @@
             "title": "",
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "block-test-guidance-all",
                     "title": "",
                     "sections": [
@@ -78,6 +80,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "block-test-guidance-title",
                     "title": "",
                     "sections": [
@@ -118,6 +121,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "block-test-guidance-description",
                     "title": "",
                     "sections": [
@@ -163,6 +167,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "block-test-guidance-lists",
                     "title": "",
                     "sections": [

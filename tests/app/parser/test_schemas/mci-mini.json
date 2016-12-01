@@ -7,12 +7,14 @@
     "title": "Monthly Business Survey - Retail Sales Index",
     "description": "MCI description",
     "theme": "default",
+    "navigation": false,
     "groups": [
         {
             "id": "14ba4707-321d-441d-8d21-b8367366e766",
             "title": "",
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
                     "title": "Monthly Business Survey",
                     "sections": [

@@ -7,6 +7,7 @@
     "title": "Census England Household Schema",
     "description": "Census England Household Schema",
     "theme": "census",
+    "navigation" : false,
     "introduction": {
     },
     "eq_id": "census",
@@ -16,6 +17,7 @@
             "title": "Who lives here?",
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "permanent-or-family-home",
                     "title": "Who lives here?",
                     "sections": [
@@ -85,6 +87,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "else-permanent-or-family-home",
                     "title": "Who lives here?",
                     "sections": [
@@ -155,6 +158,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "household-composition",
                     "title": "Who lives here?",
                     "sections": [
@@ -192,6 +196,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "everyone-at-address-confirmation",
                     "title": "Who lives here?",
                     "sections": [
@@ -257,6 +262,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "overnight-visitors",
                     "title": "Who lives here?",
                     "sections": [
@@ -313,6 +319,7 @@
             ],
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "household-relationships",
                     "title": "Who lives here?",
                     "sections": [
@@ -426,6 +433,7 @@
             "title": "Household and Accommodation",
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "type-of-accommodation",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -497,6 +505,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "type-of-house",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -543,6 +552,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "type-of-flat",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -582,6 +592,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "self-contained-accommodation",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -622,6 +633,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "number-of-bedrooms",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -653,6 +665,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "central-heating",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -705,6 +718,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "own-or-rent",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -779,6 +793,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "landlord",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -830,6 +845,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "number-of-vehicles",
                     "title": "Household and Accommodation",
                     "sections": [
@@ -906,6 +922,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "details-correct",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -964,6 +981,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "correct-name",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -989,6 +1007,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "sex",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1024,6 +1043,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "date-of-birth",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1050,6 +1070,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "over-16",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1085,6 +1106,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "marital-status",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1148,6 +1170,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "another-address",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1227,6 +1250,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "other-address",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1281,6 +1305,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "address-type",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1339,6 +1364,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "in-education",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1391,6 +1417,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "term-time-location",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1448,6 +1475,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "country-of-birth",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1645,6 +1673,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "arrive-in-uk",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1675,6 +1704,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "length-of-stay",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1714,6 +1744,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "carer",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1763,6 +1794,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "national-identity",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1818,6 +1850,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "ethnic-group",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1922,6 +1955,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "white-ethnic-group",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -1985,6 +2019,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "mixed-ethnic-group",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2048,6 +2083,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "asian-ethnic-group",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2115,6 +2151,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "black-ethnic-group",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2174,6 +2211,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "other-ethnic-group",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2229,6 +2267,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "sexual-identity",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2276,6 +2315,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "understand-welsh",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2324,6 +2364,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "language",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2431,6 +2472,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "english",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2474,6 +2516,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "religion",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2600,6 +2643,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "past-usual-address",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2673,6 +2717,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "last-year-address",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2727,6 +2772,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "passports",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2773,6 +2819,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "disability",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -2817,6 +2864,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "qualifications",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3003,6 +3051,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "volunteering",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3051,6 +3100,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "employment-type",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3179,6 +3229,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "jobseeker",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3214,6 +3265,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-availability",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3249,6 +3301,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-pending",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3284,6 +3337,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "occupation",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3332,6 +3386,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "ever-worked",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3367,6 +3422,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "main-job",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3411,6 +3467,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-title",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3442,6 +3499,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "job-description",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3468,6 +3526,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "employers-business",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3503,6 +3562,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "main-job-type",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3560,6 +3620,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "business-name",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3617,6 +3678,7 @@
             "title": "Visitors",
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "number-of-visitors",
                     "title": "Visitors",
                     "sections": [
@@ -3654,6 +3716,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "visitor-name",
                     "title": "Visitors",
                     "sections": [
@@ -3679,6 +3742,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "visitor-sex",
                     "title": "{{ answers.person_full_name[group_instance] }}",
                     "sections": [
@@ -3714,6 +3778,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "visitor-date-of-birth",
                     "title": "Visitors",
                     "sections": [
@@ -3740,6 +3805,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "visitor-uk-resident",
                     "title": "Visitors",
                     "sections": [
@@ -3778,6 +3844,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "visitor-address",
                     "title": "Visitors",
                     "sections": [

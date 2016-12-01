@@ -6,10 +6,23 @@
 
 <div class="grid">
   <div class="grid__col col-8@m">
-    <div class="u-mb-s">
-      <a id="top-previous" class="mars" href="{{previous_location}}">Previous</a>
-    </div>
 
+      {% if schema.navigation %}
+    {% for group in navigation %}
+      {% if group.repeating %}&emsp;{% endif %}
+      {% if group.current_location %}
+        {{group.link_name}}
+      {% else %}
+        <a href="../../{{group.path}}">{{group.link_name}}</a>
+      {% endif %}
+
+      {% if group.completed %}
+        completed
+      {% endif %}
+     <br/>
+     {% endfor %}
+      {% endif %}
+    <br/>
     {% set state = content %}
 
     {% set all_errors = state.get_errors().items() %}
@@ -45,9 +58,18 @@
 
         {% set group = state.schema_item.container %}
 
+        {% set block = state.schema_item %}
+
+        {% set first_block = group['blocks'][0]['id'] != block['id'] %}
+
+        {% if first_block %}
+            <div class="u-mb-xs u-mb-m@m">
+                <a id="top-previous" class="mars" href="{{previous_location}}">Previous</a>
+            </div>
+        {% endif %}
+
           <div class="group" id="{{group.id}}">
 
-          {% set block = state.schema_item %}
 
             <div class="block" id="{{block.id}}">
 
@@ -62,11 +84,11 @@
           </div>
 
       <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
-      <br/>
-      <div class="u-mt-xs">
+      {% if first_block %}
+        <div class="u-mt-xs">
         <a id="bottom-previous" class="mars" href="{{previous_location}}">Previous</a>
       </div>
-
+      {% endif %}
     </form>
   </div>
 </div>
