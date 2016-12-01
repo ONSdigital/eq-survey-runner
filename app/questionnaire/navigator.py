@@ -328,7 +328,7 @@ class Navigator:
                     no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
                     answer_id = repeating_rule['answer_id']
                     answers = self.answer_store.filter(answer_id=answer_id)
-                    logger.error(no_of_repeats)
+
                     for i in range(no_of_repeats):
                         if answers[i]['value']:
                             navigation.append({

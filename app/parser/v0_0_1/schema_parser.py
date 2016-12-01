@@ -112,7 +112,6 @@ class SchemaParser(AbstractSchemaParser):
             questionnaire.data_version = ParserUtils.get_required_string(self._schema, "data_version")
             questionnaire.navigation = ParserUtils.get_required_boolean(self._schema, 'navigation')
 
-
         except Exception as e:
             logging.error('Error parsing schema')
             logging.info(e)

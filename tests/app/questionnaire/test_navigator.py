@@ -915,6 +915,7 @@ class TestNavigator(unittest.TestCase):
                                                                     current_block_id=current_block_id,
                                                                     current_iteration=current_iteration))
 
+<<<<<<< 7c2d8c523857598881077b2776a713b578ae373b
     def test_evaluate_rule_uses_single_value_from_list(self):
         when = {
             "value": 'singleAnswer',
@@ -935,6 +936,8 @@ class TestNavigator(unittest.TestCase):
 
         self.assertFalse(evaluate_rule(when, list_of_answers))
 
+=======
+>>>>>>> Navigation help
     def test_navigation_no_blocks_completed(self):
         survey = load_schema_file("test_navigation.json")
         navigator = Navigator(survey)
@@ -1142,5 +1145,5 @@ class TestNavigator(unittest.TestCase):
                 'link_name': 'Payment Details'
             }
         ]
-
         self.assertEqual(navigator.get_front_end_navigation('b13c36f9-8b1b-4f3d-997e-5fea82a4036f', 0, completed_blocks), user_navigation)
+
