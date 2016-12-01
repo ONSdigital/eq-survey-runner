@@ -16,5 +16,5 @@ class Widget(object):
         logger.debug('Getting user input for "%s", value is "%s"', self.name, user_input)
         return user_input
 
-    def get_other_input(self, post_vars):
+    def get_other_input(self, post_vars, options):
         pass
