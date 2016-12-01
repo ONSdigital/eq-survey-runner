@@ -82,7 +82,7 @@ class QuestionnaireManager(object):
         self.state = None
         if self._schema.item_exists(location['block_id']):
             metadata = get_metadata(current_user)
-            all_answers = get_answers(current_user)
+            answer_store = get_answer_store(current_user)
             schema_item = self._schema.get_item_by_id(location['block_id'])
 
             self.state = schema_item.construct_state()
@@ -92,7 +92,7 @@ class QuestionnaireManager(object):
             self.state.update_state(answers)
             self._conditional_display(self.state)
 
-            context = build_schema_context(metadata, self._schema.aliases, all_answers)
+            context = build_schema_context(metadata, self._schema.aliases, answer_store, location['group_instance'])
             renderer.render_state(self.state, context)
 
     def get_state_answers(self, item_id):
