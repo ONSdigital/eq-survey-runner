@@ -76,8 +76,8 @@
 
   const expect = chai.expect
 
-  describe('term-time-location', function () {
-    it('Given a census schema, When I select option Yes for Question - Are you a schoolchild or student in full-time education?, Then I should be displayed with term-time-location screen ', function () {
+  describe('ArriveInUk', function () {
+    it('Given a census schema, When I select bottom 2 options for Question - 9. What is your country of birth?, Then I should be displayed with ArriveInUk screen ', function () {
         openAndStartCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
         HouseholdComposition.setPersonName(0, 'John Smith').submit()
@@ -104,8 +104,8 @@
         Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
-        InEducation.clickInEducationAnswerYes().submit()
-
-        TermTimeLocation.clickTermTimeLocationAnswerAtThisAddress()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerRepublicOfIreland().submit()
+        ArriveInUk.setArriveInUkAnswerMonth(2)
     })
   })
