@@ -886,6 +886,16 @@
                                     "value": "Yes - this is my full name"
                                 }
                             }
+                        },
+                        {
+                            "goto": {
+                                "id": "correct-name",
+                                "when": {
+                                    "id": "details-correct-answer",
+                                    "condition": "equals",
+                                    "value": "No - I need to change my name"
+                                }
+                            }
                         }
                     ]
                 },
@@ -1308,6 +1318,16 @@
                                     "value": "No"
                                 }
                             }
+                        },
+                        {
+                            "goto": {
+                                "id": "term-time-location",
+                                "when": {
+                                    "id": "in-education-answer",
+                                    "condition": "equals",
+                                    "value": "Yes"
+                                }
+                            }
                         }
                     ]
                 },
@@ -1353,6 +1373,16 @@
                                     "id": "term-time-location-answer",
                                     "condition": "equals",
                                     "value": "at another address"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "country-of-birth",
+                                "when": {
+                                    "id": "term-time-location-answer",
+                                    "condition": "equals",
+                                    "value": "at this address"
                                 }
                             }
                         }
@@ -1546,6 +1576,11 @@
                                     "condition": "equals",
                                     "value": "Northern Ireland"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "arrive-in-uk"
                             }
                         }
                     ]
@@ -2327,6 +2362,11 @@
                                     "condition": "equals",
                                     "value": "English or Welsh"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "english"
                             }
                         }
                     ]
@@ -3401,6 +3441,11 @@
                                     "condition": "equals",
                                     "value": "Not working for an organisation"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "business-name"
                             }
                         }
                     ]
