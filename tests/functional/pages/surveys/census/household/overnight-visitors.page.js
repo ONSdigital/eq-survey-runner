@@ -11,6 +11,10 @@ class OvernightVisitorsPage extends QuestionPage {
     return browser.element('[name="overnight-visitors-answer"]').getValue()
   }
 
+  getErrorMsg() {
+  return browser.element('.js-inpagelink').getText()
+  }
+
 }
 
 export default new OvernightVisitorsPage()
