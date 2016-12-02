@@ -30,6 +30,7 @@ a {
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+    color: $color-links-hover;
   }
   &:focus {
     color: white;

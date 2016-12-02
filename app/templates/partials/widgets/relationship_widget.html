@@ -1,0 +1,46 @@
+{% set legend = _(answer.label, current_person=answer.current_person, other_person=answer.other_person).split('&hellip;') %}
+
+<fieldset class="field field--selectionbtn field--multiplechoice relationship__field">
+
+  <button class="btn btn--link relationship__edit js-relationship-editbtn u-hidden" data-close="{{_('Close')}}">
+    {{_('Edit')}}
+  </button>
+
+    <legend id="relationship-title" class="relationship__title  venus u-f-no">
+      <span>{{legend[0]}}</span> <span class="highlight js-relationship-legend">&nbsp; &hellip; &nbsp;</span> <span>{{legend[1]}}</span>
+    </legend>
+
+    <div class="relationship__options js-relationship-body">
+      <div class="u-mt-s">
+        {% for option in widget.options %}
+
+          {% set option_id = answer.id ~ "-" ~ loop.index %}
+
+          {% set input = {
+            "class": "input input--radio js-focusable",
+            "type": 'radio',
+            "value": option.value,
+            "name": answer.name,
+            "id": option_id,
+            "checked": "checked" if option.selected
+          } %}
+
+          {% set label = {
+            "class": "label label--inline venus",
+            "for": option_id
+          } %}
+
+          <div class="field__item js-focusable-box">
+
+            <input {{input|xmlattr}}>
+            <label {{label|xmlattr}}>
+              {{option.label}}
+            </label>
+
+          </div>
+
+        {% endfor %}
+      </div>
+    </div>
+
+</fieldset>

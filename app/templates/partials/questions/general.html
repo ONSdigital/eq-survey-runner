@@ -1,0 +1,58 @@
+{% set question_answers %}
+ <div class="question__answers">
+   {%- for answer in question.answers -%}
+    <div class="question__answer">
+     {% include theme('partials/answer.html') %}
+   </div>
+   {%- endfor -%}
+ </div>
+{% endset %}
+
+<div class="question" id="{{question.id}}">
+
+  {% set question_markup %}
+
+    {% if question.answers|length > 1 %}
+
+      <fieldset class="question__fieldset">
+
+        <legend class="question__legend">
+          {%- if question_title -%}
+            <span class="question__title neptune">{{question_title}}</span>
+          {%- endif %}
+          {%- if question_subtitle -%}
+            <br />
+            <span class="question__subtitle venus">{{question_subtitle}}</span>
+          {%- endif %}
+
+        </legend>
+
+        {{question_description|safe}}
+        {{question_guidance|safe}}
+        {{question_answers|safe}}
+
+      </fieldset>
+
+    {% else %}
+
+      {{question_titles|safe}}
+      {{question_description|safe}}
+      {{question_guidance|safe}}
+      {{question_answers|safe}}
+
+    {% endif %}
+
+  {% endset %}
+
+  {% if invalid %}
+
+    {% include theme('partials/questions/errors.html') %}
+
+  {% else %}
+
+    {{question_markup|safe}}
+    {{question_actions|safe}}
+
+  {% endif %}
+
+</div>
