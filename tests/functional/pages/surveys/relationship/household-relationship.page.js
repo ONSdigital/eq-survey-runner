@@ -28,6 +28,12 @@ class HouseholdRelationshipPage extends QuestionPage {
     return id
   }
 
+  submit() {
+    browser.scroll('.qa-btn-submit');
+    browser.click('.qa-btn-submit')
+    return this
+  }
+
 }
 
 export default new HouseholdRelationshipPage()
