@@ -69,7 +69,7 @@ class Question:
     @staticmethod
     def _get_checkbox_other_display_value(answer, answer_schema, option):
         options = {option['value'] for option in answer_schema['options']}
-        other_option_input = set(answer) - set(options) - {''}
+        other_option_input = [option for option in set(answer) - set(options) if option.strip()]
         return option['label'] if not other_option_input else other_option_input.pop()
 
     @staticmethod
