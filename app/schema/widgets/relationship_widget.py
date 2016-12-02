@@ -26,8 +26,8 @@ class RelationshipWidget(MultipleChoiceWidget):
                 'name': self.name,
                 'id': self.id,
                 'label': answer_state.schema_item.label,
-                'current_person': self.current_person,
-                'other_person': self.other_person,
+                'current_person': self.current_person or '',
+                'other_person': self.other_person or '',
             },
         }
         return widget_params
