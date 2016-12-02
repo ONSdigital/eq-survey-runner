@@ -7,6 +7,7 @@ class Section(Item):
     def __init__(self, id=None):
         super().__init__(id)
         self.title = None
+        self.number = None
         self.description = None
         self.questions = []
         self.children = self.questions

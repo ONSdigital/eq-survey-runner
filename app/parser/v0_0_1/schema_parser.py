@@ -224,6 +224,7 @@ class SchemaParser(AbstractSchemaParser):
         try:
             section.id = ParserUtils.get_required_string(schema, "id")
             section.title = ParserUtils.get_optional_string(schema, "title")
+            section.number = ParserUtils.get_optional_string(schema, "number")
             section.description = ParserUtils.get_optional_string(schema, "description")
 
             # regisger the section
@@ -258,6 +259,7 @@ class SchemaParser(AbstractSchemaParser):
             question.type = question_type
             question.id = ParserUtils.get_required_string(schema, "id")
             question.title = ParserUtils.get_required_string(schema, "title")
+            question.number = ParserUtils.get_optional_string(schema, "number")
             question.description = ParserUtils.get_optional_string(schema, "description")
             question.skip_condition = self._parse_skip_condition(ParserUtils.get_optional(schema, "skip_condition"))
             question.guidance = ParserUtils.get_optional(schema, "guidance")
