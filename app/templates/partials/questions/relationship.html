@@ -1,0 +1,21 @@
+{% import 'macros/helpers.html' as helpers %}
+
+<div class="relationship">
+
+    <h2 class="neptune">{{question_title}}</h2> {{question_description|safe}}
+
+    <div class="js-relationship">
+
+        {%- for answer in question.answers -%}
+
+        <div class="relationship__item js-relationship-item">
+
+            {{ answer.schema_item.widget.render(answer) | safe}}
+
+        </div>
+
+        {%- endfor -%}
+
+    </div>
+
+</div>

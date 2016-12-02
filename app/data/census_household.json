@@ -178,7 +178,7 @@
                                     "type": "RepeatingAnswer",
                                     "answers": [
                                         {
-                                            "id": "household-composition-answer",
+                                            "id": "household-full-name",
                                             "alias": "person_full_name",
                                             "mandatory": false,
                                             "q_code": "20",
@@ -296,7 +296,21 @@
                             ]
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "id": "who-lives-here-relationship",
+            "title": "Who lives here?",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_count_minus_one",
+                        "answer_id": "household-full-name"
+                    }
+                }
+            ],
+            "blocks": [
                 {
                     "id": "household-relationships",
                     "title": "Who lives here?",
@@ -308,28 +322,82 @@
                                 {
                                     "id": "household-relationships-question",
                                     "title": "5. How are members of this household related to each other?",
-                                    "type": "General",
+                                    "type": "Relationship",
                                     "answers": [
                                         {
                                             "id": "household-relationships-answer",
                                             "guidance": "If members are not related, select the ‘unrelated’ option, including foster parents and foster children ",
-                                            "label": "John Doe is the … of Jane Doe",
+                                            "label": "%(current_person)s is the &hellip; of %(other_person)s",
                                             "mandatory": false,
                                             "options": [
                                                 {
-                                                    "label": "Husband or Wife",
-                                                    "value": "Husband or Wife"
+                                                    "label": "Husband or wife",
+                                                    "value": "Husband or wife"
+                                                },
+                                                {
+                                                    "label": "Partner",
+                                                    "value": "Partner"
+                                                },
+                                                {
+                                                    "label": "Unrelated",
+                                                    "value": "Unrelated"
+                                                },
+                                                {
+                                                    "label": "Same-sex civil partner",
+                                                    "value": "Same-sex civil partner"
+                                                },
+                                                {
+                                                    "label": "Mother or father",
+                                                    "value": "Mother or father"
+                                                },
+                                                {
+                                                    "label": "Son or daughter",
+                                                    "value": "Son or daughter"
+                                                },
+                                                {
+                                                    "label": "Step-mother or step-father",
+                                                    "value": "Step-mother or step-father"
+                                                },
+                                                {
+                                                    "label": "Step-child",
+                                                    "value": "Step-child"
+                                                },
+                                                {
+                                                    "label": "Brother or sister",
+                                                    "value": "Brother or sister"
+                                                },
+                                                {
+                                                    "label": "Step–brother or step–sister",
+                                                    "value": "Step–brother or step–sister"
+                                                },
+                                                {
+                                                    "label": "Grandparent",
+                                                    "value": "Grandparent"
+                                                },
+                                                {
+                                                    "label": "Grandchild",
+                                                    "value": "Grandchild"
+                                                },
+                                                {
+                                                    "label": "Relation - other",
+                                                    "value": "Relation - other"
                                                 }
                                             ],
                                             "q_code": "20",
-                                            "type": "Radio"
+                                            "type": "Relationship"
                                         }
                                     ]
                                 }
                             ]
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "id": "who-lives-here-interstitial",
+            "title": "Who lives here?",
+            "blocks": [
                 {
                     "type": "interstitial",
                     "id": "who-lives-here-completed",

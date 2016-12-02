@@ -80,7 +80,7 @@
     it('Given a census schema, When I select option Yes for Question - Are you a schoolchild or student in full-time education?, Then I should be displayed with term-time-location screen ', function () {
         openAndStartCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(0, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()

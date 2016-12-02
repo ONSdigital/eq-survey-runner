@@ -80,15 +80,16 @@ def evaluate_repeat(repeat_rule, answers):
     :param answers:
     :return: The number of times to repeat
     """
+    repeat_functions = {
+        'answer_value': lambda filtered_answers: int(filtered_answers[0]['value'] if len(filtered_answers) == 1 else 1),
+        'answer_count': lambda filtered_answers: len(filtered_answers),
+        'answer_count_minus_one': lambda filtered_answers: len(filtered_answers) - 1,
+    }
     if 'answer_id' in repeat_rule and 'type' in repeat_rule:
         repeat_index = repeat_rule['answer_id']
         filtered = answers.filter(answer_id=repeat_index)
-        if repeat_rule['type'] == 'answer_value':
-            if len(filtered) == 1:
-                return int(filtered[0]['value'])
-            return 1
-        elif repeat_rule['type'] == 'answer_count':
-            return len(filtered)
+        repeat_function = repeat_functions[repeat_rule['type']]
+        return repeat_function(filtered)
 
 
 class Navigator:
@@ -226,20 +227,17 @@ class Navigator:
     def get_blocks(self):
         blocks = []
         for group_index, group in enumerate(SchemaHelper.get_groups(self.survey_json)):
-            blocks.extend([{
-                "group_id": group['id'],
-                "group_instance": 0,
-                "block": block,
-            } for block in group['blocks']])
+            no_of_repeats = 1
 
             for rule in SchemaHelper.get_repeat_rules(group):
-                no_of_times = evaluate_repeat(rule['repeat'], self.answer_store)
-                for i in range(1, no_of_times):
-                    blocks.extend([{
-                        "group_id": group['id'],
-                        "group_instance": i,
-                        "block": block,
-                    } for block in group['blocks']])
+                no_of_repeats = evaluate_repeat(rule['repeat'], self.answer_store)
+
+            for i in range(0, no_of_repeats):
+                blocks.extend([{
+                    "group_id": group['id'],
+                    "group_instance": i,
+                    "block": block,
+                } for block in group['blocks']])
         return blocks
 
     @classmethod

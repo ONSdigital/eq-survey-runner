@@ -80,7 +80,7 @@
     it('Given a census schema, When I select bottom 2 options for Question - 9. What is your country of birth?, Then I should be displayed with ArriveInUk screen ', function () {
         openAndStartCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
