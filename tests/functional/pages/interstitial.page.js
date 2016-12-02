@@ -1,11 +1,11 @@
 class InterstitialPage {
 
   getMainHeading() {
-      return browser.element('h1').getText()
+    return browser.element('h1').getText()
   }
 
   submit() {
-      browser.click('.qa-btn-submit')
+    browser.click('.qa-btn-submit')
   }
 
 }

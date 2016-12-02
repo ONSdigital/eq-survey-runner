@@ -29,6 +29,10 @@
   float: right;
 }
 
+.u-f-no {
+  float: none;
+}
+
 @include bp-suffix(u-fr) {
   float: right;
 }

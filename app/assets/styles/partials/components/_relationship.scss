@@ -1,0 +1,50 @@
+.relationship {
+  display: block;
+}
+
+.relationship__title {
+  padding-right: 2rem;
+  line-height: 1.2;
+}
+
+.relationship__item {
+  border-top: 1px solid $color-borders;
+  padding: 1rem 0;
+  margin: 0;
+  position: relative;
+  &:last-of-type {
+    border-bottom: 1px solid $color-borders;
+  }
+}
+
+.relationship__edit {
+  position: absolute;
+  right: 0;
+  top: 1.1rem;
+  display: inline-block;
+  line-height: 1;
+}
+
+.relationship__field {
+  display: block;
+}
+
+.relationship__options {
+  font-size: 0;
+  clear: both;
+  margin: 0;
+  padding: 0 1px 1px;
+  overflow: hidden;
+  transition: max-height 300ms ease-out 50ms;
+  .is-closed & {
+    max-height: 0;
+    pointer-events: none;
+  }
+  .is-open & {
+    max-height: 100rem;
+    height: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transition: max-height 300ms ease-out 50ms;
+  }
+}

@@ -47,7 +47,7 @@ class QuestionnaireManager(object):
 
         for location in navigator.get_location_path():
             answers = get_answers(current_user)
-            is_valid = self.validate(location['block_id'], answers)
+            is_valid = self.validate(location, answers)
 
             if not is_valid:
                 logger.debug("Failed validation with current location %s", str(location))
@@ -60,8 +60,6 @@ class QuestionnaireManager(object):
         questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
         for answer in self.get_state_answers(location['block_id']):
-            answer.group_id = location['group_id']
-            answer.group_instance = location['group_instance']
             questionnaire_store.answer_store.add_or_update(answer.flatten())
 
         if location not in questionnaire_store.completed_blocks:
@@ -72,26 +70,29 @@ class QuestionnaireManager(object):
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
 
-        is_valid = self.validate(location['block_id'], post_data)
+        is_valid = self.validate(location, post_data)
         # run the validator to update the validation_store
         if is_valid:
             self.update_questionnaire_store(location)
 
         return is_valid
 
-    def build_state(self, item_id, answers, group_instance=0):
+    def build_state(self, location, answers):
         # Build the state from the answers
         self.state = None
-        if self._schema.item_exists(item_id):
+        if self._schema.item_exists(location['block_id']):
             metadata = get_metadata(current_user)
             answer_store = get_answer_store(current_user)
-            schema_item = self._schema.get_item_by_id(item_id)
+            schema_item = self._schema.get_item_by_id(location['block_id'])
 
             self.state = schema_item.construct_state()
+            for answer in self.get_state_answers(location['block_id']):
+                answer.group_id = location['group_id']
+                answer.group_instance = location['group_instance']
             self.state.update_state(answers)
             self._conditional_display(self.state)
 
-            context = build_schema_context(metadata, self._schema.aliases, answer_store, group_instance)
+            context = build_schema_context(metadata, self._schema.aliases, answer_store, location['group_instance'])
             renderer.render_state(self.state, context)
 
     def get_state_answers(self, item_id):
@@ -135,7 +136,8 @@ class QuestionnaireManager(object):
 
         for answer_schema in question_schema.answers:
             next_answer_instance_id = self._get_next_answer_instance(answer_store, answer_schema.id)
-            question_state.create_new_answer_state(answer_schema, next_answer_instance_id)
+            new_answer_state = question_state.create_new_answer_state(answer_schema, next_answer_instance_id)
+            question_state.add_new_answer_state(new_answer_state)
 
         self.update_questionnaire_store(location)
 

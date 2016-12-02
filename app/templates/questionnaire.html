@@ -61,7 +61,8 @@
 
           </div>
 
-      <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">Save and continue</button>
+      <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
+      <br/>
       <div class="u-mt-xs">
         <a id="bottom-previous" class="mars" href="{{previous_location}}">Previous</a>
       </div>
