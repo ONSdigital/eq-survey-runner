@@ -7,7 +7,6 @@ let config = {
   services: ['selenium-standalone'],
   // Level of logging verbosity: silent | verbose | command | data | result | error
   logLevel: 'error',
-  maxInstances: 2,
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
@@ -20,7 +19,7 @@ let config = {
   capabilities: [{
     name: 'Chrome (local)',
     browserName: 'chrome',
-    maxInstances: 1
+    maxInstances: 2
   }],
   framework: 'mocha',
   reporters: ['spec'],
