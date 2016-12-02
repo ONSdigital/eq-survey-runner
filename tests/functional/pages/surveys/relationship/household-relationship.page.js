@@ -29,8 +29,7 @@ class HouseholdRelationshipPage extends QuestionPage {
   }
 
   submit() {
-    browser.scroll('.qa-btn-submit');
-    browser.click('.qa-btn-submit')
+    browser.submitForm('.qa-questionnaire-form')
     return this
   }
 
