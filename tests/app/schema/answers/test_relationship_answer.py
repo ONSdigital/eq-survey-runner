@@ -6,7 +6,7 @@ from app.schema.widgets.relationship_widget import RelationshipWidget
 
 class TestRelationshipAnswer(TestCase):
 
-    def test_widget_should_be_RelationshipWidget(self):
+    def test_widget_should_be_relationship_widget(self):
         # Given
         answer = RelationshipAnswer()
 

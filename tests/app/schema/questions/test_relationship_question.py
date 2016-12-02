@@ -6,7 +6,7 @@ from app.schema.questions.relationship_question import RelationshipQuestion
 
 class TestRelationshipQuestion(TestCase):
 
-    def test_state_class_should_be_RelationshipStateQuestion(self):
+    def test_state_class_should_be_relationship_state_question(self):
         # Given
         question = RelationshipQuestion()
 
