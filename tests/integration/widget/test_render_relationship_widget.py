@@ -14,42 +14,42 @@ class TestRenderRelationshipWidget(IntegrationTestCase):
         self.app_context = self.app.app_context()
         self.app_context.push()
         self.request_context = self.app.test_request_context()
-        self.request_context.push()
 
     def tearDown(self):
         self.app_context.pop()
-        self.request_context.pop()
 
     def test_render_widget_should_contain_current_person(self):
-        # Given
-        widget = RelationshipWidget('relationship')
-        widget.current_person = 'Joe Bloggs'
-        answer = Answer()
-        answer.label = '%(current_person)s is the &hellip; of %(other_person)s'
-        answer.options = [{'label': 'Husband or wife', 'value': 'Husband or wife'},
-                          {'label': 'Son or daughter', 'value': 'Son or daughter'}]
-        state_answer = StateAnswer('who-related', answer)
-        state_answer.input = 'Husband or wife'
+        with self.app.test_request_context():
+            # Given
+            widget = RelationshipWidget('relationship')
+            widget.current_person = 'Joe Bloggs'
+            answer = Answer()
+            answer.label = '%(current_person)s is the &hellip; of %(other_person)s'
+            answer.options = [{'label': 'Husband or wife', 'value': 'Husband or wife'},
+                              {'label': 'Son or daughter', 'value': 'Son or daughter'}]
+            state_answer = StateAnswer('who-related', answer)
+            state_answer.input = 'Husband or wife'
 
-        # When
-        rendered = widget.render(state_answer)
+            # When
+            rendered = widget.render(state_answer)
 
-        # Then
-        self.assertRegex(rendered, 'Joe Bloggs is the ')
+            # Then
+            self.assertRegex(rendered, 'Joe Bloggs is the ')
 
     def test_render_widget_should_contain_other_person(self):
-        # Given
-        widget = RelationshipWidget('relationship')
-        widget.other_person = 'Jane Doe'
-        answer = Answer()
-        answer.label = '%(current_person)s is the &hellip; of %(other_person)s'
-        answer.options = [{'label': 'Husband or wife', 'value': 'Husband or wife'},
-                          {'label': 'Son or daughter', 'value': 'Son or daughter'}]
-        state_answer = StateAnswer('who-related', answer)
-        state_answer.input = 'Husband or wife'
+        with self.app.test_request_context():
+            # Given
+            widget = RelationshipWidget('relationship')
+            widget.other_person = 'Jane Doe'
+            answer = Answer()
+            answer.label = '%(current_person)s is the &hellip; of %(other_person)s'
+            answer.options = [{'label': 'Husband or wife', 'value': 'Husband or wife'},
+                              {'label': 'Son or daughter', 'value': 'Son or daughter'}]
+            state_answer = StateAnswer('who-related', answer)
+            state_answer.input = 'Husband or wife'
 
-        # When
-        rendered = widget.render(state_answer)
+            # When
+            rendered = widget.render(state_answer)
 
-        # Then
-        self.assertRegex(rendered, 'of Jane Doe')
+            # Then
+            self.assertRegex(rendered, 'of Jane Doe')
