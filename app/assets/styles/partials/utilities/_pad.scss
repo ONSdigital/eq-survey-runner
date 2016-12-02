@@ -13,7 +13,7 @@ $padding: (
 );
 
 @each $key, $value in $sizes {
-  @each $abbr, $dec in $margins {
+  @each $abbr, $dec in $padding {
     @include bp-suffix(u-#{$abbr}-#{$key}) {
       #{$dec}: #{$value};
     }

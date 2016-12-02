@@ -22,7 +22,7 @@ export default function initAnalytics() {
   })
 
   forEach(guidances, guidance => {
-    const trigger = guidance.querySelector('[data-guidance-trigger]')
+    const trigger = guidance.querySelector('.js-data-guidance-trigger')
     const questionLabel = guidance.getAttribute('data-guidance-label')
     const questionId = guidance.getAttribute('data-guidance')
 

@@ -1,40 +1,55 @@
-.jupiter {
-  font-size: 1.7rem;
-  font-weight: 900;
-  line-height: 1.2;
-  @include mq(m) {
-    font-size: 2rem;
+$type_matrix: (
+  jupiter: (
+    small: 28px,
+    large: 36px,
+    weight: $font-weight-bold,
+    line-height: 1.4,
+  ),
+  saturn: (
+    small: 24px,
+    large: 28px,
+    weight: $font-weight-bold,
+    line-height: 1.4,
+  ),
+  neptune: (
+    small: 18px,
+    large: 22px,
+    weight: $font-weight-bold,
+    line-height: 1.4,
+  ),
+  venus: (
+    small: 16px,
+    large: 18px,
+    weight: $font-weight-bold,
+    line-height: 1.4,
+  ),
+  mars: (
+    small: 16px,
+    large: 18px,
+    weight: $font-weight-regular,
+    line-height: 1.4,
+  ),
+  mercury: (
+    small: 14px,
+    large: 14px,
+    weight: $font-weight-bold,
+    line-height: 1.4,
+  ),
+  pluto: (
+    small: 14px,
+    large: 14px,
+    weight: $font-weight-regular,
+    line-height: 1.4,
+  )
+);
+
+@each $name, $props in $type_matrix {
+  .#{$name} {
+    font-size: map-get($props, small);
+    font-weight: map-get($props, weight);
+    line-height: map-get($props, line-height);
+    @include mq(m) {
+      font-size: map-get($props, large);
+    }
   }
-}
-
-.saturn {
-  font-size: 1.556rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.neptune {
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.venus {
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.mars {
-  font-size: 1rem;
-  font-weight: 400;
-}
-
-.mercury {
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-.pluto {
-  font-size: 0.8rem;
-  font-weight: 400;
 }

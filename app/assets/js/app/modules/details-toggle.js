@@ -39,12 +39,12 @@ export function applyDetailsToggle(elDetails) {
 }
 
 export function open(elDetails, elBody, elLabel, elTrigger) {
+  if (document.activeElement !== document.body) document.activeElement.blur()
   elDetails.classList.add(classExpandedState)
   elBody.focus()
   elLabel.innerHTML = elDetails.getAttribute(attrHideLbl)
   elTrigger.setAttribute(attrAriaExpanaded, true)
   elBody.setAttribute(attrAriaHidden, false)
-  elBody.setAttribute(attrTabIndex, '0')
 }
 
 export function close(elDetails, elBody, elLabel, elTrigger) {
@@ -53,7 +53,6 @@ export function close(elDetails, elBody, elLabel, elTrigger) {
   elLabel.innerHTML = elDetails.getAttribute(attrShowLbl)
   elTrigger.setAttribute(attrAriaExpanaded, false)
   elBody.setAttribute(attrAriaHidden, true)
-  elBody.removeAttribute(attrTabIndex)
 }
 
 export function toggle(toggled, elDetails, elTrigger, elBody, elLabel) {
