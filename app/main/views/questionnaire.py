@@ -250,7 +250,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
         return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
 
     elif 'action[remove_answer]' in request.form:
-        index_to_remove = request.form.get('action[remove_answer]')
+        index_to_remove = int(request.form.get('action[remove_answer]'))
         questionnaire_manager.remove_answer(this_block, answer_store, index_to_remove)
         return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
 

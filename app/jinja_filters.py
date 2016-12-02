@@ -49,3 +49,8 @@ def format_str_as_month_year_date(value):
 @blueprint.app_template_filter()
 def format_str_as_date(value):
     return format_str_as_short_date(value)
+
+
+@blueprint.app_template_filter()
+def format_household_member_name(names):
+    return ' '.join(map(lambda name: name.strip(), filter(None, names)))

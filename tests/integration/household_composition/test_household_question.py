@@ -28,10 +28,10 @@ class TestHouseholdQuestion(IntegrationTestCase):
     def submit_answers(self, page):
         # Add first person
         form_data = MultiDict()
-        form_data.add("household-full-name", 'Person One')
-        form_data.add("household-full-name_1", 'Person Two')
-        form_data.add("household-full-name_2", 'Person Three')
-        form_data.add("household-full-name_3", 'Person Four')
+        form_data.add("first-name", 'Person One')
+        form_data.add("first-name_1", 'Person Two')
+        form_data.add("first-name_2", 'Person Three')
+        form_data.add("first-name_3", 'Person Four')
         form_data.add("action[save_continue]", "") # Remove person two.
         resp = self.client.post(page, data=form_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
@@ -51,10 +51,10 @@ class TestHouseholdQuestion(IntegrationTestCase):
     def remove_answer(self, page):
         # Add first person
         form_data = MultiDict()
-        form_data.add("household-full-name", 'Person One')
-        form_data.add("household-full-name_1", 'Person Two')
-        form_data.add("household-full-name_2", 'Person Three')
-        form_data.add("household-full-name_3", '')
+        form_data.add("first-name", 'Person One')
+        form_data.add("first-name_1", 'Person Two')
+        form_data.add("first-name_2", 'Person Three')
+        form_data.add("first-name_3", '')
         form_data.add("action[remove_answer]", "1") # Remove person two.
         resp = self.client.post(page, data=form_data, follow_redirects=False)
 
@@ -62,11 +62,11 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         resp = self.navigate_to_page(page)
         content = resp.get_data(True)
-        self.assertRegex(content, 'household-full-name')
-        self.assertRegex(content, 'household-full-name_2')
-        self.assertRegex(content, 'household-full-name_3')
+        self.assertRegex(content, 'first-name')
+        self.assertRegex(content, 'first-name_2')
+        self.assertRegex(content, 'first-name_3')
 
-        self.assertNotRegex(content, 'household-full-name_1')
+        self.assertNotRegex(content, 'first-name_1')
 
     def add_answers(self):
         self.login_and_check_introduction_text()
@@ -74,7 +74,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         # Add first person
         form_data = MultiDict()
-        form_data.add("household-full-name", 'Person One')
+        form_data.add("first-name", 'Person One')
         form_data.add("action[add_answer]", "")
         resp = self.client.post(first_page, data=form_data, follow_redirects=False)
 
@@ -82,12 +82,12 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         resp = self.navigate_to_page(first_page)
         content = resp.get_data(True)
-        self.assertRegex(content, 'household-full-name_1')
+        self.assertRegex(content, 'first-name_1')
 
         # Add second person
         form_data = MultiDict()
-        form_data.add("household-full-name", 'Person One')
-        form_data.add("household-full-name_1", 'Person Two')
+        form_data.add("first-name", 'Person One')
+        form_data.add("first_1", 'Person Two')
         form_data.add("action[add_answer]", "")
         resp = self.client.post(first_page, data=form_data, follow_redirects=False)
 
@@ -95,14 +95,14 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         resp = self.navigate_to_page(first_page)
         content = resp.get_data(True)
-        self.assertRegex(content, 'household-full-name_1')
-        self.assertRegex(content, 'household-full-name_2')
+        self.assertRegex(content, 'first-name_1')
+        self.assertRegex(content, 'first-name_2')
 
         # Add third person
         form_data = MultiDict()
-        form_data.add("household-full-name", 'Person One')
-        form_data.add("household-full-name_1", 'Person Two')
-        form_data.add("household-full-name_2", 'Person Three')
+        form_data.add("first-name", 'Person One')
+        form_data.add("first-name_1", 'Person Two')
+        form_data.add("first-name_2", 'Person Three')
         form_data.add("action[add_answer]", "")
         resp = self.client.post(first_page, data=form_data, follow_redirects=False)
 
@@ -110,9 +110,9 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         resp = self.navigate_to_page(first_page)
         content = resp.get_data(True)
-        self.assertRegex(content, 'household-full-name_1')
-        self.assertRegex(content, 'household-full-name_2')
-        self.assertRegex(content, 'household-full-name_3')
+        self.assertRegex(content, 'first-name_1')
+        self.assertRegex(content, 'first-name_2')
+        self.assertRegex(content, 'first-name_3')
 
         return first_page
 
