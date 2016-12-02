@@ -52,13 +52,13 @@
  <div class="question__answers">
    {%- if question.schema_item.type == 'RepeatingAnswer' %}
      {%- for answer in question.answers %}
-       <div class="question__answer js-household-person">
+       <div class="question__answer js-household-person" data-index="{{loop.index}}">
          <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
            <small>(
            {%- if loop.index == 1 -%}
               <span class="js-household-action">{{ _('You') }}</span>
            {%- else -%}
-               <button class="btn btn--link" name="action[remove_answer]"
+               <button class="btn btn--link js-btn-remove" name="action[remove_answer]"
                        value="{{ loop.index0 }}">{{ _('Remove') }}
                    <span class="u-vh">{{ _('Person') }} {{loop.index0}}</span>
                </button>
