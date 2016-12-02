@@ -8,6 +8,14 @@ from app.schema.question import Question
 from app.schema.widgets.text_widget import TextWidget
 
 
+def create_answer(group_instance=0):
+    answer = Answer('whos-related')
+    answer.widget = TextWidget('whos-related')
+    answer_state = answer.construct_state()
+    answer_state.group_instance = group_instance
+    return answer_state
+
+
 class TestRelationshipStateQuestion(TestCase):
 
     household_answers = [
@@ -30,7 +38,7 @@ class TestRelationshipStateQuestion(TestCase):
 
     def test_should_create_relationship_answers_other_household_members(self):
         # Given
-        answer_state = self.create_answer()
+        answer_state = create_answer()
         question_schema = Question()
         question_schema.answers = [answer_state.schema_item]
         relationship_state_question = RelationshipStateQuestion('relationship', question_schema)
@@ -46,7 +54,7 @@ class TestRelationshipStateQuestion(TestCase):
 
     def test_relationship_questions_should_reduce_after_each_relationship_answer(self):
         # Given
-        answer_state = self.create_answer(group_instance=1)
+        answer_state = create_answer(group_instance=1)
         question_schema = Question()
         question_schema.answers = [answer_state.schema_item]
         relationship_state_question = RelationshipStateQuestion('relationship', question_schema)
@@ -62,7 +70,7 @@ class TestRelationshipStateQuestion(TestCase):
 
     def test_should_not_have_answer_for_last_person(self):
         # Given
-        answer_state = self.create_answer(group_instance=2)
+        answer_state = create_answer(group_instance=2)
         question_schema = Question()
         question_schema.answers = [answer_state.schema_item]
         relationship_state_question = RelationshipStateQuestion('relationship', question_schema)
@@ -78,7 +86,7 @@ class TestRelationshipStateQuestion(TestCase):
 
     def test_should_set_all_relationship_answers(self):
         # Given
-        answer_state = self.create_answer()
+        answer_state = create_answer()
         question_schema = Question()
         question_schema.answers = [answer_state.schema_item]
         relationship_state_question = RelationshipStateQuestion('relationship', question_schema)
@@ -99,7 +107,7 @@ class TestRelationshipStateQuestion(TestCase):
 
     def test_should_set_current_person_on_widget(self):
         # Given
-        answer_state = self.create_answer(group_instance=1)
+        answer_state = create_answer(group_instance=1)
         question_schema = Question()
         question_schema.answers = [answer_state.schema_item]
         relationship_state_question = RelationshipStateQuestion('relationship', question_schema)
@@ -115,7 +123,7 @@ class TestRelationshipStateQuestion(TestCase):
 
     def test_should_set_other_person_on_widget(self):
         # Given
-        answer_state = self.create_answer(group_instance=1)
+        answer_state = create_answer(group_instance=1)
         question_schema = Question()
         question_schema.answers = [answer_state.schema_item]
         relationship_state_question = RelationshipStateQuestion('relationship', question_schema)
@@ -128,11 +136,3 @@ class TestRelationshipStateQuestion(TestCase):
 
         # Then
         self.assertEqual(relationship_state_question.children[0].schema_item.widget.other_person, 'Joe Bloggs')
-
-    @staticmethod
-    def create_answer(group_instance=0):
-        answer = Answer('whos-related')
-        answer.widget = TextWidget('whos-related')
-        answer_state = answer.construct_state()
-        answer_state.group_instance = group_instance
-        return answer_state
