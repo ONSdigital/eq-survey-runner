@@ -120,5 +120,6 @@ domready(() => {
     }
   })
 
+  btn.setAttribute('type', 'button')
   btn.addEventListener('click', onAddBtnClick)
 })
