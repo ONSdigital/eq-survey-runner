@@ -83,7 +83,7 @@ describe('Census Household', function () {
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -143,7 +143,7 @@ describe('Census Household', function () {
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -205,7 +205,7 @@ describe('Census Household', function () {
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -267,7 +267,7 @@ describe('Census Household', function () {
         var person = 'John Smith'
 
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, person).submit()
+        HouseholdComposition.setPersonName(0, person).addPerson().setPersonName(1, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()

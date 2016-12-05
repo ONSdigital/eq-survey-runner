@@ -46,8 +46,8 @@ export const getRepeatedGroup = () => {
   return getLocation().repeatedGroup
 }
 
-export const getLocation = () => {
-  // Matches: /(groupId)/(blockId)
+export const getLocation= () => {
+   // Matches: /(groupId)/(blockId)
   var regexp = /questionnaire.+\/(\d+)\/(.+)$/g
   var matches = regexp.exec(browser.getUrl())
 

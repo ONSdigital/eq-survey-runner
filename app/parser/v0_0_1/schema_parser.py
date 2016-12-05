@@ -20,6 +20,7 @@ from app.schema.answers.month_year_date_answer import MonthYearDateAnswer
 from app.schema.answers.percentage_answer import PercentageAnswer
 from app.schema.answers.positiveinteger_answer import PositiveIntegerAnswer
 from app.schema.answers.radio_answer import RadioAnswer
+from app.schema.answers.relationship_answer import RelationshipAnswer
 from app.schema.answers.textarea_answer import TextareaAnswer
 from app.schema.answers.textfield_answer import TextfieldAnswer
 
@@ -31,6 +32,7 @@ from app.schema.properties import Properties
 from app.schema.questionnaire import Questionnaire
 from app.schema.questions.date_range_question import DateRangeQuestion
 from app.schema.questions.general_question import GeneralQuestion
+from app.schema.questions.relationship_question import RelationshipQuestion
 from app.schema.questions.repeating_answer_question import RepeatingAnswerQuestion
 from app.schema.section import Section
 from app.schema.skip_condition import SkipCondition
@@ -69,6 +71,7 @@ class SchemaParser(AbstractSchemaParser):
             'RADIO': RadioAnswer,
             'TEXTAREA': TextareaAnswer,
             'TEXTFIELD': TextfieldAnswer,
+            'RELATIONSHIP': RelationshipAnswer,
         })
 
         self.question_factory = Factory()
@@ -76,6 +79,7 @@ class SchemaParser(AbstractSchemaParser):
             'GENERAL': GeneralQuestion,
             'DATERANGE': DateRangeQuestion,
             'REPEATINGANSWER': RepeatingAnswerQuestion,
+            'RELATIONSHIP': RelationshipQuestion,
         })
 
     def get_parser_version(self):

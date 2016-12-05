@@ -459,6 +459,34 @@ class TestNavigator(unittest.TestCase):
 
         self.assertEqual(expected_path, navigator.get_routing_path())
 
+    def test_should_not_show_block_for_zero_repeats(self):
+        survey = load_schema_file("test_repeating_household.json")
+
+        # Default is to count answers, so switch to using value
+        survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_value'
+
+        expected_path = [
+            {
+                "block_id": "household-composition",
+                "group_id": "multiple-questions-group",
+                'group_instance': 0
+            }
+        ]
+
+        answer = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            answer_id="household-full-name",
+            block_id="household-composition",
+            value="0"
+        )
+        answers = AnswerStore()
+        answers.add(answer)
+
+        navigator = Navigator(survey, answer_store=answers)
+
+        self.assertEqual(expected_path, navigator.get_routing_path())
+
     def test_repeating_groups_no_of_answers(self):
         survey = load_schema_file("test_repeating_household.json")
 
@@ -532,6 +560,56 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer)
         answers.add(answer_2)
         answers.add(answer_3)
+
+        navigator = Navigator(survey, answer_store=answers)
+
+        self.assertEqual(expected_path, navigator.get_routing_path())
+
+    def test_repeating_groups_no_of_answers_minus_one(self):
+        survey = load_schema_file("test_repeating_household.json")
+
+        # Default is to count answers, so switch to using value
+        survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
+        expected_path = [
+            {
+                "block_id": "household-composition",
+                "group_id": "multiple-questions-group",
+                'group_instance': 0
+            },
+            {
+                "block_id": "repeating-block-1",
+                "group_id": "repeating-group",
+                'group_instance': 0
+            },
+            {
+                "block_id": "repeating-block-2",
+                "group_id": "repeating-group",
+                'group_instance': 0
+            }
+        ]
+
+        answer = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            answer_instance=0,
+            answer_id="household-full-name",
+            block_id="household-composition",
+            value="Joe Bloggs"
+        )
+
+        answer_2 = Answer(
+            group_id="multiple-questions-group",
+            group_instance=0,
+            answer_instance=1,
+            answer_id="household-full-name",
+            block_id="household-composition",
+            value="Sophie Bloggs"
+        )
+
+        answers = AnswerStore()
+
+        answers.add(answer)
+        answers.add(answer_2)
 
         navigator = Navigator(survey, answer_store=answers)
 

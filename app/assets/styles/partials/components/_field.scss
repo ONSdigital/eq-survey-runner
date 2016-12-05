@@ -37,27 +37,33 @@ input:checked ~ .field__other {
   display: block;
 }
 
-.field--radio,
-.field--checkbox {
+.field--multiplechoice {
   .field__item {
     background: white;
-    border: 1px solid $color-borders;
+    border: 1px solid #999;
     border-radius: 0.2rem;
     cursor: pointer;
     overflow: hidden;
     position: relative;
     &:hover {
       border-color: $color-dark-grey;
-    }
-    &.is-checked {
-      border-color: $color-dark-grey;
-      background-color: white;
-      box-shadow: 0 0 0 1px $color-dark-grey;
+      box-shadow: none;
     }
     &.has-focus {
+      color: $color-text;
       border-color: $color-focus;
       background-color: #f5f6ff;
       box-shadow: 0 0 0 1px $color-focus;
+    }
+    &.is-checked {
+      color: $color-text;
+      border-color: $color-links-hover;
+      box-shadow: 0 0 0 1px $color-links-hover;
+      &:hover {
+        border-color: $color-text;
+        background-color: #eee;
+        box-shadow: 0 0 0 1px $color-text;
+      }
     }
   }
 
@@ -141,5 +147,68 @@ input:checked ~ .field__other {
 
   .input {
     width: 100%;
+  }
+}
+
+.field--selectionbtn {
+
+  .has-js & {
+    .input {
+      width: 0;
+      opacity: 0;
+    }
+
+    .label {
+      padding-left: 1rem;
+      font-size: 0.8rem;
+      @include mq(m) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .field__item {
+    font-size: initial;
+    width: calc(50% - 0.15rem);
+    min-width: 0;
+    margin: 0 0.3rem 0.3rem 0;
+    vertical-align: top;
+    transition: opacity 100ms ease-out;
+    color: $color-links;
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+
+    &:hover {
+      border-color: $color-links-hover;
+      color: $color-links-hover;
+      label {
+        background: transparent !important;
+      }
+    }
+
+    @for $i from 20 through 1 {
+      &:nth-of-type(#{$i}) {
+        transition-delay: $i * 25ms;
+      }
+    }
+
+    .is-closed & {
+      opacity: 0;
+      @for $i from 1 through 20 {
+        &:nth-of-type(#{$i}) {
+          transition-delay: $i * 25ms;
+        }
+      }
+    }
+    .is-open & {
+      opacity: 1;
+      @for $i from 1 through 20 {
+        &:nth-of-type(#{$i}) {
+          transition-delay: $i * 25ms;
+        }
+      }
+    }
   }
 }

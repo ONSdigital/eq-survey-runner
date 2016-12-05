@@ -3,7 +3,7 @@ import QuestionPage from '../../question.page'
 class ArriveInUkPage extends QuestionPage {
 
   setArriveInUkAnswerMonth(value) {
-    browser.setValue('[name="arrive-in-uk-answer-month"]', value)
+    browser.selectByValue('[name="arrive-in-uk-answer-month"]', value)
     return this
   }
 
