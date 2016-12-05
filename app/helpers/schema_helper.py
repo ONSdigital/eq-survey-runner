@@ -37,3 +37,22 @@ class SchemaHelper(object):
     @classmethod
     def get_block(cls, survey_json, block_id):
         return next(b for b in cls.get_blocks(survey_json) if b["id"] == block_id)
+
+    @classmethod
+    def find_groups_with_repeat_for_block_id(cls, survey_json, block_id):
+        for group in cls.get_groups(survey_json):
+            for rule in SchemaHelper.get_repeat_rules(group):
+                answer_id = rule['repeat']['answer_id']
+                block_id_for_answer = cls.find_block_with_answer_id(survey_json, answer_id)
+                if block_id_for_answer == block_id:
+                    yield group['id']
+
+    @classmethod
+    def find_block_with_answer_id(cls, survey_json, answer_id):
+        for block in cls.get_blocks(survey_json):
+            for section in (s for s in block['sections'] if block['sections']):
+                for question in (q for q in section['questions'] if section['questions']):
+                    for answer in (a for a in question['answers'] if question['answers']):
+                        if answer['id'] == answer_id:
+                            return block['id']
+        return None
