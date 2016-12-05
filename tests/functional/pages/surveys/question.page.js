@@ -25,6 +25,10 @@ class QuestionPage {
     return browser.getText('h1[class="section__title saturn"]')
   }
 
+  getAlertText(year) {
+    return browser.element('.alert__body').getText()
+  }
+
 }
 
 export default QuestionPage
