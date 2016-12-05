@@ -213,7 +213,7 @@ class AnswerStore(object):
         :param answer: A dict of flattened answer details.
         """
         index = self.find(answer)
-        if index:
+        if index is not None:
             del self.answers[index]
 
     def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
