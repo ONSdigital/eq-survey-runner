@@ -580,7 +580,7 @@ class TestAnswerStore(unittest.TestCase):
         self.store.add(answer_1)
         self.store.add(answer_2)
 
-        self.store.remove(block_id="group2")
+        self.store.remove(group_id="group2")
         expected_answers = {
             "answer1": 10,
             "answer2": 20
