@@ -241,10 +241,10 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
         answer_store.remove(group_id=group_id, block_id='household-composition')
 
         questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        group_ids_to_delete = SchemaHelper.find_groups_with_repeat_for_block_id(g.schema_json, 'household-composition')
-        for group_id_to_delete in group_ids_to_delete:
-            answer_store.remove(group_id=group_id_to_delete)
-            questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if b.get('group_id') != group_id_to_delete]
+        groups_to_delete = SchemaHelper.get_groups_that_repeat_on_answer_in_block_id(g.schema_json, 'household-composition')
+        for group in groups_to_delete:
+            answer_store.remove(group_id=group['id'])
+            questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if b.get('group_id') != group['id']]
 
     valid = questionnaire_manager.process_incoming_answers(this_block, request.form)
 
