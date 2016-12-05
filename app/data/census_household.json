@@ -499,12 +499,7 @@
                         },
                         {
                             "goto": {
-                                "id": "self-contained-accommodation",
-                                "when": {
-                                    "id": "type-of-accommodation-answer",
-                                    "condition": "equals",
-                                    "value": "Caravan or other mobile or temporary structure"
-                                }
+                                "id": "self-contained-accommodation"
                             }
                         }
                     ]
@@ -1453,8 +1448,8 @@
                                             "mandatory": false,
                                             "options": [
                                                 {
-                                                    "label": "at this address",
-                                                    "value": "at this address"
+                                                    "label": "here, at this address",
+                                                    "value": "here, at this address"
                                                 },
                                                 {
                                                     "label": "at another address",
@@ -1482,12 +1477,7 @@
                         },
                         {
                             "goto": {
-                                "id": "country-of-birth",
-                                "when": {
-                                    "id": "term-time-location-answer",
-                                    "condition": "equals",
-                                    "value": "at this address"
-                                }
+                                "id": "country-of-birth"
                             }
                         }
                     ]
@@ -1975,6 +1965,21 @@
                                     "condition": "equals",
                                     "value": "Other ethnic group"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "sexual-identity",
+                                "when": {
+                                    "meta" : "variant_flags.sexual_identity",
+                                    "condition": "equals",
+                                    "value":"true"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "understand-welsh"
                             }
                         }
                     ]

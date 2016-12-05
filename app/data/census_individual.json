@@ -438,22 +438,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "country-of-birth",
-                                "when": {
-                                    "id": "in-education-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "term-time-location",
                                 "when": {
                                     "id": "in-education-answer",
                                     "condition": "equals",
                                     "value": "Yes"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "country-of-birth"
                             }
                         }
                     ]
@@ -478,8 +473,8 @@
                                             "mandatory": false,
                                             "options": [
                                                 {
-                                                    "label": "at this address",
-                                                    "value": "at this address"
+                                                    "label": "here, at this address",
+                                                    "value": "here, at this address"
                                                 },
                                                 {
                                                     "label": "at another address",
@@ -507,12 +502,7 @@
                         },
                         {
                             "goto": {
-                                "id": "country-of-birth",
-                                "when": {
-                                    "id": "term-time-location-answer",
-                                    "condition": "equals",
-                                    "value": "at this address"
-                                }
+                                "id": "country-of-birth"
                             }
                         }
                     ]
