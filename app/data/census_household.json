@@ -1379,22 +1379,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "country-of-birth",
-                                "when": {
-                                    "id": "in-education-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "term-time-location",
                                 "when": {
                                     "id": "in-education-answer",
                                     "condition": "equals",
                                     "value": "Yes"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "country-of-birth"
                             }
                         }
                     ]
