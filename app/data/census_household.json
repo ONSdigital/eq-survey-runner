@@ -289,7 +289,12 @@
                                             "label": "Number of visitors (enter 0 if no visitors)",
                                             "mandatory": true,
                                             "q_code": "20",
-                                            "type": "Integer"
+                                            "type": "Integer",
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please enter a value even if that value is 0"
+                                                }
+                                            }
                                         }
                                     ]
                                 }
