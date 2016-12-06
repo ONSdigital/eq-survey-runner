@@ -1888,8 +1888,6 @@
                                 {
                                     "id": "disability-question",
                                     "title": "23. Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
-                                    "description": "Include Problems related to old age",
-                                    "title": "22. Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
                                     "guidance": [
                                         {
                                             "description": "Include Problems related to old age"
