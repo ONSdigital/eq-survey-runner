@@ -72,6 +72,7 @@
   cursor: pointer;
   font-size: inherit;
   text-decoration: underline;
+  width: auto;
   &:hover {
     text-decoration: underline;
     color: $color-links-hover;
