@@ -1,6 +1,10 @@
 class SchemaHelper(object):
 
     @staticmethod
+    def has_introduction(survey_json):
+        return 'introduction' in survey_json
+
+    @staticmethod
     def get_first_group_id(survey_json):
         return survey_json['groups'][0]['id']
 

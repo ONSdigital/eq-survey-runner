@@ -282,7 +282,6 @@
     "questionnaire_id",
     "survey_id",
     "title",
-    "introduction",
     "groups",
     "theme"
   ]
