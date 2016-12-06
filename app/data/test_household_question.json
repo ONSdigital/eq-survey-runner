@@ -84,19 +84,19 @@
                                   "title": "Is there anyone else for whom this address is their permanent or family home?",
                                   "type": "General",
                                   "validation": [],
-                                    "guidance": [
-                                        {
-                                            "title": "Include",
-                                            "list": [
-                                                "People who live outside the UK who are staying in the UK for three months or more",
-                                                "People who work away from home within the UK",
-                                                "Members of the Armed Forces if this is their permanent or family home",
-                                                "People who are temporarily outside the UK for less than 12 months",
-                                                "People staying temporarily and usually live in the UK but do not have another UK address, for example relatives friends",
-                                                "Other people who usually live here, including anyone temporarily away from home"
-                                            ]
-                                        }
-                                    ],
+                                  "guidance": [
+                                      {
+                                           "title": "Include",
+                                           "list": [
+                                               "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
+                                               "People who work away from home within the UK  if this is their permanent or family home",
+                                               "Members of the Armed Forces if this is their permanent or family home",
+                                               "People who are temporarily outside the UK for <b>less than 12 months</b>",
+                                               "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
+                                               "Other people who usually live here, including anyone temporarily away from home "
+                                           ]
+                                      }
+                                  ],
                                   "answers": [
                                         {
                                             "guidance": "",
