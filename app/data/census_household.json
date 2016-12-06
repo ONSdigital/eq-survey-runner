@@ -3,7 +3,7 @@
     "questionnaire_id": "",
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
-    "survey_id": "",
+    "survey_id": "census",
     "title": "Census England Household Schema",
     "description": "Census England Household Schema",
     "theme": "census",
