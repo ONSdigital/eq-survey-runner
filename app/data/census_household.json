@@ -218,7 +218,7 @@
                                     "answers": [
                                         {
                                             "id": "everyone-at-address-confirmation-answer",
-                                            "mandatory": true,
+                                            "mandatory": false,
                                             "options": [
                                                 {
                                                     "label": "Yes",
@@ -240,22 +240,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "overnight-visitors",
-                                "when": {
-                                    "id": "everyone-at-address-confirmation-answer",
-                                    "condition": "equals",
-                                    "value": "Yes"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "household-composition",
                                 "when": {
                                     "id": "everyone-at-address-confirmation-answer",
                                     "condition": "equals",
                                     "value":"No - I need to add another person"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "overnight-visitors"
                             }
                         }
                     ]
@@ -1384,22 +1379,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "country-of-birth",
-                                "when": {
-                                    "id": "in-education-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "term-time-location",
                                 "when": {
                                     "id": "in-education-answer",
                                     "condition": "equals",
                                     "value": "Yes"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "country-of-birth"
                             }
                         }
                     ]
