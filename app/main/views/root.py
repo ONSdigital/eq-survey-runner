@@ -81,22 +81,22 @@ def login():
     navigator = Navigator(json, get_metadata(current_user), get_answer_store(current_user))
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
-    if current_location['block_id'] == 'introduction':
+    if current_location.block_id == 'introduction':
         return redirect(url_for('questionnaire.get_introduction',
                                 eq_id=eq_id,
                                 form_type=form_type,
                                 collection_id=collection_id))
-    elif current_location['block_id'] == 'summary':
+    elif current_location.block_id == 'summary':
         return redirect(url_for('questionnaire.get_summary',
                                 eq_id=eq_id,
                                 form_type=form_type,
                                 collection_id=collection_id))
-    elif current_location['block_id'] == 'thank-you':
+    elif current_location.block_id == 'thank-you':
         return redirect(url_for('questionnaire.get_thank_you',
                                 eq_id=eq_id,
                                 form_type=form_type,
                                 collection_id=collection_id))
-    elif current_location['block_id'] == 'confirmation':
+    elif current_location.block_id == 'confirmation':
         return redirect(url_for('questionnaire.get_confirmation',
                                 eq_id=eq_id,
                                 form_type=form_type,
@@ -106,6 +106,6 @@ def login():
                             eq_id=eq_id,
                             form_type=form_type,
                             collection_id=collection_id,
-                            group_id=current_location['group_id'],
-                            group_instance=current_location['group_instance'],
-                            block_id=current_location['block_id']))
+                            group_id=current_location.group_id,
+                            group_instance=current_location.group_instance,
+                            block_id=current_location.block_id))
