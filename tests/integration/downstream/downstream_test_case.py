@@ -9,10 +9,6 @@ class MyMockSubmitter(Submitter):
         self._message = None
         self._submitted_at = None
 
-    def send(self, message):
-        self._message = message
-        return True
-
     @staticmethod
     def encrypt_message(message):
         return message
@@ -21,7 +17,8 @@ class MyMockSubmitter(Submitter):
         return self._message
 
     def send_message(self, message, queue):
-        pass
+        self._message = message
+        return True
 
 
 class DownstreamTestCase(IntegrationTestCase):

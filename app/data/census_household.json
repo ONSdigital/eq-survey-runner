@@ -2,6 +2,7 @@
     "mime_type": "application/json/ons/eq",
     "questionnaire_id": "",
     "schema_version": "0.0.1",
+    "data_version": "0.0.2",
     "survey_id": "",
     "title": "Census England Household Schema",
     "description": "Census England Household Schema",
@@ -218,7 +219,7 @@
                                     "answers": [
                                         {
                                             "id": "everyone-at-address-confirmation-answer",
-                                            "mandatory": true,
+                                            "mandatory": false,
                                             "options": [
                                                 {
                                                     "label": "Yes",
@@ -240,22 +241,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "overnight-visitors",
-                                "when": {
-                                    "id": "everyone-at-address-confirmation-answer",
-                                    "condition": "equals",
-                                    "value": "Yes"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "household-composition",
                                 "when": {
                                     "id": "everyone-at-address-confirmation-answer",
                                     "condition": "equals",
                                     "value":"No - I need to add another person"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "overnight-visitors"
                             }
                         }
                     ]
@@ -952,22 +948,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "sex",
-                                "when": {
-                                    "id": "details-correct-answer",
-                                    "condition": "equals",
-                                    "value": "Yes - this is my full name"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "correct-name",
                                 "when": {
                                     "id": "details-correct-answer",
                                     "condition": "equals",
                                     "value": "No - I need to change my name"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "sex"
                             }
                         }
                     ]
@@ -1384,22 +1375,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "country-of-birth",
-                                "when": {
-                                    "id": "in-education-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "term-time-location",
                                 "when": {
                                     "id": "in-education-answer",
                                     "condition": "equals",
                                     "value": "Yes"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "country-of-birth"
                             }
                         }
                     ]

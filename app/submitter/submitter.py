@@ -3,7 +3,6 @@ import logging
 from abc import abstractmethod
 
 from app import settings
-from app.submitter.converter import Converter
 from app.submitter.encrypter import Encrypter
 from app.submitter.submission_failed import SubmissionFailedException
 
@@ -26,28 +25,16 @@ class SubmitterFactory(object):
 
 class Submitter(object):
 
-    def send_answers(self, metadata, schema, answers):
+    def send_answers(self, message):
         """
         Sends the answers to rabbit mq and returns a timestamp for submission
-        :param metadata: The metadata for the survey
-        :param schema: The current schema
-        :param answers: The user's answers
-        :return: a datetime object indicating the time it was submitted
+        :param message: The payload to submit
         :raise: a submission failed exception
         """
-        message, submitted_at = Converter.prepare_answers(metadata, schema, answers)
         encrypted_message = self.encrypt_message(message)
-
-        sent = self.send(encrypted_message)
-
-        if sent:
-            logger.info("Responses submitted at %s for tx_id=%s", submitted_at, metadata["tx_id"])
-            return submitted_at
-        else:
+        sent = self.send_message(encrypted_message, settings.EQ_RABBITMQ_QUEUE_NAME)
+        if not sent:
             raise SubmissionFailedException()
-
-    def send(self, message):
-        return self.send_message(message, settings.EQ_RABBITMQ_QUEUE_NAME)
 
     def send_test(self):
         test = "Test connection"

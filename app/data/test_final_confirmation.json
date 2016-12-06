@@ -2,6 +2,7 @@
     "mime_type": "application/json/ons/eq",
     "questionnaire_id": "0",
     "schema_version": "0.0.1",
+    "data_version": "0.0.1",
     "survey_id": "0",
     "title": "Final confirmation to submit",
     "theme": "default",
