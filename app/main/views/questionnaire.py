@@ -1,10 +1,11 @@
 import logging
 
 from app.authentication.session_manager import session_manager
-from app.globals import get_answer_store, get_answers, get_completed_blocks, get_metadata, get_questionnaire_store
+from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.navigator import Navigator
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
+from app.submitter.converter import convert_answers
 from app.submitter.submitter import SubmitterFactory
 from app.templating.introduction_context import get_introduction_context
 from app.templating.metadata_context import build_metadata_context
@@ -215,8 +216,13 @@ def submit_answers(eq_id, form_type, collection_id):
     is_valid, invalid_location = q_manager.validate_all_answers()
 
     if is_valid:
+        metadata = get_metadata(current_user)
+        answer_store = get_answer_store(current_user)
+        navigator = Navigator(g.schema_json, metadata, answer_store)
         submitter = SubmitterFactory.get_submitter()
-        submitter.send_answers(get_metadata(current_user), g.schema, get_answers(current_user))
+        message = convert_answers(metadata, g.schema, answer_store, navigator.get_routing_path())
+        submitter.send_answers(message)
+        logger.info("Responses submitted tx_id=%s", metadata["tx_id"])
         return redirect_to_thank_you(eq_id, form_type, collection_id)
     else:
         return redirect(block_url(eq_id, form_type, collection_id,

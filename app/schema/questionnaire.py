@@ -20,6 +20,7 @@ class Questionnaire(object):
         self.aliases = {}
         self.theme = None
         self.submission_page = 'summary'
+        self.data_version = None
         self.messages = {}
 
     def add_group(self, group):
