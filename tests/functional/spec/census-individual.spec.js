@@ -1,8 +1,6 @@
 import chai from 'chai'
 import {openAndStartCensusQuestionnaire} from '../helpers'
 
-import HouseholdMemberBegin from '../pages/surveys/census/individual/household-member-begin.page.js'
-import DetailsCorrect from '../pages/surveys/census/individual/details-correct.page.js'
 import CorrectName from '../pages/surveys/census/individual/correct-name.page.js'
 import Sex from '../pages/surveys/census/individual/sex.page.js'
 import DateOfBirth from '../pages/surveys/census/individual/date-of-birth.page.js'
@@ -47,7 +45,6 @@ import JobDescription from '../pages/surveys/census/individual/job-description.p
 import EmployersBusiness from '../pages/surveys/census/individual/employers-business.page.js'
 import MainJobType from '../pages/surveys/census/individual/main-job-type.page.js'
 import BusinessName from '../pages/surveys/census/individual/business-name.page.js'
-import HouseholdMemberCompleted from '../pages/surveys/census/individual/household-member-completed.page.js'
 import Confirmation from '../pages/confirmation.page.js'
 import ThankYou from '../pages/thank-you.page'
 
@@ -59,8 +56,7 @@ describe('Census Individual', function () {
         openAndStartCensusQuestionnaire('census_individual.json')
 
         // household-member
-        HouseholdMemberBegin.submit()
-        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        CorrectName.setCorrectNameAnswer("Paul Smith").submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(8).setDateOfBirthAnswerYear(1980).submit()
         Over16.clickOver16AnswerYes().submit()
@@ -81,7 +77,6 @@ describe('Census Individual', function () {
         Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerNo().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-        HouseholdMemberCompleted.submit()
 
         Confirmation.submit()
 
@@ -94,8 +89,7 @@ describe('Census Individual', function () {
         openAndStartCensusQuestionnaire('census_individual.json', true)
 
         // household-member
-        HouseholdMemberBegin.submit()
-        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        CorrectName.setCorrectNameAnswer("Paul Smith").submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(1980).submit()
         Over16.clickOver16AnswerYes().submit()
@@ -117,7 +111,75 @@ describe('Census Individual', function () {
         Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerNo().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-        HouseholdMemberCompleted.submit()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+
+    })
+
+
+    it('Given Respondent Home has identified the respondent should have the Individual Questionnaire with the sexual id question, When I complete the EQ stating i am over 16, Then I should be asked the sexual id question', function () {
+        openAndStartCensusQuestionnaire('census_individual.json', true)
+
+        // household-member
+        CorrectName.setCorrectNameAnswer("Paul Smith").submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(1980).submit()
+        Over16.clickOver16AnswerYes().submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
+        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
+        Language.clickLanguageAnswerEnglish().submit()
+        Religion.clickReligionAnswerNoReligion().submit()
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        Disability.clickDisabilityAnswerNo().submit()
+        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+
+    })
+
+
+    it('Given Respondent Home has identified the respondent should have the Individual Questionnaire with the sexual id question, When I complete the EQ stating i am under 16, Then I should not be asked the sexual id question', function () {
+        openAndStartCensusQuestionnaire('census_individual.json', true)
+
+        // household-member
+        CorrectName.setCorrectNameAnswer("Paul Smith").submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(2001).submit()
+        Over16.clickOver16AnswerNo().submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
+        Language.clickLanguageAnswerEnglish().submit()
+        Religion.clickReligionAnswerNoReligion().submit()
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        Disability.clickDisabilityAnswerNo().submit()
+        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
 
         Confirmation.submit()
 
@@ -127,4 +189,3 @@ describe('Census Individual', function () {
     })
 
 })
-
