@@ -948,22 +948,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "sex",
-                                "when": {
-                                    "id": "details-correct-answer",
-                                    "condition": "equals",
-                                    "value": "Yes - this is my full name"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "correct-name",
                                 "when": {
                                     "id": "details-correct-answer",
                                     "condition": "equals",
                                     "value": "No - I need to change my name"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "sex"
                             }
                         }
                     ]
