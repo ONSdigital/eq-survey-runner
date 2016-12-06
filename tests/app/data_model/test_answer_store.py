@@ -429,12 +429,6 @@ class TestAnswerStore(unittest.TestCase):
         self.store.add(answer_1)
         self.store.add(answer_2)
 
-        expected_answers = {
-            "2_1": 25,
-            "5_1": 65,
-        }
-        self.assertEqual(self.store.map(), expected_answers)
-
         self.store.remove_answer(answer_1)
         expected_answers = {
             "5_1": 65,
@@ -610,3 +604,23 @@ class TestAnswerStore(unittest.TestCase):
             "answer2": 20
         }
         self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_all_answers(self):
+        answer_1 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer2",
+            value=20,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        self.store.remove()
+        self.assertEqual(self.store.map(), {})

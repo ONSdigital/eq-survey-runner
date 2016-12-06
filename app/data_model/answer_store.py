@@ -227,7 +227,7 @@ class AnswerStore(object):
         :param group_instance:
         """
         use_filter = (group_id or block_id or answer_id or group_instance or answer_instance) is not None
-        answers = self.filter(group_id, block_id, answer_id, group_instance, answer_instance) if use_filter else self.answers
+        answers = self.filter(group_id, block_id, answer_id, group_instance, answer_instance) if use_filter else list(self.answers)
 
         for answer in answers:
             self.answers.remove(answer)
