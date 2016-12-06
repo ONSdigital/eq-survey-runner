@@ -228,13 +228,9 @@ class AnswerStore(object):
         """
         use_filter = (group_id or block_id or answer_id or group_instance or answer_instance) is not None
         answers = self.filter(group_id, block_id, answer_id, group_instance, answer_instance) if use_filter else self.answers
+
         for answer in answers:
-            answer_store_answer = Answer(group_id=answer['group_id'],
-                                         group_instance=answer['group_instance'],
-                                         block_id=answer['block_id'],
-                                         answer_id=answer['answer_id'],
-                                         answer_instance=answer['answer_instance'])
-            self.remove_answer(answer_store_answer)
+            self.answers.remove(answer)
 
 
 def number_else_string(text):
