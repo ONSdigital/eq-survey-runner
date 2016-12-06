@@ -2,10 +2,11 @@
     "mime_type": "application/json/ons/eq",
     "questionnaire_id": "999",
     "schema_version": "0.0.1",
+    "data_version": "0.0.1",
     "survey_id": "999",
     "title": "Home Insurance",
     "description": "Home Insurance",
-    "theme": "default",
+    "theme": "census",
     "navigation" : true,
     "introduction": {
         "description": "<p>The information supplied is used as a test for navigation.</p>",

@@ -3,9 +3,7 @@ const eventReady = 'DOMContentLoaded'
 let callbacks = []
 
 const onReady = () => {
-  callbacks.forEach((fn) => {
-    fn.call()
-  })
+  callbacks.forEach(fn => fn.call())
   document.removeEventListener(eventReady, onReady)
 }
 

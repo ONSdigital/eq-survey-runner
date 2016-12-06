@@ -1,13 +1,8 @@
 <div class="question question--repeatinganswer" id="{{question.id}}">
 
   <fieldset class="question__fieldset">
-
-    <legend class="question__legend">
-      {{question_title}}
-    </legend>
-
+    <legend class="question__legend">{{question_title}}</legend>
     {{question_description|safe}}
-
     {%- for answer in question.answers %}
        <div class="question__answer js-household-person">
          <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
