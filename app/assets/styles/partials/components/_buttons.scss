@@ -9,6 +9,7 @@
   display: inline-block;
   text-rendering: optimizeLegibility;
   text-decoration: none;
+  width: 100%;
   &:hover {
     text-decoration: none;
     color: $color-hover;
@@ -22,7 +23,7 @@
   &.btn--border {
     font-weight: $font-weight-semibold;
     background: $color;
-    border: 2px solid $bg;
+    border: 1px solid $bg;
     color: $bg;
     padding: 0.5rem 2rem;
     &:hover,
@@ -30,6 +31,14 @@
       background: $bg;
       color: $color-hover;
     }
+
+    @include mq(s) {
+      border-width: 2px;
+    }
+  }
+
+  @include mq(s) {
+    width: auto;
   }
 }
 
@@ -63,6 +72,7 @@
   cursor: pointer;
   font-size: inherit;
   text-decoration: underline;
+  width: auto;
   &:hover {
     text-decoration: underline;
     color: $color-links-hover;

@@ -1,12 +1,12 @@
 .bar {
   background: $color-secondary;
   color: $color-white;
-  padding: 0.639rem 0;
+  padding: 0.5rem 0;
   margin-bottom: 0.5rem;
 
   @include mq(m) {
-    padding: 0.639rem 0;
-    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
   }
 }
 
@@ -21,7 +21,8 @@
   vertical-align: middle;
   margin: 0;
 }
-.bar--hero{
+
+.bar--hero {
   .bar__title {
     display: block;
     margin: 1rem 0;

@@ -1,7 +1,7 @@
 .container {
   max-width: $grid-max-width;
   margin: 0 auto;
-  padding: 0 $grid-gutters / 2;
+  padding: 0 $grid-gutters;
   box-sizing: border-box;
   @if not $responsive {
     width: $grid-max-width;

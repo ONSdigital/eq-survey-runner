@@ -118,7 +118,7 @@
     word-spacing: normal;
   }
   @else {
-    font-size: initial;
+    font-size: $base-font-size;
   }
 
   padding-left: $grid-gutters;
