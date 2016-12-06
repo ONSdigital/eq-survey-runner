@@ -4,18 +4,14 @@
 
 {% block main -%}
 
-<a class="u-dib" href="{{previous_location}}">Previous</a>
-
-<div class="header">
-  <h1 class="header__title saturn">Confirmation</h1>
-  <h2 class="header__subtitle">Thank you for your answers, do you wish to submit</h2>
+<div class="">
+  <h1 class="saturn">Confirmation</h1>
+  <h2 class="">Thank you for your answers, do you wish to submit</h2>
 </div>
 
 <div>
   <form action="submit-answers" method="POST" novalidate>
     <button class="btn btn--primary u-mr-s qa-btn-submit-answers" type="submit" name="action[submit_answers]">Submit answers</button>
-    <br />
-    <a class="u-dib" href="{{previous_location}}">Previous</a>
   </form>
 </div>
 

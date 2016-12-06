@@ -9,7 +9,7 @@
   @else {
     width: 100%;
   }
-  @include mq(m) {
+  @include mq(s) {
     padding: 0 $grid-gutters;
   }
 }

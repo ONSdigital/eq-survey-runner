@@ -7,7 +7,7 @@
   position: relative;
   width: 100%;
   display: inline-block;
-  @include mq(s) {
+  @include mq(m) {
     width: auto;
     min-width: 20rem;
   }
