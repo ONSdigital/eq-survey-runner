@@ -17,9 +17,9 @@ def evaluate_rule(when, answer_value):
     condition = when['condition']
 
     # Evaluate the condition on the routing rule
-    if condition == 'equals' and match_value == answer_value:
+    if condition == 'equals' and match_value == str(answer_value):
         return True
-    elif condition == 'not equals' and match_value != answer_value:
+    elif condition == 'not equals' and match_value != str(answer_value):
         return True
     return False
 

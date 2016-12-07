@@ -11,46 +11,572 @@
         "description": "",
         "information_to_provide": []
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "census",
     "groups": [
         {
-            "id": "household-member",
-            "title": "Household Member Details",
-            "display": {
-                "properties": {}
-            },
-            "validation": [],
+            "id": "communal-establishment",
+            "title": "Communal Establishment",
             "blocks": [
                 {
-                    "type": "interstitial",
-                    "id": "household-member-begin",
-                    "title": "John Doe",
-                    "display": {
-                        "properties": {}
-                    },
+                    "id": "establishment-type",
+                    "title": "Establishment",
                     "sections": [
                         {
-                            "title": "John Doe",
-                            "validation": [],
-                            "description": "",
-                            "display": {
-                                "properties": {}
-                            },
-                            "id": "household-member-begin-section",
+                            "title": "Establishment",
+                            "id": "establishment-type-section",
                             "questions": [
                                 {
-                                    "id": "household-member-begin-question",
-                                    "title": "1. The following questions are for:",
+                                    "id": "establishment-type-question",
+                                    "title": "1 How would you describe your establishment?",
                                     "type": "General",
-                                    "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
+                                    "answers": [
+                                        {
+                                            "id": "establishment-type-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Hotel",
+                                                    "value": "Hotel"
+                                                },
+                                                {
+                                                    "label": "Guest House",
+                                                    "value": "Guest House"
+                                                },
+                                                {
+                                                    "label": "B&B",
+                                                    "value": "B&B"
+                                                },
+                                                {
+                                                    "label": "Inn / Pub",
+                                                    "value": "Inn / Pub"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "Other",
+                                                    "other": {
+                                                        "label": "Please specify"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "bed-spaces",
+                    "title": "Establishment",
+                    "sections": [
+                        {
+                            "title": "Establishment",
+                            "id": "bed-spaces-section",
+                            "questions": [
+                                {
+                                    "id": "bed-spaces-question",
+                                    "title": "2 How many guest bed spaces does your establishment offer?",
+                                    "description": "Count double rooms as 2 guest bed spaces",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "bed-spaces-answer",
+                                            "mandatory": true,
+                                            "q_code": "20",
+                                            "type": "Integer"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "further-contact",
+                                "when": {
+                                    "id": "bed-spaces-answer",
+                                    "condition": "equals",
+                                    "value": "0"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "usual-residents"
+                            }
+                        }
+                    ]
+                },
+
+                {
+                    "id": "usual-residents",
+                    "title": "Usual Residents",
+                    "sections": [
+                        {
+                            "title": "Usual Residents",
+                            "id": "usual-residents-section",
+                            "questions": [
+                                {
+                                    "id": "usual-residents-question",
+                                    "title": "1 Are there any usual residents living at this establishment?",
+                                    "type": "General",
+                                    "guidance": [
+                                        {
+                                             "title": "Include",
+                                             "list": [
+                                                 "Yourself, your family and anyone else who lives at this address",
+                                                 "Students or  school children who live away from your establishment during term time",
+                                                 "People who usually live outside the UK, who are staying in the UK for 3 months or more",
+                                                 "People who work away from home within the UK, or are members of the armed forces, if this is their permanent or family home",
+                                                 "People who are currently outside the UK for less than 12 months, if this is their permanent or family home",
+                                                 "People staying temporarily who usually live in the UK but do not have another UK address"
+                                             ]
+                                        }
+                                    ],
+                                    "answers": [
+                                        {
+                                            "id": "usual-residents-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "describe-residents",
+                                "when": {
+                                    "id": "usual-residents-answer",
+                                    "condition": "equals",
+                                    "value": "No"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "usual-residents-number"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "usual-residents-number",
+                    "title": "Usual Residents",
+                    "sections": [
+                        {
+                            "title": "Usual Residents",
+                            "id": "usual-residents-number-section",
+                            "questions": [
+                                {
+                                    "id": "usual-residents-number-question",
+                                    "title": "2 How many usual residents live at this establishment?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "usual-residents-number-answer",
+                                            "mandatory": false,
+                                            "label": "Number of usual residents",
+                                            "q_code": "20",
+                                            "type": "Integer",
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "The value you have entered is invalid. Please enter a numeric value."
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "describe-residents",
+                    "title": "Usual Residents",
+                    "sections": [
+                        {
+                            "title": "Usual Residents",
+                            "id": "describe-residents-section",
+                            "questions": [
+                                {
+                                    "id": "describe-residents-question",
+                                    "title": "3 How would you describe your usual residents?",
+                                    "description": "Select all that apply",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "describe-residents-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Family Members",
+                                                    "value": "Family Members"
+                                                },
+                                                {
+                                                    "label": "Paying Guests",
+                                                    "value": "Paying Guests"
+                                                },
+                                                {
+                                                    "label": "Staff",
+                                                    "value": "Staff"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "Other",
+                                                    "other": {
+                                                        "label": "Please specify"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+
+                {
+                    "id": "completion-preference-individual",
+                    "title": "Completion Preferences",
+                    "sections": [
+                        {
+                            "title": "Completion Preferences",
+                            "id": "completion-preference-individual-section",
+                            "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment. All usual residents will be required to complete an individual questionnaire (with more personal details).",
+                            "questions": [
+                                {
+                                    "id": "completion-preference-individual-question",
+                                    "title": "1 If tomorrow was Census Day, to the best of your knowledge, how do you think your usual residents would prefer to complete their individual questionnaires?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "completion-preference-individual-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Online",
+                                                    "value": "Online"
+                                                },
+                                                {
+                                                    "label": "Paper",
+                                                    "value": "Paper"
+                                                },
+                                                {
+                                                    "label": "Not sure",
+                                                    "value": "Not sure"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "completion-preference-establishment",
+                                "when": {
+                                    "id": "completion-preference-individual-answer",
+                                    "condition": "equals",
+                                    "value": "Online"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "completion-preference-establishment",
+                                "when": {
+                                    "id": "completion-preference-individual-answer",
+                                    "condition": "equals",
+                                    "value": "Not sure"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "why-paper-individual"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "why-paper-individual",
+                    "title": "Completion Preferences",
+                    "sections": [
+                        {
+                            "title": "Completion Preferences",
+                            "id": "why-paper-individual-section",
+                            "questions": [
+                                {
+                                    "id": "why-paper-individual-question",
+                                    "title": "2 Why do you think they would choose to do it on paper?",
+                                    "description": "Select all that apply",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "why-paper-individual-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "More convenient",
+                                                    "value": "More convenient"
+                                                },
+                                                {
+                                                    "label": "Don’t trust internet or security concerns",
+                                                    "value": "Don’t trust internet or security concerns"
+                                                },
+                                                {
+                                                    "label": "No access to internet",
+                                                    "value": "No access to internet"
+                                                },
+                                                {
+                                                    "label": "Unsure how to use a computer",
+                                                    "value": "Unsure how to use a computer"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "Other",
+                                                    "other": {
+                                                        "label": "Please specify"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "completion-preference-establishment",
+                    "title": "Completion Preferences",
+                    "sections": [
+                        {
+                            "title": "Completion Preferences",
+                            "id": "completion-preference-establishment-section",
+                            "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment.",
+                            "questions": [
+                                {
+                                    "id": "completion-preference-establishment-question",
+                                    "title": "3 If tomorrow was Census Day, would you (or a member of staff) complete the Census establishment questionnaire online or on paper?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "completion-preference-establishment-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Online",
+                                                    "value": "Online"
+                                                },
+                                                {
+                                                    "label": "Paper",
+                                                    "value": "Paper"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "further-contact",
+                                "when": {
+                                    "id": "completion-preference-establishment-answer",
+                                    "condition": "equals",
+                                    "value": "Online"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "why-paper-establishment"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "why-paper-establishment",
+                    "title": "Completion Preferences",
+                    "sections": [
+                        {
+                            "title": "Completion Preferences",
+                            "id": "why-paper-establishment-section",
+                            "questions": [
+                                {
+                                    "id": "why-paper-establishment-question",
+                                    "title": "4 Why would you choose to do it on paper?",
+                                    "description": "Select all that apply",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "why-paper-establishment-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "More convenient",
+                                                    "value": "More convenient"
+                                                },
+                                                {
+                                                    "label": "Don’t trust internet or security concerns",
+                                                    "value": "Don’t trust internet or security concerns"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "value": "Other",
+                                                    "other": {
+                                                        "label": "Please specify"
+                                                    }
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Checkbox"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+
+                {
+                    "id": "further-contact",
+                    "title": "Further Contact",
+                    "sections": [
+                        {
+                            "title": "Further Contact",
+                            "id": "further-contact-section",
+                            "questions": [
+                                {
+                                    "id": "further-contact-question",
+                                    "title": "1 Would you be happy to be contacted in the future, by the Office for National Statistics, to help us design the 2021 Census?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "further-contact-answer",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "confirmation",
+                                "when": {
+                                    "id": "further-contact-answer",
+                                    "condition": "equals",
+                                    "value": "No"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "contact-details"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "contact-details",
+                    "title": "Further Contact",
+                    "sections": [
+                        {
+                            "title": "Further Contact",
+                            "id": "contact-details-section",
+                            "questions": [
+                                {
+                                    "id": "contact-details-question",
+                                    "title": "2 Please complete your contact details:",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "contact-details-answer-name",
+                                            "label": "Name",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "contact-details-answer-email",
+                                            "label": "Email",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "id": "contact-details-answer-phone",
+                                            "label": "and / or telephone number",
+                                            "mandatory": false,
+                                            "q_code": "20",
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+
+                {
+                    "type": "interstitial",
+                    "id": "confirmation",
+                    "title": "You’ve completed the Census 2017 test",
+                    "sections": [
+                        {
+                            "title": "You’ve completed the Census 2017 test",
+                            "id": "questionnaire-completed-section",
+                            "questions": [
+                                {
                                     "answers": [],
-                                    "validation": []
+                                    "id": "questionnaire-completed-question",
+                                    "title": "You’ve completed the Census 2017 test",
+                                    "type": "General"
                                 }
                             ]
                         }
