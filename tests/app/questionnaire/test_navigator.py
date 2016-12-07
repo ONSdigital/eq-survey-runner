@@ -912,6 +912,44 @@ class TestNavigator(unittest.TestCase):
         navigator = Navigator(survey, metadata=metadata)
 
         self.assertEqual(expected_next_block_id, navigator.get_next_location(current_group_id=current_group_id,
-                                                                    current_block_id=current_block_id,
-                                                                    current_iteration=current_iteration))
+                                                                             current_block_id=current_block_id,
+                                                                             current_iteration=current_iteration))
 
+    def test_goto_block_at_beginning_of_group(self):
+        survey = load_schema_file("test_conditional_routing_goto_group_beginning.json")
+
+        expected_path = [
+            {
+                "block_id": "your-name",
+                "group_id": "conditional-routing-within-group",
+                'group_instance': 0
+            },
+            {
+                "block_id": "are-you-sure",
+                "group_id": "conditional-routing-within-group",
+                'group_instance': 0
+            }
+        ]
+
+        current_group_id = expected_path[1]["group_id"]
+        current_block_id = expected_path[1]["block_id"]
+        current_iteration = expected_path[1]["group_instance"]
+
+        expected_next_block_id = expected_path[0]
+
+        name_answer = Answer(group_id="conditional-routing-within-group",
+                             block_id="your-name",
+                             answer_id="full-name-answer",
+                             value="Joe Bloggs")
+        confirm_answer = Answer(group_id="conditional-routing-within-group",
+                             block_id="are-you-sure",
+                             answer_id="are-you-sure-answer",
+                             value="No - Ok you've got me, I lied")
+
+        answers = [vars(name_answer), vars(confirm_answer)]
+
+        navigator = Navigator(survey, answer_store=AnswerStore(answers))
+
+        self.assertEqual(expected_next_block_id, navigator.get_next_location(current_group_id=current_group_id,
+                                                                             current_block_id=current_block_id,
+                                                                             current_iteration=current_iteration))
