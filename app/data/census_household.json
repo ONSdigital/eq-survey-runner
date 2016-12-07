@@ -901,6 +901,14 @@
         {
             "id": "household-member",
             "title": "Household Member Details",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_count",
+                        "answer_id": "household-full-name"
+                    }
+                }
+            ],
             "blocks": [
                 {
                     "type": "interstitial",
@@ -3735,7 +3743,7 @@
             ]
         },
         {
-            "id": "visitors",
+            "id": "number-of-visitors-group",
             "title": "Visitors",
             "blocks": [
                 {
@@ -3751,13 +3759,13 @@
                                     "title": "Please confirm number of visitors staying overnight here on 9th April 2017",
                                     "guidance": [
                                         {
-                                             "title": "Include",
-                                             "list": [
-                                                 "People who usually live somewhere else in the UK. For example, boy or girl friends, relatives",
-                                                 "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
-                                                 "People who usually live outside the UK who are visiting the UK for less than three months",
-                                                 "People here on holiday "
-                                             ]
+                                            "title": "Include",
+                                            "list": [
+                                                "People who usually live somewhere else in the UK. For example, boy or girl friends, relatives",
+                                                "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
+                                                "People who usually live outside the UK who are visiting the UK for less than three months",
+                                                "People here on holiday "
+                                            ]
                                         }
                                     ],
                                     "type": "General",
@@ -3774,7 +3782,21 @@
                             ]
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "id": "visitors",
+            "title": "Visitors",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_value",
+                        "answer_id": "number-of-visitors-answer"
+                    }
+                }
+            ],
+            "blocks": [
                 {
                     "id": "visitor-name",
                     "title": "Visitors",
@@ -3786,7 +3808,7 @@
                             "questions": [
                                 {
                                     "id": "visitor-name-question",
-                                    "title": "What is the name of visitor x?",
+                                    "title": "What is the name of visitor {{group_instance + 1}}?",
                                     "number": "1",
                                     "type": "General",
                                     "answers": [
