@@ -13,7 +13,7 @@
       {% if group.current_location %}
         {{group.link_name}}
       {% else %}
-        <a href="../../{{group.path}}">{{group.link_name}}</a>
+        <a href="{{meta.survey|format_url(group.group_id, group.instance, group.block_id)}}">{{group.link_name}}</a>
       {% endif %}
 
       {% if group.completed %}
@@ -26,7 +26,6 @@
     {% set state = content %}
 
     {% set all_errors = state.get_errors().items() %}
-
     {% if all_errors %}
 
       <div class="u-mb-s u-mb-l@s">
