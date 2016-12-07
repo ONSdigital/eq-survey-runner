@@ -1,6 +1,6 @@
 import unittest
 
-from app.questionnaire.navigator import Navigator
+from app.questionnaire.navigator import evaluate_rule, Navigator
 from app.schema_loader.schema_loader import load_schema_file
 from app.data_model.answer_store import Answer, AnswerStore
 
@@ -915,3 +915,22 @@ class TestNavigator(unittest.TestCase):
                                                                     current_block_id=current_block_id,
                                                                     current_iteration=current_iteration))
 
+    def test_evaluate_rule_uses_single_value_from_list(self):
+        when = {
+            "value": 'singleAnswer',
+            "condition": 'equals'
+        }
+
+        list_of_answers = ['singleAnswer']
+
+        self.assertTrue(evaluate_rule(when, list_of_answers))
+
+    def test_evaluate_rule_uses_multiple_values_in_list_returns_false(self):
+        when = {
+            "value": 'firstAnswer',
+            "condition": 'equals'
+        }
+
+        list_of_answers = ['firstAnswer', 'secondAnswer']
+
+        self.assertFalse(evaluate_rule(when, list_of_answers))

@@ -3113,17 +3113,67 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "jobseeker",
+                                "id": "household-member-completed",
                                 "when": {
                                     "id": "employment-type-answer",
                                     "condition": "equals",
-                                    "value": "none of the above"
+                                    "value": "working as an employee"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id": "household-member-completed"
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "on a government sponsored training scheme"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "self-employed or freelance"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "working paid or unpaid for you own or your family's business"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "away from work ill, on maternity leave, on holiday or temporarily laid off"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "doing any other kind of paid work"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "jobseeker"
                             }
                         }
                     ]
