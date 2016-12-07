@@ -7,7 +7,7 @@
     "title": "Census England Household Schema",
     "description": "Census England Household Schema",
     "theme": "census",
-    "navigation" : false,
+    "navigation" : true,
     "introduction": {
     },
     "eq_id": "census",
@@ -15,6 +15,7 @@
         {
             "id": "who-lives-here",
             "title": "Who lives here?",
+            "completed_when": "who-lives-here-completed",
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -308,7 +309,8 @@
         },
         {
             "id": "who-lives-here-relationship",
-            "title": "Who lives here?",
+            "title": "Relationships",
+            "hide_in_navigation": true,
             "routing_rules": [
                 {
                     "repeat": {
@@ -405,6 +407,7 @@
         {
             "id": "who-lives-here-interstitial",
             "title": "Who lives here?",
+            "hide_in_navigation": true,
             "blocks": [
                 {
                     "type": "interstitial",
@@ -431,6 +434,7 @@
         {
             "id": "household-and-accommodation",
             "title": "Household and Accommodation",
+            "completed_when": "household-and-accommodation-completed",
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -901,6 +905,16 @@
         {
             "id": "household-member",
             "title": "Household Member Details",
+            "id": "repeating-group",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_count",
+                        "answer_id": "household-full-name"
+                    }
+                }
+            ],
+            "completed_when": "household-member-completed",
             "blocks": [
                 {
                     "type": "interstitial",
@@ -3676,6 +3690,7 @@
         {
             "id": "visitors",
             "title": "Visitors",
+            "completed_when": "visitor-address",
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -3903,6 +3918,7 @@
         {
             "id": "questionnaire-completed",
             "title": "Questionnaire Completed",
+            "hide_in_navigation": true,
             "blocks": [
                 {
                     "type": "interstitial",

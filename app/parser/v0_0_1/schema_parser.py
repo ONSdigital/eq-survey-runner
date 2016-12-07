@@ -159,6 +159,7 @@ class SchemaParser(AbstractSchemaParser):
 
             group.id = ParserUtils.get_required_string(schema, "id")
             group.title = ParserUtils.get_optional_string(schema, "title")
+            group.completed_when = ParserUtils.get_optional_string(schema, "completed_when")
 
             # Register the group
             questionnaire.register(group)

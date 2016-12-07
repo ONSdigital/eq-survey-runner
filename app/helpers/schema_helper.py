@@ -24,11 +24,11 @@ class SchemaHelper(object):
             yield group
 
     @staticmethod
-    def get_repeat_rules(group):
+    def get_repeating_rule(group):
         if 'routing_rules' in group:
             for rule in group['routing_rules']:
                 if 'repeat' in rule.keys():
-                    yield rule
+                    return rule['repeat']
 
     @classmethod
     def get_group(cls, survey_json, group_id):
@@ -37,3 +37,9 @@ class SchemaHelper(object):
     @classmethod
     def get_block(cls, survey_json, block_id):
         return next(b for b in cls.get_blocks(survey_json) if b["id"] == block_id)
+
+    @classmethod
+    def get_last_questionnaire_block_id_in_group(cls, group):
+          for block in group['blocks'][::-1]:
+            if block['type'] == 'questionnaire':
+                return block['id']

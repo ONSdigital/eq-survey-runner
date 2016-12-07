@@ -49,3 +49,9 @@ def format_str_as_month_year_date(value):
 @blueprint.app_template_filter()
 def format_str_as_date(value):
     return format_str_as_short_date(value)
+
+
+@blueprint.app_template_filter()
+def format_url(metadata, group_id, group_instance, block_id):
+    return '/questionnaire/' + metadata['eq_id'] + '/' + metadata['form_type'] + '/' + metadata['collection_id'] + \
+           '/' + str(group_id) + '/' + str(group_instance) + '/' + str(block_id)
