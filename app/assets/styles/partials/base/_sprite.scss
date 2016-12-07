@@ -14,7 +14,7 @@
 
 .svg-icons--caret-left {
 	@extend %svg-common;
-	background-position: 70.58823529411765% 27.30128205128205%;
+	background-position: 70.58823529411765% 49.78421052631579%;
 }
 
 .svg-icons--caret-left-dims {
@@ -24,7 +24,7 @@
 
 .svg-icons--caret-right {
 	@extend %svg-common;
-	background-position: 0 33.333333333333336%;
+	background-position: 0 27.36842105263158%;
 }
 
 .svg-icons--caret-right-dims {
@@ -34,7 +34,7 @@
 
 .svg-icons--caret-top {
 	@extend %svg-common;
-	background-position: 17.5609756097561% 30.317164179104477%;
+	background-position: 17.5609756097561% 25.3016738030362%;
 }
 
 .svg-icons--caret-top-dims {
@@ -54,7 +54,7 @@
 
 .svg-icons--chevron-bottom {
 	@extend %svg-common;
-	background-position: 50.73170731707317% 27.21721782238075%;
+	background-position: 50.73170731707317% 22.576600972869965%;
 }
 
 .svg-icons--chevron-bottom-dims {
@@ -74,7 +74,7 @@
 
 .svg-icons--chevron-left {
 	@extend %svg-common;
-	background-position: 18.37134462012033% 66.66666666666667%;
+	background-position: 18.37134462012033% 54.73684210526316%;
 }
 
 .svg-icons--chevron-left-dims {
@@ -84,7 +84,7 @@
 
 .svg-icons--chevron-right {
 	@extend %svg-common;
-	background-position: 38.235156942306794% 66.66666666666667%;
+	background-position: 38.235156942306794% 54.73684210526316%;
 }
 
 .svg-icons--chevron-right-dims {
@@ -104,7 +104,7 @@
 
 .svg-icons--circle-check {
 	@extend %svg-common;
-	background-position: 0 0;
+	background-position: 76.09756097560975% 22.41578947368421%;
 }
 
 .svg-icons--circle-check-dims {
@@ -114,7 +114,7 @@
 
 .svg-icons--circle-x {
 	@extend %svg-common;
-	background-position: 76.09756097560975% 60.63461538461539%;
+	background-position: 0 0;
 }
 
 .svg-icons--circle-x-dims {
@@ -124,7 +124,7 @@
 
 .svg-icons--external-link {
 	@extend %svg-common;
-	background-position: 93.27354260089686% 67.24137931034483%;
+	background-position: 0 100%;
 }
 
 .svg-icons--external-link-dims {
@@ -132,9 +132,29 @@
 	height: 34px;
 }
 
+.svg-icons--guidance {
+	@extend %svg-common;
+	background-position: 91.62995594713657% 57.5609756097561%;
+}
+
+.svg-icons--guidance-dims {
+	width: 30px;
+	height: 37px;
+}
+
+.svg-icons--guidance-white {
+	@extend %svg-common;
+	background-position: 91.62995594713657% 39.51219512195122%;
+}
+
+.svg-icons--guidance-white-dims {
+	width: 30px;
+	height: 37px;
+}
+
 .svg-icons--info {
 	@extend %svg-common;
-	background-position: 22.462055802962826% 100%;
+	background-position: 46.09197491593202% 82.10526315789474%;
 }
 
 .svg-icons--info-dims {
@@ -144,7 +164,7 @@
 
 .svg-icons--info-circle {
 	@extend %svg-common;
-	background-position: 42.13170731707317% 100%;
+	background-position: 24.11219512195122% 82.10526315789474%;
 }
 
 .svg-icons--info-circle-dims {
@@ -154,7 +174,7 @@
 
 .svg-icons--lock {
 	@extend %svg-common;
-	background-position: 96.10497620477753% 22.5609756097561%;
+	background-position: 96.10497620477753% 18.68686868686869%;
 }
 
 .svg-icons--lock-dims {
@@ -164,7 +184,7 @@
 
 .svg-icons--logo {
 	@extend %svg-common;
-	background-position: 0 100%;
+	background-position: 0 82.10526315789474%;
 }
 
 .svg-icons--logo-dims {
@@ -174,7 +194,7 @@
 
 .svg-icons--phone {
 	@extend %svg-common;
-	background-position: 94.11764705882354% 47.093023255813954%;
+	background-position: 94.11764705882354% 75.24271844660194%;
 }
 
 .svg-icons--phone-dims {
@@ -184,7 +204,7 @@
 
 .svg-icons--right-arrow {
 	@extend %svg-common;
-	background-position: 0 66.66666666666667%;
+	background-position: 0 54.73684210526316%;
 }
 
 .svg-icons--right-arrow-dims {
@@ -194,7 +214,7 @@
 
 .svg-logo {
 	@extend %svg-common;
-	background-position: 67.49756097560976% 85.87943848059454%;
+	background-position: 67.49756097560976% 72.33943890563413%;
 }
 
 .svg-logo-dims {

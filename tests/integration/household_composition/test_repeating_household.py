@@ -32,7 +32,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
         resp = self.client.post(household_composition_page, data=form_data, follow_redirects=False)
         person1_age_page = resp.headers['Location']
 
-        # And provide detailsvi
+        # And provide details
         self.navigate_to_page(person1_age_page)
         form_data = MultiDict()
         form_data.add("what-is-your-age", '9990')

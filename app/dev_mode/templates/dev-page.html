@@ -1,84 +1,196 @@
 {% extends 'layouts/_base.html' %} {% block page_title %}EQ Development{% endblock %} {% block content %}
 
+<!-- this page needs a total rethink, but this tidies things up a little for now -->
+
+<style media="screen">
+
+* { font-family: "lato" }
+
+label { display:inline-block; font-weight: 600; margin-bottom: 0.25rem; width:200px; font-size:0.9rem; }
+
+.field-wrap {
+  margin:0 auto;
+}
+
+.field-container {
+  display:block;
+  margin: 0 0 0.2rem 0;
+  position: relative;
+}
+
+.field-container span {
+  position: relative;
+}
+
+input[type=text] {
+  padding:0.3rem;
+  width:300px;
+  font-size:0.9rem;
+}
+
+select {
+  width:300px;
+  font-size:0.9rem;
+  padding:0.35rem;
+  -webkit-appearance:none;
+  appearance:none;
+  border-radius:0;
+  border:1px solid #dfdfdf;
+  background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSLQodC70L7QuV8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNC4yODUsMTEuMjg0TDE2LDE5LjU3MWwtOC4yODUtOC4yODhjLTAuMzk1LTAuMzk1LTEuMDM0LTAuMzk1LTEuNDI5LDAgIGMtMC4zOTQsMC4zOTUtMC4zOTQsMS4wMzUsMCwxLjQzbDguOTk5LDkuMDAybDAsMGwwLDBjMC4zOTQsMC4zOTUsMS4wMzQsMC4zOTUsMS40MjgsMGw4Ljk5OS05LjAwMiAgYzAuMzk0LTAuMzk1LDAuMzk0LTEuMDM2LDAtMS40MzFDMjUuMzE5LDEwLjg4OSwyNC42NzksMTAuODg5LDI0LjI4NSwxMS4yODR6IiBmaWxsPSIjMTIxMzEzIiBpZD0iRXhwYW5kX01vcmUiLz48Zy8+PGcvPjxnLz48Zy8+PGcvPjxnLz48L3N2Zz4=);
+  background-position: center right 5px;
+  background-repeat:no-repeat;
+  background-size:22px;
+}
+
+.field-container img {
+  width:26px;
+  height:auto;
+  display:block;
+  position:absolute;
+  top: -1px;
+  right: 2px;
+  cursor:pointer;
+}
+
+.btn {
+  background:#6099c6;
+  color:white;
+  border:0;
+  border-radius:3px;
+  display:block;
+  padding:0.75rem 2rem;
+  text-align: center;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+</style>
 
 <div class="container">
   <div class="panel u-mt-l">
     <div role="main" class="panel__body" id="main" tabindex="-1">
-      <form action="" method="POST" xmlns="http://www.w3.org/1999/html">
-        <p>
-          User ID:
-          <input name="user_id" type="text" value="{{user}}" class="qa-user-id">
-        </p>
-        <p>
-          Schemas:
-          <select name="schema" class="qa-select-schema">
-            {% for id in available_schemas %}
-            <option name="{{id}}" value="{{id}}">{{id}}</option>
-            {% endfor %}
-          </select>
-        </p>
-        <p>
-          Token Expiry (seconds):
-          <input name="exp" type="text" value="1800" class="qa-token-expiry">
-        </p>
-        <p>
-          Period String:
-          <input name="period_str" type="text" value="May 2016" class="qa-period-str">
-        </p>
-        <p>
-          Period ID:
-          <input name="period_id" type="text" value="201605" class="qa-period-id">
-        </p>
-        <p>
-          Collection Exercise SID:
-          <input name="collection_exercise_sid" type="text" value="789" class="qa-collection-sid">
-        </p>
-        <p>
-          RU REF:
-          <input name="ru_ref" type="text" value="12346789012A" class="qa-ru-ref">
-        </p>
-        <p>
-          RU NAME:
-          <input name="ru_name" type="text" value="Apple" class="qa-ru-name">
-        </p>
-        <p>
-          REF P Start Date:
-          <input name="ref_p_start_date" type="text" value="2016-05-01" class="qa-ref-p-start-date">
-        </p>
-        <p>
-          REF P End Date:
-          <input name="ref_p_end_date" type="text" value="2016-05-31" class="qa-ref-p-end-date">
-        </p>
-        <p>
-          RETURN BY:
-          <input name="return_by" type="text" value="2016-06-12" class="qa-return-by">
-        </p>
-        <p>
-          TRAD AS:
-          <input name="trad_as" type="text" value="Apple" class="qa-trad-as">
-        </p>
-        <p>
-          EMPLOYMENT_DATE:
-          <input name="employment_date" type="text" value="2016-06-10" class="qa-employment-date">
-        </p>
-        <p>
-          REGION_CODE:
-          <select name="region_code" class="qa-region-code">
-            <option name="GB-ENG" value="GB-ENG">GB-ENG</option>
-            <option name="GB-GBN" value="GB-GBN">GB-GBN</option>
-            <option name="GB-NI" value="GB-NI">GB-NI</option>
-            <option name="GB-WLS" value="GB-WLS">GB-WLS</option>
-          </select>
-        </p>
-        <p>
-            Sexual Identity Flag:
-            <input type="checkbox" name="sexual_identity" class="qa-sexual-identity" value="true">
-        </p>
 
-        <input type="submit" value="submit" class="qa-btn-submit-dev"/>
+      <form action="" method="POST" xmlns="http://www.w3.org/1999/html">
+
+        <div class="field-wrap">
+
+            <div class="field-container">
+              <label for="user_id">User ID</label>
+              <input id="user_id" name="user_id" type="text" value="{{user}}" class="qa-user-id">
+            </div>
+
+            <div class="field-container">
+              <label for="schema">Schemas</label>
+                <select id="schema" name="schema" class="qa-select-schema">
+                  {% for id in available_schemas %}
+                  <option name="{{id}}" value="{{id}}">{{id}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+
+            <div class="field-container">
+              <label for="exp">Token Expiry (seconds)</label>
+              <input id="exp" name="exp" type="text" value="1800" class="qa-token-expiry">
+            </div>
+
+            <div class="field-container">
+              <label for="period_str">Period String</label>
+              <input id="period_str" name="period_str" type="text" value="May 2016" class="qa-period-str">
+            </div>
+
+            <div class="field-container">
+              <label for="period_id">Period ID</label>
+              <input id="period_id" name="period_id" type="text" value="201605" class="qa-period-id">
+            </div>
+
+            <div class="field-container">
+              <label for="collection_exercise_sid">Collection Exercise SID</label>
+              <span><input id="collection_exercise_sid" name="collection_exercise_sid" type="text" value="789" class="qa-collection-sid">
+              <img class="refresh" data-refresh="collection_exercise_sid" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48Zz48cGF0aCBkPSJNMjU2LDM4NC4xYy03MC43LDAtMTI4LTU3LjMtMTI4LTEyOC4xYzAtNzAuOCw1Ny4zLTEyOC4xLDEyOC0xMjguMVY4NGw5Niw2NGwtOTYsNTUuN3YtNTUuOCAgIGMtNTkuNiwwLTEwOC4xLDQ4LjUtMTA4LjEsMTA4LjFjMCw1OS42LDQ4LjUsMTA4LjEsMTA4LjEsMTA4LjFTMzY0LjEsMzE2LDM2NC4xLDI1NkgzODRDMzg0LDMyNywzMjYuNywzODQuMSwyNTYsMzg0LjF6Ii8+PC9nPjwvc3ZnPg=="></span>
+            </div>
+
+            <div class="field-container">
+              <label for="ru_ref">RU Ref</label>
+              <span><input id="ru_ref" name="ru_ref" type="text" value="12346789012A" class="qa-ru-ref">
+              <img class="refresh" data-refresh="ru_ref" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48Zz48cGF0aCBkPSJNMjU2LDM4NC4xYy03MC43LDAtMTI4LTU3LjMtMTI4LTEyOC4xYzAtNzAuOCw1Ny4zLTEyOC4xLDEyOC0xMjguMVY4NGw5Niw2NGwtOTYsNTUuN3YtNTUuOCAgIGMtNTkuNiwwLTEwOC4xLDQ4LjUtMTA4LjEsMTA4LjFjMCw1OS42LDQ4LjUsMTA4LjEsMTA4LjEsMTA4LjFTMzY0LjEsMzE2LDM2NC4xLDI1NkgzODRDMzg0LDMyNywzMjYuNywzODQuMSwyNTYsMzg0LjF6Ii8+PC9nPjwvc3ZnPg=="></span>
+            </div>
+
+            <div class="field-container">
+              <label for="ru_name">RU Name</label>
+              <input id="ru_name" name="ru_name" type="text" value="Apple" class="qa-ru-name">
+            </div>
+
+            <div class="field-container">
+              <label for="ref_p_start_date">REF P Start Date</label>
+              <input id="ref_p_start_date" name="ref_p_start_date" type="text" value="2016-05-01" class="qa-ref-p-start-date">
+            </div>
+
+            <div class="field-container">
+              <label for="ref_p_end_date">REF P End Date</label>
+              <input id="ref_p_end_date" name="ref_p_end_date" type="text" value="2016-05-31" class="qa-ref-p-end-date">
+            </div>
+
+            <div class="field-container">
+              <label for="return_by">Return By</label>
+              <input id="return_by" name="return_by" type="text" value="2016-06-12" class="qa-return-by">
+            </div>
+
+            <div class="field-container">
+              <label for="trad_as">Trading As</label>
+              <input id="trad_as" name="trad_as" type="text" value="Apple" class="qa-trad-as">
+            </div>
+
+            <div class="field-container">
+              <label for="employment_date">Employment Date</label>
+              <input id="employment_date" name="employment_date" type="text" value="2016-06-10" class="qa-employment-date">
+            </div>
+
+            <div class="field-container">
+              <label for="region_code">Region Code</label>
+                <select id="region_code" name="region_code" class="qa-region-code">
+                  <option name="GB-ENG" value="GB-ENG">GB-ENG</option>
+                  <option name="GB-GBN" value="GB-GBN">GB-GBN</option>
+                  <option name="GB-NI" value="GB-NI">GB-NI</option>
+                  <option name="GB-WLS" value="GB-WLS">GB-WLS</option>
+                </select>
+             </div>
+
+            <div class="field-container">
+              <label for="sexual_identity">Sexual Identity Flag</label>
+              <input id="sexual_identity" type="checkbox" name="sexual_identity" class="qa-sexual-identity" value="true">
+            </div>
+
+            <div class="field-container">
+              <input type="submit" value="Open Survey" class="qa-btn-submit-dev btn"/>
+            </div>
+
+        </div>
+
       </form>
     </div>
   </div>
 </div>
+
+<script>
+
+  var refresh = document.getElementsByClassName('refresh');
+
+  function rando(el) {
+    var result = '';
+    var length = '8';
+    var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var el = el;
+    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+    document.getElementById(el).value = result;
+  }
+
+  for (var i = 0; i < refresh.length; i++) {
+    refresh[i].addEventListener("click", function() {
+      var el = this.getAttribute("data-refresh");
+      rando(el);
+    },false);
+  }
+
+</script>
 
 {% endblock %}
