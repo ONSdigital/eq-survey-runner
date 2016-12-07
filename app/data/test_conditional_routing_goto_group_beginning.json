@@ -1,0 +1,95 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Test Conditional Routing",
+    "description": "",
+    "theme": "default",
+    "eq_id": "1",
+    "introduction": {
+        "description": ""
+    },
+    "groups": [{
+        "blocks": [{
+            "id": "your-name",
+            "title": "What is your name?",
+            "sections": [
+                {
+                    "id": "your-name-section",
+                    "title": "What is your name?",
+                    "questions": [
+                        {
+                            "id": "your-name-question",
+                            "title": "What is your name?",
+                            "type": "General",
+                            "answers": [
+                                {
+                                    "id": "full-name-answer",
+                                    "mandatory": false,
+                                    "q_code": "20",
+                                    "type": "TextField"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "are-you-sure",
+            "title": "Are you sure that's your name?",
+            "sections": [
+                {
+                    "id": "are-you-sure-section",
+                    "title": "Is that really you?",
+                    "questions": [
+                        {
+                            "id": "are-you-sure-question",
+                            "title": "Are you really sure that is you?",
+                            "type": "General",
+                            "answers": [
+                                {
+                                    "id": "are-you-sure-answer",
+                                    "mandatory": false,
+                                    "options": [
+                                        {
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No - Ok you've got me, I lied",
+                                            "value": "No - Ok you've got me, I lied"
+                                        }
+                                    ],
+                                    "q_code": "20",
+                                    "type": "Radio"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "routing_rules": [
+                {
+                    "goto": {
+                        "id": "your-name",
+                        "when": {
+                            "id": "are-you-sure-answer",
+                            "condition": "equals",
+                            "value":"No - Ok you've got me, I lied"
+                        }
+                    }
+                },
+                {
+                    "goto": {
+                        "id": "summary"
+                    }
+                }
+            ]
+        }],
+        "id": "conditional-routing-within-group",
+        "title": "Conditional routing within group"
+    }]
+}
