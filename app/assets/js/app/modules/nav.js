@@ -43,7 +43,7 @@ domready(() => {
       e.preventDefault()
       e.target.blur()
     }
-    delay(addOpenListeners, 100)
+    addOpenListeners()
   }
 
   const open = (e) => {
@@ -52,7 +52,7 @@ domready(() => {
     document.body.classList.add(classOpen)
     btn.removeEventListener('click', open)
     btn.innerHTML = closeLabel
-    delay(addCloseListeners, 100)
+    delay(addCloseListeners, 10)
   }
 
   close()

@@ -44,9 +44,10 @@
       </div>
 
       <div class="page__header">{% block header %}{% endblock %}</div>
+      {%- set show_previous = previous_location != None and previous_location|length != 0 -%}
       <div class="page__subheader">
         {%- block subheader -%}
-        {% if previous_location != None %}
+        {% if show_previous%}
           <div class="container">
             <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
           </div>
@@ -61,7 +62,7 @@
     <div class="page__prefooter">
       <div class="container">
         {% block prefooter %}
-          {% if previous_location != None %}
+          {% if show_previous %}
               <a class="page__previous" id="bottom-previous" href="{{previous_location}}">Previous</a>
           {% endif %}
         {% endblock %}
