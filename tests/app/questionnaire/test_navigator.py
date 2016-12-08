@@ -915,7 +915,6 @@ class TestNavigator(unittest.TestCase):
                                                                     current_block_id=current_block_id,
                                                                     current_iteration=current_iteration))
 
-<<<<<<< 7c2d8c523857598881077b2776a713b578ae373b
     def test_evaluate_rule_uses_single_value_from_list(self):
         when = {
             "value": 'singleAnswer',
@@ -936,8 +935,6 @@ class TestNavigator(unittest.TestCase):
 
         self.assertFalse(evaluate_rule(when, list_of_answers))
 
-=======
->>>>>>> Navigation help
     def test_navigation_no_blocks_completed(self):
         survey = load_schema_file("test_navigation.json")
         navigator = Navigator(survey)
@@ -946,32 +943,40 @@ class TestNavigator(unittest.TestCase):
 
         user_navigation = [
             {
-                'completed': False,
-                'current_location': True,
                 'link_name': 'Property Details',
+                'highlight': True,
+                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f',
+                'instance': 0,
                 'repeating': False,
-                'path': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f/0/6330dcfe-3b23-425d-8104-b725c6b7f398'
+                'completed': False,
+                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398'
             },
             {
-                'completed': False,
-                'current_location': False,
                 'link_name': 'Household Details',
+                'highlight': False, 'group_id':
+                'multiple-questions-group',
+                'instance': 0,
                 'repeating': False,
-                'path': 'multiple-questions-group/0/household-composition'
+                'completed': False,
+                'block_id': 'household-composition'
             },
             {
-                'completed': False,
-                'current_location': False,
                 'link_name': 'Extra Cover',
+                'highlight': False,
+                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9',
+                'instance': 0,
                 'repeating': False,
-                'path': '3edd9ac8-0ea7-419f-831e-2c84450b41b9/0/824a5298-024f-4ce2-9780-54326c6f66c0'
+                'completed': False,
+                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0'
             },
             {
-                'completed': False,
-                'current_location': False,
                 'link_name': 'Payment Details',
+                'highlight': False,
+                'group_id': 'd650262d-6172-4344-8371-316afecab08f',
+                'instance': 0,
                 'repeating': False,
-                'path': 'd650262d-6172-4344-8371-316afecab08f/0/4e4f756b-3e84-43cc-97ac-8d31d708c9b8'
+                'completed': False,
+                'block_id': '4e4f756b-3e84-43cc-97ac-8d31d708c9b8'
             }
         ]
 
@@ -1016,34 +1021,43 @@ class TestNavigator(unittest.TestCase):
 
         user_navigation = [
             {
-                'completed': True,
-                'current_location': True,
                 'link_name': 'Property Details',
+                'highlight': True,
+                'instance': 0,
                 'repeating': False,
-                'path': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f/0/6330dcfe-3b23-425d-8104-b725c6b7f398'
+                'completed': False,
+                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398',
+                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
             },
             {
-                'completed': False,
-                'current_location': False,
                 'link_name': 'Household Details',
+                'highlight': False,
+                'instance': 0,
                 'repeating': False,
-                'path': 'multiple-questions-group/0/household-composition'
-            },
-            {
-                'completed': True,
-                'current_location': False,
-                'link_name': 'Extra Cover',
-                'repeating': False, 'path':
-                '3edd9ac8-0ea7-419f-831e-2c84450b41b9/0/824a5298-024f-4ce2-9780-54326c6f66c0'
-            },
-            {
                 'completed': False,
-                'current_location': False,
-                'link_name': 'Payment Details',
+                'block_id': 'household-composition',
+                'group_id': 'multiple-questions-group'
+            },
+            {
+                'link_name': 'Extra Cover',
+                'highlight': False,
+                'instance': 0,
                 'repeating': False,
-                'path': 'd650262d-6172-4344-8371-316afecab08f/0/4e4f756b-3e84-43cc-97ac-8d31d708c9b8'
+                'completed': False,
+                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0',
+                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+            },
+            {
+                'link_name': 'Payment Details',
+                'highlight': False,
+                'instance': 0,
+                'repeating': False,
+                'completed': False,
+                'block_id': '4e4f756b-3e84-43cc-97ac-8d31d708c9b8',
+                'group_id': 'd650262d-6172-4344-8371-316afecab08f'
             }
         ]
+
         self.assertEqual(navigator.get_front_end_navigation('b13c36f9-8b1b-4f3d-997e-5fea82a4036f', 0, completed_blocks), user_navigation)
 
     def test_navigation_repeating_group(self):
@@ -1103,47 +1117,60 @@ class TestNavigator(unittest.TestCase):
 
         user_navigation = [
             {
-                'path': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f/0/6330dcfe-3b23-425d-8104-b725c6b7f398',
-                'current_location': True,
-                'completed': True,
+                'link_name': 'Property Details',
+                'highlight': True,
+                'instance': 0,
                 'repeating': False,
-                'link_name': 'Property Details'
+                'completed': False,
+                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398',
+                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
             },
             {
-                'path': 'multiple-questions-group/0/household-composition',
-                'current_location': False,
-                'completed': False,
+                'link_name': 'Household Details',
+                'highlight': False,
+                'instance': 0,
                 'repeating': False,
-                'link_name': 'Household Details'
+                'completed': False,
+                'block_id': 'household-composition',
+                'group_id': 'multiple-questions-group'
             },
             {
-                'path': 'repeating-group/0/repeating-block-1',
-                'current_location': False,
-                'completed': False,
+                'link_name': 'Person1',
+                'highlight': False,
+                'instance': 0,
                 'repeating': True,
-                'link_name': 'Person1'
+                'completed': False,
+                'block_id': 'repeating-block-1',
+                'group_id': 'repeating-group'
             },
             {
-                'path': 'repeating-group/1/repeating-block-1',
-                'current_location': False,
-                'completed': False,
+                'link_name': 'Person2',
+                'highlight': False,
+                'instance': 1,
                 'repeating': True,
-                'link_name': 'Person2'
-            },
-            {
-                'path': '3edd9ac8-0ea7-419f-831e-2c84450b41b9/0/824a5298-024f-4ce2-9780-54326c6f66c0',
-                'current_location': False,
-                'completed': True,
-                'repeating': False,
-                'link_name': 'Extra Cover'
-            },
-            {
-                'path': 'd650262d-6172-4344-8371-316afecab08f/0/4e4f756b-3e84-43cc-97ac-8d31d708c9b8',
-                'current_location': False,
                 'completed': False,
+                'block_id': 'repeating-block-1',
+                'group_id': 'repeating-group'
+            },
+            {
+                'link_name': 'Extra Cover',
+                'highlight': False,
+                'instance': 0,
                 'repeating': False,
-                'link_name': 'Payment Details'
+                'completed': False,
+                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0',
+                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+            },
+            {
+                'link_name': 'Payment Details',
+                'highlight': False,
+                'instance': 0,
+                'repeating': False,
+                'completed': False,
+                'block_id': '4e4f756b-3e84-43cc-97ac-8d31d708c9b8',
+                'group_id': 'd650262d-6172-4344-8371-316afecab08f'
             }
         ]
+
         self.assertEqual(navigator.get_front_end_navigation('b13c36f9-8b1b-4f3d-997e-5fea82a4036f', 0, completed_blocks), user_navigation)
 

@@ -180,6 +180,7 @@ class Navigator:
         return self.build_path(self.get_blocks(), self.first_group_id, self.group_instance, self.first_block_id, [])
 
     def can_reach_summary(self, routing_path=None):
+
         """
         Determines whether the end of a given routing path can be reached given
         a set of answers
@@ -317,13 +318,27 @@ class Navigator:
 
     def get_front_end_navigation(self, group_id, group_instance, completed_blocks):
 
+        """
+        Returns the frontend navigation based on the group id, group instance and completed blocks
+
+        :param group_id:
+        :param group_instance:
+        :param completed_blocks:
+
+        :return: navigation
+        """
+
         navigation = []
 
         for group in self.survey_json['groups']:
 
+            logger.debug("Building frontend navigation for group %s", group)
+
             repeating_rule = SchemaHelper.get_repeating_rule(group)
 
             if 'hide_in_navigation' not in group:
+
+                completed_id = group['completed_id'] if 'completed_id' in group else group['blocks'][-1]['id']
 
                 if repeating_rule:
                     no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
@@ -337,10 +352,9 @@ class Navigator:
                                 'group_id': group['id'],
                                 'instance': i,
                                 'block_id': group['blocks'][0]['id'],
-                                'path': str(group['id']) + '/' + str(i) + '/' + str(group['blocks'][0]['id']),
                                 'completed': any(item for item in completed_blocks if item['group_instance'] == i and
-                                                 item["block_id"] == group['completed_when']),
-                                'current_location': group['id'] == group_id and i == group_instance,
+                                                 item["block_id"] == completed_id),
+                                'highlight': group['id'] == group_id and i == group_instance,
                                 'repeating': True
 
                             })
@@ -349,11 +363,10 @@ class Navigator:
                         'link_name': group['title'],
                         'group_id': group['id'],
                         'instance': 0,
-                        'path': str(group['id']) + '/0/' + str(group['blocks'][0]['id']),
                         'block_id': group['blocks'][0]['id'],
-                        'completed': any(item for item in completed_blocks
-                                         if item["block_id"] == group['completed_when']),
-                        'current_location': group['id'] == group_id,
+                        'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
+                        'highlight': (group['id'] != group_id and group_id in group['highlight_when']
+                                      if 'highlight_when' in group else False) or group['id'] == group_id,
                         'repeating': False,
                     })
         return navigation

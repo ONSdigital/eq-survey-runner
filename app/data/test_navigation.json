@@ -1,0 +1,622 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "999",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "999",
+    "title": "Home Insurance",
+    "description": "Home Insurance",
+    "theme": "census",
+    "navigation" : true,
+    "introduction": {
+        "description": "<p>The information supplied is used as a test for navigation.</p>",
+        "information_to_provide": [
+          "Property details",
+          "Household details",
+          "Payment details"
+        ]
+    },
+    "display": {
+        "properties": {}
+    },
+    "eq_id": "1",
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "6330dcfe-3b23-425d-8104-b725c6b7f398",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "50dbb255-5e8f-4f0d-93fd-85c7366f174f",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "73a9ce2c-644f-49f3-a227-bea2d05f131e",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Buildings",
+                                                    "value": "Buildings"
+                                                },
+                                                {
+                                                    "label": "Contents",
+                                                    "value": "Contents"
+                                                },
+                                                {
+                                                    "label": "Both",
+                                                    "value": "Both"
+                                                }
+                                            ],
+                                            "q_code": "1",
+                                            "type": "Radio",
+                                            "validation": {}
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "d585aacb-adf0-4f55-a4c6-30af250136ee",
+                                    "title": "What kind of insurance would you like?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Property Details",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Home Insurance",
+                    "validation": []
+                },
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "cd6a5727-8cab-4737-aa4e-d666d98b3f92",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "b28a3c85-9da3-4709-9165-7b609a634651",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "56d9bd4b-0631-44e7-9bee-276f4bdf8de0",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "TextArea",
+                                            "validation": {}
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "fda870e7-1208-4a99-ba13-e79f15ba67b9",
+                                    "title": "What is the address you would like to insure?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Property Details",
+                            "validation": []
+                        }
+                    ],
+                    "title": "House Insurance",
+                    "validation": []
+                },
+                {
+                    "type": "interstitial",
+                    "id": "property-interstitial",
+                    "title": "Property Details Interstitial Page",
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "property-interstitial-section",
+                            "questions": [
+                                {
+                                    "description": "You have successfully completed the property details section. Next we want to know who lives in the house.",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "answers": [],
+                                    "id": "property-interstitial-question",
+                                    "title": "Property Details",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "",
+                            "validation": []
+                        }
+                    ]
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "b13c36f9-8b1b-4f3d-997e-5fea82a4036f",
+            "title": "Property Details",
+            "validation": [],
+            "completed_when": "property-interstitial"
+        },
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "household-composition",
+                    "sections": [
+                        {
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "section",
+                            "questions": [
+                                {
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "household-composition-question",
+                                    "title": "Who usually lives at the property?",
+                                    "description": "",
+                                    "type": "RepeatingAnswer",
+                                    "validation": [],
+                                    "answers": [
+                                        {
+                                            "alias": "person_full_name",
+                                            "display": {},
+                                            "id": "household-full-name",
+                                            "label": "Full Name",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "Textfield",
+                                            "validation": {},
+                                            "repeats": true
+                                        }
+                                    ]
+                                }
+                            ],
+                            "title": "Household Details",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Household Details",
+                    "validation": []
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "multiple-questions-group",
+            "title": "Household Details",
+            "validation": [],
+            "completed_when": "household-composition"
+        },
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "id": "repeating-block-1",
+                    "title": "Block 2",
+                    "sections": [
+                        {
+                            "title": "{{answers.person_full_name[group_instance]}}",
+                            "description": "",
+                            "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
+                            "questions": [
+                                {
+                                    "id": "c1d9976e-d031-4fab-96fc-1d37d4a8b86b",
+                                    "title": "Is the person above over 16?",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "q_code": "3",
+                                            "guidance": "",
+                                            "id": "what-is-your-age",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "1",
+                                            "type": "Radio",
+                                            "validation": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "questionnaire",
+                    "id": "repeating-block-2",
+                    "title": "Block 3",
+                    "sections": [
+                        {
+                            "title": "{{answers.person_full_name[group_instance]}}",
+                            "description": "",
+                            "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                            "questions": [
+                                {
+                                    "id": "31ec5b0a-094b-44ca-9807-9090c1b849f5",
+                                    "title": "",
+                                    "description": "What is the working status of this person?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "q_code": "4",
+                                            "guidance": "",
+                                            "id": "what-is-your-shoe-size",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Full time student",
+                                                    "value": "Full time student"
+                                                },
+                                                {
+                                                    "label": "Employed",
+                                                    "value": "Employed"
+                                                },
+                                                {
+                                                    "label": "Self employed",
+                                                    "value": "Self employed"
+                                                },
+                                                {
+                                                    "label": "Unemployed",
+                                                    "value": "Unmployed"
+                                                }
+                                            ],
+                                            "q_code": "1",
+                                            "type": "Radio",
+                                            "validation": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "id": "repeating-group",
+            "title": "Person ",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_count",
+                        "answer_id": "household-full-name"
+                    }
+                }
+            ],
+            "completed_when": "repeating-block-2"
+        },
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "824a5298-024f-4ce2-9780-54326c6f66c0",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "9cac79bb-5532-4a23-8b2f-f24719e2d8cd",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "e35ad1e0-e2df-4103-8c53-29f5f1ffc565",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "TextArea",
+                                            "validation": {}
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "c6053481-e947-4aa1-9d24-ec44626038c9",
+                                    "title": "Please list any special items you have",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Extra Cover",
+                            "validation": []
+                        }
+                    ],
+                    "title": "House Insurance",
+                    "validation": []
+                },
+                {
+                    "type": "interstitial",
+                    "id": "ab122721-1903-4376-9529-11fea7e2a76d",
+                    "title": "Special items Interstitial Page",
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "3ec86487-8122-49d0-897d-93c51d1e0049",
+                            "questions": [
+                                {
+                                    "description": "You have successfully completed the special items section. Next we want to know about your payment details.",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "answers": [],
+                                    "id": "8310f632-3167-4543-a6a5-56d6a2552231",
+                                    "title": "Extra Cover",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "",
+                            "validation": []
+                        }
+                    ]
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "3edd9ac8-0ea7-419f-831e-2c84450b41b9",
+            "title": "Extra Cover",
+            "validation": [],
+            "completed_when": "ab122721-1903-4376-9529-11fea7e2a76d"
+        },
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "4e4f756b-3e84-43cc-97ac-8d31d708c9b8",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "008cd0bf-7c4d-437e-9ca2-2b829065415e",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "c7a0c332-d079-44c9-b761-4a8fcd26b82f",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "PositiveInteger",
+                                            "validation": {}
+                                        }
+                                    ],
+                                    "description": "The long one in the middle of the card please",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "0efac2cc-18ba-4523-bdce-9814b80beaae",
+                                    "title": "What is your credit card number?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Payment Details",
+                            "validation": []
+                        }
+                    ],
+                    "title": "House Insurance",
+                    "validation": []
+                },
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "d6d58951-aabb-4fff-b4aa-bed5dc1aff27",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "97a17cc2-8984-4c48-bb83-5422861c6efd",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "ad53c34e-06d0-4a3e-be45-28512c3a3653",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "TextField",
+                                            "validation": {}
+                                        }
+                                    ],
+                                    "description": "",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "618ecae6-9b01-4267-8fb7-96da4ffcbc9c",
+                                    "title": "What is the expiry date?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Payment Details",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Home Insurance",
+                    "validation": []
+                },
+                {
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "id": "d6558951-aabb-4fff-b4aa-bed5dc1aff27",
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "97a175c2-8984-4c48-bb83-5422861c6efd",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "display": {},
+                                            "guidance": "",
+                                            "id": "ad53534e-06d0-4a3e-be45-28512c3a3653",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "TextField",
+                                            "validation": {}
+                                        }
+                                    ],
+                                    "description": "Its the last 3 numbers",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "id": "618ecae6-9b05-4267-8fb7-96da4ffcbc9c",
+                                    "title": "What is the security code on the back?",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "Payment Details",
+                            "validation": []
+                        }
+                    ],
+                    "title": "Home Insurance",
+                    "validation": []
+                },
+                {
+                    "type": "interstitial",
+                    "id": "f08dc29e-a728-426a-ba20-568867f57ff6",
+                    "title": "Payment Details Interstitial Page",
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [
+                        {
+                            "description": "",
+                            "display": {
+                                "properties": {}
+                            },
+                            "id": "5399d472-0280-44f2-9f55-c7b431e65d85",
+                            "questions": [
+                                {
+                                    "description": "You have successfully completed the payment section, thank you.",
+                                    "display": {
+                                        "properties": {}
+                                    },
+                                    "answers": [],
+                                    "id": "4c72fcc0-9d2f-4baa-ad28-02d67d3dc5b5",
+                                    "title": "Payment",
+                                    "type": "General",
+                                    "validation": []
+                                }
+                            ],
+                            "title": "",
+                            "validation": []
+                        }
+                    ]
+                }
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "d650262d-6172-4344-8371-316afecab08f",
+            "title": "Payment Details",
+            "validation": [],
+            "completed_when": "f08dc29e-a728-426a-ba20-568867f57ff6"
+        },
+        {
+            "blocks": [
+                {
+                    "type": "confirmation",
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [],
+                    "id": "confirmation",
+                    "title": ""
+                }
+
+            ],
+            "display": {
+                "properties": {}
+            },
+            "id": "2f2315b1-3691-4516-b1d0-c0b93b41efff",
+            "title": "",
+            "validation": [],
+            "hide_in_navigation": true
+        }
+    ]
+}

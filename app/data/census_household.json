@@ -15,7 +15,8 @@
         {
             "id": "who-lives-here",
             "title": "Who lives here?",
-            "completed_when": "who-lives-here-completed",
+            "completed_id": "who-lives-here-completed",
+            "highlight_when": ["who-lives-here-relationship", "who-lives-here-interstitial"],
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -914,7 +915,6 @@
                     }
                 }
             ],
-            "completed_when": "household-member-completed",
             "blocks": [
                 {
                     "type": "interstitial",

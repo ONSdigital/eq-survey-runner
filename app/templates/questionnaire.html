@@ -6,15 +6,14 @@
 
 {% set group = state.schema_item.container %}
 {% set block = state.schema_item %}
-{% set first_block = group['blocks'][0]['id'] != block['id'] %}
 {% set all_errors = state.get_errors().items() %}
 
 {%- block subheader -%}
 
-  {% if first_block or schema.navigation %}
+  {% if not state.first_block or schema.navigation %}
 
   <div class="container">
-    {% if first_block %}
+    {% if not state.first_block %}
       <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
     {% endif %}
 
@@ -97,7 +96,8 @@
 {% endblock main %}
 
 {% block prefooter %}
-  {% if first_block %}
+
+  {% if not state.first_block %}
     <a class="page__previous page__previous--bottom" href="{{previous_location}}" id="bottom-previous">Previous</a>
   {% endif %}
 {% endblock prefooter %}
