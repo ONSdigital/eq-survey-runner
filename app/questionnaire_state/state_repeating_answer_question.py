@@ -53,18 +53,18 @@ class RepeatingAnswerStateQuestion(StateQuestion):
         :return: A list of lists containing the answers grouped by answer_instance.
         """
 
-        answers_by_id = defaultdict(list)
-        for answer in self.answers:
-            answers_by_id[answer.id].append(answer)
+        answer_states_by_id = defaultdict(list)
+        for answer_state in self.answers:
+            answer_states_by_id[answer_state.id].append(answer_state)
 
-        answers_by_answer_instance = OrderedDict()
+        answer_states_grouped_by_instance = OrderedDict()
         for answer_schema in self.schema_item.answers:
-            answer_states = answers_by_id.get(answer_schema.id)
+            answer_states = answer_states_by_id.get(answer_schema.id)
             if answer_states:
-                for answer in answer_states:
-                    answers_by_answer_instance.setdefault(answer.answer_instance, []).append(answer)
+                for answer_state in answer_states:
+                    answer_states_grouped_by_instance.setdefault(answer_state.answer_instance, []).append(answer_state)
 
-        return list(answers_by_answer_instance.values())
+        return list(answer_states_grouped_by_instance.values())
 
 
 def iterate_over_instance_ids(answer_instances):

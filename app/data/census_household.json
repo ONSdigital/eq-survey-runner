@@ -920,7 +920,7 @@
                 {
                     "repeat": {
                         "type": "answer_count",
-                        "answer_id": "household-full-name"
+                        "answer_id": "first-name"
                     }
                 }
             ],
@@ -928,7 +928,7 @@
                 {
                     "type": "interstitial",
                     "id": "household-member-begin",
-                    "title": "household member begin",
+                    "title": "Household Member Begin",
                     "sections": [
                         {
                             "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
@@ -938,8 +938,7 @@
                                 {
                                     "id": "household-member-begin-question",
                                     "number": "1",
-                                    "title": "The following questions are for:",
-                                    "description": "<div style='background-color: #efefef; padding: .7em; display: inline-block; border: 2px solid #ccc; font-weight: bold;'>{{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}</div>",
+                                    "title": "The following questions are for {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                                     "type": "General",
                                     "answers": []
                                 }
@@ -958,7 +957,7 @@
                             "questions": [
                                 {
                                     "id": "details-correct-display-name",
-                                    "title": "The following questions are for:",
+                                    "title": "The following questions are for {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}:",
                                     "type": "General",
                                     "answers": []
                                 },
