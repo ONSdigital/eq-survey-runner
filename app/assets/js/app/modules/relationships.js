@@ -102,32 +102,14 @@ class HouseholdRelationship extends EventEmitter {
   }
 }
 
-class HouseholdRelationships {
+domready(() => {
+  const items = []
+  const el = document.querySelector(`.${opts.main}`)
 
-  items = []
+  if (!el) return
 
-  constructor(options) {
-    this.el = document.querySelector(`.${opts.main}`)
-
-    if (!this.el) return
-
-    forEach(this.el.getElementsByClassName(opts.classItem), item => {
-      const relationship = new HouseholdRelationship(item)
-      relationship.addListener('opened', this.onItemOpen)
-      relationship.addListener('optionSelected', this.onOptionSelected)
-      this.items.push(relationship)
-    })
-
-    let firstUnansweredItem = this.items.filter(item => !item.answered)[0]
-    if (firstUnansweredItem !== undefined) {
-      firstUnansweredItem.open()
-    } else {
-      this.items.map(item => item.close())
-    }
-  }
-
-  onOptionSelected = (selectedItem) => {
-    const unansweredItems = this.items.filter(item => !item.answered)
+  const onOptionSelected = (selectedItem) => {
+    const unansweredItems = items.filter(item => !item.answered)
     if (unansweredItems.length > 0) {
       unansweredItems[0].open()
     } else {
@@ -135,17 +117,27 @@ class HouseholdRelationships {
     }
   }
 
-  onItemOpen = (item) => {
-    this.closeAllExcept(item)
+  const onItemOpen = (item) => {
+    closeAllExcept(item)
   }
 
-  closeAllExcept(itemToOpen) {
-    this.items
+  const closeAllExcept = (itemToOpen) => {
+    items
       .filter(item => item !== itemToOpen)
       .map(item => item.close())
   }
-}
 
-domready(() => {
-  new HouseholdRelationships()
+  forEach(el.getElementsByClassName(opts.classItem), item => {
+    const relationship = new HouseholdRelationship(item)
+    relationship.addListener('opened', onItemOpen)
+    relationship.addListener('optionSelected', onOptionSelected)
+    items.push(relationship)
+  })
+
+  let firstUnansweredItem = items.filter(item => !item.answered)[0]
+  if (firstUnansweredItem !== undefined) {
+    firstUnansweredItem.open()
+  } else {
+    items.map(item => item.close())
+  }
 })

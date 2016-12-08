@@ -6,7 +6,6 @@
     "survey_id": "0",
     "title": "Final confirmation to submit",
     "theme": "default",
-    "navigation" : false,
     "description": "A questionnaire to demo final confirmation to submit.",
     "introduction": {
         "description": ""

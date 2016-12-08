@@ -63,9 +63,16 @@ export function copyScripts() {
     .pipe(browserSync.reload({stream: true}))
 }
 
-export function lint() {
-  gulp.src([paths.scripts.input, `!${paths.scripts.dir}vendor/**/*`, `!${paths.scripts.dir}polyfills.js`])
+export function lint(done) {
+  return gulp.src([paths.scripts.input, `!${paths.scripts.dir}vendor/**/*`, `!${paths.scripts.dir}polyfills.js`])
     .pipe(plumber())
     .pipe(eslint())
+    .pipe(eslint.results(results => results.warningCount ? gutil.log('eslint warning') : gutil.noop()))
     .pipe(eslint.format())
+    .pipe(eslint.failOnError())
+    .on('error', (error) => {
+      gutil.log('linting failed')
+      gutil.log(error)
+      process.exit(1)
+    })
 }

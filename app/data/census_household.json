@@ -7,7 +7,7 @@
     "title": "Census England Household Schema",
     "description": "Census England Household Schema",
     "theme": "census",
-    "navigation" : false,
+    "navigation" : true,
     "introduction": {
     },
     "eq_id": "census",
@@ -15,6 +15,8 @@
         {
             "id": "who-lives-here",
             "title": "Who lives here?",
+            "completed_id": "who-lives-here-completed",
+            "highlight_when": ["who-lives-here-relationship", "who-lives-here-interstitial"],
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -308,7 +310,8 @@
         },
         {
             "id": "who-lives-here-relationship",
-            "title": "Who lives here?",
+            "title": "Relationships",
+            "hide_in_navigation": true,
             "routing_rules": [
                 {
                     "repeat": {
@@ -405,6 +408,7 @@
         {
             "id": "who-lives-here-interstitial",
             "title": "Who lives here?",
+            "hide_in_navigation": true,
             "blocks": [
                 {
                     "type": "interstitial",
@@ -431,6 +435,7 @@
         {
             "id": "household-and-accommodation",
             "title": "Household and Accommodation",
+            "completed_when": "household-and-accommodation-completed",
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -901,6 +906,15 @@
         {
             "id": "household-member",
             "title": "Household Member Details",
+            "id": "repeating-group",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_count",
+                        "answer_id": "household-full-name"
+                    }
+                }
+            ],
             "blocks": [
                 {
                     "type": "interstitial",
@@ -3163,17 +3177,67 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "jobseeker",
+                                "id": "household-member-completed",
                                 "when": {
                                     "id": "employment-type-answer",
                                     "condition": "equals",
-                                    "value": "none of the above"
+                                    "value": "working as an employee"
                                 }
                             }
                         },
                         {
                             "goto": {
-                                "id": "household-member-completed"
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "on a government sponsored training scheme"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "self-employed or freelance"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "working paid or unpaid for you own or your family's business"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "away from work ill, on maternity leave, on holiday or temporarily laid off"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "household-member-completed",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "equals",
+                                    "value": "doing any other kind of paid work"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "jobseeker"
                             }
                         }
                     ]
@@ -3626,6 +3690,7 @@
         {
             "id": "visitors",
             "title": "Visitors",
+            "completed_when": "visitor-address",
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -3853,6 +3918,7 @@
         {
             "id": "questionnaire-completed",
             "title": "Questionnaire Completed",
+            "hide_in_navigation": true,
             "blocks": [
                 {
                     "type": "interstitial",

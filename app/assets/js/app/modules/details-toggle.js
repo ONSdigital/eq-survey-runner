@@ -39,9 +39,7 @@ export function applyDetailsToggle(elDetails) {
 }
 
 export function open(elDetails, elBody, elLabel, elTrigger) {
-  if (document.activeElement !== document.body) document.activeElement.blur()
   elDetails.classList.add(classExpandedState)
-  elBody.focus()
   elLabel.innerHTML = elDetails.getAttribute(attrHideLbl)
   elTrigger.setAttribute(attrAriaExpanaded, true)
   elBody.setAttribute(attrAriaHidden, false)
@@ -49,7 +47,6 @@ export function open(elDetails, elBody, elLabel, elTrigger) {
 
 export function close(elDetails, elBody, elLabel, elTrigger) {
   elDetails.classList.remove(classExpandedState)
-  elBody.blur()
   elLabel.innerHTML = elDetails.getAttribute(attrShowLbl)
   elTrigger.setAttribute(attrAriaExpanaded, false)
   elBody.setAttribute(attrAriaHidden, true)

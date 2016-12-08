@@ -7,7 +7,6 @@
     "title": "Census Theme",
     "description": "",
     "theme": "census",
-    "navigation" : false,
     "introduction": {
         "description": "",
         "information_to_provide": []

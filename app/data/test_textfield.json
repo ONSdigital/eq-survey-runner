@@ -6,7 +6,6 @@
     "survey_id": "0",
     "title": "Other input fields",
     "theme": "default",
-    "navigation" : false,
     "description": "A questionnaire to test textfields",
     "introduction": {
         "description": "",

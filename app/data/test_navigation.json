@@ -164,7 +164,8 @@
             },
             "id": "b13c36f9-8b1b-4f3d-997e-5fea82a4036f",
             "title": "Property Details",
-            "validation": []
+            "validation": [],
+            "completed_when": "property-interstitial"
         },
         {
             "blocks": [
@@ -220,7 +221,8 @@
             },
             "id": "multiple-questions-group",
             "title": "Household Details",
-            "validation": []
+            "validation": [],
+            "completed_when": "household-composition"
         },
         {
             "blocks": [
@@ -326,7 +328,8 @@
                         "answer_id": "household-full-name"
                     }
                 }
-            ]
+            ],
+            "completed_when": "repeating-block-2"
         },
         {
             "blocks": [
@@ -413,7 +416,8 @@
             },
             "id": "3edd9ac8-0ea7-419f-831e-2c84450b41b9",
             "title": "Extra Cover",
-            "validation": []
+            "validation": [],
+            "completed_when": "ab122721-1903-4376-9529-11fea7e2a76d"
         },
         {
             "blocks": [
@@ -590,7 +594,8 @@
             },
             "id": "d650262d-6172-4344-8371-316afecab08f",
             "title": "Payment Details",
-            "validation": []
+            "validation": [],
+            "completed_when": "f08dc29e-a728-426a-ba20-568867f57ff6"
         },
         {
             "blocks": [
@@ -609,8 +614,9 @@
                 "properties": {}
             },
             "id": "2f2315b1-3691-4516-b1d0-c0b93b41efff",
-            "title": "confirmation",
-            "validation": []
+            "title": "",
+            "validation": [],
+            "hide_in_navigation": true
         }
     ]
 }

@@ -77,7 +77,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
 def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user), group_id, group_instance)
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
     this_block = {
@@ -262,7 +262,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
 
 
 def _go_to_next_block(location, eq_id, form_type, collection_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user), location['group_id'], location['group_instance'])
 
     next_location = navigator.get_next_location(current_block_id=location['block_id'],
                                                 current_group_id=location['group_id'],
@@ -342,9 +342,9 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     group_id = group_id or SchemaHelper.get_first_group_id(g.schema_json)
-    front_end_navigation = navigator.get_front_end_navigation(group_id, group_instance, get_completed_blocks(current_user))
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user), group_id, group_instance)
+    front_end_navigation = get_front_end_navigation(group_id, group_instance, navigator)
     previous_location = navigator.get_previous_location(current_group_id=group_id,
                                                         current_block_id=block_id,
                                                         current_iteration=group_instance)
@@ -373,3 +373,14 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
                                  previous_location=previous_url,
                                  navigation=front_end_navigation,
                                  schema=g.schema_json)
+
+
+def get_front_end_navigation(group_id, group_instance, navigator):
+
+    front_end_navigation = []
+
+    if 'navigation' in g.schema_json:
+        front_end_navigation = navigator.get_front_end_navigation(
+            group_id, group_instance, get_completed_blocks(current_user))
+
+    return front_end_navigation

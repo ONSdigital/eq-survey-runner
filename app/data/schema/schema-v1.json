@@ -236,6 +236,9 @@
                           },
                           "goto": {
                             "type": "string"
+                          },
+                          "type": {
+                            "enum": ["answer_value", "answer_count", "answer_count_minus_one"]
                           }
                         },
                         "required": [
