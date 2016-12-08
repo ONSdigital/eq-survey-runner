@@ -154,6 +154,7 @@ class AnswerStore(object):
     def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
+        If no filter parameters are passed it returns a copy of the list of all answers.
 
         :param answer_id:
         :param block_id:
@@ -195,10 +196,7 @@ class AnswerStore(object):
         :return:
         """
         result = {}
-        use_filter = (group_id or block_id or answer_id or group_instance or answer_instance) is not None
-        answers = self.filter(group_id, block_id, answer_id, group_instance, answer_instance) if use_filter else self.answers
-
-        for answer in answers:
+        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
             answer_id = answer['answer_id']
             answer_id += "_" + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
 
@@ -226,10 +224,7 @@ class AnswerStore(object):
         :param answer_instance:
         :param group_instance:
         """
-        use_filter = (group_id or block_id or answer_id or group_instance or answer_instance) is not None
-        answers = self.filter(group_id, block_id, answer_id, group_instance, answer_instance) if use_filter else list(self.answers)
-
-        for answer in answers:
+        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
             self.answers.remove(answer)
 
 
