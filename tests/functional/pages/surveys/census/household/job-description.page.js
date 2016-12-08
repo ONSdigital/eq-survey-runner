@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.940406 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.863537 - DO NOT EDIT!!! <<<
 
 import QuestionPage from '../../question.page'
 
 class JobDescriptionPage extends QuestionPage {
+
+  constructor() {
+    super('job-description')
+  }
 
   setJobDescriptionAnswer(value) {
     browser.setValue('[name="job-description-answer"]', value)

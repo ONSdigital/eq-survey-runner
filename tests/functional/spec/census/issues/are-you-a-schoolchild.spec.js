@@ -32,47 +32,6 @@ import AddressType from '../../../pages/surveys/census/household/address-type.pa
 import InEducation from '../../../pages/surveys/census/household/in-education.page.js'
 import TermTimeLocation from '../../../pages/surveys/census/household/term-time-location.page.js'
 import CountryOfBirth from '../../../pages/surveys/census/household/country-of-birth.page.js'
-import ArriveInUk from '../../../pages/surveys/census/household/arrive-in-uk.page.js'
-import LengthOfStay from '../../../pages/surveys/census/household/length-of-stay.page.js'
-import Carer from '../../../pages/surveys/census/household/carer.page.js'
-import NationalIdentity from '../../../pages/surveys/census/household/national-identity.page.js'
-import EthnicGroup from '../../../pages/surveys/census/household/ethnic-group.page.js'
-import WhiteEthnicGroup from '../../../pages/surveys/census/household/white-ethnic-group.page.js'
-import MixedEthnicGroup from '../../../pages/surveys/census/household/mixed-ethnic-group.page.js'
-import AsianEthnicGroup from '../../../pages/surveys/census/household/asian-ethnic-group.page.js'
-import BlackEthnicGroup from '../../../pages/surveys/census/household/black-ethnic-group.page.js'
-import OtherEthnicGroup from '../../../pages/surveys/census/household/other-ethnic-group.page.js'
-import SexualIdentity from '../../../pages/surveys/census/household/sexual-identity.page.js'
-import UnderstandWelsh from '../../../pages/surveys/census/household/understand-welsh.page.js'
-import Language from '../../../pages/surveys/census/household/language.page.js'
-import English from '../../../pages/surveys/census/household/english.page.js'
-import Religion from '../../../pages/surveys/census/household/religion.page.js'
-import PastUsualAddress from '../../../pages/surveys/census/household/past-usual-address.page.js'
-import LastYearAddress from '../../../pages/surveys/census/household/last-year-address.page.js'
-import Passports from '../../../pages/surveys/census/household/passports.page.js'
-import Disability from '../../../pages/surveys/census/household/disability.page.js'
-import Qualifications from '../../../pages/surveys/census/household/qualifications.page.js'
-import Volunteering from '../../../pages/surveys/census/household/volunteering.page.js'
-import EmploymentType from '../../../pages/surveys/census/household/employment-type.page.js'
-import Jobseeker from '../../../pages/surveys/census/household/jobseeker.page.js'
-import JobAvailability from '../../../pages/surveys/census/household/job-availability.page.js'
-import JobPending from '../../../pages/surveys/census/household/job-pending.page.js'
-import Occupation from '../../../pages/surveys/census/household/occupation.page.js'
-import EverWorked from '../../../pages/surveys/census/household/ever-worked.page.js'
-import MainJob from '../../../pages/surveys/census/household/main-job.page.js'
-import JobTitle from '../../../pages/surveys/census/household/job-title.page.js'
-import JobDescription from '../../../pages/surveys/census/household/job-description.page.js'
-import EmployersBusiness from '../../../pages/surveys/census/household/employers-business.page.js'
-import MainJobType from '../../../pages/surveys/census/household/main-job-type.page.js'
-import BusinessName from '../../../pages/surveys/census/household/business-name.page.js'
-import HouseholdMemberCompleted from '../../../pages/surveys/census/household/household-member-completed.page.js'
-import VisitorName from '../../../pages/surveys/census/household/visitor-name.page.js'
-import VisitorSex from '../../../pages/surveys/census/household/visitor-sex.page.js'
-import VisitorDateOfBirth from '../../../pages/surveys/census/household/visitor-date-of-birth.page.js'
-import VisitorUkResident from '../../../pages/surveys/census/household/visitor-uk-resident.page.js'
-import VisitorAddress from '../../../pages/surveys/census/household/visitor-address.page.js'
-import Confirmation from '../../../pages/confirmation.page.js'
-import ThankYou from '../../../pages/thank-you.page'
 
 const expect = chai.expect
 
@@ -81,7 +40,7 @@ describe('Are-you-a-schoolchild', function () {
   it('Given I am answering question 7 in the individual detail section - 7. Are you a schoolchild or student in full-time education?, When I do not select any respone, Then I am routed to 9. What is your country of birth?', function () {
    startCensusQuestionnaire('census_household.json', true)
    PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-   HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+   HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
    EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
    OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
    HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -107,6 +66,6 @@ describe('Are-you-a-schoolchild', function () {
    MaritalStatus.clickMaritalStatusAnswerMarried().submit()
    AnotherAddress.clickAnotherAddressAnswerNo().submit()
    InEducation.submit()
-   CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
+   expect(CountryOfBirth.isOpen()).to.be.true
  })
 })

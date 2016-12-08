@@ -12,7 +12,7 @@ describe('Number of visitors', function () {
   it('Given a census schema, When I dont enter any value for question: How many visitors are staying overnight here on 9th April 2017?, Then I should get an error message ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').submit()
+    HouseholdComposition.setFirstName('John').submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.submit()
 

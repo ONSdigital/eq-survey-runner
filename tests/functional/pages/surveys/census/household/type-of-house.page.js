@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.830192 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.732315 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class TypeOfHousePage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('type-of-house')
+  }
 
   clickTypeOfHouseAnswerDetached() {
     browser.element('[id="type-of-house-answer-1"]').click()

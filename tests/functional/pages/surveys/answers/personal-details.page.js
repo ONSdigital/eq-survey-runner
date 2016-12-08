@@ -2,9 +2,8 @@ import QuestionPage from '../question.page'
 
 class PersonalDetailsPage extends QuestionPage {
 
-  isOpen() {
-    const url = browser.url().value
-    return url.indexOf('personal_details_block') > -1
+  constructor() {
+    super('personal_details_block')
   }
 
   setFirstName(firstName) {

@@ -1,3 +1,4 @@
+import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
@@ -38,13 +39,15 @@ import Volunteering from '../../../pages/surveys/census/household/volunteering.p
 import EmploymentType from '../../../pages/surveys/census/household/employment-type.page.js'
 import Jobseeker from '../../../pages/surveys/census/household/jobseeker.page.js'
 
+const expect = chai.expect
+
 describe('ArriveInUk', function () {
   it('Given I am answering question 28.	Last week were you.., When I dont not select any response, Then I am routed to 29. Were you actively looking for...?', function () {
     startCensusQuestionnaire('census_household.json')
 
     // who-lives-here
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -83,6 +86,6 @@ describe('ArriveInUk', function () {
     Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
     Volunteering.clickVolunteeringAnswerNo().submit()
     EmploymentType.submit()
-    Jobseeker.clickJobseekerAnswerYes().submit()
+    expect(Jobseeker.isOpen()).to.be.true
   })
 })

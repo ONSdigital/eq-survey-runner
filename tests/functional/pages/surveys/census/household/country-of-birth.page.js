@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.864766 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.776340 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class CountryOfBirthPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('country-of-birth')
+  }
 
   clickCountryOfBirthEnglandAnswerEngland() {
     browser.element('[id="country-of-birth-england-answer-1"]').click()

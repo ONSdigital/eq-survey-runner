@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.872820 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.784574 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class CarerPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('carer')
+  }
 
   clickCarerAnswerNo() {
     browser.element('[id="carer-answer-1"]').click()
