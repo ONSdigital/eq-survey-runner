@@ -20,9 +20,9 @@ describe('Populating household names on subsequent repeating groups.', function(
     // When
     HouseholdCompositionPage.setPersonName(0, name).submit()
 
-    expect(RepeatingHouseholdPage.getDisplayedName()).to.equal(name)
+    expect(RepeatingHouseholdPage.getDisplayedName()).to.contain(name)
     AgePage.setAge(99).submit()
-    expect(RepeatingHouseholdPage.getDisplayedName()).to.equal(name)
+    expect(RepeatingHouseholdPage.getDisplayedName()).to.contain(name)
   })
 
   it('Given I enter multiple names, when I navigate through the subsequent groups, I should the names on their respective blocks.', function() {
@@ -42,21 +42,21 @@ describe('Populating household names on subsequent repeating groups.', function(
         .submit()
 
     // Person One
-    expect(RepeatingHouseholdPage.getDisplayedName()).to.equal(name1)
+    expect(RepeatingHouseholdPage.getDisplayedName()).to.contain(name1)
     AgePage.setAge(99).submit()
-    expect(RepeatingHouseholdPage.getDisplayedName()).to.equal(name1)
+    expect(RepeatingHouseholdPage.getDisplayedName()).to.contain(name1)
     ShoeSizePage.setShoeSize(10).submit()
 
     // Person Two
-    expect(RepeatingHouseholdPage.getDisplayedName()).to.equal(name2)
+    expect(RepeatingHouseholdPage.getDisplayedName()).to.contain(name2)
     AgePage.setAge(99).submit()
-    expect(RepeatingHouseholdPage.getDisplayedName()).to.equal(name2)
+    expect(RepeatingHouseholdPage.getDisplayedName()).to.contain(name2)
     ShoeSizePage.setShoeSize(10).submit()
 
     // Person Three
-    expect(RepeatingHouseholdPage.getDisplayedName()).to.equal(name3)
+    expect(RepeatingHouseholdPage.getDisplayedName()).to.contain(name3)
     AgePage.setAge(99).submit()
-    expect(RepeatingHouseholdPage.getDisplayedName()).to.equal(name3)
+    expect(RepeatingHouseholdPage.getDisplayedName()).to.contain(name3)
     ShoeSizePage.setShoeSize(10).submit()
 
   })

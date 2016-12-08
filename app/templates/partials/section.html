@@ -1,6 +1,10 @@
 <div class="section" id="{{section.id}}">
   {% if section.schema_item.title %}
-    <h1 class="section__title saturn">{{section.schema_item.title}}</h1>
+    <h1 class="section__title saturn">
+        {%- if section.schema_item.number -%}
+            <span>{{section.schema_item.number}}. </span>
+        {% endif %}
+        {{section.schema_item.title}}</h1>
   {% endif %}
   {% if section.schema_item.description %}
     <div class="section__description mars">{{section.schema_item.description|safe}}</div>

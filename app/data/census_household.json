@@ -22,10 +22,12 @@
                         {
                             "id": "permanent-or-family-home-section",
                             "title": "Who lives here?",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "permanent-or-family-home-question",
-                                    "title": "1. Does anyone live here as their permanent or family home?",
+                                    "title": "Does anyone live here as their permanent or family home?",
+                                    "number": "1",
                                     "guidance": [
                                         {
                                              "title": "Include",
@@ -91,10 +93,12 @@
                         {
                             "id": "else-permanent-or-family-home-section",
                             "title": "Who lives here?",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "else-permanent-or-family-home-question",
-                                    "title": "1a. Is there anyone else who lives here as their permanent or family home?",
+                                    "title": "Is there anyone else who lives here as their permanent or family home?",
+                                    "number": "1a",
                                     "guidance": [
                                         {
                                              "title": "Include",
@@ -161,10 +165,12 @@
                         {
                             "id": "household-composition-section",
                             "title": "Who lives here?",
+                            "number": "2",
                             "questions": [
                                 {
                                     "id": "household-composition-question",
-                                    "title": "2. List the names of everyone who lives at this address",
+                                    "title": "List the names of everyone who lives at this address",
+                                    "number": "2",
                                     "guidance": [
                                         {
                                              "title": "Include",
@@ -198,10 +204,12 @@
                         {
                             "id": "everyone-at-address-confirmation-section",
                             "title": "Who lives here?",
+                            "number": "3",
                             "questions": [
                                 {
                                     "id": "everyone-at-address-confirmation-question",
-                                    "title": "3. Is this everyone for whom this address is their permanent or family home?",
+                                    "title": "Is this everyone for whom this address is their permanent or family home?",
+                                    "number": "3",
                                     "guidance": [
                                         {
                                              "title": "Include",
@@ -263,10 +271,12 @@
                         {
                             "id": "overnight-visitors-section",
                             "title": "Who lives here?",
+                            "number": "4",
                             "questions": [
                                 {
                                     "id": "overnight-visitors-question",
-                                    "title": "4. How many visitors are staying overnight here on 9th April 2017?",
+                                    "title": "How many visitors are staying overnight here on 9th April 2017?",
+                                    "number": "4",
                                     "guidance": [
                                         {
                                              "title": "Include",
@@ -319,10 +329,12 @@
                         {
                             "id": "household-relationships-section",
                             "title": "Who lives here?",
+                            "number": "5",
                             "questions": [
                                 {
                                     "id": "household-relationships-question",
-                                    "title": "5. How are members of this household related to each other?",
+                                    "title": "How are members of this household related to each other?",
+                                    "number": "5",
                                     "type": "Relationship",
                                     "answers": [
                                         {
@@ -432,6 +444,7 @@
                         {
                             "id": "type-of-accommodation-section",
                             "title": "Household and Accommodation",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "type-of-accommodation-question",
@@ -486,12 +499,7 @@
                         },
                         {
                             "goto": {
-                                "id": "self-contained-accommodation",
-                                "when": {
-                                    "id": "type-of-accommodation-answer",
-                                    "condition": "equals",
-                                    "value": "Caravan or other mobile or temporary structure"
-                                }
+                                "id": "self-contained-accommodation"
                             }
                         }
                     ]
@@ -503,6 +511,7 @@
                         {
                             "id": "type-of-house-section",
                             "title": "Household and Accommodation",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "type-of-house-question",
@@ -549,6 +558,7 @@
                         {
                             "id": "type-of-flat-section",
                             "title": "Household and Accommodation",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "type-of-flat-question",
@@ -588,6 +598,7 @@
                         {
                             "id": "self-contained-accommodation-section",
                             "title": "Household and Accommodation",
+                            "number": "2",
                             "questions": [
                                 {
                                     "id": "self-contained-accommodation-question",
@@ -628,6 +639,7 @@
                         {
                             "id": "number-of-bedrooms-section",
                             "title": "Household and Accommodation",
+                            "number": "3",
                             "questions": [
                                 {
                                     "id": "number-of-bedrooms-question",
@@ -659,6 +671,7 @@
                         {
                             "id": "central-heating-section",
                             "title": "Household and Accommodation",
+                            "number": "4",
                             "questions": [
                                 {
                                     "id": "central-heating-question",
@@ -711,6 +724,7 @@
                         {
                             "id": "own-or-rent-section",
                             "title": "Household and Accommodation",
+                            "number": "5",
                             "questions": [
                                 {
                                     "id": "own-or-rent-question",
@@ -785,6 +799,7 @@
                         {
                             "id": "landlord-section",
                             "title": "Household and Accommodation",
+                            "number": "6",
                             "questions": [
                                 {
                                     "id": "landlord-question",
@@ -836,6 +851,7 @@
                         {
                             "id": "number-of-vehicles-section",
                             "title": "Household and Accommodation",
+                            "number": "7",
                             "questions": [
                                 {
                                     "id": "number-of-vehicles-question",
@@ -894,10 +910,12 @@
                         {
                             "title": "{{ answers.person_full_name[group_instance] }}",
                             "id": "household-member-begin-section",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "household-member-begin-question",
-                                    "title": "1. The following questions are for:",
+                                    "title": "The following questions are for:",
+                                    "number": "1",
                                     "type": "General",
                                     "answers": []
                                 }
@@ -912,6 +930,7 @@
                         {
                             "id": "details-correct-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "details-correct-display-name",
@@ -921,7 +940,8 @@
                                 },
                                 {
                                     "id": "details-correct-question",
-                                    "title": "1. Are these details correct, including any middle name(s)?",
+                                    "title": "Are these details correct, including any middle name(s)?",
+                                    "number": "1",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -970,10 +990,12 @@
                         {
                             "id": "correct-name-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "correct-name-question",
-                                    "title": "1a. What is your correct name?",
+                                    "title": "What is your correct name?",
+                                    "number": "1a",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -995,10 +1017,12 @@
                         {
                             "id": "sex-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "2",
                             "questions": [
                                 {
                                     "id": "sex-question",
-                                    "title": "2. What is your sex?",
+                                    "title": "What is your sex?",
+                                    "number": "2",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1030,10 +1054,12 @@
                         {
                             "id": "date-of-birth-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "3",
                             "questions": [
                                 {
                                     "id": "date-of-birth-question",
-                                    "title": "3. What is your date of birth?",
+                                    "title": "What is your date of birth?",
+                                    "number": "3",
                                     "description": "For example 20 March 2014",
                                     "type": "General",
                                     "answers": [
@@ -1056,10 +1082,12 @@
                         {
                             "id": "over-16-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "3",
                             "questions": [
                                 {
                                     "id": "over-16-question",
-                                    "title": "3a. Are you aged 16 or over?",
+                                    "title": "Are you aged 16 or over?",
+                                    "number": "3a",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1091,10 +1119,12 @@
                         {
                             "id": "marital-status-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "4",
                             "questions": [
                                 {
                                     "id": "marital-status-question",
-                                    "title": "4. On 9 April 2017, what is your legal marital or same-sex civil partnership status?",
+                                    "title": "On 9 April 2017, what is your legal marital or same-sex civil partnership status?",
+                                    "number": "4",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1154,10 +1184,12 @@
                         {
                             "id": "another-address-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "5",
                             "questions": [
                                 {
                                     "id": "another-address-question",
-                                    "title": "5. Do you stay at another address for more than 30 days a year?",
+                                    "title": "Do you stay at another address for more than 30 days a year?",
+                                    "number": "5",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1233,10 +1265,12 @@
                         {
                             "id": "other-address-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "5",
                             "questions": [
                                 {
                                     "id": "other-address-question",
-                                    "title": "5a. Enter details of the other UK address where you stay more than 30 days a year",
+                                    "title": "Enter details of the other UK address where you stay more than 30 days a year",
+                                    "number": "5a",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1287,10 +1321,12 @@
                         {
                             "id": "address-type-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "6",
                             "questions": [
                                 {
                                     "id": "address-type-question",
-                                    "title": "6. What is that address?",
+                                    "title": "What is that address?",
+                                    "number": "6",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1345,10 +1381,12 @@
                         {
                             "id": "in-education-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "7",
                             "questions": [
                                 {
                                     "id": "in-education-question",
-                                    "title": "7. Are you a schoolchild or student in full-time education?",
+                                    "title": "Are you a schoolchild or student in full-time education?",
+                                    "number": "7",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1397,10 +1435,12 @@
                         {
                             "id": "term-time-location-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "8",
                             "questions": [
                                 {
                                     "id": "term-time-location-question",
-                                    "title": "8. During term time, do you live:",
+                                    "title": "During term time, do you live:",
+                                    "number": "8",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1408,8 +1448,8 @@
                                             "mandatory": false,
                                             "options": [
                                                 {
-                                                    "label": "at this address",
-                                                    "value": "at this address"
+                                                    "label": "here, at this address",
+                                                    "value": "here, at this address"
                                                 },
                                                 {
                                                     "label": "at another address",
@@ -1437,12 +1477,7 @@
                         },
                         {
                             "goto": {
-                                "id": "country-of-birth",
-                                "when": {
-                                    "id": "term-time-location-answer",
-                                    "condition": "equals",
-                                    "value": "at this address"
-                                }
+                                "id": "country-of-birth"
                             }
                         }
                     ]
@@ -1454,10 +1489,12 @@
                         {
                             "id": "country-of-birth-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "9",
                             "questions": [
                                 {
                                     "id": "country-of-birth-england-question",
-                                    "title": "9. What is your country of birth?",
+                                    "title": "What is your country of birth?",
+                                    "number": "9",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1506,7 +1543,8 @@
                                 },
                                 {
                                     "id": "country-of-birth-wales-question",
-                                    "title": "9. What is your country of birth?",
+                                    "title": "What is your country of birth?",
+                                    "number": "9",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1651,10 +1689,12 @@
                         {
                             "id": "arrive-in-uk-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "10",
                             "questions": [
                                 {
                                     "id": "arrive-in-uk-question",
-                                    "title": "10. If you were not born in the United Kingdom, when did you most recently arrive to live here?",
+                                    "title": "If you were not born in the United Kingdom, when did you most recently arrive to live here?",
+                                    "number": "10",
                                     "guidance": [
                                         {
                                             "description": "Exclude short visits away from the UK"
@@ -1681,10 +1721,12 @@
                         {
                             "id": "length-of-stay-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "11",
                             "questions": [
                                 {
                                     "id": "length-of-stay-question",
-                                    "title": "11. Including the time you have already spent here, how long do you intend to stay in the United Kingdom?",
+                                    "title": "Including the time you have already spent here, how long do you intend to stay in the United Kingdom?",
+                                    "number": "11",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1720,10 +1762,12 @@
                         {
                             "id": "carer-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "12",
                             "questions": [
                                 {
                                     "id": "carer-question",
-                                    "title": "12. Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
+                                    "title": "Do you look after, or give any help or support to family members, friends, neighbours or others because of either:",
+                                    "number": "12",
                                     "description": "<div><ul><li>Long-term physical or mental ill-health/disability?</li><li>Problems related to old age?</li></ul></div>",
                                     "guidance": [
                                         {
@@ -1769,10 +1813,12 @@
                         {
                             "id": "national-identity-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "13",
                             "questions": [
                                 {
                                     "id": "national-identity-question",
-                                    "title": "13. How would you describe your national identity?",
+                                    "title": "How would you describe your national identity?",
+                                    "number": "13",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1824,10 +1870,12 @@
                         {
                             "id": "ethnic-group-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "14",
                             "questions": [
                                 {
                                     "id": "ethnic-group-question",
-                                    "title": "14. What is your ethnic group?",
+                                    "title": "What is your ethnic group?",
+                                    "number": "14",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1918,6 +1966,21 @@
                                     "value": "Other ethnic group"
                                 }
                             }
+                        },
+                        {
+                            "goto": {
+                                "id": "sexual-identity",
+                                "when": {
+                                    "meta" : "variant_flags.sexual_identity",
+                                    "condition": "equals",
+                                    "value":"true"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "understand-welsh"
+                            }
                         }
                     ]
                 },
@@ -1928,10 +1991,12 @@
                         {
                             "id": "white-ethnic-group-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "14",
                             "questions": [
                                 {
                                     "id": "white-ethnic-group-question",
-                                    "title": "14a. Which one best describes your White ethnic group or background?",
+                                    "title": "1Which one best describes your White ethnic group or background?",
+                                    "number": "14a",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -1991,10 +2056,12 @@
                         {
                             "id": "mixed-ethnic-group-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "14",
                             "questions": [
                                 {
                                     "id": "mixed-ethnic-group-question",
-                                    "title": "14a. Which one best describes your Mixed/ multiple ethnic group or background?",
+                                    "title": "Which one best describes your Mixed/ multiple ethnic group or background?",
+                                    "number": "14a",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2054,10 +2121,12 @@
                         {
                             "id": "asian-ethnic-group-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "14",
                             "questions": [
                                 {
                                     "id": "asian-ethnic-group-question",
-                                    "title": "14a. Which one best describes your Asian/  Asian British ethnic group or background?",
+                                    "title": "Which one best describes your Asian/  Asian British ethnic group or background?",
+                                    "number": "14a",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2121,10 +2190,12 @@
                         {
                             "id": "black-ethnic-group-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "14",
                             "questions": [
                                 {
                                     "id": "black-ethnic-group-question",
-                                    "title": "14a. Which one best describes your Black/  African/  Caribbean/ Black British ethnic group or background?",
+                                    "title": "Which one best describes your Black/  African/  Caribbean/ Black British ethnic group or background?",
+                                    "number": "14a",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2180,10 +2251,12 @@
                         {
                             "id": "other-ethnic-group-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "14",
                             "questions": [
                                 {
                                     "id": "other-ethnic-group-question",
-                                    "title": "14a. Which one best describes your Other ethnic group or background?",
+                                    "title": "Which one best describes your Other ethnic group or background?",
+                                    "number": "14a",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2235,10 +2308,12 @@
                         {
                             "id": "sexual-identity-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "15",
                             "questions": [
                                 {
                                     "id": "sexual-identity-question",
-                                    "title": "15. Which of the following options best describes how you think of yourself?",
+                                    "title": "Which of the following options best describes how you think of yourself?",
+                                    "number": "15",
                                     "description": "This question is voluntary",
                                     "type": "General",
                                     "answers": [
@@ -2282,10 +2357,12 @@
                         {
                             "id": "understand-welsh-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "16",
                             "questions": [
                                 {
                                     "id": "understand-welsh-question",
-                                    "title": "16. Can you understand, speak, read or write Welsh",
+                                    "title": "Can you understand, speak, read or write Welsh",
+                                    "number": "16",
                                     "description": "Select all that apply",
                                     "type": "General",
                                     "answers": [
@@ -2330,10 +2407,12 @@
                         {
                             "id": "language-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "17",
                             "questions": [
                                 {
                                     "id": "language-question",
-                                    "title": "17. What is your main language",
+                                    "title": "What is your main language",
+                                    "number": "17",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2367,7 +2446,8 @@
                                 },
                                 {
                                     "id": "language-welsh-question",
-                                    "title": "17. What is your main language",
+                                    "title": "What is your main language",
+                                    "number": "17",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2437,10 +2517,12 @@
                         {
                             "id": "english-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "18",
                             "questions": [
                                 {
                                     "id": "english-question",
-                                    "title": "18. How well can you speak English?",
+                                    "title": "How well can you speak English?",
+                                    "number": "18",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2480,10 +2562,12 @@
                         {
                             "id": "religion-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "19",
                             "questions": [
                                 {
                                     "id": "religion-question",
-                                    "title": "19. What is your religion?",
+                                    "title": "What is your religion?",
+                                    "number": "19",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2540,7 +2624,8 @@
                                 },
                                 {
                                     "id": "religion-welsh-question",
-                                    "title": "19. What is your religion?",
+                                    "title": "What is your religion?",
+                                    "number": "19",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2606,10 +2691,12 @@
                         {
                             "id": "past-usual-address-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "20",
                             "questions": [
                                 {
                                     "id": "past-usual-address-question",
-                                    "title": "20. One year ago, what was your usual address?",
+                                    "title": "One year ago, what was your usual address?",
+                                    "number": "20",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2679,10 +2766,12 @@
                         {
                             "id": "last-year-address-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "21",
                             "questions": [
                                 {
                                     "id": "last-year-address-question",
-                                    "title": "21. Enter details of your address one year ago",
+                                    "title": "Enter details of your address one year ago",
+                                    "number": "21",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2733,10 +2822,12 @@
                         {
                             "id": "passports-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "22",
                             "questions": [
                                 {
                                     "id": "passports-question",
-                                    "title": "22. What passports do you hold?",
+                                    "title": "What passports do you hold?",
+                                    "number": "22",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -2779,10 +2870,12 @@
                         {
                             "id": "disability-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "23",
                             "questions": [
                                 {
                                     "id": "disability-question",
-                                    "title": "23. Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
+                                    "title": "Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months?",
+                                    "number": "23",
                                     "guidance": [
                                         {
                                             "description": "Include Problems related to old age"
@@ -2823,10 +2916,12 @@
                         {
                             "id": "qualifications-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "24",
                             "questions": [
                                 {
                                     "id": "qualifications-question",
-                                    "title": "24. Thinking of any studies, exams or qualifications, which of the following do you have?",
+                                    "title": "Thinking of any studies, exams or qualifications, which of the following do you have?",
+                                    "number": "24",
                                     "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                                     "type": "General",
                                     "answers": [
@@ -2913,7 +3008,8 @@
                                 },
                                 {
                                     "id": "qualifications-welsh-question",
-                                    "title": "24. Thinking of any studies, exams or qualifications, which of the following do you have?",
+                                    "title": "Thinking of any studies, exams or qualifications, which of the following do you have?",
+                                    "number": "24",
                                     "description": "Select every option that applies (whether UK or foreign equivalent) if you have any of the qualifications listed",
                                     "type": "General",
                                     "answers": [
@@ -3009,10 +3105,12 @@
                         {
                             "id": "volunteering-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "25",
                             "questions": [
                                 {
                                     "id": "volunteering-question",
-                                    "title": "25. Thinking of the last 12 months, have you taken part in any volunteering for any groups, clubs or organisations?",
+                                    "title": "Thinking of the last 12 months, have you taken part in any volunteering for any groups, clubs or organisations?",
+                                    "number": "25",
                                     "guidance": [
                                         {
                                             "description": "Exclude any Court ordered activities"
@@ -3057,10 +3155,12 @@
                         {
                             "id": "employment-type-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "26",
                             "questions": [
                                 {
                                     "id": "employment-type-question",
-                                    "title": "26. Last week were you:",
+                                    "title": "Last week were you:",
+                                    "number": "26",
                                     "description": "Select all that apply",
                                     "guidance": [
                                         {
@@ -3185,10 +3285,12 @@
                         {
                             "id": "jobseeker-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "27",
                             "questions": [
                                 {
                                     "id": "jobseeker-question",
-                                    "title": "27. Were you actively looking for any kind of paid work during the last four weeks?",
+                                    "title": "Were you actively looking for any kind of paid work during the last four weeks?",
+                                    "number": "27",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3220,10 +3322,12 @@
                         {
                             "id": "job-availability-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "28",
                             "questions": [
                                 {
                                     "id": "job-availability-question",
-                                    "title": "28. If a job had been available last week, could you have started it within two weeks?",
+                                    "title": "If a job had been available last week, could you have started it within two weeks?",
+                                    "number": "28",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3255,10 +3359,12 @@
                         {
                             "id": "job-pending-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "29",
                             "questions": [
                                 {
                                     "id": "job-pending-question",
-                                    "title": "29. Last week, were you waiting to start a job already obtained?",
+                                    "title": "Last week, were you waiting to start a job already obtained?",
+                                    "number": "29",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3290,10 +3396,12 @@
                         {
                             "id": "occupation-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "30",
                             "questions": [
                                 {
                                     "id": "occupation-question",
-                                    "title": "30. Last week, were you:",
+                                    "title": "Last week, were you:",
+                                    "number": "30",
                                     "description": "Select all that apply",
                                     "type": "General",
                                     "answers": [
@@ -3338,10 +3446,12 @@
                         {
                             "id": "ever-worked-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "31",
                             "questions": [
                                 {
                                     "id": "ever-worked-question",
-                                    "title": "31. Have you ever worked?",
+                                    "title": "Have you ever worked?",
+                                    "number": "31",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3373,10 +3483,12 @@
                         {
                             "id": "main-job-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "32",
                             "questions": [
                                 {
                                     "id": "main-job-question",
-                                    "title": "32. In your main job, are (were) you:",
+                                    "title": "In your main job, are (were) you:",
+                                    "number": "32",
                                     "guidance": [
                                         {
                                             "description": "<p>If you are not working answer the remaining questions about your last main job.</p><p>Your main job is the job which you usually work (worked) the most hours</p>"
@@ -3417,10 +3529,12 @@
                         {
                             "id": "job-title-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "33",
                             "questions": [
                                 {
                                     "id": "job-title-question",
-                                    "title": "33. What is (was) your full and specific job title?",
+                                    "title": "What is (was) your full and specific job title?",
+                                    "number": "33",
                                     "guidance": [
                                         {
                                             "description": "<p>For example, <b>primary school teacher, car mechanic, district nurse, structural engineer</b></p><p>Do not state your grade or pay band</p>"
@@ -3448,10 +3562,12 @@
                         {
                             "id": "job-description-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "34",
                             "questions": [
                                 {
                                     "id": "job-description-question",
-                                    "title": "34. Briefly describe what you do (did) in your main job.",
+                                    "title": "Briefly describe what you do (did) in your main job.",
+                                    "number": "34",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3474,10 +3590,12 @@
                         {
                             "id": "employers-business-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "35",
                             "questions": [
                                 {
                                     "id": "employers-business-question",
-                                    "title": "35. At your workplace what is (was) the main activity of your employer or business?",
+                                    "title": "At your workplace what is (was) the main activity of your employer or business?",
+                                    "number": "35",
                                     "guidance": [
                                         {
                                             "list": [
@@ -3509,10 +3627,12 @@
                         {
                             "id": "main-job-type-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "36",
                             "questions": [
                                 {
                                     "id": "main-job-type-question",
-                                    "title": "36. In your main job are (were) you:",
+                                    "title": "In your main job are (were) you:",
+                                    "number": "36",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3566,10 +3686,12 @@
                         {
                             "id": "business-name-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "36",
                             "questions": [
                                 {
                                     "id": "business-name-question",
-                                    "title": "36a. What is (was) the name of the organisation or business you work (worked) for?",
+                                    "title": "What is (was) the name of the organisation or business you work (worked) for?",
+                                    "number": "36a",
                                     "guidance": [
                                         {
                                             "description": "If you were self-employed in your own business write in the business name"
@@ -3660,10 +3782,12 @@
                         {
                             "id": "visitor-name-section",
                             "title": "Visitors",
+                            "number": "1",
                             "questions": [
                                 {
                                     "id": "visitor-name-question",
-                                    "title": "1. What is the name of visitor x?",
+                                    "title": "What is the name of visitor x?",
+                                    "number": "1",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3685,10 +3809,12 @@
                         {
                             "id": "visitor-sex-section",
                             "title": "{{ answers.person_full_name[group_instance] }}",
+                            "number": "2",
                             "questions": [
                                 {
                                     "id": "visitor-sex-question",
-                                    "title": "2. What is this person’s sex?",
+                                    "title": "What is this person’s sex?",
+                                    "number": "2",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3719,11 +3845,13 @@
                     "sections": [
                         {
                             "id": "visitor-date-of-birth-section",
+                            "number": "3",
                             "title": "Visitors",
                             "questions": [
                                 {
                                     "id": "visitor-date-of-birth-question",
-                                    "title": "3. What is this person’s date of birth?",
+                                    "title": "What is this person’s date of birth?",
+                                    "number": "3",
                                     "description": "For example 20 March 2014",
                                     "type": "General",
                                     "answers": [
@@ -3746,10 +3874,12 @@
                         {
                             "id": "visitor-uk-resident-section",
                             "title": "Visitors",
+                            "number": "4",
                             "questions": [
                                 {
                                     "id": "visitor-uk-resident-question",
-                                    "title": "4. Does this person usually live in the United Kingdom?",
+                                    "title": "Does this person usually live in the United Kingdom?",
+                                    "number": "4",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -3769,7 +3899,7 @@
                                                 }
                                             ],
                                             "q_code": "20",
-                                            "type": "Checkbox"
+                                            "type": "Radio"
                                         }
                                     ]
                                 }
@@ -3784,10 +3914,12 @@
                         {
                             "id": "visitor-address-section",
                             "title": "Visitors",
+                            "number": "4",
                             "questions": [
                                 {
                                     "id": "visitor-address-question",
-                                    "title": "4a. Enter details of this person’s usual UK address",
+                                    "title": "Enter details of this person’s usual UK address",
+                                    "number": "4a",
                                     "type": "General",
                                     "answers": [
                                         {
