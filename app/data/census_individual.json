@@ -2579,7 +2579,7 @@
                                             "label": "Job title",
                                             "mandatory": false,
                                             "q_code": "20",
-                                            "type": "Textarea"
+                                            "type": "TextArea"
                                         }
                                     ]
                                 }
@@ -2608,7 +2608,7 @@
                                             "label": "Job title",
                                             "mandatory": false,
                                             "q_code": "20",
-                                            "type": "Textarea"
+                                            "type": "TextArea"
                                         }
                                     ]
                                 }

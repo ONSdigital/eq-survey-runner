@@ -49,7 +49,7 @@
                                         "mandatory": true,
                                         "options": [],
                                         "q_code": "1",
-                                        "type": "Textfield",
+                                        "type": "TextField",
                                         "validation": {}
                                     }
                                   ]

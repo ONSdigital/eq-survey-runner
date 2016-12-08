@@ -210,7 +210,7 @@
 							"q_code": "146",
 							"label": "Comments",
 							"guidance": "",
-							"type": "Textarea",
+							"type": "TextArea",
 							"options": [],
 							"mandatory": false,
 							"display": {

@@ -126,7 +126,7 @@
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "helpother",
-                                            "type": "textfield",
+                                            "type": "TextField",
                                             "validation": {
                                                 "messages": {
                                                 }
@@ -227,7 +227,7 @@
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "deviceother",
-                                            "type": "textfield",
+                                            "type": "TextField",
                                             "validation": {
                                                 "messages": {}
                                             }
@@ -294,7 +294,7 @@
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "paperother",
-                                            "type": "textfield",
+                                            "type": "TextField",
                                             "validation": {
                                                 "messages": {}
                                             }
@@ -381,7 +381,7 @@
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "help2other",
-                                            "type": "textfield",
+                                            "type": "TextField",
                                             "validation": {
                                                 "messages": {}
                                             }
