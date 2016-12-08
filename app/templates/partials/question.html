@@ -2,13 +2,18 @@
 
 {% set invalid = question.is_valid == False %}
 
+{% set question_number = question.schema_item.number %}
 {% set question_title = question.schema_item.title %}
 {% set question_subtitle = question.schema_item.subtitle %}
 {% set question_guidance = "" %}
 
 {% set question_titles %}
   {%- if question_title -%}
-    <h2 class="question__title neptune">{{question_title}}</h2>
+<h2 class="question__title neptune">
+    {%- if question_number -%}
+        <span>{{question_number}}. </span>
+    {% endif %}
+    {{question_title}}</h2>
   {%- endif %}
   {%- if question_subtitle -%}
     <br />

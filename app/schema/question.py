@@ -7,6 +7,7 @@ class Question(Item):
     def __init__(self, id=None):
         super().__init__(id)
         self.title = None
+        self.number = None
         self.description = ""
         self.answers = []
         self.children = self.answers

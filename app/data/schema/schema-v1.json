@@ -93,6 +93,9 @@
                       "title": {
                         "type": "string"
                       },
+                      "number": {
+                        "type": "string"
+                      },
                       "description": {
                         "type": "string"
                       },
@@ -105,6 +108,9 @@
                               "type": "string"
                             },
                             "title": {
+                              "type": "string"
+                            },
+                            "number": {
                               "type": "string"
                             },
                             "description": {
