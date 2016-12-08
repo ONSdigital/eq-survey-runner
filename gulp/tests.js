@@ -19,11 +19,13 @@ export function unitTests(done, watch) {
   server.on('browser_error', function(browser, err) {
     gutil.log(err)
     gutil.log('Karma Run Failed: ' + err.message)
+    if (!watch) process.exit(1)
     throw err
   })
 
   server.on('run_complete', function(browsers, results) {
     if (results.failed) {
+      if (!watch) process.exit(1)
       throw new Error('Karma: Tests Failed')
     }
     gutil.log('Karma Run Complete: No Failures')
