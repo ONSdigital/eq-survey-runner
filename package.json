@@ -16,6 +16,7 @@
     "lint": "gulp lint",
     "test": "gulp test",
     "test_unit": "gulp test:scripts:unit:watch",
+    "test_unit_no_watch": "gulp test:scripts:unit",
     "test_functional": "gulp test:scripts:functional",
     "test_functional_sauce": "gulp test:scripts:functional --sauce",
     "a11y": "gulp test:a11ym"

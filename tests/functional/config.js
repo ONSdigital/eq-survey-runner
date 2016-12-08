@@ -13,6 +13,14 @@ let config = {
   waitforTimeout: 20000,
   updateJob: true,
   specs: [`${paths.test.wdioSpec}/**/*.spec.js`],
+  suites: {
+    core: [
+      `${paths.test.wdioSpec}/*.spec.js`
+    ],
+    census: [
+      `${paths.test.wdioSpec}/census/**/*.spec.js`
+    ]
+  },
   sync: true,
   connectionRetryTimeout: 5000,
   connectionRetryCount: 3,

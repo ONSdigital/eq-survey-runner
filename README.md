@@ -90,6 +90,7 @@ The functional tests can be executed with a couple of options.
 
 `--env=preprod` Will run the test against preprod.
 `--spec=mci` Will run a single test spec (`mci.spec.js`) instead of the entire suite.
+`--suite=core` Will run a suite of tests (core) instead of the entire suite.
 
 These options can be combined with `test_functional` or `test_functional_sauce`, eg:
 

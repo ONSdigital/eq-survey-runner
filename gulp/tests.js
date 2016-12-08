@@ -39,6 +39,9 @@ export function functionalTests(done) {
   if (yargs.argv.spec) {
     webdriverOpts.spec = `${paths.test.wdioSpec}/${yargs.argv.spec}.spec.js`
   }
+  if (yargs.argv.suite) {
+    webdriverOpts.suite = yargs.argv.suite
+  }
   gulp.src(paths.test.wdioConf)
     .pipe(webdriver(webdriverOpts))
     .on('error', (err) => {
