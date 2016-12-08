@@ -35,9 +35,9 @@ class HouseholdMember extends EventEmitter {
   add(node, parent) {
     this.node = node
     this.removeBtn = document.createElement('button')
-
     this.bindToDOM(node)
-    this.removeBtn.innerHTML = 'Remove'
+    this.removeTxt = this.node.getAttribute('data-remove')
+    this.removeBtn.innerHTML = this.removeTxt
     this.removeBtn.classList.add('btn', 'btn--link')
     this.removeBtn.setAttribute('type', 'button')
     this.node.classList.add('is-hidden')

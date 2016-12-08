@@ -11,7 +11,7 @@
     {{question_description|safe}}
 
     {%- for answer in question.answers %}
-       <div class="question__answer js-household-person" data-index="{{loop.index}}">
+       <div class="question__answer js-household-person" data-remove="{{ _('Remove') }}" data-index="{{loop.index}}">
          <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
            <small>(
            {%- if loop.index == 1 -%}
