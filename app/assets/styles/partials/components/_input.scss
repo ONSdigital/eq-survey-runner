@@ -62,13 +62,16 @@ $input-width: 15rem;
   cursor: pointer;
   position: absolute;
   top: 0.7rem;
-  left: 0.5rem;
+  left: 0.6rem;
   &:checked {
     border-color: $color-very-dark-grey;
   }
   &:focus {
     border-color: $color-focus;
     outline: none;
+  }
+  @include mq(m) {
+    top: 0.85rem;
   }
   @include fixed() {
     border: none;

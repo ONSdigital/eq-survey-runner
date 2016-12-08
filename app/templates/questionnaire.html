@@ -2,33 +2,49 @@
 
 {% block page_title %}Survey{% endblock %}
 
+{% set state = content %}
+
+{% set group = state.schema_item.container %}
+{% set block = state.schema_item %}
+{% set all_errors = state.get_errors().items() %}
+
+{%- block subheader -%}
+
+  {% if not state.first_block or schema.navigation %}
+
+  <div class="container">
+    {% if not state.first_block %}
+      <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
+    {% endif %}
+
+    {% if schema.navigation %}
+      <div class="page__menubtn">
+        <button class="btn btn--link btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button">{{_('View sections')}}</button>
+      </div>
+    {% endif %}
+  </div>
+
+  {% endif %}
+
+{%- endblock subheader -%}
+
+
 {% block main %}
 
-<div class="grid">
-  <div class="grid__col col-8@m">
+<div class="grid grid--reverse">
+  <div class="grid__col col-4@m">
+    {% if schema.navigation %}
+      {% include theme('partials/navigation.html') %}
+    {% endif %}
+  </div>
 
-      {% if schema.navigation %}
-    {% for group in navigation %}
-      {% if group.repeating %}&emsp;{% endif %}
-      {% if group.current_location %}
-        {{group.link_name}}
-      {% else %}
-        <a href="{{meta.survey|format_url(group.group_id, group.instance, group.block_id)}}">{{group.link_name}}</a>
-      {% endif %}
+  <div class="grid__col col-7@m pull-1@m">
 
-      {% if group.completed %}
-        completed
-      {% endif %}
-     <br/>
-     {% endfor %}
-      {% endif %}
-    <br/>
-    {% set state = content %}
+    <div role="main" id="main" class="page__main">
 
-    {% set all_errors = state.get_errors().items() %}
-    {% if all_errors %}
+      {% if all_errors %}
 
-      <div class="u-mb-s u-mb-l@s">
+      <div class="u-mb-s">
         <div class="alert alert--error">
           <div class="alert__header">
             <h1 class="alert__title venus">This page has {{all_errors|length}} errors</h1>
@@ -46,50 +62,41 @@
                 {% endfor %}
                 {% endif %}
               {% endfor %}
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
-    {% endif %}
+      {% endif %}
 
-    <form action="" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
+      <form action="" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
 
-        {% set group = state.schema_item.container %}
-
-        {% set block = state.schema_item %}
-
-        {% set first_block = group['blocks'][0]['id'] != block['id'] %}
-
-        {% if first_block %}
-            <div class="u-mb-xs u-mb-m@m">
-                <a id="top-previous" class="mars" href="{{previous_location}}">Previous</a>
-            </div>
-        {% endif %}
-
-          <div class="group" id="{{group.id}}">
+        <div class="group" id="{{group.id}}">
 
 
-            <div class="block" id="{{block.id}}">
+          <div class="block" id="{{block.id}}">
 
-            {% for section in state.children %}
+          {% for section in state.children %}
 
-              {% include 'partials/section.html' %}
+            {% include 'partials/section.html' %}
 
-            {% endfor %}
-
-            </div>
+          {% endfor %}
 
           </div>
 
-      <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
-      {% if first_block %}
-        <div class="u-mt-xs">
-        <a id="bottom-previous" class="mars" href="{{previous_location}}">Previous</a>
-      </div>
-      {% endif %}
-    </form>
+        </div>
+
+        <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
+
+      </form>
+    </div>
   </div>
 </div>
 
-{% endblock %}
+{% endblock main %}
+
+{% block prefooter %}
+  {% if not state.first_block %}
+    <a class="page__previous page__previous--bottom" href="{{previous_location}}" id="bottom-previous">Previous</a>
+  {% endif %}
+{% endblock prefooter %}

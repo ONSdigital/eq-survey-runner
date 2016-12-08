@@ -2,7 +2,8 @@
     "mime_type": "application/json/ons/eq",
     "questionnaire_id": "",
     "schema_version": "0.0.1",
-    "survey_id": "",
+    "data_version": "0.0.2",
+    "survey_id": "census",
     "title": "Census England Household Schema",
     "description": "Census England Household Schema",
     "theme": "census",
@@ -14,7 +15,8 @@
         {
             "id": "who-lives-here",
             "title": "Who lives here?",
-            "completed_when": "who-lives-here-completed",
+            "completed_id": "who-lives-here-completed",
+            "highlight_when": ["who-lives-here-relationship", "who-lives-here-interstitial"],
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -224,7 +226,7 @@
                                     "answers": [
                                         {
                                             "id": "everyone-at-address-confirmation-answer",
-                                            "mandatory": true,
+                                            "mandatory": false,
                                             "options": [
                                                 {
                                                     "label": "Yes",
@@ -246,22 +248,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "overnight-visitors",
-                                "when": {
-                                    "id": "everyone-at-address-confirmation-answer",
-                                    "condition": "equals",
-                                    "value": "Yes"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "household-composition",
                                 "when": {
                                     "id": "everyone-at-address-confirmation-answer",
                                     "condition": "equals",
                                     "value":"No - I need to add another person"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "overnight-visitors"
                             }
                         }
                     ]
@@ -277,7 +274,7 @@
                             "questions": [
                                 {
                                     "id": "overnight-visitors-question",
-                                    "title": "4 How many visitors are staying overnight here on 9th April 2017?",
+                                    "title": "4. How many visitors are staying overnight here on 9th April 2017?",
                                     "guidance": [
                                         {
                                              "title": "Include",
@@ -438,7 +435,6 @@
         {
             "id": "household-and-accommodation",
             "title": "Household and Accommodation",
-            "completed_when": "household-and-accommodation-completed",
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -918,7 +914,6 @@
                     }
                 }
             ],
-            "completed_when": "household-member-completed",
             "blocks": [
                 {
                     "type": "interstitial",
@@ -983,22 +978,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "sex",
-                                "when": {
-                                    "id": "details-correct-answer",
-                                    "condition": "equals",
-                                    "value": "Yes - this is my full name"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "correct-name",
                                 "when": {
                                     "id": "details-correct-answer",
                                     "condition": "equals",
                                     "value": "No - I need to change my name"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "sex"
                             }
                         }
                     ]
@@ -1424,22 +1414,17 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "country-of-birth",
-                                "when": {
-                                    "id": "in-education-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "term-time-location",
                                 "when": {
                                     "id": "in-education-answer",
                                     "condition": "equals",
                                     "value": "Yes"
                                 }
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "country-of-birth"
                             }
                         }
                     ]
@@ -3654,7 +3639,6 @@
         {
             "id": "visitors",
             "title": "Visitors",
-            "completed_when": "visitor-address",
             "blocks": [
                 {
                     "type": "questionnaire",

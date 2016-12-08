@@ -22,8 +22,6 @@ fieldset {
 }
 
 legend {
-  float: left;
-  clear: both;
   @include lt-ie8 {
     margin-left: -7px;
   }

@@ -40,6 +40,6 @@ class SchemaHelper(object):
 
     @classmethod
     def get_last_questionnaire_block_id_in_group(cls, group):
-          for block in group['blocks'][::-1]:
+        for block in group['blocks'][::-1]:
             if block['type'] == 'questionnaire':
                 return block['id']

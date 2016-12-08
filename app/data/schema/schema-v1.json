@@ -28,6 +28,9 @@
     "schema_version": {
       "type": "string"
     },
+    "data_version": {
+      "enum": ["0.0.1", "0.0.2"]
+    },
     "questionnaire_id": {
       "type": "string"
     },
@@ -266,6 +269,7 @@
   "required": [
     "mime_type",
     "schema_version",
+    "data_version",
     "questionnaire_id",
     "survey_id",
     "title",

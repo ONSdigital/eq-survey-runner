@@ -1,27 +1,31 @@
 .guidance {
-  margin: 0;
+  margin: 0 0 0 -0.1rem;
 }
 
 .guidance__link {
   display: inline-block;
   vertical-align: middle;
   line-height: 1;
-  color: $color-black;
-  padding-right: 0.5rem;
+  text-decoration: underline;
+  padding: 0.2rem;
   span {
     display: inline-block;
     vertical-align: middle;
   }
   &::before {
-    $size: 2rem;
+    $size: 1rem;
 
+    transition: transform 300ms ease-in-out;
+    margin-right: 0.3rem;
     speak: none;
     content: "";
-    background: url("#{$s}/img/icons/icons--info-circle.svg") no-repeat center center;
-    background-size: 100%;
+    background: url("#{$s}/img/icons/icons--guidance.svg") no-repeat center center;
+    background-size: auto;
     text-align: center;
     width: $size;
     height: $size;
+    position: relative;
+    left: -0.1rem;
     vertical-align: middle;
     display: inline-block;
   }
@@ -29,7 +33,13 @@
   &:focus {
     outline: none;
     &::before {
-      filter: invert(1);
+      background: url("#{$s}/img/icons/icons--guidance-white.svg") no-repeat center center;
+    }
+  }
+
+  .is-expanded & {
+    &::before {
+      transform: rotate(90deg);
     }
   }
 
@@ -60,6 +70,9 @@
   display: table;
   table-layout: fixed;
   margin-top: 1rem;
+  border-left: 2px solid $color-borders;
+  padding-left: 1rem;
+  margin-left: 0.6rem;
   div {
     @include mq(s) {
       display: table-cell;

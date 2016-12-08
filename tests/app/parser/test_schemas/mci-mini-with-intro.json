@@ -1,5 +1,6 @@
 {
     "schema_version": "0.0.1",
+    "data_version": "0.0.1",
     "questionnaire_id": "22",
     "survey_id": "23",
     "eq_id" : "1",

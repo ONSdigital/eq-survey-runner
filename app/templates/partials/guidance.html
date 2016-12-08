@@ -1,5 +1,5 @@
 <div class="guidance js-details" data-show-label="{{_('Show further guidance')}}" data-hide-label="{{_('Hide further guidance')}}" data-guidance="{{answer.schema_item.id}}" data-guidance-label="{{answer.schema_item.label}}">
-  <a class="guidance__link js-details-trigger" href="#guidance-{{answer.schema_item.id}}" id="guidance-{{answer.schema_item.id}}-trigger" aria-controls="guidance-{{answer.schema_item.id}}-body" aria-expanded="false" data-guidance-trigger><span class="u-vh">Click here to </span><span class="js-details-label mars">Show further guidance</span></a>
+  <a class="guidance__link js-details-trigger js-details-label mars" href="#guidance-{{answer.schema_item.id}}" id="guidance-{{answer.schema_item.id}}-trigger" aria-controls="guidance-{{answer.schema_item.id}}-body" aria-expanded="false" data-guidance-trigger>{{_('Show further guidance')}}</a>
   <div class="guidance__main js-details-body" id="guidance-{{answer.schema_item.id}}-body" aria-hidden="true">
     <div class="guidance__content mars">
       {{answer.schema_item.guidance|safe}}

@@ -6,6 +6,9 @@
       color: white;
     }
   }
+  *:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .alert__header {
