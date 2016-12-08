@@ -71,8 +71,8 @@ export function lint(done) {
     .pipe(eslint.format())
     .pipe(eslint.failOnError())
     .on('error', (error) => {
-      gutil.log('linting failed');
-      gutil.log(error);
-      process.exit(1);
+      gutil.log('linting failed')
+      gutil.log(error)
+      process.exit(1)
     })
 }
