@@ -34,6 +34,24 @@ class TestNavigator(unittest.TestCase):
         navigator = Navigator(survey)
         self.assertEqual(navigator.get_previous_location(current_block_id=current_block_id), previous_block)
 
+    def test_introduction_in_path_when_in_schema(self):
+        survey = load_schema_file("1_0102.json")
+
+        navigator = Navigator(survey)
+
+        blocks = [b['block_id'] for b in navigator.get_location_path()]
+
+        self.assertIn('introduction', blocks)
+
+    def test_introduction_not_in_path_when_not_in_schema(self):
+        survey = load_schema_file("census_individual.json")
+
+        navigator = Navigator(survey)
+
+        blocks = [b['block_id'] for b in navigator.get_location_path()]
+
+        self.assertNotIn('introduction', blocks)
+
     def test_next_with_conditional_path(self):
         survey = load_schema_file("0_star_wars.json")
 

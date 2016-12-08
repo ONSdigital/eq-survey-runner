@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {startQuestionnaire} from '../helpers'
+import {openQuestionnaire} from '../helpers'
 
 import EstablishmentType from '../pages/surveys/census/communal/establishment-type.page.js'
 import BedSpaces from '../pages/surveys/census/communal/bed-spaces.page.js'
@@ -20,7 +20,7 @@ const expect = chai.expect
 describe('Example Test', function() {
 
   it('Given Respondent Home has identified the respondent should have the Communal Establishment Questionnaire, When I complete the EQ, Then i should be able to successfully submit', function() {
-    startQuestionnaire('census_communal.json')
+      openQuestionnaire('census_communal.json')
 
       EstablishmentType.clickEstablishmentTypeAnswerHotel().submit()
       BedSpaces.setBedSpacesAnswer(20).submit()
@@ -41,7 +41,7 @@ describe('Example Test', function() {
   })
 
   it('Given Respondent Home has identified the respondent should have the Communal Establishment Questionnaire, When I complete the EQ with 0 bed spaces, Then i should be routed to further contact', function() {
-    startQuestionnaire('census_communal.json')
+      openQuestionnaire('census_communal.json')
 
       EstablishmentType.clickEstablishmentTypeAnswerHotel().submit()
       BedSpaces.setBedSpacesAnswer(0).submit()

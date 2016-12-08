@@ -109,6 +109,11 @@ class Navigator:
         self.metadata = metadata or {}
         self.survey_json = survey_json
 
+        self.preceeding_path = []
+
+        if SchemaHelper.has_introduction(self.survey_json):
+            self.preceeding_path = self.PRECEEDING_INTERSTITIAL_PATH
+
         self.first_block_id = SchemaHelper.get_first_block_id(self.survey_json)
         self.first_group_id = SchemaHelper.get_first_group_id(self.survey_json)
         self.last_group_id = SchemaHelper.get_last_group_id(self.survey_json)
@@ -218,7 +223,7 @@ class Navigator:
             "block_id": block_id,
             "group_id": self.first_group_id,
             "group_instance": 0,
-        } for block_id in Navigator.PRECEEDING_INTERSTITIAL_PATH]
+        } for block_id in self.preceeding_path]
 
         location_path += routing_path
 
@@ -247,10 +252,6 @@ class Navigator:
                     "block": block,
                 } for block in group['blocks']])
         return blocks
-
-    @classmethod
-    def get_first_location(cls):
-        return cls.PRECEEDING_INTERSTITIAL_PATH[0]
 
     def _get_current_location_index(self, current_group_id, current_block_id, current_iteration):
         current_group_id = current_group_id or self.first_group_id
@@ -306,8 +307,10 @@ class Navigator:
             if incomplete_blocks:
                 return incomplete_blocks[0]
 
+        first_location = self.get_location_path()[0]
+
         return {
-            'block_id': self.get_first_location(),
+            'block_id': first_location['block_id'],
             'group_id': SchemaHelper.get_first_group_id(self.survey_json),
             'group_instance': 0,
         }

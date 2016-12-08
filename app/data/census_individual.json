@@ -7,10 +7,6 @@
     "title": "Census England Individual Schema",
     "description": "Census England Individual Schema",
     "theme": "census",
-    "introduction": {
-        "description": "",
-        "information_to_provide": []
-    },
     "eq_id": "census",
     "groups": [
         {

@@ -18,7 +18,6 @@ export const openAndStartCensusQuestionnaire = (schema, sexualIdentity = false, 
   }
 
   devPage.submit()
-  landingPage.getStarted()
 }
 
 export const openQuestionnaire = (schema, userId = getRandomString(10), collectionId = getRandomString(10)) => {
