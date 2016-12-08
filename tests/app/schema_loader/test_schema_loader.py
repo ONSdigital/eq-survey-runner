@@ -29,6 +29,15 @@ class SchemaLoaderTest(unittest.TestCase):
     def test_load_schema_with_invalid_eq_id(self):
         self.assertIsNone(load_schema("99", "0205"))
 
+    def test_load_schema_with_default_language_code(self):
+        self.assertIsNotNone(load_schema("test", "language"))
+
+    def test_load_schema_with_passing_default_language_code(self):
+        self.assertIsNotNone(load_schema("test", "language", "en"))
+
+    def test_load_schema_with_language_code(self):
+        self.assertIsNotNone(load_schema("test", "language", "cy"))
+
     def test_available_s3_schemas(self):
         mocked_keys = [Mock(key='test_schema_1.json'), Mock(key='test_schema_2.json')]
         mocked_connection = Mock()

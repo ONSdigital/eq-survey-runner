@@ -15,19 +15,29 @@ class SchemaNotFound(Exception):
 logger = logging.getLogger(__name__)
 
 
-def load_schema(eq_id, form_type):
+def load_schema(eq_id, form_type, language_code='en'):
     """
     Given a schema id this method will load the correct schema file from disk. Currently the parameter is ignored
     and the MCI schema is returned
     :param eq_id: The id of the schema file
     :param form_type the form type of the file
+    :param language_code the language of the schema to load
     :return: The Schema representing in a dict
     """
-    logging.debug("About to load schema for eq-id %s and form type %s", eq_id, form_type)
+    logging.debug("About to load schema for eq-id %s and form type %s and language %s", eq_id, form_type, language_code)
+
+    filename_format = "{}.json"
+
+    if form_type and form_type != "-1":
+        filename_format = "{}_" + filename_format
+
+    if language_code and language_code != "en":
+        filename_format = "{}_" + filename_format
+
     # form type is mandatory JWT claim, but it isn't needed when getting schemas from the schema bucket
     # in that case default it to -1 and ignore it
     if form_type and form_type != "-1":
-        return load_schema_file("{}_{}.json".format(eq_id, form_type))
+        return load_schema_file(filename_format.format(eq_id, form_type, language_code))
 
     return load_s3_schema_file("{}.json".format(eq_id))
 
