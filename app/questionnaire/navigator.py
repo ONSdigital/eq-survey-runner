@@ -109,9 +109,9 @@ class Navigator:
         self.answer_store = answer_store or AnswerStore()
         self.metadata = metadata or {}
         self.survey_json = survey_json
-        self.first_group_id = group_id or SchemaHelper.get_first_group_id(self.survey_json)
+        self.group_id = group_id or SchemaHelper.get_first_group_id(self.survey_json)
         self.group_instance = group_instance
-        self.first_block_id = SchemaHelper.get_group(self.survey_json, self.first_group_id)['blocks'][0]['id']
+        self.first_block_id = SchemaHelper.get_group(self.survey_json, self.group_id)['blocks'][0]['id']
         self.last_group_id = SchemaHelper.get_last_group_id(self.survey_json)
         self.location_path = self.get_location_path()
 
@@ -177,7 +177,7 @@ class Navigator:
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
-        return self.build_path(self.get_blocks(), self.first_group_id, self.group_instance, self.first_block_id, [])
+        return self.build_path(self.get_blocks(), self.group_id, self.group_instance, self.first_block_id, [])
 
     def can_reach_summary(self, routing_path=None):
 
@@ -188,7 +188,7 @@ class Navigator:
         :return:
         """
         blocks = self.get_blocks()
-        routing_path = routing_path or self.build_path(blocks, self.first_group_id, 0, self.first_block_id, [])
+        routing_path = routing_path or self.build_path(blocks, self.group_id, 0, self.first_block_id, [])
         last_routing_block_id = routing_path[-1]['block_id']
         last_block_id = blocks[-1]['block']['id']
 
@@ -218,7 +218,7 @@ class Navigator:
         # Make sure we don't update original
         location_path = [{
             "block_id": block_id,
-            "group_id": self.first_group_id,
+            "group_id": self.group_id,
             "group_instance": 0,
         } for block_id in Navigator.PRECEEDING_INTERSTITIAL_PATH]
 
@@ -257,7 +257,7 @@ class Navigator:
         return cls.PRECEEDING_INTERSTITIAL_PATH[0]
 
     def _get_current_location_index(self, current_group_id, current_block_id, current_iteration):
-        current_group_id = current_group_id or self.first_group_id
+        current_group_id = current_group_id or self.group_id
 
         this_block = {
             "block_id": current_block_id,
