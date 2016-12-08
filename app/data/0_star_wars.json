@@ -6,7 +6,6 @@
     "survey_id": "0",
     "title": "Star Wars",
     "theme": "starwars",
-    "navigation" : false,
     "description": "Kitchen sink test for the Star Wars questionnaire",
     "introduction": {
         "description": "",

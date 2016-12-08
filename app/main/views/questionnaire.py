@@ -379,7 +379,7 @@ def get_front_end_navigation(group_id, group_instance, navigator):
 
     front_end_navigation = []
 
-    if g.schema_json['navigation']:
+    if 'navigation' in g.schema_json:
         front_end_navigation = navigator.get_front_end_navigation(
             group_id, group_instance, get_completed_blocks(current_user))
 

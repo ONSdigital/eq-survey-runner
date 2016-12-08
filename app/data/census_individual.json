@@ -7,7 +7,6 @@
     "title": "Census England Individual Schema",
     "description": "Census England Individual Schema",
     "theme": "census",
-    "navigation" : false,
     "introduction": {
         "description": "",
         "information_to_provide": []

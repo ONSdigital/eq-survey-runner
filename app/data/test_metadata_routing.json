@@ -7,7 +7,6 @@
     "title": "Census England Household Schema",
     "description": "Census England Household Schema",
     "theme": "census",
-    "navigation" : false,
     "introduction": {
     },
     "eq_id": "census",

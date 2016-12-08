@@ -7,7 +7,6 @@
   "title": "Test Survey - Checkbox and Radio option descriptions",
   "description": "",
   "theme": "default",
-  "navigation" : false,
   "introduction": {
 		"description": "<p>Test Survey - Checkbox and Radio option descriptions</p>"
 	},

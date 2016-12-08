@@ -7,7 +7,6 @@
     "title": "Rogue One ",
     "description": "Test with a confirmation page instead of a summary",
     "theme": "default",
-    "navigation" : false,
     "introduction": {
         "description": ""
     },
