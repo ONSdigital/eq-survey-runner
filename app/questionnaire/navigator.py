@@ -32,13 +32,9 @@ class Navigator:
         self.location_path = self.get_location_path()
         self.first_location = self.location_path[0]
 
-    @classmethod
-    def is_interstitial_block(cls, block_id):
-        return block_id in cls.PRECEEDING_INTERSTITIAL_PATH or block_id in cls.CLOSING_INTERSTITIAL_PATH
-
-    @classmethod
-    def _block_index_for_location(cls, blocks, location):
-        if not cls.is_interstitial_block(location.block_id):
+    @staticmethod
+    def _block_index_for_location(blocks, location):
+        if not location.is_interstitial():
             return next(index for (index, b) in enumerate(blocks) if b["block"]["id"] == location.block_id and
                         b["group_id"] == location.group_id and b['group_instance'] == location.group_instance)
         return None
