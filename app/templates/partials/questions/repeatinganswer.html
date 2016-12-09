@@ -6,7 +6,7 @@
 
   <div class="question__answers">
     {%- for composite_answer in question.answers_grouped_by_instance() %}
-      <div class="question__answer js-household-person">
+      <div class="question__answer js-household-person" data-remove="{{ _('Remove') }}" data-index="{{loop.index}}">
         <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
           <small>(
           {%- if loop.index == 1 -%}
