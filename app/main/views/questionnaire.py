@@ -94,14 +94,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     if next_location is None:
         raise NotFound
 
-    metadata = get_metadata(current_user)
-
-    if next_location.block_id == 'confirmation':
-        return redirect_to_confirmation(eq_id, form_type, collection_id)
-
-    logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
-
-    return redirect(location_url(eq_id, form_type, collection_id, next_location))
+    return redirect(next_location.url())
 
 
 @questionnaire_blueprint.route('introduction', methods=["GET"])
@@ -126,14 +119,11 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
         return _render_template(q_manager.state, this_location.group_id, this_location.group_instance, block_id, template='questionnaire')
 
     next_location = navigator.get_next_location(current_location=this_location)
-    metadata = get_metadata(current_user)
 
     if next_location is None:
         raise NotFound
 
-    logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
-
-    return redirect(location_url(eq_id, form_type, collection_id, next_location))
+    return redirect(next_location.url())
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -155,7 +145,7 @@ def get_summary(eq_id, form_type, collection_id):
                                 group_instance=latest_location.group_instance,
                                 block_id=latest_location.block_id)
 
-    return redirect(location_url(eq_id, form_type, collection_id, latest_location))
+    return redirect(latest_location.url())
 
 
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
@@ -173,7 +163,7 @@ def get_confirmation(eq_id, form_type, collection_id):
                                 group_instance=latest_location.group_instance,
                                 block_id=latest_location.block_id)
 
-    return redirect(location_url(eq_id, form_type, collection_id, latest_location))
+    return redirect(latest_location.url())
 
 
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
@@ -205,7 +195,7 @@ def submit_answers(eq_id, form_type, collection_id):
         logger.info("Responses submitted tx_id=%s", metadata["tx_id"])
         return redirect_to_thank_you(eq_id, form_type, collection_id)
     else:
-        return redirect(location_url(eq_id, form_type, collection_id, invalid_location))
+        return redirect(invalid_location.url())
 
 
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
@@ -233,16 +223,12 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
 
     next_location = navigator.get_next_location(current_location=this_location)
 
-    return redirect(location_url(eq_id, form_type, collection_id, next_location))
+    return redirect(next_location.url())
 
 
 def _delete_user_data():
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
     session_manager.clear()
-
-
-def redirect_to_summary(eq_id, form_type, collection_id):
-    return redirect(interstitial_url(eq_id, form_type, collection_id, 'summary'))
 
 
 def redirect_to_thank_you(eq_id, form_type, collection_id):
@@ -276,27 +262,6 @@ def interstitial_url(eq_id, form_type, collection_id, block_id):
                        collection_id=collection_id)
 
 
-def location_url(eq_id, form_type, collection_id, location):
-    return block_url(eq_id=eq_id,
-                     form_type=form_type,
-                     collection_id=collection_id,
-                     group_id=location.group_id,
-                     group_instance=location.group_instance,
-                     block_id=location.block_id)
-
-
-def block_url(eq_id, form_type, collection_id, group_id, group_instance, block_id):
-    if Navigator.is_interstitial_block(block_id):
-        return interstitial_url(eq_id, form_type, collection_id, block_id)
-    return url_for('.get_block',
-                   eq_id=eq_id,
-                   form_type=form_type,
-                   collection_id=collection_id,
-                   group_id=group_id,
-                   group_instance=group_instance,
-                   block_id=block_id)
-
-
 def _same_survey(eq_id, form_type, collection_id):
     metadata = get_metadata(current_user)
     current_survey = eq_id + form_type + collection_id
@@ -318,10 +283,7 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     previous_url = None
 
     if previous_location is not None:
-        previous_url = location_url(eq_id=metadata['eq_id'],
-                                    form_type=metadata['form_type'],
-                                    collection_id=metadata['collection_exercise_sid'],
-                                    location=previous_location)
+        previous_url = previous_location.url()
 
     try:
         theme = g.schema_json['theme']
