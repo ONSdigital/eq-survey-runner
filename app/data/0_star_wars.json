@@ -991,7 +991,7 @@
                                             "mandatory": true,
                                             "options": [],
                                             "q_code": "10",
-                                            "type": "Textarea"
+                                            "type": "TextArea"
                                         }
                                     ],
                                     "description": "",
