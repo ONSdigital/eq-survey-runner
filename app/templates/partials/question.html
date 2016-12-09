@@ -9,14 +9,14 @@
 
 {% set question_titles %}
   {%- if question_title -%}
-<h2 class="question__title neptune">
-    {%- if question_number -%}
+    <h2 class="question__title neptune">
+      {%- if question_number -%}
         <span>{{question_number}}. </span>
-    {% endif %}
-    {{question_title}}</h2>
+      {% endif %}
+      {{question_title}}
+    </h2>
   {%- endif %}
   {%- if question_subtitle -%}
-    <br />
     <h3 class="question__subtitle mars">{{question_subtitle}}</h3>
   {%- endif -%}
 {% endset %}

@@ -38,16 +38,37 @@
                                   "validation": [],
                                   "answers": [
                                     {
-                                        "alias": "person_full_name",
+                                        "alias": "first_name",
                                         "display": {},
-                                        "id": "household-full-name",
-                                        "label": "Full Name",
-                                        "mandatory": true,
+                                        "id": "first-name",
+                                        "label": "First Name",
+                                        "mandatory": false,
                                         "options": [],
                                         "q_code": "1",
                                         "type": "TextField",
-                                        "validation": {},
-                                        "repeats": true
+                                        "validation": {}
+                                    },
+                                    {
+                                        "alias": "middle_names",
+                                        "display": {},
+                                        "id": "middle-names",
+                                        "label": "Middle Names",
+                                        "mandatory": false,
+                                        "options": [],
+                                        "q_code": "1",
+                                        "type": "TextField",
+                                        "validation": {}
+                                    },
+                                    {
+                                        "alias": "last_name",
+                                        "display": {},
+                                        "id": "last-name",
+                                        "label": "Last Name",
+                                        "mandatory": false,
+                                        "options": [],
+                                        "q_code": "1",
+                                        "type": "TextField",
+                                        "validation": {}
                                     }
                                   ]
 
@@ -72,8 +93,8 @@
             "id": "repeating-block-1",
             "title": "Block 2",
             "sections": [{
-                "title": "{{answers.person_full_name[group_instance]}}",
-                "description": "",
+                "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                "description": "This question is for {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                 "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
                 "questions": [{
                     "id": "c1d9976e-d031-4fab-96fc-1d37d4a8b86b",
@@ -99,7 +120,7 @@
             "id": "repeating-block-2",
             "title": "Block 3",
             "sections": [{
-                "title": "{{answers.person_full_name[group_instance]}}",
+                "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                 "description": "",
                 "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
                 "questions": [{
@@ -128,7 +149,7 @@
         "routing_rules": [{
             "repeat": {
                 "type": "answer_count",
-                "answer_id": "household-full-name"
+                "answer_id": "first-name"
             }
         }]
     }]

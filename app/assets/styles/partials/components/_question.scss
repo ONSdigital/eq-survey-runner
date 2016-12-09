@@ -81,3 +81,12 @@
     margin-bottom: 0;
   }
 }
+
+.question--repeatinganswer {
+  .question__answer {
+    margin-bottom: 2rem;
+  }
+  .answer {
+    margin-bottom: 0.5rem;
+  }
+}

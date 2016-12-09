@@ -466,7 +466,7 @@ class TestNavigator(unittest.TestCase):
         answer = Answer(
             group_id="multiple-questions-group",
             group_instance=0,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
             value="2"
         )
@@ -494,7 +494,7 @@ class TestNavigator(unittest.TestCase):
         answer = Answer(
             group_id="multiple-questions-group",
             group_instance=0,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
             value="0"
         )
@@ -550,27 +550,27 @@ class TestNavigator(unittest.TestCase):
             group_id="multiple-questions-group",
             group_instance=0,
             answer_instance=0,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
-            value="Joe Bloggs"
+            value="Joe"
         )
 
         answer_2 = Answer(
             group_id="multiple-questions-group",
             group_instance=0,
             answer_instance=1,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
-            value="Sophie Bloggs"
+            value="Sophie"
         )
 
         answer_3 = Answer(
             group_id="multiple-questions-group",
             group_instance=0,
             answer_instance=2,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
-            value="Gregg Bloggs"
+            value="Gregg"
         )
 
         answers = AnswerStore()
@@ -610,18 +610,18 @@ class TestNavigator(unittest.TestCase):
             group_id="multiple-questions-group",
             group_instance=0,
             answer_instance=0,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
-            value="Joe Bloggs"
+            value="Joe"
         )
 
         answer_2 = Answer(
             group_id="multiple-questions-group",
             group_instance=0,
             answer_instance=1,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
-            value="Sophie Bloggs"
+            value="Sophie"
         )
 
         answers = AnswerStore()
@@ -687,7 +687,7 @@ class TestNavigator(unittest.TestCase):
         answer = Answer(
             group_id="multiple-questions-group",
             answer_instance=0,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
             value="Joe Bloggs"
         )
@@ -695,7 +695,7 @@ class TestNavigator(unittest.TestCase):
         answer_2 = Answer(
             group_id="multiple-questions-group",
             answer_instance=1,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
             value="Sophie Bloggs"
         )
@@ -751,7 +751,7 @@ class TestNavigator(unittest.TestCase):
         answer = Answer(
             group_id="multiple-questions-group",
             answer_instance=0,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
             value="Joe Bloggs"
         )
@@ -759,7 +759,7 @@ class TestNavigator(unittest.TestCase):
         answer_2 = Answer(
             group_id="multiple-questions-group",
             answer_instance=1,
-            answer_id="household-full-name",
+            answer_id="first-name",
             block_id="household-composition",
             value="Sophie Bloggs"
         )

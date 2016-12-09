@@ -37,8 +37,28 @@
                                   "answers": [
                                     {
                                         "display": {},
-                                        "id": "household-full-name",
-                                        "label": "Full Name",
+                                        "id": "first-name",
+                                        "label": "First Name",
+                                        "mandatory": false,
+                                        "options": [],
+                                        "q_code": "1",
+                                        "type": "TextField",
+                                        "validation": {}
+                                    },
+                                    {
+                                        "display": {},
+                                        "id": "middle-names",
+                                        "label": "Middle Names",
+                                        "mandatory": false,
+                                        "options": [],
+                                        "q_code": "1",
+                                        "type": "TextField",
+                                        "validation": {}
+                                    },
+                                    {
+                                        "display": {},
+                                        "id": "last-name",
+                                        "label": "Last Name",
                                         "mandatory": false,
                                         "options": [],
                                         "q_code": "1",
@@ -60,7 +80,7 @@
                 {
                     "repeat": {
                         "type": "answer_count_minus_one",
-                        "answer_id": "household-full-name"
+                        "answer_id": "first-name"
                     }
                 }
             ],

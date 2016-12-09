@@ -1,31 +1,32 @@
 <div class="question question--repeatinganswer" id="{{question.id}}">
 
-  <fieldset class="question__fieldset">
+  <h2 class="question__title neptune">{{question_title}}</h2>
 
-    <legend class="question__legend">
-      {{question_title}}
-    </legend>
+  {{question_description|safe}}
 
-    {{question_description|safe}}
-
-    {%- for answer in question.answers %}
-       <div class="question__answer js-household-person">
-         <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
-           <small>(
-           {%- if loop.index == 1 -%}
-              <span class="js-household-action">{{ _('You') }}</span>
-           {%- else -%}
-               <button class="btn btn--link" name="action[remove_answer]" value="{{ loop.index0 }}">{{ _('Remove') }}
-                   <span class="u-vh">{{ _('Person') }} {{loop.index0}}</span>
-               </button>
-           {%- endif -%}
-           )</small>
-         </h3>
-         {% include theme('partials/answer.html') %}
-       </div>
-     {%- endfor %}
-
-  </fieldset>
+  <div class="question__answers">
+    {%- for composite_answer in question.answers_grouped_by_instance() %}
+      <div class="question__answer js-household-person">
+        <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
+          <small>(
+          {%- if loop.index == 1 -%}
+             <span class="js-household-action">{{ _('You') }}</span>
+          {%- else -%}
+            <button class="btn btn--link" name="action[remove_answer]" value="{{ loop.index0 }}">{{ _('Remove') }}
+              <span class="u-vh">{{ _('Person') }} {{loop.index0}}</span>
+            </button>
+          {%- endif -%}
+          )</small>
+        </h3>
+        <fieldset class="question__fieldset">
+          <legend class="u-vh">{{ _('Person ') }} {{ loop.index }}</legend>
+          {% for answer in composite_answer %}
+            {% include theme('partials/answer.html') %}
+          {% endfor %}
+        </fieldset>
+      </div>
+    {%- endfor %}
+  </div>
 
   <div class="question__actions">
     <button class="btn btn--border btn--secondary venus js-household-btn" type="submit" name="action[add_answer]">
