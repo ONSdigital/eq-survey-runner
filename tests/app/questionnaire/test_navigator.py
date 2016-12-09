@@ -980,7 +980,7 @@ class TestNavigator(unittest.TestCase):
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation('property-details',0, completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks), user_navigation)
 
     def test_navigation_two_groups_completed(self):
         survey = load_schema_file("test_navigation.json")
@@ -1058,7 +1058,7 @@ class TestNavigator(unittest.TestCase):
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation('property-details', 0, completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks), user_navigation)
 
     def test_navigation_repeating_group(self):
         survey = load_schema_file("test_navigation.json")
@@ -1172,5 +1172,5 @@ class TestNavigator(unittest.TestCase):
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation('property-details', 0, completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks), user_navigation)
 

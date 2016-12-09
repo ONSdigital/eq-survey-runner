@@ -316,7 +316,7 @@ class Navigator:
             'group_instance': 0,
         }
 
-    def get_front_end_navigation(self, group_id, group_instance, completed_blocks):
+    def get_front_end_navigation(self, completed_blocks):
 
         """
         Returns the frontend navigation based on the group id, group instance and completed blocks
@@ -354,7 +354,7 @@ class Navigator:
                                 'block_id': group['blocks'][0]['id'],
                                 'completed': any(item for item in completed_blocks if item['group_instance'] == i and
                                                  item["block_id"] == completed_id),
-                                'highlight': group['id'] == group_id and i == group_instance,
+                                'highlight': group['id'] == self.group_id and i == self.group_instance,
                                 'repeating': True
 
                             })
@@ -365,8 +365,8 @@ class Navigator:
                         'instance': 0,
                         'block_id': group['blocks'][0]['id'],
                         'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
-                        'highlight': (group['id'] != group_id and group_id in group['highlight_when']
-                                      if 'highlight_when' in group else False) or group['id'] == group_id,
+                        'highlight': (group['id'] != self.group_id and self.group_id in group['highlight_when']
+                                      if 'highlight_when' in group else False) or group['id'] == self.group_id,
                         'repeating': False,
                     })
         return navigation
