@@ -346,7 +346,7 @@ class Navigator:
                     answers = self.answer_store.filter(answer_id=answer_id)
 
                     for i in range(no_of_repeats):
-                        if answers[i]['value']:
+                        if answers:
                             navigation.append({
                                 'link_name': answers[i]['value'],
                                 'group_id': group['id'],

@@ -28,21 +28,21 @@
                     "display": {
                         "properties": {}
                     },
-                    "id": "6330dcfe-3b23-425d-8104-b725c6b7f398",
+                    "id": "insurance-type",
                     "sections": [
                         {
                             "description": "",
                             "display": {
                                 "properties": {}
                             },
-                            "id": "50dbb255-5e8f-4f0d-93fd-85c7366f174f",
+                            "id": "insurance-type-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "display": {},
                                             "guidance": "",
-                                            "id": "73a9ce2c-644f-49f3-a227-bea2d05f131e",
+                                            "id": "insurance-type-answer",
                                             "label": "",
                                             "mandatory": false,
                                             "options": [
@@ -68,7 +68,7 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "d585aacb-adf0-4f55-a4c6-30af250136ee",
+                                    "id": "insurance-type-question",
                                     "title": "What kind of insurance would you like?",
                                     "type": "General",
                                     "validation": []
@@ -86,21 +86,21 @@
                     "display": {
                         "properties": {}
                     },
-                    "id": "cd6a5727-8cab-4737-aa4e-d666d98b3f92",
+                    "id": "insurance-address",
                     "sections": [
                         {
                             "description": "",
                             "display": {
                                 "properties": {}
                             },
-                            "id": "b28a3c85-9da3-4709-9165-7b609a634651",
+                            "id": "insurance-address-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "display": {},
                                             "guidance": "",
-                                            "id": "56d9bd4b-0631-44e7-9bee-276f4bdf8de0",
+                                            "id": "insurance-address-answer",
                                             "label": "",
                                             "mandatory": false,
                                             "options": [],
@@ -113,7 +113,7 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "fda870e7-1208-4a99-ba13-e79f15ba67b9",
+                                    "id": "insurance-address-question",
                                     "title": "What is the address you would like to insure?",
                                     "type": "General",
                                     "validation": []
@@ -162,7 +162,7 @@
             "display": {
                 "properties": {}
             },
-            "id": "b13c36f9-8b1b-4f3d-997e-5fea82a4036f",
+            "id": "property-details",
             "title": "Property Details",
             "validation": [],
             "completed_when": "property-interstitial"
@@ -338,21 +338,21 @@
                     "display": {
                         "properties": {}
                     },
-                    "id": "824a5298-024f-4ce2-9780-54326c6f66c0",
+                    "id": "extra-cover-block",
                     "sections": [
                         {
                             "description": "",
                             "display": {
                                 "properties": {}
                             },
-                            "id": "9cac79bb-5532-4a23-8b2f-f24719e2d8cd",
+                            "id": "extra-cover-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "display": {},
                                             "guidance": "",
-                                            "id": "e35ad1e0-e2df-4103-8c53-29f5f1ffc565",
+                                            "id": "extra-cover-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [],
@@ -365,7 +365,7 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "c6053481-e947-4aa1-9d24-ec44626038c9",
+                                    "id": "extra-cover-question",
                                     "title": "Please list any special items you have",
                                     "type": "General",
                                     "validation": []
@@ -380,7 +380,7 @@
                 },
                 {
                     "type": "interstitial",
-                    "id": "ab122721-1903-4376-9529-11fea7e2a76d",
+                    "id": "extra-cover-interstitial",
                     "title": "Special items Interstitial Page",
                     "display": {
                         "properties": {}
@@ -391,7 +391,7 @@
                             "display": {
                                 "properties": {}
                             },
-                            "id": "3ec86487-8122-49d0-897d-93c51d1e0049",
+                            "id": "extra-cover-interstitial-section",
                             "questions": [
                                 {
                                     "description": "You have successfully completed the special items section. Next we want to know about your payment details.",
@@ -399,7 +399,7 @@
                                         "properties": {}
                                     },
                                     "answers": [],
-                                    "id": "8310f632-3167-4543-a6a5-56d6a2552231",
+                                    "id": "extra-cover-interstitial-question",
                                     "title": "Extra Cover",
                                     "type": "General",
                                     "validation": []
@@ -414,10 +414,9 @@
             "display": {
                 "properties": {}
             },
-            "id": "3edd9ac8-0ea7-419f-831e-2c84450b41b9",
+            "id": "extra-cover",
             "title": "Extra Cover",
-            "validation": [],
-            "completed_when": "ab122721-1903-4376-9529-11fea7e2a76d"
+            "validation": []
         },
         {
             "blocks": [
@@ -426,21 +425,21 @@
                     "display": {
                         "properties": {}
                     },
-                    "id": "4e4f756b-3e84-43cc-97ac-8d31d708c9b8",
+                    "id": "credit-card",
                     "sections": [
                         {
                             "description": "",
                             "display": {
                                 "properties": {}
                             },
-                            "id": "008cd0bf-7c4d-437e-9ca2-2b829065415e",
+                            "id": "credit-card-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "display": {},
                                             "guidance": "",
-                                            "id": "c7a0c332-d079-44c9-b761-4a8fcd26b82f",
+                                            "id": "credit-card-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [],
@@ -453,7 +452,7 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "0efac2cc-18ba-4523-bdce-9814b80beaae",
+                                    "id": "credit-card-question",
                                     "title": "What is your credit card number?",
                                     "type": "General",
                                     "validation": []
@@ -471,21 +470,21 @@
                     "display": {
                         "properties": {}
                     },
-                    "id": "d6d58951-aabb-4fff-b4aa-bed5dc1aff27",
+                    "id": "expiry-date",
                     "sections": [
                         {
                             "description": "",
                             "display": {
                                 "properties": {}
                             },
-                            "id": "97a17cc2-8984-4c48-bb83-5422861c6efd",
+                            "id": "expiry-date-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "display": {},
                                             "guidance": "",
-                                            "id": "ad53c34e-06d0-4a3e-be45-28512c3a3653",
+                                            "id": "expiry-date-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [],
@@ -498,7 +497,7 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "618ecae6-9b01-4267-8fb7-96da4ffcbc9c",
+                                    "id": "expiry-date-question",
                                     "title": "What is the expiry date?",
                                     "type": "General",
                                     "validation": []
@@ -516,21 +515,21 @@
                     "display": {
                         "properties": {}
                     },
-                    "id": "d6558951-aabb-4fff-b4aa-bed5dc1aff27",
+                    "id": "security-code",
                     "sections": [
                         {
                             "description": "",
                             "display": {
                                 "properties": {}
                             },
-                            "id": "97a175c2-8984-4c48-bb83-5422861c6efd",
+                            "id": "security-code-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "display": {},
                                             "guidance": "",
-                                            "id": "ad53534e-06d0-4a3e-be45-28512c3a3653",
+                                            "id": "security-code-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [],
@@ -543,7 +542,7 @@
                                     "display": {
                                         "properties": {}
                                     },
-                                    "id": "618ecae6-9b05-4267-8fb7-96da4ffcbc9c",
+                                    "id": "security-code-question",
                                     "title": "What is the security code on the back?",
                                     "type": "General",
                                     "validation": []
@@ -558,7 +557,7 @@
                 },
                 {
                     "type": "interstitial",
-                    "id": "f08dc29e-a728-426a-ba20-568867f57ff6",
+                    "id": "security-code-interstitial",
                     "title": "Payment Details Interstitial Page",
                     "display": {
                         "properties": {}
@@ -569,7 +568,7 @@
                             "display": {
                                 "properties": {}
                             },
-                            "id": "5399d472-0280-44f2-9f55-c7b431e65d85",
+                            "id": "security-code-interstitial-section",
                             "questions": [
                                 {
                                     "description": "You have successfully completed the payment section, thank you.",
@@ -577,7 +576,7 @@
                                         "properties": {}
                                     },
                                     "answers": [],
-                                    "id": "4c72fcc0-9d2f-4baa-ad28-02d67d3dc5b5",
+                                    "id": "security-code-interstitial-question",
                                     "title": "Payment",
                                     "type": "General",
                                     "validation": []
@@ -592,10 +591,9 @@
             "display": {
                 "properties": {}
             },
-            "id": "d650262d-6172-4344-8371-316afecab08f",
+            "id": "payment-details",
             "title": "Payment Details",
-            "validation": [],
-            "completed_when": "f08dc29e-a728-426a-ba20-568867f57ff6"
+            "validation": []
         },
         {
             "blocks": [
@@ -613,7 +611,7 @@
             "display": {
                 "properties": {}
             },
-            "id": "2f2315b1-3691-4516-b1d0-c0b93b41efff",
+            "id": "confirmation-group",
             "title": "",
             "validation": [],
             "hide_in_navigation": true

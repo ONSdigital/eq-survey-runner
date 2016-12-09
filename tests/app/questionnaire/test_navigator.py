@@ -945,11 +945,11 @@ class TestNavigator(unittest.TestCase):
             {
                 'link_name': 'Property Details',
                 'highlight': True,
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f',
+                'group_id': 'property-details',
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398'
+                'block_id': 'insurance-type'
             },
             {
                 'link_name': 'Household Details',
@@ -963,24 +963,24 @@ class TestNavigator(unittest.TestCase):
             {
                 'link_name': 'Extra Cover',
                 'highlight': False,
-                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9',
+                'group_id': 'extra-cover',
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0'
+                'block_id': 'extra-cover-block'
             },
             {
                 'link_name': 'Payment Details',
                 'highlight': False,
-                'group_id': 'd650262d-6172-4344-8371-316afecab08f',
+                'group_id': 'payment-details',
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '4e4f756b-3e84-43cc-97ac-8d31d708c9b8'
+                'block_id': 'credit-card'
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation('b13c36f9-8b1b-4f3d-997e-5fea82a4036f',0, completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation('property-details',0, completed_blocks), user_navigation)
 
     def test_navigation_two_groups_completed(self):
         survey = load_schema_file("test_navigation.json")
@@ -990,32 +990,32 @@ class TestNavigator(unittest.TestCase):
             {
                 'block_id': 'introduction',
                 'group_instance': 0,
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'group_id': 'property-details'
             },
             {
                 'group_instance': 0,
-                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398',
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'block_id': 'insurance-type',
+                'group_id': 'property-details'
             },
             {
                 'group_instance': 0,
                 'block_id': 'cd6a5727-8cab-4737-aa4e-d666d98b3f92',
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'group_id': 'property-details'
             },
             {
                 'group_instance': 0,
                 'block_id': 'personal-interstitial',
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'group_id': 'property-details'
             },
             {
                 'group_instance': 0,
-                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0',
-                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+                'block_id': 'extra-cover-block',
+                'group_id': 'extra-cover'
             },
             {
                 'group_instance': 0,
                 'block_id': 'ea651fa7-6b9d-4b6f-ba72-79133f312039',
-                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+                'group_id': 'extra-cover'
             }
         ]
 
@@ -1026,8 +1026,8 @@ class TestNavigator(unittest.TestCase):
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398',
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'block_id': 'insurance-type',
+                'group_id': 'property-details'
             },
             {
                 'link_name': 'Household Details',
@@ -1044,8 +1044,8 @@ class TestNavigator(unittest.TestCase):
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0',
-                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+                'block_id': 'extra-cover-block',
+                'group_id': 'extra-cover'
             },
             {
                 'link_name': 'Payment Details',
@@ -1053,12 +1053,12 @@ class TestNavigator(unittest.TestCase):
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '4e4f756b-3e84-43cc-97ac-8d31d708c9b8',
-                'group_id': 'd650262d-6172-4344-8371-316afecab08f'
+                'block_id': 'credit-card',
+                'group_id': 'payment-details'
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation('b13c36f9-8b1b-4f3d-997e-5fea82a4036f', 0, completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation('property-details', 0, completed_blocks), user_navigation)
 
     def test_navigation_repeating_group(self):
         survey = load_schema_file("test_navigation.json")
@@ -1086,32 +1086,32 @@ class TestNavigator(unittest.TestCase):
             {
                 'block_id': 'introduction',
                 'group_instance': 0,
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'group_id': 'property-details'
             },
             {
                 'group_instance': 0,
-                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398',
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'block_id': 'insurance-type',
+                'group_id': 'property-details'
             },
             {
                 'group_instance': 0,
                 'block_id': 'cd6a5727-8cab-4737-aa4e-d666d98b3f92',
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'group_id': 'property-details'
             },
             {
                 'group_instance': 0,
                 'block_id': 'personal-interstitial',
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'group_id': 'property-details'
             },
             {
                 'group_instance': 0,
-                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0',
-                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+                'block_id': 'extra-cover-block',
+                'group_id': 'extra-cover'
             },
             {
                 'group_instance': 0,
                 'block_id': 'ea651fa7-6b9d-4b6f-ba72-79133f312039',
-                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+                'group_id': 'extra-cover'
             }
         ]
 
@@ -1122,8 +1122,8 @@ class TestNavigator(unittest.TestCase):
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '6330dcfe-3b23-425d-8104-b725c6b7f398',
-                'group_id': 'b13c36f9-8b1b-4f3d-997e-5fea82a4036f'
+                'block_id': 'insurance-type',
+                'group_id': 'property-details'
             },
             {
                 'link_name': 'Household Details',
@@ -1158,8 +1158,8 @@ class TestNavigator(unittest.TestCase):
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '824a5298-024f-4ce2-9780-54326c6f66c0',
-                'group_id': '3edd9ac8-0ea7-419f-831e-2c84450b41b9'
+                'block_id': 'extra-cover-block',
+                'group_id': 'extra-cover'
             },
             {
                 'link_name': 'Payment Details',
@@ -1167,10 +1167,10 @@ class TestNavigator(unittest.TestCase):
                 'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': '4e4f756b-3e84-43cc-97ac-8d31d708c9b8',
-                'group_id': 'd650262d-6172-4344-8371-316afecab08f'
+                'block_id': 'credit-card',
+                'group_id': 'payment-details'
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation('b13c36f9-8b1b-4f3d-997e-5fea82a4036f', 0, completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation('property-details', 0, completed_blocks), user_navigation)
 
