@@ -56,7 +56,7 @@ describe('Census Individual', function () {
         openAndStartCensusQuestionnaire('census_individual.json')
 
         // household-member
-        CorrectName.setCorrectNameAnswer("Paul Smith").submit()
+        CorrectName.setFirstName("Paul").setLastName("Smith").submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(8).setDateOfBirthAnswerYear(1980).submit()
         Over16.clickOver16AnswerYes().submit()
@@ -89,7 +89,7 @@ describe('Census Individual', function () {
         openAndStartCensusQuestionnaire('census_individual.json', true)
 
         // household-member
-        CorrectName.setCorrectNameAnswer("Paul Smith").submit()
+        CorrectName.setFirstName("Paul").setLastName("Smith").submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(1980).submit()
         Over16.clickOver16AnswerYes().submit()
@@ -124,7 +124,7 @@ describe('Census Individual', function () {
         openAndStartCensusQuestionnaire('census_individual.json', true)
 
         // household-member
-        CorrectName.setCorrectNameAnswer("Paul Smith").submit()
+        CorrectName.setFirstName("Paul").setLastName("Smith").submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(1980).submit()
         Over16.clickOver16AnswerYes().submit()
@@ -159,7 +159,7 @@ describe('Census Individual', function () {
         openAndStartCensusQuestionnaire('census_individual.json', true)
 
         // household-member
-        CorrectName.setCorrectNameAnswer("Paul Smith").submit()
+        CorrectName.setFirstName("Paul").setLastName("Smith").submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(2001).submit()
         Over16.clickOver16AnswerNo().submit()
@@ -188,4 +188,22 @@ describe('Census Individual', function () {
 
     })
 
+    it('Given the census theme is selected, then the help should not be visible', function() {
+        // Given
+        openAndStartCensusQuestionnaire('census_individual.json')
+        // Then
+        expect(browser.isVisible('.js-help-body')).to.be.false
+    })
+
+    it('Given the census theme is selected, when I click the "help and support" button, then the help should be visible', function() {
+
+        // Given
+        openAndStartCensusQuestionnaire('census_individual.json')
+
+        // When
+        browser.click('.js-help-btn')
+
+        // Then
+        expect(browser.isVisible('.js-help-body')).to.be.true
+    })
 })

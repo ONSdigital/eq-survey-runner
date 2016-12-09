@@ -1,6 +1,9 @@
 import copy
 import re
 
+from collections import defaultdict
+from collections import OrderedDict
+
 from app.data_model.answer_store import natural_order
 from app.questionnaire_state.state_answer import StateAnswer
 from app.questionnaire_state.state_question import StateQuestion
@@ -43,6 +46,25 @@ class RepeatingAnswerStateQuestion(StateQuestion):
 
     def add_new_answer_state(self, answer_state):
         self.answers.append(answer_state)
+
+    def answers_grouped_by_instance(self):
+        """
+        Groups answers by their answer_instance Id.
+        :return: A list of lists containing the answers grouped by answer_instance.
+        """
+
+        answer_states_by_id = defaultdict(list)
+        for answer_state in self.answers:
+            answer_states_by_id[answer_state.id].append(answer_state)
+
+        answer_states_grouped_by_instance = OrderedDict()
+        for answer_schema in self.schema_item.answers:
+            answer_states = answer_states_by_id.get(answer_schema.id)
+            if answer_states:
+                for answer_state in answer_states:
+                    answer_states_grouped_by_instance.setdefault(answer_state.answer_instance, []).append(answer_state)
+
+        return list(answer_states_grouped_by_instance.values())
 
 
 def iterate_over_instance_ids(answer_instances):

@@ -7,10 +7,6 @@
     "title": "Census England Communal Schema",
     "description": "Census England Communal Schema",
     "theme": "census",
-    "introduction": {
-        "description": "",
-        "information_to_provide": []
-    },
     "eq_id": "census",
     "groups": [
         {

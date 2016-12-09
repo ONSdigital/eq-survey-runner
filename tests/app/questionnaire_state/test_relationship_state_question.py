@@ -20,19 +20,37 @@ class TestRelationshipStateQuestion(TestCase):
 
     household_answers = [
         {
-            "answer_id": "household-full-name",
+            "answer_id": "first-name",
             "answer_instance": 0,
-            "value": "John Doe"
+            "value": "John"
         },
         {
-            "answer_id": "household-full-name",
+            "answer_id": "first-name",
             "answer_instance": 1,
-            "value": "Jane Doe"
+            "value": "Jane"
         },
         {
-            "answer_id": "household-full-name",
+            "answer_id": "first-name",
             "answer_instance": 2,
-            "value": "Joe Bloggs"
+            "value": "Joe"
+        }
+    ]
+
+    last_names = [
+        {
+            "answer_id": "last-name",
+            "answer_instance": 0,
+            "value": "Doe"
+        },
+        {
+            "answer_id": "last-name",
+            "answer_instance": 1,
+            "value": "Doe"
+        },
+        {
+            "answer_id": "last-name",
+            "answer_instance": 2,
+            "value": "Bloggs"
         }
     ]
 
@@ -114,7 +132,8 @@ class TestRelationshipStateQuestion(TestCase):
         relationship_state_question.answers = [answer_state]
 
         with patch('app.questionnaire_state.relationship_state_question.get_answer_store') as get_answer_store:
-            get_answer_store().filter = Mock(return_value=self.household_answers)
+            get_answer_store().filter = Mock()
+            get_answer_store().filter.side_effect = [self.household_answers, self.last_names]
             # When
             relationship_state_question.update_state({})
 
@@ -130,9 +149,116 @@ class TestRelationshipStateQuestion(TestCase):
         relationship_state_question.answers = [answer_state]
 
         with patch('app.questionnaire_state.relationship_state_question.get_answer_store') as get_answer_store:
-            get_answer_store().filter = Mock(return_value=self.household_answers)
+            get_answer_store().filter = Mock()
+            get_answer_store().filter.side_effect = [self.household_answers, self.last_names]
             # When
             relationship_state_question.update_state({})
 
         # Then
         self.assertEqual(relationship_state_question.children[0].schema_item.widget.other_person, 'Joe Bloggs')
+
+    def test_should_display_first_name_if_no_surname_provided(self):
+        # Given
+        answer_state = create_answer(group_instance=0)
+        question_schema = Question()
+        question_schema.answers = [answer_state.schema_item]
+        relationship_state_question = RelationshipStateQuestion('relationship', question_schema)
+        relationship_state_question.answers = [answer_state]
+
+        first_names = [
+            {
+                "answer_id": "first-name",
+                "answer_instance": 0,
+                "value": "John"
+            },
+            {
+                "answer_id": "first-name",
+                "answer_instance": 1,
+                "value": None
+            },
+            {
+                "answer_id": "first-name",
+                "answer_instance": 2,
+                "value": 'Joe'
+            }
+        ]
+
+        last_names = [
+            {
+                "answer_id": "last-name",
+                "answer_instance": 0,
+                "value": None
+            },
+            {
+                "answer_id": "last-name",
+                "answer_instance": 1,
+                "value": 'Doe'
+            },
+            {
+                "answer_id": "last-name",
+                "answer_instance": 2,
+                "value": 'Bloggs'
+            }
+        ]
+
+        with patch('app.questionnaire_state.relationship_state_question.get_answer_store') as get_answer_store:
+            get_answer_store().filter = Mock()
+            get_answer_store().filter.side_effect = [first_names, last_names]
+            # When
+            relationship_state_question.update_state({})
+
+        # Then
+        self.assertEqual(relationship_state_question.children[0].schema_item.widget.current_person, 'John')
+
+    def test_should_display_surname_if_no_first_name_provided(self):
+        # Given
+        answer_state = create_answer(group_instance=0)
+        question_schema = Question()
+        question_schema.answers = [answer_state.schema_item]
+        relationship_state_question = RelationshipStateQuestion('relationship', question_schema)
+        relationship_state_question.answers = [answer_state]
+
+        first_names = [
+            {
+                "answer_id": "first-name",
+                "answer_instance": 0,
+                "value": "John"
+            },
+            {
+                "answer_id": "first-name",
+                "answer_instance": 1,
+                "value": None
+            },
+            {
+                "answer_id": "first-name",
+                "answer_instance": 2,
+                "value": 'Joe'
+            }
+        ]
+
+        last_names = [
+            {
+                "answer_id": "last-name",
+                "answer_instance": 0,
+                "value": None
+            },
+            {
+                "answer_id": "last-name",
+                "answer_instance": 1,
+                "value": 'Doe'
+            },
+            {
+                "answer_id": "last-name",
+                "answer_instance": 2,
+                "value": 'Bloggs'
+            }
+        ]
+
+        with patch('app.questionnaire_state.relationship_state_question.get_answer_store') as get_answer_store:
+            get_answer_store().filter = Mock()
+            get_answer_store().filter.side_effect = [first_names, last_names]
+            # When
+            relationship_state_question.update_state({})
+
+        # Then
+            self.assertEqual(relationship_state_question.children[0].schema_item.widget.other_person, 'Doe')
