@@ -14,7 +14,7 @@ class ConfirmationPage {
   }
 
   changeAnswers() {
-    browser.click('.u-dib')
+    return browser.click('a[id="top-previous"]')
   }
 
 }
