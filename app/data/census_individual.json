@@ -34,7 +34,7 @@
                                             "label": "First Name",
                                             "mandatory": false,
                                             "q_code": "20",
-                                            "type": "Textfield"
+                                            "type": "TextField"
                                         },
                                         {
                                             "alias": "middle_names",
@@ -42,7 +42,7 @@
                                             "label": "Middle Names",
                                             "mandatory": false,
                                             "q_code": "20",
-                                            "type": "Textfield"
+                                            "type": "TextField"
                                         },
                                         {
                                             "alias": "last_name",
@@ -50,7 +50,7 @@
                                             "label": "Last Name",
                                             "mandatory": false,
                                             "q_code": "20",
-                                            "type": "Textfield"
+                                            "type": "TextField"
                                         }
                                     ]
                                 }

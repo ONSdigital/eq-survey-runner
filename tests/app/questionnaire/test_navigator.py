@@ -612,7 +612,7 @@ class TestNavigator(unittest.TestCase):
             answer_instance=0,
             answer_id="first-name",
             block_id="household-composition",
-            value="Joe Bloggs"
+            value="Joe"
         )
 
         answer_2 = Answer(
@@ -621,7 +621,7 @@ class TestNavigator(unittest.TestCase):
             answer_instance=1,
             answer_id="first-name",
             block_id="household-composition",
-            value="Sophie Bloggs"
+            value="Sophie"
         )
 
         answers = AnswerStore()
