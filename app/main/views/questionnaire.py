@@ -94,6 +94,9 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     if next_location is None:
         raise NotFound
 
+    if next_location.block_id == 'confirmation':
+        return redirect_to_confirmation(eq_id, form_type, collection_id)
+
     return redirect(next_location.url())
 
 
