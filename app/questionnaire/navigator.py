@@ -1,103 +1,12 @@
+import copy
 import logging
 
-from app.data_model.answer_store import AnswerStore
+from app.data_model.answer_store import Answer, AnswerStore
 from app.helpers.schema_helper import SchemaHelper
+from app.questionnaire.location import Location
+from app.questionnaire.rules import evaluate_goto, evaluate_repeat
 
 logger = logging.getLogger(__name__)
-
-
-def evaluate_rule(when, answer_value):
-    """
-    Determine whether a rule will be satisfied based on a given answer
-    :param when:
-    :param answer_value:
-    :return:
-    """
-    match_value = when['value']
-    condition = when['condition']
-
-    answer_to_test = str(answer_value)
-
-    if isinstance(answer_value, list):
-        if len(answer_value) == 1:
-            answer_to_test = answer_value[0]
-        else:
-            return False
-
-    # Evaluate the condition on the routing rule
-    if condition == 'equals' and match_value == answer_to_test:
-        return True
-    elif condition == 'not equals' and match_value != answer_to_test:
-        return True
-    return False
-
-
-def evaluate_goto(goto_rule, metadata, answers, group_instance):
-    """
-    Determine whether a goto rule will be satisfied based on a given answer
-    :param goto_rule:
-    :param metadata
-    :param answers:
-    :param group_instance:
-    :return:
-    """
-    if 'when' in goto_rule.keys():
-
-        when = goto_rule['when']
-
-        if 'id' in when:
-            answer_index = when['id']
-            filtered = answers.filter(answer_id=answer_index, group_instance=group_instance)
-            if len(filtered) == 1:
-                return evaluate_rule(when, filtered[0]['value'])
-
-        elif 'meta' in when:
-            key = when['meta']
-            value = get_metadata_value(metadata, key)
-            return evaluate_rule(when, value)
-
-        return False
-    return True
-
-
-def get_metadata_value(metadata, keys):
-    if not _contains_in_dict(metadata, keys):
-        return None
-
-    if "." in keys:
-        key, rest = keys.split(".", 1)
-        return get_metadata_value(metadata[key], rest)
-    else:
-        return metadata[keys]
-
-
-def _contains_in_dict(metadata, keys):
-    if "." in keys:
-        key, rest = keys.split(".", 1)
-        if key not in metadata:
-            return False
-        return _contains_in_dict(metadata[key], rest)
-    else:
-        return keys in metadata
-
-
-def evaluate_repeat(repeat_rule, answers):
-    """
-    Returns the number of times repetition should occur based on answers
-    :param repeat_rule:
-    :param answers:
-    :return: The number of times to repeat
-    """
-    repeat_functions = {
-        'answer_value': lambda filtered_answers: int(filtered_answers[0]['value'] if len(filtered_answers) == 1 else 1),
-        'answer_count': lambda filtered_answers: len(filtered_answers),
-        'answer_count_minus_one': lambda filtered_answers: len(filtered_answers) - 1,
-    }
-    if 'answer_id' in repeat_rule and 'type' in repeat_rule:
-        repeat_index = repeat_rule['answer_id']
-        filtered = answers.filter(answer_id=repeat_index)
-        repeat_function = repeat_functions[repeat_rule['type']]
-        return repeat_function(filtered)
 
 
 class Navigator:
@@ -117,54 +26,65 @@ class Navigator:
         self.first_block_id = SchemaHelper.get_first_block_id(self.survey_json)
         self.first_group_id = SchemaHelper.get_first_group_id(self.survey_json)
         self.last_group_id = SchemaHelper.get_last_group_id(self.survey_json)
+
+        self.first_block_location = Location(self.first_group_id, 0, self.first_block_id)
+
         self.location_path = self.get_location_path()
+        self.first_location = self.location_path[0]
 
-    @classmethod
-    def is_interstitial_block(cls, block_id):
-        return block_id in cls.PRECEEDING_INTERSTITIAL_PATH or block_id in cls.CLOSING_INTERSTITIAL_PATH
+    @staticmethod
+    def _block_index_for_location(blocks, location):
+        if not location.is_interstitial():
+            return next(index for (index, b) in enumerate(blocks) if b["block"]["id"] == location.block_id and
+                        b["group_id"] == location.group_id and b['group_instance'] == location.group_instance)
+        return None
 
-    def build_path(self, blocks, group_id, group_instance, block_id, path):
+    def build_path(self, blocks, this_location, path):
         """
         Recursive method which visits all the blocks and returns path taken
         given a list of answers
 
-        :param blocks: A list containing all blocks in the survey
-        :param group_id: The group id to visit
-        :param group_instance: The group instance to visit
-        :param block_id: The block id to visit
+        :param blocks: A list containing all block content in the survey
+        :param this_location: The location to visit, represented as a dict
         :param path: The known path as a list which has been visited already
         :return: A list of block ids followed through the survey
         """
-        if block_id in self.CLOSING_INTERSTITIAL_PATH:
+        if this_location.block_id in self.CLOSING_INTERSTITIAL_PATH:
             return path
 
-        this_block = {
-            "block_id": block_id,
-            "group_id": group_id,
-            "group_instance": group_instance,
-        }
-
-        path.append(this_block)
+        path.append(this_location)
 
         # Return the index of the block id to be visited
-        block_id_index = next(index for (index, b) in enumerate(blocks) if b["block"]["id"] == block_id and
-                              b["group_id"] == group_id and b['group_instance'] == group_instance)
+        block_index = self._block_index_for_location(blocks, this_location)
 
-        block = blocks[block_id_index]["block"]
+        block = blocks[block_index]["block"]
 
         if 'routing_rules' in block and len(block['routing_rules']) > 0:
             for rule in block['routing_rules']:
-                is_goto_rule = 'goto' in rule and 'when' in rule['goto'].keys() or 'id' in rule['goto'].keys()
-                if is_goto_rule and evaluate_goto(rule['goto'], self.metadata, self.answer_store, group_instance):
-                    return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
+                if SchemaHelper.is_goto_rule(rule) and evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location.group_instance):
+                    next_location = copy.copy(this_location)
+                    next_location.block_id = rule['goto']['id']
+
+                    next_block_index = self._block_index_for_location(blocks, next_location)
+
+                    # We're jumping backwards, so need to delete current answer
+                    if next_block_index is not None and block_index > next_block_index:
+                        answer = Answer(answer_id=rule['goto']['when']['id'],
+                                        answer_instance=0,
+                                        block_id=this_location.block_id,
+                                        group_id=this_location.group_id,
+                                        group_instance=this_location.group_instance)
+                        self.answer_store.remove(answer)
+
+                    return self.build_path(blocks, next_location, path)
 
         # If this isn't the last block in the set evaluated
-        elif block_id_index != len(blocks) - 1:
-            next_block_id = blocks[block_id_index + 1]['block']['id']
-            next_group_id = blocks[block_id_index + 1]['group_id']
-            next_group_instance = blocks[block_id_index + 1]['group_instance']
+        elif block_index != len(blocks) - 1:
+            next_location = Location(blocks[block_index + 1]['group_id'],
+                                     blocks[block_index + 1]['group_instance'],
+                                     blocks[block_index + 1]['block']['id'])
 
-            return self.build_path(blocks, next_group_id, next_group_instance, next_block_id, path)
+            return self.build_path(blocks, next_location, path)
         return path
 
     def update_answer_store(self, answer_store):
@@ -181,7 +101,7 @@ class Navigator:
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
-        return self.build_path(self.get_blocks(), self.first_group_id, 0, self.first_block_id, [])
+        return self.build_path(self.get_blocks(), self.first_block_location, [])
 
     def can_reach_summary(self, routing_path=None):
         """
@@ -191,15 +111,14 @@ class Navigator:
         :return:
         """
         blocks = self.get_blocks()
-        routing_path = routing_path or self.build_path(blocks, self.first_group_id, 0, self.first_block_id, [])
-        last_routing_block_id = routing_path[-1]['block_id']
+        routing_path = routing_path or self.build_path(blocks, self.first_block_location, [])
+        last_routing_block_id = routing_path[-1].block_id
         last_block_id = blocks[-1]['block']['id']
 
         if last_block_id == last_routing_block_id:
             return True
 
-        routing_block_id_index = next(
-            index for (index, b) in enumerate(blocks) if b['block']["id"] == last_routing_block_id)
+        routing_block_id_index = next(index for (index, b) in enumerate(blocks) if b['block']["id"] == last_routing_block_id)
 
         last_routing_block = blocks[routing_block_id_index]['block']
 
@@ -219,26 +138,20 @@ class Navigator:
         can_reach_summary = self.can_reach_summary(routing_path)
 
         # Make sure we don't update original
-        location_path = [{
-            "block_id": block_id,
-            "group_id": self.first_group_id,
-            "group_instance": 0,
-        } for block_id in self.preceeding_path]
+
+        location_path = [Location(self.first_group_id, 0, block_id) for block_id in self.preceeding_path]
 
         location_path += routing_path
 
         if can_reach_summary:
             for block_id in Navigator.CLOSING_INTERSTITIAL_PATH:
-                location_path.append({
-                    "block_id": block_id,
-                    "group_id": self.last_group_id,
-                    "group_instance": 0,
-                })
+                location_path.append(Location(self.last_group_id, 0, block_id))
 
         return location_path
 
     def get_blocks(self):
         blocks = []
+
         for group_index, group in enumerate(SchemaHelper.get_groups(self.survey_json)):
             no_of_repeats = 1
 
@@ -253,42 +166,30 @@ class Navigator:
                 } for block in group['blocks']])
         return blocks
 
-    def _get_current_location_index(self, current_group_id, current_block_id, current_iteration):
-        current_group_id = current_group_id or self.first_group_id
-
-        this_block = {
-            "block_id": current_block_id,
-            "group_id": current_group_id,
-            "group_instance": current_iteration,
-        }
-
-        if this_block in self.location_path:
-            return self.location_path.index(this_block)
+    def _get_current_location_index(self, current_location):
+        if current_location in self.location_path:
+            return self.location_path.index(current_location)
         return None
 
-    def get_next_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
+    def get_next_location(self, current_location):
         """
         Returns the next 'location' to visit given a set of user answers
-        :param current_group_id:
-        :param current_block_id:
-        :param current_iteration:
+        :param current_location:
         :return: The next location as a dict
         """
-        current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
+        current_location_index = self._get_current_location_index(current_location)
 
         if current_location_index is not None and current_location_index < len(self.location_path) - 1:
             return self.location_path[current_location_index + 1]
         return None
 
-    def get_previous_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
+    def get_previous_location(self, current_location):
         """
         Returns the next 'location' to visit given a set of user answers
-        :param current_group_id:
-        :param current_block_id:
+        :param current_location:
         :return: The previous location as a dict
-        :return:
         """
-        current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
+        current_location_index = self._get_current_location_index(current_location)
 
         if current_location_index is not None and current_location_index != 0:
             return self.location_path[current_location_index - 1]
@@ -302,15 +203,9 @@ class Navigator:
         :return:
         """
         if completed_blocks:
-            incomplete_blocks = [item for item in self.get_location_path() if item not in completed_blocks]
+            incomplete_blocks = [item for item in self.location_path if item.__dict__ not in completed_blocks]
 
             if incomplete_blocks:
                 return incomplete_blocks[0]
 
-        first_location = self.get_location_path()[0]
-
-        return {
-            'block_id': first_location['block_id'],
-            'group_id': SchemaHelper.get_first_group_id(self.survey_json),
-            'group_instance': 0,
-        }
+        return self.first_location

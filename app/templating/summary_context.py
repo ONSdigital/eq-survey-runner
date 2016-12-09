@@ -21,7 +21,7 @@ def build_summary_rendering_context(schema_json, answer_store, metadata):
     sections = []
     for group in schema_json['groups']:
         for block in group['blocks']:
-            if block['id'] in [b['block_id'] for b in path]:
+            if block['id'] in [l.block_id for l in path]:
                 if "type" not in block or block['type'] != "interstitial":
                     link = url_for('questionnaire.get_block',
                                    eq_id=metadata['eq_id'],

@@ -128,7 +128,7 @@ def convert_answers_to_census_data(answer_store, routing_path):
     """
     data = []
     for location in routing_path:
-        answers_in_block = answer_store.filter(group_id=location['group_id'], group_instance=location['group_instance'], block_id=location['block_id'])
+        answers_in_block = answer_store.filter(group_id=location.group_id, group_instance=location.group_instance, block_id=location.block_id)
         data.extend(answers_in_block)
     return data
 

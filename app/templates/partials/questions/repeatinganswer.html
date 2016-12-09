@@ -1,12 +1,8 @@
 <div class="question question--repeatinganswer" id="{{question.id}}">
 
-  <fieldset class="question__fieldset">
-
-    <legend class="question__legend">
-      {{question_title}}
-    </legend>
-
+    {{question_titles|safe}}
     {{question_description|safe}}
+    {{question_guidance|safe}}
 
     {%- for answer in question.answers %}
        <div class="question__answer js-household-person">
@@ -24,8 +20,6 @@
          {% include theme('partials/answer.html') %}
        </div>
      {%- endfor %}
-
-  </fieldset>
 
   <div class="question__actions">
     <button class="btn btn--border btn--secondary venus js-household-btn" type="submit" name="action[add_answer]">

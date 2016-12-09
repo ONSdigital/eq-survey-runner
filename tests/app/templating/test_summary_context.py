@@ -3,6 +3,7 @@ import unittest
 from app import create_app
 from mock import MagicMock, Mock, patch
 
+from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
 from app.utilities.schema import load_and_parse_schema
 
@@ -33,11 +34,11 @@ class TestSummaryContext(unittest.TestCase):
 
     def test_build_summary_rendering_context(self):
         answer_store = MagicMock()
-        routing_path = [{
-            'block_id': 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0',
-            'group_id': '14ba4707-321d-441d-8d21-b8367366e766',
-            'group_instance': 0,
-        }]
+        routing_path = [Location(
+            block_id='f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0',
+            group_id='14ba4707-321d-441d-8d21-b8367366e766',
+            group_instance=0,
+        )]
         navigator = Mock()
         navigator.get_routing_path = Mock(return_value=routing_path)
 

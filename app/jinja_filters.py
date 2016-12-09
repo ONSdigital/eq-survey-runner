@@ -49,3 +49,10 @@ def format_str_as_month_year_date(value):
 @blueprint.app_template_filter()
 def format_str_as_date(value):
     return format_str_as_short_date(value)
+
+
+@blueprint.app_template_filter('pluralize')
+def pluralize(number, singular='', plural='s'):
+    if number == 1:
+        return singular
+    return plural
