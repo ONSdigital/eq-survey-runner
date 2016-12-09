@@ -1,34 +1,66 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.875751 - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class NationalIdentityPage extends MultipleChoiceWithOtherPage {
 
-  clickNationalIdentityAnswerEnglish() {
-    browser.element('[id="national-identity-answer-1"]').click()
+  clickNationalIdentityEnglandAnswerEnglish() {
+    browser.element('[id="national-identity-england-answer-1"]').click()
     return this
   }
 
-  clickNationalIdentityAnswerWelsh() {
-    browser.element('[id="national-identity-answer-2"]').click()
+  clickNationalIdentityEnglandAnswerWelsh() {
+    browser.element('[id="national-identity-england-answer-2"]').click()
     return this
   }
 
-  clickNationalIdentityAnswerScottish() {
-    browser.element('[id="national-identity-answer-3"]').click()
+  clickNationalIdentityEnglandAnswerScottish() {
+    browser.element('[id="national-identity-england-answer-3"]').click()
     return this
   }
 
-  clickNationalIdentityAnswerNorthernIrish() {
-    browser.element('[id="national-identity-answer-4"]').click()
+  clickNationalIdentityEnglandAnswerNorthernIrish() {
+    browser.element('[id="national-identity-england-answer-4"]').click()
     return this
   }
 
-  clickNationalIdentityAnswerBritish() {
-    browser.element('[id="national-identity-answer-5"]').click()
+  clickNationalIdentityEnglandAnswerBritish() {
+    browser.element('[id="national-identity-england-answer-5"]').click()
     return this
   }
 
-  clickNationalIdentityAnswerOther() {
-    browser.element('[id="national-identity-answer-6"]').click()
+  clickNationalIdentityEnglandAnswerOther() {
+    browser.element('[id="national-identity-england-answer-6"]').click()
+    return this
+  }
+
+  clickNationalIdentityWalesAnswerWelsh() {
+    browser.element('[id="national-identity-wales-answer-1"]').click()
+    return this
+  }
+
+  clickNationalIdentityWalesAnswerEnglish() {
+    browser.element('[id="national-identity-wales-answer-2"]').click()
+    return this
+  }
+
+  clickNationalIdentityWalesAnswerScottish() {
+    browser.element('[id="national-identity-wales-answer-3"]').click()
+    return this
+  }
+
+  clickNationalIdentityWalesAnswerNorthernIrish() {
+    browser.element('[id="national-identity-wales-answer-4"]').click()
+    return this
+  }
+
+  clickNationalIdentityWalesAnswerBritish() {
+    browser.element('[id="national-identity-wales-answer-5"]').click()
+    return this
+  }
+
+  clickNationalIdentityWalesAnswerOther() {
+    browser.element('[id="national-identity-wales-answer-6"]').click()
     return this
   }
 

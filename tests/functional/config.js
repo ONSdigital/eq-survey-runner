@@ -10,7 +10,7 @@ let config = {
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
-  waitforTimeout: 20000,
+  waitforTimeout: 500,
   updateJob: true,
   specs: [`${paths.test.wdioSpec}/**/*.spec.js`],
   suites: {
@@ -24,11 +24,7 @@ let config = {
   sync: true,
   connectionRetryTimeout: 5000,
   connectionRetryCount: 3,
-  capabilities: [{
-    name: 'Chrome (local)',
-    browserName: 'chrome',
-    maxInstances: 1
-  }],
+  capabilities: [chrome],
   framework: 'mocha',
   reporters: ['spec'],
   mochaOpts: {

@@ -1,3 +1,5 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.908107 - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class PassportsPage extends MultipleChoiceWithOtherPage {
@@ -12,12 +14,12 @@ class PassportsPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  clickPassportsAnswerNone() {
+  clickPassportsAnswerOther() {
     browser.element('[id="passports-answer-3"]').click()
     return this
   }
 
-  clickPassportsAnswerOther() {
+  clickPassportsAnswerNone() {
     browser.element('[id="passports-answer-4"]').click()
     return this
   }

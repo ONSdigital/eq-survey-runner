@@ -38,9 +38,14 @@ class Navigator:
 
     @classmethod
     def _block_index_for_location(cls, blocks, location):
-        if not cls.is_interstitial_block(location['block_id']):
-            return next(index for (index, b) in enumerate(blocks) if b["block"]["id"] == location['block_id'] and
-                        b["group_id"] == location['group_id'] and b['group_instance'] == location['group_instance'])
+        try:
+            if not cls.is_interstitial_block(location['block_id']):
+                return next(index for (index, b) in enumerate(blocks) if b["block"]["id"] == location['block_id'] and
+                            b["group_id"] == location['group_id'] and b['group_instance'] == location['group_instance'])
+        except StopIteration:
+            logger.error("Navigation failure looking for %s", location)
+            raise
+
         return None
 
     def build_path(self, blocks, this_location):

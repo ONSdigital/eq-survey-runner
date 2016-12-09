@@ -2,7 +2,14 @@
 
 <div class="relationship">
 
-    <h2 class="neptune">{{question_title}}</h2> {{question_description|safe}}
+    <h2 class="question__title neptune">
+      {%- if question_number -%}
+        <span>{{question_number}}. </span>
+      {% endif %}
+      {{question_title|safe}}
+    </h2>
+    {{question_description|safe}}
+    {{question_guidance|safe}}
 
     <div class="js-relationship">
 

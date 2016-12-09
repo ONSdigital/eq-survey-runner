@@ -8,13 +8,13 @@ def evaluate_rule(when, answer_value):
     match_value = when['value']
     condition = when['condition']
 
-    answer_to_test = str(answer_value)
-
     if isinstance(answer_value, list):
         if len(answer_value) == 1:
             answer_to_test = answer_value[0]
         else:
             return False
+    else:
+        answer_to_test = str(answer_value)
 
     # Evaluate the condition on the routing rule
     if condition == 'equals' and match_value == answer_to_test:

@@ -205,7 +205,6 @@
                                 },
                                 "required": [
                                   "id",
-                                  "q_code",
                                   "type",
                                   "mandatory"
                                 ]
