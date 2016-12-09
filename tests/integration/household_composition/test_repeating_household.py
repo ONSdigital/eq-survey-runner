@@ -26,8 +26,11 @@ class TestRepeatingHousehold(IntegrationTestCase):
         # Given I add some people
         household_composition_page = self.first_page
         form_data = MultiDict()
-        form_data.add("household-full-name", 'Person One')
+        form_data.add("first-name", 'Joe')
+        form_data.add("last-name", 'Bloggs')
         form_data.add("household-full-name_1", 'Person Two')
+        form_data.add("first-name_1", 'Jane')
+        form_data.add("last-name_1", 'Doe')
         form_data.add("action[save_continue]", '')
         resp = self.client.post(household_composition_page, data=form_data, follow_redirects=False)
         person1_age_page = resp.headers['Location']
@@ -63,14 +66,17 @@ class TestRepeatingHousehold(IntegrationTestCase):
         # When I go back to household composition page and submit
         self.navigate_to_page(household_composition_page)
         form_data = MultiDict()
-        form_data.add("household-full-name", 'Person One')
+        form_data.add("first-name", 'Joe')
+        form_data.add("last-name", 'Bloggs')
         form_data.add("household-full-name_1", 'Person Two')
+        form_data.add("first-name_1", 'Jane')
+        form_data.add("last-name_1", 'Doe')
         form_data.add("action[save_continue]", '')
         resp = self.client.post(household_composition_page, data=form_data, follow_redirects=True)
 
         # Then the details previously entered for the people should have been removed
         content = resp.get_data(True)
-        self.assertRegex(content, 'Person One')
+        self.assertRegex(content, 'Joe Bloggs')
         self.assertRegex(content, 'What is their age')
         self.assertNotRegex(content, '9990')
         form_data = MultiDict()
@@ -84,7 +90,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
         resp = self.client.post(person1_shoe_size_page, data=form_data, follow_redirects=True)
 
         content = resp.get_data(True)
-        self.assertRegex(content, 'Person Two')
+        self.assertRegex(content, 'Jane Doe')
         self.assertRegex(content, 'What is their age')
         self.assertNotRegex(content, '9992')
 
