@@ -159,7 +159,7 @@ class Navigator:
                     return self.build_path(blocks, group_id, group_instance, rule['goto']['id'], path)
 
         # If this isn't the last block in the set evaluated
-        elif block_id_index != len(blocks) - 1:
+        if block_id_index != len(blocks) - 1:
             next_block_id = blocks[block_id_index + 1]['block']['id']
             next_group_id = blocks[block_id_index + 1]['group_id']
             next_group_instance = blocks[block_id_index + 1]['group_instance']
