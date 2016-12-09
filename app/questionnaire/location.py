@@ -6,7 +6,6 @@ from flask_login import current_user
 
 
 class Location(object):
-
     def __init__(self, group_id, group_instance, block_id):
 
         self.group_id = group_id
@@ -34,26 +33,26 @@ class Location(object):
 
         if self.is_interstitial():
             if self.block_id == 'summary':
-                return url_for('.get_summary',
+                return url_for('questionnaire.get_summary',
                                eq_id=eq_id,
                                form_type=form_type,
                                collection_id=collection_id)
             elif self.block_id == 'introduction':
-                return url_for('.get_introduction',
+                return url_for('questionnaire.get_introduction',
                                eq_id=eq_id,
                                form_type=form_type,
                                collection_id=collection_id)
             elif self.block_id == 'confirmation':
-                return url_for('.get_confirmation',
+                return url_for('questionnaire.get_confirmation',
                                eq_id=eq_id,
                                form_type=form_type,
                                collection_id=collection_id)
             elif self.block_id == 'thank-you':
-                return url_for('.get_thank_you',
+                return url_for('questionnaire.get_thank_you',
                                eq_id=eq_id,
                                form_type=form_type,
                                collection_id=collection_id)
-        return url_for('.get_block',
+        return url_for('questionnaire.get_block',
                        eq_id=eq_id,
                        form_type=form_type,
                        collection_id=collection_id,
