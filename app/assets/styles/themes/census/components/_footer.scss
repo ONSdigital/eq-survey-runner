@@ -14,7 +14,7 @@
     margin: 0 0 1rem;
     width: 150px;
     @include mq(m) {
-      width: 220px;
+      width: 190px;
     }
     @include fixed {
       background: url("/_themes/census/ons-logo.png") no-repeat left top;

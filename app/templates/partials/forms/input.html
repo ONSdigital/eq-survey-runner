@@ -6,7 +6,8 @@
   "id": "input-" ~ input.id,
   "placeholder": input.placeholder,
   "checked": "checked" if input.checked,
-  "data-qa": "input-" ~ input.type
+  "data-qa": "input-" ~ input.type,
+  "maxlength": input.maxlength
 } %}
 
 <input {{attr|xmlattr}} />

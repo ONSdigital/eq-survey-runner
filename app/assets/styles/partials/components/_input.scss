@@ -12,8 +12,12 @@ $input-width: 15rem;
   border: 1px solid $color-borders;
   border-radius: $input-radius;
   width: 100%;
+  transition: border-color 200ms ease-in;
   @include mq(s) {
     width: $input-width;
+  }
+  &:hover {
+    border-color: $color-links-hover;
   }
   &:focus {
     outline: none;
@@ -63,8 +67,9 @@ $input-width: 15rem;
   position: absolute;
   top: 0.7rem;
   left: 0.6rem;
+  transition: background-color 200ms ease-in, color 200ms ease-in;
   &:checked {
-    border-color: $color-very-dark-grey;
+    border-color: $color-links-hover;
   }
   &:focus {
     border-color: $color-focus;
@@ -86,13 +91,17 @@ $input-width: 15rem;
   border-radius: 100px;
   box-shadow: inset 0 0 0 3px white;
   &:checked {
-    background: $color-secondary;
+    background: $color-links-hover;
     box-shadow: inset 0 0 0 3px white;
   }
   &:focus {
     border-color: $color-focus;
     box-shadow: inset 0 0 0 3px white;
     outline: none;
+    &:checked {
+      border-color: $color-focus;
+      background-color: $color-focus;
+    }
   }
 }
 

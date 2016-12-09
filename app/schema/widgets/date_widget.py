@@ -41,6 +41,7 @@ class DateWidget(Widget):
                 'placeholder': 'DD',
                 'name': self.name + '-day',
                 'id': self.id + '-day',
+                'maxlength': '2',
             },
         }
 
@@ -73,6 +74,7 @@ class DateWidget(Widget):
                 'placeholder': 'YYYY',
                 'name': self.name + '-year',
                 'id': self.name + '-year',
+                'maxlength': '4',
             },
         }
 
