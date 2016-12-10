@@ -28,7 +28,6 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data = MultiDict()
         form_data.add("first-name", 'Joe')
         form_data.add("last-name", 'Bloggs')
-        form_data.add("household-full-name_1", 'Person Two')
         form_data.add("first-name_1", 'Jane')
         form_data.add("last-name_1", 'Doe')
         form_data.add("action[save_continue]", '')
@@ -98,6 +97,3 @@ class TestRepeatingHousehold(IntegrationTestCase):
         resp = self.client.get(page, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
         return resp
-
-
-
