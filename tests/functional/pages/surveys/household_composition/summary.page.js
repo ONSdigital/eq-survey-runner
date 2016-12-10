@@ -2,42 +2,24 @@ import SummaryPage from '../../summary.page'
 
 class HouseholdCompositionSummary extends SummaryPage {
 
-  clickEdit() {
-    browser.click('[data-qa="first-name-edit"]')
+  clickAddAnother() {
+    browser.click('[name="household-composition-add-another"][value="No"]')
     return this
   }
 
-  getFirstName(index) {
-    return this.getFirstNames()[index]
+  submit() {
+    browser.click('.qa-btn-submit')
+    return this
   }
 
-  getMiddleName(index) {
-    return this.getMiddleNames()[index]
-  }
-
-  getLastName(index) {
-    return this.getLastNames()[index]
-  }
-
-  getElementText(name, index) {
-    return this.getElementTextForAnswer(name)[index]
-  }
-
-  getFirstNames() {
-    return this.getElementTextForAnswer('first-name')
-  }
-
-  getMiddleNames() {
-    return this.getElementTextForAnswer('middle-names')
-  }
-
-  getLastNames() {
-    return this.getElementTextForAnswer('last-name')
+  isNameDisplayed(name) {
+    return browser.element('#further-section ul li').getText() === name
   }
 
   getElementTextForAnswer(answer) {
     var householdNames = []
-    var elements = browser.elements('[data-qa="' + answer + '-answer"]')
+    var elements = browser.elements('#further-section ul li')
+
     elements.value.forEach((elem) => {
       householdNames.push(browser.elementIdText(elem.ELEMENT).value)
     })

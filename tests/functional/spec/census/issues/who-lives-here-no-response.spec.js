@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openAndStartCensusQuestionnaire} from '../../../helpers'
+import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
 import ElsePermanentOrFamilyHome from '../../../pages/surveys/census/household/else-permanent-or-family-home.page.js'
@@ -79,7 +79,7 @@ const expect = chai.expect
 describe('ArriveInUk', function () {
 
   it('Given I am answering question 3 in the who lives here section, When I dont select any respone, Then I am routed to Who lives here question 4 ', function () {
-      openAndStartCensusQuestionnaire('census_household.json', true)
+      startCensusQuestionnaire('census_household.json', true)
       PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
       HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
       EveryoneAtAddressConfirmation.submit()

@@ -219,6 +219,7 @@
                         {
                             "id": "everyone-at-address-confirmation-section",
                             "title": "Who lives here?",
+                            "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
                             "number": "3",
                             "questions": [
                                 {

@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openAndStartCensusQuestionnaire} from '../helpers'
+import {startCensusQuestionnaire} from '../helpers'
 
 import CorrectName from '../pages/surveys/census/individual/correct-name.page.js'
 import Sex from '../pages/surveys/census/individual/sex.page.js'
@@ -53,7 +53,7 @@ const expect = chai.expect
 describe('Census Individual', function () {
 
     it('Given Respondent Home has identified the respondent should have the Individual Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function () {
-        openAndStartCensusQuestionnaire('census_individual.json')
+        startCensusQuestionnaire('census_individual.json')
 
         // household-member
         CorrectName.setFirstName("Paul").setLastName("Smith").submit()
@@ -86,7 +86,7 @@ describe('Census Individual', function () {
     })
 
     it('Given Respondent Home has identified the respondent should have the Individual Questionnaire with the sexual id question, When I complete the EQ, Then I should be asked the sexual id question', function () {
-        openAndStartCensusQuestionnaire('census_individual.json', true)
+        startCensusQuestionnaire('census_individual.json', true)
 
         // household-member
         CorrectName.setFirstName("Paul").setLastName("Smith").submit()
@@ -121,7 +121,7 @@ describe('Census Individual', function () {
 
 
     it('Given Respondent Home has identified the respondent should have the Individual Questionnaire with the sexual id question, When I complete the EQ stating i am over 16, Then I should be asked the sexual id question', function () {
-        openAndStartCensusQuestionnaire('census_individual.json', true)
+        startCensusQuestionnaire('census_individual.json', true)
 
         // household-member
         CorrectName.setFirstName("Paul").setLastName("Smith").submit()
@@ -156,7 +156,7 @@ describe('Census Individual', function () {
 
 
     it('Given Respondent Home has identified the respondent should have the Individual Questionnaire with the sexual id question, When I complete the EQ stating i am under 16, Then I should not be asked the sexual id question', function () {
-        openAndStartCensusQuestionnaire('census_individual.json', true)
+        startCensusQuestionnaire('census_individual.json', true)
 
         // household-member
         CorrectName.setFirstName("Paul").setLastName("Smith").submit()
@@ -190,7 +190,7 @@ describe('Census Individual', function () {
 
     it('Given the census theme is selected, then the help should not be visible', function() {
         // Given
-        openAndStartCensusQuestionnaire('census_individual.json')
+        startCensusQuestionnaire('census_individual.json')
         // Then
         expect(browser.isVisible('.js-help-body')).to.be.false
     })
@@ -198,7 +198,7 @@ describe('Census Individual', function () {
     it('Given the census theme is selected, when I click the "help and support" button, then the help should be visible', function() {
 
         // Given
-        openAndStartCensusQuestionnaire('census_individual.json')
+        startCensusQuestionnaire('census_individual.json')
 
         // When
         browser.click('.js-help-btn')

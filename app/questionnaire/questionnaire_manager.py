@@ -1,7 +1,8 @@
 import logging
 
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
-from app.questionnaire.navigator import Navigator, evaluate_rule, get_metadata_value
+from app.questionnaire.navigator import Navigator
+from app.questionnaire.rules import evaluate_rule, get_metadata_value
 
 from app.templating.schema_context import build_schema_context
 from app.templating.template_renderer import renderer

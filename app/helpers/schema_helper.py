@@ -57,3 +57,11 @@ class SchemaHelper(object):
             for rule in cls.get_repeat_rules(group):
                 if rule['repeat']['answer_id'] == answer_id:
                     yield group
+
+    @staticmethod
+    def is_goto_rule(rule):
+        return 'goto' in rule and 'when' in rule['goto'].keys() or 'id' in rule['goto'].keys()
+
+    @staticmethod
+    def is_goto_meta_rule(rule):
+        return 'goto' in rule and 'when' in rule['goto'].keys() and 'meta' in rule['goto']['when'].keys()
