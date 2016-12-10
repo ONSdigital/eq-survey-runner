@@ -1,4 +1,4 @@
-from app.questionnaire.navigator import evaluate_rule
+from app.questionnaire.rules import evaluate_rule
 
 from tests.app.framework.sr_unittest import SurveyRunnerTestCase
 

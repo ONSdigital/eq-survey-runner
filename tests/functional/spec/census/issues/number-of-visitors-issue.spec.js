@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openAndStartCensusQuestionnaire} from '../../../helpers'
+import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
 import ElsePermanentOrFamilyHome from '../../../pages/surveys/census/household/else-permanent-or-family-home.page.js'
@@ -78,7 +78,7 @@ const expect = chai.expect
 
 describe('Number of visitors', function () {
   it('Given a census schema, When I dont enter any value for question: How many visitors are staying overnight here on 9th April 2017?, Then I should get an error message ', function () {
-      openAndStartCensusQuestionnaire('census_household.json', true)
+      startCensusQuestionnaire('census_household.json', true)
       PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
       HouseholdComposition.setPersonName(0, 'John Smith').submit()
       EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()

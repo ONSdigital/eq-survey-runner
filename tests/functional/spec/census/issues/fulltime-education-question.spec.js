@@ -1,5 +1,5 @@
   import chai from 'chai'
-  import {openAndStartCensusQuestionnaire} from '../../../helpers'
+  import {startCensusQuestionnaire} from '../../../helpers'
 
   import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
   import ElsePermanentOrFamilyHome from '../../../pages/surveys/census/household/else-permanent-or-family-home.page.js'
@@ -78,7 +78,7 @@
 
   describe('term-time-location', function () {
     it('Given a census schema, When I select option Yes for Question - Are you a schoolchild or student in full-time education?, Then I should be displayed with term-time-location screen ', function () {
-        openAndStartCensusQuestionnaire('census_household.json', true)
+        startCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
         HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(0, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()

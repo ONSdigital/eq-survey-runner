@@ -1,8 +1,9 @@
 <div class="question question--repeatinganswer" id="{{question.id}}">
 
-  <h2 class="question__title neptune">{{question_title}}</h2>
+  <h2 class="question__title neptune">{{question_title|safe}}</h2>
 
   {{question_description|safe}}
+  {{question_guidance|safe}}
 
   <div class="question__answers">
     {%- for composite_answer in question.answers_grouped_by_instance() %}

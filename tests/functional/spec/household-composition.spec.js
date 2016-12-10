@@ -19,8 +19,7 @@ describe('Household composition question for census test.', function() {
     HouseholdCompositionPage.setPersonName(0, 'Alpha', '', 'One').submit()
 
     // Then
-    expect(HouseholdCompositionSummary.getFirstName(0)).to.equal('Alpha')
-    expect(HouseholdCompositionSummary.getLastName(0)).to.equal('One')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
   })
 
   it('Given no people added, when I enter another name, then there should be two input fields displayed.', function() {
@@ -49,10 +48,9 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    var names = HouseholdCompositionSummary.getFirstNames()
-    assert.include(names, 'Alpha')
-    assert.include(names, 'Bravo')
-    assert.include(names, 'Charlie')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
+    HouseholdCompositionSummary.isNameDisplayed('Bravo Two')
+    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
   })
 
  it('Given two people added, when I remove second person, only first person should appear on summary.', function() {
@@ -67,17 +65,17 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    var names = HouseholdCompositionSummary.getFirstNames()
-    assert.include(names, 'Alpha')
-    assert.include(names, 'Bravo')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha')
+    HouseholdCompositionSummary.isNameDisplayed('Bravo')
 
     // When
-    HouseholdCompositionSummary.clickEdit()
+    HouseholdCompositionSummary.clickAddAnother().submit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then
-    names = HouseholdCompositionSummary.getFirstNames()
-    assert.include(names, 'Alpha')
+
+    HouseholdCompositionSummary.isNameDisplayed('Alpha')
+    HouseholdCompositionSummary.isNameDisplayed('Bravo')
   })
 
  it('Given three people added, when I remove second person, first and third person should appear on summary.', function() {
@@ -94,19 +92,17 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    var names = HouseholdCompositionSummary.getFirstNames()
-    assert.include(names, 'Alpha')
-    assert.include(names, 'Bravo')
-    assert.include(names, 'Charlie')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
+    HouseholdCompositionSummary.isNameDisplayed('Bravo Two')
+    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
 
     // When
-    HouseholdCompositionSummary.clickEdit()
+    HouseholdCompositionSummary.clickAddAnother().submit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then
-    names = HouseholdCompositionSummary.getFirstNames()
-    assert.include(names, 'Alpha')
-    assert.include(names, 'Charlie')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
+    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
   })
 
   it('Given first, middle and last names entered, then each part of name should appear on summary.', function() {
@@ -121,17 +117,8 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    var firstNames = HouseholdCompositionSummary.getFirstNames()
-    assert.include(firstNames, 'Alpha')
-    assert.include(firstNames, 'Delta')
-
-    var middleNames = HouseholdCompositionSummary.getMiddleNames()
-    assert.include(middleNames, 'Bravo')
-    assert.include(middleNames, 'Echo')
-
-    var lastNames = HouseholdCompositionSummary.getLastNames()
-    assert.include(lastNames, 'Charlie')
-    assert.include(lastNames, 'Foxtrot')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha Bravo Charlie')
+    HouseholdCompositionSummary.isNameDisplayed('Delta Echo Foxtrot')
   })
 
 })

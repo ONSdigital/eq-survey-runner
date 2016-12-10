@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openAndStartCensusQuestionnaire} from '../../../helpers'
+import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
 import ElsePermanentOrFamilyHome from '../../../pages/surveys/census/household/else-permanent-or-family-home.page.js'
@@ -79,7 +79,7 @@ const expect = chai.expect
 describe('Are-you-a-schoolchild', function () {
 
   it('Given I am answering question 7 in the individual detail section - 7. Are you a schoolchild or student in full-time education?, When I do not select any respone, Then I am routed to 9. What is your country of birth?', function () {
-   openAndStartCensusQuestionnaire('census_household.json', true)
+   startCensusQuestionnaire('census_household.json', true)
    PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
    EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()

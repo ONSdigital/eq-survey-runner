@@ -11,40 +11,37 @@
         "description": "",
         "information_to_provide": []
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "1",
     "groups": [
         {
             "blocks": [
-
                 {
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "household-composition",
                     "sections": [
                         {
-                            "display": {
-                                "properties": {}
-                            },
-                            "id": "section",
+                            "id": "composition-section",
                             "questions": [
                                 {
-                                  "description": "",
-                                  "display": {
-                                      "properties": {}
-                                  },
                                   "id": "household-composition-question",
                                   "title": "Who usually lives here?",
-                                  "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
+                                  "guidance": [
+                                      {
+                                          "title": "Include",
+                                          "list": [
+                                              "Yourself, if this is your permanent or family home",
+                                              "Family members including partners, children and babies born on or before 9 April 2017",
+                                              "Students and/or school children who live away from home during term time",
+                                              "Housemates, tenants or lodgers"
+                                          ]
+                                      }
+                                  ],
                                   "type": "RepeatingAnswer",
                                   "validation": [],
                                   "answers": [
                                     {
                                         "display": {},
                                         "id": "first-name",
+                                        "alias": "first_name",
                                         "label": "First Name",
                                         "mandatory": false,
                                         "options": [],
@@ -55,6 +52,7 @@
                                     {
                                         "display": {},
                                         "id": "middle-names",
+                                        "alias": "middle_names",
                                         "label": "Middle Names",
                                         "mandatory": false,
                                         "options": [],
@@ -65,6 +63,7 @@
                                     {
                                         "display": {},
                                         "id": "last-name",
+                                        "alias": "last_name",
                                         "label": "Last Name",
                                         "mandatory": false,
                                         "options": [],
@@ -82,11 +81,87 @@
                     ],
                     "title": "Household",
                     "validation": []
+                },
+                {
+                    "sections": [
+                        {
+                            "id": "further-section",
+                            "questions": [
+                                {
+                                  "id": "household-composition-further",
+                                  "title": "Is this everyone for whom this address is their permanent or family home?",
+                                  "type": "General",
+                                  "validation": [],
+                                  "guidance": [
+                                      {
+                                           "title": "Include",
+                                           "list": [
+                                               "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
+                                               "People who work away from home within the UK  if this is their permanent or family home",
+                                               "Members of the Armed Forces if this is their permanent or family home",
+                                               "People who are temporarily outside the UK for <b>less than 12 months</b>",
+                                               "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
+                                               "Other people who usually live here, including anyone temporarily away from home "
+                                           ]
+                                      }
+                                  ],
+                                  "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "household-composition-add-another",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No - I need to add another person",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "q_code": "4",
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                  ]
+
+                                }
+                            ],
+                            "title": "Who lives here?",
+                            "description": "<h2 class='neptune'>Your household includes:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}",
+                            "validation": []
+                        }],
+                        "routing_rules":[
+                            {
+                                "goto": {
+                                    "id" : "household-composition",
+                                    "when": {
+                                        "id" : "household-composition-add-another",
+                                        "condition": "equals",
+                                        "value":"No"
+                                    }
+                                }
+                            },
+                            {
+                                "goto": {
+                                    "id": "summary",
+                                    "when": {
+                                        "id" : "household-composition-add-another",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                }
+
+                            }
+                        ],
+                    "id": "household-summary",
+                    "title": ""
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "multiple-questions-group",
             "title": "",
             "validation": []

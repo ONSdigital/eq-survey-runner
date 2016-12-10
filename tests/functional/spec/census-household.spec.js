@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openAndStartCensusQuestionnaire} from '../helpers'
+import {startCensusQuestionnaire} from '../helpers'
 
 import PermanentOrFamilyHome from '../pages/surveys/census/household/permanent-or-family-home.page.js'
 import ElsePermanentOrFamilyHome from '../pages/surveys/census/household/else-permanent-or-family-home.page.js'
@@ -79,7 +79,7 @@ const expect = chai.expect
 describe('Census Household', function () {
 
     it('Given Respondent Home has identified the respondent should have the Household Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function () {
-        openAndStartCensusQuestionnaire('census_household.json')
+        startCensusQuestionnaire('census_household.json')
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
@@ -105,7 +105,7 @@ describe('Census Household', function () {
     })
 
     it('Given Respondent Home has identified the respondent should have the Household Questionnaire with the sexual id question, When I complete the EQ, Then I should be asked the sexual id question', function () {
-        openAndStartCensusQuestionnaire('census_household.json', true)
+        startCensusQuestionnaire('census_household.json', true)
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
@@ -154,7 +154,7 @@ describe('Census Household', function () {
     })
 
     it('Given a census household survey with welsh region, When i enter valid data, Then the survey should submit successfully', function () {
-        openAndStartCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+        startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
@@ -202,7 +202,7 @@ describe('Census Household', function () {
     })
 
     it('Given a census household survey, When one person in household, Then persons name should appear on member details pages.', function () {
-        openAndStartCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+        startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
 
         // who-lives-here
         var person = 'John Smith'
@@ -273,7 +273,7 @@ describe('Census Household', function () {
     })
 
     it('Given two people are in the household, When I complete the household details for person one, Then I should be asked household details for person two.', function () {
-        openAndStartCensusQuestionnaire('census_household.json')
+        startCensusQuestionnaire('census_household.json')
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
@@ -301,7 +301,7 @@ describe('Census Household', function () {
     })
 
     it('Given I have two visitors, When I complete the visitor details for person one, Then I should be asked visitor details for person two.', function () {
-        openAndStartCensusQuestionnaire('census_household.json')
+        startCensusQuestionnaire('census_household.json')
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
@@ -373,4 +373,3 @@ describe('Census Household', function () {
     }
 
 })
-

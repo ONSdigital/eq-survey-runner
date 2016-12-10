@@ -35,9 +35,24 @@ class SchemaHelper(object):
                     yield rule
 
     @classmethod
+    def get_group_blocks(cls, survey_json, group_id):
+        group = cls.get_group(survey_json, group_id)
+
+        for block in group['blocks']:
+            yield block
+
+    @classmethod
     def get_group(cls, survey_json, group_id):
         return next(g for g in cls.get_groups(survey_json) if g["id"] == group_id)
 
     @classmethod
     def get_block(cls, survey_json, block_id):
         return next(b for b in cls.get_blocks(survey_json) if b["id"] == block_id)
+
+    @staticmethod
+    def is_goto_rule(rule):
+        return 'goto' in rule and 'when' in rule['goto'].keys() or 'id' in rule['goto'].keys()
+
+    @staticmethod
+    def is_goto_meta_rule(rule):
+        return 'goto' in rule and 'when' in rule['goto'].keys() and 'meta' in rule['goto']['when'].keys()
