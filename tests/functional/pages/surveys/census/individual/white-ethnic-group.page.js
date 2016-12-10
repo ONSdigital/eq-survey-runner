@@ -2,23 +2,43 @@ import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class WhiteEthnicGroupPage extends MultipleChoiceWithOtherPage {
 
-  clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish() {
-    browser.element('[id="white-ethnic-group-answer-1"]').click()
+  clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish() {
+    browser.element('[id="white-ethnic-group-england-answer-1"]').click()
     return this
   }
 
-  clickWhiteEthnicGroupAnswerIrish() {
-    browser.element('[id="white-ethnic-group-answer-2"]').click()
+  clickWhiteEthnicGroupEnglandAnswerIrish() {
+    browser.element('[id="white-ethnic-group-england-answer-2"]').click()
     return this
   }
 
-  clickWhiteEthnicGroupAnswerGypsyOrIrishTraveller() {
-    browser.element('[id="white-ethnic-group-answer-3"]').click()
+  clickWhiteEthnicGroupEnglandAnswerGypsyOrIrishTraveller() {
+    browser.element('[id="white-ethnic-group-england-answer-3"]').click()
     return this
   }
 
-  clickWhiteEthnicGroupAnswerOther() {
-    browser.element('[id="white-ethnic-group-answer-4"]').click()
+  clickWhiteEthnicGroupEnglandAnswerOther() {
+    browser.element('[id="white-ethnic-group-england-answer-4"]').click()
+    return this
+  }
+
+  clickWhiteEthnicGroupWalesAnswerWelshEnglishScottishNorthernIrishBritish() {
+    browser.element('[id="white-ethnic-group-wales-answer-1"]').click()
+    return this
+  }
+
+  clickWhiteEthnicGroupWalesAnswerIrish() {
+    browser.element('[id="white-ethnic-group-wales-answer-2"]').click()
+    return this
+  }
+
+  clickWhiteEthnicGroupWalesAnswerGypsyOrIrishTraveller() {
+    browser.element('[id="white-ethnic-group-wales-answer-3"]').click()
+    return this
+  }
+
+  clickWhiteEthnicGroupWalesAnswerOther() {
+    browser.element('[id="white-ethnic-group-wales-answer-4"]').click()
     return this
   }
 

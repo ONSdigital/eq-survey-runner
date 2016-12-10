@@ -12,12 +12,12 @@ class PassportsPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  clickPassportsAnswerNone() {
+  clickPassportsAnswerOther() {
     browser.element('[id="passports-answer-3"]').click()
     return this
   }
 
-  clickPassportsAnswerOther() {
+  clickPassportsAnswerNone() {
     browser.element('[id="passports-answer-4"]').click()
     return this
   }

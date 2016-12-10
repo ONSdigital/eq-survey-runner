@@ -7,9 +7,17 @@ class CorrectNamePage extends QuestionPage {
     return this
   }
 
+  getFirstName(value) {
+    return browser.element('[name="first-name"]').getValue()
+  }
+
   setMiddleNames(value) {
     browser.setValue('[name="middle-names"]', value)
     return this
+  }
+
+  getMiddleNames(value) {
+    return browser.element('[name="middle-names"]').getValue()
   }
 
   setLastName(value) {
@@ -17,8 +25,8 @@ class CorrectNamePage extends QuestionPage {
     return this
   }
 
-  getCorrectNameAnswer(value) {
-    return browser.element('[name="correct-name-answer"]').getValue()
+  getLastName(value) {
+    return browser.element('[name="last-name"]').getValue()
   }
 
 }
