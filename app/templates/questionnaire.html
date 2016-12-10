@@ -41,7 +41,8 @@
 
     {% endif %}
 
-    <form action="" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
+
+    <form action="{{form_action|default('')}}" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
 
         {% set group = state.schema_item.container %}
 
