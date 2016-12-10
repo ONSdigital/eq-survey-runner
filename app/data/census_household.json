@@ -3282,7 +3282,7 @@
                                 "id": "other-passports",
                                 "when": {
                                     "id": "passports-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "Other"
                                 }
                             }
@@ -3678,10 +3678,20 @@
                     "routing_rules": [
                         {
                             "goto": {
+                                "id": "jobseeker",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "contains",
+                                    "value": "none of the above?"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "working as an employee?"
                                 }
                             }
@@ -3691,7 +3701,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "on a government sponsored training scheme?"
                                 }
                             }
@@ -3701,7 +3711,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "self-employed or freelance?"
                                 }
                             }
@@ -3711,7 +3721,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "working paid or unpaid for you own or your family's business?"
                                 }
                             }
@@ -3721,7 +3731,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "away from work ill, on maternity leave, on holiday or temporarily laid off?"
                                 }
                             }
@@ -3731,7 +3741,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "doing any other kind of paid work?"
                                 }
                             }
