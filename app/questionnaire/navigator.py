@@ -91,7 +91,6 @@ class Navigator:
         :return:
         """
         self.answer_store = answer_store
-        self.location_path = self.get_location_path()
 
     def get_routing_path(self, group_id, group_instance):
         """
@@ -193,8 +192,6 @@ class Navigator:
 
     @staticmethod
     def _get_current_location_index(path, current_group_id, current_block_id, current_iteration):
-        current_group_id = current_group_id or self.group_id
-
         this_block = {
             "block_id": current_block_id,
             "group_id": current_group_id,
@@ -243,7 +240,7 @@ class Navigator:
         :return:
         """
         if completed_blocks:
-            incomplete_blocks = [item for item in self.location_path if item not in completed_blocks]
+            incomplete_blocks = [item for item in self.get_location_path() if item not in completed_blocks]
 
             if incomplete_blocks:
                 return incomplete_blocks[0]
