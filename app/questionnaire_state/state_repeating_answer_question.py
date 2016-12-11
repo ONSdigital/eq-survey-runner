@@ -34,7 +34,7 @@ class RepeatingAnswerStateQuestion(StateQuestion):
         return True
 
     def create_new_answer_state(self, answer_schema, answer_instance, group_instance=0):
-        new_answer_schema = copy.deepcopy(answer_schema)
+        new_answer_schema = copy.copy(answer_schema)
         suffix = '_' + str(answer_instance) if answer_instance > 0 else ''
         widget_id = answer_schema.id + suffix
         new_answer_schema.widget = type(answer_schema.widget)(widget_id)
