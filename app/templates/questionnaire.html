@@ -63,10 +63,11 @@
 
       <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
       <br/>
+      {% if state.group_instance > 0 or not block.first_in_schema() %}
       <div class="u-mt-xs">
         <a id="bottom-previous" class="mars" href="{{previous_location}}">Previous</a>
       </div>
-
+      {% endif %}
     </form>
   </div>
 </div>

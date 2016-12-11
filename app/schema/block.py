@@ -26,3 +26,8 @@ class Block(Item):
 
     def get_state_class(self):
         return StateBlock
+
+    def first_in_schema(self):
+        first_block_in_group_blocks = self.container.blocks.index(self) == 0
+        first_group_in_questionnaire_groups = self.container.container.groups.index(self.container) == 0
+        return first_block_in_group_blocks and first_group_in_questionnaire_groups
