@@ -2,8 +2,18 @@ import QuestionPage from '../../question.page'
 
 class CorrectNamePage extends QuestionPage {
 
-  setCorrectNameAnswer(value) {
-    browser.setValue('[name="correct-name-answer"]', value)
+  setFirstName(value) {
+    browser.setValue('[name="first-name"]', value)
+    return this
+  }
+
+  setMiddleNames(value) {
+    browser.setValue('[name="middle-names"]', value)
+    return this
+  }
+
+  setLastName(value) {
+    browser.setValue('[name="last-name"]', value)
     return this
   }
 

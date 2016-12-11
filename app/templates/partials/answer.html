@@ -2,14 +2,14 @@
 
 {% set invalid = answer.is_valid == False %}
 
-<div class="answer answer--{{answer.schema_item.type|lower}} {{'js-has-errors' if invalid}}" id="{{answer.id}}">
+<div class="answer answer--{{answer.schema_item.type|lower}} {{'js-has-errors' if invalid}}" id="{{answer.schema_item.widget.id}}">
 
   {%- set answer_guidance %}
     {% if answer.schema_item.guidance %}
       {% include 'partials/guidance.html' %}
     {% endif %}
   {% endset -%}
-  
+
   {%- set answer_fields %}
     <div class="answer__fields">
       {% if answer.schema_item.display and answer.schema_item.display.properties %}

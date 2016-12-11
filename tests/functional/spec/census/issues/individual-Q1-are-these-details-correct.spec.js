@@ -1,4 +1,4 @@
-import {openAndStartCensusQuestionnaire} from '../../../helpers'
+import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
 import HouseholdComposition from '../../../pages/surveys/census/household/household-composition.page.js'
@@ -21,7 +21,7 @@ import Sex from '../../../pages/surveys/census/household/sex.page.js'
 describe('Individual section Question 1', function () {
 
   it('Given I am answering question 1 in the individual detail section, When I do not select any response, Then I am routed to What is you sex question 2 ', function () {
-    openAndStartCensusQuestionnaire('census_household.json', true)
+    startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
     HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()

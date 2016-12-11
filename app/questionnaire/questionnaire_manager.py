@@ -1,7 +1,8 @@
 import logging
 
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
-from app.questionnaire.navigator import Navigator, evaluate_rule, get_metadata_value
+from app.questionnaire.navigator import Navigator
+from app.questionnaire.rules import evaluate_rule, get_metadata_value
 
 from app.templating.schema_context import build_schema_context
 from app.templating.template_renderer import renderer
@@ -151,9 +152,12 @@ class QuestionnaireManager(object):
         return next_answer_instance_id
 
     def remove_answer(self, location, answer_store, index_to_remove):
-        answer = self.state.get_answers()[int(index_to_remove)]
-        question = answer.parent
-        question.remove_answer(answer)
 
-        answer_store.remove(answer.flatten())
+        state_answers = self.state.get_answers()
+        for state_answer in state_answers:
+            if state_answer.answer_instance == index_to_remove:
+                question = state_answer.parent
+                question.remove_answer(state_answer)
+                answer_store.remove(state_answer.flatten())
+
         self.update_questionnaire_store(location)

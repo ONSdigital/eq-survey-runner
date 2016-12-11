@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openAndStartCensusQuestionnaire} from '../helpers'
+import {startCensusQuestionnaire} from '../helpers'
 
 import PermanentOrFamilyHome from '../pages/surveys/census/household/permanent-or-family-home.page.js'
 import ElsePermanentOrFamilyHome from '../pages/surveys/census/household/else-permanent-or-family-home.page.js'
@@ -79,25 +79,43 @@ const expect = chai.expect
 describe('Census Household', function () {
 
     it('Given Respondent Home has identified the respondent should have the Household Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function () {
-        openAndStartCensusQuestionnaire('census_household.json')
+        startCensusQuestionnaire('census_household.json')
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
-        HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
         WhoLivesHereCompleted.submit()
 
         // household-and-accommodation
-        TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
-        TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
-        SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
-        NumberOfBedrooms.setNumberOfBedroomsAnswer(3).submit()
-        CentralHeating.clickCentralHeatingAnswerGas().submit()
-        OwnOrRent.clickOwnOrRentAnswerOwnsOutright().submit()
-        NumberOfVehicles.setNumberOfVehiclesAnswer(2).submit()
-        HouseholdAndAccommodationCompleted.submit()
+        completeHouseholdAndAccommodation()
+
+        // household-member
+        completeHouseholdDetails()
+
+        // visitors
+        NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
+        completeVisitorSection()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+    })
+
+    it('Given Respondent Home has identified the respondent should have the Household Questionnaire with the sexual id question, When I complete the EQ, Then I should be asked the sexual id question', function () {
+        startCensusQuestionnaire('census_household.json', true)
+
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        completeHouseholdAndAccommodation()
 
         // household-member
         HouseholdMemberBegin.submit()
@@ -113,6 +131,7 @@ describe('Census Household', function () {
         NationalIdentity.clickNationalIdentityAnswerBritish().submit()
         EthnicGroup.clickEthnicGroupAnswerWhite().submit()
         WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
         UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
         Language.clickLanguageAnswerEnglish().submit()
         Religion.clickReligionAnswerNoReligion().submit()
@@ -152,125 +171,26 @@ describe('Census Household', function () {
 
         // visitors
         NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
-        VisitorName.setVisitorNameAnswer("Jane Doe").submit()
-        VisitorSex.clickVisitorSexAnswerFemale().submit()
-        VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(5).setVisitorDateOfBirthAnswerYear(1990).submit()
-        VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
-        VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
+        completeVisitorSection()
 
         Confirmation.submit()
 
         // Thank You
         expect(ThankYou.isOpen()).to.be.true
     })
-
-    it('Given Respondent Home has identified the respondent should have the Household Questionnaire with the sexual id question, When I complete the EQ, Then I should be asked the sexual id question', function () {
-        openAndStartCensusQuestionnaire('census_household.json', true)
-
-        // who-lives-here
-        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
-        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
-        OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
-        HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
-        WhoLivesHereCompleted.submit()
-
-        // household-and-accommodation
-        TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
-        TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
-        SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
-        NumberOfBedrooms.setNumberOfBedroomsAnswer(3).submit()
-        CentralHeating.clickCentralHeatingAnswerGas().submit()
-        OwnOrRent.clickOwnOrRentAnswerOwnsOutright().submit()
-        NumberOfVehicles.setNumberOfVehiclesAnswer(2).submit()
-        HouseholdAndAccommodationCompleted.submit()
-
-        // household-member
-        HouseholdMemberBegin.submit()
-        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
-        Sex.clickSexAnswerMale().submit()
-        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
-        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
-        AnotherAddress.clickAnotherAddressAnswerNo().submit()
-        InEducation.clickInEducationAnswerNo().submit()
-        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
-        Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
-        Religion.clickReligionAnswerNoReligion().submit()
-        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
-        Passports.clickPassportsAnswerUnitedKingdom().submit()
-        Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
-        Volunteering.clickVolunteeringAnswerNo().submit()
-        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-        HouseholdMemberCompleted.submit()
-
-        HouseholdMemberBegin.submit()
-        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
-        Sex.clickSexAnswerMale().submit()
-        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
-        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
-        AnotherAddress.clickAnotherAddressAnswerNo().submit()
-        InEducation.clickInEducationAnswerNo().submit()
-        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
-        Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
-        Religion.clickReligionAnswerNoReligion().submit()
-        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
-        Passports.clickPassportsAnswerUnitedKingdom().submit()
-        Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
-        Volunteering.clickVolunteeringAnswerNo().submit()
-        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-        HouseholdMemberCompleted.submit()
-
-        // visitors
-        NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
-        VisitorName.setVisitorNameAnswer("Jane Doe").submit()
-        VisitorSex.clickVisitorSexAnswerFemale().submit()
-        VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(5).setVisitorDateOfBirthAnswerYear(1990).submit()
-        VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
-        VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
-
-        Confirmation.submit()
-
-        // Thank You
-        expect(ThankYou.isOpen()).to.be.true
-    })
-
 
     it('Given a census household survey with welsh region, When i enter valid data, Then the survey should submit successfully', function () {
-        openAndStartCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+        startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
-        HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
         WhoLivesHereCompleted.submit()
 
         // household-and-accommodation
-        TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
-        TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
-        SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
-        NumberOfBedrooms.setNumberOfBedroomsAnswer(3).submit()
-        CentralHeating.clickCentralHeatingAnswerGas().submit()
-        OwnOrRent.clickOwnOrRentAnswerOwnsOutright().submit()
-        NumberOfVehicles.setNumberOfVehiclesAnswer(2).submit()
-        HouseholdAndAccommodationCompleted.submit()
+        completeHouseholdAndAccommodation()
 
         // household-member
         HouseholdMemberBegin.submit()
@@ -300,34 +220,31 @@ describe('Census Household', function () {
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
         Sex.clickSexAnswerMale().submit()
-        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(4).setDateOfBirthAnswerYear(1980).submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
         Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
-        CountryOfBirth.clickCountryOfBirthWalesAnswerWales().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
         NationalIdentity.clickNationalIdentityAnswerBritish().submit()
         EthnicGroup.clickEthnicGroupAnswerWhite().submit()
         WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
         UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageWelshAnswerEnglishOrWelsh().submit()
-        Religion.clickReligionWelshAnswerNoReligion().submit()
+        Language.clickLanguageAnswerEnglish().submit()
+        Religion.clickReligionAnswerNoReligion().submit()
         PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
         Passports.clickPassportsAnswerUnitedKingdom().submit()
         Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsWelshAnswerUndergraduateDegree().submit()
+        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerNo().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
         HouseholdMemberCompleted.submit()
 
         // visitors
         NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
-        VisitorName.setVisitorNameAnswer("Jane Doe").submit()
-        VisitorSex.clickVisitorSexAnswerFemale().submit()
-        VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(7).setVisitorDateOfBirthAnswerYear(1990).submit()
-        VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
-        VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
+        completeVisitorSection()
 
         Confirmation.submit()
 
@@ -336,20 +253,162 @@ describe('Census Household', function () {
     })
 
     it('Given a census household survey, When one person in household, Then persons name should appear on member details pages.', function () {
-        openAndStartCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+        startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
 
         // who-lives-here
         var person = 'John Smith'
-        var person2 = 'Jane Smith'
 
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, person).addPerson().setPersonName(1, 'Jane Smith').submit()
+        HouseholdComposition.setPersonName(0, person).submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        completeHouseholdAndAccommodation()
+
+        // household-member
+        HouseholdMemberBegin.submit()
+        expect(HouseholdMemberBegin.getDisplayedName()).to.contain(person)
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        expect(DetailsCorrect.getDisplayedName()).to.contain(person)
+        Sex.clickSexAnswerMale().submit()
+        expect(Sex.getDisplayedName()).to.contain(person)
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(4).setDateOfBirthAnswerYear(1980).submit()
+        expect(DateOfBirth.getDisplayedName()).to.contain(person)
+        Over16.clickOver16AnswerYes().submit()
+        expect(Over16.getDisplayedName()).to.contain(person)
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        expect(MaritalStatus.getDisplayedName()).to.contain(person)
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        expect(AnotherAddress.getDisplayedName()).to.contain(person)
+        InEducation.clickInEducationAnswerNo().submit()
+        expect(InEducation.getDisplayedName()).to.contain(person)
+        CountryOfBirth.clickCountryOfBirthWalesAnswerWales().submit()
+        expect(CountryOfBirth.getDisplayedName()).to.contain(person)
+        Carer.clickCarerAnswerNo().submit()
+        expect(Carer.getDisplayedName()).to.contain(person)
+        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        expect(NationalIdentity.getDisplayedName()).to.contain(person)
+        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
+        expect(EthnicGroup.getDisplayedName()).to.contain(person)
+        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        expect(WhiteEthnicGroup.getDisplayedName()).to.contain(person)
+        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
+        expect(UnderstandWelsh.getDisplayedName()).to.contain(person)
+        Language.clickLanguageWelshAnswerEnglishOrWelsh().submit()
+        expect(Language.getDisplayedName()).to.contain(person)
+        Religion.clickReligionWelshAnswerNoReligion().submit()
+        expect(Religion.getDisplayedName()).to.contain(person)
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        expect(PastUsualAddress.getDisplayedName()).to.contain(person)
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        expect(Passports.getDisplayedName()).to.contain(person)
+        Disability.clickDisabilityAnswerNo().submit()
+        expect(Disability.getDisplayedName()).to.contain(person)
+        Qualifications.clickQualificationsWelshAnswerUndergraduateDegree().submit()
+        expect(Qualifications.getDisplayedName()).to.contain(person)
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        expect(Volunteering.getDisplayedName()).to.contain(person)
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        HouseholdMemberCompleted.submit()
+
+        HouseholdMemberBegin.submit()
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(4).setDateOfBirthAnswerYear(1980).submit()
+        Over16.clickOver16AnswerYes().submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthWalesAnswerWales().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
+        Language.clickLanguageWelshAnswerEnglishOrWelsh().submit()
+        Religion.clickReligionWelshAnswerNoReligion().submit()
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        Disability.clickDisabilityAnswerNo().submit()
+        Qualifications.clickQualificationsWelshAnswerUndergraduateDegree().submit()
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        HouseholdMemberCompleted.submit()
+
+        // visitors
+        NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
+        completeVisitorSection()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+    })
+
+    it('Given two people are in the household, When I complete the household details for person one, Then I should be asked household details for person two.', function () {
+        startCensusQuestionnaire('census_household.json')
+
+        // who-lives-here
+<<<<<<< HEAD
+        var person = 'John Smith'
+        var person2 = 'Jane Smith'
+
+=======
+>>>>>>> master
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
         WhoLivesHereCompleted.submit()
 
         // household-and-accommodation
+        completeHouseholdAndAccommodation()
+
+        // household-member
+        completeHouseholdDetails()
+        completeHouseholdDetails()
+
+        // visitors
+        NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
+        completeVisitorSection()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+    })
+
+    it('Given I have two visitors, When I complete the visitor details for person one, Then I should be asked visitor details for person two.', function () {
+        startCensusQuestionnaire('census_household.json')
+
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        completeHouseholdAndAccommodation()
+
+        // household-member
+        completeHouseholdDetails()
+
+        // Complete visitors for 2 people
+        NumberOfVisitors.setNumberOfVisitorsAnswer(2).submit()
+        completeVisitorSection()
+        completeVisitorSection()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+    })
+
+    function completeHouseholdAndAccommodation() {
         TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
         TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
         SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
@@ -358,111 +417,39 @@ describe('Census Household', function () {
         OwnOrRent.clickOwnOrRentAnswerOwnsOutright().submit()
         NumberOfVehicles.setNumberOfVehiclesAnswer(2).submit()
         HouseholdAndAccommodationCompleted.submit()
+    }
 
-        // household-member
-        HouseholdMemberBegin.submit()
-        expect(HouseholdMemberBegin.getDisplayedName()).to.equal(person)
-        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
-        expect(DetailsCorrect.getDisplayedName()).to.equal(person)
-        Sex.clickSexAnswerMale().submit()
-        expect(Sex.getDisplayedName()).to.equal(person)
-        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(4).setDateOfBirthAnswerYear(1980).submit()
-        expect(DateOfBirth.getDisplayedName()).to.equal(person)
-        Over16.clickOver16AnswerYes().submit()
-        expect(Over16.getDisplayedName()).to.equal(person)
-        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
-        expect(MaritalStatus.getDisplayedName()).to.equal(person)
-        AnotherAddress.clickAnotherAddressAnswerNo().submit()
-        expect(AnotherAddress.getDisplayedName()).to.equal(person)
-        InEducation.clickInEducationAnswerNo().submit()
-        expect(InEducation.getDisplayedName()).to.equal(person)
-        CountryOfBirth.clickCountryOfBirthWalesAnswerWales().submit()
-        expect(CountryOfBirth.getDisplayedName()).to.equal(person)
-        Carer.clickCarerAnswerNo().submit()
-        expect(Carer.getDisplayedName()).to.equal(person)
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        expect(NationalIdentity.getDisplayedName()).to.equal(person)
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        expect(EthnicGroup.getDisplayedName()).to.equal(person)
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        expect(WhiteEthnicGroup.getDisplayedName()).to.equal(person)
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        expect(UnderstandWelsh.getDisplayedName()).to.equal(person)
-        Language.clickLanguageWelshAnswerEnglishOrWelsh().submit()
-        expect(Language.getDisplayedName()).to.equal(person)
-        Religion.clickReligionWelshAnswerNoReligion().submit()
-        expect(Religion.getDisplayedName()).to.equal(person)
-        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
-        expect(PastUsualAddress.getDisplayedName()).to.equal(person)
-        Passports.clickPassportsAnswerUnitedKingdom().submit()
-        expect(Passports.getDisplayedName()).to.equal(person)
-        Disability.clickDisabilityAnswerNo().submit()
-        expect(Disability.getDisplayedName()).to.equal(person)
-        Qualifications.clickQualificationsWelshAnswerUndergraduateDegree().submit()
-        expect(Qualifications.getDisplayedName()).to.equal(person)
-        Volunteering.clickVolunteeringAnswerNo().submit()
-        expect(Volunteering.getDisplayedName()).to.equal(person)
-        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-        HouseholdMemberCompleted.submit()
-
-        HouseholdMemberBegin.submit()
-        expect(HouseholdMemberBegin.getDisplayedName()).to.equal(person2)
-        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
-        expect(DetailsCorrect.getDisplayedName()).to.equal(person2)
-        Sex.clickSexAnswerMale().submit()
-        expect(Sex.getDisplayedName()).to.equal(person2)
-        DateOfBirth.setDateOfBirthAnswerDay(1).setDateOfBirthAnswerMonth(5).setDateOfBirthAnswerYear(1982).submit()
-        expect(DateOfBirth.getDisplayedName()).to.equal(person2)
-        Over16.clickOver16AnswerYes().submit()
-        expect(Over16.getDisplayedName()).to.equal(person2)
-        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
-        expect(MaritalStatus.getDisplayedName()).to.equal(person2)
-        AnotherAddress.clickAnotherAddressAnswerNo().submit()
-        expect(AnotherAddress.getDisplayedName()).to.equal(person2)
-        InEducation.clickInEducationAnswerNo().submit()
-        expect(InEducation.getDisplayedName()).to.equal(person2)
-        CountryOfBirth.clickCountryOfBirthWalesAnswerWales().submit()
-        expect(CountryOfBirth.getDisplayedName()).to.equal(person2)
-        Carer.clickCarerAnswerNo().submit()
-        expect(Carer.getDisplayedName()).to.equal(person2)
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        expect(NationalIdentity.getDisplayedName()).to.equal(person2)
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        expect(EthnicGroup.getDisplayedName()).to.equal(person2)
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        expect(WhiteEthnicGroup.getDisplayedName()).to.equal(person2)
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        expect(UnderstandWelsh.getDisplayedName()).to.equal(person2)
-        Language.clickLanguageWelshAnswerEnglishOrWelsh().submit()
-        expect(Language.getDisplayedName()).to.equal(person2)
-        Religion.clickReligionWelshAnswerNoReligion().submit()
-        expect(Religion.getDisplayedName()).to.equal(person2)
-        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
-        expect(PastUsualAddress.getDisplayedName()).to.equal(person2)
-        Passports.clickPassportsAnswerUnitedKingdom().submit()
-        expect(Passports.getDisplayedName()).to.equal(person2)
-        Disability.clickDisabilityAnswerNo().submit()
-        expect(Disability.getDisplayedName()).to.equal(person2)
-        Qualifications.clickQualificationsWelshAnswerUndergraduateDegree().submit()
-        expect(Qualifications.getDisplayedName()).to.equal(person2)
-        Volunteering.clickVolunteeringAnswerNo().submit()
-        expect(Volunteering.getDisplayedName()).to.equal(person2)
-        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-        HouseholdMemberCompleted.submit()
-
-        // visitors
-        NumberOfVisitors.setNumberOfVisitorsAnswer(1).submit()
+    function completeVisitorSection() {
         VisitorName.setVisitorNameAnswer("Jane Doe").submit()
         VisitorSex.clickVisitorSexAnswerFemale().submit()
         VisitorDateOfBirth.setVisitorDateOfBirthAnswerDay(10).setVisitorDateOfBirthAnswerMonth(7).setVisitorDateOfBirthAnswerYear(1990).submit()
         VisitorUkResident.clickVisitorUkResidentAnswerYes().submit()
         VisitorAddress.setVisitorAddressAnswerBuilding(50).setVisitorAddressAnswerStreet("My Road").setVisitorAddressAnswerCity("Newport").setVisitorAddressAnswerPostcode("AB123CD").submit()
+    }
 
-        Confirmation.submit()
-
-        // Thank You
-        expect(ThankYou.isOpen()).to.be.true
-    })
-
+    function completeHouseholdDetails() {
+        HouseholdMemberBegin.submit()
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
+        Over16.clickOver16AnswerYes().submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
+        Language.clickLanguageAnswerEnglish().submit()
+        Religion.clickReligionAnswerNoReligion().submit()
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        Disability.clickDisabilityAnswerNo().submit()
+        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        HouseholdMemberCompleted.submit()
+    }
 })
-

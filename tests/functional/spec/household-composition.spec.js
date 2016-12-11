@@ -16,10 +16,10 @@ describe('Household composition question for census test.', function() {
     startQuestionnaire(household_composition_schema)
 
     //When
-    HouseholdCompositionPage.setPersonName(0, 'Person One').submit()
+    HouseholdCompositionPage.setPersonName(0, 'Alpha', '', 'One').submit()
 
     // Then
-    expect(HouseholdCompositionSummary.isNameDisplayed('Person One')).to.be.true
+    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
   })
 
   it('Given no people added, when I enter another name, then there should be two input fields displayed.', function() {
@@ -27,11 +27,11 @@ describe('Household composition question for census test.', function() {
     startQuestionnaire(household_composition_schema)
 
     //When
-    HouseholdCompositionPage.setPersonName(0, 'Person One').addPerson()
+    HouseholdCompositionPage.setPersonName(0, 'Alpha', '', 'One').addPerson()
 
     // Then
-    expect(HouseholdCompositionPage.isInputVisible(0)).to.be.true
-    expect(HouseholdCompositionPage.isInputVisible(1)).to.be.true
+    expect(HouseholdCompositionPage.isInputVisible(0, 'first-name')).to.be.true
+    expect(HouseholdCompositionPage.isInputVisible(1, 'first-name')).to.be.true
   })
 
   it('Given three people added, when submitted, all three names should appear on summary.', function() {
@@ -40,18 +40,17 @@ describe('Household composition question for census test.', function() {
 
     //When
     HouseholdCompositionPage
-        .setPersonName(0, 'Person One')
+        .setPersonName(0, 'Alpha', '', 'One')
         .addPerson()
-        .setPersonName(1, 'Person Two')
+        .setPersonName(1, 'Bravo', '', 'Two')
         .addPerson()
-        .setPersonName(2, 'Person Three')
+        .setPersonName(2, 'Charlie', '', 'Three')
         .submit()
 
     // Then
-    var names = HouseholdCompositionSummary.getHouseholdNames()
-    assert.include(names, 'Person One')
-    assert.include(names, 'Person Two')
-    assert.include(names, 'Person Three')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
+    HouseholdCompositionSummary.isNameDisplayed('Bravo Two')
+    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
   })
 
  it('Given two people added, when I remove second person, only first person should appear on summary.', function() {
@@ -60,52 +59,66 @@ describe('Household composition question for census test.', function() {
 
     //When
     HouseholdCompositionPage
-        .setPersonName(0, 'Person One')
+        .setPersonName(0, 'Alpha', '', 'One')
         .addPerson()
-        .setPersonName(1, 'Person Two')
+        .setPersonName(1, 'Bravo', '', 'Two')
         .submit()
 
     // Then
-    var names = HouseholdCompositionSummary.getHouseholdNames()
-    assert.include(names, 'Person One')
-    assert.include(names, 'Person Two')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha')
+    HouseholdCompositionSummary.isNameDisplayed('Bravo')
 
     // When
-    HouseholdCompositionSummary.clickEdit()
+    HouseholdCompositionSummary.clickAddAnother().submit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then
-    names = HouseholdCompositionSummary.getHouseholdNames()
-    assert.include(names, 'Person One')
+
+    HouseholdCompositionSummary.isNameDisplayed('Alpha')
+    HouseholdCompositionSummary.isNameDisplayed('Bravo')
   })
 
-   it('Given three people added, when I remove second person, first and third person should appear on summary.', function() {
+ it('Given three people added, when I remove second person, first and third person should appear on summary.', function() {
     //Given
     startQuestionnaire(household_composition_schema)
 
     //When
     HouseholdCompositionPage
-        .setPersonName(0, 'Person One')
+        .setPersonName(0, 'Alpha', '', 'One')
         .addPerson()
-        .setPersonName(1, 'Person Two')
+        .setPersonName(1, 'Bravo', '', 'Two')
         .addPerson()
-        .setPersonName(2, 'Person Three')
+        .setPersonName(2, 'Charlie', '', 'Three')
         .submit()
 
     // Then
-    var names = HouseholdCompositionSummary.getHouseholdNames()
-    assert.include(names, 'Person One')
-    assert.include(names, 'Person Two')
-    assert.include(names, 'Person Three')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
+    HouseholdCompositionSummary.isNameDisplayed('Bravo Two')
+    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
 
     // When
-    HouseholdCompositionSummary.clickEdit()
+    HouseholdCompositionSummary.clickAddAnother().submit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then
-    names = HouseholdCompositionSummary.getHouseholdNames()
-    assert.include(names, 'Person One')
-    assert.include(names, 'Person Three')
+    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
+    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
+  })
+
+  it('Given first, middle and last names entered, then each part of name should appear on summary.', function() {
+    //Given
+    startQuestionnaire(household_composition_schema)
+
+    //When
+    HouseholdCompositionPage
+        .setPersonName(0, 'Alpha', 'Bravo', 'Charlie')
+        .addPerson()
+        .setPersonName(1, 'Delta', 'Echo', 'Foxtrot')
+        .submit()
+
+    // Then
+    HouseholdCompositionSummary.isNameDisplayed('Alpha Bravo Charlie')
+    HouseholdCompositionSummary.isNameDisplayed('Delta Echo Foxtrot')
   })
 
 })

@@ -6,7 +6,7 @@ export const getUri = uri => browser.options.baseUrl + uri
 
 export const getRandomString = length => sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length).join('')
 
-export const openAndStartCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG') => {
+export const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG') => {
   devPage.open()
     .setUserId(getRandomString(10))
     .setCollectionId(getRandomString(10))
@@ -18,7 +18,6 @@ export const openAndStartCensusQuestionnaire = (schema, sexualIdentity = false, 
   }
 
   devPage.submit()
-  landingPage.getStarted()
 }
 
 export const openQuestionnaire = (schema, userId = getRandomString(10), collectionId = getRandomString(10)) => {

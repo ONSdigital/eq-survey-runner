@@ -204,6 +204,25 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['data'][3]['answer_instance'], 0)
             self.assertEqual(answer_object['data'][3]['value'], '63 Somewhere')
 
+    def test_convert_census_answers_multiple_answers(self):
+        with self.application.test_request_context():
+            routing_path = [location(group_id='favourite food', block_id='crisps')]
+            answers = [create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite food', block_id='crisps')]
+            questionnaire = Questionnaire()
+            questionnaire.survey_id = '021'
+            questionnaire.data_version = '0.0.2'
+
+            # When
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)
+
+            # Then
+            self.assertEqual(len(answer_object['data']), 1)
+            self.assertEqual(answer_object['data'][0]['group_id'], 'favourite food')
+            self.assertEqual(answer_object['data'][0]['group_instance'], 0)
+            self.assertEqual(answer_object['data'][0]['block_id'], 'crisps')
+            self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
+            self.assertEqual(answer_object['data'][0]['value'], ['Ready salted', 'Sweet chilli'])
+
     def test_converter_raises_runtime_error_for_unsupported_version(self):
         with self.application.test_request_context():
             questionnaire = Questionnaire()

@@ -147,3 +147,254 @@ class TestRepeatingAnswerStateQuestion(TestCase):
         answer_id, answer_index = extract_answer_instance_id('abcdefg_12345')
         self.assertEqual(answer_id, 'abcdefg')
         self.assertEqual(answer_index, 12345)
+
+    def test_answers_grouped_by_instance_id_no_answers(self):
+        # Given
+        question_state = RepeatingAnswerStateQuestion('question_id', MagicMock())
+
+        # When
+        answers = question_state.answers_grouped_by_instance()
+
+        # Then
+        self.assertEqual(len(answers), 0)
+
+    def test_answers_grouped_by_instance_id_one_answer_no_instances(self):
+        # Given
+        question_state = RepeatingAnswerStateQuestion('question_id', MagicMock())
+
+        schema_answer = Answer('answer')
+        schema_answer.widget = TextWidget('answer')
+        question_state.schema_item.answers = [schema_answer]
+
+        question_state.answers = []
+
+        # When
+        result = question_state.answers_grouped_by_instance()
+
+        # Then
+        self.assertEqual(len(result), 0)
+
+    def test_answers_grouped_by_instance_id_one_answer_one_instance(self):
+        # Given
+        question_state = RepeatingAnswerStateQuestion('question_id', MagicMock())
+
+        schema_answer = Answer('answer')
+        schema_answer.widget = TextWidget('answer')
+        question_state.schema_item.answers = [schema_answer]
+
+        state_answer = MagicMock()
+        state_answer.id = 'answer'
+        state_answer.answer_instance = 0
+
+        question_state.answers = [state_answer]
+
+        # When
+        result = question_state.answers_grouped_by_instance()
+
+        # Then
+        self.assertEqual(len(result), 1)
+        self.assertEqual(len(result[0]), 1)
+        self.assertEqual(result[0][0], state_answer)
+
+    def test_answers_grouped_by_instance_id_one_answer_many_instances(self):
+        # Given
+        question_state = RepeatingAnswerStateQuestion('question_id', MagicMock())
+
+        schema_answer = Answer('answer')
+        schema_answer.widget = TextWidget('answer')
+        question_state.schema_item.answers = [schema_answer]
+
+        state_answer = MagicMock()
+        state_answer.id = 'answer'
+        state_answer.answer_instance = 0
+
+        state_answer1 = MagicMock()
+        state_answer1.id = 'answer'
+        state_answer1.answer_instance = 1
+
+        question_state.answers = [state_answer, state_answer1]
+
+        # When
+        result = question_state.answers_grouped_by_instance()
+
+        # Then
+        self.assertEqual(len(result), 2)
+        self.assertEqual(len(result[0]), 1)
+        self.assertEqual(result[0][0], state_answer)
+        self.assertEqual(len(result[1]), 1)
+        self.assertEqual(result[1][0], state_answer1)
+
+    def test_answers_grouped_by_instance_id_many_answers_one_instance(self):
+        # Given
+        question_state = RepeatingAnswerStateQuestion('question_id', MagicMock())
+
+        first_name_schema = Answer('first-name')
+        first_name_schema.widget = TextWidget('first-name')
+
+        middle_name_schema = Answer('middle-names')
+        middle_name_schema.widget = TextWidget('middle-names')
+
+        last_name_schema = Answer('last-name')
+        last_name_schema.widget = TextWidget('last-name')
+
+        question_state.schema_item.answers = [
+            first_name_schema,
+            middle_name_schema,
+            last_name_schema
+        ]
+
+        first_name = MagicMock()
+        first_name.id = 'first-name'
+        first_name.answer_instance = 0
+
+        middle_name = MagicMock()
+        middle_name.id = 'middle-names'
+        middle_name.answer_instance = 0
+
+        last_name = MagicMock()
+        last_name.id = 'last-name'
+        last_name.answer_instance = 0
+
+        question_state.answers = [first_name, middle_name, last_name]
+
+        # When
+        result = question_state.answers_grouped_by_instance()
+
+        # Then
+        self.assertEqual(len(result), 1)
+        self.assertEqual(len(result[0]), 3)
+        self.assertEqual(result[0][0], first_name)
+        self.assertEqual(result[0][1], middle_name)
+        self.assertEqual(result[0][2], last_name)
+
+    def test_answers_grouped_by_instance_id_many_answers_many_instance(self):
+        # Given
+        question_state = RepeatingAnswerStateQuestion('question_id', MagicMock())
+
+        first_name_schema = Answer('first-name')
+        first_name_schema.widget = TextWidget('first-name')
+
+        middle_name_schema = Answer('middle-names')
+        middle_name_schema.widget = TextWidget('middle-names')
+
+        last_name_schema = Answer('last-name')
+        last_name_schema.widget = TextWidget('last-name')
+
+        question_state.schema_item.answers = [
+            first_name_schema,
+            middle_name_schema,
+            last_name_schema
+        ]
+
+        first_name = MagicMock()
+        first_name.id = 'first-name'
+        first_name.answer_instance = 0
+
+        middle_name = MagicMock()
+        middle_name.id = 'middle-names'
+        middle_name.answer_instance = 0
+
+        last_name = MagicMock()
+        last_name.id = 'last-name'
+        last_name.answer_instance = 0
+
+        first_name1 = MagicMock()
+        first_name1.id = 'first-name'
+        first_name1.answer_instance = 1
+
+        middle_name1 = MagicMock()
+        middle_name1.id = 'middle-names'
+        middle_name1.answer_instance = 1
+
+        last_name1 = MagicMock()
+        last_name1.id = 'last-name'
+        last_name1.answer_instance = 1
+
+        first_name2 = MagicMock()
+        first_name2.id = 'first-name'
+        first_name2.answer_instance = 2
+
+        middle_name2 = MagicMock()
+        middle_name2.id = 'middle-names'
+        middle_name2.answer_instance = 2
+
+        last_name2 = MagicMock()
+        last_name2.id = 'last-name'
+        last_name2.answer_instance = 2
+
+        question_state.answers = [
+            first_name, middle_name, last_name,
+            first_name1, middle_name1, last_name1,
+            first_name2, middle_name2, last_name2,
+        ]
+
+        # When
+        result = question_state.answers_grouped_by_instance()
+
+        # Then
+        self.assertEqual(len(result), 3)
+
+        # Instance 0
+        self.assertEqual(len(result[0]), 3)
+        self.assertEqual(result[0][0], first_name)
+        self.assertEqual(result[0][1], middle_name)
+        self.assertEqual(result[0][2], last_name)
+
+        # Instance 1
+        self.assertEqual(len(result[1]), 3)
+        self.assertEqual(result[1][0], first_name1)
+        self.assertEqual(result[1][1], middle_name1)
+        self.assertEqual(result[1][2], last_name1)
+
+        # Instance 2
+        self.assertEqual(len(result[2]), 3)
+        self.assertEqual(result[2][0], first_name2)
+        self.assertEqual(result[2][1], middle_name2)
+        self.assertEqual(result[2][2], last_name2)
+
+    def test_answers_grouped_by_instance_id_odd_number_of_instances(self):
+        # Given
+        question_state = RepeatingAnswerStateQuestion('question_id', MagicMock())
+
+        first_name_schema = Answer('first-name')
+        first_name_schema.widget = TextWidget('first-name')
+
+        last_name_schema = Answer('last-name')
+        last_name_schema.widget = TextWidget('last-name')
+
+        question_state.schema_item.answers = [
+            first_name_schema,
+            last_name_schema
+        ]
+
+        first_name = MagicMock()
+        first_name.id = 'first-name'
+        first_name.answer_instance = 0
+
+        last_name = MagicMock()
+        last_name.id = 'last-name'
+        last_name.answer_instance = 0
+
+        first_name1 = MagicMock()
+        first_name1.id = 'first-name'
+        first_name1.answer_instance = 1
+
+        question_state.answers = [
+            first_name, last_name,
+            first_name1
+        ]
+
+        # When
+        result = question_state.answers_grouped_by_instance()
+
+        # Then
+        self.assertEqual(len(result), 2)
+
+        # Instance 0
+        self.assertEqual(len(result[0]), 2)
+        self.assertEqual(result[0][0], first_name)
+        self.assertEqual(result[0][1], last_name)
+
+        # Instance 1
+        self.assertEqual(len(result[1]), 1)
+        self.assertEqual(result[1][0], first_name1)

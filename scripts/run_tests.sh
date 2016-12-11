@@ -40,5 +40,18 @@ display_result $? 2 "Unit tests"
 
 # Run front end tests
 npm config set python python2.7
-yarn test
-display_result $? 1 "Front end tests"
+
+yarn test_unit_no_watch
+display_result $? 1 "Front end unit tests"
+
+if [ -z "$EQ_FUNCTIONAL_TEST_SUITES" ]; then
+    if [ "${TRAVIS_BRANCH}" = "master" ]; then
+        export EQ_FUNCTIONAL_TEST_SUITES="core,census"
+    else
+        export EQ_FUNCTIONAL_TEST_SUITES="core"
+    fi
+fi
+echo "Running front end functional tests [${EQ_FUNCTIONAL_TEST_SUITES}]"
+yarn test_functional -- --suite ${EQ_FUNCTIONAL_TEST_SUITES}
+
+display_result $? 1 "Front end functional tests"

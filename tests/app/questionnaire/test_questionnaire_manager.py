@@ -1,14 +1,51 @@
 from unittest import TestCase
 
-from mock import MagicMock, Mock, patch
+from mock import MagicMock, Mock, patch, call
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.questionnaire_state.state_item import StateItem
 from app.schema.section import Section
 from app.schema.skip_condition import SkipCondition
 from app.schema.when import When
 
+def mock_answer(answer_id, answer_instance=0, question=MagicMock()):
+    answer = MagicMock()
+    answer.id = answer_id
+    answer.answer_instance = answer_instance
+    answer.parent = question
+    answer.flatten = MagicMock(return_value=MagicMock())
+    return answer
 
 class TestQuestionnaireManager(TestCase):
+
+    def setUp(self):
+        # Override some behaviours that are difficult to mock.
+        self.original_update_questionnaire_store = QuestionnaireManager.update_questionnaire_store
+
+        QuestionnaireManager.update_questionnaire_store = MagicMock(return_value=None)
+
+        # Class under test.
+        self.questionnaire_manager = QuestionnaireManager(MagicMock(), MagicMock())
+
+        # Mock answer store.
+        answer_store = MagicMock()
+        answer_store.filter = MagicMock(return_value=[])
+        self.answer_store = answer_store
+
+        # Mock question.
+        self.question = MagicMock()
+
+        # Mock answers.
+        answers = []
+        for i in range(3):
+            answers.append(mock_answer('answer', i, self.question))
+
+        self.answers = answers
+        self.questionnaire_manager.state = MagicMock()
+        self.questionnaire_manager.state.get_answers = MagicMock(return_value=self.answers)
+
+    def tearDown(self):
+        # Reset some behaviours.
+        QuestionnaireManager.update_questionnaire_store = self.original_update_questionnaire_store
 
     def test_add_answer_creates_new_answer_state(self):
         # Given
@@ -44,20 +81,75 @@ class TestQuestionnaireManager(TestCase):
         # Then
         self.questionnaire_manager.update_questionnaire_store.assert_called_with('block')
 
-    def test_remove_answer_detaches_answer_from_question(self):
-        answer_to_remove = self.answers[1]
+    def test_remove_answer_single_answer(self):
+        # Given
+        should_remove = mock_answer('answer', 0, self.question)
+        answers = [should_remove]
+        self.questionnaire_manager.state.get_answers = MagicMock(return_value=answers)
+        self.question.remove_answer = Mock()
 
-        with patch.object(self.question, 'remove_answer') as mock:
-            self.questionnaire_manager.remove_answer('block', self.answer_store, 1)
-            mock.assert_called_with(answer_to_remove)
+        # When
+        self.questionnaire_manager.remove_answer('block', self.answer_store, 0)
 
-    def test_remove_answer_removes_from_answer_store(self):
-        answer_to_remove = self.answers[1]
-        flattened_answer = answer_to_remove.flatten()
+        # Then
+        self.question.remove_answer.assert_called_with(should_remove)
 
-        with patch.object(self.answer_store, 'remove') as mock:
-            self.questionnaire_manager.remove_answer('block', self.answer_store, 1)
-            mock.assert_called_with(flattened_answer)
+    def test_remove_answer_single_answer_multiple_instances(self):
+        # Given
+        answers = [
+            mock_answer('answer', 0, self.question),
+            mock_answer('answer', 1, self.question),
+            mock_answer('answer', 2, self.question),
+        ]
+        self.questionnaire_manager.state.get_answers = MagicMock(return_value=answers)
+        self.question.remove_answer = Mock()
+
+        # When
+        self.questionnaire_manager.remove_answer('block', self.answer_store, 1)
+
+        # Then
+        self.question.remove_answer.assert_called_with(answers[1])
+
+    def test_remove_answer_multiple_answer_single_instance(self):
+        # Given
+        answers = [
+            mock_answer('first', 0, self.question),
+            mock_answer('middle', 0, self.question),
+            mock_answer('last', 0, self.question)
+        ]
+        self.questionnaire_manager.state.get_answers = MagicMock(return_value=answers)
+        self.question.remove_answer = Mock()
+
+        # When
+        self.questionnaire_manager.remove_answer('block', self.answer_store, 0)
+
+        # Then
+        calls = [
+            call(answers[0]), call(answers[1]), call(answers[2])
+        ]
+        self.question.remove_answer.assert_has_calls(calls)
+
+    def test_remove_answer_multiple_answer_multiple_instances(self):
+        # Given
+        answers = [
+            mock_answer('first', 0, self.question),
+            mock_answer('middle', 0, self.question),
+            mock_answer('last', 0, self.question),
+            mock_answer('first', 1, self.question),
+            mock_answer('middle', 1, self.question),
+            mock_answer('last', 1, self.question),
+        ]
+        self.questionnaire_manager.state.get_answers = MagicMock(return_value=answers)
+        self.question.remove_answer = Mock()
+
+        # When
+        self.questionnaire_manager.remove_answer('block', self.answer_store, 1)
+
+        # Then
+        calls = [
+            call(answers[3]), call(answers[4]), call(answers[5])
+        ]
+        self.question.remove_answer.assert_has_calls(calls)
 
     def test_get_next_answer_instance_no_previous_answers(self):
         # Given
@@ -114,41 +206,6 @@ class TestQuestionnaireManager(TestCase):
 
         # Then
         self.assertEqual(next_id, 6)
-
-
-    def setUp(self):
-        # Override some behaviours that are difficult to mock.
-        self.original_update_questionnaire_store = QuestionnaireManager.update_questionnaire_store
-
-        QuestionnaireManager.update_questionnaire_store = MagicMock(return_value=None)
-
-        # Class under test.
-        self.questionnaire_manager = QuestionnaireManager(MagicMock(), MagicMock())
-
-        # Mock answer store.
-        answer_store = MagicMock()
-        answer_store.filter = MagicMock(return_value=[])
-        self.answer_store = answer_store
-
-        # Mock question.
-        self.question = MagicMock()
-
-        # Mock answers.
-        answers = []
-        for i in range(3):
-            answer = MagicMock()
-            answer.parent = self.question
-            answer.id = i
-            answer.flatten = MagicMock(return_value=MagicMock())
-            answers.append(answer)
-
-        self.answers = answers
-        self.questionnaire_manager.state = MagicMock()
-        self.questionnaire_manager.state.get_answers = MagicMock(return_value=self.answers)
-
-    def tearDown(self):
-        # Reset some behaviours.
-        QuestionnaireManager.update_questionnaire_store = self.original_update_questionnaire_store
 
     def test_conditional_display_skips_when_equals(self):
 

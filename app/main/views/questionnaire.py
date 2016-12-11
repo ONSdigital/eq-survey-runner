@@ -77,7 +77,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
 def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user), group_id, group_instance)
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
     this_block = {
@@ -86,7 +86,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
         'block_id': block_id,
     }
 
-    valid_location = this_block in navigator.get_location_path()
+    valid_location = this_block in navigator.get_routing_path(group_id, group_instance)
     valid_data = q_manager.validate(this_block, request.form)
 
     if not valid_location or not valid_data:
@@ -144,10 +144,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
-    return redirect(block_url(eq_id, form_type, collection_id,
-                              group_id=next_location['group_id'],
-                              group_instance=next_location['group_instance'],
-                              block_id=next_location['block_id']))
+    return redirect(location_url(eq_id, form_type, collection_id, next_location))
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -169,10 +166,7 @@ def get_summary(eq_id, form_type, collection_id):
                                 group_instance=latest_location['group_instance'],
                                 block_id=latest_location['block_id'])
 
-    return redirect(block_url(eq_id, form_type, collection_id,
-                              group_id=latest_location['group_id'],
-                              group_instance=latest_location['group_instance'],
-                              block_id=latest_location['block_id']))
+    return redirect(location_url(eq_id, form_type, collection_id, latest_location))
 
 
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
@@ -234,6 +228,7 @@ def submit_answers(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
 @login_required
 def post_household_composition(eq_id, form_type, collection_id, group_id):
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
     answer_store = get_answer_store(current_user)
 
@@ -250,33 +245,16 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
         return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
 
     elif 'action[remove_answer]' in request.form:
-        index_to_remove = request.form.get('action[remove_answer]')
+        index_to_remove = int(request.form.get('action[remove_answer]'))
         questionnaire_manager.remove_answer(this_block, answer_store, index_to_remove)
         return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
 
     if not valid:
         return _render_template(questionnaire_manager.state, group_id, 0, 'household-composition', template='questionnaire')
 
-    return _go_to_next_block(location=this_block, eq_id=eq_id,
-                             form_type=form_type, collection_id=collection_id)
+    next_location = navigator.get_next_location(current_block_id='household-composition', current_iteration=0, current_group_id=group_id)
 
-
-def _go_to_next_block(location, eq_id, form_type, collection_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user), location['group_id'], location['group_instance'])
-
-    next_location = navigator.get_next_location(current_block_id=location['block_id'],
-                                                current_group_id=location['group_id'],
-                                                current_iteration=location['group_instance'])
-
-    if next_location is None:
-        raise NotFound
-
-    metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", next_location, metadata["tx_id"])
-    return redirect(block_url(eq_id, form_type, collection_id,
-                              group_id=next_location['group_id'],
-                              group_instance=next_location['group_instance'],
-                              block_id=next_location['block_id']))
+    return redirect(location_url(eq_id, form_type, collection_id, next_location))
 
 
 def _delete_user_data():
@@ -319,6 +297,15 @@ def interstitial_url(eq_id, form_type, collection_id, block_id):
                        collection_id=collection_id)
 
 
+def location_url(eq_id, form_type, collection_id, location):
+    return block_url(eq_id=eq_id,
+                     form_type=form_type,
+                     collection_id=collection_id,
+                     group_id=location['group_id'],
+                     group_instance=location['group_instance'],
+                     block_id=location['block_id'])
+
+
 def block_url(eq_id, form_type, collection_id, group_id, group_instance, block_id):
     if Navigator.is_interstitial_block(block_id):
         return interstitial_url(eq_id, form_type, collection_id, block_id)
@@ -343,9 +330,9 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     metadata_context = build_metadata_context(metadata)
 
     group_id = group_id or SchemaHelper.get_first_group_id(g.schema_json)
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user), group_id, group_instance)
-    front_end_navigation = navigator.get_front_end_navigation(get_completed_blocks(current_user)) \
-        if 'navigation' in g.schema_json else None
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    completed_blocks = get_completed_blocks(current_user)
+    front_end_navigation = navigator.get_front_end_navigation(completed_blocks, group_id, group_instance)
     previous_location = navigator.get_previous_location(current_group_id=group_id,
                                                         current_block_id=block_id,
                                                         current_iteration=group_instance)

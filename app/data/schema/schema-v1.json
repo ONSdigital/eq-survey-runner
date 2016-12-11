@@ -93,6 +93,9 @@
                       "title": {
                         "type": "string"
                       },
+                      "number": {
+                        "type": "string"
+                      },
                       "description": {
                         "type": "string"
                       },
@@ -105,6 +108,9 @@
                               "type": "string"
                             },
                             "title": {
+                              "type": "string"
+                            },
+                            "number": {
                               "type": "string"
                             },
                             "description": {
@@ -139,7 +145,7 @@
                               }
                             },
                             "type": {
-                              "type": "string"
+                              "enum": ["General", "DateRange", "RepeatingAnswer", "Relationship"]
                             },
                             "answers": {
                               "type": "array",
@@ -159,7 +165,19 @@
                                     "type": "string"
                                   },
                                   "type": {
-                                    "type": "string"
+                                    "enum": [
+                                        "Checkbox",
+                                        "Currency",
+                                        "Date",
+                                        "MonthYearDate",
+                                        "Integer",
+                                        "Percentage",
+                                        "PositiveInteger",
+                                        "Radio",
+                                        "TextArea",
+                                        "TextField",
+                                        "Relationship"
+                                    ]
                                   },
                                   "options": {
                                     "type": "array",
@@ -276,7 +294,6 @@
     "questionnaire_id",
     "survey_id",
     "title",
-    "introduction",
     "groups",
     "theme"
   ]

@@ -81,7 +81,7 @@ class MciMiniParsingTest(unittest.TestCase):
         # check the answer properties on question 2
         question_two = section.questions[1]
         answer = question_two.answers[0]
-        assert answer.type == "Textarea"
+        assert answer.type == "TextArea"
         assert answer.display is not None
         assert answer.display.properties is not None
         print(answer.display.properties.max_length)

@@ -79,14 +79,15 @@ class TestSchemaValidation(unittest.TestCase):
 
         for block in SchemaHelper.get_blocks(json_to_validate):
             for section in (s for s in block['sections'] if 'sections' in block):
-                for question in (q for q in section if 'questions' in section):
-                    for answer in (a for a in question if 'answers' in question):
+                for question in (q for q in section['questions'] if 'questions' in section):
+                    for answer in (a for a in question['answers'] if 'answers' in question):
 
                         if 'routing_rules' in block and len(block['routing_rules']) > 0:
 
                             if 'options' in answer:
 
                                 options = [option['value'] for option in answer['options']]
+                                has_default_route = False
 
                                 for rule in block['routing_rules']:
                                     if 'goto' in rule:
@@ -97,8 +98,13 @@ class TestSchemaValidation(unittest.TestCase):
                                                 options.remove(when['value'])
                                         else:
                                             options = []
+                                            has_default_route = True
 
                                 has_unrouted_options = len(options) > 0 and len(options) != len(answer['options'])
+
+                                if answer['mandatory'] is False and not has_default_route:
+                                    errors.append(
+                                        "Schema Error. File[{}] Default route not defined for optional question [{}] ".format(file, answer['id']))
 
                                 if has_unrouted_options:
                                     errors.append("Schema Error. File[{}] Routing rule not defined for all answers or default not defined for answer [{}] missing options {}".format(file, answer['id'], options))
