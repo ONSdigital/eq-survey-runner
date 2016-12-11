@@ -24,7 +24,11 @@ let config = {
   sync: true,
   connectionRetryTimeout: 5000,
   connectionRetryCount: 3,
-  capabilities: [chrome],
+  capabilities: [{
+    name: 'Chrome (local)',
+    browserName: 'chrome',
+    maxInstances: 1
+  }],
   framework: 'mocha',
   reporters: ['spec'],
   mochaOpts: {
