@@ -119,14 +119,7 @@ class Navigator:
         :return:
         """
         blocks = self.get_blocks()
-        first_group_id = SchemaHelper.get_first_group_id(self.survey_json)
-        first_block_id = SchemaHelper.get_group(self.survey_json, first_group_id)['blocks'][0]['id'],
-        first_block_location = {
-            "group_id": first_group_id,
-            "group_instance": 0,
-            "block_id": first_block_id,
-        }
-        routing_path = routing_path or self.build_path(blocks, first_block_location, [])
+        routing_path = routing_path or self.get_routing_path()
         last_routing_block_id = routing_path[-1]['block_id']
         last_block_id = blocks[-1]['block']['id']
 
