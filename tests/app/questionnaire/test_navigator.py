@@ -1065,8 +1065,6 @@ class TestNavigator(unittest.TestCase):
                                                                              current_block_id=current_block_id,
                                                                              current_iteration=current_iteration))
 
-        self.assertFalse(evaluate_rule(when, list_of_answers))
-
     def test_navigation_no_blocks_completed(self):
         survey = load_schema_file("test_navigation.json")
         navigator = Navigator(survey)
@@ -1112,7 +1110,7 @@ class TestNavigator(unittest.TestCase):
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation(completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
 
     def test_navigation_two_groups_completed(self):
         survey = load_schema_file("test_navigation.json")
@@ -1190,12 +1188,12 @@ class TestNavigator(unittest.TestCase):
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation(completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
 
     def test_navigation_repeating_group(self):
         survey = load_schema_file("test_navigation.json")
         navigator = Navigator(survey)
-        navigator.answer_store.answers= [
+        navigator.answer_store.answers = [
             {
                 'answer_instance': 0,
                 'group_instance': 0,
@@ -1304,4 +1302,4 @@ class TestNavigator(unittest.TestCase):
             }
         ]
 
-        self.assertEqual(navigator.get_front_end_navigation(completed_blocks), user_navigation)
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)

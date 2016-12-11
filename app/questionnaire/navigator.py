@@ -92,11 +92,16 @@ class Navigator:
         """
         self.answer_store = answer_store
 
-    def get_routing_path(self, group_id, group_instance):
+    def get_routing_path(self, group_id=None, group_instance=None):
         """
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
+        if group_id is None:
+            group_id = SchemaHelper.get_first_group_id(self.survey_json)
+        if group_instance is None:
+            group_instance = 0
+
         first_block_in_group = SchemaHelper.get_group(self.survey_json, group_id)['blocks'][0]['id']
         location = {
             "group_id": group_id,
@@ -190,8 +195,9 @@ class Navigator:
                 } for block in group['blocks']])
         return blocks
 
-    @staticmethod
-    def _get_current_location_index(path, current_group_id, current_block_id, current_iteration):
+    def _get_current_location_index(self, path, current_group_id, current_block_id, current_iteration):
+        first_group_id = SchemaHelper.get_first_group_id(self.survey_json)
+        current_group_id = current_group_id or first_group_id
         this_block = {
             "block_id": current_block_id,
             "group_id": current_group_id,
@@ -239,18 +245,14 @@ class Navigator:
         :param completed_blocks:
         :return:
         """
+        location_path = self.get_location_path()
         if completed_blocks:
-            incomplete_blocks = [item for item in self.get_location_path() if item not in completed_blocks]
+            incomplete_blocks = [item for item in location_path if item not in completed_blocks]
 
             if incomplete_blocks:
                 return incomplete_blocks[0]
 
-        first_location = {
-            "group_id": SchemaHelper.get_first_group_id(self.survey_json),
-            "group_instance": 0,
-            "block_id": SchemaHelper.get_first_block_id(self.survey_json),
-        }
-        return first_location
+        return location_path[0]
 
     def get_front_end_navigation(self, completed_blocks, group_id, group_instance):
         """

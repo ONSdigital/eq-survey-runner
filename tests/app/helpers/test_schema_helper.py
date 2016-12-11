@@ -56,4 +56,4 @@ class TestSchemaHelper(unittest.TestCase):
         groups = [group for group in SchemaHelper.get_groups(survey)]
         rule = SchemaHelper.get_repeating_rule(groups[1])
 
-        self.assertEqual({'type': 'answer_count', 'answer_id': 'household-full-name'}, rule)
+        self.assertEqual({'type': 'answer_count', 'answer_id': 'first-name'}, rule)

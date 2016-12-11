@@ -351,12 +351,6 @@ describe('Census Household', function () {
         startCensusQuestionnaire('census_household.json')
 
         // who-lives-here
-<<<<<<< HEAD
-        var person = 'John Smith'
-        var person2 = 'Jane Smith'
-
-=======
->>>>>>> master
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
         HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
