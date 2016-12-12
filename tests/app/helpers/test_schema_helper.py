@@ -57,3 +57,15 @@ class TestSchemaHelper(unittest.TestCase):
         rules = [rule for rule in SchemaHelper.get_repeat_rules(groups[1])]
 
         self.assertEqual(len(rules), 1)
+
+    def test_get_answers_that_repeat_in_block(self):
+        survey = load_schema_file("test_repeating_household.json")
+        answers = [answer for answer in SchemaHelper.get_answers_that_repeat_in_block(survey, 'household-composition')]
+
+        self.assertEqual(len(answers), 3)
+
+    def test_get_groups_that_repeat_with_answer_id(self):
+        survey = load_schema_file("test_repeating_household.json")
+        groups = [group for group in SchemaHelper.get_groups_that_repeat_with_answer_id(survey, 'first-name')]
+
+        self.assertEqual(len(groups), 1)

@@ -150,12 +150,11 @@ class QuestionnaireManager(object):
         return next_answer_instance_id
 
     def remove_answer(self, location, answer_store, index_to_remove):
-
         state_answers = self.state.get_answers()
         for state_answer in state_answers:
             if state_answer.answer_instance == index_to_remove:
                 question = state_answer.parent
                 question.remove_answer(state_answer)
-                answer_store.remove(state_answer.flatten())
+                answer_store.remove_answer(state_answer.flatten())
 
         self.update_questionnaire_store(location)
