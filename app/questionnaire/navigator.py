@@ -278,42 +278,39 @@ class Navigator:
 
         navigation = []
 
-        for group in self.survey_json['groups']:
+        for group in filter(lambda x: 'hide_in_navigation' not in x, self.survey_json['groups']):
 
             logger.debug("Building frontend navigation for group %s", group)
 
             repeating_rule = SchemaHelper.get_repeating_rule(group)
+            completed_id = group['completed_id'] if 'completed_id' in group else group['blocks'][-1]['id']
 
-            if 'hide_in_navigation' not in group:
+            if repeating_rule and repeating_rule['type'] == 'answer_count':
+                no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
+                answer_id = repeating_rule['answer_id']
+                answers = self.answer_store.filter(answer_id=answer_id)
 
-                completed_id = group['completed_id'] if 'completed_id' in group else group['blocks'][-1]['id']
-
-                if repeating_rule and repeating_rule['type'] == 'answer_count':
-                    no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
-                    answer_id = repeating_rule['answer_id']
-                    answers = self.answer_store.filter(answer_id=answer_id)
-
-                    for i in range(no_of_repeats):
-                        if answers:
-                            navigation.append({
-                                'link_name': answers[i]['value'],
-                                'group_id': group['id'],
-                                'instance': i,
-                                'block_id': group['blocks'][0]['id'],
-                                'completed': any(item for item in completed_blocks if item['group_instance'] == i and
-                                                 item["block_id"] == completed_id),
-                                'highlight': group['id'] == group_id and i == group_instance,
-                                'repeating': True
-                            })
-                else:
-                    navigation.append({
-                        'link_name': group['title'],
-                        'group_id': group['id'],
-                        'instance': 0,
-                        'block_id': group['blocks'][0]['id'],
-                        'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
-                        'highlight': (group['id'] != group_id and group_id in group['highlight_when']
-                                      if 'highlight_when' in group else False) or group['id'] == group_id,
-                        'repeating': False,
-                    })
+                for i in range(no_of_repeats):
+                    if answers:
+                        navigation.append({
+                            'link_name': answers[i]['value'],
+                            'group_id': group['id'],
+                            'instance': i,
+                            'block_id': group['blocks'][0]['id'],
+                            'completed': any(item for item in completed_blocks if item['group_instance'] == i and
+                                             item["block_id"] == completed_id),
+                            'highlight': group['id'] == group_id and i == group_instance,
+                            'repeating': True
+                        })
+            else:
+                navigation.append({
+                    'link_name': group['title'],
+                    'group_id': group['id'],
+                    'instance': 0,
+                    'block_id': group['blocks'][0]['id'],
+                    'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
+                    'highlight': (group['id'] != group_id and group_id in group['highlight_when']
+                                  if 'highlight_when' in group else False) or group['id'] == group_id,
+                    'repeating': False,
+                })
         return navigation

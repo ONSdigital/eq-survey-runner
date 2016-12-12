@@ -57,6 +57,7 @@ def format_url(metadata, group_id, group_instance, block_id):
            '/' + str(group_id) + '/' + str(group_instance) + '/' + str(block_id)
 
 
+@blueprint.app_template_filter()
 def format_household_member_name(names):
     return ' '.join(map(lambda name: name.strip(), filter(None, names)))
 
