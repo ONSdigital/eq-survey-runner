@@ -75,7 +75,21 @@
                     },
                     "sections": [],
                     "id": "confirmation",
-                    "title": ""
+                    "title": "Confirmation",
+                    "sections": [
+                        {
+                            "title": "Thank you for your answers, do you wish to submit",
+                            "id": "questionnaire-completed-section",
+                            "questions": [
+                                {
+                                    "answers": [],
+                                    "id": "questionnaire-completed-question",
+                                    "title": "",
+                                    "type": "General"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ],
             "display": {

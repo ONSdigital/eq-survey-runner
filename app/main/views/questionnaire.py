@@ -172,12 +172,20 @@ def get_summary(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
 @login_required
 def get_confirmation(eq_id, form_type, collection_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    answer_store = get_answer_store(current_user)
+    navigator = Navigator(g.schema_json, get_metadata(current_user), answer_store)
 
     latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     if latest_location['block_id'] == 'confirmation':
+        this_block = {
+            'block_id': latest_location['block_id'],
+            'group_id': SchemaHelper.get_first_group_id(g.schema_json),
+            'group_instance': 0,
+        }
+
         q_manager = get_questionnaire_manager(g.schema, g.schema_json)
+        q_manager.build_state(this_block, answer_store)
 
         return _render_template(q_manager.state,
                                 group_id=latest_location['group_id'],

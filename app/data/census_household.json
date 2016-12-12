@@ -4085,17 +4085,27 @@
                 {
                     "type": "interstitial",
                     "id": "confirmation",
-                    "title": "You’ve completed the Census 2017 test",
+                    "title": "You are ready to submit your answers",
                     "sections": [
                         {
-                            "title": "You’ve completed the Census 2017 test",
+                            "title": "You are ready to submit your answers",
                             "id": "questionnaire-completed-section",
+                            "description": "<p>By submitting this questionnaire, you are declaring that this has been completed to the best of your knowledge and belief.</p>",
                             "questions": [
                                 {
                                     "answers": [],
                                     "id": "questionnaire-completed-question",
-                                    "title": "You’ve completed the Census 2017 test",
-                                    "type": "General"
+                                    "title": "",
+                                    "type": "General",
+                                    "guidance": [
+                                        {
+                                             "title": "Please note:",
+                                             "list": [
+                                                 "If you do not submit your questionnaire, your responses will be automatically submitted when the online questionnaire closes.",
+                                                 "After submission of your questionnaire you will have an opportunity to provide feedback on your experience."
+                                             ]
+                                        }
+                                    ]
                                 }
                             ]
                         }

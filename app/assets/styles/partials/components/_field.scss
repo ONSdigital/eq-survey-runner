@@ -47,15 +47,10 @@ input:checked ~ .field__other {
     cursor: pointer;
     overflow: hidden;
     position: relative;
+    transition: background-color 200ms ease-in, color 200ms ease-in, box-shadow 200ms ease-in, border-color 200ms ease-in;
     &:hover {
-      border-color: $color-dark-grey;
+      border-color: $color-links-hover;
       box-shadow: none;
-    }
-    &.has-focus {
-      color: $color-text;
-      border-color: $color-focus;
-      background-color: #f5f6ff;
-      box-shadow: 0 0 0 1px $color-focus;
     }
     &.is-checked {
       color: $color-text;
@@ -65,6 +60,16 @@ input:checked ~ .field__other {
         border-color: $color-text;
         background-color: #eee;
         box-shadow: 0 0 0 1px $color-text;
+      }
+    }
+    &.has-focus {
+      color: $color-text;
+      border-color: $color-focus;
+      background-color: #f5f6ff;
+      box-shadow: 0 0 0 1px $color-focus;
+      &:hover {
+        border-color: $color-focus;
+        box-shadow: 0 0 0 1px $color-focus;
       }
     }
   }
@@ -153,7 +158,6 @@ input:checked ~ .field__other {
 }
 
 .field--selectionbtn {
-
   .has-js & {
     .input {
       width: 0;
