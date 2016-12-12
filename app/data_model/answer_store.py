@@ -154,6 +154,7 @@ class AnswerStore(object):
     def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
+        If no filter parameters are passed it returns a copy of the list of all answers.
 
         :param answer_id:
         :param block_id:
@@ -195,10 +196,7 @@ class AnswerStore(object):
         :return:
         """
         result = {}
-        use_filter = (group_id or block_id or answer_id or group_instance or answer_instance) is not None
-        answers = self.filter(group_id, block_id, answer_id, group_instance, answer_instance) if use_filter else self.answers
-
-        for answer in answers:
+        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
             answer_id = answer['answer_id']
             answer_id += "_" + str(answer['answer_instance']) if answer['answer_instance'] > 0 else ''
 
@@ -206,15 +204,28 @@ class AnswerStore(object):
 
         return OrderedDict(sorted(result.items(), key=lambda t: natural_order(t[0])))
 
-    def remove(self, answer):
+    def remove_answer(self, answer):
         """
         Removes an answer from the answer store.
 
         :param answer: A dict of flattened answer details.
         """
         index = self.find(answer)
-        if index:
+        if index is not None:
             del self.answers[index]
+
+    def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+        """
+        Removes answer(s) from the answer store.
+
+        :param answer_id:
+        :param block_id:
+        :param group_id:
+        :param answer_instance:
+        :param group_instance:
+        """
+        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
+            self.answers.remove(answer)
 
 
 def number_else_string(text):
