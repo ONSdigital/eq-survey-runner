@@ -288,7 +288,7 @@ class Navigator:
 
                 completed_id = group['completed_id'] if 'completed_id' in group else group['blocks'][-1]['id']
 
-                if repeating_rule:
+                if repeating_rule and repeating_rule['type'] == 'answer_count':
                     no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
                     answer_id = repeating_rule['answer_id']
                     answers = self.answer_store.filter(answer_id=answer_id)
@@ -304,7 +304,6 @@ class Navigator:
                                                  item["block_id"] == completed_id),
                                 'highlight': group['id'] == group_id and i == group_instance,
                                 'repeating': True
-
                             })
                 else:
                     navigation.append({

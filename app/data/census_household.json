@@ -3827,7 +3827,7 @@
         {
             "id": "number-of-visitors-group",
             "title": "Visitors",
-            "completed_when": "visitor-address",
+            "completed_when": "questionnaire-completed",
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -3872,6 +3872,7 @@
         {
             "id": "visitors",
             "title": "Visitors",
+            "hide_in_navigation": true,
             "routing_rules": [
                 {
                     "repeat": {
