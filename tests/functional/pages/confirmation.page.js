@@ -6,15 +6,15 @@ class ConfirmationPage {
   }
 
   getSubtitle() {
-    return browser.element('h2').getText()
+    return browser.element('h1').getText()
   }
 
   submit() {
-    browser.click('.qa-btn-submit-answers')
+    browser.click('.qa-btn-submit')
   }
 
   changeAnswers() {
-    browser.click('.u-dib')
+    browser.click('a[id="top-previous"]')
   }
 
 }
