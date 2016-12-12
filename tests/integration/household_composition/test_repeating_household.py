@@ -22,7 +22,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
     def tearDown(self):
         super(TestRepeatingHousehold, self).tearDown()
 
-    def test_submit_answers(self):
+    def test_change_repeat_answer_removes_all_answers_for_repeated_groups(self):
         # Given I add some people
         household_composition_page = self.first_page
         form_data = MultiDict()
@@ -67,7 +67,6 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data = MultiDict()
         form_data.add("first-name", 'Joe')
         form_data.add("last-name", 'Bloggs')
-        form_data.add("household-full-name_1", 'Person Two')
         form_data.add("first-name_1", 'Jane')
         form_data.add("last-name_1", 'Doe')
         form_data.add("action[save_continue]", '')

@@ -262,6 +262,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
     if not valid:
         return _render_template(questionnaire_manager.state, group_id, 0, 'household-composition', template='questionnaire')
 
+    navigator.update_answer_store(get_answer_store(current_user))
     next_location = navigator.get_next_location(current_block_id='household-composition', current_iteration=0, current_group_id=group_id)
 
     return redirect(location_url(eq_id, form_type, collection_id, next_location))
