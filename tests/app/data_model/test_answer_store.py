@@ -369,7 +369,7 @@ class TestAnswerStore(unittest.TestCase):
         }
         self.assertEqual(self.store.map(), expected_answers)
 
-        self.store.remove(answer_2)
+        self.store.remove_answer(answer_2)
         expected_answers = {
             "2_1": 25,
         }
@@ -407,5 +407,220 @@ class TestAnswerStore(unittest.TestCase):
         }
         self.assertEqual(self.store.map(), expected_answers)
 
-        self.store.remove(answer_3)
+        self.store.remove_answer(answer_3)
         self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_first_answer(self):
+        answer_1 = Answer(
+            group_id="1",
+            block_id="1",
+            answer_id="2",
+            answer_instance=1,
+            value=25,
+        )
+        answer_2 = Answer(
+            group_id="1",
+            block_id="1",
+            answer_id="5",
+            answer_instance=1,
+            value=65,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        self.store.remove_answer(answer_1)
+        expected_answers = {
+            "5_1": 65,
+        }
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_single_answer_by_group_id(self):
+        answer_1 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group2",
+            block_id="block1",
+            answer_id="answer2",
+            value=20,
+        )
+        answer_3 = Answer(
+            group_id="group3",
+            block_id="block1",
+            answer_id="answer3",
+            value=30,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+        self.store.add(answer_3)
+
+        self.store.remove(group_id="group1")
+        expected_answers = {
+            "answer2": 20,
+            "answer3": 30
+        }
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_multiple_answers_by_group_id(self):
+        answer_1 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group2",
+            block_id="block1",
+            answer_id="answer2",
+            value=20,
+        )
+        answer_3 = Answer(
+            group_id="group2",
+            block_id="block1",
+            answer_id="answer3",
+            value=30,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+        self.store.add(answer_3)
+
+        self.store.remove(group_id="group2")
+        expected_answers = {
+            "answer1": 10,
+        }
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_single_answer_by_block_id(self):
+        answer_1 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group1",
+            block_id="block2",
+            answer_id="answer2",
+            value=20,
+        )
+        answer_3 = Answer(
+            group_id="group1",
+            block_id="block3",
+            answer_id="answer3",
+            value=30,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+        self.store.add(answer_3)
+
+        self.store.remove(block_id="block1")
+        expected_answers = {
+            "answer2": 20,
+            "answer3": 30
+        }
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_multiple_answers_by_block_id(self):
+        answer_1 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group1",
+            block_id="block2",
+            answer_id="answer2",
+            value=20,
+        )
+        answer_3 = Answer(
+            group_id="group1",
+            block_id="block2",
+            answer_id="answer3",
+            value=30,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+        self.store.add(answer_3)
+
+        self.store.remove(block_id="block2")
+        expected_answers = {
+            "answer1": 10,
+        }
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_answers_by_group_id_that_does_not_exist(self):
+        answer_1 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group1",
+            block_id="block2",
+            answer_id="answer2",
+            value=20,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        self.store.remove(group_id="group2")
+        expected_answers = {
+            "answer1": 10,
+            "answer2": 20
+        }
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_answers_by_block_id_that_does_not_exist(self):
+        answer_1 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer2",
+            value=20,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        self.store.remove(block_id="block2")
+        expected_answers = {
+            "answer1": 10,
+            "answer2": 20
+        }
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_all_answers(self):
+        answer_1 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group1",
+            block_id="block1",
+            answer_id="answer2",
+            value=20,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        self.store.remove()
+        self.assertEqual(self.store.map(), {})

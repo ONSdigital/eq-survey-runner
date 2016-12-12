@@ -35,19 +35,28 @@ class SchemaHelper(object):
                     yield rule
 
     @classmethod
-    def get_group_blocks(cls, survey_json, group_id):
-        group = cls.get_group(survey_json, group_id)
-
-        for block in group['blocks']:
-            yield block
-
-    @classmethod
     def get_group(cls, survey_json, group_id):
         return next(g for g in cls.get_groups(survey_json) if g["id"] == group_id)
 
     @classmethod
     def get_block(cls, survey_json, block_id):
         return next(b for b in cls.get_blocks(survey_json) if b["id"] == block_id)
+
+    @classmethod
+    def get_answers_that_repeat_in_block(cls, survey_json, block_id):
+        block = cls.get_block(survey_json, block_id)
+        for section in (s for s in block['sections'] if block['sections']):
+            for question in (q for q in section['questions'] if section['questions']):
+                if question['type'] == 'RepeatingAnswer':
+                    for answer in (a for a in question['answers'] if question['answers']):
+                        yield answer
+
+    @classmethod
+    def get_groups_that_repeat_with_answer_id(cls, survey_json, answer_id):
+        for group in cls.get_groups(survey_json):
+            for rule in cls.get_repeat_rules(group):
+                if rule['repeat']['answer_id'] == answer_id:
+                    yield group
 
     @staticmethod
     def is_goto_rule(rule):
