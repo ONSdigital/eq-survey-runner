@@ -69,10 +69,8 @@
   margin: 0 0 1rem;
   transition: opacity 300ms ease-in-out, transform 100ms ease-out;
   opacity: 1;
-  transform: translateX(0);
   &.is-hidden {
     opacity: 0;
-    transform: translateX(-1rem);
   }
   &.is-removed {
     opacity: 0.5;

@@ -7,6 +7,7 @@ from app.schema.section import Section
 from app.schema.skip_condition import SkipCondition
 from app.schema.when import When
 
+
 def mock_answer(answer_id, answer_instance=0, question=MagicMock()):
     answer = MagicMock()
     answer.id = answer_id
@@ -14,6 +15,7 @@ def mock_answer(answer_id, answer_instance=0, question=MagicMock()):
     answer.parent = question
     answer.flatten = MagicMock(return_value=MagicMock())
     return answer
+
 
 class TestQuestionnaireManager(TestCase):
 

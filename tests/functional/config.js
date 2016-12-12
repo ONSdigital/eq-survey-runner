@@ -27,7 +27,7 @@ let config = {
   capabilities: [{
     name: 'Chrome (local)',
     browserName: 'chrome',
-    maxInstances: 2
+    maxInstances: 1
   }],
   framework: 'mocha',
   reporters: ['spec'],

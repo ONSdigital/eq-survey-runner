@@ -1,6 +1,6 @@
 import logging
 
-from app.data_model.answer_store import Answer, AnswerStore
+from app.data_model.answer_store import AnswerStore
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.rules import evaluate_goto, evaluate_repeat
 
@@ -43,55 +43,72 @@ class Navigator:
                         b["group_id"] == location['group_id'] and b['group_instance'] == location['group_instance'])
         return None
 
-    def build_path(self, blocks, this_location, path):
+    def build_path(self, blocks, this_location):
         """
-        Recursive method which visits all the blocks and returns path taken
-        given a list of answers
+        Visits all the blocks from a location forwards and returns path
+        taken given a list of answers.
 
         :param blocks: A list containing all blocks in the survey
-        :param this_location: The location to visit
-        :param path: The known path as a list which has been visited already
-        :return: A list of block ids followed through the survey
+        :param this_location: The location to start navigating from
+        :return: A list of locations followed through the survey
         """
-        if this_location['block_id'] in self.CLOSING_INTERSTITIAL_PATH:
-            return path
+        path = []
+        block_index = 0
+        blocks_len = len(blocks)
 
-        path.append(this_location)
+        # Keep going unless we've hit the last block
+        while block_index < blocks_len:
+            if this_location['block_id'] in self.CLOSING_INTERSTITIAL_PATH:
+                return path
 
-        # Return the index of the block id to be visited
-        block_index = self._block_index_for_location(blocks, this_location)
+            block_index = self._block_index_for_location(blocks, this_location)
+            if block_index is None:
+                logger.error('build_path: _block_index_for_location %s is None (invalid location)', this_location)
+                return path
 
-        block = blocks[block_index]["block"]
+            path.append(this_location)
+            block = blocks[block_index]["block"]
 
-        if 'routing_rules' in block and len(block['routing_rules']) > 0:
-            for rule in block['routing_rules']:
-                if SchemaHelper.is_goto_rule(rule) and evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location['group_instance']):
-                    is_meta_rule = SchemaHelper.is_goto_meta_rule(rule)
-                    next_location = this_location.copy()
-                    next_location['block_id'] = rule['goto']['id']
+            # If routing rules exist then a rule must match (i.e. default goto)
+            if 'routing_rules' in block and len(block['routing_rules']) > 0:
+                original_this_location = this_location.copy()
+                for rule in block['routing_rules']:
+                    if SchemaHelper.is_goto_rule(rule) and evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location['group_instance']):
+                        is_meta_rule = SchemaHelper.is_goto_meta_rule(rule)
+                        next_location = this_location.copy()
+                        next_location['block_id'] = rule['goto']['id']
 
-                    next_block_index = self._block_index_for_location(blocks, next_location)
+                        next_block_index = self._block_index_for_location(blocks, next_location)
 
-                    # We're jumping backwards, so need to delete current answer
-                    if not is_meta_rule and next_block_index is not None and block_index > next_block_index:
-                        answer = Answer(answer_id=rule['goto']['when']['id'],
-                                        answer_instance=0,
-                                        block_id=this_location['block_id'],
-                                        group_id=this_location['group_id'],
-                                        group_instance=this_location['group_instance'])
-                        self.answer_store.remove(answer)
+                        # We're jumping backwards, so need to delete current answer
+                        if not is_meta_rule and next_block_index is not None and block_index > next_block_index:
+                            self.answer_store.remove(answer_id=rule['goto']['when']['id'],
+                                                     answer_instance=0,
+                                                     block_id=this_location['block_id'],
+                                                     group_id=this_location['group_id'],
+                                                     group_instance=this_location['group_instance'])
 
-                    return self.build_path(blocks, next_location, path)
+                        this_location = next_location
+                        break
 
-        # If this isn't the last block in the set evaluated
-        elif block_index != len(blocks) - 1:
-            next_location = {
-                "block_id": blocks[block_index + 1]['block']['id'],
-                "group_id": blocks[block_index + 1]['group_id'],
-                "group_instance": blocks[block_index + 1]['group_instance'],
-            }
+                # If we haven't changed location based on routing rules then we can't progress any further
+                if (this_location['block_id'] == original_this_location['block_id'] and
+                        this_location['group_id'] == original_this_location['group_id'] and
+                        this_location['group_instance'] == original_this_location['group_instance']):
+                    break
 
-            return self.build_path(blocks, next_location, path)
+            # No routing rules, so if this isn't the last block, step forward a block
+            elif block_index < len(blocks) - 1:
+                this_location = {
+                    "block_id": blocks[block_index + 1]['block']['id'],
+                    "group_id": blocks[block_index + 1]['group_id'],
+                    "group_instance": blocks[block_index + 1]['group_instance'],
+                }
+
+            # If we've reached last block stop evaluating the path
+            else:
+                break
+
         return path
 
     def update_answer_store(self, answer_store):
@@ -108,7 +125,7 @@ class Navigator:
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
-        return self.build_path(self.get_blocks(), self.first_block_location, [])
+        return self.build_path(self.get_blocks(), self.first_block_location)
 
     def can_reach_summary(self, routing_path=None):
         """
@@ -118,7 +135,7 @@ class Navigator:
         :return:
         """
         blocks = self.get_blocks()
-        routing_path = routing_path or self.build_path(blocks, self.first_block_location, [])
+        routing_path = routing_path or self.build_path(blocks, self.first_block_location)
         last_routing_block_id = routing_path[-1]['block_id']
         last_block_id = blocks[-1]['block']['id']
 
