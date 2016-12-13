@@ -114,15 +114,13 @@ class Navigator:
         """
         self.answer_store = answer_store
 
-    def get_routing_path(self, group_id=None, group_instance=None):
+    def get_routing_path(self, group_id=None, group_instance=0):
         """
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
         if group_id is None:
             group_id = SchemaHelper.get_first_group_id(self.survey_json)
-        if group_instance is None:
-            group_instance = 0
 
         first_block_in_group = SchemaHelper.get_group(self.survey_json, group_id)['blocks'][0]['id']
         location = {
@@ -132,7 +130,7 @@ class Navigator:
         }
         return self.build_path(self.get_blocks(), location)
 
-    def can_reach_summary(self, routing_path=None):
+    def can_reach_summary(self, routing_path):
 
         """
         Determines whether the end of a given routing path can be reached given
@@ -159,15 +157,13 @@ class Navigator:
                     return evaluate_goto(goto_rule, self.metadata, self.answer_store, 0)
         return False
 
-    def get_location_path(self, group_id=None, group_instance=None):
+    def get_location_path(self, group_id=None, group_instance=0):
         """
         Returns a list of url locations visited based on answers provided
         :return: List of block location dicts, with preceeding/closing interstitial pages included
         """
         if group_id is None:
             group_id = SchemaHelper.get_first_group_id(self.survey_json)
-        if group_instance is None:
-            group_instance = 0
 
         routing_path = self.get_routing_path(group_id, group_instance)
         can_reach_summary = self.can_reach_summary(routing_path)
@@ -302,7 +298,7 @@ class Navigator:
                     self._add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation)
             else:
                 self._add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation)
-
+        logger.error(navigation)
         return navigation
 
     @staticmethod

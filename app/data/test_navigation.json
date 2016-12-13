@@ -16,31 +16,21 @@
           "Payment details"
         ]
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "1",
     "groups": [
         {
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "insurance-type",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "insurance-type-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "insurance-type-answer",
                                             "label": "",
@@ -65,9 +55,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "insurance-type-question",
                                     "title": "What kind of insurance would you like?",
                                     "type": "General",
@@ -83,22 +70,15 @@
                 },
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "insurance-address",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "insurance-address-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "insurance-address-answer",
                                             "label": "",
@@ -110,9 +90,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "insurance-address-question",
                                     "title": "What is the address you would like to insure?",
                                     "type": "General",
@@ -130,22 +107,13 @@
                     "type": "interstitial",
                     "id": "property-interstitial",
                     "title": "Property Details Interstitial Page",
-                    "display": {
-                        "properties": {}
-                    },
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "property-interstitial-section",
                             "questions": [
                                 {
                                     "description": "You have successfully completed the property details section. Next we want to know who lives in the house.",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "answers": [],
                                     "id": "property-interstitial-question",
                                     "title": "Property Details",
@@ -159,9 +127,6 @@
                     ]
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "property-details",
             "title": "Property Details",
             "validation": [],
@@ -171,22 +136,13 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "household-composition",
                     "sections": [
                         {
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "section",
                             "questions": [
                                 {
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "household-composition-question",
                                     "title": "Who usually lives at the property?",
                                     "description": "",
@@ -195,7 +151,6 @@
                                     "answers": [
                                         {
                                             "alias": "person_full_name",
-                                            "display": {},
                                             "id": "household-full-name",
                                             "label": "Full Name",
                                             "mandatory": true,
@@ -216,9 +171,6 @@
                     "validation": []
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "multiple-questions-group",
             "title": "Household Details",
             "validation": [],
@@ -335,22 +287,15 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "extra-cover-block",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "extra-cover-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "extra-cover-answer",
                                             "label": "",
@@ -368,9 +313,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "extra-cover-question",
                                     "title": "Please list any special items you have",
                                     "type": "General",
@@ -388,22 +330,13 @@
                     "type": "interstitial",
                     "id": "extra-cover-interstitial",
                     "title": "Special items Interstitial Page",
-                    "display": {
-                        "properties": {}
-                    },
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "extra-cover-interstitial-section",
                             "questions": [
                                 {
                                     "description": "You have successfully completed the special items section. Next we want to know about your payment details.",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "answers": [],
                                     "id": "extra-cover-interstitial-question",
                                     "title": "Extra Cover",
@@ -417,9 +350,6 @@
                     ]
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "extra-cover",
             "title": "Extra Cover",
             "validation": []
@@ -428,22 +358,15 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "credit-card",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "credit-card-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "credit-card-answer",
                                             "label": "",
@@ -455,9 +378,6 @@
                                         }
                                     ],
                                     "description": "The long one in the middle of the card please",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "credit-card-question",
                                     "title": "What is your credit card number?",
                                     "type": "General",
@@ -473,22 +393,15 @@
                 },
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "expiry-date",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "expiry-date-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "expiry-date-answer",
                                             "label": "",
@@ -500,9 +413,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "expiry-date-question",
                                     "title": "What is the expiry date?",
                                     "type": "General",
@@ -518,22 +428,15 @@
                 },
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "security-code",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "security-code-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "security-code-answer",
                                             "label": "",
@@ -545,9 +448,6 @@
                                         }
                                     ],
                                     "description": "Its the last 3 numbers",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "security-code-question",
                                     "title": "What is the security code on the back?",
                                     "type": "General",
@@ -565,22 +465,13 @@
                     "type": "interstitial",
                     "id": "security-code-interstitial",
                     "title": "Payment Details Interstitial Page",
-                    "display": {
-                        "properties": {}
-                    },
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "security-code-interstitial-section",
                             "questions": [
                                 {
                                     "description": "You have successfully completed the payment section, thank you.",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "answers": [],
                                     "id": "security-code-interstitial-question",
                                     "title": "Payment",
@@ -594,9 +485,6 @@
                     ]
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "payment-details",
             "title": "Payment Details",
             "validation": []
@@ -646,18 +534,12 @@
             "blocks": [
                 {
                     "type": "confirmation",
-                    "display": {
-                        "properties": {}
-                    },
                     "sections": [],
                     "id": "confirmation",
                     "title": ""
                 }
 
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "confirmation-group",
             "title": "",
             "validation": [],

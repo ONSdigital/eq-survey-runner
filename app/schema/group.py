@@ -15,7 +15,6 @@ class Group(object):
         self.templatable_properties = []
         self.display = Display()
         self.skip_condition = None
-        self.completed_when = None
 
     def add_block(self, block):
         if block not in self.blocks:

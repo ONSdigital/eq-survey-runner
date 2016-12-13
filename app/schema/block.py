@@ -18,7 +18,6 @@ class Block(Item):
         self.routing_rules = []
         self.skip_condition = None
         self.repetition = 1
-        self.first_block = False
 
     def add_section(self, section):
         if section not in self.sections:
