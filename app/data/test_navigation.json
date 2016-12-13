@@ -357,8 +357,14 @@
                                             "mandatory": true,
                                             "options": [],
                                             "q_code": "1",
-                                            "type": "TextArea",
-                                            "validation": {}
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
+                                                    "NEGATIVE_INTEGER": "How can it be negative?",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
                                         }
                                     ],
                                     "description": "",
@@ -594,6 +600,47 @@
             "id": "payment-details",
             "title": "Payment Details",
             "validation": []
+        },
+        {
+            "id": "extra-cover-items-group",
+            "title": "Extra Cover",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_value",
+                        "answer_id": "extra-cover-answer"
+                    }
+                }
+            ],
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "id": "extra-cover-items",
+                    "title": "Extra Cover",
+                    "sections": [
+                        {
+                            "id": "extra-cover-items-section",
+                            "title": "Extra Cover {{group_instance + 1}}",
+                            "questions": [
+                                {
+                                    "id": "extra-cover-items-question",
+                                    "title": "What is the item you want to insure {{group_instance + 1}}?",
+                                    "number": "1",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "extra-cover-items-answer",
+                                            "label": "Item",
+                                            "mandatory": false,
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "blocks": [

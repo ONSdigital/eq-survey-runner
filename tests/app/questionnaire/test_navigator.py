@@ -1191,7 +1191,7 @@ class TestNavigator(unittest.TestCase):
 
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
 
-    def test_navigation_repeating_group(self):
+    def test_navigation_repeating_group_extra_not_answered(self):
         survey = load_schema_file("test_navigation.json")
         navigator = Navigator(survey)
         navigator.answer_store.answers = [
@@ -1304,6 +1304,138 @@ class TestNavigator(unittest.TestCase):
         ]
 
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+    def test_navigation_repeating_group_extra_answered(self):
+        survey = load_schema_file("test_navigation.json")
+        navigator = Navigator(survey)
+        navigator.answer_store.answers = [
+            {
+                'answer_instance': 0,
+                'group_instance': 0,
+                'block_id': 'household-composition',
+                'answer_id': 'household-full-name',
+                'value': 'Person1',
+                'group_id': 'multiple-questions-group'
+            },
+            {
+                'answer_instance': 1,
+                'group_instance': 0,
+                'block_id': 'household-composition',
+                'answer_id': 'household-full-name',
+                'value': 'Person2',
+                'group_id': 'multiple-questions-group'
+            },
+             {
+                'answer_instance': 1,
+                'group_instance': 0,
+                'block_id': 'extra-cover-block',
+                'answer_id': 'extra-cover-answer',
+                'value': 2,
+                'group_id': 'extra-cover'
+            }
+        ]
+
+        completed_blocks = [
+            {
+                'block_id': 'introduction',
+                'group_instance': 0,
+                'group_id': 'property-details'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'insurance-type',
+                'group_id': 'property-details'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'cd6a5727-8cab-4737-aa4e-d666d98b3f92',
+                'group_id': 'property-details'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'personal-interstitial',
+                'group_id': 'property-details'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'extra-cover-block',
+                'group_id': 'extra-cover'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'ea651fa7-6b9d-4b6f-ba72-79133f312039',
+                'group_id': 'extra-cover'
+            }
+        ]
+
+        user_navigation = [
+            {
+                'highlight': True,
+                'repeating': False,
+                'block_id': 'insurance-type',
+                'link_name': 'Property Details',
+                'completed': False,
+                'instance': 0,
+                'group_id': 'property-details'
+            },
+            {
+                'highlight': False,
+                'repeating': False,
+                'block_id': 'household-composition',
+                'link_name': 'Household Details',
+                'completed': False,
+                'instance': 0,
+                'group_id': 'multiple-questions-group'
+            },
+            {
+                'highlight': False,
+                'repeating': True,
+                'block_id': 'repeating-block-1',
+                'link_name': 'Person1',
+                'completed': False,
+                'instance': 0,
+                'group_id': 'repeating-group'
+            },
+            {
+                'highlight': False,
+                'repeating': True,
+                'block_id': 'repeating-block-1',
+                'link_name': 'Person2',
+                'completed': False,
+                'instance': 1,
+                'group_id': 'repeating-group'
+            },
+            {
+                'highlight': False,
+                'repeating': False,
+                'block_id': 'extra-cover-block',
+                'link_name': 'Extra Cover',
+                'completed': False,
+                'instance': 0,
+                'group_id': 'extra-cover'
+            },
+            {
+                'highlight': False,
+                'repeating': False,
+                'block_id': 'credit-card',
+                'link_name': 'Payment Details',
+                'completed': False,
+                'instance': 0,
+                'group_id': 'payment-details'
+            },
+            {
+                'highlight': False,
+                'repeating': False,
+                'block_id': 'extra-cover-items',
+                'link_name': 'Extra Cover',
+                'completed': False,
+                'instance': 0,
+                'group_id': 'extra-cover-items-group'
+            }
+        ]
+
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
 
     def test_block_index_for_location_with_invalid_location(self):
         blocks = [
