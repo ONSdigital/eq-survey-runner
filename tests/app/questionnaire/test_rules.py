@@ -8,7 +8,7 @@ class TestRules(TestCase):
     def test_evaluate_rule_uses_single_value_from_list(self):
         when = {
             'value': 'singleAnswer',
-            'condition': 'equals'
+            'condition': 'contains'
         }
 
         list_of_answers = ['singleAnswer']
@@ -28,13 +28,11 @@ class TestRules(TestCase):
     def test_go_to_next_question_for_answer(self):
         # Given
         goto = {
-            'goto': {
-                'id': 'next-question',
-                'when': {
-                    'id': 'my_answer',
-                    'condition': 'equals',
-                    'value': 'Yes'
-                }
+            'id': 'next-question',
+            'when': {
+                'id': 'my_answer',
+                'condition': 'equals',
+                'value': 'Yes'
             }
         }
         answer_store = AnswerStore()
@@ -62,6 +60,21 @@ class TestRules(TestCase):
         goto = evaluate_goto(goto, {}, answer_store, 0)
 
         self.assertEqual(goto, False)
+
+    def test_evaluate_goto_returns_true_when_value_contained_in_list(self):
+
+        goto = {
+            'id': 'next-question',
+            'when': {
+                'id': 'my_answers',
+                'condition': 'contains',
+                'value': 'answer1'
+            }
+        }
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3']))
+
+        self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
 
     def test_should_repeat_for_answer_answer_value(self):
         # Given
