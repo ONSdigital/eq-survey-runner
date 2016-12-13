@@ -75,6 +75,7 @@ export const openMobileNavigation = () => {
 export const closeMobileNavigation = () => {
   browser.pause(100)
   browser.click('#menu-btn')
+  browser.pause(200)
   return browser.waitUntil(function() {
     return !browser.isVisibleWithinViewport('#section-nav')
   })
