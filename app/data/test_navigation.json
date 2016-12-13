@@ -186,10 +186,10 @@
                         {
                             "title": "{{answers.person_full_name[group_instance]}}",
                             "description": "",
-                            "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
+                            "id": "over-16-section,
                             "questions": [
                                 {
-                                    "id": "c1d9976e-d031-4fab-96fc-1d37d4a8b86b",
+                                    "id": "over-16-question",
                                     "title": "Is the person above over 16?",
                                     "description": "",
                                     "type": "General",
@@ -228,10 +228,10 @@
                         {
                             "title": "{{answers.person_full_name[group_instance]}}",
                             "description": "",
-                            "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                            "id": "working-status-section",
                             "questions": [
                                 {
-                                    "id": "31ec5b0a-094b-44ca-9807-9090c1b849f5",
+                                    "id": "working-status-question",
                                     "title": "",
                                     "description": "What is the working status of this person?",
                                     "type": "General",
