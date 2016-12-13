@@ -302,7 +302,7 @@ class Navigator:
                     self._add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation)
             else:
                 self._add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation)
-        logger.error(navigation)
+
         return navigation
 
     @staticmethod
