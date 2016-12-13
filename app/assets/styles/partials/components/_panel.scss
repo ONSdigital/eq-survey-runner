@@ -1,0 +1,69 @@
+@mixin panel_type($name, $color, $color-bg) {
+  .panel--#{$name} {
+    background: $color-bg;
+    .panel__header {
+      background: $color;
+    }
+  }
+  .panel--simple {
+    &.panel--#{$name} {
+      border-color: $color;
+    }
+  }
+}
+
+.panel {
+  border-radius: 0;
+  a {
+    color: $color-secondary;
+    &:focus {
+      color: white;
+    }
+  }
+  *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.panel__header {
+  color: $color-white;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+}
+
+.panel__title {
+  margin: 0;
+}
+
+.panel__body {
+  padding: 1rem;
+}
+
+@include panel_type(error, $color-red, #fbecec);
+@include panel_type(warn, $color-amber, #fdf6ec);
+@include panel_type(success, $color-primary-dark, #dbfdea);
+@include panel_type(info, $color-secondary, #f5f6ff);
+
+.panel--simple {
+  border: none;
+  border-left: 8px solid transparent;
+  margin-left: -8px;
+  color: $color-black;
+  padding: 1rem;
+  .panel__header {
+    background: none;
+    padding: 0 0 1rem;
+  }
+  .panel__body {
+    background: none;
+    padding: 0;
+  }
+}
+
+.panel--spacious {
+  padding: 1rem;
+  @include mq(m) {
+    padding: 2rem;
+  }
+}

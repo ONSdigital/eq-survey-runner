@@ -21,8 +21,8 @@
 
   {% if invalid %}
 
-    <div class="alert alert--simple alert--error">
-      <div class="alert__header">
+    <div class="panel panel--simple panel--error" data-qa="error">
+      <div class="panel__header">
         {% if answer.errors %}
         <ul class="list list--bare list--errors">
           {% for error in answer.errors %}
@@ -31,7 +31,7 @@
         </ul>
         {% endif %}
       </div>
-      <div class="alert__body">
+      <div class="panel__body" data-qa="error-body">
         {{answer_fields|safe}}
       </div>
     </div>
