@@ -1,33 +1,35 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.835618 - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class CentralHeatingPage extends MultipleChoiceWithOtherPage {
 
-  clickCentralHeatingAnswerGas() {
+  clickCentralHeatingAnswerNoCentralHeating() {
     browser.element('[id="central-heating-answer-1"]').click()
     return this
   }
 
-  clickCentralHeatingAnswerElectricIncludingStorageHeaters() {
+  clickCentralHeatingAnswerGas() {
     browser.element('[id="central-heating-answer-2"]').click()
     return this
   }
 
-  clickCentralHeatingAnswerOil() {
+  clickCentralHeatingAnswerElectricIncludingStorageHeaters() {
     browser.element('[id="central-heating-answer-3"]').click()
     return this
   }
 
-  clickCentralHeatingAnswerSolidFuelForExampleWoodCoal() {
+  clickCentralHeatingAnswerOil() {
     browser.element('[id="central-heating-answer-4"]').click()
     return this
   }
 
-  clickCentralHeatingAnswerOtherCentralHeating() {
+  clickCentralHeatingAnswerSolidFuelForExampleWoodCoal() {
     browser.element('[id="central-heating-answer-5"]').click()
     return this
   }
 
-  clickCentralHeatingAnswerNoCentralHeating() {
+  clickCentralHeatingAnswerOtherCentralHeating() {
     browser.element('[id="central-heating-answer-6"]').click()
     return this
   }

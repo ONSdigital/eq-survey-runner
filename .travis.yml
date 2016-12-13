@@ -38,6 +38,7 @@ install:
 before_script:
 - yarn compile
 - ./scripts/run_app.sh
+- sleep 3
 script:
 - ./scripts/run_tests.sh
 after_success:

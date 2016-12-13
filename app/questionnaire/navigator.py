@@ -28,9 +28,14 @@ class Navigator:
 
     @classmethod
     def _block_index_for_location(cls, blocks, location):
-        if not cls.is_interstitial_block(location['block_id']):
-            return next(index for (index, b) in enumerate(blocks) if b["block"]["id"] == location['block_id'] and
-                        b["group_id"] == location['group_id'] and b['group_instance'] == location['group_instance'])
+        try:
+            if not cls.is_interstitial_block(location['block_id']):
+                return next(index for (index, b) in enumerate(blocks) if b["block"]["id"] == location['block_id'] and
+                            b["group_id"] == location['group_id'] and b['group_instance'] == location['group_instance'])
+        except StopIteration:
+            logger.error("Navigation failure looking for %s", location)
+            raise
+
         return None
 
     def build_path(self, blocks, this_location):
@@ -285,32 +290,46 @@ class Navigator:
             repeating_rule = SchemaHelper.get_repeating_rule(group)
             completed_id = group['completed_id'] if 'completed_id' in group else group['blocks'][-1]['id']
 
-            if repeating_rule and repeating_rule['type'] == 'answer_count':
+            if repeating_rule:
                 no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
                 answer_id = repeating_rule['answer_id']
                 answers = self.answer_store.filter(answer_id=answer_id)
 
-                for i in range(no_of_repeats):
-                    if answers:
-                        navigation.append({
-                            'link_name': answers[i]['value'],
-                            'group_id': group['id'],
-                            'instance': i,
-                            'block_id': group['blocks'][0]['id'],
-                            'completed': any(item for item in completed_blocks if item['group_instance'] == i and
-                                             item["block_id"] == completed_id),
-                            'highlight': group['id'] == group_id and i == group_instance,
-                            'repeating': True
-                        })
+                if repeating_rule['type'] == 'answer_count':
+                    self._add_repeating_navigation_item(answers, completed_blocks, completed_id, group, group_id,
+                                                        group_instance, navigation, no_of_repeats)
+                elif answers and no_of_repeats > 0:
+                    self._add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation)
             else:
-                navigation.append({
-                    'link_name': group['title'],
-                    'group_id': group['id'],
-                    'instance': 0,
-                    'block_id': group['blocks'][0]['id'],
-                    'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
-                    'highlight': (group['id'] != group_id and group_id in group['highlight_when']
-                                  if 'highlight_when' in group else False) or group['id'] == group_id,
-                    'repeating': False,
-                })
+                self._add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation)
+
         return navigation
+
+    @staticmethod
+    def _add_repeating_navigation_item(answers, completed_blocks, completed_id, group, group_id, group_instance,
+                                       navigation, no_of_repeats):
+        for i in range(no_of_repeats):
+            if answers:
+                navigation.append({
+                    'link_name': answers[i]['value'],
+                    'group_id': group['id'],
+                    'instance': i,
+                    'block_id': group['blocks'][0]['id'],
+                    'completed': any(item for item in completed_blocks if item['group_instance'] == i and
+                                     item["block_id"] == completed_id),
+                    'highlight': group['id'] == group_id and i == group_instance,
+                    'repeating': True
+                })
+
+    @staticmethod
+    def _add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation):
+        navigation.append({
+            'link_name': group['title'],
+            'group_id': group['id'],
+            'instance': 0,
+            'block_id': group['blocks'][0]['id'],
+            'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
+            'highlight': (group['id'] != group_id and group_id in group['highlight_when']
+                          if 'highlight_when' in group else False) or group['id'] == group_id,
+            'repeating': False,
+        })

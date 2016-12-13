@@ -18,7 +18,12 @@
 
         <legend class="question__legend">
           {%- if question_title -%}
-            <span class="question__title neptune">{{question_title}}</span>
+            <span class="question__title neptune">
+                {%- if question_number -%}
+                    <span>{{question_number}}. </span>
+                {% endif %}
+                {{question_title|safe}}
+            </span>
           {%- endif %}
           {%- if question_subtitle -%}
             <br />

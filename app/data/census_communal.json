@@ -23,7 +23,8 @@
                             "questions": [
                                 {
                                     "id": "establishment-type-question",
-                                    "title": "1 How would you describe your establishment?",
+                                    "title": "How would you describe your establishment?",
+                                    "number": "1",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -54,7 +55,6 @@
                                                     }
                                                 }
                                             ],
-                                            "q_code": "20",
                                             "type": "Radio"
                                         }
                                     ]
@@ -73,15 +73,22 @@
                             "questions": [
                                 {
                                     "id": "bed-spaces-question",
-                                    "title": "2 How many guest bed spaces does your establishment offer?",
+                                    "title": "How many guest bed spaces does your establishment offer?",
+                                    "number": "2",
                                     "description": "Count double rooms as 2 guest bed spaces",
                                     "type": "General",
                                     "answers": [
                                         {
                                             "id": "bed-spaces-answer",
+                                            "label": "Number of bed spaces",
                                             "mandatory": true,
-                                            "q_code": "20",
-                                            "type": "Integer"
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please provide an answer to continue",
+                                                    "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -117,7 +124,8 @@
                             "questions": [
                                 {
                                     "id": "usual-residents-question",
-                                    "title": "1 Are there any usual residents living at this establishment?",
+                                    "title": "Are there any usual residents living at this establishment?",
+                                    "number": "1",
                                     "type": "General",
                                     "guidance": [
                                         {
@@ -135,7 +143,7 @@
                                     "answers": [
                                         {
                                             "id": "usual-residents-answer",
-                                            "mandatory": false,
+                                            "mandatory": true,
                                             "options": [
                                                 {
                                                     "label": "Yes",
@@ -146,8 +154,12 @@
                                                     "value": "No"
                                                 }
                                             ],
-                                            "q_code": "20",
-                                            "type": "Radio"
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please select an answer to continue"
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -182,18 +194,19 @@
                             "questions": [
                                 {
                                     "id": "usual-residents-number-question",
-                                    "title": "2 How many usual residents live at this establishment?",
+                                    "title": "How many usual residents live at this establishment?",
+                                    "number": "2",
                                     "type": "General",
                                     "answers": [
                                         {
                                             "id": "usual-residents-number-answer",
-                                            "mandatory": false,
+                                            "mandatory": true,
                                             "label": "Number of usual residents",
-                                            "q_code": "20",
-                                            "type": "Integer",
+                                            "type": "PositiveInteger",
                                             "validation": {
                                                 "messages": {
-                                                    "MANDATORY": "The value you have entered is invalid. Please enter a numeric value."
+                                                    "MANDATORY": "Please provide an answer to continue.",
+                                                    "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
                                                 }
                                             }
                                         }
@@ -213,7 +226,8 @@
                             "questions": [
                                 {
                                     "id": "describe-residents-question",
-                                    "title": "3 How would you describe your usual residents?",
+                                    "title": "How would you describe your usual residents?",
+                                    "number": "3",
                                     "description": "Select all that apply",
                                     "type": "General",
                                     "answers": [
@@ -241,7 +255,6 @@
                                                     }
                                                 }
                                             ],
-                                            "q_code": "20",
                                             "type": "Checkbox"
                                         }
                                     ]
@@ -258,11 +271,12 @@
                         {
                             "title": "Completion Preferences",
                             "id": "completion-preference-individual-section",
-                            "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment. All usual residents will be required to complete an individual questionnaire (with more personal details).",
                             "questions": [
                                 {
                                     "id": "completion-preference-individual-question",
-                                    "title": "1 If tomorrow was Census Day, to the best of your knowledge, how do you think your usual residents would prefer to complete their individual questionnaires?",
+                                    "title": "If tomorrow was Census Day, to the best of your knowledge, how do you think your usual residents would prefer to complete their individual questionnaires?",
+                                    "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment. All usual residents will be required to complete an individual questionnaire (with more personal details).",
+                                    "number": "1",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -282,7 +296,6 @@
                                                     "value": "Not sure"
                                                 }
                                             ],
-                                            "q_code": "20",
                                             "type": "Radio"
                                         }
                                     ]
@@ -328,7 +341,8 @@
                             "questions": [
                                 {
                                     "id": "why-paper-individual-question",
-                                    "title": "2 Why do you think they would choose to do it on paper?",
+                                    "title": "Why do you think they would choose to do it on paper?",
+                                    "number": "2",
                                     "description": "Select all that apply",
                                     "type": "General",
                                     "answers": [
@@ -360,7 +374,6 @@
                                                     }
                                                 }
                                             ],
-                                            "q_code": "20",
                                             "type": "Checkbox"
                                         }
                                     ]
@@ -376,11 +389,12 @@
                         {
                             "title": "Completion Preferences",
                             "id": "completion-preference-establishment-section",
-                            "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment.",
                             "questions": [
                                 {
                                     "id": "completion-preference-establishment-question",
-                                    "title": "3 If tomorrow was Census Day, would you (or a member of staff) complete the Census establishment questionnaire online or on paper?",
+                                    "title": "If tomorrow was Census Day, how would you (or a member of staff) complete the Census establishment questionnaire?",
+                                    "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment.",
+                                    "number": "3",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -396,7 +410,6 @@
                                                     "value": "Paper"
                                                 }
                                             ],
-                                            "q_code": "20",
                                             "type": "Radio"
                                         }
                                     ]
@@ -432,7 +445,8 @@
                             "questions": [
                                 {
                                     "id": "why-paper-establishment-question",
-                                    "title": "4 Why would you choose to do it on paper?",
+                                    "title": "Why would you choose to do it on paper?",
+                                    "number": "4",
                                     "description": "Select all that apply",
                                     "type": "General",
                                     "answers": [
@@ -456,7 +470,6 @@
                                                     }
                                                 }
                                             ],
-                                            "q_code": "20",
                                             "type": "Checkbox"
                                         }
                                     ]
@@ -476,7 +489,8 @@
                             "questions": [
                                 {
                                     "id": "further-contact-question",
-                                    "title": "1 Would you be happy to be contacted in the future, by the Office for National Statistics, to help us design the 2021 Census?",
+                                    "title": "Would you be happy to be contacted in the future, by the Office for National Statistics, to help us design the 2021 Census?",
+                                    "number": "1",
                                     "type": "General",
                                     "answers": [
                                         {
@@ -492,7 +506,6 @@
                                                     "value": "No"
                                                 }
                                             ],
-                                            "q_code": "20",
                                             "type": "Radio"
                                         }
                                     ]
@@ -528,28 +541,26 @@
                             "questions": [
                                 {
                                     "id": "contact-details-question",
-                                    "title": "2 Please complete your contact details:",
+                                    "title": "Please complete your contact details:",
+                                    "number": "2",
                                     "type": "General",
                                     "answers": [
                                         {
                                             "id": "contact-details-answer-name",
                                             "label": "Name",
                                             "mandatory": false,
-                                            "q_code": "20",
                                             "type": "TextField"
                                         },
                                         {
                                             "id": "contact-details-answer-email",
                                             "label": "Email",
                                             "mandatory": false,
-                                            "q_code": "20",
                                             "type": "TextField"
                                         },
                                         {
                                             "id": "contact-details-answer-phone",
                                             "label": "and / or telephone number",
                                             "mandatory": false,
-                                            "q_code": "20",
                                             "type": "TextField"
                                         }
                                     ]
@@ -565,9 +576,9 @@
                     "title": "You are ready to submit your answers",
                     "sections": [
                         {
-                            "title": "You are ready to submit your answers",
+                            "title": "You're ready to submit your 2017 Census Test",
                             "id": "questionnaire-completed-section",
-                            "description": "<p>By submitting this questionnaire, you are declaring that this has been completed to the best of your knowledge and belief.</p>",
+                            "description": "<p>Thank you for taking part in the 2017 Census Test.</p>",
                             "questions": [
                                 {
                                     "answers": [],
@@ -578,8 +589,9 @@
                                         {
                                              "title": "Please note:",
                                              "list": [
-                                                 "If you do not submit your questionnaire, your responses will be automatically submitted when the online questionnaire closes.",
-                                                 "After submission of your questionnaire you will have an opportunity to provide feedback on your experience."
+                                                 "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                                                 "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
+                                                 "After submission you will have an opportunity to provide feedback on your experience."
                                              ]
                                         }
                                     ]

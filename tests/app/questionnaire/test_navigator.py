@@ -1065,6 +1065,7 @@ class TestNavigator(unittest.TestCase):
                                                                              current_block_id=current_block_id,
                                                                              current_iteration=current_iteration))
 
+
     def test_navigation_no_blocks_completed(self):
         survey = load_schema_file("test_navigation.json")
         navigator = Navigator(survey)
@@ -1303,3 +1304,36 @@ class TestNavigator(unittest.TestCase):
         ]
 
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+    def test_block_index_for_location_with_invalid_location(self):
+        blocks = [
+            {
+                "group_id": 'first-valid-group-id',
+                "group_instance": 0,
+                "block": {"id": 'first-valid-block-id'}
+            },
+            {
+                "group_id": 'second-valid-group-id',
+                "group_instance": 0,
+                "block": {"id": 'second-valid-block-id'}
+            }
+        ]
+
+        invalid_group_location = {
+            'group_instance': 0,
+            'group_id': 'this-group-id-doesnt-exist-in-the-list-of-blocks',
+            'block_id': 'first-valid-block-id'
+        }
+
+        with self.assertRaises(StopIteration):
+            Navigator._block_index_for_location(blocks, invalid_group_location)
+
+        invalid_block_location = {
+            'group_instance': 0,
+            'group_id': 'second-valid-group-id',
+            'block_id': 'this-block-id-doesnt-exist-in-the-list-of-blocks'
+        }
+
+        with self.assertRaises(StopIteration):
+            Navigator._block_index_for_location(blocks, invalid_block_location)
+

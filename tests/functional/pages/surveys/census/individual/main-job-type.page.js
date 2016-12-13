@@ -7,12 +7,12 @@ class MainJobTypePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  clickMainJobTypeAnswerSelfEmployedInYourOwnBusiness() {
+  clickMainJobTypeAnswerSelfEmployedInYourOwnOrganisationOrBusiness() {
     browser.element('[id="main-job-type-answer-2"]').click()
     return this
   }
 
-  clickMainJobTypeAnswerNotWorkingForAnOrganisation() {
+  clickMainJobTypeAnswerNotWorkingForAnOrganisationOrBusiness() {
     browser.element('[id="main-job-type-answer-3"]').click()
     return this
   }

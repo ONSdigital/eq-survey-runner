@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import os
@@ -31,7 +32,9 @@ describe('Example Test', function() {
 
 """
 
-HEADER = r"""import {basePage} from '../../{basePageFile}'
+HEADER = r"""// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON {generated} - DO NOT EDIT!!! <<<
+
+import {basePage} from '../../{basePageFile}'
 
 """
 
@@ -48,6 +51,13 @@ ANSWER_SETTER = r"""  set{answerName}(value) {
 
 ANSWER_GETTER = r"""  get{answerName}(value) {
     return browser.element('[name="{answerId}"]').getValue()
+  }
+
+"""
+
+DROP_DOWN_SETTER = r"""  set{answerName}(value) {
+    browser.selectByValue('[name="{answerId}"]', value)
+    return this
   }
 
 """
@@ -90,7 +100,8 @@ def process_answer(answer, page_spec):
         answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(_write_month_year_date_answer(answer_name, answer['id']))
 
-    elif answer['type'] == 'TextField' or answer['type'] == 'Integer' or answer['type'] == 'Textarea':
+    elif (answer['type'] == 'TextField' or answer['type'] == 'Integer' or
+            answer['type'] == 'PositiveInteger' or answer['type'] == 'TextArea'):
         answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
         page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
@@ -116,14 +127,14 @@ def _write_date_answer(answer_name, answerId):
     return \
         ANSWER_SETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answerId + '-day') + \
         ANSWER_GETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answerId + '-day') + \
-        ANSWER_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
+        DROP_DOWN_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
         ANSWER_GETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
         ANSWER_SETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year') + \
         ANSWER_GETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year')
 
 def _write_month_year_date_answer(answer_name, answerId):
     return \
-        ANSWER_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
+        DROP_DOWN_SETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
         ANSWER_GETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
         ANSWER_SETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year') + \
         ANSWER_GETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year')
@@ -153,6 +164,7 @@ def process_block(block, dir_out, spec_out):
         page_name = generate_camel_case_from_id(block['id'])
 
         header = HEADER
+        header = header.replace("{generated}", str(datetime.datetime.now()))
         header = header.replace("{basePage}", "QuestionPage" if not multiple_choice_check else "MultipleChoiceWithOtherPage")
         header = header.replace("{basePageFile}", "question.page" if not multiple_choice_check else "multiple-choice.page")
 

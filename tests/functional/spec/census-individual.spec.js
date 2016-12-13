@@ -4,7 +4,6 @@ import {startCensusQuestionnaire} from '../helpers'
 import CorrectName from '../pages/surveys/census/individual/correct-name.page.js'
 import Sex from '../pages/surveys/census/individual/sex.page.js'
 import DateOfBirth from '../pages/surveys/census/individual/date-of-birth.page.js'
-import Over16 from '../pages/surveys/census/individual/over-16.page.js'
 import MaritalStatus from '../pages/surveys/census/individual/marital-status.page.js'
 import AnotherAddress from '../pages/surveys/census/individual/another-address.page.js'
 import OtherAddress from '../pages/surveys/census/individual/other-address.page.js'
@@ -30,6 +29,7 @@ import Religion from '../pages/surveys/census/individual/religion.page.js'
 import PastUsualAddress from '../pages/surveys/census/individual/past-usual-address.page.js'
 import LastYearAddress from '../pages/surveys/census/individual/last-year-address.page.js'
 import Passports from '../pages/surveys/census/individual/passports.page.js'
+import OtherPassports from '../pages/surveys/census/individual/other-passports.page.js'
 import Disability from '../pages/surveys/census/individual/disability.page.js'
 import Qualifications from '../pages/surveys/census/individual/qualifications.page.js'
 import Volunteering from '../pages/surveys/census/individual/volunteering.page.js'
@@ -45,7 +45,7 @@ import JobDescription from '../pages/surveys/census/individual/job-description.p
 import EmployersBusiness from '../pages/surveys/census/individual/employers-business.page.js'
 import MainJobType from '../pages/surveys/census/individual/main-job-type.page.js'
 import BusinessName from '../pages/surveys/census/individual/business-name.page.js'
-import Confirmation from '../pages/confirmation.page.js'
+import Confirmation from '../pages/surveys/census/individual/confirmation.page.js'
 import ThankYou from '../pages/thank-you.page'
 
 const expect = chai.expect
@@ -59,24 +59,28 @@ describe('Census Individual', function () {
         CorrectName.setFirstName("Paul").setLastName("Smith").submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(8).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        Language.clickLanguageEnglandAnswerEnglish().submit()
         Religion.clickReligionAnswerNoReligion().submit()
         PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
         Passports.clickPassportsAnswerUnitedKingdom().submit()
         Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerNo().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        MainJob.clickMainJobAnswerAnEmployee().submit()
+        JobTitle.setJobTitleAnswer('dev').submit()
+        JobDescription.setJobDescriptionAnswer('coding wizardry').submit()
+        EmployersBusiness.setEmployersBusinessAnswer('codezilla').submit()
+        MainJobType.clickMainJobTypeAnswerEmployedByAnOrganisationOrBusiness().submit()
+        BusinessName.setBusinessNameAnswer('coding warehouse').submit()
 
         Confirmation.submit()
 
@@ -92,94 +96,29 @@ describe('Census Individual', function () {
         CorrectName.setFirstName("Paul").setLastName("Smith").submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
         SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
+        Language.clickLanguageEnglandAnswerEnglish().submit()
         Religion.clickReligionAnswerNoReligion().submit()
         PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
         Passports.clickPassportsAnswerUnitedKingdom().submit()
         Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerNo().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-
-        Confirmation.submit()
-
-        // Thank You
-        expect(ThankYou.isOpen()).to.be.true
-
-    })
-
-
-    it('Given Respondent Home has identified the respondent should have the Individual Questionnaire with the sexual id question, When I complete the EQ stating i am over 16, Then I should be asked the sexual id question', function () {
-        startCensusQuestionnaire('census_individual.json', true)
-
-        // household-member
-        CorrectName.setFirstName("Paul").setLastName("Smith").submit()
-        Sex.clickSexAnswerMale().submit()
-        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
-        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
-        AnotherAddress.clickAnotherAddressAnswerNo().submit()
-        InEducation.clickInEducationAnswerNo().submit()
-        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
-        Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
-        Religion.clickReligionAnswerNoReligion().submit()
-        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
-        Passports.clickPassportsAnswerUnitedKingdom().submit()
-        Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
-        Volunteering.clickVolunteeringAnswerNo().submit()
-        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-
-        Confirmation.submit()
-
-        // Thank You
-        expect(ThankYou.isOpen()).to.be.true
-
-    })
-
-
-    it('Given Respondent Home has identified the respondent should have the Individual Questionnaire with the sexual id question, When I complete the EQ stating i am under 16, Then I should not be asked the sexual id question', function () {
-        startCensusQuestionnaire('census_individual.json', true)
-
-        // household-member
-        CorrectName.setFirstName("Paul").setLastName("Smith").submit()
-        Sex.clickSexAnswerMale().submit()
-        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(9).setDateOfBirthAnswerYear(2001).submit()
-        Over16.clickOver16AnswerNo().submit()
-        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
-        AnotherAddress.clickAnotherAddressAnswerNo().submit()
-        InEducation.clickInEducationAnswerNo().submit()
-        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
-        Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
-        Religion.clickReligionAnswerNoReligion().submit()
-        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
-        Passports.clickPassportsAnswerUnitedKingdom().submit()
-        Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
-        Volunteering.clickVolunteeringAnswerNo().submit()
-        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        MainJob.clickMainJobAnswerAnEmployee().submit()
+        JobTitle.setJobTitleAnswer('dev').submit()
+        JobDescription.setJobDescriptionAnswer('coding wizardry').submit()
+        EmployersBusiness.setEmployersBusinessAnswer('codezilla').submit()
+        MainJobType.clickMainJobTypeAnswerEmployedByAnOrganisationOrBusiness().submit()
+        BusinessName.setBusinessNameAnswer('coding warehouse').submit()
 
         Confirmation.submit()
 

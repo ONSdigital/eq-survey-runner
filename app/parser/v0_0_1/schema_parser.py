@@ -309,7 +309,7 @@ class SchemaParser(AbstractSchemaParser):
             answer_id = ParserUtils.get_required_string(schema, 'id')
             answer = self.answer_factory.create(answer_type.upper(), answer_id)
             answer.type = answer_type
-            answer.code = ParserUtils.get_required_string(schema, 'q_code')
+            answer.code = ParserUtils.get_optional_string(schema, 'q_code')
             answer.label = ParserUtils.get_optional_string(schema, 'label')
             answer.guidance = ParserUtils.get_optional_string(schema, 'guidance')
             answer.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')

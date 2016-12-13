@@ -1,98 +1,100 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.913557 - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class QualificationsPage extends MultipleChoiceWithOtherPage {
 
-  clickQualificationsAnswer5OrMoreGcsesGradesAStarToCOrOLevelsPassesOrCsesGrade1SchoolCertificateOneALevel2To3AsLevelsOrVcesHigherDiploma() {
-    browser.element('[id="qualifications-answer-1"]').click()
+  clickQualificationsEnglandAnswer5OrMoreGcsesGradesAStarToCOrOLevelsPassesOrCsesGrade1SchoolCertificateOneALevel2To3AsLevelsOrVcesHigherDiploma() {
+    browser.element('[id="qualifications-england-answer-1"]').click()
     return this
   }
 
-  clickQualificationsAnswer1To4GcsesOrOLevelsOrCsesAnyGradesEntryLevelFoundationDiploma() {
-    browser.element('[id="qualifications-answer-2"]').click()
+  clickQualificationsEnglandAnswer1To4GcsesOrOLevelsOrCsesAnyGradesEntryLevelFoundationDiploma() {
+    browser.element('[id="qualifications-england-answer-2"]').click()
     return this
   }
 
-  clickQualificationsAnswer2OrMoreALevels4OrMoreAsLevelsOrVcesHigherSchoolCertificateAdvancedDiploma() {
-    browser.element('[id="qualifications-answer-3"]').click()
+  clickQualificationsEnglandAnswer2OrMoreALevels4OrMoreAsLevelsOrVcesHigherSchoolCertificateAdvancedDiploma() {
+    browser.element('[id="qualifications-england-answer-3"]').click()
     return this
   }
 
-  clickQualificationsAnswerApprenticeshipTradeAdvancedFoundationOrModern() {
-    browser.element('[id="qualifications-answer-4"]').click()
+  clickQualificationsEnglandAnswerApprenticeshipTradeAdvancedFoundationOrModern() {
+    browser.element('[id="qualifications-england-answer-4"]').click()
     return this
   }
 
-  clickQualificationsAnswerNvqLevelOneFoundationGnvqBasicSkills() {
-    browser.element('[id="qualifications-answer-5"]').click()
+  clickQualificationsEnglandAnswerNvqLevelOneFoundationGnvqBasicSkills() {
+    browser.element('[id="qualifications-england-answer-5"]').click()
     return this
   }
 
-  clickQualificationsAnswerNvqLevelTwoIntermediateGnvqCityAndGuildsCraftBtecFirstRsaDiploma() {
-    browser.element('[id="qualifications-answer-6"]').click()
+  clickQualificationsEnglandAnswerNvqLevelTwoIntermediateGnvqCityAndGuildsCraftBtecFirstRsaDiploma() {
+    browser.element('[id="qualifications-england-answer-6"]').click()
     return this
   }
 
-  clickQualificationsAnswerNvqLevelThreeAdvancedGnvqCityAndGuildsAdvancedCraftOncOndBtecNationalRsaAdvancedDiploma() {
-    browser.element('[id="qualifications-answer-7"]').click()
+  clickQualificationsEnglandAnswerNvqLevelThreeAdvancedGnvqCityAndGuildsAdvancedCraftOncOndBtecNationalRsaAdvancedDiploma() {
+    browser.element('[id="qualifications-england-answer-7"]').click()
     return this
   }
 
-  clickQualificationsAnswerNvqLevelFourToFiveHncHndRsaHigherDiplomaBtecHigherFoundationDegree() {
-    browser.element('[id="qualifications-answer-8"]').click()
+  clickQualificationsEnglandAnswerNvqLevelFourToFiveHncHndRsaHigherDiplomaBtecHigherFoundationDegree() {
+    browser.element('[id="qualifications-england-answer-8"]').click()
     return this
   }
 
-  clickQualificationsAnswerOtherVocationalOrWorkRelatedQualifications() {
-    browser.element('[id="qualifications-answer-9"]').click()
+  clickQualificationsEnglandAnswerOtherVocationalOrWorkRelatedQualifications() {
+    browser.element('[id="qualifications-england-answer-9"]').click()
     return this
   }
 
-  clickQualificationsAnswerUndergraduateDegree() {
-    browser.element('[id="qualifications-answer-10"]').click()
+  clickQualificationsEnglandAnswerUndergraduateDegree() {
+    browser.element('[id="qualifications-england-answer-10"]').click()
     return this
   }
 
-  clickQualificationsAnswerPostgraduateCertificateDiploma() {
-    browser.element('[id="qualifications-answer-11"]').click()
+  clickQualificationsEnglandAnswerPostgraduateCertificateDiploma() {
+    browser.element('[id="qualifications-england-answer-11"]').click()
     return this
   }
 
-  clickQualificationsAnswerMastersDegree() {
-    browser.element('[id="qualifications-answer-12"]').click()
+  clickQualificationsEnglandAnswerMastersDegree() {
+    browser.element('[id="qualifications-england-answer-12"]').click()
     return this
   }
 
-  clickQualificationsAnswerDoctorateDegreeForExamplePhd() {
-    browser.element('[id="qualifications-answer-13"]').click()
+  clickQualificationsEnglandAnswerDoctorateDegreeForExamplePhd() {
+    browser.element('[id="qualifications-england-answer-13"]').click()
     return this
   }
 
-  clickQualificationsAnswerProfessionalQualificationForExampleTeachingNursingAccountancy() {
-    browser.element('[id="qualifications-answer-14"]').click()
+  clickQualificationsEnglandAnswerProfessionalQualificationForExampleTeachingNursingAccountancy() {
+    browser.element('[id="qualifications-england-answer-14"]').click()
     return this
   }
 
-  clickQualificationsAnswerForeignQualificationsUkEquivalentNotKnown() {
-    browser.element('[id="qualifications-answer-15"]').click()
+  clickQualificationsEnglandAnswerForeignQualificationsUkEquivalentNotKnown() {
+    browser.element('[id="qualifications-england-answer-15"]').click()
     return this
   }
 
-  clickQualificationsAnswerNoQualifications() {
-    browser.element('[id="qualifications-answer-16"]').click()
+  clickQualificationsEnglandAnswerNoQualifications() {
+    browser.element('[id="qualifications-england-answer-16"]').click()
     return this
   }
 
-  clickQualificationsWelshAnswerMoreThanFiveGcsesGradesAStarToCOrOLevelsPassesOrCsesGrade1SchoolCertificateOneALevelTwoToThreeAsLevelsOrVcesIntermediateOrNationalWelshBaccalaureateLevelTwo() {
+  clickQualificationsWelshAnswer5OrMoreGcsesGradesAStarToCOrOLevelsPassesOrCsesGrade1SchoolCertificateOneALevel2To3AsLevelsOrVcesIntermediateOrNationalWelshBaccalaureateLevelTwo() {
     browser.element('[id="qualifications-welsh-answer-1"]').click()
     return this
   }
 
-  clickQualificationsWelshAnswerOneToFourGcsesOrOLevelsOrCsesAnyGradesEntryLevelFoundationWelshBaccalaureateLevelOne() {
+  clickQualificationsWelshAnswer1To4GcsesOrOLevelsOrCsesAnyGradesEntryLevelFoundationWelshBaccalaureateLevelOne() {
     browser.element('[id="qualifications-welsh-answer-2"]').click()
     return this
   }
 
-  clickQualificationsWelshAnswerMoreThanTwoALevelsMoreThanFourAsLevelsOrVcesHigherSchoolCertificateAdvancedWelshBaccalaureateLevelThree() {
+  clickQualificationsWelshAnswerMoreThan2ALevelsMoreThan4AsLevelsOrVcesHigherSchoolCertificateAdvancedWelshBaccalaureateLevelThree() {
     browser.element('[id="qualifications-welsh-answer-3"]').click()
     return this
   }

@@ -1,3 +1,7 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.822874 - DO NOT EDIT!!! <<<
+
+// HAND-EDITED VERSION - NEEDS TO BE ADDED TO GENERATOR >>>
+
 import QuestionPage from '../../question.page'
 
 class HouseholdCompositionPage extends QuestionPage {
