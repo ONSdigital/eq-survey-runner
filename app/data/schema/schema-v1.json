@@ -46,6 +46,9 @@
     "theme": {
       "type":"string"
     },
+    "navigation":{
+      "type": "boolean"
+    },
     "introduction": {
       "type": "object",
       "properties": {
@@ -56,6 +59,15 @@
     },
     "groups": {
       "type": "array",
+      "completed_id": {
+          "type":"string"
+      },
+      "highlight_when": {
+          "type":"array"
+      },
+      "hide_in_navigation": {
+          "type":"boolean"
+      },
       "items": {
         "type": "object",
         "properties": {
