@@ -24,6 +24,7 @@ import CorrectName from '../../../pages/surveys/census/household/correct-name.pa
 import Sex from '../../../pages/surveys/census/household/sex.page.js'
 import DateOfBirth from '../../../pages/surveys/census/household/date-of-birth.page.js'
 import Over16 from '../../../pages/surveys/census/household/over-16.page.js'
+import PrivateResponse from '../../../pages/surveys/census/household/private-response.page.js'
 import MaritalStatus from '../../../pages/surveys/census/household/marital-status.page.js'
 import AnotherAddress from '../../../pages/surveys/census/household/another-address.page.js'
 import OtherAddress from '../../../pages/surveys/census/household/other-address.page.js'
@@ -65,7 +66,6 @@ import EmployersBusiness from '../../../pages/surveys/census/household/employers
 import MainJobType from '../../../pages/surveys/census/household/main-job-type.page.js'
 import BusinessName from '../../../pages/surveys/census/household/business-name.page.js'
 import HouseholdMemberCompleted from '../../../pages/surveys/census/household/household-member-completed.page.js'
-import NumberOfVisitors from '../../../pages/surveys/census/household/number-of-visitors.page.js'
 import VisitorName from '../../../pages/surveys/census/household/visitor-name.page.js'
 import VisitorSex from '../../../pages/surveys/census/household/visitor-sex.page.js'
 import VisitorDateOfBirth from '../../../pages/surveys/census/household/visitor-date-of-birth.page.js'
@@ -100,9 +100,10 @@ describe('Are-you-a-schoolchild', function () {
  // household-member
    HouseholdMemberBegin.submit()
    DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+   Over16.clickOver16AnswerYes().submit()
+   PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
    Sex.clickSexAnswerMale().submit()
    DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-   Over16.clickOver16AnswerYes().submit()
    MaritalStatus.clickMaritalStatusAnswerMarried().submit()
    AnotherAddress.clickAnotherAddressAnswerNo().submit()
    InEducation.submit()
