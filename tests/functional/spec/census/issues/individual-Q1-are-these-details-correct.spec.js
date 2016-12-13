@@ -15,9 +15,7 @@ import NumberOfVehicles from '../../../pages/surveys/census/household/number-of-
 import HouseholdAndAccommodationCompleted from '../../../pages/surveys/census/household/household-and-accommodation-completed.page.js'
 import HouseholdMemberBegin from '../../../pages/surveys/census/household/household-member-begin.page.js'
 import DetailsCorrect from '../../../pages/surveys/census/household/details-correct.page.js'
-import Sex from '../../../pages/surveys/census/household/sex.page.js'
 import Over16 from '../../../pages/surveys/census/household/over-16.page.js'
-import PrivateResponse from '../../../pages/surveys/census/household/private-response.page.js'
 
 describe('Individual section Question 1', function () {
 

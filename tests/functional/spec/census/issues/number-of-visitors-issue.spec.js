@@ -2,7 +2,6 @@ import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
-import ElsePermanentOrFamilyHome from '../../../pages/surveys/census/household/else-permanent-or-family-home.page.js'
 import HouseholdComposition from '../../../pages/surveys/census/household/household-composition.page.js'
 import EveryoneAtAddressConfirmation from '../../../pages/surveys/census/household/everyone-at-address-confirmation.page.js'
 import OvernightVisitors from '../../../pages/surveys/census/household/overnight-visitors.page.js'
