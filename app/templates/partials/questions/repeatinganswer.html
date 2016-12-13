@@ -1,6 +1,11 @@
 <div class="question question--repeatinganswer" id="{{question.id}}">
 
-  <h2 class="question__title neptune">{{question_title|safe}}</h2>
+  <h2 class="question__title neptune">
+    {%- if question_number -%}
+      <span>{{question_number}}. </span>
+    {% endif %}
+    {{question_title|safe}}
+  </h2>
 
   {{question_description|safe}}
   {{question_guidance|safe}}

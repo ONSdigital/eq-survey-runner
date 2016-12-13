@@ -1,3 +1,5 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.844628 - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class Over16Page extends MultipleChoiceWithOtherPage {
