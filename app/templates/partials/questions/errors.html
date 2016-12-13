@@ -1,5 +1,5 @@
-<div class="alert alert--simple alert--error">
-  <div class="alert__header">
+<div class="panel panel--simple panel--error" data-qa="error">
+  <div class="panel__header">
     {% if question.errors %}
     <ul class="list list--bare list--errors">
       {% for error in question.errors %}
@@ -8,7 +8,7 @@
     </ul>
     {% endif %}
   </div>
-  <div class="alert__body">
+  <div class="panel__body" data-qa="error-body">
     {{question_markup|safe}}
   </div>
 </div>

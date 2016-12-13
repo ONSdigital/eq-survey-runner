@@ -1,7 +1,7 @@
 class QuestionPage {
 
-  getAlertText(year) {
-    return browser.element('.alert__body').getText()
+  getAlertText() {
+    return browser.element('[data-qa="error-body"]').getText()
   }
 
   submit() {
@@ -23,10 +23,6 @@ class QuestionPage {
 
   getDisplayedName() {
     return browser.getText('h1[class="section__title saturn"]')
-  }
-
-  getAlertText(year) {
-    return browser.element('.alert__body').getText()
   }
 
 }

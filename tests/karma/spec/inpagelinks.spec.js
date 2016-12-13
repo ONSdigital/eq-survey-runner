@@ -1,10 +1,10 @@
 import { inPageLink, applyInPageLink, classTrigger, classDetails, attrInputId } from 'app/modules/inpagelink'
 
-const strTemplate = `<div class="alert alert--error">
-  <div class="alert__header">
-    <div class="alert__title"><h1 class="alert__title venus">This page has 1 errors</h1> </div>
+const strTemplate = `<div class="panel panel--error">
+  <div class="panel__header">
+    <div class="panel__title"><h1 class="panel__title venus">This page has 1 errors</h1> </div>
   </div>
-  <div class="alert__body">
+  <div class="panel__body">
     <p class="mars">These <strong>must be corrected</strong> to continue.</p>
     <ul class="list list--bare">
         <li class="list__item mars">
@@ -13,15 +13,15 @@ const strTemplate = `<div class="alert alert--error">
     </ul>
   </div>
 </div>
-<div class="alert alert--error">
-  <div class="alert__header">
-    <div class="alert__title">
+<div class="panel panel--error">
+  <div class="panel__header">
+    <div class="panel__title">
         <ul class="list list--bare">
           <li class="list__item mars" data-error-msg="Please provide a value, even if your value is 0." data-error="true" data-error-id="7a4b1aee-d6b9-4581-ab18-1191e5ebb94d">Please provide a value, even if your value is 0.</li>
         </ul>
       </div>
   </div>
-  <div class="alert__body">
+  <div class="panel__body">
     <div class="field">
       <label class="label " for="ea08f977-33a8-4933-ad7b-c497997107cf" id="label-ea08f977-33a8-4933-ad7b-c497997107cf">
         <span class="label__inner venus">Total retail turnover</span>

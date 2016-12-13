@@ -13,4 +13,4 @@ $responsive: true;
 @import "./components/page-header.scss";
 @import "./components/footer.scss";
 
-@include alert_type(neutral, $color-purple, #faf4fc);
+@include panel_type(neutral, $color-purple, #faf4fc);

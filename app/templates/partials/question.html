@@ -32,7 +32,7 @@
 {% set question_guidance %}
   {%- if question.schema_item.guidance -%}
     <div class="u-mb-m">
-      <div class="alert alert--simple alert--neutral" id="question-guidance-{{question.id}}">
+      <div class="panel panel--simple panel--info" id="question-guidance-{{question.id}}">
         {%- for guidance in question.schema_item.guidance -%}
           {%- if guidance.title -%}
             <h3 class="venus">{{guidance.title}}</h3>

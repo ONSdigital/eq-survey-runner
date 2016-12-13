@@ -17,11 +17,11 @@
     {% if all_errors %}
 
       <div class="u-mb-s">
-        <div class="alert alert--error">
-          <div class="alert__header">
-            <h1 class="alert__title venus">This page has {{all_errors|length}} errors</h1>
+        <div class="panel panel--error" data-qa="error">
+          <div class="panel__header">
+            <h1 class="panel__title venus">This page has {{all_errors|length}} errors</h1>
           </div>
-          <div class="alert__body">
+          <div class="panel__body" data-qa="error-body">
             <p class="mars">These <strong>must be corrected</strong> to continue.</p>
             <ul class="list list--bare">
               {% for item_id, errors in all_errors %}
