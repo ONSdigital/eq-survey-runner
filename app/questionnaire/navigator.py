@@ -265,7 +265,7 @@ class Navigator:
 
         return location_path[0]
 
-    def get_front_end_navigation(self, completed_blocks, group_id, group_instance):
+    def get_front_end_navigation(self, completed_blocks, current_group_id, current_group_instance):
         """
         Returns the frontend navigation based on the completed blocks, group id and group instance
 
@@ -292,17 +292,17 @@ class Navigator:
                 answers = self.answer_store.filter(answer_id=answer_id)
 
                 if repeating_rule['type'] == 'answer_count':
-                    self._add_repeating_navigation_item(answers, completed_blocks, completed_id, group, group_id,
-                                                        group_instance, navigation, no_of_repeats)
+                    self._add_repeating_navigation_item(answers, completed_blocks, completed_id, group, current_group_id,
+                                                        current_group_instance, navigation, no_of_repeats)
                 elif answers and no_of_repeats > 0:
-                    self._add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation)
+                    self._add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation)
             else:
-                self._add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation)
+                self._add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation)
         return navigation
 
     @staticmethod
-    def _add_repeating_navigation_item(answers, completed_blocks, completed_id, group, group_id, group_instance,
-                                       navigation, no_of_repeats):
+    def _add_repeating_navigation_item(answers, completed_blocks, completed_id, group, current_group_id,
+                                       current_group_instance, navigation, no_of_repeats):
         for i in range(no_of_repeats):
             if answers:
                 navigation.append({
@@ -312,19 +312,19 @@ class Navigator:
                     'block_id': group['blocks'][0]['id'],
                     'completed': any(item for item in completed_blocks if item['group_instance'] == i and
                                      item["block_id"] == completed_id),
-                    'highlight': group['id'] == group_id and i == group_instance,
+                    'highlight': group['id'] == current_group_id and i == current_group_instance,
                     'repeating': True
                 })
 
     @staticmethod
-    def _add_single_navigation_item(completed_blocks, completed_id, group, group_id, navigation):
+    def _add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation):
         navigation.append({
             'link_name': group['title'],
             'group_id': group['id'],
             'instance': 0,
             'block_id': group['blocks'][0]['id'],
             'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
-            'highlight': (group['id'] != group_id and group_id in group['highlight_when']
-                          if 'highlight_when' in group else False) or group['id'] == group_id,
+            'highlight': (group['id'] != current_group_id and current_group_id in group['highlight_when']
+                          if 'highlight_when' in group else False) or group['id'] == current_group_id,
             'repeating': False,
         })
