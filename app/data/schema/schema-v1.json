@@ -63,7 +63,12 @@
           "type":"string"
       },
       "highlight_when": {
-          "type":"array"
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
       },
       "hide_in_navigation": {
           "type":"boolean"
