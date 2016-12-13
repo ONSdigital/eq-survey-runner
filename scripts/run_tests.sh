@@ -45,11 +45,7 @@ yarn test_unit_no_watch
 display_result $? 1 "Front end unit tests"
 
 if [ -z "$EQ_FUNCTIONAL_TEST_SUITES" ]; then
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-        export EQ_FUNCTIONAL_TEST_SUITES="core,census"
-    else
-        export EQ_FUNCTIONAL_TEST_SUITES="core"
-    fi
+    export EQ_FUNCTIONAL_TEST_SUITES="core"
 fi
 echo "Running front end functional tests [${EQ_FUNCTIONAL_TEST_SUITES}]"
 yarn test_functional -- --suite ${EQ_FUNCTIONAL_TEST_SUITES}
