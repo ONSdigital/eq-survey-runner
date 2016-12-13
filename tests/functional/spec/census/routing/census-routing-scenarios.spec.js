@@ -24,6 +24,7 @@
   import Sex from '../../../pages/surveys/census/household/sex.page.js'
   import DateOfBirth from '../../../pages/surveys/census/household/date-of-birth.page.js'
   import Over16 from '../../../pages/surveys/census/household/over-16.page.js'
+import PrivateResponse from '../../../pages/surveys/census/household/private-response.page.js'
   import MaritalStatus from '../../../pages/surveys/census/household/marital-status.page.js'
   import AnotherAddress from '../../../pages/surveys/census/household/another-address.page.js'
   import OtherAddress from '../../../pages/surveys/census/household/other-address.page.js'
@@ -42,7 +43,6 @@
   import BlackEthnicGroup from '../../../pages/surveys/census/household/black-ethnic-group.page.js'
   import OtherEthnicGroup from '../../../pages/surveys/census/household/other-ethnic-group.page.js'
   import SexualIdentity from '../../../pages/surveys/census/household/sexual-identity.page.js'
-  import UnderstandWelsh from '../../../pages/surveys/census/household/understand-welsh.page.js'
   import Language from '../../../pages/surveys/census/household/language.page.js'
   import English from '../../../pages/surveys/census/household/english.page.js'
   import Religion from '../../../pages/surveys/census/household/religion.page.js'
@@ -65,7 +65,6 @@
   import MainJobType from '../../../pages/surveys/census/household/main-job-type.page.js'
   import BusinessName from '../../../pages/surveys/census/household/business-name.page.js'
   import HouseholdMemberCompleted from '../../../pages/surveys/census/household/household-member-completed.page.js'
-  import NumberOfVisitors from '../../../pages/surveys/census/household/number-of-visitors.page.js'
   import VisitorName from '../../../pages/surveys/census/household/visitor-name.page.js'
   import VisitorSex from '../../../pages/surveys/census/household/visitor-sex.page.js'
   import VisitorDateOfBirth from '../../../pages/surveys/census/household/visitor-date-of-birth.page.js'
@@ -87,26 +86,26 @@ describe('Census routing Scenarios', function () {
     it('Given I am answering question 1 in the who lives here section, When I select -no- as the response, Then I am routed to Who lives here question 2 ', function () {
         startCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerNo().submit()
-        ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerYes()
+        ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerSomeoneLivesHereAsTheirPermanentHome()
     })
 
     it('Given I am answering question 1 in the who lives here section, When I dont select any response, Then I a alert msg saying mandatory field must be displayed ', function () {
         startCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.submit()
-        expect(PermanentOrFamilyHome.getAlertText()).to.contain('This field is mandatory.')
+        expect(PermanentOrFamilyHome.getAlertText()).to.contain('Please select an answer to continue')
     })
 
     it('Given I am answering question 1a in the who lives here section, When I select -yes- as the response, Then I am routed to Who lives here question 2 ', function () {
         startCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerNo().submit()
-        ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerYes().submit()
+        ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerSomeoneLivesHereAsTheirPermanentHome().submit()
         HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
     })
 
     it('Given I am answering question 1a in the who lives here section, When I select -no- as the response, Then I am routed to How many visitors... question 4 ', function () {
         startCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerNo().submit()
-        ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerNo().submit()
+        ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerNoOneLivesHereAsTheirPermanentHome().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     })
 
@@ -114,7 +113,7 @@ describe('Census routing Scenarios', function () {
         startCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerNo().submit()
         ElsePermanentOrFamilyHome.submit()
-        expect(ElsePermanentOrFamilyHome.getAlertText()).to.contain('This field is mandatory.')
+        expect(ElsePermanentOrFamilyHome.getAlertText()).to.contain('Please select an answer to continue')
     })
 
     it('Given I am answering question 3 in the who lives here section, When I select -yes- as the response, Then I am routed to Who lives here question 4 ', function () {
@@ -142,7 +141,7 @@ describe('Census routing Scenarios', function () {
         OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     })
 
-    it('Given I am answering question 1 in the individual detail section, When I select -yes- as response, Then I am routed to What is you sex question 2 ', function () {
+    it('Given I am answering question 1 in the individual detail section, When I select -yes- as response, Then I am routed to Are you over 16 ', function () {
         startCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
         HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
@@ -164,7 +163,7 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
-        Sex.clickSexAnswerMale().submit()
+        Over16.clickOver16AnswerYes().submit()
     })
 
     it('Given I am answering question 1 in the individual detail section, When I select -no- as response, Then I am routed to What is your correct name question 1a ', function () {
@@ -189,10 +188,10 @@ describe('Census routing Scenarios', function () {
       // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerNoINeedToChangeMyName().submit()
-        CorrectName.setCorrectNameAnswer('Yoganand Kumar Kunche').submit()
+        CorrectName.setCorrectFirstName('Yoganand Kumar Kunche').submit()
     })
 
-    it('Given I am answering question 1 in the individual detail section, When I do not select any response, Then I am routed to What is you sex question 2 ', function () {
+    it('Given I am answering question 1 in the individual detail section, When I do not select any response, Then I am routed to Are you over 16', function () {
         startCensusQuestionnaire('census_household.json', true)
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
         HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
@@ -214,7 +213,7 @@ describe('Census routing Scenarios', function () {
       // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.submit()
-        Sex.clickSexAnswerMale().submit()
+        Over16.clickOver16AnswerYes().submit()
     })
 
     it('Given I am answering question 5 in the individual detail section -Do you stay at another address for more than 30 days a year?, When I select -no- as response, Then I am routed to 7. Are you a schoolchild or student in full-time education', function () {
@@ -239,9 +238,10 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
@@ -269,9 +269,10 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerYesAnAddressWithinTheUk().submit()
         OtherAddress.setOtherAddressAnswerBuilding('Gov Buildings').submit()
@@ -299,9 +300,10 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerOther().submit()
         AddressType.clickAddressTypeAnswerArmedForcesBaseAddress().submit()
@@ -329,9 +331,10 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
@@ -361,9 +364,10 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.submit()
@@ -392,13 +396,14 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerYes().submit()
-        TermTimeLocation.clickTermTimeLocationAnswerAtThisAddress().submit()
+        TermTimeLocation.clickTermTimeLocationAnswerHereAtThisAddress().submit()
     })
 
     it('Given I am answering question 12. Do you look after, or give any help or support..., When I select -No- as response, Then I am routed to 13. How would you describe your national identity?', function () {
@@ -423,16 +428,17 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerYes().submit()
-        TermTimeLocation.clickTermTimeLocationAnswerAtThisAddress().submit()
+        TermTimeLocation.clickTermTimeLocationAnswerHereAtThisAddress().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
     })
 
     it('Given I am answering question 12. Do you look after, or give any help or support..., When I select -Yes 1-19 Hours A Week- as response, Then I am routed to 13. How would you describe your national identity?', function () {
@@ -457,16 +463,17 @@ describe('Census routing Scenarios', function () {
       // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerYes().submit()
-        TermTimeLocation.clickTermTimeLocationAnswerAtThisAddress().submit()
+        TermTimeLocation.clickTermTimeLocationAnswerHereAtThisAddress().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerYes119HoursAWeek().submit()
-        NationalIdentity.clickNationalIdentityAnswerNorthernIrish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerNorthernIrish().submit()
     })
 
     it('Given I am answering question 12. Do you look after, or give any help or support..., When I select -Yes 20-49 Hours A Week- as response, Then I am routed to 13. How would you describe your national identity?', function () {
@@ -491,16 +498,17 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerYes().submit()
-        TermTimeLocation.clickTermTimeLocationAnswerAtThisAddress().submit()
+        TermTimeLocation.clickTermTimeLocationAnswerHereAtThisAddress().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerYes2049HoursAWeek().submit()
-        NationalIdentity.clickNationalIdentityAnswerEnglish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
     })
 
     it('Given I am answering question 12. Do you look after, or give any help or support..., When I select -Yes 50 or more Hours A Week- as response, Then I am routed to 13. How would you describe your national identity?', function () {
@@ -525,16 +533,17 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerYes().submit()
-        TermTimeLocation.clickTermTimeLocationAnswerAtThisAddress().submit()
+        TermTimeLocation.clickTermTimeLocationAnswerHereAtThisAddress().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerYes50OrMoreHoursAWeek().submit()
-        NationalIdentity.clickNationalIdentityAnswerScottish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerScottish().submit()
     })
 
     it('Given I am answering question 25. Thinking of the last 12 months, have you..., When I select -No- as response, Then I am routed to 26. Last week were you:', function () {
@@ -561,24 +570,24 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        Language.clickLanguageEnglandAnswerEnglish().submit()
         Religion.clickReligionAnswerNoReligion().submit()
         PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
         Passports.clickPassportsAnswerUnitedKingdom().submit()
         Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerNo().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
         HouseholdMemberCompleted.submit()
@@ -608,24 +617,24 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        Language.clickLanguageEnglandAnswerEnglish().submit()
         Religion.clickReligionAnswerNoReligion().submit()
         PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
         Passports.clickPassportsAnswerUnitedKingdom().submit()
         Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerYesAtLeastOnceAWeek().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
         HouseholdMemberCompleted.submit()
@@ -655,24 +664,24 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        Language.clickLanguageEnglandAnswerEnglish().submit()
         Religion.clickReligionAnswerNoReligion().submit()
         PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
         Passports.clickPassportsAnswerUnitedKingdom().submit()
         Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerYesLessThanOnceAWeekButAtLeastOnceAMonth().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
         HouseholdMemberCompleted.submit()
@@ -702,24 +711,24 @@ describe('Census routing Scenarios', function () {
         // household-member
         HouseholdMemberBegin.submit()
         DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
         Sex.clickSexAnswerMale().submit()
         DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
-        Over16.clickOver16AnswerYes().submit()
         MaritalStatus.clickMaritalStatusAnswerMarried().submit()
         AnotherAddress.clickAnotherAddressAnswerNo().submit()
         InEducation.clickInEducationAnswerNo().submit()
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
-        NationalIdentity.clickNationalIdentityAnswerBritish().submit()
-        EthnicGroup.clickEthnicGroupAnswerWhite().submit()
-        WhiteEthnicGroup.clickWhiteEthnicGroupAnswerEnglishWelshScottishNorthernIrishBritish().submit()
-        UnderstandWelsh.clickUnderstandWelshAnswerNoneOfTheAbove().submit()
-        Language.clickLanguageAnswerEnglish().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+        Language.clickLanguageEnglandAnswerEnglish().submit()
         Religion.clickReligionAnswerNoReligion().submit()
         PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
         Passports.clickPassportsAnswerUnitedKingdom().submit()
         Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsAnswerUndergraduateDegree().submit()
+        Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
         Volunteering.clickVolunteeringAnswerYesLessOften().submit()
         EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
         HouseholdMemberCompleted.submit()
