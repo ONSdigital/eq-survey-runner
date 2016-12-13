@@ -186,7 +186,7 @@
                         {
                             "title": "{{answers.person_full_name[group_instance]}}",
                             "description": "",
-                            "id": "over-16-section,
+                            "id": "over-16-section",
                             "questions": [
                                 {
                                     "id": "over-16-question",
