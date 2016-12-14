@@ -74,7 +74,7 @@
   margin-top: 1rem;
   border-left: 2px solid $color-borders;
   padding-left: 1rem;
-  margin-left: 0.6rem;
+  margin-left: 1px;
   div {
     @include mq(s) {
       display: table-cell;

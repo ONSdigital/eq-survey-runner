@@ -10,8 +10,8 @@
       <span>{{legend[0]}}</span> <span class="highlight js-relationship-legend">&nbsp; &hellip; &nbsp;</span> <span>{{legend[1]}}</span>
     </legend>
 
-    <div class="relationship__options js-relationship-body">
-      <div class="u-mt-s">
+    <div class="relationship__body js-relationship-body">
+      <div class="relationship__fields">
         {% for option in widget.options %}
 
           {% set option_id = answer.id ~ "-" ~ loop.index %}
