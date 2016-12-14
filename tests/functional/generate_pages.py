@@ -69,6 +69,13 @@ CHECKBOX_RADIO_CLICKER = r"""  click{optionName}() {
 
 """
 
+RELATIONSHIP_RADIO_CLICKER = r"""  click{optionName}() {
+    browser.element('[id="{optionId}"]').click().pause(300)
+    return this
+  }
+
+"""
+
 REPEATING_ANSWER_SETTER = r"""  set{answerName}(value, index = 0) {
     var field = '{answerId}'
     if (index > 0) {
@@ -121,17 +128,18 @@ def generate_camel_case_from_id(id_str):
     return name
 
 
-def process_options(answer_id, options, page_spec):
+def process_options(answer_id, options, template, page_spec):
     for index, option in enumerate(options):
         option_name = generate_camel_case_from_id(option['value'])
         option_id = "{name}-{index}".format(name=answer_id, index=index+1)
-        page_spec.write(CHECKBOX_RADIO_CLICKER.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
+        page_spec.write(template.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
 
 
 def process_answer(question_type, answer, page_spec):
-    if answer['type'] == 'Radio' or answer['type'] == 'Checkbox' or answer['type'] == 'Relationship':
-        process_options(answer['id'], answer['options'], page_spec)
-
+    if answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
+        process_options(answer['id'], answer['options'], CHECKBOX_RADIO_CLICKER, page_spec)
+    elif answer['type'] == 'Relationship':
+        process_options(answer['id'], answer['options'], RELATIONSHIP_RADIO_CLICKER, page_spec)
     elif answer['type'] == 'Date':
         answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(_write_date_answer(answer_name, answer['id']))
