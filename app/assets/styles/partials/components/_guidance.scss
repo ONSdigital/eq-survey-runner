@@ -1,5 +1,5 @@
 .guidance {
-  margin: 0 0 0 -0.1rem;
+  margin: 0.7rem 0 0 -0.1rem;
 }
 
 .guidance__link {
@@ -28,6 +28,7 @@
     left: -0.1rem;
     vertical-align: middle;
     display: inline-block;
+    bottom: 1px;
   }
 
   &:focus {
@@ -55,6 +56,7 @@
   opacity: 0;
   transition: all 0;
   max-height: 0;
+  padding-left: 0.5rem;
   .no-js &,
   .is-expanded & {
     max-height: 10000em;
