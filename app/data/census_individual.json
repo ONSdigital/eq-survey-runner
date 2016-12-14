@@ -346,16 +346,16 @@
                                                     "value": "Another address when working away from home"
                                                 },
                                                 {
-                                                    "label": "Student's home address",
-                                                    "value": "Student's home address"
+                                                    "label": "Student’s home address",
+                                                    "value": "Student’s home address"
                                                 },
                                                 {
-                                                    "label": "Student's term time address",
-                                                    "value": "Student's term time address"
+                                                    "label": "Student’s term time address",
+                                                    "value": "Student’s term time address"
                                                 },
                                                 {
-                                                    "label": "Another parent or guardian's address",
-                                                    "value": "Another parent or guardian's address"
+                                                    "label": "Another parent or guardian’s address",
+                                                    "value": "Another parent or guardian’s address"
                                                 },
                                                 {
                                                     "label": "Holiday home",
@@ -731,7 +731,7 @@
                                         {
                                             "id": "length-of-stay-answer",
                                             "mandatory": false,
-                                            "guidance": "If you arrived in the United Kingdom before May 2016, please select '12 months or more'",
+                                            "guidance": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’",
                                             "options": [
                                                 {
                                                     "label": "Less than 6 months",
@@ -821,7 +821,7 @@
                                             "id": "national-identity-england-answer",
                                             "label": "Select all that apply",
                                             "mandatory": false,
-                                            "guidance": "<p>You can choose more than one national identity.</p><p>It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home.</p><p>It is not dependent on your ethnic group or legal nationality (citizenship).</p><p>Select all that apply. If your national identity isn’t listed, select 'Other' and enter the national identity.</p>",
+                                            "guidance": "<p>You can choose more than one national identity.</p><p>It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home.</p><p>It is not dependent on your ethnic group or legal nationality (citizenship).</p><p>Select all that apply. If your national identity isn’t listed, select ‘Other’ and enter the national identity.</p>",
                                             "options": [
                                                 {
                                                     "label": "English",
@@ -872,7 +872,7 @@
                                             "id": "national-identity-wales-answer",
                                             "label": "Select all that apply",
                                             "mandatory": false,
-                                            "guidance": "<p>You can choose more than one national identity.</p><p>It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home.</p><p>It is not dependent on your ethnic group or legal nationality (citizenship).</p><p>Select all that apply. If your national identity isn’t listed, select 'Other' and enter the national identity.</p>",
+                                            "guidance": "<p>You can choose more than one national identity.</p><p>It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home.</p><p>It is not dependent on your ethnic group or legal nationality (citizenship).</p><p>Select all that apply. If your national identity isn’t listed, select ‘Other’ and enter the national identity.</p>",
                                             "options": [
                                                 {
                                                     "label": "Welsh",
@@ -934,7 +934,7 @@
                                         {
                                             "id": "ethnic-group-england-answer",
                                             "mandatory": false,
-                                            "guidance": "<p>It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.</p><p>Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select 'Other ethnic group'. You will then be able to write in the ethnic group you prefer to identify as at the next question.</p>",
+                                            "guidance": "<p>It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.</p><p>Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question.</p>",
                                             "options": [
                                                 {
                                                     "label": "White",
@@ -982,7 +982,7 @@
                                         {
                                             "id": "ethnic-group-wales-answer",
                                             "mandatory": false,
-                                            "guidance": "<p>It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.</p><p>Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select 'Other ethnic group'.  You will then able to write in the ethnic group you prefer to identify as at the next question.</p>",
+                                            "guidance": "<p>It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.</p><p>Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Other ethnic group’.  You will then able to write in the ethnic group you prefer to identify as at the next question.</p>",
                                             "options": [
                                                 {
                                                     "label": "White",
@@ -1168,7 +1168,7 @@
                                     "answers": [
                                         {
                                             "id": "white-ethnic-group-england-answer",
-                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select 'Any other ...' and write in your ethnic group.</p>",
+                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1210,7 +1210,7 @@
                                     "answers": [
                                         {
                                             "id": "white-ethnic-group-wales-answer",
-                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select 'Any other ...' and write in your ethnic group.</p>",
+                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1291,7 +1291,7 @@
                                     "answers": [
                                         {
                                             "id": "mixed-ethnic-group-answer",
-                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select 'Any other ...' and write in your ethnic group.</p>",
+                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1366,7 +1366,7 @@
                                         {
                                             "id": "asian-ethnic-group-answer",
                                             "mandatory": false,
-                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select 'Any other ...' and write in your ethnic group.</p>",
+                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>",
                                             "options": [
                                                 {
                                                     "label": "Indian",
@@ -1444,7 +1444,7 @@
                                         {
                                             "id": "black-ethnic-group-answer",
                                             "mandatory": false,
-                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select 'Any other ...' and write in your ethnic group.</p>",
+                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>",
                                             "options": [
                                                 {
                                                     "label": "African",
@@ -1514,7 +1514,7 @@
                                         {
                                             "id": "other-ethnic-group-answer",
                                             "mandatory": false,
-                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select 'Any other ...' and write in your ethnic group.</p>",
+                                            "guidance": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>",
                                             "options": [
                                                 {
                                                     "label": "Arab",
@@ -1581,7 +1581,7 @@
                                         {
                                             "id": "sexual-identity-answer",
                                             "mandatory": false,
-                                            "guidance": "<p>It is for you to decide how to choose your answer.</p><p>If you are unsure of the meaning of any words used, the following might help:</p><ul><li>'Heterosexual or Straight' means that a person is, for example, attracted to people of the opposite sex/gender</li><li>'Gay or Lesbian' means that a person is, for example, attracted to people of the same sex/gender</li><li>'Bisexual' means that a person is, for example, attracted to people of both sexes/any gender</li></ul><p><strong>Identity not listed</strong></p><p>If none of the first three answer options apply to you, please select 'Other' and enter your preferred answer.</p><p>This question is voluntary; you can leave it blank if you prefer.</p>",
+                                            "guidance": "<p>It is for you to decide how to choose your answer.</p><p>If you are unsure of the meaning of any words used, the following might help:</p><ul><li>‘Heterosexual or Straight’ means that a person is, for example, attracted to people of the opposite sex/gender</li><li>‘Gay or Lesbian’ means that a person is, for example, attracted to people of the same sex/gender</li><li>‘Bisexual’ means that a person is, for example, attracted to people of both sexes/any gender</li></ul><p><strong>Identity not listed</strong></p><p>If none of the first three answer options apply to you, please select ‘Other’ and enter your preferred answer.</p><p>This question is voluntary; you can leave it blank if you prefer.</p>",
                                             "options": [
                                                 {
                                                     "label": "Heterosexual or Straight",
@@ -2128,7 +2128,7 @@
                                 "id": "other-passports",
                                 "when": {
                                     "id": "passports-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "Other"
                                 }
                             }
@@ -2488,8 +2488,8 @@
                                                     "value": "self-employed or freelance?"
                                                 },
                                                 {
-                                                    "label": "working paid or unpaid for you own or your family's business?",
-                                                    "value": "working paid or unpaid for you own or your family's business?"
+                                                    "label": "working paid or unpaid for you own or your family’s business?",
+                                                    "value": "working paid or unpaid for you own or your family’s business?"
                                                 },
                                                 {
                                                     "label": "away from work ill, on maternity leave, on holiday or temporarily laid off?",
@@ -2514,10 +2514,20 @@
                     "routing_rules": [
                         {
                             "goto": {
+                                "id": "jobseeker",
+                                "when": {
+                                    "id": "employment-type-answer",
+                                    "condition": "contains",
+                                    "value": "none of the above?"
+                                }
+                            }
+                        },
+                        {
+                            "goto": {
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "working as an employee?"
                                 }
                             }
@@ -2527,7 +2537,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "on a government sponsored training scheme?"
                                 }
                             }
@@ -2537,7 +2547,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "self-employed or freelance?"
                                 }
                             }
@@ -2547,8 +2557,8 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
-                                    "value": "working paid or unpaid for you own or your family's business?"
+                                    "condition": "contains",
+                                    "value": "working paid or unpaid for you own or your family’s business?"
                                 }
                             }
                         },
@@ -2557,7 +2567,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "away from work ill, on maternity leave, on holiday or temporarily laid off?"
                                 }
                             }
@@ -2567,7 +2577,7 @@
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
-                                    "condition": "equals",
+                                    "condition": "contains",
                                     "value": "doing any other kind of paid work?"
                                 }
                             }
@@ -2749,7 +2759,7 @@
                                         {
                                             "id": "ever-worked-answer",
                                             "mandatory": false,
-                                            "guidance": "<p>If you had a full-time or part-time job in the past select 'Yes'</p><p>This includes work outside of the United Kingdom.</p><p>Please provide an answer even if you are retired.</p><p>If you have never worked, or only ever worked in voluntary/unpaid jobs, select 'No'.</p>",
+                                            "guidance": "<p>If you had a full-time or part-time job in the past select ‘Yes’</p><p>This includes work outside of the United Kingdom.</p><p>Please provide an answer even if you are retired.</p><p>If you have never worked, or only ever worked in voluntary/unpaid jobs, select ‘No’.</p>",
                                             "options": [
                                                 {
                                                     "label": "Yes",

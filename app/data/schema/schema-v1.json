@@ -3,22 +3,41 @@
   "type": "object",
   "definitions": {
     "when": {
-      "type": "object",
-      "properties": {
-        "id" : {
-          "type": "string"
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string"
+            },
+            "meta": {
+                "type": "string"
+            },
+            "condition": {
+                "enum": [
+                    "equals",
+                    "not equals",
+                    "contains"
+                ]
+            },
+            "value": {
+                "type": "string"
+            }
         },
-        "condition": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "condition",
-        "value"
-      ]
+        "required": [
+            "condition",
+            "value"
+        ],
+        "oneOf": [
+            {
+                "required": [
+                    "id"
+                ]
+            },
+            {
+                "required": [
+                    "meta"
+                ]
+            }
+        ]
     }
   },
   "properties": {

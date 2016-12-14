@@ -1,6 +1,8 @@
 from app.data_model.answer_store import Answer
 from app.questionnaire_state.state_item import StateItem
 
+from werkzeug.datastructures import MultiDict
+
 
 class StateAnswer(StateItem):
     def __init__(self, id, schema_item):
@@ -29,16 +31,27 @@ class StateAnswer(StateItem):
         # Get radio options from the schema.
         for option in self.schema_item.options:
             # If the radio answer has an Other option...
-            is_other_radio_option = option['label'] == 'Other' and 'other' in option
+            if 'other' in option:
 
-            if is_other_radio_option:
+                other_option = option
+
                 schema_options = [option['value'] for option in self.schema_item.options]
 
                 if self.input not in schema_options:
                     # Input is not a pre-defined answer so it must be the user-entered value for other
-                    self.input = 'other'
-                    self.value = 'other'
+                    self.input = option['value']
+                    self.value = option['value']
                     self.other = self.schema_item.get_user_input(user_input)
+
+                elif self.input == other_option['value'] and isinstance(user_input, MultiDict):
+                    # User selected other but typed in a value which is already in schema
+                    other_input_field = user_input.getlist(self.id)[-1:]
+                    if other_input_field:
+                        value = other_input_field[0]
+                        if value in schema_options:
+                            self.input = value
+                            self.value = value
+                            self.other = None
 
     def get_answers(self):
         return [self]

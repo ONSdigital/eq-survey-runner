@@ -8,18 +8,14 @@ def evaluate_rule(when, answer_value):
     match_value = when['value']
     condition = when['condition']
 
-    if isinstance(answer_value, list):
-        if len(answer_value) == 1:
-            answer_to_test = answer_value[0]
-        else:
-            return False
-    else:
-        answer_to_test = str(answer_value)
+    answer_to_test = str(answer_value) if condition in ['equals', 'not equals'] else answer_value
 
     # Evaluate the condition on the routing rule
     if condition == 'equals' and match_value == answer_to_test:
         return True
     elif condition == 'not equals' and match_value != answer_to_test:
+        return True
+    elif condition == 'contains' and isinstance(answer_to_test, list) and match_value in answer_to_test:
         return True
     return False
 
@@ -34,7 +30,6 @@ def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
     :return:
     """
     if 'when' in goto_rule.keys():
-
         when = goto_rule['when']
 
         if 'id' in when:
