@@ -1,4 +1,3 @@
-
 from app.utilities import strings
 import unittest
 

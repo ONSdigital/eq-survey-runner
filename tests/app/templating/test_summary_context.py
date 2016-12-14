@@ -29,7 +29,7 @@ class TestSummaryContext(unittest.TestCase):
         self.app_context = self.app.app_context()
         self.app_context.push()
 
-        self.schema_json, self.schema = load_and_parse_schema('0', 'star_wars')
+        self.schema_json, self.schema = load_and_parse_schema('0', 'star_wars', None)
 
     def test_build_summary_rendering_context(self):
         answer_store = MagicMock()
