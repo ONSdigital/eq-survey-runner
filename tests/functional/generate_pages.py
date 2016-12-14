@@ -69,6 +69,53 @@ CHECKBOX_RADIO_CLICKER = r"""  click{optionName}() {
 
 """
 
+RELATIONSHIP_RADIO_CLICKER = r"""  click{optionName}() {
+    browser.element('[id="{optionId}"]').click().pause(300)
+    return this
+  }
+
+"""
+
+REPEATING_ANSWER_SETTER = r"""  set{answerName}(value, index = 0) {
+    var field = '{answerId}'
+    if (index > 0) {
+      field = field + '_' + index
+    }
+    browser.setValue('[name="' + field + '"]', value)
+    return this
+  }
+
+"""
+
+REPEATING_ANSWER_GETTER = r"""  get{answerName}(index) {
+    var field = '{answerId}'
+    if (index > 0) {
+      field = field + '_' + index
+    }
+    browser.element('[name="' + field + '"]').getValue()
+    return this
+  }
+
+"""
+
+REPEATING_ANSWER_ADD_REMOVE = r"""  addPerson() {
+    browser.click('button[name="action[add_answer]"]')
+    return this
+  }
+
+  removePerson(index) {
+    browser.click('button[value="' + index + '"]')
+    return this
+  }
+
+"""
+
+CONSTRUCTOR = r"""  constructor() {
+    super('{block_id}')
+  }
+
+"""
+
 FOOTER = r"""}
 
 export default new {pageName}Page()
@@ -81,17 +128,18 @@ def generate_camel_case_from_id(id_str):
     return name
 
 
-def process_options(answer_id, options, page_spec):
+def process_options(answer_id, options, template, page_spec):
     for index, option in enumerate(options):
         option_name = generate_camel_case_from_id(option['value'])
         option_id = "{name}-{index}".format(name=answer_id, index=index+1)
-        page_spec.write(CHECKBOX_RADIO_CLICKER.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
+        page_spec.write(template.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
 
 
-def process_answer(answer, page_spec):
+def process_answer(question_type, answer, page_spec):
     if answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
-        process_options(answer['id'], answer['options'], page_spec)
-
+        process_options(answer['id'], answer['options'], CHECKBOX_RADIO_CLICKER, page_spec)
+    elif answer['type'] == 'Relationship':
+        process_options(answer['id'], answer['options'], RELATIONSHIP_RADIO_CLICKER, page_spec)
     elif answer['type'] == 'Date':
         answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(_write_date_answer(answer_name, answer['id']))
@@ -103,8 +151,12 @@ def process_answer(answer, page_spec):
     elif (answer['type'] == 'TextField' or answer['type'] == 'Integer' or
             answer['type'] == 'PositiveInteger' or answer['type'] == 'TextArea'):
         answer_name = generate_camel_case_from_id(answer['id'])
-        page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
-        page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+        if question_type == 'RepeatingAnswer':
+            page_spec.write(REPEATING_ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+            page_spec.write(REPEATING_ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+        else:
+            page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+            page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
 
     else:
         raise Exception('Answer type [%s] not configured' % answer['type'])
@@ -113,8 +165,11 @@ def process_answer(answer, page_spec):
 def process_question(question, page_spec):
     logger.debug("\t\tProcessing Question: %s", question['title'])
 
+    question_type = question['type']
+    if question_type == 'RepeatingAnswer':
+        page_spec.write(REPEATING_ANSWER_ADD_REMOVE)
     for answer in question['answers']:
-        process_answer(answer, page_spec)
+        process_answer(question_type, answer, page_spec)
 
 
 def process_section(section, page_spec):
@@ -122,6 +177,7 @@ def process_section(section, page_spec):
 
     for question in section['questions']:
         process_question(question, page_spec)
+
 
 def _write_date_answer(answer_name, answerId):
     return \
@@ -131,6 +187,7 @@ def _write_date_answer(answer_name, answerId):
         ANSWER_GETTER.replace("{answerName}", answer_name + 'Month').replace("{answerId}", answerId + '-month') + \
         ANSWER_SETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year') + \
         ANSWER_GETTER.replace("{answerName}", answer_name + 'Year').replace("{answerId}", answerId + '-year')
+
 
 def _write_month_year_date_answer(answer_name, answerId):
     return \
@@ -159,7 +216,7 @@ def process_block(block, dir_out, spec_out):
     logger.info("Creating %s...", page_path)
 
     with open(page_path, 'w') as page_spec:
-        multiple_choice_check = find_kv(block, 'type', ['Radio', 'Checkbox'])
+        multiple_choice_check = find_kv(block, 'type', ['Radio', 'Checkbox', 'Relationship'])
 
         page_name = generate_camel_case_from_id(block['id'])
 
@@ -176,6 +233,8 @@ def process_block(block, dir_out, spec_out):
         class_name = class_name.replace("{basePageFile}", "question.page" if not multiple_choice_check else "multiple-choice.page")
 
         page_spec.write(class_name)
+
+        page_spec.write(CONSTRUCTOR.replace("{block_id}", block['id']))
 
         for section in block['sections']:
             process_section(section, page_spec)

@@ -2654,7 +2654,7 @@
                                                     "label": "Any other Black / African / Caribbean background (please specify)",
                                                     "value": "Other",
                                                     "other": {
-                                                        "label": "Please specify other Black / African / Caribbean / Black British background"
+                                                        "label": "Please specify other Black / African / Caribbean background"
                                                     }
                                                 }
                                             ],
@@ -3733,16 +3733,6 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "jobseeker",
-                                "when": {
-                                    "id": "employment-type-answer",
-                                    "condition": "contains",
-                                    "value": "none of the above?"
-                                }
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "main-job",
                                 "when": {
                                     "id": "employment-type-answer",
@@ -4143,7 +4133,7 @@
                                             "list": [
                                                 "For example, <b>primary education, repairing cars, contract catering, computer servicing</b>",
                                                 "If you are (were) a civil servant, write <b>government</b>",
-                                                "If you are (were) a local government officer, write local government officer, write <b>local government</b> and give the name of the department within the local authority"
+                                                "If you are (were) a local government officer, write <b>local government</b> and give the name of the department within the local authority"
                                             ]
                                         }
                                     ],

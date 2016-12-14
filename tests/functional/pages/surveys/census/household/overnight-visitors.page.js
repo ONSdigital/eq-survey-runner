@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.825191 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.727330 - DO NOT EDIT!!! <<<
 
 import QuestionPage from '../../question.page'
 
 class OvernightVisitorsPage extends QuestionPage {
+
+  constructor() {
+    super('overnight-visitors')
+  }
 
   setOvernightVisitorsAnswer(value) {
     browser.setValue('[name="overnight-visitors-answer"]', value)

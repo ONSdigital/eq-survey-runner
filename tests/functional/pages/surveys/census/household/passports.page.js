@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.908107 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.825289 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class PassportsPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('passports')
+  }
 
   clickPassportsAnswerUnitedKingdom() {
     browser.element('[id="passports-answer-1"]').click()

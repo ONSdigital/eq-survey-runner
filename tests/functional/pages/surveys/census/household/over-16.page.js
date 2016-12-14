@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.844628 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.752063 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class Over16Page extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('over-16')
+  }
 
   clickOver16AnswerYes() {
     browser.element('[id="over-16-answer-1"]').click()

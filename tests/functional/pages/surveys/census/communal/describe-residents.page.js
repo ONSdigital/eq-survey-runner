@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-14 14:19:14.072036 - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class DescribeResidentsPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('describe-residents')
+  }
 
   clickDescribeResidentsAnswerFamilyMembers() {
     browser.element('[id="describe-residents-answer-1"]').click()

@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-14 14:19:14.064568 - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class EstablishmentTypePage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('establishment-type')
+  }
 
   clickEstablishmentTypeAnswerHotel() {
     browser.element('[id="establishment-type-answer-1"]').click()

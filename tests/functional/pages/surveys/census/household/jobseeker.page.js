@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.922287 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.840980 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class JobseekerPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('jobseeker')
+  }
 
   clickJobseekerAnswerYes() {
     browser.element('[id="jobseeker-answer-1"]').click()

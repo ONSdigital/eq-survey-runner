@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.875751 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.786669 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class NationalIdentityPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('national-identity')
+  }
 
   clickNationalIdentityEnglandAnswerEnglish() {
     browser.element('[id="national-identity-england-answer-1"]').click()

@@ -28,14 +28,17 @@ class TestSchemaValidation(unittest.TestCase):
 
         for file in files:
 
-            json_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file), encoding="utf8")
-            json_to_validate = json.load(json_file)
+            try:
+                json_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file), encoding="utf8")
+                json_to_validate = json.load(json_file)
 
-            errors.extend(self.validate_json_against_schema(file, json_to_validate, schema))
+                errors.extend(self.validate_json_against_schema(file, json_to_validate, schema))
 
-            errors.extend(self.validate_schema_contains_valid_routing_rules(file, json_to_validate))
+                errors.extend(self.validate_schema_contains_valid_routing_rules(file, json_to_validate))
 
-            errors.extend(self.validate_routing_rules_has_default_if_not_all_answers_routed(file, json_to_validate))
+                errors.extend(self.validate_routing_rules_has_default_if_not_all_answers_routed(file, json_to_validate))
+            except JSONDecodeError as e:
+                errors.append("JSON Decode Error! Could not decode [{}]. Error [{}]".format(file, e))
 
         if errors:
             for error in errors:

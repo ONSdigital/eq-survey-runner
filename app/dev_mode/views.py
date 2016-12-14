@@ -38,11 +38,26 @@ def dev_mode():
         return_by = form.get("return_by")
         employment_date = form.get("employment_date")
         region_code = form.get("region_code")
+        language_code = form.get("language_code")
         sexual_identity = form.get("sexual_identity")
         variant_flags = {"sexual_identity": sexual_identity}
-        payload = create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid,
-                                 ref_p_start_date, ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date,
-                                 region_code, variant_flags)
+        payload = create_payload(user=user,
+                                 exp_time=exp_time,
+                                 eq_id=eq_id,
+                                 period_str=period_str,
+                                 period_id=period_id,
+                                 form_type=form_type,
+                                 collection_exercise_sid=collection_exercise_sid,
+                                 ref_p_start_date=ref_p_start_date,
+                                 ref_p_end_date=ref_p_end_date,
+                                 ru_ref=ru_ref,
+                                 ru_name=ru_name,
+                                 trad_as=trad_as,
+                                 return_by=return_by,
+                                 employment_date=employment_date,
+                                 region_code=region_code,
+                                 language_code=language_code,
+                                 variant_flags=variant_flags)
         return redirect("/session?token=" + generate_token(payload).decode())
 
     return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
@@ -73,28 +88,28 @@ def extract_eq_id_and_form_type(schema_name):
         raise NotFound
 
 
-def create_payload(user, exp_time, eq_id, period_str, period_id, form_type, collection_exercise_sid, ref_p_start_date,
-                   ref_p_end_date, ru_ref, ru_name, trad_as, return_by, employment_date, region_code, variant_flags):
+def create_payload(**metadata):
     iat = time.time()
-    exp = time.time() + float(exp_time)
+    exp = time.time() + float(metadata['exp_time'])
     return {
-        "user_id": user,
+        "user_id": metadata['user'],
         'iat': str(int(iat)),
         'exp': str(int(exp)),
-        "eq_id": eq_id,
-        "period_str": period_str,
-        "period_id": period_id,
-        "form_type": form_type,
-        "collection_exercise_sid": collection_exercise_sid,
-        "ref_p_start_date": ref_p_start_date,
-        "ref_p_end_date": ref_p_end_date,
-        "ru_ref": ru_ref,
-        "ru_name": ru_name,
-        "return_by": return_by,
-        "trad_as": trad_as,
-        "employment_date": employment_date,
-        "region_code": region_code,
-        "variant_flags": variant_flags,
+        "eq_id": metadata['eq_id'],
+        "period_str": metadata['period_str'],
+        "period_id": metadata['period_id'],
+        "form_type": metadata['form_type'],
+        "collection_exercise_sid": metadata['collection_exercise_sid'],
+        "ref_p_start_date": metadata['ref_p_start_date'],
+        "ref_p_end_date": metadata['ref_p_end_date'],
+        "ru_ref": metadata['ru_ref'],
+        "ru_name": metadata['ru_name'],
+        "return_by": metadata['return_by'],
+        "trad_as": metadata['trad_as'],
+        "employment_date": metadata['employment_date'],
+        "region_code": metadata['region_code'],
+        "language_code": metadata['language_code'],
+        "variant_flags": metadata['variant_flags'],
     }
 
 

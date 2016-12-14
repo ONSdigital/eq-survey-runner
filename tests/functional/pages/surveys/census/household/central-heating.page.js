@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.835618 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.737785 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class CentralHeatingPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('central-heating')
+  }
 
   clickCentralHeatingAnswerNoCentralHeating() {
     browser.element('[id="central-heating-answer-1"]').click()

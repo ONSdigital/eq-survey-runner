@@ -76,9 +76,9 @@ def login():
         logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
         raise NotFound
 
-    json, _ = get_schema()
+    json, _ = get_schema(metadata)
 
-    navigator = Navigator(json, get_metadata(current_user), get_answer_store(current_user))
+    navigator = Navigator(json, metadata, get_answer_store(current_user))
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     if current_location['block_id'] == 'introduction':

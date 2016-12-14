@@ -56,6 +56,7 @@ metadata_fields = {
     "trad_as": MetadataField(mandatory=False),
     "employment_date": MetadataField(mandatory=False, validator=iso_8601_data_parser),
     "region_code": MetadataField(mandatory=False),
+    "language_code": MetadataField(mandatory=False),
     "tx_id": MetadataField(mandatory=False, validator=uuid_4_parser, generator=id_generator),
     "variant_flags": MetadataField(mandatory=False),
 }

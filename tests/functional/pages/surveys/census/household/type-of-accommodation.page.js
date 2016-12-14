@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.828958 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.731059 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class TypeOfAccommodationPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('type-of-accommodation')
+  }
 
   clickTypeOfAccommodationAnswerWholeHouseOrBungalow() {
     browser.element('[id="type-of-accommodation-answer-1"]').click()

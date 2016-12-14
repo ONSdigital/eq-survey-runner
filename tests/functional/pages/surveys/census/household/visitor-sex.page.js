@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.973307 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.879010 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class VisitorSexPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('visitor-sex')
+  }
 
   clickVisitorSexAnswerMale() {
     browser.element('[id="visitor-sex-answer-1"]').click()

@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.880216 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.791382 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class WhiteEthnicGroupPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('white-ethnic-group')
+  }
 
   clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish() {
     browser.element('[id="white-ethnic-group-england-answer-1"]').click()

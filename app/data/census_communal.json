@@ -169,7 +169,7 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "describe-residents",
+                                "id": "completion-preference-establishment",
                                 "when": {
                                     "id": "usual-residents-answer",
                                     "condition": "equals",
