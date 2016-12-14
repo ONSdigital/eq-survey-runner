@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.986521 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.893748 - DO NOT EDIT!!! <<<
 
 import QuestionPage from '../../question.page'
 
 class ConfirmationPage extends QuestionPage {
+
+  constructor() {
+    super('confirmation')
+  }
 
 }
 

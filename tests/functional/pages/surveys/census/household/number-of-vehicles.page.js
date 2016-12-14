@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.839215 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.743155 - DO NOT EDIT!!! <<<
 
 import QuestionPage from '../../question.page'
 
 class NumberOfVehiclesPage extends QuestionPage {
+
+  constructor() {
+    super('number-of-vehicles')
+  }
 
   setNumberOfVehiclesAnswer(value) {
     browser.setValue('[name="number-of-vehicles-answer"]', value)

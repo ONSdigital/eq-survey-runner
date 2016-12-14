@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.882753 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.794894 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class MixedEthnicGroupPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('mixed-ethnic-group')
+  }
 
   clickMixedEthnicGroupAnswerWhiteAndBlackCaribbean() {
     browser.element('[id="mixed-ethnic-group-answer-1"]').click()

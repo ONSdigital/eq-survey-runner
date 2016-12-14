@@ -87,7 +87,7 @@ describe('Census Household', function () {
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setFirstName('John').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
         WhoLivesHereCompleted.submit()
@@ -112,7 +112,7 @@ describe('Census Household', function () {
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setFirstName('John').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
         WhoLivesHereCompleted.submit()
@@ -168,7 +168,7 @@ describe('Census Household', function () {
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
 
         // Given I have added a householder
-        HouseholdComposition.setPersonName(0, 'Pete Smith').submit()
+        HouseholdComposition.setFirstName(0, 'Pete').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
         WhoLivesHereCompleted.submit()
@@ -202,7 +202,7 @@ describe('Census Household', function () {
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setFirstName('John').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
         WhoLivesHereCompleted.submit()
@@ -255,10 +255,10 @@ describe('Census Household', function () {
         startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
 
         // who-lives-here
-        var person = 'John Smith'
+        var person = 'John'
 
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, person).submit()
+        HouseholdComposition.setFirstName(person).submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
         WhoLivesHereCompleted.submit()
@@ -339,7 +339,7 @@ describe('Census Household', function () {
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+        HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
         HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -366,7 +366,7 @@ describe('Census Household', function () {
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setPersonName(0, 'John Smith').submit()
+        HouseholdComposition.setFirstName('John').submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(2).submit()
         WhoLivesHereCompleted.submit()
@@ -385,6 +385,25 @@ describe('Census Household', function () {
 
         // Thank You
         expect(ThankYou.isOpen()).to.be.true
+    })
+
+    it('Given I do not enter a first name, When I save and continue, Then I should see errors that suggests first name is mandatory.', function () {
+        startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.submit()
+
+        expect(HouseholdComposition.getErrorMsg()).to.contain('Please enter a name or remove the person to continue')
+    })
+
+    it('Given I enter a first name but no middle or surname, When I save and continue, Then I should not see any errors', function () {
+        startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setFirstName('John').submit()
+        expect(EveryoneAtAddressConfirmation.isOpen()).to.be.true
     })
 
     function completeHouseholdAndAccommodation() {

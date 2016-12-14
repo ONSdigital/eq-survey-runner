@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.903349 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.820960 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class PastUsualAddressPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('past-usual-address')
+  }
 
   clickPastUsualAddressAnswerThisAddress() {
     browser.element('[id="past-usual-address-answer-1"]').click()

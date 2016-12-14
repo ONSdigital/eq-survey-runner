@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.893043 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.810273 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class SexualIdentityPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('sexual-identity')
+  }
 
   clickSexualIdentityAnswerHeterosexualOrStraight() {
     browser.element('[id="sexual-identity-answer-1"]').click()

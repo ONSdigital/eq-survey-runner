@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.890840 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.807348 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class OtherEthnicGroupPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('other-ethnic-group')
+  }
 
   clickOtherEthnicGroupAnswerArab() {
     browser.element('[id="other-ethnic-group-answer-1"]').click()

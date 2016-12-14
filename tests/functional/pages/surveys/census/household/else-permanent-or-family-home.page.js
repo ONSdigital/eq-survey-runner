@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.821764 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.723250 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class ElsePermanentOrFamilyHomePage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('else-permanent-or-family-home')
+  }
 
   clickElsePermanentOrFamilyHomeAnswerSomeoneLivesHereAsTheirPermanentHome() {
     browser.element('[id="else-permanent-or-family-home-answer-1"]').click()

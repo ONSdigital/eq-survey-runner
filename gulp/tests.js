@@ -45,6 +45,7 @@ export function functionalTests(done) {
   gulp.src(paths.test.wdioConf)
     .pipe(webdriver(webdriverOpts))
     .on('error', (err) => {
+      gutil.log(err)
       throw err
     })
     .once('finish', () => {

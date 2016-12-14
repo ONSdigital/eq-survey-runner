@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.910148 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.827786 - DO NOT EDIT!!! <<<
 
 import QuestionPage from '../../question.page'
 
 class OtherPassportsPage extends QuestionPage {
+
+  constructor() {
+    super('other-passports')
+  }
 
   setOtherPassportsAnswer(value) {
     browser.setValue('[name="other-passports-answer"]', value)
