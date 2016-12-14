@@ -130,7 +130,7 @@
             "id": "property-details",
             "title": "Property Details",
             "validation": [],
-            "completed_when": "property-interstitial"
+            "completed_id": "property-interstitial"
         },
         {
             "blocks": [
@@ -174,7 +174,7 @@
             "id": "multiple-questions-group",
             "title": "Household Details",
             "validation": [],
-            "completed_when": "household-composition"
+            "completed_id": "household-composition"
         },
         {
             "blocks": [
@@ -281,7 +281,7 @@
                     }
                 }
             ],
-            "completed_when": "repeating-block-2"
+            "completed_id": "repeating-block-2"
         },
         {
             "blocks": [
@@ -491,7 +491,7 @@
         },
         {
             "id": "extra-cover-items-group",
-            "title": "Extra Cover",
+            "title": "Extra Cover Items",
             "routing_rules": [
                 {
                     "repeat": {

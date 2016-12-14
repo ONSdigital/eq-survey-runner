@@ -274,6 +274,7 @@ class Navigator:
         :param group_instance:
         :return: navigation
         """
+
         if 'navigation' not in self.survey_json:
             return None
 
@@ -288,25 +289,24 @@ class Navigator:
 
             if repeating_rule:
                 no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
-                answer_id = repeating_rule['answer_id']
-                answers = self.answer_store.filter(answer_id=answer_id)
+                link_names = self._generate_link_names(repeating_rule)
 
                 if repeating_rule['type'] == 'answer_count':
-                    self._add_repeating_navigation_item(answers, completed_blocks, completed_id, group, current_group_id,
+                    self._add_repeating_navigation_item(link_names, completed_blocks, completed_id, group, current_group_id,
                                                         current_group_instance, navigation, no_of_repeats)
-                elif answers and no_of_repeats > 0:
+                elif link_names and no_of_repeats > 0:
                     self._add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation)
             else:
                 self._add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation)
         return navigation
 
     @staticmethod
-    def _add_repeating_navigation_item(answers, completed_blocks, completed_id, group, current_group_id,
+    def _add_repeating_navigation_item(link_names, completed_blocks, completed_id, group, current_group_id,
                                        current_group_instance, navigation, no_of_repeats):
         for i in range(no_of_repeats):
-            if answers:
+            if link_names:
                 navigation.append({
-                    'link_name': answers[i]['value'],
+                    'link_name': link_names.get(i),
                     'group_id': group['id'],
                     'instance': i,
                     'block_id': group['blocks'][0]['id'],
@@ -328,3 +328,30 @@ class Navigator:
                           if 'highlight_when' in group else False) or group['id'] == current_group_id,
             'repeating': False,
         })
+
+    def _generate_link_names(self, repeating_rule):
+
+        logger.debug("Building frontend hyperlink names for %s", repeating_rule)
+
+        link_names = {}
+
+        if 'hyperlink_name_format' in repeating_rule:
+            # We loop through all the hyperlink parts storing them in a dict called link_names
+            for answer_id in repeating_rule['hyperlink_name_format']:
+                answers = self.answer_store.filter(answer_id=answer_id)
+
+                for answer in answers:
+                    if answer['value']:
+                        # we use the answer_instance to determine if we need to join them (eg. first-name, surname)
+                        if answer['answer_instance'] in link_names:
+                            link_names[answer['answer_instance']] += " " + answer['value']
+                        else:
+                            link_names[answer['answer_instance']] = answer['value']
+        else:
+            answer_id = repeating_rule['answer_id']
+            answers = self.answer_store.filter(answer_id=answer_id)
+
+            for answer in answers:
+                link_names[answer['answer_instance']] = answer['value']
+
+        return link_names

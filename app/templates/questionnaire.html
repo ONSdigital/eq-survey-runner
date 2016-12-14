@@ -13,7 +13,7 @@
   {% if not state.first_block or schema.navigation %}
 
   <div class="container">
-    {% if not state.first_block %}
+    {% if previous_location %}
       <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
     {% endif %}
 
@@ -97,7 +97,7 @@
 
 {% block prefooter %}
 
-  {% if not state.first_block %}
+  {% if previous_location %}
     <a class="page__previous page__previous--bottom" href="{{previous_location}}" id="bottom-previous">Previous</a>
   {% endif %}
 {% endblock prefooter %}

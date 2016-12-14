@@ -480,7 +480,7 @@
         {
             "id": "household-and-accommodation",
             "title": "Household and Accommodation",
-            "completed_when": "household-and-accommodation-completed",
+            "completed_id": "household-and-accommodation-completed",
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -981,7 +981,8 @@
                 {
                     "repeat": {
                         "type": "answer_count",
-                        "answer_id": "first-name"
+                        "answer_id": "first-name",
+                        "hyperlink_name_format":["first-name", "middle-names", "last-name"]
                     }
                 }
             ],
@@ -4270,8 +4271,8 @@
         {
             "id": "visitors",
             "title": "Visitors",
-
-            "completed_id": "questionnaire-completed",
+            "highlight_when": ["visitors-interstitial"],
+            "completed_id": "visitors-completed",
             "routing_rules": [
                 {
                     "repeat": {
@@ -4521,6 +4522,33 @@
                          }
                      ]
                  }
+            ]
+        },
+        {
+            "id": "visitors-interstitial",
+            "title": "Visitors",
+            "hide_in_navigation": true,
+            "blocks": [
+                {
+                    "type": "interstitial",
+                    "id": "visitors-completed",
+                    "title": "",
+                    "sections": [
+                        {
+                            "id": "visitors-completed-section",
+                            "questions": [
+                                {
+                                    "description": "",
+                                    "answers": [],
+                                    "id": "visitors-completed-question",
+                                    "title": "",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": "You have successfully completed the ‘Visitors’ section"
+                        }
+                    ]
+                }
             ]
         },
         {

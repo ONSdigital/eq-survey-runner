@@ -9,6 +9,10 @@ class SchemaHelper(object):
         return survey_json['groups'][0]['id']
 
     @staticmethod
+    def get_first_block_id_for_group(survey_json):
+        return survey_json['blocks'][0]['id']
+
+    @staticmethod
     def get_last_group_id(survey_json):
         return survey_json['groups'][-1]['id']
 

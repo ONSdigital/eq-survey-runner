@@ -264,6 +264,14 @@
                 },
                 "routing_rules": {
                   "type": "array",
+                  "hyperlink_name_format":{
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "uniqueItems": true
+                  },
                   "items": {
                     "type": "object",
                     "properties": {

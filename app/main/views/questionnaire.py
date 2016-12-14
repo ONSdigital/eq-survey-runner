@@ -349,6 +349,8 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     metadata_context = build_metadata_context(metadata)
 
     group_id = group_id or SchemaHelper.get_first_group_id(g.schema_json)
+
+    group = SchemaHelper.get_group(g.schema_json, group_id)
     navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     completed_blocks = get_completed_blocks(current_user)
     front_end_navigation = navigator.get_front_end_navigation(completed_blocks, group_id, group_instance)
@@ -358,7 +360,7 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
 
     previous_url = None
 
-    if previous_location is not None:
+    if previous_location is not None and block_id != SchemaHelper.get_first_block_id_for_group(group):
         previous_url = block_url(eq_id=metadata['eq_id'],
                                  form_type=metadata['form_type'],
                                  collection_id=metadata['collection_exercise_sid'],
