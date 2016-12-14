@@ -2,6 +2,8 @@ import re
 
 from collections import OrderedDict
 
+import bleach
+
 
 class Answer(object):
     def __init__(self, group_id=None, block_id=None, answer_id=None, value=None, group_instance=0, answer_instance=0):
@@ -63,6 +65,26 @@ class AnswerStore(object):
         if not isinstance(answer, Answer):
             raise TypeError("Method only supports Answer argument type")
 
+    def _sanitise(self, answer):
+        if answer.value is None:
+            return answer.value
+
+        if isinstance(answer.value, list):
+            bleached_values = []
+            for index, answer_from_list in enumerate(answer.value):
+                bleached_values.append(self._bleach(answer.value[index]))
+
+            return bleached_values
+        else:
+            return self._bleach(answer.value)
+
+    @staticmethod
+    def _bleach(value):
+        if isinstance(value, int):
+            return value
+
+        return bleach.clean(value)
+
     def add(self, answer):
         """
         Add a new answer into the answer store.
@@ -70,6 +92,7 @@ class AnswerStore(object):
         :param answer: A dict of flattened answer details.
         """
         self._validate(answer)
+        answer.value = self._sanitise(answer)
 
         answer_to_add = answer.__dict__.copy()
 
@@ -85,10 +108,12 @@ class AnswerStore(object):
         :param answer: A dict of flattened answer details.
         """
         position = self.find(answer)
+        answer.value = self._sanitise(answer)
 
         if position is None:
             raise ValueError("Answer instance does not exist in store")
         else:
+            self._validate(answer)
             self.answers[position]['value'] = answer.value
 
     def add_or_update(self, answer):

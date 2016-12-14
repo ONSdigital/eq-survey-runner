@@ -5,8 +5,6 @@ from app.questionnaire_state.state_answer import StateAnswer
 from app.schema.exceptions import TypeCheckingException
 from app.schema.item import Item
 
-import bleach
-
 logger = logging.getLogger(__name__)
 
 
@@ -58,14 +56,12 @@ class Answer(Item):
 
     def get_typed_value(self, raw_input):
 
-        user_input = bleach.clean(raw_input)
-
         for checker in self.type_checkers:
-            result = checker.validate(user_input)
+            result = checker.validate(raw_input)
             if not result.is_valid:
                 raise TypeCheckingException(result.errors[0])
 
-        return self._cast_user_input(user_input)
+        return self._cast_user_input(raw_input)
 
     @staticmethod
     def _cast_user_input(user_input):
