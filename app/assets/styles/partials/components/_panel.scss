@@ -21,7 +21,7 @@
     }
   }
   *:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0.75rem;
   }
 }
 
@@ -42,7 +42,7 @@
 
 @include panel_type(error, $color-red, #fbecec);
 @include panel_type(warn, $color-amber, #fdf6ec);
-@include panel_type(success, $color-primary-dark, #dbfdea);
+@include panel_type(success, $color-primary, #edf4f0);
 @include panel_type(info, $color-secondary, #f5f6ff);
 
 .panel--simple {
