@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-14 14:19:14.077588 - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class WhyPaperIndividualPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('why-paper-individual')
+  }
 
   clickWhyPaperIndividualAnswerMoreConvenient() {
     browser.element('[id="why-paper-individual-answer-1"]').click()
