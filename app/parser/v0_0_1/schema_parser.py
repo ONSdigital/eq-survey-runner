@@ -35,9 +35,6 @@ from app.schema.questions.general_question import GeneralQuestion
 from app.schema.questions.relationship_question import RelationshipQuestion
 from app.schema.questions.repeating_answer_question import RepeatingAnswerQuestion
 from app.schema.section import Section
-from app.schema.skip_condition import SkipCondition
-
-from app.schema.when import When
 
 from app.utilities.factory import Factory
 
@@ -227,7 +224,6 @@ class SchemaParser(AbstractSchemaParser):
             section.number = ParserUtils.get_optional_string(schema, "number")
             section.description = ParserUtils.get_optional_string(schema, "description")
 
-            # regisger the section
             questionnaire.register(section)
 
         except Exception as e:
@@ -261,7 +257,7 @@ class SchemaParser(AbstractSchemaParser):
             question.title = ParserUtils.get_required_string(schema, "title")
             question.number = ParserUtils.get_optional_string(schema, "number")
             question.description = ParserUtils.get_optional_string(schema, "description")
-            question.skip_condition = self._parse_skip_condition(ParserUtils.get_optional(schema, "skip_condition"))
+            question.skip_condition = ParserUtils.get_optional(schema, "skip_condition")
             question.guidance = ParserUtils.get_optional(schema, "guidance")
             # register the question
             questionnaire.register(question)
@@ -278,21 +274,6 @@ class SchemaParser(AbstractSchemaParser):
             raise SchemaParserException('Question must contain at least one answer')
 
         return question
-
-    @staticmethod
-    def _parse_skip_condition(skip_condition_schema):
-        if skip_condition_schema:
-            skip_condition = SkipCondition()
-            when_schema = ParserUtils.get_required(skip_condition_schema, "when")
-            when = When()
-            when.condition = ParserUtils.get_required(when_schema, 'condition')
-            when.id = ParserUtils.get_optional(when_schema, 'id')
-            when.meta = ParserUtils.get_optional(when_schema, 'meta')
-            when.value = ParserUtils.get_required(when_schema, 'value')
-            skip_condition.when = when
-            return skip_condition
-        else:
-            return None
 
     def _parse_answer(self, schema, questionnaire):
         """Parse a answer element

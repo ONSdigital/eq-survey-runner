@@ -243,7 +243,7 @@ class TestQuestion(TestCase):
         # Given
         answers = {'answer_1': 'skip me'}
         answer_schema = {'id': 'answer_1', 'title': '', 'type': '', 'label': ''}
-        skip_condition = {'when': {'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}}
+        skip_condition = {'when': [{'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}]}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema],
                            'skip_condition': skip_condition}
 
@@ -257,7 +257,7 @@ class TestQuestion(TestCase):
         # Given
         answers = {}
         answer_schema = {'id': 'answer_1', 'title': '', 'type': '', 'label': ''}
-        skip_condition = {'when': {'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}}
+        skip_condition = {'when': [{'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}]}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema],
                            'skip_condition': skip_condition}
 

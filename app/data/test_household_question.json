@@ -140,21 +140,25 @@
                             {
                                 "goto": {
                                     "id" : "household-composition",
-                                    "when": {
-                                        "id" : "household-composition-add-another",
-                                        "condition": "equals",
-                                        "value":"No"
-                                    }
+                                    "when": [
+                                        {
+                                            "id" : "household-composition-add-another",
+                                            "condition": "equals",
+                                            "value":"No"
+                                        }
+                                    ]
                                 }
                             },
                             {
                                 "goto": {
                                     "id": "summary",
-                                    "when": {
-                                        "id" : "household-composition-add-another",
-                                        "condition": "equals",
-                                        "value":"Yes"
-                                    }
+                                    "when": [
+                                        {
+                                            "id" : "household-composition-add-another",
+                                            "condition": "equals",
+                                            "value":"Yes"
+                                        }
+                                    ]
                                 }
 
                             }

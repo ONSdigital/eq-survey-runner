@@ -39,7 +39,7 @@ def dev_mode():
         employment_date = form.get("employment_date")
         region_code = form.get("region_code")
         language_code = form.get("language_code")
-        sexual_identity = form.get("sexual_identity")
+        sexual_identity = form.get("sexual_identity") == "true"
         variant_flags = {"sexual_identity": sexual_identity}
         payload = create_payload(user=user,
                                  exp_time=exp_time,

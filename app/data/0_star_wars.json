@@ -100,33 +100,39 @@
                         {
                             "goto": {
                                 "id" : "96682325-47ab-41e4-a56e-8315a19ffe2a",
-                                "when": {
-                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                    "condition": "equals",
-                                    "value":"Light Side"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "condition": "equals",
+                                        "value":"Light Side"
+                                    }
+                                ]
                             }
 
                         },
                         {
                             "goto": {
                                 "id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
-                                "when": {
-                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                    "condition": "equals",
-                                    "value":"Dark Side"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "condition": "equals",
+                                        "value":"Dark Side"
+                                    }
+                                ]
                             }
 
                         },
                         {
                             "goto": {
                                 "id": "summary",
-                                "when": {
-                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                    "condition": "equals",
-                                    "value":"I prefer Star Trek"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "condition": "equals",
+                                        "value":"I prefer Star Trek"
+                                    }
+                                ]
                             }
 
                         },
@@ -247,22 +253,26 @@
                         {
                             "goto": {
                                 "id" : "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
-                                "when": {
-                                    "id" : "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
-                                    "condition": "equals",
-                                    "value":"Yes"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
                             }
 
                         },
                         {
                             "goto": {
                                 "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
-                                "when": {
-                                    "id" : "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
-                                    "condition": "equals",
-                                    "value":"No"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "condition": "equals",
+                                        "value":"No"
+                                    }
+                                ]
                             }
 
                         }
@@ -381,33 +391,39 @@
                         {
                             "goto": {
                                 "id" : "fab02f02-6ce4-4f22-b61f-0c7880009f08",
-                                "when": {
-                                    "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
-                                    "condition": "equals",
-                                    "value":"Yes"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
                             }
 
                         },
                         {
                             "goto": {
                                 "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
-                                "when": {
-                                    "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
-                                    "condition": "equals",
-                                    "value":"No"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "condition": "equals",
+                                        "value":"No"
+                                    }
+                                ]
                             }
 
                         },
                         {
                             "goto": {
                                 "id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
-                                "when": {
-                                    "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
-                                    "condition": "equals",
-                                    "value":"Can I be a pain and have a goodies ship"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "condition": "equals",
+                                        "value":"Can I be a pain and have a goodies ship"
+                                    }
+                                ]
                             }
 
                         }
@@ -977,11 +993,13 @@
                                     "title": "The force is strong with you, young Jedi!",
                                     "type": "General",
                                     "skip_condition": {
-                                        "when": {
-                                            "id" : "cccfe681-9969-4175-8ac3-98184ab58423",
-                                            "condition": "not equals",
-                                            "value":"Bothans"
-                                        }
+                                        "when": [
+                                            {
+                                                "id" : "cccfe681-9969-4175-8ac3-98184ab58423",
+                                                "condition": "not equals",
+                                                "value":"Bothans"
+                                            }
+                                        ]
                                     }
                                 },
                                 {
@@ -1114,11 +1132,13 @@
                                     "title": "",
                                     "type": "General",
                                     "skip_condition": {
-                                        "when": {
-                                            "id" : "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
-                                            "condition": "equals",
-                                            "value": "I like to pretend they didn't happen"
-                                        }
+                                        "when": [
+                                            {
+                                                "id" : "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
+                                                "condition": "equals",
+                                                "value": "I like to pretend they didn't happen"
+                                            }
+                                        ]
                                     }
                                 },
                                 {

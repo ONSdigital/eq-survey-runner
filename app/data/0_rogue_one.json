@@ -88,44 +88,52 @@
                         {
                             "goto": {
                                 "id" : "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
-                                "when": {
-                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                    "condition": "equals",
-                                    "value":"Jyn Erso"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "condition": "equals",
+                                        "value":"Jyn Erso"
+                                    }
+                                ]
                             }
 
                         },
                         {
                             "goto": {
                                 "id": "cbb1f973-7fbc-4e96-bd7b-47a8d8056a46",
-                                "when": {
-                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                    "condition": "equals",
-                                    "value":"Cassian Andor"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "condition": "equals",
+                                        "value":"Cassian Andor"
+                                    }
+                                ]
                             }
 
                         },
                         {
                             "goto": {
                                 "id": "9b091307-e14c-4211-9104-91e3975d6910",
-                                "when": {
-                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                    "condition": "equals",
-                                    "value":"Bodhi Rook"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "condition": "equals",
+                                        "value":"Bodhi Rook"
+                                    }
+                                ]
                             }
 
                         },
                         {
                             "goto": {
                                 "id": "b4f8e11a-dac9-4554-ba44-55fc5c5aebcb",
-                                "when": {
-                                    "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-                                    "condition": "equals",
-                                    "value":"Orson Krennic"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "condition": "equals",
+                                        "value":"Orson Krennic"
+                                    }
+                                ]
                             }
 
                         }

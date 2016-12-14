@@ -3,6 +3,7 @@ from unittest import TestCase
 from mock import MagicMock
 
 from app.questionnaire_state.state_item import StateItem
+from app.schema.section import Section
 
 
 class TestStateItem(TestCase):
@@ -63,4 +64,71 @@ class TestStateItem(TestCase):
 
         # Then
         self.assertIsNone(result)
+
+    def test_set_skipped_skips_when_equals_satisfied(self):
+        answers = {'12345': 'yes'}
+
+        skip = {
+            "when": [
+                {
+                    "id": "12345",
+                    "condition": "equals",
+                    "value": "yes"
+                }
+            ]
+        }
+
+        section = Section()
+        section.skip_condition = skip
+
+        state_item = StateItem(id='', schema_item=section)
+
+        state_item.set_skipped(answers, {})
+
+        self.assertEqual(state_item.skipped, True)
+
+    def test_set_skipped_skips_when_not_equals_satisfied(self):
+        answers = {'12345': 'yes'}
+
+        skip = {
+            "when": [
+                {
+                    "id": "12345",
+                    "condition": "not equals",
+                    "value": "no"
+                }
+            ]
+        }
+
+        section = Section()
+        section.skip_condition = skip
+
+        state_item = StateItem(id='', schema_item=section)
+
+        state_item.set_skipped(answers, {})
+
+        self.assertEqual(state_item.skipped, True)
+
+    def test_set_skipped_skips_when_meta_equals_satisfied(self):
+
+        metadata = {'region_code': 'GB-WLS'}
+
+        skip = {
+            "when": [
+                {
+                    "meta": "region_code",
+                    "condition": "equals",
+                    "value": "GB-WLS"
+                }
+            ]
+        }
+
+        section = Section()
+        section.skip_condition = skip
+
+        state_item = StateItem(id='', schema_item=section)
+
+        state_item.set_skipped({}, metadata)
+
+        self.assertEqual(state_item.skipped, True)
 

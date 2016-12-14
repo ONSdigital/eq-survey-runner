@@ -99,11 +99,13 @@
                         {
                             "goto": {
                                 "id": "further-contact",
-                                "when": {
-                                    "id": "bed-spaces-answer",
-                                    "condition": "equals",
-                                    "value": "0"
-                                }
+                                "when": [
+                                    {
+                                        "id": "bed-spaces-answer",
+                                        "condition": "equals",
+                                        "value": "0"
+                                    }
+                                ]
                             }
                         },
                         {
@@ -170,11 +172,13 @@
                         {
                             "goto": {
                                 "id": "completion-preference-establishment",
-                                "when": {
-                                    "id": "usual-residents-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }
+                                "when": [
+                                    {
+                                        "id": "usual-residents-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }
+                                ]
                             }
                         },
                         {
@@ -307,21 +311,25 @@
                         {
                             "goto": {
                                 "id": "completion-preference-establishment",
-                                "when": {
-                                    "id": "completion-preference-individual-answer",
-                                    "condition": "equals",
-                                    "value": "Online"
-                                }
+                                "when": [
+                                    {
+                                        "id": "completion-preference-individual-answer",
+                                        "condition": "equals",
+                                        "value": "Online"
+                                    }
+                                ]
                             }
                         },
                         {
                             "goto": {
                                 "id": "completion-preference-establishment",
-                                "when": {
-                                    "id": "completion-preference-individual-answer",
-                                    "condition": "equals",
-                                    "value": "Not sure"
-                                }
+                                "when": [
+                                    {
+                                        "id": "completion-preference-individual-answer",
+                                        "condition": "equals",
+                                        "value": "Not sure"
+                                    }
+                                ]
                             }
                         },
                         {
@@ -421,11 +429,13 @@
                         {
                             "goto": {
                                 "id": "further-contact",
-                                "when": {
-                                    "id": "completion-preference-establishment-answer",
-                                    "condition": "equals",
-                                    "value": "Online"
-                                }
+                                "when": [
+                                    {
+                                        "id": "completion-preference-establishment-answer",
+                                        "condition": "equals",
+                                        "value": "Online"
+                                    }
+                                ]
                             }
                         },
                         {
@@ -517,11 +527,13 @@
                         {
                             "goto": {
                                 "id": "confirmation",
-                                "when": {
-                                    "id": "further-contact-answer",
-                                    "condition": "equals",
-                                    "value": "No"
-                                }
+                                "when": [
+                                    {
+                                        "id": "further-contact-answer",
+                                        "condition": "equals",
+                                        "value": "No"
+                                    }
+                                ]
                             }
                         },
                         {
