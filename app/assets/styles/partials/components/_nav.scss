@@ -20,6 +20,11 @@
     padding: 0.5rem 0;
     position: relative;
   }
+  .nav__link {
+    @include mq(m) {
+      font-size: 1rem;
+    }
+  }
   .nav__item--completed {
     &::before {
       z-index: 2;
@@ -37,8 +42,10 @@
     background: lighten($color-secondary, 64%);
     border-left: 0.5rem $color-secondary solid;
     padding-left: 2rem;
-    position: relative;
-    left: -2.5rem;
+    // position: relative;
+    // left: -2.5rem;
+    // margin-right: 2.5rem;
+    margin-left: -2.5rem;
     &.nav__item--completed {
       &::before {
         left: 0.5rem;
