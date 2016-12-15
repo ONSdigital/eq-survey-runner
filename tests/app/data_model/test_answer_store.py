@@ -638,4 +638,4 @@ class TestAnswerStore(unittest.TestCase):
         self.store.add(answer_1)
 
         self.assertNotEqual(self.store.get(answer_1), '<img src="https://www.google.co.uk/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png"/>')
-        self.assertFalse('<' in self.store.get(answer_1))
+        self.assertNotIn('<', self.store.get(answer_1))
