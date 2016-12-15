@@ -19,10 +19,11 @@ class TemplateRenderer:
         :param context: the variables to substitute
         :return: the rendered version of the original renderable dict
         """
-        json_string = json.dumps(renderable)
+        json_string = json.dumps(renderable) if isinstance(renderable, dict) else renderable
         template = self.environment.from_string(json_string)
         rendered = template.render(**context)
-        return json.loads(rendered)
+        result = rendered if isinstance(renderable, dict) else json.dumps(rendered)
+        return json.loads(result)
 
     def render_state(self, state, context):
         """
