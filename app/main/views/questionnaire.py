@@ -247,14 +247,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
     }
 
     if 'action[save_continue]' in request.form:
-        answer_store.remove(group_id=group_id, block_id='household-composition')
-
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-        for answer in SchemaHelper.get_answers_that_repeat_in_block(g.schema_json, 'household-composition'):
-            groups_to_delete = SchemaHelper.get_groups_that_repeat_with_answer_id(g.schema_json, answer['id'])
-            for group in groups_to_delete:
-                answer_store.remove(group_id=group['id'])
-                questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if b.get('group_id') != group['id']]
+        _remove_repeating_on_household_answers(answer_store, group_id)
 
     valid = questionnaire_manager.process_incoming_answers(this_block, request.form)
 
@@ -274,6 +267,25 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
     next_location = navigator.get_next_location(current_block_id='household-composition', current_iteration=0, current_group_id=group_id)
 
     return redirect(location_url(eq_id, form_type, collection_id, next_location))
+
+
+@questionnaire_blueprint.route('<group_id>/<int:group_instance>/permanent-or-family-home', methods=["POST"])
+@login_required
+def post_everyone_at_address_confirmation(eq_id, form_type, collection_id, group_id, group_instance):
+    if request.form.get('permanent-or-family-home-answer') == 'No':
+        _remove_repeating_on_household_answers(get_answer_store(current_user), group_id)
+    return post_block(eq_id, form_type, collection_id, group_id, group_instance, 'permanent-or-family-home')
+
+
+def _remove_repeating_on_household_answers(answer_store, group_id):
+    answer_store.remove(group_id=group_id, block_id='household-composition')
+    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+    for answer in SchemaHelper.get_answers_that_repeat_in_block(g.schema_json, 'household-composition'):
+        groups_to_delete = SchemaHelper.get_groups_that_repeat_with_answer_id(g.schema_json, answer['id'])
+        for group in groups_to_delete:
+            answer_store.remove(group_id=group['id'])
+            questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if
+                                                       b.get('group_id') != group['id']]
 
 
 def _delete_user_data():
