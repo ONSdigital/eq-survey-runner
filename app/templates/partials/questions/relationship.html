@@ -9,7 +9,6 @@
       {{question_title|safe}}
     </h2>
     {{question_description|safe}}
-    {{question_guidance|safe}}
 
     <div class="js-relationship">
 
@@ -22,3 +21,21 @@
     </div>
 
 </div>
+
+{% set question_guidance %}
+{%- for guidance in question.schema_item.guidance -%}
+<ul class="u-m-no">
+  {%- for item in guidance.list -%}
+    <li>{{item|safe}}</li>
+  {% endfor %}
+</ul>
+{% endfor %}
+{% endset %}
+
+{% with answer_guidance = {
+  'id': question.schema_item.id,
+  'label': question.schema_item.label,
+  'content': question_guidance
+} %}
+  {% include 'partials/answer-guidance.html' %}
+{% endwith %}

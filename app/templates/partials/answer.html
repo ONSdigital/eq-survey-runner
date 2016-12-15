@@ -6,7 +6,13 @@
 
   {%- set answer_guidance %}
     {% if answer.schema_item.guidance %}
-      {% include 'partials/guidance.html' %}
+      {% with answer_guidance = {
+        'id': answer.schema_item.id,
+        'label': answer.schema_item.label,
+        'content': answer.schema_item.guidance
+      } %}
+        {% include 'partials/answer-guidance.html' %}
+      {% endwith %}
     {% endif %}
   {% endset -%}
 
