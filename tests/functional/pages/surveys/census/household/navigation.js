@@ -1,7 +1,7 @@
 class Navigation {
 
   navigateToHouseholdAndAccommodation() {
-    browser.element('[data-qa="navigate-to-household-and-accommodation"]').click()
+    browser.element('//a[text()="Household and Accommodation"]').click()
     return this
   }
 

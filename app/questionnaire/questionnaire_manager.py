@@ -60,11 +60,11 @@ class QuestionnaireManager(object):
         # Store answers in QuestionnaireStore
         questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
-        for answer in self.get_state_answers(location['block_id']):
+        for answer in self.get_state_answers(location.block_id):
             questionnaire_store.answer_store.add_or_update(answer.flatten())
 
-        if location not in questionnaire_store.completed_blocks:
-            questionnaire_store.completed_blocks.append(location)
+        if location.__dict__ not in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.append(location.__dict__)
 
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
@@ -79,19 +79,19 @@ class QuestionnaireManager(object):
     def build_state(self, location, answers):
         # Build the state from the answers
         self.state = None
-        if self._schema.item_exists(location['block_id']):
+        if self._schema.item_exists(location.block_id):
             metadata = get_metadata(current_user)
             answer_store = get_answer_store(current_user)
-            schema_item = self._schema.get_item_by_id(location['block_id'])
+            schema_item = self._schema.get_item_by_id(location.block_id)
             self.state = schema_item.construct_state()
 
-            for answer in self.get_state_answers(location['block_id']):
-                answer.group_id = location['group_id']
-                answer.group_instance = location['group_instance']
+            for answer in self.get_state_answers(location.block_id):
+                answer.group_id = location.group_id
+                answer.group_instance = location.group_instance
             self.state.update_state(answers)
             self.state.set_skipped(get_answers(current_user), metadata)
 
-            context = build_schema_context(metadata, self._schema.aliases, answer_store, location['group_instance'])
+            context = build_schema_context(metadata, self._schema.aliases, answer_store, location.group_instance)
             renderer.render_state(self.state, context)
 
     def get_state_answers(self, item_id):

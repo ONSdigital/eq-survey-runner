@@ -2,7 +2,11 @@ import unittest
 
 import pytest
 
+from app import create_app
+
+from app.questionnaire.location import Location
 from app.questionnaire.navigator import Navigator
+
 from app.schema_loader.schema_loader import load_schema_file
 from app.data_model.answer_store import Answer, AnswerStore
 
@@ -12,36 +16,45 @@ class TestNavigator(unittest.TestCase):
     def test_next_block(self):
         survey = load_schema_file("1_0102.json")
 
-        current_block_id = "7418732e-12fb-4270-8307-5682ac63bfae"
-        next_block = {
-            "block_id": "02ed26ad-4cfc-4e29-a946-630476228b2c",
-            "group_id": "07f40cd2-0704-4804-9f32-19309089a51b",
-            "group_instance": 0
-        }
+        current_location = Location(
+            block_id="7418732e-12fb-4270-8307-5682ac63bfae",
+            group_id="07f40cd2-0704-4804-9f32-19309089a51b",
+            group_instance=0
+        )
+
+        next_location = Location(
+            block_id="02ed26ad-4cfc-4e29-a946-630476228b2c",
+            group_id="07f40cd2-0704-4804-9f32-19309089a51b",
+            group_instance=0
+        )
 
         navigator = Navigator(survey)
-        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
+        self.assertEqual(navigator.get_next_location(current_location=current_location), next_location)
 
     def test_previous_block(self):
         survey = load_schema_file("1_0102.json")
 
-        current_block_id = "02ed26ad-4cfc-4e29-a946-630476228b2c"
+        current_location = Location(
+            block_id="02ed26ad-4cfc-4e29-a946-630476228b2c",
+            group_id="07f40cd2-0704-4804-9f32-19309089a51b",
+            group_instance=0
+        )
 
-        previous_block = {
-            "block_id": "7418732e-12fb-4270-8307-5682ac63bfae",
-            "group_id": "07f40cd2-0704-4804-9f32-19309089a51b",
-            "group_instance": 0
-        }
+        previous_location = Location(
+            block_id="7418732e-12fb-4270-8307-5682ac63bfae",
+            group_id="07f40cd2-0704-4804-9f32-19309089a51b",
+            group_instance=0
+        )
 
         navigator = Navigator(survey)
-        self.assertEqual(navigator.get_previous_location(current_block_id=current_block_id), previous_block)
+        self.assertEqual(navigator.get_previous_location(current_location=current_location), previous_location)
 
     def test_introduction_in_path_when_in_schema(self):
         survey = load_schema_file("1_0102.json")
 
         navigator = Navigator(survey)
 
-        blocks = [b['block_id'] for b in navigator.get_location_path()]
+        blocks = [b.block_id for b in navigator.get_location_path()]
 
         self.assertIn('introduction', blocks)
 
@@ -50,7 +63,7 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey)
 
-        blocks = [b['block_id'] for b in navigator.get_location_path()]
+        blocks = [b.block_id for b in navigator.get_location_path()]
 
         self.assertNotIn('introduction', blocks)
 
@@ -58,11 +71,11 @@ class TestNavigator(unittest.TestCase):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-            {"block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a"},
-            {"block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"},
-            {"block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"},
-            {"block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"}
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "96682325-47ab-41e4-a56e-8315a19ffe2a"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
         ]
 
         answer_1 = Answer(
@@ -71,6 +84,7 @@ class TestNavigator(unittest.TestCase):
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Light Side"
         )
+
         answer_2 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
             block_id="96682325-47ab-41e4-a56e-8315a19ffe2a",
@@ -82,75 +96,34 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_1)
         answers.add(answer_2)
 
-        current_block_id = expected_path[1]["block_id"]
-        expected_next_block = expected_path[2]
+        current_location = expected_path[1]
+        expected_next_location = expected_path[2]
 
         navigator = Navigator(survey, answer_store=answers)
-        actual_next_block = navigator.get_next_location(current_block_id=current_block_id)
+        actual_next_block = navigator.get_next_location(current_location=current_location)
 
-        self.assertEqual(actual_next_block["block_id"], expected_next_block["block_id"])
+        self.assertEqual(actual_next_block, expected_next_location)
 
-        current_block_id = expected_path[2]["block_id"]
-        expected_next_block = expected_path[3]
+        current_location = expected_path[2]
+        expected_next_location = expected_path[3]
 
-        actual_next_block = navigator.get_next_location(current_block_id=current_block_id)
+        actual_next_block = navigator.get_next_location(current_location=current_location)
 
-        self.assertEqual(actual_next_block["block_id"], expected_next_block["block_id"])
+        self.assertEqual(actual_next_block, expected_next_location)
 
     def test_routing_basic_path(self):
         survey = load_schema_file("1_0112.json")
 
         expected_path = [
-            {"block_id": "980b148e-0856-4e50-9afe-67a4fa6ae13b"},
-            {"block_id": "6c8a2f39-e0d8-406f-b463-2151225abea2"},
-            {"block_id": "0c7c8876-6a63-4251-ac29-b821b3e9b1bc"},
-            {"block_id": "a42b5752-1896-4f52-9d58-320085be92a7"},
-            {"block_id": "0b29d3f7-5905-43d8-9921-5b353db68104"},
-            {"block_id": "7e2d49eb-ffc7-4a61-a45d-eba336d1d0e6"},
+            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "980b148e-0856-4e50-9afe-67a4fa6ae13b"),
+            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "6c8a2f39-e0d8-406f-b463-2151225abea2"),
+            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "0c7c8876-6a63-4251-ac29-b821b3e9b1bc"),
+            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "a42b5752-1896-4f52-9d58-320085be92a7"),
+            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "0b29d3f7-5905-43d8-9921-5b353db68104"),
+            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "7e2d49eb-ffc7-4a61-a45d-eba336d1d0e6")
         ]
-
-        for v in expected_path:
-            v['group_id'] = "f74d1147-673c-497a-9616-763829d944ac"
-            v['group_instance'] = 0
 
         navigator = Navigator(survey)
-        routing_path = navigator.get_routing_path()
-
-        self.assertEqual(routing_path, expected_path)
-
-    def test_routing_conditional_path(self):
-        survey = load_schema_file("0_star_wars.json")
-
-        expected_path = [
-            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-            {"block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a"},
-            {"block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"},
-            {"block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"},
-            {"block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"}
-        ]
-
-        for v in expected_path:
-            v['group_id'] = "14ba4707-321d-441d-8d21-b8367366e766"
-            v['group_instance'] = 0
-
-        answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
-            value="Light Side"
-        )
-        answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="96682325-47ab-41e4-a56e-8315a19ffe2a",
-            answer_id="2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
-            value="No",
-        )
-
-        answers = AnswerStore()
-        answers.add(answer_1)
-        answers.add(answer_2)
-
-        navigator = Navigator(survey, answer_store=answers)
         routing_path = navigator.get_routing_path()
 
         self.assertEqual(routing_path, expected_path)
@@ -159,17 +132,13 @@ class TestNavigator(unittest.TestCase):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-            {"block_id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"},
-            {"block_id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"},
-            {"block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"},
-            {"block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"},
-            {"block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"}
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
         ]
-
-        for v in expected_path:
-            v['group_id'] = "14ba4707-321d-441d-8d21-b8367366e766"
-            v['group_instance'] = 0
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
@@ -198,9 +167,11 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey)
 
-        next_location = navigator.get_next_location(current_block_id='introduction')
+        introduction = Location('14ba4707-321d-441d-8d21-b8367366e766', 0, 'introduction')
 
-        self.assertEqual('f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0', next_location["block_id"])
+        next_location = navigator.get_next_location(current_location=introduction)
+
+        self.assertEqual('f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0', next_location.block_id)
 
     def test_get_next_location_summary(self):
         survey = load_schema_file("0_star_wars.json")
@@ -224,24 +195,19 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, answer_store=answers)
 
-        current_block_id = 'an3b74d1-b687-4051-9634-a8f9ce10ard'
+        current_location = Location('14ba4707-321d-441d-8d21-b8367366e766', 0, 'an3b74d1-b687-4051-9634-a8f9ce10ard')
 
-        next_location = navigator.get_next_location(current_block_id=current_block_id)
-        expected_next_location = {
-            "block_id": '846f8514-fed2-4bd7-8fb2-4b5fcb1622b1',
-            "group_id": "14ba4707-321d-441d-8d21-b8367366e766",
-            "group_instance": 0
-        }
+        next_location = navigator.get_next_location(current_location=current_location)
+
+        expected_next_location = Location("14ba4707-321d-441d-8d21-b8367366e766", 0, '846f8514-fed2-4bd7-8fb2-4b5fcb1622b1')
 
         self.assertEqual(expected_next_location, next_location)
 
-        current_block_id = '846f8514-fed2-4bd7-8fb2-4b5fcb1622b1'
-        next_location = navigator.get_next_location(current_block_id=current_block_id)
-        expected_next_location = {
-            "block_id": 'summary',
-            "group_id": "14ba4707-321d-441d-8d21-b8367366e766",
-            "group_instance": 0
-        }
+        current_location = expected_next_location
+
+        next_location = navigator.get_next_location(current_location=current_location)
+
+        expected_next_location = Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary')
 
         self.assertEqual(expected_next_location, next_location)
 
@@ -250,21 +216,22 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey)
 
-        first_block_id = 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'
-        next_location = navigator.get_previous_location(current_block_id=first_block_id)
+        first_location = Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0')
 
-        self.assertEqual('introduction', next_location['block_id'])
+        previous_location = navigator.get_previous_location(current_location=first_location)
+
+        self.assertEqual('introduction', previous_location.block_id)
 
     def test_previous_with_conditional_path(self):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-            {"block_id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"},
-            {"block_id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"},
-            {"block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"},
-            {"block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"},
-            {"block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"}
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
         ]
 
         answer_1 = Answer(
@@ -284,38 +251,34 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer_1)
         answers.add(answer_2)
 
-        current_block_id = expected_path[3]["block_id"]
-        expected_previous_block = expected_path[2]
+        current_location = expected_path[3]
+        expected_previous_location = expected_path[2]
 
         navigator = Navigator(survey, answer_store=answers)
-        actual_previous_block = navigator.get_previous_location(current_block_id=current_block_id)
+        actual_previous_block = navigator.get_previous_location(current_location=current_location)
 
-        self.assertEqual(actual_previous_block["block_id"], expected_previous_block['block_id'])
+        self.assertEqual(actual_previous_block, expected_previous_location)
 
-        current_block_id = expected_path[2]["block_id"]
-        expected_previous_block = expected_path[1]
+        current_location = expected_path[2]
+        expected_previous_location = expected_path[1]
 
-        actual_previous_block = navigator.get_previous_location(current_block_id=current_block_id)
+        actual_previous_block = navigator.get_previous_location(current_location=current_location)
 
-        self.assertEqual(actual_previous_block["block_id"], expected_previous_block['block_id'])
+        self.assertEqual(actual_previous_block, expected_previous_location)
 
     def test_previous_with_conditional_path_alternative(self):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-            {"block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a"},
-            {"block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"},
-            {"block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"},
-            {"block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"}
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "96682325-47ab-41e4-a56e-8315a19ffe2a"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
         ]
 
-        for v in expected_path:
-            v['group_id'] = "14ba4707-321d-441d-8d21-b8367366e766"
-            v['group_instance'] = 0
-
-        current_block_id = expected_path[2]["block_id"]
-        expected_previous_block = expected_path[1]
+        current_location = expected_path[2]
+        expected_previous_location = expected_path[1]
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
@@ -336,20 +299,16 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, answer_store=answers)
 
-        self.assertEqual(navigator.get_previous_location(current_block_id=current_block_id), expected_previous_block)
+        self.assertEqual(navigator.get_previous_location(current_location=current_location), expected_previous_location)
 
     def test_next_location_goto_summary(self):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            {"block_id": 'introduction'},
-            {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-            {"block_id": "summary"}
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'introduction'),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary'),
         ]
-
-        for v in expected_path:
-            v['group_id'] = "14ba4707-321d-441d-8d21-b8367366e766"
-            v['group_instance'] = 0
 
         answer = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
@@ -362,52 +321,46 @@ class TestNavigator(unittest.TestCase):
         answers.add(answer)
         navigator = Navigator(survey, answer_store=answers)
 
-        current_block_id = expected_path[1]["block_id"]
+        current_location = expected_path[1]
         expected_next_location = expected_path[2]
 
-        next_location = navigator.get_next_location(current_block_id=current_block_id)
+        next_location = navigator.get_next_location(current_location=current_location)
 
         self.assertEqual(next_location, expected_next_location)
 
     def test_next_location_empty_routing_rules(self):
         survey = load_schema_file("test_checkbox.json")
 
-        # Force some empty routing rules
-        survey['groups'][0]['blocks'][0]['routing_rules'] = []
-
         expected_path = [
-          {"block_id": "introduction"},
-          {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"},
-          {"block_id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1"},
-          {"block_id": "summary"}
+            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'introduction'),
+            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'),
+            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1'),
+            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'summary')
         ]
 
-        for v in expected_path:
-            v['group_id'] = "14ba4707-321d-441d-8d21-b8367366e761"
-            v['group_instance'] = 0
-
         answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="14ba4707-321d-441d-8d21-b8367366e761",
             block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Cheese",
         )
         answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="14ba4707-321d-441d-8d21-b8367366e761",
             block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23",
             value="deep pan",
         )
+
         answers = AnswerStore()
         answers.add(answer_1)
         answers.add(answer_2)
 
         navigator = Navigator(survey, answer_store=answers)
 
-        current_block_id = expected_path[1]["block_id"]
+        current_location = expected_path[1]
         expected_next_location = expected_path[2]
 
-        next_location = navigator.get_next_location(current_block_id=current_block_id)
+        next_location = navigator.get_next_location(current_location=current_location)
 
         self.assertEqual(next_location, expected_next_location)
 
@@ -420,16 +373,13 @@ class TestNavigator(unittest.TestCase):
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Light Side"
         )
+
         answers = AnswerStore()
         answers.add(answer)
 
         navigator = Navigator(survey, answer_store=answers)
 
-        self.assertFalse({
-            'block_id': 'summary',
-            "group_id": "14ba4707-321d-441d-8d21-b8367366e766",
-            "group_instance": 0
-        } in navigator.get_location_path())
+        self.assertFalse(Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary') in navigator.get_location_path())
 
     def test_repeating_groups(self):
         survey = load_schema_file("test_repeating_household.json")
@@ -438,31 +388,11 @@ class TestNavigator(unittest.TestCase):
         survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
-            {
-                "block_id": "household-composition",
-                "group_id": "multiple-questions-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 1
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 1
-            }
+            Location("multiple-questions-group", 0,  "household-composition"),
+            Location("repeating-group", 0,  "repeating-block-1"),
+            Location("repeating-group", 0,  "repeating-block-2"),
+            Location("repeating-group", 1,  "repeating-block-1"),
+            Location("repeating-group", 1,  "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -486,11 +416,7 @@ class TestNavigator(unittest.TestCase):
         survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
-            {
-                "block_id": "household-composition",
-                "group_id": "multiple-questions-group",
-                'group_instance': 0
-            }
+            Location("multiple-questions-group", 0, "household-composition")
         ]
 
         answer = Answer(
@@ -511,41 +437,13 @@ class TestNavigator(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            {
-                "block_id": "household-composition",
-                "group_id": "multiple-questions-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 1
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 1
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 2
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 2
-            }
+            Location("multiple-questions-group", 0,  "household-composition"),
+            Location("repeating-group", 0,  "repeating-block-1"),
+            Location("repeating-group", 0,  "repeating-block-2"),
+            Location("repeating-group", 1,  "repeating-block-1"),
+            Location("repeating-group", 1,  "repeating-block-2"),
+            Location("repeating-group", 2,  "repeating-block-1"),
+            Location("repeating-group", 2,  "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -554,7 +452,7 @@ class TestNavigator(unittest.TestCase):
             answer_instance=0,
             answer_id="first-name",
             block_id="household-composition",
-            value="Joe"
+            value="Joe Bloggs"
         )
 
         answer_2 = Answer(
@@ -563,7 +461,7 @@ class TestNavigator(unittest.TestCase):
             answer_instance=1,
             answer_id="first-name",
             block_id="household-composition",
-            value="Sophie"
+            value="Sophie Bloggs"
         )
 
         answer_3 = Answer(
@@ -572,7 +470,7 @@ class TestNavigator(unittest.TestCase):
             answer_instance=2,
             answer_id="first-name",
             block_id="household-composition",
-            value="Gregg"
+            value="Gregg Bloggs"
         )
 
         answers = AnswerStore()
@@ -590,22 +488,11 @@ class TestNavigator(unittest.TestCase):
 
         # Default is to count answers, so switch to using value
         survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
+
         expected_path = [
-            {
-                "block_id": "household-composition",
-                "group_id": "multiple-questions-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            }
+            Location("multiple-questions-group", 0,  "household-composition"),
+            Location("repeating-group", 0,  "repeating-block-1"),
+            Location("repeating-group", 0,  "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -614,7 +501,7 @@ class TestNavigator(unittest.TestCase):
             answer_instance=0,
             answer_id="first-name",
             block_id="household-composition",
-            value="Joe"
+            value="Joe Bloggs"
         )
 
         answer_2 = Answer(
@@ -623,7 +510,7 @@ class TestNavigator(unittest.TestCase):
             answer_instance=1,
             answer_id="first-name",
             block_id="household-composition",
-            value="Sophie"
+            value="Sophie Bloggs"
         )
 
         answers = AnswerStore()
@@ -639,51 +526,23 @@ class TestNavigator(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            {
-                'block_id': 'introduction',
-                'group_id': 'multiple-questions-group',
-                'group_instance': 0
-            },
-            {
-                "block_id": "household-composition",
-                "group_id": "multiple-questions-group",
-                'group_instance': 0
-            }
+            Location('multiple-questions-group', 0, 'introduction'),
+            Location('multiple-questions-group', 0, 'household-composition'),
         ]
 
         navigator = Navigator(survey)
 
-        self.assertEqual(navigator.get_previous_location(current_block_id='household-composition'), expected_path[0])
+        self.assertEqual(navigator.get_previous_location(current_location=expected_path[1]), expected_path[0])
 
     def test_repeating_groups_previous_location(self):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            {
-                "block_id": "household-composition",
-                "group_id": "multiple-questions-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 1
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 1
-            }
+            Location("multiple-questions-group", 0,  "household-composition"),
+            Location("repeating-group", 0,  "repeating-block-1"),
+            Location("repeating-group", 0,  "repeating-block-2"),
+            Location("repeating-group", 1,  "repeating-block-1"),
+            Location("repeating-group", 1,  "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -702,9 +561,7 @@ class TestNavigator(unittest.TestCase):
             value="Sophie Bloggs"
         )
 
-        current_block_id = expected_path[4]["block_id"]
-        current_group_id = expected_path[4]["group_id"]
-        current_iteration = expected_path[4]["group_instance"]
+        current_location = expected_path[4]
 
         expected_previous_location = expected_path[3]
 
@@ -715,39 +572,17 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, answer_store=answers)
 
-        self.assertEqual(expected_previous_location, navigator.get_previous_location(current_group_id=current_group_id,
-                                                                                     current_block_id=current_block_id,
-                                                                                     current_iteration=current_iteration))
+        self.assertEqual(expected_previous_location, navigator.get_previous_location(current_location=current_location))
 
     def test_repeating_groups_next_location(self):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            {
-                "block_id": "household-composition",
-                "group_id": "multiple-questions-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeating-block-1",
-                "group_id": "repeating-group",
-                'group_instance': 1
-            },
-            {
-                "block_id": "repeating-block-2",
-                "group_id": "repeating-group",
-                'group_instance': 1
-            }
+            Location("multiple-questions-group", 0,  "household-composition"),
+            Location("repeating-group", 0,  "repeating-block-1"),
+            Location("repeating-group", 0,  "repeating-block-2"),
+            Location("repeating-group", 1,  "repeating-block-1"),
+            Location("repeating-group", 1,  "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -766,9 +601,7 @@ class TestNavigator(unittest.TestCase):
             value="Sophie Bloggs"
         )
 
-        current_group_id = expected_path[-1]["group_id"]
-        current_block_id = expected_path[-1]["block_id"]
-        current_iteration = expected_path[-1]["group_instance"]
+        current_location = expected_path[-1]
 
         answers = AnswerStore()
         answers.add(answer)
@@ -776,64 +609,23 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, answer_store=answers)
 
-        summary_block = {
-            "group_id": "repeating-group",
-            "block_id": 'summary',
-            "group_instance": 0
-        }
-        self.assertEqual(summary_block, navigator.get_next_location(current_group_id=current_group_id,
-                                                                    current_block_id=current_block_id,
-                                                                    current_iteration=current_iteration))
+        summary_location = Location("repeating-group", 0, 'summary')
+
+        self.assertEqual(summary_location, navigator.get_next_location(current_location=current_location))
 
     def test_repeating_groups_conditional_location_path(self):
         survey = load_schema_file("test_repeating_and_conditional_routing.json")
 
         expected_path = [
-            {
-                'group_instance': 0,
-                'group_id': 'repeat-value-group',
-                'block_id': 'introduction'
-            },
-            {
-                "block_id": "no-of-repeats",
-                "group_id": "repeat-value-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeated-block",
-                "group_id": "repeated-group",
-                'group_instance': 0
-            },
-            {
-                "block_id": "age-block",
-                "group_id": "repeated-group",
-                'group_instance': 0
-            },
-            {
-                'block_id': 'shoe-size-block',
-                'group_id': 'repeated-group',
-                'group_instance': 0
-            },
-            {
-                "block_id": "repeated-block",
-                "group_id": "repeated-group",
-                'group_instance': 1
-            },
-            {
-                "block_id": "shoe-size-block",
-                "group_id": "repeated-group",
-                'group_instance': 1
-            },
-            {
-                'block_id': 'summary',
-                'group_id': 'repeated-group',
-                'group_instance': 0
-            },
-            {
-                'block_id': 'thank-you',
-                'group_id': 'repeated-group',
-                'group_instance': 0
-            }
+            Location("repeat-value-group", 0,  "introduction"),
+            Location("repeat-value-group", 0,  "no-of-repeats"),
+            Location("repeated-group", 0,  "repeated-block"),
+            Location("repeated-group", 0,  "age-block"),
+            Location("repeated-group", 0,  "shoe-size-block"),
+            Location("repeated-group", 1,  "repeated-block"),
+            Location("repeated-group", 1,  "shoe-size-block"),
+            Location("repeated-group", 0,  "summary"),
+            Location("repeated-group", 0,  "thank-you"),
         ]
 
         answer_1 = Answer(
@@ -872,23 +664,13 @@ class TestNavigator(unittest.TestCase):
         survey = load_schema_file("test_metadata_routing.json")
 
         expected_path = [
-            {
-                "block_id": "block1",
-                "group_id": "group1",
-                'group_instance': 0
-            },
-            {
-                "block_id": "block3",
-                "group_id": "group1",
-                'group_instance': 0
-            }
+            Location("group1", 0, "block1"),
+            Location("group1", 0, "block3"),
         ]
 
-        current_group_id = expected_path[0]["group_id"]
-        current_block_id = expected_path[0]["block_id"]
-        current_iteration = expected_path[0]["group_instance"]
+        current_location = expected_path[0]
 
-        expected_next_block_id = expected_path[1]
+        expected_next_location = expected_path[1]
 
         metadata = {
             "variant_flags": {
@@ -898,31 +680,19 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, metadata=metadata)
 
-        self.assertEqual(expected_next_block_id, navigator.get_next_location(current_group_id=current_group_id,
-                                                                             current_block_id=current_block_id,
-                                                                             current_iteration=current_iteration))
+        self.assertEqual(expected_next_location, navigator.get_next_location(current_location=current_location))
 
     def test_next_with_conditional_path_when_value_not_in_metadata(self):
         survey = load_schema_file("test_metadata_routing.json")
 
         expected_path = [
-            {
-                "block_id": "block1",
-                "group_id": "group1",
-                'group_instance': 0
-            },
-            {
-                "block_id": "block2",
-                "group_id": "group1",
-                'group_instance': 0
-            }
+            Location("group1", 0, "block1"),
+            Location("group1", 0, "block2"),
         ]
 
-        current_group_id = expected_path[0]["group_id"]
-        current_block_id = expected_path[0]["block_id"]
-        current_iteration = expected_path[0]["group_instance"]
+        current_location = expected_path[0]
 
-        expected_next_block_id = expected_path[1]
+        expected_next_location = expected_path[1]
 
         metadata = {
             "variant_flags": {
@@ -931,34 +701,19 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, metadata=metadata)
 
-        self.assertEqual(expected_next_block_id, navigator.get_next_location(current_group_id=current_group_id,
-                                                                             current_block_id=current_block_id,
-                                                                             current_iteration=current_iteration))
+        self.assertEqual(expected_next_location, navigator.get_next_location(current_location=current_location))
 
     def test_routing_backwards_loops_to_previous_block(self):
         survey = load_schema_file("test_household_question.json")
 
-        expected_path = [{
-            'group_instance': 0,
-            'group_id': 'multiple-questions-group',
-            'block_id': 'introduction'
-        }, {
-            'group_instance': 0,
-            'group_id': 'multiple-questions-group',
-            'block_id': 'household-composition'
-        }, {
-            'group_instance': 0,
-            'group_id': 'multiple-questions-group',
-            'block_id': 'household-summary'
-        }, {
-            'group_instance': 0,
-            'group_id': 'multiple-questions-group',
-            'block_id': 'household-composition'
-        }]
+        expected_path = [
+            Location('multiple-questions-group', 0, 'introduction'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('multiple-questions-group', 0, 'household-summary'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+        ]
 
-        current_group_id = expected_path[2]["group_id"]
-        current_block_id = expected_path[2]["block_id"]
-        current_iteration = expected_path[2]["group_instance"]
+        current_location = expected_path[2]
 
         expected_next_location = expected_path[3]
 
@@ -997,34 +752,19 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, answer_store=answers)
 
-        self.assertEqual(expected_next_location, navigator.get_next_location(current_group_id=current_group_id,
-                                                                             current_block_id=current_block_id,
-                                                                             current_iteration=current_iteration))
+        self.assertEqual(expected_next_location, navigator.get_next_location(current_location=current_location))
 
     def test_routing_backwards_continues_to_summary_when_complete(self):
         survey = load_schema_file("test_household_question.json")
 
-        expected_path = [{
-            'group_instance': 0,
-            'group_id': 'multiple-questions-group',
-            'block_id': 'introduction'
-        }, {
-            'group_instance': 0,
-            'group_id': 'multiple-questions-group',
-            'block_id': 'household-composition'
-        }, {
-            'group_instance': 0,
-            'group_id': 'multiple-questions-group',
-            'block_id': 'household-summary'
-        }, {
-            'group_instance': 0,
-            'group_id': 'multiple-questions-group',
-            'block_id': 'summary'
-        }]
+        expected_path = [
+            Location('multiple-questions-group', 0, 'introduction'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('multiple-questions-group', 0, 'household-summary'),
+            Location('multiple-questions-group', 0, 'summary'),
+        ]
 
-        current_group_id = expected_path[2]["group_id"]
-        current_block_id = expected_path[2]["block_id"]
-        current_iteration = expected_path[2]["group_instance"]
+        current_location = expected_path[2]
 
         expected_next_location = expected_path[3]
 
@@ -1063,13 +803,22 @@ class TestNavigator(unittest.TestCase):
 
         navigator = Navigator(survey, answer_store=answers)
 
-        self.assertEqual(expected_next_location, navigator.get_next_location(current_group_id=current_group_id,
-                                                                             current_block_id=current_block_id,
-                                                                             current_iteration=current_iteration))
+        self.assertEqual(expected_next_location, navigator.get_next_location(current_location=current_location))
 
     def test_navigation_no_blocks_completed(self):
+        app = create_app()
+        app.config['SERVER_NAME'] = "test"
+        app_context = app.app_context()
+        app_context.push()
+
         survey = load_schema_file("test_navigation.json")
-        navigator = Navigator(survey)
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        navigator = Navigator(survey, metadata)
 
         completed_blocks = []
 
@@ -1077,46 +826,49 @@ class TestNavigator(unittest.TestCase):
             {
                 'link_name': 'Property Details',
                 'highlight': True,
-                'group_id': 'property-details',
-                'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': 'insurance-type'
+                'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
                 'link_name': 'Household Details',
-                'highlight': False, 'group_id':
-                'multiple-questions-group',
-                'instance': 0,
+                'highlight': False,
                 'repeating': False,
                 'completed': False,
-                'block_id': 'household-composition'
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
             },
             {
                 'link_name': 'Extra Cover',
                 'highlight': False,
-                'group_id': 'extra-cover',
-                'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': 'extra-cover-block'
+                'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata)
             },
             {
                 'link_name': 'Payment Details',
                 'highlight': False,
-                'group_id': 'payment-details',
-                'instance': 0,
                 'repeating': False,
                 'completed': False,
-                'block_id': 'credit-card'
+                'link_url': Location('payment-details', 0, 'credit-card').url(metadata)
             }
         ]
 
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
 
     def test_non_repeating_block_completed(self):
+        app = create_app()
+        app.config['SERVER_NAME'] = "test"
+        app_context = app.app_context()
+        app_context.push()
+
         survey = load_schema_file("test_navigation.json")
-        navigator = Navigator(survey)
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        navigator = Navigator(survey, metadata)
         completed_blocks = [
             {
                 'group_instance': 0,
@@ -1144,37 +896,30 @@ class TestNavigator(unittest.TestCase):
             {
                 'completed': True,
                 'link_name': 'Property Details',
-                'block_id': 'insurance-type',
-                'group_id': 'property-details',
                 'highlight': True,
-                'instance': 0,
-                'repeating': False
-             },
+                'repeating': False,
+                'link_url': Location('property-details', 0, 'insurance-type').url(metadata),
+            },
             {
                 'completed': False,
                 'link_name': 'Household Details',
-                'block_id': 'household-composition',
-                'group_id': 'multiple-questions-group',
-                'highlight': False, 'instance': 0,
-                'repeating': False
+                'highlight': False,
+                'repeating': False,
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata),
             },
             {
                 'completed': False,
                 'link_name': 'Extra Cover',
-                'block_id': 'extra-cover-block',
-                'group_id': 'extra-cover',
                 'highlight': False,
-                'instance': 0,
-                'repeating': False
+                'repeating': False,
+                'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata)
             },
             {
                 'completed': False,
                 'link_name': 'Payment Details',
-                'block_id': 'credit-card',
-                'group_id': 'payment-details',
                 'highlight': False,
-                'instance': 0,
-                'repeating': False
+                'repeating': False,
+                'link_url': Location('payment-details', 0, 'credit-card').url(metadata)
             }
         ]
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
@@ -1182,7 +927,7 @@ class TestNavigator(unittest.TestCase):
     def test_get_next_location_should_skip_group(self):
         # Given
         survey = load_schema_file('test_skip_condition_group.json')
-        current_block_id = 'do-you-want-to-skip'
+        current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip', answer_id='do-you-want-to-skip-answer', value='Yes'))
 
@@ -1190,17 +935,14 @@ class TestNavigator(unittest.TestCase):
         navigator = Navigator(survey, answer_store=answer_store)
 
         # Then
-        next_block = {
-            'block_id': 'last-group-block',
-            'group_id': 'last-group',
-            'group_instance': 0
-        }
-        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
+        next_location = Location('last-group', 0, 'last-group-block')
+
+        self.assertEqual(navigator.get_next_location(current_location), next_location)
 
     def test_get_next_location_should_not_skip_group(self):
         # Given
         survey = load_schema_file('test_skip_condition_group.json')
-        current_block_id = 'do-you-want-to-skip'
+        current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
         answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
                                 answer_id='do-you-want-to-skip-answer', value='No'))
@@ -1209,29 +951,23 @@ class TestNavigator(unittest.TestCase):
         navigator = Navigator(survey, answer_store=answer_store)
 
         # Then
-        next_block = {
-            'block_id': 'should-skip',
-            'group_id': 'should-skip-group',
-            'group_instance': 0
-        }
-        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
+        next_location = Location('should-skip-group', 0, 'should-skip')
+
+        self.assertEqual(navigator.get_next_location(current_location), next_location)
 
     def test_get_next_location_should_not_skip_when_no_answers(self):
         # Given
         survey = load_schema_file('test_skip_condition_group.json')
-        current_block_id = 'do-you-want-to-skip'
+        current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
 
         # When
         navigator = Navigator(survey, answer_store=answer_store)
 
         # Then
-        next_block = {
-            'block_id': 'should-skip',
-            'group_id': 'should-skip-group',
-            'group_instance': 0
-        }
-        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
+        next_location = Location('should-skip-group', 0, 'should-skip')
+
+        self.assertEqual(navigator.get_next_location(current_location), next_location)
 
     @pytest.mark.xfail(reason="Known bug when skipping last group due to summary bundled into it", strict=True, raises=StopIteration)
     def test_get_routing_path_when_first_block_in_group_skipped(self):
@@ -1260,8 +996,21 @@ class TestNavigator(unittest.TestCase):
         self.assertEqual(navigator.get_routing_path('should-skip-group'), expected_route)
 
     def test_navigation_repeating_household_and_hidden_household_groups_completed(self):
+
+        app = create_app()
+        app.config['SERVER_NAME'] = "test"
+        app_context = app.app_context()
+        app_context.push()
+
         survey = load_schema_file("test_navigation.json")
-        navigator = Navigator(survey)
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        navigator = Navigator(survey, metadata)
+
         navigator.answer_store.answers = [
             {
                 'group_instance': 0,
@@ -1348,64 +1097,63 @@ class TestNavigator(unittest.TestCase):
             {
                 'link_name': 'Property Details',
                 'repeating': False,
-                'instance': 0,
                 'completed': False,
                 'highlight': True,
-                'group_id': 'property-details',
-                'block_id': 'insurance-type'
+                'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
                 'link_name': 'Household Details',
                 'repeating': False,
-                'instance': 0,
                 'completed': True,
                 'highlight': False,
-                'group_id': 'multiple-questions-group',
-                'block_id': 'household-composition'
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
             },
             {
                 'link_name': 'Jim',
                 'repeating': True,
-                'instance': 0,
                 'completed': True,
                 'highlight': False,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-1'
+                'link_url': Location('repeating-group', 0, 'repeating-block-1').url(metadata)
             },
             {
                 'link_name': 'Ben',
                 'repeating': True,
-                'instance': 1,
                 'completed': True,
                 'highlight': False,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-1'
+                'link_url': Location('repeating-group', 1, 'repeating-block-1').url(metadata)
             },
             {
                 'link_name': 'Extra Cover',
                 'repeating': False,
-                'instance': 0,
                 'completed': False,
                 'highlight': False,
-                'group_id': 'extra-cover',
-                'block_id': 'extra-cover-block'
+                'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata)
             },
             {
                 'link_name': 'Payment Details',
                 'repeating': False,
-                'instance': 0,
                 'completed': False,
                 'highlight': False,
-                'group_id': 'payment-details',
-                'block_id': 'credit-card'
+                'link_url': Location('payment-details', 0, 'credit-card').url(metadata)
             }
         ]
 
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_extra_answered_not_completed(self):
+        app = create_app()
+        app.config['SERVER_NAME'] = "test"
+        app_context = app.app_context()
+        app_context.push()
+
         survey = load_schema_file("test_navigation.json")
-        navigator = Navigator(survey)
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        navigator = Navigator(survey, metadata)
 
         navigator.answer_store.answers = [
             {
@@ -1470,74 +1218,71 @@ class TestNavigator(unittest.TestCase):
         user_navigation = [
             {
                 'completed': False,
-                'group_id': 'property-details',
                 'highlight': True,
-                'block_id': 'insurance-type',
                 'repeating': False,
-                'instance': 0,
-                'link_name': 'Property Details'
+                'link_name': 'Property Details',
+                'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
                 'completed': False,
-                'group_id': 'multiple-questions-group',
                 'highlight': False,
-                'block_id': 'household-composition',
                 'repeating': False,
-                'instance': 0,
-                'link_name': 'Household Details'
+                'link_name': 'Household Details',
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata),
             },
             {
                 'completed': False,
-                'group_id': 'repeating-group',
                 'highlight': False,
-                'block_id': 'repeating-block-1',
                 'repeating': True,
-                'instance': 0,
-                'link_name': 'Person1'
+                'link_name': 'Person1',
+                'link_url': Location('repeating-group', 0, 'repeating-block-1').url(metadata),
             },
             {
                 'completed': False,
-                'group_id': 'repeating-group',
                 'highlight': False,
-                'block_id': 'repeating-block-1',
                 'repeating': True,
-                'instance': 1,
-                'link_name': 'Person2'
+                'link_name': 'Person2',
+                'link_url': Location('repeating-group', 1, 'repeating-block-1').url(metadata),
             },
             {
                 'completed': False,
-                'group_id': 'extra-cover',
                 'highlight': False,
-                'block_id': 'extra-cover-block',
                 'repeating': False,
-                'instance': 0,
-                'link_name': 'Extra Cover'
+                'link_name': 'Extra Cover',
+                'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata),
             },
             {
                 'completed': False,
-                'group_id': 'payment-details',
                 'highlight': False,
-                'block_id': 'credit-card',
                 'repeating': False,
-                'instance': 0,
-                'link_name': 'Payment Details'
+                'link_name': 'Payment Details',
+                'link_url': Location('payment-details', 0, 'credit-card').url(metadata),
             },
             {
                 'completed': False,
-                'group_id': 'extra-cover-items-group',
                 'highlight': False,
-                'block_id': 'extra-cover-items',
                 'repeating': False,
-                'instance': 0,
-                'link_name': 'Extra Cover Items'
+                'link_name': 'Extra Cover Items',
+                'link_url': Location('extra-cover-items-group', 0, 'extra-cover-items').url(metadata)
             }
         ]
 
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_extra_answered_completed(self):
+        app = create_app()
+        app.config['SERVER_NAME'] = "test"
+        app_context = app.app_context()
+        app_context.push()
+
         survey = load_schema_file("test_navigation.json")
-        navigator = Navigator(survey)
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        navigator = Navigator(survey, metadata)
 
         navigator.answer_store.answers = [
             {
@@ -1595,57 +1340,58 @@ class TestNavigator(unittest.TestCase):
         ]
         user_navigation = [
             {
-                'group_id': 'property-details',
                 'repeating': False,
                 'highlight': True,
+                'completed': False,
                 'link_name': 'Property Details',
-                'instance': 0,
-                'block_id': 'insurance-type',
-                'completed': False
+                'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
-                'group_id': 'multiple-questions-group',
                 'repeating': False,
                 'highlight': False,
+                'completed': False,
                 'link_name': 'Household Details',
-                'instance': 0,
-                'block_id': 'household-composition',
-                'completed': False
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
             },
             {
-                'group_id': 'extra-cover',
                 'repeating': False,
                 'highlight': False,
+                'completed': True,
                 'link_name': 'Extra Cover',
-                'instance': 0,
-                'block_id': 'extra-cover-block',
-                'completed': True
+                'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata)
             },
             {
-                'group_id': 'payment-details',
                 'repeating': False,
                 'highlight': False,
+                'completed': False,
                 'link_name': 'Payment Details',
-                'instance': 0,
-                'block_id': 'credit-card',
-                'completed': False
+                'link_url': Location('payment-details', 0, 'credit-card').url(metadata)
             },
             {
-                'group_id': 'extra-cover-items-group',
                 'repeating': False,
                 'highlight': False,
+                'completed': True,
                 'link_name': 'Extra Cover Items',
-                'instance': 0,
-                'block_id': 'extra-cover-items',
-                'completed': True
+                'link_url': Location('extra-cover-items-group', 0, 'extra-cover-items').url(metadata)
             }
         ]
 
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_link_name_format(self):
+        app = create_app()
+        app.config['SERVER_NAME'] = "test"
+        app_context = app.app_context()
+        app_context.push()
+
         survey = load_schema_file("test_repeating_household.json")
-        navigator = Navigator(survey)
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        navigator = Navigator(survey, metadata)
 
         navigator.answer_store.answers = [
             {
@@ -1714,30 +1460,24 @@ class TestNavigator(unittest.TestCase):
         user_navigation = [
             {
                 'repeating': False,
-                'link_name': '',
-                'instance': 0,
-                'block_id': 'household-composition',
                 'completed': True,
                 'highlight': False,
-                'group_id': 'multiple-questions-group'
+                'link_name': '',
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
             },
             {
                 'repeating': True,
                 'link_name': 'Joe Bloggs',
-                'instance': 0,
-                'block_id': 'repeating-block-1',
                 'completed': False,
                 'highlight': False,
-                'group_id': 'repeating-group'
+                'link_url': Location('repeating-group', 0, 'repeating-block-1').url(metadata)
             },
             {
                 'repeating': True,
                 'link_name': 'Jim',
-                'instance': 1,
-                'block_id': 'repeating-block-1',
                 'completed': False,
                 'highlight': False,
-                'group_id': 'repeating-group'
+                'link_url': Location('repeating-group', 1, 'repeating-block-1').url(metadata)
             }
         ]
 
@@ -1757,20 +1497,20 @@ class TestNavigator(unittest.TestCase):
             }
         ]
 
-        invalid_group_location = {
-            'group_instance': 0,
-            'group_id': 'this-group-id-doesnt-exist-in-the-list-of-blocks',
-            'block_id': 'first-valid-block-id'
-        }
+        invalid_group_location = Location(
+            group_instance=0,
+            group_id='this-group-id-doesnt-exist-in-the-list-of-blocks',
+            block_id='first-valid-block-id'
+        )
 
         with self.assertRaises(StopIteration):
             Navigator._block_index_for_location(blocks, invalid_group_location)
 
-        invalid_block_location = {
-            'group_instance': 0,
-            'group_id': 'second-valid-group-id',
-            'block_id': 'this-block-id-doesnt-exist-in-the-list-of-blocks'
-        }
+        invalid_block_location = Location(
+            group_instance=0,
+            group_id='second-valid-group-id',
+            block_id= 'this-block-id-doesnt-exist-in-the-list-of-blocks'
+        )
 
         with self.assertRaises(StopIteration):
             Navigator._block_index_for_location(blocks, invalid_block_location)

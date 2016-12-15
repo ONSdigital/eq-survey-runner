@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 
 from app.data_model.answer_store import AnswerStore
 from app.parser.metadata_parser import parse_metadata
+from app.questionnaire.location import Location
 from app.schema.answer import Answer
 from app.schema.block import Block
 from app.schema.group import Group
@@ -167,9 +168,9 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_convert_census_answers(self):
         with self.application.test_request_context():
-            routing_path = [location(group_id='personal details', block_id='about you'),
-                            location(group_id='household', block_id='where you live'),
-                            location(group_id='household', block_id='where you live', group_instance=1)]
+            routing_path = [Location(group_id='personal details', group_instance=0, block_id='about you'),
+                            Location(group_id='household', group_instance=0, block_id='where you live'),
+                            Location(group_id='household', group_instance=1, block_id='where you live')]
             answers = [create_answer('name', 'Joe Bloggs', group_id='personal details', block_id='about you'),
                        create_answer('name', 'Fred Bloggs', group_id='personal details', block_id='about you', answer_instance=1),
                        create_answer('address', '62 Somewhere', group_id='household', block_id='where you live'),
@@ -206,7 +207,7 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_convert_census_answers_multiple_answers(self):
         with self.application.test_request_context():
-            routing_path = [location(group_id='favourite food', block_id='crisps')]
+            routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
             answers = [create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite food', block_id='crisps')]
             questionnaire = Questionnaire()
             questionnaire.survey_id = '021'
@@ -243,12 +244,4 @@ def create_answer(answer_id, value, group_id=None, block_id=None, answer_instanc
         'answer_instance': answer_instance,
         'group_instance': group_instance,
         'value': value,
-    }
-
-
-def location(group_id, block_id, group_instance=0):
-    return {
-        'group_id': group_id,
-        'block_id': block_id,
-        'group_instance': group_instance
     }

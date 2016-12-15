@@ -151,7 +151,7 @@ class AnswerStore(object):
 
         return len(self.filter(answer.group_id, answer.block_id, answer.answer_id, answer.group_instance, answer.answer_instance))
 
-    def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+    def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None, location=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
         If no filter parameters are passed it returns a copy of the list of all answers.
@@ -171,6 +171,11 @@ class AnswerStore(object):
             "answer_instance": answer_instance,
             "group_instance": group_instance,
         }
+        if location:
+            filter_vars['group_id'] = location.group_id
+            filter_vars['group_instance'] = location.group_instance
+            filter_vars['block_id'] = location.block_id
+
         for answer in self.answers:
             matches = True
             for k, v in filter_vars.items():
@@ -214,7 +219,7 @@ class AnswerStore(object):
         if index is not None:
             del self.answers[index]
 
-    def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+    def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None, location=None):
         """
         Removes answer(s) from the answer store.
 
@@ -223,8 +228,10 @@ class AnswerStore(object):
         :param group_id:
         :param answer_instance:
         :param group_instance:
+        :param location:
         """
-        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
+
+        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance, location):
             self.answers.remove(answer)
 
 
