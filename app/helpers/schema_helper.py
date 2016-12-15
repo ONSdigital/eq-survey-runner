@@ -8,6 +8,12 @@ class SchemaHelper(object):
     def get_first_group_id(survey_json):
         return survey_json['groups'][0]['id']
 
+    @classmethod
+    def get_first_block_id_for_group(cls, survey_json, group_id):
+        group = cls.get_group(survey_json, group_id)
+        if group:
+            return group['blocks'][0]['id']
+
     @staticmethod
     def get_last_group_id(survey_json):
         return survey_json['groups'][-1]['id']
@@ -28,11 +34,11 @@ class SchemaHelper(object):
             yield group
 
     @staticmethod
-    def get_repeat_rules(group):
+    def get_repeating_rule(group):
         if 'routing_rules' in group:
             for rule in group['routing_rules']:
                 if 'repeat' in rule.keys():
-                    yield rule
+                    return rule['repeat']
 
     @classmethod
     def get_group(cls, survey_json, group_id):
@@ -54,9 +60,9 @@ class SchemaHelper(object):
     @classmethod
     def get_groups_that_repeat_with_answer_id(cls, survey_json, answer_id):
         for group in cls.get_groups(survey_json):
-            for rule in cls.get_repeat_rules(group):
-                if rule['repeat']['answer_id'] == answer_id:
-                    yield group
+            repeating_rule = cls.get_repeating_rule(group)
+            if repeating_rule and repeating_rule['answer_id'] == answer_id:
+                yield group
 
     @staticmethod
     def is_goto_rule(rule):

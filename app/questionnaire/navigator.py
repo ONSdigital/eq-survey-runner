@@ -1,5 +1,7 @@
 import logging
 
+from collections import defaultdict
+
 from app.data_model.answer_store import AnswerStore
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.rules import evaluate_goto, evaluate_repeat
@@ -20,17 +22,6 @@ class Navigator:
 
         if SchemaHelper.has_introduction(self.survey_json):
             self.preceeding_path = self.PRECEEDING_INTERSTITIAL_PATH
-
-        self.first_group_id = SchemaHelper.get_first_group_id(self.survey_json)
-        self.last_group_id = SchemaHelper.get_last_group_id(self.survey_json)
-
-        self.first_block_location = {
-            "group_id": self.first_group_id,
-            "group_instance": 0,
-            "block_id": SchemaHelper.get_first_block_id(self.survey_json),
-        }
-        self.location_path = self.get_location_path()
-        self.first_location = self.location_path[0]
 
     @classmethod
     def is_interstitial_block(cls, block_id):
@@ -123,16 +114,25 @@ class Navigator:
         :return:
         """
         self.answer_store = answer_store
-        self.location_path = self.get_location_path()
 
-    def get_routing_path(self):
+    def get_routing_path(self, group_id=None, group_instance=0):
         """
         Returns a list of the block ids visited based on answers provided
         :return: List of block location dicts
         """
-        return self.build_path(self.get_blocks(), self.first_block_location)
+        if group_id is None:
+            group_id = SchemaHelper.get_first_group_id(self.survey_json)
 
-    def can_reach_summary(self, routing_path=None):
+        first_block_in_group = SchemaHelper.get_group(self.survey_json, group_id)['blocks'][0]['id']
+        location = {
+            "group_id": group_id,
+            "group_instance": group_instance,
+            "block_id": first_block_in_group,
+        }
+        return self.build_path(self.get_blocks(), location)
+
+    def can_reach_summary(self, routing_path):
+
         """
         Determines whether the end of a given routing path can be reached given
         a set of answers
@@ -140,7 +140,7 @@ class Navigator:
         :return:
         """
         blocks = self.get_blocks()
-        routing_path = routing_path or self.build_path(blocks, self.first_block_location)
+        routing_path = routing_path or self.get_routing_path()
         last_routing_block_id = routing_path[-1]['block_id']
         last_block_id = blocks[-1]['block']['id']
 
@@ -158,18 +158,21 @@ class Navigator:
                     return evaluate_goto(goto_rule, self.metadata, self.answer_store, 0)
         return False
 
-    def get_location_path(self):
+    def get_location_path(self, group_id=None, group_instance=0):
         """
         Returns a list of url locations visited based on answers provided
         :return: List of block location dicts, with preceeding/closing interstitial pages included
         """
-        routing_path = self.get_routing_path()
+        if group_id is None:
+            group_id = SchemaHelper.get_first_group_id(self.survey_json)
+
+        routing_path = self.get_routing_path(group_id, group_instance)
         can_reach_summary = self.can_reach_summary(routing_path)
 
         # Make sure we don't update original
         location_path = [{
             "block_id": block_id,
-            "group_id": self.first_group_id,
+            "group_id": group_id,
             "group_instance": 0,
         } for block_id in self.preceeding_path]
 
@@ -179,7 +182,7 @@ class Navigator:
             for block_id in Navigator.CLOSING_INTERSTITIAL_PATH:
                 location_path.append({
                     "block_id": block_id,
-                    "group_id": self.last_group_id,
+                    "group_id": SchemaHelper.get_last_group_id(self.survey_json),
                     "group_instance": 0,
                 })
 
@@ -191,8 +194,10 @@ class Navigator:
         for group_index, group in enumerate(SchemaHelper.get_groups(self.survey_json)):
             no_of_repeats = 1
 
-            for rule in SchemaHelper.get_repeat_rules(group):
-                no_of_repeats = evaluate_repeat(rule['repeat'], self.answer_store)
+            repeating_rule = SchemaHelper.get_repeating_rule(group)
+
+            if repeating_rule:
+                no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
 
             for i in range(0, no_of_repeats):
                 blocks.extend([{
@@ -202,17 +207,17 @@ class Navigator:
                 } for block in group['blocks']])
         return blocks
 
-    def _get_current_location_index(self, current_group_id, current_block_id, current_iteration):
-        current_group_id = current_group_id or self.first_group_id
-
+    def _get_current_location_index(self, path, current_group_id, current_block_id, current_iteration):
+        first_group_id = SchemaHelper.get_first_group_id(self.survey_json)
+        current_group_id = current_group_id or first_group_id
         this_block = {
             "block_id": current_block_id,
             "group_id": current_group_id,
             "group_instance": current_iteration,
         }
 
-        if this_block in self.location_path:
-            return self.location_path.index(this_block)
+        if this_block in path:
+            return path.index(this_block)
         return None
 
     def get_next_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
@@ -223,10 +228,11 @@ class Navigator:
         :param current_iteration:
         :return: The next location as a dict
         """
-        current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
+        location_path = self.get_location_path(current_group_id, current_iteration)
+        current_location_index = self._get_current_location_index(location_path, current_group_id, current_block_id, current_iteration)
 
-        if current_location_index is not None and current_location_index < len(self.location_path) - 1:
-            return self.location_path[current_location_index + 1]
+        if current_location_index is not None and current_location_index < len(location_path) - 1:
+            return location_path[current_location_index + 1]
         return None
 
     def get_previous_location(self, current_group_id=None, current_block_id=None, current_iteration=0):
@@ -237,10 +243,11 @@ class Navigator:
         :return: The previous location as a dict
         :return:
         """
-        current_location_index = self._get_current_location_index(current_group_id, current_block_id, current_iteration)
+        location_path = self.get_location_path(current_group_id, current_iteration)
+        current_location_index = self._get_current_location_index(location_path, current_group_id, current_block_id, current_iteration)
 
         if current_location_index is not None and current_location_index != 0:
-            return self.location_path[current_location_index - 1]
+            return location_path[current_location_index - 1]
         return None
 
     def get_latest_location(self, completed_blocks=None):
@@ -250,10 +257,95 @@ class Navigator:
         :param completed_blocks:
         :return:
         """
+        location_path = self.get_location_path()
         if completed_blocks:
-            incomplete_blocks = [item for item in self.location_path if item not in completed_blocks]
+            incomplete_blocks = [item for item in location_path if item not in completed_blocks]
 
             if incomplete_blocks:
                 return incomplete_blocks[0]
 
-        return self.first_location
+        return location_path[0]
+
+    def get_front_end_navigation(self, completed_blocks, current_group_id, current_group_instance):
+        """
+        Returns the frontend navigation based on the completed blocks, group id and group instance
+
+        :param completed_blocks:
+        :param group_id:
+        :param group_instance:
+        :return: navigation
+        """
+
+        if 'navigation' not in self.survey_json:
+            return None
+
+        navigation = []
+
+        for group in filter(lambda x: 'hide_in_navigation' not in x, self.survey_json['groups']):
+
+            logger.debug("Building frontend navigation for group %s", group)
+
+            repeating_rule = SchemaHelper.get_repeating_rule(group)
+            completed_id = group['completed_id'] if 'completed_id' in group else group['blocks'][-1]['id']
+
+            if repeating_rule:
+                no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
+
+                if repeating_rule['type'] == 'answer_count':
+                    link_names = self._generate_link_names(repeating_rule)
+                    self._add_repeating_navigation_item(link_names, completed_blocks, completed_id, group, current_group_id,
+                                                        current_group_instance, navigation, no_of_repeats)
+                elif no_of_repeats > 0:
+                    self._add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation)
+            else:
+                self._add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation)
+        return navigation
+
+    @staticmethod
+    def _add_repeating_navigation_item(link_names, completed_blocks, completed_id, group, current_group_id,
+                                       current_group_instance, navigation, no_of_repeats):
+        for i in range(no_of_repeats):
+            if link_names:
+                navigation.append({
+                    'link_name': link_names.get(i),
+                    'group_id': group['id'],
+                    'instance': i,
+                    'block_id': group['blocks'][0]['id'],
+                    'completed': any(item for item in completed_blocks if item['group_instance'] == i and
+                                     item["block_id"] == completed_id),
+                    'highlight': group['id'] == current_group_id and i == current_group_instance,
+                    'repeating': True
+                })
+
+    @staticmethod
+    def _add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation):
+        navigation.append({
+            'link_name': group['title'],
+            'group_id': group['id'],
+            'instance': 0,
+            'block_id': group['blocks'][0]['id'],
+            'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
+            'highlight': (group['id'] != current_group_id and current_group_id in group['highlight_when']
+                          if 'highlight_when' in group else False) or group['id'] == current_group_id,
+            'repeating': False,
+        })
+
+    def _generate_link_names(self, repeating_rule):
+        logger.debug("Building frontend hyperlink names for %s", repeating_rule)
+
+        link_names = defaultdict(list)
+        if 'navigation_label_answer_ids' in repeating_rule:
+            label_answer_ids = repeating_rule['navigation_label_answer_ids']
+        else:
+            label_answer_ids = [repeating_rule['answer_id']]
+
+        for answer_id in label_answer_ids:
+            answers = self.answer_store.filter(answer_id=answer_id)
+            for answer in answers:
+                if answer['value']:
+                    link_names[answer['answer_instance']].append(answer['value'])
+
+        for link_name in link_names:
+            link_names[link_name] = " ".join(link_names[link_name])
+
+        return link_names

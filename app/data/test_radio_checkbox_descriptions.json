@@ -17,6 +17,7 @@
       "title": "Did this business make major changes in the following areas?",
       "blocks": [
         {
+          "type": "questionnaire",
           "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
           "title": "Did this business make major changes in the following areas?",
           "sections": [
@@ -73,6 +74,7 @@
           ]
         },
         {
+          "type": "questionnaire",
           "id": "a78fcaa4-dd82-4208-97dd-2d48dfeded80",
           "title": "Did this business make major changes in the following areas?",
           "sections": [

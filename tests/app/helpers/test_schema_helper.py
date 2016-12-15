@@ -51,12 +51,17 @@ class TestSchemaHelper(unittest.TestCase):
 
         self.assertEqual(block['title'], "Block 2")
 
-    def test_get_repeat_rules(self):
+    def test_get_repeating_rule(self):
         survey = load_schema_file("test_repeating_household.json")
         groups = [group for group in SchemaHelper.get_groups(survey)]
-        rules = [rule for rule in SchemaHelper.get_repeat_rules(groups[1])]
+        rule = SchemaHelper.get_repeating_rule(groups[1])
 
-        self.assertEqual(len(rules), 1)
+        self.assertEqual(
+            {
+                'type': 'answer_count',
+                'answer_id': 'first-name',
+                'navigation_label_answer_ids': ['first-name', 'last-name'],
+            }, rule)
 
     def test_get_answers_that_repeat_in_block(self):
         survey = load_schema_file("test_repeating_household.json")

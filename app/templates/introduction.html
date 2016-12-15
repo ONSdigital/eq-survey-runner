@@ -1,21 +1,21 @@
 {% extends theme('layouts/_survey.html') %}
 
-{% block top_bar %}
-{% include 'partials/page-header.html' %}
-{% with is_hero = true %}
-  {% include theme('partials/topbar.html') %}
-{% endwith %}
-{% endblock %}
-
 {% import 'macros/helpers.html' as h %}
+
+{% block header %}
+  {% include 'partials/header.html' %}
+  {% with is_hero = true %}
+    {% include theme('partials/topbar.html') %}
+  {% endwith %}
+{% endblock %}
 
 {% block page_title %}Introduction{% endblock %}
 
 {% block main %}
 
-  <div class="header">
+  <div class="u-mt-s">
     <h2 class="saturn">Your response is legally required</h2>
-      <div class="grid grid--flex grid--bordered@s">
+      <div class="grid grid--flex grid--bordered@s u-mb-s">
         <div class="grid__col col-6@s">
           <dl class="dl">
             <dt class="dl__title mercury">Business name</dt>
@@ -32,7 +32,7 @@
           <dl class="dl">
             <dt class="dl__title mercury">PERIOD</dt>
             <dd class="dl__data mars">
-              <span class="">{{ meta.survey.start_date|format_date }} to {{ meta.survey.end_date|format_date}}
+              <span>{{ meta.survey.start_date|format_date }} to {{ meta.survey.end_date|format_date}}
             </dd>
             <dt class="dl__title mercury">PLEASE SUBMIT BY</dt>
             <dd class="dl__data mars">{{ meta.survey.return_by|format_date}}</dd>
@@ -42,7 +42,7 @@
     </div>
     <div>
       {% if content.information_to_provide %}
-      <h2 class="header__title saturn">You will be asked to provide information for the business, including:</h2>
+      <h2 class="saturn">You will be asked to provide information for the business, including:</h2>
       <ul>
         {% for information_item in content.information_to_provide %}
           <li>{{ information_item }}</li>

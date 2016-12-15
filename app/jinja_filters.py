@@ -52,6 +52,12 @@ def format_str_as_date(value):
 
 
 @blueprint.app_template_filter()
+def format_url(metadata, group_id, group_instance, block_id):
+    return '/questionnaire/' + metadata['eq_id'] + '/' + metadata['form_type'] + '/' + metadata['collection_id'] + \
+           '/' + str(group_id) + '/' + str(group_instance) + '/' + str(block_id)
+
+
+@blueprint.app_template_filter()
 def format_household_member_name(names):
     return ' '.join(map(lambda name: name.strip(), filter(None, names)))
 

@@ -23,6 +23,7 @@
         {
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },

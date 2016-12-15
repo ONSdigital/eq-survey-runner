@@ -1,11 +1,62 @@
 .nav {
   display: block;
-  margin: 0;
   padding: 0;
+}
+
+.nav--vertical {
+  border-left: 1px solid $color-borders;
+  padding: 0.5rem 0 0.5rem 2rem;
+  margin: 0;
+  .nav__title {
+    margin-bottom: 0.5rem;
+  }
+  .nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav__item {
+    margin: 0;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+  .nav__link {
+    @include mq(m) {
+      font-size: 1rem;
+    }
+  }
+  .nav__item--completed {
+    &::before {
+      z-index: 2;
+      content: "";
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAbCAYAAAAZMl2nAAAABGdBTUEAALGPC/xhBQAAAjtJREFUSA29l0FLW0EQx2f2NWDSQ196sFBELKFfwVMPNcmLFZV68eRFPBd6K4IexKT0IHjpqdDi0aMg5iCKUvDkqdBDQYiKIIJY0oO1wZhMd0L3+V6yz+TlrZ1DNjOzM/9f9u1uEoD/aH3Lk/EgORGUMB1/VHDeXf4u7z9ZyvXqeqMuaDqWLGTf1Ov0sdEX8UdMWJmLuc0zr869g9iL2RlC+gwEHi08eCB60j/nN04VjCepQuZGe9GZJqAvANS6BRBKIobp8uz2CSu2TjDEcScEaxCk6Jq+2h9eDbB7LyBtIVhZGgEMQLVaXKAFYfzRdArBIFL8EgWOlOe394yCdAvBUBa/NNvTT+MJa7B/rSf7/KyyUzpuzuv8KBDcr2WPMMTV+Z+i3O2jUKtt2O+Hh3TC3lhUCO7lezQuBNFLJYSAV2BZY7/mNndVzDuagOB+7oroIHiCXJkE1G+Kj/NOjn2vmYLgng2QIAglSgTxGtB6spAbVzGTENwTiQiTeWdLfvKMEgkcEaqAYgrr8DDwxmwq9h7RppTPFYhIKGgFEGu+jM4hiAHRqmkIlmoc38rO0fdE5llJfi+9ljF33+hY/uV9m1w3r9OVULXuPRISRtVrx7AQ3MQFYccETDcQLSBRYbqF0IJ0CxMFIhAkLExUiDtBOoUxAdEWxAdDOCF9qXtrpiC4o+/U3Er43/Fpig+lTuQ9zPdMA8YkBKt1BMITK7uH3xLp1Ln8eTdqGoL7hzY777yV/1NehC5sU/AXb484yamkz/AAAAAASUVORK5CYII=') no-repeat center;
+      background-size: 100%;
+      position: absolute;
+      left: -1.5rem;
+      width: 1.2em;
+      height: 1.2em;
+      bottom: 0.5rem;
+    }
+  }
+  .nav__item--current {
+    background: lighten($color-secondary, 64%);
+    border-left: 0.5rem $color-secondary solid;
+    padding-left: 2rem;
+    // position: relative;
+    // left: -2.5rem;
+    // margin-right: 2.5rem;
+    margin-left: -2.5rem;
+    &.nav__item--completed {
+      &::before {
+        left: 0.5rem;
+      }
+    }
+  }
 }
 
 .nav--horizontal {
   font-size: 0;
+  margin: 0;
   .nav__item {
     font-size: 1rem;
     display: inline-block;
@@ -38,14 +89,17 @@
   }
   .nav__link {
     display: inline-block;
+    text-decoration: none;
+    margin: 0;
   }
 }
 
-.nav__link {
-  color: $color-text;
-  text-decoration: none;
-  margin: 0;
-  &:hover {
-    color: $color-links;
+.nav--dark {
+  .nav__link {
+    color: $color-text;
+    &:hover {
+      color: $color-links;
+      text-decoration: underline;
+    }
   }
 }
