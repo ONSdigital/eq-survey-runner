@@ -75,6 +75,7 @@ import VisitorDateOfBirth from '../pages/surveys/census/household/visitor-date-o
 import VisitorUkResident from '../pages/surveys/census/household/visitor-uk-resident.page.js'
 import VisitorAddress from '../pages/surveys/census/household/visitor-address.page.js'
 import VisitorCompleted from '../pages/surveys/census/household/visitor-completed.page.js'
+import VisitorsCompleted from '../pages/surveys/census/household/visitors-completed.page.js'
 import Confirmation from '../pages/confirmation.page.js'
 import ThankYou from '../pages/thank-you.page'
 
@@ -100,6 +101,7 @@ describe('Census Household', function () {
 
         // visitors
         completeVisitorSection()
+        VisitorsCompleted.submit()
 
         Confirmation.submit()
 
@@ -154,6 +156,7 @@ describe('Census Household', function () {
 
         // visitors
         completeVisitorSection()
+        VisitorsCompleted.submit()
 
         Confirmation.submit()
 
@@ -190,6 +193,7 @@ describe('Census Household', function () {
 
         // visitors
         completeVisitorSection()
+        VisitorsCompleted.submit()
 
         Confirmation.submit()
 
@@ -244,6 +248,7 @@ describe('Census Household', function () {
 
         // visitors
         completeVisitorSection()
+        VisitorsCompleted.submit()
 
         Confirmation.submit()
 
@@ -327,6 +332,7 @@ describe('Census Household', function () {
 
         // visitors
         completeVisitorSection()
+        VisitorsCompleted.submit()
 
         Confirmation.submit()
 
@@ -354,6 +360,7 @@ describe('Census Household', function () {
 
         // visitors
         completeVisitorSection()
+        VisitorsCompleted.submit()
 
         Confirmation.submit()
 
@@ -380,6 +387,7 @@ describe('Census Household', function () {
         // Complete visitors for 2 people
         completeVisitorSection()
         completeVisitorSection()
+        VisitorsCompleted.submit()
 
         Confirmation.submit()
 
