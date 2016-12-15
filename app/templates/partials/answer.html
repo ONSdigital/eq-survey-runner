@@ -4,6 +4,8 @@
 
 <div class="answer answer--{{answer.schema_item.type|lower}} {{'js-has-errors' if invalid}}" id="{{answer.schema_item.widget.id}}">
 
+  {% if render_guidance != False %}
+    
   {%- set answer_guidance %}
     {% if answer.schema_item.guidance %}
       {% with answer_guidance = {
@@ -15,6 +17,8 @@
       {% endwith %}
     {% endif %}
   {% endset -%}
+
+  {% endif %}
 
   {%- set answer_fields %}
     <div class="answer__fields">

@@ -13,9 +13,14 @@
   "data-guidance-trigger": 'true'
 } %}
 
+{% set guidance_body = {
+  "id": "guidance-" ~ answer_guidance.id ~ "-body",
+  "aria-hidden": "true"
+} %}
+
 <div class="guidance js-details" {{guidance|xmlattr}}>
   <a class="guidance__link js-details-trigger js-details-label mars" {{guidance_link|xmlattr}}>{{_("Show further guidance")}}</a>
-  <div class="guidance__main js-details-body" id="guidance-{{answer_guidance.id}}-body" aria-hidden="true">
+  <div class="guidance__main js-details-body" {{guidance_body|xmlattr}}>
     <div class="guidance__content mars">
       {{answer_guidance.content|safe}}
     </div>

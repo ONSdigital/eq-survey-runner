@@ -31,22 +31,24 @@
 
 {% set question_guidance %}
   {%- if question.schema_item.guidance -%}
-    <div class="panel panel--simple panel--info u-mb-m" id="question-guidance-{{question.id}}">
-      {%- for guidance in question.schema_item.guidance -%}
-        {%- if guidance.title -%}
-          <h3 class="venus">{{guidance.title}}</h3>
-        {% endif %}
-        {%- if guidance.description -%}
-          <div class="mars">{{guidance.description|safe}}</div>
-        {% endif %}
-        {%- if guidance.list -%}
-          <ul class="mars">
-            {%- for item in guidance.list -%}
-              <li>{{item|safe}}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      {% endfor %}
+    <div class="question__guidance">
+      <div class="panel panel--simple panel--info" id="question-guidance-{{question.id}}">
+        {%- for guidance in question.schema_item.guidance -%}
+          {%- if guidance.title -%}
+            <h3 class="venus">{{guidance.title}}</h3>
+          {% endif %}
+          {%- if guidance.description -%}
+            <div class="mars">{{guidance.description|safe}}</div>
+          {% endif %}
+          {%- if guidance.list -%}
+            <ul class="mars">
+              {%- for item in guidance.list -%}
+                <li>{{item|safe}}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
   {% endif %}
 {% endset %}
