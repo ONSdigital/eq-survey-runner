@@ -71,8 +71,8 @@ class AnswerStore(object):
 
         if isinstance(answer.value, list):
             bleached_values = []
-            for index, answer_from_list in enumerate(answer.value):
-                bleached_values.append(self._bleach(answer.value[index]))
+            for answer_from_list in answer.value:
+                bleached_values.append(self._bleach(answer_from_list))
 
             return bleached_values
         else:
