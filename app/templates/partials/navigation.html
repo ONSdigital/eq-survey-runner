@@ -1,0 +1,14 @@
+<div class="nav nav--sections nav--vertical js-nav page__nav" id="section-nav">
+  <h2 class="nav__title venus">{{_('Sections')}}</h2>
+  <ul class="nav__list js-nav-list">
+  {% for group in navigation %}
+    <li class="nav__item  pluto {{ 'nav__item--completed' if group.completed }} {{ 'nav__item--current' if group.highlight }}">
+      {% if group.current_location %}
+        <div>{{group.link_name}}</div>
+      {% else %}
+        <a class="nav__link" href="{{meta.survey|format_url(group.group_id, group.instance, group.block_id)}}">{{group.link_name}}</a>
+      {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

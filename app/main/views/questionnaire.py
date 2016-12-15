@@ -86,7 +86,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
         'block_id': block_id,
     }
 
-    valid_location = this_block in navigator.get_location_path()
+    valid_location = this_block in navigator.get_routing_path(group_id, group_instance)
     valid_data = q_manager.validate(this_block, request.form)
 
     if not valid_location or not valid_data:
@@ -348,16 +348,17 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     group_id = group_id or SchemaHelper.get_first_group_id(g.schema_json)
-
+    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    completed_blocks = get_completed_blocks(current_user)
+    front_end_navigation = navigator.get_front_end_navigation(completed_blocks, group_id, group_instance)
     previous_location = navigator.get_previous_location(current_group_id=group_id,
                                                         current_block_id=block_id,
                                                         current_iteration=group_instance)
 
     previous_url = None
 
-    if previous_location is not None:
+    if previous_location is not None and block_id != SchemaHelper.get_first_block_id_for_group(g.schema_json, group_id):
         previous_url = block_url(eq_id=metadata['eq_id'],
                                  form_type=metadata['form_type'],
                                  collection_id=metadata['collection_exercise_sid'],
@@ -377,4 +378,5 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     return render_theme_template(theme, template, meta=metadata_context,
                                  content=context,
                                  previous_location=previous_url,
+                                 navigation=front_end_navigation,
                                  schema=g.schema_json)

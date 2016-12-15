@@ -10,7 +10,7 @@ $responsive: true;
 @import "partials/utilities/**/*.scss";
 @import "partials/hacks/**/*.scss";
 
-@import "./components/page-header.scss";
+@import "./components/header.scss";
 @import "./components/footer.scss";
 
 @include panel_type(neutral, $color-purple, #faf4fc);

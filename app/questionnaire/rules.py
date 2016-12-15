@@ -55,9 +55,9 @@ def evaluate_repeat(repeat_rule, answer_store):
     :return: The number of times to repeat
     """
     repeat_functions = {
-        'answer_value': lambda filtered_answers: int(filtered_answers[0]['value'] if len(filtered_answers) == 1 else 1),
+        'answer_value': lambda filtered_answers: int(filtered_answers[0]['value'] if len(filtered_answers) == 1 else 0),
         'answer_count': len,
-        'answer_count_minus_one': lambda filtered_answers: len(filtered_answers) - 1,
+        'answer_count_minus_one': lambda filtered_answers: len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0,
     }
     if 'answer_id' in repeat_rule and 'type' in repeat_rule:
         repeat_index = repeat_rule['answer_id']

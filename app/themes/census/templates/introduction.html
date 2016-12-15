@@ -1,8 +1,8 @@
 {% extends theme('layouts/_survey.html') %}
 {% block page_title %}2017 Census{% endblock %}
 
-{% block top_bar %}
-  {% include theme('partials/page-header.html') %}
+{% block header %}
+  {% include theme('partials/header.html') %}
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
     <div class="container">
       <div class="grid">
         <div class="grid__col col-9@m">
-          <div class="header">
+          <div>
             <h2 class="saturn">The Census needs to include everyone.</h2>
             <p class="mars">This questionnaire contains two parts: </p>
             <ul>

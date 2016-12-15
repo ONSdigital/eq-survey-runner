@@ -1065,6 +1065,602 @@ class TestNavigator(unittest.TestCase):
                                                                              current_block_id=current_block_id,
                                                                              current_iteration=current_iteration))
 
+    def test_navigation_no_blocks_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        navigator = Navigator(survey)
+
+        completed_blocks = []
+
+        user_navigation = [
+            {
+                'link_name': 'Property Details',
+                'highlight': True,
+                'group_id': 'property-details',
+                'instance': 0,
+                'repeating': False,
+                'completed': False,
+                'block_id': 'insurance-type'
+            },
+            {
+                'link_name': 'Household Details',
+                'highlight': False, 'group_id':
+                'multiple-questions-group',
+                'instance': 0,
+                'repeating': False,
+                'completed': False,
+                'block_id': 'household-composition'
+            },
+            {
+                'link_name': 'Extra Cover',
+                'highlight': False,
+                'group_id': 'extra-cover',
+                'instance': 0,
+                'repeating': False,
+                'completed': False,
+                'block_id': 'extra-cover-block'
+            },
+            {
+                'link_name': 'Payment Details',
+                'highlight': False,
+                'group_id': 'payment-details',
+                'instance': 0,
+                'repeating': False,
+                'completed': False,
+                'block_id': 'credit-card'
+            }
+        ]
+
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+    def test_non_repeating_block_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        navigator = Navigator(survey)
+        completed_blocks = [
+            {
+                'group_instance': 0,
+                'block_id': 'introduction',
+                'group_id': 'property-details'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'insurance-type',
+                'group_id': 'property-details'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'insurance-address',
+                'group_id': 'property-details'
+            },
+            {
+                'group_instance': 0,
+                'block_id': 'property-interstitial',
+                'group_id': 'property-details'
+            }
+        ]
+
+        user_navigation = [
+            {
+                'completed': True,
+                'link_name': 'Property Details',
+                'block_id': 'insurance-type',
+                'group_id': 'property-details',
+                'highlight': True,
+                'instance': 0,
+                'repeating': False
+             },
+            {
+                'completed': False,
+                'link_name': 'Household Details',
+                'block_id': 'household-composition',
+                'group_id': 'multiple-questions-group',
+                'highlight': False, 'instance': 0,
+                'repeating': False
+            },
+            {
+                'completed': False,
+                'link_name': 'Extra Cover',
+                'block_id': 'extra-cover-block',
+                'group_id': 'extra-cover',
+                'highlight': False,
+                'instance': 0,
+                'repeating': False
+            },
+            {
+                'completed': False,
+                'link_name': 'Payment Details',
+                'block_id': 'credit-card',
+                'group_id': 'payment-details',
+                'highlight': False,
+                'instance': 0,
+                'repeating': False
+            }
+        ]
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+    def test_navigation_repeating_household_and_hidden_household_groups_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        navigator = Navigator(survey)
+        navigator.answer_store.answers = [
+            {
+                'group_instance': 0,
+                'answer_instance': 0,
+                'answer_id': 'household-full-name',
+                'value': 'Jim',
+                'group_id': 'multiple-questions-group',
+                'block_id': 'household-composition'
+            },
+            {
+                'group_instance': 0,
+                'answer_instance': 1,
+                'answer_id': 'household-full-name',
+                'value': 'Ben',
+                'group_id': 'multiple-questions-group',
+                'block_id': 'household-composition'
+            },
+            {
+                'group_instance': 0,
+                'answer_instance': 0,
+                'answer_id': 'what-is-your-age',
+                'value': None,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-1'
+            },
+            {
+                'group_instance': 0,
+                'answer_instance': 0,
+                'answer_id': 'what-is-your-shoe-size',
+                'value': None,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-2'
+            },
+            {
+                'group_instance': 1,
+                'answer_instance': 0,
+                'answer_id': 'what-is-your-age',
+                'value': None,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-1'
+            },
+            {
+                'group_instance': 1,
+                'answer_instance': 0,
+                'answer_id': 'what-is-your-shoe-size',
+                'value': None,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-2'
+            }
+        ]
+        completed_blocks = [
+            {
+                'group_instance': 0,
+                'group_id': 'property-details',
+                'block_id': 'introduction'
+            },
+            {
+                'group_instance': 0,
+                'group_id': 'multiple-questions-group',
+                'block_id': 'household-composition'
+            },
+            {
+                'group_instance': 0,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-1'
+            },
+            {
+                'group_instance': 0,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-2'
+            },
+            {
+                'group_instance': 1,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-1'
+            },
+            {
+                'group_instance': 1,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-2'
+            }
+        ]
+        user_navigation = [
+            {
+                'link_name': 'Property Details',
+                'repeating': False,
+                'instance': 0,
+                'completed': False,
+                'highlight': True,
+                'group_id': 'property-details',
+                'block_id': 'insurance-type'
+            },
+            {
+                'link_name': 'Household Details',
+                'repeating': False,
+                'instance': 0,
+                'completed': True,
+                'highlight': False,
+                'group_id': 'multiple-questions-group',
+                'block_id': 'household-composition'
+            },
+            {
+                'link_name': 'Jim',
+                'repeating': True,
+                'instance': 0,
+                'completed': True,
+                'highlight': False,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-1'
+            },
+            {
+                'link_name': 'Ben',
+                'repeating': True,
+                'instance': 1,
+                'completed': True,
+                'highlight': False,
+                'group_id': 'repeating-group',
+                'block_id': 'repeating-block-1'
+            },
+            {
+                'link_name': 'Extra Cover',
+                'repeating': False,
+                'instance': 0,
+                'completed': False,
+                'highlight': False,
+                'group_id': 'extra-cover',
+                'block_id': 'extra-cover-block'
+            },
+            {
+                'link_name': 'Payment Details',
+                'repeating': False,
+                'instance': 0,
+                'completed': False,
+                'highlight': False,
+                'group_id': 'payment-details',
+                'block_id': 'credit-card'
+            }
+        ]
+
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+    def test_navigation_repeating_group_extra_answered_not_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        navigator = Navigator(survey)
+
+        navigator.answer_store.answers = [
+            {
+                'answer_instance': 0,
+                'group_id': 'multiple-questions-group',
+                'answer_id': 'household-full-name',
+                'block_id': 'household-composition',
+                'group_instance': 0,
+                'value': 'Person1'
+            },
+            {
+                'answer_instance': 1,
+                'group_id': 'multiple-questions-group',
+                'answer_id': 'household-full-name',
+                'block_id': 'household-composition',
+                'group_instance': 0,
+                'value': 'Person2'
+            },
+            {
+                'answer_instance': 1,
+                'group_id': 'extra-cover',
+                'answer_id': 'extra-cover-answer',
+                'block_id': 'extra-cover-block',
+                'group_instance': 0,
+                'value': 2
+            }
+        ]
+
+        completed_blocks = [
+            {
+                'block_id': 'introduction',
+                'group_instance': 0,
+                'group_id': 'property-details'
+            },
+            {
+                'block_id': 'insurance-type',
+                'group_instance': 0,
+                'group_id': 'property-details'
+            },
+            {
+                'block_id': 'cd6a5727-8cab-4737-aa4e-d666d98b3f92',
+                'group_instance': 0,
+                'group_id': 'property-details'
+            },
+            {
+                'block_id': 'personal-interstitial',
+                'group_instance': 0,
+                'group_id': 'property-details'
+            },
+            {
+                'block_id': 'extra-cover-block',
+                'group_instance': 0,
+                'group_id': 'extra-cover'
+            },
+            {
+                'block_id': 'ea651fa7-6b9d-4b6f-ba72-79133f312039',
+                'group_instance': 0,
+                'group_id': 'extra-cover'
+            }
+        ]
+
+        user_navigation = [
+            {
+                'completed': False,
+                'group_id': 'property-details',
+                'highlight': True,
+                'block_id': 'insurance-type',
+                'repeating': False,
+                'instance': 0,
+                'link_name': 'Property Details'
+            },
+            {
+                'completed': False,
+                'group_id': 'multiple-questions-group',
+                'highlight': False,
+                'block_id': 'household-composition',
+                'repeating': False,
+                'instance': 0,
+                'link_name': 'Household Details'
+            },
+            {
+                'completed': False,
+                'group_id': 'repeating-group',
+                'highlight': False,
+                'block_id': 'repeating-block-1',
+                'repeating': True,
+                'instance': 0,
+                'link_name': 'Person1'
+            },
+            {
+                'completed': False,
+                'group_id': 'repeating-group',
+                'highlight': False,
+                'block_id': 'repeating-block-1',
+                'repeating': True,
+                'instance': 1,
+                'link_name': 'Person2'
+            },
+            {
+                'completed': False,
+                'group_id': 'extra-cover',
+                'highlight': False,
+                'block_id': 'extra-cover-block',
+                'repeating': False,
+                'instance': 0,
+                'link_name': 'Extra Cover'
+            },
+            {
+                'completed': False,
+                'group_id': 'payment-details',
+                'highlight': False,
+                'block_id': 'credit-card',
+                'repeating': False,
+                'instance': 0,
+                'link_name': 'Payment Details'
+            },
+            {
+                'completed': False,
+                'group_id': 'extra-cover-items-group',
+                'highlight': False,
+                'block_id': 'extra-cover-items',
+                'repeating': False,
+                'instance': 0,
+                'link_name': 'Extra Cover Items'
+            }
+        ]
+
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+    def test_navigation_repeating_group_extra_answered_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        navigator = Navigator(survey)
+
+        navigator.answer_store.answers = [
+            {
+                'value': 2,
+                'group_instance': 0,
+                'block_id': 'extra-cover-block',
+                'group_id': 'extra-cover',
+                'answer_instance': 0,
+                'answer_id': 'extra-cover-answer'
+            },
+            {
+                'value': '2',
+                'group_instance': 0,
+                'block_id': 'extra-cover-items',
+                'group_id': 'extra-cover-items-group',
+                'answer_instance': 0,
+                'answer_id': 'extra-cover-items-answer'
+            },
+            {
+                'value': '2',
+                'group_instance': 1,
+                'block_id': 'extra-cover-items',
+                'group_id': 'extra-cover-items-group',
+                'answer_id': 'extra-cover-items-answer',
+                'answer_instance': 0
+            }
+        ]
+
+        completed_blocks = [
+            {
+                'block_id': 'introduction',
+                'group_id': 'property-details',
+                'group_instance': 0
+            },
+            {
+                'block_id': 'extra-cover-block',
+                'group_instance': 0,
+                'group_id': 'extra-cover'
+            },
+            {
+                'group_id': 'extra-cover',
+                'group_instance': 0,
+                'block_id': 'extra-cover-interstitial'
+            },
+            {
+                'block_id': 'extra-cover-items',
+                'group_instance': 0,
+                'group_id': 'extra-cover-items-group'
+            },
+            {
+                'group_id': 'extra-cover-items-group',
+                'group_instance': 1,
+                'block_id': 'extra-cover-items'
+            }
+        ]
+        user_navigation = [
+            {
+                'group_id': 'property-details',
+                'repeating': False,
+                'highlight': True,
+                'link_name': 'Property Details',
+                'instance': 0,
+                'block_id': 'insurance-type',
+                'completed': False
+            },
+            {
+                'group_id': 'multiple-questions-group',
+                'repeating': False,
+                'highlight': False,
+                'link_name': 'Household Details',
+                'instance': 0,
+                'block_id': 'household-composition',
+                'completed': False
+            },
+            {
+                'group_id': 'extra-cover',
+                'repeating': False,
+                'highlight': False,
+                'link_name': 'Extra Cover',
+                'instance': 0,
+                'block_id': 'extra-cover-block',
+                'completed': True
+            },
+            {
+                'group_id': 'payment-details',
+                'repeating': False,
+                'highlight': False,
+                'link_name': 'Payment Details',
+                'instance': 0,
+                'block_id': 'credit-card',
+                'completed': False
+            },
+            {
+                'group_id': 'extra-cover-items-group',
+                'repeating': False,
+                'highlight': False,
+                'link_name': 'Extra Cover Items',
+                'instance': 0,
+                'block_id': 'extra-cover-items',
+                'completed': True
+            }
+        ]
+
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+    def test_navigation_repeating_group_link_name_format(self):
+        survey = load_schema_file("test_repeating_household.json")
+        navigator = Navigator(survey)
+
+        navigator.answer_store.answers = [
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 0,
+                'answer_id': 'first-name',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': 'Joe'
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 0,
+                'answer_id': 'middle-names',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': None
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 0,
+                'answer_id': 'last-name',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': 'Bloggs'
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 1,
+                'answer_id': 'first-name',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': 'Jim'
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 1,
+                'answer_id': 'last-name',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': None
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 1,
+                'answer_id': 'middle-names',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': None
+            }
+        ]
+
+        completed_blocks = [
+            {
+                'group_instance': 0,
+                'group_id': 'multiple-questions-group',
+                'block_id': 'introduction'
+            },
+            {
+                'group_instance': 0,
+                'group_id': 'multiple-questions-group',
+                'block_id': 'household-composition'
+            }
+        ]
+
+        user_navigation = [
+            {
+                'repeating': False,
+                'link_name': '',
+                'instance': 0,
+                'block_id': 'household-composition',
+                'completed': True,
+                'highlight': False,
+                'group_id': 'multiple-questions-group'
+            },
+            {
+                'repeating': True,
+                'link_name': 'Joe Bloggs',
+                'instance': 0,
+                'block_id': 'repeating-block-1',
+                'completed': False,
+                'highlight': False,
+                'group_id': 'repeating-group'
+            },
+            {
+                'repeating': True,
+                'link_name': 'Jim',
+                'instance': 1,
+                'block_id': 'repeating-block-1',
+                'completed': False,
+                'highlight': False,
+                'group_id': 'repeating-group'
+            }
+        ]
+
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
     def test_block_index_for_location_with_invalid_location(self):
         blocks = [
             {

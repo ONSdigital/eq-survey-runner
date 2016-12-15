@@ -1,12 +1,12 @@
 {% extends theme('layouts/_base.html') %}
 
-{% block top_bar %}
-  {% include theme('partials/page-header.html') %}
+{% block header %}
+  {% include theme('partials/header.html') %}
   {% include theme('partials/topbar.html') %}
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="page__container container">
   <div role="main" id="main">
     {% block main %} {% endblock %}
   </div>

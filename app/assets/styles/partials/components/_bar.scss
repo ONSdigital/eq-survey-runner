@@ -2,11 +2,9 @@
   background: $color-secondary;
   color: $color-white;
   padding: 0.5rem 0;
-  margin-bottom: 0.5rem;
 
   @include mq(m) {
     padding: 0.5rem 0;
-    margin-bottom: 1rem;
   }
 }
 

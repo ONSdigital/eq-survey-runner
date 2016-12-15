@@ -25,6 +25,7 @@
       {
          "blocks":[
             {
+               "type": "questionnaire",
                "display":{
                   "properties":{
 
@@ -101,6 +102,7 @@
                ]
             },
             {
+                "type": "questionnaire",
                "display":{
                   "properties":{
 

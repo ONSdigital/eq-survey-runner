@@ -16,6 +16,7 @@
         {
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "household-composition",
                     "sections": [
                         {

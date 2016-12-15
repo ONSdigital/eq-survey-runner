@@ -2,6 +2,11 @@
   @return em($pxval, $base);
 }
 
+@function rems($size, $base) {
+  $remSize: $size / $base;
+  @return #{$remSize}rem;
+}
+
 @function strip-unit($num) {
   @return $num / ($num * 0 + 1);
 }

@@ -2,8 +2,84 @@
   display: flex;
   height: 100%;
   flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.page__header {
+  margin-bottom: 0;
+  &:empty {
+    display: none;
+  }
+}
+
+.page__subheader {
+  height: 3rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  @include mq(m) {
+    height: 3rem;
+  }
+  &:empty {
+    height: 1rem;
+  }
+}
+
+.page__menubtn {
+  float: right;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+}
+
+.page__previous {
+  float: left;
+  font-size: 1rem;
+  @include mq(m) {
+    font-size: 1rem;
+  }
+  .has-nav-open & {
+    display: none;
+  }
 }
 
 .page__content {
   flex: 1 0 auto;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.page__nav {
+  margin: 1rem 0;
+  position: absolute;
+  right: -65vw;
+  width: 60vw;
+  display: none;
+  .has-nav-open & {
+    display: block;
+  }
+  @include mq(m) {
+    display: block;
+    right: 0;
+    position: relative;
+    width: auto;
+  }
+}
+
+.page__container {
+  transition: transform 200ms ease-out;
+  .has-nav-open & {
+    transform: translateX(-60vw);
+  }
+}
+
+.page__main {
+  transform: translateX(0);
+  transition: opacity 100ms ease-out;
+  .has-nav-open & {
+    opacity: 0.2;
+    pointer-events: none;
+  }
 }
