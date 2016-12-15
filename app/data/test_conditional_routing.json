@@ -56,22 +56,26 @@
                 {
                     "goto": {
                         "id" : "response-yes",
-                        "when": {
-                            "id" : "conditional-routing-answer",
-                            "condition": "equals",
-                            "value":"yes"
-                        }
+                        "when": [
+                            {
+                                "id" : "conditional-routing-answer",
+                                "condition": "equals",
+                                "value":"yes"
+                            }
+                        ]
                     }
 
                 },
                 {
                     "goto": {
                         "id": "response-no",
-                        "when": {
-                            "id" : "conditional-routing-answer",
-                            "condition": "equals",
-                            "value":"no"
-                        }
+                        "when": [
+                            {
+                                "id" : "conditional-routing-answer",
+                                "condition": "equals",
+                                "value":"no"
+                            }
+                        ]
                     }
 
                 }

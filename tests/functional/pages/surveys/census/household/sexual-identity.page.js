@@ -27,7 +27,6 @@ class SexualIdentityPage extends MultipleChoiceWithOtherPage {
     browser.element('[id="sexual-identity-answer-4"]').click()
     return this
   }
-
 }
 
 export default new SexualIdentityPage()

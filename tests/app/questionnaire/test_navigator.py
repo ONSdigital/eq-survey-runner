@@ -890,7 +890,7 @@ class TestNavigator(unittest.TestCase):
 
         metadata = {
             "variant_flags": {
-                "flag_1": "true"
+                "flag_1": True
             }
         }
 

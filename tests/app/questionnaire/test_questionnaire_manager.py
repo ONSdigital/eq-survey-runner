@@ -4,8 +4,6 @@ from mock import MagicMock, Mock, patch, call
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
 from app.questionnaire_state.state_item import StateItem
 from app.schema.section import Section
-from app.schema.skip_condition import SkipCondition
-from app.schema.when import When
 
 
 def mock_answer(answer_id, answer_instance=0, question=MagicMock()):
@@ -208,47 +206,3 @@ class TestQuestionnaireManager(TestCase):
 
         # Then
         self.assertEqual(next_id, 6)
-
-    def test_conditional_display_skips_when_equals(self):
-
-        with patch('app.globals.get_answer_store') as get_answer_store:
-            answers = {'12345': 'yes'}
-            get_answer_store().map = Mock(return_value=answers)
-
-            skip = SkipCondition()
-            skip.when = When()
-
-            skip.when.id = '12345'
-            skip.when.condition = 'equals'
-            skip.when.value = 'yes'
-
-            section = Section()
-            section.skip_condition = skip
-
-            state_item = StateItem(id='', schema_item=section)
-
-            self.questionnaire_manager._conditional_display(state_item)
-
-            self.assertEqual(state_item.skipped, True)
-
-    def test_conditional_display_skips_when_not_equals(self):
-
-        with patch('app.globals.get_answer_store') as get_answer_store:
-            answers = {'12345': 'yes'}
-            get_answer_store().map = Mock(return_value=answers)
-
-            skip = SkipCondition()
-            skip.when = When()
-
-            skip.when.id = '12345'
-            skip.when.condition = 'not equals'
-            skip.when.value = 'no'
-
-            section = Section()
-            section.skip_condition = skip
-
-            state_item = StateItem(id='', schema_item=section)
-
-            self.questionnaire_manager._conditional_display(state_item)
-
-            self.assertEqual(state_item.skipped, True)

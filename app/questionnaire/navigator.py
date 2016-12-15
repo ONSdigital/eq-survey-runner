@@ -4,7 +4,7 @@ from collections import defaultdict
 
 from app.data_model.answer_store import AnswerStore
 from app.helpers.schema_helper import SchemaHelper
-from app.questionnaire.rules import evaluate_goto, evaluate_repeat
+from app.questionnaire.rules import evaluate_goto, evaluate_repeat, is_goto_rule
 
 logger = logging.getLogger(__name__)
 
@@ -68,29 +68,24 @@ class Navigator:
             # If routing rules exist then a rule must match (i.e. default goto)
             if 'routing_rules' in block and len(block['routing_rules']) > 0:
                 original_this_location = this_location.copy()
-                for rule in block['routing_rules']:
-                    if SchemaHelper.is_goto_rule(rule) and evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location['group_instance']):
-                        is_meta_rule = SchemaHelper.is_goto_meta_rule(rule)
+                for rule in filter(is_goto_rule, block['routing_rules']):
+                    should_goto = evaluate_goto(rule['goto'], self.metadata, self.answer_store, this_location['group_instance'])
+
+                    if should_goto:
                         next_location = this_location.copy()
                         next_location['block_id'] = rule['goto']['id']
 
                         next_block_index = self._block_index_for_location(blocks, next_location)
+                        next_precedes_current = next_block_index is not None and next_block_index < block_index
 
-                        # We're jumping backwards, so need to delete current answer
-                        if not is_meta_rule and next_block_index is not None and block_index > next_block_index:
-                            self.answer_store.remove(answer_id=rule['goto']['when']['id'],
-                                                     answer_instance=0,
-                                                     block_id=this_location['block_id'],
-                                                     group_id=this_location['group_id'],
-                                                     group_instance=this_location['group_instance'])
+                        if next_precedes_current:
+                            self._remove_rule_answers(rule['goto'], this_location)
 
                         this_location = next_location
                         break
 
                 # If we haven't changed location based on routing rules then we can't progress any further
-                if (this_location['block_id'] == original_this_location['block_id'] and
-                        this_location['group_id'] == original_this_location['group_id'] and
-                        this_location['group_instance'] == original_this_location['group_instance']):
+                if this_location == original_this_location:
                     break
 
             # No routing rules, so if this isn't the last block, step forward a block
@@ -106,6 +101,18 @@ class Navigator:
                 break
 
         return path
+
+    def _remove_rule_answers(self, goto_rule, location):
+        # We're jumping backwards, so need to delete all answers from which
+        # route is derived. Need to filter out conditions that don't use answers
+        if 'when' in goto_rule.keys():
+            for condition in goto_rule['when']:
+                if 'meta' not in condition.keys():
+                    self.answer_store.remove(answer_id=condition['id'],
+                                             answer_instance=0,
+                                             block_id=location['block_id'],
+                                             group_id=location['group_id'],
+                                             group_instance=location['group_instance'])
 
     def update_answer_store(self, answer_store):
         """

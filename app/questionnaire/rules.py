@@ -8,7 +8,7 @@ def evaluate_rule(when, answer_value):
     match_value = when['value']
     condition = when['condition']
 
-    answer_to_test = str(answer_value) if condition in ['equals', 'not equals'] else answer_value
+    answer_to_test = str(answer_value) if condition in ['equals', 'not equals'] and not isinstance(answer_value, bool) else answer_value
 
     # Evaluate the condition on the routing rule
     if condition == 'equals' and match_value == answer_to_test:
@@ -30,20 +30,23 @@ def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
     :return:
     """
     if 'when' in goto_rule.keys():
-        when = goto_rule['when']
+        for when_rule in goto_rule['when']:
+            if 'id' in when_rule:
+                answer_index = when_rule['id']
+                filtered = answer_store.filter(answer_id=answer_index, group_instance=group_instance)
 
-        if 'id' in when:
-            answer_index = when['id']
-            filtered = answer_store.filter(answer_id=answer_index, group_instance=group_instance)
-            if len(filtered) == 1:
-                return evaluate_rule(when, filtered[0]['value'])
+                assert len(filtered) <= 1, "Condition will not met: Multiple ({:d}) answers found".format(len(filtered))
 
-        elif 'meta' in when:
-            key = when['meta']
-            value = get_metadata_value(metadata, key)
-            return evaluate_rule(when, value)
+                if len(filtered) == 1 and not evaluate_rule(when_rule, filtered[0]['value']):
+                    return False
+                elif len(filtered) == 0:
+                    return False
 
-        return False
+            elif 'meta' in when_rule:
+                key = when_rule['meta']
+                value = get_metadata_value(metadata, key)
+                if not evaluate_rule(when_rule, value):
+                    return False
     return True
 
 
@@ -75,6 +78,10 @@ def get_metadata_value(metadata, keys):
         return get_metadata_value(metadata[key], rest)
     else:
         return metadata[keys]
+
+
+def is_goto_rule(rule):
+    return 'goto' in rule and 'when' in rule['goto'].keys() or 'id' in rule['goto'].keys()
 
 
 def _contains_in_dict(metadata, keys):

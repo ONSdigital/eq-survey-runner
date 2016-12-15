@@ -2,7 +2,6 @@ import logging
 
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
 from app.questionnaire.navigator import Navigator
-from app.questionnaire.rules import evaluate_rule, get_metadata_value
 
 from app.templating.schema_context import build_schema_context
 from app.templating.template_renderer import renderer
@@ -92,7 +91,7 @@ class QuestionnaireManager(object):
                 answer.group_id = location['group_id']
                 answer.group_instance = location['group_instance']
             self.state.update_state(answers)
-            self._conditional_display(self.state)
+            self.state.set_skipped(get_answers(current_user), metadata)
 
             context = build_schema_context(metadata, self._schema.aliases, answer_store, location['group_instance'])
             renderer.render_state(self.state, context)
@@ -103,28 +102,6 @@ class QuestionnaireManager(object):
             return self.state.get_answers()
 
         return []
-
-    def _conditional_display(self, item):
-        # Process any conditional display rules
-
-        if item.schema_item:
-
-            item.skipped = False
-
-            if hasattr(item.schema_item, 'skip_condition') and item.schema_item.skip_condition:
-                rule = item.schema_item.skip_condition.as_dict()
-                when = rule['when']
-
-                if 'id' in when and when['id']:
-                    answer = get_answers(current_user).get(when['id'])
-                    item.skipped = evaluate_rule(when, answer)
-
-                if 'meta' in when and when['meta']:
-                    value = get_metadata_value(get_metadata(current_user), when['meta'])
-                    item.skipped = evaluate_rule(when, value)
-
-            for child in item.children:
-                self._conditional_display(child)
 
     def get_schema_item_by_id(self, item_id):
         return self._schema.get_item_by_id(item_id)

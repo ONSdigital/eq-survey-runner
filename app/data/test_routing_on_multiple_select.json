@@ -57,11 +57,13 @@
                         {
                             "goto": {
                                 "id" : "block3",
-                                "when": {
-                                    "id" : "passports-answer",
-                                    "condition": "equals",
-                                    "value":"United Kingdom"
-                                }
+                                "when": [
+                                    {
+                                        "id" : "passports-answer",
+                                        "condition": "equals",
+                                        "value":"United Kingdom"
+                                    }
+                                ]
                             }
                         },
                         {

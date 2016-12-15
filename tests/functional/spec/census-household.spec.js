@@ -83,34 +83,8 @@ const expect = chai.expect
 
 describe('Census Household', function () {
 
-    it('Given Respondent Home has identified the respondent should have the Household Questionnaire without the sexual id question, When I complete the EQ, Then I should not be asked the sexual id question', function () {
+    it('Given Respondent Home has not set the sexual identity flag, When I complete the EQ, Then I should not be asked the sexual id question', function () {
         startCensusQuestionnaire('census_household.json')
-
-        // who-lives-here
-        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setFirstName('John').submit()
-        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
-        OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
-        WhoLivesHereCompleted.submit()
-
-        // household-and-accommodation
-        completeHouseholdAndAccommodation()
-
-        // household-member
-        completeHouseholdDetails()
-
-        // visitors
-        completeVisitorSection()
-        VisitorsCompleted.submit()
-
-        Confirmation.submit()
-
-        // Thank You
-        expect(ThankYou.isOpen()).to.be.true
-    })
-
-    it('Given Respondent Home has identified the respondent should have the Household Questionnaire with the sexual id question, When I complete the EQ, Then I should be asked the sexual id question', function () {
-        startCensusQuestionnaire('census_household.json', true)
 
         // who-lives-here
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
@@ -135,33 +109,105 @@ describe('Census Household', function () {
         CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
         Carer.clickCarerAnswerNo().submit()
         NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
-        EthnicGroup.clickEthnicGroupEnglandAnswerMixedMultipleEthnicGroups().submit()
-        MixedEthnicGroup.clickMixedEthnicGroupAnswerWhiteAndAsian().submit()
-        SexualIdentity.clickSexualIdentityAnswerHeterosexualOrStraight().submit()
-        Language.clickLanguageEnglandAnswerEnglish().submit()
-        Religion.clickReligionAnswerNoReligion().submit()
-        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
-        Passports.clickPassportsAnswerUnitedKingdom().submit()
-        Disability.clickDisabilityAnswerNo().submit()
-        Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
-        Volunteering.clickVolunteeringAnswerNo().submit()
-        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-        MainJob.clickMainJobAnswerAnEmployee().submit()
-        JobTitle.setJobTitleAnswer('Dev').submit()
-        JobDescription.setJobDescriptionAnswer('writing lots of code').submit()
-        EmployersBusiness.setEmployersBusinessAnswer('something statistical').submit()
-        MainJobType.clickMainJobTypeAnswerEmployedByAnOrganisationOrBusiness().submit()
-        BusinessName.setBusinessNameAnswer('ONS').submit()
-        HouseholdMemberCompleted.submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
 
-        // visitors
-        completeVisitorSection()
-        VisitorsCompleted.submit()
+        expect(SexualIdentity.isOpen()).to.be.equal(false, "Did not expect sexual identity page to be open")
+    })
 
-        Confirmation.submit()
+    it('Given Respondent Home has not set the sexual identity flag and I have chosen over 16, When I complete the EQ, Then I should not be asked the sexual id question', function () {
+        startCensusQuestionnaire('census_household.json')
 
-        // Thank You
-        expect(ThankYou.isOpen()).to.be.true
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setFirstName('John').setLastName('Smith').submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        completeHouseholdAndAccommodation()
+
+        // household-member
+        HouseholdMemberBegin.submit()
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+
+        expect(SexualIdentity.isOpen()).to.be.equal(false, "Did not expect sexual identity page to be open")
+    })
+
+    it('Given Respondent Home has set the sexual identity flag and I have chosen under 16, When I complete the EQ, Then I should not be asked the sexual id question', function () {
+        startCensusQuestionnaire('census_household.json', true)
+
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setFirstName('John').submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        completeHouseholdAndAccommodation()
+
+        // household-member
+        HouseholdMemberBegin.submit()
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerNo().submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+
+        expect(SexualIdentity.isOpen()).to.be.equal(false, "Did not expect sexual identity page to be open")
+    })
+
+    it('Given Respondent Home has set the sexual identity flag and I have chosen over 16, When I complete the EQ, Then I should be asked the sexual id question', function () {
+        startCensusQuestionnaire('census_household.json', true)
+
+        // who-lives-here
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+        HouseholdComposition.setFirstName('John').setLastName('Smith').submit()
+        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
+        WhoLivesHereCompleted.submit()
+
+        // household-and-accommodation
+        completeHouseholdAndAccommodation()
+
+        // household-member
+        HouseholdMemberBegin.submit()
+        DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+        Over16.clickOver16AnswerYes().submit()
+        PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthEnglandAnswerEngland().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityEnglandAnswerEnglish().submit()
+        EthnicGroup.clickEthnicGroupEnglandAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupEnglandAnswerEnglishWelshScottishNorthernIrishBritish().submit()
+
+        expect(SexualIdentity.isOpen()).to.be.equal(true, "Expected sexual identity page to be open")
     })
 
     it('Given I have added a householder, When I request a private response for that person, Then I don\'t have to complete any more questions for them', function () {
@@ -171,7 +217,7 @@ describe('Census Household', function () {
         PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
 
         // Given I have added a householder
-        HouseholdComposition.setFirstName(0, 'Pete').submit()
+        HouseholdComposition.setFirstName('Pete', 0).submit()
         EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(1).submit()
         WhoLivesHereCompleted.submit()

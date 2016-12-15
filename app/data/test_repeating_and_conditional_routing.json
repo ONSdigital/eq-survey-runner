@@ -88,22 +88,26 @@
                 {
                     "goto": {
                         "id" : "age-block",
-                        "when": {
-                            "id" : "conditional-answer",
-                            "condition": "equals",
-                            "value":"Age and Shoe Size"
-                        }
+                        "when": [
+                            {
+                                "id" : "conditional-answer",
+                                "condition": "equals",
+                                "value":"Age and Shoe Size"
+                            }
+                        ]
                     }
 
                 },
                 {
                     "goto": {
                         "id": "shoe-size-block",
-                        "when": {
-                            "id" : "conditional-answer",
-                            "condition": "equals",
-                            "value":"Shoe Size Only"
-                        }
+                        "when": [
+                            {
+                                "id" : "conditional-answer",
+                                "condition": "equals",
+                                "value":"Shoe Size Only"
+                            }
+                        ]
                     }
 
                 }
