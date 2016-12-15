@@ -10,7 +10,7 @@ let config = {
   coloredLogs: true,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
-  waitforTimeout: 500,
+  waitforTimeout: 2000,
   updateJob: true,
   specs: [`${paths.test.wdioSpec}/**/*.spec.js`],
   suites: {

@@ -1,3 +1,4 @@
+import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
@@ -17,12 +18,14 @@ import HouseholdMemberBegin from '../../../pages/surveys/census/household/househ
 import DetailsCorrect from '../../../pages/surveys/census/household/details-correct.page.js'
 import Over16 from '../../../pages/surveys/census/household/over-16.page.js'
 
+const expect = chai.expect
+
 describe('Individual section Question 1', function () {
 
   it('Given I am answering details correct question in the individual detail section, When I do not select any response, Then I am routed to Are you over 16', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').submit()
+    HouseholdComposition.setFirstName('John').submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     WhoLivesHereCompleted.submit()
@@ -40,7 +43,7 @@ describe('Individual section Question 1', function () {
     // household-member
     HouseholdMemberBegin.submit()
     DetailsCorrect.submit()
-    Over16.clickOver16AnswerYes().submit()
+    expect(Over16.isOpen()).to.be.equal(true, 'Expected Over 16 page to be open')
   })
 
 })

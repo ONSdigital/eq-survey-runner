@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-14 14:19:14.091677 - DO NOT EDIT!!! <<<
+
 import QuestionPage from '../../question.page'
 
 class ContactDetailsPage extends QuestionPage {
+
+  constructor() {
+    super('contact-details')
+  }
 
   setContactDetailsAnswerName(value) {
     browser.setValue('[name="contact-details-answer-name"]', value)

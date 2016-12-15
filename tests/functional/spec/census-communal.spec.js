@@ -54,5 +54,20 @@ describe('Example Test', function() {
       expect(ThankYou.isOpen()).to.be.true
   })
 
+  it('Given I am completing the Communal Establishment questionnaire, When I answer No to the Usual Residents question, Then I should be routed to Completion Preferences', function() {
+
+      // Given I am completing the Communal Establishment questionnaire,
+      openQuestionnaire('census_communal.json')
+
+      EstablishmentType.clickEstablishmentTypeAnswerHotel().submit()
+      BedSpaces.setBedSpacesAnswer(2).submit()
+
+      // When I answer No to the Usual Residents question
+      UsualResidents.clickUsualResidentsAnswerNo().submit()
+
+      // Then I should be routed to Completion Preferences
+      expect(CompletionPreferenceEstablishment.isOpen()).to.equal(true, 'Expecting to be on Completion Preferences page')
+  })
+
 })
 

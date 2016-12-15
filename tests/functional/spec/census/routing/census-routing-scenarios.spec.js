@@ -53,7 +53,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 1 in the who lives here section, When I select -yes- as the response, Then I am routed to Who lives here question 2 ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
   })
 
   it('Given I am answering question 1 in the who lives here section, When I select -no- as the response, Then I am routed to Who lives here question 2 ', function () {
@@ -72,7 +72,7 @@ describe('Census routing Scenarios', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerNo().submit()
     ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerSomeoneLivesHereAsTheirPermanentHome().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
   })
 
   it('Given I am answering question 1a in the who lives here section, When I select -no- as the response, Then I am routed to How many visitors... question 4 ', function () {
@@ -92,7 +92,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 3 in the who lives here section, When I select -yes- as the response, Then I am routed to Who lives here question 4 ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
   })
@@ -100,7 +100,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 3 in the who lives here section, When I select -no- as the response, Then I am routed back to Who lives here question 2 ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerNoINeedToAddAnotherPerson().submit()
     HouseholdComposition.submit()
   })
@@ -109,7 +109,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 3 in the who lives here section, When I dont select any response, Then I am routed to Who lives here question 4 ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
   })
@@ -117,7 +117,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 1 in the individual detail section, When I select -yes- as response, Then I am routed to Are you over 16 ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -142,7 +142,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 1 in the individual detail section, When I select -no- as response, Then I am routed to What is your correct name question 1a ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -167,7 +167,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 1 in the individual detail section, When I do not select any response, Then I am routed to Are you over 16', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -192,7 +192,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 5 in the individual detail section -Do you stay at another address for more than 30 days a year?, When I select -no- as response, Then I am routed to 7. Are you a schoolchild or student in full-time education', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -223,7 +223,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 5 in the individual detail section -Do you stay at another address for more than 30 days a year?, When I select -Yes, an address within the UK- as response, Then I am routed to 5a. Enter details of the other UK address where you stay more than 30 days a year?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -254,7 +254,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 5 in the individual detail section -Do you stay at another address for more than 30 days a year?, When I select -Yes, an address outside the UK- and enter text in other field as response, Then I am routed to 6. What is that address?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -285,7 +285,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 7 in the individual detail section - 7. Are you a schoolchild or student in full-time education?, When I dselect -No- as response, Then I am routed to 9. What is your country of birth?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -318,7 +318,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 7 in the individual detail section - 7. Are you a schoolchild or student in full-time education?, When I do not select any response, Then I am routed to 9. What is your country of birth?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -350,7 +350,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 7 in the individual detail section - 7. Are you a schoolchild or student in full-time education?, When I select -Yes- as response, Then I am routed to 8. During term time, do you live:', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -382,7 +382,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 12. Do you look after, or give any help or support..., When I select -No- as response, Then I am routed to 13. How would you describe your national identity?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -417,7 +417,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 12. Do you look after, or give any help or support..., When I select -Yes 1-19 Hours A Week- as response, Then I am routed to 13. How would you describe your national identity?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -452,7 +452,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 12. Do you look after, or give any help or support..., When I select -Yes 20-49 Hours A Week- as response, Then I am routed to 13. How would you describe your national identity?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -487,7 +487,7 @@ describe('Census routing Scenarios', function () {
   it('Given I am answering question 12. Do you look after, or give any help or support..., When I select -Yes 50 or more Hours A Week- as response, Then I am routed to 13. How would you describe your national identity?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -524,7 +524,7 @@ describe('Census routing Scenarios', function () {
 
     // who-lives-here
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -562,8 +562,7 @@ describe('Census routing Scenarios', function () {
     Disability.clickDisabilityAnswerNo().submit()
     Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
     Volunteering.clickVolunteeringAnswerNo().submit()
-    EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-    HouseholdMemberCompleted.submit()
+    expect(EmploymentType.isOpen()).to.be.equal(true, 'Expecting employment type page to be open')
   })
 
   it('Given I am answering question 25. Thinking of the last 12 months, have you..., When I select -Yes, at least once a week- as response, Then I am routed to 26. Last week were you:', function () {
@@ -571,7 +570,7 @@ describe('Census routing Scenarios', function () {
 
     // who-lives-here
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -609,8 +608,7 @@ describe('Census routing Scenarios', function () {
     Disability.clickDisabilityAnswerNo().submit()
     Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
     Volunteering.clickVolunteeringAnswerYesAtLeastOnceAWeek().submit()
-    EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-    HouseholdMemberCompleted.submit()
+    expect(EmploymentType.isOpen()).to.be.equal(true, 'Expecting employment type page to be open')
   })
 
   it('Given I am answering question 25. Thinking of the last 12 months, have you..., When I select -Yes, less than once a week but at least once a month-, at least once a week- as response, Then I am routed to 26. Last week were you:', function () {
@@ -618,7 +616,7 @@ describe('Census routing Scenarios', function () {
 
     // who-lives-here
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -656,8 +654,7 @@ describe('Census routing Scenarios', function () {
     Disability.clickDisabilityAnswerNo().submit()
     Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
     Volunteering.clickVolunteeringAnswerYesLessThanOnceAWeekButAtLeastOnceAMonth().submit()
-    EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-    HouseholdMemberCompleted.submit()
+    expect(EmploymentType.isOpen()).to.be.equal(true, 'Expecting employment type page to be open')
   })
 
   it('Given I am answering question 25. Thinking of the last 12 months, have you..., When I select -Yes, less often-, at least once a week- as response, Then I am routed to 26. Last week were you:', function () {
@@ -665,7 +662,7 @@ describe('Census routing Scenarios', function () {
 
     // who-lives-here
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-    HouseholdComposition.setPersonName(0, 'John Smith').addPerson().setPersonName(1, 'Jane Smith').submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
     HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
@@ -703,7 +700,6 @@ describe('Census routing Scenarios', function () {
     Disability.clickDisabilityAnswerNo().submit()
     Qualifications.clickQualificationsEnglandAnswerUndergraduateDegree().submit()
     Volunteering.clickVolunteeringAnswerYesLessOften().submit()
-    EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
-    HouseholdMemberCompleted.submit()
+    expect(EmploymentType.isOpen()).to.be.equal(true, 'Expecting employment type page to be open')
   })
 })

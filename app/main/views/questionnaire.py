@@ -39,7 +39,7 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 @questionnaire_blueprint.before_request
 @login_required
 def check_survey_state():
-    g.schema_json, g.schema = get_schema()
+    g.schema_json, g.schema = get_schema(get_metadata(current_user))
     values = request.view_args
 
     if not _same_survey(values['eq_id'], values['form_type'], values['collection_id']):

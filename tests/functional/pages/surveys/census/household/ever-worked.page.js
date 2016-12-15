@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.932463 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.857855 - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class EverWorkedPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('ever-worked')
+  }
 
   clickEverWorkedAnswerYes() {
     browser.element('[id="ever-worked-answer-1"]').click()

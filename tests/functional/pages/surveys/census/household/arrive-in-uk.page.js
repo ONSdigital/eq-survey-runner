@@ -1,8 +1,12 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-12 22:01:11.866190 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.779141 - DO NOT EDIT!!! <<<
 
 import QuestionPage from '../../question.page'
 
 class ArriveInUkPage extends QuestionPage {
+
+  constructor() {
+    super('arrive-in-uk')
+  }
 
   setArriveInUkAnswerMonth(value) {
     browser.selectByValue('[name="arrive-in-uk-answer-month"]', value)

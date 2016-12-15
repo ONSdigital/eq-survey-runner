@@ -10,14 +10,14 @@ class HouseholdRelationshipPage extends QuestionPage {
   setHusbandOrWifeRelationship(index, relationshipIndex) {
     var id = this.buildRelationshipAnswerId(index, 1)
     browser.waitForExist(id)
-    browser.element(id).click()
+    browser.element(id).click().pause(300)
     return this
   }
 
   setSonOrDaughterRelationship(index, relationshipIndex) {
     var id = this.buildRelationshipAnswerId(index, 4)
     browser.waitForExist(id)
-    browser.element(id).click()
+    browser.element(id).click().pause(300)
     return this
   }
 
