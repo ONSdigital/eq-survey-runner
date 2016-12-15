@@ -982,7 +982,7 @@
                     "repeat": {
                         "type": "answer_count",
                         "answer_id": "first-name",
-                        "hyperlink_name_format":["first-name", "middle-names", "last-name"]
+                        "navigation_label_answer_ids":["first-name", "last-name"]
                     }
                 }
             ],

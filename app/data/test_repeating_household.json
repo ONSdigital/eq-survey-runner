@@ -7,6 +7,7 @@
     "title": "Test Repeating",
     "description": "",
     "theme": "census",
+    "navigation" : true,
     "eq_id": "1",
     "introduction": {
         "description": ""
@@ -152,7 +153,8 @@
         "routing_rules": [{
             "repeat": {
                 "type": "answer_count",
-                "answer_id": "first-name"
+                "answer_id": "first-name",
+                "navigation_label_answer_ids":["first-name", "last-name"]
             }
         }]
     }]

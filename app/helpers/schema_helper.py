@@ -8,9 +8,11 @@ class SchemaHelper(object):
     def get_first_group_id(survey_json):
         return survey_json['groups'][0]['id']
 
-    @staticmethod
-    def get_first_block_id_for_group(survey_json):
-        return survey_json['blocks'][0]['id']
+    @classmethod
+    def get_first_block_id_for_group(cls, survey_json, group_id):
+        group = cls.get_group(survey_json, group_id)
+        if group:
+            return group['blocks'][0]['id']
 
     @staticmethod
     def get_last_group_id(survey_json):

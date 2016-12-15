@@ -335,9 +335,9 @@ class Navigator:
 
         link_names = {}
 
-        if 'hyperlink_name_format' in repeating_rule:
+        if 'navigation_label_answer_ids' in repeating_rule:
             # We loop through all the hyperlink parts storing them in a dict called link_names
-            for answer_id in repeating_rule['hyperlink_name_format']:
+            for answer_id in repeating_rule['navigation_label_answer_ids']:
                 answers = self.answer_store.filter(answer_id=answer_id)
 
                 for answer in answers:

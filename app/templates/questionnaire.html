@@ -10,7 +10,7 @@
 
 {%- block subheader -%}
 
-  {% if not state.first_block or schema.navigation %}
+  {% if not previous_location or schema.navigation %}
 
   <div class="container">
     {% if previous_location %}

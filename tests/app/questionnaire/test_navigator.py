@@ -1564,6 +1564,110 @@ class TestNavigator(unittest.TestCase):
 
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
 
+    def test_navigation_repeating_group_link_name_format(self):
+        survey = load_schema_file("test_repeating_household.json")
+        navigator = Navigator(survey)
+
+        navigator.answer_store.answers = [
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 0,
+                'answer_id': 'first-name',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': 'Joe'
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 0,
+                'answer_id': 'middle-names',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': None
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 0,
+                'answer_id': 'last-name',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': 'Bloggs'
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 1,
+                'answer_id': 'first-name',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': 'Jim'
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 1,
+                'answer_id': 'last-name',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': None
+            },
+            {
+                'block_id': 'household-composition',
+                'answer_instance': 1,
+                'answer_id': 'middle-names',
+                'group_id': 'multiple-questions-group',
+                'group_instance': 0,
+                'value': None
+            }
+        ]
+
+        completed_blocks = [
+            {
+                'group_instance': 0,
+                'group_id': 'multiple-questions-group',
+                'block_id': 'introduction'
+            },
+            {
+                'group_instance': 0,
+                'group_id': 'multiple-questions-group',
+                'block_id': 'household-composition'
+            }
+        ]
+
+        user_navigation = [
+            {
+                'repeating': False,
+                 'link_name': '',
+                 'instance': 0,
+                 'block_id': 'household-composition',
+                 'completed': True,
+                 'highlight': False,
+                 'group_id': 'multiple-questions-group'
+             },
+            {
+                'repeating': True,
+                'link_name': 'Joe Bloggs',
+                'instance': 0,
+                'block_id': 'repeating-block-1',
+                'completed': False,
+                'highlight': False,
+                'group_id': 'repeating-group'
+            },
+            {
+                'repeating': True,
+                'link_name': 'Jim',
+                'instance': 1,
+                'block_id': 'repeating-block-1',
+                'completed': False,
+                'highlight': False,
+                'group_id': 'repeating-group'
+            }
+        ]
+
+        self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+
+
+
+
 
 
     def test_block_index_for_location_with_invalid_location(self):

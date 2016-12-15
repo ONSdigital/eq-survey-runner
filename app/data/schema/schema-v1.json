@@ -264,7 +264,7 @@
                 },
                 "routing_rules": {
                   "type": "array",
-                  "hyperlink_name_format":{
+                  "navigation_label_answer_ids":{
                       "type": "array",
                       "items": {
                         "type": "string"
