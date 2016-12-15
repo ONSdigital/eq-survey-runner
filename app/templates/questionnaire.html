@@ -2,19 +2,47 @@
 
 {% block page_title %}Survey{% endblock %}
 
+{% set state = content %}
+
+{% set group = state.schema_item.container %}
+{% set block = state.schema_item %}
+{% set all_errors = state.get_errors().items() %}
+
+{%- block subheader -%}
+
+  {% if previous_location or schema.navigation %}
+
+  <div class="container">
+    {% if previous_location %}
+      <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
+    {% endif %}
+
+    {% if schema.navigation %}
+      <div class="page__menubtn">
+        <button class="btn btn--link btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn">{{_('View sections')}}</button>
+      </div>
+    {% endif %}
+  </div>
+
+  {% endif %}
+
+{%- endblock subheader -%}
+
+
 {% block main %}
 
-<div class="grid">
-  <div class="grid__col col-8@m">
-    <div class="u-mb-s">
-      <a id="top-previous" class="mars" href="{{previous_location}}">Previous</a>
-    </div>
+<div class="grid grid--reverse">
+  <div class="grid__col col-4@m">
+    {% if schema.navigation %}
+      {% include theme('partials/navigation.html') %}
+    {% endif %}
+  </div>
 
-    {% set state = content %}
+  <div class="grid__col col-7@m pull-1@m">
 
-    {% set all_errors = state.get_errors().items() %}
+    <div role="main" id="main" class="page__main">
 
-    {% if all_errors %}
+      {% if all_errors %}
 
       <div class="u-mb-s">
         <div class="panel panel--error" data-qa="error">
@@ -34,42 +62,42 @@
                 {% endfor %}
                 {% endif %}
               {% endfor %}
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
-    {% endif %}
+      {% endif %}
+
+      <form action="{{form_action|default('')}}" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
+
+        <div class="group" id="{{group.id}}">
 
 
-    <form action="{{form_action|default('')}}" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
+          <div class="block" id="{{block.id}}">
 
-        {% set group = state.schema_item.container %}
+          {% for section in state.children %}
 
-          <div class="group" id="{{group.id}}">
+            {% include 'partials/section.html' %}
 
-          {% set block = state.schema_item %}
-
-            <div class="block" id="{{block.id}}">
-
-            {% for section in state.children %}
-
-              {% include 'partials/section.html' %}
-
-            {% endfor %}
-
-            </div>
+          {% endfor %}
 
           </div>
 
-      <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
-      <br/>
-      <div class="u-mt-xs">
-        <a id="bottom-previous" class="mars" href="{{previous_location}}">Previous</a>
-      </div>
+        </div>
 
-    </form>
+        <button class="btn btn--primary qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
+
+      </form>
+    </div>
   </div>
 </div>
 
-{% endblock %}
+{% endblock main %}
+
+{% block prefooter %}
+
+  {% if previous_location %}
+    <a class="page__previous page__previous--bottom" href="{{previous_location}}" id="bottom-previous">Previous</a>
+  {% endif %}
+{% endblock prefooter %}

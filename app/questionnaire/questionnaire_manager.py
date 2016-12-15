@@ -44,6 +44,7 @@ class QuestionnaireManager(object):
             return True
 
     def validate_all_answers(self):
+
         navigator = Navigator(self._json, get_metadata(current_user), get_answer_store(current_user))
 
         for location in navigator.get_location_path():
@@ -85,8 +86,8 @@ class QuestionnaireManager(object):
             metadata = get_metadata(current_user)
             answer_store = get_answer_store(current_user)
             schema_item = self._schema.get_item_by_id(location['block_id'])
-
             self.state = schema_item.construct_state()
+
             for answer in self.get_state_answers(location['block_id']):
                 answer.group_id = location['group_id']
                 answer.group_instance = location['group_instance']

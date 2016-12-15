@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="page-header">
-    <div class="logo page-header__logo">
+  <div class="header">
+    <div class="logo header__logo">
       {% block logo %}
         <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Office for National Statistics" class="logo__img" />
       {% endblock logo %}
     </div>
-    <div class="info page-header__info" role="contentinfo">
+    <div class="info header__info" role="contentinfo">
       <h3 class="info__title venus" id="survey-help">Survey Help</h3>
       <div class="info__tel">
         <a class="info__link" href="tel:03001234931" aria-describedby="survey-help">0300 1234 931</a>

@@ -45,7 +45,7 @@ export const getRepeatedGroup = () => {
   return getLocation().repeatedGroup
 }
 
-export const getLocation= () => {
+export const getLocation = () => {
    // Matches: /(groupId)/(blockId)
   var regexp = /questionnaire.+\/(\d+)\/(.+)$/g
   var matches = regexp.exec(browser.getUrl())
@@ -56,4 +56,27 @@ export const getLocation= () => {
       'blockId': matches[2]
     }
   }
+}
+
+export const setMobileViewport = () => {
+  return browser.setViewportSize({
+    width: 320,
+    height: 568
+  })
+}
+
+export const openMobileNavigation = () => {
+  browser.click('#menu-btn')
+  return browser.waitUntil(function() {
+    return browser.isVisibleWithinViewport('#section-nav')
+  })
+}
+
+export const closeMobileNavigation = () => {
+  browser.pause(100)
+  browser.click('#menu-btn')
+  browser.pause(200)
+  return browser.waitUntil(function() {
+    return !browser.isVisibleWithinViewport('#section-nav')
+  })
 }

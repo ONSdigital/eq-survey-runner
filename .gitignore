@@ -70,3 +70,5 @@ newrelic.ini
 
 # Added to prevent committing coverage reports.
 htmlcov/
+
+*errorShots*

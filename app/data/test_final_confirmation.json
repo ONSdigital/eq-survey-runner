@@ -23,6 +23,7 @@
         {
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -68,7 +69,11 @@
                     "validation": []
                 },
                 {
-                    "type": "interstitial",
+                    "type": "questionnaire",
+                    "display": {
+                        "properties": {}
+                    },
+                    "sections": [],
                     "id": "confirmation",
                     "title": "Thank you for your answers, do you wish to submit",
                     "sections": [

@@ -1,3 +1,6 @@
+$base: 16px;
+$base-lg: 18px;
+
 $type_matrix: (
   jupiter: (
     small: 28px,
@@ -6,7 +9,7 @@ $type_matrix: (
     line-height: 1.4,
   ),
   saturn: (
-    small: 24px,
+    small: 22px,
     large: 28px,
     weight: $font-weight-bold,
     line-height: 1.4,
@@ -24,8 +27,8 @@ $type_matrix: (
     line-height: 1.4,
   ),
   mars: (
-    small: 16px,
-    large: 18px,
+    small: $base,
+    large: $base-lg,
     weight: $font-weight-regular,
     line-height: 1.4,
   ),
@@ -45,11 +48,11 @@ $type_matrix: (
 
 @each $name, $props in $type_matrix {
   .#{$name} {
-    font-size: map-get($props, small);
+    font-size: rems(map-get($props, small), $base);
     font-weight: map-get($props, weight);
     line-height: map-get($props, line-height);
     @include mq(m) {
-      font-size: map-get($props, large);
+      font-size: rems(map-get($props, large), $base-lg);
     }
   }
 }

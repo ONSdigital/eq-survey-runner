@@ -13,6 +13,7 @@
     },
     "groups": [{
         "blocks": [{
+            "type": "questionnaire",
             "id": "no-of-repeats",
             "title": "Block 1",
             "sections": [{
@@ -44,6 +45,7 @@
         "title": "Group 1"
     }, {
         "blocks": [{
+            "type": "questionnaire",
             "id": "repeated-block",
             "title": "Block 2",
             "sections": [{
@@ -107,6 +109,7 @@
                 }
             ]
         }, {
+            "type": "questionnaire",
             "id": "age-block",
             "title": "Block 3",
             "sections": [{
@@ -134,6 +137,7 @@
                 }]
             }]
         }, {
+            "type": "questionnaire",
             "id": "shoe-size-block",
             "title": "Block 4",
             "sections": [{

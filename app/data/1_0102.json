@@ -23,6 +23,7 @@
         {
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -88,6 +89,7 @@
                     "validation": []
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -158,6 +160,7 @@
                     "validation": []
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },
@@ -215,6 +218,7 @@
                     "validation": []
                 },
                 {
+                    "type": "questionnaire",
                     "display": {
                         "properties": {}
                     },

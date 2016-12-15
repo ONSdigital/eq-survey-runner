@@ -15,6 +15,7 @@
             "title": "",
             "blocks": [
                 {
+                    "type": "questionnaire",
                     "id": "block-test-guidance-all",
                     "title": "",
                     "sections": [
@@ -78,6 +79,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "block-test-guidance-title",
                     "title": "",
                     "sections": [
@@ -118,6 +120,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "block-test-guidance-description",
                     "title": "",
                     "sections": [
@@ -163,6 +166,7 @@
                     ]
                 },
                 {
+                    "type": "questionnaire",
                     "id": "block-test-guidance-lists",
                     "title": "",
                     "sections": [

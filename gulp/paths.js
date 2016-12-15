@@ -45,6 +45,7 @@ export const paths = {
     wdioConf: 'tests/functional/wdio.conf.js',
     wdioSpec: 'tests/functional/spec',
     coverage: 'tests/karma/coverage/',
-    results: 'tests/karma/results/'
+    results: 'tests/karma/results/',
+    errorShots: 'tests/errorShots'
   }
 }

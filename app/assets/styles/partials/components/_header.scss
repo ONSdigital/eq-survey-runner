@@ -1,6 +1,6 @@
-$bp: 36em;
+$header-bp: 36em;
 
-.page-header {
+.header {
   display: block;
   overflow: hidden;
   padding: 1.284rem 0;
@@ -18,26 +18,26 @@ $bp: 36em;
     top: 0;
     left: 0;
   }
-  @include mq($bp) {
+  @include mq($header-bp) {
     display: flex;
     align-items: center;
   }
 }
 
-.page-header__logo {
+.header__logo {
   margin-bottom: 1rem;
-  @include mq($bp) {
+  @include mq($header-bp) {
     margin-bottom: 0;
     flex: 1 1 50%;
   }
 }
 
-.page-header__info {
+.header__info {
   @include mq($from: xs, $to: m) {
     max-width: 100%;
   }
 
-  @include mq($bp) {
+  @include mq($header-bp) {
     float: right;
     flex: 1 1 10rem;
     margin-left: 2rem;
