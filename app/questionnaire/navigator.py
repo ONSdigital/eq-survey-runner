@@ -289,12 +289,12 @@ class Navigator:
 
             if repeating_rule:
                 no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
-                link_names = self._generate_link_names(repeating_rule)
 
                 if repeating_rule['type'] == 'answer_count':
+                    link_names = self._generate_link_names(repeating_rule)
                     self._add_repeating_navigation_item(link_names, completed_blocks, completed_id, group, current_group_id,
                                                         current_group_instance, navigation, no_of_repeats)
-                elif link_names and no_of_repeats > 0:
+                elif no_of_repeats > 0:
                     self._add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation)
             else:
                 self._add_single_navigation_item(completed_blocks, completed_id, group, current_group_id, navigation)
@@ -330,28 +330,21 @@ class Navigator:
         })
 
     def _generate_link_names(self, repeating_rule):
-
         logger.debug("Building frontend hyperlink names for %s", repeating_rule)
 
         link_names = {}
-
         if 'navigation_label_answer_ids' in repeating_rule:
-            # We loop through all the hyperlink parts storing them in a dict called link_names
-            for answer_id in repeating_rule['navigation_label_answer_ids']:
-                answers = self.answer_store.filter(answer_id=answer_id)
-
-                for answer in answers:
-                    if answer['value']:
-                        # we use the answer_instance to determine if we need to join them (eg. first-name, surname)
-                        if answer['answer_instance'] in link_names:
-                            link_names[answer['answer_instance']] += " " + answer['value']
-                        else:
-                            link_names[answer['answer_instance']] = answer['value']
+            label_answer_ids = repeating_rule['navigation_label_answer_ids']
         else:
-            answer_id = repeating_rule['answer_id']
-            answers = self.answer_store.filter(answer_id=answer_id)
+            label_answer_ids = [repeating_rule['answer_id']]
 
+        for answer_id in label_answer_ids:
+            answers = self.answer_store.filter(answer_id=answer_id)
             for answer in answers:
-                link_names[answer['answer_instance']] = answer['value']
+                if answer['value']:
+                    link_names.setdefault(answer['answer_instance'], []).append(answer['value'])
+
+        for link_name in link_names:
+            link_names[link_name] = " ".join(link_names[link_name])
 
         return link_names
