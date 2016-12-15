@@ -38,10 +38,10 @@
             <h3 class="venus">{{guidance.title}}</h3>
           {% endif %}
           {%- if guidance.description -%}
-            <div class="mars">{{guidance.description|safe}}</div>
+            {{guidance.description|safe}}
           {% endif %}
           {%- if guidance.list -%}
-            <ul class="mars">
+            <ul>
               {%- for item in guidance.list -%}
                 <li>{{item|safe}}</li>
               {% endfor %}
