@@ -38,6 +38,7 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 @questionnaire_blueprint.before_request
 @login_required
 def check_survey_state():
+    g.start = time.time()
     g.schema_json, g.schema = get_schema(get_metadata(current_user))
     values = request.view_args
 
@@ -48,6 +49,7 @@ def check_survey_state():
 @questionnaire_blueprint.after_request
 def add_cache_control(response):
     response.cache_control.no_cache = True
+    logger.info("Request Time: %s ms", (time.time() - g.start) * 1000)
     return response
 
 
@@ -362,7 +364,7 @@ def _same_survey(eq_id, form_type, collection_id):
 
 
 def _render_template(context, group_id=None, group_instance=0, block_id=None, template=None):
-    start = time.time()
+
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
@@ -393,13 +395,13 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
 
     template = '{}.html'.format(template or block_id)
 
+    start = time.time()
     rendered_template = render_theme_template(theme, template, meta=metadata_context,
                                               content=context,
                                               previous_location=previous_url,
                                               navigation=front_end_navigation,
                                               schema=g.schema_json)
 
-    end = time.time()
-    logger.info("_render_template Time: %s ms", (end - start) * 1000)
+    logger.info("_render_template Time: %s ms", (time.time() - start) * 1000)
 
     return rendered_template
