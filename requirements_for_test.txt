@@ -5,3 +5,4 @@ coverage==4.2b1
 pytest-cov==2.3.0
 jsonschema==2.5.1
 pylint==1.6.4
+flask-debugtoolbar==0.10.0
