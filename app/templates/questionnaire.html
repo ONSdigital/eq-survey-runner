@@ -10,14 +10,14 @@
 
 {%- block subheader -%}
 
-  {% if previous_location or schema.navigation %}
+  {% if previous_location or navigation %}
 
   <div class="container">
     {% if previous_location %}
       <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
     {% endif %}
 
-    {% if schema.navigation %}
+    {% if navigation %}
       <div class="page__menubtn">
         <button class="btn btn--link btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn">{{_('View sections')}}</button>
       </div>
@@ -33,7 +33,7 @@
 
 <div class="grid grid--reverse">
   <div class="grid__col col-4@m">
-    {% if schema.navigation %}
+    {% if navigation %}
       {% include theme('partials/navigation.html') %}
     {% endif %}
   </div>
