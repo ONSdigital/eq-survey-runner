@@ -16,6 +16,7 @@ from app.submitter.submitter import SubmitterFactory
 
 from flask import Flask
 from flask import url_for
+from flask_debugtoolbar import DebugToolbarExtension
 
 # from flask_analytics import Analytics
 
@@ -143,6 +144,8 @@ def create_app():
 
     # if settings.EQ_UA_ID:
     #     setup_analytics(application)
+
+    toolbar = DebugToolbarExtension(application)
 
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
