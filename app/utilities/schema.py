@@ -1,6 +1,6 @@
 import logging
 
-from app.parser.schema_parser_factory import SchemaParserFactory
+from app.parser.v0_0_1.schema_parser import SchemaParser
 from app.schema_loader.schema_loader import load_schema
 
 logger = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ def load_and_parse_schema(eq_id, form_type, language_code):
 
     json_schema = load_schema(eq_id, form_type, language_code)
     if json_schema:
-        parser = SchemaParserFactory.create_parser(json_schema)
+        parser = SchemaParser(json_schema)
         schema = parser.parse()
         return json_schema, schema
     else:

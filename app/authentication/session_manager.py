@@ -63,7 +63,7 @@ class SessionManager:
             with commit_or_rollback(db_session):
                 db_session.delete(eq_session)
         else:
-            logger.warning("No eq session id exists")
+            logger.debug("No eq session id exists")
 
     def get_user_id(self):
         """
