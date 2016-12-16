@@ -362,7 +362,6 @@ def _same_survey(eq_id, form_type, collection_id):
 
 
 def _render_template(context, group_id=None, group_instance=0, block_id=None, template=None):
-
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
@@ -394,7 +393,7 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     template = '{}.html'.format(template or block_id)
 
     return render_theme_template(theme, template, meta=metadata_context,
-                                              content=context,
-                                              previous_location=previous_url,
-                                              navigation=front_end_navigation,
-                                              schema=g.schema_json)
+                                 content=context,
+                                 previous_location=previous_url,
+                                 navigation=front_end_navigation,
+                                 schema=g.schema_json)
