@@ -175,12 +175,14 @@ def setup_profiling(application):
         application.wsgi_app, stream, profile_dir=profiling_dir)
     application.debug = True
 
+
 def setup_analytics(application):
      # Setup analytics
      Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
      Analytics(application)
      application.config['ANALYTICS'][
          'GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
+
 
 def configure_logging(application):
     # set up some sane logging, as opposed to what flask does by default
