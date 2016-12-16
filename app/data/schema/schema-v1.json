@@ -95,6 +95,18 @@
       "hide_in_navigation": {
           "type":"boolean"
       },
+      "skip_condition": {
+        "description": "Allows a group to be skipped when a condition has been met.",
+        "type": "object",
+        "properties": {
+          "when": {
+            "$ref": "#/definitions/when"
+          }
+        },
+        "required": [
+          "when"
+        ]
+      },
       "items": {
         "type": "object",
         "properties": {
@@ -176,12 +188,16 @@
                               }
                             },
                             "skip_condition": {
+                            "description": "Allows a question to be skipped when a condition has been met.",
                               "type": "object",
                               "properties": {
                                 "when": {
                                   "$ref": "#/definitions/when"
                                 }
-                              }
+                              },
+                              "required": [
+                                "when"
+                              ]
                             },
                             "type": {
                               "enum": ["General", "DateRange", "RepeatingAnswer", "Relationship"]

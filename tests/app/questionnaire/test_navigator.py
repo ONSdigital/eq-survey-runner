@@ -1,5 +1,7 @@
 import unittest
 
+import pytest
+
 from app.questionnaire.navigator import Navigator
 from app.schema_loader.schema_loader import load_schema_file
 from app.data_model.answer_store import Answer, AnswerStore
@@ -1176,6 +1178,86 @@ class TestNavigator(unittest.TestCase):
             }
         ]
         self.assertEqual(navigator.get_front_end_navigation(completed_blocks, 'property-details', 0), user_navigation)
+
+    def test_get_next_location_should_skip_group(self):
+        # Given
+        survey = load_schema_file('test_skip_condition_group.json')
+        current_block_id = 'do-you-want-to-skip'
+        answer_store = AnswerStore()
+        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip', answer_id='do-you-want-to-skip-answer', value='Yes'))
+
+        # When
+        navigator = Navigator(survey, answer_store=answer_store)
+
+        # Then
+        next_block = {
+            'block_id': 'last-group-block',
+            'group_id': 'last-group',
+            'group_instance': 0
+        }
+        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
+
+    def test_get_next_location_should_not_skip_group(self):
+        # Given
+        survey = load_schema_file('test_skip_condition_group.json')
+        current_block_id = 'do-you-want-to-skip'
+        answer_store = AnswerStore()
+        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
+                                answer_id='do-you-want-to-skip-answer', value='No'))
+
+        # When
+        navigator = Navigator(survey, answer_store=answer_store)
+
+        # Then
+        next_block = {
+            'block_id': 'should-skip',
+            'group_id': 'should-skip-group',
+            'group_instance': 0
+        }
+        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
+
+    def test_get_next_location_should_not_skip_when_no_answers(self):
+        # Given
+        survey = load_schema_file('test_skip_condition_group.json')
+        current_block_id = 'do-you-want-to-skip'
+        answer_store = AnswerStore()
+
+        # When
+        navigator = Navigator(survey, answer_store=answer_store)
+
+        # Then
+        next_block = {
+            'block_id': 'should-skip',
+            'group_id': 'should-skip-group',
+            'group_instance': 0
+        }
+        self.assertEqual(navigator.get_next_location(current_block_id=current_block_id), next_block)
+
+    @pytest.mark.xfail(reason="Known bug when skipping last group due to summary bundled into it", strict=True, raises=StopIteration)
+    def test_get_routing_path_when_first_block_in_group_skipped(self):
+        # Given
+        survey = load_schema_file('test_skip_condition_group.json')
+        answer_store = AnswerStore()
+        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
+                                answer_id='do-you-want-to-skip-answer', value='Yes'))
+
+        # When
+        navigator = Navigator(survey, answer_store=answer_store)
+
+        # Then
+        expected_route = [
+            {
+                'block_id': 'do-you-want-to-skip-block',
+                'group_id': 'do-you-want-to-skip-group',
+                'group_instance': 0
+            },
+            {
+                'block_id': 'summary',
+                'group_id': 'should-skip-group',
+                'group_instance': 0
+            }
+        ]
+        self.assertEqual(navigator.get_routing_path('should-skip-group'), expected_route)
 
     def test_navigation_repeating_household_and_hidden_household_groups_completed(self):
         survey = load_schema_file("test_navigation.json")
