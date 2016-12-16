@@ -287,6 +287,12 @@ def _remove_repeating_on_household_answers(answer_store, group_id):
             questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if
                                                        b.get('group_id') != group['id']]
 
+    blocks_that_route_back = SchemaHelper.get_blocks_that_route_back_to_block(questionnaire_store.completed_blocks[:],
+                                                                              g.schema_json,
+                                                                              'household-composition')
+    for answer in SchemaHelper.get_answers_that_route_back_to_block(blocks_that_route_back, g.schema_json):
+        answer_store.remove(answer_id=answer['id'])
+
 
 def _delete_user_data():
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
