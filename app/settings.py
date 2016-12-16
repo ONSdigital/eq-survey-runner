@@ -1,7 +1,7 @@
 import logging
 import os
 
-import pytz
+# import pytz
 
 logger = logging.getLogger(__name__)
 
@@ -43,7 +43,7 @@ EQ_NEW_RELIC_CONFIG_FILE = os.getenv('EQ_NEW_RELIC_CONFIG_FILE', './newrelic.ini
 EQ_SR_LOG_GROUP = os.getenv('EQ_SR_LOG_GROUP', os.getenv('USER', 'UNKNOWN') + '-local')
 EQ_LOG_LEVEL = os.getenv('EQ_LOG_LEVEL', 'INFO')
 EQ_CLOUDWATCH_LOGGING = parse_mode(os.getenv("EQ_CLOUDWATCH_LOGGING", 'True'))
-EQ_WERKZEUG_LOG_LEVEL = os.getenv('EQ_WERKZEUG_LOG_LEVEL', 'INFO')
+EQ_WERKZEUG_LOG_LEVEL = os.getenv('EQ_WERKZEUG_LOG_LEVEL', 'ERROR')
 EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'app/data')
 EQ_SESSION_TIMEOUT = int(os.getenv('EQ_SESSION_TIMEOUT', '28800'))
 EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
@@ -104,7 +104,7 @@ DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
 
 # Date Format expected by SDX
 SDX_DATE_FORMAT = "%d/%m/%Y"
-EUROPE_LONDON = pytz.timezone("Europe/London")
+# EUROPE_LONDON = pytz.timezone("Europe/London")
 
 # JWT configurations
 EQ_JWT_LEEWAY_IN_SECONDS = 120

@@ -7,7 +7,7 @@ from datetime import timedelta
 from logging.handlers import RotatingFileHandler
 
 from app import settings
-from app.analytics.custom_google_analytics import CustomGoogleAnalytics
+# from app.analytics.custom_google_analytics import CustomGoogleAnalytics
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.data_model.database import db_session
@@ -17,7 +17,7 @@ from app.submitter.submitter import SubmitterFactory
 from flask import Flask
 from flask import url_for
 
-from flask_analytics import Analytics
+# from flask_analytics import Analytics
 
 from flask_babel import Babel
 
@@ -141,8 +141,8 @@ def create_app():
     if settings.EQ_PROFILING:
         setup_profiling(application)
 
-    if settings.EQ_UA_ID:
-        setup_analytics(application)
+    # if settings.EQ_UA_ID:
+    #     setup_analytics(application)
 
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
@@ -172,15 +172,6 @@ def setup_profiling(application):
     application.wsgi_app = ProfilerMiddleware(
         application.wsgi_app, stream, profile_dir=profiling_dir)
     application.debug = True
-
-
-def setup_analytics(application):
-    # Setup analytics
-
-    Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
-    Analytics(application)
-    application.config['ANALYTICS'][
-        'GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
 
 def configure_logging(application):

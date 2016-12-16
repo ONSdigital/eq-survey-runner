@@ -1,4 +1,5 @@
 import logging
+import time
 
 from app.parser.schema_parser_factory import SchemaParserFactory
 from app.schema_loader.schema_loader import load_schema
@@ -17,7 +18,13 @@ def get_schema(metadata):
     language_code = metadata["language_code"] if "language_code" in metadata else None
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
+    start = time.time()
+
     json_schema, schema = load_and_parse_schema(eq_id, form_type, language_code)
+
+    end = time.time()
+    logger.info("Schema Load Time: %s ms", (end - start)*1000)
+
     if not json_schema:
         raise ValueError("No schema available")
 
