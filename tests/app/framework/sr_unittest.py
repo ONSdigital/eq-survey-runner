@@ -1,7 +1,7 @@
 import unittest
-from app.parser.schema_parser_factory import SchemaParserFactory
 from app import settings
 from app.authentication.user import User
+from app.parser.v0_0_1.schema_parser import SchemaParser
 from app.storage.storage_factory import get_storage
 from flask_login import LoginManager
 from datetime import timedelta
@@ -36,7 +36,7 @@ class SurveyRunnerTestCase(unittest.TestCase):
         schema = schema_file.read()
         # create a parser
         self.schema_json = json.loads(schema)
-        parser = SchemaParserFactory.create_parser(self.schema_json)
+        parser = SchemaParser(self.schema_json)
         self.questionnaire = parser.parse()
 
     def tearDown(self):
