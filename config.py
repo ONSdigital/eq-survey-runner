@@ -2,7 +2,7 @@ import os
 
 from app import settings
 
-from babel.dates import get_timezone
+# from babel.dates import get_timezone
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -10,8 +10,8 @@ LANGUAGES = {
     'en': 'English',
 }
 
-BABEL_DEFAULT_LOCALE = 'en'
-BABEL_DEFAULT_TIMEZONE = get_timezone('Europe/London')
+# BABEL_DEFAULT_LOCALE = 'en'
+# BABEL_DEFAULT_TIMEZONE = get_timezone('Europe/London')
 
 
 class Config(object):

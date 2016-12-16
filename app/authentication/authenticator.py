@@ -29,7 +29,7 @@ class Authenticator(object):
             questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
             metadata = questionnaire_store.metadata
 
-            logger.info("Session token exists for tx_id=%s", metadata["tx_id"])
+            logger.debug("Session token exists for tx_id=%s", metadata["tx_id"])
 
             return user
         else:

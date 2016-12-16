@@ -16,6 +16,7 @@ from app.submitter.submitter import SubmitterFactory
 
 from flask import Flask
 from flask import url_for
+from flask_debugtoolbar import DebugToolbarExtension
 
 from flask_analytics import Analytics
 
@@ -134,6 +135,7 @@ def create_app():
         # TODO fix health check so it no longer sends message to queue
         add_health_check(application, headers)
         start_dev_mode(application)
+        DebugToolbarExtension(application)
 
     # always add safe health check
     add_safe_health_check(application)
@@ -175,12 +177,11 @@ def setup_profiling(application):
 
 
 def setup_analytics(application):
-    # Setup analytics
-
-    Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
-    Analytics(application)
-    application.config['ANALYTICS'][
-        'GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
+     # Setup analytics
+     Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
+     Analytics(application)
+     application.config['ANALYTICS'][
+         'GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
 
 def configure_logging(application):
