@@ -21,6 +21,8 @@ class HouseholdRelationship extends EventEmitter {
     this.el = item
     this.answered = false
 
+    this.name = this.el.getAttribute('data-relationship-name')
+
     this.editBtn = this.el.querySelector(`.${opts.classEditBtn}`)
     this.editBtn.addEventListener('click', this.onEditBtnClick)
 
@@ -48,7 +50,7 @@ class HouseholdRelationship extends EventEmitter {
   }
 
   onFocus = e => {
-    this.open()
+    this.open(true)
   }
 
   onOptionSelected = debounce((e) => {
@@ -57,8 +59,9 @@ class HouseholdRelationship extends EventEmitter {
     }
 
     if (e.keyCode === undefined || e.keyCode === 0) {
-      this.close()
       this.emit('optionSelected', this)
+    } else {
+
     }
   }, 100, { leading: true, trailing: false })
 
@@ -68,27 +71,27 @@ class HouseholdRelationship extends EventEmitter {
 
   onEditBtnClick = (e) => {
     e.preventDefault()
-    // remove focus
-    if (document.activeElement !== document.body) document.activeElement.blur()
     this.toggle()
     return false
   }
 
   toggle = () => {
-    this.isOpen ? this.close() : this.open()
+    this.isOpen ? this.close(true) : this.open(true)
   }
 
-  open = () => {
+  open = (emitEvent) => {
     this.isOpen = true
     this.optionsContainer.setAttribute('aria-hidden', false)
     this.el.classList.add(opts.classOpen)
     this.el.classList.remove(opts.classClosed)
     this.editBtn.innerHTML = this.closeLabel
     this.optionsContainer.removeEventListener('focus', this.onFocus, true)
-    this.emit('opened', this)
+    if (emitEvent) {
+      this.emit('opened', this)
+    }
   }
 
-  close = () => {
+  close = (emitEvent) => {
     if (this.answered) {
       this.editBtn.classList.remove('u-hidden')
     }
@@ -98,7 +101,12 @@ class HouseholdRelationship extends EventEmitter {
     this.el.classList.add(opts.classClosed)
     this.editBtn.innerHTML = this.openLabel
     // delay to prevent race conditions
-    delay(() => this.optionsContainer.addEventListener('focus', this.onFocus, true), 100)
+    delay(() => {
+      this.optionsContainer.addEventListener('focus', this.onFocus, true)
+    }, 100)
+    if (emitEvent) {
+      this.emit('closed', this)
+    }
   }
 }
 
@@ -109,35 +117,42 @@ domready(() => {
   if (!el) return
 
   const onOptionSelected = (selectedItem) => {
-    const unansweredItems = items.filter(item => !item.answered)
-    if (unansweredItems.length > 0) {
-      unansweredItems[0].open()
-    } else {
-      selectedItem.close()
+    selectedItem.close(true)
+  }
+
+  const onItemOpen = (itemOpened) => {
+    items.forEach(item => {
+      if (item.isOpen && item !== itemOpened) {
+        item.close(false)
+      }
+    })
+  }
+
+  const onItemClosed = (itemClosed) => {
+    openNextUnanswered()
+  }
+
+  const openNextUnanswered = () => {
+    let next = items.filter(item => !item.answered)[0]
+    if (next !== undefined) {
+      next.open(true)
     }
-  }
-
-  const onItemOpen = (item) => {
-    closeAllExcept(item)
-  }
-
-  const closeAllExcept = (itemToOpen) => {
-    items
-      .filter(item => item !== itemToOpen)
-      .map(item => item.close())
   }
 
   forEach(el.getElementsByClassName(opts.classItem), item => {
     const relationship = new HouseholdRelationship(item)
     relationship.addListener('opened', onItemOpen)
+    relationship.addListener('closed', onItemClosed)
     relationship.addListener('optionSelected', onOptionSelected)
     items.push(relationship)
   })
 
   let firstUnansweredItem = items.filter(item => !item.answered)[0]
-  if (firstUnansweredItem !== undefined) {
-    firstUnansweredItem.open()
-  } else {
-    items.map(item => item.close())
-  }
+  items.forEach(item => {
+    if (item !== firstUnansweredItem) {
+      item.close(false)
+    } else {
+      item.open(false)
+    }
+  })
 })

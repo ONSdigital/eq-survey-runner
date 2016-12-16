@@ -15,11 +15,7 @@
 
         {%- for answer in question.answers -%}
 
-        <div class="relationship__item js-relationship-item">
-
             {{ answer.schema_item.widget.render(answer) | safe}}
-
-        </div>
 
         {%- endfor -%}
 
