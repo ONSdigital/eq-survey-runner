@@ -1,5 +1,5 @@
-from app.parser.schema_parser_factory import SchemaParserFactory
 from app.parser.abstract_schema_parser import AbstractSchemaParser
+from app.parser.v0_0_1.schema_parser import SchemaParser
 from app.schema.questionnaire import Questionnaire
 from app.schema.group import Group
 from app.schema.block import Block
@@ -21,7 +21,7 @@ class MciMiniParsingTest(unittest.TestCase):
         schema = json.loads(schema)
 
         # create a parser
-        parser = SchemaParserFactory.create_parser(schema)
+        parser = SchemaParser(schema)
 
         assert isinstance(parser, AbstractSchemaParser)
 
@@ -95,7 +95,7 @@ class MciMiniParsingTest(unittest.TestCase):
         schema = json.loads(schema)
 
         # create a parser
-        parser = SchemaParserFactory.create_parser(schema)
+        parser = SchemaParser(schema)
 
         assert isinstance(parser, AbstractSchemaParser)
 
