@@ -2,8 +2,15 @@ import forEach from 'lodash/forEach'
 import domready from './domready'
 
 export default function initAnalytics() {
-  if (typeof ga === 'undefined') {
-    return false
+  let trackEvent = (event, data) => {
+    console.log(`[Analytics disabled] Event: ${event}`)
+    console.log(data)
+  }
+
+  if (typeof window.ga !== 'undefined') {
+    trackEvent = window.ga
+  } else {
+    console.log('Analytics disabled')
   }
 
   const errors = document.querySelectorAll('[data-error=true]')
@@ -18,11 +25,11 @@ export default function initAnalytics() {
       eventAction: errorMsg,
       eventLabel: elementId
     }
-    ga('send', errorData)
+    trackEvent('send', errorData)
   })
 
   forEach(guidances, guidance => {
-    const trigger = guidance.querySelector('.js-data-guidance-trigger')
+    const trigger = guidance.querySelector('[data-guidance-trigger]')
     const questionLabel = guidance.getAttribute('data-guidance-label')
     const questionId = guidance.getAttribute('data-guidance')
 
@@ -34,10 +41,12 @@ export default function initAnalytics() {
         eventAction: questionLabel,
         eventLabel: questionId
       }
-      ga('send', triggerData)
+      trackEvent('send', triggerData)
     }
 
-    trigger.addEventListener('click', onClick)
+    if (trigger) {
+      trigger.addEventListener('click', onClick)
+    }
   })
 }
 
