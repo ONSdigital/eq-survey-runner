@@ -25,11 +25,7 @@
   line-height: 1;
 }
 
-.relationship__field {
-  display: block;
-}
-
-.relationship__options {
+.relationship__body {
   font-size: 0;
   clear: both;
   margin: 0;
@@ -47,4 +43,14 @@
     pointer-events: auto;
     transition: max-height 300ms ease-out 50ms;
   }
+}
+
+.relationship__fields {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.relationship__field {
+  display: block;
 }
