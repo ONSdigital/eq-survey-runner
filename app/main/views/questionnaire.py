@@ -28,9 +28,7 @@ from flask_themes2 import render_theme_template
 
 from werkzeug.exceptions import NotFound
 
-
 logger = logging.getLogger(__name__)
-
 
 questionnaire_blueprint = Blueprint(name='questionnaire',
                                     import_name=__name__,
@@ -97,7 +95,8 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
     navigator.update_answer_store(get_answer_store(current_user))
 
-    next_location = navigator.get_next_location(current_group_id=group_id, current_iteration=group_instance, current_block_id=block_id)
+    next_location = navigator.get_next_location(current_group_id=group_id, current_iteration=group_instance,
+                                                current_block_id=block_id)
 
     if next_location is None:
         raise NotFound
@@ -109,7 +108,9 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
     logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
 
-    return redirect(block_url(eq_id, form_type, collection_id, next_location['group_id'], next_location['group_instance'], next_location['block_id']))
+    return redirect(
+        block_url(eq_id, form_type, collection_id, next_location['group_id'], next_location['group_instance'],
+                  next_location['block_id']))
 
 
 @questionnaire_blueprint.route('introduction', methods=["GET"])
@@ -135,9 +136,11 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
     # Don't care if data is valid because there isn't any for interstitial
     if not valid_location:
-        return _render_template(q_manager.state, this_block['group_id'], this_block['group_instance'], block_id, template='questionnaire')
+        return _render_template(q_manager.state, this_block['group_id'], this_block['group_instance'], block_id,
+                                template='questionnaire')
 
-    next_location = navigator.get_next_location(current_block_id=block_id, current_iteration=0, current_group_id=this_block['group_id'])
+    next_location = navigator.get_next_location(current_block_id=block_id, current_iteration=0,
+                                                current_group_id=this_block['group_id'])
     metadata = get_metadata(current_user)
 
     if next_location is None:
@@ -151,7 +154,6 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 @questionnaire_blueprint.route('summary', methods=["GET"])
 @login_required
 def get_summary(eq_id, form_type, collection_id):
-
     answer_store = get_answer_store(current_user)
     navigator = Navigator(g.schema_json, get_metadata(current_user), answer_store)
     latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
@@ -262,10 +264,12 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
         return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
 
     if not valid:
-        return _render_template(questionnaire_manager.state, group_id, 0, 'household-composition', template='questionnaire')
+        return _render_template(questionnaire_manager.state, group_id, 0, 'household-composition',
+                                template='questionnaire')
 
     navigator.update_answer_store(get_answer_store(current_user))
-    next_location = navigator.get_next_location(current_block_id='household-composition', current_iteration=0, current_group_id=group_id)
+    next_location = navigator.get_next_location(current_block_id='household-composition', current_iteration=0,
+                                                current_group_id=group_id)
 
     return redirect(location_url(eq_id, form_type, collection_id, next_location))
 
@@ -390,10 +394,10 @@ def _render_template(context, group_id=None, group_instance=0, block_id=None, te
     template = '{}.html'.format(template or block_id)
 
     rendered_template = render_theme_template(theme, template, meta=metadata_context,
-                                 content=context,
-                                 previous_location=previous_url,
-                                 navigation=front_end_navigation,
-                                 schema=g.schema_json)
+                                              content=context,
+                                              previous_location=previous_url,
+                                              navigation=front_end_navigation,
+                                              schema=g.schema_json)
 
     end = time.time()
     logger.info("_render_template Time: %s ms", (end - start) * 1000)
