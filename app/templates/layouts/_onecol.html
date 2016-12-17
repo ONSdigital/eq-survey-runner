@@ -1,0 +1,13 @@
+{% extends theme('layouts/_base.html') %}
+
+{% block content %}
+
+<div class="grid">
+  <div class="grid__col col-12@xs">
+    <div role="main" id="main" class="page__main">
+      {% block main %}{% endblock %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

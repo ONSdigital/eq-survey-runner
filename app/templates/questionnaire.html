@@ -1,4 +1,4 @@
-{% extends theme('layouts/_survey.html') %}
+{% extends theme('layouts/_twocol.html') %}
 
 {% block page_title %}Survey{% endblock %}
 
@@ -28,70 +28,59 @@
 
 {%- endblock subheader -%}
 
+{% block sidebar %}
+  {% if navigation %}
+    {% include theme('partials/navigation.html') %}
+  {% endif %}
+{% endblock %}
 
 {% block main %}
 
-<div class="grid grid--reverse">
-  <div class="grid__col col-4@m">
-    {% if navigation %}
-      {% include theme('partials/navigation.html') %}
-    {% endif %}
-  </div>
+    {% if all_errors %}
 
-  <div class="grid__col col-7@m pull-1@m">
-
-    <div role="main" id="main" class="page__main">
-
-      {% if all_errors %}
-
-      <div class="u-mb-s">
-        <div class="panel panel--error" data-qa="error">
-          <div class="panel__header">
-            <h1 class="panel__title venus">This page has {{all_errors|length}} errors</h1>
-          </div>
-          <div class="panel__body" data-qa="error-body">
-            <p class="mars">These <strong>must be corrected</strong> to continue.</p>
-            <ul class="list list--bare">
-              {% for item_id, errors in all_errors %}
-                {% set loop_index = loop.index %}
-                {% if errors %}
-                {% for error in errors %}
-                <li class="list__item mars">
-                  {{loop_index}}) <a class="js-inpagelink" href="#{{item_id}}">{{ error }}</a>
-                </li>
-                {% endfor %}
-                {% endif %}
-              {% endfor %}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      {% endif %}
-
-      <form action="{{form_action|default('')}}" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
-
-        <div class="group" id="{{group.id}}">
-
-
-          <div class="block" id="{{block.id}}">
-
-          {% for section in state.children %}
-
-            {% include 'partials/section.html' %}
-
+    <div class="panel panel--error u-mb-s" data-qa="error">
+      <div class="panel__header">
+        <h1 class="panel__title venus">This page has {{all_errors|length}} errors</h1>
+      </div>
+      <div class="panel__body" data-qa="error-body">
+        <p class="mars">These <strong>must be corrected</strong> to continue.</p>
+        <ul class="list list--bare">
+          {% for item_id, errors in all_errors %}
+            {% set loop_index = loop.index %}
+            {% if errors %}
+            {% for error in errors %}
+            <li class="list__item mars">
+              {{loop_index}}) <a class="js-inpagelink" href="#{{item_id}}">{{ error }}</a>
+            </li>
+            {% endfor %}
+            {% endif %}
           {% endfor %}
+          </ul>
+        </div>
+      </div>
 
-          </div>
+
+    {% endif %}
+
+    <form action="{{form_action|default('')}}" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
+
+      <div class="group" id="{{group.id}}">
+
+        <div class="block" id="{{block.id}}">
+
+        {% for section in state.children %}
+
+          {% include 'partials/section.html' %}
+
+        {% endfor %}
 
         </div>
 
-        <button class="btn btn--primary btn--lg qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
+      </div>
 
-      </form>
-    </div>
-  </div>
-</div>
+      <button class="btn btn--primary btn--lg qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
+
+    </form>
 
 {% endblock main %}
 
