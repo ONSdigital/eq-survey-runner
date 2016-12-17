@@ -35,6 +35,11 @@ class DevPage {
     return this
   }
 
+  setLanguageCode(language) {
+    browser.selectByValue('.qa-language-code', language)
+    return this
+  }
+
   checkSexualIdentity() {
     browser.click('.qa-sexual-identity')
     return this
