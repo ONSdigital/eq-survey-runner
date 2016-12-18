@@ -12,6 +12,7 @@ def build_schema_context(metadata, aliases, answer_store, group_instance=0):
     """
     return {
         "exercise": _build_exercise(metadata),
+        "respondent": _build_respondent(metadata),
         "answers": _map_alias_to_answers(aliases, answer_store),
         "group_instance": group_instance,
     }
@@ -44,4 +45,11 @@ def _build_exercise(metadata):
         "employment_date": to_date(metadata["employment_date"]),
         "return_by": to_date(metadata["return_by"]),
         "region_code": metadata["region_code"],
+    }
+
+
+def _build_respondent(metadata):
+    return {
+        "ru_name": metadata["ru_name"],
+        "trad_as": metadata["trad_as"],
     }

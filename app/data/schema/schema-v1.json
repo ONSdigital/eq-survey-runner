@@ -315,12 +315,16 @@
                                     "$ref": "#/definitions/id"
                                   },
                                   "q_code": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "pattern": "[0-9]+"
                                   },
                                   "label": {
                                     "type": "string"
                                   },
                                   "guidance": {
+                                    "type": "string"
+                                  },
+                                  "description": {
                                     "type": "string"
                                   },
                                   "type": {
@@ -341,15 +345,23 @@
                                   "options": {
                                     "type": "array",
                                     "items": {
-                                         "label": {
-                                            "type": "string"
-                                         },
-                                         "value": {
-                                             "type": "string"
+                                      "type": "object",
+                                      "properties": {
+                                        "label": {
+                                          "type": "string"
                                         },
-                                         "q_code": {
-                                            "type": "string"
+                                        "value": {
+                                          "type": "string"
+                                        },
+                                        "q_code": {
+                                          "type": "string",
+                                          "pattern": "[0-9]+"
                                         }
+                                      },
+                                      "required": [
+                                        "label",
+                                        "value"
+                                      ]
                                     }
                                   },
                                   "mandatory": {
@@ -403,7 +415,6 @@
               "additionalProperties": false,
               "required": [
                 "id",
-                "title",
                 "sections"
               ]
             }

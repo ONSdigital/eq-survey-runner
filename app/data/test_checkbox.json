@@ -41,39 +41,38 @@
                                                 {
                                                     "label": "Cheese",
                                                     "value": "Cheese",
-                                                    "q_code": 1
+                                                    "q_code": "1"
                                                 },
                                                 {
                                                     "label": "Ham",
                                                     "value": "Ham",
-                                                    "q_code": 2
+                                                    "q_code": "2"
                                                 },
                                                 {
                                                     "label": "Pineapple",
                                                     "value": "Pineapple",
-                                                    "q_code": 3
+                                                    "q_code": "3"
                                                 },
                                                 {
                                                     "label": "Tuna",
                                                     "value": "Tuna",
-                                                    "q_code": 4
+                                                    "q_code": "4"
                                                 },
                                                 {
                                                     "label": "Pepperoni",
                                                     "value": "Pepperoni",
-                                                    "q_code": 5
+                                                    "q_code": "5"
                                                 },
                                                 {
                                                     "label": "Other",
                                                     "value": "other",
-                                                    "q_code": 6,
+                                                    "q_code": "6",
                                                     "description": "Choose any other topping",
                                                     "other": {
                                                       "label": "Please specify other"
                                                     }
                                                 }
                                             ],
-                                            "q_code": "",
                                             "type": "Checkbox",
                                             "validation": {
                                                 "messages": {}

@@ -12,7 +12,7 @@ class Question(Item):
         self.answers = []
         self.children = self.answers
         self.container = None
-        self.templatable_properties = ['title', 'description']
+        self.templatable_properties = ['title', 'description', 'guidance']
         self.type = None
         self.messages = {}
 
