@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import QuestionPage from '../../question.page'
 
 class LastYearAddressPage extends QuestionPage {
+
+  constructor() {
+    super('last-year-address')
+  }
 
   setLastYearAddressAnswerBuilding(value) {
     browser.setValue('[name="last-year-address-answer-building"]', value)

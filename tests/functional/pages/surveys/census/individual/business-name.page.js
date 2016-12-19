@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import QuestionPage from '../../question.page'
 
 class BusinessNamePage extends QuestionPage {
+
+  constructor() {
+    super('business-name')
+  }
 
   setBusinessNameAnswer(value) {
     browser.setValue('[name="business-name-answer"]', value)

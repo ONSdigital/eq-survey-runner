@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import QuestionPage from '../../question.page'
 
 class CorrectNamePage extends QuestionPage {
+
+  constructor() {
+    super('correct-name')
+  }
 
   setFirstName(value) {
     browser.setValue('[name="first-name"]', value)

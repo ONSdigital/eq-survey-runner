@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.810273 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -27,6 +27,12 @@ class SexualIdentityPage extends MultipleChoiceWithOtherPage {
     browser.element('[id="sexual-identity-answer-4"]').click()
     return this
   }
+
+  setSexualIdentityAnswerOtherText(value) {
+    browser.setValue('[id="sexual-identity-answer-4-other"]', value)
+    return this
+  }
+
 }
 
 export default new SexualIdentityPage()

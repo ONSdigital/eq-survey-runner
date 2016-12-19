@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class LanguagePage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('language')
+  }
 
   clickLanguageEnglandAnswerEnglish() {
     browser.element('[id="language-england-answer-1"]').click()
@@ -12,6 +18,11 @@ class LanguagePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
+  setLanguageEnglandAnswerOtherText(value) {
+    browser.setValue('[id="language-england-answer-2-other"]', value)
+    return this
+  }
+
   clickLanguageWelshAnswerEnglishOrWelsh() {
     browser.element('[id="language-welsh-answer-1"]').click()
     return this
@@ -19,6 +30,11 @@ class LanguagePage extends MultipleChoiceWithOtherPage {
 
   clickLanguageWelshAnswerOther() {
     browser.element('[id="language-welsh-answer-2"]').click()
+    return this
+  }
+
+  setLanguageWelshAnswerOtherText(value) {
+    browser.setValue('[id="language-welsh-answer-2-other"]', value)
     return this
   }
 

@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class MaritalStatusPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('marital-status')
+  }
 
   clickMaritalStatusAnswerNeverMarriedAndNeverRegisteredASameSexCivilPartnership() {
     browser.element('[id="marital-status-answer-1"]').click()

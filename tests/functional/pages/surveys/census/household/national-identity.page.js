@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.786669 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -38,6 +38,11 @@ class NationalIdentityPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
+  setNationalIdentityEnglandAnswerOtherText(value) {
+    browser.setValue('[id="national-identity-england-answer-6-other"]', value)
+    return this
+  }
+
   clickNationalIdentityWalesAnswerWelsh() {
     browser.element('[id="national-identity-wales-answer-1"]').click()
     return this
@@ -65,6 +70,11 @@ class NationalIdentityPage extends MultipleChoiceWithOtherPage {
 
   clickNationalIdentityWalesAnswerOther() {
     browser.element('[id="national-identity-wales-answer-6"]').click()
+    return this
+  }
+
+  setNationalIdentityWalesAnswerOtherText(value) {
+    browser.setValue('[id="national-identity-wales-answer-6-other"]', value)
     return this
   }
 

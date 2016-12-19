@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class UnderstandWelshPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('understand-welsh')
+  }
 
   clickUnderstandWelshAnswerUnderstandSpokenWelsh() {
     browser.element('[id="understand-welsh-answer-1"]').click()

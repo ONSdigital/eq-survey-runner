@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-14 14:19:14.077588 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -30,6 +30,11 @@ class WhyPaperIndividualPage extends MultipleChoiceWithOtherPage {
 
   clickWhyPaperIndividualAnswerOther() {
     browser.element('[id="why-paper-individual-answer-5"]').click()
+    return this
+  }
+
+  setWhyPaperIndividualAnswerOtherText(value) {
+    browser.setValue('[id="why-paper-individual-answer-5-other"]', value)
     return this
   }
 
