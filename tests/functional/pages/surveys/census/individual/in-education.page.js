@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class InEducationPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('in-education')
+  }
 
   clickInEducationAnswerYes() {
     browser.element('[id="in-education-answer-1"]').click()

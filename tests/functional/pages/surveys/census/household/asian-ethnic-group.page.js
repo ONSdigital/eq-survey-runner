@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.799950 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -30,6 +30,11 @@ class AsianEthnicGroupPage extends MultipleChoiceWithOtherPage {
 
   clickAsianEthnicGroupAnswerOther() {
     browser.element('[id="asian-ethnic-group-answer-5"]').click()
+    return this
+  }
+
+  setAsianEthnicGroupAnswerOtherText(value) {
+    browser.setValue('[id="asian-ethnic-group-answer-5-other"]', value)
     return this
   }
 

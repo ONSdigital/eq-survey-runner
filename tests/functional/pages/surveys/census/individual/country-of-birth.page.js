@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class CountryOfBirthPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('country-of-birth')
+  }
 
   clickCountryOfBirthEnglandAnswerEngland() {
     browser.element('[id="country-of-birth-england-answer-1"]').click()
@@ -32,6 +38,11 @@ class CountryOfBirthPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
+  setCountryOfBirthEnglandAnswerOtherText(value) {
+    browser.setValue('[id="country-of-birth-england-answer-6-other"]', value)
+    return this
+  }
+
   clickCountryOfBirthWalesAnswerWales() {
     browser.element('[id="country-of-birth-wales-answer-1"]').click()
     return this
@@ -59,6 +70,11 @@ class CountryOfBirthPage extends MultipleChoiceWithOtherPage {
 
   clickCountryOfBirthWalesAnswerOther() {
     browser.element('[id="country-of-birth-wales-answer-6"]').click()
+    return this
+  }
+
+  setCountryOfBirthWalesAnswerOtherText(value) {
+    browser.setValue('[id="country-of-birth-wales-answer-6-other"]', value)
     return this
   }
 

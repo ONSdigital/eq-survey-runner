@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.883812 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -15,6 +15,11 @@ class VisitorUkResidentPage extends MultipleChoiceWithOtherPage {
 
   clickVisitorUkResidentAnswerOther() {
     browser.element('[id="visitor-uk-resident-answer-2"]').click()
+    return this
+  }
+
+  setVisitorUkResidentAnswerOtherText(value) {
+    browser.setValue('[id="visitor-uk-resident-answer-2-other"]', value)
     return this
   }
 

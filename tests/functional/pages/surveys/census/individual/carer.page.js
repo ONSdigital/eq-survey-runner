@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class CarerPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('carer')
+  }
 
   clickCarerAnswerNo() {
     browser.element('[id="carer-answer-1"]').click()

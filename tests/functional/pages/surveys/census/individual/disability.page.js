@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class DisabilityPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('disability')
+  }
 
   clickDisabilityAnswerYesLimitedALot() {
     browser.element('[id="disability-answer-1"]').click()

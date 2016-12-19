@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.766596 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -20,6 +20,11 @@ class AnotherAddressPage extends MultipleChoiceWithOtherPage {
 
   clickAnotherAddressAnswerOther() {
     browser.element('[id="another-address-answer-3"]').click()
+    return this
+  }
+
+  setAnotherAddressAnswerOtherText(value) {
+    browser.setValue('[id="another-address-answer-3-other"]', value)
     return this
   }
 

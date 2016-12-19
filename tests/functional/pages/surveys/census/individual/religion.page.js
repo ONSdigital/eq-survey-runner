@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class ReligionPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('religion')
+  }
 
   clickReligionAnswerNoReligion() {
     browser.element('[id="religion-answer-1"]').click()
@@ -42,6 +48,11 @@ class ReligionPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
+  setReligionAnswerOtherText(value) {
+    browser.setValue('[id="religion-answer-8-other"]', value)
+    return this
+  }
+
   clickReligionWelshAnswerNoReligion() {
     browser.element('[id="religion-welsh-answer-1"]').click()
     return this
@@ -79,6 +90,11 @@ class ReligionPage extends MultipleChoiceWithOtherPage {
 
   clickReligionWelshAnswerOther() {
     browser.element('[id="religion-welsh-answer-8"]').click()
+    return this
+  }
+
+  setReligionWelshAnswerOtherText(value) {
+    browser.setValue('[id="religion-welsh-answer-8-other"]', value)
     return this
   }
 

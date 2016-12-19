@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class OccupationPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('occupation')
+  }
 
   clickOccupationAnswerRetiredWhetherReceivingAPensionOrNot() {
     browser.element('[id="occupation-answer-1"]').click()
