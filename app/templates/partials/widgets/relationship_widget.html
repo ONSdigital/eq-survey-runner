@@ -1,46 +1,51 @@
 {% set legend = _(answer.label, current_person=answer.current_person, other_person=answer.other_person).split('&hellip;') %}
+{% set personName = legend[1]|replace(' of ', '') %}
 
-<fieldset class="field field--selectionbtn field--multiplechoice relationship__field">
+<div class="relationship__item js-relationship-item" data-relationship-name="{{personName}}">
 
-  <button class="btn btn--link relationship__edit js-relationship-editbtn u-hidden" data-close="{{_('Close')}}">
-    {{_('Edit')}}
-  </button>
+  <fieldset class="field field--selectionbtn field--multiplechoice relationship__field" ]>
 
-    <legend id="relationship-title" class="relationship__title  venus u-f-no">
-      <span>{{legend[0]}}</span> <span class="highlight js-relationship-legend">&nbsp; &hellip; &nbsp;</span> <span>{{legend[1]}}</span>
-    </legend>
+    <button class="btn btn--link relationship__edit js-relationship-editbtn u-hidden" data-close="{{_('Close')}}" data-qa="relationship-close-btn">
+      {{_('Edit')}}
+    </button>
 
-    <div class="relationship__body js-relationship-body">
-      <div class="relationship__fields">
-        {% for option in widget.options %}
+      <legend class="relationship__title  venus u-f-no" data-qa="relationship-title">
+        <span>{{legend[0]}}</span> <span class="highlight js-relationship-legend">&nbsp; &hellip; &nbsp;</span> <span>{{legend[1]}}</span>
+      </legend>
 
-          {% set option_id = answer.id ~ "-" ~ loop.index %}
+      <div class="relationship__body js-relationship-body">
+        <div class="relationship__fields">
+          {% for option in widget.options %}
 
-          {% set input = {
-            "class": "input input--radio js-focusable",
-            "type": 'radio',
-            "value": option.value,
-            "name": answer.name,
-            "id": option_id,
-            "checked": "checked" if option.selected
-          } %}
+            {% set option_id = answer.id ~ "-" ~ loop.index %}
 
-          {% set label = {
-            "class": "label label--inline venus",
-            "for": option_id
-          } %}
+            {% set input = {
+              "class": "input input--radio js-focusable",
+              "type": 'radio',
+              "value": option.value,
+              "name": answer.name,
+              "id": option_id,
+              "checked": "checked" if option.selected
+            } %}
 
-          <div class="field__item js-focusable-box">
+            {% set label = {
+              "class": "label label--inline venus",
+              "for": option_id
+            } %}
 
-            <input {{input|xmlattr}}>
-            <label {{label|xmlattr}}>
-              {{option.label}}
-            </label>
+            <div class="field__item js-focusable-box">
 
-          </div>
+              <input {{input|xmlattr}}>
+              <label {{label|xmlattr}}>
+                {{option.label}}
+              </label>
 
-        {% endfor %}
+            </div>
+
+          {% endfor %}
+        </div>
       </div>
-    </div>
 
-</fieldset>
+  </fieldset>
+
+</div>
