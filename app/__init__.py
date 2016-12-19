@@ -3,7 +3,6 @@ import logging
 import os
 import sys
 from datetime import timedelta
-
 from logging.handlers import RotatingFileHandler
 
 from app import settings
@@ -264,15 +263,15 @@ def start_dev_mode(application):
 
 def add_blueprints(application):
     # import and regsiter the main application blueprint
-    from .main.views.questionnaire import questionnaire_blueprint
+    from app.views.questionnaire import questionnaire_blueprint
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()
 
-    from .main.views.root import root_blueprint
-    application.register_blueprint(root_blueprint)
-    root_blueprint.config = application.config.copy()
+    from app.views.main import main_blueprint
+    application.register_blueprint(main_blueprint)
+    main_blueprint.config = application.config.copy()
 
-    from .main.views.errors import errors_blueprint
+    from app.views.errors import errors_blueprint
     application.register_blueprint(errors_blueprint)
     errors_blueprint.config = application.config.copy()
 

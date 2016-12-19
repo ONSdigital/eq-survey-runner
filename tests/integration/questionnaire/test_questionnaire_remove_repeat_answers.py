@@ -7,7 +7,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
 
     def test_should_remove_household_composition_answer_when_no_answer(self):
-        with patch('app.main.views.questionnaire.get_answer_store') as get_answer_store:
+        with patch('app.views.questionnaire.get_answer_store') as get_answer_store:
             # Given
             self.token = create_token('household', 'census')
             self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
@@ -20,7 +20,7 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
             get_answer_store().assert_has_calls([call.remove(block_id='household-composition', group_id='who-lives-here')])
 
     def test_should_not_remove_answers_when_yes_answer(self):
-        with patch('app.main.views.questionnaire.get_answer_store') as get_answer_store:
+        with patch('app.views.questionnaire.get_answer_store') as get_answer_store:
             # Given
             self.token = create_token('household', 'census')
             self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
@@ -33,7 +33,7 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
             assert get_answer_store().remove.call_count == 0
 
     def test_should_remove_all_repeating_groups(self):
-        with patch('app.main.views.questionnaire.get_answer_store') as get_answer_store:
+        with patch('app.views.questionnaire.get_answer_store') as get_answer_store:
             # Given
             self.token = create_token('household', 'census')
             self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)

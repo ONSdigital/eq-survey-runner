@@ -43,7 +43,7 @@ def check_survey_state():
     values = request.view_args
 
     if not _same_survey(values['eq_id'], values['form_type'], values['collection_id']):
-        return redirect(url_for('root.information', message_identifier='multiple-surveys'))
+        return redirect(url_for('main.information', message_identifier='multiple-surveys'))
 
 
 @questionnaire_blueprint.after_request

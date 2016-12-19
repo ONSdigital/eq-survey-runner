@@ -22,21 +22,21 @@ from werkzeug.exceptions import NotFound
 logger = logging.getLogger(__name__)
 
 
-root_blueprint = Blueprint('root', __name__)
+main_blueprint = Blueprint('main', __name__)
 
 
-@root_blueprint.after_request
+@main_blueprint.after_request
 def add_cache_control(response):
     response.cache_control.no_cache = True
     return response
 
 
-@root_blueprint.route('/', methods=['GET'])
+@main_blueprint.route('/', methods=['GET'])
 def root():
     raise NotFound
 
 
-@root_blueprint.route('/information/<message_identifier>', methods=['GET'])
+@main_blueprint.route('/information/<message_identifier>', methods=['GET'])
 def information(message_identifier):
     front_end_message = get_messages(message_identifier)
     if front_end_message:
@@ -46,7 +46,7 @@ def information(message_identifier):
     raise NotFound
 
 
-@root_blueprint.route('/session', methods=['GET'])
+@main_blueprint.route('/session', methods=['GET'])
 def login():
     """
     Initial url processing - expects a token parameter and then will authenticate this token. Once authenticated
