@@ -97,7 +97,7 @@ describe('Who lives here routing Scenarios', function () {
   it('Given I am answering question 1 in the who lives here section, When I dont select any response, Then I a alert msg saying mandatory field must be displayed ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.submit()
-    expect(PermanentOrFamilyHome.getAlertText()).to.contain('Please select an answer to continue')
+    expect(PermanentOrFamilyHome.errorExists()).to.be.true
   })
 
   it('Given I am answering question 1a in the who lives here section, When I select -yes- as the response, Then I am routed to Who lives here question 2 ', function () {
@@ -118,7 +118,7 @@ describe('Who lives here routing Scenarios', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerNo().submit()
     ElsePermanentOrFamilyHome.submit()
-    expect(ElsePermanentOrFamilyHome.getAlertText()).to.contain('Please select an answer to continue')
+    expect(ElsePermanentOrFamilyHome.errorExists()).to.be.true
   })
 
   it('Given I am answering question 3 in the who lives here section, When I select -yes- as the response, Then I am routed to Who lives here question 4 ', function () {
@@ -251,7 +251,7 @@ describe('Who lives here routing Scenarios', function () {
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
     HouseholdComposition.submit()
 
-    expect(HouseholdComposition.getErrorMsg()).to.contain('Please enter a name or remove the person to continue')
+    expect(HouseholdComposition.errorExists()).to.be.true
   })
 
   it('Given I enter a first name but no middle or surname, When I save and continue, Then I should not see any errors', function () {
