@@ -23,30 +23,14 @@ def evaluate_rule(when, answer_value):
 def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
     """
     Determine whether a goto rule will be satisfied based on a given answer
-    :param goto_rule:
-    :param metadata
-    :param answer_store:
-    :param group_instance:
-    :return:
+    :param goto_rule: goto rule to evaluate
+    :param metadata: metadata for evaluating rules with metadata conditions
+    :param answer_store: store of answers to evaluate
+    :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
+    :return: True if the when condition has been met otherwise False
     """
     if 'when' in goto_rule.keys():
-        for when_rule in goto_rule['when']:
-            if 'id' in when_rule:
-                answer_index = when_rule['id']
-                filtered = answer_store.filter(answer_id=answer_index, group_instance=group_instance)
-
-                assert len(filtered) <= 1, "Condition will not met: Multiple ({:d}) answers found".format(len(filtered))
-
-                if len(filtered) == 1 and not evaluate_rule(when_rule, filtered[0]['value']):
-                    return False
-                elif len(filtered) == 0:
-                    return False
-
-            elif 'meta' in when_rule:
-                key = when_rule['meta']
-                value = get_metadata_value(metadata, key)
-                if not evaluate_rule(when_rule, value):
-                    return False
+        return evaluate_when_rules(goto_rule['when'], metadata, answer_store, group_instance)
     return True
 
 
@@ -67,6 +51,35 @@ def evaluate_repeat(repeat_rule, answer_store):
         filtered = answer_store.filter(answer_id=repeat_index)
         repeat_function = repeat_functions[repeat_rule['type']]
         return repeat_function(filtered)
+
+
+def evaluate_when_rules(when_rules, metadata, answer_store, group_instance=0):
+    """
+    Whether the skip condition has been met.
+    :param when_rules: when rules to evaluate
+    :param metadata: metadata for evaluating rules with metadata conditions
+    :param answer_store: store of answers to evaluate
+    :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
+    :return: True if the when condition has been met otherwise False
+    """
+    for when_rule in when_rules:
+        if 'id' in when_rule:
+            answer_index = when_rule['id']
+            filtered = answer_store.filter(answer_id=answer_index, group_instance=group_instance)
+
+            assert len(filtered) <= 1, "Condition will not met: Multiple ({:d}) answers found".format(len(filtered))
+
+            if len(filtered) == 1 and not evaluate_rule(when_rule, filtered[0]['value']):
+                return False
+            elif len(filtered) == 0:
+                return False
+
+        elif 'meta' in when_rule:
+            key = when_rule['meta']
+            value = get_metadata_value(metadata, key)
+            if not evaluate_rule(when_rule, value):
+                return False
+    return True
 
 
 def get_metadata_value(metadata, keys):

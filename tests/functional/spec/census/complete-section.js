@@ -48,6 +48,15 @@ import VisitorUkResident from '../../pages/surveys/census/household/visitor-uk-r
 import VisitorAddress from '../../pages/surveys/census/household/visitor-address.page.js'
 import VisitorCompleted from '../../pages/surveys/census/household/visitor-completed.page.js'
 
+export const completeHouseholdAndAccommodationNoOneAtAddress = () => {
+  TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
+  TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
+  SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
+  NumberOfBedrooms.setNumberOfBedroomsAnswer(3).submit()
+  CentralHeating.clickCentralHeatingAnswerGas().submit()
+  HouseholdAndAccommodationCompleted.submit()
+}
+
 export const completeHouseholdAndAccommodation = () => {
   TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
   TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
