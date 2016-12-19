@@ -20,7 +20,7 @@
             {% set option_id = answer.id ~ "-" ~ loop.index %}
 
             {% set input = {
-              "class": "input input--radio js-focusable",
+              "class": "input input--radio js-focusable js-relationship-trigger",
               "type": 'radio',
               "value": option.value,
               "name": answer.name,
@@ -29,7 +29,7 @@
             } %}
 
             {% set label = {
-              "class": "label label--inline venus",
+              "class": "label label--inline venus js-relationship-trigger",
               "for": option_id
             } %}
 
