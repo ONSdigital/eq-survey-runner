@@ -1,4 +1,4 @@
-{% extends 'layouts/_survey.html' %}
+{% extends 'layouts/_twocol.html' %}
 
 {% block page_title %}{{messages.title}}{% endblock %}
 
@@ -8,13 +8,9 @@
       {% block system_message_title %}{{messages.title}}{% endblock %}
     </h1>
   </div>
-  <div class="grid">
-    <div class="grid__col col-8@m">
-      <div class="panel panel--simple panel--error panel--spacious">
-        <p><strong>{{messages.message}}</strong></p>
-        <div>{{messages.instructions}}</div>
-      </div>
-    </div>
+  <div class="panel panel--simple panel--error panel--spacious">
+    <p><strong>{{messages.message}}</strong></p>
+    <div>{{messages.instructions}}</div>
   </div>
 
 {% endblock %}
