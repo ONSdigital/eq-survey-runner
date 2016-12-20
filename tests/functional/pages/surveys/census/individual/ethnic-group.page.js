@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class EthnicGroupPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('ethnic-group')
+  }
 
   clickEthnicGroupEnglandAnswerWhite() {
     browser.element('[id="ethnic-group-england-answer-1"]').click()

@@ -1,36 +1,28 @@
-{% extends theme('layouts/_survey.html') %}
+{% extends theme('layouts/_twocol.html') %}
 {% block page_title %}2017 Census{% endblock %}
 
 {% block header %}
   {% include theme('partials/header.html') %}
 {% endblock %}
 
-{% block content %}
-  <div role="main" id="main">
-    <div class="container">
-      <div class="grid">
-        <div class="grid__col col-9@m">
-          <div>
-            <h2 class="saturn">The Census needs to include everyone.</h2>
-            <p class="mars">This questionnaire contains two parts: </p>
-            <ul>
-              <li>Household questions.</li>
-              <li>Individual questions.</li>
-            </ul>
-            <div class="panel panel--info panel--spacious panel--simple u-mb-l">
-              <h3 class="neptune">The householder should complete the household questions.</h3>
-              <p class="mars">The individual questions must be completed for every person who usually lives in this household. The householder can complete the survey on behalf of the individuals who usually live in their household or ask them to answer independently.</p>
-              <p>If any member of this household aged 16 or over wishes to complete their own questionnaire a separate form can be requested here.</p>
-            </div>
-            <form action="" class="form" role="form" method="POST" novalidate="">
-              <button class="btn btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
-            </form>
-            <div class="lock u-mb-s u-mb-m@s">
-              <div class="venus lock__text">Your personal information is protected by law and will be kept confidential for at least 100 years.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+{% block main %}
+<div>
+  <h2 class="saturn">The Census needs to include everyone.</h2>
+  <p class="mars">This questionnaire contains two parts: </p>
+  <ul>
+    <li>Household questions.</li>
+    <li>Individual questions.</li>
+  </ul>
+  <div class="panel panel--info panel--spacious panel--simple u-mb-l">
+    <h3 class="neptune">The householder should complete the household questions.</h3>
+    <p class="mars">The individual questions must be completed for every person who usually lives in this household. The householder can complete the survey on behalf of the individuals who usually live in their household or ask them to answer independently.</p>
+    <p>If any member of this household aged 16 or over wishes to complete their own questionnaire a separate form can be requested here.</p>
   </div>
-{% endblock content %}
+  <form action="" class="form" role="form" method="POST" novalidate="">
+    <button class="btn btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
+  </form>
+  <div class="lock u-mb-s u-mb-m@s">
+    <div class="venus lock__text">Your personal information is protected by law and will be kept confidential for at least 100 years.</div>
+  </div>
+</div>
+{% endblock main %}

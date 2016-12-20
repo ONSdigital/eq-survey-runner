@@ -1,6 +1,6 @@
 import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
-import {completeHouseholdAndAccommodation, completeVisitorSection, completeHouseholdDetails} from '../complete-section'
+import {completeHouseholdAndAccommodation, completeVisitorSection, completeHouseholdAndAccommodationNoOneAtAddress} from '../complete-section'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
 import ElsePermanentOrFamilyHome from '../../../pages/surveys/census/household/else-permanent-or-family-home.page.js'
@@ -88,27 +88,34 @@ describe('Visitors routing', function () {
         startCensusQuestionnaire('census_household.json')
 
         // who-lives-here
-        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
-        HouseholdComposition.setFirstName('John').submit()
-        EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerNo().submit()
+        ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerNoOneLivesHereAsTheirPermanentHome().submit()
         OvernightVisitors.setOvernightVisitorsAnswer(2).submit()
         WhoLivesHereCompleted.submit()
 
         // household-and-accommodation
-        completeHouseholdAndAccommodation()
+        completeHouseholdAndAccommodationNoOneAtAddress()
 
-        // household-member
-        completeHouseholdDetails()
-
-        // Complete visitors for 2 people
+        // Complete visitors for first person
         completeVisitorSection()
-        completeVisitorSection()
-        VisitorsCompleted.submit()
-
-        Confirmation.submit()
 
         // Thank You
-        expect(ThankYou.isOpen()).to.be.true
+        expect(VisitorBegin.isOpen()).to.equal(true, 'Expecting visitor begin page to be open')
+    })
+
+    it('Given I have no visitors, When I complete the household and accommodation details, Then I should see the confirmation page.', function () {
+        // Given
+        startCensusQuestionnaire('census_household.json')
+        PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerNo().submit()
+        ElsePermanentOrFamilyHome.clickElsePermanentOrFamilyHomeAnswerNoOneLivesHereAsTheirPermanentHome().submit()
+        OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
+        WhoLivesHereCompleted.submit()
+
+        // When
+        completeHouseholdAndAccommodationNoOneAtAddress()
+
+        // Then
+        expect(Confirmation.isOpen()).to.equal(true, 'Expected to skip visitor questions')
     })
 
 })

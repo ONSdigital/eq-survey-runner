@@ -50,7 +50,7 @@
 }
 
 .question__guidance {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   clear: both;
 }
 
@@ -83,6 +83,9 @@
 .question--repeatinganswer {
   .question__answer {
     margin-bottom: 2rem;
+  }
+  .question__guidance--bottom {
+    margin: -1rem 0 0;
   }
   .answer {
     margin-bottom: 1.5rem;

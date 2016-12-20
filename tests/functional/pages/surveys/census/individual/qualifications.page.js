@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class QualificationsPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('qualifications')
+  }
 
   clickQualificationsEnglandAnswer5OrMoreGcsesGradesAStarToCOrOLevelsPassesOrCsesGrade1SchoolCertificateOneALevel2To3AsLevelsOrVcesHigherDiploma() {
     browser.element('[id="qualifications-england-answer-1"]').click()

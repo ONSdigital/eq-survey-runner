@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.791382 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -28,6 +28,11 @@ class WhiteEthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
+  setWhiteEthnicGroupEnglandAnswerOtherText(value) {
+    browser.setValue('[id="white-ethnic-group-england-answer-4-other"]', value)
+    return this
+  }
+
   clickWhiteEthnicGroupWalesAnswerWelshEnglishScottishNorthernIrishBritish() {
     browser.element('[id="white-ethnic-group-wales-answer-1"]').click()
     return this
@@ -45,6 +50,11 @@ class WhiteEthnicGroupPage extends MultipleChoiceWithOtherPage {
 
   clickWhiteEthnicGroupWalesAnswerOther() {
     browser.element('[id="white-ethnic-group-wales-answer-4"]').click()
+    return this
+  }
+
+  setWhiteEthnicGroupWalesAnswerOtherText(value) {
+    browser.setValue('[id="white-ethnic-group-wales-answer-4-other"]', value)
     return this
   }
 

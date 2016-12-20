@@ -31,13 +31,10 @@ def load_schema(eq_id, form_type, language_code='en'):
     if form_type and form_type != "-1":
         filename_format = "{}_" + filename_format
 
-    if language_code and language_code != "en":
-        filename_format = "{}_" + filename_format
-
     # form type is mandatory JWT claim, but it isn't needed when getting schemas from the schema bucket
     # in that case default it to -1 and ignore it
     if form_type and form_type != "-1":
-        return load_schema_file(filename_format.format(eq_id, form_type, language_code))
+        return load_schema_file(filename_format.format(eq_id, form_type), language_code)
 
     return load_s3_schema_file("{}.json".format(eq_id))
 
@@ -54,14 +51,23 @@ def load_s3_schema_file(schema_file):
     return None
 
 
-def load_schema_file(schema_file):
+def load_schema_file(schema_file, language_code='en'):
     try:
-        schema_path = os.path.join(settings.EQ_SCHEMA_DIRECTORY, schema_file)
+        if language_code is not None and language_code != 'en':
+            schema_dir = os.path.join(settings.EQ_SCHEMA_DIRECTORY, language_code)
+        else:
+            schema_dir = settings.EQ_SCHEMA_DIRECTORY
+
+        schema_path = os.path.join(schema_dir, schema_file)
         with open(schema_path, encoding="utf8") as json_data:
             return json.load(json_data)
+
     except FileNotFoundError:
-        logging.error("No schema file exists %s", schema_file)
-        return None
+        if language_code != 'en':
+            return load_schema_file(schema_file, 'en')
+        else:
+            logging.error("No schema file exists %s", schema_file)
+            return None
 
 
 def available_schemas():

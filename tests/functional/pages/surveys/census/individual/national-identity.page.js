@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class NationalIdentityPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('national-identity')
+  }
 
   clickNationalIdentityEnglandAnswerEnglish() {
     browser.element('[id="national-identity-england-answer-1"]').click()
@@ -32,6 +38,11 @@ class NationalIdentityPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
+  setNationalIdentityEnglandAnswerOtherText(value) {
+    browser.setValue('[id="national-identity-england-answer-6-other"]', value)
+    return this
+  }
+
   clickNationalIdentityWalesAnswerWelsh() {
     browser.element('[id="national-identity-wales-answer-1"]').click()
     return this
@@ -59,6 +70,11 @@ class NationalIdentityPage extends MultipleChoiceWithOtherPage {
 
   clickNationalIdentityWalesAnswerOther() {
     browser.element('[id="national-identity-wales-answer-6"]').click()
+    return this
+  }
+
+  setNationalIdentityWalesAnswerOtherText(value) {
+    browser.setValue('[id="national-identity-wales-answer-6-other"]', value)
     return this
   }
 

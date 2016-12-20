@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import QuestionPage from '../../question.page'
 
 class DateOfBirthPage extends QuestionPage {
+
+  constructor() {
+    super('date-of-birth')
+  }
 
   setDateOfBirthAnswerDay(value) {
     browser.setValue('[name="date-of-birth-answer-day"]', value)

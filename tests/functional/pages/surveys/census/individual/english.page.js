@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class EnglishPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('english')
+  }
 
   clickEnglishAnswerVeryWell() {
     browser.element('[id="english-answer-1"]').click()

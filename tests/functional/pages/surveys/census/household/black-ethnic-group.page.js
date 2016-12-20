@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.803636 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -20,6 +20,11 @@ class BlackEthnicGroupPage extends MultipleChoiceWithOtherPage {
 
   clickBlackEthnicGroupAnswerOther() {
     browser.element('[id="black-ethnic-group-answer-3"]').click()
+    return this
+  }
+
+  setBlackEthnicGroupAnswerOtherText(value) {
+    browser.setValue('[id="black-ethnic-group-answer-3-other"]', value)
     return this
   }
 

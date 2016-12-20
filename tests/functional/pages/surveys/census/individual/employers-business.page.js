@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import QuestionPage from '../../question.page'
 
 class EmployersBusinessPage extends QuestionPage {
+
+  constructor() {
+    super('employers-business')
+  }
 
   setEmployersBusinessAnswer(value) {
     browser.setValue('[name="employers-business-answer"]', value)

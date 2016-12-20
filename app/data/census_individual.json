@@ -276,6 +276,18 @@
                         },
                         {
                             "goto": {
+                                "id": "address-type",
+                                "when": [
+                                    {
+                                        "id": "another-address-answer",
+                                        "condition": "not equals",
+                                        "value": "Other"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
                                 "id": "in-education"
                             }
                         }
@@ -2655,18 +2667,6 @@
                         }
                     ],
                     "routing_rules": [
-                        {
-                            "goto": {
-                                "id": "jobseeker",
-                                "when": [
-                                    {
-                                        "id": "employment-type-answer",
-                                        "condition": "contains",
-                                        "value": "none of the above?"
-                                    }
-                                ]
-                            }
-                        },
                         {
                             "goto": {
                                 "id": "main-job",

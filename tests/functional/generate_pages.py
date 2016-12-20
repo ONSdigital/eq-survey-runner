@@ -32,7 +32,7 @@ describe('Example Test', function() {
 
 """
 
-HEADER = r"""// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON {generated} - DO NOT EDIT!!! <<<
+HEADER = r"""// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import {basePage} from '../../{basePageFile}'
 
@@ -64,6 +64,13 @@ DROP_DOWN_SETTER = r"""  set{answerName}(value) {
 
 CHECKBOX_RADIO_CLICKER = r"""  click{optionName}() {
     browser.element('[id="{optionId}"]').click()
+    return this
+  }
+
+"""
+
+MULTIPLE_CHOICE_OTHER = r"""  set{answerName}(value) {
+    browser.setValue('[id="{answerId}"]', value)
     return this
   }
 
@@ -133,6 +140,10 @@ def process_options(answer_id, options, template, page_spec):
         option_name = generate_camel_case_from_id(option['value'])
         option_id = "{name}-{index}".format(name=answer_id, index=index+1)
         page_spec.write(template.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
+        if 'other' in option:
+            option_other_id = "{name}-{index}-other".format(name=answer_id, index=index+1)
+            page_spec.write(MULTIPLE_CHOICE_OTHER.replace("{answerName}", generate_camel_case_from_id(answer_id) + option_name + "Text").replace("{answerId}", option_other_id))
+
 
 
 def process_answer(question_type, answer, page_spec):
@@ -221,7 +232,6 @@ def process_block(block, dir_out, spec_out):
         page_name = generate_camel_case_from_id(block['id'])
 
         header = HEADER
-        header = header.replace("{generated}", str(datetime.datetime.now()))
         header = header.replace("{basePage}", "QuestionPage" if not multiple_choice_check else "MultipleChoiceWithOtherPage")
         header = header.replace("{basePageFile}", "question.page" if not multiple_choice_check else "multiple-choice.page")
 
@@ -263,7 +273,7 @@ def process_schema(in_schema, out_dir, spec_out):
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print("Usage: {} <schema.json> </outdir/> <spec_out>".format(sys.argv[0]))
-        print("Example: {} ./app/data/census_household.json ./tests/functional/pages/surveys/census/ ./tests/functional/spec/census-test.spec.js".format(sys.argv[0]))
+        print("Example: {} ./app/data/census_household.json ./tests/functional/pages/surveys/census/household/ ./tests/functional/spec/census-test.spec.js".format(sys.argv[0]))
         exit(1)
 
     schema_in = sys.argv[1]

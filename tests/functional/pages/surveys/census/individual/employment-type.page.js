@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class EmploymentTypePage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('employment-type')
+  }
 
   clickEmploymentTypeAnswerWorkingAsAnEmployee() {
     browser.element('[id="employment-type-answer-1"]').click()

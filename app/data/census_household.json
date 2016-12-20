@@ -1480,6 +1480,18 @@
                         },
                         {
                             "goto": {
+                                "id": "address-type",
+                                "when": [
+                                    {
+                                        "id": "another-address-answer",
+                                        "condition": "not equals",
+                                        "value": "Other"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
                                 "id": "in-education"
                             }
                         }
@@ -3903,18 +3915,6 @@
                     "routing_rules": [
                         {
                             "goto": {
-                                "id": "jobseeker",
-                                "when": [
-                                    {
-                                        "id": "employment-type-answer",
-                                        "condition": "contains",
-                                        "value": "none of the above?"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "goto": {
                                 "id": "main-job",
                                 "when": [
                                     {
@@ -4718,6 +4718,15 @@
             "id": "visitors-interstitial",
             "title": "Visitors",
             "hide_in_navigation": true,
+            "skip_condition": {
+               "when": [
+                   {
+                       "id" : "overnight-visitors-answer",
+                       "condition": "equals",
+                       "value": "0"
+                   }
+               ]
+            },
             "blocks": [
                 {
                     "type": "interstitial",

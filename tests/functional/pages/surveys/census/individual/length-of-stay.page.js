@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
 class LengthOfStayPage extends MultipleChoiceWithOtherPage {
+
+  constructor() {
+    super('length-of-stay')
+  }
 
   clickLengthOfStayAnswerLessThan6Months() {
     browser.element('[id="length-of-stay-answer-1"]').click()

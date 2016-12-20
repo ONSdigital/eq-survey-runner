@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-14 14:19:14.064568 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -30,6 +30,11 @@ class EstablishmentTypePage extends MultipleChoiceWithOtherPage {
 
   clickEstablishmentTypeAnswerOther() {
     browser.element('[id="establishment-type-answer-5"]').click()
+    return this
+  }
+
+  setEstablishmentTypeAnswerOtherText(value) {
+    browser.setValue('[id="establishment-type-answer-5-other"]', value)
     return this
   }
 

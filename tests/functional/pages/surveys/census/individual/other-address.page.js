@@ -1,6 +1,12 @@
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
+
 import QuestionPage from '../../question.page'
 
 class OtherAddressPage extends QuestionPage {
+
+  constructor() {
+    super('other-address')
+  }
 
   setOtherAddressAnswerBuilding(value) {
     browser.setValue('[name="other-address-answer-building"]', value)

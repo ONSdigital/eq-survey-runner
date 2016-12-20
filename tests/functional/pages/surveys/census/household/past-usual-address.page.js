@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-13 15:55:57.820960 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -25,6 +25,11 @@ class PastUsualAddressPage extends MultipleChoiceWithOtherPage {
 
   clickPastUsualAddressAnswerOther() {
     browser.element('[id="past-usual-address-answer-4"]').click()
+    return this
+  }
+
+  setPastUsualAddressAnswerOtherText(value) {
+    browser.setValue('[id="past-usual-address-answer-4-other"]', value)
     return this
   }
 

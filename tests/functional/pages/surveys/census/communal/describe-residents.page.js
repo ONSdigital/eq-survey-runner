@@ -1,4 +1,4 @@
-// >>> WARNING THIS PAGE WAS AUTO-GENERATED ON 2016-12-14 14:19:14.072036 - DO NOT EDIT!!! <<<
+// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
 import MultipleChoiceWithOtherPage from '../../multiple-choice.page'
 
@@ -25,6 +25,11 @@ class DescribeResidentsPage extends MultipleChoiceWithOtherPage {
 
   clickDescribeResidentsAnswerOther() {
     browser.element('[id="describe-residents-answer-4"]').click()
+    return this
+  }
+
+  setDescribeResidentsAnswerOtherText(value) {
+    browser.setValue('[id="describe-residents-answer-4-other"]', value)
     return this
   }
 

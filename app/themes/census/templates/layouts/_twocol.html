@@ -1,0 +1,17 @@
+{% extends theme('layouts/_base.html') %}
+
+{% block content %}
+
+<div class="grid grid--reverse">
+  <div class="grid__col col-4@m">
+    {% block sidebar %}{% endblock %}
+  </div>
+
+  <div class="grid__col col-7@m pull-1@m">
+    <div role="main" id="main" class="page__main">
+      {% block main %}{% endblock %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

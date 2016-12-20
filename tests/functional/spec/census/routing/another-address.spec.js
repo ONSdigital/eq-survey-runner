@@ -94,7 +94,7 @@ describe('Another address routing Scenarios', function () {
     expect(OtherAddress.isOpen()).to.equal(true, 'Expecting go to other address')
   })
 
-  it('Given I am answering question 5 in the individual detail section -Do you stay at another address for more than 30 days a year?, When I select -Yes, an address outside the UK- and enter text in other field as response, Then I am routed to 6. What is that address?', function () {
+  it('Given I am answering question 5 in the individual detail section -Do you stay at another address for more than 30 days a year?, When I select -Yes, an address outside the UK, Then I am routed to 6. What is that address?', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
     HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
@@ -122,6 +122,37 @@ describe('Another address routing Scenarios', function () {
     DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
     MaritalStatus.clickMaritalStatusAnswerMarried().submit()
     AnotherAddress.clickAnotherAddressAnswerOther().submit()
+    expect(AddressType.isOpen()).to.equal(true, 'Expecting go to address type')
+  })
+
+  it('Given I am answering question 5 in the individual detail section -Do you stay at another address for more than 30 days a year?, When I select -Yes, an address outside the UK- and enter text in other field as response, Then I am routed to 6. What is that address?', function () {
+    startCensusQuestionnaire('census_household.json', true)
+    PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+    HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
+    EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
+    OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
+    HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
+    WhoLivesHereCompleted.submit()
+
+    // household-and-accommodation
+    TypeOfAccommodation.clickTypeOfAccommodationAnswerWholeHouseOrBungalow().submit()
+    TypeOfHouse.clickTypeOfHouseAnswerSemiDetached().submit()
+    SelfContainedAccommodation.clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse().submit()
+    NumberOfBedrooms.setNumberOfBedroomsAnswer(3).submit()
+    CentralHeating.clickCentralHeatingAnswerGas().submit()
+    OwnOrRent.clickOwnOrRentAnswerOwnsOutright().submit()
+    NumberOfVehicles.setNumberOfVehiclesAnswer(2).submit()
+    HouseholdAndAccommodationCompleted.submit()
+
+    // household-member
+    HouseholdMemberBegin.submit()
+    DetailsCorrect.clickDetailsCorrectAnswerYesThisIsMyFullName().submit()
+    Over16.clickOver16AnswerYes().submit()
+    PrivateResponse.clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm().submit()
+    Sex.clickSexAnswerMale().submit()
+    DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(3).setDateOfBirthAnswerYear(1980).submit()
+    MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+    AnotherAddress.clickAnotherAddressAnswerOther().setAnotherAddressAnswerOtherText('France').submit()
     expect(AddressType.isOpen()).to.equal(true, 'Expecting go to address type')
   })
 

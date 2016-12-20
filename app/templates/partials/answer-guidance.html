@@ -1,0 +1,28 @@
+{% set guidance = {
+  "data-show-label": _("Show further guidance"),
+  "data-hide-label": _("Hide further guidance"),
+  "data-guidance": answer_guidance.id,
+  "data-guidance-label": answer_guidance.label,
+} %}
+
+{% set guidance_link = {
+  "href": "#guidance-" ~ answer_guidance.id,
+  "id": "guidance-" ~ answer_guidance.id ~ "-trigger",
+  "aria-controls": "guidance-" ~ answer_guidance.id ~ "-body",
+  "aria-expanded": 'false',
+  "data-guidance-trigger": 'true'
+} %}
+
+{% set guidance_body = {
+  "id": "guidance-" ~ answer_guidance.id ~ "-body",
+  "aria-hidden": "true"
+} %}
+
+<div class="guidance js-details" {{guidance|xmlattr}}>
+  <a class="guidance__link js-details-trigger js-details-label mars" {{guidance_link|xmlattr}}>{{_("Show further guidance")}}</a>
+  <div class="guidance__main js-details-body" {{guidance_body|xmlattr}}>
+    <div class="guidance__content mars">
+      {{answer_guidance.content|safe}}
+    </div>
+  </div>
+</div>
