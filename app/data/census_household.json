@@ -1480,6 +1480,17 @@
                         },
                         {
                             "goto": {
+                                "id": "in-education",
+                                "when": [
+                                    {
+                                        "id": "another-address-answer",
+                                        "condition": "not set"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
                                 "id": "address-type",
                                 "when": [
                                     {
