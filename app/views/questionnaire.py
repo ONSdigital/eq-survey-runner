@@ -49,6 +49,18 @@ def check_survey_state():
 @questionnaire_blueprint.after_request
 def add_cache_control(response):
     response.cache_control.no_cache = True
+
+    return response
+
+
+@questionnaire_blueprint.after_request
+def save_questionnaire_store(response):
+    if not current_user.is_anonymous:
+        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+        if questionnaire_store.has_changed():
+            questionnaire_store.save()
+
     return response
 
 
