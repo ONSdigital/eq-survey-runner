@@ -61,15 +61,17 @@
         {
             "id": "should-skip-group",
             "title": "This question may or may not be skipped",
-            "skip_condition": {
-               "when": [
-                   {
-                       "id" : "do-you-want-to-skip-answer",
-                       "condition": "equals",
-                       "value": "Yes"
-                   }
-               ]
-            },
+            "skip_condition": [
+                {
+                   "when": [
+                       {
+                           "id" : "do-you-want-to-skip-answer",
+                           "condition": "equals",
+                           "value": "Yes"
+                       }
+                   ]
+                }
+            ],
             "blocks": [
                 {
                     "type": "questionnaire",

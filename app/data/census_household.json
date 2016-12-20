@@ -4740,15 +4740,25 @@
             "id": "visitors-interstitial",
             "title": "Visitors",
             "hide_in_navigation": true,
-            "skip_condition": {
-               "when": [
-                   {
-                       "id" : "overnight-visitors-answer",
-                       "condition": "equals",
-                       "value": "0"
-                   }
-               ]
-            },
+            "skip_condition": [
+                {
+                    "when": [
+                        {
+                            "id": "overnight-visitors-answer",
+                            "condition": "equals",
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                   "when": [
+                       {
+                           "id" : "overnight-visitors-answer",
+                           "condition": "not set"
+                       }
+                   ]
+                }
+            ],
             "blocks": [
                 {
                     "type": "interstitial",
