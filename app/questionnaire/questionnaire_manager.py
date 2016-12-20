@@ -66,8 +66,6 @@ class QuestionnaireManager(object):
         if location not in questionnaire_store.completed_blocks:
             questionnaire_store.completed_blocks.append(location)
 
-        questionnaire_store.save()
-
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)
 
