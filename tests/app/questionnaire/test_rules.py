@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from app.data_model.answer_store import AnswerStore, Answer
-from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat
+from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat, evaluate_when_rules
 
 
 class TestRules(TestCase):
@@ -39,6 +39,21 @@ class TestRules(TestCase):
         }
 
         self.assertTrue(evaluate_rule(when, False))
+
+    def test_evaluate_rule_not_set_should_be_true(self):
+        when = {
+            'condition': 'not set'
+        }
+
+        self.assertTrue(evaluate_rule(when, None))
+
+    def test_evaluate_rule_not_set_should_be_false(self):
+        when = {
+            'condition': 'not set'
+        }
+
+        self.assertFalse(evaluate_rule(when, ''))
+        self.assertFalse(evaluate_rule(when, 'some text'))
 
     def test_go_to_next_question_for_answer(self):
         # Given
@@ -90,6 +105,19 @@ class TestRules(TestCase):
         answer_store.add(Answer(answer_id='my_answers', value=['answer1', 'answer2', 'answer3']))
 
         self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
+
+    def test_evaluate_not_set_when_rules_should_return_true(self):
+        when = {
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'not set'
+                }
+            ]
+        }
+        answer_store = AnswerStore()
+
+        self.assertTrue(evaluate_when_rules(when, {}, answer_store, 0))
 
     def test_go_to_next_question_for_multiple_answers(self):
         # Given
@@ -146,7 +174,7 @@ class TestRules(TestCase):
         answer_store.add(Answer(answer_id='my_answer', value='3'))
 
         # When
-        number_of_repeats = evaluate_repeat(repeat,answer_store)
+        number_of_repeats = evaluate_repeat(repeat, answer_store)
 
         self.assertEqual(number_of_repeats, 3)
 
