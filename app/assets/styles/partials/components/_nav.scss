@@ -97,9 +97,13 @@
 .nav--dark {
   .nav__link {
     color: $color-text;
+    text-decoration: underline;
     &:hover {
       color: $color-links;
       text-decoration: underline;
+    }
+    &:focus {
+      color: white;
     }
   }
 }
