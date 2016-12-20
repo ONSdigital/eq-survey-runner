@@ -101,5 +101,8 @@
       color: $color-links;
       text-decoration: underline;
     }
+    &:focus {
+      color: white;
+    }
   }
 }
