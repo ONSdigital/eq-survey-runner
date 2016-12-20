@@ -41,11 +41,14 @@ class HouseholdRelationship extends EventEmitter {
 
     let selection = this.el.querySelector('input:checked')
     if (selection) {
-      this.setRelationship(selection.value)
+      this.setRelationship(selection.id)
     }
   }
 
-  setRelationship(relationship) {
+  setRelationship(relationshipId) {
+    var label = this.el.querySelector('label[for=' + relationshipId + ']')
+    var relationship = label.innerHTML
+
     this.legend.innerHTML = relationship.toLowerCase()
     this.answered = true
   }
@@ -67,7 +70,7 @@ class HouseholdRelationship extends EventEmitter {
   }, 100, { leading: true, trailing: false })
 
   onOptionChanged = (e) => {
-    this.setRelationship(e.target.getAttribute('value'))
+    this.setRelationship(e.target.getAttribute('id'))
   }
 
   onEditBtnClick = (e) => {
