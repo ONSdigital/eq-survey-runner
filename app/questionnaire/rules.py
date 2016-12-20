@@ -5,7 +5,7 @@ def evaluate_rule(when, answer_value):
     :param answer_value:
     :return:
     """
-    match_value = when['value']
+    match_value = when['value'] if 'value' in when else None
     condition = when['condition']
 
     answer_to_test = str(answer_value) if condition in ['equals', 'not equals'] and not isinstance(answer_value, bool) else answer_value
@@ -17,6 +17,8 @@ def evaluate_rule(when, answer_value):
         return True
     elif condition == 'contains' and isinstance(answer_to_test, list) and match_value in answer_to_test:
         return True
+    elif condition == 'not set':
+        return answer_to_test is None
     return False
 
 
@@ -69,7 +71,8 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance=0):
 
             assert len(filtered) <= 1, "Condition will not met: Multiple ({:d}) answers found".format(len(filtered))
 
-            if len(filtered) == 1 and not evaluate_rule(when_rule, filtered[0]['value']):
+            answer = filtered[0]['value'] if len(filtered) == 1 else None
+            if len(filtered) == 1 and not evaluate_rule(when_rule, answer):
                 return False
             elif len(filtered) == 0:
                 return False

@@ -17,7 +17,8 @@
                     "enum": [
                         "equals",
                         "not equals",
-                        "contains"
+                        "contains",
+                        "not set"
                     ]
                 },
                 "value": {
@@ -25,8 +26,7 @@
                 }
             },
             "required": [
-                "condition",
-                "value"
+                "condition"
             ],
             "oneOf": [
                 {
