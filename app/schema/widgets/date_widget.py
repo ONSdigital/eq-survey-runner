@@ -36,7 +36,7 @@ class DateWidget(Widget):
                 'text': 'Day',
             },
             'input': {
-                'type': 'text',
+                'type': 'number',
                 'value': day,
                 'placeholder': 'DD',
                 'name': self.name + '-day',
@@ -70,7 +70,7 @@ class DateWidget(Widget):
             },
             'input': {
                 'value': year,
-                'type': 'text',
+                'type': 'number',
                 'placeholder': 'YYYY',
                 'name': self.name + '-year',
                 'id': self.name + '-year',

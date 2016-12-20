@@ -1,13 +1,16 @@
+{% set type = "text" if input.type == "number" else input.type %}
+
 {% set attr = {
   "class": "input input--" ~ input.type ~ " " ~ input.classes,
-  "type": input.type,
+  "type": type,
   "value": input.value,
   "name": input.name,
   "id": "input-" ~ input.id,
   "placeholder": input.placeholder,
   "checked": "checked" if input.checked,
   "data-qa": "input-" ~ input.type,
-  "maxlength": input.maxlength
+  "maxlength": input.maxlength,
+  "pattern": ("[0-9]*" if input.type == "number"),
 } %}
 
 <input {{attr|xmlattr}} />
