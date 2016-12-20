@@ -31,6 +31,12 @@ If using virtualenvwrapper (if not, you should be), create a new virtual env for
 mkvirtual --python=`which python3` <your env name>
 ```
 
+Install postgres using homebrew or an alternative package manager
+
+```
+brew install postgres
+```
+
 Install dependencies using pip
 
 ```
