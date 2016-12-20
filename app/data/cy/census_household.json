@@ -327,7 +327,7 @@
                                             "list": [
                                                 "Pobl sydd fel arfer yn byw yn rhywle arall yn y Deyrnas Unedig. Er enghraifft, cariad neu berthynas",
                                                 "Pobl sy’n aros yma gan mai dyma eu hail gyfeiriad, er enghraifft, oherwydd gwaith. Mae eu cyfeiriad parhaol neu gyfeiriad y teulu rywle arall",
-                                                "Pobl sy’n byw y tu allan i’r Deyrnas Unedig fel arfer, sy’n ymweld â‘r Deyrnas Unedig am lai na thri mis",
+                                                "Pobl sy’n byw y tu allan i’r Deyrnas Unedig fel arfer, sy’n ymweld â’r Deyrnas Unedig am lai na thri mis",
                                                 "Pobl sydd ar wyliau yma"
                                             ]
                                         }
@@ -2086,7 +2086,7 @@
                                             "id": "national-identity-england-answer",
                                             "label": "Dewiswch bob un sy’n berthnasol",
                                             "mandatory": false,
-                                            "guidance": "<p>Gallwch ddewis mwy nag un hunaniaeth genedlaethol.</p><p>Chi sy’n penderfynu sut i ddewis eich hunaniaeth genedlaethol neu hunaniaethau cenedlaethol. Er enghraifft, gallai ymwneud â‘r wlad neu’r gwledydd rydych yn teimlo eich bod yn perthyn iddi neu iddynt, neu’n ei hystyried neu’n eu hystyried yn gartref.</p><p>Nid yw’n ddibynnol ar eich grŵp ethnig na’ch cenedligrwydd cyfreithiol (dinasyddiaeth).</p><p>Dewiswch bob un sy’n berthnasol. Os nad yw eich hunaniaeth genedlaethol ar y rhestr, dewiswch ‘Arall’ a nodwch eich hunaniaeth genedlaethol.</p>",
+                                            "guidance": "<p>Gallwch ddewis mwy nag un hunaniaeth genedlaethol.</p><p>Chi sy’n penderfynu sut i ddewis eich hunaniaeth genedlaethol neu hunaniaethau cenedlaethol. Er enghraifft, gallai ymwneud â’r wlad neu’r gwledydd rydych yn teimlo eich bod yn perthyn iddi neu iddynt, neu’n ei hystyried neu’n eu hystyried yn gartref.</p><p>Nid yw’n ddibynnol ar eich grŵp ethnig na’ch cenedligrwydd cyfreithiol (dinasyddiaeth).</p><p>Dewiswch bob un sy’n berthnasol. Os nad yw eich hunaniaeth genedlaethol ar y rhestr, dewiswch ‘Arall’ a nodwch eich hunaniaeth genedlaethol.</p>",
                                             "options": [
                                                 {
                                                     "label": "Sais/Saesnes",
@@ -2139,7 +2139,7 @@
                                             "id": "national-identity-wales-answer",
                                             "label": "Dewiswch bob un sy’n berthnasol",
                                             "mandatory": false,
-                                            "guidance": "<p>Gallwch ddewis mwy nag un hunaniaeth genedlaethol.<p><p>Chi sy’n penderfynu sut i ddewis eich hunaniaeth genedlaethol neu hunaniaethau cenedlaethol. Er enghraifft, gallai ymwneud â‘r wlad neu’r gwledydd rydych yn teimlo eich bod yn perthyn iddi neu iddynt, neu’n ei hystyried neu’n eu hystyried yn gartref.</p><p>Nid yw’n ddibynnol ar eich grŵp ethnig na’ch cenedligrwydd cyfreithiol (dinasyddiaeth).</p><p>Dewiswch bob un sy’n berthnasol. Os nad yw eich hunaniaeth genedlaethol ar y rhestr, dewiswch ‘Arall’ a nodwch eich hunaniaeth genedlaethol.</p>",
+                                            "guidance": "<p>Gallwch ddewis mwy nag un hunaniaeth genedlaethol.<p><p>Chi sy’n penderfynu sut i ddewis eich hunaniaeth genedlaethol neu hunaniaethau cenedlaethol. Er enghraifft, gallai ymwneud â’r wlad neu’r gwledydd rydych yn teimlo eich bod yn perthyn iddi neu iddynt, neu’n ei hystyried neu’n eu hystyried yn gartref.</p><p>Nid yw’n ddibynnol ar eich grŵp ethnig na’ch cenedligrwydd cyfreithiol (dinasyddiaeth).</p><p>Dewiswch bob un sy’n berthnasol. Os nad yw eich hunaniaeth genedlaethol ar y rhestr, dewiswch ‘Arall’ a nodwch eich hunaniaeth genedlaethol.</p>",
                                             "options": [
                                                 {
                                                     "label": "Cymro/Cymraes",
@@ -4306,7 +4306,7 @@
                                             "id": "job-description-answer",
                                             "label": "Disgrifiad",
                                             "mandatory": false,
-                                            "guidance": "<p>Rhowch ddisgrifiad byr o beth ydych (oeddech) chi’n ei wneud yn eich prif swydd. Eich prif swydd yw’r swydd yr ydych (oeddech) fel arfer yn gweithio’r nifer fwyaf o oriau ynddi.</p><p>Rhowch y wybodaeth orau bosibl hyd yn oed os nad ydych yn siŵr o’r holl fanylion neu’n methu â‘u cofio.</p>",
+                                            "guidance": "<p>Rhowch ddisgrifiad byr o beth ydych (oeddech) chi’n ei wneud yn eich prif swydd. Eich prif swydd yw’r swydd yr ydych (oeddech) fel arfer yn gweithio’r nifer fwyaf o oriau ynddi.</p><p>Rhowch y wybodaeth orau bosibl hyd yn oed os nad ydych yn siŵr o’r holl fanylion neu’n methu â’u cofio.</p>",
                                             "type": "TextArea"
                                         }
                                     ]
