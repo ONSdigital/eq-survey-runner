@@ -13,31 +13,21 @@
             "dates"
         ]
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "0",
     "groups": [
         {
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "b10c8c7a-97fe-4bee-a4fb-e75f3a6f56c0",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "7352fd10-bb24-407a-9f13-23cc8b1cb51d",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "5b12aea2-ae3b-467d-9291-4d803a444d25",
                                             "label": "Period from",
@@ -53,7 +43,6 @@
                                             }
                                         },
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "ce42c1f7-a32a-46d5-8183-f54e38616617",
                                             "label": "Period to",
@@ -70,9 +59,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "e9130586-f72a-4b68-8373-885ad51d6cd5",
                                     "title": "Date range",
                                     "type": "DateRange",
@@ -81,7 +67,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "eade17ef-3ec6-46c2-afc7-dffeb07e2e5e",
                                             "label": "Date",
@@ -98,9 +83,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "9858220e-0514-4868-984f-8bb2481fde8f",
                                     "title": "Date with month and year",
                                     "type": "General",
@@ -109,7 +91,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "a51b1c7b-3f25-49dd-9275-2ea742eee510",
                                             "label": "Date",
@@ -126,9 +107,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "3b7d43d1-8e0e-499d-928e-7cd78be8525e",
                                     "title": "Single date type",
                                     "type": "General",
@@ -137,7 +115,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "98fa9cec-e0bb-471e-80e3-1ff3d9242ef8",
                                             "label": "Date",
@@ -154,9 +131,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "cb2c75b7-6a2c-4e47-9303-ff6246d8f752",
                                     "title": "Non Mandatory",
                                     "type": "General",
@@ -171,9 +145,6 @@
                     "validation": []
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "a23d36db-6b07-4ce0-94b2-a843369511e3",
             "title": "",
             "validation": []

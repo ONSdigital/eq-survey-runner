@@ -16,31 +16,21 @@
           "reasons for changes to figures"
         ]
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "1",
     "groups": [
         {
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "f11bc7dc-3940-4c7d-9d0e-faa6acb23eeb",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
                                             "label": "Period from",
@@ -56,7 +46,6 @@
                                             }
                                         },
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0",
                                             "label": "Period to",
@@ -73,9 +62,6 @@
                                         }
                                     ],
                                     "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
                                     "title": "What are the dates of the sales period you are reporting for?",
                                     "type": "DateRange",
@@ -87,9 +73,6 @@
                         },
                         {
                             "description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (\u00a3) pound</p>",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "d9d25a21-41b8-42b2-ac7b-fb21b1036d71",
                             "questions": [
                                 {
@@ -104,7 +87,6 @@
                                     ],
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "<div> <h4>Include</h4> <ul> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionery)</li> <li>soft drinks</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
                                             "id": "bb8168e6-2272-450d-b5a7-d3170508efb2",
                                             "label": "What was the value of the business's total sales of food?",
@@ -122,9 +104,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "eedb9f9f-2f2e-41f4-9186-ba7110d9e6a4",
                                     "title": "",
                                     "type": "General",
@@ -133,7 +112,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "<div> <h4>Include</h4> <ul> <li>alcoholic drink</li> <li>chocolate and sugar confectionery</li> <li>tobacco and smokers\u2019 requisites</li></ul> </div>",
                                             "id": "fee0b9fe-4c3a-4c14-9611-4fa9e2e9578a",
                                             "label": "What was the value of the business's total sales of alcohol, confectionery and tobacco?",
@@ -151,9 +129,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "5743fe04-e9a3-491f-b475-ea5be662eff3",
                                     "title": "",
                                     "type": "General",
@@ -162,7 +137,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "<div> <h4>Include</h4><ul> <li>clothing and footwear</li> <li>clothing fabrics</li> <li>haberdashery and furs</li> <li>leather and travel goods</li> <li>handbags</li> <li>umbrellas</li></ul></div>",
                                             "id": "01ac2ebf-d49d-45e8-8f7a-0f847aa7cf25",
                                             "label": "What was the value of the business's total sales of clothing and footwear?",
@@ -180,9 +154,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "475471a1-7be0-4a7a-82b3-2b803d3935ed",
                                     "title": "",
                                     "type": "General",
@@ -191,7 +162,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "<div> <h4>Include</h4><ul> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical and gas appliances, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators\u2019 and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> <li>e-cigarettes</li> </ul></div>",
                                             "id": "7605c4a9-2c3a-483c-908b-e07244105ac4",
                                             "label": "What was the value of the business's total sales of household goods?",
@@ -209,9 +179,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "656eaad2-67ed-4413-93dd-06d66c954a22",
                                     "title": "",
                                     "type": "General",
@@ -220,7 +187,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "<div> <h4>Include</h4> <ul>  <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets\u2019 requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> <li>Mobile phones</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                             "id": "5843e26e-a139-4645-baa9-51bdb0aba27b",
                                             "label": "What was the value of the business\u2019s total sales of other goods?",
@@ -238,9 +204,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "d7144593-8899-434a-8630-c622df1689b2",
                                     "title": "",
                                     "type": "General",
@@ -249,7 +212,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sale from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
                                             "id": "e81adc6d-6fb0-4155-969c-d0d646f15345",
                                             "label": "What was the value of the business\u2019s total retail turnover?",
@@ -268,9 +230,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "6c302f72-cf9d-4f42-8a35-cb258c3f807c",
                                     "title": "",
                                     "type": "General",
@@ -279,7 +238,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "<div> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
                                             "id": "4b75a6f7-9774-4b2b-82dc-976561189a99",
                                             "label": "Of your total retail turnover, how much were from internet sales?",
@@ -297,9 +255,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "c9902a3b-7dbb-48ff-8d3f-dce6fef322c7",
                                     "title": "",
                                     "type": "General",
@@ -308,7 +263,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commissions</li> </ul></div>",
                                             "id": "b2bac3ed-5504-43ef-a883-f9ca8496aca3",
                                             "label": "What was the value of the business\u2019s total sales of automotive fuel?",
@@ -326,9 +280,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "96984134-1863-4450-b314-c44cf48d2bcd",
                                     "title": "",
                                     "type": "General",
@@ -340,19 +291,11 @@
                         },
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "94546782-08a6-4213-9dc9-0780c2996896",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {
-                                                "properties": {
-                                                    "max_length": "2000"
-                                                }
-                                            },
                                             "guidance": "",
                                             "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
                                             "label": "Comments",
@@ -366,9 +309,6 @@
                                         }
                                     ],
                                     "description": "Please explain any movements in your data, for example, sale held, branches opened or sold, extreme weather, or temporary closure of shop",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
                                     "title": "",
                                     "type": "General",
@@ -384,16 +324,10 @@
                 },
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "2d24cb72-5598-4c3e-bd53-1d21bb12455f",
                     "sections": [
                         {
                             "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "c528d24b-d0dd-45cd-91af-380b61a5725d",
                             "questions": [
                                 {
@@ -418,7 +352,6 @@
                                     ],
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "cffbbca5-1162-44d8-bbfb-3bc733d80239",
                                             "label": "What was the number of male employees working more than 30 hours per week?",
@@ -436,9 +369,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "59ccb6e3-4a0a-4c32-b798-aafbf6b9e481",
                                     "title": "",
                                     "type": "General",
@@ -447,7 +377,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "c5908b75-d63d-4518-b00e-a60919aa63cd",
                                             "label": "What was the number of male employees working 30 hours or less per week?",
@@ -465,9 +394,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "fdafbc19-25b0-4985-a676-100df5bf25d3",
                                     "title": "",
                                     "type": "General",
@@ -476,7 +402,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "0ac86568-2e33-420c-9dfe-f47a95132a5a",
                                             "label": "What was the number of female employees working more than 30 hours per week?",
@@ -494,9 +419,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "e10d5a63-ac30-4031-8c71-20eb04196978",
                                     "title": "",
                                     "type": "General",
@@ -505,7 +427,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "ed675602-9696-49ba-b3b9-2ea582ffe171",
                                             "label": "What was the number of female employees working 30 hours or less per week?",
@@ -523,9 +444,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "87f52d2a-b0e4-47f2-b884-ce94df109ed9",
                                     "title": "",
                                     "type": "General",
@@ -534,7 +452,6 @@
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "42ee21a7-c050-49f7-9cdc-647596f22317",
                                             "label": "What was the total number of employees?",
@@ -553,9 +470,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "b08ffc0f-c148-462e-a988-0a8ca259436a",
                                     "title": "",
                                     "type": "General",
@@ -570,9 +484,6 @@
                     "validation": []
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "14ba4707-321d-441d-8d21-b8367366e766",
             "title": "",
             "validation": []

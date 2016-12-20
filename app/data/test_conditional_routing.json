@@ -95,7 +95,6 @@
                     "description": "",
                     "type": "General",
                     "answers": [{
-                        "display": {},
                         "id": "response-yes-number-of-cups",
                         "label": "Number of cups",
                         "mandatory": true,
@@ -129,7 +128,6 @@
                     "description": "",
                     "type": "General",
                     "answers": [{
-                        "display": {},
                         "id": "response-no-number-of-cups",
                         "label": "Number of cups",
                         "mandatory": true,

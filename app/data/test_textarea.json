@@ -11,9 +11,6 @@
         "description": "",
         "information_to_provide": []
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "0",
     "messages": {
       "INTEGER_TOO_LARGE": "Number is too large",
@@ -25,22 +22,15 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "block",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "section",
                             "questions": [
                               {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "answer",
                                             "label": "Enter your comments",
@@ -51,9 +41,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "question",
                                     "title": "",
                                     "type": "General"
@@ -68,9 +55,6 @@
                     "title": "",
                     "validation": []
                 }],
-            "display": {
-                "properties": {}
-            },
             "id": "group",
             "title": ""
         }
