@@ -10,6 +10,7 @@ const opts = {
   classItem: 'js-relationship-item',
   classLegend: 'js-relationship-legend',
   classBody: 'js-relationship-body',
+  classTrigger: 'js-relationship-trigger',
   classOpen: 'is-open',
   classClosed: 'is-closed',
   classEditBtn: 'js-relationship-editbtn'
@@ -54,14 +55,14 @@ class HouseholdRelationship extends EventEmitter {
   }
 
   onOptionSelected = debounce((e) => {
+    console.log(e)
+
     if (!this.answered) {
       this.answered = true
     }
 
-    if (e.keyCode === undefined || e.keyCode === 0) {
+    if (e.target.classList.contains(opts.classTrigger) && (e.keyCode === undefined || e.keyCode === 0)) {
       this.emit('optionSelected', this)
-    } else {
-
     }
   }, 100, { leading: true, trailing: false })
 
