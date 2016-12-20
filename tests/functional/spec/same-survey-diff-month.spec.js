@@ -61,7 +61,7 @@ describe('RSI - Multiple months of one form type being worked on at the same tim
         //Then the 1st survey shows the multiple survey page and the 2nd survey continues to works and has the correct data
         browser.switchTab()
         reportingPeriod.submit()
-        expect(multipleSurveys.isOpen()).to.be.true
+        expect(multipleSurveys.hasMultipleSurveyError()).to.equal(true, 'Should have multiple survey error message')
 
         browser.switchTab('second_survey')
 

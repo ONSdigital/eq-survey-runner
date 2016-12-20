@@ -14,6 +14,7 @@ from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
 from app.utilities.schema import get_schema
+from app.views.errors import MultipleSurveyError
 
 from flask import redirect
 from flask import request
@@ -27,7 +28,6 @@ from flask_login import login_required
 from flask_themes2 import render_theme_template
 
 from werkzeug.exceptions import NotFound
-
 
 logger = logging.getLogger(__name__)
 
@@ -43,8 +43,7 @@ def check_survey_state():
     g.schema_json, g.schema = get_schema(get_metadata(current_user))
     values = request.view_args
 
-    if not _same_survey(values['eq_id'], values['form_type'], values['collection_id']):
-        return redirect(url_for('main.information', message_identifier='multiple-surveys'))
+    _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
 
 
 @questionnaire_blueprint.after_request
@@ -188,9 +187,6 @@ def get_confirmation(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
 @login_required
 def get_thank_you(eq_id, form_type, collection_id):
-    if not _same_survey(eq_id, form_type, collection_id):
-        return redirect("/information/multiple-surveys")
-
     thank_you_page = _render_template(get_questionnaire_manager(g.schema, g.schema_json).state, block_id='thank-you')
     # Delete user data on request of thank you page.
     _delete_user_data()
@@ -305,11 +301,12 @@ def interstitial_url(eq_id, form_type, collection_id, block_id):
                        collection_id=collection_id)
 
 
-def _same_survey(eq_id, form_type, collection_id):
+def _check_same_survey(eq_id, form_type, collection_id):
     metadata = get_metadata(current_user)
     current_survey = eq_id + form_type + collection_id
     metadata_survey = metadata["eq_id"] + metadata["form_type"] + metadata["collection_exercise_sid"]
-    return current_survey == metadata_survey
+    if current_survey != metadata_survey:
+        raise MultipleSurveyError
 
 
 def _render_template(context, current_location=None, block_id=None, template=None):

@@ -1,7 +1,6 @@
 import logging
 
 from app.authentication.authenticator import Authenticator
-from app.frontend_messages import get_messages
 
 from app.globals import get_answer_store, get_completed_blocks, get_metadata
 from app.questionnaire.navigator import Navigator
@@ -12,8 +11,6 @@ from flask import request
 from flask import session
 from flask import Blueprint
 
-from flask.ext.themes2 import render_theme_template
-
 from flask_login import current_user
 
 from werkzeug.exceptions import NotFound
@@ -21,31 +18,16 @@ from werkzeug.exceptions import NotFound
 logger = logging.getLogger(__name__)
 
 
-main_blueprint = Blueprint('main', __name__)
+session_blueprint = Blueprint('session', __name__)
 
 
-@main_blueprint.after_request
+@session_blueprint.after_request
 def add_cache_control(response):
     response.cache_control.no_cache = True
     return response
 
 
-@main_blueprint.route('/', methods=['GET'])
-def root():
-    raise NotFound
-
-
-@main_blueprint.route('/information/<message_identifier>', methods=['GET'])
-def information(message_identifier):
-    front_end_message = get_messages(message_identifier)
-    if front_end_message:
-        logger.debug(front_end_message)
-        return render_theme_template('default', 'information.html',
-                                     messages=front_end_message)
-    raise NotFound
-
-
-@main_blueprint.route('/session', methods=['GET'])
+@session_blueprint.route('/session', methods=['GET'])
 def login():
     """
     Initial url processing - expects a token parameter and then will authenticate this token. Once authenticated
