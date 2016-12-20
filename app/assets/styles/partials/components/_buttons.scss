@@ -61,7 +61,10 @@
 
 .btn--lg {
   font-weight: $font-weight-semibold;
-  padding: 0.9rem 5rem;
+  padding: 0.9rem 1rem;
+  @include mq(s) {
+    padding: 0.9rem 5rem;
+  }
 }
 
 .btn--link {
