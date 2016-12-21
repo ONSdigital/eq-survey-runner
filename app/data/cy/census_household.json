@@ -4215,6 +4215,17 @@
                         },
                         {
                             "goto": {
+                                "id": "confirmation",
+                                "when": [
+                                    {
+                                        "id": "ever-worked-answer",
+                                        "condition": "not set"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
                                 "id": "main-job"
                             }
                         }

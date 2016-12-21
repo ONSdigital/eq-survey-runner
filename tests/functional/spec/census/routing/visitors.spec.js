@@ -2,6 +2,7 @@ import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 import {completeHouseholdAndAccommodation, completeVisitorSection, completeHouseholdAndAccommodationNoOneAtAddress} from '../complete-section'
 
+import Navigation from '../../../pages/surveys/census/household/navigation.js'
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
 import ElsePermanentOrFamilyHome from '../../../pages/surveys/census/household/else-permanent-or-family-home.page.js'
 import HouseholdComposition from '../../../pages/surveys/census/household/household-composition.page.js'
@@ -82,6 +83,7 @@ import ThankYou from '../../../pages/thank-you.page'
 
 const expect = chai.expect
 
+
 describe('Visitors routing', function () {
 
     it('Given I have two visitors, When I complete the visitor details for person one, Then I should be asked visitor details for person two.', function () {
@@ -116,6 +118,19 @@ describe('Visitors routing', function () {
 
         // Then
         expect(Confirmation.isOpen()).to.equal(true, 'Expected to skip visitor questions')
+    })
+
+    it('Given I skip to the household and accommodation section, When I complete the section, Then I should the who lives here section.', function () {
+        // Given
+        startCensusQuestionnaire('census_household.json')
+        Navigation.navigateToHouseholdAndAccommodation()
+
+
+        // When
+        completeHouseholdAndAccommodationNoOneAtAddress()
+
+        // Then
+        expect(PermanentOrFamilyHome.isOpen()).to.equal(true, 'Expected to route to who lives here section')
     })
 
 })
