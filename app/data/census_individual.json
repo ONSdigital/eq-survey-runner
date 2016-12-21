@@ -3214,7 +3214,7 @@
                         {
                             "title": "You’re ready to submit your 2017 Census Test",
                             "id": "questionnaire-completed-section",
-                            "description": "<p><strong>Thank you for taking part in the 2017 Census Test</strong></p>",
+                            "description": "<p>Thank you for taking part in the 2017 Census Test.</p>",
                             "questions": [
                                 {
                                     "answers": [],
@@ -3225,9 +3225,9 @@
                                         {
                                              "title": "Please note:",
                                              "list": [
-                                                 "By submitting your responses you are declaring that you have completed to the best of your knowledge and belief.",
-                                                 "If you do not submit your questionnaire, your responses will be automatically submitted when the online questionnaire closes.",
-                                                 "After submission of your questionnaire you will have an opportunity to provide feedback on your experience."
+                                                 "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                                                 "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
+                                                 "After submission you will have an opportunity to provide feedback on your experience."
                                              ]
                                         }
                                     ]
