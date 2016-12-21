@@ -2964,6 +2964,17 @@
                         },
                         {
                             "goto": {
+                                "id": "household-member-completed",
+                                "when": [
+                                    {
+                                        "id": "ever-worked-answer",
+                                        "condition": "not set"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
                                 "id": "main-job"
                             }
                         }
