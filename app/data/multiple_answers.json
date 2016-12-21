@@ -13,9 +13,6 @@
           "Personal details"
         ]
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "1",
     "groups": [
         {
@@ -23,21 +20,14 @@
 
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "personal_details_block",
                     "sections": [
                         {
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "personal_details_section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "first_name_answer",
                                             "label": "What is your first name",
@@ -49,7 +39,6 @@
                                               }
                                         },
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "surname_answer",
                                             "label": "What is your surname",
@@ -62,9 +51,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "personal_details_question",
                                     "title": "Tell me about yourself",
                                     "description" : "Answer the question with multiple answers",
@@ -80,9 +66,6 @@
                     "validation": []
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "multiple_questions_group",
             "title": "",
             "validation": []

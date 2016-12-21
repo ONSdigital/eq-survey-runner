@@ -93,7 +93,6 @@
                                     "type": "General",
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "should-skip-answer",
                                             "label": "Why didn't you skip the group?",
@@ -133,7 +132,6 @@
                                     "type": "General",
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "last-group-answer",
                                             "label": "This group is required as a skipped group can't be the last group",
