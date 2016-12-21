@@ -4,7 +4,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "census",
-    "title": "Census England Household Schema",
+    "title": "Prawf Cyfrifiad 2017",
     "description": "Census England Household Schema",
     "theme": "census",
     "navigation": true,
@@ -4215,7 +4215,7 @@
                         },
                         {
                             "goto": {
-                                "id": "confirmation",
+                                "id": "household-member-completed",
                                 "when": [
                                     {
                                         "id": "ever-worked-answer",
@@ -4744,15 +4744,25 @@
             "id": "visitors-interstitial",
             "title": "Ymwelwyr",
             "hide_in_navigation": true,
-            "skip_condition": {
-                "when": [
-                    {
-                        "id": "overnight-visitors-answer",
-                        "condition": "equals",
-                        "value": "0"
-                    }
-                ]
-            },
+            "skip_condition": [
+                {
+                    "when": [
+                        {
+                            "id": "overnight-visitors-answer",
+                            "condition": "equals",
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "when": [
+                        {
+                            "id": "overnight-visitors-answer",
+                            "condition": "not set"
+                        }
+                    ]
+                }
+            ],
             "blocks": [
                 {
                     "type": "interstitial",

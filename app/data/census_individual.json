@@ -4,7 +4,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "census",
-    "title": "Census England Individual Schema",
+    "title": "2017 Census Test",
     "description": "Census England Individual Schema",
     "theme": "census",
     "eq_id": "census",
