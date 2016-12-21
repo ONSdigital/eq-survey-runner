@@ -34,6 +34,10 @@ export const paths = {
     input: appPath + '/img/**.{svg,png,jpg,jpeg,gif,ico}',
     output: distPath + '/img/'
   },
+  fonts: {
+    input: appPath + '/fonts/**/*.{ttf,woff,woff2}',
+    output: distPath + '/fonts/'
+  },
   webfonts: {
     input: appPath + '/webfonts/**.{svg,woff,woff2,eot,ttf}',
     output: distPath + '/webfonts/'

@@ -59,7 +59,7 @@
   background-color: $color-lighter-grey;
   display: flex;
   padding: 0.5rem;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-bold;
   @include mq(s) {
     padding: 1rem;
   }
