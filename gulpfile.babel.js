@@ -149,6 +149,7 @@ gulp.task('watch', [
   'build:styles',
   'build:images',
   'watch:scripts',
+  'build:fonts',
   'listen'
 ])
 
