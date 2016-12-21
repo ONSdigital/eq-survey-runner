@@ -55,13 +55,34 @@ def evaluate_repeat(repeat_rule, answer_store):
         return repeat_function(filtered)
 
 
-def evaluate_when_rules(when_rules, metadata, answer_store, group_instance=0):
+def evaluate_skip_condition(skip_condition, metadata, answer_store, group_instance=0):
+    """
+    Determine whether a skip condition will be satisfied based on a given answer
+    :param skip_condition: skip_condition rule to evaluate
+    :param metadata: metadata for evaluating rules with metadata conditions
+    :param answer_store: store of answers to evaluate
+    :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
+    :return: True if the when condition has been met otherwise False
+    """
+
+    no_skip_condition = skip_condition is None or len(skip_condition) == 0
+    if no_skip_condition:
+        return False
+
+    for when in skip_condition:
+        condition = evaluate_when_rules(when['when'], metadata, answer_store, group_instance)
+        if condition is True:
+            return True
+    return False
+
+
+def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
     """
     Whether the skip condition has been met.
     :param when_rules: when rules to evaluate
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
-    :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
+    :param group_instance: when evaluating a when rule for a repeating group
     :return: True if the when condition has been met otherwise False
     """
     for when_rule in when_rules:
@@ -72,9 +93,7 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance=0):
             assert len(filtered) <= 1, "Condition will not met: Multiple ({:d}) answers found".format(len(filtered))
 
             answer = filtered[0]['value'] if len(filtered) == 1 else None
-            if len(filtered) == 1 and not evaluate_rule(when_rule, answer):
-                return False
-            elif len(filtered) == 0:
+            if not evaluate_rule(when_rule, answer):
                 return False
 
         elif 'meta' in when_rule:

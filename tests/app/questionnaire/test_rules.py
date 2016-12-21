@@ -1,7 +1,8 @@
 from unittest import TestCase
 
 from app.data_model.answer_store import AnswerStore, Answer
-from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat, evaluate_when_rules
+from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat, evaluate_skip_condition, \
+    evaluate_when_rules
 
 
 class TestRules(TestCase):
@@ -106,6 +107,134 @@ class TestRules(TestCase):
 
         self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
 
+    def test_evaluate_skip_condition_returns_true_when_this_rule_true(self):
+        # Given
+        skip_condition = [{
+                'when': [
+                    {
+                        'id': 'this',
+                        'condition': 'equals',
+                        'value': 'value'
+                    }
+                ]
+            },
+            {
+                'when': [
+                    {
+                        'id': 'that',
+                        'condition': 'equals',
+                        'value': 'other value'
+                    }
+                ]
+            }
+        ]
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='this', value='value'))
+
+        # When
+        condition = evaluate_skip_condition(skip_condition, {}, answer_store)
+
+        # Given
+        self.assertTrue(condition)
+
+    def test_evaluate_skip_condition_returns_true_when_that_rule_true(self):
+
+        skip_condition = [{
+                'when': [
+                    {
+                        'id': 'this',
+                        'condition': 'equals',
+                        'value': 'value'
+                    }
+                ]
+            },
+            {
+                'when': [
+                    {
+                        'id': 'that',
+                        'condition': 'equals',
+                        'value': 'other value'
+                    }
+                ]
+            }
+        ]
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='that', value='other value'))
+
+        self.assertTrue(evaluate_skip_condition(skip_condition, {}, answer_store))
+
+    def test_evaluate_skip_condition_returns_true_when_more_than_one_rule_is_true(self):
+        # Given
+        skip_condition = [{
+                'when': [
+                    {
+                        'id': 'this',
+                        'condition': 'equals',
+                        'value': 'value'
+                    }
+                ]
+            },
+            {
+                'when': [
+                    {
+                        'id': 'that',
+                        'condition': 'equals',
+                        'value': 'other value'
+                    }
+                ]
+            }
+        ]
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='this', value='value'))
+        answer_store.add(Answer(answer_id='that', value='other value'))
+
+        # When
+        condition = evaluate_skip_condition(skip_condition, {}, answer_store)
+
+        # Then
+        self.assertTrue(condition)
+
+    def test_evaluate_skip_condition_returns_false_when_both_or_rules_false(self):
+        # Given
+        skip_condition = [{
+                'when': [
+                    {
+                        'id': 'this',
+                        'condition': 'equals',
+                        'value': 'value'
+                    }
+                ]
+            },
+            {
+                'when': [
+                    {
+                        'id': 'that',
+                        'condition': 'equals',
+                        'value': 'other value'
+                    }
+                ]
+            }
+        ]
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='this', value='not correct'))
+        answer_store.add(Answer(answer_id='that', value='not correct'))
+
+        # When
+        condition = evaluate_skip_condition(skip_condition, {}, answer_store)
+
+        # Then
+        self.assertFalse(condition)
+
+    def test_evaluate_skip_condition_returns_false_when_no_skip_condition(self):
+        # Given
+        skip_condition = None
+
+        # When
+        condition = evaluate_skip_condition(skip_condition, {}, AnswerStore())
+
+        # Then
+        self.assertFalse(condition)
+
     def test_evaluate_not_set_when_rules_should_return_true(self):
         when = {
             'when': [
@@ -163,6 +292,60 @@ class TestRules(TestCase):
         answer_store.add(Answer(answer_id='my_answer', value='No'))
 
         self.assertFalse(evaluate_goto(goto_rule, {}, answer_store, 0))
+
+    def test_should_go_to_next_question_when_condition_is_meta_and_answer_type(self):
+        # Given
+        goto_rule = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answer',
+                    'condition': 'equals',
+                    'value': 'Yes'
+                },
+                {
+                    'condition': 'equals',
+                    'meta': 'sexual_identity',
+                    'value': True
+                }
+            ]
+        }
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
+        metadata = {'sexual_identity': True}
+
+        # When
+        goto = evaluate_goto(goto_rule, metadata, answer_store, 0)
+
+        # Then
+        self.assertTrue(goto)
+
+    def test_should_not_go_to_next_question_when_second_condition_fails(self):
+        # Given
+        goto_rule = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answer',
+                    'condition': 'equals',
+                    'value': 'Yes'
+                },
+                {
+                    'condition': 'equals',
+                    'meta': 'sexual_identity',
+                    'value': False
+                }
+            ]
+        }
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='my_answer', value='Yes'))
+        metadata = {'sexual_identity': True}
+
+        # When
+        goto = evaluate_goto(goto_rule, metadata, answer_store, 0)
+
+        # Then
+        self.assertFalse(goto)
 
     def test_should_repeat_for_answer_answer_value(self):
         # Given

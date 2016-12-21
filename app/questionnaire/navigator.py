@@ -4,7 +4,8 @@ from collections import defaultdict
 
 from app.data_model.answer_store import AnswerStore
 from app.helpers.schema_helper import SchemaHelper
-from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_when_rules, is_goto_rule
+from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_skip_condition, is_goto_rule
+
 
 logger = logging.getLogger(__name__)
 
@@ -192,7 +193,7 @@ class Navigator:
 
         for group_index, group in enumerate(SchemaHelper.get_groups(self.survey_json)):
             if 'skip_condition' in group:
-                skip = evaluate_when_rules(group['skip_condition']['when'], self.metadata, self.answer_store)
+                skip = evaluate_skip_condition(group['skip_condition'], self.metadata, self.answer_store)
                 if skip:
                     continue
 
