@@ -3213,7 +3213,7 @@
                         {
                             "title": "Rydych yn barod i gyflwyno Prawf Cyfrifiad 2017",
                             "id": "questionnaire-completed-section",
-                            "description": "<p><strong>Diolch am gymryd rhan ym Mhrawf Cyfrifiad 2017</strong></p>",
+                            "description": "<p>Diolch am gymryd rhan ym Mhrawf Cyfrifiad 2017.</p>",
                             "questions": [
                                 {
                                     "answers": [],
@@ -3225,8 +3225,8 @@
                                             "title": "Nodwch:",
                                             "list": [
                                                 "Drwy gyflwyno’ch ymatebion, rydych yn datgan eich bod wedi cwblhau’r prawf hyd eithaf eich gwybodaeth a’ch cred.",
-                                                "Os na fyddwch yn cyflwyno’ch holiadur, bydd eich ymatebion yn cael eu cyflwyno’n awtomatig pan fydd yr holiadur ar-lein yn cau.",
-                                                "Ar ôl cyflwyno eich holiadur cewch gyfle i roi adborth ar eich profiad."
+                                                "Os na fyddwch yn cyflwyno’ch ymatebion, byddant yn cael eu cyflwyno’n awtomatig pan fydd Prawf Cyfrifiad 2017 yn cau.",
+                                                "Ar ôl eu cyflwyno cewch gyfle i roi adborth ar eich profiad."
                                             ]
                                         }
                                     ]
