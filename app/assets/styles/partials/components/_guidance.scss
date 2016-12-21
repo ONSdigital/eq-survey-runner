@@ -55,6 +55,7 @@
   opacity: 0;
   transition: all 0;
   max-height: 0;
+  margin-left: 0.5rem;
   .no-js &,
   .is-expanded & {
     max-height: 10000em;
