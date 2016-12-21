@@ -53,14 +53,10 @@ def load_schema_file(schema_file, language_code='en'):
 
 
 def available_schemas():
-    return sorted(available_local_schemas())
-
-
-def available_local_schemas():
     files = []
     for file in os.listdir(settings.EQ_SCHEMA_DIRECTORY):
         if os.path.isfile(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file)):
             # ignore hidden file
             if file.endswith(".json"):
                 files.append(file)
-    return files
+    return sorted(files)
