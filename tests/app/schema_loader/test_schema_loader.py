@@ -1,16 +1,9 @@
 import unittest
 
 from app.schema_loader.schema_loader import load_schema
-from app import settings
 
 
 class SchemaLoaderTest(unittest.TestCase):
-
-    def setUp(self):
-        self.original_bucket = settings.EQ_SCHEMA_BUCKET
-
-    def tearDown(self):
-        settings.EQ_SCHEMA_BUCKET = self.original_bucket
 
     def test_load_schema(self):
         self.assertIsNotNone(load_schema("1", "0203"))
