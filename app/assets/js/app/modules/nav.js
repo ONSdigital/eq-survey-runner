@@ -5,8 +5,9 @@ const classOpen = 'has-nav-open'
 
 domready(() => {
   const btn = document.querySelector('.js-menu-btn')
+  const nav = document.querySelector('.js-nav')
 
-  if (!btn) return false
+  if (!btn || !nav) return false
 
   const openLabel = btn.innerHTML
   const closeLabel = btn.getAttribute('data-close-label')
