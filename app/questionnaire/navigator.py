@@ -158,7 +158,6 @@ class Navigator:
         routing_path = self.get_routing_path(group_id, group_instance)
         can_reach_summary = self.can_reach_summary(routing_path)
 
-        # Make sure we don't update original
         location_path = [Location(group_id, 0, block_id) for block_id in self.preceeding_path]
 
         location_path += routing_path
@@ -234,7 +233,7 @@ class Navigator:
         """
         location_path = self.get_location_path()
         if completed_blocks:
-            incomplete_blocks = [item for item in location_path if item.__dict__ not in completed_blocks]
+            incomplete_blocks = [item for item in location_path if item not in completed_blocks]
 
             if incomplete_blocks:
                 return incomplete_blocks[0]
@@ -283,8 +282,8 @@ class Navigator:
                 navigation.append({
                     'link_name': link_names.get(i),
                     'link_url': Location(group['id'], i, group['blocks'][0]['id']).url(self.metadata),
-                    'completed': any(item for item in completed_blocks if item['group_instance'] == i and
-                                     item["block_id"] == completed_id),
+                    'completed': any(item for item in completed_blocks if item.group_instance == i and
+                                     item.block_id == completed_id),
                     'highlight': group['id'] == current_group_id and i == current_group_instance,
                     'repeating': True
                 })
@@ -293,7 +292,7 @@ class Navigator:
         navigation.append({
             'link_name': group['title'],
             'link_url': Location(group['id'], 0, group['blocks'][0]['id']).url(self.metadata),
-            'completed': any(item for item in completed_blocks if item["block_id"] == completed_id),
+            'completed': any(item for item in completed_blocks if item.block_id == completed_id),
             'highlight': (group['id'] != current_group_id and current_group_id in group['highlight_when']
                           if 'highlight_when' in group else False) or group['id'] == current_group_id,
             'repeating': False,

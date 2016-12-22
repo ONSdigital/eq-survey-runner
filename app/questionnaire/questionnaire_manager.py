@@ -63,8 +63,8 @@ class QuestionnaireManager(object):
         for answer in self.get_state_answers(location.block_id):
             questionnaire_store.answer_store.add_or_update(answer.flatten())
 
-        if location.__dict__ not in questionnaire_store.completed_blocks:
-            questionnaire_store.completed_blocks.append(location.__dict__)
+        if location not in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.append(location)
 
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)

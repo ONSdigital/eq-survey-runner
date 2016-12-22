@@ -266,7 +266,7 @@ def _remove_repeating_on_household_answers(answer_store, group_id):
         for group in groups_to_delete:
             answer_store.remove(group_id=group['id'])
             questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if
-                                                       b.get('group_id') != group['id']]
+                                                       b.group_id != group['id']]
 
 
 def _delete_user_data():

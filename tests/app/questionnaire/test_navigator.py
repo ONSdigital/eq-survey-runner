@@ -869,27 +869,12 @@ class TestNavigator(unittest.TestCase):
         }
 
         navigator = Navigator(survey, metadata)
+
         completed_blocks = [
-            {
-                'group_instance': 0,
-                'block_id': 'introduction',
-                'group_id': 'property-details'
-            },
-            {
-                'group_instance': 0,
-                'block_id': 'insurance-type',
-                'group_id': 'property-details'
-            },
-            {
-                'group_instance': 0,
-                'block_id': 'insurance-address',
-                'group_id': 'property-details'
-            },
-            {
-                'group_instance': 0,
-                'block_id': 'property-interstitial',
-                'group_id': 'property-details'
-            }
+            Location('property-details', 0, 'introduction'),
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial')
         ]
 
         user_navigation = [
@@ -1061,38 +1046,16 @@ class TestNavigator(unittest.TestCase):
                 'block_id': 'repeating-block-2'
             }
         ]
+
         completed_blocks = [
-            {
-                'group_instance': 0,
-                'group_id': 'property-details',
-                'block_id': 'introduction'
-            },
-            {
-                'group_instance': 0,
-                'group_id': 'multiple-questions-group',
-                'block_id': 'household-composition'
-            },
-            {
-                'group_instance': 0,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-1'
-            },
-            {
-                'group_instance': 0,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-2'
-            },
-            {
-                'group_instance': 1,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-1'
-            },
-            {
-                'group_instance': 1,
-                'group_id': 'repeating-group',
-                'block_id': 'repeating-block-2'
-            }
+            Location('property-details', 0, 'introduction'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('repeating-group', 1, 'repeating-block-1'),
+            Location('repeating-group', 1, 'repeating-block-2')
         ]
+
         user_navigation = [
             {
                 'link_name': 'Property Details',
@@ -1183,36 +1146,12 @@ class TestNavigator(unittest.TestCase):
         ]
 
         completed_blocks = [
-            {
-                'block_id': 'introduction',
-                'group_instance': 0,
-                'group_id': 'property-details'
-            },
-            {
-                'block_id': 'insurance-type',
-                'group_instance': 0,
-                'group_id': 'property-details'
-            },
-            {
-                'block_id': 'cd6a5727-8cab-4737-aa4e-d666d98b3f92',
-                'group_instance': 0,
-                'group_id': 'property-details'
-            },
-            {
-                'block_id': 'personal-interstitial',
-                'group_instance': 0,
-                'group_id': 'property-details'
-            },
-            {
-                'block_id': 'extra-cover-block',
-                'group_instance': 0,
-                'group_id': 'extra-cover'
-            },
-            {
-                'block_id': 'ea651fa7-6b9d-4b6f-ba72-79133f312039',
-                'group_instance': 0,
-                'group_id': 'extra-cover'
-            }
+            Location('property-details', 0, 'introduction'),
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'cd6a5727-8cab-4737-aa4e-d666d98b3f92'),
+            Location('property-details', 0, 'personal-interstitial'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'ea651fa7-6b9d-4b6f-ba72-79133f312039'),
         ]
 
         user_navigation = [
@@ -1312,32 +1251,13 @@ class TestNavigator(unittest.TestCase):
         ]
 
         completed_blocks = [
-            {
-                'block_id': 'introduction',
-                'group_id': 'property-details',
-                'group_instance': 0
-            },
-            {
-                'block_id': 'extra-cover-block',
-                'group_instance': 0,
-                'group_id': 'extra-cover'
-            },
-            {
-                'group_id': 'extra-cover',
-                'group_instance': 0,
-                'block_id': 'extra-cover-interstitial'
-            },
-            {
-                'block_id': 'extra-cover-items',
-                'group_instance': 0,
-                'group_id': 'extra-cover-items-group'
-            },
-            {
-                'group_id': 'extra-cover-items-group',
-                'group_instance': 1,
-                'block_id': 'extra-cover-items'
-            }
+            Location('property-details', 0, 'introduction'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+            Location('extra-cover-items-group', 1, 'extra-cover-items'),
         ]
+
         user_navigation = [
             {
                 'repeating': False,
@@ -1445,16 +1365,8 @@ class TestNavigator(unittest.TestCase):
         ]
 
         completed_blocks = [
-            {
-                'group_instance': 0,
-                'group_id': 'multiple-questions-group',
-                'block_id': 'introduction'
-            },
-            {
-                'group_instance': 0,
-                'group_id': 'multiple-questions-group',
-                'block_id': 'household-composition'
-            }
+            Location('multiple-questions-group', 0, 'introduction'),
+            Location('multiple-questions-group', 0, 'household-composition'),
         ]
 
         user_navigation = [
