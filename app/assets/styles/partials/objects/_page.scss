@@ -14,13 +14,8 @@
 }
 
 .page__subheader {
-  height: 3rem;
+  padding: 0.5rem 0;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  @include mq(m) {
-    height: 3rem;
-  }
   &:empty {
     height: 1rem;
   }
@@ -36,13 +31,17 @@
 
 .page__previous {
   float: left;
-  font-size: 1rem;
+  font-size: 0.8rem;
   @include mq(m) {
     font-size: 1rem;
   }
   .has-nav-open & {
     display: none;
   }
+}
+
+.page__previous--bottom {
+  float: none;
 }
 
 .page__content {
@@ -54,8 +53,8 @@
 .page__nav {
   margin: 1rem 0;
   position: absolute;
-  right: -65vw;
-  width: 60vw;
+  right: -13rem;
+  width: 12rem;
   display: none;
   .has-nav-open & {
     display: block;
@@ -71,7 +70,7 @@
 .page__container {
   transition: transform 200ms ease-out;
   .has-nav-open & {
-    transform: translateX(-60vw);
+    transform: translateX(-12rem);
   }
 }
 
@@ -82,4 +81,12 @@
     opacity: 0.2;
     pointer-events: none;
   }
+}
+
+.page__prefooter {
+  clear: both;
+}
+
+.page__footer {
+  clear: both;
 }

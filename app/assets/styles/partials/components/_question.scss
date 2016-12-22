@@ -67,12 +67,13 @@
 
 .question__answer {
   margin: 0 0 1rem;
-  transition: opacity 300ms ease-in-out, transform 100ms ease-out;
+  transition: opacity 300ms ease-in-out;
   opacity: 1;
   &.is-hidden {
     opacity: 0;
   }
   &.is-removed {
+    transition-duration: 500ms;
     opacity: 0.5;
   }
   &:last-of-type {

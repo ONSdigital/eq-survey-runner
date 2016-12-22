@@ -3,6 +3,7 @@
 }
 
 .relationship__title {
+  width: 100%; // IE10 fix
   padding-right: 2rem;
   line-height: 1.2;
 }

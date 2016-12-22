@@ -58,8 +58,6 @@ class HouseholdRelationship extends EventEmitter {
   }
 
   onOptionSelected = debounce((e) => {
-    console.log(e)
-
     if (!this.answered) {
       this.answered = true
     }
