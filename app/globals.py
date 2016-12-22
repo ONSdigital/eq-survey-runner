@@ -1,6 +1,7 @@
 import logging
 
 from app.data_model.questionnaire_store import QuestionnaireStore
+from app.storage.storage_factory import get_storage
 
 from flask import g
 
@@ -11,10 +12,8 @@ def get_questionnaire_store(user_id, user_ik):
     # Sets up a single QuestionnaireStore instance throughout app.
     store = g.get('_questionnaire_store')
     if store is None:
-        try:
-            store = g._questionnaire_store = QuestionnaireStore(user_id, user_ik)
-        except ValueError as e:
-            logger.error("questionnaire_store failed to init", exception=repr(e))
+        storage = get_storage(user_id, user_ik)
+        store = g._questionnaire_store = QuestionnaireStore(storage)
 
     return store
 

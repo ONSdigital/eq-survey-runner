@@ -4,7 +4,7 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
-from app.authentication.session_manager import session_manager
+from app.authentication.session_storage import session_storage
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_questionnaire_store
@@ -24,8 +24,8 @@ class Authenticator(object):
         :return: A user object if a JWT token is available in the session
         """
         logger.debug("Checking for session")
-        if session_manager.has_user_id():
-            user = User(session_manager.get_user_id(), session_manager.get_user_ik())
+        if session_storage.has_user_id():
+            user = User(session_storage.get_user_id(), session_storage.get_user_ik())
             questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
             metadata = questionnaire_store.metadata
 
@@ -42,7 +42,7 @@ class Authenticator(object):
         :param request: The flask request
         """
         # clear the session entry in the database
-        session_manager.clear()
+        session_storage.clear()
         # also clear the secure cookie data
         session.clear()
 
@@ -59,16 +59,16 @@ class Authenticator(object):
         user_ik = UserIDGenerator.generate_ik(token)
 
         # store the user id in the session
-        session_manager.store_user_id(user_id)
+        session_storage.store_user_id(user_id)
         # store the user ik in the cookie
-        session_manager.store_user_ik(user_ik)
+        session_storage.store_user_ik(user_ik)
 
         # store the meta data
         metadata = parse_metadata(token)
 
         questionnaire_store = get_questionnaire_store(user_id, user_ik)
         questionnaire_store.metadata = metadata
-        questionnaire_store.save()
+        questionnaire_store.add_or_update()
 
         logger.info("User authenticated with tx_id=%s", metadata["tx_id"])
 

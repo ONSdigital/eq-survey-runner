@@ -1,10 +1,18 @@
-from app.storage.encrypted_storage import EncryptedStorage, generate_key
+from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage, generate_key
 
 
 import unittest
 
 
-class TestEncryptedStorage(unittest.TestCase):
+class TestEncryptedQuestionnaireStorage(unittest.TestCase):
+
+    def test_encrypted_storage_requires_user_id(self):
+        with self.assertRaises(ValueError):
+            EncryptedQuestionnaireStorage(None, "key")
+
+    def test_encrypted_storage_requires_user_ik(self):
+        with self.assertRaises(ValueError):
+            EncryptedQuestionnaireStorage("1", None)
 
     def test_generate_cek(self):
         cek1 = generate_key("user1", "user_ik_1")
@@ -36,13 +44,13 @@ class TestEncryptedStorage(unittest.TestCase):
         self.assertNotEquals(cek1, cek2)
 
     def test_store_and_get(self):
-        encrypted = EncryptedStorage()
         user_id = '1'
         user_ik = '2'
+        encrypted = EncryptedQuestionnaireStorage(user_id, user_ik)
         data = "test"
-        encrypted.store(data, user_id, user_ik)
+        encrypted.add_or_update(data)
         # check we can decrypt the data
-        self.assertEquals(data, encrypted.get(user_id, user_ik))
+        self.assertEquals("test", encrypted.get_user_data())
 
 if __name__ == '__main__':
     unittest.main()

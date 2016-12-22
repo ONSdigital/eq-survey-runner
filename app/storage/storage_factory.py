@@ -1,18 +1,14 @@
 import logging
 
 from app import settings
-from app.storage.database_storage import DatabaseStorage
-from app.storage.encrypted_storage import EncryptedStorage
+from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
+from app.storage.questionnaire_storage import QuestionnaireStorage
 
 logger = logging.getLogger(__name__)
 
 
-def get_storage():
-    logger.debug("Using server side storage %s ", settings.EQ_SERVER_SIDE_STORAGE_TYPE)
-    storage = DatabaseStorage()
-
+def get_storage(user_id, user_ik):
     if settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION:
-        # wrap the storage in an encrypted decorator
-        return EncryptedStorage()
-
-    return storage
+        return EncryptedQuestionnaireStorage(user_id, user_ik)
+    else:
+        return QuestionnaireStorage(user_id)
