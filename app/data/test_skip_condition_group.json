@@ -61,15 +61,17 @@
         {
             "id": "should-skip-group",
             "title": "This question may or may not be skipped",
-            "skip_condition": {
-               "when": [
-                   {
-                       "id" : "do-you-want-to-skip-answer",
-                       "condition": "equals",
-                       "value": "Yes"
-                   }
-               ]
-            },
+            "skip_condition": [
+                {
+                   "when": [
+                       {
+                           "id" : "do-you-want-to-skip-answer",
+                           "condition": "equals",
+                           "value": "Yes"
+                       }
+                   ]
+                }
+            ],
             "blocks": [
                 {
                     "type": "questionnaire",
@@ -91,7 +93,6 @@
                                     "type": "General",
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "should-skip-answer",
                                             "label": "Why didn't you skip the group?",
@@ -131,7 +132,6 @@
                                     "type": "General",
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "last-group-answer",
                                             "label": "This group is required as a skipped group can't be the last group",

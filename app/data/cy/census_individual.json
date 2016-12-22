@@ -4,7 +4,7 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.2",
     "survey_id": "census",
-    "title": "Census England Individual Schema",
+    "title": "Prawf Cyfrifiad 2017",
     "description": "Census England Individual Schema",
     "theme": "census",
     "eq_id": "census",
@@ -2964,7 +2964,7 @@
                         },
                         {
                             "goto": {
-                                "id": "household-member-completed",
+                                "id": "confirmation",
                                 "when": [
                                     {
                                         "id": "ever-worked-answer",

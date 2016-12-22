@@ -213,12 +213,7 @@
 							"guidance": "",
 							"type": "TextArea",
 							"options": [],
-							"mandatory": false,
-							"display": {
-								"properties": {
-									"max_length": "2000"
-								}
-							}
+							"mandatory": false
 						}]
 					}]
 				}

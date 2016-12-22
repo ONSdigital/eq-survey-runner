@@ -14,9 +14,6 @@
             "Other info"
         ]
     },
-    "display": {
-        "properties": {}
-    },
     "eq_id": "0",
     "messages": {
       "INTEGER_TOO_LARGE": "Number is too large",
@@ -28,26 +25,15 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "ed3e200a-0735-4e8d-9eea-627c1d908697",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {
-                                                "properties": {
-                                                    "columns": false
-                                                }
-                                            },
                                             "guidance": "",
                                             "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
                                             "label": "",
@@ -90,9 +76,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
                                     "title": "Which pizza toppings would you like?",
                                     "type": "General",
@@ -109,26 +92,15 @@
                     "validation": []
                 }, {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1",
                     "sections": [
                         {
                             "description": "",
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "ed3e200a-0735-4e8d-9eea-627c1d908696",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "display": {
-                                                "properties": {
-                                                    "columns": false
-                                                }
-                                            },
                                             "guidance": "",
                                             "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23",
                                             "label": "",
@@ -171,9 +143,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "display": {
-                                        "properties": {}
-                                    },
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2811",
                                     "title": "What extra toppings would you like?",
                                     "type": "General",
@@ -189,9 +158,6 @@
                     "title": "",
                     "validation": []
                 }],
-            "display": {
-                "properties": {}
-            },
             "id": "14ba4707-321d-441d-8d21-b8367366e761",
             "title": ""
         }
