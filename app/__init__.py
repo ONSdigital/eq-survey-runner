@@ -254,7 +254,7 @@ def setup_cloud_watch_logging(application):
 
 def start_dev_mode(application):
     # import and register the dev mode blueprint
-    from .dev_mode.views import dev_mode_blueprint
+    from app.views.dev_mode import dev_mode_blueprint
     application.register_blueprint(dev_mode_blueprint)
     application.debug = True
     # Not in dev mode, so use secure_session_cookies
