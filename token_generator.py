@@ -2,7 +2,7 @@ import os
 import sys
 import time
 
-from app.dev_mode.jwt_encoder import Encoder
+from app.cryptography.jwt_encoder import Encoder
 
 
 def create_payload(user):

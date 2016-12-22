@@ -2,17 +2,15 @@ import logging
 import os
 import time
 
-from app.dev_mode.jwt_encoder import Encoder
+from app.cryptography.jwt_encoder import Encoder
 from app.schema_loader.schema_loader import available_schemas
 
+from flask import Blueprint
 from flask import redirect
 from flask import render_template
 from flask import request
-from flask import Blueprint
-
 
 from werkzeug.exceptions import NotFound
-
 
 # pylint: disable=too-many-locals
 logger = logging.getLogger(__name__)
