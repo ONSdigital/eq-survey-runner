@@ -1,5 +1,7 @@
 import unittest
+
 from app.data_model.answer_store import Answer, AnswerStore
+from app.questionnaire.location import Location
 
 
 class TestAnswer(unittest.TestCase):
@@ -256,6 +258,33 @@ class TestAnswerStore(unittest.TestCase):
         self.assertEqual(len(filtered), 1)
 
         filtered = self.store.filter(group_id="6")
+
+        self.assertEqual(len(filtered), 1)
+
+    def test_filters_answers_by_location(self):
+        answer_1 = Answer(
+            block_id="1",
+            answer_id="2",
+            answer_instance=1,
+            group_id="5",
+            group_instance=1,
+            value=25,
+        )
+        answer_2 = Answer(
+            block_id="1",
+            answer_id="5",
+            answer_instance=1,
+            group_id="6",
+            group_instance=1,
+            value=65,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+
+        location = Location("6", 1, "1")
+
+        filtered = self.store.filter(location=location)
 
         self.assertEqual(len(filtered), 1)
 
@@ -555,6 +584,43 @@ class TestAnswerStore(unittest.TestCase):
         expected_answers = {
             "answer1": 10,
         }
+        self.assertEqual(self.store.map(), expected_answers)
+
+    def test_remove_multiple_answers_by_location(self):
+        answer_1 = Answer(
+            group_id="group1",
+            group_instance=0,
+            block_id="block1",
+            answer_id="answer1",
+            value=10,
+        )
+        answer_2 = Answer(
+            group_id="group1",
+            group_instance=0,
+            block_id="block1",
+            answer_id="answer2",
+            value=20,
+        )
+        answer_3 = Answer(
+            group_id="group1",
+            group_instance=0,
+            block_id="block2",
+            answer_id="answer3",
+            value=30,
+        )
+
+        self.store.add(answer_1)
+        self.store.add(answer_2)
+        self.store.add(answer_3)
+
+        location = Location("group1", 0, "block1")
+
+        self.store.remove(location=location)
+
+        expected_answers = {
+            "answer3": 30,
+        }
+
         self.assertEqual(self.store.map(), expected_answers)
 
     def test_remove_answers_by_group_id_that_does_not_exist(self):
