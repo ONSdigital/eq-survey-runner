@@ -1,3 +1,25 @@
 <div class="field">
-  {{ answer.schema_item.widget.render(answer)|safe}}
+    {% set label = {
+      'for': answer.id,
+      'text': answer.label
+    } %}
+
+    {% include 'partials/forms/label.html' %}
+
+    <div class="input-type input-type--currency">
+
+      <span class="input-type__type" id="{{answer.id}}-type">£</span>
+        {% set input = {
+            'type': 'text',
+            'classes': 'input-type__input',
+            'hasType': true,
+            'data': form[answer['id']].data|e,
+            'name': answer.id,
+            'id': answer.id,
+            'placeholder': ''
+        } %}
+
+      {% include 'partials/forms/input.html' %}
+
+    </div>
 </div>

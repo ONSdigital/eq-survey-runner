@@ -1,12 +1,10 @@
-{% set type = "text" if input.type == "number" else input.type %}
-
 {% set attr = {
   "class": "input input--" ~ input.type ~ " " ~ input.classes,
   "type": type,
-  "value": input.value,
+  "value": input.data if input.data is not none else '',
   "name": input.name,
   "id": "input-" ~ input.id,
-  "placeholder": input.placeholder,
+  "placeholder": input_placeholder,
   "checked": "checked" if input.checked,
   "data-qa": "input-" ~ input.type,
   "maxlength": input.maxlength,

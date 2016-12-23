@@ -1,16 +1,16 @@
 <div class="section" id="{{section.id}}">
-  {% if section.schema_item.title %}
+  {% if section['title'] %}
     <h1 class="section__title saturn">
-        {%- if section.schema_item.number -%}
-            <span>{{section.schema_item.number}}. </span>
+        {%- if section['number'] -%}
+            <span>{{section['number']}}. </span>
         {% endif %}
-        {{section.schema_item.title}}</h1>
+        {{section['title']}}</h1>
   {% endif %}
-  {% if section.schema_item.description %}
-    <div class="section__description mars">{{section.schema_item.description|safe}}</div>
+  {% if section['description'] %}
+    <div class="section__description mars">{{section['description']|safe}}</div>
   {% endif %}
 
-  {% for question in section.questions %}
+  {% for question in section['questions'] %}
     {% if not question.skipped %}
       {% include theme('partials/question.html') %}
     {% endif %}

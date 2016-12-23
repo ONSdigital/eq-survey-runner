@@ -1,12 +1,12 @@
-{% for option in widget.options %}
+{% for option in form[answer.id] %}
 
-  {% set option_id = answer.id ~ "-" ~ loop.index %}
+  {% set option_id = answer.id ~ "-" ~ loop.index0 %}
 
   {% set input = {
-    "class": "input input--" ~ widget.type ~ " js-focusable",
-    "type": widget.type,
-    "value": option.value,
-    "name": answer.name,
+    "class": "input input--" ~ widget_type ~ " js-focusable",
+    "type": widget_type,
+    "value": option.data,
+    "name": option.name,
     "id": option_id,
     "checked": "checked" if option.selected,
     "data-qa": "has-other-option" if option.other
@@ -21,7 +21,7 @@
 
     <input {{input|xmlattr}}>
     <label {{label|xmlattr}}>
-      {{option.label}}
+      {{option.label.text}}
       {% if option.description %}
         <br />
         <span class="label__description label__inner pluto">{{option.description|safe}}</span>
