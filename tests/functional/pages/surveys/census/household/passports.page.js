@@ -9,22 +9,22 @@ class PassportsPage extends MultipleChoiceWithOtherPage {
   }
 
   clickPassportsAnswerUnitedKingdom() {
-    browser.element('[id="passports-answer-1"]').click()
+    browser.element('[id="passports-answer-0"]').click()
     return this
   }
 
   clickPassportsAnswerIrish() {
-    browser.element('[id="passports-answer-2"]').click()
+    browser.element('[id="passports-answer-1"]').click()
     return this
   }
 
   clickPassportsAnswerOther() {
-    browser.element('[id="passports-answer-3"]').click()
+    browser.element('[id="passports-answer-2"]').click()
     return this
   }
 
   clickPassportsAnswerNone() {
-    browser.element('[id="passports-answer-4"]').click()
+    browser.element('[id="passports-answer-3"]').click()
     return this
   }
 

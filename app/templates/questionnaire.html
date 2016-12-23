@@ -2,11 +2,8 @@
 
 {% block page_title %}Survey{% endblock %}
 
-{% set state = content %}
-
-{% set group = state.schema_item.container %}
-{% set block = state.schema_item %}
-{% set all_errors = state.get_errors().items() %}
+{% set block = content.block %}
+{% set form = content.form %}
 
 {% block sidebar %}
   {% if navigation %}
@@ -16,24 +13,19 @@
 
 {% block main %}
 
-    {% if all_errors %}
+    {% if form and form.errors %}
 
     <div class="panel panel--error u-mb-s" data-qa="error">
       <div class="panel__header">
-        <h1 class="panel__title venus">This page has {{all_errors|length}} errors</h1>
+        <h1 class="panel__title venus">This page has {{form.errors|length}} errors</h1>
       </div>
       <div class="panel__body" data-qa="error-body">
         <p class="mars">These <strong>must be corrected</strong> to continue.</p>
         <ul class="list list--bare">
-          {% for item_id, errors in all_errors %}
-            {% set loop_index = loop.index %}
-            {% if errors %}
-            {% for error in errors %}
+          {% for answer_id, error in form.map_errors() %}
             <li class="list__item mars">
-              {{loop_index}}) <a class="js-inpagelink" href="#{{item_id}}">{{ error }}</a>
+              {{loop.index}}) <a class="js-inpagelink" href="#{{answer_id}}">{{ error }}</a>
             </li>
-            {% endfor %}
-            {% endif %}
           {% endfor %}
           </ul>
         </div>
@@ -44,11 +36,11 @@
 
     <form action="{{form_action|default('')}}" class="form qa-questionnaire-form" role="form" method="POST" novalidate>
 
-      <div class="group" id="{{group.id}}">
+      <div class="group" id="{{current_location.group_id}}">
 
-        <div class="block" id="{{block.id}}">
+        <div class="block" id="{{current_location.block_id}}">
 
-        {% for section in state.children %}
+        {% for section in block['sections'] %}
 
           {% include 'partials/section.html' %}
 

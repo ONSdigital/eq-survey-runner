@@ -332,6 +332,9 @@
                                   "id": {
                                     "$ref": "#/definitions/id"
                                   },
+                                  "parent_answer_id": {
+                                      "type": "string"
+                                  },
                                   "q_code": {
                                     "type": "string",
                                     "pattern": "[0-9]+"

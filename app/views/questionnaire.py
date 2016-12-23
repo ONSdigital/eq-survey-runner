@@ -10,13 +10,15 @@ from structlog import get_logger
 from werkzeug.exceptions import NotFound
 
 from app.authentication.session_storage import session_storage
+from app.data_model.answer_store import Answer
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
+from app.helpers.form_helper import get_form_for_location, post_form_for_location
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
-from app.questionnaire.questionnaire_manager import get_questionnaire_manager
 from app.questionnaire_state.state_repeating_answer_question import extract_answer_instance_id
+from app.questionnaire.rules import evaluate_skip_condition
 from app.submitter.converter import convert_answers
 from app.submitter.submitter import SubmitterFactory
 from app.templating.introduction_context import get_introduction_context
@@ -70,50 +72,110 @@ def save_questionnaire_store(response):
 def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument
     # Filter answers down to those we may need to render
     answer_store = get_answer_store(current_user)
-    answers = answer_store.map(group_id=group_id, group_instance=group_instance, block_id=block_id)
-
-    this_location = Location(group_id, group_instance, block_id)
-
-    q_manager = get_questionnaire_manager(g.schema, g.schema_json)
-    q_manager.build_block_state(this_location, answers)
-
-    # Find block by id
-    block = g.schema.get_item_by_id(block_id)
-    # pylint: disable=maybe-no-member
-    template = block.type if block and block.type else 'questionnaire'
+    path_finder = PathFinder(g.schema_json, answer_store, get_metadata(current_user))
 
     current_location = Location(group_id, group_instance, block_id)
 
-    _render_schema(current_location)
-    return _build_template(current_location, q_manager.block_state, template)
+    valid_group = group_id in SchemaHelper.get_group_ids(g.schema_json)
+
+    if not valid_group or current_location not in path_finder.get_routing_path(group_id, group_instance):
+        raise NotFound
+
+    block = _render_schema(current_location)
+
+    logger.info(answer_store.answers)
+
+    error_messages = SchemaHelper.get_messages(g.schema_json)
+    form, template_params = get_form_for_location(block, current_location, answer_store, error_messages)
+
+    content = {'form': form, 'block': block}
+
+    if template_params:
+        content.update(template_params)
+
+    template = block['type'] if block and 'type' in block and block['type'] else 'questionnaire'
+
+    return _build_template(current_location, content, template)
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
 def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
     path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
-    q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
-    this_location = Location(group_id, group_instance, block_id)
+    current_location = Location(group_id, group_instance, block_id)
+
+    valid_location = current_location in path_finder.get_routing_path(group_id, group_instance)
+
+    block = _render_schema(current_location)
+
+    error_messages = SchemaHelper.get_messages(g.schema_json)
+
     if 'action[save_sign_out]' in request.form:
-        return _save_sign_out(collection_id, eq_id, form_type, q_manager, this_location)
+        form, _ = post_form_for_location(block, current_location, get_answer_store(current_user), request.form, error_messages, disable_mandatory=True)
+        return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
 
-    valid_location = this_location in path_finder.get_routing_path(group_id, group_instance)
-    valid_data = q_manager.validate(this_location, request.form)
+    form, _ = post_form_for_location(block, current_location, get_answer_store(current_user), request.form, error_messages)
 
-    if not valid_location or not valid_data:
-        current_location = Location(group_id, group_instance, block_id)
-        _render_schema(current_location)
-        return _build_template(current_location, q_manager.block_state, template='questionnaire')
+    content = {
+        'form': form,
+        'block': block,
+    }
+
+    if not valid_location or not form.validate():
+        return _build_template(current_location, content, template='questionnaire')
     else:
-        q_manager.update_questionnaire_store(this_location)
+        update_questionnaire_store_with_form_data(current_location, form.data)
 
-    next_location = path_finder.get_next_location(current_location=this_location)
+    next_location = path_finder.get_next_location(current_location=current_location)
 
     if next_location is None:
         raise NotFound
 
     metadata = get_metadata(current_user)
+
+    return redirect(next_location.url(metadata))
+
+
+@questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
+@login_required
+def post_household_composition(eq_id, form_type, collection_id, group_id):
+    path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
+    answer_store = get_answer_store(current_user)
+
+    current_location = Location(group_id, 0, 'household-composition')
+    block = _render_schema(current_location)
+
+    error_messages = SchemaHelper.get_messages(g.schema_json)
+
+    if 'action[save_continue]' in request.form:
+        _remove_repeating_on_household_answers(answer_store, group_id)
+
+    form, _ = post_form_for_location(block, current_location, answer_store, request.form, error_messages)
+
+    if 'action[add_answer]' in request.form:
+        form.household.append_entry()
+    elif 'action[remove_answer]' in request.form:
+        index_to_remove = int(request.form.get('action[remove_answer]'))
+
+        form.remove_person(index_to_remove)
+    elif 'action[save_sign_out]' in request.form:
+        form, _ = post_form_for_location(block, current_location, answer_store, request.form,
+                                         error_messages, disable_mandatory=True)
+        return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
+
+    if not form.validate() or 'action[add_answer]' in request.form or 'action[remove_answer]' in request.form:
+        return _render_template({
+            'form': form,
+            'block': block,
+        }, current_location.block_id, current_location=current_location, template='questionnaire')
+
+    update_questionnaire_store_with_answer_data(current_location, form.serialise(current_location))
+
+    next_location = path_finder.get_next_location(current_location=current_location)
+
+    metadata = get_metadata(current_user)
+
     return redirect(next_location.url(metadata))
 
 
@@ -129,18 +191,18 @@ def get_introduction(eq_id, form_type, collection_id):  # pylint: disable=unused
 @login_required
 def post_interstitial(eq_id, form_type, collection_id, block_id):  # pylint: disable=unused-argument
     path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
-    q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
-    this_location = Location(SchemaHelper.get_first_group_id(g.schema_json), group_instance=0, block_id=block_id)
+    current_location = Location(SchemaHelper.get_first_group_id(g.schema_json), 0, block_id)
 
-    q_manager.update_questionnaire_store(this_location)
+    valid_location = current_location in path_finder.get_location_path()
+    update_questionnaire_store_with_form_data(current_location, request.form.to_dict())
 
     # Don't care if data is valid because there isn't any for interstitial
-    if this_location not in path_finder.get_location_path():
-        _render_schema(this_location)
-        return _build_template(current_location=this_location, context=q_manager.block_state, template='questionnaire')
+    if not valid_location:
+        block = _render_schema(current_location)
+        return _build_template(current_location=current_location, context={"block": block}, template='questionnaire')
 
-    next_location = path_finder.get_next_location(current_location=this_location)
+    next_location = path_finder.get_next_location(current_location=current_location)
 
     if next_location is None:
         raise NotFound
@@ -160,8 +222,7 @@ def get_summary(eq_id, form_type, collection_id):  # pylint: disable=unused-argu
     metadata = get_metadata(current_user)
 
     if latest_location.block_id is 'summary':
-        answers = get_answer_store(current_user)
-        schema_context = build_schema_context(metadata, g.schema.aliases, answers)
+        schema_context = build_schema_context(metadata, g.schema.aliases, answer_store)
         rendered_schema_json = renderer.render(g.schema_json, **schema_context)
         summary_context = build_summary_rendering_context(rendered_schema_json, answer_store, metadata)
         return _build_template(current_location=latest_location, context=summary_context)
@@ -178,11 +239,8 @@ def get_confirmation(eq_id, form_type, collection_id):  # pylint: disable=unused
     latest_location = path_finder.get_latest_location(get_completed_blocks(current_user))
 
     if latest_location.block_id == 'confirmation':
-        q_manager = get_questionnaire_manager(g.schema, g.schema_json)
-        q_manager.build_block_state(latest_location, answer_store)
-
-        _render_schema(latest_location)
-        return _build_template(current_location=latest_location, context=q_manager.block_state)
+        block = _render_schema(latest_location)
+        return _build_template(current_location=latest_location, context={"block": block})
 
     metadata = get_metadata(current_user)
 
@@ -203,7 +261,7 @@ def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-ar
 @questionnaire_blueprint.route('signed-out', methods=["GET"])
 @login_required
 def get_sign_out(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    signed_out_page = _render_template(get_questionnaire_manager(g.schema, g.schema_json), block_id='signed-out')
+    signed_out_page = _render_template({}, block_id='signed-out')
     session_storage.clear()
     return signed_out_page
 
@@ -211,58 +269,21 @@ def get_sign_out(eq_id, form_type, collection_id):  # pylint: disable=unused-arg
 @questionnaire_blueprint.route('submit-answers', methods=["POST"])
 @login_required
 def submit_answers(eq_id, form_type, collection_id):
-    q_manager = get_questionnaire_manager(g.schema, g.schema_json)
-    # check that all the answers we have are valid before submitting the data
-    is_valid, invalid_location = q_manager.validate_all_answers()
     metadata = get_metadata(current_user)
 
+    answer_store = get_answer_store(current_user)
+
+    is_valid, invalid_location = validate_all_answers(answer_store, metadata)
+
     if is_valid:
-        answer_store = get_answer_store(current_user)
         path_finder = PathFinder(g.schema_json, answer_store, metadata)
         submitter = SubmitterFactory.get_submitter()
         message = convert_answers(metadata, g.schema, answer_store, path_finder.get_routing_path())
         submitter.send_answers(message)
+
         return redirect(url_for('.get_thank_you', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
     else:
         return redirect(invalid_location.url(metadata))
-
-
-@questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
-@login_required
-def post_household_composition(eq_id, form_type, collection_id, group_id):
-    questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
-    answer_store = get_answer_store(current_user)
-
-    this_location = Location(group_id, group_instance=0, block_id='household-composition')
-
-    if _household_answers_changed(answer_store):
-        _remove_repeating_on_household_answers(answer_store, group_id)
-
-    valid = questionnaire_manager.process_incoming_answers(this_location, post_data=request.form)
-
-    if 'action[add_answer]' in request.form:
-        questionnaire_manager.add_answer(this_location, answer_store, question_id='household-composition-question')
-        return get_block(eq_id, form_type, collection_id, group_id, group_instance=0, block_id='household-composition')
-
-    elif 'action[remove_answer]' in request.form:
-        index_to_remove = int(request.form.get('action[remove_answer]'))
-        questionnaire_manager.remove_answer(this_location, answer_store, index_to_remove)
-        return get_block(eq_id, form_type, collection_id, group_id, group_instance=0, block_id='household-composition')
-
-    elif 'action[save_sign_out]' in request.form:
-        return _save_sign_out(collection_id, eq_id, form_type, questionnaire_manager, this_location)
-
-    if not valid:
-        _render_schema(this_location)
-        return _build_template(current_location=this_location, context=questionnaire_manager.block_state,
-                               template='questionnaire')
-
-    path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
-    next_location = path_finder.get_next_location(current_location=this_location)
-
-    metadata = get_metadata(current_user)
-
-    return redirect(next_location.url(metadata))
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/permanent-or-family-home', methods=["POST"])
@@ -273,12 +294,40 @@ def post_everyone_at_address_confirmation(eq_id, form_type, collection_id, group
     return post_block(eq_id, form_type, collection_id, group_id, group_instance, 'permanent-or-family-home')
 
 
-def _save_sign_out(collection_id, eq_id, form_type, q_manager, this_location):
-    valid_data = q_manager.validate(this_location, request.form, skip_mandatory_validation=True)
-    if not valid_data:
-        return _build_template(this_location, q_manager.block_state, template='questionnaire')
+def validate_all_answers(answer_store, metadata):
+
+    path_finder = PathFinder(g.schema_json, answer_store, metadata)
+    error_messages = SchemaHelper.get_messages(g.schema_json)
+
+    for location in path_finder.get_location_path():
+        if not location.is_interstitial():
+            block_json = _render_schema(location)
+            form, _ = get_form_for_location(block_json, location, answer_store, error_messages)
+
+            if not form.validate():
+                logger.debug("Failed validation with current location %s", str(location))
+                return False, location
+
+    return True, None
+
+
+def _save_sign_out(collection_id, eq_id, form_type, this_location, form):
+    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+    block_json = _render_schema(this_location)
+
+    # Form will have been created with no mandatory fields
+    if not form.validate():
+        content = {'block': block_json, 'form': form}
+        return _build_template(this_location, content, template='questionnaire')
     else:
-        q_manager.update_questionnaire_store_save_sign_out(this_location)
+        if this_location.block_id != 'household-composition':
+            update_questionnaire_store_with_form_data(this_location, form.data)
+        else:
+            update_questionnaire_store_with_answer_data(this_location, form.serialise(this_location))
+
+        if this_location in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.remove(this_location)
         return redirect(url_for('.get_sign_out', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
 
 
@@ -306,6 +355,47 @@ def _remove_repeating_on_household_answers(answer_store, group_id):
                                                        b.group_id != group['id']]
 
 
+def update_questionnaire_store_with_form_data(location, answer_dict):
+    # Store answers in QuestionnaireStore
+    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+    survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)
+
+    for answer_id, answer_value in answer_dict.items():
+        if answer_id in survey_answer_ids or location.block_id == 'household-composition':
+            answer = None
+            # Dates are comprised of 3 string values
+            if isinstance(answer_value, dict) and 'day' in answer_value and 'month' in answer_value:
+                if answer_value['day'] and answer_value['month']:
+                    datestr = "{:02d}/{:02d}/{}".format(int(answer_value['day']), int(answer_value['month']), answer_value['year'])
+                    answer = Answer(answer_id=answer_id, value=datestr, location=location)
+            elif isinstance(answer_value, dict) and 'year' in answer_value and 'month' in answer_value:
+                if answer_value['month']:
+                    datestr = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
+                    answer = Answer(answer_id=answer_id, value=datestr, location=location)
+            elif answer_value != 'None' and answer_value is not None:
+                # Necessary because default select casts to string value 'None'
+                answer = Answer(answer_id=answer_id, value=answer_value, location=location)
+
+            if answer:
+                questionnaire_store.answer_store.add_or_update(answer)
+
+    if location not in questionnaire_store.completed_blocks:
+        questionnaire_store.completed_blocks.append(location)
+
+
+def update_questionnaire_store_with_answer_data(location, answers):
+    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+    survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)
+
+    for answer in [a for a in answers if a.answer_id in survey_answer_ids]:
+        questionnaire_store.answer_store.add_or_update(answer)
+
+    if location not in questionnaire_store.completed_blocks:
+        questionnaire_store.completed_blocks.append(location)
+
+
 def _delete_user_data():
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
     session_storage.clear()
@@ -319,12 +409,27 @@ def _check_same_survey(eq_id, form_type, collection_id):
         raise MultipleSurveyError
 
 
+def _evaluate_skip_conditions(block_json, location, answer_store, metadata):
+    for question in SchemaHelper.get_questions_for_block(block_json):
+        if 'skip_condition' in question:
+            skip_question = evaluate_skip_condition([question['skip_condition']], metadata, answer_store,
+                                                    location.group_instance)
+            question['skipped'] = skip_question
+
+            for answer in question['answers']:
+                if answer['mandatory'] and skip_question:
+                    answer['mandatory'] = False
+
+    return block_json
+
+
 def _render_schema(current_location):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
-    schema_item = g.schema.get_item_by_id(current_location.block_id)
-    schema_context = build_schema_context(metadata, g.schema.aliases, answer_store, current_location.group_instance)
-    renderer.render_schema_items(schema_item, schema_context)
+    block_json = SchemaHelper.get_block_for_location(g.schema_json, current_location)
+    block_json = _evaluate_skip_conditions(block_json, current_location, answer_store, metadata)
+    block_context = build_schema_context(metadata, g.schema.aliases, answer_store, current_location.group_instance)
+    return renderer.render(block_json, **block_context)
 
 
 def _build_template(current_location, context=None, template=None):
@@ -347,15 +452,17 @@ def _build_template(current_location, context=None, template=None):
     if previous_location is not None and not is_first_block_for_group and not current_location.block_id == 'thank-you':
         previous_url = previous_location.url(metadata)
 
-    return _render_template(context, current_location.block_id, front_end_navigation, metadata_context, previous_url, template)
+    return _render_template(context, current_location.block_id, front_end_navigation, metadata_context, current_location, previous_url, template)
 
 
-def _render_template(context, block_id, front_end_navigation=None, metadata_context=None, previous_url=None, template=None):
+def _render_template(context, block_id, front_end_navigation=None, metadata_context=None, current_location=None, previous_url=None, template=None):
     theme = g.schema_json.get('theme', None)
     logger.debug("theme selected", theme=theme)
     template = '{}.html'.format(template or block_id)
-    return render_theme_template(theme, template, meta=metadata_context,
+    return render_theme_template(theme, template,
+                                 meta=metadata_context,
                                  content=context,
+                                 current_location=current_location,
                                  previous_location=previous_url,
                                  navigation=front_end_navigation,
                                  schema_title=g.schema_json['title'],

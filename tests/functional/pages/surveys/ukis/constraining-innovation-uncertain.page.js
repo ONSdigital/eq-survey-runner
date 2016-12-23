@@ -9,22 +9,22 @@ class ConstrainingInnovationUncertainPage extends MultipleChoiceWithOtherPage {
   }
 
   clickConstrainingInnovationUncertainAnswerHigh() {
-    browser.element('[id="constraining-innovation-uncertain-answer-1"]').click()
+    browser.element('[id="constraining-innovation-uncertain-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationUncertainAnswerMedium() {
-    browser.element('[id="constraining-innovation-uncertain-answer-2"]').click()
+    browser.element('[id="constraining-innovation-uncertain-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationUncertainAnswerLow() {
-    browser.element('[id="constraining-innovation-uncertain-answer-3"]').click()
+    browser.element('[id="constraining-innovation-uncertain-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationUncertainAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-uncertain-answer-4"]').click()
+    browser.element('[id="constraining-innovation-uncertain-answer-3"]').click()
     return this
   }
 

@@ -9,22 +9,22 @@ class ConstrainingInnovationDominatedPage extends MultipleChoiceWithOtherPage {
   }
 
   clickConstrainingInnovationDominatedAnswerHigh() {
-    browser.element('[id="constraining-innovation-dominated-answer-1"]').click()
+    browser.element('[id="constraining-innovation-dominated-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationDominatedAnswerMedium() {
-    browser.element('[id="constraining-innovation-dominated-answer-2"]').click()
+    browser.element('[id="constraining-innovation-dominated-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationDominatedAnswerLow() {
-    browser.element('[id="constraining-innovation-dominated-answer-3"]').click()
+    browser.element('[id="constraining-innovation-dominated-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationDominatedAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-dominated-answer-4"]').click()
+    browser.element('[id="constraining-innovation-dominated-answer-3"]').click()
     return this
   }
 

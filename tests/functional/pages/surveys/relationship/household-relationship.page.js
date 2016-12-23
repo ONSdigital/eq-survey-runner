@@ -8,25 +8,21 @@ class HouseholdRelationshipPage extends QuestionPage {
   }
 
   setHusbandOrWifeRelationship(index, relationshipIndex) {
-    var id = this.buildRelationshipAnswerId(index, 1)
+    var id = this.buildRelationshipAnswerId(index, 0)
     browser.waitForExist(id)
     browser.element(id).click().pause(300)
     return this
   }
 
   setSonOrDaughterRelationship(index, relationshipIndex) {
-    var id = this.buildRelationshipAnswerId(index, 4)
+    var id = this.buildRelationshipAnswerId(index, 3)
     browser.waitForExist(id)
     browser.element(id).click().pause(300)
     return this
   }
 
   buildRelationshipAnswerId(index, relationshipId) {
-    var id = '#who-is-related'
-    if (index > 0) {
-      id += '_' + index
-    }
-    id += '-' + relationshipId
+    var id = '#who-is-related-' + index + '-' + relationshipId
     return id
   }
 

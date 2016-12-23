@@ -9,22 +9,22 @@ class ImportancesInformationConsultantsPage extends MultipleChoiceWithOtherPage 
   }
 
   clickImportancesInformationConsultantsAnswerHigh() {
-    browser.element('[id="importances-information-consultants-answer-1"]').click()
+    browser.element('[id="importances-information-consultants-answer-0"]').click()
     return this
   }
 
   clickImportancesInformationConsultantsAnswerMedium() {
-    browser.element('[id="importances-information-consultants-answer-2"]').click()
+    browser.element('[id="importances-information-consultants-answer-1"]').click()
     return this
   }
 
   clickImportancesInformationConsultantsAnswerLow() {
-    browser.element('[id="importances-information-consultants-answer-3"]').click()
+    browser.element('[id="importances-information-consultants-answer-2"]').click()
     return this
   }
 
   clickImportancesInformationConsultantsAnswerNotImportant() {
-    browser.element('[id="importances-information-consultants-answer-4"]').click()
+    browser.element('[id="importances-information-consultants-answer-3"]').click()
     return this
   }
 

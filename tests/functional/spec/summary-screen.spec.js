@@ -67,7 +67,7 @@ describe('RSI - summary screen edit test', function() {
     expect(rsiSummaryPage.getChangeInRetailTurnoverSummary()).to.contain('This is to test edit links on summary screen - edited')
 
   })
-  it('Given the RSI survery 0102 when a 0 is entered in a currency field then the summary screen should show £0 and the original page should show 0', function(done) {
+  it('Given the RSI survey 0102 when a 0 is entered in a currency field then the summary screen should show £0 and the original page should show 0', function(done) {
 
     //Given the RSI business survey 0102 is started
     startQuestionnaire('1_0102.json')

@@ -9,12 +9,12 @@ class SelfContainedAccommodationPage extends MultipleChoiceWithOtherPage {
   }
 
   clickSelfContainedAccommodationAnswerYesAllTheRoomsAreBehindADoorThatOnlyThisHouseholdCanUse() {
-    browser.element('[id="self-contained-accommodation-answer-1"]').click()
+    browser.element('[id="self-contained-accommodation-answer-0"]').click()
     return this
   }
 
   clickSelfContainedAccommodationAnswerNo() {
-    browser.element('[id="self-contained-accommodation-answer-2"]').click()
+    browser.element('[id="self-contained-accommodation-answer-1"]').click()
     return this
   }
 

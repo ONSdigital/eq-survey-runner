@@ -1429,12 +1429,17 @@
                                                 {
                                                     "label": "Yes, an address outside the UK (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please enter country"
-                                                    }
+                                                    "child_answer_id": "another-address-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "another-address-answer-other",
+                                            "parent_answer_id": "another-address-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please enter country"
                                         }
                                     ]
                                 }
@@ -1605,12 +1610,17 @@
                                                 {
                                                     "label": "Other (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify type of address"
-                                                    }
+                                                    "child_answer_id": "address-type-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "address-type-answer-other",
+                                            "parent_answer_id": "address-type-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify type of address"
                                         }
                                     ]
                                 }
@@ -1771,12 +1781,17 @@
                                                 {
                                                     "label": "Elsewhere (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Enter current name of country"
-                                                    }
+                                                    "child_answer_id": "country-of-birth-england-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "country-of-birth-england-answer-other",
+                                            "parent_answer_id": "country-of-birth-england-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Enter current name of country"
                                         }
                                     ],
                                     "skip_condition": {
@@ -1822,12 +1837,17 @@
                                                 {
                                                     "label": "Elsewhere (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Enter current name of country"
-                                                    }
+                                                    "child_answer_id": "country-of-birth-wales-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "country-of-birth-wales-answer-other",
+                                            "parent_answer_id": "country-of-birth-wales-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Enter current name of country"
                                         }
                                     ],
                                     "skip_condition": {
@@ -2118,12 +2138,17 @@
                                                 {
                                                     "label": "Other (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please describe your national identity"
-                                                    }
+                                                    "child_answer_id": "national-identity-england-answer-other"
                                                 }
                                             ],
                                             "type": "Checkbox"
+                                        },
+                                        {
+                                            "id": "national-identity-england-answer-other",
+                                            "parent_answer_id": "national-identity-england-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please describe your national identity"
                                         }
                                     ],
                                     "skip_condition": {
@@ -2171,12 +2196,17 @@
                                                 {
                                                     "label": "Other (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please describe your national identity"
-                                                    }
+                                                    "child_answer_id": "national-identity-wales-answer-other"
                                                 }
                                             ],
                                             "type": "Checkbox"
+                                        },
+                                        {
+                                            "id": "national-identity-wales-answer-other",
+                                            "parent_answer_id": "national-identity-wales-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please describe your national identity"
                                         }
                                     ],
                                     "skip_condition": {
@@ -2497,12 +2527,17 @@
                                                 {
                                                     "label": "Any other White background (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify other White background"
-                                                    }
+                                                    "child_answer_id": "white-ethnic-group-england-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "white-ethnic-group-england-answer-other",
+                                            "parent_answer_id": "white-ethnic-group-england-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify other White background"
                                         }
                                     ],
                                     "skip_condition": {
@@ -2541,12 +2576,17 @@
                                                 {
                                                     "label": "Any other White background (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify other White background"
-                                                    }
+                                                    "child_answer_id": "white-ethnic-group-wales-question-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "white-ethnic-group-wales-question-other",
+                                            "parent_answer_id": "white-ethnic-group-wales-question",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify other White background"
                                         }
                                     ],
                                     "skip_condition": {
@@ -2634,12 +2674,17 @@
                                                 {
                                                     "label": "Any other Mixed / multiple ethnic background (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify other Mixed / multiple ethnic background"
-                                                    }
+                                                    "child_answer_id":  "mixed-ethnic-group-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "mixed-ethnic-group-answer-other",
+                                            "parent_answer_id": "mixed-ethnic-group-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify other Mixed / multiple ethnic background"
                                         }
                                     ]
                                 }
@@ -2722,12 +2767,17 @@
                                                 {
                                                     "label": "Any other Asian background (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify other Asian background"
-                                                    }
+                                                    "child_answer_id": "asian-ethnic-group-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "asian-ethnic-group-answer-other",
+                                            "parent_answer_id": "asian-ethnic-group-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify other Asian background"
                                         }
                                     ]
                                 }
@@ -2802,12 +2852,17 @@
                                                 {
                                                     "label": "Any other Black / African / Caribbean background (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify other Black / African / Caribbean background"
-                                                    }
+                                                    "child_answer_id": "black-ethnic-group-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "black-ethnic-group-answer-other",
+                                            "parent_answer_id": "black-ethnic-group-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify other Black / African / Caribbean background"
                                         }
                                     ]
                                 }
@@ -2878,12 +2933,17 @@
                                                 {
                                                     "label": "Any other ethnic group (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify Other ethnic group"
-                                                    }
+                                                    "child_answer_id": "other-ethnic-group-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "other-ethnic-group-answer-other",
+                                            "parent_answer_id": "other-ethnic-group-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify Other ethnic group"
                                         }
                                     ]
                                 }
@@ -2963,12 +3023,17 @@
                                                 {
                                                     "label": "Other (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify"
-                                                    }
+                                                    "child_answer_id": "sexual-identity-answer-other"
                                                 }
                                             ],
                                             "type": "Checkbox"
+                                        },
+                                        {
+                                            "id": "sexual-identity-answer-other",
+                                            "parent_answer_id": "sexual-identity-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify"
                                         }
                                     ]
                                 }
@@ -3071,12 +3136,17 @@
                                                     "label": "Other (please specify)",
                                                     "value": "Other",
                                                     "description": "Including British Sign Language",
-                                                    "other": {
-                                                        "label": "Please specify main language"
-                                                    }
+                                                    "child_answer_id": "language-england-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "language-england-answer-other",
+                                            "parent_answer_id": "language-england-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify main language"
                                         }
                                     ],
                                     "skip_condition": {
@@ -3107,12 +3177,17 @@
                                                     "label": "Other (please specify)",
                                                     "value": "Other",
                                                     "description": "Including British Sign Language",
-                                                    "other": {
-                                                        "label": "Please specify main language"
-                                                    }
+                                                    "child_answer_id": "language-welsh-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "language-welsh-answer-other",
+                                            "parent_answer_id": "language-welsh-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify main language"
                                         }
                                     ],
                                     "skip_condition": {
@@ -3255,12 +3330,17 @@
                                                 {
                                                     "label": "Any other religion (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify"
-                                                    }
+                                                    "child_answer_id": "religion-answer-other"
                                                 }
                                             ],
                                             "type": "Checkbox"
+                                        },
+                                        {
+                                            "id": "religion-answer-other",
+                                            "parent_answer_id": "religion-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify"
                                         }
                                     ],
                                     "skip_condition": {
@@ -3315,12 +3395,17 @@
                                                 {
                                                     "label": "Any other religion (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify"
-                                                    }
+                                                    "child_answer_id": "religion-welsh-answer-other"
                                                 }
                                             ],
                                             "type": "Checkbox"
+                                        },
+                                        {
+                                            "id": "religion-welsh-answer-other",
+                                            "parent_answer_id": "religion-welsh-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify"
                                         }
                                     ],
                                     "skip_condition": {
@@ -3373,12 +3458,17 @@
                                                 {
                                                     "label": "An address outside the UK (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please enter the country"
-                                                    }
+                                                    "child_answer_id": "past-usual-address-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "past-usual-address-answer-other",
+                                            "parent_answer_id": "past-usual-address-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please enter the country"
                                         }
                                     ]
                                 }
@@ -4638,12 +4728,17 @@
                                                 {
                                                     "label": "No, usually lives outside the United Kingdom (please specify)",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify country"
-                                                    }
+                                                    "child_answer_id": "visitor-uk-resident-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "visitor-uk-resident-answer-other",
+                                            "parent_answer_id": "visitor-uk-resident-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify country"
                                         }
                                     ]
                                 }

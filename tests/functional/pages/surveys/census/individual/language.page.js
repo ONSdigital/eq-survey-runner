@@ -9,32 +9,22 @@ class LanguagePage extends MultipleChoiceWithOtherPage {
   }
 
   clickLanguageEnglandAnswerEnglish() {
-    browser.element('[id="language-england-answer-1"]').click()
+    browser.element('[id="language-england-answer-0"]').click()
     return this
   }
 
   clickLanguageEnglandAnswerOther() {
-    browser.element('[id="language-england-answer-2"]').click()
-    return this
-  }
-
-  setLanguageEnglandAnswerOtherText(value) {
-    browser.setValue('[id="language-england-answer-2-other"]', value)
+    browser.element('[id="language-england-answer-1"]').click()
     return this
   }
 
   clickLanguageWelshAnswerEnglishOrWelsh() {
-    browser.element('[id="language-welsh-answer-1"]').click()
+    browser.element('[id="language-welsh-answer-0"]').click()
     return this
   }
 
   clickLanguageWelshAnswerOther() {
-    browser.element('[id="language-welsh-answer-2"]').click()
-    return this
-  }
-
-  setLanguageWelshAnswerOtherText(value) {
-    browser.setValue('[id="language-welsh-answer-2-other"]', value)
+    browser.element('[id="language-welsh-answer-1"]').click()
     return this
   }
 

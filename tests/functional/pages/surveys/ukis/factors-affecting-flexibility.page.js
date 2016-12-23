@@ -9,22 +9,22 @@ class FactorsAffectingFlexibilityPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingFlexibilityAnswerHigh() {
-    browser.element('[id="factors-affecting-flexibility-answer-1"]').click()
+    browser.element('[id="factors-affecting-flexibility-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingFlexibilityAnswerMedium() {
-    browser.element('[id="factors-affecting-flexibility-answer-2"]').click()
+    browser.element('[id="factors-affecting-flexibility-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingFlexibilityAnswerLow() {
-    browser.element('[id="factors-affecting-flexibility-answer-3"]').click()
+    browser.element('[id="factors-affecting-flexibility-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingFlexibilityAnswerNotImportant() {
-    browser.element('[id="factors-affecting-flexibility-answer-4"]').click()
+    browser.element('[id="factors-affecting-flexibility-answer-3"]').click()
     return this
   }
 

@@ -9,22 +9,22 @@ class ImportancesInformationAssociationsPage extends MultipleChoiceWithOtherPage
   }
 
   clickImportancesInformationAssociationsAnswerHigh() {
-    browser.element('[id="importances-information-associations-answer-1"]').click()
+    browser.element('[id="importances-information-associations-answer-0"]').click()
     return this
   }
 
   clickImportancesInformationAssociationsAnswerMedium() {
-    browser.element('[id="importances-information-associations-answer-2"]').click()
+    browser.element('[id="importances-information-associations-answer-1"]').click()
     return this
   }
 
   clickImportancesInformationAssociationsAnswerLow() {
-    browser.element('[id="importances-information-associations-answer-3"]').click()
+    browser.element('[id="importances-information-associations-answer-2"]').click()
     return this
   }
 
   clickImportancesInformationAssociationsAnswerNotImportant() {
-    browser.element('[id="importances-information-associations-answer-4"]').click()
+    browser.element('[id="importances-information-associations-answer-3"]').click()
     return this
   }
 

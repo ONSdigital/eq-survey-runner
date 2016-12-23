@@ -1,5 +1,3 @@
-{%- set composite_answers = question.answers_grouped_by_instance() -%}
-
 <div class="question question--repeatinganswer" id="{{question.id}}">
 
   <h2 class="question__title neptune">
@@ -13,7 +11,7 @@
   {{question_guidance|safe}}
 
   <div class="question__answers">
-    {%- for composite_answer in composite_answers %}
+    {% for name_form in form.household %}
       <div class="question__answer js-household-person" data-remove="{{ _('Remove') }}" data-index="{{loop.index}}">
         <h3 class="neptune">{{ _('Person ') }}<span class="js-household-loopindex">{{ loop.index }}</span>
           <small>(
@@ -28,14 +26,23 @@
         </h3>
         <fieldset class="question__fieldset">
           <legend class="question__legend u-vh">{{ _('Person ') }} <span class="js-household-loopindex">{{ loop.index }}</span></legend>
-          {% for answer in composite_answer %}
+          {% for answer in name_form %}
             {% with render_guidance = False %}
+              {% set schema_item = question.answers[loop.index0] %}
+
+              {% set answer = {
+                 'id': input.id,
+                 'type': schema_item.type,
+                 'label': schema_item.label,
+                 'placeholder': schema_item.placeholder,
+                 'name': input.name,
+              } %}
               {% include theme('partials/answer.html') %}
             {% endwith %}
           {% endfor %}
         </fieldset>
       </div>
-    {%- endfor %}
+    {% endfor %}
   </div>
 
   <div class="question__actions">
@@ -45,7 +52,7 @@
   </div>
 
   <div class="question__guidance  question__guidance--bottom">
-    {% set schema_item = composite_answers[0][-1].schema_item %}
+    {% set schema_item = question.answers[-1] %}
     {% if schema_item.guidance %}
       {% with answer_guidance = {
         'id': schema_item.id,

@@ -9,17 +9,17 @@ class TypeOfHousePage extends MultipleChoiceWithOtherPage {
   }
 
   clickTypeOfHouseAnswerDetached() {
-    browser.element('[id="type-of-house-answer-1"]').click()
+    browser.element('[id="type-of-house-answer-0"]').click()
     return this
   }
 
   clickTypeOfHouseAnswerSemiDetached() {
-    browser.element('[id="type-of-house-answer-2"]').click()
+    browser.element('[id="type-of-house-answer-1"]').click()
     return this
   }
 
   clickTypeOfHouseAnswerTerraced() {
-    browser.element('[id="type-of-house-answer-3"]').click()
+    browser.element('[id="type-of-house-answer-2"]').click()
     return this
   }
 

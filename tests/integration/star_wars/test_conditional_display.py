@@ -22,11 +22,11 @@ class TestConditionalDisplay(StarWarsTestCase):
             "9587eb9b-f24e-4dc0-ac94-66117b896c10": ["Luke Skywalker", "Yoda", "Qui-Gon Jinn"],
 
             "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
+            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "5",
             "6fd644b0-798e-4a58-a393-a438b32fe637-year": "1983",
 
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "29",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "05",
+            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "5",
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "1983",
 
             "action[save_continue]": "Save &amp; Continue"

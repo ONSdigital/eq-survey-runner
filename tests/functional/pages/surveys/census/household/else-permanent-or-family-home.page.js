@@ -9,12 +9,12 @@ class ElsePermanentOrFamilyHomePage extends MultipleChoiceWithOtherPage {
   }
 
   clickElsePermanentOrFamilyHomeAnswerSomeoneLivesHereAsTheirPermanentHome() {
-    browser.element('[id="else-permanent-or-family-home-answer-1"]').click()
+    browser.element('[id="else-permanent-or-family-home-answer-0"]').click()
     return this
   }
 
   clickElsePermanentOrFamilyHomeAnswerNoOneLivesHereAsTheirPermanentHome() {
-    browser.element('[id="else-permanent-or-family-home-answer-2"]').click()
+    browser.element('[id="else-permanent-or-family-home-answer-1"]').click()
     return this
   }
 

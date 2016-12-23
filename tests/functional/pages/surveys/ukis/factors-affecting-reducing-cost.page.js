@@ -9,22 +9,22 @@ class FactorsAffectingReducingCostPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingReducingCostAnswerHigh() {
-    browser.element('[id="factors-affecting-reducing-cost-answer-1"]').click()
+    browser.element('[id="factors-affecting-reducing-cost-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingReducingCostAnswerMedium() {
-    browser.element('[id="factors-affecting-reducing-cost-answer-2"]').click()
+    browser.element('[id="factors-affecting-reducing-cost-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingReducingCostAnswerLow() {
-    browser.element('[id="factors-affecting-reducing-cost-answer-3"]').click()
+    browser.element('[id="factors-affecting-reducing-cost-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingReducingCostAnswerNotImportant() {
-    browser.element('[id="factors-affecting-reducing-cost-answer-4"]').click()
+    browser.element('[id="factors-affecting-reducing-cost-answer-3"]').click()
     return this
   }
 

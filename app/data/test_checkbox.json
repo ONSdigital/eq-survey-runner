@@ -66,18 +66,23 @@
                                                 },
                                                 {
                                                     "label": "Other",
-                                                    "value": "other",
                                                     "q_code": "6",
                                                     "description": "Choose any other topping",
-                                                    "other": {
-                                                      "label": "Please specify other"
-                                                    }
+                                                    "value": "Other",
+                                                    "child_answer_id": "other-answer-mandatory"
                                                 }
                                             ],
                                             "type": "Checkbox",
                                             "validation": {
                                                 "messages": {}
                                             }
+                                        },
+                                        {
+                                            "parent_answer_id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                            "mandatory": false,
+                                            "id": "other-answer-mandatory",
+                                            "label": "Please specify other",
+                                            "type": "TextField"
                                         }
                                     ],
                                     "description": "",
@@ -130,11 +135,9 @@
                                                 },
                                                 {
                                                     "label": "Other",
-                                                    "value": "other",
+                                                    "value": "Other",
                                                     "description": "Choose any other topping",
-                                                    "other": {
-                                                      "label": "Please specify other"
-                                                    }
+                                                    "child_answer_id": "other-answer-non-mandatory"
                                                 }
                                             ],
                                             "q_code": "20",
@@ -142,6 +145,13 @@
                                             "validation": {
                                                 "messages": {}
                                             }
+                                        },
+                                        {
+                                            "parent_answer_id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23",
+                                            "mandatory": false,
+                                            "id": "other-answer-non-mandatory",
+                                            "label": "Please specify other",
+                                            "type": "TextField"
                                         }
                                     ],
                                     "description": "",

@@ -9,22 +9,22 @@ class ImportancesInformationGovernmentPage extends MultipleChoiceWithOtherPage {
   }
 
   clickImportancesInformationGovernmentAnswerHigh() {
-    browser.element('[id="importances-information-government-answer-1"]').click()
+    browser.element('[id="importances-information-government-answer-0"]').click()
     return this
   }
 
   clickImportancesInformationGovernmentAnswerMedium() {
-    browser.element('[id="importances-information-government-answer-2"]').click()
+    browser.element('[id="importances-information-government-answer-1"]').click()
     return this
   }
 
   clickImportancesInformationGovernmentAnswerLow() {
-    browser.element('[id="importances-information-government-answer-3"]').click()
+    browser.element('[id="importances-information-government-answer-2"]').click()
     return this
   }
 
   clickImportancesInformationGovernmentAnswerNotImportant() {
-    browser.element('[id="importances-information-government-answer-4"]').click()
+    browser.element('[id="importances-information-government-answer-3"]').click()
     return this
   }
 

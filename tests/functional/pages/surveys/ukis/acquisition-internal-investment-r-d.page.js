@@ -9,12 +9,12 @@ class AcquisitionInternalInvestmentRDPage extends MultipleChoiceWithOtherPage {
   }
 
   clickAcquisitionInternalInvestmentRDAnswerYes() {
-    browser.element('[id="acquisition-internal-investment-r-d-answer-1"]').click()
+    browser.element('[id="acquisition-internal-investment-r-d-answer-0"]').click()
     return this
   }
 
   clickAcquisitionInternalInvestmentRDAnswerNo() {
-    browser.element('[id="acquisition-internal-investment-r-d-answer-2"]').click()
+    browser.element('[id="acquisition-internal-investment-r-d-answer-1"]').click()
     return this
   }
 

@@ -11,21 +11,22 @@
     {{question_description|safe}}
 
     <div class="js-relationship">
+        {% for current_person, other_person in content.relation_instances %}
+            {% set answer = question.answers[0] %}
+            {% set relation_instance = loop.index0 %}
 
-        {%- for answer in question.answers -%}
+            {% include 'partials/widgets/relationship_widget.html' %}
 
-            {{ answer.schema_item.widget.render(answer) | safe}}
-
-        {%- endfor -%}
+        {% endfor %}
 
     </div>
 
 </div>
 
-{% if (question.schema_item.guidance) %}
+{% if (question.guidance) %}
 
   {% set question_guidance %}
-    {%- for guidance in question.schema_item.guidance -%}
+    {%- for guidance in question.guidance -%}
       <ul class="u-m-no">
         {%- for item in guidance.list -%}
           <li>{{item|safe}}</li>
@@ -35,8 +36,8 @@
   {% endset %}
 
   {% with answer_guidance = {
-    'id': question.schema_item.id,
-    'label': question.schema_item.label,
+    'id': question.id,
+    'label': question.label,
     'content': question_guidance
   } %}
     {% include 'partials/answer-guidance.html' %}

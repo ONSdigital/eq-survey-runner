@@ -9,32 +9,32 @@ class KindFinancialCentralGovernmentSupportPage extends MultipleChoiceWithOtherP
   }
 
   clickKindFinancialCentralGovernmentSupportDirectAnswerYes() {
-    browser.element('[id="kind-financial-central-government-support-direct-answer-1"]').click()
+    browser.element('[id="kind-financial-central-government-support-direct-answer-0"]').click()
     return this
   }
 
   clickKindFinancialCentralGovernmentSupportDirectAnswerNo() {
-    browser.element('[id="kind-financial-central-government-support-direct-answer-2"]').click()
+    browser.element('[id="kind-financial-central-government-support-direct-answer-1"]').click()
     return this
   }
 
   clickKindFinancialCentralGovernmentSupportDirectAnswerDonTKnow() {
-    browser.element('[id="kind-financial-central-government-support-direct-answer-3"]').click()
+    browser.element('[id="kind-financial-central-government-support-direct-answer-2"]').click()
     return this
   }
 
   clickKindFinancialCentralGovernmentSupportIndirectAnswerYes() {
-    browser.element('[id="kind-financial-central-government-support-indirect-answer-1"]').click()
+    browser.element('[id="kind-financial-central-government-support-indirect-answer-0"]').click()
     return this
   }
 
   clickKindFinancialCentralGovernmentSupportIndirectAnswerNo() {
-    browser.element('[id="kind-financial-central-government-support-indirect-answer-2"]').click()
+    browser.element('[id="kind-financial-central-government-support-indirect-answer-1"]').click()
     return this
   }
 
   clickKindFinancialCentralGovernmentSupportIndirectAnswerDonTKnow() {
-    browser.element('[id="kind-financial-central-government-support-indirect-answer-3"]').click()
+    browser.element('[id="kind-financial-central-government-support-indirect-answer-2"]').click()
     return this
   }
 

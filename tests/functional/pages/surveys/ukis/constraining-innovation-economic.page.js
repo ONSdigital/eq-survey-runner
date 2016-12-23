@@ -9,22 +9,22 @@ class ConstrainingInnovationEconomicPage extends MultipleChoiceWithOtherPage {
   }
 
   clickConstrainingInnovationEconomicAnswerHigh() {
-    browser.element('[id="constraining-innovation-economic-answer-1"]').click()
+    browser.element('[id="constraining-innovation-economic-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationEconomicAnswerMedium() {
-    browser.element('[id="constraining-innovation-economic-answer-2"]').click()
+    browser.element('[id="constraining-innovation-economic-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationEconomicAnswerLow() {
-    browser.element('[id="constraining-innovation-economic-answer-3"]').click()
+    browser.element('[id="constraining-innovation-economic-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationEconomicAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-economic-answer-4"]').click()
+    browser.element('[id="constraining-innovation-economic-answer-3"]').click()
     return this
   }
 

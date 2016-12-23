@@ -19,7 +19,7 @@ class TestDarkSidePath(StarWarsTestCase):
         content = resp.get_data(True)
 
         # Make sure we are on the next page
-        self.assertRegex(content, 'What was the total number of Ewokes?')
+        self.assertRegex(content, 'What was the total number of Ewoks?')
         self.assertRegex(content, '5rr015b1-f87c-4740-9fd4-f01f707ef558')
 
     def test_mandatory_currency_should_raise_error(self):

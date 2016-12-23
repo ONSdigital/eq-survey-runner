@@ -9,22 +9,22 @@ class NotNecessaryPossiblePage extends MultipleChoiceWithOtherPage {
   }
 
   clickNotNecessaryPossibleAnswerNoNeedDueToPreviousInnovations() {
-    browser.element('[id="not-necessary-possible-answer-1"]').click()
+    browser.element('[id="not-necessary-possible-answer-0"]').click()
     return this
   }
 
   clickNotNecessaryPossibleAnswerNoNeedDueToMarketConditions() {
-    browser.element('[id="not-necessary-possible-answer-2"]').click()
+    browser.element('[id="not-necessary-possible-answer-1"]').click()
     return this
   }
 
   clickNotNecessaryPossibleAnswerTheUkDoesNotHaveABusinessEnvironmentWhichEncouragesCompaniesToInnovate() {
-    browser.element('[id="not-necessary-possible-answer-3"]').click()
+    browser.element('[id="not-necessary-possible-answer-2"]').click()
     return this
   }
 
   clickNotNecessaryPossibleAnswerOther() {
-    browser.element('[id="not-necessary-possible-answer-4"]').click()
+    browser.element('[id="not-necessary-possible-answer-3"]').click()
     return this
   }
 

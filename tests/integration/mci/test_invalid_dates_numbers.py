@@ -31,7 +31,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
             "period-from-year": "2016",
             # End Date
             "period-to-day": "01",
-            "period-to-month": "01",
+            "period-to-month": "1",
             "period-to-year": "2016",
             # Total Turnover
             "total-retail-turnover": "100000",
@@ -48,11 +48,11 @@ class TestInvalidDateNumber(IntegrationTestCase):
         form_data = {
             # Start Date
             "period-from-day": "01",
-            "period-from-month": "01",
+            "period-from-month": "1",
             "period-from-year": "2016",
             # End Date
             "period-to-day": "01",
-            "period-to-month": "01",
+            "period-to-month": "1",
             "period-to-year": "2017",
             # Total Turnover
             "total-retail-turnover": "10000",
@@ -97,11 +97,11 @@ class TestInvalidDateNumber(IntegrationTestCase):
         form_data = {
             # Start Date
             "period-from-day": "01",
-            "period-from-month": "01",
+            "period-from-month": "1",
             "period-from-year": "2016",
             # End Date
             "period-to-day": "01",
-            "period-to-month": "01",
+            "period-to-month": "1",
             "period-to-year": "2016",
             # Total Turnover
             "total-retail-turnover": "10000",
@@ -123,11 +123,11 @@ class TestInvalidDateNumber(IntegrationTestCase):
         form_data = {
             # Start Date
             "period-from-day": "01",
-            "period-from-month": "01",
+            "period-from-month": "1",
             "period-from-year": "2017",
             # End Date
             "period-to-day": "01",
-            "period-to-month": "01",
+            "period-to-month": "1",
             "period-to-year": "2016",
             # Total Turnover
             "total-retail-turnover": "10000",
@@ -152,7 +152,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
             "period-from-year": "",
             # End Date
             "period-to-day": "01",
-            "period-to-month": "01",
+            "period-to-month": "1",
             "period-to-year": "",
             # Total Turnover
             "total-retail-turnover": "100000",
@@ -174,11 +174,11 @@ class TestInvalidDateNumber(IntegrationTestCase):
         form_data = {
             # Start Date
             "period-from-day": "01",
-            "period-from-month": "01",
+            "period-from-month": "1",
             "period-from-year": "2016",
             # End Date
             "period-to-day": "01",
-            "period-to-month": "01",
+            "period-to-month": "1",
             "period-to-year": "2017",
             # Total Turnover
             "total-retail-turnover": "rubbish",
@@ -204,7 +204,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
             "period-from-year": "",
             # End Date
             "period-to-day": "01",
-            "period-to-month": "01",
+            "period-to-month": "1",
             "period-to-year": "",
             # Total Turnover
             "total-retail-turnover": "100000",

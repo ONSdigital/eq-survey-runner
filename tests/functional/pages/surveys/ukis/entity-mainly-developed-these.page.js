@@ -9,17 +9,17 @@ class EntityMainlyDevelopedThesePage extends MultipleChoiceWithOtherPage {
   }
 
   clickEntityMainlyDevelopedTheseAnswerThisBusinessOrEnterpriseGroup() {
-    browser.element('[id="entity-mainly-developed-these-answer-1"]').click()
+    browser.element('[id="entity-mainly-developed-these-answer-0"]').click()
     return this
   }
 
   clickEntityMainlyDevelopedTheseAnswerThisBusinessWithOtherBusinessesOrOrganisations() {
-    browser.element('[id="entity-mainly-developed-these-answer-2"]').click()
+    browser.element('[id="entity-mainly-developed-these-answer-1"]').click()
     return this
   }
 
   clickEntityMainlyDevelopedTheseAnswerOtherBusinessesOrOrganisations() {
-    browser.element('[id="entity-mainly-developed-these-answer-3"]').click()
+    browser.element('[id="entity-mainly-developed-these-answer-2"]').click()
     return this
   }
 

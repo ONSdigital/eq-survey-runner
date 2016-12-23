@@ -9,32 +9,32 @@ class PublicFinancialSupportPage extends MultipleChoiceWithOtherPage {
   }
 
   clickPublicFinancialSupportAuthoritiesAnswerYes() {
-    browser.element('[id="public-financial-support-authorities-answer-1"]').click()
+    browser.element('[id="public-financial-support-authorities-answer-0"]').click()
     return this
   }
 
   clickPublicFinancialSupportAuthoritiesAnswerNo() {
-    browser.element('[id="public-financial-support-authorities-answer-2"]').click()
+    browser.element('[id="public-financial-support-authorities-answer-1"]').click()
     return this
   }
 
   clickPublicFinancialSupportCentralGovernmentAnswerYes() {
-    browser.element('[id="public-financial-support-central-government-answer-1"]').click()
+    browser.element('[id="public-financial-support-central-government-answer-0"]').click()
     return this
   }
 
   clickPublicFinancialSupportCentralGovernmentAnswerNo() {
-    browser.element('[id="public-financial-support-central-government-answer-2"]').click()
+    browser.element('[id="public-financial-support-central-government-answer-1"]').click()
     return this
   }
 
   clickPublicFinancialSupportEuAnswerYes() {
-    browser.element('[id="public-financial-support-eu-answer-1"]').click()
+    browser.element('[id="public-financial-support-eu-answer-0"]').click()
     return this
   }
 
   clickPublicFinancialSupportEuAnswerNo() {
-    browser.element('[id="public-financial-support-eu-answer-2"]').click()
+    browser.element('[id="public-financial-support-eu-answer-1"]').click()
     return this
   }
 

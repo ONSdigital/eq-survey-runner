@@ -1,3 +1,11 @@
+{% set input = form[answer['id']] %}
+
 <div class="field">
-  {{ answer.schema_item.widget.render(answer)|safe}}
+    {% set label = {
+      'for': answer.id,
+      'text': answer.label
+    } %}
+
+    {% include 'partials/forms/label.html' %}
+    {% include 'partials/forms/input.html' %}
 </div>

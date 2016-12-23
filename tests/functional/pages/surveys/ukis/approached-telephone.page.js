@@ -9,12 +9,12 @@ class ApproachedTelephonePage extends MultipleChoiceWithOtherPage {
   }
 
   clickApproachedTelephoneAnswerYes() {
-    browser.element('[id="approached-telephone-answer-1"]').click()
+    browser.element('[id="approached-telephone-answer-0"]').click()
     return this
   }
 
   clickApproachedTelephoneAnswerNo() {
-    browser.element('[id="approached-telephone-answer-2"]').click()
+    browser.element('[id="approached-telephone-answer-1"]').click()
     return this
   }
 

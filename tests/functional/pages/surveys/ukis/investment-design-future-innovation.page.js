@@ -9,12 +9,12 @@ class InvestmentDesignFutureInnovationPage extends MultipleChoiceWithOtherPage {
   }
 
   clickInvestmentDesignFutureInnovationAnswerYes() {
-    browser.element('[id="investment-design-future-innovation-answer-1"]').click()
+    browser.element('[id="investment-design-future-innovation-answer-0"]').click()
     return this
   }
 
   clickInvestmentDesignFutureInnovationAnswerNo() {
-    browser.element('[id="investment-design-future-innovation-answer-2"]').click()
+    browser.element('[id="investment-design-future-innovation-answer-1"]').click()
     return this
   }
 

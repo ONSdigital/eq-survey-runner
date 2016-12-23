@@ -167,7 +167,7 @@
                                     ],
                                     "description": "",
                                     "id": "680f2ff9-d5a5-4057-b1cd-9fde2660b244",
-                                    "title": "A wise choice young Yedi. Pick your hero",
+                                    "title": "A wise choice young Jedi. Pick your hero",
                                     "type": "General"
                                 },
                                 {
@@ -768,7 +768,7 @@
                                         {
                                             "guidance": "",
                                             "id": "5rr015b1-f87c-4740-9fd4-f01f707ef558",
-                                            "label": "What was the total number of Ewokes?",
+                                            "label": "What was the total number of Ewoks?",
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "9",

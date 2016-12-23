@@ -9,12 +9,12 @@ class CompletionPreferenceEstablishmentPage extends MultipleChoiceWithOtherPage 
   }
 
   clickCompletionPreferenceEstablishmentAnswerOnline() {
-    browser.element('[id="completion-preference-establishment-answer-1"]').click()
+    browser.element('[id="completion-preference-establishment-answer-0"]').click()
     return this
   }
 
   clickCompletionPreferenceEstablishmentAnswerPaper() {
-    browser.element('[id="completion-preference-establishment-answer-2"]').click()
+    browser.element('[id="completion-preference-establishment-answer-1"]').click()
     return this
   }
 

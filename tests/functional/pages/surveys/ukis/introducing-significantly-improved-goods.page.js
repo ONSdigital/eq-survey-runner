@@ -9,12 +9,12 @@ class IntroducingSignificantlyImprovedGoodsPage extends MultipleChoiceWithOtherP
   }
 
   clickIntroducingSignificantlyImprovedGoodsAnswerYes() {
-    browser.element('[id="introducing-significantly-improved-goods-answer-1"]').click()
+    browser.element('[id="introducing-significantly-improved-goods-answer-0"]').click()
     return this
   }
 
   clickIntroducingSignificantlyImprovedGoodsAnswerNo() {
-    browser.element('[id="introducing-significantly-improved-goods-answer-2"]').click()
+    browser.element('[id="introducing-significantly-improved-goods-answer-1"]').click()
     return this
   }
 

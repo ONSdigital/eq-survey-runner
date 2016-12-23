@@ -45,8 +45,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.routing_pick_your_character_light_side(current_page)
 
         form_data = {
-
-            "91631df0-4356-4e9f-a9d9-ce8b08d26eb3": "Light Side",
+            "91631df0-4356-4e9f-a9d9-ce8b08d26eb3": "Leyoda",
             "2e0989b8-5185-4ba6-b73f-c126e3a06ba7": "Yes",
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -58,7 +57,6 @@ class StarWarsTestCase(IntegrationTestCase):
         self.routing_select_your_ship_light_side(current_page)
 
         form_data = {
-
             "a2c2649a-85ff-4a26-ba3c-e1880f7c807b": "Millennium Falcon",
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -77,7 +75,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def routing_pick_your_character_light_side(self, page):
         content = self.retrieve_content(page)
-        self.assertIn('A wise choice young Yedi. Pick your hero', content)
+        self.assertIn('A wise choice young Jedi. Pick your hero', content)
         self.assertIn('91631df0-4356-4e9f-a9d9-ce8b08d26eb3', content)
         self.assertIn('Do you want to pick a ship?', content)
         self.assertIn('2e0989b8-5185-4ba6-b73f-c126e3a06ba7', content)

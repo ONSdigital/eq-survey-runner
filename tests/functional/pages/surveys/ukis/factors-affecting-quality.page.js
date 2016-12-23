@@ -9,22 +9,22 @@ class FactorsAffectingQualityPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingQualityAnswerHigh() {
-    browser.element('[id="factors-affecting-quality-answer-1"]').click()
+    browser.element('[id="factors-affecting-quality-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingQualityAnswerMedium() {
-    browser.element('[id="factors-affecting-quality-answer-2"]').click()
+    browser.element('[id="factors-affecting-quality-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingQualityAnswerLow() {
-    browser.element('[id="factors-affecting-quality-answer-3"]').click()
+    browser.element('[id="factors-affecting-quality-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingQualityAnswerNotImportant() {
-    browser.element('[id="factors-affecting-quality-answer-4"]').click()
+    browser.element('[id="factors-affecting-quality-answer-3"]').click()
     return this
   }
 

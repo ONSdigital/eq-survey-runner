@@ -9,22 +9,22 @@ class ImportancesInformationPublicationsPage extends MultipleChoiceWithOtherPage
   }
 
   clickImportancesInformationPublicationsAnswerHigh() {
-    browser.element('[id="importances-information-publications-answer-1"]').click()
+    browser.element('[id="importances-information-publications-answer-0"]').click()
     return this
   }
 
   clickImportancesInformationPublicationsAnswerMedium() {
-    browser.element('[id="importances-information-publications-answer-2"]').click()
+    browser.element('[id="importances-information-publications-answer-1"]').click()
     return this
   }
 
   clickImportancesInformationPublicationsAnswerLow() {
-    browser.element('[id="importances-information-publications-answer-3"]').click()
+    browser.element('[id="importances-information-publications-answer-2"]').click()
     return this
   }
 
   clickImportancesInformationPublicationsAnswerNotImportant() {
-    browser.element('[id="importances-information-publications-answer-4"]').click()
+    browser.element('[id="importances-information-publications-answer-3"]').click()
     return this
   }
 

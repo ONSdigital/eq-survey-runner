@@ -9,12 +9,12 @@ class InvestmentTrainingInnovativePage extends MultipleChoiceWithOtherPage {
   }
 
   clickInvestmentTrainingInnovativeAnswerYes() {
-    browser.element('[id="investment-training-innovative-answer-1"]').click()
+    browser.element('[id="investment-training-innovative-answer-0"]').click()
     return this
   }
 
   clickInvestmentTrainingInnovativeAnswerNo() {
-    browser.element('[id="investment-training-innovative-answer-2"]').click()
+    browser.element('[id="investment-training-innovative-answer-1"]').click()
     return this
   }
 

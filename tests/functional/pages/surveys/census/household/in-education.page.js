@@ -9,12 +9,12 @@ class InEducationPage extends MultipleChoiceWithOtherPage {
   }
 
   clickInEducationAnswerYes() {
-    browser.element('[id="in-education-answer-1"]').click()
+    browser.element('[id="in-education-answer-0"]').click()
     return this
   }
 
   clickInEducationAnswerNo() {
-    browser.element('[id="in-education-answer-2"]').click()
+    browser.element('[id="in-education-answer-1"]').click()
     return this
   }
 

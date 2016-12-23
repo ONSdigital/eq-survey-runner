@@ -50,7 +50,7 @@ class TestHappyPath(IntegrationTestCase):
             "period-from-year": "2016",
             # End Date
             "period-to-day": "30",
-            "period-to-month": "04",
+            "period-to-month": "4",
             "period-to-year": "2016",
             # Total Turnover
             "total-retail-turnover": "100000",

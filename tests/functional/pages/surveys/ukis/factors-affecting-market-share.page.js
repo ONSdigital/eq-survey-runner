@@ -9,22 +9,22 @@ class FactorsAffectingMarketSharePage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingMarketShareAnswerHigh() {
-    browser.element('[id="factors-affecting-market-share-answer-1"]').click()
+    browser.element('[id="factors-affecting-market-share-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingMarketShareAnswerMedium() {
-    browser.element('[id="factors-affecting-market-share-answer-2"]').click()
+    browser.element('[id="factors-affecting-market-share-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingMarketShareAnswerLow() {
-    browser.element('[id="factors-affecting-market-share-answer-3"]').click()
+    browser.element('[id="factors-affecting-market-share-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingMarketShareAnswerNotImportant() {
-    browser.element('[id="factors-affecting-market-share-answer-4"]').click()
+    browser.element('[id="factors-affecting-market-share-answer-3"]').click()
     return this
   }
 

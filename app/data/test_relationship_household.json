@@ -33,6 +33,7 @@
                                   "answers": [
                                     {
                                         "id": "first-name",
+                                        "alias": "first_name",
                                         "label": "First Name",
                                         "mandatory": false,
                                         "options": [],
@@ -41,6 +42,7 @@
                                     },
                                     {
                                         "id": "middle-names",
+                                        "alias": "middle_names",
                                         "label": "Middle Names",
                                         "mandatory": false,
                                         "options": [],
@@ -49,6 +51,7 @@
                                     },
                                     {
                                         "id": "last-name",
+                                        "alias": "last_name",
                                         "label": "Last Name",
                                         "mandatory": false,
                                         "options": [],

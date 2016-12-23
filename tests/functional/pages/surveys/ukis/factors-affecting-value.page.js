@@ -9,22 +9,22 @@ class FactorsAffectingValuePage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingValueAnswerHigh() {
-    browser.element('[id="factors-affecting-value-answer-1"]').click()
+    browser.element('[id="factors-affecting-value-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingValueAnswerMedium() {
-    browser.element('[id="factors-affecting-value-answer-2"]').click()
+    browser.element('[id="factors-affecting-value-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingValueAnswerLow() {
-    browser.element('[id="factors-affecting-value-answer-3"]').click()
+    browser.element('[id="factors-affecting-value-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingValueAnswerNotImportant() {
-    browser.element('[id="factors-affecting-value-answer-4"]').click()
+    browser.element('[id="factors-affecting-value-answer-3"]').click()
     return this
   }
 

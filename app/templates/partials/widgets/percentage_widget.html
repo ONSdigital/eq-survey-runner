@@ -7,16 +7,19 @@
 
 {% include 'partials/forms/label.html' %}
 
+{% set raw_data = form[answer['id']].raw_data[0] if form[answer['id']].raw_data is not none else '' %}
+{% set form_data = form[answer['id']].data if form[answer.id].data is not none else '' %}
+
 <div class="input-type input-type--percentage">
 
     {% set input = {
-    'type': 'number',
-    'classes': 'input-type__input',
-    'hasType': true,
-    'value': answer.value|e,
-    'name': answer.name,
-    'id': answer.id
-  } %}
+        'type': 'number',
+        'classes': 'input-type__input',
+        'hasType': true,
+        'value': form_data if form_data else raw_data|e,
+        'name': input.name,
+        'id': answer.id
+    } %}
 
     {% include 'partials/forms/input.html' %}
 

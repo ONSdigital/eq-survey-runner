@@ -9,12 +9,12 @@ class SexPage extends MultipleChoiceWithOtherPage {
   }
 
   clickSexAnswerMale() {
-    browser.element('[id="sex-answer-1"]').click()
+    browser.element('[id="sex-answer-0"]').click()
     return this
   }
 
   clickSexAnswerFemale() {
-    browser.element('[id="sex-answer-2"]').click()
+    browser.element('[id="sex-answer-1"]').click()
     return this
   }
 

@@ -9,22 +9,22 @@ class CoOperationGovernmentPage extends MultipleChoiceWithOtherPage {
   }
 
   clickCoOperationGovernmentAnswerUkRegional() {
-    browser.element('[id="co-operation-government-answer-1"]').click()
+    browser.element('[id="co-operation-government-answer-0"]').click()
     return this
   }
 
   clickCoOperationGovernmentAnswerUkNational() {
-    browser.element('[id="co-operation-government-answer-2"]').click()
+    browser.element('[id="co-operation-government-answer-1"]').click()
     return this
   }
 
   clickCoOperationGovernmentAnswerEuropeanCountries() {
-    browser.element('[id="co-operation-government-answer-3"]').click()
+    browser.element('[id="co-operation-government-answer-2"]').click()
     return this
   }
 
   clickCoOperationGovernmentAnswerOtherCountries() {
-    browser.element('[id="co-operation-government-answer-4"]').click()
+    browser.element('[id="co-operation-government-answer-3"]').click()
     return this
   }
 
