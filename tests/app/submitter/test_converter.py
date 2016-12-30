@@ -238,7 +238,7 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_converter_checkboxes_with_q_codes(self):
         with self.application.test_request_context():
-            routing_path = [location(group_id='favourite food', block_id='crisps')]
+            routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'], group_id='favourite food', block_id='crisps')]
 
             answer = CheckboxAnswer()
@@ -303,7 +303,7 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_converter_checkboxes_with_q_codes_and_other_value(self):
         with self.application.test_request_context():
-            routing_path = [location(group_id='favourite food', block_id='crisps')]
+            routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', ['Ready salted', 'other', 'Bacon'], group_id='favourite food', block_id='crisps')]
 
             answer = CheckboxAnswer()
