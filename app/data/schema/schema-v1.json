@@ -239,7 +239,17 @@
                                   },
                                   "options": {
                                     "type": "array",
-                                    "items": {}
+                                    "items": {
+                                         "label": {
+                                            "type": "string"
+                                         },
+                                         "value": {
+                                             "type": "string"
+                                        },
+                                         "q_code": {
+                                            "type": "string"
+                                        }
+                                    }
                                   },
                                   "mandatory": {
                                     "type": "boolean"
