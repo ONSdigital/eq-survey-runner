@@ -1,8 +1,10 @@
 import logging
 
+from app.helpers.checkbox_helper import CheckboxHelper
 from app.questionnaire_state.exceptions import StateException
 from app.schema.answer import Answer
 from app.schema.widgets.checkbox_group_widget import CheckboxGroupWidget
+
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +32,7 @@ class CheckboxAnswer(Answer):
                     super(CheckboxAnswer, self).mandatory_error(state)
                 elif 'other' not in state.input and not self._valid_option_selected(state.input, options):
                     super(CheckboxAnswer, self).mandatory_error(state)
-                elif 'other' in state.input and not self.widget.find_other_value(state.input, options):
+                elif 'other' in state.input and not CheckboxHelper.find_other_value(state.input, options):
                     super(CheckboxAnswer, self).mandatory_error(state)
 
             # Here we just report on whether the answer has passed type checking

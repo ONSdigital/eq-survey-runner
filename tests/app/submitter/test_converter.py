@@ -6,6 +6,7 @@ from app.data_model.answer_store import AnswerStore
 from app.parser.metadata_parser import parse_metadata
 from app.questionnaire.location import Location
 from app.schema.answer import Answer
+from app.schema.answers.checkbox_answer import CheckboxAnswer
 from app.schema.block import Block
 from app.schema.group import Group
 from app.schema.question import Question
@@ -234,6 +235,136 @@ class TestConverter(SurveyRunnerTestCase):
                 convert_answers(metadata, questionnaire, AnswerStore(), {})
 
             self.assertEqual(str(err.exception), 'Data version -0.0.1 not supported')
+
+    def test_converter_checkboxes_with_q_codes(self):
+        with self.application.test_request_context():
+            routing_path = [location(group_id='favourite food', block_id='crisps')]
+            answers = [create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'], group_id='favourite food', block_id='crisps')]
+
+            answer = CheckboxAnswer()
+            answer.id = "crisps-answer"
+            answer.code = ""
+            answer.options = [
+                                {
+                                    "label": "Ready salted",
+                                    "value": "Ready salted",
+                                    "q_code": "1"
+                                },
+                                {
+                                    "label": "Sweet chilli",
+                                    "value": "Sweet chilli",
+                                    "q_code": "2"
+                                },
+                                {
+                                    "label": "Cheese and onion",
+                                    "value": "Cheese and onion",
+                                    "q_code": "3"
+                                },
+                                {
+                                    "label": "Other",
+                                    "value": "other",
+                                    "q_code": "4",
+                                    "description": "Choose any other flavour",
+                                    "other": {
+                                      "label": "Please specify other"
+                                    }
+                                }
+                                            ]
+
+            question = Question()
+            question.id = 'crisps-question'
+            question.add_answer(answer)
+
+            section = Section()
+            section.add_question(question)
+
+            block = Block()
+            block.id = 'crisps'
+            block.add_section(section)
+
+            group = Group()
+            group.id = 'favourite food'
+            group.add_block(block)
+
+            questionnaire = Questionnaire()
+            questionnaire.survey_id = "999"
+            questionnaire.data_version = "0.0.1"
+            questionnaire.add_group(group)
+            questionnaire.register(question)
+            questionnaire.register(answer)
+
+            # When
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)
+
+            # Then
+            self.assertEqual(len(answer_object['data']), 2)
+            self.assertEqual(answer_object['data']['1'], 'Ready salted')
+            self.assertEqual(answer_object['data']['2'], 'Sweet chilli')
+
+    def test_converter_checkboxes_with_q_codes_and_other_value(self):
+        with self.application.test_request_context():
+            routing_path = [location(group_id='favourite food', block_id='crisps')]
+            answers = [create_answer('crisps-answer', ['Ready salted', 'other', 'Bacon'], group_id='favourite food', block_id='crisps')]
+
+            answer = CheckboxAnswer()
+            answer.id = "crisps-answer"
+            answer.code = ""
+            answer.options = [
+                                {
+                                    "label": "Ready salted",
+                                    "value": "Ready salted",
+                                    "q_code": "1"
+                                },
+                                {
+                                    "label": "Sweet chilli",
+                                    "value": "Sweet chilli",
+                                    "q_code": "2"
+                                },
+                                {
+                                    "label": "Cheese and onion",
+                                    "value": "Cheese and onion",
+                                    "q_code": "3"
+                                },
+                                {
+                                    "label": "Other",
+                                    "value": "other",
+                                    "q_code": "4",
+                                    "description": "Choose any other flavour",
+                                    "other": {
+                                      "label": "Please specify other"
+                                    }
+                                }
+                                            ]
+
+            question = Question()
+            question.id = 'crisps-question'
+            question.add_answer(answer)
+
+            section = Section()
+            section.add_question(question)
+
+            block = Block()
+            block.id = 'crisps'
+            block.add_section(section)
+
+            group = Group()
+            group.id = 'favourite food'
+            group.add_block(block)
+
+            questionnaire = Questionnaire()
+            questionnaire.survey_id = "999"
+            questionnaire.data_version = "0.0.1"
+            questionnaire.add_group(group)
+            questionnaire.register(question)
+            questionnaire.register(answer)
+
+            # When
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)
+
+            # Then
+            self.assertEqual(len(answer_object['data']), 2)
+            self.assertEqual(answer_object['data']['1'], 'Ready salted')
+            self.assertEqual(answer_object['data']['4'], 'Bacon')
 
 
 def create_answer(answer_id, value, group_id=None, block_id=None, answer_instance=0, group_instance=0):
