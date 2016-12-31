@@ -44,15 +44,24 @@ def evaluate_repeat(repeat_rule, answer_store):
     :return: The number of times to repeat
     """
     repeat_functions = {
-        'answer_value': lambda filtered_answers: int(filtered_answers[0]['value'] if len(filtered_answers) == 1 else 0),
+        'answer_value': _get_answer_value(),
         'answer_count': len,
-        'answer_count_minus_one': lambda filtered_answers: len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0,
+        'answer_count_minus_one': _get_answer_count_minus_one(),
     }
     if 'answer_id' in repeat_rule and 'type' in repeat_rule:
         repeat_index = repeat_rule['answer_id']
         filtered = answer_store.filter(answer_id=repeat_index)
         repeat_function = repeat_functions[repeat_rule['type']]
         return repeat_function(filtered)
+
+
+def _get_answer_value():
+    return lambda filtered_answers: int(
+        filtered_answers[0]['value'] if len(filtered_answers) == 1 and filtered_answers[0]['value'] else 0)
+
+
+def _get_answer_count_minus_one():
+    return lambda filtered_answers: len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0
 
 
 def evaluate_skip_condition(skip_condition, metadata, answer_store, group_instance=0):

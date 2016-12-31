@@ -103,6 +103,18 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         self.assertRegex(resp_url, '/summary')
 
+    def test_save_sign_out_with_household_question(self):
+
+        first_page = self.add_answers()
+
+        form_data = MultiDict()
+        form_data.add("action[save_sign_out]", "")
+
+        resp_url, resp = self.postRedirectGet(first_page, form_data)
+        content = resp.get_data(True)
+        self.assertRegex(content, 'Your survey has been saved')
+        self.assertRegex(resp_url, 'signed-out')
+
     def remove_answer(self, page):
         # Add first person
         form_data = MultiDict()
@@ -181,3 +193,5 @@ class TestHouseholdQuestion(IntegrationTestCase):
         resp = self.client.post(resp_url, data=form_data, follow_redirects=False)
         resp_url = resp.headers['Location']
         return resp, resp_url
+
+

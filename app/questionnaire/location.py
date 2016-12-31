@@ -61,6 +61,8 @@ class Location(object):
                 return url_for('questionnaire.get_summary', **path_params)
             elif self.block_id == 'introduction':
                 return url_for('questionnaire.get_introduction', **path_params)
+            elif self.block_id == 'sign-out':
+                return url_for('questionnaire.get_sign_out', **path_params)
             elif self.block_id == 'thank-you':
                 return url_for('questionnaire.get_thank_you', **path_params)
         elif self.block_id == 'confirmation':
