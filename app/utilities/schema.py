@@ -18,8 +18,6 @@ def get_schema(metadata):
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
     json_schema, schema = load_and_parse_schema(eq_id, form_type, language_code)
-    if not json_schema:
-        raise ValueError("No schema available")
 
     return json_schema, schema
 
@@ -39,4 +37,4 @@ def load_and_parse_schema(eq_id, form_type, language_code):
         schema = parser.parse()
         return json_schema, schema
     else:
-        return None, None
+        raise ValueError("No schema available")

@@ -17,22 +17,13 @@
 
                 {
                     "type": "questionnaire",
-                    "display": {
-                        "properties": {}
-                    },
                     "id": "household-composition",
                     "sections": [
                         {
-                            "display": {
-                                "properties": {}
-                            },
                             "id": "section",
                             "questions": [
                                 {
                                   "description": "",
-                                  "display": {
-                                      "properties": {}
-                                  },
                                   "id": "household-composition-question",
                                   "title": "Who usually lives here?",
                                   "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
@@ -41,7 +32,6 @@
                                   "answers": [
                                     {
                                         "alias": "first_name",
-                                        "display": {},
                                         "id": "first-name",
                                         "label": "First Name",
                                         "mandatory": false,
@@ -52,7 +42,6 @@
                                     },
                                     {
                                         "alias": "middle_names",
-                                        "display": {},
                                         "id": "middle-names",
                                         "label": "Middle Names",
                                         "mandatory": false,
@@ -63,7 +52,6 @@
                                     },
                                     {
                                         "alias": "last_name",
-                                        "display": {},
                                         "id": "last-name",
                                         "label": "Last Name",
                                         "mandatory": false,
@@ -84,9 +72,6 @@
                     "validation": []
                 }
             ],
-            "display": {
-                "properties": {}
-            },
             "id": "multiple-questions-group",
             "title": "",
             "validation": []

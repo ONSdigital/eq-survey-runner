@@ -63,7 +63,6 @@
                                     "type": "General",
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "answer-test-guidance-all",
                                             "label": "Text question",
@@ -104,7 +103,6 @@
                                     "type": "General",
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "answer-test-guidance-title",
                                             "label": "Text question",
@@ -150,7 +148,6 @@
                                     "type": "General",
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "answer-test-guidance-description",
                                             "label": "Text question",
@@ -200,7 +197,6 @@
                                     "type": "General",
                                     "answers": [
                                         {
-                                            "display": {},
                                             "guidance": "",
                                             "id": "answer-test-guidance-lists",
                                             "label": "Text question",

@@ -40,7 +40,6 @@
                                   "validation": [],
                                   "answers": [
                                     {
-                                        "display": {},
                                         "id": "first-name",
                                         "alias": "first_name",
                                         "label": "First Name",
@@ -51,7 +50,6 @@
                                         "validation": {}
                                     },
                                     {
-                                        "display": {},
                                         "id": "middle-names",
                                         "alias": "middle_names",
                                         "label": "Middle Names",
@@ -62,7 +60,6 @@
                                         "validation": {}
                                     },
                                     {
-                                        "display": {},
                                         "id": "last-name",
                                         "alias": "last_name",
                                         "label": "Last Name",

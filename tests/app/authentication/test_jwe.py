@@ -4,7 +4,7 @@ import unittest
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.jwt_decoder import JWTDecryptor
-from app.dev_mode.jwt_encoder import Encoder
+from app.cryptography.jwt_encoder import Encoder
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM, VALID_SIGNED_JWT, VALID_JWE
 
 

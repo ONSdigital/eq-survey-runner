@@ -2,6 +2,7 @@ import json
 import logging
 
 from app.data_model.answer_store import AnswerStore
+from app.questionnaire.location import Location
 from app.storage.storage_factory import get_storage
 
 logger = logging.getLogger(__name__)
@@ -34,7 +35,13 @@ class QuestionnaireStore:
                 self.answer_store.answers = data['ANSWERS']
 
             if 'COMPLETED_BLOCKS' in data:
-                self.completed_blocks = data['COMPLETED_BLOCKS']
+                for location_dict in data['COMPLETED_BLOCKS']:
+                    location = Location(
+                        location_dict['group_id'],
+                        location_dict['group_instance'],
+                        location_dict['block_id'],
+                    )
+                    self.completed_blocks.append(location)
 
         self.initial_hash = hash(self.get_json())
 
@@ -42,7 +49,7 @@ class QuestionnaireStore:
         return {
             "METADATA": self.metadata,
             "ANSWERS": self.answer_store.answers,
-            "COMPLETED_BLOCKS": self.completed_blocks,
+            "COMPLETED_BLOCKS": [b.__dict__ for b in self.completed_blocks],
         }
 
     def get_json(self):

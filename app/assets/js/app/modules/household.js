@@ -1,5 +1,9 @@
 import domready from './domready'
 import { EventEmitter } from 'events'
+import forEach from 'lodash/forEach'
+import getTransitionEndEvent from '../helpers/transitionend'
+
+const transitionendEvent = getTransitionEndEvent()
 
 class HouseholdMember extends EventEmitter {
   constructor(index) {
@@ -38,7 +42,8 @@ class HouseholdMember extends EventEmitter {
     this.bindToDOM(node)
     this.removeTxt = this.node.getAttribute('data-remove')
     this.removeBtn.innerHTML = this.removeTxt
-    this.removeBtn.classList.add('btn', 'btn--link')
+    this.removeBtn.classList.add('btn')
+    this.removeBtn.classList.add('btn--link')
     this.removeBtn.setAttribute('type', 'button')
     this.node.classList.add('is-hidden')
     this.actionNode.innerHTML = ''
@@ -47,14 +52,14 @@ class HouseholdMember extends EventEmitter {
     parent.appendChild(this.node)
     this.node.querySelector('input').focus()
     this.setIndex(this.index)
-    this.inputs.forEach(input => { input.value = '' })
+    forEach(this.inputs, input => { input.value = '' })
     window.setTimeout(this.node.classList.remove('is-hidden'), 100)
   }
 
   setIndex(index) {
     this.index = index
     this.indexNode.innerHTML = index
-    this.inputs.forEach(input => {
+    forEach(this.inputs, input => {
       const id = input.id
       const label = this.node.querySelector(`label[for=${id}]`)
       const newId = `${id}_${index - 1}`
@@ -65,14 +70,20 @@ class HouseholdMember extends EventEmitter {
   }
 
   remove() {
+    if (transitionendEvent) {
+      this.node.addEventListener(transitionendEvent, this.onTransitionHideEnd, true)
+    } else {
+      window.setTimeout(this.onTransitionHideEnd, 500)
+    }
     this.node.classList.add('is-removed')
-    this.node.addEventListener('transitionend', this.onTransitionHideEnd)
   }
 
   onTransitionHideEnd = (e) => {
-    this.node.remove()
-    this.node.removeEventListener('transitionend', this.onTransitionHideEnd)
-    this.emit('removed', this)
+    if (e === undefined || e.target.classList.contains('is-removed')) {
+      this.node.parentNode.removeChild(this.node)
+      this.node.removeEventListener(transitionendEvent, this.onTransitionHideEnd)
+      this.emit('removed', this)
+    }
   }
 
   onRemoveClick = (e) => {
@@ -113,7 +124,7 @@ domready(() => {
     createHouseholdMember().add(newNode, parent)
   }
 
-  existingPeople.forEach((person, index) => {
+  forEach(existingPeople, (person, index) => {
     if (index > 0) {
       createHouseholdMember().bindToExisting(person)
     }

@@ -151,17 +151,18 @@ class AnswerStore(object):
 
         return len(self.filter(answer.group_id, answer.block_id, answer.answer_id, answer.group_instance, answer.answer_instance))
 
-    def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+    def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None, location=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
         If no filter parameters are passed it returns a copy of the list of all answers.
 
-        :param answer_id:
-        :param block_id:
-        :param group_id:
-        :param answer_instance:
-        :param group_instance:
-        :return:
+        :param answer_id: The answer id to filter results by
+        :param block_id: The block id to filter results by
+        :param group_id: The group id to filter results by
+        :param answer_instance: The answer instance to filter results by
+        :param group_instance: The group instance to filter results by
+        :param location: The location to filter results by (takes precedence over group_id, group_instance and block_id)
+        :return: Return a list of answers which satisfy the filter criteria
         """
         filtered = []
         filter_vars = {
@@ -171,6 +172,14 @@ class AnswerStore(object):
             "answer_instance": answer_instance,
             "group_instance": group_instance,
         }
+        if location:
+            assert not (group_id or group_instance or block_id), \
+                "Expected either a location object or one or more of group_id, group_instance, block_id params"
+
+            filter_vars['group_id'] = location.group_id
+            filter_vars['group_instance'] = location.group_instance
+            filter_vars['block_id'] = location.block_id
+
         for answer in self.answers:
             matches = True
             for k, v in filter_vars.items():
@@ -214,17 +223,19 @@ class AnswerStore(object):
         if index is not None:
             del self.answers[index]
 
-    def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None):
+    def remove(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None, location=None):
         """
         Removes answer(s) from the answer store.
 
-        :param answer_id:
-        :param block_id:
-        :param group_id:
-        :param answer_instance:
-        :param group_instance:
+        :param answer_id: The answer id to filter results to remove
+        :param block_id: The block id to filter results to remove
+        :param group_id: The group id to filter results to remove
+        :param answer_instance: The answer instance to filter results to remove
+        :param group_instance: The group instance to filter results to remove
+        :param location: The location to filter results to remove (takes precedence over group_id, group_instance and block_id)
         """
-        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance):
+
+        for answer in self.filter(group_id, block_id, answer_id, group_instance, answer_instance, location):
             self.answers.remove(answer)
 
 

@@ -1,5 +1,4 @@
 from app.schema.answer import Answer
-from app.schema.display import Display
 from app.schema.exceptions import QuestionnaireException
 from app.validation.error_messages import error_messages
 
@@ -13,13 +12,10 @@ class Questionnaire(object):
         self.description = None
         self.groups = []
         self.children = self.groups
-        self.validation = None
         self.items_by_id = {}
         self.introduction = None
-        self.display = Display()
         self.aliases = {}
         self.theme = None
-        self.submission_page = 'summary'
         self.data_version = None
         self.messages = {}
 

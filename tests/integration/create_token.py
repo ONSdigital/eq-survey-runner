@@ -1,4 +1,4 @@
-from app.dev_mode.views import generate_token, create_payload
+from app.views.dev_mode import generate_token, create_payload
 
 # Set up some constants
 USER = "mci-integration-test"
