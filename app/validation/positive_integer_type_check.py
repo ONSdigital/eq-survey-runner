@@ -4,6 +4,10 @@ from app.validation.validation_result import ValidationResult
 
 class PositiveIntegerTypeCheck(AbstractValidator):
 
+    def __init__(self, minimum=0, maximum=9999999999):
+        self.min = minimum
+        self.max = maximum
+
     def validate(self, user_answer):
         """
         Validate that the users answer is an integer
@@ -13,10 +17,10 @@ class PositiveIntegerTypeCheck(AbstractValidator):
         result = ValidationResult(False)
         try:
             integer_value = int(user_answer)        # NOQA
-            if integer_value < 0:
+            if integer_value < self.min:
                 result.errors.append(AbstractValidator.NEGATIVE_INTEGER)
                 return result
-            if integer_value > 9999999999:          # 10 digits
+            if integer_value > self.max:          # 10 digits
                 result.errors.append(AbstractValidator.INTEGER_TOO_LARGE)
                 return result
 
