@@ -34,16 +34,17 @@ logger = logging.getLogger(__name__)
 
 questionnaire_blueprint = Blueprint(name='questionnaire',
                                     import_name=__name__,
-                                    url_prefix='/questionnaire/<eq_id>/<form_type>/<collection_id>/')
+                                    url_prefix='/questionnaire/<form_type>/<collection_id>/')
 
 
 @questionnaire_blueprint.before_request
 @login_required
 def check_survey_state():
-    g.schema_json, g.schema = get_schema(get_metadata(current_user))
+    metadata = get_metadata(current_user)
+    g.schema_json, g.schema = get_schema(metadata)
     values = request.view_args
 
-    _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
+    _check_same_survey(metadata, values['form_type'], values['collection_id'])
 
 
 @questionnaire_blueprint.after_request
@@ -66,7 +67,7 @@ def save_questionnaire_store(response):
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["GET"])
 @login_required
-def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
+def get_block(form_type, collection_id, group_id, group_instance, block_id):
     # Filter answers down to those we may need to render
     answer_store = get_answer_store(current_user)
     answers = answer_store.map(group_id=group_id, group_instance=group_instance, block_id=block_id)
@@ -86,7 +87,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
-def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
+def post_block(form_type, collection_id, group_id, group_instance, block_id):
     navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
@@ -107,20 +108,20 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
         raise NotFound
 
     if next_location.block_id == 'confirmation':
-        return redirect_to_confirmation(eq_id, form_type, collection_id)
+        return redirect_to_confirmation(form_type, collection_id)
 
     return redirect(next_location.url(metadata))
 
 
 @questionnaire_blueprint.route('introduction', methods=["GET"])
 @login_required
-def get_introduction(eq_id, form_type, collection_id):
+def get_introduction(form_type, collection_id):
     return _render_template(get_introduction_context(g.schema_json), block_id='introduction')
 
 
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
 @login_required
-def post_interstitial(eq_id, form_type, collection_id, block_id):
+def post_interstitial(form_type, collection_id, block_id):
     navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
@@ -146,7 +147,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
 @login_required
-def get_summary(eq_id, form_type, collection_id):
+def get_summary(form_type, collection_id):
 
     answer_store = get_answer_store(current_user)
     navigator = Navigator(g.schema_json, get_metadata(current_user), answer_store)
@@ -165,7 +166,7 @@ def get_summary(eq_id, form_type, collection_id):
 
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
 @login_required
-def get_confirmation(eq_id, form_type, collection_id):
+def get_confirmation(form_type, collection_id):
     answer_store = get_answer_store(current_user)
     navigator = Navigator(g.schema_json, get_metadata(current_user), answer_store)
 
@@ -186,7 +187,7 @@ def get_confirmation(eq_id, form_type, collection_id):
 
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
 @login_required
-def get_thank_you(eq_id, form_type, collection_id):
+def get_thank_you(form_type, collection_id):
     thank_you_page = _render_template(get_questionnaire_manager(g.schema, g.schema_json).state, block_id='thank-you')
     # Delete user data on request of thank you page.
     _delete_user_data()
@@ -195,7 +196,7 @@ def get_thank_you(eq_id, form_type, collection_id):
 
 @questionnaire_blueprint.route('submit-answers', methods=["POST"])
 @login_required
-def submit_answers(eq_id, form_type, collection_id):
+def submit_answers(form_type, collection_id):
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
     # check that all the answers we have are valid before submitting the data
     is_valid, invalid_location = q_manager.validate_all_answers()
@@ -208,14 +209,14 @@ def submit_answers(eq_id, form_type, collection_id):
         message = convert_answers(metadata, g.schema, answer_store, navigator.get_routing_path())
         submitter.send_answers(message)
         logger.info("Responses submitted tx_id=%s", metadata["tx_id"])
-        return redirect_to_thank_you(eq_id, form_type, collection_id)
+        return redirect_to_thank_you(form_type, collection_id)
     else:
         return redirect(invalid_location.url(metadata))
 
 
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
 @login_required
-def post_household_composition(eq_id, form_type, collection_id, group_id):
+def post_household_composition(form_type, collection_id, group_id):
     navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
     questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
     answer_store = get_answer_store(current_user)
@@ -229,12 +230,12 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
 
     if 'action[add_answer]' in request.form:
         questionnaire_manager.add_answer(this_location, 'household-composition-question', answer_store)
-        return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
+        return get_block(form_type, collection_id, group_id, 0, 'household-composition')
 
     elif 'action[remove_answer]' in request.form:
         index_to_remove = int(request.form.get('action[remove_answer]'))
         questionnaire_manager.remove_answer(this_location, answer_store, index_to_remove)
-        return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
+        return get_block(form_type, collection_id, group_id, 0, 'household-composition')
 
     if not valid:
         return _render_template(questionnaire_manager.state, current_location=this_location, template='questionnaire')
@@ -248,10 +249,10 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/permanent-or-family-home', methods=["POST"])
 @login_required
-def post_everyone_at_address_confirmation(eq_id, form_type, collection_id, group_id, group_instance):
+def post_everyone_at_address_confirmation(form_type, collection_id, group_id, group_instance):
     if request.form.get('permanent-or-family-home-answer') == 'No':
         _remove_repeating_on_household_answers(get_answer_store(current_user), group_id)
-    return post_block(eq_id, form_type, collection_id, group_id, group_instance, 'permanent-or-family-home')
+    return post_block(form_type, collection_id, group_id, group_instance, 'permanent-or-family-home')
 
 
 def _remove_repeating_on_household_answers(answer_store, group_id):
@@ -270,42 +271,35 @@ def _delete_user_data():
     session_manager.clear()
 
 
-def redirect_to_thank_you(eq_id, form_type, collection_id):
-    return redirect(interstitial_url(eq_id, form_type, collection_id, 'thank-you'))
+def redirect_to_thank_you(form_type, collection_id):
+    return redirect(interstitial_url(form_type, collection_id, 'thank-you'))
 
 
-def redirect_to_confirmation(eq_id, form_type, collection_id):
-    return redirect(interstitial_url(eq_id, form_type, collection_id, 'confirmation'))
+def redirect_to_confirmation(form_type, collection_id):
+    return redirect(interstitial_url(form_type, collection_id, 'confirmation'))
 
 
-def interstitial_url(eq_id, form_type, collection_id, block_id):
+def interstitial_url(form_type, collection_id, block_id):
     if block_id == 'summary':
         return url_for('.get_summary',
-                       eq_id=eq_id,
                        form_type=form_type,
                        collection_id=collection_id)
     elif block_id == 'introduction':
         return url_for('.get_introduction',
-                       eq_id=eq_id,
                        form_type=form_type,
                        collection_id=collection_id)
     elif block_id == 'confirmation':
         return url_for('.get_confirmation',
-                       eq_id=eq_id,
                        form_type=form_type,
                        collection_id=collection_id)
     elif block_id == 'thank-you':
         return url_for('.get_thank_you',
-                       eq_id=eq_id,
                        form_type=form_type,
                        collection_id=collection_id)
 
 
-def _check_same_survey(eq_id, form_type, collection_id):
-    metadata = get_metadata(current_user)
-    current_survey = eq_id + form_type + collection_id
-    metadata_survey = metadata["eq_id"] + metadata["form_type"] + metadata["collection_exercise_sid"]
-    if current_survey != metadata_survey:
+def _check_same_survey(metadata, form_type, collection_id):
+    if form_type != metadata["form_type"] or collection_id != metadata["collection_exercise_sid"]:
         raise MultipleSurveyError
 
 

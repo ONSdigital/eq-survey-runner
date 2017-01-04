@@ -14,7 +14,7 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
             answer = {'permanent-or-family-home-answer': 'No'}
 
             # When
-            self.client.post('/questionnaire/census/household/789/who-lives-here/0/permanent-or-family-home', data=answer)
+            self.client.post('/questionnaire/household/789/who-lives-here/0/permanent-or-family-home', data=answer)
 
             # Then
             get_answer_store().assert_has_calls([call.remove(block_id='household-composition', group_id='who-lives-here')])
@@ -27,7 +27,7 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
             answer = {'permanent-or-family-home-answer': 'Yes'}
 
             # When
-            self.client.post('/questionnaire/census/household/789/who-lives-here/0/permanent-or-family-home', data=answer)
+            self.client.post('/questionnaire/household/789/who-lives-here/0/permanent-or-family-home', data=answer)
 
             # Then
             assert get_answer_store().remove.call_count == 0
@@ -40,7 +40,7 @@ class TestQuestionnaireRemoveRepeatAnswers(IntegrationTestCase):
             answer = {'permanent-or-family-home-answer': 'No'}
 
             # When
-            self.client.post('/questionnaire/census/household/789/who-lives-here/0/permanent-or-family-home', data=answer)
+            self.client.post('/questionnaire/household/789/who-lives-here/0/permanent-or-family-home', data=answer)
 
             # Then
             get_answer_store().assert_has_calls([call.remove(group_id='who-lives-here-relationship'), call.remove(group_id='household-member')])

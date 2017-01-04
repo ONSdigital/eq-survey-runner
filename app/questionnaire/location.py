@@ -40,33 +40,27 @@ class Location(object):
         :param metadata:
         :return:
         """
-        eq_id = metadata["eq_id"]
         collection_id = metadata["collection_exercise_sid"]
         form_type = metadata["form_type"]
 
         if self.is_interstitial():
             if self.block_id == 'summary':
                 return url_for('questionnaire.get_summary',
-                               eq_id=eq_id,
                                form_type=form_type,
                                collection_id=collection_id)
             elif self.block_id == 'introduction':
                 return url_for('questionnaire.get_introduction',
-                               eq_id=eq_id,
                                form_type=form_type,
                                collection_id=collection_id)
             elif self.block_id == 'confirmation':
                 return url_for('questionnaire.get_confirmation',
-                               eq_id=eq_id,
                                form_type=form_type,
                                collection_id=collection_id)
             elif self.block_id == 'thank-you':
                 return url_for('questionnaire.get_thank_you',
-                               eq_id=eq_id,
                                form_type=form_type,
                                collection_id=collection_id)
         return url_for('questionnaire.get_block',
-                       eq_id=eq_id,
                        form_type=form_type,
                        collection_id=collection_id,
                        group_id=self.group_id,

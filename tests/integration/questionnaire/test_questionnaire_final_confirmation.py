@@ -5,7 +5,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
 
     def test_final_confirmation_asked_at_end_of_questionnaire(self):
-        base_url = '/questionnaire/test/final_confirmation/789/'
+        base_url = '/questionnaire/final_confirmation/789/'
 
         # Given
         token = create_token('final_confirmation', 'test')
@@ -38,7 +38,7 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
 
 
     def test_requesting_final_confirmation_before_finished_redirects(self):
-        base_url = '/questionnaire/test/final_confirmation/789/'
+        base_url = '/questionnaire/final_confirmation/789/'
 
         # Given
         token = create_token('final_confirmation', 'test')

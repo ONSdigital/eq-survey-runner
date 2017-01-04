@@ -1,5 +1,5 @@
-STAR_WARS_BASE = '/questionnaire/0/star_wars/789/'
-STAR_WARS_BASE_REGEX = '\/questionnaire\/0\/star_wars\/789\/'
+STAR_WARS_BASE = '/questionnaire/star_wars/789/'
+STAR_WARS_BASE_REGEX = '\/questionnaire\/star_wars\/789\/'
 STAR_WARS_INTRODUCTION = STAR_WARS_BASE + 'introduction'
 STAR_WARS_BLOCK3 = STAR_WARS_BASE + '14ba4707-321d-441d-8d21-b8367366e766/0/0e41e80a-f45a-2dfd-9fe0-55cc2c7807d0'
 STAR_WARS_BLOCK2 = STAR_WARS_BASE + '14ba4707-321d-441d-8d21-b8367366e766/0/cd3b74d1-b687-4051-9634-a8f9ce10a27d'
@@ -12,4 +12,4 @@ STAR_WARS_QUIZ_2_REGEX = STAR_WARS_BASE_REGEX + '14ba4707-321d-441d-8d21-b836736
 STAR_WARS_SUMMARY_REGEX = STAR_WARS_BASE_REGEX + 'summary$'
 STAR_WARS_SUBMIT = STAR_WARS_BASE + 'submit-answers'
 
-ROGUE_ONE_INTRODUCTION = '/questionnaire/0/rogue_one/789/introduction'
+ROGUE_ONE_INTRODUCTION = '/questionnaire/rogue_one/789/introduction'

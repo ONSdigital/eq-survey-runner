@@ -33,4 +33,4 @@ class TestLogin(IntegrationTestCase):
 
         # Then
         self.assertEquals(resp.status_code, 302)
-        self.assertRegex(resp.location, '/questionnaire/1/0205')
+        self.assertRegex(resp.location, '/questionnaire/0205')
