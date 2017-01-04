@@ -21,7 +21,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         errors = []
 
-        files = schema_loader.available_local_schemas()
+        files = schema_loader.available_schemas()
 
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema-v1.json"), encoding="utf8")
         schema = json.load(schema_file)

@@ -4,10 +4,6 @@ import os
 
 from app import settings
 
-import boto3
-
-import botocore
-
 
 class SchemaNotFound(Exception):
     pass
@@ -36,20 +32,6 @@ def load_schema(eq_id, form_type, language_code='en'):
     if form_type and form_type != "-1":
         return load_schema_file(filename_format.format(eq_id, form_type), language_code)
 
-    return load_s3_schema_file("{}.json".format(eq_id))
-
-
-def load_s3_schema_file(schema_file):
-    if settings.EQ_SCHEMA_BUCKET:
-        try:
-            s3 = boto3.resource('s3')
-            schema = s3.Object(settings.EQ_SCHEMA_BUCKET, schema_file)
-            jsn_schema = schema.get()['Body']
-            return json.loads(jsn_schema.read().decode("utf-8"))
-        except botocore.exceptions.ClientError as e:
-            logging.error("S3 error: %s", e.response['Error']['Code'])
-    return None
-
 
 def load_schema_file(schema_file, language_code='en'):
     try:
@@ -71,29 +53,10 @@ def load_schema_file(schema_file, language_code='en'):
 
 
 def available_schemas():
-    files = available_local_schemas()
-    if settings.EQ_SCHEMA_BUCKET:
-        files.extend(available_s3_schemas())
-    return sorted(files)
-
-
-def available_local_schemas():
     files = []
     for file in os.listdir(settings.EQ_SCHEMA_DIRECTORY):
         if os.path.isfile(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file)):
             # ignore hidden file
             if file.endswith(".json"):
                 files.append(file)
-    return files
-
-
-def available_s3_schemas():
-    files = []
-    try:
-        s3 = boto3.resource('s3')
-        schemas_bucket = s3.Bucket(settings.EQ_SCHEMA_BUCKET)
-        for key in schemas_bucket.objects.all():
-            files.append(key.key)
-    except botocore.exceptions.ClientError as e:
-        logging.error("S3 error: %s", e.response['Error']['Code'])
-    return files
+    return sorted(files)
