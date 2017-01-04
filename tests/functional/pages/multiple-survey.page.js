@@ -1,8 +1,7 @@
 class MultipleSurveys {
 
-  isOpen() {
-    const url = browser.url().value
-    return url.indexOf('multiple-surveys') > -1
+  hasMultipleSurveyError() {
+    return browser.isExisting('[data-qa="multiple-survey-error"]')
   }
 
 }

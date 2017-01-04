@@ -40,12 +40,8 @@ class MultipleSurveysOpen(IntegrationTestCase):
             "action[save_continue]": "Save &amp; Continue"
         }
 
-        first_survey_resp = self.client.post(first_survey_resp.headers['Location'], data=form_data, follow_redirects=False)
-
-        # We get redirected to the information page with the multiple surveys message
-        self.assertRegexpMatches(first_survey_resp.headers['Location'], r'\/information\/multiple-surveys')
-        first_survey_resp = self.client.get(first_survey_resp.headers['Location'], follow_redirects=True)
-        content = first_survey_resp.get_data(True)
+        multiple_survey_resp = self.client.post(first_survey_resp.headers['Location'], data=form_data, follow_redirects=False)
+        content = multiple_survey_resp.get_data(True)
         self.assertRegexpMatches(content, 'Information')
         self.assertRegexpMatches(content, 'Unfortunately you can only complete one survey at a time.')
         self.assertRegexpMatches(content, 'Close this window to continue with your current survey.')

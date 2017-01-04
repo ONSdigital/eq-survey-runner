@@ -3,20 +3,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.mci import mci_test_urls
 
 
-class TestInformationPage(IntegrationTestCase):
-
-    def test_information_page(self):
-
-        resp = self.client.get('/information/multiple-surveys', follow_redirects=False)
-        content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'Information')
-        self.assertRegexpMatches(content, 'Unfortunately you can only complete one survey at a time.')
-        self.assertRegexpMatches(content, 'Close this window to continue with your current survey.')
-
-    def test_information_page_missing_message(self):
-
-        resp = self.client.get('/information/test', follow_redirects=False)
-        self.assertEquals(resp.status_code, 404)
+class TestMultipleSurveyError(IntegrationTestCase):
 
     def test_different_metadata_store_to_url(self):
         # Get a token for the first questionnaire
