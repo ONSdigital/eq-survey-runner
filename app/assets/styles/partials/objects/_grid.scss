@@ -159,57 +159,31 @@
   left: 0;
 }
 
-@mixin grid-debug {
-  position: relative;
+#bp-helper {
+  font-family: 'Consolas', 'Lucida Grande', sans-serif;
+  font-size: 0.8rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: block;
+  z-index: 999999;
+  width: auto;
+  padding: 1px 10px;
+  background: white;
+  opacity: 0.8;
+  text-align: center;
+
   &::before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: $grid-gutters;
-    bottom: 0;
-    content: "";
-    background-clip: content-box;
-    background-color: rgba(0, 0, 0, 0.05);
+    display: inline-block;
+    color: $color-text;
   }
-}
 
-@mixin grid-debug-col {
-  .grid__col {
-    background-clip: content-box;
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-}
-
-.u-debug-grid {
-  .grid {
-    position: relative;
-    &::before {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: $grid-gutters;
-      bottom: 0;
-      content: "";
-      background-clip: content-box;
-      background-color: rgba(0, 0, 0, 0.05);
+  @each $breakpoint, $size in $grid-bp {
+    @include mq($breakpoint) {
+      $width: get-bp-width($breakpoint);
+      &::before {
+        content: "#{$breakpoint} ≥ #{$width}";
+      }
     }
   }
-  .grid__col {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-}
-
-// WIP
-.u-grid-overlay {
-  $col: 62px;
-
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: -$grid-gutters;
-  max-width: $grid-max-width;
-  margin: 0 auto;
-  background-size: 86px;
-  background-image: linear-gradient(to left, rgba(255, 0, 0, 0.25), rgba(255, 0, 0, 0.25) $col, transparent $col);
 }

@@ -1,12 +1,12 @@
 $responsive: false;
 
+@import "partials/helpers/**/*.scss";
 @import "vars/*.scss";
 
 $grid-max-width: 800px;
 
 @import "partials/vars/*.scss";
 @import "partials/vendor/normalize.scss";
-@import "partials/helpers/**/*.scss";
 @import "partials/base/**/*.scss";
 @import "partials/objects/**/*.scss";
 @import "partials/components/**/*.scss";

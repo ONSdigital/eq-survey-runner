@@ -11,14 +11,15 @@ html {
 }
 
 body {
+  height: 100%;
   margin: 0;
+  position: relative;
 }
 
 img {
   vertical-align: middle;
   max-width: 100%;
   height: auto;
-  // margin-bottom: $base-line-height;
 }
 
 abbr[title] {
