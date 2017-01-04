@@ -16,6 +16,7 @@
 .page__subheader {
   padding: 0.5rem 0;
   overflow: hidden;
+  min-height: 2.6rem;
   &:empty {
     height: 1rem;
   }
