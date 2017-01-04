@@ -11,7 +11,6 @@
         "description": "",
         "information_to_provide": []
     },
-    "eq_id": "0",
     "messages": {
       "INTEGER_TOO_LARGE": "Number cannot be greater than one hundred",
       "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -46,14 +45,12 @@
                                     "type": "General"
                               }
                             ],
-                            "title": "Percentage Input Test",
-                            "validation": []
+                            "title": "Percentage Input Test"
                         }
                     ],
                     "routing_rules":[
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 }],
             "id": "group",
             "title": ""

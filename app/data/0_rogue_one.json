@@ -10,7 +10,6 @@
     "introduction": {
         "description": ""
     },
-    "eq_id": "1",
     "groups": [
         {
             "blocks": [
@@ -59,12 +58,10 @@
                                     "description": "",
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Who do you want to know more about?",
-                            "validation": []
+                            "title": "Who do you want to know more about?"
                         }
                     ],
                     "routing_rules":[
@@ -121,8 +118,7 @@
 
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",
@@ -159,12 +155,10 @@
                                     "description": "",
                                     "id": "574e5d5e-36b4-44ea-b8f6-09d744552241",
                                     "title": "Do you like this page?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "{{answers.character}}",
-                            "validation": []
+                            "title": "{{answers.character}}"
                         }
                     ],
                     "routing_rules":[
@@ -175,8 +169,7 @@
                             }
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",
@@ -213,12 +206,10 @@
                                     "description": "",
                                     "id": "b5c0c1fd-578c-436e-86a8-7d3b1786cb5f",
                                     "title": "Do you like this page?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "{{answers.character}}",
-                            "validation": []
+                            "title": "{{answers.character}}"
                         }
                     ],
                     "routing_rules":[
@@ -229,8 +220,7 @@
                             }
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",
@@ -267,12 +257,10 @@
                                     "description": "",
                                     "id": "ff1d8559-d5f7-4ba8-95fa-bf76178f4433",
                                     "title": "Do you like this page?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "{{answers.character}}",
-                            "validation": []
+                            "title": "{{answers.character}}"
                         }
                     ],
                     "routing_rules":[
@@ -283,8 +271,7 @@
                             }
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",
@@ -321,12 +308,10 @@
                                     "description": "",
                                     "id": "15beab29-e3b3-42c5-a8ea-ce299504ce66",
                                     "title": "Do you like this page?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "{{answers.character}}",
-                            "validation": []
+                            "title": "{{answers.character}}"
                         }
                     ],
                     "routing_rules":[
@@ -337,8 +322,7 @@
                             }
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",
@@ -370,21 +354,17 @@
                                     "description": "",
                                     "id": "0ae9664b-601d-4428-8cd4-4738df48b685",
                                     "title": "In millions, how much do you think this film will take?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "",
-                            "validation": []
+                            "title": ""
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 }
             ],
             "id": "82504ab4-de5d-41fd-9a86-9ad5ea483296",
-            "title": "",
-            "validation": []
+            "title": ""
         }
     ]
 }

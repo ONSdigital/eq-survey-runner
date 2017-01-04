@@ -10,7 +10,6 @@
   "introduction": {
 		"description": "<p>Test Survey - Checkbox and Radio option descriptions</p>"
 	},
-  "eq_id": "0",
   "groups": [
     {
       "id": "14ba4707-321d-441d-8d21-b8367366e766",
@@ -63,13 +62,11 @@
                   "description": "Select all that apply",
                   "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
                   "title": "Did this business make major changes in the following areas?",
-                  "type": "General",
-                  "validation": []
+                  "type": "General"
                 }
               ],
               "title": "Business Strategy and Practices",
-              "description": "<p>Include all <strong>new</strong> and <strong>significantly improved</strong> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.</p>",
-              "validation": []
+              "description": "<p>Include all <strong>new</strong> and <strong>significantly improved</strong> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.</p>"
             }
           ]
         },
@@ -120,12 +117,10 @@
                   "description": "",
                   "id": "f9cc4d5c-1f47-4c50-b125-a46da98a310c",
                   "title": "Did this business make major changes in the following areas?",
-                  "type": "General",
-                  "validation": []
+                  "type": "General"
                 }
               ],
-              "title": "Business Strategy and Practices Part Two",
-              "validation": []
+              "title": "Business Strategy and Practices Part Two"
             }
           ]
         }

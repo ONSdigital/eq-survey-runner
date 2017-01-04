@@ -16,7 +16,6 @@
           "reasons for changes to figures"
         ]
     },
-    "eq_id": "1",
     "groups": [
         {
             "blocks": [
@@ -64,16 +63,13 @@
                                     "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
                                     "id": "1ce1e40e-64e1-4f9a-bb56-85f04c9e7e5d",
                                     "title": "What are the dates of the period that you will be reporting for?",
-                                    "type": "DateRange",
-                                    "validation": []
+                                    "type": "DateRange"
                                 }
                             ],
-                            "title": "Reporting period",
-                            "validation": []
+                            "title": "Reporting period"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -125,16 +121,13 @@
                                     ],
                                     "id": "61c5a553-3ba7-4cd2-bdf0-cd67f011ea6c",
                                     "title": "For the reporting period, what was the value of the business’s total retail turnover?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Retail turnover",
-                            "validation": []
+                            "title": "Retail turnover"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -173,16 +166,13 @@
                                     ],
                                     "id": "449774d1-7969-4282-bbce-bceb7e8ba374",
                                     "title": "Of the business's total retail turnover, what was the value of internet sales?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Internet sales",
-                            "validation": []
+                            "title": "Internet sales"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -219,16 +209,13 @@
                                     ],
                                     "id": "fe06b609-5200-404b-bd94-da94843e1b8c",
                                     "title": "Indicate the reasons for any changes in the business's total retail turnover",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Changes in total retail turnover",
-                            "validation": []
+                            "title": "Changes in total retail turnover"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -343,16 +330,13 @@
                                             ]
                                         }
                                     ],
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Employees",
-                            "validation": []
+                            "title": "Employees"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -388,21 +372,17 @@
                                     ],
                                     "id": "a30d5bdd-72e6-43ab-91fc-4e63c5174cbb",
                                     "title": "Explain any significant changes in the number of employees",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Changes in employee figures",
-                            "validation": []
+                            "title": "Changes in employee figures"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 }
             ],
             "id": "f74d1147-673c-497a-9616-763829d944ac",
-            "title": "",
-            "validation": []
+            "title": ""
         }
     ]
 }

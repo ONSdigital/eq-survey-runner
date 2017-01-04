@@ -15,7 +15,6 @@
           "reasons for changes to figures"
         ]
     },
-    "eq_id": "1",
     "groups": [
         {
             "blocks": [
@@ -63,16 +62,13 @@
                                     "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
                                     "id": "f5ef26e3-b22d-4689-9053-3eefac4504e8",
                                     "title": "What are the dates of the period that you will be reporting for?",
-                                    "type": "DateRange",
-                                    "validation": []
+                                    "type": "DateRange"
                                 }
                             ],
-                            "title": "Reporting period",
-                            "validation": []
+                            "title": "Reporting period"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -124,16 +120,13 @@
                                     ],
                                     "id": "7a4b1aee-d6b9-4581-ab18-1191e5ebb94d",
                                     "title": "For the reporting period, what was the value of the business’s total retail turnover?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Retail turnover",
-                            "validation": []
+                            "title": "Retail turnover"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -172,16 +165,13 @@
                                     ],
                                     "id": "eb40935b-b771-4082-adc4-37e4c0b04208",
                                     "title": "Of the business's total retail turnover, what was the value of internet sales?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Internet sales",
-                            "validation": []
+                            "title": "Internet sales"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -218,21 +208,17 @@
                                     ],
                                     "id": "d434cea3-00ac-4954-8ad8-ef6bb9e85041",
                                     "title": "Indicate the reasons for any changes in the business's total retail turnover",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Changes in total retail turnover",
-                            "validation": []
+                            "title": "Changes in total retail turnover"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 }
             ],
             "id": "07f40cd2-0704-4804-9f32-19309089a51b",
-            "title": "",
-            "validation": []
+            "title": ""
         }
     ]
 }

@@ -11,7 +11,6 @@
         "description": "",
         "information_to_provide": []
     },
-    "eq_id": "0",
     "messages": {
         "INTEGER_TOO_LARGE": "Number is too large",
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -43,18 +42,15 @@
                                     "description": "",
                                     "id": "favourite-breakfast-question",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "What is your favourite breakfast food",
-                            "validation": []
+                            "title": "What is your favourite breakfast food"
                         }
                     ],
                     "routing_rules": [
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "interstitial",
@@ -70,12 +66,10 @@
                                     "answers": [],
                                     "id": "interstitial-question",
                                     "title": "Breakfast Interstitial Page",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Breakfast Interstitial Page",
-                            "validation": []
+                            "title": "Breakfast Interstitial Page"
                         }
                     ]
                 },
@@ -102,18 +96,15 @@
                                     "description": "",
                                     "id": "favourite-lunch-question",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "What is your favourite lunchtime food",
-                            "validation": []
+                            "title": "What is your favourite lunchtime food"
                         }
                     ],
                     "routing_rules": [
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 }
             ],
             "id": "favourite-foods",

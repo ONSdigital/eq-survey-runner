@@ -7,7 +7,6 @@
     "title": "English Langauage Survey",
     "theme": "default",
     "description": "A questionnaire to demonstrate english langauge",
-    "eq_id": "0",
     "groups": [
         {
             "id": "english-group",
