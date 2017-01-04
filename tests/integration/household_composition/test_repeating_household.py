@@ -6,7 +6,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestRepeatingHousehold(IntegrationTestCase):
 
-    INTRODUCTION_PAGE = '/questionnaire/test/repeating_household/789/introduction'
+    INTRODUCTION_PAGE = '/questionnaire/repeating_household/789/introduction'
 
     def setUp(self):
         super(TestRepeatingHousehold, self).setUp()

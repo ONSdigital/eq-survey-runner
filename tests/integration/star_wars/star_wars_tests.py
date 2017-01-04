@@ -231,7 +231,7 @@ class StarWarsTestCase(IntegrationTestCase):
         resp = self.client.post(summary_page, data=post_data, follow_redirects=False)
 
         self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/0\/' + form_type_id + '\/789\/thank-you$')
+        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/' + form_type_id + '\/789\/thank-you$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
 

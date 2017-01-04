@@ -4,7 +4,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestQuestionnaireInterstitial(IntegrationTestCase):
 
-    BASE_URL = '/questionnaire/test/interstitial_page/789/'
+    BASE_URL = '/questionnaire/interstitial_page/789/'
 
     def test_interstitial_page_button_text_is_continue(self):
         token = create_token('interstitial_page', 'test')

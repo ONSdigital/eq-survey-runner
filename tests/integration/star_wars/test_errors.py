@@ -93,7 +93,7 @@ class TestPageErrors(StarWarsTestCase):
 
         # When submit no answers which is invalid
         post_data = {'action[save_continue]': 'Save &amp; Continue'}
-        resp = self.client.post('/questionnaire/test/skip_condition/789/breakfast/0/drink-block', data=post_data)
+        resp = self.client.post('/questionnaire/skip_condition/789/breakfast/0/drink-block', data=post_data)
 
         # Then errors exists on page
         self.assertEqual(resp.status_code, 200)
