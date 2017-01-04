@@ -9,4 +9,4 @@ class PercentageAnswer(Answer):
 
     @staticmethod
     def _cast_user_input(user_input):
-        return float(user_input)
+        return float(str(user_input))

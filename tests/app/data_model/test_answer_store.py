@@ -690,3 +690,18 @@ class TestAnswerStore(unittest.TestCase):
 
         self.store.remove()
         self.assertEqual(self.store.map(), {})
+
+    def test_answer_store_bleaches_answers(self):
+        answer_1 = Answer(
+            block_id="3",
+            answer_id="4",
+            answer_instance=1,
+            group_id="5",
+            group_instance=1,
+            value='<img src="https://www.google.co.uk/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png"/>',
+        )
+
+        self.store.add(answer_1)
+
+        self.assertNotEqual(self.store.get(answer_1), '<img src="https://www.google.co.uk/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png"/>')
+        self.assertNotIn('<', self.store.get(answer_1))
