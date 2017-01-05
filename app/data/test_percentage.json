@@ -1,0 +1,62 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Percentage Field Demo",
+    "theme": "default",
+    "description": "A questionnaire to test percentage input type",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "eq_id": "0",
+    "messages": {
+      "INTEGER_TOO_LARGE": "Number cannot be greater than one hundred",
+      "NEGATIVE_INTEGER": "Number cannot be less than zero",
+      "NOT_INTEGER": "Please enter an integer"
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "id": "block",
+                    "sections": [
+                        {
+                            "description": "",
+                            "id": "section",
+                            "questions": [
+                              {
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "answer",
+                                            "label": "New to the market 2012-2014",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "Percentage"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "question",
+                                    "title": "",
+                                    "type": "General"
+                              }
+                            ],
+                            "title": "Percentage Input Test",
+                            "validation": []
+                        }
+                    ],
+                    "routing_rules":[
+                    ],
+                    "title": "",
+                    "validation": []
+                }],
+            "id": "group",
+            "title": ""
+        }
+    ]
+}

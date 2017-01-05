@@ -1,7 +1,7 @@
 from datetime import datetime
 from unittest import TestCase
 
-from app.jinja_filters import format_date
+from app.jinja_filters import format_date, format_percentage
 from app.jinja_filters import format_str_as_date_range
 from app.jinja_filters import format_str_as_date
 from app.jinja_filters import format_str_as_month_year_date
@@ -126,3 +126,8 @@ class TestJinjaFilters(TestCase):
         format_value = format_household_member_name(name)
 
         self.assertEqual(format_value, 'John Doe')
+
+    def test_format_percentage(self):
+        self.assertEqual(format_percentage('100'), '100%')
+        self.assertEqual(format_percentage(100), '100%')
+        self.assertEqual(format_percentage(4.5), '4.5%')
