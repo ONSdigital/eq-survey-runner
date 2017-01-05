@@ -4,7 +4,8 @@ from app.authentication.session_manager import session_manager
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
-from app.questionnaire.navigator import Navigator
+from app.questionnaire.navigation import Navigation
+from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
 from app.submitter.converter import convert_answers
 from app.submitter.submitter import SubmitterFactory
@@ -87,12 +88,12 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
 def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
     this_location = Location(group_id, group_instance, block_id)
 
-    valid_location = this_location in navigator.get_routing_path(group_id, group_instance)
+    valid_location = this_location in path_finder.get_routing_path(group_id, group_instance)
     valid_data = q_manager.validate(this_location, request.form)
 
     if not valid_location or not valid_data:
@@ -100,7 +101,8 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     else:
         q_manager.update_questionnaire_store(this_location)
 
-    next_location = navigator.get_next_location(current_location=this_location)
+    next_location = path_finder.get_next_location(current_location=this_location)
+
     metadata = get_metadata(current_user)
 
     if next_location is None:
@@ -121,19 +123,19 @@ def get_introduction(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
 @login_required
 def post_interstitial(eq_id, form_type, collection_id, block_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
     this_location = Location(SchemaHelper.get_first_group_id(g.schema_json), 0, block_id)
 
-    valid_location = this_location in navigator.get_location_path()
+    valid_location = this_location in path_finder.get_location_path()
     q_manager.process_incoming_answers(this_location, request.form)
 
     # Don't care if data is valid because there isn't any for interstitial
     if not valid_location:
         return _render_template(q_manager.state, current_location=this_location, template='questionnaire')
 
-    next_location = navigator.get_next_location(current_location=this_location)
+    next_location = path_finder.get_next_location(current_location=this_location)
     metadata = get_metadata(current_user)
 
     if next_location is None:
@@ -149,8 +151,8 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 def get_summary(eq_id, form_type, collection_id):
 
     answer_store = get_answer_store(current_user)
-    navigator = Navigator(g.schema_json, get_metadata(current_user), answer_store)
-    latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
+    path_finder = PathFinder(g.schema_json, answer_store, get_metadata(current_user))
+    latest_location = path_finder.get_latest_location(get_completed_blocks(current_user))
     metadata = get_metadata(current_user)
 
     if latest_location.block_id is 'summary':
@@ -167,9 +169,9 @@ def get_summary(eq_id, form_type, collection_id):
 @login_required
 def get_confirmation(eq_id, form_type, collection_id):
     answer_store = get_answer_store(current_user)
-    navigator = Navigator(g.schema_json, get_metadata(current_user), answer_store)
+    path_finder = PathFinder(g.schema_json, answer_store, get_metadata(current_user))
 
-    latest_location = navigator.get_latest_location(get_completed_blocks(current_user))
+    latest_location = path_finder.get_latest_location(get_completed_blocks(current_user))
 
     if latest_location.block_id == 'confirmation':
 
@@ -203,9 +205,9 @@ def submit_answers(eq_id, form_type, collection_id):
 
     if is_valid:
         answer_store = get_answer_store(current_user)
-        navigator = Navigator(g.schema_json, metadata, answer_store)
+        path_finder = PathFinder(g.schema_json, answer_store, metadata)
         submitter = SubmitterFactory.get_submitter()
-        message = convert_answers(metadata, g.schema, answer_store, navigator.get_routing_path())
+        message = convert_answers(metadata, g.schema, answer_store, path_finder.get_routing_path())
         submitter.send_answers(message)
         logger.info("Responses submitted tx_id=%s", metadata["tx_id"])
         return redirect_to_thank_you(eq_id, form_type, collection_id)
@@ -216,7 +218,7 @@ def submit_answers(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
 @login_required
 def post_household_composition(eq_id, form_type, collection_id, group_id):
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
     questionnaire_manager = get_questionnaire_manager(g.schema, g.schema_json)
     answer_store = get_answer_store(current_user)
 
@@ -239,7 +241,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
     if not valid:
         return _render_template(questionnaire_manager.state, current_location=this_location, template='questionnaire')
 
-    next_location = navigator.get_next_location(current_location=this_location)
+    next_location = path_finder.get_next_location(current_location=this_location)
 
     metadata = get_metadata(current_user)
 
@@ -313,18 +315,18 @@ def _render_template(context, current_location=None, block_id=None, template=Non
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
+    answer_store = get_answer_store(current_user)
+    completed_blocks = get_completed_blocks(current_user)
+
+    path_finder = PathFinder(g.schema_json, answer_store, metadata)
+    navigation = Navigation(g.schema_json, answer_store, metadata, completed_blocks)
+
     if current_location is None:
         group_id = SchemaHelper.get_first_group_id(g.schema_json)
         current_location = Location(group_id, 0, block_id)
 
-    navigator = Navigator(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
-    completed_blocks = get_completed_blocks(current_user)
-    front_end_navigation = navigator.get_front_end_navigation(
-        completed_blocks,
-        current_location.group_id,
-        current_location.group_instance,
-    )
-    previous_location = navigator.get_previous_location(current_location)
+    previous_location = path_finder.get_previous_location(current_location)
+    front_end_navigation = navigation.build_navigation(current_location.group_id, current_location.group_instance)
 
     previous_url = None
 

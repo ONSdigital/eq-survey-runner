@@ -41,7 +41,7 @@ class SchemaHelper(object):
             yield group
 
     @staticmethod
-    def get_repeating_rule(group):
+    def get_repeat_rule(group):
         if 'routing_rules' in group:
             for rule in group['routing_rules']:
                 if 'repeat' in rule.keys():
@@ -67,7 +67,7 @@ class SchemaHelper(object):
     @classmethod
     def get_groups_that_repeat_with_answer_id(cls, survey_json, answer_id):
         for group in cls.get_groups(survey_json):
-            repeating_rule = cls.get_repeating_rule(group)
+            repeating_rule = cls.get_repeat_rule(group)
             if repeating_rule and repeating_rule['answer_id'] == answer_id:
                 yield group
 

@@ -42,7 +42,7 @@ class TestSummaryContext(unittest.TestCase):
         navigator = Mock()
         navigator.get_routing_path = Mock(return_value=routing_path)
 
-        with patch('app.templating.summary_context.Navigator', return_value=navigator):
+        with patch('app.templating.summary_context.PathFinder', return_value=navigator):
             context = build_summary_rendering_context(self.schema_json, answer_store, self.metadata)
 
         self.assertEqual(len(context), 1)

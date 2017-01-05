@@ -3,7 +3,7 @@ import logging
 from app.authentication.authenticator import Authenticator
 
 from app.globals import get_answer_store, get_completed_blocks, get_metadata
-from app.questionnaire.navigator import Navigator
+from app.questionnaire.path_finder import PathFinder
 from app.utilities.schema import get_schema
 
 from flask import redirect
@@ -58,7 +58,7 @@ def login():
 
     json, _ = get_schema(metadata)
 
-    navigator = Navigator(json, metadata, get_answer_store(current_user))
+    navigator = PathFinder(json, get_answer_store(current_user), metadata)
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     return redirect(current_location.url(metadata))

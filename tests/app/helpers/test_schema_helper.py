@@ -54,7 +54,7 @@ class TestSchemaHelper(unittest.TestCase):
     def test_get_repeating_rule(self):
         survey = load_schema_file("test_repeating_household.json")
         groups = [group for group in SchemaHelper.get_groups(survey)]
-        rule = SchemaHelper.get_repeating_rule(groups[1])
+        rule = SchemaHelper.get_repeat_rule(groups[1])
 
         self.assertEqual(
             {

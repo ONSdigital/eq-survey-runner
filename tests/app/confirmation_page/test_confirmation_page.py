@@ -1,4 +1,4 @@
-from app.questionnaire.navigator import Navigator
+from app.questionnaire.path_finder import PathFinder
 from app.data_model.answer_store import Answer, AnswerStore
 from app.helpers.schema_helper import SchemaHelper
 from app.schema_loader.schema_loader import load_schema_file
@@ -16,7 +16,7 @@ class TestConfirmationPage(unittest.TestCase):
         answer_store.add(answer)
 
         survey = load_schema_file("0_rogue_one.json")
-        navigator = Navigator(survey, {}, answer_store)
+        navigator = PathFinder(survey, answer_store)
         next_location = navigator.get_next_location(SchemaHelper.get_last_location(survey))
 
         self.assertEqual('summary', next_location.block_id)
