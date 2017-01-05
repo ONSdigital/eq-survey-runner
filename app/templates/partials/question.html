@@ -13,11 +13,11 @@
       {%- if question_number -%}
         <span>{{question_number}}. </span>
       {% endif %}
-      {{question_title}}
+      {{question_title|safe}}
     </h2>
   {%- endif %}
   {%- if question_subtitle -%}
-    <h3 class="question__subtitle mars">{{question_subtitle}}</h3>
+    <h3 class="question__subtitle mars">{{question_subtitle|safe}}</h3>
   {%- endif -%}
 {% endset %}
 
