@@ -4,6 +4,8 @@ from collections import OrderedDict
 from datetime import datetime, timezone
 
 from app import settings
+from app.helpers.checkbox_helper import CheckboxHelper
+from app.schema.answers.checkbox_answer import CheckboxAnswer
 
 logger = logging.getLogger(__name__)
 
@@ -82,14 +84,30 @@ def convert_answers_to_data(answer_store, questionnaire_schema):
     for answer in answer_store.answers:
         item = questionnaire_schema.get_item_by_id(answer['answer_id'])
         value = answer['value']
+
         if item is not None and value is not None:
-            if item.code not in data:
-                data[item.code] = _encode_value(value)
+            if not isinstance(item, CheckboxAnswer) or any('q_code' not in option for option in item.options):
+
+                if item.code not in data:
+                    data[item.code] = _encode_value(value)
+                else:
+                    if not isinstance(data[item.code], list):
+                        list_answers = [data[item.code]]
+                        data[item.code] = list_answers
+                    data[item.code].append(_encode_value(value))
             else:
-                if not isinstance(data[item.code], list):
-                    list_answers = [data[item.code]]
-                    data[item.code] = list_answers
-                data[item.code].append(_encode_value(value))
+                for user_answer in value:
+                    # find the option in the schema which matches the users answer
+                    option = next((option for option in item.options if option['value'] == user_answer), None)
+
+                    if option:
+                        if option['value'].lower() == 'other':
+                            # if the user has selected 'other' we need to find the value it refers to.
+                            # when non-mandatory, the other box value can be empty, in this case we just use its value
+                            data[option['q_code']] = CheckboxHelper.find_other_value(value, item.options) \
+                                                     or option['value']
+                        else:
+                            data[option['q_code']] = user_answer
     return data
 
 
