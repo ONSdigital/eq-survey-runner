@@ -3,68 +3,57 @@ import logging
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
-from app.storage.storage_factory import get_storage
 
 logger = logging.getLogger(__name__)
 
 
 class QuestionnaireStore:
 
-    def __init__(self, user_id, user_ik):
-
+    def __init__(self, storage):
+        self._storage = storage
+        self._initial_data = {}
         self.metadata = {}
         self.answer_store = AnswerStore()
         self.completed_blocks = []
 
-        if user_id and user_ik:
-            self.user_id = user_id
-            self.user_ik = user_ik
-        else:
-            raise ValueError("No user_id or user_ik found in session")
+        if self._storage.exists():
+            raw_data = self._storage.get_user_data()
+            self._initial_data = self._deserialise(raw_data)
+            data_copy = self._deserialise(raw_data)
+            self._set_data(data_copy)
 
-        self.storage = get_storage()
+    @staticmethod
+    def _deserialise(raw_data):
+        data = json.loads(raw_data)
+        data['COMPLETED_BLOCKS'] = [Location.from_dict(location_dict=completed_block) for completed_block in data['COMPLETED_BLOCKS']]
+        return data
 
-        if self.storage.has_data(self.user_id):
-            logger.debug("User %s has previous data loading", user_id)
-            data = self.storage.get(self.user_id, self.user_ik)
+    @staticmethod
+    def _serialise(data):
+        # Override default function to return object as a dict
+        return json.dumps(data, default=lambda o: o.__dict__)
 
-            if 'METADATA' in data:
-                self.metadata = data['METADATA']
+    def _set_data(self, data):
+        self.metadata = data.get('METADATA') or {}
+        self.answer_store.answers = data.get('ANSWERS') or []
+        self.completed_blocks = data.get('COMPLETED_BLOCKS') or []
 
-            if 'ANSWERS' in data:
-                self.answer_store.answers = data['ANSWERS']
-
-            if 'COMPLETED_BLOCKS' in data:
-                for location_dict in data['COMPLETED_BLOCKS']:
-                    location = Location(
-                        location_dict['group_id'],
-                        location_dict['group_instance'],
-                        location_dict['block_id'],
-                    )
-                    self.completed_blocks.append(location)
-
-        self.initial_hash = hash(self.get_json())
-
-    def get_data(self):
+    def _get_data(self):
         return {
-            "METADATA": self.metadata,
-            "ANSWERS": self.answer_store.answers,
-            "COMPLETED_BLOCKS": [b.__dict__ for b in self.completed_blocks],
+            'METADATA': self.metadata,
+            'ANSWERS': self.answer_store.answers,
+            'COMPLETED_BLOCKS': self.completed_blocks,
         }
 
-    def get_json(self):
-        return json.dumps(self.get_data())
-
     def has_changed(self):
-        current_hash = hash(self.get_json())
-
-        return current_hash != self.initial_hash
+        return self._initial_data != self._get_data()
 
     def delete(self):
-        logger.debug("Deleting questionnaire data for %s", self.user_id)
-        self.storage.delete(self.user_id)
+        self._storage.delete()
+        self._set_data(data={})
+        self._initial_data = {}
 
-    def save(self):
-        data = self.get_data()
-        logger.debug("Saving user data %s for user id %s", data, self.user_id)
-        self.storage.store(data=data, user_id=self.user_id, user_ik=self.user_ik)
+    def add_or_update(self):
+        data = self._get_data()
+        serialised_data = self._serialise(data)
+        self._storage.add_or_update(data=serialised_data)

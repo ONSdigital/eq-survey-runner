@@ -1,8 +1,6 @@
 import unittest
 from app import settings
-from app.authentication.user import User
 from app.parser.v0_0_1.schema_parser import SchemaParser
-from app.storage.storage_factory import get_storage
 from flask_login import LoginManager
 from datetime import timedelta
 from flask import Flask
@@ -10,12 +8,6 @@ import os
 import json
 
 login_manager = LoginManager()
-
-
-@login_manager.request_loader
-def request_loader(request):
-    user = User("1", "2")
-    return user
 
 
 class SurveyRunnerTestCase(unittest.TestCase):
@@ -38,7 +30,5 @@ class SurveyRunnerTestCase(unittest.TestCase):
         self.schema_json = json.loads(schema)
         parser = SchemaParser(self.schema_json)
         self.questionnaire = parser.parse()
-
-    def tearDown(self):
-        with self.application.test_request_context():
-            get_storage().clear()
+        self.user_id = "1"
+        self.user_ik = "key"

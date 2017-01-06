@@ -13,7 +13,7 @@ EQ_SESSION_ID = "eq-session-id"
 logger = logging.getLogger(__name__)
 
 
-class SessionManager:
+class SessionStorage:
 
     def store_user_id(self, user_id):
         """
@@ -30,7 +30,7 @@ class SessionManager:
         else:
             eq_session_id = session[EQ_SESSION_ID]
             logger.debug("Found eq_session_id %s in session", eq_session_id)
-            eq_session = self._get_object(eq_session_id)
+            eq_session = self._get_user_session(eq_session_id)
             logger.debug("Loaded object eq session %s", eq_session)
 
         logger.debug("About to commit to database")
@@ -46,7 +46,7 @@ class SessionManager:
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
 
-            count = self.run_count(eq_session_id)
+            count = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).count()
             logger.debug("Number of entries for eq session id %s is %s", eq_session_id, count)
             return count > 0
 
@@ -57,7 +57,7 @@ class SessionManager:
         logger.debug("SessionManager remove_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
-            eq_session = self._get_object(eq_session_id)
+            eq_session = self._get_user_session(eq_session_id)
             logger.debug("About to delete entry from eq_session table %s", eq_session)
 
             with commit_or_rollback(db_session):
@@ -73,21 +73,15 @@ class SessionManager:
         logger.debug("SessionManager get_user_id() - session %s", session)
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
-            eq_session = self._get_object(eq_session_id)
+            eq_session = self._get_user_session(eq_session_id)
             return eq_session.user_id
         else:
             return None
 
     @staticmethod
-    def _get_object(eq_session_id):
+    def _get_user_session(eq_session_id):
         logger.debug("Get the EQ Session object for eq session id %s", eq_session_id)
         return EQSession.query.filter(EQSession.eq_session_id == eq_session_id).first()
-
-    @staticmethod
-    def run_count(eq_session_id):
-        logger.debug("Running count query for eq session id %s", eq_session_id)
-        count = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).count()
-        return count
 
     @staticmethod
     def store_user_ik(user_ik):
@@ -123,4 +117,4 @@ class SessionManager:
             return None
 
 
-session_manager = SessionManager()
+session_storage = SessionStorage()

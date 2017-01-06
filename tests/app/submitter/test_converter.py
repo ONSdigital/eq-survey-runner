@@ -13,7 +13,7 @@ from app.schema.question import Question
 from app.schema.questionnaire import Questionnaire
 from app.schema.section import Section
 from app.submitter.converter import convert_answers, DataVersionError
-from tests.app.framework.sr_unittest import SurveyRunnerTestCase
+from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 metadata = parse_metadata({
   "user_id": "789473423",

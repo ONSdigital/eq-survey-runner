@@ -1,6 +1,6 @@
 from app.questionnaire.rules import evaluate_rule
 
-from tests.app.framework.sr_unittest import SurveyRunnerTestCase
+from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
 class TestConditionalDisplay(SurveyRunnerTestCase):

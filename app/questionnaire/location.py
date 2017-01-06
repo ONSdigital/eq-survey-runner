@@ -30,6 +30,13 @@ class Location(object):
         """
         return "{}/{}/{}".format(self.group_id, self.group_instance, self.block_id)
 
+    @classmethod
+    def from_dict(cls, location_dict):
+        group_id = location_dict['group_id']
+        group_instance = location_dict['group_instance']
+        block_id = location_dict['block_id']
+        return cls(group_id, group_instance, block_id)
+
     def is_interstitial(self):
         return self.block_id in ['introduction', 'summary', 'thank-you']
 

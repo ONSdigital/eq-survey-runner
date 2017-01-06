@@ -1,11 +1,10 @@
 import hashlib
-import json
 import logging
 
 from app import settings
 from app.cryptography.jwe_decryption import JWEDirDecrypter
 from app.cryptography.jwe_encryption import JWEDirEncrypter
-from app.storage.database_storage import DatabaseStorage
+from app.storage.questionnaire_storage import QuestionnaireStorage
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
@@ -23,28 +22,29 @@ def generate_key(user_id, user_ik, pepper=settings.EQ_SERVER_SIDE_STORAGE_ENCRYP
     return to_bytes(cek)
 
 
-class EncryptedStorage(DatabaseStorage):
+class EncryptedQuestionnaireStorage(QuestionnaireStorage):
 
-    def __init__(self):
+    def __init__(self, user_id, user_ik):
+        super().__init__(user_id)
+        if user_ik is None:
+            raise ValueError('User ik must be set')
         self.encryption = JWEDirEncrypter()
         self.decryption = JWEDirDecrypter()
+        self.user_ik = user_ik
 
-    def store(self, data, user_id, user_ik=None):
-        encrypted_data = self.encrypt_data(user_id, user_ik, data)
-        super(EncryptedStorage, self).store(encrypted_data, user_id)
+    def add_or_update(self, data):
+        encrypted_data = self.encrypt_data(data)
+        super(EncryptedQuestionnaireStorage, self).add_or_update(encrypted_data)
 
-    def get(self, user_id, user_ik=None):
-        data = super(EncryptedStorage, self).get(user_id)
+    def get_user_data(self):
+        data = super(EncryptedQuestionnaireStorage, self).get_user_data()
         if 'data' in data:
-            decrypted_data = self.decrypt_data(user_id, user_ik, data)
-            json_data = json.loads(decrypted_data)
-            return json_data
-        else:
-            return {}
+            decrypted_data = self.decrypt_data(self.user_id, self.user_ik, data)
+            return decrypted_data
 
-    def encrypt_data(self, user_id, user_ik, data):
-        sha_key = generate_key(user_id, user_ik)
-        encrypted = self.encryption.encrypt(json.dumps(data), sha_key)
+    def encrypt_data(self, data):
+        sha_key = generate_key(self.user_id, self.user_ik)
+        encrypted = self.encryption.encrypt(data, sha_key)
         return {'data': encrypted}
 
     def decrypt_data(self, user_id, user_ik, encrypted_data):
