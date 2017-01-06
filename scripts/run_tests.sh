@@ -14,6 +14,10 @@ if [ -z "$EQ_DEV_MODE" ]; then
   export EQ_DEV_MODE=True
 fi
 
+if [ -z "$EQ_ENABLE_CACHE" ]; then
+  export EQ_ENABLE_CACHE=True
+fi
+
 echo "Environment variables in use:"
 env | grep EQ_
 

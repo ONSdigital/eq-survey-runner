@@ -1,5 +1,6 @@
 import logging
 
+from app import cache
 from app.parser.v0_0_1.schema_parser import SchemaParser
 from app.schema_loader.schema_loader import load_schema
 
@@ -22,6 +23,7 @@ def get_schema(metadata):
     return json_schema, schema
 
 
+@cache.memoize()
 def load_and_parse_schema(eq_id, form_type, language_code):
     """
     Use the schema loader to get the schema from disk. Then use the parse to construct the object schema

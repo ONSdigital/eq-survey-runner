@@ -1,4 +1,7 @@
 import unittest
+
+import os
+
 from app import create_app
 from app import settings
 from app.data_model.database import QuestionnaireState
@@ -9,6 +12,14 @@ class IntegrationTestCase(unittest.TestCase):
 
     def setUp(self):
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
+
+        for key_name, dev_location in settings._KEYS.items():
+            path = os.getenv(key_name, dev_location)
+            vars(settings)[key_name] = settings.get_key(path)  # assigns attribute to this module
+
+        for password_name, dev_default in settings._PASSWORDS.items():
+            password = os.getenv(password_name, dev_default)
+            vars(settings)[password_name] = password  # assigns attribute to this module
 
         self.application = create_app()
         self.client = self.application.test_client()
