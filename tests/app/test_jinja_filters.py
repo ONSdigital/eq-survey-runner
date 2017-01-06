@@ -1,7 +1,9 @@
 from datetime import datetime
 from unittest import TestCase
 
-from app.jinja_filters import format_date, format_percentage
+from mock import Mock
+
+from app.jinja_filters import format_date, format_currency, format_multilined_string, format_percentage
 from app.jinja_filters import format_str_as_date_range
 from app.jinja_filters import format_str_as_date
 from app.jinja_filters import format_str_as_month_year_date
@@ -9,6 +11,70 @@ from app.jinja_filters import format_household_member_name
 
 
 class TestJinjaFilters(TestCase):
+
+    def test_format_currency(self):
+        # Given
+        currency = 1.12
+
+        # When
+        format_value = format_currency(currency)
+
+        self.assertEquals(format_value, '£1.12')
+
+    def test_format_multilined_string_matches_carriage_return(self):
+        # Given
+        new_line = 'this is on a new\rline'
+        context = Mock()
+        context.autoescape = False
+
+        # When
+        format_value = format_multilined_string(context, new_line)
+
+        self.assertEquals(format_value, '<p>this is on a new<br>line</p>')
+
+    def test_format_multilined_string_matches_new_line(self):
+        # Given
+        new_line = 'this is on a new\nline'
+        context = Mock()
+        context.autoescape = False
+
+        # When
+        format_value = format_multilined_string(context, new_line)
+
+        self.assertEquals(format_value, '<p>this is on a new<br>line</p>')
+
+    def test_format_multilined_string_matches_carriage_return_new_line(self):
+        # Given
+        new_line = 'this is on a new\r\nline'
+        context = Mock()
+        context.autoescape = False
+
+        # When
+        format_value = format_multilined_string(context, new_line)
+
+        self.assertEquals(format_value, '<p>this is on a new<br>line</p>')
+
+    def test_format_multilined_string(self):
+        # Given
+        new_line = 'this is\ron a\nnew\r\nline'
+        context = Mock()
+        context.autoescape = False
+
+        # When
+        format_value = format_multilined_string(context, new_line)
+
+        self.assertEquals(format_value, '<p>this is<br>on a<br>new<br>line</p>')
+
+    def test_format_multilined_string_auto_escape(self):
+        # Given
+        new_line = '<'
+        context = Mock()
+        context.autoescape = True
+
+        # When
+        format_value = format_multilined_string(context, new_line)
+
+        self.assertEquals(str(format_value), '<p>&lt;</p>')
 
     def test_format_date(self):
         # Given
