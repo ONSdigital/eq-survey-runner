@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock
 
 from app.templating.schema_context import build_schema_context
-from tests.app.framework.sr_unittest import SurveyRunnerTestCase
+from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
 class TestMetadataContext(SurveyRunnerTestCase):

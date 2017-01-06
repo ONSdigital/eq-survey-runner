@@ -14,6 +14,11 @@ def format_currency(value):
     return "£{:,}".format(value)
 
 
+@blueprint.app_template_filter()
+def format_percentage(value):
+    return "{}%".format(value)
+
+
 @evalcontextfilter
 @blueprint.app_template_filter()
 def nl2br(context, value):

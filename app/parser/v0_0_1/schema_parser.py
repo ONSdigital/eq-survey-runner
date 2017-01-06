@@ -94,7 +94,6 @@ class SchemaParser(AbstractSchemaParser):
         """
         questionnaire = Questionnaire()
         questionnaire.id = ParserUtils.get_required_string(self._schema, "questionnaire_id")
-        questionnaire.eq_id = ParserUtils.get_optional_string(self._schema, "eq_id")
         questionnaire.title = ParserUtils.get_required_string(self._schema, "title")
         questionnaire.survey_id = ParserUtils.get_required_string(self._schema, "survey_id")
         logger.debug("title: " + questionnaire.title)

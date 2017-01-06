@@ -1,7 +1,7 @@
 import logging
 
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
-from app.questionnaire.navigator import Navigator
+from app.questionnaire.path_finder import PathFinder
 
 from app.templating.schema_context import build_schema_context
 from app.templating.template_renderer import renderer
@@ -44,7 +44,7 @@ class QuestionnaireManager(object):
 
     def validate_all_answers(self):
 
-        navigator = Navigator(self._json, get_metadata(current_user), get_answer_store(current_user))
+        navigator = PathFinder(self._json, get_answer_store(current_user), get_metadata(current_user))
 
         for location in navigator.get_location_path():
             answers = get_answers(current_user)

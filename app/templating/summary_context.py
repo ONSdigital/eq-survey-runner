@@ -1,6 +1,6 @@
 import logging
 
-from app.questionnaire.navigator import Navigator
+from app.questionnaire.path_finder import PathFinder
 from app.templating.summary.section import Section
 
 from flask import url_for
@@ -16,7 +16,7 @@ def build_summary_rendering_context(schema_json, answer_store, metadata):
     :param metadata: all of the metadata
     :return: questionnaire summary context
     """
-    navigator = Navigator(schema_json, metadata, answer_store)
+    navigator = PathFinder(schema_json, answer_store, metadata)
     path = navigator.get_routing_path()
     sections = []
     for group in schema_json['groups']:

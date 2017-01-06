@@ -3,6 +3,7 @@ from app.schema.question import Question
 from app.validation.date_range_check import DateRangeCheck
 from app.validation.date_type_check import DateTypeCheck
 from app.validation.integer_type_check import IntegerTypeCheck
+from app.validation.percentage_type_check import PercentageTypeCheck
 from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
 from app.validation.textarea_type_check import TextAreaTypeCheck
 
@@ -24,6 +25,7 @@ class TypeValidatorFactory(object):
             'INTEGER': [IntegerTypeCheck],
             'POSITIVEINTEGER': [PositiveIntegerTypeCheck],
             'CURRENCY': [PositiveIntegerTypeCheck],
+            'PERCENTAGE': [PercentageTypeCheck],
             'DATE': [DateTypeCheck],
             'TEXTAREA': [TextAreaTypeCheck],
             'RADIO': [],

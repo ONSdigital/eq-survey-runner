@@ -9,7 +9,6 @@
     "theme": "census",
     "introduction": {
     },
-    "eq_id": "census",
     "groups": [
         {
             "id": "group1",

@@ -1,0 +1,14 @@
+{% extends 'layouts/_twocol.html' %}
+
+{% block page_title %}Information{% endblock %}
+
+{% block main %}
+  <div>
+    <h1 class="saturn">Information</h1>
+  </div>
+  <div class="panel panel--simple panel--error panel--spacious" data-qa="multiple-survey-error">
+    <p><strong>Unfortunately you can only complete one survey at a time.</strong></p>
+    <div>Close this window to continue with your current survey.</div>
+  </div>
+
+{% endblock %}

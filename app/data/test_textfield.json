@@ -11,7 +11,6 @@
         "description": "",
         "information_to_provide": []
     },
-    "eq_id": "0",
     "messages": {
       "INTEGER_TOO_LARGE": "Number is too large",
       "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -46,14 +45,12 @@
                                     "type": "General"
                               }
                             ],
-                            "title": "Date Test",
-                            "validation": []
+                            "title": "Date Test"
                         }
                     ],
                     "routing_rules":[
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 }],
             "id": "group",
             "title": ""

@@ -16,13 +16,11 @@
                     "id": "do-you-want-to-skip",
                     "routing_rules":[],
                     "title": "",
-                    "validation": [],
                     "sections": [
                         {
                             "description": "",
                             "id": "do-you-want-to-skip-section",
                             "title": "Do you want to skip?",
-                            "validation": [],
                             "questions": [
                               {
                                     "description": "",
@@ -78,13 +76,11 @@
                     "id": "should-skip",
                     "routing_rules":[],
                     "title": "",
-                    "validation": [],
                     "sections": [
                         {
                             "description": "",
                             "id": "should-skip-section",
                             "title": "Why didn't you skip the group?",
-                            "validation": [],
                             "questions": [
                               {
                                     "description": "",
@@ -117,13 +113,11 @@
                     "id": "last-group-block",
                     "routing_rules":[],
                     "title": "",
-                    "validation": [],
                     "sections": [
                         {
                             "description": "",
                             "id": "last-group-section",
                             "title": "This group is required as a skipped group can't be the last group",
-                            "validation": [],
                             "questions": [
                               {
                                     "description": "",

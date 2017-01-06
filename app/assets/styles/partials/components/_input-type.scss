@@ -1,0 +1,75 @@
+.input-type {
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  .input-type__input {
+    $width: calc(#{$input-width} - #{$input-type-width});
+
+    border-radius: $input-radius;
+    line-height: normal;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding-left: $input-type-width + 0.5rem;
+    @include mq(s) {
+      width: $width;
+    }
+    @include fixed {
+      margin-left: 2.5rem;
+      border-left: 0;
+    }
+  }
+
+  .input-type__type {
+    display: inline-block;
+    background-color: $color-lighter-grey;
+    border-right: 1px solid $color-borders;
+    border-radius: $input-radius 0 0 $input-radius;
+    padding: $input-padding 0;
+    width: $input-type-width;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    line-height: normal;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    z-index: 4;
+    @include fixed {
+      left: 0;
+      width: 2.5rem;
+      height: 100%;
+      border: 1px solid $color-borders;
+    }
+    @include ie7 {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+  }
+}
+
+.input-type--percentage {
+  .input-type__input {
+    padding-left: 0.5rem;
+    @include fixed {
+      margin-left: 0;
+    }
+  }
+  .input-type__type {
+    left: auto;
+    right: 1px;
+    border-right: none;
+    border-left: 1px solid $color-borders;
+    border-radius: 0 $input-radius $input-radius 0;
+    @include mq(s) {
+      right: auto;
+      left: calc(#{$input-width - ($input-type-width) * 2} - 1px);
+    }
+    @include fixed {
+      left: $input-width - ($input-type-width);
+      top: 0;
+      border-right: 1px solid $color-borders;
+    }
+  }
+}

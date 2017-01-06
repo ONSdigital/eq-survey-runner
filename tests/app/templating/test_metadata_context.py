@@ -1,6 +1,6 @@
 from app.parser.metadata_parser import parse_metadata
 from app.templating.metadata_context import build_metadata_context
-from tests.app.framework.sr_unittest import SurveyRunnerTestCase
+from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
 class TestMetadataContext(SurveyRunnerTestCase):

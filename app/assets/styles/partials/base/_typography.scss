@@ -41,3 +41,7 @@ ul {
 li {
   margin-bottom: 0.3rem;
 }
+
+em {
+  @extend .highlight;
+}

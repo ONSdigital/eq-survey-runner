@@ -1,27 +1,21 @@
 import unittest
 from app import create_app
 from app import settings
+from app.data_model.database import QuestionnaireState
 from app.storage.storage_factory import get_storage
 
 
 class IntegrationTestCase(unittest.TestCase):
 
     def setUp(self):
-        # Use an in memory database
-        settings.EQ_SERVER_SIDE_STORAGE_TYPE = "DATABASE"
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
 
         self.application = create_app()
         self.client = self.application.test_client()
 
-        # Clear storage before starting test
-        storage = get_storage()
-        storage.clear()
-
     def tearDown(self):
         # Clear storage after test ends
-        storage = get_storage()
-        storage.clear()
+        QuestionnaireState.query.delete()
 
     def postRedirectGet(self, url, post_data):
         """

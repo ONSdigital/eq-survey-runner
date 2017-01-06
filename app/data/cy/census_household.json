@@ -8,7 +8,6 @@
     "description": "Census England Household Schema",
     "theme": "census",
     "navigation": true,
-    "eq_id": "census",
     "groups": [
         {
             "id": "who-lives-here",

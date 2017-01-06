@@ -10,7 +10,6 @@
     "introduction": {
         "description": ""
     },
-    "eq_id": "0",
     "messages": {
         "INTEGER_TOO_LARGE": "Number is too large",
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -42,18 +41,15 @@
                                     "description": "",
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "What is your favourite breakfast food",
-                            "validation": []
+                            "title": "What is your favourite breakfast food"
                         }
                     ],
                     "routing_rules": [
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",

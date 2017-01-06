@@ -14,7 +14,6 @@
             "Other info"
         ]
     },
-    "eq_id": "0",
     "messages": {
       "INTEGER_TOO_LARGE": "Number is too large",
       "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -41,34 +40,40 @@
                                             "options": [
                                                 {
                                                     "label": "Cheese",
-                                                    "value": "Cheese"
+                                                    "value": "Cheese",
+                                                    "q_code": 1
                                                 },
                                                 {
                                                     "label": "Ham",
-                                                    "value": "Ham"
+                                                    "value": "Ham",
+                                                    "q_code": 2
                                                 },
                                                 {
                                                     "label": "Pineapple",
-                                                    "value": "Pineapple"
+                                                    "value": "Pineapple",
+                                                    "q_code": 3
                                                 },
                                                 {
                                                     "label": "Tuna",
-                                                    "value": "Tuna"
+                                                    "value": "Tuna",
+                                                    "q_code": 4
                                                 },
                                                 {
                                                     "label": "Pepperoni",
-                                                    "value": "Pepperoni"
+                                                    "value": "Pepperoni",
+                                                    "q_code": 5
                                                 },
                                                 {
                                                     "label": "Other",
                                                     "value": "other",
+                                                    "q_code": 6,
                                                     "description": "Choose any other topping",
                                                     "other": {
                                                       "label": "Please specify other"
                                                     }
                                                 }
                                             ],
-                                            "q_code": "20",
+                                            "q_code": "",
                                             "type": "Checkbox",
                                             "validation": {
                                                 "messages": {}
@@ -78,18 +83,15 @@
                                     "description": "",
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
                                     "title": "Which pizza toppings would you like?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Mandatory other option",
-                            "validation": []
+                            "title": "Mandatory other option"
                         }
                     ],
                     "routing_rules":[
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 }, {
                     "type": "questionnaire",
                     "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1",
@@ -145,18 +147,15 @@
                                     "description": "",
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2811",
                                     "title": "What extra toppings would you like?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Non mandatory other option",
-                            "validation": []
+                            "title": "Non mandatory other option"
                         }
                     ],
                     "routing_rules":[
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 }],
             "id": "14ba4707-321d-441d-8d21-b8367366e761",
             "title": ""

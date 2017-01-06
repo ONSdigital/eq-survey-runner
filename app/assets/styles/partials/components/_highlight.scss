@@ -1,5 +1,6 @@
 .highlight {
-  background-color: tint($color-secondary, 90);
+  background-color: $color-emphasis;
   margin: 0 -2px;
   padding: 0 2px;
+  font-style: normal;
 }

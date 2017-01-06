@@ -267,9 +267,9 @@ def add_blueprints(application):
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()
 
-    from app.views.main import main_blueprint
-    application.register_blueprint(main_blueprint)
-    main_blueprint.config = application.config.copy()
+    from app.views.session import session_blueprint
+    application.register_blueprint(session_blueprint)
+    session_blueprint.config = application.config.copy()
 
     from app.views.errors import errors_blueprint
     application.register_blueprint(errors_blueprint)

@@ -7,7 +7,6 @@
     "title": "Prawf Cyfrifiad 2017",
     "description": "Census England Individual Schema",
     "theme": "census",
-    "eq_id": "census",
     "groups": [
         {
             "id": "household-member",

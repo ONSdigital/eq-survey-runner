@@ -20,6 +20,10 @@ logger = logging.getLogger(__name__)
 errors_blueprint = Blueprint('errors', __name__)
 
 
+class MultipleSurveyError(Exception):
+    pass
+
+
 @errors_blueprint.after_request
 def add_cache_control(response):
     response.cache_control.no_cache = True
@@ -50,6 +54,12 @@ def page_not_found(error=None):
 def service_unavailable(error=None):
     log_exception(error)
     return _render_error_page(503)
+
+
+@errors_blueprint.app_errorhandler(MultipleSurveyError)
+def multiple_survey_error(error=None):
+    log_exception(error)
+    return render_theme_template('default', 'multiple_survey.html')
 
 
 @errors_blueprint.app_errorhandler(Exception)

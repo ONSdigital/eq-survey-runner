@@ -5,7 +5,6 @@ from app.validation.error_messages import error_messages
 
 class Questionnaire(object):
     def __init__(self):
-        self.eq_id = None
         self.id = None
         self.title = None
         self.survey_id = None
