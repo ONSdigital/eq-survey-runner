@@ -7,7 +7,6 @@
     "title": "2017 Census Test",
     "description": "Census England Individual Schema",
     "theme": "census",
-    "eq_id": "census",
     "groups": [
         {
             "id": "household-member",

@@ -16,7 +16,6 @@
           "reasons for changes to figures"
         ]
     },
-    "eq_id": "1",
     "groups": [
         {
             "blocks": [
@@ -64,12 +63,10 @@
                                     "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
                                     "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
                                     "title": "What are the dates of the sales period you are reporting for?",
-                                    "type": "DateRange",
-                                    "validation": []
+                                    "type": "DateRange"
                                 }
                             ],
-                            "title": "",
-                            "validation": []
+                            "title": ""
                         },
                         {
                             "description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (\u00a3) pound</p>",
@@ -106,8 +103,7 @@
                                     "description": "",
                                     "id": "eedb9f9f-2f2e-41f4-9186-ba7110d9e6a4",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -131,8 +127,7 @@
                                     "description": "",
                                     "id": "5743fe04-e9a3-491f-b475-ea5be662eff3",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -156,8 +151,7 @@
                                     "description": "",
                                     "id": "475471a1-7be0-4a7a-82b3-2b803d3935ed",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -181,8 +175,7 @@
                                     "description": "",
                                     "id": "656eaad2-67ed-4413-93dd-06d66c954a22",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -206,8 +199,7 @@
                                     "description": "",
                                     "id": "d7144593-8899-434a-8630-c622df1689b2",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -232,8 +224,7 @@
                                     "description": "",
                                     "id": "6c302f72-cf9d-4f42-8a35-cb258c3f807c",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -257,8 +248,7 @@
                                     "description": "",
                                     "id": "c9902a3b-7dbb-48ff-8d3f-dce6fef322c7",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -282,12 +272,10 @@
                                     "description": "",
                                     "id": "96984134-1863-4450-b314-c44cf48d2bcd",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Commodities - Retail Turnover",
-                            "validation": []
+                            "title": "Commodities - Retail Turnover"
                         },
                         {
                             "description": "",
@@ -311,16 +299,13 @@
                                     "description": "Please explain any movements in your data, for example, sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                                     "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Comments",
-                            "validation": []
+                            "title": "Comments"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 },
                 {
                     "type": "questionnaire",
@@ -371,8 +356,7 @@
                                     "description": "",
                                     "id": "59ccb6e3-4a0a-4c32-b798-aafbf6b9e481",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -396,8 +380,7 @@
                                     "description": "",
                                     "id": "fdafbc19-25b0-4985-a676-100df5bf25d3",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -421,8 +404,7 @@
                                     "description": "",
                                     "id": "e10d5a63-ac30-4031-8c71-20eb04196978",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -446,8 +428,7 @@
                                     "description": "",
                                     "id": "87f52d2a-b0e4-47f2-b884-ce94df109ed9",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -472,21 +453,17 @@
                                     "description": "",
                                     "id": "b08ffc0f-c148-462e-a988-0a8ca259436a",
                                     "title": "",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "On {{exercise.employment_date|format_date}} what was the number of employees for the business?",
-                            "validation": []
+                            "title": "On {{exercise.employment_date|format_date}} what was the number of employees for the business?"
                         }
                     ],
-                    "title": "Monthly Business Survey",
-                    "validation": []
+                    "title": "Monthly Business Survey"
                 }
             ],
             "id": "14ba4707-321d-441d-8d21-b8367366e766",
-            "title": "",
-            "validation": []
+            "title": ""
         }
     ]
 }

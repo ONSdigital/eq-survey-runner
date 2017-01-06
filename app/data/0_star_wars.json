@@ -14,7 +14,6 @@
             "Total Yearly cost of Rebel Alliance"
         ]
     },
-    "eq_id": "0",
     "messages": {
       "INTEGER_TOO_LARGE": "Too big, that number is",
       "NEGATIVE_INTEGER": "It must be a positive number",
@@ -71,12 +70,10 @@
                                     "description": "",
                                     "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
                                     "title": "Which side of the force are you on?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "Choose your side",
-                            "validation": []
+                            "title": "Choose your side"
                         }
                     ],
                     "routing_rules":[
@@ -125,8 +122,7 @@
                             }
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",
@@ -171,8 +167,7 @@
                                     "description": "",
                                     "id": "680f2ff9-d5a5-4057-b1cd-9fde2660b244",
                                     "title": "A wise choice young Yedi. Pick your hero",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                                 {
                                     "answers": [
@@ -201,12 +196,10 @@
                                     "description": "",
                                     "id": "5667e5eb-f9d3-4482-9257-edf752000708",
                                     "title": "Do you want to pick a ship?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "",
-                            "validation": []
+                            "title": ""
                         }
                     ],
                     "title": "",
@@ -237,8 +230,7 @@
                             }
 
                         }
-                    ],
-                    "validation": []
+                    ]
                 },
                 {
                     "type": "questionnaire",
@@ -284,8 +276,7 @@
                                     "description": "",
                                     "id": "d9fd4a58-83a5-44df-a413-47ce41244124",
                                     "title": "Good! Your hate has made you powerful. Pick your baddie",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 },
                               {
                                     "answers": [
@@ -318,12 +309,10 @@
                                     "description": "",
                                     "id": "8777e5eb-f9d3-4482-9257-edf752000708",
                                     "title": "Do you want to pick a ship?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "",
-                            "validation": []
+                            "title": ""
                         }
                     ],
                                         "routing_rules":[
@@ -367,8 +356,7 @@
 
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",
@@ -405,12 +393,10 @@
                                     "description": "",
                                     "id": "574e5d5e-36b4-44ea-b8f6-09d744552241",
                                     "title": "Which ship do you want?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "",
-                            "validation": []
+                            "title": ""
                         }
                     ],
                     "routing_rules":[
@@ -420,8 +406,7 @@
                             }
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",
@@ -458,12 +443,10 @@
                                     "description": "",
                                     "id": "cb8f691d-7925-4131-a19b-9eeef592ceea",
                                     "title": "Which ship do you want?",
-                                    "type": "General",
-                                    "validation": []
+                                    "type": "General"
                                 }
                             ],
-                            "title": "",
-                            "validation": []
+                            "title": ""
                         }
                     ],
                     "routing_rules":[
@@ -473,8 +456,7 @@
                             }
                         }
                     ],
-                    "title": "",
-                    "validation": []
+                    "title": ""
                 },
                 {
                     "type": "questionnaire",

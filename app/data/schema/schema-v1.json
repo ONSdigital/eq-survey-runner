@@ -26,6 +26,7 @@
                     "type": ["string", "boolean"]
                 }
             },
+            "additionalProperties": false,
             "required": [
                 "condition"
             ],
@@ -42,6 +43,87 @@
                 }
             ]
         }
+    },
+    "messages": {
+      "type": "object",
+      "properties": {
+        "NOT_INTEGER": {
+          "type": "string"
+        },
+        "NOT_STRING": {
+          "type": "string"
+        },
+        "MANDATORY": {
+          "type": "string"
+        },
+        "INVALID_DATE": {
+          "type": "string"
+        },
+        "NEGATIVE_INTEGER": {
+          "type": "string"
+        },
+        "INTEGER_TOO_LARGE": {
+          "type": "string"
+        },
+        "INVALID_DATE_RANGE_TO_BEFORE_FROM": {
+          "type": "string"
+        },
+        "INVALID_DATE_RANGE_TO_FROM_SAME": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "routing_rules": {
+      "type": "array",
+      "navigation_label_answer_ids":{
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+      },
+      "items": {
+        "type": "object",
+        "properties": {
+          "goto": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "when": {
+                "$ref": "#/definitions/when"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "repeat": {
+            "type": "object",
+            "properties": {
+              "answer_id": {
+                "type": "string"
+              },
+              "goto": {
+                "type": "string"
+              },
+              "type": {
+                "enum": ["answer_value", "answer_count", "answer_count_minus_one"]
+              }
+            },
+            "required": [
+              "answer_id"
+            ]
+          }
+        },
+        "oneOf": [
+          {"required": ["goto"]},
+          {"required": ["repeat"]}
+        ]
+      }
     }
   },
   "properties": {
@@ -77,8 +159,18 @@
       "properties": {
         "description": {
           "type": "string"
+        },
+        "information_to_provide": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
         }
       }
+    },
+    "messages": {
+      "$ref": "#/definitions/messages"
     },
     "groups": {
       "type": "array",
@@ -118,6 +210,9 @@
             "required": [
               "when"
             ]
+          },
+          "routing_rules": {
+            "ref": "#/definitions/routing_rules"
           },
           "blocks": {
             "type": "array",
@@ -198,6 +293,7 @@
                                   "$ref": "#/definitions/when"
                                 }
                               },
+                              "additionalProperties": false,
                               "required": [
                                 "when"
                               ]
@@ -256,8 +352,20 @@
                                   },
                                   "alias": {
                                     "type": "string"
+                                  },
+                                  "repeats": {
+                                    "type": "boolean"
+                                  },
+                                  "validation": {
+                                    "type": "object",
+                                    "properties": {
+                                      "messages": {
+                                        "$ref": "#/definitions/messages"
+                                      }
+                                    }
                                   }
                                 },
+                                "additionalProperties": false,
                                 "required": [
                                   "id",
                                   "type",
@@ -266,6 +374,7 @@
                               }
                             }
                           },
+                          "additionalProperties": false,
                           "required": [
                             "id",
                             "title",
@@ -275,6 +384,7 @@
                         }
                       }
                     },
+                    "additionalProperties": false,
                     "required": [
                       "id",
                       "questions"
@@ -282,57 +392,10 @@
                   }
                 },
                 "routing_rules": {
-                  "type": "array",
-                  "navigation_label_answer_ids":{
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      },
-                      "minItems": 1,
-                      "uniqueItems": true
-                  },
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "goto": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "when": {
-                            "$ref": "#/definitions/when"
-                          }
-                        },
-                        "required": [
-                          "id"
-                        ]
-                      },
-                      "repeat": {
-                        "type": "object",
-                        "properties": {
-                          "answer_id": {
-                            "type": "string"
-                          },
-                          "goto": {
-                            "type": "string"
-                          },
-                          "type": {
-                            "enum": ["answer_value", "answer_count", "answer_count_minus_one"]
-                          }
-                        },
-                        "required": [
-                          "answer_id"
-                        ]
-                      }
-                    },
-                    "oneOf": [
-                      {"required": ["goto"]},
-                      {"required": ["repeat"]}
-                    ]
-                  }
+                  "ref": "#/definitions/routing_rules"
                 }
               },
+              "additionalProperties": false,
               "required": [
                 "id",
                 "title",
@@ -341,6 +404,7 @@
             }
           }
         },
+        "additionalProperties": false,
         "required": [
           "id",
           "title",
@@ -349,6 +413,7 @@
       }
     }
   },
+  "additionalProperties": false,
   "required": [
     "mime_type",
     "schema_version",
