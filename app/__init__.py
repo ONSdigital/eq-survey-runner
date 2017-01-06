@@ -3,10 +3,8 @@ import logging
 import os
 import sys
 from datetime import timedelta
-from logging.handlers import RotatingFileHandler
 
 from app import settings
-from app.analytics.custom_google_analytics import CustomGoogleAnalytics
 from app.authentication.authenticator import Authenticator
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.data_model.database import db_session
@@ -16,8 +14,6 @@ from app.submitter.submitter import SubmitterFactory
 from flask import Flask
 from flask import url_for
 
-from flask_analytics import Analytics
-
 from flask_babel import Babel
 
 from flask_login import LoginManager
@@ -25,8 +21,6 @@ from flask_login import LoginManager
 from flask_themes2 import Themes
 
 from flaskext.markdown import Markdown
-
-from healthcheck import HealthCheck
 
 from splunk_handler import SplunkHandler
 
@@ -175,6 +169,8 @@ def setup_profiling(application):
 
 def setup_analytics(application):
     # Setup analytics
+    from flask_analytics import Analytics
+    from app.analytics.custom_google_analytics import CustomGoogleAnalytics
 
     Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
     Analytics(application)
@@ -183,6 +179,9 @@ def setup_analytics(application):
 
 
 def configure_logging(application):
+
+    from logging.handlers import RotatingFileHandler
+
     # set up some sane logging, as opposed to what flask does by default
     log_format = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
     levels = {
@@ -224,6 +223,7 @@ def configure_logging(application):
 
 
 def setup_splunk_logging():
+
     splunk_handler = SplunkHandler(host=settings.EQ_SPLUNK_HOST,
                                    port=settings.EQ_SPLUNK_PORT,
                                    username=settings.EQ_SPLUNK_USERNAME,
@@ -234,6 +234,7 @@ def setup_splunk_logging():
 
 
 def setup_cloud_watch_logging(application):
+
     # filter out botocore messages, we don't wish to log these
     class NoBotocoreFilter(logging.Filter):
 
@@ -259,6 +260,12 @@ def start_dev_mode(application):
     application.debug = True
     # Not in dev mode, so use secure_session_cookies
     application.config['SESSION_COOKIE_SECURE'] = False
+
+    if settings.EQ_ENABLE_FLASK_DEBUG_TOOLBAR:
+        from flask_debugtoolbar import DebugToolbarExtension
+        DebugToolbarExtension(application)
+        application.config['DEBUG_TB_PROFILER_ENABLED'] = True
+        application.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 
 def add_blueprints(application):
@@ -294,6 +301,7 @@ def setup_babel(application):
 
 
 def add_health_check(application, headers):
+    from healthcheck import HealthCheck
     application.healthcheck = HealthCheck(
         application, '/healthcheck', success_headers=headers, failed_headers=headers)
     application.healthcheck.add_check(rabbitmq_available)

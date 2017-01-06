@@ -24,7 +24,7 @@ class TestQuestionnaireInterstitial(IntegrationTestCase):
         resp_url, resp = self.postRedirectGet(resp_url, post_data)
         content = resp.get_data(True)
 
-        self.assertRegex("/Continue$", content)
+        self.assertTrue("Continue" in content, "The content of the interstitual page does not contain Continue as the button text")
 
     def test_interstitial_page_can_continue(self):
         token = create_token('interstitial_page', 'test')

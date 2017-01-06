@@ -195,7 +195,9 @@ EQ_PROFILING - Enables or disables profiling (True/False) Default False/Disabled
 EQ_UA_ID - The Google Analytics ID
 EQ_SCHEMA_BUCKET - The name of the bucket in S3 where to look to find schemas
 SAUCE_USERNAME - Sauce Labs username
-SAUCE_ACCESS_KEY Sauce Labs private key
+SAUCE_ACCESS_KEY - Sauce Labs private key
+EQ_DEV_MODE - Enable dev mode
+EQ_ENABLE_FLASK_DEBUG_TOOLBAR - Enable the flask debug toolbar
 ```
 ## Loading schemas from S3
 
