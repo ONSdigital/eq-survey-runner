@@ -22,14 +22,14 @@
       {% for question in section.questions %}
 
         <div class="summary__question" id="{{question.id}}">
-          {{question.title|safe}}
+          {{question.title|striptags|safe}}
         </div>
 
         {% for answer in question.answers %}
 
           {% if question.answers|length > 1 %}
             <div class="summary__question summary__question--sub">
-              {{answer.label|safe}}
+              {{answer.label|striptags|safe}}
             </div>
           {% endif %}
 
