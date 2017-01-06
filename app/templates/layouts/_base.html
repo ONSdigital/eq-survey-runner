@@ -23,7 +23,6 @@
     {%- block styles %}
     {% set css_responsive = "css/"~_theme~"/responsive.css" %}
     {% set css_fixed = "css/"~_theme~"/fixed.css" %}
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,600,700,900' rel='stylesheet' type='text/css'>
     <!--[if (gt IE 9) | (IEMobile)]><!-->
     {%- if request.args.get('fixed') == 'true' %}
       <link href="{{ url_for('static', filename=css_fixed) }}" rel="stylesheet">

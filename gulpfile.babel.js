@@ -10,6 +10,7 @@ import {sprite, images} from './gulp/images'
 import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
 import a11ym from './gulp/a11ym'
+import {fonts} from './gulp/fonts'
 
 const getEnv = () => {
   const envs = {
@@ -112,6 +113,11 @@ gulp.task('build:images', () => {
   images()
 })
 
+// Copy font files into output folder
+gulp.task('build:fonts', () => {
+  fonts()
+})
+
 /**
  * Task Runners
  */
@@ -125,7 +131,8 @@ gulp.task('compile', [
   'bundle:scripts',
   'copy:scripts',
   'build:styles',
-  'build:images'
+  'build:images',
+  'build:fonts'
 ])
 
 /**
@@ -142,6 +149,7 @@ gulp.task('watch', [
   'build:styles',
   'build:images',
   'watch:scripts',
+  'build:fonts',
   'listen'
 ])
 

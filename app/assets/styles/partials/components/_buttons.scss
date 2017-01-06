@@ -22,7 +22,7 @@
   }
 
   &.btn--border {
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-bold;
     background: $color;
     border: 1px solid $bg;
     color: $bg;
@@ -60,7 +60,7 @@
 }
 
 .btn--lg {
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-bold;
   padding: 0.9rem 1rem;
   @include mq(s) {
     padding: 0.9rem 5rem;
