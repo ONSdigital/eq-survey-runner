@@ -9,22 +9,22 @@ class BlackEthnicGroupPage extends MultipleChoiceWithOtherPage {
   }
 
   clickBlackEthnicGroupAnswerAfrican() {
-    browser.element('[id="black-ethnic-group-answer-1"]').click()
+    browser.element('[id="black-ethnic-group-answer-0"]').click()
     return this
   }
 
   clickBlackEthnicGroupAnswerCaribbean() {
-    browser.element('[id="black-ethnic-group-answer-2"]').click()
+    browser.element('[id="black-ethnic-group-answer-1"]').click()
     return this
   }
 
   clickBlackEthnicGroupAnswerOther() {
-    browser.element('[id="black-ethnic-group-answer-3"]').click()
+    browser.element('[id="black-ethnic-group-answer-2"]').click()
     return this
   }
 
   setBlackEthnicGroupAnswerOtherText(value) {
-    browser.setValue('[id="black-ethnic-group-answer-3-other"]', value)
+    browser.setValue('[id="black-ethnic-group-answer-2-other"]', value)
     return this
   }
 

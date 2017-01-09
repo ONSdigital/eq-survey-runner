@@ -9,27 +9,27 @@ class DescribeResidentsPage extends MultipleChoiceWithOtherPage {
   }
 
   clickDescribeResidentsAnswerFamilyMembers() {
-    browser.element('[id="describe-residents-answer-1"]').click()
+    browser.element('[id="describe-residents-answer-0"]').click()
     return this
   }
 
   clickDescribeResidentsAnswerPayingGuests() {
-    browser.element('[id="describe-residents-answer-2"]').click()
+    browser.element('[id="describe-residents-answer-1"]').click()
     return this
   }
 
   clickDescribeResidentsAnswerStaff() {
-    browser.element('[id="describe-residents-answer-3"]').click()
+    browser.element('[id="describe-residents-answer-2"]').click()
     return this
   }
 
   clickDescribeResidentsAnswerOther() {
-    browser.element('[id="describe-residents-answer-4"]').click()
+    browser.element('[id="describe-residents-answer-3"]').click()
     return this
   }
 
   setDescribeResidentsAnswerOtherText(value) {
-    browser.setValue('[id="describe-residents-answer-4-other"]', value)
+    browser.setValue('[id="describe-residents-answer-3-other"]', value)
     return this
   }
 

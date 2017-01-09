@@ -9,17 +9,17 @@ class TypeOfAccommodationPage extends MultipleChoiceWithOtherPage {
   }
 
   clickTypeOfAccommodationAnswerWholeHouseOrBungalow() {
-    browser.element('[id="type-of-accommodation-answer-1"]').click()
+    browser.element('[id="type-of-accommodation-answer-0"]').click()
     return this
   }
 
   clickTypeOfAccommodationAnswerFlatMaisonetteOrApartmentIncludingBedsits() {
-    browser.element('[id="type-of-accommodation-answer-2"]').click()
+    browser.element('[id="type-of-accommodation-answer-1"]').click()
     return this
   }
 
   clickTypeOfAccommodationAnswerCaravanOrOtherMobileOrTemporaryStructure() {
-    browser.element('[id="type-of-accommodation-answer-3"]').click()
+    browser.element('[id="type-of-accommodation-answer-2"]').click()
     return this
   }
 

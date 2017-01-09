@@ -9,17 +9,17 @@ class OtherEthnicGroupPage extends MultipleChoiceWithOtherPage {
   }
 
   clickOtherEthnicGroupAnswerArab() {
-    browser.element('[id="other-ethnic-group-answer-1"]').click()
+    browser.element('[id="other-ethnic-group-answer-0"]').click()
     return this
   }
 
   clickOtherEthnicGroupAnswerOther() {
-    browser.element('[id="other-ethnic-group-answer-2"]').click()
+    browser.element('[id="other-ethnic-group-answer-1"]').click()
     return this
   }
 
   setOtherEthnicGroupAnswerOtherText(value) {
-    browser.setValue('[id="other-ethnic-group-answer-2-other"]', value)
+    browser.setValue('[id="other-ethnic-group-answer-1-other"]', value)
     return this
   }
 

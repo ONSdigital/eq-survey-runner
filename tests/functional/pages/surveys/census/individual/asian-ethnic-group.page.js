@@ -9,32 +9,32 @@ class AsianEthnicGroupPage extends MultipleChoiceWithOtherPage {
   }
 
   clickAsianEthnicGroupAnswerIndian() {
-    browser.element('[id="asian-ethnic-group-answer-1"]').click()
+    browser.element('[id="asian-ethnic-group-answer-0"]').click()
     return this
   }
 
   clickAsianEthnicGroupAnswerPakistani() {
-    browser.element('[id="asian-ethnic-group-answer-2"]').click()
+    browser.element('[id="asian-ethnic-group-answer-1"]').click()
     return this
   }
 
   clickAsianEthnicGroupAnswerBangladeshi() {
-    browser.element('[id="asian-ethnic-group-answer-3"]').click()
+    browser.element('[id="asian-ethnic-group-answer-2"]').click()
     return this
   }
 
   clickAsianEthnicGroupAnswerChinese() {
-    browser.element('[id="asian-ethnic-group-answer-4"]').click()
+    browser.element('[id="asian-ethnic-group-answer-3"]').click()
     return this
   }
 
   clickAsianEthnicGroupAnswerOther() {
-    browser.element('[id="asian-ethnic-group-answer-5"]').click()
+    browser.element('[id="asian-ethnic-group-answer-4"]').click()
     return this
   }
 
   setAsianEthnicGroupAnswerOtherText(value) {
-    browser.setValue('[id="asian-ethnic-group-answer-5-other"]', value)
+    browser.setValue('[id="asian-ethnic-group-answer-4-other"]', value)
     return this
   }
 

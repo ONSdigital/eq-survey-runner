@@ -9,42 +9,42 @@ class AddressTypePage extends MultipleChoiceWithOtherPage {
   }
 
   clickAddressTypeAnswerArmedForcesBaseAddress() {
-    browser.element('[id="address-type-answer-1"]').click()
+    browser.element('[id="address-type-answer-0"]').click()
     return this
   }
 
   clickAddressTypeAnswerAnotherAddressWhenWorkingAwayFromHome() {
-    browser.element('[id="address-type-answer-2"]').click()
+    browser.element('[id="address-type-answer-1"]').click()
     return this
   }
 
   clickAddressTypeAnswerStudentSHomeAddress() {
-    browser.element('[id="address-type-answer-3"]').click()
+    browser.element('[id="address-type-answer-2"]').click()
     return this
   }
 
   clickAddressTypeAnswerStudentSTermTimeAddress() {
-    browser.element('[id="address-type-answer-4"]').click()
+    browser.element('[id="address-type-answer-3"]').click()
     return this
   }
 
   clickAddressTypeAnswerAnotherParentOrGuardianSAddress() {
-    browser.element('[id="address-type-answer-5"]').click()
+    browser.element('[id="address-type-answer-4"]').click()
     return this
   }
 
   clickAddressTypeAnswerHolidayHome() {
-    browser.element('[id="address-type-answer-6"]').click()
+    browser.element('[id="address-type-answer-5"]').click()
     return this
   }
 
   clickAddressTypeAnswerOther() {
-    browser.element('[id="address-type-answer-7"]').click()
+    browser.element('[id="address-type-answer-6"]').click()
     return this
   }
 
   setAddressTypeAnswerOtherText(value) {
-    browser.setValue('[id="address-type-answer-7-other"]', value)
+    browser.setValue('[id="address-type-answer-6-other"]', value)
     return this
   }
 

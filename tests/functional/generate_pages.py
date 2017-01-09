@@ -138,10 +138,10 @@ def generate_camel_case_from_id(id_str):
 def process_options(answer_id, options, template, page_spec):
     for index, option in enumerate(options):
         option_name = generate_camel_case_from_id(option['value'])
-        option_id = "{name}-{index}".format(name=answer_id, index=index+1)
+        option_id = "{name}-{index}".format(name=answer_id, index=index)
         page_spec.write(template.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
         if 'other' in option:
-            option_other_id = "{name}-{index}-other".format(name=answer_id, index=index+1)
+            option_other_id = "{name}-{index}-other".format(name=answer_id, index=index)
             page_spec.write(MULTIPLE_CHOICE_OTHER.replace("{answerName}", generate_camel_case_from_id(answer_id) + option_name + "Text").replace("{answerId}", option_other_id))
 
 
@@ -218,7 +218,7 @@ def find_kv(block, key, values):
     return False
 
 
-def process_block(block, dir_out, spec_out):
+def process_block(block, dir_out, spec_out=None):
     logger.debug("Processing Block: %s", block['id'])
 
     page_filename = block['id'] + '.page.js'
@@ -251,16 +251,16 @@ def process_block(block, dir_out, spec_out):
 
         page_spec.write(FOOTER.replace("{pageName}", page_name))
 
-        with open(spec_out, 'a') as template_spec:
-            header = SPEC_PAGE_IMPORT
-            header = header.replace("{pageDir}", dir_out.split('pages/')[1])
-            header = header.replace("{pageName}", page_name)
-            header = header.replace("{pageFile}", page_filename)
-            template_spec.write(header)
+        if spec_out:
+            with open(spec_out, 'a') as template_spec:
+                header = SPEC_PAGE_IMPORT
+                header = header.replace("{pageDir}", dir_out.split('pages/')[1])
+                header = header.replace("{pageName}", page_name)
+                header = header.replace("{pageFile}", page_filename)
+                template_spec.write(header)
 
 
-
-def process_schema(in_schema, out_dir, spec_out):
+def process_schema(in_schema, out_dir, spec_out=None):
 
     json_data = open(in_schema).read()
     data = json.loads(json_data)
@@ -271,20 +271,24 @@ def process_schema(in_schema, out_dir, spec_out):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 4:
+    if len(sys.argv) < 3:
         print("Usage: {} <schema.json> </outdir/> <spec_out>".format(sys.argv[0]))
         print("Example: {} ./app/data/census_household.json ./tests/functional/pages/surveys/census/household/ ./tests/functional/spec/census-test.spec.js".format(sys.argv[0]))
         exit(1)
 
     schema_in = sys.argv[1]
     dir_out = sys.argv[2]
-    spec_out = sys.argv[3]
 
-    with open(spec_out, 'w') as template_spec:
-        template_spec.write(SPEC_PAGE_HEADER)
+    if len(sys.argv) == 4:
+        spec_out = sys.argv[3]
 
-    process_schema(schema_in, dir_out, spec_out)
+        with open(spec_out, 'w') as template_spec:
+            template_spec.write(SPEC_PAGE_HEADER)
 
-    with open(spec_out, 'a') as template_spec:
-        template_spec.write(SPEC_CHAI_HEADER)
-        template_spec.write(SPEC_EXAMPLE_TEST.replace("{schema}", schema_in.split('/').pop()))
+        process_schema(schema_in, dir_out, spec_out)
+
+        with open(spec_out, 'a') as template_spec:
+            template_spec.write(SPEC_CHAI_HEADER)
+            template_spec.write(SPEC_EXAMPLE_TEST.replace("{schema}", schema_in.split('/').pop()))
+    else:
+        process_schema(schema_in, dir_out)

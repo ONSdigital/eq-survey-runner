@@ -9,32 +9,32 @@ class WhyPaperIndividualPage extends MultipleChoiceWithOtherPage {
   }
 
   clickWhyPaperIndividualAnswerMoreConvenient() {
-    browser.element('[id="why-paper-individual-answer-1"]').click()
+    browser.element('[id="why-paper-individual-answer-0"]').click()
     return this
   }
 
   clickWhyPaperIndividualAnswerDonTTrustInternetOrSecurityConcerns() {
-    browser.element('[id="why-paper-individual-answer-2"]').click()
+    browser.element('[id="why-paper-individual-answer-1"]').click()
     return this
   }
 
   clickWhyPaperIndividualAnswerNoAccessToInternet() {
-    browser.element('[id="why-paper-individual-answer-3"]').click()
+    browser.element('[id="why-paper-individual-answer-2"]').click()
     return this
   }
 
   clickWhyPaperIndividualAnswerUnsureHowToUseAComputer() {
-    browser.element('[id="why-paper-individual-answer-4"]').click()
+    browser.element('[id="why-paper-individual-answer-3"]').click()
     return this
   }
 
   clickWhyPaperIndividualAnswerOther() {
-    browser.element('[id="why-paper-individual-answer-5"]').click()
+    browser.element('[id="why-paper-individual-answer-4"]').click()
     return this
   }
 
   setWhyPaperIndividualAnswerOtherText(value) {
-    browser.setValue('[id="why-paper-individual-answer-5-other"]', value)
+    browser.setValue('[id="why-paper-individual-answer-4-other"]', value)
     return this
   }
 
