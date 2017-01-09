@@ -35,6 +35,8 @@ export function lint() {
 }
 
 export function styles() {
+  const minifyAssets = process.env.EQ_MINIMIZE_ASSETS === 'True'
+
   const minifyStyles = lazypipe()
     .pipe(rename, {
       suffix: '.min'
@@ -82,8 +84,8 @@ export function styles() {
       path.dirname = path.dirname.replace('themes/', '')
       return path
     }))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpif(!minifyAssets, sourcemaps.write('.')))
     .pipe(gulp.dest(paths.styles.output))
     .pipe(browserSync.reload({ stream: true }))
-    .pipe(gulpif(process.env.EQ_MINIMIZE_ASSETS === 'True', minifyStyles()))
+    .pipe(gulpif(minifyAssets, minifyStyles()))
 }
