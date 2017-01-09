@@ -3,16 +3,16 @@ import QuestionPage from '../question.page'
 class PersonalDetailsPage extends QuestionPage {
 
   constructor() {
-    super('personal_details_block')
+    super('personal-details-block')
   }
 
   setFirstName(firstName) {
-    browser.setValue('[name="first_name_answer"]', firstName)
+    browser.setValue('[name="first-name-answer"]', firstName)
     return this
   }
 
   setSurname(firstName) {
-    browser.setValue('[name="surname_answer"]', firstName)
+    browser.setValue('[name="surname-answer"]', firstName)
     return this
   }
 

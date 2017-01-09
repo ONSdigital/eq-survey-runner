@@ -21,17 +21,17 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "id": "980b148e-0856-4e50-9afe-67a4fa6ae13b",
+                    "id": "reporting-period",
                     "sections": [
                         {
                             "description": "",
-                            "id": "b3c2e966-77ec-4373-b3dd-fdafb5a05cbd",
+                            "id": "reporting-period-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "fad63234-1083-4f6a-826a-20b5df6e4baa",
+                                            "id": "period-from",
                                             "label": "Period from",
                                             "mandatory": true,
                                             "options": [],
@@ -46,7 +46,7 @@
                                         },
                                         {
                                             "guidance": "",
-                                            "id": "c8c4bd92-fd45-4fd1-83b6-18c813de2df2",
+                                            "id": "period-to",
                                             "label": "Period to",
                                             "mandatory": true,
                                             "options": [],
@@ -61,7 +61,7 @@
                                         }
                                     ],
                                     "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
-                                    "id": "1ce1e40e-64e1-4f9a-bb56-85f04c9e7e5d",
+                                    "id": "reporting-period-question",
                                     "title": "What are the dates of the period that you will be reporting for?",
                                     "type": "DateRange"
                                 }
@@ -73,17 +73,17 @@
                 },
                 {
                     "type": "questionnaire",
-                    "id": "6c8a2f39-e0d8-406f-b463-2151225abea2",
+                    "id": "total-retail-turnover",
                     "sections": [
                         {
                             "description": "",
-                            "id": "fc71d2a7-e5b3-4409-bb66-902efbbf7e20",
+                            "id": "total-retail-turnover-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "fe88fa9a-3c49-4fbc-9408-a91c0a1cc6d5",
+                                            "id": "total-retail-turnover-answer",
                                             "label": "Total retail turnover",
                                             "mandatory": true,
                                             "options": [],
@@ -119,7 +119,7 @@
                                             ]
                                         }
                                     ],
-                                    "id": "61c5a553-3ba7-4cd2-bdf0-cd67f011ea6c",
+                                    "id": "total-retail-turnover-question",
                                     "title": "For the reporting period, what was the value of the business’s total retail turnover?",
                                     "type": "General"
                                 }
@@ -131,17 +131,17 @@
                 },
                 {
                     "type": "questionnaire",
-                    "id": "0c7c8876-6a63-4251-ac29-b821b3e9b1bc",
+                    "id": "internet-sales",
                     "sections": [
                         {
                             "description": "",
-                            "id": "5355deab-0b1e-495d-b4ab-f3e1f7c0c6f1",
+                            "id": "internet-sales-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "78774493-5b64-45c4-8072-22f1a9638095",
+                                            "id": "internet-sales-answer",
                                             "label": "Internet sales",
                                             "mandatory": true,
                                             "options": [],
@@ -164,7 +164,7 @@
                                             "list": [ "VAT" ]
                                         }
                                     ],
-                                    "id": "449774d1-7969-4282-bbce-bceb7e8ba374",
+                                    "id": "internet-sales-question",
                                     "title": "Of the business's total retail turnover, what was the value of internet sales?",
                                     "type": "General"
                                 }
@@ -176,17 +176,17 @@
                 },
                 {
                     "type": "questionnaire",
-                    "id": "a42b5752-1896-4f52-9d58-320085be92a7",
+                    "id": "changes-in-retail-turnover",
                     "sections": [
                         {
                             "description": "",
-                            "id": "a04ed3cc-ddbc-48e0-83c2-630d2b0cb063",
+                            "id": "changes-in-retail-turnover-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "<div><p>Examples of commentary:</p><p><strong>'In-store promotion'</strong></p> <p>Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.</p><strong> 'Special events (for example, sporting events)'</strong></p><p>This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.</p><p><strong>‘Weather'</strong></p><p>The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.</div>",
-                                            "id": "287e8c33-9d52-4589-9c1c-3db11d0eec20",
+                                            "id": "changes-in-retail-turnover-answer",
                                             "label": "Comments",
                                             "mandatory": false,
                                             "options": [],
@@ -207,7 +207,7 @@
                                             ]
                                         }
                                     ],
-                                    "id": "fe06b609-5200-404b-bd94-da94843e1b8c",
+                                    "id": "changes-in-retail-turnover-question",
                                     "title": "Indicate the reasons for any changes in the business's total retail turnover",
                                     "type": "General"
                                 }
@@ -219,16 +219,16 @@
                 },
                 {
                     "type": "questionnaire",
-                    "id": "0b29d3f7-5905-43d8-9921-5b353db68104",
+                    "id": "number-of-employees",
                     "sections": [
                         {
-                            "id": "2f73e574-2178-4415-afcd-6c07adb75864",
+                            "id": "number-of-employees-section",
                             "questions": [
                                 {
                                     "answers": [
                                       {
                                           "guidance": "",
-                                          "id": "dc309fdf-eeaf-4f1d-85df-1f5569749ea8",
+                                          "id": "male-employees-over-30-hours",
                                           "label": "Male employees working more than 30 hours per week",
                                           "mandatory": false,
                                           "options": [],
@@ -244,7 +244,7 @@
                                       },
                                       {
                                           "guidance": "",
-                                          "id": "06909776-3238-4e8b-9a3f-97e5a6b2182f",
+                                          "id": "male-employees-under-30-hours",
                                           "label": "Male employees working 30 hours or less per week",
                                           "mandatory": false,
                                           "options": [],
@@ -260,7 +260,7 @@
                                       },
                                       {
                                           "guidance": "",
-                                          "id": "a7e2cd8f-54e5-427b-b9e2-ce90613a5dba",
+                                          "id": "female-employees-over-30-hours",
                                           "label": "Female employees working more than 30 hours per week",
                                           "mandatory": false,
                                           "options": [],
@@ -276,7 +276,7 @@
                                       },
                                       {
                                           "guidance": "",
-                                          "id": "bf73b3bc-4d8d-4472-8c1b-ca7680a39469",
+                                          "id": "female-employees-under-30-hours",
                                           "label": "Female employees working 30 hours or less per week",
                                           "mandatory": false,
                                           "options": [],
@@ -292,7 +292,7 @@
                                       },
                                       {
                                           "guidance": "",
-                                          "id": "c6881970-98ff-4005-af4a-60bfd9b6179f",
+                                          "id": "total-number-employees",
                                           "label": "Total number of employees",
                                           "mandatory": true,
                                           "options": [],
@@ -308,7 +308,7 @@
                                           }
                                       }
                                     ],
-                                    "id": "17136377-f52e-4a00-a1d6-039972fc26ab",
+                                    "id": "number-of-employees-question",
                                     "title": "On {{exercise.employment_date|format_date}} what was the number of employees?",
                                     "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                                     "guidance": [
@@ -340,16 +340,16 @@
                 },
                 {
                     "type": "questionnaire",
-                    "id": "7e2d49eb-ffc7-4a61-a45d-eba336d1d0e6",
+                    "id": "changes-in-employees",
                     "sections": [
                         {
                             "description": "",
-                            "id": "edb9d0f9-effa-46b2-a35b-889394f6e755",
+                            "id": "changes-in-employees-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
-                                            "id": "414699da-1667-44fd-8e98-7606966884db",
+                                            "id": "changes-in-employees-answer",
                                             "label": "Comments",
                                             "mandatory": false,
                                             "options": [],
@@ -370,7 +370,7 @@
                                             ]
                                         }
                                     ],
-                                    "id": "a30d5bdd-72e6-43ab-91fc-4e63c5174cbb",
+                                    "id": "changes-in-employees-question",
                                     "title": "Explain any significant changes in the number of employees",
                                     "type": "General"
                                 }
@@ -381,7 +381,7 @@
                     "title": "Monthly Business Survey"
                 }
             ],
-            "id": "f74d1147-673c-497a-9616-763829d944ac",
+            "id": "rsi",
             "title": ""
         }
     ]

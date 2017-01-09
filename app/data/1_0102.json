@@ -20,17 +20,17 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "id": "5bce8d8f-0af8-4d35-b77d-744e6179b406",
+                    "id": "reporting-period",
                     "sections": [
                         {
                             "description": "",
-                            "id": "2d5e6844-d1c0-4280-baa4-26ee68b81489",
+                            "id": "reporting-period-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "94f368e4-7c6c-4272-a780-8c46328626a2",
+                                            "id": "period-from",
                                             "label": "Period from",
                                             "mandatory": true,
                                             "options": [],
@@ -45,7 +45,7 @@
                                         },
                                         {
                                             "guidance": "",
-                                            "id": "dc156715-3d48-4af3-afed-7a0a6bb65583",
+                                            "id": "period-to",
                                             "label": "Period to",
                                             "mandatory": true,
                                             "options": [],
@@ -60,7 +60,7 @@
                                         }
                                     ],
                                     "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
-                                    "id": "f5ef26e3-b22d-4689-9053-3eefac4504e8",
+                                    "id": "reporting-period-question",
                                     "title": "What are the dates of the period that you will be reporting for?",
                                     "type": "DateRange"
                                 }
@@ -72,17 +72,17 @@
                 },
                 {
                     "type": "questionnaire",
-                    "id": "7418732e-12fb-4270-8307-5682ac63bfae",
+                    "id": "total-retail-turnover",
                     "sections": [
                         {
                             "description": "",
-                            "id": "5ed7e98a-146f-415d-9f4b-75c8d45e495e",
+                            "id": "total-retail-turnover-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "ea08f977-33a8-4933-ad7b-c497997107cf",
+                                            "id": "total-retail-turnover-answer",
                                             "label": "Total retail turnover",
                                             "mandatory": true,
                                             "options": [],
@@ -118,7 +118,7 @@
                                             ]
                                         }
                                     ],
-                                    "id": "7a4b1aee-d6b9-4581-ab18-1191e5ebb94d",
+                                    "id": "total-retail-turnover-question",
                                     "title": "For the reporting period, what was the value of the business’s total retail turnover?",
                                     "type": "General"
                                 }
@@ -130,17 +130,17 @@
                 },
                 {
                     "type": "questionnaire",
-                    "id": "02ed26ad-4cfc-4e29-a946-630476228b2c",
+                    "id": "internet-sales",
                     "sections": [
                         {
                             "description": "",
-                            "id": "fdd9dc60-59f2-475e-af1e-9bfe30010e36",
+                            "id": "internet-sales-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "66612bbb-bc06-4d38-b32c-e2a113641c8a",
+                                            "id": "internet-sales-answer",
                                             "label": "Internet sales",
                                             "mandatory": true,
                                             "options": [],
@@ -163,7 +163,7 @@
                                             "list": [ "VAT" ]
                                         }
                                     ],
-                                    "id": "eb40935b-b771-4082-adc4-37e4c0b04208",
+                                    "id": "internet-sales-question",
                                     "title": "Of the business's total retail turnover, what was the value of internet sales?",
                                     "type": "General"
                                 }
@@ -175,17 +175,17 @@
                 },
                 {
                     "type": "questionnaire",
-                    "id": "f55cccc6-0755-455d-9f9e-085f1bf55399",
+                    "id": "changes-in-retail-turnover",
                     "sections": [
                         {
                             "description": "",
-                            "id": "2a7f1c20-8a10-4fe4-96ff-b9356e32302f",
+                            "id": "changes-in-retail-turnover-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "<div><p>Examples of commentary:</p><p><strong>'In-store promotion'</strong></p> <p>Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.</p><strong> 'Special events (for example, sporting events)'</strong></p><p>This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.</p><p><strong>‘Weather'</strong></p><p>The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.</div>",
-                                            "id": "568e2c81-b11d-4682-bd89-f170481c9a48",
+                                            "id": "changes-in-retail-turnover-answer",
                                             "label": "Comments",
                                             "mandatory": false,
                                             "options": [],
@@ -206,7 +206,7 @@
                                             ]
                                         }
                                     ],
-                                    "id": "d434cea3-00ac-4954-8ad8-ef6bb9e85041",
+                                    "id": "changes-in-retail-turnover-question",
                                     "title": "Indicate the reasons for any changes in the business's total retail turnover",
                                     "type": "General"
                                 }
@@ -217,7 +217,7 @@
                     "title": "Monthly Business Survey"
                 }
             ],
-            "id": "07f40cd2-0704-4804-9f32-19309089a51b",
+            "id": "rsi",
             "title": ""
         }
     ]

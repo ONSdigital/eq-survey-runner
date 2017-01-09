@@ -38,15 +38,15 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "",
+            "period-from-day": "01",
+            "period-from-month": "1",
+            "period-from-year": "",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "",
+            "period-to-day": "01",
+            "period-to-month": "01",
+            "period-to-year": "",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            "total-retail-turnover": "100000",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -59,15 +59,15 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "period-from-day": "01",
+            "period-from-month": "01",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2017",
+            "period-to-day": "01",
+            "period-to-month": "01",
+            "period-to-year": "2017",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "rubbish",
+            "total-retail-turnover": "rubbish",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -80,15 +80,15 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "period-from-day": "01",
+            "period-from-month": "01",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "",
+            "period-to-day": "01",
+            "period-to-month": "01",
+            "period-to-year": "",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "10000",
+            "total-retail-turnover": "10000",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -107,15 +107,15 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2017",
+            "period-from-day": "01",
+            "period-from-month": "01",
+            "period-from-year": "2017",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "period-to-day": "01",
+            "period-to-month": "01",
+            "period-to-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "10000",
+            "total-retail-turnover": "10000",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -128,15 +128,15 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "period-from-day": "01",
+            "period-from-month": "01",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "period-to-day": "01",
+            "period-to-month": "01",
+            "period-to-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            "total-retail-turnover": "100000",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -149,15 +149,15 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "4",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "period-from-day": "01",
+            "period-from-month": "4",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "30",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "period-to-day": "30",
+            "period-to-month": "04",
+            "period-to-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            "total-retail-turnover": "100000",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
