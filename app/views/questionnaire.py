@@ -82,7 +82,8 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 
     current_location = Location(group_id, group_instance, block_id)
 
-    return _render_template(q_manager.state, current_location=current_location, template=template)
+    _render_schema(current_location)
+    return _render_template(q_manager.state, current_location, template)
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
@@ -97,7 +98,9 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     valid_data = q_manager.validate(this_location, request.form)
 
     if not valid_location or not valid_data:
-        return _render_template(q_manager.state, block_id=block_id, template='questionnaire')
+        current_location = Location(group_id, group_instance, block_id)
+        _render_schema(current_location)
+        return _render_template(q_manager.state, current_location, template='questionnaire')
     else:
         q_manager.update_questionnaire_store(this_location)
 
@@ -117,7 +120,9 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 @questionnaire_blueprint.route('introduction', methods=["GET"])
 @login_required
 def get_introduction(eq_id, form_type, collection_id):
-    return _render_template(get_introduction_context(g.schema_json), block_id='introduction')
+    group_id = SchemaHelper.get_first_group_id(g.schema_json)
+    current_location = Location(group_id, 0, 'introduction')
+    return _render_template(get_introduction_context(g.schema_json), current_location)
 
 
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
@@ -133,6 +138,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
     # Don't care if data is valid because there isn't any for interstitial
     if not valid_location:
+        _render_schema(this_location)
         return _render_template(q_manager.state, current_location=this_location, template='questionnaire')
 
     next_location = path_finder.get_next_location(current_location=this_location)
@@ -176,9 +182,9 @@ def get_confirmation(eq_id, form_type, collection_id):
     if latest_location.block_id == 'confirmation':
 
         q_manager = get_questionnaire_manager(g.schema, g.schema_json)
-        this_location = Location(SchemaHelper.get_first_group_id(g.schema_json), 0, 'confirmation')
-        q_manager.build_state(this_location, answer_store)
+        q_manager.build_state(latest_location, answer_store)
 
+        _render_schema(latest_location)
         return _render_template(q_manager.state, current_location=latest_location)
 
     metadata = get_metadata(current_user)
@@ -189,7 +195,9 @@ def get_confirmation(eq_id, form_type, collection_id):
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
 @login_required
 def get_thank_you(eq_id, form_type, collection_id):
-    thank_you_page = _render_template(get_questionnaire_manager(g.schema, g.schema_json).state, block_id='thank-you')
+    group_id = SchemaHelper.get_last_group_id(g.schema_json)
+    current_location = Location(group_id, 0, 'thank-you')
+    thank_you_page = _render_template(None, current_location)
     # Delete user data on request of thank you page.
     _delete_user_data()
     return thank_you_page
@@ -239,6 +247,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
         return get_block(eq_id, form_type, collection_id, group_id, 0, 'household-composition')
 
     if not valid:
+        _render_schema(this_location)
         return _render_template(questionnaire_manager.state, current_location=this_location, template='questionnaire')
 
     next_location = path_finder.get_next_location(current_location=this_location)
@@ -311,7 +320,15 @@ def _check_same_survey(eq_id, form_type, collection_id):
         raise MultipleSurveyError
 
 
-def _render_template(context, current_location=None, block_id=None, template=None):
+def _render_schema(current_location):
+    metadata = get_metadata(current_user)
+    answer_store = get_answer_store(current_user)
+    schema_item = g.schema.get_item_by_id(current_location.block_id)
+    schema_context = build_schema_context(metadata, g.schema.aliases, answer_store, current_location.group_instance)
+    renderer.render_schema_items(schema_item, schema_context)
+
+
+def _render_template(context, current_location=None, template=None):
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
@@ -320,10 +337,6 @@ def _render_template(context, current_location=None, block_id=None, template=Non
 
     path_finder = PathFinder(g.schema_json, answer_store, metadata)
     navigation = Navigation(g.schema_json, answer_store, metadata, completed_blocks)
-
-    if current_location is None:
-        group_id = SchemaHelper.get_first_group_id(g.schema_json)
-        current_location = Location(group_id, 0, block_id)
 
     previous_location = path_finder.get_previous_location(current_location)
     front_end_navigation = navigation.build_navigation(current_location.group_id, current_location.group_instance)

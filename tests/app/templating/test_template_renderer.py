@@ -1,23 +1,20 @@
 import unittest
 from datetime import datetime
 
-from app.questionnaire_state.state_question import StateQuestion
 from app.schema.question import Question
 from app.templating.template_renderer import TemplateRenderer
 
 
 class TestTemplateRenderer(unittest.TestCase):
-
-    def test_render_state_item(self):
+    def test_render_schema_item(self):
         question = Question()
         question.title = 'Hello {{name}}'
         question.templatable_properties = ['title']
-        state = StateQuestion('id', question)
         context = {'name': 'Joe Bloggs'}
 
-        rendered_state = TemplateRenderer().render_state(state, context)
+        schema = TemplateRenderer().render_schema_items(question, context)
 
-        self.assertEqual(rendered_state.schema_item.title, 'Hello Joe Bloggs')
+        self.assertEqual(schema.title, 'Hello Joe Bloggs')
 
     def test_render_date(self):
         date = '{{date|format_date}}'
@@ -62,4 +59,37 @@ class TestTemplateRenderer(unittest.TestCase):
         }
 
         rendered = TemplateRenderer().render(description, **context)
-        self.assertEqual(rendered, '<h2 class=\'neptune\'>Your household includes:</h2> <ul><li>Alice Aardvark</li><li>Bob Berty Brown</li><li>\ " !</li><li>Dave Dixon Davies</li></ul>')
+        self.assertEqual(rendered,
+                         '<h2 class=\'neptune\'>Your household includes:</h2> <ul><li>Alice Aardvark</li><li>Bob Berty Brown</li><li>\ " !</li><li>Dave Dixon Davies</li></ul>')
+
+    def test_render_nested_templatable_property(self):
+        question = Question()
+        question.guidance = [
+            {
+                'title': 'Include',
+                'description': '{{someone_else}}',
+                'list': [
+                    '{{yourself}}',
+                    'People here on holiday',
+                    ['{{someone}}']
+                ]
+
+            }
+        ]
+        question.templatable_properties = ['guidance']
+        context = {'yourself': 'Joe Bloggs', 'someone': 'Jane Bloggs', 'someone_else': 'John Doe'}
+
+        schema = TemplateRenderer().render_schema_items(question, context)
+
+        expected = [
+            {
+                'title': 'Include',
+                'description': 'John Doe',
+                'list': [
+                    'Joe Bloggs',
+                    'People here on holiday',
+                    ['Jane Bloggs']
+                ]
+            }
+        ]
+        self.assertEqual(schema.guidance, expected)
