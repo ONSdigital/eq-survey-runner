@@ -45,7 +45,6 @@ export function styles() {
         removeAll: true
       }
     })
-    .pipe(sourcemaps.write, '.')
     .pipe(gulp.dest, paths.styles.output)
 
   return gulp.src(paths.styles.input)
@@ -83,6 +82,7 @@ export function styles() {
       path.dirname = path.dirname.replace('themes/', '')
       return path
     }))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.styles.output))
     .pipe(browserSync.reload({ stream: true }))
     .pipe(gulpif(process.env.EQ_MINIMIZE_ASSETS === 'True', minifyStyles()))
