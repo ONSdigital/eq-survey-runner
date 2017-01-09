@@ -21,9 +21,11 @@ def format_percentage(value):
 
 @evalcontextfilter
 @blueprint.app_template_filter()
-def nl2br(context, value):
-    _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
-    result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(escape(value)))
+def format_multilined_string(context, value):
+    escaped_value = escape(value)
+    new_line_regex = r'(?:\r\n|\r|\n)+'
+    value_with_line_break_tag = re.sub(new_line_regex, '<br>', escaped_value)
+    result = '<p>{}</p>'.format(value_with_line_break_tag)
 
     if context.autoescape:
         result = Markup(result)
