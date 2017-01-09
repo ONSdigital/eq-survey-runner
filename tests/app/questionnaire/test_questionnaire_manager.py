@@ -40,8 +40,8 @@ class TestQuestionnaireManager(TestCase):
             answers.append(mock_answer('answer', i, self.question))
 
         self.answers = answers
-        self.questionnaire_manager.state = MagicMock()
-        self.questionnaire_manager.state.get_answers = MagicMock(return_value=self.answers)
+        self.questionnaire_manager.block_state = MagicMock()
+        self.questionnaire_manager.block_state.get_answers = MagicMock(return_value=self.answers)
 
     def tearDown(self):
         # Reset some behaviours.
@@ -61,10 +61,10 @@ class TestQuestionnaireManager(TestCase):
         self.questionnaire_manager._create_new_answer_state = MagicMock(return_value=new_answer_state)
 
         question_state = MagicMock()
-        self.questionnaire_manager.state.find_state_item = MagicMock(return_value=question_state)
+        self.questionnaire_manager.block_state.find_state_item = MagicMock(return_value=question_state)
 
         # When
-        self.questionnaire_manager.add_answer('block', 'question', self.answer_store)
+        self.questionnaire_manager.add_answer('block', self.answer_store, 'question')
 
         # Then
         question_state.create_new_answer_state.assert_called_with(answer_schema, 1)
@@ -72,11 +72,11 @@ class TestQuestionnaireManager(TestCase):
     def test_add_answer_updates_answer_store(self):
         # Given
         question = MagicMock()
-        self.questionnaire_manager.state.find_state_item = MagicMock(return_value=question)
+        self.questionnaire_manager.block_state.find_state_item = MagicMock(return_value=question)
         self.questionnaire_manager.update_questionnaire_store = MagicMock()
 
         # When
-        self.questionnaire_manager.add_answer('block', 'question', self.answer_store)
+        self.questionnaire_manager.add_answer('block', self.answer_store, 'question')
 
         # Then
         self.questionnaire_manager.update_questionnaire_store.assert_called_with('block')
@@ -85,7 +85,7 @@ class TestQuestionnaireManager(TestCase):
         # Given
         should_remove = mock_answer('answer', 0, self.question)
         answers = [should_remove]
-        self.questionnaire_manager.state.get_answers = MagicMock(return_value=answers)
+        self.questionnaire_manager.block_state.get_answers = MagicMock(return_value=answers)
         self.question.remove_answer = Mock()
 
         # When
@@ -101,7 +101,7 @@ class TestQuestionnaireManager(TestCase):
             mock_answer('answer', 1, self.question),
             mock_answer('answer', 2, self.question),
         ]
-        self.questionnaire_manager.state.get_answers = MagicMock(return_value=answers)
+        self.questionnaire_manager.block_state.get_answers = MagicMock(return_value=answers)
         self.question.remove_answer = Mock()
 
         # When
@@ -117,7 +117,7 @@ class TestQuestionnaireManager(TestCase):
             mock_answer('middle', 0, self.question),
             mock_answer('last', 0, self.question)
         ]
-        self.questionnaire_manager.state.get_answers = MagicMock(return_value=answers)
+        self.questionnaire_manager.block_state.get_answers = MagicMock(return_value=answers)
         self.question.remove_answer = Mock()
 
         # When
@@ -139,7 +139,7 @@ class TestQuestionnaireManager(TestCase):
             mock_answer('middle', 1, self.question),
             mock_answer('last', 1, self.question),
         ]
-        self.questionnaire_manager.state.get_answers = MagicMock(return_value=answers)
+        self.questionnaire_manager.block_state.get_answers = MagicMock(return_value=answers)
         self.question.remove_answer = Mock()
 
         # When

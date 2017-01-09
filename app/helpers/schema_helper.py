@@ -17,6 +17,11 @@ class SchemaHelper(object):
         if group:
             return group['blocks'][0]['id']
 
+    @classmethod
+    def is_first_block_id_for_group(cls, survey_json, group_id, block_id):
+        group = cls.get_group(survey_json, group_id)
+        return group is not None and group['blocks'][0]['id'] == block_id
+
     @staticmethod
     def get_last_block_id(survey_json):
         return survey_json['groups'][0]['blocks'][-1]['id']

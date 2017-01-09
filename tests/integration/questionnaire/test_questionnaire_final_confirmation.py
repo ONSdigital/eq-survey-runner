@@ -36,7 +36,6 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
         resp = self.client.get(resp.headers['Location'], follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
 
-
     def test_requesting_final_confirmation_before_finished_redirects(self):
         base_url = '/questionnaire/test/final_confirmation/789/'
 

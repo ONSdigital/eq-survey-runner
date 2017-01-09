@@ -26,18 +26,13 @@ class QuestionnaireManager(object):
     def __init__(self, schema, json=None):
         self._json = json
         self._schema = schema
-        self.state = None
+        self.block_state = None
 
     def validate(self, location, post_data):
 
-        self.build_state(location, post_data)
+        self.build_block_state(location, post_data)
 
-        if self.state:
-            # Todo, this doesn't feel right, validation is casting the user values to their type.
-            return self.state.schema_item.validate(self.state)
-        else:
-            # Item has node, but is not in schema: must be introduction, thank you or summary
-            return True
+        return location.is_interstitial() or self.block_state.schema_item.validate(self.block_state)
 
     def validate_all_answers(self):
 
@@ -73,24 +68,24 @@ class QuestionnaireManager(object):
 
         return is_valid
 
-    def build_state(self, location, answers):
+    def build_block_state(self, location, answers):
         # Build the state from the answers
-        self.state = None
+        self.block_state = None
         if self._schema.item_exists(location.block_id):
             metadata = get_metadata(current_user)
             schema_item = self._schema.get_item_by_id(location.block_id)
-            self.state = schema_item.construct_state()
+            self.block_state = schema_item.construct_state()
 
             for answer in self.get_state_answers(location.block_id):
                 answer.group_id = location.group_id
                 answer.group_instance = location.group_instance
-            self.state.update_state(answers)
-            self.state.set_skipped(get_answers(current_user), metadata)
+            self.block_state.update_state(answers)
+            self.block_state.set_skipped(get_answers(current_user), metadata)
 
     def get_state_answers(self, item_id):
         # get the answers from the state
         if self._schema.item_exists(item_id):
-            return self.state.get_answers()
+            return self.block_state.get_answers()
 
         return []
 
@@ -100,9 +95,9 @@ class QuestionnaireManager(object):
     def get_schema(self):
         return self._schema
 
-    def add_answer(self, location, question_id, answer_store):
+    def add_answer(self, location, answer_store, question_id):
         question_schema = self._schema.get_item_by_id(question_id)
-        question_state = self.state.find_state_item(question_schema)
+        question_state = self.block_state.find_state_item(question_schema)
 
         for answer_schema in question_schema.answers:
             next_answer_instance_id = self._get_next_answer_instance(answer_store, answer_schema.id)
@@ -119,7 +114,7 @@ class QuestionnaireManager(object):
         return next_answer_instance_id
 
     def remove_answer(self, location, answer_store, index_to_remove):
-        state_answers = self.state.get_answers()
+        state_answers = self.block_state.get_answers()
         for state_answer in state_answers:
             if state_answer.answer_instance == index_to_remove:
                 question = state_answer.parent
