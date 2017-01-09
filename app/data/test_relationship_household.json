@@ -32,6 +32,7 @@
                                   "answers": [
                                     {
                                         "id": "first-name",
+                                        "alias": "first_name",
                                         "label": "First Name",
                                         "mandatory": false,
                                         "options": [],
@@ -40,6 +41,7 @@
                                     },
                                     {
                                         "id": "middle-names",
+                                        "alias": "middle_names",
                                         "label": "Middle Names",
                                         "mandatory": false,
                                         "options": [],
@@ -48,6 +50,7 @@
                                     },
                                     {
                                         "id": "last-name",
+                                        "alias": "last_name",
                                         "label": "Last Name",
                                         "mandatory": false,
                                         "options": [],
@@ -68,8 +71,8 @@
             "routing_rules": [
                 {
                     "repeat": {
-                        "type": "answer_count_minus_one",
-                        "answer_id": "first-name"
+                        "type": "answer_value_count_minus_one",
+                        "answer_id": "household"
                     }
                 }
             ],

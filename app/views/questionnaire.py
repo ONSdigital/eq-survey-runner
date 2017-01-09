@@ -4,7 +4,7 @@ from app.authentication.session_storage import session_storage
 from app.data_model.answer_store import Answer
 
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
-from app.helpers.forms import HouseHoldCompositionForm, Struct, generate_form
+from app.helpers.forms import build_relationship_choices, HouseHoldCompositionForm, Struct, generate_form, generate_relationship_form
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
@@ -77,20 +77,38 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 
     block = SchemaHelper.get_block_for_location(g.schema_json, current_location)
 
+    logger.info(answer_store.answers)
+
     if block_id == 'household-composition':
         household = next((a['value'] for a in answer_store.answers if a['answer_id'] == 'household'), None)
         form_data = {'household': household}
 
         data_class = Struct(**form_data)
         form = HouseHoldCompositionForm(csrf_enabled=False, obj=data_class)
+        content = {'form': form, 'block': block}
+    elif block_id == 'relationships':
+        relationships = next((a['value'] for a in answer_store.answers if a['answer_id'] == 'who-is-related'), None)
+        choices = build_relationship_choices(answer_store, group_instance)
+        form = generate_relationship_form(block, len(choices), {'who-is-related': relationships})
+
+        content = {
+            'form': form,
+            'block': block,
+            'relation_instances': choices
+        }
     else:
-        answers = answer_store.map(group_id=group_id, group_instance=group_instance, block_id=block_id)
+        answers = answer_store.map(
+            group_id=group_id,
+            group_instance=group_instance,
+            block_id=block_id
+        )
 
         form = generate_form(block, answers)
 
+        content = {'form': form, 'block': block}
     template = block['type'] if block and 'type' in block and block['type'] else 'questionnaire'
 
-    return _render_template({'form': form, 'block': block}, current_location=current_location, template=template)
+    return _render_template(content, current_location=current_location, template=template)
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
@@ -103,7 +121,13 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     valid_location = current_location in path_finder.get_routing_path(group_id, group_instance)
 
     block = SchemaHelper.get_block_for_location(g.schema_json, current_location)
-    form = generate_form(block, request.form.to_dict())
+
+    if block_id == 'relationships':
+        choices = build_relationship_choices(get_answer_store(current_user), group_instance)
+        form = generate_relationship_form(block, len(choices), request.form)
+    else:
+        form = generate_form(block, request.form.to_dict())
+
     valid_data = form.validate()
 
     if not valid_location or not valid_data:

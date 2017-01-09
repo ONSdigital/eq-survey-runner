@@ -3,7 +3,10 @@ import logging
 
 from datetime import datetime
 
+from app.helpers.schema_helper import SchemaHelper
+from app.jinja_filters import format_household_member_name
 from app.validation.error_messages import error_messages
+from app.validation.validators import positive_integer_type_check, date_range_check
 
 from flask_wtf import FlaskForm
 
@@ -13,6 +16,39 @@ from wtforms.widgets import CheckboxInput, ListWidget, RadioInput, TextArea, Tex
 
 
 logger = logging.getLogger(__name__)
+
+
+def build_relationship_choices(answer_store, group_instance):
+    household_answers = answer_store.filter(answer_id='household')
+
+    first_names = [answer['first_name'] for answer in household_answers[0]['value']]
+    last_names = [answer['last_name'] for answer in household_answers[0]['value']]
+
+    household_members = []
+
+    for first_name, last_name in zip(first_names, last_names):
+        household_members.append({
+            'first-name': first_name,
+            'last-name': last_name,
+        })
+
+    remaining_people = household_members[group_instance + 1:] if group_instance < len(household_members) else []
+
+    current_person_name = format_household_member_name([
+        household_members[group_instance]['first-name'],
+        household_members[group_instance]['last-name'],
+    ])
+
+    choices = []
+
+    for index, remaining_person in enumerate(remaining_people):
+        other_person_name = format_household_member_name([
+            remaining_person['first-name'],
+            remaining_person['last-name'],
+        ])
+        choices.append((current_person_name, other_person_name))
+
+    return choices
 
 
 class Struct:
@@ -67,6 +103,33 @@ class HouseHoldCompositionForm(FlaskForm):
             self.household.append_entry(field.data)
 
 
+def generate_relationship_form(block_json, number_of_entries, data):
+    class HouseHoldRelationshipForm(FlaskForm):
+        pass
+
+    answer = SchemaHelper.get_first_answer_for_block(block_json)
+    guidance = answer['guidance'] if 'guidance' in answer else ''
+    label = answer['label'] if 'label' in answer else ''
+
+    field = FieldList(SelectField(
+        label=label,
+        description=guidance,
+        choices=build_choices(answer['options']),
+        widget=ListWidget(),
+        option_widget=RadioInput(),
+    ), min_entries=number_of_entries)
+
+    setattr(HouseHoldRelationshipForm, answer['id'], field)
+
+    if data:
+        data_class = Struct(**data)
+        form = HouseHoldRelationshipForm(csrf_enabled=False, obj=data_class)
+    else:
+        form = HouseHoldRelationshipForm(csrf_enabled=False)
+
+    return form
+
+
 def generate_form(block_json, data):
     class QuestionnaireForm(FlaskForm):
         pass
@@ -76,7 +139,6 @@ def generate_form(block_json, data):
             for answer in question['answers']:
                 name = answer['label'] if 'label' in answer else question['title']
                 setattr(QuestionnaireForm, answer['id'], get_field(answer, name))
-
     if data:
         data_class = Struct(**data)
         form = QuestionnaireForm(csrf_enabled=False, obj=data_class)
@@ -84,34 +146,6 @@ def generate_form(block_json, data):
         form = QuestionnaireForm(csrf_enabled=False)
 
     return form
-
-
-def positive_integer_type_check(form, field):
-    try:
-        integer_value = int(field.data)  # NOQA
-        if integer_value < 0:
-            raise validators.ValidationError(error_messages['NEGATIVE_INTEGER'])
-        if integer_value > 9999999999:  # 10 digits
-            raise validators.ValidationError(error_messages['INTEGER_TOO_LARGE'])
-    except (ValueError, TypeError):
-        raise validators.ValidationError(error_messages['NOT_INTEGER'])
-
-
-def date_range_check(form, field):
-    try:
-
-        if form.date_from and form.date_to:
-            from_date = datetime.strptime(form.date_from, "%d/%m/%Y")
-            to_date = datetime.strptime(form.date_to, "%d/%m/%Y")
-            date_diff = to_date - from_date
-
-            if date_diff.total_seconds() == 0:
-                raise validators.ValidationError(error_messages['INVALID_DATE_RANGE_TO_FROM_SAME'])
-            elif date_diff.total_seconds() < 0:
-                raise validators.ValidationError(error_messages['INVALID_DATE_RANGE_TO_BEFORE_FROM'])
-
-    except (ValueError, TypeError, AttributeError):
-        raise validators.ValidationError(error_messages['INVALID_DATE'])
 
 
 def get_field(answer, label):

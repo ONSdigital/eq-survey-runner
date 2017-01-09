@@ -1,20 +1,18 @@
 {% for option in form[answer.id] %}
 
-  {% set option_id = answer.id ~ "-" ~ loop.index0 %}
-
   {% set input = {
     "class": "input input--" ~ widget_type ~ " js-focusable",
     "type": widget_type,
     "value": option.data,
     "name": option.name,
-    "id": option_id,
+    "id": option.id,
     "checked": "checked" if option.selected,
     "data-qa": "has-other-option" if option.other
   } %}
 
   {% set label = {
     "class": "label label--inline venus",
-    "for": option_id
+    "for": option.id
   } %}
 
   <div class="field__item js-focusable-box">
@@ -32,14 +30,14 @@
 
       {% set other_label = {
         "class": "label mercury",
-        "for": option_id ~ "-other"
+        "for": option.id ~ "-other"
       } %}
 
       {% set other_input = {
         "class": "input js-focusable",
         "type": "text",
-        "name": answer.name,
-        "id": option_id ~ "-other",
+        "name": input.name,
+        "id": option.id ~ "-other",
         "value": option.other_value,
         "data-qa": "other-option"
       } %}

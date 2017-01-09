@@ -84,6 +84,10 @@ class SchemaHelper(object):
                     for answer in question['answers']:
                         yield answer
 
+    @staticmethod
+    def get_first_answer_for_block(block_json):
+        return block_json['sections'][0]['questions'][0]['answers'][0]
+
     @classmethod
     def get_groups_that_repeat_with_answer_id(cls, survey_json, answer_id):
         for group in cls.get_groups(survey_json):

@@ -1,4 +1,4 @@
-{% set legend = _(answer.label, current_person=answer.current_person, other_person=answer.other_person).split('&hellip;') %}
+{% set legend = _(answer.label, current_person=current_person, other_person=other_person).split('&hellip;') %}
 {% set personName = legend[1]|replace(' of ', '') %}
 
 <div class="relationship__item js-relationship-item" data-relationship-name="{{personName}}">
@@ -15,29 +15,28 @@
 
       <div class="relationship__body js-relationship-body">
         <div class="relationship__fields">
-          {% for option in widget.options %}
 
-            {% set option_id = answer.id ~ "-" ~ loop.index %}
+          {% for option in form[answer.id][relation_instance] %}
 
             {% set input = {
               "class": "input input--radio js-focusable js-relationship-trigger",
               "type": 'radio',
-              "value": option.value,
-              "name": answer.name,
-              "id": option_id,
+              "value": option.data,
+              "name": option.name,
+              "id": option.id,
               "checked": "checked" if option.selected
             } %}
 
             {% set label = {
               "class": "label label--inline venus js-relationship-trigger",
-              "for": option_id
+              "for": option.id
             } %}
 
             <div class="field__item js-focusable-box">
 
               <input {{input|xmlattr}}>
               <label {{label|xmlattr}}>
-                {{option.label}}
+                {{option.label.text}}
               </label>
 
             </div>

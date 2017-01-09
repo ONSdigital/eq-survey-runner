@@ -1,3 +1,5 @@
+{% set input = form[answer.id] if input is undefined else input %}
+
 <div class="field">
     {% set label = {
       'for': answer.id,
@@ -7,8 +9,8 @@
 
     {% set input = {
       'type': 'text',
-      'data': form[answer.id].data or ''|e,
-      'name': form[answer.id].name,
+      'data': input.data or ''|e,
+      'name': input.name,
       'id': answer.id
     } %}
     {% set input_placeholder = answer.placeholder %}
