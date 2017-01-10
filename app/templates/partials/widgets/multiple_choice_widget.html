@@ -16,7 +16,6 @@
   } %}
 
   <div class="field__item js-focusable-box">
-
     <input {{input|xmlattr}}>
     <label {{label|xmlattr}}>
       {{option.label.text}}
@@ -26,24 +25,26 @@
       {% endif %}
     </label>
 
-    {% if option.other %}
+    {% if answer['options'][loop.index0].child_answer_id %}
+      {% set child_answer_id = answer['options'][loop.index0].child_answer_id %}
+      {% set other_answer = form[child_answer_id] %}
 
       {% set other_label = {
         "class": "label mercury",
-        "for": option.id ~ "-other"
+        "for": "other-answer"
       } %}
 
       {% set other_input = {
         "class": "input js-focusable",
         "type": "text",
-        "name": input.name,
-        "id": option.id ~ "-other",
-        "value": option.other_value,
+        "name": other_answer.name,
+        "id": other_answer.id,
+        "value": other_answer.data,
         "data-qa": "other-option"
       } %}
 
       <div class="field__other">
-        <label {{other_label|xmlattr}}>{{option.other.label}}</label>
+        <label {{other_label|xmlattr}}>{{other_answer.label.text}}</label>
         <input {{other_input|xmlattr}}>
       </div>
 

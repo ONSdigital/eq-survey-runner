@@ -13,7 +13,7 @@
             'type': 'text',
             'classes': 'input-type__input',
             'hasType': true,
-            'data': form[answer['id']].data|e,
+            'data': form[answer['id']].data if form[answer['id']].data is not none else ''|e,
             'name': answer.id,
             'id': answer.id,
             'placeholder': ''

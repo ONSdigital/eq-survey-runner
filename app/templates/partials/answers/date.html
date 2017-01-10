@@ -12,7 +12,7 @@
     <div class="field field--select field--month">
       <label class="label mercury" for="input-{{answer['id']}}-month" id="label-{{answer['id']}}-month" data-qa="label-month">Month</label>
       {% set select = form[answer['id']]['month'] %}
-      {% set input_placeholder = "YYYY" %}
+
       {% include 'partials/forms/select.html' %}
     </div>
     {% endif %}

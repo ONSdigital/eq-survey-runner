@@ -226,7 +226,6 @@ def get_summary(eq_id, form_type, collection_id):
     metadata = get_metadata(current_user)
 
     if latest_location.block_id is 'summary':
-        logger.info("Answers %s", answer_store.map())
         schema_context = build_schema_context(metadata, g.schema.aliases, answer_store)
         rendered_schema_json = renderer.render(g.schema_json, **schema_context)
         summary_context = build_summary_rendering_context(rendered_schema_json, answer_store, metadata)
@@ -314,6 +313,9 @@ def update_questionnaire_store(location, answer_dict):
             # Dates are comprised of 3 string values
             if isinstance(answer_value, dict) and 'day' in answer_value and 'month' in answer_value:
                 datestr = "{:02d}/{:02d}/{}".format(int(answer_value['day']), int(answer_value['month']), answer_value['year'])
+                answer = Answer(answer_id=answer_id, value=datestr, location=location)
+            elif isinstance(answer_value, dict) and 'year' in answer_value and 'month' in answer_value:
+                datestr = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
                 answer = Answer(answer_id=answer_id, value=datestr, location=location)
             else:
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)

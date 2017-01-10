@@ -1,12 +1,10 @@
 import calendar
 import logging
 
-from datetime import datetime
-
 from app.helpers.schema_helper import SchemaHelper
 from app.jinja_filters import format_household_member_name
 from app.validation.error_messages import error_messages
-from app.validation.validators import positive_integer_type_check, date_range_check
+from app.validation.validators import positive_integer_type_check, date_check, month_year_check, DateRangeCheck
 
 from flask_wtf import FlaskForm
 
@@ -16,6 +14,13 @@ from wtforms.widgets import CheckboxInput, ListWidget, RadioInput, TextArea, Tex
 
 
 logger = logging.getLogger(__name__)
+
+
+def build_choices(options):
+    choices = []
+    for option in options:
+        choices.append((option['label'], option['value']))
+    return choices
 
 
 def build_relationship_choices(answer_store, group_instance):
@@ -56,25 +61,28 @@ class Struct:
         self.__dict__.update(entries)
 
 
-class DateForm(Form):
+def get_date_form(to_field_data=None, validate_range=False):
+    class DateForm(Form):
 
-    MONTH_CHOICES = [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+        MONTH_CHOICES = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
 
-    day = StringField()
-    month = SelectField(choices=MONTH_CHOICES)
+        month = SelectField(choices=MONTH_CHOICES, default='')
+        year = StringField()
+
+    if validate_range and to_field_data:
+        DateForm.day = StringField(validators=[date_check, DateRangeCheck(to_field_data=to_field_data)])
+    else:
+        DateForm.day = StringField(validators=[date_check])
+
+    return DateForm
+
+
+class MonthYearDateForm(Form):
+
+    MONTH_CHOICES = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+
+    month = SelectField(choices=MONTH_CHOICES, default='', validators=[month_year_check])
     year = StringField()
-
-    def to_date(self):
-        datestr = "{:02d}/{:02d}/{}".format(int(self.day.data or 0), int(self.month.data or 0), self.year.data or '')
-
-        return datetime.strptime(datestr, "%d/%m/%Y")
-
-    def validate_day(self, field=None):
-        try:
-            self.to_date()
-        except ValueError:
-            raise validators.ValidationError(error_messages['INVALID_DATE'])
-        return True
 
 
 class NameForm(Form):
@@ -86,6 +94,24 @@ class NameForm(Form):
 
     middle_names = StringField(validators=[validators.Optional()])
     last_name = StringField(validators=[validators.Optional()])
+
+
+def get_date_range_fields(question_json, to_field_data):
+    answer_from = question_json['answers'][0]
+    answer_to = question_json['answers'][1]
+
+    field_from = FormField(
+        get_date_form(to_field_data=to_field_data, validate_range=True),
+        label=answer_from['label'] if 'label' in answer_from else '',
+        description=answer_from['guidance'] if 'guidance' in answer_from else '',
+    )
+    field_to = FormField(
+        get_date_form(),
+        label=answer_to['label'] if 'label' in answer_to else '',
+        description=answer_to['guidance'] if 'guidance' in answer_to else '',
+    )
+
+    return field_from, field_to
 
 
 class HouseHoldCompositionForm(FlaskForm):
@@ -130,15 +156,38 @@ def generate_relationship_form(block_json, number_of_entries, data):
     return form
 
 
+def get_date_data(form_data, answer_id):
+    day_id = answer_id + '-day'
+    month_id = answer_id + '-month'
+    year_id = answer_id + '-year'
+
+    if all(x in form_data for x in [day_id, month_id, year_id]):
+        return {
+            'day': form_data[day_id],
+            'month': form_data[month_id],
+            'year': form_data[year_id],
+        }
+    return None
+
+
 def generate_form(block_json, data):
     class QuestionnaireForm(FlaskForm):
         pass
 
     for section in block_json['sections']:
         for question in section['questions']:
-            for answer in question['answers']:
-                name = answer['label'] if 'label' in answer else question['title']
-                setattr(QuestionnaireForm, answer['id'], get_field(answer, name))
+            if question['type'] == 'DateRange':
+                to_field_id = question['answers'][1]['id']
+                to_field_data = get_date_data(data, to_field_id)
+
+                from_field, to_field = get_date_range_fields(question, to_field_data)
+
+                setattr(QuestionnaireForm, question['answers'][0]['id'], from_field)
+                setattr(QuestionnaireForm, question['answers'][1]['id'], to_field)
+            else:
+                for answer in question['answers']:
+                    name = answer['label'] if 'label' in answer else question['title']
+                    setattr(QuestionnaireForm, answer['id'], get_field(answer, name))
     if data:
         data_class = Struct(**data)
         form = QuestionnaireForm(csrf_enabled=False, obj=data_class)
@@ -170,7 +219,13 @@ def get_field(answer, label):
         )
     if answer['type'] == 'Date':
         field = FormField(
-            DateForm,
+            get_date_form(),
+            label=label,
+            description=guidance,
+        )
+    if answer['type'] == 'MonthYearDate':
+        field = FormField(
+            MonthYearDateForm,
             label=label,
             description=guidance,
         )
@@ -188,7 +243,6 @@ def get_field(answer, label):
                 ],
             )
         else:
-            label = '<span class="label__inner">'+label+'</span>'
             field = IntegerField(
                 label=label,
                 description=guidance,
@@ -210,7 +264,6 @@ def get_field(answer, label):
                 ],
             )
         else:
-            label = '<span class="label__inner">'+label+'</span>'
             field = IntegerField(
                 label=label,
                 description=guidance,
@@ -243,10 +296,3 @@ def get_field(answer, label):
         logger.info("Could not find field for answer type %s", answer['type'])
 
     return field
-
-
-def build_choices(options):
-    choices = []
-    for option in options:
-        choices.append((option['label'], option['value']))
-    return choices
