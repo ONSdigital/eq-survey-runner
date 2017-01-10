@@ -1,5 +1,5 @@
   import chai from 'chai'
-  import {openQuestionnaire} from '../../../helpers'
+  import {startQuestionnaire} from '../../../helpers'
 
   import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
   import SignificantEvents from '../../../pages/surveys/ukis/significant-events.page.js'
@@ -117,7 +117,7 @@
   describe('UKIS - Should the description be UKIS - Yes to 2.1, 3.1, 3.4, 3.6, 3.9, 3.11, 3.13, 3.15, 4.1, 4.3, 5.1 6.1 skips to interstitial section 6', function() {
 
     it('Given I have selected Yes to 2.1, When I do not answer 6.13, Then I will be routed to Section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationActivitiesBusinessStrategyandPractices()
       BusinessChanges.clickBusinessChangesBusinessPracticesAnswerYes()
         .clickBusinessChangesOrganisingAnswerYes()
@@ -143,7 +143,7 @@
     })
 
     it('Given I have selected Yes to 3.1, When I am answering question 6.13 , Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationInvestment()
       InternalInvestmentRD.clickInternalInvestmentRDAnswerYes().submit()
       Navigation.navigateToConstraintsonInnovation()
@@ -165,7 +165,7 @@
     })
 
     it('Given I have selected Yes to 3.4, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationInvestment()
       InternalInvestmentRD.submit()
       AcquisitionInternalInvestmentRD.clickAcquisitionInternalInvestmentRDAnswerYes().submit()
@@ -188,7 +188,7 @@
     })
 
     it('Given I have selected Yes to 3.6, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed toto section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationInvestment()
       InternalInvestmentRD.submit()
       AcquisitionInternalInvestmentRD.submit()
@@ -212,7 +212,7 @@
     })
 
     it('Given I have selected Yes to 3.9, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationInvestment()
       InternalInvestmentRD.submit()
       AcquisitionInternalInvestmentRD.submit()
@@ -237,7 +237,7 @@
     })
 
     it('Given I have selected Yes to 3.11, When I am answering question 6.13 , Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationInvestment()
       InternalInvestmentRD.submit()
       AcquisitionInternalInvestmentRD.submit()
@@ -263,7 +263,7 @@
     })
 
     it('Given I have selected Yes to 3.13, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationInvestment()
       InternalInvestmentRD.submit()
       AcquisitionInternalInvestmentRD.submit()
@@ -290,7 +290,7 @@
     })
 
     it('Given I have selected Yes to 3.15, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationInvestment()
       InternalInvestmentRD.submit()
       AcquisitionInternalInvestmentRD.submit()
@@ -318,7 +318,7 @@
     })
 
     it('Given I have selected Yes to 4.1, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToGoodsandServicesInnovation()
       IntroducingSignificantlyImprovedGoods.clickIntroducingSignificantlyImprovedGoodsAnswerYes().submit()
       Navigation.navigateToConstraintsonInnovation()
@@ -340,7 +340,7 @@
     })
 
     it('Given I have selected Yes to 4.3, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToGoodsandServicesInnovation()
       IntroducingSignificantlyImprovedGoods.submit()
       IntroduceSignificantlyImprovement.clickIntroduceSignificantlyImprovementAnswerYes().submit()
@@ -363,7 +363,7 @@
     })
 
     it('Given I have selected Yes to 5.1, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToProcessInnovation()
       ProcessImproved.clickProcessImprovedAnswerYes().submit()
       Navigation.navigateToConstraintsonInnovation()
@@ -385,7 +385,7 @@
     })
 
     it('Given I have selected Yes to 6.1, When I am answering question 6.13, Then I will NOT see question 6.14 and will be routed to section 7', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToConstraintsonInnovation()
       ConstraintsInnovationActivities.clickConstraintsInnovationActivitiesAbandonedAnswserYes()
         .clickConstraintsInnovationActivitiesScaledBackAnswserYes()
@@ -408,7 +408,7 @@
     })
 
     it('Given I have a combination of NO and not selected answers to questions 2.1, 3.1, 3.4, 3.6, 3.9, 3.11, 3.13, 3.15, 4.1, 4.3, 5.1 6.1, When I am answering question 6.13, Then I WILL see question 6.14 and then be routed to section 10', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationActivitiesBusinessStrategyandPractices()
       BusinessChanges.clickBusinessChangesBusinessPracticesAnswerNo()
         .clickBusinessChangesOrganisingAnswerNo()
@@ -435,7 +435,7 @@
     })
 
     it('Given I have not selected answers to questions 2.1, 3.1, 3.4, 3.6, 3.9, 3.11, 3.13, 3.15, 4.1, 4.3, 5.1 6.1, When I am answering question 6.13, Then I WILL see question 6.14 and then be routed to section 10', function() {
-      openQuestionnaire('1_0001.json')
+      startQuestionnaire('1_0001.json')
       Navigation.navigateToInnovationActivitiesBusinessStrategyandPractices()
       BusinessChanges.submit()
       Navigation.navigateToConstraintsonInnovation()

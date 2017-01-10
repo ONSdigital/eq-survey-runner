@@ -343,4 +343,5 @@ def _render_template(context, block_id, front_end_navigation=None, metadata_cont
                                  content=context,
                                  previous_location=previous_url,
                                  navigation=front_end_navigation,
-                                 schema_title=g.schema_json['title'])
+                                 schema_title=g.schema_json['title'],
+                                 legal_basis=g.schema_json['legal_basis'])

@@ -3,6 +3,10 @@
   margin-bottom: 0.4rem;
   font-weight: 600;
   color: inherit;
+
+  em {
+    @extend .highlight;
+  }
 }
 
 input:checked ~ .label {

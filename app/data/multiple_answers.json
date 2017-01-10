@@ -7,6 +7,7 @@
     "title": "Multiple answers per question",
     "description": "A survey containing questions which have more than one answer",
     "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
     "introduction": {
         "description": "",
         "information_to_provide": [

@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openQuestionnaire} from '../../../helpers'
+import {startQuestionnaire} from '../../../helpers'
 
 import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
 import SignificantEvents from '../../../pages/surveys/ukis/significant-events.page.js'
@@ -116,7 +116,7 @@ const expect = chai.expect
 describe('UKIS - Any new Services?', function() {
 
   it('Given I am answering question 4.3 under 4. Goods and Services Innovation block, When I  select Yes as the response, Then I am routed to question 4.4', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.clickIntroducingSignificantlyImprovedGoodsAnswerYes().submit()
     EntityDevelopedTheseGoods.submit()

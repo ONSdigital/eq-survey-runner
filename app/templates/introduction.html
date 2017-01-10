@@ -9,15 +9,25 @@
   {% endwith %}
 {% endblock %}
 
+{%- if legal_basis == 'StatisticsOfTradeAct' -%}
+  {% set legal_text = "Your response is legally required" %}
+{%- endif -%}
+
 {% block page_title %}Introduction{% endblock %}
 
 {% block main %}
 
-  <div class="u-mt-s">
-    <h2 class="saturn">Your response is legally required</h2>
+  {% block business_details %}
+
+    <div class="u-mt-s">
+
+      {%- if legal_text -%}
+        <h2 class="saturn col-10@l">{{legal_text}}</h2>
+      {%- endif -%}
+
       <div class="grid grid--flex grid--bordered@s u-mb-s">
         <div class="grid__col col-6@s">
-          <dl class="dl">
+          <dl class="dl u-pr-s">
             <dt class="dl__title mercury">Business name</dt>
             <dd class="dl__data mars">{{ meta.respondent.address.name}}</dd>
             {% if meta.respondent.address.trading_as %}
@@ -40,30 +50,39 @@
         </div>
       </div>
     </div>
-    <div>
-      {% if content.information_to_provide %}
-      <h2 class="saturn">You will be asked to provide information for the business, including:</h2>
-      <ul>
-        {% for information_item in content.information_to_provide %}
-          <li>{{ information_item }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      <div class="notice u-mb-s u-mb-m@s">
-        <div class="notice__text venus">If actual figures are not available, please provide informed estimates.</div>
-      </div>
 
-    </div>
+  {% endblock business_details %}
 
-    <form class="form" method="POST" novalidate>
-      <button class="btn btn--primary btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
-    </form>
-    <div class="lock u-mb-s u-mb-m@s">
-      <div class="venus lock__text">We will treat your data securely and confidentially</div>
-    </div>
-    <h2 class="saturn">Legal Information</h2>
-    <p class="mars">You are required to complete this questionnaire. If you do not complete and return this questionnaire by {{ meta.survey.return_by|format_date }}, penalties may be incurred (under section 4 of the Statistics of Trade Act 1947).</p>
+  {% block information_to_provide %}
+
+  <div class="u-mb-l">
+    {% if content.information_to_provide %}
+    <h2 class="saturn">You will be asked to provide information for the business, including:</h2>
+    <ul>
+      {% for information_item in content.information_to_provide %}
+        <li>{{ information_item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <p class="venus">If actual figures are not available, please provide informed estimates.</p>
+
   </div>
 
+  {% endblock information_to_provide %}
+
+  <div class="lock u-mb-s u-mb-m@s">
+    <div class="venus lock__text">We will treat your data securely and confidentially</div>
+  </div>
+
+  <form class="form" method="POST" novalidate>
+    <button class="btn btn--primary btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
+  </form>
+
+  {% block legal_info %}
+
+  <h2 class="saturn">Legal Information</h2>
+  <p class="mars">You are required to complete this questionnaire. If you do not complete and return this questionnaire by {{ meta.survey.return_by|format_date }}, penalties may be incurred (under section 4 of the Statistics of Trade Act 1947).</p>
+
+  {% endblock legal_info %}
 
 {% endblock %}

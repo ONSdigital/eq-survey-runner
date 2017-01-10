@@ -6,6 +6,7 @@
     "survey_id": "0",
     "title": "English Langauage Survey",
     "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demonstrate english langauge",
     "groups": [
         {

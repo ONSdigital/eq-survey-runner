@@ -7,6 +7,7 @@
     "title": "Home Insurance",
     "description": "Home Insurance",
     "theme": "census",
+    "legal_basis": "Voluntary",
     "navigation" : true,
     "introduction": {
         "description": "<p>The information supplied is used as a test for navigation.</p>",

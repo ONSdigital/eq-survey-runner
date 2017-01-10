@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openQuestionnaire} from '../../../helpers'
+import {startQuestionnaire} from '../../../helpers'
 
 import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
 import SignificantEvents from '../../../pages/surveys/ukis/significant-events.page.js'
@@ -116,7 +116,7 @@ const expect = chai.expect
 describe('UKIS - Which years?', function() {
 
   it('Given I am answering question 3.2 under 3. Innovation Investment? block, When I  select 2016 as the response, Then I am routed to question 3.3', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     GeographicMarkets.clickGeographicMarketsAnswerUkRegionalWithinApproximately100MilesOfThisBusiness().submit()
     SignificantEvents.clickSignificantEventsEstablishedAnswerYes()
       .clickSignificantEventsTurnoverIncreaseAnswerNo()
@@ -135,7 +135,7 @@ describe('UKIS - Which years?', function() {
   })
 
   it('Given I am answering question 3.2 under 3. Innovation Investment? block, When I  select 2015 as the response, Then I am routed to question 3.4', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     GeographicMarkets.clickGeographicMarketsAnswerUkRegionalWithinApproximately100MilesOfThisBusiness().submit()
     SignificantEvents.clickSignificantEventsEstablishedAnswerYes()
       .clickSignificantEventsTurnoverIncreaseAnswerNo()
@@ -154,7 +154,7 @@ describe('UKIS - Which years?', function() {
   })
 
   it('Given I am answering question 3.2 under 3. Innovation Investment? block, When no response is selected, Then I am routed to question 3.4', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     GeographicMarkets.clickGeographicMarketsAnswerUkRegionalWithinApproximately100MilesOfThisBusiness().submit()
     SignificantEvents.clickSignificantEventsEstablishedAnswerYes()
       .clickSignificantEventsTurnoverIncreaseAnswerNo()
@@ -173,7 +173,7 @@ describe('UKIS - Which years?', function() {
   })
 
   it('Given I am answering question 3.2 under 3. Innovation Investment? block, When all the three responses are selected, Then I am routed to question 3.3', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     GeographicMarkets.clickGeographicMarketsAnswerUkRegionalWithinApproximately100MilesOfThisBusiness().submit()
     SignificantEvents.clickSignificantEventsEstablishedAnswerYes()
       .clickSignificantEventsTurnoverIncreaseAnswerNo()
