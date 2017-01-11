@@ -1,6 +1,8 @@
-from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
-from tests.integration.star_wars import star_wars_test_urls
 from werkzeug.datastructures import MultiDict
+
+from tests.integration.star_wars import star_wars_test_urls
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
+
 
 class TestEmptyRadioBoxes(StarWarsTestCase):
 
@@ -40,10 +42,10 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
 
         # We stay on the current page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'Star Wars Quiz')
-        self.assertRegexpMatches(content, 'May the force be with you young EQ developer')
-        self.assertRegexpMatches(content, 'This page has 1 errors')
-        self.assertRegexpMatches(content, 'This field is mandatory.')
+        self.assertRegex(content, 'Star Wars Quiz')
+        self.assertRegex(content, 'May the force be with you young EQ developer')
+        self.assertRegex(content, 'This page has 1 errors')
+        self.assertRegex(content, 'This field is mandatory.')
 
 
         form_data = MultiDict()
@@ -72,10 +74,10 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
         summary_url = resp.headers['Location']
         resp = self.navigate_to_page(summary_url)
 
         # Check we are on the next page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')

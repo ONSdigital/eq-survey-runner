@@ -10,6 +10,7 @@ class TestTemplateRenderer(unittest.TestCase):
         question = Question()
         question.title = 'Hello {{name}}'
         question.templatable_properties = ['title']
+        state = StateQuestion('id', question)
         context = {'name': 'Joe Bloggs'}
 
         schema = TemplateRenderer().render_schema_items(question, context)
@@ -49,7 +50,8 @@ class TestTemplateRenderer(unittest.TestCase):
         self.assertEqual(rendered, '"')
 
     def test_household_summary_values_are_escaped(self):
-        description = "<h2 class='neptune'>Your household includes:</h2> {{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}"
+        description = "<h2 class='neptune'>Your household includes:</h2> " \
+                      "{{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}"
         context = {
             'answers': {
                 'first_name': ['Alice', 'Bob', '\\', 'Dave'],
@@ -59,8 +61,8 @@ class TestTemplateRenderer(unittest.TestCase):
         }
 
         rendered = TemplateRenderer().render(description, **context)
-        self.assertEqual(rendered,
-                         '<h2 class=\'neptune\'>Your household includes:</h2> <ul><li>Alice Aardvark</li><li>Bob Berty Brown</li><li>\ " !</li><li>Dave Dixon Davies</li></ul>')
+        self.assertEqual(rendered, '<h2 class=\'neptune\'>Your household includes:</h2> <ul><li>Alice Aardvark</li><li>Bob Berty Brown</li><li>\ '
+                                   '" !</li><li>Dave Dixon Davies</li></ul>')
 
     def test_render_nested_templatable_property(self):
         question = Question()

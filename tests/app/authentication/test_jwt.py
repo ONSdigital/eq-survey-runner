@@ -36,7 +36,7 @@ class JWTTest(unittest.TestCase):
     def test_jwt_io(self):
         decoder = JWTDecryptor()
         token = decoder.decode_signed_jwt_token(jwtio_signed)
-        self.assertEquals("John Doe", token.get("name"))
+        self.assertEqual("John Doe", token.get("name"))
 
     def test_does_not_contain_two_instances_of_full_stop(self):
         jwe = jwtio_signed.replace('.', '', 1)

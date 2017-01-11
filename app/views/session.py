@@ -1,19 +1,16 @@
 import logging
 
-from app.authentication.authenticator import Authenticator
-
-from app.globals import get_answer_store, get_completed_blocks, get_metadata
-from app.questionnaire.path_finder import PathFinder
-from app.utilities.schema import get_schema
-
+from flask import Blueprint
 from flask import redirect
 from flask import request
 from flask import session
-from flask import Blueprint
-
 from flask_login import current_user
-
 from werkzeug.exceptions import NotFound
+
+from app.authentication.authenticator import Authenticator
+from app.globals import get_answer_store, get_completed_blocks, get_metadata
+from app.questionnaire.path_finder import PathFinder
+from app.utilities.schema import get_schema
 
 logger = logging.getLogger(__name__)
 

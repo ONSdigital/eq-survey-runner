@@ -19,7 +19,7 @@ class TestApplicationVariables(IntegrationTestCase):
         token = create_token('star_wars', '0')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
 
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         content = resp.get_data(True)
 
@@ -30,7 +30,7 @@ class TestApplicationVariables(IntegrationTestCase):
         token = create_token('star_wars', '0')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
 
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         content = resp.get_data(True)
 

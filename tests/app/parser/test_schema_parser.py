@@ -1,14 +1,15 @@
-from app.parser.v0_0_1.schema_parser import SchemaParser
-from app.schema.questionnaire import Questionnaire
-from app.schema.group import Group
-from app.schema.block import Block
-from app.schema.section import Section
-from app.schema.question import Question
-from app.schema.answer import Answer
-from app.schema.introduction import Introduction
-import os
 import json
+import os
 import unittest
+
+from app.parser.v0_0_1.schema_parser import SchemaParser
+from app.schema.answer import Answer
+from app.schema.block import Block
+from app.schema.group import Group
+from app.schema.introduction import Introduction
+from app.schema.question import Question
+from app.schema.questionnaire import Questionnaire
+from app.schema.section import Section
 
 
 class TestSchemaParser(unittest.TestCase):
@@ -119,7 +120,9 @@ class TestSchemaParser(unittest.TestCase):
         question = section.questions[0]
         assert question.id == "4ba2ec8a-582f-4985-b4ed-20355deba55a"
         assert question.title == "On 12 January 2016 what was the number of employees for the business named above?"
-        assert question.description == "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme."
+        assert question.description == "An employee is anyone aged 16 years or over that your organisation directly " \
+                                       "pays from its payroll(s), in return for carrying out a full-time or part-time " \
+                                       "job or being on a training scheme."
 
     @staticmethod
     def test_should_parse_answer():
@@ -165,5 +168,5 @@ class TestSchemaParser(unittest.TestCase):
         assert isinstance(questionnaire, Questionnaire)
         self.assertIsNotNone(questionnaire.introduction)
         self.assertIsInstance(questionnaire.introduction, Introduction)
-        self.assertEquals(questionnaire.introduction.legal, "<b>This is the legal bit.</b>")
-        self.assertEquals(questionnaire.introduction.description, "<p>This is the description.</p>")
+        self.assertEqual(questionnaire.introduction.legal, "<b>This is the legal bit.</b>")
+        self.assertEqual(questionnaire.introduction.description, "<p>This is the description.</p>")

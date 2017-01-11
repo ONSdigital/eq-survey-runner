@@ -1,6 +1,6 @@
-from tests.integration.routing import routes
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.routing import routes
 from tests.integration.star_wars import star_wars_test_urls
 
 
@@ -38,7 +38,7 @@ class TestRouting(IntegrationTestCase):
                 current_page = resp.headers['Location']
 
                 # We must check we are on the next page
-                self.assertRegexpMatches(resp.headers['Location'], rule['destination_id'])
+                self.assertRegex(resp.headers['Location'], rule['destination_id'])
                 resp = self.client.get(current_page, follow_redirects=False)
 
                 if 'summary' in current_page:
@@ -49,7 +49,7 @@ class TestRouting(IntegrationTestCase):
         content = resp.get_data(True)
         for assertions in summary_assertions:
             for assertion in assertions:
-                self.assertRegexpMatches(content, assertion)
+                self.assertRegex(content, assertion)
 
     def generate_form_data(self, rule, content):
         # each page needs data to submit, that information is stored in the rule
@@ -58,7 +58,7 @@ class TestRouting(IntegrationTestCase):
         for answer in rule['answers']:
             form_data[answer['answer_id']] = answer['user_answer']
             # We need to assert the answer is on the page
-            self.assertRegexpMatches(content, answer['answer'])
+            self.assertRegex(content, answer['answer'])
             # We also need to prepare the assertions for the summary page
             rule_assertions.append(answer['user_answer'])
             rule_assertions.append(answer['answer'])

@@ -1,9 +1,9 @@
 import logging
 
+from flask import url_for
+
 from app.questionnaire.path_finder import PathFinder
 from app.templating.summary.section import Section
-
-from flask import url_for
 
 logger = logging.getLogger(__name__)
 

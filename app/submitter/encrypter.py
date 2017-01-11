@@ -1,9 +1,6 @@
 import os
 
-from app import settings
-from app.cryptography.jwe_encryption import JWEEncrypter
-from app.utilities import strings
-
+import jwt
 from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives import serialization
@@ -12,7 +9,9 @@ from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers import algorithms
 from cryptography.hazmat.primitives.ciphers import modes
 
-import jwt
+from app import settings
+from app.cryptography.jwe_encryption import JWEEncrypter
+from app.utilities import strings
 
 KID = 'EDCSR'
 

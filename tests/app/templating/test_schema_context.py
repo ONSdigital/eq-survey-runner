@@ -6,17 +6,18 @@ from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 class TestMetadataContext(SurveyRunnerTestCase):
 
-    metadata = {'return_by': '2016-10-10',
-                'ref_p_start_date': '2016-10-11',
-                'ref_p_end_date': '2016-10-12',
-                'ru_ref': 'abc123',
-                'ru_name': 'Mr Bloggs',
-                'trad_as': 'Apple',
-                'tx_id': '12345678-1234-5678-1234-567812345678',
-                'period_str': '201610',
-                'employment_date': '2016-10-09',
-                'region_code': 'GB-GBN',
-                }
+    metadata = {
+        'return_by': '2016-10-10',
+        'ref_p_start_date': '2016-10-11',
+        'ref_p_end_date': '2016-10-12',
+        'ru_ref': 'abc123',
+        'ru_name': 'Mr Bloggs',
+        'trad_as': 'Apple',
+        'tx_id': '12345678-1234-5678-1234-567812345678',
+        'period_str': '201610',
+        'employment_date': '2016-10-09',
+        'region_code': 'GB-GBN',
+    }
 
     def setUp(self):
         super().setUp()

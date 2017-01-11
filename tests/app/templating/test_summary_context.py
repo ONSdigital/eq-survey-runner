@@ -1,8 +1,8 @@
 import unittest
 
-from app import create_app
 from mock import MagicMock, Mock, patch
 
+from app import create_app
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
 from app.utilities.schema import load_and_parse_schema
@@ -10,19 +10,20 @@ from app.utilities.schema import load_and_parse_schema
 
 class TestSummaryContext(unittest.TestCase):
 
-    metadata = {'return_by': '2016-10-10',
-                'ref_p_start_date': '2016-10-10',
-                'ref_p_end_date': '2016-10-10',
-                'ru_ref': 'abc123',
-                'ru_name': 'Mr Bloggs',
-                'trad_as': 'Apple',
-                'tx_id': '12345678-1234-5678-1234-567812345678',
-                'period_str': '201610',
-                'employment_date': '2016-10-10',
-                'collection_exercise_sid': '789',
-                'form_type': '0102',
-                'eq_id': '1',
-                }
+    metadata = {
+        'return_by': '2016-10-10',
+        'ref_p_start_date': '2016-10-10',
+        'ref_p_end_date': '2016-10-10',
+        'ru_ref': 'abc123',
+        'ru_name': 'Mr Bloggs',
+        'trad_as': 'Apple',
+        'tx_id': '12345678-1234-5678-1234-567812345678',
+        'period_str': '201610',
+        'employment_date': '2016-10-10',
+        'collection_exercise_sid': '789',
+        'form_type': '0102',
+        'eq_id': '1',
+    }
 
     def setUp(self):
         self.app = create_app()

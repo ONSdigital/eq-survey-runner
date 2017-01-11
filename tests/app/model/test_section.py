@@ -1,6 +1,7 @@
-from app.schema.section import Section
-from app.schema.question import Question
 import unittest
+
+from app.schema.question import Question
+from app.schema.section import Section
 
 
 class SectionModelTest(unittest.TestCase):
@@ -18,12 +19,12 @@ class SectionModelTest(unittest.TestCase):
         section.add_question(question1)
         section.add_question(question2)
 
-        self.assertEquals(section.id, 'some-id')
-        self.assertEquals(section.title, 'my section object')
+        self.assertEqual(section.id, 'some-id')
+        self.assertEqual(section.title, 'my section object')
         self.assertIsNone(section.container)
-        self.assertEquals(len(section.questions), 2)
-        self.assertEquals(section.questions[0], question1)
-        self.assertEquals(section.questions[1], question2)
+        self.assertEqual(len(section.questions), 2)
+        self.assertEqual(section.questions[0], question1)
+        self.assertEqual(section.questions[1], question2)
 
-        self.assertEquals(question1.container, section)
-        self.assertEquals(question2.container, section)
+        self.assertEqual(question1.container, section)
+        self.assertEqual(question2.container, section)

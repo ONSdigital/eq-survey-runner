@@ -1,8 +1,10 @@
-from app.authentication.session_storage import SessionStorage
-from flask import Flask
 import unittest
 from datetime import timedelta
+
+from flask import Flask
+
 from app import settings
+from app.authentication.session_storage import SessionStorage
 
 
 class BaseSessionManagerTest(unittest.TestCase):

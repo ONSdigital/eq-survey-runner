@@ -9,33 +9,33 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         # Get a token
         token = create_token('0205', '1')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '>Start survey<')
-        self.assertRegexpMatches(content, 'Monthly Business Survey - Retail Sales Index')
+        self.assertRegex(content, '<title>Introduction</title>')
+        self.assertRegex(content, '>Start survey<')
+        self.assertRegex(content, 'Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
 
         resp = self.client.get(block_one_url, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Survey</title>')
-        self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
-        self.assertRegexpMatches(content, ">Save and continue<")
+        self.assertRegex(content, '<title>Survey</title>')
+        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
+        self.assertRegex(content, "What are the dates of the sales period you are reporting for\?")
+        self.assertRegex(content, ">Save and continue<")
 
         form_data = {
               # Start Date
@@ -53,14 +53,14 @@ class TestSubmissionWithErrors(IntegrationTestCase):
           }
 
         resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # We submit our answers
         post_data = {
             "action[submit_answers]": "Submit answers"
         }
         resp = self.client.post(mci_test_urls.MCI_0205_SUBMIT, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], block_one_url)
+        self.assertEqual(resp.status_code, 302)
+        self.assertRegex(resp.headers['Location'], block_one_url)
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)

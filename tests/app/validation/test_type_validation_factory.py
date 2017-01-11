@@ -1,12 +1,13 @@
 import unittest
-from app.validation.type_validator_factory import TypeValidatorFactory, TypeValidatorFactoryException
-from app.validation.integer_type_check import IntegerTypeCheck
-from app.validation.date_type_check import DateTypeCheck
-from app.validation.date_range_check import DateRangeCheck
-from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
-from app.validation.textarea_type_check import TextAreaTypeCheck
+
 from app.schema.answer import Answer
 from app.schema.question import Question
+from app.validation.date_range_check import DateRangeCheck
+from app.validation.date_type_check import DateTypeCheck
+from app.validation.integer_type_check import IntegerTypeCheck
+from app.validation.positive_integer_type_check import PositiveIntegerTypeCheck
+from app.validation.textarea_type_check import TextAreaTypeCheck
+from app.validation.type_validator_factory import TypeValidatorFactory, TypeValidatorFactoryException
 
 
 class TypeValidatorFactoryTest(unittest.TestCase):
@@ -16,25 +17,25 @@ class TypeValidatorFactoryTest(unittest.TestCase):
         item.type = 'integer'
         validators = TypeValidatorFactory.get_validators_by_type(item)
 
-        self.assertEquals(len(validators), 1)
+        self.assertEqual(len(validators), 1)
         self.assertTrue(isinstance(validators[0], IntegerTypeCheck))
 
         item.type = 'date'
         validators = TypeValidatorFactory.get_validators_by_type(item)
 
-        self.assertEquals(len(validators), 1)
+        self.assertEqual(len(validators), 1)
         self.assertTrue(isinstance(validators[0], DateTypeCheck))
 
         item.type = 'positiveinteger'
         validators = TypeValidatorFactory.get_validators_by_type(item)
 
-        self.assertEquals(len(validators), 1)
+        self.assertEqual(len(validators), 1)
         self.assertTrue(isinstance(validators[0], PositiveIntegerTypeCheck))
 
         item.type = 'textarea'
         validators = TypeValidatorFactory.get_validators_by_type(item)
 
-        self.assertEquals(len(validators), 1)
+        self.assertEqual(len(validators), 1)
         self.assertTrue(isinstance(validators[0], TextAreaTypeCheck))
 
         # question types
@@ -43,7 +44,7 @@ class TypeValidatorFactoryTest(unittest.TestCase):
         item.type = 'daterange'
         validators = TypeValidatorFactory.get_validators_by_type(item)
 
-        self.assertEquals(len(validators), 1)
+        self.assertEqual(len(validators), 1)
         self.assertTrue(isinstance(validators[0], DateRangeCheck))
 
     def test_unknown_validators(self):

@@ -1,9 +1,7 @@
 import re
-
 from datetime import datetime
 
 import flask
-
 from jinja2 import Markup, escape, evalcontextfilter
 
 blueprint = flask.Blueprint('filters', __name__)

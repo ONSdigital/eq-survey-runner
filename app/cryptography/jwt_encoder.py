@@ -1,12 +1,11 @@
-from app import settings
-from app.submitter.encrypter import Encrypter
-
+import jwt
 from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers import algorithms
 from cryptography.hazmat.primitives.ciphers import modes
 
-import jwt
+from app import settings
+from app.submitter.encrypter import Encrypter
 
 KID = 'EDCRRM'
 

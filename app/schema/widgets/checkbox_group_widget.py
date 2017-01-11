@@ -1,8 +1,7 @@
-from app.libs.utils import ObjectFromDict
-
-from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
-
 from werkzeug.datastructures import ImmutableMultiDict
+
+from app.libs.utils import ObjectFromDict
+from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
 
 
 class CheckboxGroupWidget(MultipleChoiceWidget):

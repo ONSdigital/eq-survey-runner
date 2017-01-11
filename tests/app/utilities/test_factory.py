@@ -1,5 +1,6 @@
-from app.utilities.factory import Factory
 import unittest
+
+from app.utilities.factory import Factory
 
 
 class TestClassA(object):

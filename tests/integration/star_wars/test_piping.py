@@ -1,5 +1,7 @@
-from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
+
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
+
 
 class TestPiping(StarWarsTestCase):
 
@@ -42,7 +44,7 @@ class TestPiping(StarWarsTestCase):
         # We are in the Questionnaire
         content = resp.get_data(True)
 
-        self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
+        self.assertRegex(content, 'On 2 June 1983 how many were employed?')
 
     def test_piping_an_answer(self):
         self.login_and_check_introduction_text()
@@ -74,7 +76,7 @@ class TestPiping(StarWarsTestCase):
 
         # Form submission with no errors
         resp = self.submit_page(first_page, form_data)
-        self.assertNotEquals(resp.headers['Location'], first_page)
+        self.assertNotEqual(resp.headers['Location'], first_page)
 
         # Second page
         second_page = resp.headers['Location']
@@ -82,11 +84,11 @@ class TestPiping(StarWarsTestCase):
         content = resp.get_data(True)
 
         # Pipe Test for section title
-        self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
+        self.assertRegex(content, 'On 2 June 1983 how many were employed?')
 
         # Textarea question
-        self.assertRegexpMatches(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegexpMatches(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertRegex(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
 
         # Check Cheewies Age has been correctly piped into the question text
-        self.assertRegexpMatches(content, "Do you really think that Chewbacca is 234 years old?")
+        self.assertRegex(content, "Do you really think that Chewbacca is 234 years old?")

@@ -2,12 +2,12 @@ import base64
 import json
 import os
 
-from app.utilities import strings
-
 from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers import algorithms
 from cryptography.hazmat.primitives.ciphers import modes
+
+from app.utilities import strings
 
 
 class JWEEncrypter(object):

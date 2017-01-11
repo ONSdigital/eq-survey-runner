@@ -1,6 +1,7 @@
-from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
+
 from tests.integration.star_wars import star_wars_test_urls
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
 class TestEmptyCheckBoxes(StarWarsTestCase):
@@ -43,10 +44,10 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
 
         # We stay on the current page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'Star Wars Quiz')
-        self.assertRegexpMatches(content, 'May the force be with you young EQ developer')
-        self.assertRegexpMatches(content, 'This page has 1 errors')
-        self.assertRegexpMatches(content, 'This field is mandatory.')
+        self.assertRegex(content, 'Star Wars Quiz')
+        self.assertRegex(content, 'May the force be with you young EQ developer')
+        self.assertRegex(content, 'This page has 1 errors')
+        self.assertRegex(content, 'This field is mandatory.')
 
         # We correct the error
         form_data = MultiDict()
@@ -81,7 +82,7 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
 
         # There are no validation errors
 
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
         second_page = resp.headers['Location']
 
         self.check_second_quiz_page(second_page)

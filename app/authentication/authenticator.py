@@ -1,7 +1,9 @@
 import logging
 
-from app.authentication.invalid_token_exception import InvalidTokenException
+from flask import session
+from flask_login import LoginManager
 
+from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.session_storage import session_storage
@@ -9,10 +11,6 @@ from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_questionnaire_store
 from app.parser.metadata_parser import is_valid_metadata, parse_metadata
-
-from flask import session
-
-from flask_login import LoginManager
 
 logger = logging.getLogger(__name__)
 

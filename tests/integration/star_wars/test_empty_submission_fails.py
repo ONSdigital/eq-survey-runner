@@ -1,6 +1,7 @@
-from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
+
 from tests.integration.star_wars import star_wars_test_urls
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
 class TestEmptySubmissionFails(StarWarsTestCase):
@@ -14,10 +15,10 @@ class TestEmptySubmissionFails(StarWarsTestCase):
 
         # now issue a request to the summary page
         resp = self.client.get(star_wars_test_urls.STAR_WARS_SUMMARY, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         # check that we're redirected to the first block as its an empty submission
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_BLOCK2)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_BLOCK2)
 
         # go to the first page
         first_page = resp.headers['Location']
@@ -54,7 +55,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
 
         # Form submission with no errors
         resp = self.submit_page(first_page, form_data)
-        self.assertNotEquals(resp.headers['Location'], first_page)
+        self.assertNotEqual(resp.headers['Location'], first_page)
 
         # Second page
         second_page = resp.headers['Location']
@@ -62,11 +63,11 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         content = resp.get_data(True)
 
         # Pipe Test for section title
-        self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
+        self.assertRegex(content, 'On 2 June 1983 how many were employed?')
 
         # Textarea question
-        self.assertRegexpMatches(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegexpMatches(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertRegex(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
 
         # Our answers
         form_data = {
@@ -84,7 +85,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         resp = self.navigate_to_page(third_page)
         content = resp.get_data(True)
 
-        self.assertRegexpMatches(content, "Finally, which  is your favourite film?")
+        self.assertRegex(content, "Finally, which  is your favourite film?")
 
         form_data = {
           # final answers
@@ -97,7 +98,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 
@@ -105,22 +106,22 @@ class TestEmptySubmissionFails(StarWarsTestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Summary</title>')
-        self.assertRegexpMatches(content, '>Star Wars</')
-        self.assertRegexpMatches(content, '>Your responses<')
-        self.assertRegexpMatches(content, '(?s)How old is Chewy?.*?234')
-        self.assertRegexpMatches(content, '(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
-        self.assertRegexpMatches(content, '(?s)How hot is a lightsaber in degrees C?.*?1370')
-        self.assertRegexpMatches(content, '(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant')  # NOQA
-        self.assertRegexpMatches(content, '(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
-        self.assertRegexpMatches(content, '(?s)Which 3 have wielded a green lightsaber?.*?Yoda')  # NOQA
-        self.assertRegexpMatches(content, '(?s)Which 3 have wielded a green lightsaber?.*?Luke Skywalker')  # NOQA
-        self.assertRegexpMatches(content, '(?s)Which 3 have wielded a green lightsaber?.*?Qui-Gon Jinn')  # NOQA
-        self.assertRegexpMatches(content, '(?s)Which 3 appear in any of the opening crawlers?')
-        self.assertRegexpMatches(content, '(?s)When was The Empire Strikes Back released?.*?28 May 1983 to 29 May 1983')  # NOQA
-        self.assertRegexpMatches(content, '(?s)What was the total number of Ewokes?.*?')
-        self.assertRegexpMatches(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?Wookiees don’t place value in material rewards and refused the medal initially')  # NOQA
-        self.assertRegexpMatches(content, '>Please check carefully before submission.<')
-        self.assertRegexpMatches(content, '>Submit answers<')
+        self.assertRegex(content, '<title>Summary</title>')
+        self.assertRegex(content, '>Star Wars</')
+        self.assertRegex(content, '>Your responses<')
+        self.assertRegex(content, '(?s)How old is Chewy?.*?234')
+        self.assertRegex(content, '(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
+        self.assertRegex(content, '(?s)How hot is a lightsaber in degrees C?.*?1370')
+        self.assertRegex(content, '(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant')  # NOQA
+        self.assertRegex(content, '(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
+        self.assertRegex(content, '(?s)Which 3 have wielded a green lightsaber?.*?Yoda')  # NOQA
+        self.assertRegex(content, '(?s)Which 3 have wielded a green lightsaber?.*?Luke Skywalker')  # NOQA
+        self.assertRegex(content, '(?s)Which 3 have wielded a green lightsaber?.*?Qui-Gon Jinn')  # NOQA
+        self.assertRegex(content, '(?s)Which 3 appear in any of the opening crawlers?')
+        self.assertRegex(content, '(?s)When was The Empire Strikes Back released?.*?28 May 1983 to 29 May 1983')  # NOQA
+        self.assertRegex(content, '(?s)What was the total number of Ewokes?.*?')
+        self.assertRegex(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?Wookiees don’t place value in material rewards and refused the medal initially')  # NOQA
+        self.assertRegex(content, '>Please check carefully before submission.<')
+        self.assertRegex(content, '>Submit answers<')
 
         self.complete_survey(summary_url, 'star_wars')

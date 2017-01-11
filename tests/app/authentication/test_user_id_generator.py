@@ -6,7 +6,6 @@ from app.authentication.user_id_generator import UserIDGenerator
 
 
 class TestUserIDGenerator(unittest.TestCase):
-
     def setUp(self):
         settings.EQ_SERVER_SIDE_STORAGE = True
 
@@ -22,13 +21,13 @@ class TestUserIDGenerator(unittest.TestCase):
 
         self.assertEqual(user_id_1, user_id_2)
 
-        self.assertNotEquals(user_id_1, user_id_3)
-        self.assertNotEquals(user_id_1, user_id_3)
-        self.assertNotEquals(user_id_1, user_id_4)
-        self.assertNotEquals(user_id_1, user_id_5)
-        self.assertNotEquals(user_id_1, user_id_6)
-        self.assertNotEquals(user_id_1, user_id_7)
-        self.assertNotEquals(user_id_1, user_id_8)
+        self.assertNotEqual(user_id_1, user_id_3)
+        self.assertNotEqual(user_id_1, user_id_3)
+        self.assertNotEqual(user_id_1, user_id_4)
+        self.assertNotEqual(user_id_1, user_id_5)
+        self.assertNotEqual(user_id_1, user_id_6)
+        self.assertNotEqual(user_id_1, user_id_7)
+        self.assertNotEqual(user_id_1, user_id_8)
 
     def test_different_salt_creates_different_userids(self):
         user_id_1 = UserIDGenerator.generate_id(self.create_token('1', '2', '3', '4'))
@@ -48,13 +47,13 @@ class TestUserIDGenerator(unittest.TestCase):
 
         self.assertEqual(user_ik_1, user_ik_2)
 
-        self.assertNotEquals(user_ik_1, user_ik_3)
-        self.assertNotEquals(user_ik_1, user_ik_3)
-        self.assertNotEquals(user_ik_1, user_ik_4)
-        self.assertNotEquals(user_ik_1, user_ik_5)
-        self.assertNotEquals(user_ik_1, user_ik_6)
-        self.assertNotEquals(user_ik_1, user_ik_7)
-        self.assertNotEquals(user_ik_1, user_ik_8)
+        self.assertNotEqual(user_ik_1, user_ik_3)
+        self.assertNotEqual(user_ik_1, user_ik_3)
+        self.assertNotEqual(user_ik_1, user_ik_4)
+        self.assertNotEqual(user_ik_1, user_ik_5)
+        self.assertNotEqual(user_ik_1, user_ik_6)
+        self.assertNotEqual(user_ik_1, user_ik_7)
+        self.assertNotEqual(user_ik_1, user_ik_8)
 
     def test_different_salt_creates_different_useriks(self):
         user_id_1 = UserIDGenerator.generate_ik(self.create_token('1', '2', '3', '4'))
@@ -89,10 +88,11 @@ class TestUserIDGenerator(unittest.TestCase):
     @staticmethod
     def create_token(eq_id, collection_exercise_sid, ru_ref, form_type):
         return {
-                "eq_id": eq_id,
-                "collection_exercise_sid": collection_exercise_sid,
-                "ru_ref": ru_ref,
-                "form_type": form_type}
+            "eq_id": eq_id,
+            "collection_exercise_sid": collection_exercise_sid,
+            "ru_ref": ru_ref,
+            "form_type": form_type}
+
 
 if __name__ == '__main__':
     unittest.main()

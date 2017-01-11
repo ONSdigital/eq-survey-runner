@@ -1,7 +1,7 @@
+from flask import render_template
+
 from app.libs.utils import ObjectFromDict
 from app.schema.widgets.multiple_choice_widget import MultipleChoiceWidget
-
-from flask import render_template
 
 
 class RelationshipWidget(MultipleChoiceWidget):

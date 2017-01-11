@@ -26,12 +26,12 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
 
     def test_no_token(self):
         response = self.client.get('/session')
-        self.assertEquals(401, response.status_code)
+        self.assertEqual(401, response.status_code)
 
     def test_invalid_token(self):
         token = "invalid"
         response = self.client.get('/session?token=' + token)
-        self.assertEquals(403, response.status_code)
+        self.assertEqual(403, response.status_code)
 
     def test_fully_encrypted(self):
         encoder = Encoder()
@@ -39,26 +39,27 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         token = encoder.encode(payload)
         encrypted_token = encoder.encrypt_token(token)
         response = self.client.get('/session?token=' + encrypted_token.decode())
-        self.assertEquals(302, response.status_code)
+        self.assertEqual(302, response.status_code)
 
     @staticmethod
     def create_payload():
         iat = time.time()
         exp = time.time() + (5 * 60)
         return {
-                "user_id": 'jimmy',
-                'iat': str(int(iat)),
-                'exp': str(int(exp)),
-                "eq_id": '1',
-                "period_str": '2016-01-01',
-                "period_id": '12',
-                "form_type": '0203',
-                "collection_exercise_sid": "sid",
-                "ref_p_start_date": "2016-01-01",
-                "ref_p_end_date": "2016-09-01",
-                "ru_ref": "1234",
-                "ru_name": "Test",
-                "return_by": "2016-09-09"}
+            "user_id": 'jimmy',
+            'iat': str(int(iat)),
+            'exp': str(int(exp)),
+            "eq_id": '1',
+            "period_str": '2016-01-01',
+            "period_id": '12',
+            "form_type": '0203',
+            "collection_exercise_sid": "sid",
+            "ref_p_start_date": "2016-01-01",
+            "ref_p_end_date": "2016-09-01",
+            "ru_ref": "1234",
+            "ru_name": "Test",
+            "return_by": "2016-09-09"
+        }
 
 if __name__ == '__main__':
     unittest.main()

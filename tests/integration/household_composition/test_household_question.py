@@ -99,7 +99,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         resp = self.client.post(resp_url, data=form_data, follow_redirects=False)
         resp_url = resp.headers['Location']
 
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         self.assertRegex(resp_url, '/summary')
 
@@ -125,7 +125,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("action[remove_answer]", "1") # Remove Jane.
         resp = self.client.post(page, data=form_data, follow_redirects=False)
 
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         resp = self.navigate_to_page(page)
         content = resp.get_data(True)
@@ -147,7 +147,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("action[add_answer]", "")
         resp = self.client.post(first_page, data=form_data, follow_redirects=False)
 
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         resp = self.navigate_to_page(first_page)
         content = resp.get_data(True)
@@ -164,7 +164,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
     def get_first_page(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         return resp
 
     def check_introduction_text(self, response):
@@ -177,13 +177,13 @@ class TestHouseholdQuestion(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(self.INTRODUCTION_PAGE, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         return resp.headers['Location']
 
     def navigate_to_page(self, page):
         resp = self.client.get(page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         return resp
 
     def household_answer_correct(self, resp_url, answer):

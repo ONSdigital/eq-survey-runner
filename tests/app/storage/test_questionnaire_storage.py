@@ -1,10 +1,10 @@
+import unittest
+
 from mock import Mock, patch
 from sqlalchemy.exc import IntegrityError
 
-from app.data_model.database import QuestionnaireState
-from app.storage.questionnaire_storage import QuestionnaireStorage
 from app import settings
-import unittest
+from app.storage.questionnaire_storage import QuestionnaireStorage
 
 
 class TestQuestionnaireStorage(unittest.TestCase):
@@ -12,10 +12,6 @@ class TestQuestionnaireStorage(unittest.TestCase):
     def setUp(self):
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
         self.storage = QuestionnaireStorage("1")
-
-    def tearDown(self):
-        # always clear out the memory between test runs
-        QuestionnaireState.query.delete()
 
     def test_store(self):
         data = {'test': 'test'}

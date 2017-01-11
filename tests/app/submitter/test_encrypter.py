@@ -1,11 +1,13 @@
-from cryptography.hazmat.backends.openssl.backend import backend
-from cryptography.hazmat.primitives import serialization
-from app.submitter.encrypter import Encrypter
-from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
-from tests.app.submitter import TEST_DO_NOT_USE_SDX_PRIVATE_KEY, TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY
-import jwt
 import json
 import unittest
+
+import jwt
+from cryptography.hazmat.backends.openssl.backend import backend
+from cryptography.hazmat.primitives import serialization
+
+from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
+from app.submitter.encrypter import Encrypter
+from tests.app.submitter import TEST_DO_NOT_USE_SDX_PRIVATE_KEY, TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY
 
 SUBMISSION_DATA = json.loads("""
       {
@@ -36,8 +38,8 @@ class Decrypter(JWERSAOAEPDecryptor):
     def __init__(self):
         super().__init__(TEST_DO_NOT_USE_SDX_PRIVATE_KEY, 'digitaleq')
         self.rrm_public_key = serialization.load_pem_public_key(
-              TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY.encode(),
-              backend=backend
+            TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY.encode(),
+            backend=backend
         )
 
     def decrypt(self, token):
@@ -53,11 +55,11 @@ class TestEncrypter(unittest.TestCase):
         decrypter = Decrypter()
         unencrypted_data = decrypter.decrypt(encrypted_data)
 
-        self.assertEquals(SUBMISSION_DATA["type"], unencrypted_data["type"])
-        self.assertEquals(SUBMISSION_DATA["version"], unencrypted_data["version"])
-        self.assertEquals(SUBMISSION_DATA["origin"], unencrypted_data["origin"])
-        self.assertEquals(SUBMISSION_DATA["survey_id"], unencrypted_data["survey_id"])
-        self.assertEquals(SUBMISSION_DATA["collection"], unencrypted_data["collection"])
-        self.assertEquals(SUBMISSION_DATA["metadata"], unencrypted_data["metadata"])
-        self.assertEquals(SUBMISSION_DATA["paradata"], unencrypted_data["paradata"])
-        self.assertEquals(SUBMISSION_DATA["data"], unencrypted_data["data"])
+        self.assertEqual(SUBMISSION_DATA["type"], unencrypted_data["type"])
+        self.assertEqual(SUBMISSION_DATA["version"], unencrypted_data["version"])
+        self.assertEqual(SUBMISSION_DATA["origin"], unencrypted_data["origin"])
+        self.assertEqual(SUBMISSION_DATA["survey_id"], unencrypted_data["survey_id"])
+        self.assertEqual(SUBMISSION_DATA["collection"], unencrypted_data["collection"])
+        self.assertEqual(SUBMISSION_DATA["metadata"], unencrypted_data["metadata"])
+        self.assertEqual(SUBMISSION_DATA["paradata"], unencrypted_data["paradata"])
+        self.assertEqual(SUBMISSION_DATA["data"], unencrypted_data["data"])

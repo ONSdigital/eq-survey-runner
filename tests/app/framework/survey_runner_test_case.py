@@ -1,11 +1,13 @@
+import json
+import os
 import unittest
+from datetime import timedelta
+
+from flask import Flask
+from flask_login import LoginManager
+
 from app import settings
 from app.parser.v0_0_1.schema_parser import SchemaParser
-from flask_login import LoginManager
-from datetime import timedelta
-from flask import Flask
-import os
-import json
 
 login_manager = LoginManager()
 

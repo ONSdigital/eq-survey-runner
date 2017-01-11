@@ -15,7 +15,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
         }
 
         first_survey_resp = self.client.post('/questionnaire/1/0205/789/introduction', data=post_data, follow_redirects=False)
-        self.assertRegexpMatches(first_survey_resp.headers['Location'], r'\/questionnaire\/1\/0205\/789\/mci\/0\/reporting-period$')
+        self.assertRegex(first_survey_resp.headers['Location'], r'\/questionnaire\/1\/0205\/789\/14ba4707-321d-441d-8d21-b8367366e766\/0\/cd3b74d1-b687-4051-9634-a8f9ce10a27d$')
 
         # We start the second survey
         second_survey_token = create_token('0203', '1')
@@ -42,6 +42,6 @@ class MultipleSurveysOpen(IntegrationTestCase):
 
         multiple_survey_resp = self.client.post(first_survey_resp.headers['Location'], data=form_data, follow_redirects=False)
         content = multiple_survey_resp.get_data(True)
-        self.assertRegexpMatches(content, 'Information')
-        self.assertRegexpMatches(content, 'Unfortunately you can only complete one survey at a time.')
-        self.assertRegexpMatches(content, 'Close this window to continue with your current survey.')
+        self.assertRegex(content, 'Information')
+        self.assertRegex(content, 'Unfortunately you can only complete one survey at a time.')
+        self.assertRegex(content, 'Close this window to continue with your current survey.')

@@ -1,5 +1,5 @@
-import unittest
 import datetime
+import unittest
 
 from app.utilities.date_utils import to_date
 
@@ -11,8 +11,8 @@ class TestDateUtils(unittest.TestCase):
         self.assertTrue(isinstance(to_date("2016-09-09"), datetime.date))
 
     def test_parse_invalid_date(self):
-        self.assertEquals(to_date("2016-Mar-03"), None)
-        self.assertEquals(to_date("a-random-string"), None)
+        self.assertEqual(to_date("2016-Mar-03"), None)
+        self.assertEqual(to_date("a-random-string"), None)
 
     def test_custom_date_string(self):
         custom_format = "%y-%b-%d"
@@ -28,4 +28,4 @@ class TestDateUtils(unittest.TestCase):
 
         parsed_date = to_date(date_str)
 
-        self.assertEquals(parsed_date, None)
+        self.assertEqual(parsed_date, None)

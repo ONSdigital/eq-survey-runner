@@ -1,7 +1,7 @@
+from werkzeug.datastructures import MultiDict
+
 from app.data_model.answer_store import Answer
 from app.questionnaire_state.state_item import StateItem
-
-from werkzeug.datastructures import MultiDict
 
 
 class StateAnswer(StateItem):

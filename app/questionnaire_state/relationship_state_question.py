@@ -1,8 +1,8 @@
+from flask_login import current_user
+
 from app.globals import get_answer_store
 from app.jinja_filters import format_household_member_name
 from app.questionnaire_state.state_repeating_answer_question import RepeatingAnswerStateQuestion
-
-from flask_login import current_user
 
 
 class RelationshipStateQuestion(RepeatingAnswerStateQuestion):

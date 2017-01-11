@@ -1,8 +1,8 @@
 import logging
 
-from app.schema.widgets.date_widget import DateWidget
-
 from flask import render_template
+
+from app.schema.widgets.date_widget import DateWidget
 
 logger = logging.getLogger(__name__)
 

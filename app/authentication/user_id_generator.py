@@ -1,14 +1,14 @@
 import binascii
 import logging
 
+from cryptography.hazmat.backends.openssl.backend import backend
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
-
-from cryptography.hazmat.backends.openssl.backend import backend
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 logger = logging.getLogger(__name__)
 

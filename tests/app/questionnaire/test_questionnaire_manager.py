@@ -1,9 +1,8 @@
 from unittest import TestCase
 
-from mock import MagicMock, Mock, patch, call
+from mock import MagicMock, Mock, call
+
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
-from app.questionnaire_state.state_item import StateItem
-from app.schema.section import Section
 
 
 def mock_answer(answer_id, answer_instance=0, question=MagicMock()):

@@ -35,7 +35,7 @@ class JWTDecodeTest(unittest.TestCase):
     def test_decode_signed_jwt_token(self):
         decoder = JWTDecryptor()
         token = decoder.decode_signed_jwt_token(VALID_SIGNED_JWT)
-        self.assertEquals("jimmy", token.get("user"))
+        self.assertEqual("jimmy", token.get("user"))
 
     def test_decode_signed_jwt_token_with_no_token(self):
         decoder = JWTDecryptor()
@@ -49,7 +49,7 @@ class JWTDecodeTest(unittest.TestCase):
     def test_decrypt_jwt_token(self):
         decoder = JWTDecryptor()
         token = decoder.decrypt_jwt_token(VALID_JWE)
-        self.assertEquals("jimmy", token.get("user"))
+        self.assertEqual("jimmy", token.get("user"))
 
     def test_decrypt_jwt_token_with_no_token(self):
         decoder = JWTDecryptor()

@@ -10,7 +10,7 @@ class TestPercentageAnswer(TestCase):
         percentage_answer = PercentageAnswer('percent')
         post_data = '75'
         result = percentage_answer.get_typed_value(post_data)
-        self.assertEquals(result, 75.0)
+        self.assertEqual(result, 75.0)
 
     def test_percentage_answer_not_number(self):
         percentage_answer = PercentageAnswer('percent')

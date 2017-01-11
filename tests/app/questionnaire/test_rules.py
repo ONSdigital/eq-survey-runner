@@ -109,7 +109,8 @@ class TestRules(TestCase):
 
     def test_evaluate_skip_condition_returns_true_when_this_rule_true(self):
         # Given
-        skip_condition = [{
+        skip_condition = [
+            {
                 'when': [
                     {
                         'id': 'this',
@@ -139,7 +140,8 @@ class TestRules(TestCase):
 
     def test_evaluate_skip_condition_returns_true_when_that_rule_true(self):
 
-        skip_condition = [{
+        skip_condition = [
+            {
                 'when': [
                     {
                         'id': 'this',
@@ -165,7 +167,8 @@ class TestRules(TestCase):
 
     def test_evaluate_skip_condition_returns_true_when_more_than_one_rule_is_true(self):
         # Given
-        skip_condition = [{
+        skip_condition = [
+            {
                 'when': [
                     {
                         'id': 'this',
@@ -196,7 +199,8 @@ class TestRules(TestCase):
 
     def test_evaluate_skip_condition_returns_false_when_both_or_rules_false(self):
         # Given
-        skip_condition = [{
+        skip_condition = [
+            {
                 'when': [
                     {
                         'id': 'this',

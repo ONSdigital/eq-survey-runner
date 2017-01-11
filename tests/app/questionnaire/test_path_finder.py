@@ -2,11 +2,10 @@ import unittest
 
 import pytest
 
+from app.data_model.answer_store import Answer, AnswerStore
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
-
 from app.schema_loader.schema_loader import load_schema_file
-from app.data_model.answer_store import Answer, AnswerStore
 
 
 class TestPathFinder(unittest.TestCase):
@@ -386,11 +385,11 @@ class TestPathFinder(unittest.TestCase):
         survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
-            Location("repeating-group", 1,  "repeating-block-1"),
-            Location("repeating-group", 1,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-1"),
+            Location("repeating-group", 1, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -435,13 +434,13 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
-            Location("repeating-group", 1,  "repeating-block-1"),
-            Location("repeating-group", 1,  "repeating-block-2"),
-            Location("repeating-group", 2,  "repeating-block-1"),
-            Location("repeating-group", 2,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-1"),
+            Location("repeating-group", 1, "repeating-block-2"),
+            Location("repeating-group", 2, "repeating-block-1"),
+            Location("repeating-group", 2, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -488,9 +487,9 @@ class TestPathFinder(unittest.TestCase):
         survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -536,11 +535,11 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
-            Location("repeating-group", 1,  "repeating-block-1"),
-            Location("repeating-group", 1,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-1"),
+            Location("repeating-group", 1, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -576,11 +575,11 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
-            Location("repeating-group", 1,  "repeating-block-1"),
-            Location("repeating-group", 1,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-1"),
+            Location("repeating-group", 1, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -615,15 +614,15 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("test_repeating_and_conditional_routing.json")
 
         expected_path = [
-            Location("repeat-value-group", 0,  "introduction"),
-            Location("repeat-value-group", 0,  "no-of-repeats"),
-            Location("repeated-group", 0,  "repeated-block"),
-            Location("repeated-group", 0,  "age-block"),
-            Location("repeated-group", 0,  "shoe-size-block"),
-            Location("repeated-group", 1,  "repeated-block"),
-            Location("repeated-group", 1,  "shoe-size-block"),
-            Location("repeated-group", 0,  "summary"),
-            Location("repeated-group", 0,  "thank-you"),
+            Location("repeat-value-group", 0, "introduction"),
+            Location("repeat-value-group", 0, "no-of-repeats"),
+            Location("repeated-group", 0, "repeated-block"),
+            Location("repeated-group", 0, "age-block"),
+            Location("repeated-group", 0, "shoe-size-block"),
+            Location("repeated-group", 1, "repeated-block"),
+            Location("repeated-group", 1, "shoe-size-block"),
+            Location("repeated-group", 0, "summary"),
+            Location("repeated-group", 0, "thank-you"),
         ]
 
         answer_1 = Answer(
@@ -808,7 +807,8 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file('test_skip_condition_group.json')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
-        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip', answer_id='do-you-want-to-skip-answer', value='Yes'))
+        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
+                                answer_id='do-you-want-to-skip-answer', value='Yes'))
 
         # When
         path_finder = PathFinder(survey, answer_store=answer_store)

@@ -94,5 +94,5 @@ class TestRepeatingHousehold(IntegrationTestCase):
 
     def navigate_to_page(self, page):
         resp = self.client.get(page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         return resp

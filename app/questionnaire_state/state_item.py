@@ -1,5 +1,4 @@
 import logging
-
 from collections import OrderedDict
 
 from app.questionnaire.rules import evaluate_rule, get_metadata_value

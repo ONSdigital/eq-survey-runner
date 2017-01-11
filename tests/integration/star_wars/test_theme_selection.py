@@ -19,5 +19,4 @@ class TestThemeSelection(TestLightSidePath):
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegexpMatches(content,
-                                 'Theme selected: Star Wars')
+        self.assertRegex(content, 'Theme selected: Star Wars')

@@ -1,6 +1,7 @@
+from werkzeug.datastructures import MultiDict
+
 from tests.integration.create_token import create_token
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
-from werkzeug.datastructures import MultiDict
 
 
 class TestPageErrors(StarWarsTestCase):
@@ -34,7 +35,7 @@ class TestPageErrors(StarWarsTestCase):
 
         resp = self.submit_page(first_page, form_data)
 
-        self.assertNotEquals(resp.headers['Location'], first_page)
+        self.assertNotEqual(resp.headers['Location'], first_page)
         # Second page
         second_page = resp.headers['Location']
 

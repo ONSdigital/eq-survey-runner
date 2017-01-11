@@ -1,5 +1,15 @@
 import logging
 
+from flask import Blueprint
+from flask import g
+from flask import redirect
+from flask import request
+from flask import url_for
+from flask_login import current_user
+from flask_login import login_required
+from flask_themes2 import render_theme_template
+from werkzeug.exceptions import NotFound
+
 from app.authentication.session_storage import session_storage
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.schema_helper import SchemaHelper
@@ -16,19 +26,6 @@ from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer
 from app.utilities.schema import get_schema
 from app.views.errors import MultipleSurveyError
-
-from flask import redirect
-from flask import request
-from flask import Blueprint
-from flask import g
-from flask import url_for
-
-from flask_login import current_user
-from flask_login import login_required
-
-from flask_themes2 import render_theme_template
-
-from werkzeug.exceptions import NotFound
 
 logger = logging.getLogger(__name__)
 

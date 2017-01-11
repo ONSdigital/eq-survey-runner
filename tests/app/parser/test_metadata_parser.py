@@ -32,35 +32,35 @@ class TestMetadataParser(SurveyRunnerTestCase):
 
     def test_form_type(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get("form_type"), self.metadata['form_type'])
+            self.assertEqual(self.jwt.get("form_type"), self.metadata['form_type'])
 
     def test_collection_id(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get("collection_exercise_sid"), self.metadata['collection_exercise_sid'])
+            self.assertEqual(self.jwt.get("collection_exercise_sid"), self.metadata['collection_exercise_sid'])
 
     def test_get_eq_id(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get("eq_id"), self.metadata['eq_id'])
+            self.assertEqual(self.jwt.get("eq_id"), self.metadata['eq_id'])
 
     def test_get_period_id(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get("period_id"), self.metadata['period_id'])
+            self.assertEqual(self.jwt.get("period_id"), self.metadata['period_id'])
 
     def test_get_period_str(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get("period_str"), self.metadata['period_str'])
+            self.assertEqual(self.jwt.get("period_str"), self.metadata['period_str'])
 
     def test_ref_p_start_date(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get("ref_p_start_date"), self.metadata['ref_p_start_date'])
+            self.assertEqual(self.jwt.get("ref_p_start_date"), self.metadata['ref_p_start_date'])
 
     def test_ref_p_end_date(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get("ref_p_end_date"), self.metadata['ref_p_end_date'])
+            self.assertEqual(self.jwt.get("ref_p_end_date"), self.metadata['ref_p_end_date'])
 
     def test_ru_ref(self):
         with self.application.test_request_context():
-            self.assertEquals(self.jwt.get("ref_p_end_date"), self.metadata['ref_p_end_date'])
+            self.assertEqual(self.jwt.get("ref_p_end_date"), self.metadata['ref_p_end_date'])
 
     def test_is_valid(self):
         with self.application.test_request_context():
@@ -81,7 +81,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("user_id", field)
+        self.assertEqual("user_id", field)
 
     def test_is_valid_fails_missing_form_type(self):
         jwt = {
@@ -98,7 +98,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("form_type", field)
+        self.assertEqual("form_type", field)
 
     def test_is_valid_fails_missing_collection_exercise_sid(self):
         jwt = {
@@ -115,7 +115,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("collection_exercise_sid", field)
+        self.assertEqual("collection_exercise_sid", field)
 
     def test_is_valid_fails_missing_eq_id(self):
         jwt = {
@@ -132,7 +132,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("eq_id", field)
+        self.assertEqual("eq_id", field)
 
     def test_is_valid_fails_missing_period_id(self):
         jwt = {
@@ -149,7 +149,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("period_id", field)
+        self.assertEqual("period_id", field)
 
     def test_is_valid_fails_missing_period_str(self):
         jwt = {
@@ -166,7 +166,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("period_str", field)
+        self.assertEqual("period_str", field)
 
     def test_is_valid_fails_missing_ref_p_start_date(self):
         jwt = {
@@ -183,7 +183,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("ref_p_start_date", field)
+        self.assertEqual("ref_p_start_date", field)
 
     def test_is_valid_fails_invalid_ref_p_start_date(self):
         jwt = {
@@ -199,7 +199,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
             "ru_name": "Apple",
             "return_by": "2016-07-07"
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
@@ -219,7 +219,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
             "ru_name": "Apple",
             "return_by": "2016-07-07"
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
@@ -239,7 +239,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
             "ru_name": "Apple",
             "return_by": "2016-09-31"
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
@@ -260,7 +260,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("ref_p_end_date", field)
+        self.assertEqual("ref_p_end_date", field)
 
     def test_is_valid_fails_missing_ru_ref(self):
         jwt = {
@@ -277,7 +277,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("ru_ref", field)
+        self.assertEqual("ru_ref", field)
 
     def test_is_valid_fails_missing_ru_name(self):
         jwt = {
@@ -294,7 +294,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("ru_name", field)
+        self.assertEqual("ru_name", field)
 
     def test_is_valid_fails_missing_return_by(self):
         jwt = {
@@ -311,7 +311,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
         }
         valid, field = is_valid_metadata(jwt)
         self.assertFalse(valid)
-        self.assertEquals("return_by", field)
+        self.assertEqual("return_by", field)
 
     def test_is_valid_does_not_fail_missing_optional_value_in_token(self):
         # tx_id, trad_as and employment_date are optional and might not be in the token
@@ -328,7 +328,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
             "ru_name": "Apple",
             "return_by": "2016-07-07"
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt)
         self.assertTrue(valid)
 
     def test_invalid_tx_id(self):
@@ -347,7 +347,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
             # invalid
             "tx_id": "12121"
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
@@ -369,7 +369,7 @@ class TestMetadataParser(SurveyRunnerTestCase):
             # one character short
             "tx_id": "83a3db82-bea7-403c-a411-6357ff70f2f"
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt)
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)

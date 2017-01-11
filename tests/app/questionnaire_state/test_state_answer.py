@@ -85,5 +85,3 @@ class TestStateAnswer(unittest.TestCase):
 
         # Then
         self.assertIsNone(answer.other)
-
-

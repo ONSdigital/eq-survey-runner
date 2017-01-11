@@ -1,6 +1,7 @@
 import unittest
-from app.validation.textarea_type_check import TextAreaTypeCheck
+
 from app.validation.abstract_validator import AbstractValidator
+from app.validation.textarea_type_check import TextAreaTypeCheck
 
 
 class TextAreaTest(unittest.TestCase):
@@ -11,14 +12,14 @@ class TextAreaTest(unittest.TestCase):
         # validate integer
         result = textarea.validate(1)
         self.assertFalse(result.is_valid)
-        self.assertEquals(len(result.errors), 1)
-        self.assertEquals(AbstractValidator.NOT_STRING, result.errors[0])
+        self.assertEqual(len(result.errors), 1)
+        self.assertEqual(AbstractValidator.NOT_STRING, result.errors[0])
 
         # validate None
         result = textarea.validate(None)
         self.assertFalse(result.is_valid)
-        self.assertEquals(len(result.errors), 1)
-        self.assertEquals(AbstractValidator.NOT_STRING, result.errors[0])
+        self.assertEqual(len(result.errors), 1)
+        self.assertEqual(AbstractValidator.NOT_STRING, result.errors[0])
 
         # validate <space>
         result = textarea.validate(' ')
@@ -27,8 +28,8 @@ class TextAreaTest(unittest.TestCase):
         # validate string
         result = textarea.validate('string')
         self.assertTrue(result.is_valid)
-        self.assertEquals(len(result.errors),  0)
-        self.assertEquals(len(result.warnings),  0)
+        self.assertEqual(len(result.errors),  0)
+        self.assertEqual(len(result.warnings),  0)
 
 if __name__ == '__main__':
     unittest.main()

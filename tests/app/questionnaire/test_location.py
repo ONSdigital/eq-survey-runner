@@ -1,7 +1,6 @@
 import unittest
 
 from app import create_app
-
 from app.questionnaire.location import Location
 
 

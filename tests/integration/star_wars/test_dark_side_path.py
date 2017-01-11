@@ -1,5 +1,6 @@
-from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
+
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
 class TestDarkSidePath(StarWarsTestCase):
@@ -46,13 +47,13 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Test error messages
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'No one lives that long, not even Yoda')
-        self.assertRegexpMatches(content, 'Please only enter whole numbers into the field.')
-        self.assertRegexpMatches(content, 'Please only enter whole numbers into the field.')
-        self.assertRegexpMatches(content, 'This field is mandatory.')
-        self.assertRegexpMatches(content, 'This field is mandatory.')
-        self.assertRegexpMatches(content, 'The date entered is not valid')
-        self.assertRegexpMatches(content, 'The date entered is not valid')
+        self.assertRegex(content, 'No one lives that long, not even Yoda')
+        self.assertRegex(content, 'Please only enter whole numbers into the field.')
+        self.assertRegex(content, 'Please only enter whole numbers into the field.')
+        self.assertRegex(content, 'This field is mandatory.')
+        self.assertRegex(content, 'This field is mandatory.')
+        self.assertRegex(content, 'The date entered is not valid')
+        self.assertRegex(content, 'The date entered is not valid')
 
         '''
         Testing
@@ -87,10 +88,10 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Test error messages
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'This field is mandatory')
-        self.assertRegexpMatches(content, 'How much, idiot you must be')
-        self.assertRegexpMatches(content, 'How can it be negative?')
-        self.assertRegexpMatches(content, 'The &#39;period to&#39; date must be different to the &#39;period from&#39; date.')
+        self.assertRegex(content, 'This field is mandatory')
+        self.assertRegex(content, 'How much, idiot you must be')
+        self.assertRegex(content, 'How can it be negative?')
+        self.assertRegex(content, 'The &#39;period to&#39; date must be different to the &#39;period from&#39; date.')
 
         '''
          Testing
@@ -123,8 +124,8 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Test error messages
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'How can it be negative?')
-        self.assertRegexpMatches(content, 'The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.')
+        self.assertRegex(content, 'How can it be negative?')
+        self.assertRegex(content, 'The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.')
 
         # Testing Currency  - Mandatory
 
@@ -153,7 +154,7 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Test error messages
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'This field is mandatory.')
+        self.assertRegex(content, 'This field is mandatory.')
 
         # Correct all errors
         form_data = MultiDict({
@@ -179,7 +180,7 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Submit form with no errors
         resp = self.submit_page(first_page, form_data)
-        self.assertNotEquals(resp.headers['Location'], first_page)
+        self.assertNotEqual(resp.headers['Location'], first_page)
 
         # Second page
         second_page = resp.headers['Location']
@@ -188,5 +189,5 @@ class TestDarkSidePath(StarWarsTestCase):
         content = resp.get_data(True)
 
         # Make sure we are on the next page
-        self.assertRegexpMatches(content, 'What was the total number of Ewokes?')
-        self.assertRegexpMatches(content, '5rr015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'What was the total number of Ewokes?')
+        self.assertRegex(content, '5rr015b1-f87c-4740-9fd4-f01f707ef558')

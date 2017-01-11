@@ -1,6 +1,7 @@
-from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 from werkzeug.datastructures import MultiDict
+
 from tests.integration.star_wars import star_wars_test_urls
+from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
 class TestConditionalDisplay(StarWarsTestCase):
@@ -38,15 +39,15 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
 
         second_page = resp.headers['Location']
         resp = self.navigate_to_page(second_page)
 
         # Check we are on the next page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'The force is strong with you, young Jedi')
-        self.assertRegexpMatches(content, 'What else did the Bothan spies steal for the Rebel Alliance?')
+        self.assertRegex(content, 'The force is strong with you, young Jedi')
+        self.assertRegex(content, 'What else did the Bothan spies steal for the Rebel Alliance?')
 
         # Our answers
         form_data = {
@@ -64,7 +65,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.navigate_to_page(third_page)
 
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'What is the name of Jar Jar Binks')
+        self.assertRegex(content, 'What is the name of Jar Jar Binks')
 
         form_data = {
           # final answers
@@ -77,7 +78,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 
@@ -85,10 +86,10 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Summary</title>')
-        self.assertRegexpMatches(content, '>Star Wars</')
-        self.assertRegexpMatches(content, '>Your responses<')
-        self.assertRegexpMatches(content, 'What is the name of Jar Jar Binks')
+        self.assertRegex(content, '<title>Summary</title>')
+        self.assertRegex(content, '>Star Wars</')
+        self.assertRegex(content, '>Your responses<')
+        self.assertRegex(content, 'What is the name of Jar Jar Binks')
 
     def test_conditional_display_questions_non_present(self):
 
@@ -123,7 +124,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(first_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_QUIZ_2_REGEX)
 
         second_page = resp.headers['Location']
         resp = self.navigate_to_page(second_page)
@@ -161,7 +162,7 @@ class TestConditionalDisplay(StarWarsTestCase):
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 
@@ -169,7 +170,7 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Summary</title>')
-        self.assertRegexpMatches(content, '>Star Wars</')
-        self.assertRegexpMatches(content, '>Your responses<')
+        self.assertRegex(content, '<title>Summary</title>')
+        self.assertRegex(content, '>Star Wars</')
+        self.assertRegex(content, '>Your responses<')
         self.assertNotRegex(content, 'What is the name of Jar Jar Binks')

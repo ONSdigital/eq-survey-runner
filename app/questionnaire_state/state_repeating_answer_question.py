@@ -1,8 +1,7 @@
 import copy
 import re
-
-from collections import defaultdict
 from collections import OrderedDict
+from collections import defaultdict
 
 from app.data_model.answer_store import natural_order
 from app.questionnaire_state.state_answer import StateAnswer

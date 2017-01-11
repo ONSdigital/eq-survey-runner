@@ -1,6 +1,7 @@
-from app.schema.group import Group
-from app.schema.block import Block
 import unittest
+
+from app.schema.block import Block
+from app.schema.group import Group
 
 
 class GroupModelTest(unittest.TestCase):
@@ -18,12 +19,12 @@ class GroupModelTest(unittest.TestCase):
         group.add_block(block1)
         group.add_block(block2)
 
-        self.assertEquals(group.id, 'some-id')
-        self.assertEquals(group.title, 'my group object')
+        self.assertEqual(group.id, 'some-id')
+        self.assertEqual(group.title, 'my group object')
         self.assertIsNone(group.container)
-        self.assertEquals(len(group.blocks), 2)
-        self.assertEquals(group.blocks[0], block1)
-        self.assertEquals(group.blocks[1], block2)
+        self.assertEqual(len(group.blocks), 2)
+        self.assertEqual(group.blocks[0], block1)
+        self.assertEqual(group.blocks[1], block2)
 
-        self.assertEquals(block1.container, group)
-        self.assertEquals(block2.container, group)
+        self.assertEqual(block1.container, group)
+        self.assertEqual(block2.container, group)

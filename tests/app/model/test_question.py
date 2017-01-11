@@ -1,6 +1,7 @@
-from app.schema.question import Question
-from app.schema.answer import Answer
 import unittest
+
+from app.schema.answer import Answer
+from app.schema.question import Question
 
 
 class QuestionModelTest(unittest.TestCase):
@@ -19,13 +20,13 @@ class QuestionModelTest(unittest.TestCase):
         question.add_answer(answer1)
         question.add_answer(answer2)
 
-        self.assertEquals(question.id, 'some-id')
-        self.assertEquals(question.title, 'my question object')
-        self.assertEquals(question.description, 'fill this in')
+        self.assertEqual(question.id, 'some-id')
+        self.assertEqual(question.title, 'my question object')
+        self.assertEqual(question.description, 'fill this in')
         self.assertIsNone(question.container)
-        self.assertEquals(len(question.answers), 2)
-        self.assertEquals(question.answers[0], answer1)
-        self.assertEquals(question.answers[1], answer2)
+        self.assertEqual(len(question.answers), 2)
+        self.assertEqual(question.answers[0], answer1)
+        self.assertEqual(question.answers[1], answer2)
 
-        self.assertEquals(answer1.container, question)
-        self.assertEquals(answer2.container, question)
+        self.assertEqual(answer1.container, question)
+        self.assertEqual(answer2.container, question)

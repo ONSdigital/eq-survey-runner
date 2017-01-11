@@ -1,10 +1,10 @@
 import calendar
 import logging
 
+from flask import render_template
+
 from app.libs.utils import ObjectFromDict
 from app.schema.widget import Widget
-
-from flask import render_template
 
 logger = logging.getLogger(__name__)
 
@@ -49,17 +49,17 @@ class DateWidget(Widget):
 
         return {
 
-                'label': {
-                    'for': self.name + '-month',
-                    'text': 'Month',
-                },
-                'select': {
-                    'placeholder': 'Select month',
-                    'options': self._get_months(month, is_mandatory),
-                    'name': self.name + '-month',
-                    'id': self.name + '-month',
-                  },
-                }
+            'label': {
+                'for': self.name + '-month',
+                'text': 'Month',
+            },
+            'select': {
+                'placeholder': 'Select month',
+                'options': self._get_months(month, is_mandatory),
+                'name': self.name + '-month',
+                'id': self.name + '-month',
+            },
+        }
 
     def _get_year_field(self, year):
 

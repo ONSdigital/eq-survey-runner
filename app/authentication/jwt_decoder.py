@@ -1,18 +1,17 @@
 import json
 import logging
 
-from app import settings
-from app.authentication.invalid_token_exception import InvalidTokenException
-from app.authentication.no_token_exception import NoTokenException
-from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
-from app.utilities import strings
-
+import jwt
 from cryptography.exceptions import InternalError
 from cryptography.exceptions import InvalidTag
 from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import serialization
 
-import jwt
+from app import settings
+from app.authentication.invalid_token_exception import InvalidTokenException
+from app.authentication.no_token_exception import NoTokenException
+from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
+from app.utilities import strings
 
 IV_EXPECTED_LENGTH = 12
 CEK_EXPECT_LENGTH = 32

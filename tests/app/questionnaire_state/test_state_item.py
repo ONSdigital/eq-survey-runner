@@ -131,4 +131,3 @@ class TestStateItem(TestCase):
         state_item.set_skipped({}, metadata)
 
         self.assertEqual(state_item.skipped, True)
-

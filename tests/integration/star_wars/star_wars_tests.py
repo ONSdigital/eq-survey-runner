@@ -15,28 +15,28 @@ class StarWarsTestCase(IntegrationTestCase):
     def check_introduction_text(self, response):
         # Landing page tests
         content = response.get_data(True)
-        self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, 'Star Wars')
-        self.assertRegexpMatches(content, 'If actual figures are not available, please provide informed estimates.')
-        self.assertRegexpMatches(content, 'Legal Information')
-        self.assertRegexpMatches(content, '>Start survey<')
-        self.assertRegexpMatches(content, '(?s)Trading as.*?Integration Tests')
-        self.assertRegexpMatches(content, '(?s)Business name.*?MCI Integration Testing')
-        self.assertRegexpMatches(content, '(?s)PLEASE SUBMIT BY.*?6 May 2016')
-        self.assertRegexpMatches(content, '(?s)PERIOD.*?1 April 2016.*?30 April 2016')
-        self.assertRegexpMatches(content, 'questionnaire by 6 May 2016, penalties may be incurred')
+        self.assertRegex(content, '<title>Introduction</title>')
+        self.assertRegex(content, 'Star Wars')
+        self.assertRegex(content, 'If actual figures are not available, please provide informed estimates.')
+        self.assertRegex(content, 'Legal Information')
+        self.assertRegex(content, '>Start survey<')
+        self.assertRegex(content, '(?s)Trading as.*?Integration Tests')
+        self.assertRegex(content, '(?s)Business name.*?MCI Integration Testing')
+        self.assertRegex(content, '(?s)PLEASE SUBMIT BY.*?6 May 2016')
+        self.assertRegex(content, '(?s)PERIOD.*?1 April 2016.*?30 April 2016')
+        self.assertRegex(content, 'questionnaire by 6 May 2016, penalties may be incurred')
 
         # Legal checks
-        self.assertRegexpMatches(content, 'We will treat your data securely and confidentially')
-        self.assertRegexpMatches(content, 'You are required to complete this questionnaire')
+        self.assertRegex(content, 'We will treat your data securely and confidentially')
+        self.assertRegex(content, 'You are required to complete this questionnaire')
 
         # Information to provide
-        self.assertRegexpMatches(content, 'Total Yearly cost of Rebel Alliance')
-        self.assertRegexpMatches(content, 'Yoda&#39;s siblings')
+        self.assertRegex(content, 'Total Yearly cost of Rebel Alliance')
+        self.assertRegex(content, 'Yoda&#39;s siblings')
 
     def get_first_page(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         return resp
 
     def start_questionnaire_and_navigate_routing(self):
@@ -45,7 +45,7 @@ class StarWarsTestCase(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         routing_start = resp.headers['Location']
 
@@ -59,7 +59,7 @@ class StarWarsTestCase(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         first_page = resp.headers['Location']
         return first_page
@@ -75,7 +75,7 @@ class StarWarsTestCase(IntegrationTestCase):
         }
 
         resp = self.submit_page(current_page, form_data)
-        self.assertNotEquals(resp.headers['Location'], current_page)
+        self.assertNotEqual(resp.headers['Location'], current_page)
         current_page = resp.headers['Location']
 
         self.routing_pick_your_character_light_side(current_page)
@@ -88,7 +88,7 @@ class StarWarsTestCase(IntegrationTestCase):
         }
 
         resp = self.submit_page(current_page, form_data)
-        self.assertNotEquals(resp.headers['Location'], current_page)
+        self.assertNotEqual(resp.headers['Location'], current_page)
         current_page = resp.headers['Location']
 
         self.routing_select_your_ship_light_side(current_page)
@@ -100,119 +100,119 @@ class StarWarsTestCase(IntegrationTestCase):
         }
 
         resp = self.submit_page(current_page, form_data)
-        self.assertNotEquals(resp.headers['Location'], current_page)
+        self.assertNotEqual(resp.headers['Location'], current_page)
         current_page = resp.headers['Location']
 
         return current_page
 
     def check_choose_your_side(self, start_page):
         resp = self.client.get(start_page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         content = resp.get_data(True)
 
-        self.assertRegexpMatches(content, 'Choose your side')
-        self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c')
+        self.assertRegex(content, 'Choose your side')
+        self.assertRegex(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c')
         return start_page
 
     def retrieve_content(self, page):
         response = self.client.get(page, follow_redirects=False)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         content = response.get_data(True)
         return content
 
     def routing_pick_your_character_light_side(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'A wise choice young Yedi. Pick your hero')
-        self.assertRegexpMatches(content, '91631df0-4356-4e9f-a9d9-ce8b08d26eb3')
-        self.assertRegexpMatches(content, 'Do you want to pick a ship?')
-        self.assertRegexpMatches(content, '2e0989b8-5185-4ba6-b73f-c126e3a06ba7')
+        self.assertRegex(content, 'A wise choice young Yedi. Pick your hero')
+        self.assertRegex(content, '91631df0-4356-4e9f-a9d9-ce8b08d26eb3')
+        self.assertRegex(content, 'Do you want to pick a ship?')
+        self.assertRegex(content, '2e0989b8-5185-4ba6-b73f-c126e3a06ba7')
         return page
 
     def routing_pick_your_character_dark_side(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'Good! Your hate has made you powerful. Pick your baddie')
-        self.assertRegexpMatches(content, '653e6407-43d6-4dfc-8b11-a673a73d602d')
-        self.assertRegexpMatches(content, 'Do you want to pick a ship?')
-        self.assertRegexpMatches(content, 'pel989b8-5185-4ba6-b73f-c126e3a06ba7')
+        self.assertRegex(content, 'Good! Your hate has made you powerful. Pick your baddie')
+        self.assertRegex(content, '653e6407-43d6-4dfc-8b11-a673a73d602d')
+        self.assertRegex(content, 'Do you want to pick a ship?')
+        self.assertRegex(content, 'pel989b8-5185-4ba6-b73f-c126e3a06ba7')
         return page
 
     def routing_select_your_ship_light_side(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'Which ship do you want?')
-        self.assertRegexpMatches(content, 'Millennium Falcon')
-        self.assertRegexpMatches(content, 'X-wing')
-        self.assertRegexpMatches(content, 'a2c2649a-85ff-4a26-ba3c-e1880f7c807b')
+        self.assertRegex(content, 'Which ship do you want?')
+        self.assertRegex(content, 'Millennium Falcon')
+        self.assertRegex(content, 'X-wing')
+        self.assertRegex(content, 'a2c2649a-85ff-4a26-ba3c-e1880f7c807b')
         return page
 
     def routing_select_your_ship_dark_side(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'Which ship do you want?')
-        self.assertRegexpMatches(content, 'TIE Fighter')
-        self.assertRegexpMatches(content, 'Death Star')
-        self.assertRegexpMatches(content, 'a5d5ca1a-cf58-4626-be35-dce81297688b')
+        self.assertRegex(content, 'Which ship do you want?')
+        self.assertRegex(content, 'TIE Fighter')
+        self.assertRegex(content, 'Death Star')
+        self.assertRegex(content, 'a5d5ca1a-cf58-4626-be35-dce81297688b')
         return page
 
     def check_quiz_first_page(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, ">Save and continue<")
-        self.assertRegexpMatches(content, 'Star Wars Quiz')
-        self.assertRegexpMatches(content, 'May the force be with you young EQ developer')
+        self.assertRegex(content, ">Save and continue<")
+        self.assertRegex(content, 'Star Wars Quiz')
+        self.assertRegex(content, 'May the force be with you young EQ developer')
 
         # Integer question
-        self.assertRegexpMatches(content, 'How old is Chewy?')
-        self.assertRegexpMatches(content, '6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b')
+        self.assertRegex(content, 'How old is Chewy?')
+        self.assertRegex(content, '6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b')
 
         # Currency question
-        self.assertRegexpMatches(content, 'How many Octillions do Nasa reckon it would cost to build a death star?')
-        self.assertRegexpMatches(content, '92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c')
+        self.assertRegex(content, 'How many Octillions do Nasa reckon it would cost to build a death star?')
+        self.assertRegex(content, '92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c')
 
         # Radio box question
-        self.assertRegexpMatches(content,
+        self.assertRegex(content,
                                  'What animal was used to create the engine sound of the Empire&#39;s TIE fighters?')  # NOQA
-        self.assertRegexpMatches(content, 'Lion')
-        self.assertRegexpMatches(content, 'Cow')
-        self.assertRegexpMatches(content, 'Elephant')
-        self.assertRegexpMatches(content, 'Hippo')
-        self.assertRegexpMatches(content, 'a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d')
+        self.assertRegex(content, 'Lion')
+        self.assertRegex(content, 'Cow')
+        self.assertRegex(content, 'Elephant')
+        self.assertRegex(content, 'Hippo')
+        self.assertRegex(content, 'a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d')
 
         # Checkbox question
-        self.assertRegexpMatches(content, 'Which 3 have wielded a green lightsaber?')
-        self.assertRegexpMatches(content, 'Luke Skywalker')
-        self.assertRegexpMatches(content, 'Anakin Skywalker')
-        self.assertRegexpMatches(content, 'Obi-Wan Kenobi')
-        self.assertRegexpMatches(content, 'Yoda')
-        self.assertRegexpMatches(content, 'Rey')
-        self.assertRegexpMatches(content, 'Qui-Gon Jinn')
-        self.assertRegexpMatches(content, '9587eb9b-f24e-4dc0-ac94-66117b896c10')
+        self.assertRegex(content, 'Which 3 have wielded a green lightsaber?')
+        self.assertRegex(content, 'Luke Skywalker')
+        self.assertRegex(content, 'Anakin Skywalker')
+        self.assertRegex(content, 'Obi-Wan Kenobi')
+        self.assertRegex(content, 'Yoda')
+        self.assertRegex(content, 'Rey')
+        self.assertRegex(content, 'Qui-Gon Jinn')
+        self.assertRegex(content, '9587eb9b-f24e-4dc0-ac94-66117b896c10')
 
         # Date Range question
-        self.assertRegexpMatches(content, 'When was The Empire Strikes Back released?')
-        self.assertRegexpMatches(content, 'Period from')
-        self.assertRegexpMatches(content, 'Period to')
-        self.assertRegexpMatches(content, 'Day')
-        self.assertRegexpMatches(content, 'Month')
-        self.assertRegexpMatches(content, 'Year')
-        self.assertRegexpMatches(content, '6fd644b0-798e-4a58-a393-a438b32fe637')
-        self.assertRegexpMatches(content, '06a6a4b7-6ce4-4687-879d-3443cd8e2ff0')
+        self.assertRegex(content, 'When was The Empire Strikes Back released?')
+        self.assertRegex(content, 'Period from')
+        self.assertRegex(content, 'Period to')
+        self.assertRegex(content, 'Day')
+        self.assertRegex(content, 'Month')
+        self.assertRegex(content, 'Year')
+        self.assertRegex(content, '6fd644b0-798e-4a58-a393-a438b32fe637')
+        self.assertRegex(content, '06a6a4b7-6ce4-4687-879d-3443cd8e2ff0')
 
         # Pipe Test for question description
-        self.assertRegexpMatches(content,
+        self.assertRegex(content,
                                  'It could be between 1 April 2016 and 30 April 2016. But that might just be a test')  # NOQA
 
         return page
 
     def check_second_quiz_page(self, page):
         resp = self.client.get(page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         content = resp.get_data(True)
 
         # Pipe Test for section title
-        self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
+        self.assertRegex(content, 'On 2 June 1983 how many were employed?')
 
         # Textarea question
-        self.assertRegexpMatches(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegexpMatches(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertRegex(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
 
     def submit_page(self, page, form_data):
         resp = self.client.post(page, data=form_data, follow_redirects=False)
@@ -220,7 +220,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def navigate_to_page(self, page):
         resp = self.client.get(page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         return resp
 
     def complete_survey(self, summary_page, form_type_id):
@@ -230,10 +230,10 @@ class StarWarsTestCase(IntegrationTestCase):
         }
         resp = self.client.post(summary_page, data=post_data, follow_redirects=False)
 
-        self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'/questionnaire\/0\/' + form_type_id + '\/789\/thank-you$')
+        self.assertEqual(resp.status_code, 302)
+        self.assertRegex(resp.headers['Location'], r'/questionnaire\/0\/' + form_type_id + '\/789\/thank-you$')
         resp = self.client.get(resp.headers['Location'], follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
     def rogue_one_login_and_check_introduction_text(self):
         self.token = create_token('rogue_one', '0')
@@ -242,27 +242,27 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def rogue_one_check_introduction_text(self, response):
         content = response.get_data(True)
-        self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '(?s)Rogue One')
+        self.assertRegex(content, '<title>Introduction</title>')
+        self.assertRegex(content, '(?s)Rogue One')
 
     def rogue_one_check_character_page(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'Who do you want to know more about?')
-        self.assertRegexpMatches(content, 'Jyn Erso')
-        self.assertRegexpMatches(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-3')
+        self.assertRegex(content, 'Who do you want to know more about?')
+        self.assertRegex(content, 'Jyn Erso')
+        self.assertRegex(content, 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-3')
 
     def rogue_one_check_description_page(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'An accomplished Rebel Alliance Intelligence Officer')
-        self.assertRegexpMatches(content, 'Do you like this page?')
-        self.assertRegexpMatches(content, '3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-2')
+        self.assertRegex(content, 'An accomplished Rebel Alliance Intelligence Officer')
+        self.assertRegex(content, 'Do you like this page?')
+        self.assertRegex(content, '3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-2')
 
     def rogue_one_check_takings_page(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'In millions, how much do you think this film will take?')
-        self.assertRegexpMatches(content, 'a04a516d-502d-4068-bbed-a43427c68cd9')
+        self.assertRegex(content, 'In millions, how much do you think this film will take?')
+        self.assertRegex(content, 'a04a516d-502d-4068-bbed-a43427c68cd9')
 
     def rogue_one_check_confirmation_page(self, page):
         content = self.retrieve_content(page)
-        self.assertRegexpMatches(content, 'Summary')
-        self.assertRegexpMatches(content, 'Please check carefully before submission')
+        self.assertRegex(content, 'Summary')
+        self.assertRegex(content, 'Please check carefully before submission')

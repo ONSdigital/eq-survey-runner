@@ -1,6 +1,7 @@
+import unittest
+
 from app.schema.block import Block
 from app.schema.section import Section
-import unittest
 
 
 class BlockModelTest(unittest.TestCase):
@@ -18,12 +19,12 @@ class BlockModelTest(unittest.TestCase):
         block.add_section(section1)
         block.add_section(section2)
 
-        self.assertEquals(block.id, 'some-id')
-        self.assertEquals(block.title, 'my block object')
+        self.assertEqual(block.id, 'some-id')
+        self.assertEqual(block.title, 'my block object')
         self.assertIsNone(block.container)
-        self.assertEquals(len(block.sections), 2)
-        self.assertEquals(block.sections[0], section1)
-        self.assertEquals(block.sections[1], section2)
+        self.assertEqual(len(block.sections), 2)
+        self.assertEqual(block.sections[0], section1)
+        self.assertEqual(block.sections[1], section2)
 
-        self.assertEquals(section1.container, block)
-        self.assertEquals(section2.container, block)
+        self.assertEqual(section1.container, block)
+        self.assertEqual(section2.container, block)

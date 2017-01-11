@@ -1,6 +1,5 @@
-from tests.integration.integration_test_case import IntegrationTestCase
-
 from app.submitter.submitter import SubmitterFactory, Submitter
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class MyMockSubmitter(Submitter):

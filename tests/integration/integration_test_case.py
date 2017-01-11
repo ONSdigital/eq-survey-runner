@@ -1,11 +1,9 @@
-import unittest
-
 import os
+import unittest
 
 from app import create_app
 from app import settings
 from app.data_model.database import QuestionnaireState
-from app.storage.storage_factory import get_storage
 
 
 class IntegrationTestCase(unittest.TestCase):
@@ -26,6 +24,8 @@ class IntegrationTestCase(unittest.TestCase):
 
     def tearDown(self):
         # Clear storage after test ends
+        # pylint: disable=maybe-no-member
+        # SQLAlchemy doing declarative magic which makes session scope query property available
         QuestionnaireState.query.delete()
 
     def postRedirectGet(self, url, post_data):
@@ -39,9 +39,9 @@ class IntegrationTestCase(unittest.TestCase):
         :return: tuple of the re-direct URL and response object from the GET
         """
         resp = self.client.post(url, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
         resp_url = resp.headers['Location']
         resp = self.client.get(resp_url, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         return resp_url, resp
 

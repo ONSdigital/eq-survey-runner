@@ -46,7 +46,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
 
         # Form submission with no errors
         resp = self.submit_page(first_page, form_data)
-        self.assertNotEquals(resp.headers['Location'], first_page)
+        self.assertNotEqual(resp.headers['Location'], first_page)
 
         # Second page
         second_page = resp.headers['Location']
@@ -54,7 +54,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         content = resp.get_data(True)
 
         # Pipe Test for section title
-        self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
+        self.assertRegex(content, 'On 2 June 1983 how many were employed?')
 
         # Textarea question
         self.assertRegexpMatches(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
@@ -76,20 +76,20 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         resp = self.navigate_to_page(third_page)
         content = resp.get_data(True)
 
-        self.assertRegexpMatches(content, "Finally, which  is your favourite film?")
+        self.assertRegex(content, "Finally, which  is your favourite film?")
 
         form_data = {
-          # final answers
-          "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b": "Naboo",
-          "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1": "5",
-          # User Action
-          "action[save_continue]": "Save &amp; Continue"
+            # final answers
+            "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b": "Naboo",
+            "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1": "5",
+            # User Action
+            "action[save_continue]": "Save &amp; Continue"
         }
 
         resp = self.submit_page(third_page, form_data)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
+        self.assertRegex(resp.headers['Location'], star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         summary_url = resp.headers['Location']
 
@@ -122,7 +122,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         for key, value in expected.items():
             self.assertIn(key, data.keys())
             self.assertTrue(type(expected[key]) == type(data[key]))  # NOQA
-            self.assertEquals(expected[key], data[key])
+            self.assertEqual(expected[key], data[key])
             if isinstance(expected[key], list):
                 for item in expected[key]:
                     self.assertIn(item, data[key])
