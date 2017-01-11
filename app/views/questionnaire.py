@@ -78,6 +78,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
     q_manager.build_block_state(this_location, answers)
 
     block = g.schema.get_item_by_id(block_id)
+    # pylint: disable=maybe-no-member
     template = block.type if block and block.type else 'questionnaire'
 
     current_location = Location(group_id, group_instance, block_id)

@@ -23,6 +23,8 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
     JWT signed with JWS RS256 And encrypted with JWE RSA-OAEP
     """
     def __init__(self):
+        # pylint: disable=maybe-no-member
+        # password and key variables are dynamically assigned
         self.logger = logging.getLogger(__name__)
         if settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY is None or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY is None \
                 or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD is None:

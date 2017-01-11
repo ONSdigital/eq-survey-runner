@@ -19,6 +19,8 @@ KID = 'EDCSR'
 
 class Encrypter(JWEEncrypter):
 
+    # pylint: disable=maybe-no-member
+    # password and key variables are dynamically assigned
     def __init__(self,
                  private_key=settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY,
                  private_key_password=settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD,
