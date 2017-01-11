@@ -208,40 +208,43 @@ def get_field(answer, label):
     field = None
     guidance = answer['guidance'] if 'guidance' in answer else ''
 
-    if answer['type'] == 'Radio':
-        field = SelectField(
+    field = {
+        "Radio": SelectField(
             label=label,
             description=guidance,
             choices=build_choices(answer['options']),
             widget=ListWidget(),
             option_widget=RadioInput(),
-        )
-    elif answer['type'] == 'Checkbox':
-        field = SelectMultipleField(
+        ),
+        "Checkbox": SelectMultipleField(
             label=label,
             description=guidance,
             choices=build_choices(answer['options']),
             widget=ListWidget(),
             option_widget=CheckboxInput(),
-        )
-    elif answer['type'] == 'Date':
-        field = FormField(
+        ),
+        "Date": FormField(
             get_date_form(),
             label=label,
             description=guidance,
-        )
-    elif answer['type'] == 'MonthYearDate':
-        field = FormField(
+        ),
+        "MonthYearDate": FormField(
             MonthYearDateForm,
             label=label,
             description=guidance,
-        )
-    elif answer['type'] == 'Currency':
-        field = get_currency_field(answer, label)
-    elif answer['type'] == 'PositiveInteger' or answer['type'] == 'Integer' or answer['type'] == 'Percentage':
-        field = get_integer_field(answer, label)
-    elif answer['type'] == 'TextArea':
-        field = TextAreaField(
+        ),
+        "Currency": get_currency_field(answer, label),
+        "Integer": get_integer_field(answer, label),
+        "PositiveInteger": get_integer_field(answer, label),
+        "Percentage": IntegerField(
+            label=label,
+            description=guidance,
+            widget=TextInput(),
+            validators=[
+                validators.NumberRange(min=0, max=100),
+            ],
+        ),
+        "TextArea": TextAreaField(
             label=label,
             description=guidance,
             widget=TextArea(),
@@ -249,16 +252,16 @@ def get_field(answer, label):
                 validators.Optional(),
             ],
             filters=[lambda x: x if x else None],
-        )
-    elif answer['type'] == 'TextField':
-        field = StringField(
+        ),
+        "TextField": StringField(
             label=label,
             description=guidance,
             widget=TextArea(),
             validators=[
                 validators.Optional(),
             ],
-        )
+        ),
+    }[answer['type']]
 
     if field is None:
         logger.info("Could not find field for answer type %s", answer['type'])
