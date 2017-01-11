@@ -66,7 +66,7 @@
                                                 {
                                                     "label": "Other",
                                                     "q_code": 6,
-                                                    "description": "Choose any other topping"
+                                                    "description": "Choose any other topping",
                                                     "value": "Other",
                                                     "child_answer_id": "other-answer-mandatory"
                                                 }
@@ -82,8 +82,7 @@
                                             "mandatory": false,
                                             "id": "other-answer-mandatory",
                                             "label": "Please specify other",
-                                            "type": "TextField",
-                                            "description": "Choose any other topping"
+                                            "type": "TextField"
                                         }
                                     ],
                                     "description": "",
@@ -137,6 +136,7 @@
                                                 {
                                                     "label": "Other",
                                                     "value": "Other",
+                                                    "description": "Choose any other topping",
                                                     "child_answer_id": "other-answer-non-mandatory"
                                                 }
                                             ],
@@ -151,8 +151,7 @@
                                             "mandatory": false,
                                             "id": "other-answer-non-mandatory",
                                             "label": "Please specify other",
-                                            "type": "TextField",
-                                            "description": "Choose any other topping"
+                                            "type": "TextField"
                                         }
                                     ],
                                     "description": "",

@@ -49,6 +49,7 @@
                                                 },
                                                 {
                                                     "label": "Other",
+                                                    "description": "An answer is required.",
                                                     "value": "Other",
                                                     "child_answer_id": "other-answer-mandatory"
                                                 }
@@ -66,7 +67,6 @@
                                             "guidance": "",
                                             "id": "other-answer-mandatory",
                                             "label": "Please specify other",
-                                            "description": "An answer is required.",
                                             "q_code": "20",
                                             "type": "TextField",
                                             "validation": {
@@ -117,6 +117,7 @@
                                                 },
                                                 {
                                                     "label": "Other",
+                                                    "description": "This is not mandatory.",
                                                     "value": "Other",
                                                     "child_answer_id": "other-answer-non-mandatory"
                                                 }
@@ -134,12 +135,8 @@
                                             "guidance": "",
                                             "id": "other-answer-non-mandatory",
                                             "label": "Please specify other",
-                                            "description": "This is not mandatory.",
                                             "q_code": "20",
-                                            "type": "TextField",
-                                            "validation": {
-                                                "messages": {}
-                                            }
+                                            "type": "TextField"
                                         }
                                     ],
                                     "description": "",
