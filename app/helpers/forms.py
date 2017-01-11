@@ -4,7 +4,7 @@ import logging
 from app.helpers.schema_helper import SchemaHelper
 from app.jinja_filters import format_household_member_name
 from app.validation.error_messages import error_messages
-from app.validation.validators import positive_integer_type_check, date_check, month_year_check, DateRangeCheck
+from app.validation.validators import DateRangeCheck, date_check, month_year_check, positive_integer_type_check
 
 from flask_wtf import FlaskForm
 
@@ -24,6 +24,13 @@ def build_choices(options):
 
 
 def build_relationship_choices(answer_store, group_instance):
+    """
+    A function to build a list of tuples of as yet undefined person relationships
+
+    :param answer_store: The answer store to use for current answers
+    :param group_instance: The instance of the group being iterated over
+    :return:
+    """
     household_answers = answer_store.filter(answer_id='household')
 
     first_names = [answer['first_name'] for answer in household_answers[0]['value']]
@@ -209,7 +216,7 @@ def get_field(answer, label):
             widget=ListWidget(),
             option_widget=RadioInput(),
         )
-    if answer['type'] == 'Checkbox':
+    elif answer['type'] == 'Checkbox':
         field = SelectMultipleField(
             label=label,
             description=guidance,
@@ -217,62 +224,23 @@ def get_field(answer, label):
             widget=ListWidget(),
             option_widget=CheckboxInput(),
         )
-    if answer['type'] == 'Date':
+    elif answer['type'] == 'Date':
         field = FormField(
             get_date_form(),
             label=label,
             description=guidance,
         )
-    if answer['type'] == 'MonthYearDate':
+    elif answer['type'] == 'MonthYearDate':
         field = FormField(
             MonthYearDateForm,
             label=label,
             description=guidance,
         )
-    if answer['type'] == 'Currency':
-        if answer['mandatory'] is True:
-            field = IntegerField(
-                label=label,
-                description=guidance,
-                widget=TextInput(),
-                validators=[
-                    validators.InputRequired(
-                        message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
-                    ),
-                    positive_integer_type_check,
-                ],
-            )
-        else:
-            field = IntegerField(
-                label=label,
-                description=guidance,
-                widget=TextInput(),
-                validators=[
-                    validators.Optional(),
-                ],
-            )
-    if answer['type'] == 'PositiveInteger' or answer['type'] == 'Integer':
-        if answer['mandatory'] is True:
-            field = IntegerField(
-                label=label,
-                description=guidance,
-                widget=TextInput(),
-                validators=[
-                    validators.InputRequired(
-                        message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
-                    ),
-                ],
-            )
-        else:
-            field = IntegerField(
-                label=label,
-                description=guidance,
-                widget=TextInput(),
-                validators=[
-                    validators.Optional(),
-                ],
-            )
-    if answer['type'] == 'TextArea':
+    elif answer['type'] == 'Currency':
+        field = get_currency_field(answer, label)
+    elif answer['type'] == 'PositiveInteger' or answer['type'] == 'Integer' or answer['type'] == 'Percentage':
+        field = get_integer_field(answer, label)
+    elif answer['type'] == 'TextArea':
         field = TextAreaField(
             label=label,
             description=guidance,
@@ -282,7 +250,7 @@ def get_field(answer, label):
             ],
             filters=[lambda x: x if x else None],
         )
-    if answer['type'] == 'TextField':
+    elif answer['type'] == 'TextField':
         field = StringField(
             label=label,
             description=guidance,
@@ -296,3 +264,54 @@ def get_field(answer, label):
         logger.info("Could not find field for answer type %s", answer['type'])
 
     return field
+
+
+def get_currency_field(answer, label):
+    guidance = answer['guidance'] if 'guidance' in answer else ''
+
+    if answer['mandatory'] is True:
+        return IntegerField(
+            label=label,
+            description=guidance,
+            widget=TextInput(),
+            validators=[
+                validators.InputRequired(
+                    message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
+                ),
+                positive_integer_type_check,
+            ],
+        )
+    else:
+        return IntegerField(
+            label=label,
+            description=guidance,
+            widget=TextInput(),
+            validators=[
+                validators.Optional(),
+            ],
+        )
+
+
+def get_integer_field(answer, label):
+    guidance = answer['guidance'] if 'guidance' in answer else ''
+
+    if answer['mandatory'] is True:
+        return IntegerField(
+            label=label,
+            description=guidance,
+            widget=TextInput(),
+            validators=[
+                validators.InputRequired(
+                    message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
+                ),
+            ],
+        )
+    else:
+        return IntegerField(
+            label=label,
+            description=guidance,
+            widget=TextInput(),
+            validators=[
+                validators.Optional(),
+            ],
+        )

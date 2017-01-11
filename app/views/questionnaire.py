@@ -4,7 +4,7 @@ from app.authentication.session_storage import session_storage
 from app.data_model.answer_store import Answer
 
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
-from app.helpers.forms import build_relationship_choices, HouseHoldCompositionForm, Struct, generate_form, generate_relationship_form
+from app.helpers.forms import HouseHoldCompositionForm, Struct, build_relationship_choices, generate_form, generate_relationship_form
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
@@ -94,13 +94,13 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
         content = {
             'form': form,
             'block': block,
-            'relation_instances': choices
+            'relation_instances': choices,
         }
     else:
         answers = answer_store.map(
             group_id=group_id,
             group_instance=group_instance,
-            block_id=block_id
+            block_id=block_id,
         )
 
         form = generate_form(block, answers)
@@ -150,7 +150,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
 @login_required
 def post_household_composition(eq_id, form_type, collection_id, group_id):
-    path_finder = PathFinder(g.schema_json, get_metadata(current_user), get_answer_store(current_user))
+    path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
     answer_store = get_answer_store(current_user)
 
     form = HouseHoldCompositionForm(csrf_enabled=False, obj=request.form)
@@ -259,9 +259,6 @@ def get_confirmation(eq_id, form_type, collection_id):
 @login_required
 def get_thank_you(eq_id, form_type, collection_id):
     thank_you_page = _render_template({}, block_id='thank-you')
-
-    if not _check_same_survey(eq_id, form_type, collection_id):
-        return redirect("/information/multiple-surveys")
 
     # Delete user data on request of thank you page.
     _delete_user_data()
