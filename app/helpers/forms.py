@@ -69,6 +69,14 @@ class Struct:
 
 
 def get_date_form(to_field_data=None, validate_range=False):
+    """
+    Returns a date form metaclass with appropriate validators. Used in both date and
+    date range form creation.
+
+    :param to_field_data: The data coming from the
+    :param validate_range: Whether the dateform should add a daterange validator
+    :return:
+    """
     class DateForm(Form):
 
         MONTH_CHOICES = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
@@ -164,6 +172,13 @@ def generate_relationship_form(block_json, number_of_entries, data):
 
 
 def get_date_data(form_data, answer_id):
+    """
+    Extract date from a form and return as a dict that wtforms would use
+
+    :param form_data: The form data to search through
+    :param answer_id: The answer_id to search for
+    :return:
+    """
     day_id = answer_id + '-day'
     month_id = answer_id + '-month'
     year_id = answer_id + '-year'
@@ -205,7 +220,6 @@ def generate_form(block_json, data):
 
 
 def get_field(answer, label):
-    field = None
     guidance = answer['guidance'] if 'guidance' in answer else ''
 
     field = {
