@@ -53,7 +53,7 @@ def build_relationship_choices(answer_store, group_instance):
 
     choices = []
 
-    for index, remaining_person in enumerate(remaining_people):
+    for remaining_person in remaining_people:
         other_person_name = format_household_member_name([
             remaining_person['first-name'],
             remaining_person['last-name'],
