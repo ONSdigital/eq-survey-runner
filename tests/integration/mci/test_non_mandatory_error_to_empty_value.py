@@ -26,15 +26,15 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         # We fill in our answers, generating a error in a non-mandatory field
         form_data = {
             # Start Date
-            "bb8168e6-2272-450d-b5a7-d3170508efb2": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "04",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "total-sales-food": "01",
+            "period-from-month": "04",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2017",
+            "period-to-day": "01",
+            "period-to-month": "04",
+            "period-to-year": "2017",
             # Non Mandatory field but fails validation as should be Integer
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "failing test",
+            "total-retail-turnover": "failing test",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -50,15 +50,15 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         # We remove the non-mandatory field value
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "4",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "period-from-day": "01",
+            "period-from-month": "4",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "30",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "period-to-day": "30",
+            "period-to-month": "04",
+            "period-to-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            "total-retail-turnover": "100000",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }

@@ -3,11 +3,11 @@ import QuestionPage from '../../question.page'
 class InternetSalesPage extends QuestionPage {
 
   setInternetSales(sales) {
-    browser.setValue('[name="66612bbb-bc06-4d38-b32c-e2a113641c8a"]', sales)
+    browser.setValue('[name="internet-sales-answer"]', sales)
     return this
   }
    getInternetSales() {
-    return browser.element('[name="66612bbb-bc06-4d38-b32c-e2a113641c8a"]').getValue()
+    return browser.element('[name="internet-sales-answer"]').getValue()
    }
 }
 

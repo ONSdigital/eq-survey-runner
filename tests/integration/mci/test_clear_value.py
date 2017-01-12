@@ -48,15 +48,15 @@ class TestClearValue(IntegrationTestCase):
         # but that we do not proceed to the next page
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "30",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "4",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "period-from-day": "30",
+            "period-from-month": "4",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "period-to-day": "01",
+            "period-to-month": "04",
+            "period-to-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",   # Valid value
+            "total-retail-turnover": "100000",   # Valid value
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -72,15 +72,15 @@ class TestClearValue(IntegrationTestCase):
         # Fill the dates incorrectly again, but this time supply an invalid value for retail total
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "30",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "04",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "period-from-day": "30",
+            "period-from-month": "04",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "period-to-day": "01",
+            "period-to-month": "04",
+            "period-to-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "Invalid Retail Total",
+            "total-retail-turnover": "Invalid Retail Total",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -99,15 +99,15 @@ class TestClearValue(IntegrationTestCase):
         # Fill the dates incorrectly again, but this time supply an valid value for retail total
         form_data = {
             # Start Date
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "30",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "04",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "period-from-day": "30",
+            "period-from-month": "04",
+            "period-from-year": "2016",
             # End Date
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "01",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "period-to-day": "01",
+            "period-to-month": "04",
+            "period-to-year": "2016",
             # Total Turnover
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "1000",
+            "total-retail-turnover": "1000",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }

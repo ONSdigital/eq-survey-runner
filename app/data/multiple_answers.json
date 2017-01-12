@@ -19,16 +19,16 @@
 
                 {
                     "type": "questionnaire",
-                    "id": "personal_details_block",
+                    "id": "personal-details-block",
                     "sections": [
                         {
-                            "id": "personal_details_section",
+                            "id": "personal-details-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "first_name_answer",
+                                            "id": "first-name-answer",
                                             "label": "What is your first name",
                                             "mandatory": false,
                                             "options": [],
@@ -37,7 +37,7 @@
                                         },
                                         {
                                             "guidance": "",
-                                            "id": "surname_answer",
+                                            "id": "surname-answer",
                                             "label": "What is your surname",
                                             "mandatory": false,
                                             "options": [],
@@ -46,7 +46,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "personal_details_question",
+                                    "id": "personal-details-question",
                                     "title": "Tell me about yourself",
                                     "description" : "Answer the question with multiple answers",
                                     "type": "General"
@@ -58,7 +58,7 @@
                     "title": "Multiple questions"
                 }
             ],
-            "id": "multiple_questions_group",
+            "id": "multiple-questions-group",
             "title": ""
         }
     ]

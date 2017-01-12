@@ -2,6 +2,11 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "definitions": {
+    "id": {
+        "type": "string",
+        "description": "A lowercase alphanumeric string separated by hyphens.",
+        "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
+    },
     "when": {
       "type": "array",
       "description": "Configure conditional rules. By adding more than one `condition` element it will evaluate as an and rule.",
@@ -178,7 +183,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "$ref": "#/definitions/id"
           },
           "title": {
             "type": "string"
@@ -220,7 +225,7 @@
               "type": "object",
               "properties": {
                 "id": {
-                  "type": "string"
+                  "$ref": "#/definitions/id"
                 },
                 "title": {
                   "type": "string"
@@ -237,7 +242,7 @@
                     "type": "object",
                     "properties": {
                       "id": {
-                        "type": "string"
+                        "$ref": "#/definitions/id"
                       },
                       "title": {
                         "type": "string"
@@ -254,7 +259,7 @@
                           "type": "object",
                           "properties": {
                             "id": {
-                              "type": "string"
+                              "$ref": "#/definitions/id"
                             },
                             "title": {
                               "type": "string"
@@ -307,7 +312,7 @@
                                 "type": "object",
                                 "properties": {
                                   "id": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/id"
                                   },
                                   "q_code": {
                                     "type": "string"

@@ -15,7 +15,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
         }
 
         first_survey_resp = self.client.post('/questionnaire/1/0205/789/introduction', data=post_data, follow_redirects=False)
-        self.assertRegexpMatches(first_survey_resp.headers['Location'], r'\/questionnaire\/1\/0205\/789\/14ba4707-321d-441d-8d21-b8367366e766\/0\/cd3b74d1-b687-4051-9634-a8f9ce10a27d$')
+        self.assertRegexpMatches(first_survey_resp.headers['Location'], r'\/questionnaire\/1\/0205\/789\/mci\/0\/reporting-period$')
 
         # We start the second survey
         second_survey_token = create_token('0203', '1')
@@ -26,17 +26,17 @@ class MultipleSurveysOpen(IntegrationTestCase):
         }
 
         second_survey_resp = self.client.post('/questionnaire/1/0203/789/introduction', data=post_data, follow_redirects=False)
-        self.assertRegexpMatches(second_survey_resp.headers['Location'], r'\/questionnaire\/1\/0203\/789\/14ba4707-321d-441d-8d21-b8367366e766\/0\/cd3b74d1-b687-4051-9634-a8f9ce10a27d$')
+        self.assertRegexpMatches(second_survey_resp.headers['Location'], r'\/questionnaire\/1\/0203\/789\/mci\/0\/reporting-period')
 
         # We now try to post to the first survey, which is out of date
         form_data = {
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "01",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "4",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "30",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "04",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
-            "e81adc6d-6fb0-4155-969c-d0d646f15345": "100000",
+            "period-from-day": "01",
+            "period-from-month": "4",
+            "period-from-year": "2016",
+            "period-to-day": "30",
+            "period-to-month": "04",
+            "period-to-year": "2016",
+            "total-retail-turnover": "100000",
             "action[save_continue]": "Save &amp; Continue"
         }
 

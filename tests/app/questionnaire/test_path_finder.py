@@ -15,14 +15,14 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("1_0102.json")
 
         current_location = Location(
-            block_id="7418732e-12fb-4270-8307-5682ac63bfae",
-            group_id="07f40cd2-0704-4804-9f32-19309089a51b",
+            block_id="total-retail-turnover",
+            group_id="rsi",
             group_instance=0
         )
 
         next_location = Location(
-            block_id="02ed26ad-4cfc-4e29-a946-630476228b2c",
-            group_id="07f40cd2-0704-4804-9f32-19309089a51b",
+            block_id="internet-sales",
+            group_id="rsi",
             group_instance=0
         )
 
@@ -33,14 +33,14 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("1_0102.json")
 
         current_location = Location(
-            block_id="02ed26ad-4cfc-4e29-a946-630476228b2c",
-            group_id="07f40cd2-0704-4804-9f32-19309089a51b",
+            block_id="internet-sales",
+            group_id="rsi",
             group_instance=0
         )
 
         previous_location = Location(
-            block_id="7418732e-12fb-4270-8307-5682ac63bfae",
-            group_id="07f40cd2-0704-4804-9f32-19309089a51b",
+            block_id="total-retail-turnover",
+            group_id="rsi",
             group_instance=0
         )
 
@@ -113,12 +113,12 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("1_0112.json")
 
         expected_path = [
-            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "980b148e-0856-4e50-9afe-67a4fa6ae13b"),
-            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "6c8a2f39-e0d8-406f-b463-2151225abea2"),
-            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "0c7c8876-6a63-4251-ac29-b821b3e9b1bc"),
-            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "a42b5752-1896-4f52-9d58-320085be92a7"),
-            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "0b29d3f7-5905-43d8-9921-5b353db68104"),
-            Location("f74d1147-673c-497a-9616-763829d944ac", 0, "7e2d49eb-ffc7-4a61-a45d-eba336d1d0e6")
+            Location("rsi", 0, "reporting-period"),
+            Location("rsi", 0, "total-retail-turnover"),
+            Location("rsi", 0, "internet-sales"),
+            Location("rsi", 0, "changes-in-retail-turnover"),
+            Location("rsi", 0, "number-of-employees"),
+            Location("rsi", 0, "changes-in-employees")
         ]
 
         path_finder = PathFinder(survey)
