@@ -9,17 +9,17 @@ class VisitorUkResidentPage extends MultipleChoiceWithOtherPage {
   }
 
   clickVisitorUkResidentAnswerYesUsuallyLivesInTheUnitedKingdom() {
-    browser.element('[id="visitor-uk-resident-answer-1"]').click()
+    browser.element('[id="visitor-uk-resident-answer-0"]').click()
     return this
   }
 
   clickVisitorUkResidentAnswerOther() {
-    browser.element('[id="visitor-uk-resident-answer-2"]').click()
+    browser.element('[id="visitor-uk-resident-answer-1"]').click()
     return this
   }
 
   setVisitorUkResidentAnswerOtherText(value) {
-    browser.setValue('[id="visitor-uk-resident-answer-2-other"]', value)
+    browser.setValue('[id="visitor-uk-resident-answer-1-other"]', value)
     return this
   }
 

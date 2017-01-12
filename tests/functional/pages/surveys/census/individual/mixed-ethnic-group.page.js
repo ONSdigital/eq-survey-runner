@@ -9,27 +9,27 @@ class MixedEthnicGroupPage extends MultipleChoiceWithOtherPage {
   }
 
   clickMixedEthnicGroupAnswerWhiteAndBlackCaribbean() {
-    browser.element('[id="mixed-ethnic-group-answer-1"]').click()
+    browser.element('[id="mixed-ethnic-group-answer-0"]').click()
     return this
   }
 
   clickMixedEthnicGroupAnswerWhiteAndBlackAfrican() {
-    browser.element('[id="mixed-ethnic-group-answer-2"]').click()
+    browser.element('[id="mixed-ethnic-group-answer-1"]').click()
     return this
   }
 
   clickMixedEthnicGroupAnswerWhiteAndAsian() {
-    browser.element('[id="mixed-ethnic-group-answer-3"]').click()
+    browser.element('[id="mixed-ethnic-group-answer-2"]').click()
     return this
   }
 
   clickMixedEthnicGroupAnswerOther() {
-    browser.element('[id="mixed-ethnic-group-answer-4"]').click()
+    browser.element('[id="mixed-ethnic-group-answer-3"]').click()
     return this
   }
 
   setMixedEthnicGroupAnswerOtherText(value) {
-    browser.setValue('[id="mixed-ethnic-group-answer-4-other"]', value)
+    browser.setValue('[id="mixed-ethnic-group-answer-3-other"]', value)
     return this
   }
 

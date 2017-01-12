@@ -65,7 +65,7 @@ class HouseholdMember extends EventEmitter {
       const newId = `${id}_${index - 1}`
       input.setAttribute('id', newId)
       label.setAttribute('for', newId)
-      input.setAttribute('name', `${input.name.split('_')[0]}_${index - 1}`)
+      input.setAttribute('name', `${input.name.replace(/\d+/, index - 1)}`)
     })
   }
 

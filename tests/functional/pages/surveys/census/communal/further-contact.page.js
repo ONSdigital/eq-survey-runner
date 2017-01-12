@@ -9,12 +9,12 @@ class FurtherContactPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFurtherContactAnswerYes() {
-    browser.element('[id="further-contact-answer-1"]').click()
+    browser.element('[id="further-contact-answer-0"]').click()
     return this
   }
 
   clickFurtherContactAnswerNo() {
-    browser.element('[id="further-contact-answer-2"]').click()
+    browser.element('[id="further-contact-answer-1"]').click()
     return this
   }
 

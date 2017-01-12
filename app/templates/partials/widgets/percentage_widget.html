@@ -9,13 +9,13 @@
 <div class="input-type input-type--percentage">
 
     {% set input = {
-    'type': 'number',
-    'classes': 'input-type__input',
-    'hasType': true,
-    'value': answer.value|e,
-    'name': answer.name,
-    'id': answer.id
-  } %}
+        'type': 'number',
+        'classes': 'input-type__input',
+        'hasType': true,
+        'value': input.data|e,
+        'name': input.name,
+        'id': answer.id
+    } %}
 
     {% include 'partials/forms/input.html' %}
 

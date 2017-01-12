@@ -9,12 +9,12 @@ class PrivateResponsePage extends MultipleChoiceWithOtherPage {
   }
 
   clickPrivateResponseAnswerNoIDoNotWantToRequestAPersonalForm() {
-    browser.element('[id="private-response-answer-1"]').click()
+    browser.element('[id="private-response-answer-0"]').click()
     return this
   }
 
   clickPrivateResponseAnswerYesIWantToRequestAPersonalForm() {
-    browser.element('[id="private-response-answer-2"]').click()
+    browser.element('[id="private-response-answer-1"]').click()
     return this
   }
 

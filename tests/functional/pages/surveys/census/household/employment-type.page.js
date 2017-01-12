@@ -9,37 +9,37 @@ class EmploymentTypePage extends MultipleChoiceWithOtherPage {
   }
 
   clickEmploymentTypeAnswerWorkingAsAnEmployee() {
-    browser.element('[id="employment-type-answer-1"]').click()
+    browser.element('[id="employment-type-answer-0"]').click()
     return this
   }
 
   clickEmploymentTypeAnswerOnAGovernmentSponsoredTrainingScheme() {
-    browser.element('[id="employment-type-answer-2"]').click()
+    browser.element('[id="employment-type-answer-1"]').click()
     return this
   }
 
   clickEmploymentTypeAnswerSelfEmployedOrFreelance() {
-    browser.element('[id="employment-type-answer-3"]').click()
+    browser.element('[id="employment-type-answer-2"]').click()
     return this
   }
 
   clickEmploymentTypeAnswerWorkingPaidOrUnpaidForYouOwnOrYourFamilySBusiness() {
-    browser.element('[id="employment-type-answer-4"]').click()
+    browser.element('[id="employment-type-answer-3"]').click()
     return this
   }
 
   clickEmploymentTypeAnswerAwayFromWorkIllOnMaternityLeaveOnHolidayOrTemporarilyLaidOff() {
-    browser.element('[id="employment-type-answer-5"]').click()
+    browser.element('[id="employment-type-answer-4"]').click()
     return this
   }
 
   clickEmploymentTypeAnswerDoingAnyOtherKindOfPaidWork() {
-    browser.element('[id="employment-type-answer-6"]').click()
+    browser.element('[id="employment-type-answer-5"]').click()
     return this
   }
 
   clickEmploymentTypeAnswerNoneOfTheAbove() {
-    browser.element('[id="employment-type-answer-7"]').click()
+    browser.element('[id="employment-type-answer-6"]').click()
     return this
   }
 

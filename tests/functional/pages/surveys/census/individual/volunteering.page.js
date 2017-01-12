@@ -9,22 +9,22 @@ class VolunteeringPage extends MultipleChoiceWithOtherPage {
   }
 
   clickVolunteeringAnswerNo() {
-    browser.element('[id="volunteering-answer-1"]').click()
+    browser.element('[id="volunteering-answer-0"]').click()
     return this
   }
 
   clickVolunteeringAnswerYesAtLeastOnceAWeek() {
-    browser.element('[id="volunteering-answer-2"]').click()
+    browser.element('[id="volunteering-answer-1"]').click()
     return this
   }
 
   clickVolunteeringAnswerYesLessThanOnceAWeekButAtLeastOnceAMonth() {
-    browser.element('[id="volunteering-answer-3"]').click()
+    browser.element('[id="volunteering-answer-2"]').click()
     return this
   }
 
   clickVolunteeringAnswerYesLessOften() {
-    browser.element('[id="volunteering-answer-4"]').click()
+    browser.element('[id="volunteering-answer-3"]').click()
     return this
   }
 

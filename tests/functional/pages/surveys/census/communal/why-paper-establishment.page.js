@@ -9,22 +9,22 @@ class WhyPaperEstablishmentPage extends MultipleChoiceWithOtherPage {
   }
 
   clickWhyPaperEstablishmentAnswerMoreConvenient() {
-    browser.element('[id="why-paper-establishment-answer-1"]').click()
+    browser.element('[id="why-paper-establishment-answer-0"]').click()
     return this
   }
 
   clickWhyPaperEstablishmentAnswerDonTTrustInternetOrSecurityConcerns() {
-    browser.element('[id="why-paper-establishment-answer-2"]').click()
+    browser.element('[id="why-paper-establishment-answer-1"]').click()
     return this
   }
 
   clickWhyPaperEstablishmentAnswerOther() {
-    browser.element('[id="why-paper-establishment-answer-3"]').click()
+    browser.element('[id="why-paper-establishment-answer-2"]').click()
     return this
   }
 
   setWhyPaperEstablishmentAnswerOtherText(value) {
-    browser.setValue('[id="why-paper-establishment-answer-3-other"]', value)
+    browser.setValue('[id="why-paper-establishment-answer-2-other"]', value)
     return this
   }
 

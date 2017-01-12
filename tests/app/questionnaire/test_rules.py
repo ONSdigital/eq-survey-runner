@@ -390,3 +390,17 @@ class TestRules(TestCase):
         number_of_repeats = evaluate_repeat(repeat, answer_store)
 
         self.assertEqual(number_of_repeats, 1)
+
+    def test_should_repeat_for_answer_value_count_minus_one(self):
+        # Given
+        repeat = {
+            'answer_id': 'my_answer',
+            'type': 'answer_value_count_minus_one'
+        }
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='my_answer', value=['1', '2', '3']))
+
+        # When
+        number_of_repeats = evaluate_repeat(repeat, answer_store)
+
+        self.assertEqual(number_of_repeats, 2)

@@ -1,3 +1,5 @@
+{% set input = form[answer['id']] %}
+
 <div class="field">
-  {{ answer.schema_item.widget.render(answer)|safe}}
+    {% include 'partials/forms/input.html' %}
 </div>

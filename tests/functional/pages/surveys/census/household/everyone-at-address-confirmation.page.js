@@ -9,12 +9,12 @@ class EveryoneAtAddressConfirmationPage extends MultipleChoiceWithOtherPage {
   }
 
   clickEveryoneAtAddressConfirmationAnswerYes() {
-    browser.element('[id="everyone-at-address-confirmation-answer-1"]').click()
+    browser.element('[id="everyone-at-address-confirmation-answer-0"]').click()
     return this
   }
 
   clickEveryoneAtAddressConfirmationAnswerNoINeedToAddAnotherPerson() {
-    browser.element('[id="everyone-at-address-confirmation-answer-2"]').click()
+    browser.element('[id="everyone-at-address-confirmation-answer-1"]').click()
     return this
   }
 

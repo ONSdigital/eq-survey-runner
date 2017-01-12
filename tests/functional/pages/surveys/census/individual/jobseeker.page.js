@@ -9,12 +9,12 @@ class JobseekerPage extends MultipleChoiceWithOtherPage {
   }
 
   clickJobseekerAnswerYes() {
-    browser.element('[id="jobseeker-answer-1"]').click()
+    browser.element('[id="jobseeker-answer-0"]').click()
     return this
   }
 
   clickJobseekerAnswerNo() {
-    browser.element('[id="jobseeker-answer-2"]').click()
+    browser.element('[id="jobseeker-answer-1"]').click()
     return this
   }
 

@@ -9,12 +9,12 @@ class Over16Page extends MultipleChoiceWithOtherPage {
   }
 
   clickOver16AnswerYes() {
-    browser.element('[id="over-16-answer-1"]').click()
+    browser.element('[id="over-16-answer-0"]').click()
     return this
   }
 
   clickOver16AnswerNo() {
-    browser.element('[id="over-16-answer-2"]').click()
+    browser.element('[id="over-16-answer-1"]').click()
     return this
   }
 

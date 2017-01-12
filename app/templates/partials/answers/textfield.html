@@ -1,3 +1,18 @@
+{% set input = form[answer.id] if input is undefined else input %}
+
 <div class="field">
-  {{ answer.schema_item.widget.render(answer)|safe}}
+    {% set label = {
+      'for': answer.id,
+      'text': answer.label
+    } %}
+    {% include 'partials/forms/label.html' %}
+
+    {% set input = {
+      'type': 'text',
+      'data': input.data or ''|e,
+      'name': input.name,
+      'id': answer.id
+    } %}
+    {% set input_placeholder = answer.placeholder %}
+    {% include 'partials/forms/input.html' %}
 </div>

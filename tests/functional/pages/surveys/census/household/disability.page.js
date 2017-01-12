@@ -9,17 +9,17 @@ class DisabilityPage extends MultipleChoiceWithOtherPage {
   }
 
   clickDisabilityAnswerYesLimitedALot() {
-    browser.element('[id="disability-answer-1"]').click()
+    browser.element('[id="disability-answer-0"]').click()
     return this
   }
 
   clickDisabilityAnswerYesLimitedALittle() {
-    browser.element('[id="disability-answer-2"]').click()
+    browser.element('[id="disability-answer-1"]').click()
     return this
   }
 
   clickDisabilityAnswerNo() {
-    browser.element('[id="disability-answer-3"]').click()
+    browser.element('[id="disability-answer-2"]').click()
     return this
   }
 

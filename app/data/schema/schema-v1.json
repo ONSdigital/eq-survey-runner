@@ -111,7 +111,7 @@
                 "type": "string"
               },
               "type": {
-                "enum": ["answer_value", "answer_count", "answer_count_minus_one"]
+                "enum": ["answer_value", "answer_count", "answer_count_minus_one", "answer_value_count_minus_one"]
               }
             },
             "required": [
@@ -308,6 +308,9 @@
                                 "properties": {
                                   "id": {
                                     "type": "string"
+                                  },
+                                  "parent_answer_id": {
+                                      "type": "string"
                                   },
                                   "q_code": {
                                     "type": "string"

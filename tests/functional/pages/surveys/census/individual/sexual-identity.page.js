@@ -9,27 +9,27 @@ class SexualIdentityPage extends MultipleChoiceWithOtherPage {
   }
 
   clickSexualIdentityAnswerHeterosexualOrStraight() {
-    browser.element('[id="sexual-identity-answer-1"]').click()
+    browser.element('[id="sexual-identity-answer-0"]').click()
     return this
   }
 
   clickSexualIdentityAnswerGayOrLesbian() {
-    browser.element('[id="sexual-identity-answer-2"]').click()
+    browser.element('[id="sexual-identity-answer-1"]').click()
     return this
   }
 
   clickSexualIdentityAnswerBisexual() {
-    browser.element('[id="sexual-identity-answer-3"]').click()
+    browser.element('[id="sexual-identity-answer-2"]').click()
     return this
   }
 
   clickSexualIdentityAnswerOther() {
-    browser.element('[id="sexual-identity-answer-4"]').click()
+    browser.element('[id="sexual-identity-answer-3"]').click()
     return this
   }
 
   setSexualIdentityAnswerOtherText(value) {
-    browser.setValue('[id="sexual-identity-answer-4-other"]', value)
+    browser.setValue('[id="sexual-identity-answer-3-other"]', value)
     return this
   }
 
