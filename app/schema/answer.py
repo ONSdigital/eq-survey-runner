@@ -14,13 +14,14 @@ class Answer(Item):
     def __init__(self, answer_id=None):
         super().__init__(answer_id)
         self.label = ""
+        self.description = ""
         self.guidance = ""
         self.type = None
         self.code = None
         self.container = None
         self.mandatory = False
         self.messages = {}
-        self.templatable_properties = []
+        self.templatable_properties = ['label']
         self.options = []
         self.alias = None
         self.type_checkers = []

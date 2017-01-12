@@ -14,6 +14,7 @@ class TextWidget(Widget):
                 'name': self.name,
                 'id': self.id,
                 'label': state.schema_item.label or '',
+                'description': state.schema_item.description,
                 'value': state.value if state.value is not None else '',
             },
         }

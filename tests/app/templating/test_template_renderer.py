@@ -76,7 +76,6 @@ class TestTemplateRenderer(unittest.TestCase):
 
             }
         ]
-        question.templatable_properties = ['guidance']
         context = {'yourself': 'Joe Bloggs', 'someone': 'Jane Bloggs', 'someone_else': 'John Doe'}
 
         schema = TemplateRenderer().render_schema_items(question, context)

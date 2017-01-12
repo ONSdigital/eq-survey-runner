@@ -78,4 +78,4 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
 
         # Check we are on the next page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, 'Why doesn&#39;t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertRegexpMatches(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')

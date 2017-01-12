@@ -211,7 +211,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertRegexpMatches(content, 'On 2 June 1983 how many were employed?')
 
         # Textarea question
-        self.assertRegexpMatches(content, 'Why doesn&#39;t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertRegexpMatches(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
         self.assertRegexpMatches(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
 
     def submit_page(self, page, form_data):

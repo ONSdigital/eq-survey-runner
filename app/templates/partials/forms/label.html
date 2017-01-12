@@ -6,7 +6,7 @@
 
 <label {{attr|xmlattr}}>
   <div class="label__inner">
-    {{label.text}}
+    {{label.text|safe}}
     {% if label.description %}
       <br />
       <span class="label__description pluto">{{label.description|safe}}</span>

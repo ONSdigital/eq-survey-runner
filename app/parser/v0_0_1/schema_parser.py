@@ -254,6 +254,7 @@ class SchemaParser(AbstractSchemaParser):
         answer.type = answer_type
         answer.code = ParserUtils.get_optional_string(schema, 'q_code')
         answer.label = ParserUtils.get_optional_string(schema, 'label')
+        answer.description = ParserUtils.get_optional_string(schema, 'description')
         answer.guidance = ParserUtils.get_optional_string(schema, 'guidance')
         answer.mandatory = ParserUtils.get_required_boolean(schema, 'mandatory')
         answer.options = ParserUtils.get_optional_array(schema, 'options')
