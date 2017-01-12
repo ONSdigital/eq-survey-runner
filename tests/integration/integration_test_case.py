@@ -40,7 +40,7 @@ class IntegrationTestCase(unittest.TestCase):
         """
         resp = self.client.post(url, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
-        resp_url = resp.headers['Location']
+        resp_url = resp.location
         resp = self.client.get(resp_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
         return resp_url, resp

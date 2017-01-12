@@ -28,7 +28,7 @@ class TestHappyPath(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertRegex(content, '<title>Introduction</title>')
+        self.assertIn('<title>Introduction</title>', content)
 
         # We proceed to the questionnaire
         post_data = {
@@ -37,18 +37,18 @@ class TestHappyPath(IntegrationTestCase):
         resp = self.client.post('/questionnaire/' + eq_id + '/' + form_type_id + '/789/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Survey</title>')
-        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegex(content, "What are the dates of the sales period you are reporting for\?")
-        self.assertRegex(content, "1 April 2016")
-        self.assertRegex(content, "30 April 2016")
+        self.assertIn('<title>Survey</title>', content)
+        self.assertIn('>Monthly Business Survey - Retail Sales Index</', content)
+        self.assertIn("What are the dates of the sales period you are reporting for?", content)
+        self.assertIn("1 April 2016", content)
+        self.assertIn("30 April 2016", content)
 
     def try_another_date(self, form_type_id, eq_id):
         # Try another date
@@ -60,7 +60,7 @@ class TestHappyPath(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertRegex(content, '<title>Introduction</title>')
+        self.assertIn('<title>Introduction</title>', content)
 
         # We proceed to the questionnaire
         post_data = {
@@ -69,15 +69,15 @@ class TestHappyPath(IntegrationTestCase):
         resp = self.client.post('/questionnaire/' + eq_id + '/' + form_type_id + '/789/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Survey</title>')
-        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegex(content, "What are the dates of the sales period you are reporting for\?")
-        self.assertRegex(content, "1 August 2017")
-        self.assertRegex(content, "31 August 2017")
+        self.assertIn('<title>Survey</title>', content)
+        self.assertIn('>Monthly Business Survey - Retail Sales Index</', content)
+        self.assertIn("What are the dates of the sales period you are reporting for?", content)
+        self.assertIn("1 August 2017", content)
+        self.assertIn("31 August 2017", content)

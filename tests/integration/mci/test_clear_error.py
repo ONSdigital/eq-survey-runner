@@ -18,9 +18,9 @@ class TestClearError(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertRegex(content, '<title>Introduction</title>')
-        self.assertRegex(content, '>Start survey<')
-        self.assertRegex(content, 'Monthly Business Survey - Retail Sales Index')
+        self.assertIn('<title>Introduction</title>', content)
+        self.assertIn('>Start survey<', content)
+        self.assertIn('Monthly Business Survey - Retail Sales Index', content)
 
         # We proceed to the questionnaire
         post_data = {
@@ -29,19 +29,19 @@ class TestClearError(IntegrationTestCase):
         resp = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Survey</title>')
-        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegex(content, "What are the dates of the sales period you are reporting for\?")
-        self.assertRegex(content, ">Save and continue<")
+        self.assertIn('<title>Survey</title>', content)
+        self.assertIn('>Monthly Business Survey - Retail Sales Index</', content)
+        self.assertIn("What are the dates of the sales period you are reporting for?", content)
+        self.assertIn(">Save and continue<", content)
         # check with have some guidance
-        self.assertRegex(content, "alcoholic drink")
+        self.assertIn("alcoholic drink", content)
 
         # We fill in our answers using an incorrect date range
         form_data = {
@@ -65,7 +65,7 @@ class TestClearError(IntegrationTestCase):
 
         # Get the page content
         content = resp.get_data(True)
-        self.assertRegex(content, "The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")
+        self.assertIn("The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.", content)
 
         # Fill the dates in correctly, but this time miss out the required value
         form_data = {
@@ -89,5 +89,5 @@ class TestClearError(IntegrationTestCase):
 
         # Get the page content again
         content = resp.get_data(True)
-        self.assertRegex(content, "Please provide a value, even if your value is 0.")
-        self.assertNotRegex(content, "The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")
+        self.assertIn("Please provide a value, even if your value is 0.", content)
+        self.assertNotIn("The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.", content)

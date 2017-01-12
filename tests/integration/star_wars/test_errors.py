@@ -1,6 +1,5 @@
-from werkzeug.datastructures import MultiDict
-
 from tests.integration.create_token import create_token
+from tests.integration.star_wars import BLOCK_2_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
@@ -12,32 +11,11 @@ class TestPageErrors(StarWarsTestCase):
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
-        form_data = MultiDict({
+        resp = self.submit_page(first_page, BLOCK_2_DEFAULT_ANSWERS)
 
-            "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "234",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "40",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
-
-            "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
-
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "1983",
-
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "29",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "05",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "1983",
-
-            "action[save_continue]": "Save &amp; Continue"
-        })
-
-        resp = self.submit_page(first_page, form_data)
-
-        self.assertNotEqual(resp.headers['Location'], first_page)
+        self.assertNotEqual(resp.location, first_page)
         # Second page
-        second_page = resp.headers['Location']
+        second_page = resp.location
 
         self.check_second_quiz_page(second_page)
 
@@ -52,28 +30,8 @@ class TestPageErrors(StarWarsTestCase):
         self.submit_page(second_page, form_data)
 
         # We fill in our answers missing one required field
-        form_data = {
-
-            "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "234",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "40",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "1370",
-
-            # Miss this as well
-            "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "",  # Missing required answer
-            "7587eb9b-f24e-4dc0-ac94-66118b896c10": "Luke, I am your father",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10": "[Luke Skywalker, Yoda, Qui-Gon Jinn]",
-
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "28",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "05",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "1983",
-
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "29",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "05",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "1983",
-
-            # User Action
-            "action[save_continue]": "Save &amp; Continue"
-        }
+        form_data = BLOCK_2_DEFAULT_ANSWERS.copy()
+        del form_data['a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d']
 
         # We submit the form
         resp = self.submit_page(first_page, form_data)

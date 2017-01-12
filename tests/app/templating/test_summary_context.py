@@ -36,7 +36,7 @@ class TestSummaryContext(unittest.TestCase):
     def test_build_summary_rendering_context(self):
         answer_store = MagicMock()
         routing_path = [Location(
-            block_id='f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0',
+            block_id='choose_your_side_block',
             group_id='14ba4707-321d-441d-8d21-b8367366e766',
             group_instance=0,
         )]

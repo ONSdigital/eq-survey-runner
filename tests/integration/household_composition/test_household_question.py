@@ -35,7 +35,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("action[save_continue]", "")
 
         resp = self.client.post(first_page, data=form_data, follow_redirects=False)
-        composition_summary_page = resp.headers['Location']
+        composition_summary_page = resp.location
 
         _, resp_url = self.household_answer_correct(composition_summary_page, 'Yes')
         resp = self.client.get(resp_url)
@@ -97,7 +97,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("action[save_continue]", "")
 
         resp = self.client.post(resp_url, data=form_data, follow_redirects=False)
-        resp_url = resp.headers['Location']
+        resp_url = resp.location
 
         self.assertEqual(resp.status_code, 302)
 
@@ -179,7 +179,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         resp = self.client.post(self.INTRODUCTION_PAGE, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        return resp.headers['Location']
+        return resp.location
 
     def navigate_to_page(self, page):
         resp = self.client.get(page, follow_redirects=False)
@@ -191,7 +191,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("household-composition-add-another", answer)
         form_data.add("action[save_continue]", "")
         resp = self.client.post(resp_url, data=form_data, follow_redirects=False)
-        resp_url = resp.headers['Location']
+        resp_url = resp.location
         return resp, resp_url
 
 

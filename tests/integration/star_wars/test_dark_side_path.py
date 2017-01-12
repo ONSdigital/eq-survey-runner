@@ -21,7 +21,7 @@ class TestDarkSidePath(StarWarsTestCase):
                            - Invalid (Bad date)
         '''
 
-        form_data = MultiDict({
+        form_data = {
 
             "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "555555555555555555",
             "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "text",
@@ -40,7 +40,7 @@ class TestDarkSidePath(StarWarsTestCase):
             "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
 
             "action[save_continue]": "Save &amp; Continue"
-        })
+        }
 
         # Submit the form
         resp = self.submit_page(first_page, form_data)
@@ -180,10 +180,10 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Submit form with no errors
         resp = self.submit_page(first_page, form_data)
-        self.assertNotEqual(resp.headers['Location'], first_page)
+        self.assertNotEqual(resp.location, first_page)
 
         # Second page
-        second_page = resp.headers['Location']
+        second_page = resp.location
         resp = self.navigate_to_page(second_page)
 
         content = resp.get_data(True)

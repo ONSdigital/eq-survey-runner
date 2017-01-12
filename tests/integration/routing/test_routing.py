@@ -19,8 +19,8 @@ class TestRouting(IntegrationTestCase):
     def navigate_route(self, route):
 
         resp = self.start_questionnaire()
-        current_page = resp.headers['Location']
-        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
+        current_page = resp.location
+        resp = self.client.get(resp.location, follow_redirects=True)
 
         summary_assertions = []
 
@@ -35,10 +35,10 @@ class TestRouting(IntegrationTestCase):
 
                 # Post the data
                 resp = self.client.post(current_page, data=form_data, follow_redirects=False)
-                current_page = resp.headers['Location']
+                current_page = resp.location
 
                 # We must check we are on the next page
-                self.assertRegex(resp.headers['Location'], rule['destination_id'])
+                self.assertRegex(resp.location, rule['destination_id'])
                 resp = self.client.get(current_page, follow_redirects=False)
 
                 if 'summary' in current_page:

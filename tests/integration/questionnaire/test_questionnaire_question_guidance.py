@@ -11,7 +11,7 @@ class TestQuestionnaireQuestionGuidance(IntegrationTestCase):
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
 
         # When we navigate to the block with all guidance features enabled
-        resp_url, resp = self.postRedirectGet(resp.headers['Location'], {'action[start_questionnaire]': ''})
+        resp_url, resp = self.postRedirectGet(resp.location, {'action[start_questionnaire]': ''})
 
         # Then we are presented with the question guidance with all features enabled
         self.assertIn('block-test-guidance-all', resp_url)

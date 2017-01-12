@@ -18,7 +18,7 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         resp = self.client.post(mci_test_urls.MCI_0203_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
@@ -69,4 +69,4 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegex(resp.headers['Location'], mci_test_urls.MCI_0203_SUMMARY_REGEX)
+        self.assertRegex(resp.location, mci_test_urls.MCI_0203_SUMMARY_REGEX)

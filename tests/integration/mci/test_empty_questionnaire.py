@@ -10,7 +10,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         token = create_token('0205', '1')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
-        intro_page_url = resp.headers['Location']
+        intro_page_url = resp.location
 
         # Navigate to the Introduction Page
         resp = self.client.get(intro_page_url, follow_redirects=False)
@@ -28,14 +28,14 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         resp = self.client.post(intro_page_url, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        first_question_page = resp.headers['Location']
+        first_question_page = resp.location
 
         # We try to access the submission page without entering anything
         resp = self.client.get(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         # Check we are redirected back to the questionnaire
-        self.assertEqual(resp.headers['Location'], first_question_page)
+        self.assertEqual(resp.location, first_question_page)
 
         # We try posting to the submission page without our answers
         post_data = {
@@ -45,4 +45,4 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # Check we are redirected back to the questionnaire
-        self.assertEqual(resp.headers['Location'], first_question_page)
+        self.assertEqual(resp.location, first_question_page)

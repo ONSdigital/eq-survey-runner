@@ -33,7 +33,7 @@ class TestEmptySubmission(IntegrationTestCase):
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegex(content, "What are the dates of the sales period you are reporting for\?")
+        self.assertRegex(content, "What are the dates of the sales period you are reporting for?")
         self.assertRegex(content, ">Save and continue<")
 
         form_data = {
@@ -62,7 +62,7 @@ class TestEmptySubmission(IntegrationTestCase):
         resp = self.client.get(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
         content = resp.get_data(True)
-        self.assertRegex(content, "What are the dates of the sales period you are reporting for\?")
+        self.assertRegex(content, "What are the dates of the sales period you are reporting for?")
 
         form_data = {
             # Start Date
@@ -84,8 +84,8 @@ class TestEmptySubmission(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegex(resp.headers['Location'], mci_test_urls.MCI_0205_SUMMARY_REGEX)
-        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
+        self.assertRegex(resp.location, mci_test_urls.MCI_0205_SUMMARY_REGEX)
+        resp = self.client.get(resp.location, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
 
         # We are on the review answers page
@@ -100,8 +100,8 @@ class TestEmptySubmission(IntegrationTestCase):
         }
         resp = self.client.post(mci_test_urls.MCI_0205_SUMMARY, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
-        self.assertRegex(resp.headers['Location'], mci_test_urls.MCI_0205_THANKYOU_REGEX)
-        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
+        self.assertRegex(resp.location, mci_test_urls.MCI_0205_THANKYOU_REGEX)
+        resp = self.client.get(resp.location, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
 
         # We are on the thank you page

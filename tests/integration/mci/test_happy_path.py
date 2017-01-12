@@ -30,7 +30,7 @@ class TestHappyPath(IntegrationTestCase):
         resp = self.client.post('/questionnaire/' + eq_id + '/' + form_type_id + '/789/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
@@ -39,7 +39,7 @@ class TestHappyPath(IntegrationTestCase):
         content = resp.get_data(True)
         self.assertRegex(content, '<title>Survey</title>')
         self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegex(content, "What are the dates of the sales period you are reporting for\?")
+        self.assertRegex(content, "What are the dates of the sales period you are reporting for?")
         self.assertRegex(content, ">Save and continue<")
         # check with have some guidance
         self.assertRegex(content, "alcoholic drink")
@@ -66,9 +66,9 @@ class TestHappyPath(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegex(resp.headers['Location'], r'\/questionnaire\/1\/' + form_type_id + '\/789\/summary$')
+        self.assertRegex(resp.location, r'\/questionnaire\/1\/' + form_type_id + r'\/789\/summary$')
 
-        summary_url = resp.headers['Location']
+        summary_url = resp.location
 
         resp = self.client.get(summary_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
@@ -87,8 +87,8 @@ class TestHappyPath(IntegrationTestCase):
         }
         resp = self.client.post(summary_url, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
-        self.assertRegex(resp.headers['Location'], r'\/questionnaire\/1\/' + form_type_id + '\/789\/thank-you$')
-        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
+        self.assertRegex(resp.location, r'\/questionnaire\/1\/' + form_type_id + r'\/789\/thank-you$')
+        resp = self.client.get(resp.location, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
 
         # We are on the thank you page

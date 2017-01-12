@@ -19,7 +19,7 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
         resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         post_data = {
             "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": " Bacon",
@@ -30,10 +30,10 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
 
         # Then
         # we are presented with a confirmation page
-        self.assertTrue("confirmation" in resp.headers['Location'])
+        self.assertTrue("confirmation" in resp.location)
         self.assertEqual(resp.status_code, 302)
 
-        resp = self.client.get(resp.headers['Location'], follow_redirects=False)
+        resp = self.client.get(resp.location, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
 
     def test_requesting_final_confirmation_before_finished_redirects(self):
@@ -51,8 +51,8 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
         resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(base_url + 'confirmation', follow_redirects=False)
-        self.assertEqual(resp.headers['Location'], block_one_url)
+        self.assertEqual(resp.location, block_one_url)
         self.assertEqual(resp.status_code, 302)

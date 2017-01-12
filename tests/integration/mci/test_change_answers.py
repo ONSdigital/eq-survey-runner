@@ -19,9 +19,9 @@ class TestHappyPath(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertRegex(content, '<title>Introduction</title>')
-        self.assertRegex(content, '>Start survey<')
-        self.assertRegex(content, 'Monthly Business Survey - Retail Sales Index')
+        self.assertIn('<title>Introduction</title>', content)
+        self.assertIn('>Start survey<', content)
+        self.assertIn('Monthly Business Survey - Retail Sales Index', content)
 
         # We proceed to the questionnaire
         post_data = {
@@ -30,17 +30,17 @@ class TestHappyPath(IntegrationTestCase):
         resp = self.client.post('/questionnaire/' + eq_id + '/' + form_type_id + '/789/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(block_one_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Survey</title>')
-        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegex(content, "What are the dates of the sales period you are reporting for\?")
-        self.assertRegex(content, ">Save and continue<")
+        self.assertIn('<title>Survey</title>', content)
+        self.assertIn('>Monthly Business Survey - Retail Sales Index</', content)
+        self.assertIn("What are the dates of the sales period you are reporting for?", content)
+        self.assertIn(">Save and continue<", content)
 
         # We fill in our answers
         form_data = {
@@ -63,17 +63,17 @@ class TestHappyPath(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegex(resp.headers['Location'], r'\/questionnaire\/1/' + form_type_id + '\/789\/summary$')
+        self.assertRegex(resp.location, r'\/questionnaire\/1/' + form_type_id + '\/789\/summary$', content)
 
-        summary_url = resp.headers['Location']
+        summary_url = resp.location
 
         resp = self.client.get(summary_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Summary</title>')
-        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegex(content, '>Your responses<')
-        self.assertRegex(content, 'Please check carefully before submission')
-        self.assertRegex(content, '>Submit answers<')
+        self.assertIn('<title>Summary</title>', content)
+        self.assertIn('>Monthly Business Survey - Retail Sales Index</', content)
+        self.assertIn('>Your responses<', content)
+        self.assertIn('Please check carefully before submission', content)
+        self.assertIn('>Submit answers<', content)
