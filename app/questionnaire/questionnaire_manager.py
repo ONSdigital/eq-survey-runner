@@ -3,9 +3,6 @@ import logging
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
 
-from app.templating.schema_context import build_schema_context
-from app.templating.template_renderer import renderer
-
 from flask import g
 
 from flask_login import current_user
@@ -81,7 +78,6 @@ class QuestionnaireManager(object):
         self.state = None
         if self._schema.item_exists(location.block_id):
             metadata = get_metadata(current_user)
-            answer_store = get_answer_store(current_user)
             schema_item = self._schema.get_item_by_id(location.block_id)
             self.state = schema_item.construct_state()
 
@@ -90,9 +86,6 @@ class QuestionnaireManager(object):
                 answer.group_instance = location.group_instance
             self.state.update_state(answers)
             self.state.set_skipped(get_answers(current_user), metadata)
-
-            context = build_schema_context(metadata, self._schema.aliases, answer_store, location.group_instance)
-            renderer.render_state(self.state, context)
 
     def get_state_answers(self, item_id):
         # get the answers from the state

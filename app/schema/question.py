@@ -8,6 +8,7 @@ class Question(Item):
         self.title = None
         self.number = None
         self.description = ""
+        self.guidance = None
         self.answers = []
         self.children = self.answers
         self.container = None
