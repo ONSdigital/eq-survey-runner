@@ -326,7 +326,10 @@ def _build_template(current_location, context=None, template=None):
     previous_location = path_finder.get_previous_location(current_location)
 
     previous_url = None
-    if previous_location is not None and not SchemaHelper.is_first_block_id_for_group(g.schema_json, current_location.group_id, current_location.block_id):
+
+    is_first_block_for_group = SchemaHelper.is_first_block_id_for_group(g.schema_json, current_location.group_id, current_location.block_id)
+
+    if previous_location is not None and not is_first_block_for_group and not current_location.block_id == 'thank-you':
         previous_url = previous_location.url(metadata)
 
     return _render_template(context, current_location.block_id, front_end_navigation, metadata_context, previous_url, template)
