@@ -58,9 +58,9 @@ class Questionnaire(object):
             elif self.aliases[item.alias] != item.id:
                 raise QuestionnaireException('{} is not a unique alias'.format(item.alias))
 
-    def unregister(self, id):
-        if id in self.items_by_id.keys():
-            del self.items_by_id[id]
+    def unregister(self, item_id):
+        if item_id in self.items_by_id.keys():
+            del self.items_by_id[item_id]
 
     def get_error_message(self, error, item_id):
         schema_item = self.get_item_by_id(item_id)

@@ -64,7 +64,7 @@ def save_questionnaire_store(response):
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["GET"])
 @login_required
-def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
+def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument
     # Filter answers down to those we may need to render
     answer_store = get_answer_store(current_user)
     answers = answer_store.map(group_id=group_id, group_instance=group_instance, block_id=block_id)
@@ -86,7 +86,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
-def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
+def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument
     path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
@@ -115,7 +115,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
 @questionnaire_blueprint.route('introduction', methods=["GET"])
 @login_required
-def get_introduction(eq_id, form_type, collection_id):
+def get_introduction(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     group_id = SchemaHelper.get_first_group_id(g.schema_json)
     current_location = Location(group_id, group_instance=0, block_id='introduction')
     return _build_template(current_location, get_introduction_context(g.schema_json))
@@ -123,7 +123,7 @@ def get_introduction(eq_id, form_type, collection_id):
 
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
 @login_required
-def post_interstitial(eq_id, form_type, collection_id, block_id):
+def post_interstitial(eq_id, form_type, collection_id, block_id):  # pylint: disable=unused-argument
     path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
@@ -148,7 +148,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
 @login_required
-def get_summary(eq_id, form_type, collection_id):
+def get_summary(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     answer_store = get_answer_store(current_user)
     path_finder = PathFinder(g.schema_json, answer_store, get_metadata(current_user))
     latest_location = path_finder.get_latest_location(get_completed_blocks(current_user))
@@ -166,7 +166,7 @@ def get_summary(eq_id, form_type, collection_id):
 
 @questionnaire_blueprint.route('confirmation', methods=["GET"])
 @login_required
-def get_confirmation(eq_id, form_type, collection_id):
+def get_confirmation(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     answer_store = get_answer_store(current_user)
     path_finder = PathFinder(g.schema_json, answer_store, get_metadata(current_user))
 
@@ -186,7 +186,7 @@ def get_confirmation(eq_id, form_type, collection_id):
 
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
 @login_required
-def get_thank_you(eq_id, form_type, collection_id):
+def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     group_id = SchemaHelper.get_last_group_id(g.schema_json)
     current_location = Location(group_id, group_instance=0, block_id='thank-you')
     thank_you_page = _build_template(current_location=current_location)

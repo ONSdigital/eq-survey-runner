@@ -39,7 +39,8 @@ class SessionStorage:
             # session has a add function but it is wrapped in a session_scope which confuses pylint
             db_session.add(eq_session)
 
-    def has_user_id(self):
+    @staticmethod
+    def has_user_id():
         """
         Checks if a user has a stored id
         :return: boolean value

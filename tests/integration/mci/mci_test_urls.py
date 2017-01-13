@@ -11,7 +11,3 @@ MCI_0205_INTRODUCTION = MCI_0205_BASE + r'introduction'
 MCI_0205_BLOCK1 = MCI_0205_BASE + 'mci/0/reporting-period'
 MCI_0205_SUMMARY_REGEX = MCI_0205_BASE_REGEX + r'summary$'
 MCI_0205_THANKYOU_REGEX = MCI_0205_BASE_REGEX + r'thank-you$'
-
-
-
-

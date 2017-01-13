@@ -81,7 +81,7 @@ class TestStateItem(TestCase):
         section = Section()
         section.skip_condition = skip
 
-        state_item = StateItem(id='', schema_item=section)
+        state_item = StateItem(item_id='', schema_item=section)
 
         state_item.set_skipped(answers, {})
 
@@ -103,7 +103,7 @@ class TestStateItem(TestCase):
         section = Section()
         section.skip_condition = skip
 
-        state_item = StateItem(id='', schema_item=section)
+        state_item = StateItem(item_id='', schema_item=section)
 
         state_item.set_skipped(answers, {})
 
@@ -126,7 +126,7 @@ class TestStateItem(TestCase):
         section = Section()
         section.skip_condition = skip
 
-        state_item = StateItem(id='', schema_item=section)
+        state_item = StateItem(item_id='', schema_item=section)
 
         state_item.set_skipped({}, metadata)
 

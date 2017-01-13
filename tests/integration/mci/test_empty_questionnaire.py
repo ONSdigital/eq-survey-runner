@@ -21,7 +21,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         self.assertRegex(content, '>Start survey<')
 
         post_data = {
-          'action[start_questionnaire]': "Submit Answers"
+            'action[start_questionnaire]': "Submit Answers"
         }
 
         # Submit the Introduction page to get the first question page

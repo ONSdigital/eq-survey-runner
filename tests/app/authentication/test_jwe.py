@@ -17,7 +17,7 @@ class JWETest(unittest.TestCase):
     def test_valid_jwe(self):
         decoder = JWTDecryptor()
         token = decoder.decrypt_jwt_token(VALID_JWE)
-        self.assertEquals("jimmy", token.get("user"))
+        self.assertEqual("jimmy", token.get("user"))
 
     def test_does_not_contain_four_instances_of_full_stop(self):
         jwe = VALID_JWE.replace('.', '', 1)
@@ -30,7 +30,7 @@ class JWETest(unittest.TestCase):
         jwe_protected_header = b'{"enc":"A256GCM"}'
         encoder = Encoder()
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
-                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -41,7 +41,7 @@ class JWETest(unittest.TestCase):
         jwe_protected_header = b'{"alg":"PBES2_HS256_A128KW","enc":"A256GCM"}'
         encoder = Encoder()
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
-                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -53,7 +53,7 @@ class JWETest(unittest.TestCase):
 
         encoder = Encoder()
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
-                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -64,7 +64,7 @@ class JWETest(unittest.TestCase):
         jwe_protected_header = b'{"alg":"RSA-OAEP","enc":"A128GCM"}'
         encoder = Encoder()
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
-                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -75,7 +75,7 @@ class JWETest(unittest.TestCase):
         jwe_protected_header = b'{"alg":"RSA-OAEP","alg":"RSA-OAEP","enc":"A256GCM"}'
         encoder = Encoder()
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
-                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -86,7 +86,7 @@ class JWETest(unittest.TestCase):
         jwe_protected_header = b'{"alg":"RSA-OAEP","enc":"A256GCM", "test":"test"}'
         encoder = Encoder()
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
-                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))
+                                    jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -98,7 +98,7 @@ class JWETest(unittest.TestCase):
 
         encoder = Encoder()
         encoder.cek = cek
-        encrypted_key = encoder._encrypted_key(cek)
+        encrypted_key = encoder._encrypted_key(cek)  # pylint: disable=protected-access
         encrypted_key = encrypted_key[0:len(encrypted_key) - 2]
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), encrypted_key=encrypted_key)
 

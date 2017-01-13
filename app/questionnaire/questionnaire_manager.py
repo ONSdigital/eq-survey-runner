@@ -5,8 +5,6 @@ from flask_login import current_user
 
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
-from app.templating.schema_context import build_schema_context
-from app.templating.template_renderer import renderer
 
 logger = logging.getLogger(__name__)
 

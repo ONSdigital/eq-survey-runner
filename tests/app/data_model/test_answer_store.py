@@ -53,7 +53,7 @@ class TestAnswer(unittest.TestCase):
         self.assertEqual(answer_1.matches_dict(answer_2), True)
 
 
-class TestAnswerStore(unittest.TestCase):
+class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         self.store = AnswerStore()
 

@@ -110,7 +110,6 @@ def create_app():
         cache.init_app(application)  # Doesnt cache
 
     if settings.EQ_DEV_MODE:
-        # TODO fix health check so it no longer sends message to queue
         add_health_check(application, headers)
         start_dev_mode(application)
 

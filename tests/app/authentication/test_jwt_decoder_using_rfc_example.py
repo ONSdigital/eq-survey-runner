@@ -88,10 +88,10 @@ class JWTDecoderRFCTest(unittest.TestCase):
 
         self.assertEqual(jwe_protected_header, tokens[0])
 
-        cipher_text = decoder._base64_decode(tokens[3])
-        tag = bytes(decoder._base64_decode(tokens[4]))
+        cipher_text = decoder._base64_decode(tokens[3])  # pylint: disable=protected-access
+        tag = bytes(decoder._base64_decode(tokens[4]))  # pylint: disable=protected-access
 
-        decrypted_token = decoder._decrypt_cipher_text(cipher_text, iv, cek, tag, jwe_protected_header)
+        decrypted_token = decoder._decrypt_cipher_text(cipher_text, iv, cek, tag, jwe_protected_header)  # pylint: disable=protected-access
         self.assertEqual(plaintext, decrypted_token.decode())
 
 

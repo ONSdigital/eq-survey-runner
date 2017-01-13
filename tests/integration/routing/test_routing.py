@@ -67,10 +67,10 @@ class TestRouting(IntegrationTestCase):
         return form_data, rule_assertions
 
     def start_questionnaire(self):
-        self.token = create_token('star_wars', '0')
-        self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
+        token = create_token('star_wars', '0')
+        self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         post_data = {
-          'action[start_questionnaire]': 'Start Questionnaire'
+            'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
         return resp

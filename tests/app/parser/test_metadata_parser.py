@@ -5,7 +5,7 @@ from app.parser.metadata_parser import parse_metadata, is_valid_metadata
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
-class TestMetadataParser(SurveyRunnerTestCase):
+class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-public-methods
 
     def setUp(self):
         super().setUp()

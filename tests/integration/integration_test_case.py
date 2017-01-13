@@ -44,4 +44,3 @@ class IntegrationTestCase(unittest.TestCase):
         resp = self.client.get(resp_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
         return resp_url, resp
-

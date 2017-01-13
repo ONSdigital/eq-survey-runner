@@ -1,4 +1,6 @@
-from app.submitter.submitter import SubmitterFactory, Submitter
+from mock import patch, Mock
+
+from app.submitter.submitter import Submitter
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -33,9 +35,9 @@ class DownstreamTestCase(IntegrationTestCase):
 
     def setUp(self):
         super().setUp()
-        self._old_method = SubmitterFactory.get_submitter
-        SubmitterFactory.get_submitter = DownstreamTestCase.get_submitter
+        self.patcher = patch('app.views.questionnaire.SubmitterFactory')
+        submitter_factory = self.patcher.start()
+        submitter_factory.get_submitter = Mock(return_value=DownstreamTestCase.get_submitter())
 
     def tearDown(self):
-        DownstreamTestCase._submitter._message = None
-        SubmitterFactory.get_submitter = self._old_method
+        self.patcher.stop()

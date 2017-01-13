@@ -37,5 +37,3 @@ class TestMultipleSurveyError(IntegrationTestCase):
         self.assertRegex(content, 'Information')
         self.assertRegex(content, 'Unfortunately you can only complete one survey at a time.')
         self.assertRegex(content, 'Close this window to continue with your current survey.')
-
-

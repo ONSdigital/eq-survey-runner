@@ -6,9 +6,11 @@ from app.questionnaire_state.state_repeating_answer_question import RepeatingAns
 
 
 class RelationshipStateQuestion(RepeatingAnswerStateQuestion):
-    def __init__(self, id, schema_item):
-        super().__init__(id=id, schema_item=schema_item)
+    def __init__(self, item_id, schema_item):
+        super().__init__(item_id=item_id, schema_item=schema_item)
 
+    # pylint: disable=too-many-locals
+    # TODO refactor this method to make it more readable
     def build_repeating_state(self, user_input):
         template_answer = self.answers.pop()
         group_instance = template_answer.group_instance

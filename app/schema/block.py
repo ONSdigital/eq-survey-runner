@@ -3,8 +3,8 @@ from app.schema.item import Item
 
 
 class Block(Item):
-    def __init__(self, id=None):
-        super().__init__(id)
+    def __init__(self, block_id=None):
+        super().__init__(block_id)
         self.type = None
         self.sections = []
         self.children = self.sections

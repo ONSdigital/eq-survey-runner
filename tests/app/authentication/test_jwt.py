@@ -27,7 +27,7 @@ jwtio_signature = "1PVw5ku4uzif8iaXpbEhsSkbnug5mXMYMvBUUpGQyJ73mqtl7oApntEyC-z9j
 jwtio_signed = jwtio_header + "." + jwtio_payload + "." + jwtio_signature
 
 
-class JWTTest(unittest.TestCase):
+class JWTTest(unittest.TestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
         settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_PUBLIC_KEY

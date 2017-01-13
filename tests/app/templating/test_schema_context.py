@@ -76,9 +76,9 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
 
-        answers = schema_context['answers']
-        self.assertEqual(len(answers), 1)
-        self.assertEqual(answers['first_name'], 'Joe Bloggs')
+        context_answers = schema_context['answers']
+        self.assertEqual(len(context_answers), 1)
+        self.assertEqual(context_answers['first_name'], 'Joe Bloggs')
 
     def test_build_schema_context_repeating_answers(self):
         aliases = {
@@ -109,10 +109,10 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
 
-        answers = schema_context['answers']
-        self.assertIsInstance(answers['_full_name'], list)
-        self.assertEqual(len(answers['_full_name']), 3)
-        self.assertEqual(len(answers), 1)
+        context_answers = schema_context['answers']
+        self.assertIsInstance(context_answers['_full_name'], list)
+        self.assertEqual(len(context_answers['_full_name']), 3)
+        self.assertEqual(len(context_answers), 1)
 
     def test_build_schema_context_single_answer_should_not_return_list(self):
         aliases = {
@@ -131,9 +131,9 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
 
-        answers = schema_context['answers']
+        context_answers = schema_context['answers']
         self.assertEqual(len(answers), 1)
-        self.assertEqual(answers['full_name'], 'Person One')
+        self.assertEqual(context_answers['full_name'], 'Person One')
 
     def test_build_schema_context_no_answers_should_return_empty_alias_value(self):
         aliases = {
@@ -148,9 +148,9 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
 
-        answers = schema_context['answers']
-        self.assertEqual(len(answers), 1)
-        self.assertEqual(answers['alias_with_no_matching_answer'], '')
+        context_answers = schema_context['answers']
+        self.assertEqual(len(context_answers), 1)
+        self.assertEqual(context_answers['alias_with_no_matching_answer'], '')
 
     def test_alias_for_repeating_answer_returns_list(self):
         aliases = {
@@ -169,8 +169,8 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
 
-        answers = schema_context['answers']
-        self.assertIsInstance(answers['repeating_answer_alias'], list)
+        context_answers = schema_context['answers']
+        self.assertIsInstance(context_answers['repeating_answer_alias'], list)
 
     def test_alias_for_non_repeating_answer_returns_string(self):
         aliases = {
@@ -189,6 +189,6 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
 
-        answers = schema_context['answers']
-        self.assertIsInstance(answers['non_repeating_answer_alias'], str)
-        self.assertEqual(answers['non_repeating_answer_alias'], 'Some Value')
+        context_answers = schema_context['answers']
+        self.assertIsInstance(context_answers['non_repeating_answer_alias'], str)
+        self.assertEqual(context_answers['non_repeating_answer_alias'], 'Some Value')

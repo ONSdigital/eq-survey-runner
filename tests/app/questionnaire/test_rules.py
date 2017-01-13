@@ -5,7 +5,7 @@ from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repea
     evaluate_when_rules
 
 
-class TestRules(TestCase):
+class TestRules(TestCase):  # pylint: disable=too-many-public-methods
     def test_evaluate_rule_uses_single_value_from_list(self):
         when = {
             'value': 'singleAnswer',

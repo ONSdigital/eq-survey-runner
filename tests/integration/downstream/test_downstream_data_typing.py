@@ -1,5 +1,3 @@
-from werkzeug.datastructures import MultiDict
-
 from tests.integration.create_token import create_token
 from tests.integration.downstream.downstream_test_case import DownstreamTestCase
 from tests.integration.star_wars import star_wars_test_urls, BLOCK_2_DEFAULT_ANSWERS
@@ -29,8 +27,8 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         self.assertRegex(content, 'On 2 June 1983 how many were employed?')
 
         # Textarea question
-        self.assertRegexpMatches(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegexpMatches(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertRegex(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
 
         # Our answers
         form_data = {
@@ -70,7 +68,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         self.complete_survey(star_wars_test_urls.STAR_WARS_SUBMIT, 'star_wars')
 
         # Get the message that would be sent downstream
-        message = DownstreamTestCase._submitter._message
+        message = DownstreamTestCase.get_submitter().get_message()
         self.assertIn('data', message.keys())
 
         data = message['data']
@@ -93,8 +91,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
 
         for key, value in expected.items():
             self.assertIn(key, data.keys())
-            self.assertTrue(type(expected[key]) == type(data[key]))  # NOQA
-            self.assertEqual(expected[key], data[key])
+            self.assertEqual(expected[key], value)
             if isinstance(expected[key], list):
                 for item in expected[key]:
-                    self.assertIn(item, data[key])
+                    self.assertIn(item, value)

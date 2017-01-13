@@ -8,7 +8,7 @@ from app.questionnaire.path_finder import PathFinder
 from app.schema_loader.schema_loader import load_schema_file
 
 
-class TestPathFinder(unittest.TestCase):
+class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-methods
 
     def test_next_block(self):
         survey = load_schema_file("1_0102.json")

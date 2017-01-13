@@ -63,7 +63,7 @@ class TestHappyPath(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegex(resp.location, r'\/questionnaire\/1/' + form_type_id + '\/789\/summary$', content)
+        self.assertRegex(resp.location, r'\/questionnaire\/1/' + form_type_id + r'\/789\/summary$')
 
         summary_url = resp.location
 

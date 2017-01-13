@@ -26,7 +26,7 @@ def format_multilined_string(context, value):
     result = '<p>{}</p>'.format(value_with_line_break_tag)
 
     if context.autoescape:
-        result = Markup(result)
+        return Markup(result)
     return result
 
 

@@ -60,8 +60,13 @@ class TestTemplateRenderer(unittest.TestCase):
         }
 
         rendered = TemplateRenderer().render(description, **context)
-        self.assertEqual(rendered, '<h2 class=\'neptune\'>Your household includes:</h2> <ul><li>Alice Aardvark</li><li>Bob Berty Brown</li><li>\ '
-                                   '" !</li><li>Dave Dixon Davies</li></ul>')
+        self.assertEqual(rendered, "<h2 class='neptune'>Your household includes:</h2> "
+                                   "<ul>"
+                                   "<li>Alice Aardvark</li>"
+                                   "<li>Bob Berty Brown</li>"
+                                   r'<li>\ " !</li>'
+                                   "<li>Dave Dixon Davies</li>"
+                                   "</ul>")
 
     def test_render_nested_templatable_property(self):
         question = Question()

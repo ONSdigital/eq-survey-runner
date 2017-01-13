@@ -168,7 +168,7 @@ class PathFinder:
     def get_blocks(self):
         blocks = []
 
-        for group_index, group in enumerate(SchemaHelper.get_groups(self.survey_json)):
+        for group in SchemaHelper.get_groups(self.survey_json):
             if 'skip_condition' in group:
                 skip = evaluate_skip_condition(group['skip_condition'], self.metadata, self.answer_store)
                 if skip:
