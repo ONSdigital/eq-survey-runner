@@ -25,7 +25,7 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "id": "block_1",
+                    "id": "block-1",
                     "sections": [
                         {
                             "description": "",

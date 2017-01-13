@@ -10,7 +10,6 @@ class TestTemplateRenderer(unittest.TestCase):
         question = Question()
         question.title = 'Hello {{name}}'
         question.templatable_properties = ['title']
-        state = StateQuestion('id', question)
         context = {'name': 'Joe Bloggs'}
 
         schema = TemplateRenderer().render_schema_items(question, context)

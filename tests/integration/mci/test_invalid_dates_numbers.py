@@ -28,11 +28,11 @@ class TestInvalidDateNumber(IntegrationTestCase):
             # Start Date
             "period-from-day": "01",
             "period-from-month": "1",
-            "period-from-year": "",
+            "period-from-year": "2016",
             # End Date
             "period-to-day": "01",
             "period-to-month": "01",
-            "period-to-year": "",
+            "period-to-year": "2016",
             # Total Turnover
             "total-retail-turnover": "100000",
             # User action
@@ -55,7 +55,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
             "period-to-month": "01",
             "period-to-year": "2017",
             # Total Turnover
-            "total-retail-turnover": "rubbish",
+            "total-retail-turnover": "10000",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -102,7 +102,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
             # End Date
             "period-to-day": "01",
             "period-to-month": "01",
-            "period-to-year": "",
+            "period-to-year": "2016",
             # Total Turnover
             "total-retail-turnover": "10000",
             # User action
@@ -148,17 +148,18 @@ class TestInvalidDateNumber(IntegrationTestCase):
         form_data = {
             # Start Date
             "period-from-day": "01",
-            "period-from-month": "01",
-            "period-from-year": "2016",
+            "period-from-month": "1",
+            "period-from-year": "",
             # End Date
             "period-to-day": "01",
             "period-to-month": "01",
-            "period-to-year": "2016",
+            "period-to-year": "",
             # Total Turnover
             "total-retail-turnover": "100000",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
+
         # We submit the form without a valid 2nd date
         resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
@@ -173,17 +174,18 @@ class TestInvalidDateNumber(IntegrationTestCase):
         form_data = {
             # Start Date
             "period-from-day": "01",
-            "period-from-month": "4",
+            "period-from-month": "01",
             "period-from-year": "2016",
             # End Date
-            "period-to-day": "30",
-            "period-to-month": "04",
-            "period-to-year": "2016",
+            "period-to-day": "01",
+            "period-to-month": "01",
+            "period-to-year": "2017",
             # Total Turnover
-            "total-retail-turnover": "100000",
+            "total-retail-turnover": "rubbish",
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
+
         # We submit the form without a valid turnover value
         resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
@@ -195,7 +197,6 @@ class TestInvalidDateNumber(IntegrationTestCase):
         token = create_token('0205', '1')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
-
         form_data = {
             # Start Date
             "period-from-day": "01",
@@ -210,6 +211,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
             # User action
             "action[save_continue]": "Save &amp; Continue"
         }
+
         # We submit the form with an invalid date
         resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)

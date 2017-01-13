@@ -25,7 +25,7 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "id": "choose_your_side_block",
+                    "id": "choose-your-side-block",
                     "sections": [
                         {
                             "description": "",

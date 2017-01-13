@@ -1,6 +1,6 @@
 CHOOSE_A_SIDE_LIGHT_SIDE = [
     {
-        "block_id": "choose_your_side_block",
+        "block_id": "choose-your-side-block",
         "answers": [
             {
                 "answer": "Choose your side",
@@ -13,7 +13,7 @@ CHOOSE_A_SIDE_LIGHT_SIDE = [
 
 CHOOSE_A_SIDE_DARK_SIDE = [
     {
-        "block_id": "choose_your_side_block",
+        "block_id": "choose-your-side-block",
         "answers": [
             {
                 "answer": "Choose your side",
@@ -26,7 +26,7 @@ CHOOSE_A_SIDE_DARK_SIDE = [
 
 CHOOSE_A_SIDE_STAR_TREK = [
     {
-        "block_id": "choose_your_side_block",
+        "block_id": "choose-your-side-block",
         "answers": [
             {
                 "answer": "Choose your side",
