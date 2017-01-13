@@ -4,6 +4,7 @@
   "id": "label-" ~ label.for
 } %}
 
+{% if label.text %}
 <label {{attr|xmlattr}}>
   <div class="label__inner">
     {{label.text|safe}}
@@ -13,3 +14,4 @@
     {% endif %}
   </div>
 </label>
+{% endif %}
