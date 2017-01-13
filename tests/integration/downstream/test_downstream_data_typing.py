@@ -12,7 +12,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         self.token = create_token('star_wars', '0')
 
     def test_star_wars_kitchen_sink(self):
-        self.login_and_check_introduction_text()
+        self.login()
 
         first_page = self.start_questionnaire_and_navigate_routing()
 

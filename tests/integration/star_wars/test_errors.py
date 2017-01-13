@@ -6,8 +6,7 @@ from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 class TestPageErrors(StarWarsTestCase):
     def test_multi_page_errors(self):
         # Get a token
-
-        self.login_and_check_introduction_text()
+        self.login()
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
@@ -43,8 +42,8 @@ class TestPageErrors(StarWarsTestCase):
 
     def test_skip_question_errors(self):
         # Given on the page with skip question with skip condition
-        self.token = create_token('skip_condition', 'test')
-        self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
+        token = create_token('skip_condition', 'test')
+        self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         post_data = {'action[start_questionnaire]': 'Start Questionnaire'}
         self.client.post('/questionnaire/test/skip_condition/201604/789/introduction', data=post_data, follow_redirects=True)
         post_data = {'food-answer': 'Bacon', 'action[save_continue]': 'Save &amp; Continue'}

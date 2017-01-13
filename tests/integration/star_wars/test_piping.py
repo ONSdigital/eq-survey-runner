@@ -5,7 +5,7 @@ from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 class TestPiping(StarWarsTestCase):
 
     def test_piping_employment_date(self):
-        self.login_and_check_introduction_text()
+        self.login()
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
@@ -23,7 +23,7 @@ class TestPiping(StarWarsTestCase):
         self.assertRegex(content, 'On 2 June 1983 how many were employed?')
 
     def test_piping_an_answer(self):
-        self.login_and_check_introduction_text()
+        self.login()
 
         first_page = self.start_questionnaire_and_navigate_routing()
 

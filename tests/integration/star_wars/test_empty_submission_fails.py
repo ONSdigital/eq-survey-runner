@@ -7,7 +7,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
 
     def test_empty_submission_fails(self):
 
-        self.login_and_check_introduction_text()
+        self.login()
 
         # go to the first page
         self.start_questionnaire_and_navigate_routing()

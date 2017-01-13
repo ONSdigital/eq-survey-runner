@@ -7,7 +7,7 @@ class TestLightSidePath(StarWarsTestCase):
 
     def test_light_side_path(self):
 
-        self.login_and_check_introduction_text()
+        self.login()
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
@@ -61,7 +61,8 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertRegex(content, '(?s)Which 3 appear in any of the opening crawlers?')
         self.assertRegex(content, '(?s)When was The Empire Strikes Back released?.*?28 May 1983 to 29 May 1983')  # NOQA
         self.assertRegex(content, '(?s)What was the total number of Ewokes?.*?')
-        self.assertRegex(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?Wookiees don’t place value in material rewards and refused the medal initially')  # NOQA
+        self.assertRegex(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?'
+                                  'Wookiees don’t place value in material rewards and refused the medal initially')  # NOQA
         self.assertRegex(content, 'Please check carefully before submission')
         self.assertRegex(content, '>Submit answers<')
 

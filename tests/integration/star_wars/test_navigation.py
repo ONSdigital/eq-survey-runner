@@ -7,15 +7,13 @@ class TestNavigation(StarWarsTestCase):
 
     def test_light_side_path(self):
 
-        self.login_and_check_introduction_text()
+        self.login()
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
         introduction = star_wars_test_urls.STAR_WARS_INTRODUCTION
 
         resp = self.navigate_to_page(introduction)
-
-        self.check_introduction_text(resp)
 
         # navigate back to first page
         self.navigate_to_page(first_page)
@@ -30,7 +28,7 @@ class TestNavigation(StarWarsTestCase):
         self.check_second_quiz_page(second_page)
 
         # now navigate back to the first page
-        self.check_quiz_first_page(first_page)
+        self._check_quiz_first_page(first_page)
 
         # now go back to the second page
         self.check_second_quiz_page(second_page)
@@ -73,3 +71,50 @@ class TestNavigation(StarWarsTestCase):
         self.assertRegex(content, '>Submit answers<')
 
         self.complete_survey(summary_url, 'star_wars')
+
+    def _check_quiz_first_page(self, page):
+        content = self.retrieve_content(page)
+        self.assertIn(">Save and continue<", content)
+        self.assertIn('Star Wars Quiz', content)
+        self.assertIn('May the force be with you young EQ developer', content)
+
+        # Integer question
+        self.assertIn('How old is Chewy?', content)
+        self.assertIn('6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b', content)
+
+        # Currency question
+        self.assertIn('How many Octillions do Nasa reckon it would cost to build a death star?', content)
+        self.assertIn('92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c', content)
+
+        # Radio box question
+        self.assertIn('What animal was used to create the engine sound of the Empire&#39;s TIE fighters?', content)  # NOQA
+        self.assertIn('Lion', content)
+        self.assertIn('Cow', content)
+        self.assertIn('Elephant', content)
+        self.assertIn('Hippo', content)
+        self.assertIn('a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d', content)
+
+        # Checkbox question
+        self.assertIn('Which 3 have wielded a green lightsaber?', content)
+        self.assertIn('Luke Skywalker', content)
+        self.assertIn('Anakin Skywalker', content)
+        self.assertIn('Obi-Wan Kenobi', content)
+        self.assertIn('Yoda', content)
+        self.assertIn('Rey', content)
+        self.assertIn('Qui-Gon Jinn', content)
+        self.assertIn('9587eb9b-f24e-4dc0-ac94-66117b896c10', content)
+
+        # Date Range question
+        self.assertIn('When was The Empire Strikes Back released?', content)
+        self.assertIn('Period from', content)
+        self.assertIn('Period to', content)
+        self.assertIn('Day', content)
+        self.assertIn('Month', content)
+        self.assertIn('Year', content)
+        self.assertIn('6fd644b0-798e-4a58-a393-a438b32fe637', content)
+        self.assertIn('06a6a4b7-6ce4-4687-879d-3443cd8e2ff0', content)
+
+        # Pipe Test for question description
+        self.assertIn('It could be between 1 April 2016 and 30 April 2016. But that might just be a test', content)  # NOQA
+
+        return page
