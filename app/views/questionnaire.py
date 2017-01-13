@@ -17,6 +17,7 @@ from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
+from app.schema.block import Block
 from app.submitter.converter import convert_answers
 from app.submitter.submitter import SubmitterFactory
 from app.templating.introduction_context import get_introduction_context
@@ -74,6 +75,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
     q_manager.build_block_state(this_location, answers)
 
+    # Find block by id
     block = g.schema.get_item_by_id(block_id)
     # pylint: disable=maybe-no-member
     template = block.type if block and block.type else 'questionnaire'

@@ -15,3 +15,15 @@ class TestQuestionnaireEndpointErrors(IntegrationTestCase):
         # Then
         self.assertEqual(resp.status_code, 404)
         self.assertRegex(resp.get_data(as_text=True), 'Error 404')
+
+    def test_get_block_with_non_block_id_shows_not_found(self):
+        # Given
+        token = create_token('0205', '1')
+        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+
+        # When
+        resp = self.client.get(mci_test_urls.MCI_0205_BASE + 'mci/0/period-to', follow_redirects=False)
+
+        # Then
+        self.assertEqual(resp.status_code, 404)
+        self.assertRegex(resp.get_data(as_text=True), 'Error 404')
