@@ -19,6 +19,9 @@ let config = {
     ],
     census: [
       `${paths.test.wdioSpec}/census/**/*.spec.js`
+    ],
+    ukis: [
+      `${paths.test.wdioSpec}/ukis/**/*.spec.js`
     ]
   },
   sync: true,
