@@ -38,9 +38,13 @@ class NationalIdentityPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setNationalIdentityEnglandAnswerOtherText(value) {
-    browser.setValue('[id="national-identity-england-answer-5-other"]', value)
+  setNationalIdentityEnglandAnswerOther(value) {
+    browser.setValue('[name="national-identity-england-answer-other"]', value)
     return this
+  }
+
+  getNationalIdentityEnglandAnswerOther(value) {
+    return browser.element('[name="national-identity-england-answer-other"]').getValue()
   }
 
   clickNationalIdentityWalesAnswerWelsh() {
@@ -73,9 +77,13 @@ class NationalIdentityPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setNationalIdentityWalesAnswerOtherText(value) {
-    browser.setValue('[id="national-identity-wales-answer-5-other"]', value)
+  setNationalIdentityWalesAnswerOther(value) {
+    browser.setValue('[name="national-identity-wales-answer-other"]', value)
     return this
+  }
+
+  getNationalIdentityWalesAnswerOther(value) {
+    return browser.element('[name="national-identity-wales-answer-other"]').getValue()
   }
 
 }

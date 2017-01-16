@@ -23,9 +23,13 @@ class BlackEthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setBlackEthnicGroupAnswerOtherText(value) {
-    browser.setValue('[id="black-ethnic-group-answer-2-other"]', value)
+  setBlackEthnicGroupAnswerOther(value) {
+    browser.setValue('[name="black-ethnic-group-answer-other"]', value)
     return this
+  }
+
+  getBlackEthnicGroupAnswerOther(value) {
+    return browser.element('[name="black-ethnic-group-answer-other"]').getValue()
   }
 
 }
