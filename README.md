@@ -198,6 +198,7 @@ SAUCE_USERNAME - Sauce Labs username
 SAUCE_ACCESS_KEY - Sauce Labs private key
 EQ_DEV_MODE - Enable dev mode
 EQ_ENABLE_FLASK_DEBUG_TOOLBAR - Enable the flask debug toolbar
+EQ_ENABLE_CACHE - Enable caching of the schema
 ```
 ## Loading schemas from S3
 

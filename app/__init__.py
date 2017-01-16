@@ -14,6 +14,8 @@ from app.submitter.submitter import SubmitterFactory
 from flask import Flask
 from flask import url_for
 
+from flask.ext.cache import Cache
+
 from flask_babel import Babel
 
 from flask_login import LoginManager
@@ -40,6 +42,8 @@ LOG_SIZE = 1048576
 LOG_NUMBER = 10
 
 logger = logging.getLogger(__name__)
+
+cache = Cache()
 
 
 def rabbitmq_available():
@@ -122,6 +126,11 @@ def create_app():
     configure_logging(application)
 
     login_manager.init_app(application)
+
+    if settings.EQ_ENABLE_CACHE:
+        cache.init_app(application, config={'CACHE_TYPE': 'simple'})
+    else:
+        cache.init_app(application)  # Doesnt cache
 
     if settings.EQ_DEV_MODE:
         # TODO fix health check so it no longer sends message to queue

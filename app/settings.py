@@ -67,6 +67,7 @@ EQ_SPLUNK_PASSWORD = os.getenv('EQ_SPLUNK_PASSWORD')
 EQ_SPLUNK_INDEX = os.getenv('EQ_SPLUNK_INDEX')
 
 EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
+EQ_ENABLE_CACHE = parse_mode(os.getenv("EQ_ENABLE_CACHE", "True"))
 EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(os.getenv("EQ_ENABLE_FLASK_DEBUG_TOOLBAR", "False"))
 
 _KEYS = {
