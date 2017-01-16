@@ -28,11 +28,10 @@ class QuestionnaireManager(object):
         self._schema = schema
         self.block_state = None
 
-    def validate(self, location, post_data):
+    def validate(self, location, post_data, skip_mandatory_validation=False):
 
         self.build_block_state(location, post_data)
-
-        return location.is_interstitial() or self.block_state.schema_item.validate(self.block_state)
+        return location.is_interstitial() or self.block_state.schema_item.validate(self.block_state, skip_mandatory_validation)
 
     def validate_all_answers(self):
 
@@ -49,14 +48,22 @@ class QuestionnaireManager(object):
         return True, None
 
     def update_questionnaire_store(self, location):
-        # Store answers in QuestionnaireStore
-        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
-
-        for answer in self.get_state_answers(location.block_id):
-            questionnaire_store.answer_store.add_or_update(answer.flatten())
+        questionnaire_store = self._add_update_answer_store(location)
 
         if location not in questionnaire_store.completed_blocks:
             questionnaire_store.completed_blocks.append(location)
+
+    def update_questionnaire_store_save_sign_out(self, location):
+        questionnaire_store = self._add_update_answer_store(location)
+
+        if location in questionnaire_store.completed_blocks:
+            questionnaire_store.completed_blocks.remove(location)
+
+    def _add_update_answer_store(self, location):
+        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+        for answer in self.get_state_answers(location.block_id):
+            questionnaire_store.answer_store.add_or_update(answer.flatten())
+        return questionnaire_store
 
     def process_incoming_answers(self, location, post_data):
         logger.debug("Processing post data for %s", location)

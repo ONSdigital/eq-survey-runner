@@ -68,15 +68,15 @@ class Answer(Item):
     def _cast_user_input(user_input):
         return user_input
 
-    def validate(self, state):
+    def validate(self, state, skip_mandatory_validation):
         if isinstance(state, self.get_state_class()):
             question = state.parent
             if question.skipped:
                 # if the question is skipped then its always valid
                 state.is_valid = True
-            elif self.mandatory and state.input is None:
+            elif not skip_mandatory_validation and self.mandatory and state.input is None:
                 self.mandatory_error(state)
-            elif self.mandatory and self.type == 'Radio' and state.input == 'other' and state.other is None:
+            elif not skip_mandatory_validation and self.mandatory and self.type == 'Radio' and state.input == 'other' and state.other is None:
                 self.mandatory_error(state)
 
             # Try and get the typed value

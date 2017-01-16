@@ -31,13 +31,13 @@ class Item(metaclass=ABCMeta):
     def get_state_class(self):
         raise NotImplementedError
 
-    def validate(self, state):
+    def validate(self, state, skip_mandatory_validation):
 
         if isinstance(state, self.get_state_class()):
             is_valid = True
             for child_state in state.children:
                 child_schema = self.questionnaire.get_item_by_id(child_state.id)
-                child_valid = child_schema.validate(child_state)
+                child_valid = child_schema.validate(child_state, skip_mandatory_validation)
 
                 if child_valid is not None and child_valid is False:
                     is_valid = False

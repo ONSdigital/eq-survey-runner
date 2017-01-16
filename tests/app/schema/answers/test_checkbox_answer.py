@@ -16,6 +16,8 @@ class TestCheckBoxAnswer(TestCase):
         question.type = "General"
         question_state = StateQuestion('2', question)
 
+        self.skip_mandatory_validation = False
+
         self.check_box_answer = CheckboxAnswer('1234')
         self.check_box_answer.type = "Checkbox"
         self.check_box_answer.mandatory = True
@@ -28,24 +30,24 @@ class TestCheckBoxAnswer(TestCase):
 
     def test_mandatory_check_box_answer_other_with_valid_other(self):
         self.answer_state.input = ['other', 'Option3']
-        is_valid = self.check_box_answer.validate(self.answer_state)
+        is_valid = self.check_box_answer.validate(self.answer_state, self.skip_mandatory_validation)
         self.assertEquals(is_valid, True)
 
     def test_mandatory_check_box_answer_other_with_no_valid_other(self):
         self.answer_state.input = ['other']
-        is_valid = self.check_box_answer.validate(self.answer_state)
+        is_valid = self.check_box_answer.validate(self.answer_state, self.skip_mandatory_validation)
         self.assertEquals(is_valid, False)
         self.check_box_answer.questionnaire.get_error_message.assert_called_with('MANDATORY', '1234')
 
     def test_mandatory_check_box_answer_without_other_identifier(self):
         self.answer_state.input = ['Option3']
-        is_valid = self.check_box_answer.validate(self.answer_state)
+        is_valid = self.check_box_answer.validate(self.answer_state, self.skip_mandatory_validation)
         self.assertEquals(is_valid, False)
         self.check_box_answer.questionnaire.get_error_message.assert_called_with('MANDATORY', '1234')
 
     def test_mandatory_check_box_answer_without_input(self):
         self.answer_state.input = None
-        is_valid = self.check_box_answer.validate(self.answer_state)
+        is_valid = self.check_box_answer.validate(self.answer_state, self.skip_mandatory_validation)
         self.assertEquals(is_valid, False)
         self.check_box_answer.questionnaire.get_error_message.assert_called_with('MANDATORY', '1234')
 
@@ -53,18 +55,18 @@ class TestCheckBoxAnswer(TestCase):
         self.answer_state.input = None
         self.answer_state.is_valid = True
         self.check_box_answer.mandatory = False
-        is_valid = self.check_box_answer.validate(self.answer_state)
+        is_valid = self.check_box_answer.validate(self.answer_state, self.skip_mandatory_validation)
         self.assertEquals(is_valid, True)
 
     def test_non_mandatory_check_box_answer_non_valid_other_value(self):
         self.answer_state.input = ['other'] # other doesn't need an associated value if non_mandatory
         self.answer_state.is_valid = True
         self.check_box_answer.mandatory = False
-        is_valid = self.check_box_answer.validate(self.answer_state)
+        is_valid = self.check_box_answer.validate(self.answer_state, self.skip_mandatory_validation)
         self.assertEquals(is_valid, True)
 
     def test_check_box_answer_skipped(self):
         self.answer_state.is_valid = True
         self.answer_state.parent.skipped = True
-        is_valid = self.check_box_answer.validate(self.answer_state)
+        is_valid = self.check_box_answer.validate(self.answer_state, self.skip_mandatory_validation)
         self.assertEquals(is_valid, True)

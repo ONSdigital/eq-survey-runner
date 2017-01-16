@@ -18,7 +18,7 @@ class CheckboxAnswer(Answer):
         # We cannot type cast a list of values, so just return the user_input
         return self.get_user_input(post_vars)
 
-    def validate(self, state):
+    def validate(self, state, skip_mandatory_validation):
         if isinstance(state, self.get_state_class()):
             question = state.parent
             options = state.schema_item.options
@@ -27,7 +27,7 @@ class CheckboxAnswer(Answer):
 
             if question.skipped:
                 state.is_valid = True
-            elif self.mandatory:
+            elif self.mandatory and not skip_mandatory_validation:
                 if not state.input:
                     super(CheckboxAnswer, self).mandatory_error(state)
                 elif 'other' not in state.input and not self._valid_option_selected(state.input, options):

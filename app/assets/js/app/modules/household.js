@@ -44,6 +44,7 @@ class HouseholdMember extends EventEmitter {
     this.removeBtn.innerHTML = this.removeTxt
     this.removeBtn.classList.add('btn')
     this.removeBtn.classList.add('btn--link')
+    this.removeBtn.classList.add('pluto')
     this.removeBtn.setAttribute('type', 'button')
     this.node.classList.add('is-hidden')
     this.actionNode.innerHTML = ''
