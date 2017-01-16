@@ -1,11 +1,11 @@
 import json
-import logging
 
 import jwt
 from cryptography.exceptions import InternalError
 from cryptography.exceptions import InvalidTag
 from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import serialization
+from structlog import get_logger
 
 from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
@@ -16,6 +16,8 @@ from app.utilities import strings
 IV_EXPECTED_LENGTH = 12
 CEK_EXPECT_LENGTH = 32
 
+logger = get_logger()
+
 
 class JWTDecryptor(JWERSAOAEPDecryptor):
     """
@@ -24,11 +26,10 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
     def __init__(self):
         # pylint: disable=maybe-no-member
         # password and key variables are dynamically assigned
-        self.logger = logging.getLogger(__name__)
         if settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY is None or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY is None \
                 or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD is None:
-            self.logger.fatal('KEYMAT not configured correctly.')
-            raise OSError('KEYMAT not configured correctly.')
+            logger.error('keymat not configured correctly')
+            raise OSError('keymat not configured correctly')
         else:
             super().__init__(settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY, settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD)
             # oddly the python cryptography library needs these as bytes string
@@ -41,7 +42,7 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
     def decode_signed_jwt_token(self, signed_token):
         try:
             if signed_token:
-                logging.debug("Decoding signed JWT " + strings.to_str(signed_token))
+                logger.debug("decoding signed jwt", jwt_token=strings.to_str(signed_token))
                 self._check_token(signed_token)
                 token = jwt.decode(signed_token, self.rrm_public_key, algorithms=['RS256'],
                                    leeway=settings.EQ_JWT_LEEWAY_IN_SECONDS)
@@ -136,7 +137,7 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
     def decrypt_jwt_token(self, token):
         try:
             if token:
-                logging.debug("Decrypting signed JWT " + strings.to_str(token))
+                logger.debug("decrypting signed jwt", jwt_token=strings.to_str(token))
                 tokens = token.split('.')
                 if len(tokens) != 5:
                     raise InvalidTokenException("Incorrect size")

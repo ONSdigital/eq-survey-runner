@@ -1,14 +1,13 @@
-import logging
-
 from flask import g
 from flask_login import current_user
+from structlog import get_logger
 
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
 from app.schema.block import Block
 from app.schema.exceptions import QuestionnaireException
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def get_questionnaire_manager(schema, schema_json):
@@ -43,7 +42,7 @@ class QuestionnaireManager(object):
             is_valid = self.validate(location, answers)
 
             if not is_valid:
-                logger.debug("Failed validation with current location %s", str(location))
+                logger.debug("failed validation", **location.__dict__)
                 return False, location
 
         return True, None
@@ -67,7 +66,7 @@ class QuestionnaireManager(object):
         return questionnaire_store
 
     def process_incoming_answers(self, location, post_data):
-        logger.debug("Processing post data for %s", location)
+        logger.debug("processing post data", **location.__dict__)
 
         is_valid = self.validate(location, post_data)
         # run the validator to update the validation_store

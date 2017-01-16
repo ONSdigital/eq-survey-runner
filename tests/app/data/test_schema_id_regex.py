@@ -1,4 +1,3 @@
-import logging
 import os
 import unittest
 
@@ -7,8 +6,6 @@ from json import load
 from jsonschema import ValidationError, validate
 
 from app import settings
-
-logger = logging.getLogger(__name__)
 
 
 def create_schema_with_id(schema_id='answer'):

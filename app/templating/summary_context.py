@@ -1,11 +1,7 @@
-import logging
-
 from flask import url_for
 
 from app.questionnaire.path_finder import PathFinder
 from app.templating.summary.section import Section
-
-logger = logging.getLogger(__name__)
 
 
 def build_summary_rendering_context(schema_json, answer_store, metadata):

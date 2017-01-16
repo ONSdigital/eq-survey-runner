@@ -4,13 +4,13 @@ import os
 import sys
 from datetime import timedelta
 
-import watchtower
 from flask import Flask
 from flask import url_for
 from flask.ext.cache import Cache
 from flask_babel import Babel
 from flask_themes2 import Themes
 from flaskext.markdown import Markdown
+from structlog import get_logger
 
 from app import settings
 from app.authentication.authenticator import login_manager
@@ -28,22 +28,17 @@ SECURE_HEADERS = {
     'X-Content-Type-Options': 'nosniff',
 }
 
-LOG_NAME = "eq.log"
-LOG_SIZE = 1048576
-LOG_NUMBER = 10
-
-logger = logging.getLogger(__name__)
-
 cache = Cache()
+logger = get_logger()
 
 
 def rabbitmq_available():
     submitter = SubmitterFactory.get_submitter()
     if submitter.send_test():
-        logging.info('RabbitMQ Healthtest OK')
+        logger.info('rabbitmq healthtest ok')
         return True, "rabbit mq ok"
     else:
-        logging.error('Cannot connect to Message Server')
+        logger.error('cannot connect to message server')
         return False, "rabbit mq unavailable"
 
 
@@ -96,7 +91,7 @@ def create_app():
 
     add_blueprints(application)
 
-    configure_logging(application)
+    configure_flask_logging(application)
 
     login_manager.init_app(application)
 
@@ -117,6 +112,9 @@ def create_app():
 
     if settings.EQ_UA_ID:
         setup_analytics(application)
+
+    if settings.EQ_GIT_REF:
+        logger.info('starting eq survey runner', version=settings.EQ_GIT_REF)
 
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
@@ -159,64 +157,13 @@ def setup_analytics(application):
         'GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
 
-def configure_logging(application):
-
-    from logging.handlers import RotatingFileHandler
-
-    # set up some sane logging, as opposed to what flask does by default
-    log_format = "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
-    levels = {
-        'CRITICAL': logging.CRITICAL,
-        'ERROR': logging.ERROR,
-        'WARNING': logging.WARNING,
-        'INFO': logging.INFO,
-        'DEBUG': logging.DEBUG,
-    }
-    logging.basicConfig(level=levels[settings.EQ_LOG_LEVEL], format=log_format)
-
+def configure_flask_logging(application):
     # set the logger for this application and stop using flasks broken solution
     application._logger = logging.getLogger(__name__)  # pylint: disable=protected-access
-
-    # turn boto logging to critical as it logs far too much and it's only used
-    # for cloudwatch logging
-    logging.getLogger("botocore").setLevel(logging.ERROR)
-    if settings.EQ_CLOUDWATCH_LOGGING:
-        setup_cloud_watch_logging(application)
-
-    # Set werkzeug logging level
-    if settings.EQ_WERKZEUG_LOG_LEVEL:
-        werkzeug_logger = logging.getLogger('werkzeug')
-        werkzeug_logger.setLevel(level=levels[settings.EQ_WERKZEUG_LOG_LEVEL])
-
-    # setup file logging
-    rotating_log_file = RotatingFileHandler(
-        LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
-    logging.getLogger().addHandler(rotating_log_file)
-
     # workaround flask crazy logging mechanism (https://github.com/pallets/flask/issues/641)
     application.logger_name = "nowhere"
     # the line below is required to trigger disabling the logger
     application.logger  # pylint: disable=pointless-statement
-
-
-def setup_cloud_watch_logging(application):
-
-    # filter out botocore messages, we don't wish to log these
-    class NoBotocoreFilter(logging.Filter):
-
-        def filter(self, record):
-            return not record.name.startswith('botocore')
-
-    log_group = settings.EQ_SR_LOG_GROUP
-    cloud_watch_handler = watchtower.CloudWatchLogHandler(log_group=log_group)
-    cloud_watch_handler.addFilter(NoBotocoreFilter())
-    application.logger.addHandler(cloud_watch_handler)  # flask logger
-    # we DO NOT WANT the root logger logging to cloudwatch as thsi causes
-    # weird recursion errors
-    logging.getLogger().addHandler(cloud_watch_handler)  # root logger
-    logging.getLogger(__name__).addHandler(cloud_watch_handler)  # module logger
-    logging.getLogger('werkzeug').addHandler(
-        cloud_watch_handler)  # werkzeug framework logger
 
 
 def start_dev_mode(application):

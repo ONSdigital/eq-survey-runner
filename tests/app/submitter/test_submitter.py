@@ -50,7 +50,8 @@ class TestSubmitter(TestCase):
     def test_when_fail_to_disconnect_then_log_warning_message(self):
         # Given
         connection = Mock()
-        connection.close.side_effect = [AMQPError()]
+        error = AMQPError()
+        connection.close.side_effect = [error]
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection), \
                 patch('app.submitter.submitter.logger') as logger:
 
@@ -59,7 +60,7 @@ class TestSubmitter(TestCase):
 
             # Then
             self.assertTrue(published)
-            logger.warning.assert_called_once_with('Unable to close Rabbit MQ connection to  amqp://localhost:5672/%2F An unspecified AMQP error has occurred')
+            logger.error.assert_called_once_with('unable to close rabbit mq connection', rabbit_url='amqp://localhost:5672/%2F', exc_info=error)
 
     def test_when_fail_to_publish_message_then_returns_false(self):
         # Given

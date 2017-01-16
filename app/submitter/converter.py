@@ -1,12 +1,13 @@
-import logging
 from collections import OrderedDict
 from datetime import datetime, timezone
+
+from structlog import get_logger
 
 from app import settings
 from app.helpers.multiple_choice_helper import MultipleChoiceHelper
 from app.schema.answers.checkbox_answer import CheckboxAnswer
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 class DataVersionError(Exception):
@@ -64,7 +65,7 @@ def convert_answers(metadata, questionnaire, answer_store, routing_path):
     else:
         raise DataVersionError(questionnaire.data_version)
 
-    logging.debug("Converted answer ready for submission: %s", metadata['tx_id'])
+    logger.debug("converted answer ready for submission")
     return payload
 
 

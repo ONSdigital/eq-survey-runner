@@ -1,4 +1,4 @@
-import logging
+from structlog import get_logger
 
 from app.helpers.multiple_choice_helper import MultipleChoiceHelper
 from app.questionnaire_state.exceptions import StateException
@@ -6,7 +6,7 @@ from app.schema.answer import Answer
 from app.schema.widgets.checkbox_group_widget import CheckboxGroupWidget
 
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 class CheckboxAnswer(Answer):
@@ -22,7 +22,7 @@ class CheckboxAnswer(Answer):
         if isinstance(state, self.get_state_class()):
             question = state.parent
             options = state.schema_item.options
-            logger.debug("Checkbox Question is skipped %s", question.skipped)
+            logger.debug("validate checkbox answer", skipped=question.skipped)
             # Mandatory check
 
             if question.skipped:

@@ -1,12 +1,13 @@
 import copy
-import logging
+
+from structlog import get_logger
 
 from app.data_model.answer_store import AnswerStore
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_skip_condition, is_goto_rule
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 class PathFinder:
@@ -30,7 +31,7 @@ class PathFinder:
                 return next(index for (index, b) in enumerate(blocks) if b["block"]["id"] == location.block_id and
                             b["group_id"] == location.group_id and b['group_instance'] == location.group_instance)
         except StopIteration:
-            logger.error("Navigation failure looking for %s", location)
+            logger.error("could not get index", **location.__dict__)
             raise
         return None
 
@@ -54,7 +55,7 @@ class PathFinder:
 
             block_index = PathFinder._block_index_for_location(blocks, this_location)
             if block_index is None:
-                logger.error('build_path: _block_index_for_location %s is None (invalid location)', this_location)
+                logger.error('block index is none (invalid location)', **this_location.__dict__)
                 return path
 
             path.append(this_location)

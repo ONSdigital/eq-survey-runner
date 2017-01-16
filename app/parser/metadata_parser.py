@@ -1,10 +1,11 @@
-import logging
 import uuid
 from datetime import datetime
 
+from structlog import get_logger
+
 from app.authentication.invalid_token_exception import InvalidTokenException
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def iso_8601_data_parser(iso_8601_string):
@@ -66,20 +67,18 @@ def parse_metadata(metadata_to_check):
     parsed = {}
     try:
         for key, field in metadata_fields.items():
-            logger.debug("parse_metadata: Adding attr %s", key)
             if key in metadata_to_check:
                 attr_value = metadata_to_check[key]
                 field.validate(attr_value)
-                logger.debug("with value %s", attr_value)
+                logger.debug("parsing metadata", key=key, value=attr_value)
             else:
-                logger.debug("Generating value for %s", key)
+                logger.debug("generating metadata value", key=key)
                 attr_value = field.generate()
 
             parsed[key] = attr_value
     except (RuntimeError, ValueError, TypeError) as e:
-        logger.error("parse_metadata: Unable to parse")
-        logger.exception(e)
-        raise InvalidTokenException("Incorrect data in token")
+        logger.error("unable to parse metadata", exc_info=e)
+        raise InvalidTokenException("incorrect data in token")
     return parsed
 
 

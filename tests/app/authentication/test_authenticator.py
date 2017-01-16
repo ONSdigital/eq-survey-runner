@@ -2,7 +2,7 @@ import unittest
 
 from mock import patch, Mock, MagicMock
 
-from app.authentication.authenticator import Authenticator, load_user, request_load_user
+from app.authentication.authenticator import load_user, request_load_user, user_loader
 
 
 class TestAuthenticator(unittest.TestCase):
@@ -16,7 +16,7 @@ class TestAuthenticator(unittest.TestCase):
             session_storage.get_user_ik = Mock(return_value='user_ik')
 
             # When
-            user = Authenticator().check_session()
+            user = load_user()
 
             # Then
             self.assertEqual(user.user_id, 'user_id')
@@ -28,7 +28,7 @@ class TestAuthenticator(unittest.TestCase):
             session_storage.has_user_id = Mock(return_value=False)
 
             # When
-            user = Authenticator().check_session()
+            user = load_user()
 
             # Then
             self.assertIsNone(user)
@@ -42,7 +42,7 @@ class TestAuthenticator(unittest.TestCase):
             session_storage.get_user_ik = Mock(return_value='user_ik')
 
             # When
-            user = load_user(None)
+            user = user_loader(None)
 
             # Then
             self.assertEqual(user.user_id, 'user_id')

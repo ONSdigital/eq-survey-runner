@@ -1,11 +1,12 @@
-import logging
 from datetime import datetime
+
+from structlog import get_logger
 
 from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
 
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 class DateRangeCheck(AbstractValidator):
@@ -18,7 +19,7 @@ class DateRangeCheck(AbstractValidator):
         """
 
         result = ValidationResult(False)
-        logger.debug('Type Checking question date range with data %s', user_answers)
+        logger.debug('validating date range question')
 
         try:
 

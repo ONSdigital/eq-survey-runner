@@ -1,4 +1,3 @@
-import logging
 import os
 import time
 
@@ -6,13 +5,13 @@ from flask import Blueprint
 from flask import redirect
 from flask import render_template
 from flask import request
-from werkzeug.exceptions import NotFound
+from structlog import get_logger
 
 from app.cryptography.jwt_encoder import Encoder
 from app.schema_loader.schema_loader import available_schemas
 
 # pylint: disable=too-many-locals
-logger = logging.getLogger(__name__)
+logger = get_logger()
 dev_mode_blueprint = Blueprint('dev_mode', __name__, template_folder='templates')
 
 
@@ -61,28 +60,22 @@ def dev_mode():
 
 
 def extract_eq_id_and_form_type(schema_name):
-    try:
-        logger.debug("schema file name: %s", schema_name)
-        if "_" in schema_name:
-            split_schema_name = schema_name.split("_", 1)
-            if len(split_schema_name) != 2:
-                raise ValueError("Schema file name incorrect %", schema_name)
-            eq_id = split_schema_name[0]
-            split_rest_of_name = split_schema_name[1].split(".", 1)
-            if len(split_rest_of_name) != 2:
-                raise ValueError("Schema file name incorrect %", schema_name)
-            form_type = split_rest_of_name[0]
-        else:
-            # No form type associated with
-            eq_id = schema_name.split(".", 1)[0]
-            form_type = "-1"
-        logger.debug("eq-id: %s", eq_id)
-        logger.debug("form_type: " + form_type)
-        return eq_id, form_type
-    except Exception as e:
-        logger.exception(e)
-        logger.error("Invalid schema file %s", schema_name)
-        raise NotFound
+    logger.debug("extracting eq_id and form type from schema name", schema_name=schema_name)
+    if "_" in schema_name:
+        split_schema_name = schema_name.split("_", 1)
+        if len(split_schema_name) != 2:
+            raise ValueError("Schema file name incorrect %", schema_name)
+        eq_id = split_schema_name[0]
+        split_rest_of_name = split_schema_name[1].split(".", 1)
+        if len(split_rest_of_name) != 2:
+            raise ValueError("Schema file name incorrect %", schema_name)
+        form_type = split_rest_of_name[0]
+    else:
+        # No form type associated with
+        eq_id = schema_name.split(".", 1)[0]
+        form_type = "-1"
+    logger.debug("parsed eq_id and form_type", eq_id=eq_id, form_type=form_type)
+    return eq_id, form_type
 
 
 def create_payload(**metadata):

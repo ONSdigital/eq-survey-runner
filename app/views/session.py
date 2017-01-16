@@ -1,18 +1,17 @@
-import logging
-
 from flask import Blueprint
 from flask import redirect
 from flask import request
 from flask import session
 from flask_login import current_user
+from structlog import get_logger
 from werkzeug.exceptions import NotFound
 
-from app.authentication.authenticator import Authenticator
+from app.authentication import authenticator
 from app.globals import get_answer_store, get_completed_blocks, get_metadata
 from app.questionnaire.path_finder import PathFinder
 from app.utilities.schema import get_schema
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 session_blueprint = Blueprint('session', __name__)
@@ -31,26 +30,24 @@ def login():
     it will be placed in the users session
     :return: a 302 redirect to the next location for the user
     """
-
+    logger.new()
     # logging in again clears any session state
     if session:
         session.clear()
 
-    authenticator = Authenticator()
-    logger.debug("Attempting token authentication")
-
+    logger.debug("attempting token authentication")
     authenticator.jwt_login(request)
-    logger.debug("Token authenticated - linking to session")
+    logger.debug("token authenticated - linking to session")
 
     metadata = get_metadata(current_user)
 
     eq_id = metadata["eq_id"]
     form_type = metadata["form_type"]
 
-    logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
+    logger.bind(eq_id=eq_id, form_type=form_type)
 
     if not eq_id or not form_type:
-        logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
+        logger.error("missing eq id or form type in jwt")
         raise NotFound
 
     json, _ = get_schema(metadata)

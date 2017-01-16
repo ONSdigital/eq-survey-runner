@@ -1,5 +1,4 @@
 import hashlib
-import logging
 
 from app import settings
 from app.cryptography.jwe_decryption import JWEDirDecrypter
@@ -7,8 +6,6 @@ from app.cryptography.jwe_encryption import JWEDirEncrypter
 from app.storage.questionnaire_storage import QuestionnaireStorage
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
-
-logger = logging.getLogger(__name__)
 
 
 def generate_key(user_id, user_ik, pepper=settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER):

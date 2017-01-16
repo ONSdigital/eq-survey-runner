@@ -201,6 +201,7 @@ EQ_ENABLE_FLASK_DEBUG_TOOLBAR - Enable the flask debug toolbar
 EQ_ENABLE_CACHE - Enable caching of the schema
 EQ_MAX_HTTP_POST_CONTENT_LENGTH - The maximum http post content length that the system wil accept
 EQ_MAX_NUM_REPEATS - The maximum number of repeats the system will allow
+EQ_DEVELOPER_LOGGING - Enable developer style logging described here http://structlog.readthedocs.io/en/stable/development.html
 ```
 ## Loading schemas from S3
 

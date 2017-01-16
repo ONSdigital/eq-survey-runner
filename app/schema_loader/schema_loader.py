@@ -1,14 +1,15 @@
 import json
-import logging
 import os
 
+from structlog import get_logger
+
 from app import settings
+
+logger = get_logger()
 
 
 class SchemaNotFound(Exception):
     pass
-
-logger = logging.getLogger(__name__)
 
 
 def load_schema(eq_id, form_type, language_code='en'):
@@ -20,7 +21,7 @@ def load_schema(eq_id, form_type, language_code='en'):
     :param language_code the language of the schema to load
     :return: The Schema representing in a dict
     """
-    logging.debug("About to load schema for eq-id %s and form type %s and language %s", eq_id, form_type, language_code)
+    logger.debug("loading schema", eq_id=eq_id, form_type=form_type, language_code=language_code)
 
     filename_format = "{}.json"
 
@@ -48,7 +49,7 @@ def load_schema_file(schema_file, language_code='en'):
         if language_code != 'en':
             return load_schema_file(schema_file, 'en')
         else:
-            logging.error("No schema file exists %s", schema_file)
+            logger.error("no schema file exists", filename=schema_file)
             return None
 
 

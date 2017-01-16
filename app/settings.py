@@ -1,14 +1,14 @@
-import logging
 import os
 
 import pytz
+from structlog import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def ensure_min(value, minimum):
     if value < minimum:
-        logger.warning("Value to low %s setting to minimum %s", value, minimum)
+        logger.warning('value below minimum', value=value, minimum=minimum)
         return minimum
     else:
         return value
@@ -20,7 +20,7 @@ def parse_mode(string):
 
 def get_key(_key_name):
     if _key_name:
-        logger.debug("Opening file %s", _key_name)
+        logger.debug("reading key from file", filename=_key_name)
         key = open(_key_name, 'r')
         contents = key.read()
         return contents
@@ -43,10 +43,6 @@ EQ_RABBITMQ_TEST_QUEUE_NAME = os.getenv('EQ_RABBITMQ_TEST_QUEUE_NAME', 'eq-test'
 EQ_RABBITMQ_ENABLED = parse_mode(os.getenv('EQ_RABBITMQ_ENABLED', 'True'))
 EQ_GIT_REF = os.getenv('EQ_GIT_REF', 'unknown')
 EQ_NEW_RELIC_CONFIG_FILE = os.getenv('EQ_NEW_RELIC_CONFIG_FILE', './newrelic.ini')
-EQ_SR_LOG_GROUP = os.getenv('EQ_SR_LOG_GROUP', os.getenv('USER', 'UNKNOWN') + '-local')
-EQ_LOG_LEVEL = os.getenv('EQ_LOG_LEVEL', 'INFO')
-EQ_CLOUDWATCH_LOGGING = parse_mode(os.getenv("EQ_CLOUDWATCH_LOGGING", 'True'))
-EQ_WERKZEUG_LOG_LEVEL = os.getenv('EQ_WERKZEUG_LOG_LEVEL', 'INFO')
 EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'app/data')
 EQ_SESSION_TIMEOUT = int(os.getenv('EQ_SESSION_TIMEOUT', '28800'))
 EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))

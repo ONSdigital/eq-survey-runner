@@ -1,10 +1,7 @@
 import json
-import logging
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
-
-logger = logging.getLogger(__name__)
 
 
 class QuestionnaireStore:

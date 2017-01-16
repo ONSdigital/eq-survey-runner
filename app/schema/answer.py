@@ -1,13 +1,9 @@
-import logging
-
 import bleach
 
 from app.questionnaire_state.exceptions import StateException
 from app.questionnaire_state.state_answer import StateAnswer
 from app.schema.exceptions import TypeCheckingException
 from app.schema.item import Item
-
-logger = logging.getLogger(__name__)
 
 
 class Answer(Item):
