@@ -416,6 +416,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -513,6 +514,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -648,6 +650,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -745,6 +748,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -843,6 +847,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -940,6 +945,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -1080,6 +1086,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -4709,6 +4716,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -4747,6 +4755,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -4785,6 +4794,7 @@
                                             "type": "Currency",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -4850,6 +4860,7 @@
                                             "type": "PositiveInteger",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -4888,6 +4899,7 @@
                                             "type": "PositiveInteger",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -4926,6 +4938,7 @@
                                             "type": "Percentage",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -4941,6 +4954,7 @@
                                             "type": "Percentage",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -5109,6 +5123,7 @@
                                             "type": "PositiveInteger",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
@@ -5124,6 +5139,7 @@
                                             "type": "PositiveInteger",
                                             "validation": {
                                                 "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
                                                     "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value.",
                                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer."
                                                 }
