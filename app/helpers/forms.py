@@ -223,59 +223,17 @@ def get_field(answer, label):
     guidance = answer['guidance'] if 'guidance' in answer else ''
 
     field = {
-        "Radio": SelectField(
-            label=label,
-            description=guidance,
-            choices=build_choices(answer['options']),
-            widget=ListWidget(),
-            option_widget=RadioInput(),
-        ),
-        "Checkbox": SelectMultipleField(
-            label=label,
-            description=guidance,
-            choices=build_choices(answer['options']),
-            widget=ListWidget(),
-            option_widget=CheckboxInput(),
-        ),
-        "Date": FormField(
-            get_date_form(),
-            label=label,
-            description=guidance,
-        ),
-        "MonthYearDate": FormField(
-            MonthYearDateForm,
-            label=label,
-            description=guidance,
-        ),
-        "Currency": get_currency_field(answer, label),
-        "Integer": get_integer_field(answer, label),
-        "PositiveInteger": get_integer_field(answer, label),
-        "Percentage": IntegerField(
-            label=label,
-            description=guidance,
-            widget=TextInput(),
-            validators=[
-                validators.NumberRange(min=0, max=100),
-            ],
-        ),
-        "TextArea": TextAreaField(
-            label=label,
-            description=guidance,
-            widget=TextArea(),
-            validators=[
-                validators.Optional(),
-            ],
-            filters=[lambda x: x if x else None],
-        ),
-        "TextField": StringField(
-            label=label,
-            description=guidance,
-            widget=TextArea(),
-            validators=[
-                validators.Optional(),
-            ],
-        ),
-    }[answer['type']]
+        "Radio": get_select_field,
+        "Checkbox": get_select_field,
+        "Date": get_date_field,
+        "MonthYearDate": get_date_field,
+        "Currency": get_integer_field,
+        "Integer": get_integer_field,
+        "PositiveInteger": get_integer_field,
+        "Percentage": get_integer_field,
+        "TextArea": get_text_area_field,
+        "TextField": get_string_field,
+    }[answer['type']](answer, label, guidance)
 
     if field is None:
         logger.info("Could not find field for answer type %s", answer['type'])
@@ -283,52 +241,112 @@ def get_field(answer, label):
     return field
 
 
-def get_currency_field(answer, label):
-    guidance = answer['guidance'] if 'guidance' in answer else ''
+def get_string_field(answer, label, guidance):
+    validate_with = [
+        validators.optional()
+    ]
 
     if answer['mandatory'] is True:
-        return IntegerField(
-            label=label,
-            description=guidance,
-            widget=TextInput(),
-            validators=[
-                validators.InputRequired(
-                    message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
-                ),
-                positive_integer_type_check,
-            ],
-        )
-    else:
-        return IntegerField(
-            label=label,
-            description=guidance,
-            widget=TextInput(),
-            validators=[
-                validators.Optional(),
-            ],
-        )
+        validate_with = [
+            validators.InputRequired(
+                message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
+            ),
+        ]
+
+    return StringField(
+        label=label,
+        description=guidance,
+        widget=TextArea(),
+        validators=validate_with
+    )
 
 
-def get_integer_field(answer, label):
-    guidance = answer['guidance'] if 'guidance' in answer else ''
+def get_text_area_field(answer, label, guidance):
+    validate_with = [
+        validators.optional()
+    ]
 
     if answer['mandatory'] is True:
-        return IntegerField(
+        validate_with = [
+            validators.InputRequired(
+                message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
+            ),
+        ]
+
+    return TextAreaField(
+        label=label,
+        description=guidance,
+        widget=TextArea(),
+        validators=validate_with,
+        filters=[lambda x: x if x else None],
+    )
+
+
+def get_date_field(answer, label, guidance):
+
+    if answer['type'] == 'MonthYearDate':
+        return FormField(
+            MonthYearDateForm,
             label=label,
             description=guidance,
-            widget=TextInput(),
-            validators=[
-                validators.InputRequired(
-                    message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
-                ),
-            ],
         )
     else:
-        return IntegerField(
+        return FormField(
+            get_date_form(),
             label=label,
             description=guidance,
-            widget=TextInput(),
-            validators=[
-                validators.Optional(),
-            ],
         )
+
+
+def get_select_field(answer, label, guidance):
+    if answer['type'] == 'Checkbox':
+        return SelectMultipleField(
+            label=label,
+            description=guidance,
+            choices=build_choices(answer['options']),
+            widget=ListWidget(),
+            option_widget=CheckboxInput(),
+        )
+    else:
+        return SelectField(
+            label=label,
+            description=guidance,
+            choices=build_choices(answer['options']),
+            widget=ListWidget(),
+            option_widget=RadioInput(),
+        )
+
+
+def get_integer_field(answer, label, guidance):
+    validate_with = [
+        validators.optional()
+    ]
+
+    if answer['mandatory'] is True:
+        validate_with = [
+            validators.InputRequired(
+                message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
+            ),
+        ]
+
+    if answer['type'] == 'Currency':
+        validate_with += [
+            positive_integer_type_check,
+        ]
+
+    if answer['type'] == 'Percentage':
+        validate_with += [
+            validators.NumberRange(min=0, max=100),
+        ]
+
+    if answer['type'] == 'PositiveInteger':
+        validate_with += [
+            validators.NumberRange(min=0),
+        ]
+
+    return IntegerField(
+        label=label,
+        description=guidance,
+        widget=TextInput(),
+        validators=validate_with
+    )
