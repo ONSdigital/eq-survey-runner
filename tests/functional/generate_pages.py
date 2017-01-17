@@ -76,18 +76,15 @@ MULTIPLE_CHOICE_OTHER = r"""  set{answerName}(value) {
 
 """
 
-RELATIONSHIP_RADIO_CLICKER = r"""  click{optionName}() {
-    browser.element('[id="{optionId}"]').click().pause(300)
+RELATIONSHIP_RADIO_CLICKER = r"""  click{optionName}(instance = 0) {
+    browser.element('[id="{answerId}-' + instance + '-{optionIndex}"]').click().pause(300)
     return this
   }
 
 """
 
 REPEATING_ANSWER_SETTER = r"""  set{answerName}(value, index = 0) {
-    var field = '{answerId}'
-    if (index > 0) {
-      field = field + '_' + index
-    }
+    var field = 'household-' + index + '-{answerId}'
     browser.setValue('[name="' + field + '"]', value)
     return this
   }
@@ -95,10 +92,7 @@ REPEATING_ANSWER_SETTER = r"""  set{answerName}(value, index = 0) {
 """
 
 REPEATING_ANSWER_GETTER = r"""  get{answerName}(index) {
-    var field = '{answerId}'
-    if (index > 0) {
-      field = field + '_' + index
-    }
+    var field = 'household-' + index + '-{answerId}'
     browser.element('[name="' + field + '"]').getValue()
     return this
   }
@@ -140,17 +134,28 @@ def process_options(answer_id, options, template, page_spec):
         option_name = generate_camel_case_from_id(option['value'])
         option_id = "{name}-{index}".format(name=answer_id, index=index)
         page_spec.write(template.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
-        if 'other' in option:
-            option_other_id = "{name}-{index}-other".format(name=answer_id, index=index)
+        if 'child_answer_id' in option:
+            option_other_id = option['child_answer_id']
             page_spec.write(MULTIPLE_CHOICE_OTHER.replace("{answerName}", generate_camel_case_from_id(answer_id) + option_name + "Text").replace("{answerId}", option_other_id))
 
 
+def process_relationship_options(answer_id, options, template, page_spec):
+    for index, option in enumerate(options):
+        option_name = generate_camel_case_from_id(option['value'])
+        option_index = "{index}".format(index=index)
+        template_with_index = template.replace("{optionIndex}", option_index)
+        template_with_answer_id = template_with_index.replace("{answerId}", answer_id)
+        page_spec.write(template_with_answer_id.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name))
+
 
 def process_answer(question_type, answer, page_spec):
-    if answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
+    if 'parent_answer_id' in answer:
+        logger.debug("\t\tSkipping Child Answer: %s", answer['id'])
+        return
+    elif answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
         process_options(answer['id'], answer['options'], CHECKBOX_RADIO_CLICKER, page_spec)
     elif answer['type'] == 'Relationship':
-        process_options(answer['id'], answer['options'], RELATIONSHIP_RADIO_CLICKER, page_spec)
+        process_relationship_options(answer['id'], answer['options'], RELATIONSHIP_RADIO_CLICKER, page_spec)
     elif answer['type'] == 'Date':
         answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(_write_date_answer(answer_name, answer['id']))
@@ -163,8 +168,8 @@ def process_answer(question_type, answer, page_spec):
             answer['type'] == 'PositiveInteger' or answer['type'] == 'TextArea'):
         answer_name = generate_camel_case_from_id(answer['id'])
         if question_type == 'RepeatingAnswer':
-            page_spec.write(REPEATING_ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
-            page_spec.write(REPEATING_ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+            page_spec.write(REPEATING_ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['alias']))
+            page_spec.write(REPEATING_ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['alias']))
         else:
             page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
             page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))

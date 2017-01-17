@@ -243,7 +243,7 @@ def get_field(answer, label):
 
 def get_string_field(answer, label, guidance):
     validate_with = [
-        validators.optional()
+        validators.optional(),
     ]
 
     if answer['mandatory'] is True:
@@ -257,13 +257,13 @@ def get_string_field(answer, label, guidance):
         label=label,
         description=guidance,
         widget=TextArea(),
-        validators=validate_with
+        validators=validate_with,
     )
 
 
 def get_text_area_field(answer, label, guidance):
     validate_with = [
-        validators.optional()
+        validators.optional(),
     ]
 
     if answer['mandatory'] is True:
@@ -319,7 +319,7 @@ def get_select_field(answer, label, guidance):
 
 def get_integer_field(answer, label, guidance):
     validate_with = [
-        validators.optional()
+        validators.optional(),
     ]
 
     if answer['mandatory'] is True:
@@ -348,5 +348,5 @@ def get_integer_field(answer, label, guidance):
         label=label,
         description=guidance,
         widget=TextInput(),
-        validators=validate_with
+        validators=validate_with,
     )
