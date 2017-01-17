@@ -518,3 +518,106 @@ class TestNavigation(unittest.TestCase):
         ]
 
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
+
+    def test_navigation_skip_condition_hide_group(self):
+        survey = load_schema_file("test_navigation.json")
+
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = []
+
+        answer_store = AnswerStore()
+
+        answer_1 = Answer(
+            value="Contents",
+            group_instance=0,
+            block_id='insurance-type',
+            group_id='property-details',
+            answer_instance=0,
+            answer_id='insurance-type-answer'
+        )
+
+        answer_store.add(answer_1)
+
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+        user_navigation = navigation.build_navigation('property-details', 0)
+        link_names = [d['link_name'] for d in user_navigation]
+        self.assertNotIn('House Details', link_names)
+
+    def test_navigation_skip_condition_show_group(self):
+        survey = load_schema_file("test_navigation.json")
+
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = []
+
+        answer_store = AnswerStore()
+
+        answer_1 = Answer(
+            value="Buildings",
+            group_instance=0,
+            block_id='insurance-type',
+            group_id='property-details',
+            answer_instance=0,
+            answer_id='insurance-type-answer'
+        )
+
+        answer_store.add(answer_1)
+
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+
+        user_navigation = navigation.build_navigation('property-details', 0)
+        link_names = [d['link_name'] for d in user_navigation]
+        self.assertIn('House Details', link_names)
+
+    def test_navigation_skip_condition_change_answer(self):
+        survey = load_schema_file("test_navigation.json")
+
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = []
+
+        answer_store = AnswerStore()
+
+        answer_1 = Answer(
+            value="Buildings",
+            group_instance=0,
+            block_id='insurance-type',
+            group_id='property-details',
+            answer_instance=0,
+            answer_id='insurance-type-answer'
+        )
+
+        answer_store.add(answer_1)
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
+
+        user_navigation = navigation.build_navigation('property-details', 0)
+        link_names = [d['link_name'] for d in user_navigation]
+        self.assertIn('House Details', link_names)
+
+        change_answer = Answer(
+            value="Contents",
+            group_instance=0,
+            block_id='insurance-type',
+            group_id='property-details',
+            answer_instance=0,
+            answer_id='insurance-type-answer'
+        )
+
+        answer_store.update(change_answer)
+
+        user_navigation = navigation.build_navigation('property-details', 0)
+        link_names = [d['link_name'] for d in user_navigation]
+        self.assertNotIn('House Details', link_names)

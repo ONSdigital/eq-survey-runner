@@ -2538,6 +2538,105 @@
                 },
                 {
                     "id": "constraining-innovation-referendum",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "not-necessary-possible",
+                                "when": [
+                                    {
+                                        "id": "business-changes-business-practices-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "business-changes-organising-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "business-changes-external-relationships-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "business-changes-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "internal-investment-r-d-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "acquisition-internal-investment-r-d-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "investment-advanced-machinery-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "investment-existing-knowledge-innovation-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "investment-training-innovative-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                    {
+                                        "id": "investment-design-future-innovation-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "investment-introduction-innovations-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "introducing-significantly-improved-goods-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "introduce-significantly-improvement-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                    {
+                                        "id": "process-improved-answer",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "constraints-innovation-activities-abandoned-answser",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                    {
+                                        "id": "constraints-innovation-activities-scaled-back-answser",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    },
+                                     {
+                                        "id": "constraints-innovation-activities-ongoing-2016-answser",
+                                        "condition": "not equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "constraints-on-innovation-completed"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -2577,6 +2676,58 @@
                                     "id": "constraining-innovation-referendum-question",
                                     "number": "6.13",
                                     "title": "How important were the following factors in constraining innovation activities?",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": "Constraints on Innovation"
+                        }
+                    ],
+                    "type": "questionnaire"
+                },
+                 {
+                    "id": "not-necessary-possible",
+                    "sections": [
+                        {
+                            "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
+                            "id": "not-necessary-possible-section",
+                            "number": "6",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "description": "",
+                                            "id": "not-necessary-possible-answer",
+                                            "label": "Select all that apply",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "No need due to previous innovations",
+                                                    "q_code": "2011",
+                                                    "value": "No need due to previous innovations"
+                                                },
+                                                {
+                                                    "label": "No need due to market conditions",
+                                                    "q_code": "2020",
+                                                    "value": "No need due to market conditions"
+                                                },
+                                                {
+                                                    "label": "The UK does not have a business environment which encourages companies to innovate",
+                                                    "q_code": "2030",
+                                                    "value": "The UK does not have a business environment which encourages companies to innovate"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "q_code": "2040",
+                                                    "value": "Other"
+                                                }
+                                            ],
+                                            "type": "Checkbox"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "not-necessary-possible-question",
+                                    "number": "6.14",
+                                    "title": "If {{respondent.ru_name}} had no innovation activity, please indicate why it has not been necessary or possible to innovate",
                                     "type": "General"
                                 }
                             ],
@@ -3223,6 +3374,97 @@
                 }
             ],
             "id": "factors-affecting-innovation",
+            "skip_condition": [
+                {
+                    "when": [
+                        {
+                            "id": "business-changes-business-practices-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-organising-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-external-relationships-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "internal-investment-r-d-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "acquisition-internal-investment-r-d-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-advanced-machinery-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-existing-knowledge-innovation-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-training-innovative-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-design-future-innovation-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-introduction-innovations-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "introducing-significantly-improved-goods-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "introduce-significantly-improvement-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "process-improved-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-abandoned-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-scaled-back-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-ongoing-2016-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }
+                    ]
+                }
+            ],
             "title": "Factors Affecting Innovation"
         },
         {
@@ -3847,6 +4089,97 @@
                 }
             ],
             "id": "information-needed-for-innovation",
+            "skip_condition": [
+                {
+                    "when": [
+                        {
+                            "id": "business-changes-business-practices-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-organising-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-external-relationships-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "internal-investment-r-d-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "acquisition-internal-investment-r-d-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-advanced-machinery-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-existing-knowledge-innovation-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-training-innovative-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-design-future-innovation-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-introduction-innovations-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "introducing-significantly-improved-goods-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "introduce-significantly-improvement-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "process-improved-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-abandoned-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-scaled-back-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-ongoing-2016-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }
+                    ]
+                }
+            ],
             "title": "Information Needed for Innovation"
         },
         {
@@ -4275,58 +4608,6 @@
                     "type": "questionnaire"
                 },
                 {
-                    "id": "not-necessary-possible",
-                    "sections": [
-                        {
-                            "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
-                            "id": "not-necessary-possible-section",
-                            "number": "9",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "description": "",
-                                            "id": "not-necessary-possible-answer",
-                                            "label": "Select all that apply",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "No need due to previous innovations",
-                                                    "q_code": "2011",
-                                                    "value": "No need due to previous innovations"
-                                                },
-                                                {
-                                                    "label": "No need due to market conditions",
-                                                    "q_code": "2020",
-                                                    "value": "No need due to market conditions"
-                                                },
-                                                {
-                                                    "label": "The UK does not have a business environment which encourages companies to innovate",
-                                                    "q_code": "2030",
-                                                    "value": "The UK does not have a business environment which encourages companies to innovate"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "q_code": "2040",
-                                                    "value": "Other"
-                                                }
-                                            ],
-                                            "type": "Checkbox"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "not-necessary-possible-question",
-                                    "number": "9.9",
-                                    "title": "If {{respondent.ru_name}} had no innovation activity, please indicate why it has not been necessary or possible to innovate",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Co-operation on Innovation"
-                        }
-                    ],
-                    "type": "questionnaire"
-                },
-                {
                     "id": "innovations-protected-patents",
                     "sections": [
                         {
@@ -4365,7 +4646,7 @@
                                     ],
                                     "description": "<p>patents?</p>",
                                     "id": "innovations-protected-patents-question",
-                                    "number": "9.10",
+                                    "number": "9.9",
                                     "title": "What proportions of your innovations were protected by:",
                                     "type": "General"
                                 }
@@ -4414,7 +4695,7 @@
                                     ],
                                     "description": "<p>design registration?</p>",
                                     "id": "innovations-protected-design-question",
-                                    "number": "9.11",
+                                    "number": "9.10",
                                     "title": "What proportions of your innovations were protected by:",
                                     "type": "General"
                                 }
@@ -4463,7 +4744,7 @@
                                     ],
                                     "description": "<p>copyright?</p>",
                                     "id": "innovations-protected-copyright-question",
-                                    "number": "9.12",
+                                    "number": "9.11",
                                     "title": "What proportions of your innovations were protected by:",
                                     "type": "General"
                                 }
@@ -4512,7 +4793,7 @@
                                     ],
                                     "description": "<p>trademarks?</p>",
                                     "id": "innovations-protected-trademark-question",
-                                    "number": "9.13",
+                                    "number": "9.12",
                                     "title": "What proportions of your innovations  were protected by:",
                                     "type": "General"
                                 }
@@ -4561,7 +4842,7 @@
                                     ],
                                     "description": "<p>lead time advantages?</p>",
                                     "id": "innovations-protected-lead-time-question",
-                                    "number": "9.14",
+                                    "number": "9.13",
                                     "title": "What proportions of your innovations were protected by:",
                                     "type": "General"
                                 }
@@ -4610,7 +4891,7 @@
                                     ],
                                     "description": "<p>complexity of goods or services?</p>",
                                     "id": "innovations-protected-services-question",
-                                    "number": "9.15",
+                                    "number": "9.14",
                                     "title": "What proportions of your innovations were protected by:",
                                     "type": "General"
                                 }
@@ -4668,7 +4949,7 @@
                                         }
                                     ],
                                     "id": "innovations-protected-secrecy-question",
-                                    "number": "9.16",
+                                    "number": "9.15",
                                     "title": "What proportions of your innovations were protected by:",
                                     "type": "General"
                                 }
@@ -4701,6 +4982,97 @@
                 }
             ],
             "id": "co-operation-on-innovation",
+            "skip_condition": [
+                {
+                    "when": [
+                        {
+                            "id": "business-changes-business-practices-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-organising-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-external-relationships-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "business-changes-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "internal-investment-r-d-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "acquisition-internal-investment-r-d-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-advanced-machinery-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-existing-knowledge-innovation-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-training-innovative-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-design-future-innovation-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "investment-introduction-innovations-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "introducing-significantly-improved-goods-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "introduce-significantly-improvement-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "process-improved-answer",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-abandoned-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-scaled-back-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        },
+                        {
+                            "id": "constraints-innovation-activities-ongoing-2016-answser",
+                            "condition": "not equals",
+                            "value": "Yes"
+                        }
+                    ]
+                }
+            ],
             "title": "Co-operation on Innovation"
         },
         {

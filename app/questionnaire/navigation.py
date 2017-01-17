@@ -5,7 +5,7 @@ from collections import defaultdict
 
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
-from app.questionnaire.rules import evaluate_repeat
+from app.questionnaire.rules import evaluate_repeat, evaluate_skip_condition
 
 logger = logging.getLogger(__name__)
 
@@ -40,14 +40,25 @@ class Navigation(object):
             logger.debug("Building frontend navigation for group %s", group['id'])
 
             repeating_rule = SchemaHelper.get_repeat_rule(group)
+            skip_group = self._should_skip_group(current_group_instance, group)
 
-            if repeating_rule:
-                navigation += self._build_repeating_navigation(repeating_rule, group, current_group_id,
-                                                               current_group_instance)
-            else:
-                navigation.append(self._build_single_navigation(group, current_group_id, first_location))
-
+            if not skip_group:
+                if repeating_rule:
+                    navigation.extend(self._build_repeating_navigation(repeating_rule, group, current_group_id,
+                                                                       current_group_instance))
+                else:
+                    navigation.append(self._build_single_navigation(group, current_group_id, first_location))
         return navigation
+
+    def _should_skip_group(self, current_group_instance, group):
+
+        skip_group = False
+        skip_condition = SchemaHelper.get_skip_condition(group)
+
+        if skip_condition:
+            skip_group = evaluate_skip_condition(skip_condition, self.metadata, self.answer_store,
+                                                 current_group_instance)
+        return skip_group
 
     def _build_repeating_navigation(self, repeating_rule, group, current_group_id, current_group_instance):
         first_location = Location(group['id'], 0, group['blocks'][0]['id'])
