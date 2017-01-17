@@ -86,7 +86,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
         data_class = Struct(**form_data)
         form = HouseHoldCompositionForm(csrf_enabled=False, obj=data_class)
         content = {'form': form, 'block': block}
-    elif block_id == 'relationships':
+    elif block_id in ['relationships', 'household-relationships']:
         relationships = next((a['value'] for a in answer_store.answers if a['answer_id'] == 'who-is-related'), None)
         choices = build_relationship_choices(answer_store, group_instance)
         form = generate_relationship_form(block, len(choices), {'who-is-related': relationships})
@@ -122,7 +122,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
     block = SchemaHelper.get_block_for_location(g.schema_json, current_location)
 
-    if block_id == 'relationships':
+    if block_id in ['relationships', 'household-relationships']:
         choices = build_relationship_choices(get_answer_store(current_user), group_instance)
         form = generate_relationship_form(block, len(choices), request.form)
     else:

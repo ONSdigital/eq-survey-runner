@@ -46,7 +46,7 @@
             {% set loop_index = loop.index %}
             {% if errors %}
             {% for field_error in form.errors[answer_id] %}
-                {% if field_error is iterable %}
+                {% if field_error is mapping %}
                     {% for subfield_error in form.errors[answer_id][field_error] %}
                         <li class="list__item mars">
                           {{loop_index}}) <a class="js-inpagelink" href="#{{answer_id}}">{{ subfield_error }}</a>

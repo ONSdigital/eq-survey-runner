@@ -299,6 +299,17 @@ def get_date_field(answer, label, guidance):
 
 
 def get_select_field(answer, label, guidance):
+    validate_with = [
+        validators.optional(),
+    ]
+
+    if answer['mandatory'] is True:
+        validate_with = [
+            validators.InputRequired(
+                message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
+            ),
+        ]
+
     if answer['type'] == 'Checkbox':
         return SelectMultipleField(
             label=label,
@@ -306,6 +317,7 @@ def get_select_field(answer, label, guidance):
             choices=build_choices(answer['options']),
             widget=ListWidget(),
             option_widget=CheckboxInput(),
+            validators=validate_with,
         )
     else:
         return SelectField(
@@ -314,6 +326,7 @@ def get_select_field(answer, label, guidance):
             choices=build_choices(answer['options']),
             widget=ListWidget(),
             option_widget=RadioInput(),
+            validators=validate_with,
         )
 
 
