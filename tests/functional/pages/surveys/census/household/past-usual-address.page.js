@@ -28,13 +28,9 @@ class PastUsualAddressPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setPastUsualAddressAnswerOther(value) {
-    browser.setValue('[name="past-usual-address-answer-other"]', value)
+  setPastUsualAddressAnswerOtherText(value) {
+    browser.setValue('[id="past-usual-address-answer-other"]', value)
     return this
-  }
-
-  getPastUsualAddressAnswerOther(value) {
-    return browser.element('[name="past-usual-address-answer-other"]').getValue()
   }
 
 }

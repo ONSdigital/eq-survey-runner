@@ -18,13 +18,9 @@ class VisitorUkResidentPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setVisitorUkResidentAnswerOther(value) {
-    browser.setValue('[name="visitor-uk-resident-answer-other"]', value)
+  setVisitorUkResidentAnswerOtherText(value) {
+    browser.setValue('[id="visitor-uk-resident-answer-other"]', value)
     return this
-  }
-
-  getVisitorUkResidentAnswerOther(value) {
-    return browser.element('[name="visitor-uk-resident-answer-other"]').getValue()
   }
 
 }

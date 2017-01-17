@@ -23,11 +23,6 @@ class AnotherAddressPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setAnotherAddressAnswerOtherText(value) {
-    browser.setValue('[id="another-address-answer-2-other"]', value)
-    return this
-  }
-
 }
 
 export default new AnotherAddressPage()

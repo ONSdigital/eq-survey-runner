@@ -33,11 +33,6 @@ class AsianEthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setAsianEthnicGroupAnswerOtherText(value) {
-    browser.setValue('[id="asian-ethnic-group-answer-4-other"]', value)
-    return this
-  }
-
 }
 
 export default new AsianEthnicGroupPage()

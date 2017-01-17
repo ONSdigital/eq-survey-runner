@@ -28,13 +28,9 @@ class WhiteEthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setWhiteEthnicGroupEnglandAnswerOther(value) {
-    browser.setValue('[name="white-ethnic-group-england-answer-other"]', value)
+  setWhiteEthnicGroupEnglandAnswerOtherText(value) {
+    browser.setValue('[id="white-ethnic-group-england-answer-other"]', value)
     return this
-  }
-
-  getWhiteEthnicGroupEnglandAnswerOther(value) {
-    return browser.element('[name="white-ethnic-group-england-answer-other"]').getValue()
   }
 
   clickWhiteEthnicGroupWalesAnswerWelshEnglishScottishNorthernIrishBritish() {
@@ -57,13 +53,9 @@ class WhiteEthnicGroupPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setWhiteEthnicGroupWalesQuestionOther(value) {
-    browser.setValue('[name="white-ethnic-group-wales-question-other"]', value)
+  setWhiteEthnicGroupWalesAnswerOtherText(value) {
+    browser.setValue('[id="white-ethnic-group-wales-question-other"]', value)
     return this
-  }
-
-  getWhiteEthnicGroupWalesQuestionOther(value) {
-    return browser.element('[name="white-ethnic-group-wales-question-other"]').getValue()
   }
 
 }

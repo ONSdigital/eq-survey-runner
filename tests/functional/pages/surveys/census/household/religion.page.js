@@ -48,13 +48,9 @@ class ReligionPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setReligionAnswerOther(value) {
-    browser.setValue('[name="religion-answer-other"]', value)
+  setReligionAnswerOtherText(value) {
+    browser.setValue('[id="religion-answer-other"]', value)
     return this
-  }
-
-  getReligionAnswerOther(value) {
-    return browser.element('[name="religion-answer-other"]').getValue()
   }
 
   clickReligionWelshAnswerNoReligion() {
@@ -97,13 +93,9 @@ class ReligionPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setReligionWelshAnswerOther(value) {
-    browser.setValue('[name="religion-welsh-answer-other"]', value)
+  setReligionWelshAnswerOtherText(value) {
+    browser.setValue('[id="religion-welsh-answer-other"]', value)
     return this
-  }
-
-  getReligionWelshAnswerOther(value) {
-    return browser.element('[name="religion-welsh-answer-other"]').getValue()
   }
 
 }

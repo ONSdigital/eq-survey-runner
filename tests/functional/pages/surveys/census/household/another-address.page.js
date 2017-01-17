@@ -23,13 +23,9 @@ class AnotherAddressPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setAnotherAddressAnswerOther(value) {
-    browser.setValue('[name="another-address-answer-other"]', value)
+  setAnotherAddressAnswerOtherText(value) {
+    browser.setValue('[id="another-address-answer-other"]', value)
     return this
-  }
-
-  getAnotherAddressAnswerOther(value) {
-    return browser.element('[name="another-address-answer-other"]').getValue()
   }
 
 }

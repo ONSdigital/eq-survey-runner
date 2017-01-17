@@ -23,11 +23,6 @@ class WhyPaperEstablishmentPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setWhyPaperEstablishmentAnswerOtherText(value) {
-    browser.setValue('[id="why-paper-establishment-answer-2-other"]', value)
-    return this
-  }
-
 }
 
 export default new WhyPaperEstablishmentPage()

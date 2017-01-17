@@ -18,11 +18,6 @@ class LanguagePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setLanguageEnglandAnswerOtherText(value) {
-    browser.setValue('[id="language-england-answer-1-other"]', value)
-    return this
-  }
-
   clickLanguageWelshAnswerEnglishOrWelsh() {
     browser.element('[id="language-welsh-answer-0"]').click()
     return this
@@ -30,11 +25,6 @@ class LanguagePage extends MultipleChoiceWithOtherPage {
 
   clickLanguageWelshAnswerOther() {
     browser.element('[id="language-welsh-answer-1"]').click()
-    return this
-  }
-
-  setLanguageWelshAnswerOtherText(value) {
-    browser.setValue('[id="language-welsh-answer-1-other"]', value)
     return this
   }
 

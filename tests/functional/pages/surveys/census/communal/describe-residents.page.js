@@ -28,11 +28,6 @@ class DescribeResidentsPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setDescribeResidentsAnswerOtherText(value) {
-    browser.setValue('[id="describe-residents-answer-3-other"]', value)
-    return this
-  }
-
 }
 
 export default new DescribeResidentsPage()

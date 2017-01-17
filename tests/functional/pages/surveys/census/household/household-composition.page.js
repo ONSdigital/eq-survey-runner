@@ -31,13 +31,13 @@ class HouseholdCompositionPage extends QuestionPage {
   }
 
   setMiddleNames(value, index = 0) {
-    var field = 'household-' + index + '-middle-names'
+    var field = 'household-' + index + '-middle_names'
     browser.setValue('[name="' + field + '"]', value)
     return this
   }
 
   getMiddleNames(index) {
-    var field = 'household-' + index + '-middle-names'
+    var field = 'household-' + index + '-middle_names'
     browser.element('[name="' + field + '"]').getValue()
     return this
   }

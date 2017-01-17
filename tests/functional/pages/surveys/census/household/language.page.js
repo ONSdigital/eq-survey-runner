@@ -18,13 +18,9 @@ class LanguagePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setLanguageEnglandAnswerOther(value) {
-    browser.setValue('[name="language-england-answer-other"]', value)
+  setLanguageEnglandAnswerOtherText(value) {
+    browser.setValue('[id="language-england-answer-other"]', value)
     return this
-  }
-
-  getLanguageEnglandAnswerOther(value) {
-    return browser.element('[name="language-england-answer-other"]').getValue()
   }
 
   clickLanguageWelshAnswerEnglishOrWelsh() {
@@ -37,13 +33,9 @@ class LanguagePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setLanguageWelshAnswerOther(value) {
-    browser.setValue('[name="language-welsh-answer-other"]', value)
+  setLanguageWelshAnswerOtherText(value) {
+    browser.setValue('[id="language-welsh-answer-other"]', value)
     return this
-  }
-
-  getLanguageWelshAnswerOther(value) {
-    return browser.element('[name="language-welsh-answer-other"]').getValue()
   }
 
 }

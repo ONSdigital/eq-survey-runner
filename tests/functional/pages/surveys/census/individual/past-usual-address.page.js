@@ -28,11 +28,6 @@ class PastUsualAddressPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setPastUsualAddressAnswerOtherText(value) {
-    browser.setValue('[id="past-usual-address-answer-3-other"]', value)
-    return this
-  }
-
 }
 
 export default new PastUsualAddressPage()

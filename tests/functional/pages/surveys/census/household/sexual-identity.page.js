@@ -28,13 +28,9 @@ class SexualIdentityPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setSexualIdentityAnswerOther(value) {
-    browser.setValue('[name="sexual-identity-answer-other"]', value)
+  setSexualIdentityAnswerOtherText(value) {
+    browser.setValue('[id="sexual-identity-answer-other"]', value)
     return this
-  }
-
-  getSexualIdentityAnswerOther(value) {
-    return browser.element('[name="sexual-identity-answer-other"]').getValue()
   }
 
 }

@@ -33,11 +33,6 @@ class EstablishmentTypePage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setEstablishmentTypeAnswerOtherText(value) {
-    browser.setValue('[id="establishment-type-answer-4-other"]', value)
-    return this
-  }
-
 }
 
 export default new EstablishmentTypePage()

@@ -28,11 +28,6 @@ class SexualIdentityPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setSexualIdentityAnswerOtherText(value) {
-    browser.setValue('[id="sexual-identity-answer-3-other"]', value)
-    return this
-  }
-
 }
 
 export default new SexualIdentityPage()

@@ -48,11 +48,6 @@ class ReligionPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setReligionAnswerOtherText(value) {
-    browser.setValue('[id="religion-answer-7-other"]', value)
-    return this
-  }
-
   clickReligionWelshAnswerNoReligion() {
     browser.element('[id="religion-welsh-answer-0"]').click()
     return this
@@ -90,11 +85,6 @@ class ReligionPage extends MultipleChoiceWithOtherPage {
 
   clickReligionWelshAnswerOther() {
     browser.element('[id="religion-welsh-answer-7"]').click()
-    return this
-  }
-
-  setReligionWelshAnswerOtherText(value) {
-    browser.setValue('[id="religion-welsh-answer-7-other"]', value)
     return this
   }
 

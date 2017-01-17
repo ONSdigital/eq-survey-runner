@@ -33,11 +33,6 @@ class WhyPaperIndividualPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setWhyPaperIndividualAnswerOtherText(value) {
-    browser.setValue('[id="why-paper-individual-answer-4-other"]', value)
-    return this
-  }
-
 }
 
 export default new WhyPaperIndividualPage()

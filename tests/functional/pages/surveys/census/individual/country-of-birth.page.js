@@ -38,11 +38,6 @@ class CountryOfBirthPage extends MultipleChoiceWithOtherPage {
     return this
   }
 
-  setCountryOfBirthEnglandAnswerOtherText(value) {
-    browser.setValue('[id="country-of-birth-england-answer-5-other"]', value)
-    return this
-  }
-
   clickCountryOfBirthWalesAnswerWales() {
     browser.element('[id="country-of-birth-wales-answer-0"]').click()
     return this
@@ -70,11 +65,6 @@ class CountryOfBirthPage extends MultipleChoiceWithOtherPage {
 
   clickCountryOfBirthWalesAnswerOther() {
     browser.element('[id="country-of-birth-wales-answer-5"]').click()
-    return this
-  }
-
-  setCountryOfBirthWalesAnswerOtherText(value) {
-    browser.setValue('[id="country-of-birth-wales-answer-5-other"]', value)
     return this
   }
 
