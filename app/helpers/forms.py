@@ -241,17 +241,28 @@ def get_field(answer, label):
     return field
 
 
-def get_string_field(answer, label, guidance):
+def get_validators(answer):
     validate_with = [
         validators.optional(),
     ]
 
     if answer['mandatory'] is True:
+        mandatory_message = error_messages['MANDATORY']
+
+        if 'validation' in answer and 'messages' in answer['validation'] \
+                and 'MANDATORY' in answer['validation']['messages']:
+            mandatory_message = answer['validation']['messages']['MANDATORY']
+
         validate_with = [
             validators.InputRequired(
-                message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
+                message=mandatory_message
             ),
         ]
+    return validate_with
+
+
+def get_string_field(answer, label, guidance):
+    validate_with = get_validators(answer)
 
     return StringField(
         label=label,
@@ -262,16 +273,7 @@ def get_string_field(answer, label, guidance):
 
 
 def get_text_area_field(answer, label, guidance):
-    validate_with = [
-        validators.optional(),
-    ]
-
-    if answer['mandatory'] is True:
-        validate_with = [
-            validators.InputRequired(
-                message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
-            ),
-        ]
+    validate_with = get_validators(answer)
 
     return TextAreaField(
         label=label,
@@ -299,16 +301,7 @@ def get_date_field(answer, label, guidance):
 
 
 def get_select_field(answer, label, guidance):
-    validate_with = [
-        validators.optional(),
-    ]
-
-    if answer['mandatory'] is True:
-        validate_with = [
-            validators.InputRequired(
-                message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
-            ),
-        ]
+    validate_with = get_validators(answer)
 
     if answer['type'] == 'Checkbox':
         return SelectMultipleField(
@@ -331,16 +324,7 @@ def get_select_field(answer, label, guidance):
 
 
 def get_integer_field(answer, label, guidance):
-    validate_with = [
-        validators.optional(),
-    ]
-
-    if answer['mandatory'] is True:
-        validate_with = [
-            validators.InputRequired(
-                message=answer['validation']['messages']['MANDATORY'] or error_messages['MANDATORY']
-            ),
-        ]
+    validate_with = get_validators(answer)
 
     if answer['type'] == 'Currency':
         validate_with += [
