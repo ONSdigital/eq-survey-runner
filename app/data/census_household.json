@@ -1001,8 +1001,8 @@
             "routing_rules": [
                 {
                     "repeat": {
-                        "type": "answer_count",
-                        "answer_id": "first-name",
+                        "type": "answer_value_count",
+                        "answer_id": "household",
                         "navigation_label_answer_ids":["first-name", "last-name"]
                     }
                 }

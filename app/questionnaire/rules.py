@@ -36,9 +36,9 @@ def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
     return True
 
 
-def answer_value_count_minus_one(filtered_answers):
-    if len(filtered_answers) > 0 and len(filtered_answers[0]['value']) > 1:
-        return len(filtered_answers[0]['value']) - 1
+def answer_value_count(filtered_answers):
+    if len(filtered_answers) > 0 and len(filtered_answers[0]['value']) >= 1:
+        return len(filtered_answers[0]['value'])
     return 0
 
 
@@ -51,7 +51,8 @@ def evaluate_repeat(repeat_rule, answer_store):
     """
     repeat_functions = {
         'answer_value': lambda filtered_answers: int(filtered_answers[0]['value'] if len(filtered_answers) == 1 else 0),
-        'answer_value_count_minus_one': answer_value_count_minus_one,
+        'answer_value_count': answer_value_count,
+        'answer_value_count_minus_one': lambda filtered_answers: answer_value_count(filtered_answers) - 1,
         'answer_count': len,
         'answer_count_minus_one': lambda filtered_answers: len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0,
     }
