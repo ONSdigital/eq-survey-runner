@@ -91,9 +91,10 @@ class JWETest(unittest.TestCase):
         cek = os.urandom(32)
 
         encoder = Encoder()
+        encoder.cek = cek
         encrypted_key = encoder._encrypted_key(cek)
         encrypted_key = encrypted_key[0:len(encrypted_key) - 2]
-        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), cek=cek, encrypted_key=encrypted_key)
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), encrypted_key=encrypted_key)
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -104,7 +105,8 @@ class JWETest(unittest.TestCase):
         cek = os.urandom(24)
 
         encoder = Encoder()
-        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), cek=cek)
+        encoder.cek = cek
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode())
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
@@ -115,7 +117,8 @@ class JWETest(unittest.TestCase):
         iv = os.urandom(45)
 
         encoder = Encoder()
-        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), iv=iv)
+        encoder.iv = iv
+        jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode())
 
         decoder = JWTDecryptor()
         with self.assertRaises(InvalidTokenException) as ite:
