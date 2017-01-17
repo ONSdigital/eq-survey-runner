@@ -17,7 +17,6 @@ from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
-from app.schema.block import Block
 from app.submitter.converter import convert_answers
 from app.submitter.submitter import SubmitterFactory
 from app.templating.introduction_context import get_introduction_context
@@ -88,7 +87,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
-def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument
+def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
     path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
     q_manager = get_questionnaire_manager(g.schema, g.schema_json)
 
@@ -199,7 +198,7 @@ def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-ar
 
 @questionnaire_blueprint.route('signed-out', methods=["GET"])
 @login_required
-def get_sign_out(eq_id, form_type, collection_id):
+def get_sign_out(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     signed_out_page = _render_template(get_questionnaire_manager(g.schema, g.schema_json), block_id='signed-out')
     session_storage.clear()
     return signed_out_page

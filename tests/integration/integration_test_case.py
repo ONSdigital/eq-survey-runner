@@ -11,11 +11,11 @@ class IntegrationTestCase(unittest.TestCase):
     def setUp(self):
         settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
 
-        for key_name, dev_location in settings._KEYS.items():
+        for key_name, dev_location in settings._KEYS.items():  # pylint: disable=protected-access
             path = os.getenv(key_name, dev_location)
             vars(settings)[key_name] = settings.get_key(path)  # assigns attribute to this module
 
-        for password_name, dev_default in settings._PASSWORDS.items():
+        for password_name, dev_default in settings._PASSWORDS.items():  # pylint: disable=protected-access
             password = os.getenv(password_name, dev_default)
             vars(settings)[password_name] = password  # assigns attribute to this module
 

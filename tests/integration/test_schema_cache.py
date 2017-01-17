@@ -8,17 +8,17 @@ class TestApplicationVariables(IntegrationTestCase):
     def test_schema_is_cached(self):
         with self.application.app_context():
 
-            self.assertEqual(len(cache.cache._cache), 0)
+            self.assertEqual(len(cache.cache._cache), 0)  # pylint: disable=protected-access
 
             token = create_token('star_wars', '0')
             resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
 
-            self.assertEquals(resp.status_code, 200)
+            self.assertEqual(resp.status_code, 200)
 
-            self.assertNotEquals(cache.get('app.utilities.schema.load_and_parse_schema_memver'), None)
+            self.assertNotEqual(cache.get('app.utilities.schema.load_and_parse_schema_memver'), None)
 
             resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
 
-            self.assertEquals(resp.status_code, 200)
+            self.assertEqual(resp.status_code, 200)
 
-            self.assertNotEquals(cache.get('app.utilities.schema.load_and_parse_schema_memver'), None)
+            self.assertNotEqual(cache.get('app.utilities.schema.load_and_parse_schema_memver'), None)
