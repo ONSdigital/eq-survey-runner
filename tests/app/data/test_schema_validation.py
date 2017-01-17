@@ -48,14 +48,16 @@ class TestSchemaValidation(unittest.TestCase):
 
     def test_no_duplicate_ids_in_schema(self):
         schema_files = schema_loader.available_schemas()
+
+        # Certain keys need to be ignored to avoid false positives.
         ignored_keys = ['routing_rules', 'skip_condition']
 
-        print('Checking schema files for duplicate keys.')
+        logger.info('Checking schema files for duplicate keys.')
         for schema_file in schema_files:
             unique_id = []
             with open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, schema_file), encoding="utf8") as file:
                 schema_json = json.load(file)
-                print('Checking %s...' % schema_file)
+                logger.info('Checking %s...' % schema_file)
                 for id_value in self._parse_id_values(schema_json, ignored_keys):
                     if id_value in unique_id:
                         self.fail('Duplicate Id found. schema: %s, id: %s' % (schema_file, id_value))
@@ -65,7 +67,7 @@ class TestSchemaValidation(unittest.TestCase):
     def _parse_id_values(self, schema_json, ignored_keys):
         for k, v in schema_json.items():
             if k == 'id':
-                yield schema_json[k]
+                yield v
             elif k in ignored_keys:
                 continue
             elif isinstance(v, dict):
