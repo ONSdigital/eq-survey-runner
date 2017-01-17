@@ -21,14 +21,6 @@
     "test_functional_sauce": "gulp test:scripts:functional --sauce",
     "a11y": "gulp test:a11ym"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "jquery": "global:jQuery"
-  },
   "devDependencies": {
     "autoprefixer": "^6.2.3",
     "babel-core": "~6.14.0",
@@ -128,7 +120,6 @@
   },
   "dependencies": {
     "events": "^1.1.1",
-    "jquery": "github:hamishtaplin/jquery-browserify-shim",
     "lodash": "^4.6.1"
   }
 }

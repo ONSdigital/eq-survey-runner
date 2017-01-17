@@ -1,14 +1,13 @@
 export default function getTransitionEndEvent() {
-  var t
-  var el = document.createElement('fakeelement')
-  var transitions = {
+  const el = document.createElement('fakeelement')
+  const transitions = {
     'transition': 'transitionend',
     'OTransition': 'oTransitionEnd',
     'MozTransition': 'transitionend',
     'WebkitTransition': 'webkitTransitionEnd'
   }
 
-  for (t in transitions) {
+  for (let t in transitions) {
     if (el.style[t] !== undefined) {
       return transitions[t]
     }

@@ -17,7 +17,7 @@ import {paths, appPath} from './paths'
 import browserSync from './bs'
 
 const b = browserify(Object.assign(watchify.args, {
-  entries: [`./${appPath}/js/app/main.js`],
+  entries: [`./${appPath}/js/polyfills.js`, `./${appPath}/js/app/main.js`],
   debug: true
 }))
 .on('update', () => bundle())
