@@ -38,6 +38,7 @@ def dev_mode():
         language_code = form.get("language_code")
         sexual_identity = form.get("sexual_identity") == "true"
         variant_flags = {"sexual_identity": sexual_identity}
+        flush_data = form.get("flush_data") == "true"
         payload = create_payload(user=user,
                                  exp_time=exp_time,
                                  eq_id=eq_id,
@@ -54,7 +55,9 @@ def dev_mode():
                                  employment_date=employment_date,
                                  region_code=region_code,
                                  language_code=language_code,
-                                 variant_flags=variant_flags)
+                                 variant_flags=variant_flags,
+                                 flush_data=flush_data,
+                                 )
         return redirect("/session?token=" + generate_token(payload).decode())
 
     return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
@@ -106,6 +109,7 @@ def create_payload(**metadata):
         "employment_date": metadata['employment_date'],
         "region_code": metadata['region_code'],
         "language_code": metadata['language_code'],
+        "flush_data": metadata['flush_data'],
         "variant_flags": metadata['variant_flags'],
     }
 
