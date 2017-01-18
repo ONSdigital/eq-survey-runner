@@ -32,10 +32,16 @@ def build_relationship_choices(answer_store, group_instance):
     :param group_instance: The instance of the group being iterated over
     :return:
     """
-    household_answers = answer_store.filter(answer_id='household')
+    household_answers = answer_store.filter(block_id='household-composition')
 
-    first_names = [answer['first_name'] for answer in household_answers[0]['value']]
-    last_names = [answer['last_name'] for answer in household_answers[0]['value']]
+    first_names = []
+    last_names = []
+
+    for answer in household_answers:
+        if answer['answer_id'] == 'first-name':
+            first_names.append(answer['value'])
+        if answer['answer_id'] == 'last-name':
+            last_names.append(answer['value'])
 
     household_members = []
 
@@ -44,7 +50,6 @@ def build_relationship_choices(answer_store, group_instance):
             'first-name': first_name,
             'last-name': last_name,
         })
-
     remaining_people = household_members[group_instance + 1:] if group_instance < len(household_members) else []
 
     current_person_name = format_household_member_name([
@@ -183,7 +188,7 @@ class HouseHoldCompositionForm(FlaskForm):
                     location=location,
                     answer_id=answer_id,
                     answer_instance=index,
-                    value=person_data[answer_id]
+                    value=person_data[answer_id],
                 )
                 answers.append(answer)
         return answers
@@ -300,7 +305,7 @@ def get_validators(answer):
 
         validate_with = [
             validators.InputRequired(
-                message=mandatory_message
+                message=mandatory_message,
             ),
         ]
     return validate_with
