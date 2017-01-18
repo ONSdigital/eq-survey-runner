@@ -42,29 +42,23 @@
       <div class="panel__body" data-qa="error-body">
         <p class="mars">These <strong>must be corrected</strong> to continue.</p>
         <ul class="list list--bare">
-          {% for answer_id, errors in form.errors.items() %}
+          {% for answer_id, field_errors in form.errors.items() %}
             {% set loop_index = loop.index %}
-            {% for error_key, field_error in form.errors[answer_id].items() %}
-                {% if field_error is mapping %}
-                    {% for subfield, subfield_errors in field_error.items() %}
-                        {% for subfield_error in subfield_errors %}
-                        <li class="list__item mars">
-                          {{loop_index}}) <a class="js-inpagelink" href="#{{answer_id}}">{{ subfield_error }}</a>
-                        </li>
-                        {% endfor %}
-                    {% endfor %}
-                {% elif field_error is iterable %}
-                    {% for subfield_error in field_error %}
+            {% if field_errors is mapping %}
+                {% for subfield_errors in field_errors.values() %}
+                    {% for subfield_error in subfield_errors %}
                     <li class="list__item mars">
                       {{loop_index}}) <a class="js-inpagelink" href="#{{answer_id}}">{{ subfield_error }}</a>
                     </li>
                     {% endfor %}
-                {% else %}
+                {% endfor %}
+            {% else %}
+                {% for field_error in field_errors %}
                     <li class="list__item mars">
                       {{loop_index}}) <a class="js-inpagelink" href="#{{answer_id}}">{{ field_error }}</a>
                     </li>
-                {% endif %}
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
           {% endfor %}
           </ul>
         </div>
