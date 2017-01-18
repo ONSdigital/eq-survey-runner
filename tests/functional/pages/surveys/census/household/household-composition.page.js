@@ -19,37 +19,37 @@ class HouseholdCompositionPage extends QuestionPage {
   }
 
   setFirstName(value, index = 0) {
-    var field = 'household-' + index + '-first_name'
+    var field = 'household-' + index + '-first-name'
     browser.setValue('[name="' + field + '"]', value)
     return this
   }
 
   getFirstName(index) {
-    var field = 'household-' + index + '-first_name'
+    var field = 'household-' + index + '-first-name'
     browser.element('[name="' + field + '"]').getValue()
     return this
   }
 
   setMiddleNames(value, index = 0) {
-    var field = 'household-' + index + '-middle_names'
+    var field = 'household-' + index + '-middle-names'
     browser.setValue('[name="' + field + '"]', value)
     return this
   }
 
   getMiddleNames(index) {
-    var field = 'household-' + index + '-middle_names'
+    var field = 'household-' + index + '-middle-names'
     browser.element('[name="' + field + '"]').getValue()
     return this
   }
 
   setLastName(value, index = 0) {
-    var field = 'household-' + index + '-last_name'
+    var field = 'household-' + index + '-last-name'
     browser.setValue('[name="' + field + '"]', value)
     return this
   }
 
   getLastName(index) {
-    var field = 'household-' + index + '-last_name'
+    var field = 'household-' + index + '-last-name'
     browser.element('[name="' + field + '"]').getValue()
     return this
   }
