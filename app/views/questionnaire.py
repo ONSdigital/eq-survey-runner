@@ -321,7 +321,8 @@ def update_questionnaire_store_with_form_data(location, answer_dict):
                     answer = Answer(answer_id=answer_id, value=datestr, location=location)
             else:
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
-            questionnaire_store.answer_store.add_or_update(answer)
+            if answer:
+                questionnaire_store.answer_store.add_or_update(answer)
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
