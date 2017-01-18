@@ -12,6 +12,15 @@ class CheckboxSummaryPage extends SummaryPage {
     return answer.getText();
   }
 
+  getPage1OtherAnswer() {
+      var answer = browser.element('[data-qa="other-answer-mandatory-answer"');
+      return answer.getText();
+  }
+
+  getPage2OtherAnswer() {
+    var answer = browser.element('[data-qa="other-answer-non-mandatory-answer"');
+    return answer.getText();
+  }
 }
 
 export default new CheckboxSummaryPage()

@@ -79,7 +79,7 @@ describe('Checkbox with "other" option', function() {
      OptionalCheckboxPage.clickOther().setOtherInputField('The other value').submit();
 
      // Then
-     expect(SummaryPage.getPage2Answer()).to.have.string('The other value');
+     expect(SummaryPage.getPage2OtherAnswer()).to.have.string('The other value');
   })
 
 })
