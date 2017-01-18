@@ -33,6 +33,7 @@
                                             "guidance": "",
                                             "id": "answer",
                                             "label": "New to the market 2012-2014",
+                                            "description": "Enter percentage of growth",
                                             "mandatory": false,
                                             "options": [],
                                             "q_code": "0",

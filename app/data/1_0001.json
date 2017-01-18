@@ -3615,7 +3615,7 @@
                                     "answers": [],
                                     "description": "",
                                     "id": "information-needed-for-innovation-completed-question",
-                                    "title": "Information Needed for Innovation",
+                                    "title": "",
                                     "type": "General"
                                 }
                             ],
@@ -5130,25 +5130,19 @@
                         }
                     ],
                     "type": "questionnaire"
-                }
-            ],
-            "id": "general-information",
-            "title": "General Information"
-        },
-        {
-            "blocks": [
+                },
                 {
                     "id": "ready-to-submit-completed",
                     "sections": [
                         {
-                            "description": "<p>Submission</p><p>You will not be able to access or change your answers on submitting the questionnaire</p><p>If you wish to review your answers please select the relevant Completed sections</p><p>If you do not submit your questionnaire, your responses will be collected when the online questionnaire closes</p>",
+                            "description": "",
                             "id": "ready-to-submit-completed-section",
                             "questions": [
                                 {
                                     "answers": [],
-                                    "description": "",
+                                    "description": "<ul><li><p>You will not be able to access or change your answers on submitting the questionnaire</p></li><li><p>If you wish to review your answers please select the relevant Completed sections</p></li><li><p>If you do not submit your questionnaire, your responses will be collected when the online questionnaire closes</p></li></ul>",
                                     "id": "ready-to-submit-completed-question",
-                                    "title": "",
+                                    "title": "Submission",
                                     "type": "General"
                                 }
                             ],
@@ -5158,9 +5152,8 @@
                     "type": "interstitial"
                 }
             ],
-            "hide_in_navigation": true,
-            "id": "ready-to-submit",
-            "title": "You are now ready to submit this survey"
+            "id": "general-information",
+            "title": "General Information"
         }
     ],
     "mime_type": "application/json/ons/eq",
