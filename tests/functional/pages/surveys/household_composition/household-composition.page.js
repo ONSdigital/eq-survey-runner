@@ -7,17 +7,17 @@ class HouseholdCompositionPage extends QuestionPage {
   }
 
   setFirstName(index, value) {
-    browser.setValue(this.getInputSelector(index, 'first_name'), value)
+    browser.setValue(this.getInputSelector(index, 'first-name'), value)
     return this
   }
 
   setMiddleNames(index, value) {
-    browser.setValue(this.getInputSelector(index, 'middle_names'), value)
+    browser.setValue(this.getInputSelector(index, 'middle-names'), value)
     return this
   }
 
   setLastName(index, value) {
-    browser.setValue(this.getInputSelector(index, 'last_name'), value)
+    browser.setValue(this.getInputSelector(index, 'last-name'), value)
     return this
   }
 
