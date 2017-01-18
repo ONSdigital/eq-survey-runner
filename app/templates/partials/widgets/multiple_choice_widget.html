@@ -7,7 +7,7 @@
     "name": option.name,
     "id": option.id,
     "checked": "checked" if option.selected,
-    "data-qa": "has-other-option" if option.other
+    "data-qa": "has-other-option" if answer['options'][loop.index0].child_answer_id
   } %}
 
   {% set label = {

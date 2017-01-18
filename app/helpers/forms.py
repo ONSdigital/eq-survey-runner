@@ -258,6 +258,11 @@ def generate_form(block_json, data):
                 setattr(QuestionnaireForm, question['answers'][1]['id'], to_field)
             else:
                 for answer in question['answers']:
+                    if 'parent_answer_id' in answer and answer['parent_answer_id'] in data and \
+                            data[answer['parent_answer_id']] == 'Other':
+                        answer['mandatory'] = \
+                            next(a['mandatory'] for a in question['answers'] if a['id'] == answer['parent_answer_id'])
+
                     name = answer['label'] if 'label' in answer else question['title']
                     setattr(QuestionnaireForm, answer['id'], get_field(answer, name))
     if data:
@@ -269,7 +274,7 @@ def generate_form(block_json, data):
     return form
 
 
-def get_field(answer, label):
+def get_field(answer, label, parent_selected=False):
     guidance = answer['guidance'] if 'guidance' in answer else ''
 
     field = {
