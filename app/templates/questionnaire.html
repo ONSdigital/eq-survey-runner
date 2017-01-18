@@ -44,7 +44,7 @@
         <ul class="list list--bare">
           {% for answer_id, errors in form.errors.items() %}
             {% set loop_index = loop.index %}
-            {% for field_error in errors %}
+            {% for error_key, field_error in form.errors[answer_id].items() %}
                 {% if field_error is mapping %}
                     {% for subfield, subfield_errors in field_error.items() %}
                         {% for subfield_error in subfield_errors %}
@@ -52,6 +52,12 @@
                           {{loop_index}}) <a class="js-inpagelink" href="#{{answer_id}}">{{ subfield_error }}</a>
                         </li>
                         {% endfor %}
+                    {% endfor %}
+                {% elif field_error is iterable %}
+                    {% for subfield_error in field_error %}
+                    <li class="list__item mars">
+                      {{loop_index}}) <a class="js-inpagelink" href="#{{answer_id}}">{{ subfield_error }}</a>
+                    </li>
                     {% endfor %}
                 {% else %}
                     <li class="list__item mars">
