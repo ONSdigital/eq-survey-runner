@@ -16,6 +16,19 @@ def positive_integer_type_check(form, field):
         raise validators.ValidationError(error_messages['NOT_INTEGER'])
 
 
+class DateRequired(object):
+    def __init__(self, message=None):
+        if not message:
+            message = error_messages['MANDATORY']
+        self.message = message
+
+    def __call__(self, form, field):
+        if hasattr(form, 'day') and not form.day and not form.month and not form.year:
+            raise validators.ValidationError(self.message)
+        elif not form.month and not form.year:
+            raise validators.ValidationError(self.message)
+
+
 class DateCheck(object):
     def __init__(self, message=None):
         if not message:

@@ -5,7 +5,7 @@ from app.data_model.answer_store import Answer
 from app.helpers.schema_helper import SchemaHelper
 from app.jinja_filters import format_household_member_name
 from app.validation.error_messages import error_messages
-from app.validation.validators import DateRangeCheck, DateCheck, MonthYearCheck, positive_integer_type_check
+from app.validation.validators import DateRangeCheck, DateCheck, DateRequired, MonthYearCheck, positive_integer_type_check
 
 from flask_wtf import FlaskForm
 
@@ -91,10 +91,15 @@ def get_date_form(answer=None, to_field_data=None, validate_range=False):
         month = SelectField(choices=MONTH_CHOICES, default='')
         year = StringField()
 
-    validate_with = []
+    validate_with = [validators.optional()]
 
-    if answer['mandatory'] is False:
-        validate_with += [validators.optional()]
+    if answer['mandatory'] is True:
+        error_message = error_messages['MANDATORY']
+        if 'validation' in answer and 'messages' in answer['validation'] \
+            and 'MANDATORY' in answer['validation']['messages']:
+            error_message = answer['validation']['messages']['MANDATORY']
+
+        validate_with = [DateRequired(message=error_message)]
 
     if 'validation' in answer and 'messages' in answer['validation'] \
         and 'INVALID_DATE' in answer['validation']['messages']:
@@ -116,15 +121,22 @@ def get_month_year_form(answer):
 
     month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
 
-    validate_with = [MonthYearCheck()]
+    validate_with = [validators.optional()]
+
+    if answer['mandatory'] is True:
+        error_message = error_messages['MANDATORY']
+        if 'validation' in answer and 'messages' in answer['validation'] \
+            and 'MANDATORY' in answer['validation']['messages']:
+            error_message = answer['validation']['messages']['MANDATORY']
+
+        validate_with = [DateRequired(message=error_message)]
 
     if 'validation' in answer and 'messages' in answer['validation'] \
         and 'INVALID_DATE' in answer['validation']['messages']:
         error_message = answer['validation']['messages']['INVALID_DATE']
-        validate_with = [MonthYearCheck(error_message)]
-
-    if answer['mandatory'] is False:
-        validate_with += [validators.optional()]
+        validate_with += [MonthYearCheck(error_message)]
+    else:
+        validate_with += [MonthYearCheck()]
 
     MonthYearDateForm.month = SelectField(choices=month_choices, default='', validators=validate_with)
 
