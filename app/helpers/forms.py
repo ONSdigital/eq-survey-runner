@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 def build_choices(options):
     choices = []
     for option in options:
-        choices.append((option['label'], option['value']))
+        choices.append((option['value'], option['label']))
     return choices
 
 
