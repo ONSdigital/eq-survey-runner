@@ -16,24 +16,34 @@ def positive_integer_type_check(form, field):
         raise validators.ValidationError(error_messages['NOT_INTEGER'])
 
 
-def date_check(form, field):
+class DateCheck(object):
+    def __init__(self, message=None):
+        if not message:
+            message = error_messages['INVALID_DATE']
+        self.message = message
 
-    try:
-        date_str = "{:02d}/{:02d}/{}".format(int(form.day.data or 0), int(form.month.data or 0), form.year.data or '')
+    def __call__(self, form, field):
+        try:
+            date_str = "{:02d}/{:02d}/{}".format(int(form.day.data or 0), int(form.month.data or 0), form.year.data or '')
 
-        datetime.strptime(date_str, "%d/%m/%Y")
-    except ValueError:
-        raise validators.ValidationError(error_messages['INVALID_DATE'])
+            datetime.strptime(date_str, "%d/%m/%Y")
+        except ValueError:
+            raise validators.ValidationError(self.message)
 
 
-def month_year_check(form, field):
+class MonthYearCheck(object):
+    def __init__(self, message=None):
+        if not message:
+            message = error_messages['INVALID_DATE']
+        self.message = message
 
-    try:
-        datestr = "{:02d}/{}".format(int(form.month.data or 0), form.year.data or '')
+    def __call__(self, form, field):
+        try:
+            datestr = "{:02d}/{}".format(int(form.month.data or 0), form.year.data or '')
 
-        datetime.strptime(datestr, "%m/%Y")
-    except ValueError:
-        raise validators.ValidationError(error_messages['INVALID_DATE'])
+            datetime.strptime(datestr, "%m/%Y")
+        except ValueError:
+            raise validators.ValidationError(self.message)
 
 
 class DateRangeCheck(object):

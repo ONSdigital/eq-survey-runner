@@ -312,11 +312,13 @@ def update_questionnaire_store_with_form_data(location, answer_dict):
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
             # Dates are comprised of 3 string values
             if isinstance(answer_value, dict) and 'day' in answer_value and 'month' in answer_value:
-                datestr = "{:02d}/{:02d}/{}".format(int(answer_value['day']), int(answer_value['month']), answer_value['year'])
-                answer = Answer(answer_id=answer_id, value=datestr, location=location)
+                if answer_value['day'] and answer_value['month']:
+                    datestr = "{:02d}/{:02d}/{}".format(int(answer_value['day']), int(answer_value['month']), answer_value['year'])
+                    answer = Answer(answer_id=answer_id, value=datestr, location=location)
             elif isinstance(answer_value, dict) and 'year' in answer_value and 'month' in answer_value:
-                datestr = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
-                answer = Answer(answer_id=answer_id, value=datestr, location=location)
+                if answer_value['month']:
+                    datestr = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
+                    answer = Answer(answer_id=answer_id, value=datestr, location=location)
             else:
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
             questionnaire_store.answer_store.add_or_update(answer)

@@ -5,7 +5,7 @@ from app.data_model.answer_store import Answer
 from app.helpers.schema_helper import SchemaHelper
 from app.jinja_filters import format_household_member_name
 from app.validation.error_messages import error_messages
-from app.validation.validators import DateRangeCheck, date_check, month_year_check, positive_integer_type_check
+from app.validation.validators import DateRangeCheck, DateCheck, MonthYearCheck, positive_integer_type_check
 
 from flask_wtf import FlaskForm
 
@@ -74,11 +74,12 @@ class Struct:
         self.__dict__.update(entries)
 
 
-def get_date_form(to_field_data=None, validate_range=False):
+def get_date_form(answer=None, to_field_data=None, validate_range=False):
     """
     Returns a date form metaclass with appropriate validators. Used in both date and
     date range form creation.
 
+    :param answer: The answer on which to base this form
     :param to_field_data: The data coming from the
     :param validate_range: Whether the dateform should add a daterange validator
     :return:
@@ -90,20 +91,44 @@ def get_date_form(to_field_data=None, validate_range=False):
         month = SelectField(choices=MONTH_CHOICES, default='')
         year = StringField()
 
+    validate_with = []
+
+    if answer['mandatory'] is False:
+        validate_with += [validators.optional()]
+
+    if 'validation' in answer and 'messages' in answer['validation'] \
+        and 'INVALID_DATE' in answer['validation']['messages']:
+        error_message = answer['validation']['messages']['INVALID_DATE']
+        validate_with += [DateCheck(error_message)]
+
     if validate_range and to_field_data:
-        DateForm.day = StringField(validators=[date_check, DateRangeCheck(to_field_data=to_field_data)])
-    else:
-        DateForm.day = StringField(validators=[date_check])
+        validate_with += [DateRangeCheck(to_field_data=to_field_data)]
+
+    DateForm.day = StringField(validators=validate_with)
 
     return DateForm
 
 
-class MonthYearDateForm(Form):
+def get_month_year_form(answer):
 
-    MONTH_CHOICES = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+    class MonthYearDateForm(Form):
+        year = StringField()
 
-    month = SelectField(choices=MONTH_CHOICES, default='', validators=[month_year_check])
-    year = StringField()
+    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+
+    validate_with = [MonthYearCheck()]
+
+    if 'validation' in answer and 'messages' in answer['validation'] \
+        and 'INVALID_DATE' in answer['validation']['messages']:
+        error_message = answer['validation']['messages']['INVALID_DATE']
+        validate_with = [MonthYearCheck(error_message)]
+
+    if answer['mandatory'] is False:
+        validate_with += [validators.optional()]
+
+    MonthYearDateForm.month = SelectField(choices=month_choices, default='', validators=validate_with)
+
+    return MonthYearDateForm
 
 
 def get_name_form():
@@ -133,12 +158,12 @@ def get_date_range_fields(question_json, to_field_data):
     answer_to = question_json['answers'][1]
 
     field_from = FormField(
-        get_date_form(to_field_data=to_field_data, validate_range=True),
+        get_date_form(answer=answer_from, to_field_data=to_field_data, validate_range=True),
         label=answer_from['label'] if 'label' in answer_from else '',
         description=answer_from['guidance'] if 'guidance' in answer_from else '',
     )
     field_to = FormField(
-        get_date_form(),
+        get_date_form(answer=answer_to),
         label=answer_to['label'] if 'label' in answer_to else '',
         description=answer_to['guidance'] if 'guidance' in answer_to else '',
     )
@@ -274,7 +299,7 @@ def generate_form(block_json, data):
     return form
 
 
-def get_field(answer, label, parent_selected=False):
+def get_field(answer, label):
     guidance = answer['guidance'] if 'guidance' in answer else ''
 
     field = {
@@ -297,9 +322,7 @@ def get_field(answer, label, parent_selected=False):
 
 
 def get_validators(answer):
-    validate_with = [
-        validators.optional(),
-    ]
+    validate_with = [validators.optional()]
 
     if answer['mandatory'] is True:
         mandatory_message = error_messages['MANDATORY']
@@ -343,13 +366,13 @@ def get_date_field(answer, label, guidance):
 
     if answer['type'] == 'MonthYearDate':
         return FormField(
-            MonthYearDateForm,
+            get_month_year_form(answer),
             label=label,
             description=guidance,
         )
     else:
         return FormField(
-            get_date_form(),
+            get_date_form(answer),
             label=label,
             description=guidance,
         )
