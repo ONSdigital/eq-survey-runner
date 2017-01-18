@@ -4,7 +4,8 @@ from app.authentication.session_storage import session_storage
 from app.data_model.answer_store import Answer
 
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
-from app.helpers.forms import HouseHoldCompositionForm, Struct, build_relationship_choices, deserialise_composition_answers, generate_form, generate_relationship_form
+from app.helpers.forms import HouseHoldCompositionForm, Struct, build_relationship_choices, \
+    deserialise_composition_answers, generate_form, generate_relationship_form
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
