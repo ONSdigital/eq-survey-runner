@@ -1,6 +1,6 @@
 {% import 'macros/helpers.html' as helpers %}
 
-{% set invalid = form.errors[answer.id]|length > 0 %}
+{% set invalid = form.errors[answer.id]|length > 0 or form.errors[answer.child_answer_id]|length > 0 %}
 
 <div class="answer answer--{{answer.type|lower}} {{'js-has-errors' if invalid}}" id="{{answer.id}}">
 
@@ -30,27 +30,14 @@
   {% endset -%}
 
   {% if form.errors[answer.id] %}
+    {% set answer_id = answer.id %}
+    {% include 'partials/errors.html' %}
 
-    <div class="panel panel--simple panel--error" data-qa="error">
-      <div class="panel__header">
-        <ul class="list list--bare list--errors">
-            {% if form.errors[answer.id] is mapping %}
-                {% for subfield_errors in form.errors[answer.id].values() %}
-                    {% for subfield_error in subfield_errors %}
-                        <li class="list__item mars" {{helpers.errorTracking(question.id, field_error)}}>{{ subfield_error }}</li>
-                    {% endfor %}
-                {% endfor %}
-            {% elif form.errors[answer.id] is iterable %}
-                {% for field_error in form.errors[answer.id] %}
-                    <li class="list__item mars" {{helpers.errorTracking(question.id, field_error)}}>{{ field_error }}</li>
-                {% endfor %}
-            {% endif %}
-        </ul>
-      </div>
-      <div class="panel__body" data-qa="error-body">
-        {{answer_fields|safe}}
-      </div>
-    </div>
+    {{answer_guidance|safe}}
+
+  {% elif form.errors[answer.child_answer_id] %}
+    {% set answer_id = answer.child_answer_id %}
+    {% include 'partials/errors.html' %}
 
     {{answer_guidance|safe}}
 

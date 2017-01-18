@@ -6,7 +6,7 @@
     "value": option.data,
     "name": option.name,
     "id": option.id,
-    "checked": "checked" if option.selected,
+    "checked": "checked" if option.selected or (form.data[answer.id] and option.data in form.data[answer.id]),
     "data-qa": "has-other-option" if answer['options'][loop.index0].child_answer_id
   } %}
 

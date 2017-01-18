@@ -1,0 +1,20 @@
+<div class="panel panel--simple panel--error" data-qa="error">
+  <div class="panel__header">
+    <ul class="list list--bare list--errors">
+        {% if form.errors[answer_id] is mapping %}
+            {% for subfield_errors in form.errors[answer_id].values() %}
+                {% for subfield_error in subfield_errors %}
+                    <li class="list__item mars" {{helpers.errorTracking(question.id, field_error)}}>{{ subfield_error }}</li>
+                {% endfor %}
+            {% endfor %}
+        {% elif form.errors[answer_id] is iterable %}
+            {% for field_error in form.errors[answer_id] %}
+                <li class="list__item mars" {{helpers.errorTracking(question.id, field_error)}}>{{ field_error }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+  </div>
+  <div class="panel__body" data-qa="error-body">
+    {{answer_fields|safe}}
+  </div>
+</div>
