@@ -1,6 +1,7 @@
 import calendar
 import logging
 
+from app.data_model.answer_store import Answer
 from app.helpers.schema_helper import SchemaHelper
 from app.jinja_filters import format_household_member_name
 from app.validation.error_messages import error_messages
@@ -100,7 +101,10 @@ class MonthYearDateForm(Form):
     year = StringField()
 
 
-class NameForm(Form):
+def get_name_form():
+    class NameForm(Form):
+        pass
+
     first_name = StringField(validators=[
         validators.InputRequired(
             message=error_messages['MANDATORY'],
@@ -109,6 +113,14 @@ class NameForm(Form):
 
     middle_names = StringField(validators=[validators.Optional()])
     last_name = StringField(validators=[validators.Optional()])
+
+    # Have to be set this way given hyphenated names
+    # are considered invalid in python
+    setattr(NameForm, 'first-name', first_name)
+    setattr(NameForm, 'middle-names', middle_names)
+    setattr(NameForm, 'last-name', last_name)
+
+    return NameForm
 
 
 def get_date_range_fields(question_json, to_field_data):
@@ -129,8 +141,23 @@ def get_date_range_fields(question_json, to_field_data):
     return field_from, field_to
 
 
+def deserialise_composition_answers(answers):
+    household = []
+    answer_instance = 0
+
+    while any([a for a in answers if a['answer_instance'] == answer_instance]):
+        instance_answers = [a for a in answers if a['answer_instance'] == answer_instance]
+        person = {}
+        for instance_answer in instance_answers:
+            person[instance_answer['answer_id']] = instance_answer['value']
+        household.append(person)
+
+        answer_instance += 1
+    return household
+
+
 class HouseHoldCompositionForm(FlaskForm):
-    household = FieldList(FormField(NameForm), min_entries=1)
+    household = FieldList(FormField(get_name_form()), min_entries=1)
 
     def remove_person(self, index_to_remove):
         popped = []
@@ -142,6 +169,24 @@ class HouseHoldCompositionForm(FlaskForm):
 
         for field in popped[1:]:
             self.household.append_entry(field.data)
+
+    def serialise(self, location):
+        """
+        Returns a list of answers representing the form data
+        :param location: The location to associate the form data with
+        :return:
+        """
+        answers = []
+        for index, person_data in enumerate(self.household.data):
+            for answer_id, answer_value in person_data.items():
+                answer = Answer(
+                    location=location,
+                    answer_id=answer_id,
+                    answer_instance=index,
+                    value=person_data[answer_id]
+                )
+                answers.append(answer)
+        return answers
 
 
 def generate_relationship_form(block_json, number_of_entries, data):

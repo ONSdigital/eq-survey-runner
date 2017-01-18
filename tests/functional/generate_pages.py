@@ -168,8 +168,8 @@ def process_answer(question_type, answer, page_spec):
             answer['type'] == 'PositiveInteger' or answer['type'] == 'TextArea'):
         answer_name = generate_camel_case_from_id(answer['id'])
         if question_type == 'RepeatingAnswer':
-            page_spec.write(REPEATING_ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['alias']))
-            page_spec.write(REPEATING_ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['alias']))
+            page_spec.write(REPEATING_ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+            page_spec.write(REPEATING_ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
         else:
             page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
             page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))

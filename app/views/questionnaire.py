@@ -4,7 +4,7 @@ from app.authentication.session_storage import session_storage
 from app.data_model.answer_store import Answer
 
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
-from app.helpers.forms import HouseHoldCompositionForm, Struct, build_relationship_choices, generate_form, generate_relationship_form
+from app.helpers.forms import HouseHoldCompositionForm, Struct, build_relationship_choices, deserialise_composition_answers, generate_form, generate_relationship_form
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
@@ -80,8 +80,10 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
     logger.info(answer_store.answers)
 
     if block_id == 'household-composition':
-        household = next((a['value'] for a in answer_store.answers if a['answer_id'] == 'household'), None)
-        form_data = {'household': household}
+        answers = answer_store.filter(location=current_location)
+
+        deserialised = deserialise_composition_answers(answers)
+        form_data = {'household': deserialised}
 
         data_class = Struct(**form_data)
         form = HouseHoldCompositionForm(csrf_enabled=False, obj=data_class)
@@ -133,7 +135,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     if not valid_location or not valid_data:
         return _render_template({'form': form, 'block': block}, block_id=block_id, template='questionnaire')
     else:
-        update_questionnaire_store(current_location, form.data)
+        update_questionnaire_store_with_form_data(current_location, form.data)
 
     next_location = path_finder.get_next_location(current_location=current_location)
     metadata = get_metadata(current_user)
@@ -173,7 +175,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
             'block': block,
         }, current_location=current_location, template='questionnaire')
 
-    update_questionnaire_store(current_location, form.data)
+    update_questionnaire_store_with_answer_data(current_location, form.serialise(current_location))
 
     next_location = path_finder.get_next_location(current_location=current_location)
 
@@ -196,7 +198,7 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):
     current_location = Location(SchemaHelper.get_first_group_id(g.schema_json), 0, block_id)
 
     valid_location = current_location in path_finder.get_location_path()
-    update_questionnaire_store(current_location, request.form.to_dict())
+    update_questionnaire_store_with_form_data(current_location, request.form.to_dict())
 
     # Don't care if data is valid because there isn't any for interstitial
     if not valid_location:
@@ -299,7 +301,7 @@ def _remove_repeating_on_household_answers(answer_store, group_id):
                                                        b.group_id != group['id']]
 
 
-def update_questionnaire_store(location, answer_dict):
+def update_questionnaire_store_with_form_data(location, answer_dict):
     # Store answers in QuestionnaireStore
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
@@ -317,6 +319,18 @@ def update_questionnaire_store(location, answer_dict):
             else:
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
             questionnaire_store.answer_store.add_or_update(answer)
+
+    if location not in questionnaire_store.completed_blocks:
+        questionnaire_store.completed_blocks.append(location)
+
+
+def update_questionnaire_store_with_answer_data(location, answers):
+    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+    survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)
+
+    for answer in [a for a in answers if a.answer_id in survey_answer_ids]:
+        questionnaire_store.answer_store.add_or_update(answer)
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
