@@ -53,7 +53,7 @@ class TestSchemaValidation(unittest.TestCase):
         for schema_file in schema_files:
             unique_id = []
             with open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, schema_file), encoding="utf8") as file:
-                schema_json = json.load(file)
+                schema_json = load(file)
                 for id_value in self._parse_id_values(schema_json, ignored_keys):
                     if id_value in unique_id:
                         self.fail('Duplicate Id found. schema: %s, id: %s' % (schema_file, id_value))
