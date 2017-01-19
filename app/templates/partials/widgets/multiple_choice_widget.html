@@ -6,7 +6,7 @@
     "value": option.data,
     "name": option.name,
     "id": option.id,
-    "checked": "checked" if option.selected or (form.data[answer.id] and option.data in form.data[answer.id]),
+    "checked": "checked" if form.data[answer.id] and form.data[answer.id] != 'None' and option.data in form.data[answer.id],
     "data-qa": "has-other-option" if answer['options'][loop.index0].child_answer_id
   } %}
 
@@ -14,7 +14,6 @@
     "class": "label label--inline venus",
     "for": option.id
   } %}
-
   <div class="field__item js-focusable-box">
     <input {{input|xmlattr}}>
     <label {{label|xmlattr}}>
