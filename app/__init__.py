@@ -5,7 +5,7 @@ import sys
 from datetime import timedelta
 
 from app import settings
-from app.authentication.authenticator import Authenticator
+from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.data_model.database import db_session
 from app.libs.utils import get_locale
@@ -17,8 +17,6 @@ from flask import url_for
 from flask.ext.cache import Cache
 
 from flask_babel import Babel
-
-from flask_login import LoginManager
 
 from flask_themes2 import Themes
 
@@ -56,24 +54,6 @@ def rabbitmq_available():
 
 def git_revision():
     return True, settings.EQ_GIT_REF
-
-
-login_manager = LoginManager()
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    logger.debug("Loading user %s", user_id)
-    logger.debug(user_id)
-    authenticator = Authenticator()
-    return authenticator.check_session()
-
-
-@login_manager.request_loader
-def request_load_user(request):
-    logger.debug("Load user %s", request)
-    authenticator = Authenticator()
-    return authenticator.check_session()
 
 
 class AWSReverseProxied(object):

@@ -12,7 +12,26 @@ from app.parser.metadata_parser import is_valid_metadata, parse_metadata
 
 from flask import session
 
+from flask_login import LoginManager
+
 logger = logging.getLogger(__name__)
+
+
+login_manager = LoginManager()
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    logger.debug("Loading user %s", user_id)
+    authenticator = Authenticator()
+    return authenticator.check_session()
+
+
+@login_manager.request_loader
+def request_load_user(request):
+    logger.debug("Load user %s", request)
+    authenticator = Authenticator()
+    return authenticator.check_session()
 
 
 class Authenticator(object):
