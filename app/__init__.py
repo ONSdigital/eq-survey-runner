@@ -24,8 +24,6 @@ from flask_themes2 import Themes
 
 from flaskext.markdown import Markdown
 
-from splunk_handler import SplunkHandler
-
 import watchtower
 
 SECURE_HEADERS = {
@@ -221,25 +219,10 @@ def configure_logging(application):
         LOG_NAME, maxBytes=LOG_SIZE, backupCount=LOG_NUMBER)
     logging.getLogger().addHandler(rotating_log_file)
 
-    # setup splunk logging
-    if settings.EQ_SPLUNK_LOGGING:
-        setup_splunk_logging()
-
     # workaround flask crazy logging mechanism (https://github.com/pallets/flask/issues/641)
     application.logger_name = "nowhere"
     # the line below is required to trigger disabling the logger
     application.logger  # pylint: disable=pointless-statement
-
-
-def setup_splunk_logging():
-
-    splunk_handler = SplunkHandler(host=settings.EQ_SPLUNK_HOST,
-                                   port=settings.EQ_SPLUNK_PORT,
-                                   username=settings.EQ_SPLUNK_USERNAME,
-                                   password=settings.EQ_SPLUNK_PASSWORD,
-                                   index=settings.EQ_SPLUNK_INDEX,
-                                   verify=False)
-    logging.getLogger().addHandler(splunk_handler)
 
 
 def setup_cloud_watch_logging(application):
