@@ -5140,10 +5140,19 @@
                             "questions": [
                                 {
                                     "answers": [],
-                                    "description": "<ul><li><p>You will not be able to access or change your answers on submitting the questionnaire</p></li><li><p>If you wish to review your answers please select the relevant Completed sections</p></li><li><p>If you do not submit your questionnaire, your responses will be collected when the online questionnaire closes</p></li></ul>",
                                     "id": "ready-to-submit-completed-question",
                                     "title": "Submission",
-                                    "type": "General"
+                                    "type": "General",
+                                    "guidance": [
+                                        {
+                                          "title": "",
+                                          "list": [
+                                            "You will not be able to access or change your answers on submitting the questionnaire",
+                                            "If you wish to review your answers please select the relevant Completed sections",
+                                            "your responses will be collected when the online questionnaire closes"
+                                          ]
+                                      }
+                                    ]
                                 }
                             ],
                             "title": "You are now ready to submit this survey"
