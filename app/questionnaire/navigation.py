@@ -37,7 +37,7 @@ class Navigation(object):
         for group in filter(lambda x: 'hide_in_navigation' not in x, self.survey_json['groups']):
             first_location = Location(group['id'], 0, group['blocks'][0]['id'])
 
-            logger.debug("Building frontend navigation for group %s", group)
+            logger.debug("Building frontend navigation for group %s", group['id'])
 
             repeating_rule = SchemaHelper.get_repeat_rule(group)
 

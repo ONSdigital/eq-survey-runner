@@ -301,6 +301,25 @@
             "blocks": [
                 {
                     "id": "internal-investment-r-d",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "years-internal-investment-r-d",
+                                "when": [
+                                    {
+                                        "id": "internal-investment-r-d-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "acquisition-internal-investment-r-d"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -351,6 +370,25 @@
                 },
                 {
                     "id": "years-internal-investment-r-d",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "expenditure-internal-investment-r-d",
+                                "when": [
+                                    {
+                                        "id": "years-internal-investment-r-d-answer",
+                                        "condition": "contains",
+                                        "value":"2016"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "acquisition-internal-investment-r-d"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "",
@@ -439,6 +477,25 @@
                 },
                 {
                     "id": "acquisition-internal-investment-r-d",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "amount-acquisition-internal-investment-r-d",
+                                "when": [
+                                    {
+                                        "id": "acquisition-internal-investment-r-d-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "investment-advanced-machinery"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -530,6 +587,25 @@
                 },
                 {
                     "id": "investment-advanced-machinery",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "investment-purposes-innovation",
+                                "when": [
+                                    {
+                                        "id": "investment-advanced-machinery-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "investment-existing-knowledge-innovation"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -659,6 +735,25 @@
                 },
                 {
                     "id": "investment-existing-knowledge-innovation",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "expenditure-existing-2016",
+                                "when": [
+                                    {
+                                        "id": "investment-existing-knowledge-innovation-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "investment-training-innovative"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -751,6 +846,25 @@
                 },
                 {
                     "id": "investment-training-innovative",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "expenditure-training-innovative-2016",
+                                "when": [
+                                    {
+                                        "id": "investment-training-innovative-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "investment-design-future-innovation"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -842,6 +956,25 @@
                 },
                 {
                     "id": "investment-design-future-innovation",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "expenditure-design-2016",
+                                "when": [
+                                    {
+                                        "id": "investment-design-future-innovation-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "investment-introduction-innovations"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -933,6 +1066,25 @@
                 },
                 {
                     "id": "investment-introduction-innovations",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "investment-purposes-innovation-2",
+                                "when": [
+                                    {
+                                        "id": "investment-introduction-innovations-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "innovation-investment-completed"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -1077,7 +1229,7 @@
                                     "answers": [],
                                     "description": "",
                                     "id": "innovation-investment-completed-question",
-                                    "title": "Innovation Investment",
+                                    "title": "",
                                     "type": "General"
                                 }
                             ],
@@ -1094,6 +1246,25 @@
             "blocks": [
                 {
                     "id": "introducing-significantly-improved-goods",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "entity-developed-these-goods",
+                                "when": [
+                                    {
+                                        "id": "introducing-significantly-improved-goods-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "introduce-significantly-improvement"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -1200,6 +1371,37 @@
                 },
                 {
                     "id": "introduce-significantly-improvement",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "entity-mainly-developed-these",
+                                "when": [
+                                    {
+                                        "id": "introduce-significantly-improvement-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "new-goods-services-innovations",
+                                "when": [
+                                    {
+                                        "id": "introducing-significantly-improved-goods-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "goods-and-services-innovation-completed"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -1527,6 +1729,25 @@
             "blocks": [
                 {
                     "id": "process-improved",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "developed-processes",
+                                "when": [
+                                    {
+                                        "id": "process-improved-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "improved-processes"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
@@ -4486,6 +4707,25 @@
             "blocks": [
                 {
                     "id": "public-financial-support",
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "kind-financial-central-government-support",
+                                "when": [
+                                    {
+                                        "id": "public-financial-support-central-government-answer",
+                                        "condition": "equals",
+                                        "value":"Yes"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "public-financial-support-for-innovation-completed"
+                            }
+                        }
+                    ],
                     "sections": [
                         {
                             "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
