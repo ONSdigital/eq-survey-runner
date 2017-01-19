@@ -7,26 +7,60 @@ import plumber from 'gulp-plumber'
 import uglify from 'gulp-uglify'
 import browserify from 'browserify'
 import watchify from 'watchify'
-import babelify from 'babelify'
 import babel from 'gulp-babel'
 import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
 import sourcemaps from 'gulp-sourcemaps'
 
+import rollupBabel from 'rollup-plugin-babel'
+import nodeResolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+
 import {paths, appPath} from './paths'
 import browserSync from './bs'
 
-const b = browserify(Object.assign(watchify.args, {
-  entries: [`./${appPath}/js/polyfills.js`, `./${appPath}/js/app/main.js`],
-  debug: true
-}))
-.on('update', () => bundle())
+let cache
+
+const b = browserify({
+  ...watchify.args,
+  ...{
+    entries: [`./${appPath}/js/polyfills.js`, `./${appPath}/js/app/main.js`],
+    debug: true
+  }
+})
+.on('update', () => {
+  cache = bundle()
+})
 .on('log', gutil.log)
-.transform(babelify)
+.transform('rollupify', {
+  config: {
+    cache: cache,
+    entry: `./${appPath}/js/app/main.js`,
+    plugins: [
+      commonjs({
+        include: 'node_modules/**',
+        namedExports: {
+          'node_modules/events/events.js': Object.keys(require('events'))
+        }
+      }),
+      nodeResolve({
+        jsnext: true,
+        main: true,
+        preferBuiltins: false
+      }),
+      rollupBabel({
+        plugins: ['lodash'],
+        presets: ['es2015-rollup', 'stage-2'],
+        babelrc: false,
+        exclude: 'node_modules/**'
+      })
+    ]
+  }
+})
 
 export function bundle(watch) {
   const bundler = watch ? watchify(b) : b
-  bundler.bundle()
+  return bundler.bundle()
     .on('error', function(err) {
       gutil.log(err.message)
       browserSync.notify('Browserify Error!')

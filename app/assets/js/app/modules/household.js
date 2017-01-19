@@ -1,6 +1,6 @@
 import domready from './domready'
 import { EventEmitter } from 'events'
-import forEach from 'lodash/forEach'
+import {forEach} from 'lodash'
 import getTransitionEndEvent from '../helpers/transitionend'
 
 const transitionendEvent = getTransitionEndEvent()
