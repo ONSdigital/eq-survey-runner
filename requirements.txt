@@ -247,9 +247,6 @@ flake8-commas==0.1.6 \
     --hash=sha256:aed34b6c2f26d4f1cc19408672c84f47292384d1e2c6f4420b186dffeb880d46
 flake8-debugger==1.4.0 \
     --hash=sha256:5918490f710f1cbbcabd11748558063274b93984ea63744eb712dbcd8d721232
-flake8-import-order==0.9.1 \
-    --hash=sha256:512b5ca066bbcbcee221fb65e6e80678a445a8cd7faf37911df94c6ae4c20b9b \
-    --hash=sha256:a694730975ebd01d945e26737ebab54a640de5b09470b8b3138d049e33ddc1f2
 flake8-mock==0.3 \
     --hash=sha256:2fa775e7589f4e1ad74f35d60953eb20937f5d7355235e54bf852c6837f2bede
 flake8-tuple==0.2.12 \

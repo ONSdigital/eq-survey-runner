@@ -36,6 +36,9 @@ function display_result {
   fi
 }
 
+flake8 --max-complexity 10 --count
+display_result $? 1 "Code style check"
+
 pylint --rcfile=.pylintrc -j 0 ./app ./tests
 # pylint bit encodes the exit code to allow you to figure out which category has failed.
 # https://docs.pylint.org/en/1.6.0/run.html#exit-codes
