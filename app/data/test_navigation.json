@@ -124,6 +124,75 @@
             "blocks": [
                 {
                     "type": "questionnaire",
+                    "id": "house-type",
+                    "sections": [
+                        {
+                            "description": "",
+                            "id": "house-type-section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "house-type-answer",
+                                            "label": "",
+                                            "mandatory": false,
+                                            "options": [
+                                                {
+                                                    "label": "Detached",
+                                                    "value": "Detached"
+                                                },
+                                                {
+                                                    "label": "Semi-detached",
+                                                    "value": "Semi-detached"
+                                                },
+                                                {
+                                                    "label": "Terrace",
+                                                    "value": "Terrace"
+                                                }
+                                            ],
+                                            "q_code": "12",
+                                            "type": "Radio"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "house-type-question",
+                                    "title": "What kind of house is it?",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": "House Details"
+                        }
+                    ],
+                    "title": "House Details"
+                }
+            ],
+            "id": "house-details",
+            "skip_condition": [
+                {
+                    "when": [
+                        {
+                            "id": "insurance-type-answer",
+                            "condition": "equals",
+                            "value": "Contents"
+                        }
+                    ]
+                },
+                 {
+                    "when": [
+                        {
+                            "id": "insurance-type-answer",
+                            "condition": "not set"
+                        }
+                    ]
+                }
+            ],
+            "title": "House Details"
+        },
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
                     "id": "household-composition",
                     "sections": [
                         {

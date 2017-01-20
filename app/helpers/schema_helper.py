@@ -52,6 +52,10 @@ class SchemaHelper(object):
                 if 'repeat' in rule.keys():
                     return rule['repeat']
 
+    @staticmethod
+    def get_skip_condition(group):
+        return group.get('skip_condition')
+
     @classmethod
     def get_group(cls, survey_json, group_id):
         return next(g for g in cls.get_groups(survey_json) if g["id"] == group_id)

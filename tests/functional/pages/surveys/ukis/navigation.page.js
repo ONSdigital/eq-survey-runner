@@ -1,7 +1,7 @@
       class Navigation {
 
         navigateToInnovationActivitiesBusinessStrategyandPractices() {
-          browser.element('//a[contains(@href, \'innovation-activities-section-8-group-8/0/business-strategy-and-practices-block-7\')]').click()
+          browser.element('//a[contains(@href, \'business-strategy-practices/0/business-changes\')]').click()
           return this
         }
 
@@ -26,7 +26,7 @@
         }
 
         navigateToConstraintsonInnovation() {
-          browser.element('//a[contains(@href, \'innovation-activities-section-61-group-51/0/innovation-activities-block-35\')]').click()
+          browser.element('//a[contains(@href, \'constraints-on-innovation/0/constraints-innovation-activities\')]').click()
           return this
         }
 
