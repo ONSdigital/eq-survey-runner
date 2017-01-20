@@ -60,7 +60,7 @@ def convert_answers(metadata, questionnaire, answer_store, routing_path):
     if questionnaire.data_version == '0.0.2':
         payload['data'] = convert_answers_to_census_data(answer_store, routing_path)
     elif questionnaire.data_version == '0.0.1':
-        payload['data'] = convert_answers_to_data(answer_store, questionnaire)
+        payload['data'] = convert_answers_to_data(answer_store, questionnaire, routing_path)
     else:
         raise DataVersionError(questionnaire.data_version)
 
@@ -68,7 +68,7 @@ def convert_answers(metadata, questionnaire, answer_store, routing_path):
     return payload
 
 
-def convert_answers_to_data(answer_store, questionnaire_schema):
+def convert_answers_to_data(answer_store, questionnaire_schema, routing_path):
     """
     Convert answers into the data format below
     "data": {
@@ -77,18 +77,22 @@ def convert_answers_to_data(answer_store, questionnaire_schema):
         }
     :param answer_store: questionnaire answers
     :param questionnaire_schema: Schema of the questionnaire answers
+    :param routing_path: the path followed in the questionnaire
     :return: data in a formatted form
     """
     data = OrderedDict()
-    for answer in answer_store.answers:
-        item = questionnaire_schema.get_item_by_id(answer['answer_id'])
-        value = answer['value']
+    for location in routing_path:
+        answers_in_block = answer_store.filter(location=location)
 
-        if item is not None and value is not None:
-            if not isinstance(item, CheckboxAnswer) or any('q_code' not in option for option in item.options):
-                data[item.code] = _get_answer_data(data, item.code, value)
-            else:
-                data.update(_get_checkbox_answer_data(item, value))
+        for answer in answers_in_block:
+            item = questionnaire_schema.get_item_by_id(answer['answer_id'])
+            value = answer['value']
+
+            if item is not None and value is not None:
+                if not isinstance(item, CheckboxAnswer) or any('q_code' not in option for option in item.options):
+                    data[item.code] = _get_answer_data(data, item.code, value)
+                else:
+                    data.update(_get_checkbox_answer_data(item, value))
     return data
 
 

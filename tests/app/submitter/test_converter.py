@@ -33,7 +33,8 @@ metadata = parse_metadata({
 class TestConverter(SurveyRunnerTestCase):
     def test_convert_answers(self):
         with self.application.test_request_context():
-            user_answer = [create_answer('ABC', '2016-01-01'), create_answer('DEF', '2016-03-30')]
+            user_answer = [create_answer('ABC', '2016-01-01', group_id='group-1', block_id='block-1'),
+                           create_answer('DEF', '2016-03-30', group_id='group-1', block_id='block-1')]
 
             answer_1 = Answer()
             answer_1.id = "ABC"
@@ -71,7 +72,8 @@ class TestConverter(SurveyRunnerTestCase):
             questionnaire.register(answer_1)
             questionnaire.register(answer_2)
 
-            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), {})
+            routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), routing_path)
 
             self.assertEqual(answer_object['type'], 'uk.gov.ons.edc.eq:surveyresponse')
             self.assertEqual(answer_object['version'], '0.0.1')
@@ -98,7 +100,7 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_answer_with_zero(self):
         with self.application.test_request_context():
-            user_answer = [create_answer('GHI', 0)]
+            user_answer = [create_answer('GHI', 0, group_id='group-1', block_id='block-1')]
 
             answer = Answer()
             answer.id = "GHI"
@@ -126,16 +128,18 @@ class TestConverter(SurveyRunnerTestCase):
             questionnaire.register(question)
             questionnaire.register(answer)
 
-            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), {})
+            routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
+
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), routing_path)
 
             # Check the converter correctly
             self.assertEqual("0", answer_object["data"]["003"])
 
     def test_answer_with_multiple_instances(self):
         with self.application.test_request_context():
-            user_answer = [create_answer('GHI', 0),
-                           create_answer('GHI', value=1, answer_instance=1),
-                           create_answer('GHI', value=2, answer_instance=2)]
+            user_answer = [create_answer('GHI', 0, group_id='group-1', block_id='block-1'),
+                           create_answer('GHI', value=1, answer_instance=1, group_id='group-1', block_id='block-1'),
+                           create_answer('GHI', value=2, answer_instance=2, group_id='group-1', block_id='block-1')]
 
             answer = Answer()
             answer.id = "GHI"
@@ -163,7 +167,10 @@ class TestConverter(SurveyRunnerTestCase):
             questionnaire.register(question)
             questionnaire.register(answer)
 
-            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), {})
+            routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
+
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), routing_path)
+
             # Check the converter correctly
             self.assertEqual(answer_object["data"]["003"], ['0', '1', '2'])
 
