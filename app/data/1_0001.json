@@ -4078,7 +4078,7 @@
                                     "answers": [],
                                     "description": "",
                                     "id": "information-needed-for-innovation-completed-question",
-                                    "title": "Information Needed for Innovation",
+                                    "title": "",
                                     "type": "General"
                                 }
                             ],
@@ -5750,18 +5750,26 @@
         {
             "blocks": [
                 {
-                    "id": "ready-to-submit-completed",
+                    "id": "confirmation",
                     "sections": [
                         {
-                            "description": "<p>Submission</p><p>You will not be able to access or change your answers on submitting the questionnaire</p><p>If you wish to review your answers please select the relevant Completed sections</p><p>If you do not submit your questionnaire, your responses will be collected when the online questionnaire closes</p>",
+                            "description": "",
                             "id": "ready-to-submit-completed-section",
                             "questions": [
                                 {
                                     "answers": [],
-                                    "description": "",
                                     "id": "ready-to-submit-completed-question",
-                                    "title": "",
-                                    "type": "General"
+                                    "title": "Submission",
+                                    "type": "General",
+                                    "guidance": [
+                                        {
+                                            "title": "",
+                                            "list": [
+                                                "You will not be able to access or change your answers on submitting the questionnaire",
+                                                "If you wish to review your answers please select the relevant completed sections"
+                                            ]
+                                        }
+                                    ]
                                 }
                             ],
                             "title": "You are now ready to submit this survey"

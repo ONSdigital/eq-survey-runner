@@ -88,6 +88,10 @@ class TestRenderPercentageWidget(IntegrationTestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertRegex(resp.get_data(True), answer_summary_regex)
 
+    def test_description_label_is_rendered(self):
+        resp = self.client.get(self.first_page)
+        self.assertIn('Enter percentage of growth', resp.get_data(True))
+
     @staticmethod
     def create_form_data(percentage):
         form_data = MultiDict()
