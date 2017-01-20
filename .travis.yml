@@ -1,7 +1,7 @@
 language: python
 sudo: required
 dist: trusty
-python: '3.5'
+python: '3.4'
 env:
   global:
     - EQ_SCHEMA_BUCKET=""

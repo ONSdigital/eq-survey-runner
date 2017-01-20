@@ -31,7 +31,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         block_one_url, resp = self.postRedirectGet(base_url + 'introduction', post_data)
 
         content = resp.get_data(True)
-        self.assertNotRegexpMatches(content, 'Previous')
+        self.assertNotRegex(content, 'Previous')
 
         post_data = {
             "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": " Bacon",

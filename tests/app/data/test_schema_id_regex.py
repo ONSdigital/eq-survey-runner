@@ -1,7 +1,8 @@
 import logging
 import os
 import unittest
-from json import JSONDecodeError, load
+
+from json import load
 
 from jsonschema import ValidationError, validate
 
@@ -29,8 +30,6 @@ def validate_json_against_schema(json_to_validate, schema):
     except ValidationError as e:
         return ["Schema Validation Error! JSON [{}] does not validate against schema. Error [{}]"
                 .format(json_to_validate, e)]
-    except JSONDecodeError as e:
-        return ["JSON Parse Error! Could not parse [{}]. Error [{}]".format(json_to_validate, e)]
 
 
 class TestSchemaIdRegEx(unittest.TestCase):
