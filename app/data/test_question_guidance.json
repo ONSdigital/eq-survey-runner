@@ -6,6 +6,7 @@
     "survey_id": "0",
     "title": "Question Guidance Test",
     "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test question guidance content",
     "introduction": {},
     "groups": [

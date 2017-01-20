@@ -6,6 +6,7 @@
     "survey_id": "0",
     "title": "Skip group",
     "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
     "groups": [
         {
             "id": "do-you-want-to-skip-group",

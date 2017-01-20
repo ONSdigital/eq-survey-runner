@@ -7,6 +7,7 @@
     "title": "Test schema for routing on multiple selected answers",
     "description": "Test schema for routing on multiple selected answers",
     "theme": "census",
+    "legal_basis": "Voluntary",
     "introduction": {
     },
     "groups": [

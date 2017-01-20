@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openQuestionnaire} from '../../../helpers'
+import {startQuestionnaire} from '../../../helpers'
 
 
 import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
@@ -117,21 +117,21 @@ const expect = chai.expect
 describe('UKIS - Process Innovation', function() {
 
   it('Given I am answering question 5.1 under 5. Process Innovation block, When I  select Yes as the response, Then I am routed to question 5.2', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToProcessInnovation()
     ProcessImproved.clickProcessImprovedAnswerYes().submit()
     expect(DevelopedProcesses.isOpen()).to.equal(true, 'Expected to Navigate to Q: 5.2')
   })
 
   it('Given I am answering question 5.1 under 5. Process Innovation block, When I  select No as the response, Then I am routed to question 5.3', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToProcessInnovation()
     ProcessImproved.clickProcessImprovedAnswerNo().submit()
     expect(ImprovedProcesses.isOpen()).to.equal(true, 'Expected to Navigate to Q: 5.3')
   })
 
   it('Given I am answering question 5.1 under 5. Process Innovation block, When I do not select a response, Then I am routed to question 5.3', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToProcessInnovation()
     ProcessImproved.submit()
     expect(ImprovedProcesses.isOpen()).to.equal(true, 'Expected to Navigate to Q: 5.3')

@@ -1,0 +1,14 @@
+$responsive: false;
+
+@import "partials/helpers/**/*.scss";
+@import "vars/*.scss";
+
+$grid-max-width: 800px;
+
+@import "partials/vars/*.scss";
+@import "partials/vendor/normalize.scss";
+@import "partials/base/**/*.scss";
+@import "partials/objects/**/*.scss";
+@import "partials/components/**/*.scss";
+@import "partials/utilities/**/*.scss";
+@import "partials/hacks/**/*.scss";

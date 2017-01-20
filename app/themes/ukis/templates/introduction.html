@@ -1,0 +1,57 @@
+{% extends 'introduction.html' %}
+
+{% set legal_text = "Your response to this survey is of great value to government, whether or not you carry out innovation activities" %}
+
+{% block header %}
+  {% include 'partials/header.html' %}
+  {% with is_hero = true %}
+    {% include theme('partials/topbar.html') %}
+  {% endwith %}
+{% endblock %}
+
+{% block business_details %}
+  <div class="u-mb-m">
+    {% if meta.survey.region_code == 'GB-NI' %}
+      <img src="{{ theme_static('logo-dof.png') }}" alt="Department of Finance" width="183" />
+    {% else %}
+      <img src="{{ theme_static('logo-beis.png') }}" alt="Department for Business, Energy and Industrial Strategy" width="660" />
+    {% endif %}
+  </div>
+
+  {{super()}}
+
+{% endblock business_details %}
+
+{% block information_to_provide %}
+
+  <div>
+    <h2 class="saturn">Basis for completion</h2>
+    <ul>
+      <li>Please complete this voluntary questionnaire for <strong>{{ meta.respondent.address.name}}</strong>.</li>
+      <li>If this business is part of an enterprise group, please answer all questions for this business in the UK only.</li>
+      <li>Do not include results for subsidiaries or parent enterprises.</li>
+    </ul>
+  </div>
+
+  <div class="panel panel--simple panel--info u-mb-s">
+    <div class="panel__body">
+      <h2 class="neptune">Definition of innovation</h2>
+      <ul>
+        <li>Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {{ meta.respondent.address.name}} has introduced, regardless of their origin.</li>
+        <li>These innovations may be new to {{ meta.respondent.address.name}} or new to the market.</li>
+        <li>Investments for future innovation and changes that {{ meta.respondent.address.name}} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered.</li>
+      </ul>
+    </div>
+  </div>
+
+  {{super()}}
+
+{% endblock information_to_provide %}
+
+{% block legal_info %}
+
+<h2 class="neptune">Aim of this survey</h2>
+<p>The aim of the UK Innovation Survey (UKIS) is to collect data from businesses about various aspects of their innovation related activities to enable measurement of the extent, types and trends in innovation.</p>
+<p>The UKIS data provides a major source of evidence to inform government policy for promoting innovation activities among businesses to boost economic growth. The data collected also serves as an important contributor to the Community Innovation Survey conducted across Europe, which is used for international benchmarking and comparison purposes. We are interested in responses from both businesses conducting innovation and businesses not currently engaged in innovation as this can help to inform our wider understanding of the constraining factors.</p>
+
+{% endblock legal_info %}

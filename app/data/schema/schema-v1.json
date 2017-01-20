@@ -131,6 +131,17 @@
       }
     }
   },
+  "required": [
+    "mime_type",
+    "schema_version",
+    "data_version",
+    "questionnaire_id",
+    "survey_id",
+    "title",
+    "groups",
+    "theme",
+    "legal_basis"
+  ],
   "properties": {
     "mime_type": {
       "type": "string"
@@ -155,6 +166,9 @@
     },
     "theme": {
       "type":"string"
+    },
+    "legal_basis":{
+      "enum": ["Voluntary", "StatisticsOfTradeAct"]
     },
     "navigation":{
       "type": "boolean"
@@ -429,15 +443,5 @@
       }
     }
   },
-  "additionalProperties": false,
-  "required": [
-    "mime_type",
-    "schema_version",
-    "data_version",
-    "questionnaire_id",
-    "survey_id",
-    "title",
-    "groups",
-    "theme"
-  ]
+  "additionalProperties": false
 }

@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openQuestionnaire} from '../../../helpers'
+import {startQuestionnaire} from '../../../helpers'
 
 import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
 import SignificantEvents from '../../../pages/surveys/ukis/significant-events.page.js'
@@ -116,28 +116,28 @@ const expect = chai.expect
 describe('UKIS - Any new goods?', function() {
 
   it('Given I am answering question 4.1 under 4. Goods and Services Innovation block, When I  select Yes as the response, Then I am routed to question 4.2', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.clickIntroducingSignificantlyImprovedGoodsAnswerYes().submit()
     expect(EntityDevelopedTheseGoods.isOpen()).to.equal(true, 'Expected to Navigate to Q: 4.2')
   })
 
   it('Given I am answering question 4.1 under 4. Goods and Services Innovation block, When I  select No as the response, Then I am routed to question 4.3', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.clickIntroducingSignificantlyImprovedGoodsAnswerNo().submit()
     expect(IntroduceSignificantlyImprovement.isOpen()).to.equal(true, 'Expected to Navigate to Q: 4.3')
   })
 
   it('Given I am answering question 4.1 under 4. Goods and Services Innovation block, When no response is selected, Then I am routed to question 4.3', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.submit()
     expect(IntroduceSignificantlyImprovement.isOpen()).to.equal(true, 'Expected to Navigate to Q: 4.3')
   })
 
   it('Given I am answering question 4.1 under 4. Goods and Services Innovation block, When I  select Yes as the response, Then I will see questions 4.5, 4.6 & 4.7', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.clickIntroducingSignificantlyImprovedGoodsAnswerYes().submit()
     EntityDevelopedTheseGoods.submit()
@@ -150,7 +150,7 @@ describe('UKIS - Any new goods?', function() {
   })
 
   it('Given the Goods and Services Innovation block, When I answer No to question 4.1 and Yes to question 4.3, Then I will see questions 4.5, 4.6 & 4.7', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.clickIntroducingSignificantlyImprovedGoodsAnswerNo().submit()
     IntroduceSignificantlyImprovement.clickIntroduceSignificantlyImprovementAnswerYes().submit()
@@ -163,7 +163,7 @@ describe('UKIS - Any new goods?', function() {
   })
 
   it('Given the Goods and Services Innovation block, When I answer No to question 4.1 and No to question 4.3, Then I will NOT see questions 4.5, 4.6 & 4.7', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.clickIntroducingSignificantlyImprovedGoodsAnswerNo().submit()
     IntroduceSignificantlyImprovement.clickIntroduceSignificantlyImprovementAnswerNo().submit()
@@ -171,7 +171,7 @@ describe('UKIS - Any new goods?', function() {
   })
 
   it('Given the Goods and Services Innovation block, When I answer No to question 4.1 and provide no response to question 4.3, Then I will NOT see questions 4.5, 4.6 & 4.7', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.clickIntroducingSignificantlyImprovedGoodsAnswerNo().submit()
     IntroduceSignificantlyImprovement.submit()
@@ -179,7 +179,7 @@ describe('UKIS - Any new goods?', function() {
   })
 
   it('Given I am answering question 4.1 under 4. Goods and Services Innovation block, When I do not select a response for 4.1 and answer Yes for 4.3, Then I will see questions 4.5, 4.6 & 4.7', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.submit()
     IntroduceSignificantlyImprovement.clickIntroduceSignificantlyImprovementAnswerYes().submit()
@@ -192,7 +192,7 @@ describe('UKIS - Any new goods?', function() {
   })
 
   it('Given I am answering question 4.1 under 4. Goods and Services Innovation block, When I do not select a response for 4.1 and I do not answer 4.3, Then I will NOT see questions 4.5, 4.6 & 4.7', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToGoodsandServicesInnovation()
     IntroducingSignificantlyImprovedGoods.submit()
     IntroduceSignificantlyImprovement.submit()

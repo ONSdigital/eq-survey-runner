@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openQuestionnaire} from '../../../helpers'
+import {startQuestionnaire} from '../../../helpers'
 
 import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
 import SignificantEvents from '../../../pages/surveys/ukis/significant-events.page.js'
@@ -116,7 +116,7 @@ const expect = chai.expect
 describe('UKIS - Did you acquire existing knowledge?', function() {
 
   it('Given I am answering question 3.9 under 3. Innovation Investment block, When I  select Yes as the response, Then I am routed to question 3.10', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToInnovationInvestment()
 
     InternalInvestmentRD.clickInternalInvestmentRDAnswerYes().submit()
@@ -135,7 +135,7 @@ describe('UKIS - Did you acquire existing knowledge?', function() {
   })
 
   it('Given I am answering question 3.9 under 3. Innovation Investment block, When I  select No as the response, Then I am routed to question 3.11', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToInnovationInvestment()
     InternalInvestmentRD.clickInternalInvestmentRDAnswerYes().submit()
     YearsInternalInvestmentRD.clickYearsInternalInvestmentRDAnswer2016().submit()
@@ -153,7 +153,7 @@ describe('UKIS - Did you acquire existing knowledge?', function() {
   })
 
   it('Given I am answering question 3.9 under 3. Innovation Investment block, When no response is selected, Then I am routed to question 3.11', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToInnovationInvestment()
     InternalInvestmentRD.clickInternalInvestmentRDAnswerYes().submit()
     YearsInternalInvestmentRD.clickYearsInternalInvestmentRDAnswer2016().submit()

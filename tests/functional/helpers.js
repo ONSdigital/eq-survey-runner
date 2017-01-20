@@ -14,7 +14,7 @@ export const startCensusQuestionnaire = (schema, sexualIdentity = false, region 
     .setRegionCode(region)
 
   var language = 'en'
-  if(process.env.EQ_LANGUAGE_CODE) {
+  if (process.env.EQ_LANGUAGE_CODE) {
     language = process.env.EQ_LANGUAGE_CODE
   }
   devPage.setLanguageCode(language)

@@ -7,6 +7,7 @@
   "title": "Test Survey - Checkbox and Radio option descriptions",
   "description": "",
   "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
   "introduction": {
 		"description": "<p>Test Survey - Checkbox and Radio option descriptions</p>"
 	},

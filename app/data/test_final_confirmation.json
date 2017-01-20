@@ -6,6 +6,7 @@
     "survey_id": "0",
     "title": "Final confirmation to submit",
     "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo final confirmation to submit.",
     "introduction": {
         "description": ""

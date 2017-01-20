@@ -6,6 +6,7 @@
     "survey_id": "0",
     "title": "Markup test",
     "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test rendering of markup in questionnaires",
     "groups": [
         {

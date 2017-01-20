@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {openQuestionnaire} from '../../../helpers'
+import {startQuestionnaire} from '../../../helpers'
 
 import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
 import SignificantEvents from '../../../pages/surveys/ukis/significant-events.page.js'
@@ -116,7 +116,7 @@ const expect = chai.expect
 describe('UKIS - Public Financial Support for Innovation', function() {
 
   it('Given I am answering question 10.1 under 10. Public Financial Support for Innovation block, When I  select Yes as the response to Central Government Support, Then I am routed to question 10.2', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToPublicFinancialSupportforInnovation()
     PublicFinancialSupport.clickPublicFinancialSupportAuthoritiesAnswerNo()
       .clickPublicFinancialSupportCentralGovernmentAnswerYes()
@@ -126,7 +126,7 @@ describe('UKIS - Public Financial Support for Innovation', function() {
   })
 
   it('Given I am answering question 10.1 under 10. Public Financial Support for Innovation block, When I  select No as the response to Central Government Support, Then I am routed to the end of section 10 (interstitial page)', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToPublicFinancialSupportforInnovation()
     PublicFinancialSupport.clickPublicFinancialSupportAuthoritiesAnswerNo()
       .clickPublicFinancialSupportCentralGovernmentAnswerNo()
@@ -136,7 +136,7 @@ describe('UKIS - Public Financial Support for Innovation', function() {
   })
 
   it('Given I am answering question 10.1 under 10. Public Financial Support for Innovation block, When I do not select a response to Central Government Support, Then I am routed to the end of section 10 (interstitial page)', function() {
-    openQuestionnaire('1_0001.json')
+    startQuestionnaire('1_0001.json')
     Navigation.navigateToPublicFinancialSupportforInnovation()
     PublicFinancialSupport.clickPublicFinancialSupportAuthoritiesAnswerNo()
       .clickPublicFinancialSupportEuAnswerNo()

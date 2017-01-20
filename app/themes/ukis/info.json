@@ -1,0 +1,9 @@
+{
+    "application": "surveyrunner",
+    "identifier": "ukis",
+    "name": "UKIS 2017",
+    "author": "hamishtapin",
+    "description": "Theme for the UKIS survey",
+    "license": "MIT/X11",
+    "version": "1.0.0"
+}

@@ -7,6 +7,7 @@
     "title": "2017 Census Test",
     "description": "Census England Communal Schema",
     "theme": "census",
+    "legal_basis": "Voluntary",
     "groups": [
         {
             "id": "communal-establishment",
