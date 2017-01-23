@@ -4,10 +4,10 @@ from unittest import TestCase
 from mock import Mock
 
 from app.jinja_filters import format_date, format_currency, format_multilined_string, format_percentage
-from app.jinja_filters import format_str_as_date_range
-from app.jinja_filters import format_str_as_date
-from app.jinja_filters import format_str_as_month_year_date
 from app.jinja_filters import format_household_member_name
+from app.jinja_filters import format_str_as_date
+from app.jinja_filters import format_str_as_date_range
+from app.jinja_filters import format_str_as_month_year_date
 
 
 class TestJinjaFilters(TestCase):
@@ -19,7 +19,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_currency(currency)
 
-        self.assertEquals(format_value, '£1.12')
+        self.assertEqual(format_value, '£1.12')
 
     def test_format_multilined_string_matches_carriage_return(self):
         # Given
@@ -30,7 +30,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_multilined_string(context, new_line)
 
-        self.assertEquals(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
 
     def test_format_multilined_string_matches_new_line(self):
         # Given
@@ -41,7 +41,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_multilined_string(context, new_line)
 
-        self.assertEquals(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
 
     def test_format_multilined_string_matches_carriage_return_new_line(self):
         # Given
@@ -52,7 +52,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_multilined_string(context, new_line)
 
-        self.assertEquals(format_value, '<p>this is on a new<br>line</p>')
+        self.assertEqual(format_value, '<p>this is on a new<br>line</p>')
 
     def test_format_multilined_string(self):
         # Given
@@ -63,7 +63,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_multilined_string(context, new_line)
 
-        self.assertEquals(format_value, '<p>this is<br>on a<br>new<br>line</p>')
+        self.assertEqual(format_value, '<p>this is<br>on a<br>new<br>line</p>')
 
     def test_format_multilined_string_auto_escape(self):
         # Given
@@ -74,7 +74,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_multilined_string(context, new_line)
 
-        self.assertEquals(str(format_value), '<p>&lt;</p>')
+        self.assertEqual(str(format_value), '<p>&lt;</p>')
 
     def test_format_date(self):
         # Given
@@ -83,7 +83,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_date(date)
 
-        self.assertEquals(format_value, '1 January 2017')
+        self.assertEqual(format_value, '1 January 2017')
 
     def test_format_str_as_date_range(self):
         # Given
@@ -92,7 +92,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_str_as_date_range(date_range)
 
-        self.assertEquals(format_value, '01 January 2017 to 01 January 2018')
+        self.assertEqual(format_value, '01 January 2017 to 01 January 2018')
 
     def test_format_str_as_month_year_date(self):
         # Given
@@ -101,7 +101,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_str_as_month_year_date(month_year_date)
 
-        self.assertEquals(format_value, 'March 2018')
+        self.assertEqual(format_value, 'March 2018')
 
     def test_format_str_as_date(self):
         # Given
@@ -110,7 +110,7 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_str_as_date(date)
 
-        self.assertEquals(format_value, '02 March 2017')
+        self.assertEqual(format_value, '02 March 2017')
 
     def test_format_household_member_name(self):
         # Given

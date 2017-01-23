@@ -2,14 +2,13 @@ import unittest
 
 import pytest
 
+from app.data_model.answer_store import Answer, AnswerStore
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
-
 from app.schema_loader.schema_loader import load_schema_file
-from app.data_model.answer_store import Answer, AnswerStore
 
 
-class TestPathFinder(unittest.TestCase):
+class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-methods
 
     def test_next_block(self):
         survey = load_schema_file("1_0102.json")
@@ -69,7 +68,7 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "96682325-47ab-41e4-a56e-8315a19ffe2a"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
@@ -78,7 +77,7 @@ class TestPathFinder(unittest.TestCase):
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            block_id="choose-your-side-block",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Light Side"
         )
@@ -130,7 +129,7 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
@@ -140,7 +139,7 @@ class TestPathFinder(unittest.TestCase):
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            block_id="choose-your-side-block",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Dark Side"
         )
@@ -169,14 +168,14 @@ class TestPathFinder(unittest.TestCase):
 
         next_location = path_finder.get_next_location(current_location=introduction)
 
-        self.assertEqual('f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0', next_location.block_id)
+        self.assertEqual('choose-your-side-block', next_location.block_id)
 
     def test_get_next_location_summary(self):
         survey = load_schema_file("0_star_wars.json")
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            block_id="choose-your-side-block",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Light Side"
         )
@@ -214,7 +213,7 @@ class TestPathFinder(unittest.TestCase):
 
         path_finder = PathFinder(survey)
 
-        first_location = Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0')
+        first_location = Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'choose-your-side-block')
 
         previous_location = path_finder.get_previous_location(current_location=first_location)
 
@@ -224,7 +223,7 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
@@ -234,7 +233,7 @@ class TestPathFinder(unittest.TestCase):
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            block_id="choose-your-side-block",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Dark Side"
         )
@@ -268,7 +267,7 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "96682325-47ab-41e4-a56e-8315a19ffe2a"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
@@ -280,7 +279,7 @@ class TestPathFinder(unittest.TestCase):
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            block_id="choose-your-side-block",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Light Side"
         )
@@ -304,14 +303,14 @@ class TestPathFinder(unittest.TestCase):
 
         expected_path = [
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'introduction'),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'choose-your-side-block'),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary'),
         ]
 
         answer = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
             group_instance=0,
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            block_id="choose-your-side-block",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="I prefer Star Trek",
         )
@@ -331,14 +330,14 @@ class TestPathFinder(unittest.TestCase):
 
         expected_path = [
             Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'introduction'),
-            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0'),
+            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'block-1'),
             Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1'),
             Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'summary')
         ]
 
         answer_1 = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e761",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            block_id="block-1",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Cheese",
         )
@@ -367,7 +366,7 @@ class TestPathFinder(unittest.TestCase):
 
         answer = Answer(
             group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+            block_id="choose-your-side-block",
             answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
             value="Light Side"
         )
@@ -386,11 +385,11 @@ class TestPathFinder(unittest.TestCase):
         survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
-            Location("repeating-group", 1,  "repeating-block-1"),
-            Location("repeating-group", 1,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-1"),
+            Location("repeating-group", 1, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -435,13 +434,13 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
-            Location("repeating-group", 1,  "repeating-block-1"),
-            Location("repeating-group", 1,  "repeating-block-2"),
-            Location("repeating-group", 2,  "repeating-block-1"),
-            Location("repeating-group", 2,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-1"),
+            Location("repeating-group", 1, "repeating-block-2"),
+            Location("repeating-group", 2, "repeating-block-1"),
+            Location("repeating-group", 2, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -488,9 +487,9 @@ class TestPathFinder(unittest.TestCase):
         survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -536,11 +535,11 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
-            Location("repeating-group", 1,  "repeating-block-1"),
-            Location("repeating-group", 1,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-1"),
+            Location("repeating-group", 1, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -576,11 +575,11 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
-            Location("multiple-questions-group", 0,  "household-composition"),
-            Location("repeating-group", 0,  "repeating-block-1"),
-            Location("repeating-group", 0,  "repeating-block-2"),
-            Location("repeating-group", 1,  "repeating-block-1"),
-            Location("repeating-group", 1,  "repeating-block-2"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("repeating-group", 0, "repeating-block-1"),
+            Location("repeating-group", 0, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-1"),
+            Location("repeating-group", 1, "repeating-block-2"),
         ]
 
         answer = Answer(
@@ -615,15 +614,15 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file("test_repeating_and_conditional_routing.json")
 
         expected_path = [
-            Location("repeat-value-group", 0,  "introduction"),
-            Location("repeat-value-group", 0,  "no-of-repeats"),
-            Location("repeated-group", 0,  "repeated-block"),
-            Location("repeated-group", 0,  "age-block"),
-            Location("repeated-group", 0,  "shoe-size-block"),
-            Location("repeated-group", 1,  "repeated-block"),
-            Location("repeated-group", 1,  "shoe-size-block"),
-            Location("repeated-group", 0,  "summary"),
-            Location("repeated-group", 0,  "thank-you"),
+            Location("repeat-value-group", 0, "introduction"),
+            Location("repeat-value-group", 0, "no-of-repeats"),
+            Location("repeated-group", 0, "repeated-block"),
+            Location("repeated-group", 0, "age-block"),
+            Location("repeated-group", 0, "shoe-size-block"),
+            Location("repeated-group", 1, "repeated-block"),
+            Location("repeated-group", 1, "shoe-size-block"),
+            Location("repeated-group", 0, "summary"),
+            Location("repeated-group", 0, "thank-you"),
         ]
 
         answer_1 = Answer(
@@ -808,7 +807,8 @@ class TestPathFinder(unittest.TestCase):
         survey = load_schema_file('test_skip_condition_group.json')
         current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
         answer_store = AnswerStore()
-        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip', answer_id='do-you-want-to-skip-answer', value='Yes'))
+        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
+                                answer_id='do-you-want-to-skip-answer', value='Yes'))
 
         # When
         path_finder = PathFinder(survey, answer_store=answer_store)

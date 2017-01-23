@@ -18,11 +18,10 @@
       "blocks": [
         {
           "type": "questionnaire",
-          "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+          "id": "block-1",
           "title": "Did this business make major changes in the following areas?",
           "sections": [
             {
-              "description": "",
               "id": "ed3e200a-0735-4e8d-9eea-627c1d908697",
               "questions": [
                 {

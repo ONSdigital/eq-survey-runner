@@ -1,8 +1,9 @@
-from app.questionnaire.path_finder import PathFinder
+import unittest
+
 from app.data_model.answer_store import Answer, AnswerStore
 from app.helpers.schema_helper import SchemaHelper
+from app.questionnaire.path_finder import PathFinder
 from app.schema_loader.schema_loader import load_schema_file
-import unittest
 
 
 class TestConfirmationPage(unittest.TestCase):

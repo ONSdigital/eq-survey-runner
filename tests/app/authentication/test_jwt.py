@@ -27,7 +27,7 @@ jwtio_signature = "1PVw5ku4uzif8iaXpbEhsSkbnug5mXMYMvBUUpGQyJ73mqtl7oApntEyC-z9j
 jwtio_signed = jwtio_header + "." + jwtio_payload + "." + jwtio_signature
 
 
-class JWTTest(unittest.TestCase):
+class JWTTest(unittest.TestCase):  # pylint: disable=too-many-public-methods
     def setUp(self):
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
         settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_PUBLIC_KEY
@@ -36,7 +36,7 @@ class JWTTest(unittest.TestCase):
     def test_jwt_io(self):
         decoder = JWTDecryptor()
         token = decoder.decode_signed_jwt_token(jwtio_signed)
-        self.assertEquals("John Doe", token.get("name"))
+        self.assertEqual("John Doe", token.get("name"))
 
     def test_does_not_contain_two_instances_of_full_stop(self):
         jwe = jwtio_signed.replace('.', '', 1)

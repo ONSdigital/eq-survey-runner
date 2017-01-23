@@ -1,10 +1,8 @@
+from app import create_app
 from app.questionnaire_state.state_answer import StateAnswer
 from app.schema.answers.month_year_date_answer import MonthYearDateAnswer
 from app.schema.widgets.month_year_date_widget import MonthYearDateWidget
-
 from tests.integration.integration_test_case import IntegrationTestCase
-
-from app import create_app
 
 
 class TestRenderMonthYearDateAnswer(IntegrationTestCase):
@@ -21,21 +19,21 @@ class TestRenderMonthYearDateAnswer(IntegrationTestCase):
         user_answer = '2/2016'
         is_mandatory = True
         response = self.render_widget(user_answer, is_mandatory)
-        self.assertRegexpMatches(response, 'February')
-        self.assertRegexpMatches(response, '2016')
-        self.assertRegexpMatches(response, 'Select month')
+        self.assertRegex(response, 'February')
+        self.assertRegex(response, '2016')
+        self.assertRegex(response, 'Select month')
 
     def test_month_year_date_answer_mandatory_with_place_holder(self):
         user_answer = None
         is_mandatory = True
         response = self.render_widget(user_answer, is_mandatory)
-        self.assertRegexpMatches(response, 'Select month')
+        self.assertRegex(response, 'Select month')
 
     def test_month_year_date_answer_non_mandatory_with_place_holder(self):
         user_answer = '2/2016'
         is_mandatory = False
         response = self.render_widget(user_answer, is_mandatory)
-        self.assertRegexpMatches(response, 'Select month')
+        self.assertRegex(response, 'Select month')
 
     def test_month_year_date_answer_none_input(self):
         user_answer = None
@@ -52,7 +50,7 @@ class TestRenderMonthYearDateAnswer(IntegrationTestCase):
         answer_state.input = user_answer
 
         response = month_year_date_widget.render(answer_state)
-        self.assertRegexpMatches(response, 'input-1234-month')
-        self.assertRegexpMatches(response, 'input-1234-year')
-        self.assertRegexpMatches(response, 'Date month year Label')
+        self.assertRegex(response, 'input-1234-month')
+        self.assertRegex(response, 'input-1234-year')
+        self.assertRegex(response, 'Date month year Label')
         return response

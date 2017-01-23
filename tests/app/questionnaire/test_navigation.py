@@ -1,12 +1,9 @@
 import unittest
 
+from app import create_app
 from app.data_model.answer_store import AnswerStore, Answer
-
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
-
-from app import create_app
-
 from app.schema_loader.schema_loader import load_schema_file
 
 

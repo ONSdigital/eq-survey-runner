@@ -3,8 +3,8 @@ from app.schema.item import Item
 
 
 class Section(Item):
-    def __init__(self, id=None):
-        super().__init__(id)
+    def __init__(self, item_id=None):
+        super().__init__(item_id)
         self.title = None
         self.number = None
         self.description = None

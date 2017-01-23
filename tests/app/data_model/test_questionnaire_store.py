@@ -1,11 +1,10 @@
 import json
 import unittest
 
-from app.data_model.answer_store import Answer
-from app.data_model.questionnaire_store import QuestionnaireStore
-
 from mock import Mock
 
+from app.data_model.answer_store import Answer
+from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
 
 
@@ -16,7 +15,16 @@ class TestQuestionnaireStore(unittest.TestCase):
         storage = Mock()
         data = {
             'METADATA': 'test',
-            'ANSWERS': ["{'value': None, 'group_id': 'group', 'answer_id': 'answer', 'block_id': 'block', 'group_instance': 0, 'answer_instance': 0}"],
+            'ANSWERS': [
+                {
+                    'value': None,
+                    'group_id': 'group',
+                    'answer_id': 'answer',
+                    'block_id': 'block',
+                    'group_instance': 0,
+                    'answer_instance': 0
+                }
+            ],
             'COMPLETED_BLOCKS': [Location('group', 'instance', 'block')]
         }
         storage.get_user_data = Mock(return_value=json.dumps(data, default=lambda o: o.__dict__))

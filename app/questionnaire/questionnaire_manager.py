@@ -1,11 +1,12 @@
 import logging
 
+from flask import g
+from flask_login import current_user
+
 from app.globals import get_answer_store, get_answers, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
-
-from flask import g
-
-from flask_login import current_user
+from app.schema.block import Block
+from app.schema.exceptions import QuestionnaireException
 
 logger = logging.getLogger(__name__)
 
@@ -80,8 +81,10 @@ class QuestionnaireManager(object):
         self.block_state = None
         if self._schema.item_exists(location.block_id):
             metadata = get_metadata(current_user)
-            schema_item = self._schema.get_item_by_id(location.block_id)
-            self.block_state = schema_item.construct_state()
+            block = self._schema.get_item_by_id(location.block_id)
+            if not isinstance(block, Block):
+                raise QuestionnaireException
+            self.block_state = block.construct_state()
 
             for answer in self.get_state_answers(location.block_id):
                 answer.group_id = location.group_id

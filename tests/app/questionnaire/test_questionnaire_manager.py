@@ -1,9 +1,8 @@
 from unittest import TestCase
 
-from mock import MagicMock, Mock, patch, call
+from mock import MagicMock, Mock, call
+
 from app.questionnaire.questionnaire_manager import QuestionnaireManager
-from app.questionnaire_state.state_item import StateItem
-from app.schema.section import Section
 
 
 def mock_answer(answer_id, answer_instance=0, question=MagicMock()):
@@ -54,11 +53,11 @@ class TestQuestionnaireManager(TestCase):
         question_schema = MagicMock()
         question_schema.answers = [answer_schema]
 
-        self.questionnaire_manager._schema.get_item_by_id = MagicMock(return_value=question_schema)
-        self.questionnaire_manager._get_next_answer_instance = MagicMock(return_value=1)
+        self.questionnaire_manager._schema.get_item_by_id = MagicMock(return_value=question_schema)  # pylint: disable=protected-access
+        self.questionnaire_manager._get_next_answer_instance = MagicMock(return_value=1)  # pylint: disable=protected-access
 
         new_answer_state = MagicMock()
-        self.questionnaire_manager._create_new_answer_state = MagicMock(return_value=new_answer_state)
+        self.questionnaire_manager._create_new_answer_state = MagicMock(return_value=new_answer_state)  # pylint: disable=protected-access
 
         question_state = MagicMock()
         self.questionnaire_manager.block_state.find_state_item = MagicMock(return_value=question_state)
@@ -160,7 +159,7 @@ class TestQuestionnaireManager(TestCase):
         answer_store.filter = MagicMock(return_value=answers)
 
         # When
-        next_id = qm._get_next_answer_instance(answer_store, answer_schema)
+        next_id = qm._get_next_answer_instance(answer_store, answer_schema)  # pylint: disable=protected-access
 
         # Then
         self.assertEqual(next_id, 0)
@@ -174,7 +173,7 @@ class TestQuestionnaireManager(TestCase):
         answer_store.filter = MagicMock(return_value=answers)
 
         # When
-        next_id = qm._get_next_answer_instance(answer_store, answer_schema)
+        next_id = qm._get_next_answer_instance(answer_store, answer_schema)  # pylint: disable=protected-access
 
         # Then
         self.assertEqual(next_id, 1)
@@ -188,7 +187,7 @@ class TestQuestionnaireManager(TestCase):
         answer_store.filter = MagicMock(return_value=answers)
 
         # When
-        next_id = qm._get_next_answer_instance(answer_store, answer_schema)
+        next_id = qm._get_next_answer_instance(answer_store, answer_schema)  # pylint: disable=protected-access
 
         # Then
         self.assertEqual(next_id, 2)
@@ -202,7 +201,7 @@ class TestQuestionnaireManager(TestCase):
         answer_store.filter = MagicMock(return_value=answers)
 
         # When
-        next_id = qm._get_next_answer_instance(answer_store, answer_schema)
+        next_id = qm._get_next_answer_instance(answer_store, answer_schema)  # pylint: disable=protected-access
 
         # Then
         self.assertEqual(next_id, 6)

@@ -1,6 +1,6 @@
-from app.schema.widgets.date_widget import DateWidget
-
 from unittest import TestCase
+
+from app.schema.widgets.date_widget import DateWidget
 
 
 class TestDateAnswer(TestCase):
@@ -13,4 +13,4 @@ class TestDateAnswer(TestCase):
     def test_date_answer_mandatory(self):
         date_widget = DateWidget('1234')
         response = date_widget.get_user_input({'1234-day':'1', '1234-month':'2', '1234-year':'2017'})
-        self.assertRegexpMatches(response, "1/2/2017")
+        self.assertRegex(response, "1/2/2017")

@@ -4,25 +4,20 @@ import os
 import sys
 from datetime import timedelta
 
+import watchtower
+from flask import Flask
+from flask import url_for
+from flask.ext.cache import Cache
+from flask_babel import Babel
+from flask_themes2 import Themes
+from flaskext.markdown import Markdown
+
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.data_model.database import db_session
 from app.libs.utils import get_locale
 from app.submitter.submitter import SubmitterFactory
-
-from flask import Flask
-from flask import url_for
-
-from flask.ext.cache import Cache
-
-from flask_babel import Babel
-
-from flask_themes2 import Themes
-
-from flaskext.markdown import Markdown
-
-import watchtower
 
 SECURE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -111,7 +106,6 @@ def create_app():
         cache.init_app(application)  # Doesnt cache
 
     if settings.EQ_DEV_MODE:
-        # TODO fix health check so it no longer sends message to queue
         add_health_check(application, headers)
         start_dev_mode(application)
 

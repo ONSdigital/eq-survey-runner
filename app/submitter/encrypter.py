@@ -1,9 +1,6 @@
 import os
 
-from app import settings
-from app.cryptography.jwe_encryption import JWEEncrypter
-from app.utilities import strings
-
+import jwt
 from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives import serialization
@@ -12,13 +9,17 @@ from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers import algorithms
 from cryptography.hazmat.primitives.ciphers import modes
 
-import jwt
+from app import settings
+from app.cryptography.jwe_encryption import JWEEncrypter
+from app.utilities import strings
 
 KID = 'EDCSR'
 
 
 class Encrypter(JWEEncrypter):
 
+    # pylint: disable=maybe-no-member
+    # password and key variables are dynamically assigned
     def __init__(self,
                  private_key=settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY,
                  private_key_password=settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD,

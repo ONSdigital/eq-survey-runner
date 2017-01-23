@@ -1,7 +1,9 @@
 import unittest
-from app.authentication.user import User
-from app import settings
+
 from flask import Flask
+
+from app import settings
+from app.authentication.user import User
 
 
 class TestUser(unittest.TestCase):
@@ -14,10 +16,9 @@ class TestUser(unittest.TestCase):
     def test_get_user_id(self):
         with self.application.test_request_context():
             user = User("1", "2")
-            self.assertEquals("1", user.user_id)
+            self.assertEqual("1", user.user_id)
 
     def test_get_user_ik(self):
         with self.application.test_request_context():
             user = User("1", "2")
-            self.assertEquals("2", user.user_ik)
-
+            self.assertEqual("2", user.user_ik)

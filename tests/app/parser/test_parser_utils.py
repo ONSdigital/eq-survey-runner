@@ -1,6 +1,7 @@
+import unittest
+
 from app.parser.parser_utils import ParserUtils
 from app.parser.schema_parser_exception import SchemaParserException
-import unittest
 
 
 class ParserUtilsTest(unittest.TestCase):

@@ -9,19 +9,19 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         # Get a token
         token = create_token('0203', '1')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # We proceed to the questionnaire
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(mci_test_urls.MCI_0203_INTRODUCTION, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(block_one_url, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # We fill in our answers, generating a error in a non-mandatory field
         form_data = {
@@ -41,11 +41,11 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
 
         # We submit the form
         resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # Get the page content
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, "Please only enter whole numbers into the field")
+        self.assertRegex(content, "Please only enter whole numbers into the field")
 
         # We remove the non-mandatory field value
         form_data = {
@@ -66,7 +66,7 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         # We submit the form
 
         resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], mci_test_urls.MCI_0203_SUMMARY_REGEX)
+        self.assertRegex(resp.location, mci_test_urls.MCI_0203_SUMMARY_REGEX)

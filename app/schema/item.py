@@ -7,11 +7,11 @@ class Item(metaclass=ABCMeta):
     """
     Abstract class for all items in a schema. Subclasses must provide an id and redefine State accordingly
     """
-    def __init__(self, id):
+    def __init__(self, item_id):
         """
         id, children and questionnaire must be set by derived classes
         """
-        self.id = id
+        self.id = item_id
         self.children = None
         self.questionnaire = None
 

@@ -1,11 +1,9 @@
-import json
 import logging
-import unittest
-from json import JSONDecodeError
-
-import jsonschema
 import os
-from jsonschema import validate
+import unittest
+from json import JSONDecodeError, load
+
+from jsonschema import ValidationError, validate
 
 from app import settings
 
@@ -19,7 +17,7 @@ def create_schema_with_id(schema_id='answer'):
     :return: The JSON file with the Id swapped for schema_id
     """
     json_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "test_percentage.json"))
-    json_content = json.load(json_file)
+    json_content = load(json_file)
     json_content['groups'][0]['blocks'][0]['sections'][0]['questions'][0]['answers'][0]['id'] = schema_id
     return json_content
 
@@ -28,7 +26,7 @@ def validate_json_against_schema(json_to_validate, schema):
     try:
         validate(json_to_validate, schema)
         return []
-    except jsonschema.exceptions.ValidationError as e:
+    except ValidationError as e:
         return ["Schema Validation Error! JSON [{}] does not validate against schema. Error [{}]"
                 .format(json_to_validate, e)]
     except JSONDecodeError as e:
@@ -40,7 +38,7 @@ class TestSchemaIdRegEx(unittest.TestCase):
     def setUp(self):
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema-v1.json"), encoding="utf8")
         self.errors = []
-        self.schema = json.load(schema_file)
+        self.schema = load(schema_file)
 
     def test_default_id_should_pass_validation(self):
         # Given

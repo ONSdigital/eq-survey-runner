@@ -17,7 +17,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
             self.INTRODUCTION_PAGE,
             data={'action[start_questionnaire]': 'Start Questionnaire'},
             follow_redirects=False)
-        self.first_page = resp.headers['Location']
+        self.first_page = resp.location
 
     def tearDown(self):
         super(TestRepeatingHousehold, self).tearDown()
@@ -32,7 +32,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data.add("last-name_1", 'Doe')
         form_data.add("action[save_continue]", '')
         resp = self.client.post(household_composition_page, data=form_data, follow_redirects=False)
-        person1_age_page = resp.headers['Location']
+        person1_age_page = resp.location
 
         # And provide details
         self.navigate_to_page(person1_age_page)
@@ -40,21 +40,21 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data.add("what-is-your-age", '9990')
         form_data.add("action[save_continue]", '')
         resp = self.client.post(person1_age_page, data=form_data, follow_redirects=False)
-        person1_shoe_size_page = resp.headers['Location']
+        person1_shoe_size_page = resp.location
 
         self.navigate_to_page(person1_shoe_size_page)
         form_data = MultiDict()
         form_data.add("what-is-your-shoe-size", '9991')
         form_data.add("action[save_continue]", '')
         resp = self.client.post(person1_shoe_size_page, data=form_data, follow_redirects=False)
-        person2_age_page = resp.headers['Location']
+        person2_age_page = resp.location
 
         self.navigate_to_page(person2_age_page)
         form_data = MultiDict()
         form_data.add("what-is-your-age", '9992')
         form_data.add("action[save_continue]", '')
         resp = self.client.post(person2_age_page, data=form_data, follow_redirects=False)
-        person2_shoe_size_page = resp.headers['Location']
+        person2_shoe_size_page = resp.location
 
         self.navigate_to_page(person2_shoe_size_page)
         form_data = MultiDict()
@@ -94,5 +94,5 @@ class TestRepeatingHousehold(IntegrationTestCase):
 
     def navigate_to_page(self, page):
         resp = self.client.get(page, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         return resp

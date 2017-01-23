@@ -10,7 +10,6 @@ import logging
 from app.parser.abstract_schema_parser import AbstractSchemaParser
 from app.parser.parser_utils import ParserUtils
 from app.parser.schema_parser_exception import SchemaParserException
-
 from app.schema.answers.checkbox_answer import CheckboxAnswer
 from app.schema.answers.currency_answer import CurrencyAnswer
 from app.schema.answers.date_answer import DateAnswer
@@ -22,7 +21,6 @@ from app.schema.answers.radio_answer import RadioAnswer
 from app.schema.answers.relationship_answer import RelationshipAnswer
 from app.schema.answers.textarea_answer import TextareaAnswer
 from app.schema.answers.textfield_answer import TextfieldAnswer
-
 from app.schema.block import Block
 from app.schema.group import Group
 from app.schema.introduction import Introduction
@@ -32,7 +30,6 @@ from app.schema.questions.general_question import GeneralQuestion
 from app.schema.questions.relationship_question import RelationshipQuestion
 from app.schema.questions.repeating_answer_question import RepeatingAnswerQuestion
 from app.schema.section import Section
-
 from app.utilities.factory import Factory
 
 logger = logging.getLogger(__name__)

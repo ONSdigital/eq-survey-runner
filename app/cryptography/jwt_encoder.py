@@ -13,6 +13,8 @@ KID = 'EDCRRM'
 
 class Encoder(Encrypter):
     def __init__(self):
+        # pylint: disable=maybe-no-member
+        # key variables are dynamically assigned
         if settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY is None:
             raise Exception("EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY is None (check EQ_DEV_MODE?)")
         if settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD is None:

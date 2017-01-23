@@ -12,7 +12,7 @@ class TestLogin(IntegrationTestCase):
         resp = self.client.get('/session?token=' + token, follow_redirects=False)
 
         # Then
-        self.assertEquals(resp.status_code, 401)
+        self.assertEqual(resp.status_code, 401)
 
     def test_login_with_invalid_token_should_be_forbidden(self):
         # Given
@@ -22,7 +22,7 @@ class TestLogin(IntegrationTestCase):
         resp = self.client.get('/session?token=' + token, follow_redirects=False)
 
         # Then
-        self.assertEquals(resp.status_code, 403)
+        self.assertEqual(resp.status_code, 403)
 
     def test_login_with_valid_token_should_redirect_to_survey(self):
         # Given
@@ -32,5 +32,5 @@ class TestLogin(IntegrationTestCase):
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
 
         # Then
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
         self.assertRegex(resp.location, '/questionnaire/1/0205')

@@ -7,4 +7,4 @@
 # NOTE: This script expects to be run from the project root with
 # ./scripts/run_pylint.sh
 
-pylint --rcfile=.pylintrc ./app
+pylint --rcfile=.pylintrc -j 0 ./app ./tests

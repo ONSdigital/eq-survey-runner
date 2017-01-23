@@ -1,7 +1,6 @@
 from unittest import TestCase
 
 from app.schema.answers.month_year_date_answer import MonthYearDateAnswer
-
 from app.schema.exceptions import TypeCheckingException
 
 
@@ -11,7 +10,7 @@ class TestMonthYearDateAnswer(TestCase):
         month_year_date_answer = MonthYearDateAnswer('1234')
         post_data = {'1234': '1/2000'}
         result = month_year_date_answer.get_typed_value(post_data)
-        self.assertEquals(result, '1/2000')
+        self.assertEqual(result, '1/2000')
 
     def test_month_year_date_answer_incomplete_date(self):
         month_year_date_answer = MonthYearDateAnswer('1234')
@@ -27,4 +26,4 @@ class TestMonthYearDateAnswer(TestCase):
         month_year_date_answer = MonthYearDateAnswer('1234')
         post_data = '1/2000'
         result = month_year_date_answer.get_typed_value(post_data)
-        self.assertEquals(result, '1/2000')
+        self.assertEqual(result, '1/2000')

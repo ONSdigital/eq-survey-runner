@@ -2,7 +2,6 @@ from app.validation.abstract_validator import AbstractValidator
 from app.validation.validation_result import ValidationResult
 
 
-# TODO we need to think about types as TextArea is tied too much to HTML
 class TextAreaTypeCheck(AbstractValidator):
 
     def validate(self, user_answer):

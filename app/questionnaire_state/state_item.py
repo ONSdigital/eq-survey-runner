@@ -1,5 +1,4 @@
 import logging
-
 from collections import OrderedDict
 
 from app.questionnaire.rules import evaluate_rule, get_metadata_value
@@ -8,8 +7,8 @@ logger = logging.getLogger(__name__)
 
 
 class StateItem(object):
-    def __init__(self, id, schema_item):
-        self.id = id
+    def __init__(self, item_id, schema_item):
+        self.id = item_id
         self.parent = None
         self.children = []
         self.is_valid = None

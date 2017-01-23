@@ -11,6 +11,7 @@ class TestStateAnswer(unittest.TestCase):
 
     def setUp(self):
         self.answer_schema = Answer('multiple-choice-with-other')
+        self.answer_schema.type = 'Radio'
         self.answer_schema.widget = TextWidget(self.answer_schema.id)
         self.answer_schema.options = [
             {
@@ -26,7 +27,7 @@ class TestStateAnswer(unittest.TestCase):
             }
         ]
 
-    def test_should_restore_other_value(self):
+    def test_shouldupdate_state(self):
         # Given
         answer = StateAnswer(self.answer_schema.id, self.answer_schema)
         answer.input = 'Some entered value'
@@ -36,7 +37,7 @@ class TestStateAnswer(unittest.TestCase):
         }
 
         # When
-        answer._restore_other_value(post_vars)
+        answer.update_state(post_vars)
 
         # Then
         self.assertEqual(answer.other, 'Some entered value')
@@ -51,7 +52,7 @@ class TestStateAnswer(unittest.TestCase):
         }
 
         # When
-        answer._restore_other_value(post_vars)
+        answer.update_state(post_vars)
 
         # Then
         self.assertEqual(answer.input, 'No')
@@ -66,7 +67,7 @@ class TestStateAnswer(unittest.TestCase):
         post_vars.add('multiple-choice-with-other', 'Yes')
 
         # When
-        answer._restore_other_value(post_vars)
+        answer.update_state(post_vars)
 
         # Then
         self.assertEqual(answer.input, 'Yes')
@@ -81,9 +82,7 @@ class TestStateAnswer(unittest.TestCase):
         post_vars.add('multiple-choice-with-other', 'Yes')
 
         # When
-        answer._restore_other_value(post_vars)
+        answer.update_state(post_vars)
 
         # Then
         self.assertIsNone(answer.other)
-
-

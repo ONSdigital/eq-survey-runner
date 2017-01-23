@@ -1,8 +1,8 @@
 import logging
 
-from app.schema.widget import Widget
-
 from flask import render_template
+
+from app.schema.widget import Widget
 
 logger = logging.getLogger(__name__)
 

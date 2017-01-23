@@ -1,8 +1,7 @@
 import copy
 import re
-
-from collections import defaultdict
 from collections import OrderedDict
+from collections import defaultdict
 
 from app.data_model.answer_store import natural_order
 from app.questionnaire_state.state_answer import StateAnswer
@@ -10,8 +9,8 @@ from app.questionnaire_state.state_question import StateQuestion
 
 
 class RepeatingAnswerStateQuestion(StateQuestion):
-    def __init__(self, id, schema_item):
-        super().__init__(id=id, schema_item=schema_item)
+    def __init__(self, item_id, schema_item):
+        super().__init__(item_id=item_id, schema_item=schema_item)
 
     def update_state(self, user_input):
         self.build_repeating_state(user_input)

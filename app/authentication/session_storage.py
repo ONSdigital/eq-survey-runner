@@ -1,10 +1,10 @@
 import logging
 from uuid import uuid4
 
+from flask import session
+
 from app.data_model.database import EQSession, commit_or_rollback
 from app.data_model.database import db_session
-
-from flask import session
 
 USER_ID = "user_id"
 USER_IK = "user_ik"
@@ -35,9 +35,12 @@ class SessionStorage:
 
         logger.debug("About to commit to database")
         with commit_or_rollback(db_session):
+            # pylint: disable=maybe-no-member
+            # session has a add function but it is wrapped in a session_scope which confuses pylint
             db_session.add(eq_session)
 
-    def has_user_id(self):
+    @staticmethod
+    def has_user_id():
         """
         Checks if a user has a stored id
         :return: boolean value
@@ -46,6 +49,8 @@ class SessionStorage:
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
 
+            # pylint: disable=maybe-no-member
+            # SQLAlchemy doing declarative magic which makes session scope query property available
             count = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).count()
             logger.debug("Number of entries for eq session id %s is %s", eq_session_id, count)
             return count > 0
@@ -61,6 +66,8 @@ class SessionStorage:
             logger.debug("About to delete entry from eq_session table %s", eq_session)
 
             with commit_or_rollback(db_session):
+                # pylint: disable=maybe-no-member
+                # session has a delete function but it is wrapped in a session_scope which confuses pylint
                 db_session.delete(eq_session)
         else:
             logger.debug("No eq session id exists")
@@ -81,6 +88,8 @@ class SessionStorage:
     @staticmethod
     def _get_user_session(eq_session_id):
         logger.debug("Get the EQ Session object for eq session id %s", eq_session_id)
+        # pylint: disable=maybe-no-member
+        # SQLAlchemy doing declarative magic which makes session scope query property available
         return EQSession.query.filter(EQSession.eq_session_id == eq_session_id).first()
 
     @staticmethod

@@ -1,8 +1,9 @@
+import unittest
+
 from app import settings
-from app.storage.storage_factory import get_storage
 from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
 from app.storage.questionnaire_storage import QuestionnaireStorage
-import unittest
+from app.storage.storage_factory import get_storage
 
 
 class TestStorageFactory(unittest.TestCase):

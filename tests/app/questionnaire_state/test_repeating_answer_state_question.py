@@ -267,7 +267,7 @@ class TestRepeatingAnswerStateQuestion(TestCase):
         self.assertEqual(result[0][1], middle_name)
         self.assertEqual(result[0][2], last_name)
 
-    def test_answers_grouped_by_instance_id_many_answers_many_instance(self):
+    def test_answers_grouped_by_instance_id_many_answers_many_instance(self):  # pylint: disable=too-many-statements
         # Given
         question_state = RepeatingAnswerStateQuestion('question_id', MagicMock())
 

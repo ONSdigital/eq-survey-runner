@@ -14,7 +14,7 @@ class TestRenderPercentageWidget(IntegrationTestCase):
         resp = self.client.post('/questionnaire/test/percentage/789/introduction',
                                 data={'action[start_questionnaire]': 'Start Questionnaire'},
                                 follow_redirects=False)
-        self.first_page = resp.headers['Location']
+        self.first_page = resp.location
 
     def test_percentage_widget_has_icon(self):
         # Given

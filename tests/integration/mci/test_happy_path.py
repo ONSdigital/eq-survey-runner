@@ -14,35 +14,35 @@ class TestHappyPath(IntegrationTestCase):
         # Get a token
         token = create_token(form_type_id, eq_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertRegexpMatches(content, '<title>Introduction</title>')
-        self.assertRegexpMatches(content, '>Start survey<')
-        self.assertRegexpMatches(content, 'Monthly Business Survey - Retail Sales Index')
+        self.assertRegex(content, '<title>Introduction</title>')
+        self.assertRegex(content, '>Start survey<')
+        self.assertRegex(content, 'Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post('/questionnaire/' + eq_id + '/' + form_type_id + '/789/introduction', data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(block_one_url, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Survey</title>')
-        self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegexpMatches(content, "What are the dates of the sales period you are reporting for\?")
-        self.assertRegexpMatches(content, ">Save and continue<")
+        self.assertRegex(content, '<title>Survey</title>')
+        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
+        self.assertRegex(content, "What are the dates of the sales period you are reporting for?")
+        self.assertRegex(content, ">Save and continue<")
         # check with have some guidance
-        self.assertRegexpMatches(content, "alcoholic drink")
+        self.assertRegex(content, "alcoholic drink")
 
         # We fill in our answers
         form_data = {
@@ -63,35 +63,35 @@ class TestHappyPath(IntegrationTestCase):
         # We submit the form
 
         resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/' + form_type_id + '\/789\/summary$')
+        self.assertRegex(resp.location, r'\/questionnaire\/1\/' + form_type_id + r'\/789\/summary$')
 
-        summary_url = resp.headers['Location']
+        summary_url = resp.location
 
         resp = self.client.get(summary_url, follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Summary</title>')
-        self.assertRegexpMatches(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegexpMatches(content, '>Your responses<')
-        self.assertRegexpMatches(content, 'Please check carefully before submission.')
-        self.assertRegexpMatches(content, '>Submit answers<')
+        self.assertRegex(content, '<title>Summary</title>')
+        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
+        self.assertRegex(content, '>Your responses<')
+        self.assertRegex(content, 'Please check carefully before submission.')
+        self.assertRegex(content, '>Submit answers<')
 
         # We submit our answers
         post_data = {
             "action[submit_answers]": "Submit answers"
         }
         resp = self.client.post(summary_url, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
-        self.assertRegexpMatches(resp.headers['Location'], r'\/questionnaire\/1\/' + form_type_id + '\/789\/thank-you$')
-        resp = self.client.get(resp.headers['Location'], follow_redirects=True)
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 302)
+        self.assertRegex(resp.location, r'\/questionnaire\/1\/' + form_type_id + r'\/789\/thank-you$')
+        resp = self.client.get(resp.location, follow_redirects=True)
+        self.assertEqual(resp.status_code, 200)
 
         # We are on the thank you page
         content = resp.get_data(True)
-        self.assertRegexpMatches(content, '<title>Submission Successful</title>')
-        self.assertRegexpMatches(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
+        self.assertRegex(content, '<title>Submission Successful</title>')
+        self.assertRegex(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')

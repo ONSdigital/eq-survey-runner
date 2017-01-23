@@ -12,12 +12,11 @@ class TestThemeSelection(TestLightSidePath):
         Theme Test case
         """
 
-        self.login_and_check_introduction_text()
+        self.login()
 
         first_page = self.start_questionnaire_and_navigate_routing()
         resp = self.navigate_to_page(first_page)
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegexpMatches(content,
-                                 'Theme selected: Star Wars')
+        self.assertRegex(content, 'Theme selected: Star Wars')

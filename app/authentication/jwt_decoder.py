@@ -1,18 +1,17 @@
 import json
 import logging
 
-from app import settings
-from app.authentication.invalid_token_exception import InvalidTokenException
-from app.authentication.no_token_exception import NoTokenException
-from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
-from app.utilities import strings
-
+import jwt
 from cryptography.exceptions import InternalError
 from cryptography.exceptions import InvalidTag
 from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import serialization
 
-import jwt
+from app import settings
+from app.authentication.invalid_token_exception import InvalidTokenException
+from app.authentication.no_token_exception import NoTokenException
+from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
+from app.utilities import strings
 
 IV_EXPECTED_LENGTH = 12
 CEK_EXPECT_LENGTH = 32
@@ -23,6 +22,8 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
     JWT signed with JWS RS256 And encrypted with JWE RSA-OAEP
     """
     def __init__(self):
+        # pylint: disable=maybe-no-member
+        # password and key variables are dynamically assigned
         self.logger = logging.getLogger(__name__)
         if settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY is None or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY is None \
                 or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD is None:

@@ -1,9 +1,9 @@
 import logging
 
+from flask import g
+
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.storage.storage_factory import get_storage
-
-from flask import g
 
 logger = logging.getLogger(__name__)
 

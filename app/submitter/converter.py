@@ -1,6 +1,5 @@
 import logging
 from collections import OrderedDict
-
 from datetime import datetime, timezone
 
 from app import settings
@@ -12,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 class DataVersionError(Exception):
     def __init__(self, version):
+        super().__init__()
         self.version = version
 
     def __str__(self):

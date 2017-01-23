@@ -1,5 +1,6 @@
-from app.schema.answer import Answer
 import unittest
+
+from app.schema.answer import Answer
 
 
 class AnswerModelTest(unittest.TestCase):
@@ -13,9 +14,9 @@ class AnswerModelTest(unittest.TestCase):
         answer.code = 'code'
         answer.container = None
 
-        self.assertEquals(answer.id, 'some-id')
-        self.assertEquals(answer.label, 'my answer object')
-        self.assertEquals(answer.guidance, 'fill this in')
-        self.assertEquals(answer.type, 'some-type')
-        self.assertEquals(answer.code, 'code')
+        self.assertEqual(answer.id, 'some-id')
+        self.assertEqual(answer.label, 'my answer object')
+        self.assertEqual(answer.guidance, 'fill this in')
+        self.assertEqual(answer.type, 'some-type')
+        self.assertEqual(answer.code, 'code')
         self.assertIsNone(answer.container)

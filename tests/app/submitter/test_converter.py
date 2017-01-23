@@ -1,6 +1,6 @@
-import dateutil.parser
-
 from datetime import datetime, timedelta, timezone
+
+import dateutil.parser
 
 from app.data_model.answer_store import AnswerStore
 from app.parser.metadata_parser import parse_metadata
@@ -16,17 +16,17 @@ from app.submitter.converter import convert_answers, DataVersionError
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 metadata = parse_metadata({
-  "user_id": "789473423",
-  "form_type": "0205",
-  "collection_exercise_sid": "test-sid",
-  "eq_id": "1",
-  "period_id": "2016-02-01",
-  "period_str": "2016-01-01",
-  "ref_p_start_date": "2016-02-02",
-  "ref_p_end_date": "2016-03-03",
-  "ru_ref": "432423423423",
-  "ru_name": "Apple",
-  "return_by": "2016-07-07"
+    "user_id": "789473423",
+    "form_type": "0205",
+    "collection_exercise_sid": "test-sid",
+    "eq_id": "1",
+    "period_id": "2016-02-01",
+    "period_str": "2016-01-01",
+    "ref_p_start_date": "2016-02-02",
+    "ref_p_end_date": "2016-03-03",
+    "ru_ref": "432423423423",
+    "ru_name": "Apple",
+    "return_by": "2016-07-07"
 })
 
 
@@ -129,7 +129,7 @@ class TestConverter(SurveyRunnerTestCase):
             answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), {})
 
             # Check the converter correctly
-            self.assertEquals("0", answer_object["data"]["003"])
+            self.assertEqual("0", answer_object["data"]["003"])
 
     def test_answer_with_multiple_instances(self):
         with self.application.test_request_context():
@@ -245,31 +245,31 @@ class TestConverter(SurveyRunnerTestCase):
             answer.id = "crisps-answer"
             answer.code = ""
             answer.options = [
-                                {
-                                    "label": "Ready salted",
-                                    "value": "Ready salted",
-                                    "q_code": "1"
-                                },
-                                {
-                                    "label": "Sweet chilli",
-                                    "value": "Sweet chilli",
-                                    "q_code": "2"
-                                },
-                                {
-                                    "label": "Cheese and onion",
-                                    "value": "Cheese and onion",
-                                    "q_code": "3"
-                                },
-                                {
-                                    "label": "Other",
-                                    "value": "other",
-                                    "q_code": "4",
-                                    "description": "Choose any other flavour",
-                                    "other": {
-                                      "label": "Please specify other"
-                                    }
-                                }
-                            ]
+                {
+                    "label": "Ready salted",
+                    "value": "Ready salted",
+                    "q_code": "1"
+                },
+                {
+                    "label": "Sweet chilli",
+                    "value": "Sweet chilli",
+                    "q_code": "2"
+                },
+                {
+                    "label": "Cheese and onion",
+                    "value": "Cheese and onion",
+                    "q_code": "3"
+                },
+                {
+                    "label": "Other",
+                    "value": "other",
+                    "q_code": "4",
+                    "description": "Choose any other flavour",
+                    "other": {
+                        "label": "Please specify other"
+                    }
+                }
+            ]
 
             question = Question()
             question.id = 'crisps-question'
@@ -310,31 +310,31 @@ class TestConverter(SurveyRunnerTestCase):
             answer.id = "crisps-answer"
             answer.code = ""
             answer.options = [
-                                {
-                                    "label": "Ready salted",
-                                    "value": "Ready salted",
-                                    "q_code": "1"
-                                },
-                                {
-                                    "label": "Sweet chilli",
-                                    "value": "Sweet chilli",
-                                    "q_code": "2"
-                                },
-                                {
-                                    "label": "Cheese and onion",
-                                    "value": "Cheese and onion",
-                                    "q_code": "3"
-                                },
-                                {
-                                    "label": "Other",
-                                    "value": "other",
-                                    "q_code": "4",
-                                    "description": "Choose any other flavour",
-                                    "other": {
-                                      "label": "Please specify other"
-                                    }
-                                }
-                            ]
+                {
+                    "label": "Ready salted",
+                    "value": "Ready salted",
+                    "q_code": "1"
+                },
+                {
+                    "label": "Sweet chilli",
+                    "value": "Sweet chilli",
+                    "q_code": "2"
+                },
+                {
+                    "label": "Cheese and onion",
+                    "value": "Cheese and onion",
+                    "q_code": "3"
+                },
+                {
+                    "label": "Other",
+                    "value": "other",
+                    "q_code": "4",
+                    "description": "Choose any other flavour",
+                    "other": {
+                        "label": "Please specify other"
+                    }
+                }
+            ]
 
             question = Question()
             question.id = 'crisps-question'

@@ -1,5 +1,3 @@
-from flask_babel import gettext
-
 from app import create_app
 from app.questionnaire_state.state_answer import StateAnswer
 from app.schema.answer import Answer

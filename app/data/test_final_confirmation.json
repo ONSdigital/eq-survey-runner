@@ -21,7 +21,7 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "id": "f22b1ba4-d15f-48b8-a1f3-db62b6f34cc0",
+                    "id": "block-1",
                     "sections": [
                         {
                             "description": "",

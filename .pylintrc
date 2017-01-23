@@ -20,7 +20,7 @@ persistent=yes
 
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
-load-plugins=
+load-plugins=pylint_mccabe
 
 # Use multiple processes to speed up Pylint.
 jobs=1
@@ -369,6 +369,8 @@ max-public-methods=20
 # Maximum number of boolean expressions in a if statement
 max-bool-expr=5
 
+# Maximum cyclomatic complexity
+max-complexity=10
 
 [IMPORTS]
 

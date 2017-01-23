@@ -17,24 +17,24 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         post_data = {
             "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": " Bacon",
             "action[save_continue]": "Save &amp; Continue"
         }
         resp = self.client.post(block_one_url, data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
         # Then
         # we are presented with a confirmation page
-        self.assertTrue("confirmation" in resp.headers['Location'])
-        self.assertEquals(resp.status_code, 302)
+        self.assertTrue("confirmation" in resp.location)
+        self.assertEqual(resp.status_code, 302)
 
-        resp = self.client.get(resp.headers['Location'], follow_redirects=False)
-        self.assertEquals(resp.status_code, 200)
+        resp = self.client.get(resp.location, follow_redirects=False)
+        self.assertEqual(resp.status_code, 200)
 
     def test_requesting_final_confirmation_before_finished_redirects(self):
         base_url = '/questionnaire/test/final_confirmation/789/'
@@ -49,10 +49,10 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.status_code, 302)
 
-        block_one_url = resp.headers['Location']
+        block_one_url = resp.location
 
         resp = self.client.get(base_url + 'confirmation', follow_redirects=False)
-        self.assertEquals(resp.headers['Location'], block_one_url)
-        self.assertEquals(resp.status_code, 302)
+        self.assertEqual(resp.location, block_one_url)
+        self.assertEqual(resp.status_code, 302)

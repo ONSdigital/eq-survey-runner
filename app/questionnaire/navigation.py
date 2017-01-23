@@ -1,6 +1,5 @@
 import copy
 import logging
-
 from collections import defaultdict
 
 from app.helpers.schema_helper import SchemaHelper

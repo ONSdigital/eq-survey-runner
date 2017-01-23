@@ -1,7 +1,5 @@
 from unittest import TestCase
 
-from mock import patch, call
-
 from app.questionnaire_state.state_answer import StateAnswer
 from app.schema.answer import Answer
 from app.schema.widgets.relationship_widget import RelationshipWidget

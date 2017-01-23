@@ -1,19 +1,17 @@
 import logging
 
+from flask import Blueprint
+from flask import request
+from flask.ext.themes2 import render_theme_template
+from flask_login import current_user
+from ua_parser import user_agent_parser
+
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
 from app.libs.utils import convert_tx_id
 from app.schema.exceptions import QuestionnaireException
 from app.submitter.submission_failed import SubmissionFailedException
-
-from flask import request
-from flask import Blueprint
-from flask.ext.themes2 import render_theme_template
-
-from flask_login import current_user
-
-from ua_parser import user_agent_parser
 
 logger = logging.getLogger(__name__)
 

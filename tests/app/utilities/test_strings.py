@@ -1,5 +1,6 @@
-from app.utilities import strings
 import unittest
+
+from app.utilities import strings
 
 
 class TestStrings(unittest.TestCase):

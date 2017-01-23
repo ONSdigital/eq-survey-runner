@@ -1,6 +1,7 @@
-from app.cryptography.jwe_encryption import JWEDirEncrypter
 import os
 import unittest
+
+from app.cryptography.jwe_encryption import JWEDirEncrypter
 
 
 class TestJWEEncryption(unittest.TestCase):

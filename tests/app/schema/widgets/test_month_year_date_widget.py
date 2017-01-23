@@ -13,4 +13,4 @@ class TestMonthYearDateAnswer(TestCase):
     def test_month_year_date_answer_mandatory(self):
         date_widget = MonthYearDateAnswer('1234')
         response = date_widget.get_user_input({'1234-month':'1', '1234-year':'2017'})
-        self.assertRegexpMatches(response, "1/2017")
+        self.assertRegex(response, "1/2017")

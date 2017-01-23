@@ -15,7 +15,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
         }
 
         first_survey_resp = self.client.post('/questionnaire/1/0205/789/introduction', data=post_data, follow_redirects=False)
-        self.assertRegexpMatches(first_survey_resp.headers['Location'], r'\/questionnaire\/1\/0205\/789\/mci\/0\/reporting-period$')
+        self.assertRegex(first_survey_resp.location, r'\/questionnaire\/1\/0205\/789\/mci\/0\/reporting-period$')
 
         # We start the second survey
         second_survey_token = create_token('0203', '1')
@@ -26,7 +26,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
         }
 
         second_survey_resp = self.client.post('/questionnaire/1/0203/789/introduction', data=post_data, follow_redirects=False)
-        self.assertRegexpMatches(second_survey_resp.headers['Location'], r'\/questionnaire\/1\/0203\/789\/mci\/0\/reporting-period')
+        self.assertRegex(second_survey_resp.location, r'\/questionnaire\/1\/0203\/789\/mci\/0\/reporting-period')
 
         # We now try to post to the first survey, which is out of date
         form_data = {
@@ -40,8 +40,8 @@ class MultipleSurveysOpen(IntegrationTestCase):
             "action[save_continue]": "Save &amp; Continue"
         }
 
-        multiple_survey_resp = self.client.post(first_survey_resp.headers['Location'], data=form_data, follow_redirects=False)
+        multiple_survey_resp = self.client.post(first_survey_resp.location, data=form_data, follow_redirects=False)
         content = multiple_survey_resp.get_data(True)
-        self.assertRegexpMatches(content, 'Information')
-        self.assertRegexpMatches(content, 'Unfortunately you can only complete one survey at a time.')
-        self.assertRegexpMatches(content, 'Close this window to continue with your current survey.')
+        self.assertRegex(content, 'Information')
+        self.assertRegex(content, 'Unfortunately you can only complete one survey at a time.')
+        self.assertRegex(content, 'Close this window to continue with your current survey.')

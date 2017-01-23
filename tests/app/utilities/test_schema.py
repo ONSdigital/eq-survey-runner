@@ -1,5 +1,6 @@
-from app.utilities.schema import get_schema
 import unittest
+
+from app.utilities.schema import get_schema
 
 
 class TestSchema(unittest.TestCase):

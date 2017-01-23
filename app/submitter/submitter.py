@@ -1,14 +1,13 @@
 import logging
-
 from abc import abstractmethod
-
-from app import settings
-from app.submitter.encrypter import Encrypter
-from app.submitter.submission_failed import SubmissionFailedException
 
 import pika
 import pika.credentials
 import pika.exceptions
+
+from app import settings
+from app.submitter.encrypter import Encrypter
+from app.submitter.submission_failed import SubmissionFailedException
 
 logger = logging.getLogger(__name__)
 

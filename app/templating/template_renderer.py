@@ -1,8 +1,8 @@
 import json
 
-from app.jinja_filters import format_date, format_household_member_name, format_household_summary
-
 from jinja2 import Environment
+
+from app.jinja_filters import format_date, format_household_member_name, format_household_summary
 
 
 class TemplateRenderer:

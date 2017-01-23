@@ -3,19 +3,19 @@ import json
 import logging
 from contextlib import contextmanager
 
-from app import settings
-
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import String
 from sqlalchemy import create_engine
-from sqlalchemy import exc
 from sqlalchemy import event
+from sqlalchemy import exc
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
+
+from app import settings
 
 logger = logging.getLogger(__name__)
 

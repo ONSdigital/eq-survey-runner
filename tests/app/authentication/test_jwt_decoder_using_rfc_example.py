@@ -79,20 +79,20 @@ class JWTDecoderRFCTest(unittest.TestCase):
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
 
     def test_plaintext_conversion(self):
-        self.assertEquals(plaintext, ''.join(chr(i) for i in plaintext_in_ascii))
+        self.assertEqual(plaintext, ''.join(chr(i) for i in plaintext_in_ascii))
 
     def test_decrypt(self):
         decoder = JWTDecryptor()
 
         tokens = encrypted_jwt.split('.')
 
-        self.assertEquals(jwe_protected_header, tokens[0])
+        self.assertEqual(jwe_protected_header, tokens[0])
 
-        cipher_text = decoder._base64_decode(tokens[3])
-        tag = bytes(decoder._base64_decode(tokens[4]))
+        cipher_text = decoder._base64_decode(tokens[3])  # pylint: disable=protected-access
+        tag = bytes(decoder._base64_decode(tokens[4]))  # pylint: disable=protected-access
 
-        decrypted_token = decoder._decrypt_cipher_text(cipher_text, iv, cek, tag, jwe_protected_header)
-        self.assertEquals(plaintext, decrypted_token.decode())
+        decrypted_token = decoder._decrypt_cipher_text(cipher_text, iv, cek, tag, jwe_protected_header)  # pylint: disable=protected-access
+        self.assertEqual(plaintext, decrypted_token.decode())
 
 
 if __name__ == '__main__':
