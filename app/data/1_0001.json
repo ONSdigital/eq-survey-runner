@@ -4078,7 +4078,7 @@
                                     "answers": [],
                                     "description": "",
                                     "id": "information-needed-for-innovation-completed-question",
-                                    "title": "Information Needed for Innovation",
+                                    "title": "",
                                     "type": "General"
                                 }
                             ],
@@ -5742,26 +5742,29 @@
                         }
                     ],
                     "type": "questionnaire"
-                }
-            ],
-            "id": "general-information",
-            "title": "General Information"
-        },
-        {
-            "blocks": [
+                },
                 {
                     "id": "ready-to-submit-completed",
                     "sections": [
                         {
-                            "description": "<p>Submission</p><p>You will not be able to access or change your answers on submitting the questionnaire</p><p>If you wish to review your answers please select the relevant Completed sections</p><p>If you do not submit your questionnaire, your responses will be collected when the online questionnaire closes</p>",
+                            "description": "",
                             "id": "ready-to-submit-completed-section",
                             "questions": [
                                 {
                                     "answers": [],
-                                    "description": "",
                                     "id": "ready-to-submit-completed-question",
-                                    "title": "",
-                                    "type": "General"
+                                    "title": "Submission",
+                                    "type": "General",
+                                    "guidance": [
+                                        {
+                                          "title": "",
+                                          "list": [
+                                            "You will not be able to access or change your answers on submitting the questionnaire",
+                                            "If you wish to review your answers please select the relevant Completed sections",
+                                            "your responses will be collected when the online questionnaire closes"
+                                          ]
+                                      }
+                                    ]
                                 }
                             ],
                             "title": "You are now ready to submit this survey"
@@ -5770,9 +5773,8 @@
                     "type": "interstitial"
                 }
             ],
-            "hide_in_navigation": true,
-            "id": "ready-to-submit",
-            "title": "You are now ready to submit this survey"
+            "id": "general-information",
+            "title": "General Information"
         }
     ],
     "mime_type": "application/json/ons/eq",
