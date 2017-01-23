@@ -223,4 +223,14 @@ describe('Census Household', function () {
         expect(ThankYou.isOpen()).to.be.true
     })
 
+    it('Given a census household survey, when a user submits the household composition page with errors, adding a new person should not duplicate those errors', function() {
+      startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+
+      PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+      HouseholdComposition.submit()
+      HouseholdComposition.addPerson()
+
+      expect(browser.elements('.js-household-person .js-has-errors').value.length).to.equal(1)
+    })
+
 })
