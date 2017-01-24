@@ -46,8 +46,8 @@ class HouseholdRelationship extends EventEmitter {
   }
 
   setRelationship(relationshipId) {
-    var label = this.el.querySelector('label[for=' + relationshipId + ']')
-    var relationship = label.innerHTML
+    const label = this.el.querySelector('label[for=' + relationshipId + ']')
+    const relationship = label.innerHTML
 
     this.legend.innerHTML = relationship.toLowerCase()
     this.answered = true
