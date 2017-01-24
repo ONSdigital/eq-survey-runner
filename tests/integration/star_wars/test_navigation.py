@@ -87,7 +87,7 @@ class TestNavigation(StarWarsTestCase):
         self.assertIn('92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c', content)
 
         # Radio box question
-        self.assertIn('What animal was used to create the engine sound of the Empire&#39;s TIE fighters?', content)  # NOQA
+        self.assertIn('What animal was used to create the engine sound of the Empire\'s TIE fighters?', content)  # NOQA
         self.assertIn('Lion', content)
         self.assertIn('Cow', content)
         self.assertIn('Elephant', content)

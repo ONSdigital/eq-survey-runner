@@ -17,7 +17,7 @@
                                         {
                                             "description": "",
                                             "id": "geographic-markets-answer",
-                                            "label": "Pleases select all that apply",
+                                            "label": "",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -44,7 +44,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "",
+                                    "description": "Please select all that apply",
                                     "id": "geographic-markets-question",
                                     "number": "1.1",
                                     "title": "In which geographic markets did {{respondent.ru_name}} sell goods and/or services?",
@@ -400,7 +400,7 @@
                                         {
                                             "description": "",
                                             "id": "years-internal-investment-r-d-answer",
-                                            "label": "Select all that apply",
+                                            "label": "",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -422,7 +422,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "",
+                                    "description": "Select all that apply",
                                     "id": "years-internal-investment-r-d-question",
                                     "number": "3.2",
                                     "title": "In which of the following years did {{respondent.ru_name}} invest in <em>internal Research & Development</em>?",
@@ -1335,7 +1335,7 @@
                                         {
                                             "description": "",
                                             "id": "gentity-developed-these-goods-answer",
-                                            "label": "Select all that apply",
+                                            "label": "",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1357,7 +1357,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "",
+                                    "description": "Select all that apply",
                                     "id": "entity-developed-these-goods-question",
                                     "number": "4.2",
                                     "title": "Which entity mainly developed these <em>goods</em>?",
@@ -1464,7 +1464,7 @@
                                         {
                                             "description": "",
                                             "id": "entity-mainly-developed-these-answer",
-                                            "label": "Select all that apply",
+                                            "label": "",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1486,7 +1486,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "",
+                                    "description": "Select all that apply",
                                     "id": "entity-mainly-developed-these-question",
                                     "number": "4.4",
                                     "title": "Which entity mainly developed these <em>services</em>?",
@@ -1691,7 +1691,7 @@
                                     ],
                                     "id": "percentage-turnover-2016-question",
                                     "number": "4.7",
-                                    "title": "Please <em>ESTIMATE</em> the percentage of {{respondent.ru_name}}’s <em>total</em> turnover in <em>calendar year 2016 only</em> from goods and services that were:",
+                                    "title": "Please <em>estimate</em> the percentage of {{respondent.ru_name}}’s <em>total</em> turnover in <em>calendar year 2016 only</em> from goods and services that were:",
                                     "type": "General"
                                 }
                             ],
@@ -1811,7 +1811,7 @@
                                         {
                                             "description": "",
                                             "id": "developed-processes-answer",
-                                            "label": "Select all that apply",
+                                            "label": "",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1926,7 +1926,7 @@
                                         {
                                             "description": "",
                                             "id": "constraints-innovation-activities-abandoned-answser",
-                                            "label": "abandoned?",
+                                            "label": "Abandoned?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1944,7 +1944,7 @@
                                         {
                                             "description": "",
                                             "id": "constraints-innovation-activities-scaled-back-answser",
-                                            "label": "scaled back?",
+                                            "label": "Scaled back?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -1962,7 +1962,7 @@
                                         {
                                             "description": "",
                                             "id": "constraints-innovation-activities-ongoing-2016-answser",
-                                            "label": "still ongoing at the end of 2016?",
+                                            "label": "Still ongoing at the end of 2016?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2003,7 +2003,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-economic-answer",
-                                            "label": "",
+                                            "label": "Excessive perceived economic risk",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2027,7 +2027,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Excessive perceived economic risk</p>",
+                                    "description": "",
                                     "guidance": [
                                         {
                                             "description": "what constitutes an answer of 'high', 'medium', 'low', or ‘not important’ is dependent on your own interpretation in relation to {{respondent.ru_name}}",
@@ -2059,7 +2059,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-costs-answer",
-                                            "label": "",
+                                            "label": "Direct innovation costs too high",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2083,7 +2083,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Direct innovation costs too high</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-costs-question",
                                     "number": "6.3",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2108,7 +2108,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-finance-answer",
-                                            "label": "",
+                                            "label": "Cost of finance",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2132,7 +2132,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Cost of finance</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-finance-question",
                                     "number": "6.4",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2157,7 +2157,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-available-finance-answer",
-                                            "label": "",
+                                            "label": "Availability of finance",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2181,7 +2181,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Availability of finance</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-available-finance-question",
                                     "number": "6.5",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2206,7 +2206,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-lack-qualified-answer",
-                                            "label": "",
+                                            "label": "Lack of qualified personnel",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2230,7 +2230,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Lack of qualified personnel</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-lack-qualified-question",
                                     "number": "6.6",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2255,7 +2255,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-lack-technology-answer",
-                                            "label": "",
+                                            "label": "Lack of information on technology",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2279,7 +2279,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Lack of information on technology</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-lack-technology-question",
                                     "number": "6.7",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2304,7 +2304,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-lack-information-answer",
-                                            "label": "",
+                                            "label": "Lack of information on markets",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2328,7 +2328,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Lack of information on markets</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-lack-information-question",
                                     "number": "6.8",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2353,7 +2353,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-dominated-answer",
-                                            "label": "",
+                                            "label": "Market dominated by established businesses",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2377,7 +2377,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Market dominated by established businesses</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-dominated-question",
                                     "number": "6.9",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2402,7 +2402,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-uncertain-answer",
-                                            "label": "",
+                                            "label": "Uncertain demand for innovative goods or services",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2426,7 +2426,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Uncertain demand for innovative goods or services</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-uncertain-question",
                                     "number": "6.10",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2451,7 +2451,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-government-answer",
-                                            "label": "",
+                                            "label": "UK government regulations",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2475,7 +2475,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>UK government regulations</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-government-question",
                                     "number": "6.11",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2500,7 +2500,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-eu-answer",
-                                            "label": "",
+                                            "label": "EU regulations (including standards)",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2524,7 +2524,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>EU regulations (including standards)</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-eu-question",
                                     "number": "6.12",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2648,7 +2648,7 @@
                                         {
                                             "description": "",
                                             "id": "constraining-innovation-referendum-answer",
-                                            "label": "",
+                                            "label": "Outcome of the EU Referendum",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2672,7 +2672,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Outcome of the EU Referendum</p>",
+                                    "description": "",
                                     "id": "constraining-innovation-referendum-question",
                                     "number": "6.13",
                                     "title": "How important were the following factors in constraining innovation activities?",
@@ -2776,7 +2776,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-increasing-range-answer",
-                                            "label": "",
+                                            "label": "Increasing range of goods or services",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2800,7 +2800,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Increasing range of goods or services</p>",
+                                    "description": "",
                                     "id": "factors-affecting-increasing-range-question",
                                     "number": "7.1",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -2825,7 +2825,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-new-markets-answer",
-                                            "label": "",
+                                            "label": "Entering new markets",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2849,7 +2849,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Entering new markets</p>",
+                                    "description": "",
                                     "id": "factors-affecting-new-markets-question",
                                     "number": "7.2",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -2874,7 +2874,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-market-share-answer",
-                                            "label": "",
+                                            "label": "Increasing market share",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2898,7 +2898,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Increasing market share</p>",
+                                    "description": "",
                                     "id": "factors-affecting-market-share-question",
                                     "number": "7.3",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -2923,7 +2923,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-quality-answer",
-                                            "label": "",
+                                            "label": "Improving quality of goods or services",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2947,7 +2947,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Improving quality of goods or services</p>",
+                                    "description": "",
                                     "id": "factors-affecting-quality-question",
                                     "number": "7.4",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -2972,7 +2972,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-flexibility-answer",
-                                            "label": "",
+                                            "label": "Improving flexibility for producing goods or services",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -2996,7 +2996,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Improving flexibility for producing goods or services</p>",
+                                    "description": "",
                                     "id": "factors-affecting-flexibility-question",
                                     "number": "7.5",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -3021,7 +3021,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-capacity-answer",
-                                            "label": "",
+                                            "label": "Improving capacity for producing goods or services",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3045,7 +3045,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Improving capacity for producing goods or services</p>",
+                                    "description": "",
                                     "id": "factors-affecting-capacity-question",
                                     "number": "7.6",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -3070,7 +3070,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-value-answer",
-                                            "label": "",
+                                            "label": "Increasing value added",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3094,7 +3094,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Increasing value added</p>",
+                                    "description": "",
                                     "id": "factors-affecting-value-question",
                                     "number": "7.7",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -3119,7 +3119,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-reducing-cost-answer",
-                                            "label": "",
+                                            "label": "Reducing costs per unit produced or provided",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3143,7 +3143,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Reducing costs per unit produced or provided</p>",
+                                    "description": "",
                                     "id": "factors-affecting-reducing-cost-question",
                                     "number": "7.8",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -3168,7 +3168,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-health-safety-answer",
-                                            "label": "",
+                                            "label": "Improving health and safety",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3192,7 +3192,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Improving health and safety</p>",
+                                    "description": "",
                                     "id": "factors-affecting-health-safety-question",
                                     "number": "7.9",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -3217,7 +3217,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-environmental-answer",
-                                            "label": "",
+                                            "label": "Reducing environmental impacts",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3241,7 +3241,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Reducing environmental impacts</p>",
+                                    "description": "",
                                     "id": "factors-affecting-environmental-question",
                                     "number": "7.10",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -3266,7 +3266,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-replacing-answer",
-                                            "label": "",
+                                            "label": "Replacing outdated products or processes",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3290,7 +3290,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Replacing outdated products or processes</p>",
+                                    "description": "",
                                     "id": "factors-affecting-replacing-question",
                                     "number": "7.11",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -3315,7 +3315,7 @@
                                         {
                                             "description": "",
                                             "id": "factors-affecting-regulatory-answer",
-                                            "label": "",
+                                            "label": "Meeting regulatory requirements (including standards)",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3339,7 +3339,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>Meeting regulatory requirements (including standards)</p>",
+                                    "description": "",
                                     "id": "factors-affecting-regulatory-question",
                                     "number": "7.12",
                                     "title": "How important were the following factors in your decision to innovate in goods or services and/or processes?",
@@ -3482,7 +3482,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-innovation-answer",
-                                            "label": "",
+                                            "label": "Within your business or enterprise group?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3506,7 +3506,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>within your business or enterprise group?</p>",
+                                    "description": "",
                                     "id": "importances-information-innovation-question",
                                     "number": "8.1",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3531,7 +3531,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-suppliers-answer",
-                                            "label": "",
+                                            "label": "Suppliers of equipment, materials, services or software?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3555,7 +3555,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>suppliers of equipment, materials, services or software?</p>",
+                                    "description": "",
                                     "id": "importances-information-suppliers-question",
                                     "number": "8.2",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3580,7 +3580,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-client-answer",
-                                            "label": "",
+                                            "label": "Clients or customers from the private sector?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3604,7 +3604,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>clients or customers from the private sector?</p>",
+                                    "description": "",
                                     "id": "importances-information-client-question",
                                     "number": "8.3",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3629,7 +3629,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-public-sector-answer",
-                                            "label": "",
+                                            "label": "Clients or customers from the public sector?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3653,7 +3653,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>clients or customers from the public sector?</p>",
+                                    "description": "",
                                     "guidance": [
                                         {
                                             "description": "",
@@ -3687,7 +3687,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-competitors-answer",
-                                            "label": "",
+                                            "label": "Competitors or other businesses in your industry?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3711,7 +3711,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>competitors or other businesses in your industry?</p>",
+                                    "description": "",
                                     "id": "importances-information-competitors-question",
                                     "number": "8.5",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3736,7 +3736,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-consultants-answer",
-                                            "label": "",
+                                            "label": "Consultants, commercial labs or private Research and Development institutes?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3760,7 +3760,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>consultants, commercial labs or private Research and Development institutes?</p>",
+                                    "description": "",
                                     "id": "importances-information-consultants-question",
                                     "number": "8.6",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3785,7 +3785,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-universities-answer",
-                                            "label": "",
+                                            "label": "Universities or other higher education institutes?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3809,7 +3809,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>universities or other higher education institutes?</p>",
+                                    "description": "",
                                     "id": "importances-information-universities-question",
                                     "number": "8.7",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3834,7 +3834,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-government-answer",
-                                            "label": "",
+                                            "label": "Government or public research institutes?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3858,7 +3858,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>government or public research institutes?</p>",
+                                    "description": "",
                                     "id": "importances-information-government-question",
                                     "number": "8.8",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3883,7 +3883,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-conferences-answer",
-                                            "label": "",
+                                            "label": "Conferences, trade fairs or exhibitions?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3907,7 +3907,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>conferences, trade fairs or exhibitions?</p>",
+                                    "description": "",
                                     "id": "importances-information-conferences-question",
                                     "number": "8.9",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3932,7 +3932,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-associations-answer",
-                                            "label": "",
+                                            "label": "Professional and industry associations?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -3956,7 +3956,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>professional and industry associations?</p>",
+                                    "description": "",
                                     "id": "importances-information-associations-question",
                                     "number": "8.10",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -3981,7 +3981,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-standards-answer",
-                                            "label": "",
+                                            "label": "Technical, industry or service standards?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4005,7 +4005,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>technical, industry or service standards?</p>",
+                                    "description": "",
                                     "id": "importances-information-standards-question",
                                     "number": "8.11",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -4030,7 +4030,7 @@
                                         {
                                             "description": "",
                                             "id": "importances-information-publications-answer",
-                                            "label": "",
+                                            "label": "Scientific journals and trade or technical publications?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4054,7 +4054,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>scientific journals and trade or technical publications?</p>",
+                                    "description": "",
                                     "id": "importances-information-publications-question",
                                     "number": "8.12",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -4195,9 +4195,9 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Select all that apply",
                                             "id": "co-operation-other-businesses-answer",
-                                            "label": "Please select all that apply",
+                                            "label": "Other businesses within your enterprise group?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4224,7 +4224,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "<p>other businesses within your enterprise group?</p>",
+                                    "description": "",
                                     "id": "co-operation-other-businesses-question",
                                     "number": "9.1",
                                     "title": "Did {{respondent.ru_name}} co-operate on any innovation activities with:",
@@ -4247,9 +4247,9 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Select all that apply",
                                             "id": "co-operation-suppliers-answer",
-                                            "label": "Please select all that apply",
+                                            "label": "Suppliers of equipment, materials, services or software?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4276,7 +4276,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "<p>suppliers of equipment, materials, services or software?</p>",
+                                    "description": "",
                                     "id": "co-operation-suppliers-question",
                                     "number": "9.2",
                                     "title": "Did {{respondent.ru_name}} co-operate on any innovation activities with:",
@@ -4299,9 +4299,9 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Select all that apply",
                                             "id": "co-operation-private-sector-answer",
-                                            "label": "Please select all that apply",
+                                            "label": "Clients or customers from the private sector?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4328,7 +4328,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "<p>clients or customers from the private sector?</p>",
+                                    "description": "",
                                     "id": "co-operation-private-sector-question",
                                     "number": "9.3",
                                     "title": "Did {{respondent.ru_name}} co-operate on any innovation activities with:",
@@ -4351,9 +4351,9 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Select all that apply",
                                             "id": "co-operation-public-sector-answer",
-                                            "label": "Please select all that apply",
+                                            "label": "Clients or customers from the public sector?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4380,7 +4380,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "<p>clients or customers from the public sector?</p>",
+                                    "description": "",
                                     "guidance": [
                                         {
                                             "description": "The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy.",
@@ -4410,9 +4410,9 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Select all that apply",
                                             "id": "co-operation-competitors-answer",
-                                            "label": "Please select all that apply",
+                                            "label": "Competitors or other businesses in your industry?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4439,7 +4439,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "<p>competitors or other businesses in your industry?</p>",
+                                    "description": "",
                                     "id": "co-operation-competitors-question",
                                     "number": "9.5",
                                     "title": "Did {{respondent.ru_name}} co-operate on any innovation activities with:",
@@ -4462,9 +4462,9 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Select all that apply",
                                             "id": "co-operation-consultants-answer",
-                                            "label": "Please select all that apply",
+                                            "label": "Consultants, commercial labs or private Research and Development institutes?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4491,7 +4491,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "<p>consultants, commercial labs or private Research and Development institutes?</p>",
+                                    "description": "",
                                     "id": "co-operation-consultants-question",
                                     "number": "9.6",
                                     "title": "Did {{respondent.ru_name}} co-operate on any innovation activities with:",
@@ -4514,9 +4514,9 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Select all that apply",
                                             "id": "co-operation-institutions-answer",
-                                            "label": "Please select all that apply",
+                                            "label": "Universities or other higher education institutions?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4543,7 +4543,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "<p>universities or other higher education institutions?</p>",
+                                    "description": "",
                                     "id": "co-operation-institutions-question",
                                     "number": "9.7",
                                     "title": "Did {{respondent.ru_name}} co-operate on any innovation activities with:",
@@ -4566,9 +4566,9 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Select all that apply",
                                             "id": "co-operation-government-answer",
-                                            "label": "Please select all that apply",
+                                            "label": "Government or public research institutes?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4595,7 +4595,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "<p>government or public research institutes?</p>",
+                                    "description": "",
                                     "id": "co-operation-government-question",
                                     "number": "9.8",
                                     "title": "Did {{respondent.ru_name}} co-operate on any innovation activities with:",
@@ -4620,7 +4620,7 @@
                                         {
                                             "description": "",
                                             "id": "innovations-protected-patents-answer",
-                                            "label": "",
+                                            "label": "Patents?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4644,7 +4644,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>patents?</p>",
+                                    "description": "",
                                     "id": "innovations-protected-patents-question",
                                     "number": "9.9",
                                     "title": "What proportions of your innovations were protected by:",
@@ -4669,7 +4669,7 @@
                                         {
                                             "description": "",
                                             "id": "innovations-protected-design-answer",
-                                            "label": "",
+                                            "label": "Design registration?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4693,7 +4693,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>design registration?</p>",
+                                    "description": "",
                                     "id": "innovations-protected-design-question",
                                     "number": "9.10",
                                     "title": "What proportions of your innovations were protected by:",
@@ -4718,7 +4718,7 @@
                                         {
                                             "description": "",
                                             "id": "innovations-protected-copyright-answer",
-                                            "label": "",
+                                            "label": "Copyright?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4742,7 +4742,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>copyright?</p>",
+                                    "description": "",
                                     "id": "innovations-protected-copyright-question",
                                     "number": "9.11",
                                     "title": "What proportions of your innovations were protected by:",
@@ -4767,7 +4767,7 @@
                                         {
                                             "description": "",
                                             "id": "innovations-protected-trademark-answer",
-                                            "label": "",
+                                            "label": "Trademarks?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4791,7 +4791,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>trademarks?</p>",
+                                    "description": "",
                                     "id": "innovations-protected-trademark-question",
                                     "number": "9.12",
                                     "title": "What proportions of your innovations  were protected by:",
@@ -4816,7 +4816,7 @@
                                         {
                                             "description": "",
                                             "id": "innovations-protected-lead-time-answer",
-                                            "label": "",
+                                            "label": "Lead time advantages?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4840,7 +4840,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>lead time advantages?</p>",
+                                    "description": "",
                                     "id": "innovations-protected-lead-time-question",
                                     "number": "9.13",
                                     "title": "What proportions of your innovations were protected by:",
@@ -4865,7 +4865,7 @@
                                         {
                                             "description": "",
                                             "id": "innovations-protected-services-answer",
-                                            "label": "",
+                                            "label": "Complexity of goods or services?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4889,7 +4889,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>complexity of goods or services?</p>",
+                                    "description": "",
                                     "id": "innovations-protected-services-question",
                                     "number": "9.14",
                                     "title": "What proportions of your innovations were protected by:",
@@ -4914,7 +4914,7 @@
                                         {
                                             "description": "",
                                             "id": "innovations-protected-secrecy-answer",
-                                            "label": "",
+                                            "label": "Secrecy?",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -4938,7 +4938,7 @@
                                             "type": "Radio"
                                         }
                                     ],
-                                    "description": "<p>secrecy?</p>",
+                                    "description": "",
                                     "guidance": [
                                         {
                                             "description": "",
@@ -5544,7 +5544,7 @@
                                         {
                                             "description": "",
                                             "id": "employees-in-house-skills-answer",
-                                            "label": "Select all that apply",
+                                            "label": "",
                                             "mandatory": false,
                                             "options": [
                                                 {
@@ -5581,7 +5581,7 @@
                                             "type": "Checkbox"
                                         }
                                     ],
-                                    "description": "",
+                                    "description": "Select all that apply",
                                     "id": "employees-in-house-skills-question",
                                     "number": "12.4",
                                     "title": "Did {{respondent.ru_name}} employ individuals in-house with the following skills at any level, or obtain these skills from external sources?",

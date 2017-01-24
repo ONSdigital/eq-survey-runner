@@ -29,8 +29,9 @@ class MultipleChoiceWidget(Widget, metaclass=ABCMeta):
             'answer': {
                 'name': self.name,
                 'id': self.id,
-                'label': answer_state.schema_item.label,
+                'label': answer_state.schema_item.label or answer_state.schema_item.container.title,
                 'description': answer_state.schema_item.description,
+                'show_legend': len(answer_state.schema_item.label or ""),
             },
             'debug': {
                 'state': answer_state.__dict__,

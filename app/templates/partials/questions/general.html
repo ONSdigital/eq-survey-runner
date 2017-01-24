@@ -16,22 +16,9 @@
 
       <fieldset class="question__fieldset">
 
-        <legend class="question__legend">
-          {%- if question_title -%}
-            <span class="question__title neptune">
-                {%- if question_number -%}
-                    <span class="question__number">{{question_number}}. </span>
-                {% endif %}
-                {{question_title|safe}}
-            </span>
-          {%- endif %}
-          {%- if question_subtitle -%}
-            <br />
-            <span class="question__subtitle venus">{{question_subtitle}}</span>
-          {%- endif %}
+        <legend class="u-vh">{{question_title|striptags}}</legend>
 
-        </legend>
-
+        {{question_titles|safe}}
         {{question_description|safe}}
         {{question_guidance|safe}}
         {{question_answers|safe}}
