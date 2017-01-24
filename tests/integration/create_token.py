@@ -13,6 +13,7 @@ PAYLOAD = {
     "trad_as": "Integration Tests",
     "employment_date": "1983-06-02",
     "variant_flags": None,
+    "flush_data": False,
     "exp_time": 3600  # one hour from now
 }
 
