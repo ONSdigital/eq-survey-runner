@@ -657,6 +657,31 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         self.assertEqual(expected_path, path_finder.get_location_path())
 
+    def test_excessive_repeating_groups_conditional_location_path(self):
+        survey = load_schema_file("test_repeating_and_conditional_routing.json")
+
+        answers = AnswerStore()
+
+        answers.add(Answer(
+            group_id="repeat-value-group",
+            block_id="no-of-repeats",
+            answer_id="no-of-repeats-answer",
+            value="10000"
+        ))
+
+        for i in range(50):
+            answers.add(Answer(
+                group_id="repeated-group",
+                group_instance=i,
+                block_id="repeated-block",
+                answer_id="conditional-answer",
+                value="Shoe Size Only"
+            ))
+
+        path_finder = PathFinder(survey, answer_store=answers)
+
+        self.assertEqual("thank-you", path_finder.get_location_path().pop().block_id)
+
     def test_next_with_conditional_path_based_on_metadata(self):
         survey = load_schema_file("test_metadata_routing.json")
 

@@ -199,6 +199,8 @@ SAUCE_ACCESS_KEY - Sauce Labs private key
 EQ_DEV_MODE - Enable dev mode
 EQ_ENABLE_FLASK_DEBUG_TOOLBAR - Enable the flask debug toolbar
 EQ_ENABLE_CACHE - Enable caching of the schema
+EQ_MAX_HTTP_POST_CONTENT_LENGTH - The maximum http post content length that the system wil accept
+EQ_MAX_NUM_REPEATS - The maximum number of repeats the system will allow
 ```
 ## Loading schemas from S3
 
