@@ -1,4 +1,4 @@
-import forEach from 'lodash/forEach'
+import {forEach} from 'lodash'
 import domready from './domready'
 
 export const classDetails = 'js-details'

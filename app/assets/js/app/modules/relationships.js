@@ -1,10 +1,8 @@
 import { EventEmitter } from 'events'
 
 import domready from './domready'
-import forEach from 'lodash/forEach'
-import debounce from 'lodash/debounce'
-import delay from 'lodash/delay'
 
+import {forEach, debounce, delay} from 'lodash'
 const opts = {
   main: 'js-relationship',
   classItem: 'js-relationship-item',

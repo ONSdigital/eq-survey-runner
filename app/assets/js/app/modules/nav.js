@@ -1,5 +1,5 @@
 import domready from './domready'
-import delay from 'lodash/delay'
+import {delay} from 'lodash'
 
 const classOpen = 'has-nav-open'
 

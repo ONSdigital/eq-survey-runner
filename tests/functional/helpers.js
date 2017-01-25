@@ -1,4 +1,4 @@
-import sampleSize from 'lodash/sampleSize'
+import {sampleSize} from 'lodash'
 import devPage from './pages/dev.page'
 import landingPage from './pages/landing.page'
 
