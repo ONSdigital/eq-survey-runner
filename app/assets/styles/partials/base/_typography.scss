@@ -43,5 +43,6 @@ li {
 }
 
 em {
-  @extend .highlight;
+  font-style: normal;
+  font-weight: 600;
 }

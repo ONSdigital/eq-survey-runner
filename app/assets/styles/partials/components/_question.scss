@@ -34,7 +34,7 @@
   color: inherit;
   margin-bottom: 1rem;
   em {
-    @extend .highlight--bgr-colour;
+    background-color: $color-emphasis;
   }
 }
 
