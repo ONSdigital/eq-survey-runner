@@ -23,11 +23,11 @@ def create_token(form_type_id, eq_id, start_date=None, end_date=None, employment
     payload_vars['ref_p_start_date'] = start_date or payload_vars['ref_p_start_date']
     payload_vars['ref_p_end_date'] = end_date or payload_vars['ref_p_end_date']
     payload_vars['employment_date'] = employment_date or payload_vars['employment_date']
+    payload_vars['eq_id'] = eq_id
+    payload_vars['form_type'] = form_type_id
+    payload_vars['region_code'] = region_code
+    payload_vars['language_code'] = language_code
 
-    payload = create_payload(**payload_vars,
-                             eq_id=eq_id,
-                             form_type=form_type_id,
-                             region_code=region_code,
-                             language_code=language_code)
+    payload = create_payload(**payload_vars)
 
     return generate_token(payload)
