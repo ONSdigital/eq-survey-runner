@@ -4,7 +4,6 @@
   flex-direction: column;
   width: 100%;
   overflow-x: hidden;
-  overflow-y: visible;
 }
 
 .page__header {
@@ -48,12 +47,14 @@
 
 .page__content {
   flex: 1 0 auto;
+<<<<<<< HEAD
   // NOTE: padding-bottom: 1px fixes safari scroll issue
   // Issue number #862
   padding-bottom: 1px;
+=======
+>>>>>>> removed potential merge issue
   position: relative;
   overflow-x: hidden;
-  overflow-y: visible;
 }
 
 .page__nav.nav {
