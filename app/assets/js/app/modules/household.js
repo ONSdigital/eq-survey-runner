@@ -25,6 +25,7 @@ class HouseholdMember extends EventEmitter {
       const fieldNodes = this.node.querySelector('.js-fields')
       if (fieldNodes) {
         errorNode.innerHTML = ''
+        errorNode.classList.remove('js-has-errors')
         errorNode.appendChild(fieldNodes)
       }
     }

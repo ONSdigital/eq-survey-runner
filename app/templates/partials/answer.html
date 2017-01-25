@@ -5,7 +5,7 @@
 <div class="answer answer--{{answer.schema_item.type|lower}} {{'js-has-errors' if invalid}}" id="{{answer.schema_item.widget.id}}">
 
   {% if render_guidance != False %}
-    
+
   {%- set answer_guidance %}
     {% if answer.schema_item.guidance %}
       {% with answer_guidance = {
@@ -21,7 +21,7 @@
   {% endif %}
 
   {%- set answer_fields %}
-    <div class="answer__fields">
+    <div class="answer__fields js-fields">
       {% if answer.schema_item.display and answer.schema_item.display.properties %}
         {% set use_grid = answer.schema_item.display.properties.columns %}
       {% endif %}
