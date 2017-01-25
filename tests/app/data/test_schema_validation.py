@@ -1,7 +1,10 @@
+
+from json import load
+
+import json
 import logging
 import os
 import unittest
-from json import load, JSONDecodeError
 
 import jsonschema
 from jsonschema import validate
@@ -25,18 +28,12 @@ class TestSchemaValidation(unittest.TestCase):
         schema = load(schema_file)
 
         for file in files:
+            json_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file), encoding="utf8")
+            json_to_validate = json.load(json_file)
 
-            try:
-                json_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file), encoding="utf8")
-                json_to_validate = load(json_file)
-
-                errors.extend(self.validate_json_against_schema(file, json_to_validate, schema))
-
-                errors.extend(self.validate_schema_contains_valid_routing_rules(file, json_to_validate))
-
-                errors.extend(self.validate_routing_rules_has_default_if_not_all_answers_routed(file, json_to_validate))
-            except JSONDecodeError as e:
-                errors.append("JSON Decode Error! Could not decode [{}]. Error [{}]".format(file, e))
+            errors.extend(self.validate_json_against_schema(file, json_to_validate, schema))
+            errors.extend(self.validate_schema_contains_valid_routing_rules(file, json_to_validate))
+            errors.extend(self.validate_routing_rules_has_default_if_not_all_answers_routed(file, json_to_validate))
 
         if errors:
             for error in errors:
@@ -81,7 +78,7 @@ class TestSchemaValidation(unittest.TestCase):
             return []
         except jsonschema.exceptions.ValidationError as e:
             return ["Schema Validation Error! File [{}] does not validate against schema. Error [{}]".format(file, e)]
-        except JSONDecodeError as e:
+        except Exception as e:
             return ["JSON Parse Error! Could not parse [{}]. Error [{}]".format(file, e)]
 
     @classmethod
