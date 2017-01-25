@@ -827,6 +827,22 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         self.assertEqual(expected_next_location, path_finder.get_next_location(current_location=current_location))
 
+    def test_get_next_location_should_skip_block(self):
+        # Given
+        survey = load_schema_file('test_skip_condition_block.json')
+        current_location = Location('do-you-want-to-skip-group', 0, 'do-you-want-to-skip')
+        answer_store = AnswerStore()
+        answer_store.add(Answer(group_id='do-you-want-to-skip-group', block_id='do-you-want-to-skip',
+                                answer_id='do-you-want-to-skip-answer', value='Yes'))
+
+        # When
+        path_finder = PathFinder(survey, answer_store=answer_store)
+
+        # Then
+        expected_next_location = Location('do-you-want-to-skip-group', 0, 'summary')
+
+        self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_next_location)
+
     def test_get_next_location_should_skip_group(self):
         # Given
         survey = load_schema_file('test_skip_condition_group.json')

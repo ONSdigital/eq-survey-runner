@@ -1,0 +1,103 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Skip group",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "groups": [
+        {
+            "id": "do-you-want-to-skip-group",
+            "title": "Do you want to skip the next block?",
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "id": "do-you-want-to-skip",
+                    "routing_rules":[],
+                    "title": "",
+                    "sections": [
+                        {
+                            "description": "",
+                            "id": "do-you-want-to-skip-section",
+                            "title": "Do you want to skip?",
+                            "questions": [
+                              {
+                                    "description": "",
+                                    "id": "do-you-want-to-skip-question",
+                                    "title": "Do you want to skip?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "do-you-want-to-skip-answer",
+                                            "label": "Do you want to skip?",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Yes",
+                                                    "value": "Yes"
+                                                },
+                                                {
+                                                    "label": "No",
+                                                    "value": "No"
+                                                }
+                                            ],
+                                            "type": "Radio",
+                                            "validation": {
+                                                "messages": {}
+                                            }
+                                        }
+                                    ]
+                              }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "questionnaire",
+                    "id": "should-skip",
+                    "routing_rules":[],
+                    "title": "",
+                    "sections": [
+                        {
+                            "description": "",
+                            "id": "should-skip-section",
+                            "title": "Why didn't you skip the block?",
+                            "questions": [
+                              {
+                                    "description": "",
+                                    "id": "should-skip-question",
+                                    "title": "Do you want to skip?",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "should-skip-answer",
+                                            "label": "Why didn't you skip the block?",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "type": "TextArea"
+                                        }
+                                    ]
+                              }
+                            ]
+                        }
+                    ],
+                    "skip_condition": [
+                        {
+                           "when": [
+                               {
+                                   "id" : "do-you-want-to-skip-answer",
+                                   "condition": "equals",
+                                   "value": "Yes"
+                               }
+                           ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

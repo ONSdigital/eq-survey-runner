@@ -7,6 +7,20 @@
         "description": "A lowercase alphanumeric string separated by hyphens.",
         "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
     },
+    "skip_condition": {
+        "description": "Allows an element to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "properties": {
+          "when": {
+            "$ref": "#/definitions/when"
+          }
+        },
+        "required": [
+          "when"
+        ]
+    },
     "when": {
       "type": "array",
       "description": "Configure conditional rules. By adding more than one `condition` element it will evaluate as an and rule.",
@@ -24,6 +38,7 @@
                         "equals",
                         "not equals",
                         "contains",
+                        "not contains",
                         "not set"
                     ]
                 },
@@ -217,18 +232,7 @@
               "type":"boolean"
           },
           "skip_condition": {
-            "description": "Allows a group to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
-            "type": "array",
-            "minItems": 1,
-            "uniqueItems": true,
-            "properties": {
-              "when": {
-                "$ref": "#/definitions/when"
-              }
-            },
-            "required": [
-              "when"
-            ]
+              "$ref": "#/definitions/skip_condition"
           },
           "routing_rules": {
             "ref": "#/definitions/routing_rules"
@@ -305,18 +309,18 @@
                               }
                             },
                             "skip_condition": {
-                            "description": "Allows a question to be skipped when a condition has been met.",
-                              "type": "object",
-                              "properties": {
-                                "when": {
-                                  "$ref": "#/definitions/when"
-                                }
+                                "description": "Allows a question to be skipped when a condition has been met.",
+                               "type": "object",
+                               "properties": {
+                                 "when": {
+                                   "$ref": "#/definitions/when"
+                                 }
+                               },
+                               "additionalProperties": false,
+                               "required": [
+                                 "when"
+                               ]
                               },
-                              "additionalProperties": false,
-                              "required": [
-                                "when"
-                              ]
-                            },
                             "type": {
                               "enum": ["General", "DateRange", "RepeatingAnswer", "Relationship"]
                             },
@@ -424,6 +428,9 @@
                 },
                 "routing_rules": {
                   "ref": "#/definitions/routing_rules"
+                },
+                "skip_condition": {
+                    "$ref": "#/definitions/skip_condition"
                 }
               },
               "additionalProperties": false,
