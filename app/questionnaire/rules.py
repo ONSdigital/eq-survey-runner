@@ -1,3 +1,9 @@
+import logging
+from app import settings
+
+logger = logging.getLogger(__name__)
+
+
 def evaluate_rule(when, answer_value):
     """
     Determine whether a rule will be satisfied based on a given answer
@@ -52,7 +58,13 @@ def evaluate_repeat(repeat_rule, answer_store):
         repeat_index = repeat_rule['answer_id']
         filtered = answer_store.filter(answer_id=repeat_index)
         repeat_function = repeat_functions[repeat_rule['type']]
-        return repeat_function(filtered)
+        no_of_repeats = repeat_function(filtered)
+
+        if no_of_repeats > settings.EQ_MAX_NUM_REPEATS:
+            logger.warning('Excessive number of repeats found [%s] capping at [%s]', no_of_repeats, settings.EQ_MAX_NUM_REPEATS)
+            no_of_repeats = settings.EQ_MAX_NUM_REPEATS
+
+        return no_of_repeats
 
 
 def _get_answer_value():
