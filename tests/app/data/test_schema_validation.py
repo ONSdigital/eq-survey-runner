@@ -1,17 +1,12 @@
-
-from json import load
-
-import json
 import logging
 import os
 import unittest
+from json import load
 
-import jsonschema
-from jsonschema import validate
+from jsonschema import SchemaError, ValidationError, validate
 
 from app import settings
 from app.helpers.schema_helper import SchemaHelper
-from app.schema_loader import schema_loader
 
 logger = logging.getLogger(__name__)
 
@@ -22,14 +17,14 @@ class TestSchemaValidation(unittest.TestCase):
 
         errors = []
 
-        files = schema_loader.available_schemas()
+        files = self.all_schema_files()
 
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema-v1.json"), encoding="utf8")
         schema = load(schema_file)
 
         for file in files:
-            json_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, file), encoding="utf8")
-            json_to_validate = json.load(json_file)
+            json_file = open(file, encoding="utf8")
+            json_to_validate = load(json_file)
 
             errors.extend(self.validate_json_against_schema(file, json_to_validate, schema))
             errors.extend(self.validate_schema_contains_valid_routing_rules(file, json_to_validate))
@@ -42,20 +37,29 @@ class TestSchemaValidation(unittest.TestCase):
             self.fail("{} Schema Validation Errors.".format(len(errors)))
 
     def test_no_duplicate_ids_in_schema(self):
-        schema_files = schema_loader.available_schemas()
+        schema_files = self.all_schema_files()
 
         # Certain keys need to be ignored to avoid false positives.
         ignored_keys = ['routing_rules', 'skip_condition']
 
         for schema_file in schema_files:
             unique_id = []
-            with open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, schema_file), encoding="utf8") as file:
+            with open(schema_file, encoding="utf8") as file:
                 schema_json = load(file)
                 for id_value in self._parse_id_values(schema_json, ignored_keys):
                     if id_value in unique_id:
                         self.fail('Duplicate Id found. schema: %s, id: %s' % (schema_file, id_value))
                     else:
                         unique_id.append(id_value)
+
+    @staticmethod
+    def all_schema_files():
+        schema_files = []
+        for folder, _, files in os.walk(settings.EQ_SCHEMA_DIRECTORY):
+            for filename in files:
+                if filename != 'schema-v1.json':
+                    schema_files.append(os.path.join(folder, filename))
+        return schema_files
 
     def _parse_id_values(self, schema_json, ignored_keys):
         for k, v in schema_json.items():
@@ -76,9 +80,9 @@ class TestSchemaValidation(unittest.TestCase):
         try:
             validate(json_to_validate, schema)
             return []
-        except jsonschema.exceptions.ValidationError as e:
+        except ValidationError as e:
             return ["Schema Validation Error! File [{}] does not validate against schema. Error [{}]".format(file, e)]
-        except Exception as e:
+        except SchemaError as e:
             return ["JSON Parse Error! Could not parse [{}]. Error [{}]".format(file, e)]
 
     @classmethod

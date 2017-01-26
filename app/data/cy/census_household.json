@@ -7,6 +7,7 @@
     "title": "Prawf Cyfrifiad 2017",
     "description": "Census England Household Schema",
     "theme": "census",
+    "legal_basis": "Voluntary",
     "navigation": true,
     "groups": [
         {
