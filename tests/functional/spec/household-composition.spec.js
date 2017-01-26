@@ -121,4 +121,94 @@ describe('Household composition question for census test.', function() {
     HouseholdCompositionSummary.isNameDisplayed('Delta Echo Foxtrot')
   })
 
+  it('Given first name entered, when second name entered and RETURN pressed, should navigate to next question.', function() {
+    // Given
+    startQuestionnaire(household_composition_schema)
+
+    // When
+    HouseholdCompositionPage
+        .setPersonName(0, 'Homer', 'J', 'Simpson')
+        .addPerson()
+        .setPersonName(1, 'Marge', '', 'Simpson')
+        .returnKey()
+
+    // Then
+    HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
+    HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
+  })
+
+  it('Given first name entered, when second name entered and ENTER pressed, should navigate to next question.', function() {
+    // Given
+    startQuestionnaire(household_composition_schema)
+
+    // When
+    HouseholdCompositionPage
+        .setPersonName(0, 'Homer', 'J', 'Simpson')
+        .addPerson()
+        .setPersonName(1, 'Marge', '', 'Simpson')
+        .enterKey()
+
+    // Then
+    HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
+    HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
+  })
+
+  it('Given no name entered, when ENTER pressed, form should submit and validation should fire.', function() {
+    // Given
+    startQuestionnaire(household_composition_schema)
+
+    // When
+    HouseholdCompositionPage
+        .setPersonName(0, '', '', '')
+        .enterKey()
+
+    // Then
+    expect(HouseholdCompositionPage.errorExists()).to.be.true
+  })
+
+  it('Given more than two names entered, when ENTER pressed, form should submit navigate to next page.', function() {
+    // Given
+    startQuestionnaire(household_composition_schema)
+
+    // When
+    HouseholdCompositionPage
+        .setPersonName(0, 'Homer', 'J', 'Simpson')
+        .addPerson()
+        .setPersonName(1, 'Marge', '', 'Simpson')
+        .addPerson()
+        .setPersonName(2, 'Lisa', '', 'Simpson')
+        .addPerson()
+        .setPersonName(3, 'Bart', '', 'Simpson')
+        .addPerson()
+        .setPersonName(4, 'Maggie', '', 'Simpson')
+        .enterKey()
+
+    // Then
+    HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
+    HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
+    HouseholdCompositionSummary.isNameDisplayed('Lisa Simpson')
+    HouseholdCompositionSummary.isNameDisplayed('Bart Simpson')
+    HouseholdCompositionSummary.isNameDisplayed('Maggie Simpson')
+  })
+
+  it('Given named entered, and we come back into the page and press ENTER, should navigate to next question.', function() {
+    // Given
+    startQuestionnaire(household_composition_schema)
+
+    // When
+    HouseholdCompositionPage
+        .setPersonName(0, 'Homer', 'J', 'Simpson')
+        .addPerson()
+        .setPersonName(1, 'Marge', '', 'Simpson')
+        .enterKey()
+        .previous()
+
+    // Focus on input field and press enter.
+    HouseholdCompositionPage.setMiddleNames(1, '').enterKey()
+
+    // Then
+    HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
+    HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
+  })
+
 })

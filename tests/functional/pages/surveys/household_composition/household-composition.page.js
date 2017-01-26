@@ -47,6 +47,16 @@ class HouseholdCompositionPage extends QuestionPage {
     return this
   }
 
+  returnKey() {
+    browser.keys('Return')
+    return this
+  }
+
+  enterKey() {
+    browser.keys('Enter')
+    return this
+  }
+
 }
 
 export default new HouseholdCompositionPage()
