@@ -1,0 +1,122 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "0",
+    "title": "Total field test survey",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "A survey that tests the totalling of percentage input fields",
+    "introduction": {
+        "description": "",
+        "information_to_provide": []
+    },
+    "messages": {
+      "INTEGER_TOO_LARGE": "Number cannot be greater than one hundred",
+      "NEGATIVE_INTEGER": "Number cannot be less than zero",
+      "NOT_INTEGER": "Please enter an integer"
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "id": "block",
+                    "sections": [
+                        {
+                            "description": "",
+                            "id": "section",
+                            "questions": [
+                              {
+                                    "answers": [
+                                        {
+                                            "description": "",
+                                            "id": "percentage-1",
+                                            "label": "Percentage 1",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0810",
+                                            "type": "Percentage",
+                                            "validation": {
+                                                "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "description": "",
+                                            "id": "percentage-2",
+                                            "label": "Percentage 2",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0820",
+                                            "type": "Percentage",
+                                            "validation": {
+                                                "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "description": "",
+                                            "id": "percentage-3",
+                                            "label": "Percentage 3",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0830",
+                                            "type": "Percentage",
+                                            "validation": {
+                                                "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "description": "",
+                                            "id": "percentage-4",
+                                            "label": "Percentage 4",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0840",
+                                            "type": "Percentage",
+                                            "validation": {
+                                                "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "calculated": true,
+                                            "description": "The total percentages should be 100%",
+                                            "id": "total-percentage",
+                                            "label": "Total",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "10002",
+                                            "type": "Percentage",
+                                            "validation": {
+                                                "messages" : {
+                                                    "INTEGER_TOO_LARGE": "The total percentages should be 100%"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "question",
+                                    "title": "",
+                                    "type": "General"
+                              }
+                            ],
+                            "title": "Percentage Input Test"
+                        }
+                    ],
+                    "routing_rules":[
+                    ],
+                    "title": ""
+                }],
+            "id": "group",
+            "title": ""
+        }
+    ]
+}
