@@ -50,20 +50,24 @@ def serialise_composition_answers(location, data):
 
 def deserialise_composition_answers(answers):
     household = {}
-    answer_instance = 0
 
-    while any([a for a in answers if a['answer_instance'] == answer_instance]):
-        instance_answers = [a for a in answers if a['answer_instance'] == answer_instance]
+    for answer in answers:
+        composition_id = 'household-{index}-{subfield}'.format(
+            index=answer['answer_instance'],
+            subfield=answer['answer_id'],
+        )
+        household[composition_id] = answer['value']
 
-        for instance_answer in instance_answers:
-            composition_id = 'household-{index}-{subfield}'.format(
-                index=answer_instance,
-                subfield=instance_answer['answer_id'],
-            )
-            household[composition_id] = instance_answer['value']
-
-        answer_instance += 1
     return household
+
+
+def map_field_errors(errors, index):
+    ordered_errors = []
+    for subfield, errorlist in errors.items():
+        answer_id = 'household-{index}-{subfield}'.format(index=index, subfield=subfield)
+        for error in errorlist:
+            ordered_errors.append((answer_id, error))
+    return ordered_errors
 
 
 def generate_household_composition_form(block_json, data, error_messages):
@@ -74,15 +78,17 @@ def generate_household_composition_form(block_json, data, error_messages):
             ordered_errors = []
 
             if 'household' in self.errors and len(self.errors['household']) > 0:
-                for index, error_list in enumerate(self.errors['household']):
-                    for subfield, errors in error_list.items():
-                        for error in errors:
-                            answer_id = 'household-{index}-{subfield}'.format(index=index, subfield=subfield)
-                            ordered_errors.append((answer_id, error))
+                for index, field in enumerate(self.household):
+                    ordered_errors += map_field_errors(field.errors, index)
             return ordered_errors
+
+        def answer_errors(self, input_id):
+            return [error[1] for error in self.map_errors() if input_id == error[0]]
 
         def remove_person(self, index_to_remove):
             popped = []
+
+            assert len(self.household.data) >= index_to_remove, "Expected household data length >= index to remove"
 
             while index_to_remove != len(self.household.data):
                 popped.append(self.household.pop_entry())

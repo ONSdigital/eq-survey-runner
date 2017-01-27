@@ -15,28 +15,28 @@
 
       <div class="relationship__body js-relationship-body">
         <div class="relationship__fields">
-
-          {% for option in form[answer.id][relation_instance] %}
+          {% set radio_input = form[answer.id][relation_instance] %}
+          {% for option_label, option_value in radio_input.choices %}
 
             {% set input = {
               "class": "input input--radio js-focusable js-relationship-trigger",
               "type": 'radio',
-              "value": option.data,
-              "name": option.name,
-              "id": option.id,
-              "checked": "checked" if option.selected
+              "value": option_value,
+              "name": radio_input.name,
+              "id": radio_input.id ~ "-" ~ loop.index0,
+              "checked": "checked" if radio_input.data == option_value
             } %}
 
             {% set label = {
               "class": "label label--inline venus js-relationship-trigger",
-              "for": option.id
+              "for": radio_input.id ~ "-" ~ loop.index0
             } %}
 
             <div class="field__item js-focusable-box">
 
               <input {{input|xmlattr}}>
               <label {{label|xmlattr}}>
-                {{option.label.text}}
+                {{option_label}}
               </label>
 
             </div>

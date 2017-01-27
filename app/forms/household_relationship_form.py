@@ -1,11 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import FieldList, SelectField
-from wtforms.widgets import ListWidget, RadioInput
+from wtforms import FieldList, RadioField
 
-from app.forms.questionnaire_form import Struct
-from app.forms.fields import build_choices, get_validators
+from app.forms.fields import build_choices, get_mandatory_validator
+from app.data_model.answer_store import Answer
 from app.helpers.schema_helper import SchemaHelper
 from app.jinja_filters import format_household_member_name
+
+from werkzeug.datastructures import MultiDict
 
 
 def build_relationship_choices(answer_store, group_instance):
@@ -53,7 +54,36 @@ def build_relationship_choices(answer_store, group_instance):
     return choices
 
 
+def serialise_relationship_answers(location, answer_id, listfield_data):
+    answers = []
+    for index, listfield_value in enumerate(listfield_data):
+        answer = Answer(
+            location=location,
+            answer_id=answer_id,
+            answer_instance=index,
+            value=listfield_value,
+        )
+        answers.append(answer)
+    return answers
+
+
+def deserialise_relationship_answers(answers):
+    relationships = {}
+
+    for answer in answers:
+        relationship_id = '{answer_id}-{index}'.format(
+            answer_id=answer['answer_id'],
+            index=answer['answer_instance'],
+        )
+        relationships[relationship_id] = answer['value']
+
+    return relationships
+
+
 def generate_relationship_form(block_json, number_of_entries, data, error_messages):
+
+    answer = SchemaHelper.get_first_answer_for_block(block_json)
+
     class HouseHoldRelationshipForm(FlaskForm):
         def map_errors(self):
             ordered_errors = []
@@ -66,24 +96,30 @@ def generate_relationship_form(block_json, number_of_entries, data, error_messag
 
             return ordered_errors
 
-    answer = SchemaHelper.get_first_answer_for_block(block_json)
-    guidance = answer['guidance'] if 'guidance' in answer else ''
-    label = answer['label'] if 'label' in answer else ''
+        def answer_errors(self, input_id):
+            return [error[1] for error in self.map_errors() if input_id == error[0]]
 
-    field = FieldList(SelectField(
-        label=label,
-        description=guidance,
+        def serialise(self, location):
+            """
+            Returns a list of answers representing the form data
+            :param location: The location to associate the form data with
+            :return:
+            """
+            list_field = getattr(self, answer['id'])
+
+            return serialise_relationship_answers(location, answer['id'], list_field.data)
+
+    field = FieldList(RadioField(
+        label=answer.get('guidance'),
+        description=answer.get('label'),
         choices=build_choices(answer['options']),
-        widget=ListWidget(),
-        option_widget=RadioInput(),
-        validators=get_validators(answer, error_messages),
+        validators=get_mandatory_validator(answer, error_messages),
     ), min_entries=number_of_entries)
 
     setattr(HouseHoldRelationshipForm, answer['id'], field)
 
     if data:
-        data_class = Struct(**data)
-        form = HouseHoldRelationshipForm(meta={'csrf': False}, obj=data_class)
+        form = HouseHoldRelationshipForm(MultiDict(data), meta={'csrf': False})
     else:
         form = HouseHoldRelationshipForm(meta={'csrf': False})
 

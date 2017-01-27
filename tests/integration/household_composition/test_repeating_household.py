@@ -28,8 +28,10 @@ class TestRepeatingHousehold(IntegrationTestCase):
 
         form_data = MultiDict()
         form_data.add("household-0-first-name", 'Joe')
+        form_data.add("household-0-middle-names", '')
         form_data.add("household-0-last-name", 'Bloggs')
         form_data.add("household-1-first-name", 'Jane')
+        form_data.add("household-1-middle-names", '')
         form_data.add("household-1-last-name", 'Doe')
         form_data.add("action[save_continue]", '')
 
@@ -69,8 +71,10 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data = MultiDict()
 
         form_data.add("household-0-first-name", 'Joe')
+        form_data.add("household-0-middle-names", 'S')
         form_data.add("household-0-last-name", 'Bloggs')
         form_data.add("household-1-first-name", 'Jane')
+        form_data.add("household-1-middle-names", '')
         form_data.add("household-1-last-name", 'Doe')
 
         form_data.add("action[save_continue]", '')
@@ -101,16 +105,18 @@ class TestRepeatingHousehold(IntegrationTestCase):
         # Given I add some people
         household_composition_page = self.first_page
 
-        form_data = MultiDict()
+        household_data = MultiDict()
 
-        form_data.add("household-0-first-name", 'Joe')
-        form_data.add("household-0-last-name", 'Bloggs')
-        form_data.add("household-1-first-name", 'Jane')
-        form_data.add("household-1-last-name", 'Doe')
+        household_data.add("household-0-first-name", 'Joe')
+        household_data.add("household-0-middle-names", '')
+        household_data.add("household-0-last-name", 'Bloggs')
+        household_data.add("household-1-first-name", 'Jane')
+        household_data.add("household-1-middle-names", '')
+        household_data.add("household-1-last-name", 'Doe')
 
-        form_data.add("action[save_continue]", '')
+        household_data.add("action[save_continue]", '')
 
-        resp = self.client.post(household_composition_page, data=form_data, follow_redirects=False)
+        resp = self.client.post(household_composition_page, data=household_data, follow_redirects=False)
         person1_age_page = resp.location
 
         # And provide details
@@ -123,7 +129,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
         # When I go back to household composition page and submit without any changes
         self.navigate_to_page(household_composition_page)
 
-        resp = self.client.post(household_composition_page, data=form_data, follow_redirects=True)
+        resp = self.client.post(household_composition_page, data=household_data, follow_redirects=True)
 
         # Then the details previously entered for the people should have been kept
         content = resp.get_data(True)

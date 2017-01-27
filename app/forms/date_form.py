@@ -9,7 +9,7 @@ from app.validation.validators import DateCheck, DateRangeCheck, DateRequired, M
 logger = logging.getLogger(__name__)
 
 
-def get_date_form(answer=None, to_field_data=None, validate_range=False, error_messages={}):
+def get_date_form(answer=None, to_field_data=None, validate_range=False, error_messages=None):
     """
     Returns a date form metaclass with appropriate validators. Used in both date and
     date range form creation.
@@ -18,32 +18,38 @@ def get_date_form(answer=None, to_field_data=None, validate_range=False, error_m
     :param answer: The answer on which to base this form
     :param to_field_data: The data coming from the
     :param validate_range: Whether the dateform should add a daterange validator
-    :return:
+    :return: The generated DateForm metaclass
     """
     class DateForm(Form):
 
+        # Set up all the calendar month choices for select
         MONTH_CHOICES = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
 
         month = SelectField(choices=MONTH_CHOICES, default='')
         year = StringField()
 
-    validate_with = [validators.optional()]
+    validate_with = [validators.Optional()]
+
+    if not error_messages:
+        date_messages = {}
+    else:
+        date_messages = error_messages.copy()
 
     if answer['mandatory'] is True:
         if 'validation' in answer and 'messages' in answer['validation'] \
                 and 'MANDATORY' in answer['validation']['messages']:
-            error_messages['MANDATORY'] = answer['validation']['messages']['MANDATORY']
+            date_messages['MANDATORY'] = answer['validation']['messages']['MANDATORY']
 
-        validate_with = [DateRequired(message=error_messages['MANDATORY'])]
+        validate_with = [DateRequired(message=date_messages['MANDATORY'])]
 
     if 'validation' in answer and 'messages' in answer['validation'] \
             and 'INVALID_DATE' in answer['validation']['messages']:
-        error_messages['INVALID_DATE'] = answer['validation']['messages']['INVALID_DATE']
+        date_messages['INVALID_DATE'] = answer['validation']['messages']['INVALID_DATE']
 
-    validate_with += [DateCheck(error_messages['INVALID_DATE'])]
+    validate_with += [DateCheck(date_messages['INVALID_DATE'])]
 
     if validate_range and to_field_data:
-        validate_with += [DateRangeCheck(to_field_data=to_field_data, messages=error_messages)]
+        validate_with += [DateRangeCheck(to_field_data=to_field_data, messages=date_messages)]
 
     DateForm.day = StringField(validators=validate_with)
 
@@ -51,7 +57,14 @@ def get_date_form(answer=None, to_field_data=None, validate_range=False, error_m
 
 
 def get_month_year_form(answer, error_messages):
+    """
+    Returns a month year form metaclass with appropriate validators. Used in both date and
+    date range form creation.
 
+    :param answer: The answer on which to base this form
+    :param error_messages: The messages to use upon this form during validation
+    :return: The generated MonthYearDateForm metaclass
+    """
     class MonthYearDateForm(Form):
         year = StringField()
 
@@ -80,6 +93,14 @@ def get_month_year_form(answer, error_messages):
 
 
 def get_date_range_fields(question_json, to_field_data, error_messages):
+    """
+    Create a date form for each answer id within a date range question
+
+    :param question_json: The question json on which to base the date ranges
+    :param to_field_data: The to_field_data to use during validation of the from field
+    :param error_messages: The messages to use upon this form during validation
+    :return: The generated form fields to use upon a metaclass
+    """
     answer_from = question_json['answers'][0]
     answer_to = question_json['answers'][1]
 

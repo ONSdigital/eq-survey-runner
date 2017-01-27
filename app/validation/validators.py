@@ -6,30 +6,16 @@ from wtforms import validators
 
 
 class IntegerCheck(object):
-    def __init__(self, messages=None):
-        if not messages:
-            messages = error_messages
-        self.messages = messages
+    def __init__(self, message=None):
+        if not message:
+            message = error_messages['NOT_INTEGER']
+        self.message = message
 
     def __call__(self, form, field):
-        if len(field.raw_data) == 1:
-            try:
-                int(field.raw_data[0])
-            except ValueError:
-                raise validators.ValidationError(self.messages['NOT_INTEGER'])
-
-
-class PositiveIntegerCheck(object):
-    def __init__(self, messages=None):
-        if not messages:
-            messages = error_messages
-        self.messages = messages
-
-    def __call__(self, form, field):
-        data = field.data
-        if data is not None:
-            if data < 0:
-                raise validators.ValidationError(self.messages['NEGATIVE_INTEGER'])
+        try:
+            int(field.raw_data[0])
+        except (ValueError, TypeError):
+            raise validators.StopValidation(self.message)
 
 
 class NumberRange(object):
@@ -68,10 +54,12 @@ class DateRequired(object):
         self.message = message
 
     def __call__(self, form, field):
-        if hasattr(form, 'day') and not (form.day.data and form.month.data and form.year.data):
-            raise validators.ValidationError(self.message)
-        elif not form.month.data or not form.year.data:
-            raise validators.ValidationError(self.message)
+        if hasattr(form, 'day'):
+            if not form.day.data and not form.month.data and not form.year.data:
+                raise validators.StopValidation(self.message)
+        else:
+            if not form.month.data and not form.year.data:
+                raise validators.StopValidation(self.message)
 
 
 class DateCheck(object):
@@ -86,7 +74,7 @@ class DateCheck(object):
 
             datetime.strptime(date_str, "%d/%m/%Y")
         except ValueError:
-            raise validators.ValidationError(self.message)
+            raise validators.StopValidation(self.message)
 
 
 class MonthYearCheck(object):

@@ -1,6 +1,6 @@
 {% import 'macros/helpers.html' as helpers %}
 
-{% set invalid = form.errors[answer.id]|length > 0 or form.errors[answer.child_answer_id]|length > 0 %}
+{% set invalid = form.answer_errors(answer.id) | length > 0 %}
 
 <div class="answer answer--{{answer.type|lower}} {{'js-has-errors' if invalid}}" id="{{answer.id}}">
 
@@ -29,14 +29,8 @@
     </div>
   {% endset -%}
 
-  {% if form.errors[answer.id] %}
+  {% if invalid %}
     {% set answer_id = answer.id %}
-    {% include 'partials/errors.html' %}
-
-    {{answer_guidance|safe}}
-
-  {% elif form.errors[answer.child_answer_id] %}
-    {% set answer_id = answer.child_answer_id %}
     {% include 'partials/errors.html' %}
 
     {{answer_guidance|safe}}

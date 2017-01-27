@@ -377,6 +377,9 @@
                                         "q_code": {
                                           "type": "string",
                                           "pattern": "[0-9]+"
+                                        },
+                                        "child_answer_id": {
+                                          "type": "string"
                                         }
                                       },
                                       "required": [

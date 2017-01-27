@@ -50,12 +50,17 @@
                                                 {
                                                     "label": "Other",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify"
-                                                    }
+                                                    "child_answer_id": "establishment-type-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
+                                        },
+                                        {
+                                            "id": "establishment-type-answer-other",
+                                            "parent_answer_id": "establishment-type-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify"
                                         }
                                     ]
                                 }
@@ -254,12 +259,17 @@
                                                 {
                                                     "label": "Other",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify"
-                                                    }
+                                                    "child_answer_id": "describe-residents-answer-other"
                                                 }
                                             ],
                                             "type": "Checkbox"
+                                        },
+                                        {
+                                            "id": "describe-residents-answer-other",
+                                            "parent_answer_id": "describe-residents-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify"
                                         }
                                     ]
                                 }
@@ -377,12 +387,17 @@
                                                 {
                                                     "label": "Other",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify"
-                                                    }
+                                                    "child_answer_id": "why-paper-individual-answer-other"
                                                 }
                                             ],
                                             "type": "Checkbox"
+                                        },
+                                        {
+                                            "id": "why-paper-individual-answer-other",
+                                            "parent_answer_id": "why-paper-individual-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify"
                                         }
                                     ]
                                 }
@@ -475,12 +490,17 @@
                                                 {
                                                     "label": "Other",
                                                     "value": "Other",
-                                                    "other": {
-                                                        "label": "Please specify"
-                                                    }
+                                                    "child_answer_id": "why-paper-establishment-answer-other"
                                                 }
                                             ],
                                             "type": "Checkbox"
+                                        },
+                                        {
+                                            "id": "why-paper-establishment-answer-other",
+                                            "parent_answer_id": "why-paper-establishment-answer",
+                                            "type": "TextField",
+                                            "mandatory": false,
+                                            "label": "Please specify"
                                         }
                                     ]
                                 }

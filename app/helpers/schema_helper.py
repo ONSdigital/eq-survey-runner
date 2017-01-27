@@ -1,4 +1,5 @@
 from app.questionnaire.location import Location
+from app.schema.exceptions import QuestionnaireException
 from app.validation.error_messages import error_messages
 
 
@@ -51,18 +52,6 @@ class SchemaHelper(object):
                 yield block
 
     @staticmethod
-    def get_child_answer_ids(answers_json):
-        child_answer_ids = []
-
-        for answer_json in answers_json:
-            if answer_json['type'] == 'Radio' or answer_json['type'] == 'Checkbox':
-                for option in answer_json['options']:
-                    if 'child_answer_id' in option:
-                        child_answer_ids.append(option['child_answer_id'])
-
-        return child_answer_ids
-
-    @staticmethod
     def get_groups(survey_json):
         for group in survey_json['groups']:
             yield group
@@ -80,11 +69,11 @@ class SchemaHelper(object):
 
     @classmethod
     def get_group(cls, survey_json, group_id):
-        return next(g for g in cls.get_groups(survey_json) if g["id"] == group_id)
+        return next(g for g in cls.get_groups(survey_json) if g['id'] == group_id)
 
     @classmethod
     def get_block(cls, survey_json, block_id):
-        return next(b for b in cls.get_blocks(survey_json) if b["id"] == block_id)
+        return next(b for b in cls.get_blocks(survey_json) if b['id'] == block_id)
 
     @classmethod
     def get_block_ids(cls, survey_json):
@@ -118,15 +107,36 @@ class SchemaHelper(object):
         return answers
 
     @classmethod
-    def get_answer_ids_for_block(cls, block_json):
-        answer_ids = []
+    def get_questions_by_id(cls, survey_json):
+        question_map = {}
+        for block in cls.get_blocks(survey_json):
+            for question in cls.get_questions_for_block(block):
+                question_map[question['id']] = question
+        return question_map
 
-        for section in block_json['sections']:
-            for question in section['questions']:
+    @classmethod
+    def get_aliases(cls, survey_json):
+        aliases = {}
+        for block in cls.get_blocks(survey_json):
+            for question in cls.get_questions_for_block(block):
                 for answer in question['answers']:
-                    answer_ids.append(answer['id'])
+                    if 'alias' in answer and answer['alias'] not in aliases:
+                        aliases[answer['alias']] = {
+                            'answer_id': answer['id'],
+                            'repeats': answer['type'] == 'Checkbox' or question['type'] == 'RepeatingAnswer',
+                        }
+                    elif 'alias' in answer:
+                        raise QuestionnaireException('{} is not a unique alias'.format(answer['alias']))
+        return aliases
 
-        return answer_ids
+    @staticmethod
+    def get_answers_by_id_for_block(block_json):
+        answers = {}
+        for section_json in block_json['sections']:
+            for question_json in section_json['questions']:
+                for answer_json in question_json['answers']:
+                    answers[answer_json['id']] = answer_json
+        return answers
 
     @classmethod
     def get_answer_ids_for_location(cls, survey_json, location):
@@ -183,4 +193,4 @@ class SchemaHelper(object):
     def get_block_for_location(cls, survey_json, location):
         group = cls.get_group(survey_json, location.group_id)
 
-        return next(b for b in group['blocks'] if b["id"] == location.block_id)
+        return next(b for b in group['blocks'] if b['id'] == location.block_id)

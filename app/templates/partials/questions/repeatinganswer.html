@@ -26,7 +26,7 @@
         </h3>
         <fieldset class="question__fieldset">
           <legend class="question__legend u-vh">{{ _('Person ') }} <span class="js-household-loopindex">{{ loop.index }}</span></legend>
-          {% for answer in name_form %}
+          {% for input in name_form %}
             {% with render_guidance = False %}
               {% set schema_item = question.answers[loop.index0] %}
 

@@ -19,7 +19,7 @@
             "blocks": [
                 {
                     "type": "questionnaire",
-                    "id": "b10c8c7a-97fe-4bee-a4fb-e75f3a6f56c0",
+                    "id": "date-block",
                     "sections": [
                         {
                             "description": "",
@@ -29,7 +29,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "5b12aea2-ae3b-467d-9291-4d803a444d25",
+                                            "id": "date-range-from",
                                             "label": "Period from",
                                             "mandatory": true,
                                             "options": [],
@@ -44,7 +44,7 @@
                                         },
                                         {
                                             "guidance": "",
-                                            "id": "ce42c1f7-a32a-46d5-8183-f54e38616617",
+                                            "id": "date-range-to",
                                             "label": "Period to",
                                             "mandatory": true,
                                             "options": [],
@@ -59,7 +59,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "e9130586-f72a-4b68-8373-885ad51d6cd5",
+                                    "id": "date-range-question",
                                     "title": "Date range",
                                     "type": "DateRange"
                                 },
@@ -67,7 +67,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "eade17ef-3ec6-46c2-afc7-dffeb07e2e5e",
+                                            "id": "month-year-answer",
                                             "label": "Date",
                                             "mandatory": true,
                                             "options": [],
@@ -82,7 +82,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "9858220e-0514-4868-984f-8bb2481fde8f",
+                                    "id": "month-year-question",
                                     "title": "Date with month and year",
                                     "type": "General"
                                 },
@@ -90,7 +90,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "a51b1c7b-3f25-49dd-9275-2ea742eee510",
+                                            "id": "single-date-answer",
                                             "label": "Date",
                                             "mandatory": true,
                                             "options": [],
@@ -113,7 +113,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "98fa9cec-e0bb-471e-80e3-1ff3d9242ef8",
+                                            "id": "non-mandatory-date-answer",
                                             "label": "Date",
                                             "mandatory": false,
                                             "options": [],

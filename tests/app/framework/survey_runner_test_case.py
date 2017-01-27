@@ -31,6 +31,4 @@ class SurveyRunnerTestCase(unittest.TestCase):
         # create a parser
         self.schema_json = json.loads(schema)
         parser = SchemaParser(self.schema_json)
-        self.questionnaire = parser.parse()
-        self.user_id = "1"
-        self.user_ik = "key"
+        parser.parse()

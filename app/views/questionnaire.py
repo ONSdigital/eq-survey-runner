@@ -1,3 +1,5 @@
+import re
+
 from flask import Blueprint
 from flask import g
 from flask import redirect
@@ -17,7 +19,6 @@ from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
-from app.questionnaire_state.state_repeating_answer_question import extract_answer_instance_id
 from app.questionnaire.rules import evaluate_skip_condition
 from app.submitter.converter import convert_answers
 from app.submitter.submitter import SubmitterFactory
@@ -42,10 +43,11 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 def check_survey_state():
     metadata = get_metadata(current_user)
     logger.new(tx_id=metadata['tx_id'])
+    g.schema_json = get_schema(get_metadata(current_user))
     values = request.view_args
     logger.debug('questionnaire request', eq_id=values['eq_id'], form_type=values['form_type'],
                  ce_id=values['collection_id'], method=request.method, url_path=request.full_path)
-    g.schema_json, g.schema = get_schema(metadata)
+
     _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
 
 
@@ -83,8 +85,6 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 
     block = _render_schema(current_location)
 
-    logger.info(answer_store.answers)
-
     error_messages = SchemaHelper.get_messages(g.schema_json)
     form, template_params = get_form_for_location(block, current_location, answer_store, error_messages)
 
@@ -111,11 +111,13 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
     error_messages = SchemaHelper.get_messages(g.schema_json)
 
-    if 'action[save_sign_out]' in request.form:
-        form, _ = post_form_for_location(block, current_location, get_answer_store(current_user), request.form, error_messages, disable_mandatory=True)
-        return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
+    disable_mandatory = 'action[save_sign_out]' in request.form
 
-    form, _ = post_form_for_location(block, current_location, get_answer_store(current_user), request.form, error_messages)
+    form, _ = post_form_for_location(block, current_location, get_answer_store(current_user),
+                                     request.form, error_messages, disable_mandatory=disable_mandatory)
+
+    if 'action[save_sign_out]' in request.form:
+        return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
 
     content = {
         'form': form,
@@ -125,7 +127,12 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     if not valid_location or not form.validate():
         return _build_template(current_location, content, template='questionnaire')
     else:
-        update_questionnaire_store_with_form_data(current_location, form.data)
+        questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+
+        if current_location.block_id in ['relationships', 'household-relationships']:
+            update_questionnaire_store_with_answer_data(questionnaire_store, current_location, form.serialise(current_location))
+        else:
+            update_questionnaire_store_with_form_data(questionnaire_store, current_location, form.data)
 
     next_location = path_finder.get_next_location(current_location=current_location)
 
@@ -142,16 +149,23 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 def post_household_composition(eq_id, form_type, collection_id, group_id):
     path_finder = PathFinder(g.schema_json, get_answer_store(current_user), get_metadata(current_user))
     answer_store = get_answer_store(current_user)
+    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
 
     current_location = Location(group_id, 0, 'household-composition')
     block = _render_schema(current_location)
 
-    error_messages = SchemaHelper.get_messages(g.schema_json)
-
-    if 'action[save_continue]' in request.form:
+    if _household_answers_changed(answer_store):
         _remove_repeating_on_household_answers(answer_store, group_id)
 
-    form, _ = post_form_for_location(block, current_location, answer_store, request.form, error_messages)
+    error_messages = SchemaHelper.get_messages(g.schema_json)
+
+    if any(x in request.form for x in ['action[add_answer]', 'action[remove_answer]', 'action[save_sign_out]']):
+        disable_mandatory = True
+    else:
+        disable_mandatory = False
+
+    form, _ = post_form_for_location(block, current_location, answer_store,
+                                     request.form, error_messages, disable_mandatory=disable_mandatory)
 
     if 'action[add_answer]' in request.form:
         form.household.append_entry()
@@ -160,8 +174,6 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
 
         form.remove_person(index_to_remove)
     elif 'action[save_sign_out]' in request.form:
-        form, _ = post_form_for_location(block, current_location, answer_store, request.form,
-                                         error_messages, disable_mandatory=True)
         return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
 
     if not form.validate() or 'action[add_answer]' in request.form or 'action[remove_answer]' in request.form:
@@ -170,7 +182,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
             'block': block,
         }, current_location.block_id, current_location=current_location, template='questionnaire')
 
-    update_questionnaire_store_with_answer_data(current_location, form.serialise(current_location))
+    update_questionnaire_store_with_answer_data(questionnaire_store, current_location, form.serialise(current_location))
 
     next_location = path_finder.get_next_location(current_location=current_location)
 
@@ -195,7 +207,8 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):  # pylint: dis
     current_location = Location(SchemaHelper.get_first_group_id(g.schema_json), 0, block_id)
 
     valid_location = current_location in path_finder.get_location_path()
-    update_questionnaire_store_with_form_data(current_location, request.form.to_dict())
+    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+    update_questionnaire_store_with_form_data(questionnaire_store, current_location, request.form.to_dict())
 
     # Don't care if data is valid because there isn't any for interstitial
     if not valid_location:
@@ -217,12 +230,14 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):  # pylint: dis
 @login_required
 def get_summary(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     answer_store = get_answer_store(current_user)
+
     path_finder = PathFinder(g.schema_json, answer_store, get_metadata(current_user))
     latest_location = path_finder.get_latest_location(get_completed_blocks(current_user))
     metadata = get_metadata(current_user)
 
     if latest_location.block_id is 'summary':
-        schema_context = build_schema_context(metadata, g.schema.aliases, answer_store)
+        aliases = SchemaHelper.get_aliases(g.schema_json)
+        schema_context = build_schema_context(metadata, aliases, answer_store)
         rendered_schema_json = renderer.render(g.schema_json, **schema_context)
         summary_context = build_summary_rendering_context(rendered_schema_json, answer_store, metadata)
         return _build_template(current_location=latest_location, context=summary_context)
@@ -278,7 +293,7 @@ def submit_answers(eq_id, form_type, collection_id):
     if is_valid:
         path_finder = PathFinder(g.schema_json, answer_store, metadata)
         submitter = SubmitterFactory.get_submitter()
-        message = convert_answers(metadata, g.schema, answer_store, path_finder.get_routing_path())
+        message = convert_answers(metadata, g.schema_json, answer_store, path_finder.get_routing_path())
         submitter.send_answers(message)
 
         return redirect(url_for('.get_thank_you', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
@@ -305,7 +320,7 @@ def validate_all_answers(answer_store, metadata):
             form, _ = get_form_for_location(block_json, location, answer_store, error_messages)
 
             if not form.validate():
-                logger.debug("Failed validation with current location %s", str(location))
+                logger.debug("Failed validation", location=str(location))
                 return False, location
 
     return True, None
@@ -322,9 +337,9 @@ def _save_sign_out(collection_id, eq_id, form_type, this_location, form):
         return _build_template(this_location, content, template='questionnaire')
     else:
         if this_location.block_id != 'household-composition':
-            update_questionnaire_store_with_form_data(this_location, form.data)
+            update_questionnaire_store_with_form_data(questionnaire_store, this_location, form.data)
         else:
-            update_questionnaire_store_with_answer_data(this_location, form.serialise(this_location))
+            update_questionnaire_store_with_answer_data(questionnaire_store, this_location, form.serialise(this_location))
 
         if this_location in questionnaire_store.completed_blocks:
             questionnaire_store.completed_blocks.remove(this_location)
@@ -336,7 +351,8 @@ def _household_answers_changed(answer_store):
     if len(household_answers) != len(request.form)-1:
         return True
     for answer in request.form:
-        answer_id, answer_index = extract_answer_instance_id(answer)
+        answer_id, answer_index = extract_answer_id_and_instance(answer)
+
         stored_answer = next((d for d in household_answers if d['answer_id'] == answer_id and
                               d['answer_instance'] == answer_index), None)
         if stored_answer and (stored_answer['value'] or '') != request.form[answer]:
@@ -355,9 +371,7 @@ def _remove_repeating_on_household_answers(answer_store, group_id):
                                                        b.group_id != group['id']]
 
 
-def update_questionnaire_store_with_form_data(location, answer_dict):
-    # Store answers in QuestionnaireStore
-    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+def update_questionnaire_store_with_form_data(questionnaire_store, location, answer_dict):
 
     survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)
 
@@ -365,14 +379,21 @@ def update_questionnaire_store_with_form_data(location, answer_dict):
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
             answer = None
             # Dates are comprised of 3 string values
-            if isinstance(answer_value, dict) and 'day' in answer_value and 'month' in answer_value:
-                if answer_value['day'] and answer_value['month']:
-                    datestr = "{:02d}/{:02d}/{}".format(int(answer_value['day']), int(answer_value['month']), answer_value['year'])
-                    answer = Answer(answer_id=answer_id, value=datestr, location=location)
-            elif isinstance(answer_value, dict) and 'year' in answer_value and 'month' in answer_value:
-                if answer_value['month']:
-                    datestr = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
-                    answer = Answer(answer_id=answer_id, value=datestr, location=location)
+
+            if isinstance(answer_value, dict):
+                is_day_month_year = 'day' in answer_value and 'month' in answer_value
+                is_month_year = 'year' in answer_value and 'month' in answer_value
+
+                if is_day_month_year and answer_value['day'] and answer_value['month']:
+                    date_str = "{:02d}/{:02d}/{}".format(
+                        int(answer_value['day']),
+                        int(answer_value['month']),
+                        answer_value['year'],
+                    )
+                    answer = Answer(answer_id=answer_id, value=date_str, location=location)
+                elif is_month_year and answer_value['month']:
+                    date_str = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
+                    answer = Answer(answer_id=answer_id, value=date_str, location=location)
             elif answer_value != 'None' and answer_value is not None:
                 # Necessary because default select casts to string value 'None'
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
@@ -384,8 +405,7 @@ def update_questionnaire_store_with_form_data(location, answer_dict):
         questionnaire_store.completed_blocks.append(location)
 
 
-def update_questionnaire_store_with_answer_data(location, answers):
-    questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
+def update_questionnaire_store_with_answer_data(questionnaire_store, location, answers):
 
     survey_answer_ids = SchemaHelper.get_answer_ids_for_location(g.schema_json, location)
 
@@ -423,12 +443,25 @@ def _evaluate_skip_conditions(block_json, location, answer_store, metadata):
     return block_json
 
 
+def extract_answer_id_and_instance(answer_instance_id):
+    matches = re.match(r'^household-(\d+)-(first-name|middle-names|last-name)$', answer_instance_id)
+
+    if matches:
+        index, answer_id = matches.groups()
+    else:
+        answer_id = answer_instance_id
+        index = 0
+
+    return answer_id, int(index)
+
+
 def _render_schema(current_location):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
     block_json = SchemaHelper.get_block_for_location(g.schema_json, current_location)
     block_json = _evaluate_skip_conditions(block_json, current_location, answer_store, metadata)
-    block_context = build_schema_context(metadata, g.schema.aliases, answer_store, current_location.group_instance)
+    aliases = SchemaHelper.get_aliases(g.schema_json)
+    block_context = build_schema_context(metadata, aliases, answer_store, current_location.group_instance)
     return renderer.render(block_json, **block_context)
 
 

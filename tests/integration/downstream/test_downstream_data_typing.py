@@ -1,6 +1,6 @@
 from tests.integration.create_token import create_token
 from tests.integration.downstream.downstream_test_case import DownstreamTestCase
-from tests.integration.star_wars import star_wars_test_urls, BLOCK_2_DEFAULT_ANSWERS, BLOCK_3_DEFAULT_ANSWERS
+from tests.integration.star_wars import star_wars_test_urls, BLOCK_2_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 

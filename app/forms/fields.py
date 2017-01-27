@@ -1,24 +1,22 @@
-import logging
-
 from wtforms import FormField, IntegerField, SelectField, SelectMultipleField, StringField, TextAreaField
 from wtforms import validators
-from wtforms.widgets import CheckboxInput, ListWidget, RadioInput, TextArea, TextInput
 
 from app.forms.date_form import get_date_form, get_month_year_form
-from app.validation.validators import IntegerCheck, PositiveIntegerCheck, NumberRange
+from app.validation.validators import IntegerCheck, NumberRange
+from structlog import get_logger
 
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def get_field(answer, label, error_messages):
-    guidance = answer['guidance'] if 'guidance' in answer else ''
+    guidance = answer.get('guidance', '')
 
     field = {
         "Radio": get_select_field,
-        "Checkbox": get_select_field,
+        "Checkbox": get_select_multiple_field,
         "Date": get_date_field,
-        "MonthYearDate": get_date_field,
+        "MonthYearDate": get_month_year_field,
         "Currency": get_integer_field,
         "Integer": get_integer_field,
         "PositiveInteger": get_integer_field,
@@ -28,7 +26,7 @@ def get_field(answer, label, error_messages):
     }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
-        logger.info("Could not find field for answer type %s", answer['type'])
+        logger.error("Unknown answer type used during form creation", type=answer['type'])
 
     return field
 
@@ -40,8 +38,8 @@ def build_choices(options):
     return choices
 
 
-def get_validators(answer, error_messages):
-    validate_with = [validators.optional()]
+def get_mandatory_validator(answer, error_messages):
+    validate_with = [validators.Optional()]
 
     if answer['mandatory'] is True:
         mandatory_message = error_messages['MANDATORY']
@@ -59,23 +57,21 @@ def get_validators(answer, error_messages):
 
 
 def get_string_field(answer, label, guidance, error_messages):
-    validate_with = get_validators(answer, error_messages)
+    validate_with = get_mandatory_validator(answer, error_messages)
 
     return StringField(
         label=label,
         description=guidance,
-        widget=TextArea(),
         validators=validate_with,
     )
 
 
 def get_text_area_field(answer, label, guidance, error_messages):
-    validate_with = get_validators(answer, error_messages)
+    validate_with = get_mandatory_validator(answer, error_messages)
 
     return TextAreaField(
         label=label,
         description=guidance,
-        widget=TextArea(),
         validators=validate_with,
         filters=[lambda x: x if x else None],
     )
@@ -83,41 +79,61 @@ def get_text_area_field(answer, label, guidance, error_messages):
 
 def get_date_field(answer, label, guidance, error_messages):
 
-    if answer['type'] == 'MonthYearDate':
-        return FormField(
-            get_month_year_form(answer, error_messages),
-            label=label,
-            description=guidance,
-        )
-    else:
-        return FormField(
-            get_date_form(answer, error_messages=error_messages),
-            label=label,
-            description=guidance,
-        )
+    return FormField(
+        get_date_form(answer, error_messages=error_messages),
+        label=label,
+        description=guidance,
+    )
+
+
+def get_month_year_field(answer, label, guidance, error_messages):
+    return FormField(
+        get_month_year_form(answer, error_messages),
+        label=label,
+        description=guidance,
+    )
+
+
+def get_select_multiple_field(answer, label, guidance, error_messages):
+    validate_with = get_mandatory_validator(answer, error_messages)
+
+    return SelectMultipleField(
+        label=label,
+        description=guidance,
+        choices=build_choices(answer['options']),
+        validators=validate_with,
+    )
 
 
 def get_select_field(answer, label, guidance, error_messages):
-    validate_with = get_validators(answer, error_messages)
+    validate_with = get_mandatory_validator(answer, error_messages)
 
-    if answer['type'] == 'Checkbox':
-        return SelectMultipleField(
-            label=label,
-            description=guidance,
-            choices=build_choices(answer['options']),
-            widget=ListWidget(),
-            option_widget=CheckboxInput(),
-            validators=validate_with,
-        )
-    else:
-        return SelectField(
-            label=label,
-            description=guidance,
-            choices=build_choices(answer['options']),
-            widget=ListWidget(),
-            option_widget=RadioInput(),
-            validators=validate_with,
-        )
+    return SelectField(
+        label=label,
+        description=guidance,
+        choices=build_choices(answer['options']),
+        validators=validate_with,
+    )
+
+
+class CustomIntegerField(IntegerField):
+    """
+    The default wtforms field coerces data to an int and raises
+    cast errors outside of it's validation chain. In order to stop
+    the validation chain, we create a custom field that doesn't
+    raise the error and we can instead fail and stop other calls to
+    further validation steps by using a separate IntegerCheck validator
+    """
+    def __init__(self, **kwargs):
+
+        super(CustomIntegerField, self).__init__(**kwargs)
+
+    def process_formdata(self, valuelist):
+        if valuelist:
+            try:
+                self.data = int(valuelist[0])
+            except ValueError:
+                self.data = None
 
 
 def get_integer_field(answer, label, guidance, error_messages):
@@ -127,23 +143,26 @@ def get_integer_field(answer, label, guidance, error_messages):
         for error_key, error_message in answer['validation']['messages'].items():
             answer_errors[error_key] = error_message
 
-    mandatory_or_optional = get_validators(answer, answer_errors)
-    validate_with = mandatory_or_optional + [
-        IntegerCheck(messages=answer_errors),
-        NumberRange(max=9999999999, messages=answer_errors),
-    ]
+    mandatory_or_optional = get_mandatory_validator(answer, answer_errors)
 
-    if answer['type'] == 'Currency' or answer['type'] == 'PositiveInteger':
-        validate_with += [PositiveIntegerCheck(messages=answer_errors)]
+    if answer['type'] == 'Integer':
+        validate_with = mandatory_or_optional + [
+            IntegerCheck(answer_errors['NOT_INTEGER']),
+            NumberRange(max=9999999999, messages=answer_errors),
+        ]
     elif answer['type'] == 'Percentage':
         validate_with = mandatory_or_optional + [
-            IntegerCheck(messages=answer_errors),
+            IntegerCheck(answer_errors['NOT_INTEGER']),
             NumberRange(min=0, max=100, messages=answer_errors),
         ]
+    else:
+        validate_with = mandatory_or_optional + [
+            IntegerCheck(answer_errors['NOT_INTEGER']),
+            NumberRange(min=0, max=9999999999, messages=answer_errors),
+        ]
 
-    return IntegerField(
+    return CustomIntegerField(
         label=label,
         description=guidance,
-        widget=TextInput(),
         validators=validate_with,
     )

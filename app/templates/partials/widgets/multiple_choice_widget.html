@@ -1,7 +1,8 @@
 <fieldset>
-  <legend class="field__legend mars {{'u-vh' if not answer.show_legend}}">
-    {{answer.label|safe}}
-    {%- if answer.label and answer.description -%}
+  {% set answer_label = answer.label or question.title %}
+  <legend class="field__legend mars {{'u-vh' if answer_label|length == 0}}">
+    {{answer_label|safe}}
+    {%- if answer_label and answer.description -%}
       <br />
     {%- endif -%}
     {%- if answer.description -%}

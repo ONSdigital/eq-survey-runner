@@ -30,7 +30,7 @@ class HouseholdCompositionPage extends QuestionPage {
   }
 
   getInputFieldName(index, name) {
-    var field = 'household-' + index + '-' + name
+    const field = 'household-' + index + '-' + name
     return field
   }
 

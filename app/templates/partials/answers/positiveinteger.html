@@ -7,5 +7,18 @@
     } %}
 
     {% include 'partials/forms/label.html' %}
+
+    {% set raw_data = form[answer['id']].raw_data[0] if form[answer['id']].raw_data is not none else '' %}
+    {% set form_data = form[answer['id']].data if form[answer.id].data is not none else '' %}
+
+    {% set input = {
+        'type': 'text',
+        'classes': 'input-type__input',
+        'hasType': true,
+        'data': form_data if form_data else raw_data|e,
+        'name': answer.id,
+        'id': answer.id,
+        'placeholder': ''
+    } %}
     {% include 'partials/forms/input.html' %}
 </div>

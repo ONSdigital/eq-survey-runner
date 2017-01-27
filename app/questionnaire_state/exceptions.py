@@ -1,2 +1,0 @@
-class StateException(Exception):
-    pass

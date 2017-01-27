@@ -6,7 +6,7 @@
 
     {% include 'partials/forms/label.html' %}
 
-    {% set input = content.form[answer['id']] %}
+    {% set input = form[answer['id']] %}
     {% set answer_value = input.data or '' %}
 
     {% set attr = {

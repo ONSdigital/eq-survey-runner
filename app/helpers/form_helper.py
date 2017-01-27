@@ -1,6 +1,6 @@
 from app.helpers.schema_helper import SchemaHelper
 from app.forms.household_composition_form import generate_household_composition_form, deserialise_composition_answers
-from app.forms.household_relationship_form import build_relationship_choices, generate_relationship_form
+from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, generate_relationship_form
 from app.forms.questionnaire_form import generate_form
 
 
@@ -25,20 +25,24 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
 
         return generate_household_composition_form(block_json, data, error_messages), None
     elif location.block_id in ['relationships', 'household-relationships']:
-        relationships = next((a['value'] for a in answer_store.answers if a['answer_id'] == 'who-is-related'), None)
+
+        answers = answer_store.filter(location=location)
+
+        data = deserialise_relationship_answers(answers)
+
         choices = build_relationship_choices(answer_store, location.group_instance)
-        form = generate_relationship_form(block_json, len(choices), {'who-is-related': relationships}, error_messages)
+
+        form = generate_relationship_form(block_json, len(choices), data, error_messages)
+
         return form, {'relation_instances': choices}
     else:
-        answer_json_list = SchemaHelper.get_answers_for_block(block_json)
-
         mapped_answers = answer_store.map(
             group_id=location.group_id,
             group_instance=location.group_instance,
             block_id=location.block_id,
         )
 
-        # Form gneration expect post like data, so cast answers to strings
+        # Form generation expects post like data, so cast answers to strings
         for answer_id, mapped_answer in mapped_answers.items():
             if isinstance(mapped_answer, list):
                 for index, element in enumerate(mapped_answer):
@@ -46,20 +50,8 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
             else:
                 mapped_answers[answer_id] = str(mapped_answer)
 
-        # Deserialise all dates from the store
-        date_answer_ids = [a['id'] for a in answer_json_list if a['type'] == "Date"]
+        mapped_answers = deserialise_dates(block_json, mapped_answers)
 
-        for date_answer_id in date_answer_ids:
-            if date_answer_id in mapped_answers:
-                substrings = mapped_answers[date_answer_id].split("/")
-
-                if len(substrings) == 3:
-                    del mapped_answers[date_answer_id]
-                    mapped_answers.update({
-                        '{answer_id}-day'.format(answer_id=date_answer_id): substrings[0],
-                        '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip("0"),
-                        '{answer_id}-year'.format(answer_id=date_answer_id): substrings[2],
-                    })
         return generate_form(block_json, mapped_answers, error_messages), None
 
 
@@ -81,7 +73,7 @@ def post_form_for_location(block_json, location, answer_store, request_form, err
         return generate_household_composition_form(block_json, request_form, error_messages), None
     elif location.block_id in ['relationships', 'household-relationships']:
         choices = build_relationship_choices(answer_store, location.group_instance)
-        form = generate_relationship_form(block_json, len(choices), request_form.to_dict(), error_messages)
+        form = generate_relationship_form(block_json, len(choices), request_form, error_messages)
 
         return form, {'relation_instances': choices}
     else:
@@ -95,3 +87,29 @@ def disable_mandatory_answers(block_json):
                 if 'mandatory' in answer_json and answer_json['mandatory'] is True:
                     answer_json['mandatory'] = False
     return block_json
+
+
+def deserialise_dates(block_json, mapped_answers):
+    answer_json_list = SchemaHelper.get_answers_for_block(block_json)
+
+    # Deserialise all dates from the store
+    date_answer_ids = [a['id'] for a in answer_json_list if a['type'] == "Date" or a['type'] == 'MonthYearDate']
+
+    for date_answer_id in date_answer_ids:
+        if date_answer_id in mapped_answers:
+            substrings = mapped_answers[date_answer_id].split("/")
+
+            if len(substrings) == 3:
+                del mapped_answers[date_answer_id]
+                mapped_answers.update({
+                    '{answer_id}-day'.format(answer_id=date_answer_id): substrings[0],
+                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[1].lstrip("0"),
+                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[2],
+                })
+            elif len(substrings) == 2:
+                del mapped_answers[date_answer_id]
+                mapped_answers.update({
+                    '{answer_id}-month'.format(answer_id=date_answer_id): substrings[0].lstrip("0"),
+                    '{answer_id}-year'.format(answer_id=date_answer_id): substrings[1],
+                })
+    return mapped_answers

@@ -2583,7 +2583,7 @@
                                         },
                                         {
                                             "id": "white-ethnic-group-wales-question-other",
-                                            "parent_answer_id": "white-ethnic-group-wales-question",
+                                            "parent_answer_id": "white-ethnic-group-wales-answer",
                                             "type": "TextField",
                                             "mandatory": false,
                                             "label": "Please specify other White background"

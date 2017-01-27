@@ -11,12 +11,7 @@ from werkzeug.datastructures import MultiDict
 logger = logging.getLogger(__name__)
 
 
-class Struct:
-    def __init__(self, **entries):
-        self.__dict__.update(entries)
-
-
-def get_date_range_answer_field(question, data, error_messages):
+def get_date_range_field(question, data, error_messages):
     to_field_id = question['answers'][1]['id']
     to_field_data = get_date_data(data, to_field_id)
 
@@ -36,7 +31,7 @@ def get_answer_fields(question, data, error_messages):
             answer['mandatory'] = \
                 next(a['mandatory'] for a in question['answers'] if a['id'] == answer['parent_answer_id'])
 
-        name = answer['label'] if 'label' in answer else question['title']
+        name = answer.get('label') or question.get('title')
         answer_fields[answer['id']] = get_field(answer, name, error_messages)
     return answer_fields
 
@@ -45,8 +40,8 @@ def map_subfield_errors(errors, answer_id):
     subfield_errors = []
 
     if isinstance(errors[answer_id], dict):
-        for subfield, errors in errors[answer_id].items():
-            for error in errors:
+        for error_list in errors[answer_id].values():
+            for error in error_list:
                 subfield_errors.append((answer_id, error))
     else:
         for error in errors[answer_id]:
@@ -55,10 +50,15 @@ def map_subfield_errors(errors, answer_id):
     return subfield_errors
 
 
-def map_child_errors(errors, parent_answer_id, child_answer_id):
+def map_child_option_errors(errors, answer_json):
     child_errors = []
-    for error in errors[child_answer_id]:
-        child_errors.append((parent_answer_id, error))
+    options_with_children = [o for o in answer_json['options'] if
+                             'child_answer_id' in o and o['child_answer_id'] in errors]
+
+    for option_with_child in options_with_children:
+        for error in errors[option_with_child['child_answer_id']]:
+            child_errors.append((answer_json['id'], error))
+
     return child_errors
 
 
@@ -71,17 +71,21 @@ def generate_form(block_json, data, error_messages):
             answer_json_list = SchemaHelper.get_answers_for_block(block_json)
 
             for answer_json in answer_json_list:
-                if answer_json['id'] in self.errors:
+                if answer_json['id'] in self.errors and 'parent_answer_id' not in answer_json:
                     ordered_errors += map_subfield_errors(self.errors, answer_json['id'])
-                if 'child_answer_id' in answer_json and answer_json['child_answer_id'] in self.errors:
-                    ordered_errors += map_child_errors(self.errors, answer_json['id'], answer_json['child_answer_id'])
+                if 'options' in answer_json and 'parent_answer_id' not in answer_json:
+                    ordered_errors += map_child_option_errors(self.errors, answer_json)
+
             return ordered_errors
+
+        def answer_errors(self, input_id):
+            return [error[1] for error in self.map_errors() if input_id == error[0]]
 
     answer_fields = {}
 
     for question in SchemaHelper.get_questions_for_block(block_json):
         if question['type'] == 'DateRange':
-            answer_fields.update(get_date_range_answer_field(question, data, error_messages))
+            answer_fields.update(get_date_range_field(question, data, error_messages))
         else:
             answer_fields.update(get_answer_fields(question, data, error_messages))
 

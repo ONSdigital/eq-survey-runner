@@ -261,3 +261,28 @@ def natural_order(key):
     :return:
     """
     return [number_else_string(c) for c in re.split(r'(\d+)', key)]
+
+
+def iterate_over_instance_ids(answer_instances):
+    """
+    Iterates over a collection of answer instances yielding the answer Id and answer instance Id.
+    :param answer_instances: A list of raw answer_instance_ids
+    :return: Tuple containing the answer Id and answer instance Id.
+    """
+
+    answer_instance_ids = sorted(answer_instances, key=natural_order)
+
+    for answer_instance_id in answer_instance_ids:
+        answer_id, answer_index = extract_answer_instance_id(answer_instance_id)
+        yield answer_id, answer_index
+
+
+def extract_answer_instance_id(answer_instance_id):
+    matches = re.match(r'^(.+?)_(\d+)$', answer_instance_id)
+    if matches:
+        answer_id, index = matches.groups()
+    else:
+        answer_id = answer_instance_id
+        index = 0
+
+    return answer_id, int(index)
