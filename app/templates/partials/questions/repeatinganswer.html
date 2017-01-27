@@ -27,7 +27,7 @@
           )</small>
         </h3>
         <fieldset class="question__fieldset">
-          <legend class="question__legend u-vh">{{ _('Person ') }} {{ loop.index }}</legend>
+          <legend class="question__legend u-vh">{{ _('Person ') }} <span class="js-household-loopindex">{{ loop.index }}</span></legend>
           {% for answer in composite_answer %}
             {% with render_guidance = False %}
               {% include theme('partials/answer.html') %}

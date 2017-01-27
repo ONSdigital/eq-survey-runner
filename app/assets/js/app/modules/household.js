@@ -20,13 +20,13 @@ class HouseholdMember extends EventEmitter {
   bindToDOM() {
     this.indexNode = this.node.querySelector('.js-household-loopindex')
     const errorNode = this.node.querySelector('.js-has-errors')
-
     if (errorNode) {
       const fieldNodes = this.node.querySelector('.js-fields')
       if (fieldNodes) {
+        const clone = fieldNodes.cloneNode(true)
         errorNode.innerHTML = ''
         errorNode.classList.remove('js-has-errors')
-        errorNode.appendChild(fieldNodes)
+        errorNode.appendChild(clone)
       }
     }
 
