@@ -33,6 +33,9 @@
   // display: block;
   color: inherit;
   margin-bottom: 1rem;
+  em {
+    background-color: $color-emphasis;
+  }
 }
 
 .question__subtitle {
