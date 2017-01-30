@@ -233,4 +233,17 @@ describe('Census Household', function () {
       expect(browser.elements('.js-household-person .js-has-errors').value.length).to.equal(1)
     })
 
+    it('Given a census household survey, when a user adds a new person, the "Person x" count should increment in the hidden legend', function() {
+      const numPeople = 4
+      startCensusQuestionnaire('census_household.json', false, 'GB-WLS')
+
+      PermanentOrFamilyHome.clickPermanentOrFamilyHomeAnswerYes().submit()
+      HouseholdComposition.submit()
+
+      for (let i = 1; i < numPeople; i++) {
+        HouseholdComposition.addPerson()
+      }
+
+      expect(browser.getHTML('legend .js-household-loopindex', false)[numPeople - 1]).to.equal(numPeople.toString())
+    })
 })

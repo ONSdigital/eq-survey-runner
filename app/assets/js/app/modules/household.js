@@ -18,15 +18,15 @@ class HouseholdMember extends EventEmitter {
   }
 
   bindToDOM() {
-    this.indexNode = this.node.querySelector('.js-household-loopindex')
+    this.indexNodes = this.node.querySelectorAll('.js-household-loopindex')
     const errorNode = this.node.querySelector('.js-has-errors')
-
     if (errorNode) {
       const fieldNodes = this.node.querySelector('.js-fields')
       if (fieldNodes) {
+        const clone = fieldNodes.cloneNode(true)
         errorNode.innerHTML = ''
         errorNode.classList.remove('js-has-errors')
-        errorNode.appendChild(fieldNodes)
+        errorNode.appendChild(clone)
       }
     }
 
@@ -60,7 +60,7 @@ class HouseholdMember extends EventEmitter {
 
   setIndex(index) {
     this.index = index
-    this.indexNode.innerHTML = index
+    forEach(this.indexNodes, node => { node.innerHTML = index })
     forEach(this.inputs, input => {
       const id = input.id
       const label = this.node.querySelector(`label[for=${id}]`)
