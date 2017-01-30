@@ -37,10 +37,10 @@
   padding: 1rem;
 }
 
-@include panel_type(error, $color-red, #fbecec);
-@include panel_type(warn, $color-amber, #fdf6ec);
-@include panel_type(success, $color-primary, #edf4f0);
-@include panel_type(info, $color-secondary, #f5f6ff);
+@include panel_type(error, $color-red, $color-light-red);
+@include panel_type(warn, $color-amber, $color-light-amber);
+@include panel_type(success, $color-primary, $color-light-green);
+@include panel_type(info, $color-secondary, $color-light-blue);
 
 .panel--simple {
   border: none;

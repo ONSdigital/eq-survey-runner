@@ -51,7 +51,7 @@
     }
   }
   .nav__item--current {
-    background-color: lighten($color-secondary, 64%);
+    background-color: $colour-nav-highlight;
     border-left: 0.5rem $color-secondary solid;
     &.nav__item--completed {
       &::before {

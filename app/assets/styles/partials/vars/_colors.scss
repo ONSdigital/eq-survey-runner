@@ -12,12 +12,14 @@ $color-primary: #0f8243;
 $color-primary-dark: #677424;
 $color-secondary: #033e58;
 
-$color-light-blue: tint($color-secondary, 40);
-
 $color-red: #d0021b;
+$color-light-red: #fbecec;
 $color-yellow: yellow;
 $color-amber: #fe781f;
+$color-light-amber: #fdf6ec;
 $color-blue: #4263c2;
+$color-light-blue: #eff0f9;
+$color-light-green: #edf4f0;
 
 // assignment
 
@@ -29,5 +31,5 @@ $color-focus: $color-blue;
 $color-borders: $color-dark-grey;
 $color-placeholder: lighten($color-text-light, 40%);
 $color-emphasis: #dce5b0;
-
+$colour-nav-highlight: $color-light-blue;
 $color-errors: $color-red;
