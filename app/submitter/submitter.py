@@ -1,9 +1,10 @@
 import logging
 from abc import abstractmethod
 
-import pika
-import pika.credentials
-import pika.exceptions
+from pika import BasicProperties
+from pika import BlockingConnection
+from pika import URLParameters
+from pika.exceptions import AMQPError
 
 from app import settings
 from app.submitter.encrypter import Encrypter
@@ -61,14 +62,14 @@ class RabbitMQSubmitter(Submitter):
 
     def _connect(self):
         try:
-            self.connection = pika.BlockingConnection(pika.URLParameters(settings.EQ_RABBITMQ_URL))
-        except pika.exceptions.AMQPError as e:
+            self.connection = BlockingConnection(URLParameters(settings.EQ_RABBITMQ_URL))
+        except AMQPError as e:
             logger.error('Unable to connect to Prime Message Server')
             logger.info("Unable to open Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
             logger.error("Attempting failover to secondary")
             try:
-                self.connection = pika.BlockingConnection(pika.URLParameters(settings.EQ_RABBITMQ_URL_SECONDARY))
-            except pika.exceptions.AMQPError as err:
+                self.connection = BlockingConnection(URLParameters(settings.EQ_RABBITMQ_URL_SECONDARY))
+            except AMQPError as err:
                 logger.error('Unable to connect to Prime Message Server')
                 logger.info("Unable to open Secondary Rabbit MQ connection to %s, ERROR: %s", settings.EQ_RABBITMQ_URL_SECONDARY, repr(e))
                 logger.error("Attempting failover to secondary")
@@ -78,7 +79,7 @@ class RabbitMQSubmitter(Submitter):
         try:
             if self.connection:
                 self.connection.close()
-        except pika.exceptions.AMQPError as e:
+        except AMQPError as e:
             logger.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
 
     def send_message(self, message, queue):
@@ -98,7 +99,7 @@ class RabbitMQSubmitter(Submitter):
                                               routing_key=queue,
                                               body=message_as_string,
                                               mandatory=True,
-                                              properties=pika.BasicProperties(
+                                              properties=BasicProperties(
                                                   delivery_mode=2,
                                               ))
             if published:
@@ -107,7 +108,7 @@ class RabbitMQSubmitter(Submitter):
                 logger.error('Unable to send message')
                 logger.info("Unable to send to rabbit mq " + message_as_string)
             return published
-        except pika.exceptions.AMQPError as e:
+        except AMQPError as e:
             logger.error('Unable to send message')
             logger.info("Unable to send " + message_as_string + " to " + settings.EQ_RABBITMQ_URL + " " + repr(e))
             return False
