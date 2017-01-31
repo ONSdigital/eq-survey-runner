@@ -2740,7 +2740,7 @@
                     "id": "constraints-on-innovation-completed",
                     "sections": [
                         {
-                            "description": "<p>You have successfully completed this section</p><p>The next section covers <em>factors affecting innovation</em>.  You will be asked to provide information on factors deemed important when deciding to initiate or terminate innovation.</p>",
+                            "description": "<p>You have successfully completed this section</p><p>The next section covers <em>factors affecting innovation</em>.  You will be asked to provide information on factors deemed important when deciding to initiate or terminate innovation.</p><p>Alternatively, if you have previously indicated that your business had no innovation activities, the next section will cover <em>Public Financial Support for Innovation</em> received from government.</p><p>In the Public Financial Support for Innovation section you will be asked to provide information specifying the type, if any, of public financial support your business received and the source; for example, Research & Development tax credits received from UK central government.</p>",
                             "id": "constraints-on-innovation-completed-section",
                             "number": "6",
                             "questions": [
