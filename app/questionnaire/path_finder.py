@@ -182,11 +182,17 @@ class PathFinder:
                 no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
 
             for i in range(0, no_of_repeats):
-                blocks.extend([{
-                    "group_id": group['id'],
-                    "group_instance": i,
-                    "block": block,
-                } for block in group['blocks']])
+                for block in group['blocks']:
+                    if 'skip_condition' in block:
+                        skip = evaluate_skip_condition(block['skip_condition'], self.metadata, self.answer_store)
+                        if skip:
+                            continue
+
+                    blocks.append({
+                        "group_id": group['id'],
+                        "group_instance": i,
+                        "block": block,
+                    })
         return blocks
 
     @staticmethod

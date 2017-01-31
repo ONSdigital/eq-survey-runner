@@ -32,7 +32,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         if errors:
             for error in errors:
-                logger.error('schema validation errors', exc_info=error)
+                logger.error(error)
 
             self.fail("{} Schema Validation Errors.".format(len(errors)))
 

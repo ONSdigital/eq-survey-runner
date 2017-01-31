@@ -107,6 +107,23 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
 
         self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
 
+    def test_evaluate_goto_returns_true_when_value_not_contained_in_list(self):
+
+        goto = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'not contains',
+                    'value': 'answer1'
+                }
+            ]
+        }
+        answer_store = AnswerStore()
+        answer_store.add(Answer(answer_id='my_answers', value=['answer2', 'answer3']))
+
+        self.assertTrue(evaluate_goto(goto, {}, answer_store, 0))
+
     def test_evaluate_skip_condition_returns_true_when_this_rule_true(self):
         # Given
         skip_condition = [

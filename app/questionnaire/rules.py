@@ -23,6 +23,8 @@ def evaluate_rule(when, answer_value):
         return True
     elif condition == 'contains' and isinstance(answer_to_test, list) and match_value in answer_to_test:
         return True
+    elif condition == 'not contains' and isinstance(answer_to_test, list) and match_value not in answer_to_test:
+        return True
     elif condition == 'not set':
         return answer_to_test is None
     return False
