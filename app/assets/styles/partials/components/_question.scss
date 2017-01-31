@@ -1,5 +1,4 @@
 .question {
-  border: 2px solid transparent;
   margin-bottom: 1rem;
   &:last-of-type {
     margin-bottom: 0;
@@ -7,11 +6,6 @@
   @include mq(m) {
     margin-bottom: 2rem;
   }
-}
-
-.question--has-errors {
-  border-color: $color-red;
-  background: rgba($color-red, 0.1);
 }
 
 .question__error {
@@ -27,6 +21,7 @@
 }
 
 .question__title {
+  position: relative;
   clear: both;
   // NOTE: do not enable display block as it breaks any instance
   //       where this appears inside a `legend`
@@ -35,6 +30,16 @@
   margin-bottom: 1rem;
   em {
     background-color: $color-emphasis;
+  }
+}
+
+.question__number {
+  @include mq(xl) {
+    position: absolute;
+    text-align: right;
+    left: -100px;
+    width: 100px;
+    padding-right: 0.8rem;
   }
 }
 

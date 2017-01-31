@@ -72,6 +72,12 @@
   // no-op
 }
 
+@mixin lt-ie10() {
+  .lt-ie10 & {
+    @content;
+  }
+}
+
 @mixin lt-ie9() {
   .lt-ie9 & {
     @content;
