@@ -13,7 +13,20 @@ logger = getLogger()
 
 class TestSchemaValidation(unittest.TestCase):
 
-    def test_schema(self):
+    def test_invalid_schema(self):
+        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema-v1.json"), encoding="utf8")
+        schema = load(schema_file)
+
+        file = "test_invalid_routing.json"
+
+        json_file = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), file), encoding="utf8")
+        json_to_validate = load(json_file)
+
+        errors = self.validate_schema(schema, file, json_to_validate)
+
+        self.assertNotEquals(len(errors), 0, "This schema should fail on invalid routing rules")
+
+    def test_schemas(self):
 
         errors = []
 
@@ -26,15 +39,28 @@ class TestSchemaValidation(unittest.TestCase):
             json_file = open(file, encoding="utf8")
             json_to_validate = load(json_file)
 
-            errors.extend(self.validate_json_against_schema(file, json_to_validate, schema))
-            errors.extend(self.validate_schema_contains_valid_routing_rules(file, json_to_validate))
-            errors.extend(self.validate_routing_rules_has_default_if_not_all_answers_routed(file, json_to_validate))
+            errors.extend(self.validate_schema(schema, file, json_to_validate))
 
         if errors:
             for error in errors:
                 logger.error(error)
 
             self.fail("{} Schema Validation Errors.".format(len(errors)))
+
+    def validate_schema(self, schema, file, json_to_validate):
+
+        errors = []
+
+        try:
+            errors.extend(self.validate_json_against_schema(file, json_to_validate, schema))
+
+            errors.extend(self.validate_schema_contains_valid_routing_rules(file, json_to_validate))
+
+            errors.extend(self.validate_routing_rules_has_default_if_not_all_answers_routed(file, json_to_validate))
+        except SchemaError as e:
+            errors.append("JSON Error! File [{}]. Error [{}]".format(file, e))
+
+        return errors
 
     def test_no_duplicate_ids_in_schema(self):
         schema_files = self.all_schema_files()
@@ -90,7 +116,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         errors = []
 
-        blocks = [SchemaHelper.get_blocks(json_to_validate)]
+        blocks = SchemaHelper.get_blocks(json_to_validate)
         for block in blocks:
             if 'routing_rules' in block and len(block['routing_rules']) > 0:
                 for rule in block['routing_rules']:
@@ -99,7 +125,7 @@ class TestSchemaValidation(unittest.TestCase):
                         if block_id == 'summary':
                             continue
 
-                        if not cls.contains_block(blocks, block_id):
+                        if not cls.contains_block(json_to_validate, block_id):
                             invalid_block_error = "Routing rule routes to invalid block [{}]".format(block_id)
                             errors.append(TestSchemaValidation._error_message(invalid_block_error, file))
 
@@ -148,12 +174,11 @@ class TestSchemaValidation(unittest.TestCase):
 
     @staticmethod
     def _error_message(message, file):
-        prefix = "Schema Integrity Error. File[{}]".format(file)
-        return "{} {}".format(prefix, message)
+        return "Schema Integrity Error. File[{}] {}".format(file, message)
 
     @staticmethod
-    def contains_block(blocks, block_id):
-        matching_blocks = [b for b in blocks if b["id"] == block_id]
+    def contains_block(json, block_id):
+        matching_blocks = [b for b in SchemaHelper.get_blocks(json) if b["id"] == block_id]
         return len(matching_blocks) == 1
 
 
