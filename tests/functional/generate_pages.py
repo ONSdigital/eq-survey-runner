@@ -173,7 +173,7 @@ def process_answer(question_type, answer, page_spec):
 
 
 def process_question(question, page_spec):
-    logger.debug("\t\tProcessing Question: %s", question['title'])
+    logger.debug("\t\tprocessing question: %s", question['title'])
 
     question_type = question['type']
     if question_type == 'RepeatingAnswer':
@@ -183,7 +183,7 @@ def process_question(question, page_spec):
 
 
 def process_section(section, page_spec):
-    logger.debug("\tProcessing Section: %s", section['title'])
+    logger.debug("\tprocessing section: %s", section['title'])
 
     for question in section['questions']:
         process_question(question, page_spec)
@@ -218,12 +218,12 @@ def find_kv(block, key, values):
 
 
 def process_block(block, dir_out, spec_out):
-    logger.debug("Processing Block: %s", block['id'])
+    logger.debug("processing block: %s", block['id'])
 
     page_filename = block['id'] + '.page.js'
     page_path = os.path.join(dir_out, page_filename)
 
-    logger.info("Creating %s...", page_path)
+    logger.info("creating %s...", page_path)
 
     with open(page_path, 'w') as page_spec:
         multiple_choice_check = find_kv(block, 'type', ['Radio', 'Checkbox', 'Relationship'])

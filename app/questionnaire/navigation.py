@@ -1,12 +1,13 @@
 import copy
-import logging
 from collections import defaultdict
+
+from structlog import get_logger
 
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.rules import evaluate_repeat, evaluate_skip_condition
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 class Navigation(object):
@@ -36,16 +37,18 @@ class Navigation(object):
         for group in filter(lambda x: 'hide_in_navigation' not in x, self.survey_json['groups']):
             first_location = Location(group['id'], 0, group['blocks'][0]['id'])
 
-            logger.debug("Building frontend navigation for group %s", group['id'])
+            logger.debug("building frontend navigation", group_id=group['id'])
 
-            repeating_rule = SchemaHelper.get_repeat_rule(group)
             skip_group = self._should_skip_group(current_group_instance, group)
 
             if not skip_group:
+                repeating_rule = SchemaHelper.get_repeat_rule(group)
                 if repeating_rule:
+                    logger.debug("building repeating navigation", group_id=group['id'])
                     navigation.extend(self._build_repeating_navigation(repeating_rule, group, current_group_id,
                                                                        current_group_instance))
                 else:
+                    logger.debug("building navigation", group_id=group['id'])
                     navigation.append(self._build_single_navigation(group, current_group_id, first_location))
         return navigation
 
@@ -160,8 +163,6 @@ class Navigation(object):
         }
 
     def _generate_link_names(self, repeating_rule):
-        logger.debug("Building frontend hyperlink names for %s", repeating_rule)
-
         link_names = defaultdict(list)
         if 'navigation_label_answer_ids' in repeating_rule:
             label_answer_ids = repeating_rule['navigation_label_answer_ids']

@@ -1,5 +1,3 @@
-import logging
-
 from flask import Blueprint
 from flask import g
 from flask import redirect
@@ -8,6 +6,7 @@ from flask import url_for
 from flask_login import current_user
 from flask_login import login_required
 from flask_themes2 import render_theme_template
+from structlog import get_logger
 from werkzeug.exceptions import NotFound
 
 from app.authentication.session_storage import session_storage
@@ -27,7 +26,7 @@ from app.templating.template_renderer import renderer
 from app.utilities.schema import get_schema
 from app.views.errors import MultipleSurveyError
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 questionnaire_blueprint = Blueprint(name='questionnaire',
@@ -38,9 +37,12 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 @questionnaire_blueprint.before_request
 @login_required
 def check_survey_state():
-    g.schema_json, g.schema = get_schema(get_metadata(current_user))
+    metadata = get_metadata(current_user)
+    logger.new(tx_id=metadata['tx_id'])
     values = request.view_args
-
+    logger.debug('questionnaire request', eq_id=values['eq_id'], form_type=values['form_type'],
+                 ce_id=values['collection_id'], method=request.method, url_path=request.full_path)
+    g.schema_json, g.schema = get_schema(metadata)
     _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
 
 
@@ -143,8 +145,9 @@ def post_interstitial(eq_id, form_type, collection_id, block_id):  # pylint: dis
         raise NotFound
 
     metadata = get_metadata(current_user)
-    logger.info("Redirecting user to next location %s with tx_id=%s", str(next_location), metadata["tx_id"])
-    return redirect(next_location.url(metadata))
+    next_location_url = next_location.url(metadata)
+    logger.debug("redirecting", url=next_location_url)
+    return redirect(next_location_url)
 
 
 @questionnaire_blueprint.route('summary', methods=["GET"])
@@ -218,7 +221,6 @@ def submit_answers(eq_id, form_type, collection_id):
         submitter = SubmitterFactory.get_submitter()
         message = convert_answers(metadata, g.schema, answer_store, path_finder.get_routing_path())
         submitter.send_answers(message)
-        logger.info("Responses submitted tx_id=%s", metadata["tx_id"])
         return redirect(url_for('.get_thank_you', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
     else:
         return redirect(invalid_location.url(metadata))
@@ -336,7 +338,7 @@ def _build_template(current_location, context=None, template=None):
 
 def _render_template(context, block_id, front_end_navigation=None, metadata_context=None, previous_url=None, template=None):
     theme = g.schema_json.get('theme', None)
-    logger.debug("Theme selected: %s", theme)
+    logger.debug("theme selected", theme=theme)
     template = '{}.html'.format(template or block_id)
     return render_theme_template(theme, template, meta=metadata_context,
                                  content=context,

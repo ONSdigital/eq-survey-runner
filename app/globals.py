@@ -1,11 +1,10 @@
-import logging
-
 from flask import g
+from structlog import get_logger
 
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.storage.storage_factory import get_storage
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 def get_questionnaire_store(user_id, user_ik):
@@ -20,7 +19,7 @@ def get_questionnaire_store(user_id, user_ik):
 
 def get_metadata(user):
     if user.is_anonymous:
-        logger.debug("Anonymous user requesting metadata get instance")
+        logger.debug("anonymous user requesting metadata get instance")
         return None
 
     questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)

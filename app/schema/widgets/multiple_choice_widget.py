@@ -1,12 +1,9 @@
-import logging
 from abc import ABCMeta, abstractmethod
 
 from flask import render_template
 
 from app.helpers.multiple_choice_helper import MultipleChoiceHelper
 from app.schema.widget import Widget
-
-logger = logging.getLogger(__name__)
 
 
 class MultipleChoiceWidget(Widget, metaclass=ABCMeta):

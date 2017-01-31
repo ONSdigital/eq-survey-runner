@@ -1,14 +1,14 @@
-import logging
 import os
 import unittest
 from json import load
 
 from jsonschema import SchemaError, ValidationError, validate
+from structlog import getLogger
 
 from app import settings
 from app.helpers.schema_helper import SchemaHelper
 
-logger = logging.getLogger(__name__)
+logger = getLogger()
 
 
 class TestSchemaValidation(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         if errors:
             for error in errors:
-                logger.error(error)
+                logger.error('schema validation errors', exc_info=error)
 
             self.fail("{} Schema Validation Errors.".format(len(errors)))
 

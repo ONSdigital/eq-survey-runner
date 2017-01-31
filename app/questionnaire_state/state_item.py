@@ -1,9 +1,10 @@
-import logging
 from collections import OrderedDict
+
+from structlog import get_logger
 
 from app.questionnaire.rules import evaluate_rule, get_metadata_value
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 class StateItem(object):
@@ -30,7 +31,6 @@ class StateItem(object):
         return answers
 
     def get_errors(self):
-        logger.debug("Item get errors called")
         # copy the errors into a new list
         errors = OrderedDict()
         if self.errors:
@@ -40,7 +40,6 @@ class StateItem(object):
         for child in self.children:
             errors.update(child.get_errors())
 
-        logger.debug("Item errors list is %s", errors)
         return errors
 
     def set_skipped(self, answers, metadata):

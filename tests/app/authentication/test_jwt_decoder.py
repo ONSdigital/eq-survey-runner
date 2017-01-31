@@ -18,19 +18,19 @@ class JWTDecodeTest(unittest.TestCase):
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = None
         with self.assertRaises(OSError) as ose:
             JWTDecryptor()
-        self.assertIn("KEYMAT not configured correctly.", ose.exception.args)
+        self.assertIn("keymat not configured correctly", ose.exception.args)
 
     def test_invalid_keymat_sr_private_key_password(self):
         settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = None
         with self.assertRaises(OSError) as ose:
             JWTDecryptor()
-        self.assertIn("KEYMAT not configured correctly.", ose.exception.args)
+        self.assertIn("keymat not configured correctly", ose.exception.args)
 
     def test_invalid_keymat_rrm_public_key(self):
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = None
         with self.assertRaises(OSError) as ose:
             JWTDecryptor()
-        self.assertIn("KEYMAT not configured correctly.", ose.exception.args)
+        self.assertIn("keymat not configured correctly", ose.exception.args)
 
     def test_decode_signed_jwt_token(self):
         decoder = JWTDecryptor()

@@ -203,7 +203,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
-        self.assertIn("Incorrect data in token", ite.exception.value)
+        self.assertIn("incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_ref_p_end_date(self):
         jwt = {
@@ -223,7 +223,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
-        self.assertIn("Incorrect data in token", ite.exception.value)
+        self.assertIn("incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_invalid_return_by(self):
         jwt = {
@@ -243,7 +243,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
-        self.assertIn("Incorrect data in token", ite.exception.value)
+        self.assertIn("incorrect data in token", ite.exception.value)
 
     def test_is_valid_fails_missing_ref_p_end_date(self):
         jwt = {
@@ -351,7 +351,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
-        self.assertIn("Incorrect data in token", ite.exception.value)
+        self.assertIn("incorrect data in token", ite.exception.value)
 
     def test_malformed_tx_id(self):
         jwt = {
@@ -373,7 +373,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
         self.assertTrue(valid)
         with self.assertRaises(InvalidTokenException) as ite:
             parse_metadata(jwt)
-        self.assertIn("Incorrect data in token", ite.exception.value)
+        self.assertIn("incorrect data in token", ite.exception.value)
 
 if __name__ == '__main__':
     unittest.main()

@@ -5,7 +5,6 @@ This module defines the SchemaParser for the v0.0.1 of the survey schema
 
 """
 
-import logging
 
 from app.parser.abstract_schema_parser import AbstractSchemaParser
 from app.parser.parser_utils import ParserUtils
@@ -31,8 +30,6 @@ from app.schema.questions.relationship_question import RelationshipQuestion
 from app.schema.questions.repeating_answer_question import RepeatingAnswerQuestion
 from app.schema.section import Section
 from app.utilities.factory import Factory
-
-logger = logging.getLogger(__name__)
 
 
 class SchemaParser(AbstractSchemaParser):
@@ -93,7 +90,6 @@ class SchemaParser(AbstractSchemaParser):
         questionnaire.id = ParserUtils.get_required_string(self._schema, "questionnaire_id")
         questionnaire.title = ParserUtils.get_required_string(self._schema, "title")
         questionnaire.survey_id = ParserUtils.get_required_string(self._schema, "survey_id")
-        logger.debug("title: " + questionnaire.title)
         questionnaire.description = ParserUtils.get_optional_string(self._schema, "description")
         questionnaire.theme = ParserUtils.get_required_string(self._schema, "theme")
         questionnaire.data_version = ParserUtils.get_required_string(self._schema, "data_version")

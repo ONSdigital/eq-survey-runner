@@ -1,16 +1,16 @@
-import logging
 from abc import abstractmethod
 
 from pika import BasicProperties
 from pika import BlockingConnection
 from pika import URLParameters
 from pika.exceptions import AMQPError
+from structlog import get_logger
 
 from app import settings
 from app.submitter.encrypter import Encrypter
 from app.submitter.submission_failed import SubmissionFailedException
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 class SubmitterFactory(object):
@@ -52,7 +52,7 @@ class Submitter(object):
 class LogSubmitter(Submitter):
 
     def send_message(self, message, queue):
-        logger.info("Message submitted %s", message)
+        logger.info("message submitted", message=message)
         return True
 
 
@@ -64,15 +64,11 @@ class RabbitMQSubmitter(Submitter):
         try:
             self.connection = BlockingConnection(URLParameters(settings.EQ_RABBITMQ_URL))
         except AMQPError as e:
-            logger.error('Unable to connect to Prime Message Server')
-            logger.info("Unable to open Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
-            logger.error("Attempting failover to secondary")
+            logger.error("unable to open rabbit mq connection", exc_info=e, rabbit_url=settings.EQ_RABBITMQ_URL)
             try:
                 self.connection = BlockingConnection(URLParameters(settings.EQ_RABBITMQ_URL_SECONDARY))
             except AMQPError as err:
-                logger.error('Unable to connect to Prime Message Server')
-                logger.info("Unable to open Secondary Rabbit MQ connection to %s, ERROR: %s", settings.EQ_RABBITMQ_URL_SECONDARY, repr(e))
-                logger.error("Attempting failover to secondary")
+                logger.error("unable to open rabbit mq connection", exc_info=e, rabbit_url=settings.EQ_RABBITMQ_URL_SECONDARY)
                 raise err
 
     def _disconnect(self):
@@ -80,7 +76,7 @@ class RabbitMQSubmitter(Submitter):
             if self.connection:
                 self.connection.close()
         except AMQPError as e:
-            logger.warning("Unable to close Rabbit MQ connection to  " + settings.EQ_RABBITMQ_URL + " " + repr(e))
+            logger.error("unable to close rabbit mq connection", exc_info=e, rabbit_url=settings.EQ_RABBITMQ_URL)
 
     def send_message(self, message, queue):
         """
@@ -90,7 +86,7 @@ class RabbitMQSubmitter(Submitter):
         :return: a boolean value indicating if it was successful
         """
         message_as_string = str(message)
-        logger.info("Sending messaging " + message_as_string)
+        logger.info("sending message to rabbit mq", message=message_as_string)
         try:
             self._connect()
             channel = self.connection.channel()
@@ -103,14 +99,12 @@ class RabbitMQSubmitter(Submitter):
                                                   delivery_mode=2,
                                               ))
             if published:
-                logger.info("Sent to rabbit mq " + message_as_string)
+                logger.info("sent message to rabbit mq")
             else:
-                logger.error('Unable to send message')
-                logger.info("Unable to send to rabbit mq " + message_as_string)
+                logger.error("unable to send message to rabbit mq", message=message_as_string)
             return published
         except AMQPError as e:
-            logger.error('Unable to send message')
-            logger.info("Unable to send " + message_as_string + " to " + settings.EQ_RABBITMQ_URL + " " + repr(e))
+            logger.error("unable to send message to rabbit mq", exc_info=e, message=message_as_string)
             return False
         finally:
             self._disconnect()

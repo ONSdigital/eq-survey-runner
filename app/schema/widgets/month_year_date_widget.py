@@ -1,10 +1,6 @@
-import logging
-
 from flask import render_template
 
 from app.schema.widgets.date_widget import DateWidget
-
-logger = logging.getLogger(__name__)
 
 
 class MonthYearDateWidget(DateWidget):

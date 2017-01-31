@@ -1,9 +1,8 @@
-import logging
-
 from flask import Blueprint
 from flask import request
 from flask.ext.themes2 import render_theme_template
 from flask_login import current_user
+from structlog import get_logger
 from ua_parser import user_agent_parser
 
 from app.authentication.invalid_token_exception import InvalidTokenException
@@ -13,7 +12,7 @@ from app.libs.utils import convert_tx_id
 from app.schema.exceptions import QuestionnaireException
 from app.submitter.submission_failed import SubmissionFailedException
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 errors_blueprint = Blueprint('errors', __name__)
 
@@ -68,9 +67,9 @@ def internal_server_error(error=None):
 
 def log_exception(error):
     if error:
-        tx_id = get_tx_id()
-        message = 'An error has occurred with tx_id [{}]: {}'.format(''.join(tx_id), error) if tx_id else 'An error has occurred: {}'.format(error)
-        logger.exception(message)
+        logger.error('an error has occurred', exc_info=error)
+    else:
+        logger.error('an error has occurred')
 
 
 def _render_error_page(status_code):

@@ -1,6 +1,6 @@
-import logging
+from structlog import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 
 class Widget(object):
@@ -13,7 +13,7 @@ class Widget(object):
 
     def get_user_input(self, post_vars):
         user_input = post_vars.get(self.name, None)
-        logger.debug('Getting user input for "%s", value is "%s"', self.name, user_input)
+        logger.debug('getting user input', input_name=self.name)
         return user_input
 
     def get_other_input(self, post_vars, options):

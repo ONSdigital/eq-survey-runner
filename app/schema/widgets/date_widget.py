@@ -1,12 +1,9 @@
 import calendar
-import logging
 
 from flask import render_template
 
 from app.libs.utils import ObjectFromDict
 from app.schema.widget import Widget
-
-logger = logging.getLogger(__name__)
 
 
 class DateWidget(Widget):

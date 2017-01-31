@@ -2,7 +2,8 @@ import os
 import sys
 import time
 
-from app.cryptography.jwt_encoder import Encoder
+from structlog import ReturnLoggerFactory
+from structlog import configure
 
 
 def create_payload(user):
@@ -28,6 +29,7 @@ def create_payload(user):
 
 
 def generate_token():
+    from app.cryptography.jwt_encoder import Encoder
     encoder = Encoder()
     user = os.getenv('USER', 'UNKNOWN')
     payload = create_payload(user)
@@ -36,6 +38,8 @@ def generate_token():
     return encrypted_token
 
 if __name__ == '__main__':
+    # Disable logging for token generator as url should be only output
+    configure(logger_factory=ReturnLoggerFactory())
 
     if len(sys.argv) > 1:
         print("http://" + sys.argv[1] + "-surveys.eq.ons.digital/session?token=" + generate_token().decode())  # NOQA

@@ -1,6 +1,5 @@
 import datetime
 import json
-import logging
 from contextlib import contextmanager
 
 from sqlalchemy import Column
@@ -14,10 +13,11 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
+from structlog import get_logger
 
 from app import settings
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 base = declarative_base()
 
@@ -32,12 +32,12 @@ class QuestionnaireState(base):
         self.state = json.dumps(data)
 
     def set_data(self, data):
-        logger.debug("Setting data for questionnaire state")
+        logger.debug("setting data for questionnaire state")
         self.state = json.dumps(data)
 
     def get_data(self):
         data = json.loads(self.state)
-        logger.debug("Loading questionnaire state")
+        logger.debug("loading questionnaire state")
         return data
 
     def __repr__(self):
@@ -61,16 +61,13 @@ class EQSession(base):
 
 def create_session_and_engine():
     try:
-        logger.debug("About to create DB engine for %s", settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL)
+        logger.debug("creating db engine")
         eng = create_engine(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL, convert_unicode=True)
-        logger.debug("Created engine")
-        logger.debug("About to create DB session")
+        logger.debug("creating database session")
         session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=eng))
-        logger.debug("Session created")
         return session, eng
     except Exception as e:
-        logger.error("Error creating database connections")
-        logger.exception(e)
+        logger.error('error creating database connections', exc_info=e)
         raise e
 
 db_session, engine = create_session_and_engine()
@@ -109,7 +106,6 @@ def commit_or_rollback(database_session):
     try:
         yield database_session
         database_session.commit()
-        logger.debug("Committed")
     except SQLAlchemyError:
         database_session.rollback()
         raise

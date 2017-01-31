@@ -1,9 +1,5 @@
-import logging
-
 from app.libs.utils import convert_tx_id
 from app.utilities.date_utils import to_date
-
-logger = logging.getLogger(__name__)
 
 
 def build_metadata_context(metadata):
