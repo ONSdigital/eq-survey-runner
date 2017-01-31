@@ -151,7 +151,7 @@ class AnswerStore(object):
 
         return len(self.filter(answer.group_id, answer.block_id, answer.answer_id, answer.group_instance, answer.answer_instance))
 
-    def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None, location=None):
+    def filter(self, group_id=None, block_id=None, answer_id=None, group_instance=None, answer_instance=None, location=None, limit=None):
         """
         Find all answers in the answer store for a given set of filter parameter matches.
         If no filter parameters are passed it returns a copy of the list of all answers.
@@ -162,6 +162,7 @@ class AnswerStore(object):
         :param answer_instance: The answer instance to filter results by
         :param group_instance: The group instance to filter results by
         :param location: The location to filter results by (takes precedence over group_id, group_instance and block_id)
+        :param limit: Limit the number of answers returned
         :return: Return a list of answers which satisfy the filter criteria
         """
         filtered = []
@@ -187,6 +188,8 @@ class AnswerStore(object):
                     matches = matches and answer[k] == v
             if matches:
                 filtered.append(answer)
+                if limit and len(filtered) == limit:
+                    break
         return filtered
 
     def clear(self):

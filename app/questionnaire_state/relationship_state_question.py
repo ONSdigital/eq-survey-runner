@@ -1,5 +1,6 @@
 from flask_login import current_user
 
+from app import settings
 from app.globals import get_answer_store
 from app.jinja_filters import format_household_member_name
 from app.questionnaire_state.state_repeating_answer_question import RepeatingAnswerStateQuestion
@@ -14,9 +15,10 @@ class RelationshipStateQuestion(RepeatingAnswerStateQuestion):
     def build_repeating_state(self, user_input):
         template_answer = self.answers.pop()
         group_instance = template_answer.group_instance
+        answer_store = get_answer_store(current_user)
 
-        first_name_answers = get_answer_store(current_user).filter(answer_id='first-name')
-        last_name_answers = get_answer_store(current_user).filter(answer_id='last-name')
+        first_name_answers = answer_store.filter(answer_id='first-name', limit=settings.EQ_MAX_NUM_REPEATS)
+        last_name_answers = answer_store.filter(answer_id='last-name', limit=settings.EQ_MAX_NUM_REPEATS)
 
         first_names = [answer['value'] for answer in first_name_answers]
         last_names = [answer['value'] for answer in last_name_answers]

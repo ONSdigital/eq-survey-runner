@@ -288,6 +288,22 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         self.assertEqual(len(filtered), 1)
 
+    def test_filters_answers_with_limit(self):
+
+        for i in range(1, 50):
+            self.store.add(Answer(
+                block_id="1",
+                answer_id="2",
+                answer_instance=i,
+                group_id="5",
+                group_instance=1,
+                value=25,
+            ))
+
+        filtered = self.store.filter(limit=25)
+
+        self.assertEqual(len(filtered), 25)
+
     def test_maps_answers(self):
 
         answer_1 = Answer(
