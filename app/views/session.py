@@ -1,9 +1,15 @@
 import logging
 
+from app.submitter.submitter import SubmitterFactory
+from app.submitter.converter import convert_answers
+
 from flask import Blueprint
 from flask import redirect
 from flask import request
 from flask import session
+from flask import url_for
+
+
 from flask_login import current_user
 from werkzeug.exceptions import NotFound
 
@@ -43,9 +49,14 @@ def login():
     logger.debug("Token authenticated - linking to session")
 
     metadata = get_metadata(current_user)
-
     eq_id = metadata["eq_id"]
     form_type = metadata["form_type"]
+    json, schema = get_schema(metadata)
+    answer_store = get_answer_store(current_user)
+    navigator = PathFinder(json, answer_store, metadata)
+
+    if metadata["flush_data"]:
+        return _flush_data(eq_id, form_type, schema, metadata, answer_store, navigator.get_routing_path())
 
     logger.debug("Requested questionnaire %s for form type %s", eq_id, form_type)
 
@@ -53,9 +64,15 @@ def login():
         logger.error("Missing EQ id %s or form type %s in JWT", eq_id, form_type)
         raise NotFound
 
-    json, _ = get_schema(metadata)
-
-    navigator = PathFinder(json, get_answer_store(current_user), metadata)
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))
 
     return redirect(current_location.url(metadata))
+
+
+def _flush_data(eq_id, form_type, schema, metadata, answer_store, routing_path):
+    submitter = SubmitterFactory.get_submitter()
+    message = convert_answers(metadata, schema, answer_store, routing_path)
+    submitter.send_answers(message)
+    logger.info("Responses flushed for tx_id=%s", metadata["tx_id"])
+    return redirect(url_for('questionnaire.get_thank_you', eq_id=eq_id, form_type=form_type,
+                            collection_id=metadata["collection_exercise_sid"]))
