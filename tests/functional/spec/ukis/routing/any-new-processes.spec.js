@@ -123,18 +123,18 @@ describe('UKIS - Process Innovation', function() {
     expect(DevelopedProcesses.isOpen()).to.equal(true, 'Expected to Navigate to Q: 5.2')
   })
 
-  it('Given I am answering question 5.1 under 5. Process Innovation block, When I  select No as the response, Then I am routed to question 5.3', function() {
+  it('Given I am answering question 5.1 under 5. Process Innovation block, When I  select No as the response, Then I am routed to interstitial page', function() {
     startQuestionnaire('1_0001.json')
     Navigation.navigateToProcessInnovation()
     ProcessImproved.clickProcessImprovedAnswerNo().submit()
-    expect(ImprovedProcesses.isOpen()).to.equal(true, 'Expected to Navigate to Q: 5.3')
+    expect(ProcessInnovationCompleted.isOpen()).to.equal(true, 'Expected to Navigate to interstitial page')
   })
 
-  it('Given I am answering question 5.1 under 5. Process Innovation block, When I do not select a response, Then I am routed to question 5.3', function() {
+  it('Given I am answering question 5.1 under 5. Process Innovation block, When I do not select a response, Then I am routed to interstitial page', function() {
     startQuestionnaire('1_0001.json')
     Navigation.navigateToProcessInnovation()
     ProcessImproved.submit()
-    expect(ImprovedProcesses.isOpen()).to.equal(true, 'Expected to Navigate to Q: 5.3')
+    expect(ProcessInnovationCompleted.isOpen()).to.equal(true, 'Expected to Navigate to interstitial page')
   })
 
 })
