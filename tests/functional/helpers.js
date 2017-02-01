@@ -8,17 +8,13 @@ export const getUri = uri => browser.options.baseUrl + uri
 
 export const getRandomString = length => sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length).join('')
 
-export const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG') => {
+export const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
   devPage.open()
     .setUserId(getRandomString(10))
     .setCollectionId(getRandomString(10))
     .setSchema(schema)
     .setRegionCode(region)
 
-  var language = 'en'
-  if (process.env.EQ_LANGUAGE_CODE) {
-    language = process.env.EQ_LANGUAGE_CODE
-  }
   devPage.setLanguageCode(language)
 
   if (sexualIdentity) {

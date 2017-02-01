@@ -6,7 +6,6 @@ function open_url {
   open -a "/Applications/Google Chrome.app" $1
 }
 
-
 if [ -n "$VIRTUAL_ENV" ]; then
   echo "Already in virtual environment $VIRTUAL_ENV"
 else
@@ -45,10 +44,7 @@ fi
 echo "Environment variables in use:"
 env | grep EQ_
 
-if [ ! -s "static" ]; then
-  echo "WARNING: Frontend compilation needed"
-  exit 1
-fi
+$DIR/build.sh
 
 url="`python token_generator.py`"
 

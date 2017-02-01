@@ -75,3 +75,5 @@ newrelic.ini
 htmlcov/
 
 *errorShots*
+
+app/data/cy
