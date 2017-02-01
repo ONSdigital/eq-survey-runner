@@ -14,11 +14,12 @@
 
     {% if question.answers|length > 1 %}
 
+      {{question_titles|safe}}
+
       <fieldset class="question__fieldset">
 
         <legend class="u-vh">{{question_title|striptags}}</legend>
 
-        {{question_titles|safe}}
         {{question_description|safe}}
         {{question_guidance|safe}}
         {{question_answers|safe}}
