@@ -9,7 +9,7 @@ const assert = chai.assert
 
 describe('Household composition question for census test.', function() {
 
-  var household_composition_schema = 'test_household_question.json';
+  const household_composition_schema = 'test_household_question.json';
 
   it('Given no people added, when enter a name and submit, then name should be displayed on summary.', function() {
     //Given
@@ -210,5 +210,28 @@ describe('Household composition question for census test.', function() {
     HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
     HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
   })
+
+  it('Given a census household survey, when a user adds a new person, the "Person x" count should increment in the hidden legend', function() {
+    const numPeople = 4
+    startQuestionnaire(household_composition_schema)
+
+    for (let i = 1; i < numPeople; i++) {
+      HouseholdCompositionPage.addPerson()
+    }
+
+    expect(browser.getHTML('legend .js-household-loopindex', false)[numPeople - 1]).to.equal(numPeople.toString())
+  })
+
+  it('Given two more people are added, no names are added and submitted, errors should exist for all three individuals', function() {
+    startQuestionnaire(household_composition_schema)
+
+    HouseholdCompositionPage
+      .addPerson()
+      .addPerson()
+      .submit()
+
+      expect(browser.elements('.answer.js-has-errors').value.length).to.equal(3)
+
+  });
 
 })

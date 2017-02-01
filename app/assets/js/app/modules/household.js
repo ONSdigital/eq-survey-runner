@@ -19,17 +19,6 @@ class HouseholdMember extends EventEmitter {
 
   bindToDOM() {
     this.indexNodes = this.node.querySelectorAll('.js-household-loopindex')
-    const errorNode = this.node.querySelector('.js-has-errors')
-    if (errorNode) {
-      const fieldNodes = this.node.querySelector('.js-fields')
-      if (fieldNodes) {
-        const clone = fieldNodes.cloneNode(true)
-        errorNode.innerHTML = ''
-        errorNode.classList.remove('js-has-errors')
-        errorNode.appendChild(clone)
-      }
-    }
-
     this.inputs = this.node.querySelectorAll('input')
     this.actionNode = this.node.querySelector('.js-household-action')
     if (this.removeBtn) {
@@ -50,6 +39,18 @@ class HouseholdMember extends EventEmitter {
     this.node.classList.add('is-hidden')
     this.actionNode.innerHTML = ''
     this.actionNode.appendChild(this.removeBtn)
+
+    const errorNode = this.node.querySelector('.js-has-errors')
+
+    if (errorNode) {
+      const fieldNodes = this.node.querySelector('.js-fields')
+      if (fieldNodes) {
+        const clone = fieldNodes.cloneNode(true)
+        errorNode.innerHTML = ''
+        errorNode.classList.remove('js-has-errors')
+        errorNode.appendChild(clone)
+      }
+    }
 
     parent.appendChild(this.node)
     this.node.querySelector('input').focus()
