@@ -52,7 +52,6 @@ export function svg() {
       if (file.isDirectory()) {
         let name = file.relative + '.svg'
         gulp.src(file.path + '/**/*.svg')
-          .pipe(svgmin())
           .pipe(svgstore({
             fileName: name,
             prefix: 'icon-',
@@ -72,7 +71,6 @@ export function images() {
     .pipe(tap((file, t) => {
       if (file.relative.indexOf('svg') > -1) {
         gulp.src(file.path)
-        .pipe(svgmin())
         .pipe(gulp.dest(paths.images.output))
       }
     }))
