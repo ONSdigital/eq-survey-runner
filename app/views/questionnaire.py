@@ -16,6 +16,7 @@ from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.questionnaire_manager import get_questionnaire_manager
+from app.questionnaire_state.state_repeating_answer_question import extract_answer_instance_id
 from app.submitter.converter import convert_answers
 from app.submitter.submitter import SubmitterFactory
 from app.templating.introduction_context import get_introduction_context
@@ -234,7 +235,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
 
     this_location = Location(group_id, group_instance=0, block_id='household-composition')
 
-    if 'action[save_continue]' in request.form:
+    if _household_answers_changed(answer_store):
         _remove_repeating_on_household_answers(answer_store, group_id)
 
     valid = questionnaire_manager.process_incoming_answers(this_location, post_data=request.form)
@@ -279,6 +280,19 @@ def _save_sign_out(collection_id, eq_id, form_type, q_manager, this_location):
     else:
         q_manager.update_questionnaire_store_save_sign_out(this_location)
         return redirect(url_for('.get_sign_out', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
+
+
+def _household_answers_changed(answer_store):
+    household_answers = answer_store.filter(block_id="household-composition")
+    if len(household_answers) != len(request.form)-1:
+        return True
+    for answer in request.form:
+        answer_id, answer_index = extract_answer_instance_id(answer)
+        stored_answer = next((d for d in household_answers if d['answer_id'] == answer_id and
+                              d['answer_instance'] == answer_index), None)
+        if stored_answer and (stored_answer['value'] or '') != request.form[answer]:
+            return True
+    return False
 
 
 def _remove_repeating_on_household_answers(answer_store, group_id):
