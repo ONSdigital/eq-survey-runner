@@ -49,6 +49,8 @@ class HouseholdMember extends EventEmitter {
         errorNode.innerHTML = ''
         errorNode.classList.remove('js-has-errors')
         errorNode.appendChild(clone)
+        // grab the inputs again as the cloning makes the original array out of date
+        this.inputs = this.node.querySelectorAll('input')
       }
     }
 
