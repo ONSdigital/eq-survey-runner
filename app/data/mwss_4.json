@@ -163,7 +163,8 @@
                                             "mandatory": true,
                                             "options": [],
                                             "q_code": "50",
-                                            "type": "Currency"
+                                            "type": "Currency",
+                                            "alias": "weekly_total_gross"
                                         }
                                     ],
                                     "description": "",
@@ -242,7 +243,7 @@
                                     "description": "",
                                     "id": "weekly-pay-question-6",
                                     "number": "2.3",
-                                    "title": "Of the [TOTAL gross PAY] paid to <em>weekly paid</em> employees in the <em>last week of December 2016</em>, what amount was:",
+                                    "title": "Of the {{answers.weekly_total_gross|format_currency}} paid to <em>weekly paid</em> employees in the <em>last week of December 2016</em>, what amount was:",
                                     "type": "General"
                                 }
                             ],
@@ -903,7 +904,8 @@
                                             "label": "Total gross fortnightly pay including advanced holiday pay, pay award arrears, and bonuses or commissions",
                                             "mandatory": true,
                                             "options": [],
-                                            "type": "Currency"
+                                            "type": "Currency",
+                                            "alias": "fortnightly_total_gross"
                                         }
                                     ],
                                     "description": "",
@@ -979,7 +981,7 @@
                                     "description": "",
                                     "id": "fortnightly-pay-question-20",
                                     "number": "3.3",
-                                    "title": "Of the [TOTAL gross PAY]  paid to <em>fortnightly paid</em> employees in the <em>last week of December 2016</em>, what amount was:",
+                                    "title": "Of the {{answers.fortnightly_total_gross|format_currency}} paid to <em>fortnightly paid</em> employees in the <em>last week of December 2016</em>, what amount was:",
                                     "type": "General"
                                 }
                             ],
@@ -1632,7 +1634,8 @@
                                             "mandatory": true,
                                             "options": [],
                                             "q_code": "151",
-                                            "type": "Currency"
+                                            "type": "Currency",
+                                            "alias": "monthly_total_gross"
                                         }
                                     ],
                                     "description": "",
@@ -1700,7 +1703,7 @@
                                     "description": "",
                                     "id": "calendar-monthly-pay-question-34",
                                     "number": "4.3",
-                                    "title": "Of the [TOTAL gross PAY]  paid to <em>calendar monthly paid</em>  employees in <em>December 2016</em>, what amount was:",
+                                    "title": "Of the {{answers.monthly_total_gross|format_currency}} paid to <em>calendar monthly paid</em>  employees in <em>December 2016</em>, what amount was:",
                                     "type": "General"
                                 }
                             ],
@@ -2359,7 +2362,8 @@
                                             "label": "Total gross four weekly pay including advanced holiday pay, pay award arrears, and bonuses or commissions",
                                             "mandatory": true,
                                             "options": [],
-                                            "type": "Currency"
+                                            "type": "Currency",
+                                            "alias": "four_weekly_total_gross"
                                         }
                                     ],
                                     "description": "",
@@ -2425,7 +2429,7 @@
                                     "description": "",
                                     "id": "four-weekly-pay-question-48",
                                     "number": "5.3",
-                                    "title": "Of the [TOTAL gross PAY]  paid to <em>four weekly paid</em> employees in <em>December 2016</em>, what amount was:",
+                                    "title": "Of the {{answers.four_weekly_total_gross|format_currency}} paid to <em>four weekly paid</em> employees in <em>December 2016</em>, what amount was:",
                                     "type": "General"
                                 }
                             ],
@@ -3077,7 +3081,8 @@
                                             "label": "Total gross five weekly pay",
                                             "mandatory": true,
                                             "options": [],
-                                            "type": "Currency"
+                                            "type": "Currency",
+                                            "alias": "five_weekly_total_gross"
                                         }
                                     ],
                                     "description": "",
@@ -3144,7 +3149,7 @@
                                     "description": "",
                                     "id": "five-weekly-pay-question-62",
                                     "number": "6.3",
-                                    "title": "Of the [TOTAL gross PAY]  paid to <em>five weekly paid</em> employees in <em>December 2016</em>, what amount was:",
+                                    "title": "Of the {{answers.five_weekly_total_gross|format_currency}} paid to <em>five weekly paid</em> employees in <em>December 2016</em>, what amount was:",
                                     "type": "General"
                                 }
                             ],
