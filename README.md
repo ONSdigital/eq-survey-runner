@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/ONSdigital/eq-survey-runner.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-survey-runner) [![Code Issues](https://www.quantifiedcode.com/api/v1/project/1709e9d582cc479a86568a043117d4d0/badge.svg)](https://www.quantifiedcode.com/app/project/1709e9d582cc479a86568a043117d4d0) [![codecov](https://codecov.io/gh/ONSdigital/eq-survey-runner/branch/master/graph/badge.svg)](https://codecov.io/gh/ONSdigital/eq-survey-runner) [![Dependency Status](https://gemnasium.com/badges/github.com/ONSdigital/eq-survey-runner.svg)](https://gemnasium.com/github.com/ONSdigital/eq-survey-runner)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/82e63fc5bc5c43e8ba1ba6d13bfb4243)](https://www.codacy.com/app/ONSDigital/eq-survey-runner)
 
 ## Run with Docker
+Install Docker for your system: https://www.docker.com/
 
 To get eq-survey-runner running the following command will build and run the containers
 ```
@@ -22,18 +23,47 @@ docker-compose build --no-cache
 ```
 
 
+## Pre-Requisites
+In order to run locally you'll need PostgreSQL and Node.js installed
+
+PostgreSQL
+```
+brew install postgres
+```
+
+npm
+```
+brew install npm
+```
+
+Note that npm currently requires Python 2.x for some of the setup steps,
+it doesn't work with Python 3.
+
 ## Setup
-Based on python 3
+It is preferable to use the version of Python locally that matches that
+used on deployment. This project has a `.python_version` file for this
+purpose.
 
-If using virtualenvwrapper (if not, you should be), create a new virtual env for python3
-
-```
-mkvirtual --python=`which python3` <your env name>
-```
-
-Install dependencies using pip
+If you are using pyenv (https://github.com/yyuu/pyenv), you can install
+the correct version of Python alongside any existing versions easily:
 
 ```
+pyenv install
+```
+
+You should also use a virtualenv (https://github.com/yyuu/pyenv-virtualenv)
+to keep this project's package installations separate from others you
+are working on, to create a new virtualenv:
+
+```
+pyenv virtualenv <your env name>
+pyenv activate <your env name>
+```
+
+Upgrade pip and install dependencies:
+
+```
+pip install --upgrade pip setuptools
 pip install -r requirements.txt
 pip install -e git+https://github.com/reaperhulk/cryptography.git@password-cb#egg=cryptography
 ```
@@ -57,8 +87,6 @@ This will generate a JWT for you to log into the application. The script prints 
 ### Front-end Toolkit
 
 The front-end toolkit uses nodejs, yarn and gulp.
-
-Install nodejs `6.7.1`. Make sure npm is installed with `npm`.
 
 Install yarn with:
 
@@ -106,7 +134,7 @@ You will need to install the EB CLI tools using PIP.
 *NOTE:* The EB tools do not currently work with Python 3.5.  I installed the EB CLI tools *outside* my virtual environment and installed installed them globally using the following commands
 
 ```
-deactivate                       # to exit the virtual environment
+pyenv deactivate                 # to exit the virtual environment
 sudo pip install awsebcli        # install the eb cli tools
 ```
 
@@ -204,19 +232,6 @@ EQ_MAX_HTTP_POST_CONTENT_LENGTH - The maximum http post content length that the 
 EQ_MAX_NUM_REPEATS - The maximum number of repeats the system will allow
 EQ_DEVELOPER_LOGGING - Enable developer style logging described here http://structlog.readthedocs.io/en/stable/development.html
 ```
-## Loading schemas from S3
-
-To enable an instance of the survey runner to load form schemas from AWS S3,
-set the environment variable `EQ_SCHEMA_BUCKET` and ensure the correct IAM
-permissions are set for the ec2 instances that are created by elasticbeanstalk
-OR ensure you have the correct boto aws credentials set in `~/.aws/credentials`.
-
-To disable S3 support: set `EQ_SCHEMA_BUCKET` to an empty string '' e.g.
-
-```export EQ_SCHEMA_BUCKET=''```
-
-This will then make the schemas available in the dev page and enable the runner
-to look inside the bucket to load schemas for rendering.
 
 ## JWT Integration
 Integration with the survey runner requires the use of a signed JWT using public and private key pair (see https://jwt.io,
