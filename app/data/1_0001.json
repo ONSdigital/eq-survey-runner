@@ -3650,19 +3650,11 @@
                                                 }
                                             ],
                                             "q_code": "1632",
-                                            "type": "Radio"
+                                            "type": "Radio",
+                                            "guidance": "<p><strong>Definition of ‘public sector’</strong></p><p>The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy etc.</p>"
                                         }
                                     ],
                                     "description": "",
-                                    "guidance": [
-                                        {
-                                            "description": "",
-                                            "list": [
-                                                "The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy etc."
-                                            ],
-                                            "title": "Definition of ‘public sector’"
-                                        }
-                                    ],
                                     "id": "importances-information-public-sector-question",
                                     "number": "8.4",
                                     "title": "How important to {{respondent.ru_name}}’s innovation activities was information from:",
@@ -4377,17 +4369,11 @@
                                                     "value": "Other Countries"
                                                 }
                                             ],
-                                            "type": "Checkbox"
+                                            "type": "Checkbox",
+                                            "guidance": "<p><strong>Definition of ‘public sector’</strong></p><p>The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy etc.</p>"
                                         }
                                     ],
                                     "description": "",
-                                    "guidance": [
-                                        {
-                                            "description": "The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy.",
-                                            "list": [],
-                                            "title": "Definition of ‘public sector’"
-                                        }
-                                    ],
                                     "id": "co-operation-public-sector-question",
                                     "number": "9.4",
                                     "title": "Did {{respondent.ru_name}} co-operate on any innovation activities with:",
@@ -4912,7 +4898,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "",
+                                            "description": "Including non-disclosure agreements",
                                             "id": "innovations-protected-secrecy-answer",
                                             "label": "Secrecy?",
                                             "mandatory": false,
@@ -4939,15 +4925,6 @@
                                         }
                                     ],
                                     "description": "",
-                                    "guidance": [
-                                        {
-                                            "description": "",
-                                            "list": [
-                                                "non-disclosure agreements"
-                                            ],
-                                            "title": "Include:"
-                                        }
-                                    ],
                                     "id": "innovations-protected-secrecy-question",
                                     "number": "9.15",
                                     "title": "What proportions of your innovations were protected by:",
@@ -5125,7 +5102,7 @@
                                             "type": "Radio"
                                         },
                                         {
-                                            "description": "<p>Include:</p><p>UK government’s agencies or funding bodies for example Innovate UK, formerly known as TSB</p>",
+                                            "description": "Include UK government’s agencies or funding bodies. For example Innovate UK, formerly known as TSB",
                                             "id": "public-financial-support-central-government-answer",
                                             "label": "UK central government",
                                             "mandatory": false,
