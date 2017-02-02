@@ -8,26 +8,6 @@
 {% set block = state.schema_item %}
 {% set all_errors = state.get_errors().items() %}
 
-{%- block subheader -%}
-
-  {% if previous_location or navigation %}
-
-  <div class="container">
-    {% if previous_location %}
-      <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
-    {% endif %}
-
-    {% if navigation %}
-      <div class="page__menubtn">
-        <button class="btn btn--link pluto btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn">{{_('View sections')}}</button>
-      </div>
-    {% endif %}
-  </div>
-
-  {% endif %}
-
-{%- endblock subheader -%}
-
 {% block sidebar %}
   {% if navigation %}
     {% include theme('partials/navigation.html') %}
@@ -79,16 +59,9 @@
       </div>
 
       <button class="btn btn--primary btn--lg qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
-      <div>
+      <div class="u-mb-m">
         <button class="btn btn--link mars" type="submit" name="action[save_sign_out]">{% block save_sign_out_button_text %}Save and complete later{% endblock %}</button>
       </div>
     </form>
 
 {% endblock main %}
-
-{% block prefooter %}
-
-  {% if previous_location %}
-    <a class="page__previous page__previous--bottom" href="{{previous_location}}" id="bottom-previous">Previous</a>
-  {% endif %}
-{% endblock prefooter %}

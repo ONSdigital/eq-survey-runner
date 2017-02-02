@@ -55,25 +55,24 @@
           {% include theme('partials/topbar.html') %}
         {% endblock %}</div>
         <div class="page__subheader">
+          <div class="container">
           {%- block subheader -%}
-          {% if previous_location %}
-            <div class="container">
-              <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
-            </div>
-          {% endif %}
+            {% if previous_location %}
+                <a class="page__previous" id="top-previous" href="{{previous_location}}">Previous</a>
+            {% endif %}
+
+            {% if navigation %}
+              <div class="page__menubtn">
+                <button class="btn btn--link pluto btn--menu js-menu-btn" data-close-label="{{_('Hide sections')}}" type="button" id="menu-btn">{{_('View sections')}}</button>
+              </div>
+            {% endif %}
           {%- endblock subheader -%}
+          </div>
         </div>
         <div class="page__container container">
-          {% block content %}{% endblock %}
-        </div>
-
-      </div>
-
-      <div class="page__prefooter">
-        <div class="container">
-          {% block prefooter %}
+          {% block content %}
             {% if previous_location %}
-                <a class="page__previous" id="bottom-previous" href="{{previous_location}}">Previous</a>
+              <a class="page__previous page__previous--bottom" href="{{previous_location}}" id="bottom-previous">Previous</a>
             {% endif %}
           {% endblock %}
         </div>
@@ -84,6 +83,7 @@
           {% include theme('partials/footer.html') %}
         {% endblock %}
       </div>
+
 
     </div>
 
