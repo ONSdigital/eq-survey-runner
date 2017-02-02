@@ -1,5 +1,5 @@
 import {paths} from '../../gulp/paths'
-import {chrome, firefox, ie11, ie10, ie9, ie8} from './capabilities'
+import {chrome, chromeNoJS, firefox, ie11, ie10, ie9, ie8} from './capabilities'
 
 var argv = require('yargs').argv
 
@@ -8,6 +8,7 @@ let config = {
   // Level of logging verbosity: silent | verbose | command | data | result | error
   logLevel: 'error',
   coloredLogs: true,
+  bail: 1,
   screenshotPath: paths.test.errorShots,
   baseUrl: process.env.BASEURL,
   waitforTimeout: 2000,
