@@ -32,10 +32,6 @@
 
 .page__previous {
   float: left;
-  font-size: 0.8rem;
-  @include mq(m) {
-    font-size: 1rem;
-  }
   .has-nav-open & {
     display: none;
   }
@@ -55,7 +51,7 @@
 }
 
 .page__nav.nav {
-  margin: 0.5rem 0 1rem;
+  margin: 0 0 1rem;
   position: absolute;
   right: -13rem;
   width: 12rem;
