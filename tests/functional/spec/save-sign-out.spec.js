@@ -35,7 +35,7 @@ describe('RSI - Save and restore test', function() {
     // Then I am redirected to sign out page and my session is cleared
     expect(signOut.isOpen(), 'sign out page should be open').to.be.true
     browser.url(url)
-    expect(browser.getSource()).to.contain('Error 401')
+    expect(browser.getSource()).to.contain('Your session has expired')
     })
 
 

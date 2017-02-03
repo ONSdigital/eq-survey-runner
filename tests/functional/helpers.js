@@ -2,6 +2,8 @@ import {sampleSize} from 'lodash'
 import devPage from './pages/dev.page'
 import landingPage from './pages/landing.page'
 
+export {landingPage}
+
 export const getUri = uri => browser.options.baseUrl + uri
 
 export const getRandomString = length => sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length).join('')

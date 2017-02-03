@@ -202,7 +202,7 @@ def add_blueprints(application):
 def setup_secure_cookies(application):
     application.secret_key = settings.EQ_SECRET_KEY
     application.permanent_session_lifetime = timedelta(
-        seconds=settings.EQ_SESSION_TIMEOUT)
+        seconds=settings.EQ_SESSION_TIMEOUT_SECONDS)
     application.session_interface = SHA256SecureCookieSessionInterface()
     application.config['SESSION_COOKIE_SECURE'] = True
 
