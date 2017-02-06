@@ -56,17 +56,20 @@ def jwt_login(request):
     # also clear the secure cookie data
     session.clear()
 
-    if request.args.get('token') is None:
+    encrypted_token = request.args.get('token')
+
+    if encrypted_token is None:
         raise NoTokenException("Please provide a token")
-    token = _jwt_decrypt(request)
+
+    decrypted_token = jwt_decrypt(encrypted_token)
 
     # once we've decrypted the token correct
     # check we have the required user data
-    _check_user_data(token)
+    _check_user_data(decrypted_token)
 
     # get the hashed user id for eq
-    user_id = UserIDGenerator.generate_id(token)
-    user_ik = UserIDGenerator.generate_ik(token)
+    user_id = UserIDGenerator.generate_id(decrypted_token)
+    user_ik = UserIDGenerator.generate_ik(decrypted_token)
 
     # store the user id in the session
     session_storage.store_user_id(user_id)
@@ -74,7 +77,7 @@ def jwt_login(request):
     session_storage.store_user_ik(user_ik)
 
     # store the meta data
-    metadata = parse_metadata(token)
+    metadata = parse_metadata(decrypted_token)
     logger.bind(tx_id=metadata["tx_id"])
 
     questionnaire_store = get_questionnaire_store(user_id, user_ik)
@@ -83,11 +86,10 @@ def jwt_login(request):
     logger.info("user authenticated")
 
 
-def _jwt_decrypt(request):
-    encrypted_token = request.args.get('token')
+def jwt_decrypt(encrypted_token):
     decoder = JWTDecryptor()
-    token = decoder.decrypt_jwt_token(encrypted_token)
-    return token
+    decrypted_token = decoder.decrypt_jwt_token(encrypted_token)
+    return decrypted_token
 
 
 def _check_user_data(token):

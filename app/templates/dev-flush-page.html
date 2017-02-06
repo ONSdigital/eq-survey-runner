@@ -1,0 +1,28 @@
+{% set _theme="default" %}
+{% extends 'dev-page.html' %}
+{% block page_title %}EQ Development Flush Data{% endblock %}
+
+{% block devpage %}
+
+<div class="field-container">
+  <label for="schema">Schemas</label>
+    <select id="schema" name="schema" class="qa-select-schema">
+      {% for id in available_schemas %}
+      <option name="{{id}}" value="{{id}}">{{id}}</option>
+      {% endfor %}
+  </select>
+</div>
+
+<div class="field-container">
+  <label for="collection_exercise_sid">Collection Exercise SID</label>
+  <span><input id="collection_exercise_sid" name="collection_exercise_sid" type="text" class="qa-collection-sid">
+  <img class="refresh" data-refresh="collection_exercise_sid"></span>
+</div>
+
+<div class="field-container">
+  <label for="ru_ref">RU Ref</label>
+  <span><input id="ru_ref" name="ru_ref" type="text" class="qa-ru-ref">
+  <img class="refresh" data-refresh="ru_ref"></span>
+</div>
+
+{% endblock devpage %}
