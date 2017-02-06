@@ -5,7 +5,9 @@ from flask_login import current_user
 from structlog import get_logger
 from ua_parser import user_agent_parser
 
+from app.authentication.flush_permission_denied import FlushPermissionDenied
 from app.authentication.invalid_token_exception import InvalidTokenException
+from app.authentication.no_survey_data_to_flush import NoSurveyDataToFlush
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
 from app.libs.utils import convert_tx_id
@@ -35,6 +37,7 @@ def unauthorized(error=None):
 
 
 @errors_blueprint.app_errorhandler(InvalidTokenException)
+@errors_blueprint.app_errorhandler(FlushPermissionDenied)
 def forbidden(error=None):
     log_exception(error)
     return _render_error_page(403)
@@ -42,6 +45,7 @@ def forbidden(error=None):
 
 @errors_blueprint.app_errorhandler(404)
 @errors_blueprint.app_errorhandler(QuestionnaireException)
+@errors_blueprint.app_errorhandler(NoSurveyDataToFlush)
 def page_not_found(error=None):
     log_exception(error)
     return _render_error_page(404)

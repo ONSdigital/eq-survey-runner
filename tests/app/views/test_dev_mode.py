@@ -3,6 +3,11 @@ def test_dev_mode(survey_runner):
     assert response.status_code == 200
 
 
+def test_dev_flush_mode(survey_runner):
+    response = survey_runner.test_client().get('/dev_flush')
+    assert response.status_code == 200
+
+
 def test_dev_mode_submission(survey_runner):
     # Use the parameters from the dev page
     response = survey_runner.test_client().post('/dev', data=dict(
@@ -22,3 +27,14 @@ def test_dev_mode_submission(survey_runner):
         user_id="test"
     ), follow_redirects=True)
     assert response.status_code == 200
+
+
+def test_dev_flush_mode_submission(survey_runner):
+    response = survey_runner.test_client().post('/dev_flush', data=dict(
+        schema="1_0205.json",
+        collection_exercise_sid="789",
+        ru_ref="12346789012A",
+    ), follow_redirects=True)
+
+    # As there is no data in the system there is nothing to flush and a 404 is returned
+    assert response.status_code == 404

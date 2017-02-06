@@ -191,6 +191,10 @@ def add_blueprints(application):
     application.register_blueprint(session_blueprint)
     session_blueprint.config = application.config.copy()
 
+    from app.views.flush import flush_blueprint
+    application.register_blueprint(flush_blueprint)
+    flush_blueprint.config = application.config.copy()
+
     from app.views.errors import errors_blueprint
     application.register_blueprint(errors_blueprint)
     errors_blueprint.config = application.config.copy()

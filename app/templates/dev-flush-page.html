@@ -1,0 +1,118 @@
+{% set _theme="default" %}
+{% extends 'layouts/_base.html' %} {% block page_title %}EQ Development Flush Data{% endblock %} {% block content %}
+
+<!-- this page needs a total rethink, but this tidies things up a little for now -->
+
+{% block header %}{% endblock header %}
+{% block subheader %}{% endblock subheader %}
+{% block prefooter %}{% endblock prefooter %}
+{% block footer %}{% endblock footer %}
+
+<style media="screen">
+
+* { font-family: "lato" }
+
+label { display:inline-block; font-weight: 600; margin-bottom: 0.25rem; width:200px; font-size:0.9rem; }
+
+.field-wrap {
+  margin:0 auto;
+}
+
+.field-container {
+  display:block;
+  margin: 0 0 0.2rem 0;
+  position: relative;
+}
+
+.field-container span {
+  position: relative;
+}
+
+input[type=text] {
+  padding:0.3rem;
+  width:300px;
+  font-size:0.9rem;
+}
+
+select {
+  width:300px;
+  font-size:0.9rem;
+  padding:0.35rem;
+  -webkit-appearance:none;
+  appearance:none;
+  border-radius:0;
+  border:1px solid #dfdfdf;
+  background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSLQodC70L7QuV8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNC4yODUsMTEuMjg0TDE2LDE5LjU3MWwtOC4yODUtOC4yODhjLTAuMzk1LTAuMzk1LTEuMDM0LTAuMzk1LTEuNDI5LDAgIGMtMC4zOTQsMC4zOTUtMC4zOTQsMS4wMzUsMCwxLjQzbDguOTk5LDkuMDAybDAsMGwwLDBjMC4zOTQsMC4zOTUsMS4wMzQsMC4zOTUsMS40MjgsMGw4Ljk5OS05LjAwMiAgYzAuMzk0LTAuMzk1LDAuMzk0LTEuMDM2LDAtMS40MzFDMjUuMzE5LDEwLjg4OSwyNC42NzksMTAuODg5LDI0LjI4NSwxMS4yODR6IiBmaWxsPSIjMTIxMzEzIiBpZD0iRXhwYW5kX01vcmUiLz48Zy8+PGcvPjxnLz48Zy8+PGcvPjxnLz48L3N2Zz4=);
+  background-position: center right 5px;
+  background-repeat:no-repeat;
+  background-size:22px;
+}
+
+.field-container img {
+  width:26px;
+  height:auto;
+  display:block;
+  position:absolute;
+  top: -1px;
+  right: 2px;
+  cursor:pointer;
+}
+
+.btn {
+  background:#6099c6;
+  color:white;
+  border:0;
+  border-radius:3px;
+  display:block;
+  padding:0.75rem 2rem;
+  text-align: center;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+
+</style>
+
+<div class="container">
+
+  <div class="u-mt-l">
+
+    <div role="main" id="main">
+
+      <form action="" method="POST" xmlns="http://www.w3.org/1999/html">
+
+        <div class="field-wrap">
+
+            <div class="field-container">
+              <label for="schema">Schemas</label>
+                <select id="schema" name="schema" class="qa-select-schema">
+                  {% for id in available_schemas %}
+                  <option name="{{id}}" value="{{id}}">{{id}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+
+            <div class="field-container">
+              <label for="collection_exercise_sid">Collection Exercise SID</label>
+              <span><input id="collection_exercise_sid" name="collection_exercise_sid" type="text" class="qa-collection-sid">
+              <img class="refresh" data-refresh="collection_exercise_sid"></span>
+            </div>
+
+            <div class="field-container">
+              <label for="ru_ref">RU Ref</label>
+              <span><input id="ru_ref" name="ru_ref" type="text" class="qa-ru-ref">
+              <img class="refresh" data-refresh="ru_ref"></span>
+            </div>
+
+             <div class="field-container">
+              <input type="submit" value="Flush Data" class="qa-btn-submit-dev btn"/>
+            </div>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

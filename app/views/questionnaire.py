@@ -294,6 +294,7 @@ def submit_answers(eq_id, form_type, collection_id):
         path_finder = PathFinder(g.schema_json, answer_store, metadata)
         submitter = SubmitterFactory.get_submitter()
         message = convert_answers(metadata, g.schema_json, answer_store, path_finder.get_routing_path())
+        message['completed'] = True
         submitter.send_answers(message)
 
         return redirect(url_for('.get_thank_you', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
