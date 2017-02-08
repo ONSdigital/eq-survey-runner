@@ -3,6 +3,7 @@ from datetime import datetime
 from app.validation.error_messages import error_messages
 
 from wtforms import validators
+from wtforms.compat import string_types
 
 
 class IntegerCheck(object):
@@ -47,7 +48,35 @@ class NumberRange(object):
                 raise validators.ValidationError(self.messages['INTEGER_TOO_LARGE'])
 
 
+class OptionalForm(object):
+    """
+    Allows completely empty form and stops the validation chain from continuing.
+    Will not stop the validation chain if any one of the fields is populated.
+    """
+    field_flags = ('optional',)
+
+    def __call__(self, form, field):
+        empty_form = True
+
+        for formfield in form:
+            has_raw_data = hasattr(formfield, 'raw_data')
+
+            is_empty = has_raw_data and len(formfield.raw_data) == 0
+            is_blank = has_raw_data and len(formfield.raw_data) >= 1 \
+                and isinstance(formfield.raw_data[0], string_types) and not formfield.raw_data[0]
+
+            # By default we'll receive empty arrays for values not posted, so need to allow empty lists
+            empty_field = True if is_empty else is_blank
+
+            empty_form &= empty_field
+
+        if empty_form:
+            raise validators.StopValidation()
+
+
 class DateRequired(object):
+    field_flags = ('required', )
+
     def __init__(self, message=None):
         if not message:
             message = error_messages['MANDATORY']

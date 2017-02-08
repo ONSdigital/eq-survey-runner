@@ -26,6 +26,7 @@ class TestSaveSignOut(IntegrationTestCase):
             "action[save_sign_out]": "Save and sign out"
         }
         resp = self.client.post(block_one_url, data=post_data, follow_redirects=False)
+
         self.assertEquals(resp.status_code, 302)
 
         # Then
@@ -63,7 +64,7 @@ class TestSaveSignOut(IntegrationTestCase):
         content = resp.get_data(True)
         self.assertRegexpMatches(content, 'Please only enter whole numbers into the field.')
 
-    def test_save_sign_out_complete_a_block_then_revist_it(self):
+    def test_save_sign_out_complete_a_block_then_revisit_it(self):
 
         # If a user completes a block, but then goes back and uses save and come back on that block, that block
         # should no longer be considered complete and on re-authenticate it should return to it

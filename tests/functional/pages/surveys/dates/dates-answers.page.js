@@ -64,6 +64,21 @@ class DatesPage extends QuestionPage {
     browser.setValue('[name="month-year-answer-year"]', year)
     return this
   }
+
+  setNonMandatoryDateAnswerDay(day) {
+    browser.setValue('[name="non-mandatory-date-answer-day"]', day)
+    return this
+  }
+
+  setNonMandatoryDateAnswerMonth(month) {
+    browser.selectByValue('[name="non-mandatory-date-answer-month"]', month)
+    return this
+  }
+
+  setNonMandatoryDateAnswerYear(year) {
+    browser.setValue('[name="non-mandatory-date-answer-year"]', year)
+    return this
+  }
 }
 
 export default new DatesPage()

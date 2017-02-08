@@ -1,6 +1,6 @@
 import SummaryPage from '../../summary.page'
 
-class RSISummaryPage extends SummaryPage {
+class DateSummaryPage extends SummaryPage {
 
   getDateRangeSummary() {
     return browser.element('[data-qa="date-range-from-answer"]').getText()
@@ -17,6 +17,10 @@ class RSISummaryPage extends SummaryPage {
   getNonMandatoryDate() {
     return browser.element('[data-qa="non-mandatory-date-answer-answer"]').getText()
   }
+
+  editNonMandatoryDate() {
+    return browser.element('[data-qa="non-mandatory-date-answer-edit"]').click()
+  }
 }
 
-export default new RSISummaryPage()
+export default new DateSummaryPage()

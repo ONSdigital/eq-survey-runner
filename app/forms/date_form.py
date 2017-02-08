@@ -2,9 +2,8 @@ import logging
 import calendar
 
 from wtforms import Form, FormField, SelectField, StringField
-from wtforms import validators
 
-from app.validation.validators import DateCheck, DateRangeCheck, DateRequired, MonthYearCheck
+from app.validation.validators import DateCheck, OptionalForm, DateRangeCheck, DateRequired, MonthYearCheck
 
 logger = logging.getLogger(__name__)
 
@@ -21,14 +20,10 @@ def get_date_form(answer=None, to_field_data=None, validate_range=False, error_m
     :return: The generated DateForm metaclass
     """
     class DateForm(Form):
-
-        # Set up all the calendar month choices for select
-        MONTH_CHOICES = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
-
-        month = SelectField(choices=MONTH_CHOICES, default='')
+        day = StringField()
         year = StringField()
 
-    validate_with = [validators.Optional()]
+    validate_with = [OptionalForm()]
 
     if not error_messages:
         date_messages = {}
@@ -51,7 +46,10 @@ def get_date_form(answer=None, to_field_data=None, validate_range=False, error_m
     if validate_range and to_field_data:
         validate_with += [DateRangeCheck(to_field_data=to_field_data, messages=date_messages)]
 
-    DateForm.day = StringField(validators=validate_with)
+    # Set up all the calendar month choices for select
+    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
+
+    DateForm.month = SelectField(choices=month_choices, default='', validators=validate_with)
 
     return DateForm
 
@@ -68,9 +66,7 @@ def get_month_year_form(answer, error_messages):
     class MonthYearDateForm(Form):
         year = StringField()
 
-    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
-
-    validate_with = [validators.optional()]
+    validate_with = [OptionalForm()]
 
     if answer['mandatory'] is True:
         error_message = error_messages['MANDATORY']
@@ -86,6 +82,9 @@ def get_month_year_form(answer, error_messages):
         validate_with += [MonthYearCheck(error_message)]
     else:
         validate_with += [MonthYearCheck()]
+
+    # Set up all the calendar month choices for select
+    month_choices = [('', 'Select month')] + [(str(x), calendar.month_name[x]) for x in range(1, 13)]
 
     MonthYearDateForm.month = SelectField(choices=month_choices, default='', validators=validate_with)
 
