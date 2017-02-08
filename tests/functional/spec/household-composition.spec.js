@@ -19,7 +19,7 @@ describe('Household composition question for census test.', function() {
     HouseholdCompositionPage.setPersonName(0, 'Alpha', '', 'One').submit()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Alpha One')).to.be.true
   })
 
   it('Given no people added, when I enter another name, then there should be two input fields displayed.', function() {
@@ -48,9 +48,9 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
-    HouseholdCompositionSummary.isNameDisplayed('Bravo Two')
-    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Alpha One')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Bravo Two')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(2, 'Charlie Three')).to.be.true
   })
 
  it('Given two people added, when I remove second person, only first person should appear on summary.', function() {
@@ -65,8 +65,8 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Alpha')
-    HouseholdCompositionSummary.isNameDisplayed('Bravo')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Alpha One')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Bravo Two')).to.be.true
 
     // When
     HouseholdCompositionSummary.clickAddAnother().submit()
@@ -74,8 +74,8 @@ describe('Household composition question for census test.', function() {
 
     // Then
 
-    HouseholdCompositionSummary.isNameDisplayed('Alpha')
-    HouseholdCompositionSummary.isNameDisplayed('Bravo')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Alpha One')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Bravo Two')).to.be.false
   })
 
  it('Given three people added, when I remove second person, first and third person should appear on summary.', function() {
@@ -92,17 +92,17 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
-    HouseholdCompositionSummary.isNameDisplayed('Bravo Two')
-    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Alpha One')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Bravo Two')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(2, 'Charlie Three')).to.be.true
 
     // When
     HouseholdCompositionSummary.clickAddAnother().submit()
     HouseholdCompositionPage.removePerson(1).submit()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Alpha One')
-    HouseholdCompositionSummary.isNameDisplayed('Charlie Three')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Alpha One')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Charlie Three')).to.be.true
   })
 
   it('Given first, middle and last names entered, then each part of name should appear on summary.', function() {
@@ -117,8 +117,8 @@ describe('Household composition question for census test.', function() {
         .submit()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Alpha Bravo Charlie')
-    HouseholdCompositionSummary.isNameDisplayed('Delta Echo Foxtrot')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Alpha Bravo Charlie')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Delta Echo Foxtrot')).to.be.true
   })
 
   it('Given first name entered, when second name entered and RETURN pressed, should navigate to next question.', function() {
@@ -133,8 +133,8 @@ describe('Household composition question for census test.', function() {
         .returnKey()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
-    HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Homer J Simpson')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Marge Simpson')).to.be.true
   })
 
   it('Given first name entered, when second name entered and ENTER pressed, should navigate to next question.', function() {
@@ -149,8 +149,8 @@ describe('Household composition question for census test.', function() {
         .enterKey()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
-    HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Homer J Simpson')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Marge Simpson')).to.be.true
   })
 
   it('Given no name entered, when ENTER pressed, form should submit and validation should fire.', function() {
@@ -184,11 +184,11 @@ describe('Household composition question for census test.', function() {
         .enterKey()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
-    HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
-    HouseholdCompositionSummary.isNameDisplayed('Lisa Simpson')
-    HouseholdCompositionSummary.isNameDisplayed('Bart Simpson')
-    HouseholdCompositionSummary.isNameDisplayed('Maggie Simpson')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Homer J Simpson')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Marge Simpson')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(2, 'Lisa Simpson')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(3, 'Bart Simpson')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(4, 'Maggie Simpson')).to.be.true
   })
 
   it('Given named entered, and we come back into the page and press ENTER, should navigate to next question.', function() {
@@ -207,8 +207,8 @@ describe('Household composition question for census test.', function() {
     HouseholdCompositionPage.setMiddleNames(1, '').enterKey()
 
     // Then
-    HouseholdCompositionSummary.isNameDisplayed('Homer J Simpson')
-    HouseholdCompositionSummary.isNameDisplayed('Marge Simpson')
+    expect(HouseholdCompositionSummary.isNameDisplayed(0, 'Homer J Simpson')).to.be.true
+    expect(HouseholdCompositionSummary.isNameDisplayed(1, 'Marge Simpson')).to.be.true
   })
 
   it('Given a census household survey, when a user adds a new person, the "Person x" count should increment in the hidden legend', function() {

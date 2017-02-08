@@ -13,6 +13,14 @@ export const chrome = {
   ...defaultCapabilities
 }
 
+export const chromeNoJS = {
+  ...chrome,
+  name: 'Chrome (No JavaScript) 48 | OS X 10.11',
+  chromeOptions: {
+    prefs: {'profile.managed_default_content_settings.javascript': 2}
+  }
+}
+
 export const firefox = {
   name: 'Firefox 43 | OS X 10.11',
   browserName: 'firefox',
