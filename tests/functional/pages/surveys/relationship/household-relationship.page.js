@@ -3,30 +3,26 @@ import QuestionPage from '../question.page'
 class HouseholdRelationshipPage extends QuestionPage {
 
   getRelationshipLabelAt(index) {
-    var elementId = browser.elements('[data-qa="relationship-title"]').value[index]
+    const elementId = browser.elements('[data-qa="relationship-title"]').value[index]
     return browser.elementIdText(elementId.ELEMENT).value
   }
 
   setHusbandOrWifeRelationship(index, relationshipIndex) {
-    var id = this.buildRelationshipAnswerId(index, 1)
+    const id = this.buildRelationshipAnswerId(index, 0)
     browser.waitForExist(id)
     browser.element(id).click().pause(300)
     return this
   }
 
   setSonOrDaughterRelationship(index, relationshipIndex) {
-    var id = this.buildRelationshipAnswerId(index, 4)
+    const id = this.buildRelationshipAnswerId(index, 3)
     browser.waitForExist(id)
     browser.element(id).click().pause(300)
     return this
   }
 
   buildRelationshipAnswerId(index, relationshipId) {
-    var id = '#who-is-related'
-    if (index > 0) {
-      id += '_' + index
-    }
-    id += '-' + relationshipId
+    const id = '#who-is-related-' + index + '-' + relationshipId
     return id
   }
 

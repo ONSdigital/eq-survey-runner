@@ -47,7 +47,7 @@ LIGHT_SHIP_YES = [
                 "user_answer": "Yes"
             },
             {
-                "answer": "A wise choice young Yedi. Pick your hero",
+                "answer": "A wise choice young Jedi. Pick your hero",
                 "answer_id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
                 "user_answer": "Dan Skywalker"
             }
@@ -65,7 +65,7 @@ LIGHT_SHIP_NO = [
                 "user_answer": "No"
             },
             {
-                "answer": "A wise choice young Yedi. Pick your hero",
+                "answer": "A wise choice young Jedi. Pick your hero",
                 "answer_id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
                 "user_answer": "Leyoda"
             }
@@ -195,7 +195,7 @@ QUIZ_PAGE_1 = [
             {
                 "answer": "When was The Empire Strikes Back released?",
                 "answer_id": "6fd644b0-798e-4a58-a393-a438b32fe637-month",
-                "user_answer": "05"
+                "user_answer": "5"
             },
             {
                 "answer": "When was The Empire Strikes Back released?",
@@ -210,7 +210,7 @@ QUIZ_PAGE_1 = [
             {
                 "answer": "When was The Empire Strikes Back released?",
                 "answer_id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month",
-                "user_answer": "05"
+                "user_answer": "5"
             },
             {
                 "answer": "When was The Empire Strikes Back released?",

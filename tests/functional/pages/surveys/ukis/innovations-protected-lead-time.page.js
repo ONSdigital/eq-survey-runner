@@ -9,22 +9,22 @@ class InnovationsProtectedLeadTimePage extends MultipleChoiceWithOtherPage {
   }
 
   clickInnovationsProtectedLeadTimeAnswerNone() {
-    browser.element('[id="innovations-protected-lead-time-answer-1"]').click()
+    browser.element('[id="innovations-protected-lead-time-answer-0"]').click()
     return this
   }
 
   clickInnovationsProtectedLeadTimeAnswerLessThan40() {
-    browser.element('[id="innovations-protected-lead-time-answer-2"]').click()
+    browser.element('[id="innovations-protected-lead-time-answer-1"]').click()
     return this
   }
 
   clickInnovationsProtectedLeadTimeAnswer4090() {
-    browser.element('[id="innovations-protected-lead-time-answer-3"]').click()
+    browser.element('[id="innovations-protected-lead-time-answer-2"]').click()
     return this
   }
 
   clickInnovationsProtectedLeadTimeAnswerOver90() {
-    browser.element('[id="innovations-protected-lead-time-answer-4"]').click()
+    browser.element('[id="innovations-protected-lead-time-answer-3"]').click()
     return this
   }
 

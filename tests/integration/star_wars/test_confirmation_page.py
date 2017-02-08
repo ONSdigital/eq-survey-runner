@@ -94,7 +94,7 @@ class TestConfirmationPage(StarWarsTestCase):
         content = self.retrieve_content(page)
         self.assertIn('An accomplished Rebel Alliance Intelligence Officer', content)
         self.assertIn('Do you like this page?', content)
-        self.assertIn('3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-2', content)
+        self.assertIn('3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-1', content)
 
     def rogue_one_check_takings_page(self, page):
         content = self.retrieve_content(page)

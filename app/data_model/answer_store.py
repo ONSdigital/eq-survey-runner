@@ -4,8 +4,16 @@ from collections import OrderedDict
 
 
 class Answer(object):
-    def __init__(self, group_id=None, block_id=None, answer_id=None, value=None, group_instance=0, answer_instance=0):
+    def __init__(self, group_id=None, block_id=None, answer_id=None, value=None, group_instance=0, answer_instance=0, location=None):
         valid = (group_id or answer_id or block_id or value) is not None
+
+        if location:
+            assert not (group_id or group_instance or block_id), \
+                "Expected either a location object or one or more of group_id, group_instance, block_id params"
+
+            group_id = location.group_id
+            group_instance = location.group_instance
+            block_id = location.block_id
 
         if not valid:
             raise ValueError("At least one of 'answer_id', 'group_id', 'block_id' or 'value' must be set for Answer")
@@ -253,3 +261,28 @@ def natural_order(key):
     :return:
     """
     return [number_else_string(c) for c in re.split(r'(\d+)', key)]
+
+
+def iterate_over_instance_ids(answer_instances):
+    """
+    Iterates over a collection of answer instances yielding the answer Id and answer instance Id.
+    :param answer_instances: A list of raw answer_instance_ids
+    :return: Tuple containing the answer Id and answer instance Id.
+    """
+
+    answer_instance_ids = sorted(answer_instances, key=natural_order)
+
+    for answer_instance_id in answer_instance_ids:
+        answer_id, answer_index = extract_answer_instance_id(answer_instance_id)
+        yield answer_id, answer_index
+
+
+def extract_answer_instance_id(answer_instance_id):
+    matches = re.match(r'^(.+?)_(\d+)$', answer_instance_id)
+    if matches:
+        answer_id, index = matches.groups()
+    else:
+        answer_id = answer_instance_id
+        index = 0
+
+    return answer_id, int(index)

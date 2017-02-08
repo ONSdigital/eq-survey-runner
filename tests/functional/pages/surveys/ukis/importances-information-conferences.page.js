@@ -9,22 +9,22 @@ class ImportancesInformationConferencesPage extends MultipleChoiceWithOtherPage 
   }
 
   clickImportancesInformationConferencesAnswerHigh() {
-    browser.element('[id="importances-information-conferences-answer-1"]').click()
+    browser.element('[id="importances-information-conferences-answer-0"]').click()
     return this
   }
 
   clickImportancesInformationConferencesAnswerMedium() {
-    browser.element('[id="importances-information-conferences-answer-2"]').click()
+    browser.element('[id="importances-information-conferences-answer-1"]').click()
     return this
   }
 
   clickImportancesInformationConferencesAnswerLow() {
-    browser.element('[id="importances-information-conferences-answer-3"]').click()
+    browser.element('[id="importances-information-conferences-answer-2"]').click()
     return this
   }
 
   clickImportancesInformationConferencesAnswerNotImportant() {
-    browser.element('[id="importances-information-conferences-answer-4"]').click()
+    browser.element('[id="importances-information-conferences-answer-3"]').click()
     return this
   }
 

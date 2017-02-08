@@ -22,7 +22,7 @@ class TestSaveSignOut(IntegrationTestCase):
         block_one_url = resp.headers['Location']
 
         post_data = {
-            "total-retail-turnover": " 1000",
+            "total-retail-turnover": "1000",
             "action[save_sign_out]": "Save and sign out"
         }
         resp = self.client.post(block_one_url, data=post_data, follow_redirects=False)
@@ -31,7 +31,6 @@ class TestSaveSignOut(IntegrationTestCase):
         # Then
         # we are presented with the sign out page
         self.assertTrue("signed-out" in resp.headers['Location'])
-        self.assertEquals(resp.status_code, 302)
 
         resp = self.client.get(resp.headers['Location'], follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
@@ -87,7 +86,7 @@ class TestSaveSignOut(IntegrationTestCase):
             "period-from-month": "4",
             "period-from-year": "2016",
             "period-to-day": "30",
-            "period-to-month": "04",
+            "period-to-month": "4",
             "period-to-year": "2016",
             "action[save_continue]": "Save &amp; Continue"
         }

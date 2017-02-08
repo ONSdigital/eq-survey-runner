@@ -9,22 +9,22 @@ class ConstrainingInnovationCostsPage extends MultipleChoiceWithOtherPage {
   }
 
   clickConstrainingInnovationCostsAnswerHigh() {
-    browser.element('[id="constraining-innovation-costs-answer-1"]').click()
+    browser.element('[id="constraining-innovation-costs-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationCostsAnswerMedium() {
-    browser.element('[id="constraining-innovation-costs-answer-2"]').click()
+    browser.element('[id="constraining-innovation-costs-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationCostsAnswerLow() {
-    browser.element('[id="constraining-innovation-costs-answer-3"]').click()
+    browser.element('[id="constraining-innovation-costs-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationCostsAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-costs-answer-4"]').click()
+    browser.element('[id="constraining-innovation-costs-answer-3"]').click()
     return this
   }
 

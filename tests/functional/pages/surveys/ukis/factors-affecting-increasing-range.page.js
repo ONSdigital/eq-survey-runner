@@ -9,22 +9,22 @@ class FactorsAffectingIncreasingRangePage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingIncreasingRangeAnswerHigh() {
-    browser.element('[id="factors-affecting-increasing-range-answer-1"]').click()
+    browser.element('[id="factors-affecting-increasing-range-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingIncreasingRangeAnswerMedium() {
-    browser.element('[id="factors-affecting-increasing-range-answer-2"]').click()
+    browser.element('[id="factors-affecting-increasing-range-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingIncreasingRangeAnswerLow() {
-    browser.element('[id="factors-affecting-increasing-range-answer-3"]').click()
+    browser.element('[id="factors-affecting-increasing-range-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingIncreasingRangeAnswerNotImportant() {
-    browser.element('[id="factors-affecting-increasing-range-answer-4"]').click()
+    browser.element('[id="factors-affecting-increasing-range-answer-3"]').click()
     return this
   }
 

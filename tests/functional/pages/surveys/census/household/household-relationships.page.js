@@ -8,68 +8,68 @@ class HouseholdRelationshipsPage extends MultipleChoiceWithOtherPage {
     super('household-relationships')
   }
 
-  clickHouseholdRelationshipsAnswerHusbandOrWife() {
-    browser.element('[id="household-relationships-answer-1"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerHusbandOrWife(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-0"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerSameSexCivilPartner() {
-    browser.element('[id="household-relationships-answer-2"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerSameSexCivilPartner(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-1"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerPartner() {
-    browser.element('[id="household-relationships-answer-3"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerPartner(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-2"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerGrandparent() {
-    browser.element('[id="household-relationships-answer-4"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerGrandparent(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-3"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerMotherOrFather() {
-    browser.element('[id="household-relationships-answer-5"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerMotherOrFather(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-4"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerStepMotherOrStepFather() {
-    browser.element('[id="household-relationships-answer-6"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerStepMotherOrStepFather(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-5"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerSonOrDaughter() {
-    browser.element('[id="household-relationships-answer-7"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerSonOrDaughter(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-6"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerStepChild() {
-    browser.element('[id="household-relationships-answer-8"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerStepChild(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-7"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerBrotherOrSister() {
-    browser.element('[id="household-relationships-answer-9"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerBrotherOrSister(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-8"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerStepBrotherOrStepSister() {
-    browser.element('[id="household-relationships-answer-10"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerStepBrotherOrStepSister(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-9"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerGrandchild() {
-    browser.element('[id="household-relationships-answer-11"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerGrandchild(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-10"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerRelationOther() {
-    browser.element('[id="household-relationships-answer-12"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerRelationOther(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-11"]').click().pause(300)
     return this
   }
 
-  clickHouseholdRelationshipsAnswerUnrelatedIncludingFosterChild() {
-    browser.element('[id="household-relationships-answer-13"]').click().pause(300)
+  clickHouseholdRelationshipsAnswerUnrelatedIncludingFosterChild(instance = 0) {
+    browser.element('[id="household-relationships-answer-' + instance + '-12"]').click().pause(300)
     return this
   }
 

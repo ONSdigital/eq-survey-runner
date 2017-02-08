@@ -9,22 +9,22 @@ class ConstrainingInnovationGovernmentPage extends MultipleChoiceWithOtherPage {
   }
 
   clickConstrainingInnovationGovernmentAnswerHigh() {
-    browser.element('[id="constraining-innovation-government-answer-1"]').click()
+    browser.element('[id="constraining-innovation-government-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationGovernmentAnswerMedium() {
-    browser.element('[id="constraining-innovation-government-answer-2"]').click()
+    browser.element('[id="constraining-innovation-government-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationGovernmentAnswerLow() {
-    browser.element('[id="constraining-innovation-government-answer-3"]').click()
+    browser.element('[id="constraining-innovation-government-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationGovernmentAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-government-answer-4"]').click()
+    browser.element('[id="constraining-innovation-government-answer-3"]').click()
     return this
   }
 

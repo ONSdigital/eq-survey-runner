@@ -78,6 +78,32 @@ class TestSchemaValidation(unittest.TestCase):
                     else:
                         unique_id.append(id_value)
 
+    def test_child_answers_define_parent(self):
+        for schema_file in self.all_schema_files():
+            with open(schema_file, encoding="utf8") as file:
+                schema_json = load(file)
+
+                for block in SchemaHelper.get_blocks(schema_json):
+                    answers_by_id = SchemaHelper.get_answers_by_id_for_block(block)
+
+                    for answer_id, answer in answers_by_id.items():
+                        if answer['type'] in ['Radio', 'Checkbox']:
+                            child_answer_ids = (o['child_answer_id'] for o in answer['options'] if 'child_answer_id' in o)
+
+                            for child_answer_id in child_answer_ids:
+                                if child_answer_id not in answers_by_id:
+                                    self.fail("Child answer with id '%s' does not exist in schema %s"
+                                              % (child_answer_id, schema_file))
+                                if 'parent_answer_id' not in answers_by_id[child_answer_id]:
+                                    self.fail("Child answer '%s' does not define parent_answer_id '%s' in schema %s"
+                                              % (child_answer_id, answer_id, schema_file))
+                                if answers_by_id[child_answer_id]['parent_answer_id'] != answer_id:
+                                    self.fail("Child answer '%s' defines incorrect parent_answer_id '%s' in schema %s: "
+                                              "Should be '%s"
+                                              % (child_answer_id, answers_by_id[child_answer_id]['parent_answer_id'],
+                                                 schema_file, answer_id))
+
+
     @staticmethod
     def all_schema_files():
         schema_files = []

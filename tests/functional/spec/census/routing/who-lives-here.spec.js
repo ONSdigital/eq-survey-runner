@@ -94,7 +94,7 @@ describe('Who lives here routing Scenarios', function () {
     expect(ElsePermanentOrFamilyHome.isOpen()).to.equal(true, 'Expecting go to else permanent or family home')
   })
 
-  it('Given I am answering question 1 in the who lives here section, When I dont select any response, Then I a alert msg saying mandatory field must be displayed ', function () {
+  it('Given I am answering question 1 in the who lives here section, When I don\'t select any response, Then I a alert msg saying mandatory field must be displayed ', function () {
     startCensusQuestionnaire('census_household.json', true)
     PermanentOrFamilyHome.submit()
     expect(PermanentOrFamilyHome.errorExists()).to.be.true

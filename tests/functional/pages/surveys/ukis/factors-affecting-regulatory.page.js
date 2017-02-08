@@ -9,22 +9,22 @@ class FactorsAffectingRegulatoryPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingRegulatoryAnswerHigh() {
-    browser.element('[id="factors-affecting-regulatory-answer-1"]').click()
+    browser.element('[id="factors-affecting-regulatory-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingRegulatoryAnswerMedium() {
-    browser.element('[id="factors-affecting-regulatory-answer-2"]').click()
+    browser.element('[id="factors-affecting-regulatory-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingRegulatoryAnswerLow() {
-    browser.element('[id="factors-affecting-regulatory-answer-3"]').click()
+    browser.element('[id="factors-affecting-regulatory-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingRegulatoryAnswerNotImportant() {
-    browser.element('[id="factors-affecting-regulatory-answer-4"]').click()
+    browser.element('[id="factors-affecting-regulatory-answer-3"]').click()
     return this
   }
 

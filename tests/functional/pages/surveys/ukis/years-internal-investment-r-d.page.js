@@ -9,17 +9,17 @@ class YearsInternalInvestmentRDPage extends MultipleChoiceWithOtherPage {
   }
 
   clickYearsInternalInvestmentRDAnswer2014() {
-    browser.element('[id="years-internal-investment-r-d-answer-1"]').click()
+    browser.element('[id="years-internal-investment-r-d-answer-0"]').click()
     return this
   }
 
   clickYearsInternalInvestmentRDAnswer2015() {
-    browser.element('[id="years-internal-investment-r-d-answer-2"]').click()
+    browser.element('[id="years-internal-investment-r-d-answer-1"]').click()
     return this
   }
 
   clickYearsInternalInvestmentRDAnswer2016() {
-    browser.element('[id="years-internal-investment-r-d-answer-3"]').click()
+    browser.element('[id="years-internal-investment-r-d-answer-2"]').click()
     return this
   }
 

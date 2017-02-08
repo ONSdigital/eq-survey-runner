@@ -9,22 +9,22 @@ class FactorsAffectingEnvironmentalPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingEnvironmentalAnswerHigh() {
-    browser.element('[id="factors-affecting-environmental-answer-1"]').click()
+    browser.element('[id="factors-affecting-environmental-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingEnvironmentalAnswerMedium() {
-    browser.element('[id="factors-affecting-environmental-answer-2"]').click()
+    browser.element('[id="factors-affecting-environmental-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingEnvironmentalAnswerLow() {
-    browser.element('[id="factors-affecting-environmental-answer-3"]').click()
+    browser.element('[id="factors-affecting-environmental-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingEnvironmentalAnswerNotImportant() {
-    browser.element('[id="factors-affecting-environmental-answer-4"]').click()
+    browser.element('[id="factors-affecting-environmental-answer-3"]').click()
     return this
   }
 

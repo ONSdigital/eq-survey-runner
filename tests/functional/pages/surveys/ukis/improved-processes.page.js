@@ -9,12 +9,12 @@ class ImprovedProcessesPage extends MultipleChoiceWithOtherPage {
   }
 
   clickImprovedProcessesAnswerYes() {
-    browser.element('[id="improved-processes-answer-1"]').click()
+    browser.element('[id="improved-processes-answer-0"]').click()
     return this
   }
 
   clickImprovedProcessesAnswerNo() {
-    browser.element('[id="improved-processes-answer-2"]').click()
+    browser.element('[id="improved-processes-answer-1"]').click()
     return this
   }
 

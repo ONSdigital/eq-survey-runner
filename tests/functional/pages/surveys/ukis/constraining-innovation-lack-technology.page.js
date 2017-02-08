@@ -9,22 +9,22 @@ class ConstrainingInnovationLackTechnologyPage extends MultipleChoiceWithOtherPa
   }
 
   clickConstrainingInnovationLackTechnologyAnswerHigh() {
-    browser.element('[id="constraining-innovation-lack-technology-answer-1"]').click()
+    browser.element('[id="constraining-innovation-lack-technology-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationLackTechnologyAnswerMedium() {
-    browser.element('[id="constraining-innovation-lack-technology-answer-2"]').click()
+    browser.element('[id="constraining-innovation-lack-technology-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationLackTechnologyAnswerLow() {
-    browser.element('[id="constraining-innovation-lack-technology-answer-3"]').click()
+    browser.element('[id="constraining-innovation-lack-technology-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationLackTechnologyAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-lack-technology-answer-4"]').click()
+    browser.element('[id="constraining-innovation-lack-technology-answer-3"]').click()
     return this
   }
 

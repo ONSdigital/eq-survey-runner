@@ -9,12 +9,12 @@ class InvestmentAdvancedMachineryPage extends MultipleChoiceWithOtherPage {
   }
 
   clickInvestmentAdvancedMachineryAnswerYes() {
-    browser.element('[id="investment-advanced-machinery-answer-1"]').click()
+    browser.element('[id="investment-advanced-machinery-answer-0"]').click()
     return this
   }
 
   clickInvestmentAdvancedMachineryAnswerNo() {
-    browser.element('[id="investment-advanced-machinery-answer-2"]').click()
+    browser.element('[id="investment-advanced-machinery-answer-1"]').click()
     return this
   }
 

@@ -50,7 +50,7 @@ def login():
         logger.error("missing eq id or form type in jwt")
         raise NotFound
 
-    json, _ = get_schema(metadata)
+    json = get_schema(metadata)
 
     navigator = PathFinder(json, get_answer_store(current_user), metadata)
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))

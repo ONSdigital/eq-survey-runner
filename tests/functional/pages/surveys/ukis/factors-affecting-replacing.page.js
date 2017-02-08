@@ -9,22 +9,22 @@ class FactorsAffectingReplacingPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingReplacingAnswerHigh() {
-    browser.element('[id="factors-affecting-replacing-answer-1"]').click()
+    browser.element('[id="factors-affecting-replacing-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingReplacingAnswerMedium() {
-    browser.element('[id="factors-affecting-replacing-answer-2"]').click()
+    browser.element('[id="factors-affecting-replacing-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingReplacingAnswerLow() {
-    browser.element('[id="factors-affecting-replacing-answer-3"]').click()
+    browser.element('[id="factors-affecting-replacing-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingReplacingAnswerNotImportant() {
-    browser.element('[id="factors-affecting-replacing-answer-4"]').click()
+    browser.element('[id="factors-affecting-replacing-answer-3"]').click()
     return this
   }
 

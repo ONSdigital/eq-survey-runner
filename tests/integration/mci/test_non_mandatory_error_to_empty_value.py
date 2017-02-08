@@ -27,11 +27,11 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         form_data = {
             # Start Date
             "total-sales-food": "01",
-            "period-from-month": "04",
+            "period-from-month": "4",
             "period-from-year": "2016",
             # End Date
             "period-to-day": "01",
-            "period-to-month": "04",
+            "period-to-month": "4",
             "period-to-year": "2017",
             # Non Mandatory field but fails validation as should be Integer
             "total-retail-turnover": "failing test",
@@ -55,7 +55,7 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
             "period-from-year": "2016",
             # End Date
             "period-to-day": "30",
-            "period-to-month": "04",
+            "period-to-month": "4",
             "period-to-year": "2016",
             # Total Turnover
             "total-retail-turnover": "100000",

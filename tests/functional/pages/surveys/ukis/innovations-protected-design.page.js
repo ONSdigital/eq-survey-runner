@@ -9,22 +9,22 @@ class InnovationsProtectedDesignPage extends MultipleChoiceWithOtherPage {
   }
 
   clickInnovationsProtectedDesignAnswerNone() {
-    browser.element('[id="innovations-protected-design-answer-1"]').click()
+    browser.element('[id="innovations-protected-design-answer-0"]').click()
     return this
   }
 
   clickInnovationsProtectedDesignAnswerLessThan40() {
-    browser.element('[id="innovations-protected-design-answer-2"]').click()
+    browser.element('[id="innovations-protected-design-answer-1"]').click()
     return this
   }
 
   clickInnovationsProtectedDesignAnswer4090() {
-    browser.element('[id="innovations-protected-design-answer-3"]').click()
+    browser.element('[id="innovations-protected-design-answer-2"]').click()
     return this
   }
 
   clickInnovationsProtectedDesignAnswerOver90() {
-    browser.element('[id="innovations-protected-design-answer-4"]').click()
+    browser.element('[id="innovations-protected-design-answer-3"]').click()
     return this
   }
 

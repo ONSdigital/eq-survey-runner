@@ -9,12 +9,12 @@ class InvestmentExistingKnowledgeInnovationPage extends MultipleChoiceWithOtherP
   }
 
   clickInvestmentExistingKnowledgeInnovationAnswerYes() {
-    browser.element('[id="investment-existing-knowledge-innovation-answer-1"]').click()
+    browser.element('[id="investment-existing-knowledge-innovation-answer-0"]').click()
     return this
   }
 
   clickInvestmentExistingKnowledgeInnovationAnswerNo() {
-    browser.element('[id="investment-existing-knowledge-innovation-answer-2"]').click()
+    browser.element('[id="investment-existing-knowledge-innovation-answer-1"]').click()
     return this
   }
 

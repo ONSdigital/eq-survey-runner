@@ -9,22 +9,22 @@ class InnovationsProtectedTrademarkPage extends MultipleChoiceWithOtherPage {
   }
 
   clickInnovationsProtectedTrademarkAnswerNone() {
-    browser.element('[id="innovations-protected-trademark-answer-1"]').click()
+    browser.element('[id="innovations-protected-trademark-answer-0"]').click()
     return this
   }
 
   clickInnovationsProtectedTrademarkAnswerLessThan40() {
-    browser.element('[id="innovations-protected-trademark-answer-2"]').click()
+    browser.element('[id="innovations-protected-trademark-answer-1"]').click()
     return this
   }
 
   clickInnovationsProtectedTrademarkAnswer4090() {
-    browser.element('[id="innovations-protected-trademark-answer-3"]').click()
+    browser.element('[id="innovations-protected-trademark-answer-2"]').click()
     return this
   }
 
   clickInnovationsProtectedTrademarkAnswerOver90() {
-    browser.element('[id="innovations-protected-trademark-answer-4"]').click()
+    browser.element('[id="innovations-protected-trademark-answer-3"]').click()
     return this
   }
 

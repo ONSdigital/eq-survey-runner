@@ -9,17 +9,17 @@ class TypeOfFlatPage extends MultipleChoiceWithOtherPage {
   }
 
   clickTypeOfFlatAnswerInAPurposeBuiltBlockOfFlatsOrTenement() {
-    browser.element('[id="type-of-flat-answer-1"]').click()
+    browser.element('[id="type-of-flat-answer-0"]').click()
     return this
   }
 
   clickTypeOfFlatAnswerPartOfAConvertedOrSharedHouseIncludingBedsits() {
-    browser.element('[id="type-of-flat-answer-2"]').click()
+    browser.element('[id="type-of-flat-answer-1"]').click()
     return this
   }
 
   clickTypeOfFlatAnswerInACommercialBuildingForExampleInAnOfficeBuildingHotelOrOverAShop() {
-    browser.element('[id="type-of-flat-answer-3"]').click()
+    browser.element('[id="type-of-flat-answer-2"]').click()
     return this
   }
 

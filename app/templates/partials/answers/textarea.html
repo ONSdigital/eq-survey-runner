@@ -1,3 +1,25 @@
 <div class="field">
-  {{ answer.schema_item.widget.render(answer)|safe}}
+    {% set label = {
+      'for': answer.id,
+      'text': answer.label
+    } %}
+
+    {% include 'partials/forms/label.html' %}
+
+    {% set input = form[answer['id']] %}
+    {% set answer_value = input.data or '' %}
+
+    {% set attr = {
+      "class": "input input--textarea js-charlimit-input",
+      "aria-describedby": "description-" ~ question.id ~ " guidance-" ~ answer.id ~ "-trigger",
+      "name": input.name,
+      "id": "input-" ~ answer.id,
+      "placeholder": answer.placeholder,
+      "rows": "8",
+      "cols": "60",
+    } %}
+
+    {% set answer_helper = answer.name ~ "-helper" %}
+
+    <textarea {{attr|xmlattr}}>{{answer_value}}</textarea>
 </div>

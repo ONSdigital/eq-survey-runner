@@ -5,7 +5,7 @@ from structlog import get_logger
 
 from app import settings
 from app.helpers.multiple_choice_helper import MultipleChoiceHelper
-from app.schema.answers.checkbox_answer import CheckboxAnswer
+from app.helpers.schema_helper import SchemaHelper
 
 logger = get_logger()
 
@@ -19,11 +19,11 @@ class DataVersionError(Exception):
         return 'Data version {} not supported'.format(self.version)
 
 
-def convert_answers(metadata, questionnaire, answer_store, routing_path):
+def convert_answers(metadata, questionnaire_json, answer_store, routing_path):
     """
     Create the JSON answer format for down stream processing
     :param metadata: metadata for the questionnaire
-    :param questionnaire: the questionnaire schema
+    :param questionnaire_json: the questionnaire json
     :param answer_store: the users answers
     :param routing_path: the path followed by the user when answering the questionnaire
     :return: a JSON object in the following format:
@@ -46,30 +46,30 @@ def convert_answers(metadata, questionnaire, answer_store, routing_path):
         "data": {}
       }
     """
-    survey_id = questionnaire.survey_id
+    survey_id = questionnaire_json['survey_id']
     submitted_at = datetime.now(timezone.utc)
     payload = {
         'tx_id': metadata['tx_id'],
         'type': 'uk.gov.ons.edc.eq:surveyresponse',
-        'version': questionnaire.data_version,
+        'version': questionnaire_json['data_version'],
         'origin': 'uk.gov.ons.edc.eq',
         'survey_id': survey_id,
         'submitted_at': submitted_at.isoformat(),
         'collection': _build_collection(metadata),
         'metadata': _build_metadata(metadata),
     }
-    if questionnaire.data_version == '0.0.2':
+    if questionnaire_json['data_version'] == '0.0.2':
         payload['data'] = convert_answers_to_census_data(answer_store, routing_path)
-    elif questionnaire.data_version == '0.0.1':
-        payload['data'] = convert_answers_to_data(answer_store, questionnaire, routing_path)
+    elif questionnaire_json['data_version'] == '0.0.1':
+        payload['data'] = convert_answers_to_data(answer_store, questionnaire_json, routing_path)
     else:
-        raise DataVersionError(questionnaire.data_version)
+        raise DataVersionError(questionnaire_json['data_version'])
 
     logger.debug("converted answer ready for submission")
     return payload
 
 
-def convert_answers_to_data(answer_store, questionnaire_schema, routing_path):
+def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
     """
     Convert answers into the data format below
     "data": {
@@ -77,23 +77,25 @@ def convert_answers_to_data(answer_store, questionnaire_schema, routing_path):
           "002": "30-03-2016"
         }
     :param answer_store: questionnaire answers
-    :param questionnaire_schema: Schema of the questionnaire answers
+    :param questionnaire_json: The survey json
     :param routing_path: the path followed in the questionnaire
     :return: data in a formatted form
     """
     data = OrderedDict()
     for location in routing_path:
         answers_in_block = answer_store.filter(location=location)
+        block_json = SchemaHelper.get_block(questionnaire_json, location.block_id)
+        answer_schema_list = SchemaHelper.get_answers_by_id_for_block(block_json)
 
         for answer in answers_in_block:
-            item = questionnaire_schema.get_item_by_id(answer['answer_id'])
+            answer_schema = answer_schema_list[answer['answer_id']]
             value = answer['value']
 
-            if item is not None and value is not None:
-                if not isinstance(item, CheckboxAnswer) or any('q_code' not in option for option in item.options):
-                    data[item.code] = _get_answer_data(data, item.code, value)
+            if answer_schema is not None and value is not None:
+                if answer_schema['type'] != 'Checkbox' or any('q_code' not in option for option in answer_schema['options']):
+                    data[answer_schema['q_code']] = _get_answer_data(data, answer_schema['q_code'], value)
                 else:
-                    data.update(_get_checkbox_answer_data(item, value))
+                    data.update(_get_checkbox_answer_data(answer_schema, value))
     return data
 
 
@@ -115,13 +117,13 @@ def _get_checkbox_answer_data(checkboxes_with_qcode, value):
 
     for user_answer in value:
         # find the option in the schema which matches the users answer
-        option = next((option for option in checkboxes_with_qcode.options if option['value'] == user_answer), None)
+        option = next((option for option in checkboxes_with_qcode['options'] if option['value'] == user_answer), None)
 
         if option:
             if option['value'].lower() == 'other':
                 # if the user has selected 'other' we need to find the value it refers to.
                 # when non-mandatory, the other box value can be empty, in this case we just use its value
-                checkbox_answer_data[option['q_code']] = MultipleChoiceHelper.find_other_value(value, checkboxes_with_qcode.options) \
+                checkbox_answer_data[option['q_code']] = MultipleChoiceHelper.find_other_value(value, checkboxes_with_qcode['options']) \
                                          or option['value']
             else:
                 checkbox_answer_data[option['q_code']] = user_answer

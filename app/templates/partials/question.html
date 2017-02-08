@@ -2,9 +2,9 @@
 
 {% set invalid = question.is_valid == False %}
 
-{% set question_number = question.schema_item.number %}
-{% set question_title = question.schema_item.title %}
-{% set question_subtitle = question.schema_item.subtitle %}
+{% set question_number = question.number %}
+{% set question_title = question.title %}
+{% set question_subtitle = question.subtitle %}
 {% set question_guidance = "" %}
 
 {% set question_titles %}
@@ -22,18 +22,18 @@
 {% endset %}
 
 {% set question_description %}
-  {%- if question.schema_item.description -%}
+  {%- if question.description -%}
     <div class="question__description mars" id="description-{{question.id}}">
-      {{question.schema_item.description|safe}}
+      {{question.description|safe}}
     </div>
   {% endif %}
 {% endset %}
 
 {% set question_guidance %}
-  {%- if question.schema_item.guidance -%}
+  {%- if question.guidance -%}
     <div class="question__guidance">
       <div class="panel panel--simple panel--info" id="question-guidance-{{question.id}}">
-        {%- for guidance in question.schema_item.guidance -%}
+        {%- for guidance in question.guidance -%}
           {%- if guidance.title -%}
             <h3 class="venus">{{guidance.title}}</h3>
           {% endif %}
@@ -53,4 +53,4 @@
   {% endif %}
 {% endset %}
 
-{% include theme('partials/questions/'~question.schema_item.type|lower~'.html') %}
+{% include theme('partials/questions/'~question.type|lower~'.html') %}

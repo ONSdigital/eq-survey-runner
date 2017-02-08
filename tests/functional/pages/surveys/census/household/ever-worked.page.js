@@ -9,12 +9,12 @@ class EverWorkedPage extends MultipleChoiceWithOtherPage {
   }
 
   clickEverWorkedAnswerYes() {
-    browser.element('[id="ever-worked-answer-1"]').click()
+    browser.element('[id="ever-worked-answer-0"]').click()
     return this
   }
 
   clickEverWorkedAnswerNo() {
-    browser.element('[id="ever-worked-answer-2"]').click()
+    browser.element('[id="ever-worked-answer-1"]').click()
     return this
   }
 

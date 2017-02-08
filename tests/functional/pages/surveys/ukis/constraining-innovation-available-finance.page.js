@@ -9,22 +9,22 @@ class ConstrainingInnovationAvailableFinancePage extends MultipleChoiceWithOther
   }
 
   clickConstrainingInnovationAvailableFinanceAnswerHigh() {
-    browser.element('[id="constraining-innovation-available-finance-answer-1"]').click()
+    browser.element('[id="constraining-innovation-available-finance-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationAvailableFinanceAnswerMedium() {
-    browser.element('[id="constraining-innovation-available-finance-answer-2"]').click()
+    browser.element('[id="constraining-innovation-available-finance-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationAvailableFinanceAnswerLow() {
-    browser.element('[id="constraining-innovation-available-finance-answer-3"]').click()
+    browser.element('[id="constraining-innovation-available-finance-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationAvailableFinanceAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-available-finance-answer-4"]').click()
+    browser.element('[id="constraining-innovation-available-finance-answer-3"]').click()
     return this
   }
 

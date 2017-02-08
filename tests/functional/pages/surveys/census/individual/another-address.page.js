@@ -9,22 +9,17 @@ class AnotherAddressPage extends MultipleChoiceWithOtherPage {
   }
 
   clickAnotherAddressAnswerNo() {
-    browser.element('[id="another-address-answer-1"]').click()
+    browser.element('[id="another-address-answer-0"]').click()
     return this
   }
 
   clickAnotherAddressAnswerYesAnAddressWithinTheUk() {
-    browser.element('[id="another-address-answer-2"]').click()
+    browser.element('[id="another-address-answer-1"]').click()
     return this
   }
 
   clickAnotherAddressAnswerOther() {
-    browser.element('[id="another-address-answer-3"]').click()
-    return this
-  }
-
-  setAnotherAddressAnswerOtherText(value) {
-    browser.setValue('[id="another-address-answer-3-other"]', value)
+    browser.element('[id="another-address-answer-2"]').click()
     return this
   }
 

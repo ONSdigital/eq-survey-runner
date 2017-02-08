@@ -38,7 +38,7 @@ class TestRouting(IntegrationTestCase):
                 current_page = resp.location
 
                 # We must check we are on the next page
-                self.assertRegex(resp.location, rule['destination_id'])
+                self.assertRegex(current_page, rule['destination_id'])
                 resp = self.client.get(current_page, follow_redirects=False)
 
                 if 'summary' in current_page:

@@ -9,12 +9,12 @@ class NewGoodsServicesInnovationsPage extends MultipleChoiceWithOtherPage {
   }
 
   clickNewGoodsServicesInnovationsAnswerYes() {
-    browser.element('[id="new-goods-services-innovations-answer-1"]').click()
+    browser.element('[id="new-goods-services-innovations-answer-0"]').click()
     return this
   }
 
   clickNewGoodsServicesInnovationsAnswerNo() {
-    browser.element('[id="new-goods-services-innovations-answer-2"]').click()
+    browser.element('[id="new-goods-services-innovations-answer-1"]').click()
     return this
   }
 

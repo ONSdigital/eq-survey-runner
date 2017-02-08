@@ -34,7 +34,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
             "period-from-month": "4",
             "period-from-year": "2016",
             "period-to-day": "30",
-            "period-to-month": "04",
+            "period-to-month": "4",
             "period-to-year": "2016",
             "total-retail-turnover": "100000",
             "action[save_continue]": "Save &amp; Continue"

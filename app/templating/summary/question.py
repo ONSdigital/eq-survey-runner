@@ -1,5 +1,5 @@
 from app.questionnaire.rules import evaluate_rule
-from app.questionnaire_state.state_repeating_answer_question import iterate_over_instance_ids
+from app.data_model.answer_store import iterate_over_instance_ids
 from app.templating.summary.answer import Answer
 
 

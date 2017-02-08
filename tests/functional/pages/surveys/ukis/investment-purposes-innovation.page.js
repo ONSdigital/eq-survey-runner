@@ -9,17 +9,17 @@ class InvestmentPurposesInnovationPage extends MultipleChoiceWithOtherPage {
   }
 
   clickInvestmentPurposesInnovationAnswerAdvancedMachineryAndEquipment() {
-    browser.element('[id="investment-purposes-innovation-answer-1"]').click()
+    browser.element('[id="investment-purposes-innovation-answer-0"]').click()
     return this
   }
 
   clickInvestmentPurposesInnovationAnswerComputerHardware() {
-    browser.element('[id="investment-purposes-innovation-answer-2"]').click()
+    browser.element('[id="investment-purposes-innovation-answer-1"]').click()
     return this
   }
 
   clickInvestmentPurposesInnovationAnswerComputerSoftware() {
-    browser.element('[id="investment-purposes-innovation-answer-3"]').click()
+    browser.element('[id="investment-purposes-innovation-answer-2"]').click()
     return this
   }
 

@@ -5,13 +5,6 @@ import dateutil.parser
 from app.data_model.answer_store import AnswerStore
 from app.parser.metadata_parser import parse_metadata
 from app.questionnaire.location import Location
-from app.schema.answer import Answer
-from app.schema.answers.checkbox_answer import CheckboxAnswer
-from app.schema.block import Block
-from app.schema.group import Group
-from app.schema.question import Question
-from app.schema.questionnaire import Questionnaire
-from app.schema.section import Section
 from app.submitter.converter import convert_answers, DataVersionError
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
@@ -36,41 +29,38 @@ class TestConverter(SurveyRunnerTestCase):
             user_answer = [create_answer('ABC', '2016-01-01', group_id='group-1', block_id='block-1'),
                            create_answer('DEF', '2016-03-30', group_id='group-1', block_id='block-1')]
 
-            answer_1 = Answer()
-            answer_1.id = "ABC"
-            answer_1.code = "001"
-
-            answer_2 = Answer()
-            answer_2.id = "DEF"
-            answer_2.code = "002"
-
-            question = Question()
-            question.id = 'question-1'
-            question.add_answer(answer_1)
-            question.add_answer(answer_2)
-
-            section = Section()
-            section.add_question(question)
-
-            block = Block()
-            block.id = 'block-1'
-            block.add_section(section)
-
-            group = Group()
-            group.id = 'group-1'
-            group.add_block(block)
-
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = "021"
-            questionnaire.data_version = "0.0.1"
-            questionnaire.add_group(group)
-
-            questionnaire.register(group)
-            questionnaire.register(block)
-            questionnaire.register(section)
-            questionnaire.register(question)
-            questionnaire.register(answer_1)
-            questionnaire.register(answer_2)
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "group-1",
+                        "blocks": [
+                            {
+                                "id": "block-1",
+                                "sections": [
+                                    {
+                                        "questions": [{
+                                            "id": 'question-1',
+                                            "answers": [
+                                                {
+                                                    "id": "ABC",
+                                                    "type": "TextField",
+                                                    "q_code": "001"
+                                                }, {
+                                                    "id": "DEF",
+                                                    "type": "TextField",
+                                                    "q_code": "002"
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
             answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), routing_path)
@@ -90,9 +80,11 @@ class TestConverter(SurveyRunnerTestCase):
     def test_submitted_at_should_be_set_in_payload(self):
         with self.application.test_request_context():
             user_answer = [create_answer('GHI', 0)]
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = "021"
-            questionnaire.data_version = '0.0.2'
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.2"
+            }
 
             answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), {})
 
@@ -102,31 +94,34 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             user_answer = [create_answer('GHI', 0, group_id='group-1', block_id='block-1')]
 
-            answer = Answer()
-            answer.id = "GHI"
-            answer.code = "003"
-
-            question = Question()
-            question.id = 'question-2'
-            question.add_answer(answer)
-
-            section = Section()
-            section.add_question(question)
-
-            block = Block()
-            block.id = 'block-1'
-            block.add_section(section)
-
-            group = Group()
-            group.id = 'group-1'
-            group.add_block(block)
-
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = "021"
-            questionnaire.data_version = "0.0.1"
-            questionnaire.add_group(group)
-            questionnaire.register(question)
-            questionnaire.register(answer)
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "group-1",
+                        "blocks": [
+                            {
+                                "id": "block-1",
+                                "sections": [
+                                    {
+                                        "questions": [{
+                                            "id": 'question-2',
+                                            "answers": [
+                                                {
+                                                    "id": "GHI",
+                                                    "type": "TextField",
+                                                    "q_code": "003"
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
@@ -141,31 +136,34 @@ class TestConverter(SurveyRunnerTestCase):
                            create_answer('GHI', value=1, answer_instance=1, group_id='group-1', block_id='block-1'),
                            create_answer('GHI', value=2, answer_instance=2, group_id='group-1', block_id='block-1')]
 
-            answer = Answer()
-            answer.id = "GHI"
-            answer.code = "003"
-
-            question = Question()
-            question.id = 'question-2'
-            question.add_answer(answer)
-
-            section = Section()
-            section.add_question(question)
-
-            block = Block()
-            block.id = 'block-1'
-            block.add_section(section)
-
-            group = Group()
-            group.id = 'group-1'
-            group.add_block(block)
-
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = "021"
-            questionnaire.data_version = "0.0.1"
-            questionnaire.add_group(group)
-            questionnaire.register(question)
-            questionnaire.register(answer)
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "group-1",
+                        "blocks": [
+                            {
+                                "id": "block-1",
+                                "sections": [
+                                    {
+                                        "questions": [{
+                                            "id": 'question-2',
+                                            "answers": [
+                                                {
+                                                    "id": "GHI",
+                                                    "type": "TextField",
+                                                    "q_code": "003"
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
 
             routing_path = [Location(group_id='group-1', group_instance=0, block_id='block-1')]
 
@@ -183,9 +181,11 @@ class TestConverter(SurveyRunnerTestCase):
                        create_answer('name', 'Fred Bloggs', group_id='personal details', block_id='about you', answer_instance=1),
                        create_answer('address', '62 Somewhere', group_id='household', block_id='where you live'),
                        create_answer('address', '63 Somewhere', group_id='household', block_id='where you live', group_instance=1)]
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = '021'
-            questionnaire.data_version = '0.0.2'
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.2"
+            }
 
             # When
             answer_object = convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)
@@ -217,9 +217,11 @@ class TestConverter(SurveyRunnerTestCase):
         with self.application.test_request_context():
             routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
             answers = [create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite food', block_id='crisps')]
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = '021'
-            questionnaire.data_version = '0.0.2'
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.2"
+            }
 
             # When
             answer_object = convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)
@@ -234,9 +236,11 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_converter_raises_runtime_error_for_unsupported_version(self):
         with self.application.test_request_context():
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = '021'
-            questionnaire.data_version = '-0.0.1'
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "-0.0.1"
+            }
 
             with self.assertRaises(DataVersionError) as err:
                 convert_answers(metadata, questionnaire, AnswerStore(), {})
@@ -248,57 +252,59 @@ class TestConverter(SurveyRunnerTestCase):
             routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'], group_id='favourite food', block_id='crisps')]
 
-            answer = CheckboxAnswer()
-            answer.id = "crisps-answer"
-            answer.code = ""
-            answer.options = [
-                {
-                    "label": "Ready salted",
-                    "value": "Ready salted",
-                    "q_code": "1"
-                },
-                {
-                    "label": "Sweet chilli",
-                    "value": "Sweet chilli",
-                    "q_code": "2"
-                },
-                {
-                    "label": "Cheese and onion",
-                    "value": "Cheese and onion",
-                    "q_code": "3"
-                },
-                {
-                    "label": "Other",
-                    "value": "other",
-                    "q_code": "4",
-                    "description": "Choose any other flavour",
-                    "other": {
-                        "label": "Please specify other"
+            questionnaire = {
+                "survey_id": "999",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "favourite food",
+                        "blocks": [
+                            {
+                                "id": "crisps",
+                                "sections": [
+                                    {
+                                        "questions": [{
+                                            "id": 'crisps-question',
+                                            "answers": [
+                                                {
+                                                    "id": "crisps-answer",
+                                                    "type": "Checkbox",
+                                                    "options": [
+                                                        {
+                                                            "label": "Ready salted",
+                                                            "value": "Ready salted",
+                                                            "q_code": "1"
+                                                        },
+                                                        {
+                                                            "label": "Sweet chilli",
+                                                            "value": "Sweet chilli",
+                                                            "q_code": "2"
+                                                        },
+                                                        {
+                                                            "label": "Cheese and onion",
+                                                            "value": "Cheese and onion",
+                                                            "q_code": "3"
+                                                        },
+                                                        {
+                                                            "label": "Other",
+                                                            "value": "other",
+                                                            "q_code": "4",
+                                                            "description": "Choose any other flavour",
+                                                            "other": {
+                                                                "label": "Please specify other"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }
+                        ]
                     }
-                }
-            ]
-
-            question = Question()
-            question.id = 'crisps-question'
-            question.add_answer(answer)
-
-            section = Section()
-            section.add_question(question)
-
-            block = Block()
-            block.id = 'crisps'
-            block.add_section(section)
-
-            group = Group()
-            group.id = 'favourite food'
-            group.add_block(block)
-
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = "999"
-            questionnaire.data_version = "0.0.1"
-            questionnaire.add_group(group)
-            questionnaire.register(question)
-            questionnaire.register(answer)
+                ]
+            }
 
             # When
             answer_object = convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)
@@ -313,57 +319,59 @@ class TestConverter(SurveyRunnerTestCase):
             routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', ['Ready salted', 'other', 'Bacon'], group_id='favourite food', block_id='crisps')]
 
-            answer = CheckboxAnswer()
-            answer.id = "crisps-answer"
-            answer.code = ""
-            answer.options = [
-                {
-                    "label": "Ready salted",
-                    "value": "Ready salted",
-                    "q_code": "1"
-                },
-                {
-                    "label": "Sweet chilli",
-                    "value": "Sweet chilli",
-                    "q_code": "2"
-                },
-                {
-                    "label": "Cheese and onion",
-                    "value": "Cheese and onion",
-                    "q_code": "3"
-                },
-                {
-                    "label": "Other",
-                    "value": "other",
-                    "q_code": "4",
-                    "description": "Choose any other flavour",
-                    "other": {
-                        "label": "Please specify other"
+            questionnaire = {
+                "survey_id": "999",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "favourite food",
+                        "blocks": [
+                            {
+                                "id": "crisps",
+                                "sections": [
+                                    {
+                                        "questions": [{
+                                            "id": 'crisps-question',
+                                            "answers": [
+                                                {
+                                                    "id": "crisps-answer",
+                                                    "type": "Checkbox",
+                                                    "options": [
+                                                        {
+                                                            "label": "Ready salted",
+                                                            "value": "Ready salted",
+                                                            "q_code": "1"
+                                                        },
+                                                        {
+                                                            "label": "Sweet chilli",
+                                                            "value": "Sweet chilli",
+                                                            "q_code": "2"
+                                                        },
+                                                        {
+                                                            "label": "Cheese and onion",
+                                                            "value": "Cheese and onion",
+                                                            "q_code": "3"
+                                                        },
+                                                        {
+                                                            "label": "Other",
+                                                            "value": "other",
+                                                            "q_code": "4",
+                                                            "description": "Choose any other flavour",
+                                                            "other": {
+                                                                "label": "Please specify other"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }
+                        ]
                     }
-                }
-            ]
-
-            question = Question()
-            question.id = 'crisps-question'
-            question.add_answer(answer)
-
-            section = Section()
-            section.add_question(question)
-
-            block = Block()
-            block.id = 'crisps'
-            block.add_section(section)
-
-            group = Group()
-            group.id = 'favourite food'
-            group.add_block(block)
-
-            questionnaire = Questionnaire()
-            questionnaire.survey_id = "999"
-            questionnaire.data_version = "0.0.1"
-            questionnaire.add_group(group)
-            questionnaire.register(question)
-            questionnaire.register(answer)
+                ]
+            }
 
             # When
             answer_object = convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)

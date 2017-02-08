@@ -9,17 +9,17 @@ class DevelopedProcessesPage extends MultipleChoiceWithOtherPage {
   }
 
   clickDevelopedProcessesAnswerThisBusinessOrEnterpriseGroup() {
-    browser.element('[id="developed-processes-answer-1"]').click()
+    browser.element('[id="developed-processes-answer-0"]').click()
     return this
   }
 
   clickDevelopedProcessesAnswerThisBusinessWithOtherBusinessesOrOrganisations() {
-    browser.element('[id="developed-processes-answer-2"]').click()
+    browser.element('[id="developed-processes-answer-1"]').click()
     return this
   }
 
   clickDevelopedProcessesAnswerOtherBusinessesOrOrganisations() {
-    browser.element('[id="developed-processes-answer-3"]').click()
+    browser.element('[id="developed-processes-answer-2"]').click()
     return this
   }
 

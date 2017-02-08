@@ -9,22 +9,22 @@ class ImportancesInformationPublicSectorPage extends MultipleChoiceWithOtherPage
   }
 
   clickImportancesInformationPublicSectorAnswerHigh() {
-    browser.element('[id="importances-information-public-sector-answer-1"]').click()
+    browser.element('[id="importances-information-public-sector-answer-0"]').click()
     return this
   }
 
   clickImportancesInformationPublicSectorAnswerMedium() {
-    browser.element('[id="importances-information-public-sector-answer-2"]').click()
+    browser.element('[id="importances-information-public-sector-answer-1"]').click()
     return this
   }
 
   clickImportancesInformationPublicSectorAnswerLow() {
-    browser.element('[id="importances-information-public-sector-answer-3"]').click()
+    browser.element('[id="importances-information-public-sector-answer-2"]').click()
     return this
   }
 
   clickImportancesInformationPublicSectorAnswerNotImportant() {
-    browser.element('[id="importances-information-public-sector-answer-4"]').click()
+    browser.element('[id="importances-information-public-sector-answer-3"]').click()
     return this
   }
 

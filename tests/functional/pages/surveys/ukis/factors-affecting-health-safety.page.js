@@ -9,22 +9,22 @@ class FactorsAffectingHealthSafetyPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingHealthSafetyAnswerHigh() {
-    browser.element('[id="factors-affecting-health-safety-answer-1"]').click()
+    browser.element('[id="factors-affecting-health-safety-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingHealthSafetyAnswerMedium() {
-    browser.element('[id="factors-affecting-health-safety-answer-2"]').click()
+    browser.element('[id="factors-affecting-health-safety-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingHealthSafetyAnswerLow() {
-    browser.element('[id="factors-affecting-health-safety-answer-3"]').click()
+    browser.element('[id="factors-affecting-health-safety-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingHealthSafetyAnswerNotImportant() {
-    browser.element('[id="factors-affecting-health-safety-answer-4"]').click()
+    browser.element('[id="factors-affecting-health-safety-answer-3"]').click()
     return this
   }
 

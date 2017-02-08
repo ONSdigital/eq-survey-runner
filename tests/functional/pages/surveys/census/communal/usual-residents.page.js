@@ -9,12 +9,12 @@ class UsualResidentsPage extends MultipleChoiceWithOtherPage {
   }
 
   clickUsualResidentsAnswerYes() {
-    browser.element('[id="usual-residents-answer-1"]').click()
+    browser.element('[id="usual-residents-answer-0"]').click()
     return this
   }
 
   clickUsualResidentsAnswerNo() {
-    browser.element('[id="usual-residents-answer-2"]').click()
+    browser.element('[id="usual-residents-answer-1"]').click()
     return this
   }
 

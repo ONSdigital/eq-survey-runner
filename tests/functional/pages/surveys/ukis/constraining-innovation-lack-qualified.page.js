@@ -9,22 +9,22 @@ class ConstrainingInnovationLackQualifiedPage extends MultipleChoiceWithOtherPag
   }
 
   clickConstrainingInnovationLackQualifiedAnswerHigh() {
-    browser.element('[id="constraining-innovation-lack-qualified-answer-1"]').click()
+    browser.element('[id="constraining-innovation-lack-qualified-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationLackQualifiedAnswerMedium() {
-    browser.element('[id="constraining-innovation-lack-qualified-answer-2"]').click()
+    browser.element('[id="constraining-innovation-lack-qualified-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationLackQualifiedAnswerLow() {
-    browser.element('[id="constraining-innovation-lack-qualified-answer-3"]').click()
+    browser.element('[id="constraining-innovation-lack-qualified-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationLackQualifiedAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-lack-qualified-answer-4"]').click()
+    browser.element('[id="constraining-innovation-lack-qualified-answer-3"]').click()
     return this
   }
 

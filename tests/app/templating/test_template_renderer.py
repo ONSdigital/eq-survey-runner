@@ -1,20 +1,17 @@
 import unittest
 from datetime import datetime
 
-from app.schema.question import Question
 from app.templating.template_renderer import TemplateRenderer
 
 
 class TestTemplateRenderer(unittest.TestCase):
     def test_render_schema_item(self):
-        question = Question()
-        question.title = 'Hello {{name}}'
-        question.templatable_properties = ['title']
+        title = 'Hello {{name}}'
         context = {'name': 'Joe Bloggs'}
 
-        schema = TemplateRenderer().render_schema_items(question, context)
+        rendered = TemplateRenderer().render(title, **context)
 
-        self.assertEqual(schema.title, 'Hello Joe Bloggs')
+        self.assertEqual(rendered, 'Hello Joe Bloggs')
 
     def test_render_date(self):
         date = '{{date|format_date}}'
@@ -69,32 +66,28 @@ class TestTemplateRenderer(unittest.TestCase):
                                    "</ul>")
 
     def test_render_nested_templatable_property(self):
-        question = Question()
-        question.guidance = [
-            {
-                'title': 'Include',
-                'description': '{{someone_else}}',
-                'list': [
-                    '{{yourself}}',
-                    'People here on holiday',
-                    ['{{someone}}']
-                ]
+        guidance = {
+            'title': 'Include',
+            'description': '{{someone_else}}',
+            'list': [
+                '{{yourself}}',
+                'People here on holiday',
+                '{{someone}}',
+            ]
+        }
 
-            }
-        ]
         context = {'yourself': 'Joe Bloggs', 'someone': 'Jane Bloggs', 'someone_else': 'John Doe'}
 
-        schema = TemplateRenderer().render_schema_items(question, context)
+        rendered = TemplateRenderer().render(guidance, **context)
 
-        expected = [
-            {
-                'title': 'Include',
-                'description': 'John Doe',
-                'list': [
-                    'Joe Bloggs',
-                    'People here on holiday',
-                    ['Jane Bloggs']
-                ]
-            }
-        ]
-        self.assertEqual(schema.guidance, expected)
+        expected = {
+            'title': 'Include',
+            'description': 'John Doe',
+            'list': [
+                'Joe Bloggs',
+                'People here on holiday',
+                'Jane Bloggs',
+            ]
+        }
+
+        self.assertEqual(rendered, expected)

@@ -9,22 +9,22 @@ class ConstrainingInnovationReferendumPage extends MultipleChoiceWithOtherPage {
   }
 
   clickConstrainingInnovationReferendumAnswerHigh() {
-    browser.element('[id="constraining-innovation-referendum-answer-1"]').click()
+    browser.element('[id="constraining-innovation-referendum-answer-0"]').click()
     return this
   }
 
   clickConstrainingInnovationReferendumAnswerMedium() {
-    browser.element('[id="constraining-innovation-referendum-answer-2"]').click()
+    browser.element('[id="constraining-innovation-referendum-answer-1"]').click()
     return this
   }
 
   clickConstrainingInnovationReferendumAnswerLow() {
-    browser.element('[id="constraining-innovation-referendum-answer-3"]').click()
+    browser.element('[id="constraining-innovation-referendum-answer-2"]').click()
     return this
   }
 
   clickConstrainingInnovationReferendumAnswerNotImportant() {
-    browser.element('[id="constraining-innovation-referendum-answer-4"]').click()
+    browser.element('[id="constraining-innovation-referendum-answer-3"]').click()
     return this
   }
 

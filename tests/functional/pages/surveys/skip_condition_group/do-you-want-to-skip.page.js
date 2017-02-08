@@ -9,12 +9,12 @@ class DoYouWantToSkipPage extends MultipleChoiceWithOtherPage {
   }
 
   clickDoYouWantToSkipAnswerYes() {
-    browser.element('[id="do-you-want-to-skip-answer-1"]').click()
+    browser.element('[id="do-you-want-to-skip-answer-0"]').click()
     return this
   }
 
   clickDoYouWantToSkipAnswerNo() {
-    browser.element('[id="do-you-want-to-skip-answer-2"]').click()
+    browser.element('[id="do-you-want-to-skip-answer-1"]').click()
     return this
   }
 

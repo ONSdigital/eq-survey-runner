@@ -9,22 +9,22 @@ class ImportancesInformationStandardsPage extends MultipleChoiceWithOtherPage {
   }
 
   clickImportancesInformationStandardsAnswerHigh() {
-    browser.element('[id="importances-information-standards-answer-1"]').click()
+    browser.element('[id="importances-information-standards-answer-0"]').click()
     return this
   }
 
   clickImportancesInformationStandardsAnswerMedium() {
-    browser.element('[id="importances-information-standards-answer-2"]').click()
+    browser.element('[id="importances-information-standards-answer-1"]').click()
     return this
   }
 
   clickImportancesInformationStandardsAnswerLow() {
-    browser.element('[id="importances-information-standards-answer-3"]').click()
+    browser.element('[id="importances-information-standards-answer-2"]').click()
     return this
   }
 
   clickImportancesInformationStandardsAnswerNotImportant() {
-    browser.element('[id="importances-information-standards-answer-4"]').click()
+    browser.element('[id="importances-information-standards-answer-3"]').click()
     return this
   }
 

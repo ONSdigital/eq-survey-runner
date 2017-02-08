@@ -13,9 +13,9 @@ def get_schema(metadata):
     form_type = metadata["form_type"]
     language_code = metadata["language_code"] if "language_code" in metadata else None
 
-    json_schema, schema = load_and_parse_schema(eq_id, form_type, language_code)
+    json_schema = load_and_parse_schema(eq_id, form_type, language_code)
 
-    return json_schema, schema
+    return json_schema
 
 
 @cache.memoize()
@@ -31,7 +31,7 @@ def load_and_parse_schema(eq_id, form_type, language_code):
     json_schema = load_schema(eq_id, form_type, language_code)
     if json_schema:
         parser = SchemaParser(json_schema)
-        schema = parser.parse()
-        return json_schema, schema
+        parser.parse()
+        return json_schema
     else:
         raise ValueError("No schema available")

@@ -9,22 +9,22 @@ class CoOperationCompetitorsPage extends MultipleChoiceWithOtherPage {
   }
 
   clickCoOperationCompetitorsAnswerUkRegional() {
-    browser.element('[id="co-operation-competitors-answer-1"]').click()
+    browser.element('[id="co-operation-competitors-answer-0"]').click()
     return this
   }
 
   clickCoOperationCompetitorsAnswerUkNational() {
-    browser.element('[id="co-operation-competitors-answer-2"]').click()
+    browser.element('[id="co-operation-competitors-answer-1"]').click()
     return this
   }
 
   clickCoOperationCompetitorsAnswerEuropeanCountries() {
-    browser.element('[id="co-operation-competitors-answer-3"]').click()
+    browser.element('[id="co-operation-competitors-answer-2"]').click()
     return this
   }
 
   clickCoOperationCompetitorsAnswerOtherCountries() {
-    browser.element('[id="co-operation-competitors-answer-4"]').click()
+    browser.element('[id="co-operation-competitors-answer-3"]').click()
     return this
   }
 

@@ -9,12 +9,12 @@ class TermTimeLocationPage extends MultipleChoiceWithOtherPage {
   }
 
   clickTermTimeLocationAnswerHereAtThisAddress() {
-    browser.element('[id="term-time-location-answer-1"]').click()
+    browser.element('[id="term-time-location-answer-0"]').click()
     return this
   }
 
   clickTermTimeLocationAnswerAtAnotherAddress() {
-    browser.element('[id="term-time-location-answer-2"]').click()
+    browser.element('[id="term-time-location-answer-1"]').click()
     return this
   }
 

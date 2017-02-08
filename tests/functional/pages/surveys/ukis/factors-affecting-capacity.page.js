@@ -9,22 +9,22 @@ class FactorsAffectingCapacityPage extends MultipleChoiceWithOtherPage {
   }
 
   clickFactorsAffectingCapacityAnswerHigh() {
-    browser.element('[id="factors-affecting-capacity-answer-1"]').click()
+    browser.element('[id="factors-affecting-capacity-answer-0"]').click()
     return this
   }
 
   clickFactorsAffectingCapacityAnswerMedium() {
-    browser.element('[id="factors-affecting-capacity-answer-2"]').click()
+    browser.element('[id="factors-affecting-capacity-answer-1"]').click()
     return this
   }
 
   clickFactorsAffectingCapacityAnswerLow() {
-    browser.element('[id="factors-affecting-capacity-answer-3"]').click()
+    browser.element('[id="factors-affecting-capacity-answer-2"]').click()
     return this
   }
 
   clickFactorsAffectingCapacityAnswerNotImportant() {
-    browser.element('[id="factors-affecting-capacity-answer-4"]').click()
+    browser.element('[id="factors-affecting-capacity-answer-3"]').click()
     return this
   }
 
