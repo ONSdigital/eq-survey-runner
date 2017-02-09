@@ -1665,6 +1665,7 @@
                                             }
                                         },
                                         {
+                                            "calculated": true,
                                             "description": "Total should add up to 100% - Please use this format",
                                             "id": "percentage-turnover-2016-total-answer",
                                             "label": "Total Turnover",
