@@ -348,3 +348,71 @@ class TestFormHelper(unittest.TestCase):
 
         # Check the data matches what was passed from request
         self.assertEqual(field_list.entries[0].data, "3")
+
+    def test_post_form_for_radio_other_not_selected(self):
+        survey = load_schema_file("test_radio.json")
+
+        block_json = SchemaHelper.get_block(survey, 'block-1')
+        location = Location('14ba4707-321d-441d-8d21-b8367366e766', 0, 'block-1')
+        error_messages = SchemaHelper.get_messages(survey)
+
+        answer_store = AnswerStore([
+            {
+                'answer_id': 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c',
+                'block_id': 'block-1',
+                'value': 'Other',
+                'answer_instance': 0,
+            },
+            {
+                'answer_id': 'other-answer-mandatory',
+                'block_id': 'block-1',
+                'value': 'Other text field value',
+                'answer_instance': 0,
+            }
+        ])
+
+        answer = SchemaHelper.get_first_answer_for_block(block_json)
+
+        form, _ = post_form_for_location(block_json, location, answer_store, MultiDict({
+            '{answer_id}'.format(answer_id=answer['id']): 'Bacon',
+            'other-answer-mandatory': 'Old other text'
+        }), error_messages)
+
+        self.assertTrue(hasattr(form, answer['id']))
+
+        other_text_field = getattr(form, 'other-answer-mandatory')
+        self.assertEqual(other_text_field.data, '')
+
+    def test_post_form_for_radio_other_selected(self):
+        survey = load_schema_file("test_radio.json")
+
+        block_json = SchemaHelper.get_block(survey, 'block-1')
+        location = Location('14ba4707-321d-441d-8d21-b8367366e766', 0, 'block-1')
+        error_messages = SchemaHelper.get_messages(survey)
+
+        answer_store = AnswerStore([
+            {
+                'answer_id': 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c',
+                'block_id': 'block-1',
+                'value': 'Other',
+                'answer_instance': 0,
+            },
+            {
+                'answer_id': 'other-answer-mandatory',
+                'block_id': 'block-1',
+                'value': 'Other text field value',
+                'answer_instance': 0,
+            }
+        ])
+
+        radio_answer = SchemaHelper.get_first_answer_for_block(block_json)
+        text_answer = 'other-answer-mandatory'
+
+        form, _ = post_form_for_location(block_json, location, answer_store, MultiDict({
+            '{answer_id}'.format(answer_id=radio_answer['id']): 'Other',
+            '{answer_id}'.format(answer_id=text_answer): 'Other text field value',
+        }), error_messages)
+
+        other_text_field = getattr(form, 'other-answer-mandatory')
+        self.assertEqual(other_text_field.data, 'Other text field value')
+

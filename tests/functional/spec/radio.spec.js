@@ -29,6 +29,7 @@ describe('Radio button with "other" option', function() {
     MandatoryRadioPage.clickOther().setOtherInputField('Hello').submit()
     OptionalRadioPage.submit(); // Skip second page.
 
+
     //Then
     expect(SummaryPage.getPage1Answer()).to.contain('Hello')
   })
@@ -56,4 +57,20 @@ describe('Radio button with "other" option', function() {
     //Then
     expect(OptionalRadioPage.errorExists()).to.be.false
   })
+
+  it('Given I have previously added text in other texfiled and saved, when I change the awnser to a diffrent answer, then the text entered in other field must be wiped.', function() {
+    //Given
+    startQuestionnaire(radio_schema);
+
+    //When
+    MandatoryRadioPage.clickOther().setOtherInputField('Other Text').submit()
+    OptionalRadioPage.clickTopprevious()
+    MandatoryRadioPage.clickBacon().submit()
+    OptionalRadioPage.clickTopprevious()
+
+    //Then
+    MandatoryRadioPage.clickOther()
+    expect(MandatoryRadioPage.getOtherInputField()).to.equal('')
+  })
+
 })

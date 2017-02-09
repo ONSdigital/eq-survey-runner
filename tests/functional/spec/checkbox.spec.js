@@ -82,4 +82,20 @@ describe('Checkbox with "other" option', function() {
      expect(SummaryPage.getPage2OtherAnswer()).to.have.string('The other value');
   })
 
+  it('Given I have previously added text in other texfiled and saved, when I uncheck other options and select a different checkbox as answer, then the text entered in other field must be wiped.', function() {
+     // Given
+     startQuestionnaire(checkbox_schema)
+
+     // When
+     MandatoryCheckboxPage.clickOther().setOtherInputField('Other value').submit();
+     OptionalCheckboxPage.clickTopprevious()
+     MandatoryCheckboxPage.clickOther()
+     .clickCheese()
+     .submit()
+     OptionalCheckboxPage.clickTopprevious()
+     // Then
+     MandatoryCheckboxPage.clickOther()
+     expect(MandatoryCheckboxPage.getOtherInputField()).to.equal('')
+  })
+
 })
