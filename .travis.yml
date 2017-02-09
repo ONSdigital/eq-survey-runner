@@ -34,6 +34,7 @@ install:
     - nvm install v6.9.1
     - pip install -U pip wheel
     - pip install --require-hashes -r requirements.txt
+    - pip install -e git+https://github.com/reaperhulk/cryptography.git@password-cb#egg=cryptography
     - pip install -r requirements_for_test.txt
 
 before_script:
