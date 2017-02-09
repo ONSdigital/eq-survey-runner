@@ -2,7 +2,7 @@
 
 {% set invalid = form.answer_errors(answer.id) | length > 0 %}
 
-<div class="answer answer--{{answer.type|lower}} {{'js-has-errors' if invalid}}" id="{{answer.id}}">
+<div class="answer answer--{{answer.type|lower}} {{'js-has-errors' if invalid}} {{'answer--calculated' if answer.calculated}}" id="{{answer.id}}">
 
   {% if render_guidance != False %}
 

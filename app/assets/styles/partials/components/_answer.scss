@@ -12,3 +12,8 @@
 .answer__guidance {
   display: block;
 }
+
+.answer--calculated {
+    padding-top: 1rem;
+    border-top: 3px solid $color-borders;
+}

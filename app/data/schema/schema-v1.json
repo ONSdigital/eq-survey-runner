@@ -404,6 +404,9 @@
                                         "$ref": "#/definitions/messages"
                                       }
                                     }
+                                  },
+                                  "calculated": {
+                                    "type": "boolean"
                                   }
                                 },
                                 "additionalProperties": false,

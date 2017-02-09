@@ -118,3 +118,8 @@
   display: block;
   width: 100%;
 }
+
+.input--has-error {
+    background-color: $color-light-red;
+    transition: background-color 1s ease-in-out;
+}
