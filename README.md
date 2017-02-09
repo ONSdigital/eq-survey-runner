@@ -35,6 +35,7 @@ Install dependencies using pip
 
 ```
 pip install -r requirements.txt
+pip install -e git+https://github.com/reaperhulk/cryptography.git@password-cb#egg=cryptography
 ```
 
 If you need to run the tests:
