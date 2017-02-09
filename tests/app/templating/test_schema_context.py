@@ -1,5 +1,6 @@
 from unittest.mock import MagicMock
 
+from app.data_model.answer_store import AnswerStore
 from app.templating.schema_context import build_schema_context
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
@@ -192,3 +193,21 @@ class TestMetadataContext(SurveyRunnerTestCase):
         context_answers = schema_context['answers']
         self.assertIsInstance(context_answers['non_repeating_answer_alias'], str)
         self.assertEqual(context_answers['non_repeating_answer_alias'], 'Some Value')
+
+    def test_maximum_answers_must_be_limited_to_system_max(self):
+        aliases = {
+            'repeating_answer_alias': {
+                'answer_id': 'answer_id',
+                'repeats': True,
+            },
+        }
+        answers = [{
+            'answer_id': 'answer_id',
+            'answer_instance': instance,
+            'value': 'Some Value',
+        } for instance in range(26)]
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers))
+
+        context_answers = schema_context['answers']
+        self.assertEqual(len(context_answers['repeating_answer_alias']), 25)

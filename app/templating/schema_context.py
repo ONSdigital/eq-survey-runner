@@ -1,3 +1,4 @@
+from app import settings
 from app.utilities.date_utils import to_date
 
 
@@ -23,7 +24,7 @@ def _map_alias_to_answers(aliases, answer_store):
     for alias, answer_info in aliases.items():
         matching_answers = []
 
-        answers = answer_store.filter(answer_id=answer_info['answer_id'])
+        answers = answer_store.filter(answer_id=answer_info['answer_id'], limit=settings.EQ_MAX_NUM_REPEATS)
         matching_answers.extend([answer['value'] for answer in answers])
 
         number_of_matches = len(matching_answers)
