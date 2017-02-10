@@ -85,6 +85,8 @@ def generate_relationship_form(block_json, number_of_entries, data, error_messag
     answer = SchemaHelper.get_first_answer_for_block(block_json)
 
     class HouseHoldRelationshipForm(FlaskForm):
+        question_errors = {}
+
         def map_errors(self):
             ordered_errors = []
 

@@ -1,6 +1,6 @@
 {% import 'macros/helpers.html' as helpers %}
 
-{% set invalid = question.is_valid == False %}
+{% set invalid = form.question_errors[question.id] | length > 0 if form else False %}
 
 {% set question_number = question.number %}
 {% set question_title = question.title %}

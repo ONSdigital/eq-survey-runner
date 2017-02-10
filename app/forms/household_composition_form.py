@@ -72,6 +72,7 @@ def map_field_errors(errors, index):
 
 def generate_household_composition_form(block_json, data, error_messages):
     class HouseHoldCompositionForm(FlaskForm):
+        question_errors = {}
         household = FieldList(FormField(get_name_form(block_json, error_messages)), min_entries=1)
 
         def map_errors(self):
