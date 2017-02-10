@@ -1,14 +1,12 @@
 import unittest
 
-from wtforms import validators
-
 from app import create_app
 from app.helpers.form_helper import get_form_for_location, post_form_for_location
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.schema_loader.schema_loader import load_schema_file
 from app.data_model.answer_store import AnswerStore
-from app.validation.validators import DateRequired
+from app.validation.validators import DateRequired, OptionalForm
 
 from werkzeug.datastructures import MultiDict
 
@@ -36,8 +34,8 @@ class TestFormHelper(unittest.TestCase):
         period_from_field = getattr(form, "period-from")
         period_to_field = getattr(form, "period-to")
 
-        self.assertIsInstance(period_from_field.day.validators[0], DateRequired)
-        self.assertIsInstance(period_to_field.day.validators[0], DateRequired)
+        self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
+        self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
 
     def test_get_form_and_disable_mandatory_answers(self):
 
@@ -56,8 +54,8 @@ class TestFormHelper(unittest.TestCase):
         period_from_field = getattr(form, "period-from")
         period_to_field = getattr(form, "period-to")
 
-        self.assertIsInstance(period_from_field.day.validators[0], validators.Optional)
-        self.assertIsInstance(period_to_field.day.validators[0], validators.Optional)
+        self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
+        self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_get_form_deserialises_dates(self):
         survey = load_schema_file("1_0102.json")
@@ -175,8 +173,8 @@ class TestFormHelper(unittest.TestCase):
         period_to_field = getattr(form, "period-to")
         period_from_field = getattr(form, "period-from")
 
-        self.assertIsInstance(period_from_field.day.validators[0], DateRequired)
-        self.assertIsInstance(period_to_field.day.validators[0], DateRequired)
+        self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
+        self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
 
         self.assertEquals(period_from_field.data, {
             'day': '1',
@@ -206,8 +204,8 @@ class TestFormHelper(unittest.TestCase):
         period_from_field = getattr(form, "period-from")
         period_to_field = getattr(form, "period-to")
 
-        self.assertIsInstance(period_from_field.day.validators[0], validators.Optional)
-        self.assertIsInstance(period_to_field.day.validators[0], validators.Optional)
+        self.assertIsInstance(period_from_field.month.validators[0], OptionalForm)
+        self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_get_form_for_household_composition(self):
 

@@ -4,7 +4,7 @@
     <option {{{
       "value": option_value,
       "selected": "selected" if select.data == option_value,
-      "disabled": "disabled" if option_value == ''
+      "disabled": "disabled" if option_value == '' and select.flags.required
     }|xmlattr}}>{{option}}</option>
 
   {%- endfor -%}
