@@ -15,6 +15,8 @@ export default function initAnalytics() {
 
   const errors = document.querySelectorAll('[data-error=true]')
   const guidances = document.querySelectorAll('[data-guidance]')
+  const previousLinks = document.querySelectorAll('.js-previous-link')
+  const helpAndSupport = document.querySelector('.js-help-and-support')
 
   forEach(errors, error => {
     const errorMsg = error.getAttribute('data-error-msg')
@@ -48,6 +50,31 @@ export default function initAnalytics() {
       trigger.addEventListener('click', onClick)
     }
   })
+
+  forEach(previousLinks, previousLink => {
+    const onClick = e => {
+      const triggerData = {
+        hitType: 'event',
+        eventCategory: 'Navigation',
+        eventAction: 'previous-link'
+      }
+      trackEvent('send', triggerData)
+    }
+    previousLink.addEventListener('click', onClick)
+  })
+
+  const onClick = e => {
+    helpAndSupport.removeEventListener('click', onClick)
+    const triggerData = {
+      hitType: 'event',
+      eventCategory: 'Navigation',
+      eventAction: 'help-and-support'
+    }
+    trackEvent('send', triggerData)
+  }
+  if (helpAndSupport) {
+    helpAndSupport.addEventListener('click', onClick)
+  }
 }
 
 domready(initAnalytics)
