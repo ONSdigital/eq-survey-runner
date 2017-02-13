@@ -14,10 +14,28 @@ class TestIntroduction(IntegrationTestCase):
         # Then
         self.assertRegex(content, '\"mailto\:.+\?subject\=.+123456789012A\"')
 
-    def start_new_survey(self):
-        token = create_token('0203', '1')
+    def start_new_survey(self, survey_id='0203', eq_id='1'):
+        token = create_token(survey_id, eq_id)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEquals(resp.status_code, 200)
         return resp
 
+    def test_intro_description_displayed(self):
+        # Given survey containing intro description
+        response = self.start_new_survey('0112')
 
+        # When on the introduction page
+        content = response.get_data(True)
+
+        # Then description should be displayed
+        self.assertIn('qa-intro-description', content)
+
+    def test_intro_description_not_displayed(self):
+        # Given survey without introduction description
+        response = self.start_new_survey('textfield', 'test')
+
+        # When on the introduction page
+        content = response.get_data(True)
+
+        # Then description should not be displayed
+        self.assertNotIn('qa-intro-description', content)
