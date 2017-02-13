@@ -14,7 +14,7 @@ services:
       RABBITMQ_DEFAULT_PASS: digitaleq
 
   db:
-    image: postgres:9.5
+    image: postgres:9.4
     environment:
       POSTGRES_PASSWORD: digitaleq
       POSTGRES_USER: digitaleq
@@ -29,20 +29,20 @@ services:
     environment:
       EQ_CLOUDWATCH_LOGGING: "False"
       EQ_DEV_MODE: "True"
+      EQ_ENABLE_CACHE: "False"
+      EQ_DEVELOPER_LOGGING: "True"
       EQ_RABBITMQ_ENABLED: "True"
-      EQ_SCHEMA_BUCKET: ""
+      EQ_SECRET_KEY: "NOT_SECRET_DOCKER_KEY"
       EQ_SERVER_SIDE_STORAGE_DATABASE_URL: postgres://digitaleq:digitaleq@db:5432/runner
       EQ_RABBITMQ_URL: amqp://digitaleq:digitaleq@rabbit:5672/%2F
     restart: always
-    volumes:
-      - ./app:/code/app
     depends_on:
       - db
       - rabbit
     networks:
       - eq-env
     ports:
-      - "5000:5000"
+      - "80:80"
 
 
 networks:
