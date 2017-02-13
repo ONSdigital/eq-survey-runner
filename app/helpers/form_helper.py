@@ -1,3 +1,5 @@
+from werkzeug.datastructures import MultiDict
+
 from app.helpers.schema_helper import SchemaHelper
 from app.forms.household_composition_form import generate_household_composition_form, deserialise_composition_answers
 from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, generate_relationship_form
@@ -77,7 +79,8 @@ def post_form_for_location(block_json, location, answer_store, request_form, err
 
         return form, {'relation_instances': choices}
     else:
-        return generate_form(block_json, request_form, error_messages), None
+        data = clear_other_text_field(request_form, SchemaHelper.get_questions_for_block(block_json))
+        return generate_form(block_json, data, error_messages), None
 
 
 def disable_mandatory_answers(block_json):
@@ -113,3 +116,25 @@ def deserialise_dates(block_json, mapped_answers):
                     '{answer_id}-year'.format(answer_id=date_answer_id): substrings[1],
                 })
     return mapped_answers
+
+
+def clear_other_text_field(data, questions_for_block):
+    """
+    Checks the submitted answers and in the case of both checkboxes and radios,
+    removes the text entered into the other text field if the Other option is not
+    selected.
+    :param data: the submitted form data.
+    :param questions_for_block: a list of questions from the block schema.
+    :return: the form data with the other text field cleared, if appropriate.
+    """
+    form_data = MultiDict(data)
+    for question in questions_for_block:
+        for answer in question['answers']:
+            if 'parent_answer_id' in answer and \
+                    answer['parent_answer_id'] in data and \
+                    'Other' not in form_data.getlist(answer['parent_answer_id']) and \
+                    form_data.get(answer['id']):
+
+                form_data[answer['id']] = ''
+
+    return form_data
