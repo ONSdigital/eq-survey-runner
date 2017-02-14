@@ -5,6 +5,7 @@ from wtforms import validators
 from app import create_app
 
 from app.forms.household_composition_form import generate_household_composition_form, deserialise_composition_answers
+from app.validation.validators import ResponseRequired
 from app.schema_loader.schema_loader import load_schema_file
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
@@ -35,7 +36,7 @@ class TestHouseholdCompositionForm(unittest.TestCase):
         middle_names_field = getattr(form.household.entries[0], 'middle-names')
         last_name_field = getattr(form.household.entries[0], 'last-name')
 
-        self.assertIsInstance(first_name_field.validators[0], validators.InputRequired)
+        self.assertIsInstance(first_name_field.validators[0], ResponseRequired)
         self.assertIsInstance(middle_names_field.validators[0], validators.Optional)
         self.assertIsInstance(last_name_field.validators[0], validators.Optional)
 
@@ -79,6 +80,19 @@ class TestHouseholdCompositionForm(unittest.TestCase):
             'middle-names': '',
             'last-name': 'Seymour'
         })
+
+    def test_whitespace_in_first_name_invalid(self):
+
+        form = generate_household_composition_form(self.block_json, {
+            'household-0-first-name': '     ',
+            'household-0-last-name': 'Bloggs',
+        }, error_messages=self.error_messages)
+
+        form.validate()
+
+        message = "Please enter a name or remove the person to continue"
+
+        self.assertIn(message, form.answer_errors('household-0-first-name'))
 
     def test_remove_first_person(self):
 

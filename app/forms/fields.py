@@ -2,7 +2,7 @@ from wtforms import FormField, IntegerField, SelectField, SelectMultipleField, S
 from wtforms import validators
 
 from app.forms.date_form import get_date_form, get_month_year_form
-from app.validation.validators import IntegerCheck, NumberRange
+from app.validation.validators import IntegerCheck, NumberRange, ResponseRequired
 from structlog import get_logger
 
 
@@ -49,7 +49,7 @@ def get_mandatory_validator(answer, error_messages):
             mandatory_message = answer['validation']['messages']['MANDATORY']
 
         validate_with = [
-            validators.InputRequired(
+            ResponseRequired(
                 message=mandatory_message,
             ),
         ]
@@ -73,7 +73,6 @@ def get_text_area_field(answer, label, guidance, error_messages):
         label=label,
         description=guidance,
         validators=validate_with,
-        filters=[lambda x: x if x else None],
     )
 
 
