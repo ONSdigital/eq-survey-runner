@@ -1,5 +1,6 @@
 import re
 
+from collections import defaultdict
 from flask import Blueprint
 from flask import g
 from flask import redirect
@@ -174,7 +175,9 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
 
         form.remove_person(index_to_remove)
     elif 'action[save_sign_out]' in request.form:
-        return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
+        response = _save_sign_out(collection_id, eq_id, form_type, current_location, form)
+        remove_empty_household_members_from_answer_store(answer_store, group_id)
+        return response
 
     if not form.validate() or 'action[add_answer]' in request.form or 'action[remove_answer]' in request.form:
         return _build_template(current_location, context={
@@ -369,6 +372,23 @@ def _remove_repeating_on_household_answers(answer_store, group_id):
             answer_store.remove(group_id=group['id'])
             questionnaire_store.completed_blocks[:] = [b for b in questionnaire_store.completed_blocks if
                                                        b.group_id != group['id']]
+
+
+def remove_empty_household_members_from_answer_store(answer_store, group_id):
+    household_answers = answer_store.filter(group_id=group_id, block_id='household-composition')
+    household_member_name = defaultdict(list)
+    for household_answer in household_answers:
+        if household_answer['answer_id'] == 'first-name' or household_answer['answer_id'] == 'last-name':
+            household_member_name[household_answer['answer_instance']].append(household_answer['value'])
+
+    to_be_removed = []
+    for k, v in household_member_name.items():
+        name_value = ''.join(v).strip()
+        if not name_value:
+            to_be_removed.append(k)
+
+    for instance_to_remove in to_be_removed:
+        answer_store.remove(group_id=group_id, block_id='household-composition', answer_instance=instance_to_remove)
 
 
 def update_questionnaire_store_with_form_data(questionnaire_store, location, answer_dict):
