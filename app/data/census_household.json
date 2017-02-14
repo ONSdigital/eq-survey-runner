@@ -375,7 +375,7 @@
                             "questions": [
                                 {
                                     "id": "household-relationships-question",
-                                    "title": "How are members of this household related to each other?",
+                                    "title": "How is {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }} related to the people below?",
                                     "number": "5",
                                     "description": "If members are not related, select the ‘unrelated’ option",
                                     "guidance": [
@@ -394,7 +394,7 @@
                                     "answers": [
                                         {
                                             "id": "household-relationships-answer",
-                                            "label": "%(current_person)s is the &hellip; of %(other_person)s",
+                                            "label": "%(current_person)s is %(other_person)s",
                                             "mandatory": false,
                                             "options": [
                                                 {

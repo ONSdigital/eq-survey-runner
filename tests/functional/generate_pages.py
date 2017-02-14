@@ -76,8 +76,8 @@ MULTIPLE_CHOICE_OTHER = r"""  set{answerName}(value) {
 
 """
 
-RELATIONSHIP_RADIO_CLICKER = r"""  click{optionName}(instance = 0) {
-    browser.element('[id="{answerId}-' + instance + '-{optionIndex}"]').click().pause(300)
+RELATIONSHIP_DROPDOWN_CLICKER = r"""  click{optionName}(instance = 0) {
+    browser.selectByValue('[id="{answerId}-' + instance + '"]', '{optionValue}')
     return this
   }
 
@@ -148,7 +148,10 @@ def process_relationship_options(answer_id, options, template, page_spec):
         option_index = "{index}".format(index=index)
         template_with_index = template.replace("{optionIndex}", option_index)
         template_with_answer_id = template_with_index.replace("{answerId}", answer_id)
-        page_spec.write(template_with_answer_id.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name))
+        template_with_option_value = template_with_answer_id.replace("{optionValue}", option['value'])
+        template_with_option_name = template_with_option_value.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name)
+        print(template_with_option_name)
+        page_spec.write(template_with_option_name)
 
 
 def process_answer(question_type, answer, page_spec):
@@ -158,7 +161,7 @@ def process_answer(question_type, answer, page_spec):
     elif answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
         process_options(answer['id'], answer['options'], CHECKBOX_RADIO_CLICKER, page_spec)
     elif answer['type'] == 'Relationship':
-        process_relationship_options(answer['id'], answer['options'], RELATIONSHIP_RADIO_CLICKER, page_spec)
+        process_relationship_options(answer['id'], answer['options'], RELATIONSHIP_DROPDOWN_CLICKER, page_spec)
     elif answer['type'] == 'Date':
         answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(_write_date_answer(answer_name, answer['id']))

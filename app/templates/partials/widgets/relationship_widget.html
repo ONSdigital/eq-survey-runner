@@ -1,50 +1,28 @@
-{% set legend = _(answer.label, current_person=current_person, other_person=other_person).split('&hellip;') %}
-{% set personName = legend[1]|replace(' of ', '') %}
+{% set select_option = form[answer.id][relation_instance] %}
+<div class="question__answer">
+  <div class="answer">
+    <div class="answer__fields">
+      <div class="field field--select">
+        {% set label = {
+          "class": "label venus",
+          "for": select_option.id
+        } %}
+        <label {{label|xmlattr}}>
+          {{current_person}} is {{other_person}}'s
+        </label>
+        {% set select = {
+          "class": "input input--select",
+          "name": select_option.id,
+          "id": select_option.id
+        } %}
+        <select {{select|xmlattr}}>
+          <option value="Select relationship" selected="selected" disabled="disabled">Select relationship</option>
 
-<div class="relationship__item js-relationship-item" data-relationship-name="{{personName}}">
-
-  <fieldset class="field field--selectionbtn field--multiplechoice relationship__field">
-
-    <button class="btn btn--link pluto relationship__edit js-relationship-editbtn u-hidden" data-close="{{_('Close')}}" data-qa="relationship-close-btn">
-      {{_('Edit')}}
-    </button>
-
-      <legend class="relationship__title  venus u-f-no" data-qa="relationship-title">
-        <span>{{legend[0]}}</span> <span class="highlight js-relationship-legend">&nbsp; &hellip; &nbsp;</span> <span>{{legend[1]}}</span>
-      </legend>
-
-      <div class="relationship__body js-relationship-body">
-        <div class="relationship__fields">
-          {% set radio_input = form[answer.id][relation_instance] %}
-          {% for option_label, option_value in radio_input.choices %}
-
-            {% set input = {
-              "class": "input input--radio js-focusable js-relationship-trigger",
-              "type": 'radio',
-              "value": option_value,
-              "name": radio_input.name,
-              "id": radio_input.id ~ "-" ~ loop.index0,
-              "checked": "checked" if radio_input.data == option_value
-            } %}
-
-            {% set label = {
-              "class": "label label--inline venus js-relationship-trigger",
-              "for": radio_input.id ~ "-" ~ loop.index0
-            } %}
-
-            <div class="field__item js-focusable-box">
-
-              <input {{input|xmlattr}}>
-              <label {{label|xmlattr}}>
-                {{option_label}}
-              </label>
-
-            </div>
-
+          {% for option_label, option_value in select_option.choices %}
+            <option value="{{option_value}}">{{option_label}}</option>
           {% endfor %}
-        </div>
+        </select>
       </div>
-
-  </fieldset>
-
+    </div>
+  </div>
 </div>
