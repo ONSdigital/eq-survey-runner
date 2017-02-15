@@ -177,10 +177,10 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
         return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
 
     if not form.validate() or 'action[add_answer]' in request.form or 'action[remove_answer]' in request.form:
-        return _render_template({
+        return _build_template(current_location, context={
             'form': form,
             'block': block,
-        }, current_location.block_id, current_location=current_location, template='questionnaire')
+        }, template='questionnaire')
 
     update_questionnaire_store_with_answer_data(questionnaire_store, current_location, form.serialise(current_location))
 
