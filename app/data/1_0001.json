@@ -445,7 +445,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "expenditure-internal-investment-r-d-answer",
                                             "label": "Total internal Research and Development",
                                             "mandatory": false,
@@ -555,7 +555,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "amount-acquisition-internal-investment-r-d-answer",
                                             "label": "Total acquisition of Research and Development",
                                             "mandatory": false,
@@ -703,7 +703,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "amount-acquisition-advanced-machinery-answer",
                                             "label": "Total acquisition of advanced machinery, equipment and software",
                                             "mandatory": false,
@@ -813,7 +813,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "expenditure-existing-2016-answer",
                                             "label": "Total acquisition of existing knowledge",
                                             "mandatory": false,
@@ -924,7 +924,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "expenditure-training-innovative-2016-answer",
                                             "label": "Total training for innovative activities",
                                             "mandatory": false,
@@ -1034,7 +1034,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "expenditure-design-2016-answer",
                                             "label": "Total training for all forms of design",
                                             "mandatory": false,
@@ -1187,7 +1187,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "expenditure-introduction-innovations-2016-answer",
                                             "label": "Total market introduction of innovations",
                                             "mandatory": false,
@@ -5273,7 +5273,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "turnover-2014-answer",
                                             "label": "Total turnover for 2014, excluding VAT",
                                             "mandatory": false,
@@ -5305,7 +5305,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "turnover-2016-answer",
                                             "label": "Total turnover for 2016, excluding VAT",
                                             "mandatory": false,
@@ -5337,7 +5337,7 @@
                                 {
                                     "answers": [
                                         {
-                                            "description": "Round to the nearest £ thousand, for example enter £1,702,800 as 1703000",
+                                            "description": "Round to the nearest thousand pounds, for example enter £1,702,800 as 1703000",
                                             "id": "exports-2016-answer",
                                             "label": "Total value of exports for 2016",
                                             "mandatory": false,
