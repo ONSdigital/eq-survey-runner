@@ -1,46 +1,48 @@
-language: python
-sudo: required
 dist: trusty
-python: '3.4'
+sudo: true
+language: node_js
+node_js: 6
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 env:
   global:
     - EQ_ENABLE_CACHE=True
+    - EQ_RUN_LOCAL_TESTS=True
+    - EQ_RUN_LOCAL=True
+    - EQ_RUN_FUNCTIONAL_TESTS=True
     # Codacy
     - secure: q3hyZhRj24C5sT7T0ViTDCwhT8eVjpanTf6BkPPBI43/6NBJeF1vi4/LkfJMQa0qwYibu5zB8jtkk2VsqGRMGvj9fMufOKXGqebOsPYWUJl1MZM3t7OZS57xF9wBUenZwx1oyb/VPrFB56ctGny1XEbF4l47NmbKWD1iMWG1f3Y6PCJ7o8o62v0irmfbdYFTsWjipCQlCrKZm+KVWZD25egIDJMDpq9e0nYNoSW+5fMXDGOtV20/U/rcmW5Lfn06ppJ0C4CaKHuM+MzZtZJwtiCI2TqF0ihQl7ry7YgpqEZLPHQYQ5npIpecxP1f/6ebcAPdKKkJ2Ccutrv/7IFlJo7rWLTB7mzJ4ep11HCdo3mL+JREp1HUJLeEngXFC3lKRXPHKukUxe4Lkz1/g6kdwCUZxajGTwML84FHmqoZxKGMKhMN+0n6rO8wEUR32q4+JbO5z/oQGhtjQZkogq8vWY6+/aq328hsbmy72s23AiX+BQUHqk2QFs3T9FQiqwn4OqqX4JKzmHs838LT+dUTFgH+mWo0lalxa3Pr7cJAwhn97VSnIdU9JTC8RyPWbAHkah78PXlL9guHI1nzQTjTcMm/yTlmtE2NxTSY+ZGIV+O5pcJm3HkAjZvNi/0jjDWwBHs/rZgj1t7Eoueh8dPTSZ12LmqKuBpvkrzLKcs2zt4=
   matrix:
     - EQ_FUNCTIONAL_TEST_SUITES="core,ukis"
     - EQ_FUNCTIONAL_TEST_SUITES=census
+matrix:
+  fast_finish: true
 before_install:
-    # install Chromedriver
-    - export CHROME_BIN=/usr/bin/google-chrome
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
-    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - sudo dpkg -i google-chrome*.deb
-
-    - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-    - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    - sudo apt-get update -qq
-    - sudo apt-get install -q libappindicator1 fonts-liberation yarn
-
-    # Repo for newer Node.js versions
-    - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-cache:
-    - pip
-    - yarn
-install:
-    - . $HOME/.nvm/nvm.sh
-    - nvm install v6.9.1
+    - pyenv versions
+    - pyenv install --skip-existing
+    - pyenv rehash
+    - pyenv global $(cat .python-version)
     - pip install -U pip wheel
     - pip install --require-hashes -r requirements.txt
-    - pip install -e git+https://github.com/ONSdigital/cryptography.git@4a90c254278231d7defeac304a3cfd752e96e786#egg=cryptography
     - pip install -r requirements_for_test.txt
-
-before_script:
-    - yarn compile
-    - ./scripts/run_app.sh
+    - pushd /tmp
+    - pip install -e git+https://github.com/ONSdigital/cryptography.git@4a90c254278231d7defeac304a3cfd752e96e786#egg=cryptography
+    - popd
+cache:
+    - yarn
+    - pip
+    - directories:
+        - /home/travis/.pyenv/versions/
 script:
-    - ./scripts/run_tests.sh
+    - env
+    - yarn compile
+    - ./scripts/run.sh
 after_success:
     - bash <(curl -s https://codecov.io/bash)
     - pip install codacy-coverage

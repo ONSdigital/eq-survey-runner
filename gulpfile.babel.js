@@ -15,6 +15,7 @@ import {fonts} from './gulp/fonts'
 const getEnv = () => {
   const envs = {
     local: 'http://localhost:5000',
+    docker: 'http://localhost',
     preprod: 'https://preprod-surveys.eq.ons.digital'
   }
   return envs[yargs.argv.env] || envs['local']

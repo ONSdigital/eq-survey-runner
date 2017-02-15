@@ -1,13 +1,35 @@
 .git
-.idea
 Dockerfile
 docker-compose.yml
+
+# Python temp files
+*.pyc
+__pycache__
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
 
 # Installer logs
 pip-log.txt
 
 # Unit test / coverage reports
 .coverage
+coverage.xml
 .tox
 coverage/
 
@@ -15,6 +37,11 @@ coverage/
 
 *.log
 eq.log.*
+
+# Sphinx
+docs/_build
+
+.webassets-cache
 
 # Virtualenvs
 env
@@ -30,12 +57,12 @@ venv
 .DS_Store
 
 node_modules/
-app/static/
+/static/
 tests/results
 tests/coverage
 tests/a11y
 
-app/assets/styles/partials/base/_sprite.scss
+**/_sprite.scss
 
 ## OS X
 ._*
@@ -47,3 +74,8 @@ app/assets/styles/partials/base/_sprite.scss
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 newrelic.ini
+
+# Added to prevent committing coverage reports.
+htmlcov/
+
+*errorShots*

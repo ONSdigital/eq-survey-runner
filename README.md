@@ -22,6 +22,13 @@ If you need to rebuild the container from scratch to re-load any dependencies th
 docker-compose build --no-cache
 ```
 
+To run just the unit tests inside Docker:
+```
+docker build -t onsdigital/eq-survey-runner .
+docker build -t onsdigital/eq-survey-runner-unit-tests -f Dockerfile.test .
+docker run onsdigital/eq-survey-runner-unit-tests
+```
+
 
 ## Pre-Requisites
 In order to run locally you'll need PostgreSQL and Node.js installed
@@ -220,6 +227,9 @@ EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD - the password to the SR private k
 EQ_RABBITMQ_URL - the RabbitMQ connection string
 EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
 EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
+EQ_SERVER_SIDE_STORAGE_DATABASE_URL - url of the database to connect to, e.g. 'sqlite:////tmp/questionnaire.db')
+EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_COUNT - Number of times to retry setting up the database (connection/creation) if it fails
+EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_DELAY_SECONDS - Number of seconds to wait between retry attempts to setup the database
 EQ_CLOUDWATCH_LOGGING - feature flag to enable AWS cloudwatch logging
 EQ_GIT_REF - the latest git ref of HEAD on master
 EQ_SR_LOG_GROUP - The name of the log group to create (defaults to `username-local` for local development)
