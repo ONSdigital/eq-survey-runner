@@ -13,7 +13,7 @@
 
 {% block main %}
 
-    {% if form and form.errors %}
+    {% if form and (form.errors or form.question_errors) %}
 
     {% set mapped_errors = form.map_errors() %}
 

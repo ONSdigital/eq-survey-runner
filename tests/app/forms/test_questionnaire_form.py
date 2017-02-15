@@ -49,10 +49,63 @@ class TestQuestionnaireForm(unittest.TestCase):
             'period-from': {'day': '01', 'month': '3', 'year': '2016'},
             'period-to': {'day': '31', 'month': '3', 'year': '2016'}
         }
-
         form = generate_form(block_json, data, error_messages)
 
         self.assertEqual(form.data, expected_form_data)
+
+    def test_date_range_matching_dates_raises_question_error(self):
+        survey = load_schema_file("1_0102.json")
+
+        block_json = SchemaHelper.get_block(survey, "reporting-period")
+        error_messages = SchemaHelper.get_messages(survey)
+
+        data = {
+            'period-from-day': '25',
+            'period-from-month': '12',
+            'period-from-year': '2016',
+            'period-to-day': '25',
+            'period-to-month': '12',
+            'period-to-year': '2016'
+        }
+
+        expected_form_data = {
+            'period-from': {'day': '25', 'month': '12', 'year': '2016'},
+            'period-to': {'day': '25', 'month': '12', 'year': '2016'}
+        }
+        form = generate_form(block_json, data, error_messages)
+
+        expected_message = "The 'period to' date must be different to the 'period from' date."
+
+        form.validate()
+        self.assertEqual(form.data, expected_form_data)
+        self.assertEqual(form.question_errors['reporting-period-question'], expected_message)
+
+    def test_date_range_to_precedes_from_raises_question_error(self):
+        survey = load_schema_file("1_0102.json")
+
+        block_json = SchemaHelper.get_block(survey, "reporting-period")
+        error_messages = SchemaHelper.get_messages(survey)
+
+        data = {
+            'period-from-day': '25',
+            'period-from-month': '12',
+            'period-from-year': '2016',
+            'period-to-day': '24',
+            'period-to-month': '12',
+            'period-to-year': '2016'
+        }
+
+        expected_form_data = {
+            'period-from': {'day': '25', 'month': '12', 'year': '2016'},
+            'period-to': {'day': '24', 'month': '12', 'year': '2016'}
+        }
+        form = generate_form(block_json, data, error_messages)
+
+        expected_message = "The 'period to' date cannot be before the 'period from' date."
+
+        form.validate()
+        self.assertEqual(form.data, expected_form_data)
+        self.assertEqual(form.question_errors['reporting-period-question'], expected_message)
 
     def test_form_errors_are_correctly_mapped(self):
         survey = load_schema_file("1_0112.json")

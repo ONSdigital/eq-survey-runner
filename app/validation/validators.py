@@ -122,26 +122,22 @@ class MonthYearCheck(object):
 
 
 class DateRangeCheck(object):
-    def __init__(self, to_field_data=None, messages=None):
-        self.to_field_data = to_field_data
+    def __init__(self, messages=None):
         if not messages:
             messages = error_messages
         self.messages = messages
 
-    def __call__(self, form, from_field):
+    def __call__(self, form, from_field, to_field):
 
-        if form.day and form.month and form.year and self.to_field_data:
-            to_date_str = "{:02d}/{:02d}/{}".format(int(self.to_field_data['day'] or 0), int(self.to_field_data['month'] or 0),
-                                                    self.to_field_data['year'] or '')
-            from_date_str = "{:02d}/{:02d}/{}".format(int(form.day.data or 0), int(form.month.data or 0),
-                                                      form.year.data or '')
+        from_date_str = "{:02d}/{:02d}/{}".format(int(from_field.day.data or 0), int(from_field.month.data or 0),
+                                                  from_field.year.data or '')
+        to_date_str = "{:02d}/{:02d}/{}".format(int(to_field.day.data or 0), int(to_field.month.data or 0),
+                                                to_field.year.data or '')
 
-            from_date = datetime.strptime(from_date_str, "%d/%m/%Y")
-            to_date = datetime.strptime(to_date_str, "%d/%m/%Y")
+        from_date = datetime.strptime(from_date_str, "%d/%m/%Y")
+        to_date = datetime.strptime(to_date_str, "%d/%m/%Y")
 
-            date_diff = to_date - from_date
-
-            if date_diff.total_seconds() == 0:
-                raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_FROM_SAME'])
-            elif date_diff.total_seconds() < 0:
-                raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_BEFORE_FROM'])
+        if from_date == to_date:
+            raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_FROM_SAME'])
+        elif from_date > to_date:
+            raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_BEFORE_FROM'])

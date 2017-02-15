@@ -14,60 +14,63 @@ class TestDateRangeValidator(unittest.TestCase):
     """
     def test_date_range_matching_dates(self):
 
-        validator = DateRangeCheck(to_field_data={
-            'day': '01',
-            'month': '01',
-            'year': '2016',
-        })
+        validator = DateRangeCheck()
 
         period_from = Mock()
         period_from.day.data = '01'
         period_from.month.data = '01'
         period_from.year.data = '2016'
 
-        mock_field = Mock()
+        period_to = Mock()
+        period_to.day.data = '01'
+        period_to.month.data = '01'
+        period_to.year.data = '2016'
+
+        mock_form = Mock()
 
         with self.assertRaises(ValidationError) as ite:
-            validator(period_from, mock_field)
+            validator(mock_form, period_from, period_to)
 
         self.assertEqual(error_messages['INVALID_DATE_RANGE_TO_FROM_SAME'], str(ite.exception))
 
     def test_date_range_to_before_from(self):
 
-        validator = DateRangeCheck(to_field_data={
-            'day': '20',
-            'month': '01',
-            'year': '2016',
-        })
+        validator = DateRangeCheck()
 
         period_from = Mock()
         period_from.day.data = '20'
         period_from.month.data = '01'
         period_from.year.data = '2018'
 
-        mock_field = Mock()
+        period_to = Mock()
+        period_to.day.data = '20'
+        period_to.month.data = '01'
+        period_to.year.data = '2016'
+
+        mock_form = Mock()
 
         with self.assertRaises(ValidationError) as ite:
-            validator(period_from, mock_field)
+            validator(mock_form, period_from, period_to)
 
         self.assertEqual(error_messages['INVALID_DATE_RANGE_TO_BEFORE_FROM'], str(ite.exception))
 
     def test_date_range_valid(self):
 
-        validator = DateRangeCheck(to_field_data={
-            'day': '01',
-            'month': '01',
-            'year': '2017',
-        })
+        validator = DateRangeCheck()
 
         period_from = Mock()
         period_from.day.data = '01'
         period_from.month.data = '01'
         period_from.year.data = '2016'
 
-        mock_field = Mock()
+        period_to = Mock()
+        period_to.day.data = '01'
+        period_to.month.data = '01'
+        period_to.year.data = '2017'
+
+        mock_form = Mock()
 
         try:
-            validator(period_from, mock_field)
+            validator(mock_form, period_from, period_to)
         except ValidationError:
             self.fail("Valid date raised ValidationError")
