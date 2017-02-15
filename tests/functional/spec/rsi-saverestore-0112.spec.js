@@ -77,7 +77,7 @@ describe('RSI - Save and restore test', function() {
       .submit()
     changeInRetailTurnover.setChangesInRetailTurnover('No reason')
       .submit()
-    employeesPage.setEmployees(10)
+    employeesPage.setTotalEmployees(10)
       .submit()
     changesInEmployeesPage.setChangesInEmployeesPage('No reason')
       .submit()

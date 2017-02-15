@@ -378,11 +378,11 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
     for answer_id, answer_value in answer_dict.items():
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
             answer = None
-            # Dates are comprised of 3 string values
 
+            # Dates are comprised of 3 string values
             if isinstance(answer_value, dict):
-                is_day_month_year = 'day' in answer_value and 'month' in answer_value
-                is_month_year = 'year' in answer_value and 'month' in answer_value
+                is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
+                is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
 
                 if is_day_month_year and answer_value['day'] and answer_value['month']:
                     date_str = "{:02d}/{:02d}/{}".format(
@@ -397,6 +397,13 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
             elif answer_value != 'None' and answer_value is not None:
                 # Necessary because default select casts to string value 'None'
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
+            elif answer_value is None:
+                # Remove previously populated answers that are now empty
+                questionnaire_store.answer_store.remove(
+                    location=location,
+                    answer_id=answer_id,
+                    answer_instance=0,
+                )
 
             if answer:
                 questionnaire_store.answer_store.add_or_update(answer)
