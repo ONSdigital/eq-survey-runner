@@ -95,5 +95,5 @@ class TestQuestionnaireQuestionGuidance(IntegrationTestCase):
         self.assertIn('summary', resp_url)
 
         # And Submit my answers
-        resp_url, resp = self.postRedirectGet(resp_url, {'action[submit_answers]': ''})
+        resp_url, resp = self.postRedirectGet('/questionnaire/test/question_guidance/789/submit-answers', {'action[submit_answers]': ''})
         self.assertIn('thank-you', resp_url)

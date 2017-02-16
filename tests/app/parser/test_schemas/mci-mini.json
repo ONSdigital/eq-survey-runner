@@ -14,7 +14,7 @@
             "title": "",
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
                     "title": "Monthly Business Survey",
                     "sections": [

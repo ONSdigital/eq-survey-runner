@@ -15,10 +15,6 @@ class SchemaHelper(object):
         return messages
 
     @staticmethod
-    def has_introduction(survey_json):
-        return 'introduction' in survey_json
-
-    @staticmethod
     def get_first_group_id(survey_json):
         return survey_json['groups'][0]['id']
 
@@ -35,7 +31,7 @@ class SchemaHelper(object):
 
     @staticmethod
     def get_last_block_id(survey_json):
-        return survey_json['groups'][0]['blocks'][-1]['id']
+        return survey_json['groups'][-1]['blocks'][-1]['id']
 
     @staticmethod
     def get_last_group_id(survey_json):
@@ -89,18 +85,18 @@ class SchemaHelper(object):
             group_ids.append(group_json['id'])
         return group_ids
 
-    @staticmethod
-    def get_questions_for_block(block_json):
+    @classmethod
+    def get_questions_for_block(cls, block_json):
         questions = []
-        for section_json in block_json['sections']:
+        for section_json in cls._get_sections_in_block(block_json):
             for question_json in section_json['questions']:
                 questions.append(question_json)
         return questions
 
-    @staticmethod
-    def get_answers_for_block(block_json):
+    @classmethod
+    def get_answers_for_block(cls, block_json):
         answers = []
-        for section_json in block_json['sections']:
+        for section_json in cls._get_sections_in_block(block_json):
             for question_json in section_json['questions']:
                 for answer_json in question_json['answers']:
                     answers.append(answer_json)
@@ -129,26 +125,29 @@ class SchemaHelper(object):
                         raise QuestionnaireException('{} is not a unique alias'.format(answer['alias']))
         return aliases
 
-    @staticmethod
-    def get_answers_by_id_for_block(block_json):
+    @classmethod
+    def get_answers_by_id_for_block(cls, block_json):
         answers = {}
-        for section_json in block_json['sections']:
+        for section_json in cls._get_sections_in_block(block_json):
             for question_json in section_json['questions']:
                 for answer_json in question_json['answers']:
                     answers[answer_json['id']] = answer_json
         return answers
 
+    @staticmethod
+    def _get_sections_in_block(block):
+        return block.get('sections', [])
+
     @classmethod
     def get_answer_ids_for_location(cls, survey_json, location):
         answer_ids = []
 
-        if not location.is_interstitial():
-            block = cls.get_block_for_location(survey_json, location)
+        block = cls.get_block_for_location(survey_json, location)
 
-            for section in block['sections']:
-                for question in section['questions']:
-                    for answer in question['answers']:
-                        answer_ids.append(answer['id'])
+        for section in cls._get_sections_in_block(block):
+            for question in section['questions']:
+                for answer in question['answers']:
+                    answer_ids.append(answer['id'])
 
         return answer_ids
 
@@ -156,7 +155,7 @@ class SchemaHelper(object):
     def get_answers_that_repeat_in_block(cls, survey_json, block_id):
         block = cls.get_block(survey_json, block_id)
 
-        for section in block['sections']:
+        for section in cls._get_sections_in_block(block):
             for question in section['questions']:
                 if question['type'] == 'RepeatingAnswer':
                     for answer in question['answers']:
@@ -193,4 +192,4 @@ class SchemaHelper(object):
     def get_block_for_location(cls, survey_json, location):
         group = cls.get_group(survey_json, location.group_id)
 
-        return next(b for b in group['blocks'] if b['id'] == location.block_id)
+        return next((b for b in group['blocks'] if b['id'] == location.block_id), None)

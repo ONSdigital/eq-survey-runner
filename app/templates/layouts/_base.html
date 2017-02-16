@@ -48,8 +48,8 @@
     <script>
       window.__EQ_SESSION_TIMEOUT__ = {{ session_timeout|default('null') }};
       window.__EQ_SESSION_TIMEOUT_PROMPT__ = {{ session_timeout_prompt|default('null') }};
-      window.__EQ_SESSION_CONTINUE_URL__ = '{{ timeout_continue_url|default('null') }}';
-      window.__EQ_SESSION_EXPIRED_URL__ = '{{ expired_url|default('null') }}';
+      window.__EQ_SESSION_CONTINUE_URL__ = '{{ url_prefix }}/timeout-continue';
+      window.__EQ_SESSION_EXPIRED_URL__ = '{{ url_prefix }}/session-expired';
     </script>
   </head>
 

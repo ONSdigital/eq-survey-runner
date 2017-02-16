@@ -8,14 +8,6 @@
 	"description": "MCI Description",
 	"theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-	"introduction": {
-		"description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
-		"information_to_provide": [
-			"value of total retail turnover",
-			"value of internet sales",
-			"reasons for changes to figures"
-		]
-	},
 	"messages": {
 		"MANDATORY": "Please provide an answer to continue.",
 		"INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
@@ -27,7 +19,17 @@
 		"id": "mci",
 		"title": "",
 		"blocks": [{
-            "type": "questionnaire",
+                "type": "Introduction",
+                "id": "introduction",
+                "title": "",
+                "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
+                "information_to_provide": [
+                    "value of total retail turnover",
+                    "value of internet sales",
+                    "reasons for changes to figures"
+                ]
+            },{
+            "type": "Questionnaire",
 			"id": "reporting-period",
 			"title": "Monthly Business Survey",
 			"sections": [{
@@ -218,6 +220,10 @@
 					}]
 				}
 			]
-		}]
+		},
+        {
+            "type": "Summary",
+            "id": "summary"
+        }]
 	}]
 }

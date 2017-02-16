@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {startQuestionnaire} from '../helpers'
+import {openQuestionnaire} from '../helpers'
 
 import DatesPage from '../pages/surveys/dates/dates-answers.page'
 import SummaryPage from '../pages/surveys/dates/dates-summary.page'
@@ -11,7 +11,7 @@ describe('Date checks', function() {
       it('Given the test_dates survey is selected when dates are entered then the summary screen shows the dates entered formatted', function() {
 
             // Given the test_dates survey is selected
-            startQuestionnaire('test_dates.json')
+            openQuestionnaire('test_dates.json')
 
             // When dates are entered
             DatesPage.setFromReportingPeriodDay(1)
@@ -39,7 +39,7 @@ describe('Date checks', function() {
       it('Given the test_dates survey is selected when the from date is greater than the to date then an error message is shown', function() {
 
             // Given the test_dates survey is selected
-             startQuestionnaire('test_dates.json')
+             openQuestionnaire('test_dates.json')
 
             // When the from date is greater than the to date
             DatesPage.setFromReportingPeriodDay(1)
@@ -62,7 +62,7 @@ describe('Date checks', function() {
       it('Given the test_dates survey is selected when the from date and the to date are the same then an error message is shown', function() {
 
             // Given the test_dates survey is selected
-             startQuestionnaire('test_dates.json')
+             openQuestionnaire('test_dates.json')
 
             // When the from date and the to date are the same
             DatesPage.setFromReportingPeriodDay(1)
@@ -85,7 +85,7 @@ describe('Date checks', function() {
       it('Given the test_dates survey is selected when an invalid date is entered in a date range then an error message is shown', function() {
 
             // Given the test_dates survey is selected
-             startQuestionnaire('test_dates.json')
+             openQuestionnaire('test_dates.json')
 
             // When an invalid date is entered in a date range
             DatesPage.setFromReportingPeriodDay(1)
@@ -108,7 +108,7 @@ describe('Date checks', function() {
       it('Given the test_dates survey is selected when the year (month year type) is left empty then an error message is shown', function() {
 
             // Given the test_dates survey is selected
-             startQuestionnaire('test_dates.json')
+             openQuestionnaire('test_dates.json')
 
             // When the year (month year type) is left empty
             DatesPage.setFromReportingPeriodDay(1)
@@ -132,7 +132,7 @@ describe('Date checks', function() {
       it('Given the test_dates survey is selected when an error message is shown then when it is corrected, it goes to the summary page and the information is correct', function() {
 
             // Given the test_dates survey is selected
-            startQuestionnaire('test_dates.json')
+            openQuestionnaire('test_dates.json')
 
             // When an error message is shown
             DatesPage.setFromReportingPeriodDay(1)
@@ -172,7 +172,7 @@ describe('Date checks', function() {
 
       it('Given the test_dates survey is selected when a partially completed optional date is submitted, an error is shown', function() {
             // Given the test_dates survey is selected
-            startQuestionnaire('test_dates.json')
+            openQuestionnaire('test_dates.json')
 
             // Setup the mandatory stuff
             DatesPage.setFromReportingPeriodDay(1)
@@ -197,7 +197,7 @@ describe('Date checks', function() {
 
       it('Given a optional date is successfully submitted, when the date is edited, it should then be possible to select an empty month', function() {
             // Given the test_dates survey is selected
-            startQuestionnaire('test_dates.json')
+            openQuestionnaire('test_dates.json')
 
             // Setup the mandatory stuff
             DatesPage.setFromReportingPeriodDay(1)
@@ -233,7 +233,7 @@ describe('Date checks', function() {
       it('Given the test_dates survey is selected, when a user clicks the day label then the day subfield should gain the focus', function() {
 
             // Given the test_dates survey is selected
-            startQuestionnaire('test_dates.json')
+            openQuestionnaire('test_dates.json')
 
             // When a user clicks the day label
             DatesPage.dayLabel.click()

@@ -8,19 +8,12 @@
    "theme":"default",
    "legal_basis": "StatisticsOfTradeAct",
    "description":"A questionnaire to test skip condition.",
-   "introduction":{
-      "description":"",
-      "information_to_provide":[
-         "Breakfast foods",
-         "Other info"
-      ]
-   },
    "messages":{},
    "groups":[
       {
          "blocks":[
             {
-               "type": "questionnaire",
+               "type": "Questionnaire",
                "id":"food-block",
                "sections":[
                   {
@@ -63,7 +56,7 @@
                "title":""
             },
             {
-                "type": "questionnaire",
+                "type": "Questionnaire",
                "id":"drink-block",
                "sections":[
                   {

@@ -30,15 +30,20 @@ class Location(object):
         """
         return "{}/{}/{}".format(self.group_id, self.group_instance, self.block_id)
 
+    def __repr__(self):
+        """
+        String representation of the location, handy for debug messages
+
+        :return:
+        """
+        return str(self)
+
     @classmethod
     def from_dict(cls, location_dict):
         group_id = location_dict['group_id']
         group_instance = location_dict['group_instance']
         block_id = location_dict['block_id']
         return cls(group_id, group_instance, block_id)
-
-    def is_interstitial(self):
-        return self.block_id in ['introduction', 'summary', 'thank-you']
 
     def url(self, metadata):
         """
@@ -56,17 +61,8 @@ class Location(object):
             'form_type': form_type,
             'collection_id': collection_id,
         }
-        if self.is_interstitial():
-            if self.block_id == 'summary':
-                return url_for('questionnaire.get_summary', **path_params)
-            elif self.block_id == 'introduction':
-                return url_for('questionnaire.get_introduction', **path_params)
-            elif self.block_id == 'sign-out':
-                return url_for('questionnaire.get_sign_out', **path_params)
-            elif self.block_id == 'thank-you':
-                return url_for('questionnaire.get_thank_you', **path_params)
-        elif self.block_id == 'confirmation':
-            return url_for('questionnaire.get_confirmation', **path_params)
+        if self.block_id == 'thank-you':
+            return url_for('questionnaire.get_thank_you', **path_params)
         else:
             return url_for('questionnaire.get_block',
                            eq_id=eq_id,

@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {startQuestionnaire} from '../helpers'
+import {openQuestionnaire} from '../helpers'
 import HouseholdCompositionPage from '../pages/surveys/household_composition/household-composition.page'
 import HouseholdRelationshipPage from '../pages/surveys/relationship/relationships.page'
 import SummaryPage from '../pages/summary.page'
@@ -13,7 +13,7 @@ describe('Household relationship', function() {
 
   it('Given I am on the household page when I enter Joe Bloggs then I should not have to enter relationship details', function() {
     // Given
-    startQuestionnaire(schema)
+    openQuestionnaire(schema)
     HouseholdCompositionPage.setPersonName(0, 'Joe Bloggs')
 
     // When
@@ -25,7 +25,7 @@ describe('Household relationship', function() {
 
   it('Given I answer the relationship questions for Joe Bloggs when answer the relationship questions for Jane Doe then I should not have to enter relationship details for John Doe', function() {
     // Given
-    startQuestionnaire(schema)
+    openQuestionnaire(schema)
     HouseholdCompositionPage.setPersonName(0, 'Joe Bloggs')
       .addPerson()
       .setPersonName(1, 'Jane Doe')

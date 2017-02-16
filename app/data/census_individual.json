@@ -14,7 +14,7 @@
             "title": "Household Member Details",
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "correct-name",
                     "title": "Correct name",
                     "sections": [
@@ -61,7 +61,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "sex",
                     "title": "Sex",
                     "sections": [
@@ -97,7 +97,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "date-of-birth",
                     "title": "Date of birth",
                     "sections": [
@@ -130,7 +130,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "marital-status",
                     "title": "Marital status",
                     "sections": [
@@ -195,7 +195,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "another-address",
                     "title": "Another address",
                     "sections": [
@@ -310,7 +310,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "other-address",
                     "title": "Other address",
                     "sections": [
@@ -361,7 +361,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "address-type",
                     "title": "Address type",
                     "sections": [
@@ -425,7 +425,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "in-education",
                     "title": "In education",
                     "sections": [
@@ -481,7 +481,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "term-time-location",
                     "title": "Term time location",
                     "sections": [
@@ -536,7 +536,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "country-of-birth",
                     "title": "Country of birth",
                     "sections": [
@@ -764,7 +764,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "arrive-in-uk",
                     "title": "Arrive in UK",
                     "sections": [
@@ -800,7 +800,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "length-of-stay",
                     "title": "Length of stay",
                     "sections": [
@@ -841,7 +841,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "carer",
                     "title": "Carer",
                     "sections": [
@@ -891,7 +891,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "national-identity",
                     "title": "national identity",
                     "sections": [
@@ -1020,7 +1020,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "ethnic-group",
                     "title": "ethnic group",
                     "sections": [
@@ -1284,7 +1284,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "white-ethnic-group",
                     "title": "white ethnic group",
                     "sections": [
@@ -1426,7 +1426,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "mixed-ethnic-group",
                     "title": "mixed ethnic group",
                     "sections": [
@@ -1510,7 +1510,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "asian-ethnic-group",
                     "title": "asian ethnic group",
                     "sections": [
@@ -1598,7 +1598,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "black-ethnic-group",
                     "title": "black ethnic group",
                     "sections": [
@@ -1678,7 +1678,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "other-ethnic-group",
                     "title": "other ethnic group",
                     "sections": [
@@ -1754,7 +1754,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "sexual-identity",
                     "title": "Sexual identity",
                     "sections": [
@@ -1827,7 +1827,7 @@
                      ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "understand-welsh",
                     "title": "Understand welsh",
                     "sections": [
@@ -1876,7 +1876,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "language",
                     "title": "language",
                     "sections": [
@@ -2002,7 +2002,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "english",
                     "title": "english",
                     "sections": [
@@ -2046,7 +2046,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "religion",
                     "title": "Religion",
                     "sections": [
@@ -2189,7 +2189,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "past-usual-address",
                     "title": "Past usual address",
                     "sections": [
@@ -2274,7 +2274,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "last-year-address",
                     "title": "Last year address",
                     "sections": [
@@ -2325,7 +2325,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "passports",
                     "title": "Passports",
                     "sections": [
@@ -2389,6 +2389,7 @@
                     ]
                 },
                 {
+                    "type": "Questionnaire",
                     "id": "other-passports",
                     "title": "Other passports",
                     "sections": [
@@ -2415,7 +2416,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "disability",
                     "title": "Disability",
                     "sections": [
@@ -2467,7 +2468,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "qualifications",
                     "title": "qualifications",
                     "sections": [
@@ -2658,7 +2659,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "volunteering",
                     "title": "Volunteering",
                     "sections": [
@@ -2707,7 +2708,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "employment-type",
                     "title": "employment type",
                     "sections": [
@@ -2848,7 +2849,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "jobseeker",
                     "title": "jobseeker",
                     "sections": [
@@ -2884,7 +2885,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "job-availability",
                     "title": "job availability",
                     "sections": [
@@ -2920,7 +2921,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "job-pending",
                     "title": "job pending",
                     "sections": [
@@ -2956,7 +2957,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "occupation",
                     "title": "occupation",
                     "sections": [
@@ -3005,7 +3006,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "ever-worked",
                     "title": "ever worked",
                     "sections": [
@@ -3072,7 +3073,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "main-job",
                     "title": "main job",
                     "sections": [
@@ -3117,7 +3118,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "job-title",
                     "title": "job title",
                     "sections": [
@@ -3150,7 +3151,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "job-description",
                     "title": "job description",
                     "sections": [
@@ -3178,7 +3179,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "employers-business",
                     "title": "employers business",
                     "sections": [
@@ -3215,7 +3216,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "main-job-type",
                     "title": "main job type",
                     "sections": [
@@ -3275,7 +3276,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "business-name",
                     "title": "business name",
                     "sections": [
@@ -3308,7 +3309,7 @@
                     ]
                 },
                 {
-                    "type": "interstitial",
+                    "type": "Confirmation",
                     "id": "confirmation",
                     "title": "You are ready to submit your answers",
                     "sections": [

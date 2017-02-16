@@ -70,7 +70,7 @@ class TestNavigation(StarWarsTestCase):
         self.assertRegex(content, '>Please check carefully before submission.<')
         self.assertRegex(content, '>Submit answers<')
 
-        self.complete_survey(summary_url, 'star_wars')
+        self.complete_survey('star_wars')
 
     def _check_quiz_first_page(self, page):
         content = self.retrieve_content(page)

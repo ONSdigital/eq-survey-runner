@@ -3,12 +3,17 @@ import unittest
 from json import load
 
 from jsonschema import SchemaError, ValidationError, validate
+from structlog import configure
 from structlog import getLogger
+from structlog.dev import ConsoleRenderer
+from structlog.stdlib import LoggerFactory
 
 from app import settings
 from app.helpers.schema_helper import SchemaHelper
 
 logger = getLogger()
+
+configure(logger_factory=LoggerFactory(), processors=[ConsoleRenderer()])
 
 
 class TestSchemaValidation(unittest.TestCase):
@@ -163,9 +168,9 @@ class TestSchemaValidation(unittest.TestCase):
         errors = []
 
         for block in SchemaHelper.get_blocks(json_to_validate):
-            for section in (s for s in block['sections'] if 'sections' in block):
-                for question in (q for q in section['questions'] if 'questions' in section):
-                    for answer in (a for a in question['answers'] if 'answers' in question):
+            for section in block.get('sections', []):
+                for question in section.get('questions', []):
+                    for answer in question.get('answers', []):
                         errors.extend(TestSchemaValidation.validate_answer(file, block, answer))
 
         return errors

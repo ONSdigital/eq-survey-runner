@@ -14,8 +14,8 @@ class MultipleSurveysOpen(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
-        first_survey_resp = self.client.post('/questionnaire/1/0205/789/introduction', data=post_data, follow_redirects=False)
-        self.assertRegex(first_survey_resp.location, r'\/questionnaire\/1\/0205\/789\/mci\/0\/reporting-period$')
+        first_survey_resp = self.client.post('/questionnaire/1/0205/789/mci/0/introduction', data=post_data, follow_redirects=False)
+        self.assertIn('/questionnaire/1/0205/789/mci/0/reporting-period', first_survey_resp.location)
 
         # We start the second survey
         second_survey_token = create_token('0203', '1')
@@ -25,7 +25,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
-        second_survey_resp = self.client.post('/questionnaire/1/0203/789/introduction', data=post_data, follow_redirects=False)
+        second_survey_resp = self.client.post('/questionnaire/1/0203/789/mci/0/introduction', data=post_data, follow_redirects=False)
         self.assertRegex(second_survey_resp.location, r'\/questionnaire\/1\/0203\/789\/mci\/0\/reporting-period')
 
         # We now try to post to the first survey, which is out of date

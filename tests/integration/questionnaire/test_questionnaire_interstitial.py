@@ -14,7 +14,7 @@ class TestQuestionnaireInterstitial(IntegrationTestCase):
             'action[start_questionnaire]': 'Start survey'
         }
 
-        resp_url, resp = self.postRedirectGet(self.BASE_URL + 'introduction', post_data)
+        resp_url, resp = self.postRedirectGet(self.BASE_URL + 'favourite-foods/0/introduction', post_data)
 
         post_data = {
             "favourite-breakfast": "Cereal",
@@ -34,7 +34,7 @@ class TestQuestionnaireInterstitial(IntegrationTestCase):
             'action[start_questionnaire]': 'Start survey'
         }
 
-        resp_url, resp = self.postRedirectGet(self.BASE_URL + 'introduction', post_data)
+        resp_url, resp = self.postRedirectGet(self.BASE_URL + 'favourite-foods/0/introduction', post_data)
 
         post_data = {
             "favourite-breakfast": "Cereal",

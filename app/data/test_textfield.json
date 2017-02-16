@@ -8,10 +8,6 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test textfields",
-    "introduction": {
-        "description": "",
-        "information_to_provide": []
-    },
     "messages": {
       "INTEGER_TOO_LARGE": "Number is too large",
       "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -21,7 +17,7 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "block",
                     "sections": [
                         {

@@ -8,13 +8,6 @@
     "theme": "starwars",
     "legal_basis": "Voluntary",
     "description": "Kitchen sink test for the Star Wars questionnaire",
-    "introduction": {
-        "description": "",
-        "information_to_provide": [
-            "Yoda's siblings",
-            "Total Yearly cost of Rebel Alliance"
-        ]
-    },
     "messages": {
       "INTEGER_TOO_LARGE": "Too big, that number is",
       "NEGATIVE_INTEGER": "It must be a positive number",
@@ -24,7 +17,15 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "information_to_provide": [
+                        "Yoda's siblings",
+                        "Total Yearly cost of Rebel Alliance"
+                    ]
+                },
+                {
+                    "type": "Questionnaire",
                     "id": "choose-your-side-block",
                     "sections": [
                         {
@@ -126,7 +127,7 @@
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
                     "sections": [
                         {
@@ -234,7 +235,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
                     "sections": [
                         {
@@ -360,7 +361,7 @@
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
                     "sections": [
                         {
@@ -410,7 +411,7 @@
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "fab02f02-6ce4-4f22-b61f-0c7880009f08",
                     "sections": [
                         {
@@ -460,7 +461,7 @@
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
                     "sections": [
                         {
@@ -755,7 +756,7 @@
                     "title": "Star Wars"
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "an3b74d1-b687-4051-9634-a8f9ce10ard",
                     "sections": [
                         {
@@ -896,7 +897,7 @@
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1",
                     "sections": [
                         {
@@ -980,6 +981,10 @@
                         }
                     ],
                     "title": ""
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
             ],
             "id": "14ba4707-321d-441d-8d21-b8367366e766",

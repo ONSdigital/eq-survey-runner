@@ -1,5 +1,5 @@
 import chai from 'chai'
-import {getRandomString, startQuestionnaire} from '../helpers'
+import {getRandomString, openQuestionnaire} from '../helpers'
 import totalBreakdownPage from '../pages/surveys/total-breakdown/total-breakdown.page'
 
 const expect = chai.expect
@@ -8,7 +8,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When I enter 25 in each field, Then total should be 100', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '25')
@@ -22,7 +22,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When I enter non integer value into a field, Then total should ignore the non integer value', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, 'twenty five')
@@ -36,7 +36,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When I enter a negative value into a field, Then total should ignore the negative value', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '-50')
@@ -50,7 +50,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When I enter a values totalling > 100, Then total should display the value', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '50')
@@ -64,7 +64,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When I enter non-integer values into each field, Then total should be 0', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, 'total')
@@ -78,7 +78,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When total is < 100, Then total field should be highlighted', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '20')
@@ -92,7 +92,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When total is > 100, Then total field should be highlighted', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '100')
@@ -106,7 +106,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When total == 100, Then total field should NOT be highlighted', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '25')
@@ -120,7 +120,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given four percentage fields, When floating point numbers entered, Then total should be integer', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '1.234')
@@ -134,7 +134,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given a total field, When I navigate away then come back, Then total value should be preserved', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '50')
@@ -151,7 +151,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given a total field, When I enter values that total > 100 and submit, Then an error should be displayed', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // When
     totalBreakdownPage.setPercentage(1, '100')
@@ -166,7 +166,7 @@ describe('Percentage breakdown question', function() {
 
   it('Given a total field, When question loads, Then total field should initially be read only', function() {
     // Given
-    startQuestionnaire('test_total_breakdown.json')
+    openQuestionnaire('test_total_breakdown.json')
 
     // Then
     expect(totalBreakdownPage.isTotalReadOnly()).to.be.true

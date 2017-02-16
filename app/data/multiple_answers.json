@@ -8,18 +8,12 @@
     "description": "A survey containing questions which have more than one answer",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "introduction": {
-        "description": "",
-        "information_to_provide": [
-          "Personal details"
-        ]
-    },
     "groups": [
         {
             "blocks": [
 
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "personal-details-block",
                     "sections": [
                         {
@@ -57,6 +51,10 @@
                         }
                     ],
                     "title": "Multiple questions"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
             ],
             "id": "multiple-questions-group",

@@ -9,19 +9,11 @@
     "theme": "census",
     "legal_basis": "Voluntary",
     "navigation" : true,
-    "introduction": {
-        "description": "<p>The information supplied is used as a test for navigation.</p>",
-        "information_to_provide": [
-          "Property details",
-          "Household details",
-          "Payment details"
-        ]
-    },
     "groups": [
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "insurance-type",
                     "sections": [
                         {
@@ -65,7 +57,7 @@
                     "title": "Home Insurance"
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "insurance-address",
                     "sections": [
                         {
@@ -96,7 +88,7 @@
                     "title": "House Insurance"
                 },
                 {
-                    "type": "interstitial",
+                    "type": "Interstitial",
                     "id": "property-interstitial",
                     "title": "Property Details Interstitial Page",
                     "sections": [
@@ -124,7 +116,7 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "house-type",
                     "sections": [
                         {
@@ -193,7 +185,7 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "household-composition",
                     "sections": [
                         {
@@ -232,7 +224,7 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "repeating-block-1",
                     "title": "Block 2",
                     "sections": [
@@ -273,7 +265,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "repeating-block-2",
                     "title": "Block 3",
                     "sections": [
@@ -337,7 +329,7 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "extra-cover-block",
                     "sections": [
                         {
@@ -375,7 +367,7 @@
                     "title": "House Insurance"
                 },
                 {
-                    "type": "interstitial",
+                    "type": "Interstitial",
                     "id": "extra-cover-interstitial",
                     "title": "Special items Interstitial Page",
                     "sections": [
@@ -402,7 +394,7 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "credit-card",
                     "sections": [
                         {
@@ -433,7 +425,7 @@
                     "title": "House Insurance"
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "expiry-date",
                     "sections": [
                         {
@@ -464,7 +456,7 @@
                     "title": "Home Insurance"
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "security-code",
                     "sections": [
                         {
@@ -495,7 +487,7 @@
                     "title": "Home Insurance"
                 },
                 {
-                    "type": "interstitial",
+                    "type": "Interstitial",
                     "id": "security-code-interstitial",
                     "title": "Payment Details Interstitial Page",
                     "sections": [
@@ -532,7 +524,7 @@
             ],
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "extra-cover-items",
                     "title": "Extra Cover",
                     "sections": [
@@ -563,14 +555,12 @@
         {
             "blocks": [
                 {
-                    "type": "confirmation",
-                    "sections": [],
-                    "id": "confirmation",
-                    "title": ""
+                    "type": "Summary",
+                    "id": "summary"
                 }
 
             ],
-            "id": "confirmation-group",
+            "id": "summary-group",
             "title": "",
             "hide_in_navigation": true
         }

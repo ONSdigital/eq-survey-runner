@@ -10,10 +10,7 @@ class TestRenderPercentageWidget(IntegrationTestCase):
         super().setUp()
 
         self.token = create_token('percentage', 'test')
-        self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
-        resp = self.client.post('/questionnaire/test/percentage/789/introduction',
-                                data={'action[start_questionnaire]': 'Start Questionnaire'},
-                                follow_redirects=False)
+        resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=False)
         self.first_page = resp.location
 
     def test_percentage_widget_has_icon(self):

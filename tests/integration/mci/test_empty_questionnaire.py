@@ -41,8 +41,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         post_data = {
             'action[submit_answers]': "Submit Answers"
         }
-        resp = self.client.post(mci_test_urls.MCI_0205_SUBMIT, data=post_data, follow_redirects=False)
-        self.assertEqual(resp.status_code, 302)
+        redirect, resp = self.postRedirectGet('/questionnaire/1/0205/789/submit-answers', post_data)
 
         # Check we are redirected back to the questionnaire
-        self.assertEqual(resp.location, first_question_page)
+        self.assertEqual(redirect, first_question_page)

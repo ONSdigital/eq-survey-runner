@@ -3,7 +3,6 @@ import landingPage from '../pages/landing.page'
 import PercentagePage from '../pages/surveys/percentage/percentage.page'
 import SummaryPage from '../pages/summary.page'
 import {
-  startQuestionnaire,
   openQuestionnaire,
   setMobileViewport,
   openMobileNavigation,
@@ -18,7 +17,7 @@ describe('Navigation', function() {
     let navIsVisible
     // Given
     setMobileViewport()
-    startQuestionnaire('test_navigation.json')
+    openQuestionnaire('test_navigation.json')
     // When
     navIsVisible = openMobileNavigation()
     // Then
@@ -38,7 +37,7 @@ describe('Navigation', function() {
     setMobileViewport()
 
     // When
-    openQuestionnaire('test_percentage.json')
+    openQuestionnaire('test_repeating_household.json')
 
     // Then
     expect(isViewSectionsVisible()).to.be.false
@@ -47,7 +46,7 @@ describe('Navigation', function() {
   it('Given survey launched on mobile device, When on Thank-You page, Then view sections link should not be displayed.', function() {
     // Given
     setMobileViewport()
-    startQuestionnaire('test_percentage.json')
+    openQuestionnaire('test_percentage.json')
 
     // When
     expect(isViewSectionsVisible()).to.be.true

@@ -8,9 +8,6 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo final confirmation to submit.",
-    "introduction": {
-        "description": ""
-    },
     "messages": {
         "INTEGER_TOO_LARGE": "Number is too large",
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -19,8 +16,14 @@
     "groups": [
         {
             "blocks": [
+                    {
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "title": "Introduction",
+                    "description": ""
+                },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "block-1",
                     "sections": [
                         {
@@ -53,8 +56,7 @@
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
-                    "sections": [],
+                    "type": "Confirmation",
                     "id": "confirmation",
                     "title": "Thank you for your answers, do you wish to submit",
                     "sections": [

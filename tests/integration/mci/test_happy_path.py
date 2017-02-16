@@ -27,7 +27,7 @@ class TestHappyPath(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/' + eq_id + '/' + form_type_id + '/789/introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post('/questionnaire/' + eq_id + '/' + form_type_id + '/789/mci/0/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.location
@@ -66,7 +66,7 @@ class TestHappyPath(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegex(resp.location, r'\/questionnaire\/1\/' + form_type_id + r'\/789\/summary$')
+        self.assertIn('/questionnaire/1/' + form_type_id + '/789/mci/0/summary', resp.location)
 
         summary_url = resp.location
 
@@ -85,11 +85,7 @@ class TestHappyPath(IntegrationTestCase):
         post_data = {
             "action[submit_answers]": "Submit answers"
         }
-        resp = self.client.post(summary_url, data=post_data, follow_redirects=False)
-        self.assertEqual(resp.status_code, 302)
-        self.assertRegex(resp.location, r'\/questionnaire\/1\/' + form_type_id + r'\/789\/thank-you$')
-        resp = self.client.get(resp.location, follow_redirects=True)
-        self.assertEqual(resp.status_code, 200)
+        _, resp = self.postRedirectGet('/questionnaire/1/{form_type}/789/submit-answers'.format(form_type=form_type_id), post_data)
 
         # We are on the thank you page
         content = resp.get_data(True)

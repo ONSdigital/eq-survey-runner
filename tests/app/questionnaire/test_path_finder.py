@@ -51,7 +51,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey)
 
-        blocks = [b.block_id for b in path_finder.get_location_path()]
+        blocks = [b.block_id for b in path_finder.get_routing_path()]
 
         self.assertIn('introduction', blocks)
 
@@ -60,7 +60,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey)
 
-        blocks = [b.block_id for b in path_finder.get_location_path()]
+        blocks = [b.block_id for b in path_finder.get_routing_path()]
 
         self.assertNotIn('introduction', blocks)
 
@@ -112,12 +112,14 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("1_0112.json")
 
         expected_path = [
+            Location("rsi", 0, "introduction"),
             Location("rsi", 0, "reporting-period"),
             Location("rsi", 0, "total-retail-turnover"),
             Location("rsi", 0, "internet-sales"),
             Location("rsi", 0, "changes-in-retail-turnover"),
             Location("rsi", 0, "number-of-employees"),
-            Location("rsi", 0, "changes-in-employees")
+            Location("rsi", 0, "changes-in-employees"),
+            Location("rsi", 0, "summary")
         ]
 
         path_finder = PathFinder(survey)
@@ -129,12 +131,14 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "introduction"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
             Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
+            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "summary"),
         ]
 
         answer_1 = Answer(
@@ -208,7 +212,6 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         self.assertEqual(expected_next_location, next_location)
 
-    @pytest.mark.xfail(reason="The first group should go back to the introduction, however we block previous on the first block in a group", strict=True)
     def test_get_previous_location_introduction(self):
         survey = load_schema_file("0_star_wars.json")
 
@@ -218,7 +221,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         previous_location = path_finder.get_previous_location(current_location=first_location)
 
-        self.assertEqual('introduction', previous_location)
+        self.assertEqual('introduction', previous_location.block_id)
 
     def test_previous_with_conditional_path(self):
         survey = load_schema_file("0_star_wars.json")
@@ -377,20 +380,22 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertFalse(Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary') in path_finder.get_location_path())
+        self.assertFalse(Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary') in path_finder.get_routing_path())
 
     def test_repeating_groups(self):
         survey = load_schema_file("test_repeating_household.json")
 
         # Default is to count answers, so switch to using value
-        survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_value'
+        survey['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
+            Location("multiple-questions-group", 0, "introduction"),
             Location("multiple-questions-group", 0, "household-composition"),
             Location("repeating-group", 0, "repeating-block-1"),
             Location("repeating-group", 0, "repeating-block-2"),
             Location("repeating-group", 1, "repeating-block-1"),
             Location("repeating-group", 1, "repeating-block-2"),
+            Location("summary-group", 0, "summary"),
         ]
 
         answer = Answer(
@@ -411,10 +416,12 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("test_repeating_household.json")
 
         # Default is to count answers, so switch to using value
-        survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_value'
+        survey['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_value'
 
         expected_path = [
-            Location("multiple-questions-group", 0, "household-composition")
+            Location("multiple-questions-group", 0, "introduction"),
+            Location("multiple-questions-group", 0, "household-composition"),
+            Location("summary-group", 0, "summary")
         ]
 
         answer = Answer(
@@ -435,6 +442,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("test_repeating_household.json")
 
         expected_path = [
+            Location("multiple-questions-group", 0, "introduction"),
             Location("multiple-questions-group", 0, "household-composition"),
             Location("repeating-group", 0, "repeating-block-1"),
             Location("repeating-group", 0, "repeating-block-2"),
@@ -442,6 +450,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             Location("repeating-group", 1, "repeating-block-2"),
             Location("repeating-group", 2, "repeating-block-1"),
             Location("repeating-group", 2, "repeating-block-2"),
+            Location("summary-group", 0, "summary"),
         ]
 
         answer = Answer(
@@ -485,12 +494,14 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("test_repeating_household.json")
 
         # Default is to count answers, so switch to using value
-        survey['groups'][-1]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
+        survey['groups'][-2]['routing_rules'][0]['repeat']['type'] = 'answer_count_minus_one'
 
         expected_path = [
+            Location("multiple-questions-group", 0, "introduction"),
             Location("multiple-questions-group", 0, "household-composition"),
             Location("repeating-group", 0, "repeating-block-1"),
             Location("repeating-group", 0, "repeating-block-2"),
+            Location("summary-group", 0, "summary"),
         ]
 
         answer = Answer(
@@ -588,7 +599,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             Location("repeating-group", 0, "repeating-block-1"),
             Location("repeating-group", 0, "repeating-block-2"),
             Location("repeating-group", 1, "repeating-block-1"),
-            Location("repeating-group", 1, "repeating-block-2"),
+            Location("repeating-group", 1, "repeating-block-2")
         ]
 
         answer = Answer(
@@ -615,7 +626,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        summary_location = Location("repeating-group", 0, 'summary')
+        summary_location = Location("summary-group", 0, 'summary')
 
         self.assertEqual(summary_location, path_finder.get_next_location(current_location=current_location))
 
@@ -630,8 +641,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             Location("repeated-group", 0, "shoe-size-block"),
             Location("repeated-group", 1, "repeated-block"),
             Location("repeated-group", 1, "shoe-size-block"),
-            Location("repeated-group", 0, "summary"),
-            Location("repeated-group", 0, "thank-you"),
+            Location("summary-group", 0, "summary")
         ]
 
         answer_1 = Answer(
@@ -664,7 +674,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual(expected_path, path_finder.get_location_path())
+        self.assertEqual(expected_path, path_finder.get_routing_path())
 
     def test_excessive_repeating_groups_conditional_location_path(self):
         survey = load_schema_file("test_repeating_and_conditional_routing.json")
@@ -689,7 +699,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertEqual("thank-you", path_finder.get_location_path().pop().block_id)
+        self.assertEqual("summary", path_finder.get_routing_path().pop().block_id)
 
     def test_next_with_conditional_path_based_on_metadata(self):
         survey = load_schema_file("test_metadata_routing.json")
@@ -848,7 +858,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         path_finder = PathFinder(survey, answer_store=answer_store)
 
         # Then
-        expected_next_location = Location('do-you-want-to-skip-group', 0, 'summary')
+        expected_next_location = Location('summary-group', 0, 'summary')
 
         self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_next_location)
 
@@ -898,7 +908,6 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         self.assertEqual(path_finder.get_next_location(current_location=current_location), expected_location)
 
-    @pytest.mark.xfail(reason="Known bug when skipping last group due to summary bundled into it", strict=True, raises=StopIteration)
     def test_get_routing_path_when_first_block_in_group_skipped(self):
         # Given
         survey = load_schema_file('test_skip_condition_group.json')
@@ -922,6 +931,8 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
                 'group_instance': 0
             }
         ]
+
+        pytest.xfail(reason="Known bug when skipping last group due to summary bundled into it")
         self.assertEqual(path_finder.get_routing_path('should-skip-group'), expected_route)
 
     def test_build_path_with_invalid_location(self):
@@ -931,11 +942,11 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             {
                 "group_id": 'first-valid-group-id',
                 "group_instance": 0,
-                "block": {"id": 'first-valid-block-id'}
+                "block": {"id": 'first-valid-block-id', 'type': 'questionnaire'}
             }, {
                 "group_id": 'second-valid-group-id',
                 "group_instance": 0,
-                "block": {"id": 'second-valid-block-id'}
+                "block": {"id": 'second-valid-block-id', 'type': 'questionnaire'}
             }
         ]
 
@@ -945,8 +956,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             block_id='first-valid-block-id'
         )
 
-        with self.assertRaises(StopIteration):
-            path_finder.build_path(blocks, invalid_group_location)
+        self.assertEqual([], path_finder.build_path(blocks, invalid_group_location))
 
         invalid_block_location = Location(
             group_instance=0,
@@ -954,5 +964,4 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
             block_id='this-block-id-doesnt-exist-in-the-list-of-blocks'
         )
 
-        with self.assertRaises(StopIteration):
-            path_finder.build_path(blocks, invalid_block_location)
+        self.assertEqual([], path_finder.build_path(blocks, invalid_block_location))

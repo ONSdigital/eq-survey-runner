@@ -196,21 +196,6 @@
     "navigation":{
       "type": "boolean"
     },
-    "introduction": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "information_to_provide": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "uniqueItems": true
-        }
-      }
-    },
     "messages": {
       "$ref": "#/definitions/messages"
     },
@@ -257,10 +242,17 @@
                   "type": "string"
                 },
                 "type": {
-                  "type": "string"
+                  "enum": ["Questionnaire", "Interstitial", "Introduction", "Summary", "Confirmation"]
                 },
                 "description": {
                   "type": "string"
+                },
+                "information_to_provide": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "sections": {
                   "type": "array",
@@ -453,7 +445,7 @@
               "additionalProperties": false,
               "required": [
                 "id",
-                "sections"
+                "type"
               ]
             }
           }

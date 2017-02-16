@@ -14,6 +14,7 @@
             "title": "Markup",
             "blocks": [
                 {
+                    "type": "Questionnaire",
                     "id": "emphasis-block",
                     "sections": [
                         {

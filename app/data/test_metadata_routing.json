@@ -8,15 +8,13 @@
     "description": "Census England Household Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "introduction": {
-    },
     "groups": [
         {
             "id": "group1",
             "title": "Group 1",
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "block1",
                     "title": "Block 1",
                     "sections": [
@@ -61,7 +59,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "block2",
                     "title": "Block 2",
                     "sections": [
@@ -87,7 +85,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "block3",
                     "title": "Block 3",
                     "sections": [

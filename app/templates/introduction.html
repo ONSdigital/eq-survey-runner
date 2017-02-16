@@ -54,19 +54,19 @@
   {% endblock business_details %}
 
   {% block description %}
-    {% if content.description %}
+    {% if content.block.description %}
       <div class="u-mb-l qa-intro-description">
-        {{ content.description | safe}}
+        {{ content.block.description | safe}}
       </div>
     {% endif %}
   {% endblock description %}
 
   {% block information_to_provide %}
   <div class="u-mb-l">
-    {% if content.information_to_provide %}
+    {% if content.block.information_to_provide %}
     <h2 class="saturn">You will be asked to provide information for the business, including:</h2>
     <ul>
-      {% for information_item in content.information_to_provide %}
+      {% for information_item in content.block.information_to_provide %}
         <li>{{ information_item }}</li>
       {% endfor %}
     </ul>

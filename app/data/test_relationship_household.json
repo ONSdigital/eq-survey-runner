@@ -8,16 +8,13 @@
     "description": "",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "introduction": {
-        "description": "",
-        "information_to_provide": []
-    },
     "groups": [
         {
             "id": "multiple-questions-group",
             "title": "",
             "blocks": [
                 {
+                    "type": "Questionnaire",
                     "id": "household-composition",
                     "title": "Household",
                     "sections": [
@@ -79,6 +76,7 @@
             ],
             "blocks": [
                 {
+                    "type": "Questionnaire",
                     "id": "relationships",
                     "title": "",
                     "sections": [
@@ -146,6 +144,18 @@
                     ]
                 }
             ]
+        },
+        {
+            "blocks": [
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+
+            ],
+            "id": "summary-group",
+            "title": "",
+            "hide_in_navigation": true
         }
     ]
 }
