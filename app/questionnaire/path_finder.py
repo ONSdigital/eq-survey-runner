@@ -221,6 +221,15 @@ class PathFinder:
         :return: The previous location as a dict
         :return:
         """
+
+        if current_location.group_id == 'who-lives-here-relationship':
+            return self._relationship_previous_location(current_location.group_instance)
+
+        is_first_block_for_group = SchemaHelper.is_first_block_id_for_group(self.survey_json, current_location.group_id, current_location.block_id)
+
+        if is_first_block_for_group or current_location.block_id == 'thank-you':
+            return None
+
         location_path = self.get_location_path(current_location.group_id, current_location.group_instance)
         current_location_index = PathFinder._get_current_location_index(location_path, current_location)
 
@@ -243,3 +252,11 @@ class PathFinder:
                 return incomplete_blocks[0]
 
         return location_path[0]
+
+    @staticmethod
+    def _relationship_previous_location(current_group_instance):
+        if current_group_instance == 0:
+            previous_location = Location('who-lives-here', 0, 'overnight-visitors')
+        else:
+            previous_location = Location('who-lives-here-relationship', current_group_instance - 1, 'household-relationships')
+        return previous_location
