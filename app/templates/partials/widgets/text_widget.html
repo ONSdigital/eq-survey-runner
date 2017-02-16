@@ -8,7 +8,7 @@
 
 {% set input = {
   'type': 'text',
-  'value': input.data|e,
+  'value': form.get_data(answer['id'])|e,
   'name': answer.name,
   'id': answer.id,
   'placeholder': answer.placeholder

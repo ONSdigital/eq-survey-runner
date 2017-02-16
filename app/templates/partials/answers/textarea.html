@@ -7,7 +7,6 @@
     {% include 'partials/forms/label.html' %}
 
     {% set input = form[answer['id']] %}
-    {% set answer_value = input.data or '' %}
 
     {% set attr = {
       "class": "input input--textarea js-charlimit-input",
@@ -21,5 +20,5 @@
 
     {% set answer_helper = answer.name ~ "-helper" %}
 
-    <textarea {{attr|xmlattr}}>{{answer_value}}</textarea>
+    <textarea {{attr|xmlattr}}>{{ form.get_data(answer['id']) }}</textarea>
 </div>

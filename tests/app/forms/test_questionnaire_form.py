@@ -182,3 +182,39 @@ class TestQuestionnaireForm(unittest.TestCase):
         form.validate()
         answer_errors = form.answer_errors('total-retail-turnover-answer')
         self.assertIn("The value cannot be negative. Please correct your answer.", answer_errors)
+
+    def test_option_has_other(self):
+        survey = load_schema_file("test_checkbox.json")
+        block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
+        error_messages = SchemaHelper.get_messages(survey)
+
+        form = generate_form(block_json, {}, error_messages)
+
+        self.assertFalse(form.option_has_other("mandatory-checkbox-answer", 1))
+        self.assertTrue(form.option_has_other("mandatory-checkbox-answer", 5))
+
+    def test_get_other_answer(self):
+        survey = load_schema_file("test_checkbox.json")
+        block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
+        error_messages = SchemaHelper.get_messages(survey)
+
+        form = generate_form(block_json, {
+            "other-answer-mandatory": "Some data"
+        }, error_messages)
+
+        field = form.get_other_answer("mandatory-checkbox-answer", 5)
+
+        self.assertEqual("Some data", field.data)
+
+    def test_get_other_answer_invalid(self):
+        survey = load_schema_file("test_checkbox.json")
+        block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
+        error_messages = SchemaHelper.get_messages(survey)
+
+        form = generate_form(block_json, {
+            "other-answer-mandatory": "Some data"
+        }, error_messages)
+
+        field = form.get_other_answer("mandatory-checkbox-answer", 4)
+
+        self.assertEqual(None, field)

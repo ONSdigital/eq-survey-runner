@@ -8,9 +8,6 @@
 
 {% include 'partials/forms/label.html' %}
 
-{% set raw_data = form[answer['id']].raw_data[0] if form[answer['id']].raw_data is not none else '' %}
-{% set form_data = form[answer['id']].data if form[answer.id].data is not none else '' %}
-
 {% if answer.calculated %}
 {% set input_classes = 'input-type__input js-totaliser-input-calculated' %}
 {% else %}
@@ -23,7 +20,7 @@
         'type': 'number',
         'classes': input_classes,
         'hasType': true,
-        'data': form_data if form_data else raw_data|e,
+        'data': form.get_data(answer['id'])|e,
         'name': input.name,
         'id': answer.id
     } %}

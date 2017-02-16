@@ -81,3 +81,18 @@ class TestSchemaHelper(unittest.TestCase):
         groups = [group for group in SchemaHelper.get_groups_that_repeat_with_answer_id(survey, 'first-name')]
 
         self.assertEqual(len(groups), 1)
+
+    def test_get_parent_options_for_block(self):
+        survey = load_schema_file("test_checkbox.json")
+        block_json = SchemaHelper.get_block(survey, 'mandatory-checkbox')
+
+        parent_options = SchemaHelper.get_parent_options_for_block(block_json)
+
+        expected = {
+            'mandatory-checkbox-answer': {
+                'index': 5,
+                'child_answer_id': 'other-answer-mandatory'
+            }
+        }
+
+        self.assertEqual(parent_options, expected)

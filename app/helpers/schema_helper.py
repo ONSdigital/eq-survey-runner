@@ -103,6 +103,23 @@ class SchemaHelper(object):
         return answers
 
     @classmethod
+    def get_parent_options_for_block(cls, block_json):
+        answer_json_list = cls.get_answers_for_block(block_json)
+        options_with_children = {}
+
+        for answer_json in answer_json_list:
+            if answer_json['type'] in ['Checkbox', 'Radio']:
+                answer_options_with_children = {
+                    answer_json['id']: {
+                        'index': index,
+                        'child_answer_id': o['child_answer_id'],
+                    }
+                    for index, o in enumerate(answer_json['options']) if 'child_answer_id' in o}
+
+                options_with_children.update(answer_options_with_children)
+        return options_with_children
+
+    @classmethod
     def get_questions_by_id(cls, survey_json):
         question_map = {}
         for block in cls.get_blocks(survey_json):

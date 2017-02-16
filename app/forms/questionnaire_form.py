@@ -18,6 +18,7 @@ class QuestionnaireForm(FlaskForm):
     def __init__(self, block_json, formdata=None, **kwargs):
         self.block_json = block_json
         self.question_errors = {}
+        self.options_with_children = {}
 
         if formdata:
             super(QuestionnaireForm, self).__init__(formdata=formdata, **kwargs)
@@ -69,6 +70,26 @@ class QuestionnaireForm(FlaskForm):
 
     def answer_errors(self, input_id):
         return [error[1] for error in self.map_errors() if input_id == error[0]]
+
+    def get_data(self, answer_id):
+        attr = getattr(self, answer_id)
+        return attr.raw_data[0] if attr.raw_data else ''
+
+    def option_has_other(self, answer_id, option_index):
+        if not self.options_with_children:
+            self.options_with_children = SchemaHelper.get_parent_options_for_block(self.block_json)
+
+        if answer_id in self.options_with_children and self.options_with_children[answer_id]['index'] == option_index:
+            return True
+        return False
+
+    def get_other_answer(self, answer_id, option_index):
+        if not self.options_with_children:
+            self.options_with_children = SchemaHelper.get_parent_options_for_block(self.block_json)
+
+        if answer_id in self.options_with_children and self.options_with_children[answer_id]['index'] == option_index:
+            return getattr(self, self.options_with_children[answer_id]['child_answer_id'])
+        return None
 
 
 def get_answer_fields(question, data, error_messages):
