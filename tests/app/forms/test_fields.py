@@ -4,6 +4,7 @@ from wtforms import validators, StringField, TextAreaField, FormField, SelectFie
 
 from app.forms.fields import CustomIntegerField, get_field, get_mandatory_validator
 from app.validation.error_messages import error_messages
+from app.validation.validators import ResponseRequired
 
 
 class TestFields(unittest.TestCase):
@@ -24,7 +25,7 @@ class TestFields(unittest.TestCase):
             'MANDATORY': 'This is the default mandatory message'
         })
 
-        self.assertIsInstance(validate_with[0], validators.InputRequired)
+        self.assertIsInstance(validate_with[0], ResponseRequired)
         self.assertEqual(validate_with[0].message, 'This is the default mandatory message')
 
     def test_get_mandatory_validator_mandatory_with_error(self):
@@ -40,7 +41,7 @@ class TestFields(unittest.TestCase):
             'MANDATORY': 'This is the default mandatory message'
         })
 
-        self.assertIsInstance(validate_with[0], validators.InputRequired)
+        self.assertIsInstance(validate_with[0], ResponseRequired)
         self.assertEqual(validate_with[0].message, 'This is the mandatory message for an answer')
 
     def test_string_field(self):

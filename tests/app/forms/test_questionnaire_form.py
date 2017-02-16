@@ -1,11 +1,10 @@
 import unittest
 
-from wtforms import validators
-
 from app import create_app
 from app.forms.questionnaire_form import generate_form
 from app.helpers.schema_helper import SchemaHelper
 from app.schema_loader.schema_loader import load_schema_file
+from app.validation.validators import ResponseRequired
 
 
 class TestQuestionnaireForm(unittest.TestCase):
@@ -150,7 +149,7 @@ class TestQuestionnaireForm(unittest.TestCase):
 
         child_field = getattr(form, 'other-answer-mandatory')
 
-        self.assertIsInstance(child_field.validators[0], validators.InputRequired)
+        self.assertIsInstance(child_field.validators[0], ResponseRequired)
 
     def test_answer_with_child_errors_are_correctly_mapped(self):
         survey = load_schema_file("test_radio.json")

@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import FieldList, Form, FormField, StringField
-from wtforms import validators
+from wtforms import FieldList, Form, FormField
 
 from app.data_model.answer_store import Answer
+from app.forms.fields import get_string_field
 from app.helpers.schema_helper import SchemaHelper
 
 from werkzeug.datastructures import MultiDict
@@ -12,24 +12,14 @@ def get_name_form(block_json, error_messages):
     class NameForm(Form):
         pass
 
-    for answer in SchemaHelper.get_answers_for_block(block_json):
-        validate_with = [validators.optional()]
+    for question in SchemaHelper.get_questions_for_block(block_json):
+        for answer in question['answers']:
+            guidance = answer.get('guidance', '')
+            label = answer.get('label') or question.get('title')
 
-        if answer['mandatory'] is True:
-            error_message = error_messages['MANDATORY']
-            if 'validation' in answer and 'messages' in answer['validation'] \
-                    and 'MANDATORY' in answer['validation']['messages']:
-                error_message = answer['validation']['messages']['MANDATORY']
+            field = get_string_field(answer, label, guidance, error_messages)
 
-            validate_with = [validators.InputRequired(
-                message=error_message,
-            )]
-
-        # Have to be set this way given hyphenated names
-        # are considered invalid in python
-        field = StringField(validators=validate_with)
-
-        setattr(NameForm, answer['id'], field)
+            setattr(NameForm, answer['id'], field)
 
     return NameForm
 

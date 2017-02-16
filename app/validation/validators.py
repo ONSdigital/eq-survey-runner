@@ -19,6 +19,32 @@ class IntegerCheck(object):
             raise validators.StopValidation(self.message)
 
 
+class ResponseRequired(object):
+    """
+    Validates that input was provided for this field. This is a copy of the
+    InputRequired validator provided by wtforms, which checks that form-input data
+    was provided, but additionally adds a kwarg to strip whitespace, as is available
+    on the Optional() validator wtforms provides. Oddly, stripping whitespace is not
+    an option for DataRequired or InputRequired validators in wtforms.
+    """
+    field_flags = ('required', )
+
+    def __init__(self, message=None, strip_whitespace=True):
+        if not message:
+            message = error_messages['MANDATORY']
+        self.message = message
+
+        if strip_whitespace:
+            self.string_check = lambda s: s.strip()
+        else:
+            self.string_check = lambda s: s
+
+    def __call__(self, form, field):
+        if not field.raw_data or not field.raw_data[0] or not self.string_check(field.raw_data[0]):
+            field.errors[:] = []
+            raise validators.StopValidation(self.message)
+
+
 class NumberRange(object):
     """
     Validates that a number is of a minimum and/or maximum value, inclusive.
