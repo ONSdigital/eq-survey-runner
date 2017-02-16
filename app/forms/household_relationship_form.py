@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import FieldList, RadioField
 
+from app import settings
 from app.forms.fields import build_choices, get_mandatory_validator
 from app.data_model.answer_store import Answer
 from app.helpers.schema_helper import SchemaHelper
@@ -17,16 +18,17 @@ def build_relationship_choices(answer_store, group_instance):
     :param group_instance: The instance of the group being iterated over
     :return:
     """
-    household_answers = answer_store.filter(block_id='household-composition')
+    household_first_name_answers = answer_store.filter(block_id='household-composition', answer_id='first-name', limit=settings.EQ_MAX_NUM_REPEATS)
+    household_last_name_answers = answer_store.filter(block_id='household-composition', answer_id='last-name', limit=settings.EQ_MAX_NUM_REPEATS)
 
     first_names = []
     last_names = []
 
-    for answer in household_answers:
-        if answer['answer_id'] == 'first-name':
-            first_names.append(answer['value'])
-        if answer['answer_id'] == 'last-name':
-            last_names.append(answer['value'])
+    for answer in household_first_name_answers:
+        first_names.append(answer['value'])
+
+    for answer in household_last_name_answers:
+        last_names.append(answer['value'])
 
     household_members = []
 

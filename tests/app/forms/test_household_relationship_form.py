@@ -1,6 +1,7 @@
 import unittest
 
 from app import create_app
+from app import settings
 from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, serialise_relationship_answers, generate_relationship_form
 from app.data_model.answer_store import AnswerStore, Answer
 from app.schema_loader.schema_loader import load_schema_file
@@ -192,3 +193,27 @@ class TestHouseholdRelationshipForm(unittest.TestCase):
         deserialised_form_data = deserialise_relationship_answers(serialised_answers)
 
         self.assertEquals(expected_form_data, deserialised_form_data)
+
+    def test_build_relationship_choices_limited(self):
+        answer_store = AnswerStore()
+
+        for i in range(0, 50):
+            answer_store.add(Answer(
+                 block_id="household-composition",
+                 answer_id="first-name",
+                 answer_instance=i,
+                 group_id="5",
+                 value="Joe" + str(i),
+             ))
+            answer_store.add(Answer(
+                 block_id="household-composition",
+                 answer_id="last-name",
+                 answer_instance=i,
+                 group_id="5",
+                 value="Bloggs" + str(i),
+             ))
+
+        choices = build_relationship_choices(answer_store, 0)
+
+        self.assertEqual(settings.EQ_MAX_NUM_REPEATS - 1, len(choices))
+
