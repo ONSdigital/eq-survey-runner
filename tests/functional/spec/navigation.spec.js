@@ -1,9 +1,14 @@
 import chai from 'chai'
+import landingPage from '../pages/landing.page'
+import PercentagePage from '../pages/surveys/percentage/percentage.page'
+import SummaryPage from '../pages/summary.page'
 import {
   startQuestionnaire,
+  openQuestionnaire,
   setMobileViewport,
   openMobileNavigation,
-  closeMobileNavigation
+  closeMobileNavigation,
+  isViewSectionsVisible
 } from '../helpers'
 
 const expect = chai.expect
@@ -26,5 +31,30 @@ describe('Navigation', function() {
     navIsNotVisible = closeMobileNavigation()
     // Then
     expect(navIsNotVisible).to.be.true
+  })
+
+  it('Given survey launched on mobile device, When on Introduction page, Then view sections link should not be displayed.', function() {
+    // Given
+    setMobileViewport()
+
+    // When
+    openQuestionnaire('test_percentage.json')
+
+    // Then
+    expect(isViewSectionsVisible()).to.be.false
+  })
+
+  it('Given survey launched on mobile device, When on Thank-You page, Then view sections link should not be displayed.', function() {
+    // Given
+    setMobileViewport()
+    startQuestionnaire('test_percentage.json')
+
+    // When
+    expect(isViewSectionsVisible()).to.be.true
+    PercentagePage.submit()
+    SummaryPage.submit()
+
+    // Then
+    expect(isViewSectionsVisible()).to.be.false
   })
 })

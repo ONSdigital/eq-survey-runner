@@ -196,7 +196,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
 def get_introduction(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     group_id = SchemaHelper.get_first_group_id(g.schema_json)
     current_location = Location(group_id, group_instance=0, block_id='introduction')
-    return _build_template(current_location, get_introduction_context(g.schema_json))
+    return _build_template(current_location, get_introduction_context(g.schema_json), display_navigation=False)
 
 
 @questionnaire_blueprint.route('<block_id>', methods=["POST"])
@@ -267,7 +267,7 @@ def get_confirmation(eq_id, form_type, collection_id):  # pylint: disable=unused
 def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     group_id = SchemaHelper.get_last_group_id(g.schema_json)
     current_location = Location(group_id, group_instance=0, block_id='thank-you')
-    thank_you_page = _build_template(current_location=current_location)
+    thank_you_page = _build_template(current_location=current_location, display_navigation=False)
     # Delete user data on request of thank you page.
     _delete_user_data()
     return thank_you_page
@@ -472,7 +472,7 @@ def _render_schema(current_location):
     return renderer.render(block_json, **block_context)
 
 
-def _build_template(current_location, context=None, template=None):
+def _build_template(current_location, context=None, template=None, display_navigation=True):
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
@@ -480,7 +480,8 @@ def _build_template(current_location, context=None, template=None):
     completed_blocks = get_completed_blocks(current_user)
 
     navigation = Navigation(g.schema_json, answer_store, metadata, completed_blocks)
-    front_end_navigation = navigation.build_navigation(current_location.group_id, current_location.group_instance)
+    front_end_navigation = navigation.build_navigation(current_location.group_id, current_location.group_instance) \
+        if display_navigation else None
 
     path_finder = PathFinder(g.schema_json, answer_store, metadata)
     previous_location = path_finder.get_previous_location(current_location)

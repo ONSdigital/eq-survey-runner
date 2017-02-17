@@ -86,3 +86,8 @@ export const closeMobileNavigation = () => {
     return !browser.isVisibleWithinViewport('#section-nav')
   })
 }
+
+export const isViewSectionsVisible = () => {
+  let viewSectionsLink = '#menu-btn'
+  return browser.isExisting(viewSectionsLink) && browser.isVisibleWithinViewport(viewSectionsLink)
+}

@@ -17,6 +17,7 @@
       "NEGATIVE_INTEGER": "Number cannot be less than zero",
       "NOT_INTEGER": "Please enter an integer"
     },
+    "navigation" : true,
     "groups": [
         {
             "blocks": [
