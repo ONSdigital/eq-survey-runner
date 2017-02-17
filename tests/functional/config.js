@@ -78,7 +78,7 @@ const browserStackConfig = {
     build: 'master 2',
     project: 'EQ Survey Runner',
     'browserstack.local': true,
-    'browserstack.localIdentifier' = process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+    'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
   }],
   maxInstances: 4,
   framework: 'mocha',
