@@ -1,3 +1,5 @@
+$nav-width: 14rem;
+
 .page {
   display: flex;
   min-height: 100%;
@@ -22,14 +24,6 @@
   }
 }
 
-.page__menubtn {
-  float: right;
-  vertical-align: middle;
-  display: inline-block;
-  position: relative;
-  line-height: 1;
-}
-
 .page__previous {
   float: left;
   .has-nav-open & {
@@ -50,36 +44,60 @@
   overflow-x: hidden;
 }
 
-.page__nav.nav {
-  margin: 0 0 1rem;
-  position: absolute;
-  right: -13rem;
-  width: 12rem;
+.page__menubtn {
   display: none;
-  .has-nav-open & {
-    display: block;
+  float: right;
+}
+
+.no-js {
+  .page__nav {
+    margin-bottom: 2rem;
   }
-  @include mq(m) {
-    display: block;
-    right: 0;
+}
+
+.has-js {
+  .page__nav {
+    margin: 0 0 1rem;
+    position: absolute;
+    right: 0-($nav-width + 1rem);
+    width: $nav-width;
+    display: none;
+    top: 0;
+    @include mq(m) {
+      display: block;
+      right: 0;
+      position: relative;
+      width: auto;
+    }
+  }
+
+  .page__menubtn {
+    vertical-align: middle;
+    display: inline-block;
     position: relative;
-    width: auto;
+    line-height: 1;
   }
-}
 
-.page__container {
-  transition: transform 200ms ease-out;
-  .has-nav-open & {
-    transform: translateX(-12rem);
+  .page__container {
+    transition: transform 200ms ease-out;
   }
-}
 
-.page__main {
-  transform: translateX(0);
-  transition: opacity 100ms ease-out;
-  .has-nav-open & {
-    opacity: 0.2;
-    pointer-events: none;
+  .page__main {
+    transform: translateX(0);
+    transition: opacity 100ms ease-out;
+  }
+
+  .has-nav-open {
+    .page__container {
+      transform: translateX(0-($nav-width + 1rem));
+    }
+    .page__main {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+    .page__nav {
+      display: block;
+    }
   }
 }
 

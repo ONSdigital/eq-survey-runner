@@ -42,14 +42,12 @@ domready(() => {
     btn.innerHTML = openLabel
     if (e && e.target === btn) {
       e.preventDefault()
-      e.target.blur()
     }
     addOpenListeners()
   }
 
   const open = (e) => {
     e.preventDefault()
-    e.target.blur()
     document.body.classList.add(classOpen)
     btn.removeEventListener('click', open)
     btn.innerHTML = closeLabel
