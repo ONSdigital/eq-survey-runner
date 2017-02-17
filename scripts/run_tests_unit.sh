@@ -32,7 +32,6 @@ if [ -z "$EQ_ENABLE_CACHE" ]; then
 fi
 
 # Use default environment vars for localhost if not already set
-export EQ_CLOUDWATCH_LOGGING=False
 export EQ_RABBITMQ_ENABLED=False
 
 flake8 --max-complexity 10 --count

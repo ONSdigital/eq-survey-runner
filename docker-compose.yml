@@ -27,7 +27,6 @@ services:
   eq-survey-runner:
     build: ./
     environment:
-      EQ_CLOUDWATCH_LOGGING: "False"
       EQ_DEV_MODE: "True"
       EQ_ENABLE_CACHE: "True"
       EQ_DEVELOPER_LOGGING: "True"
