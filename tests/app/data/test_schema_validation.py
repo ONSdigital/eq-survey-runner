@@ -109,7 +109,7 @@ class TestSchemaValidation(unittest.TestCase):
         schema_files = []
         for folder, _, files in os.walk(settings.EQ_SCHEMA_DIRECTORY):
             for filename in files:
-                if filename != 'schema-v1.json':
+                if filename.endswith(".json") and filename != 'schema-v1.json':
                     schema_files.append(os.path.join(folder, filename))
         return schema_files
 

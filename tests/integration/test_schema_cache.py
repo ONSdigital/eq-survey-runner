@@ -6,6 +6,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestApplicationVariables(IntegrationTestCase):
 
     def test_schema_is_cached(self):
+        cache.init_app(self.application, config={'CACHE_TYPE': 'simple'})
         with self.application.app_context():
 
             self.assertEqual(len(cache.cache._cache), 0)  # pylint: disable=protected-access

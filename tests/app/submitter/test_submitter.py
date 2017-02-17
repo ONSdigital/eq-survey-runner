@@ -11,13 +11,16 @@ class TestSubmitter(TestCase):
 
     def test_when_fail_to_connect_to_queue_then_published_false(self):
         # Given
-        submitter = RabbitMQSubmitter()
+        with patch('app.submitter.submitter.BlockingConnection') as connection:
+            connection.side_effect = AMQPError()
 
-        # When
-        published = submitter.send_message(message={}, queue='test_queue')
+            submitter = RabbitMQSubmitter()
 
-        # Then
-        self.assertFalse(published, 'send_message should fail to publish message')
+            # When
+            published = submitter.send_message(message={}, queue='test_queue')
+
+            # Then
+            self.assertFalse(published, 'send_message should fail to publish message')
 
     def test_when_message_sent_then_published_true(self):
         # Given
@@ -52,6 +55,7 @@ class TestSubmitter(TestCase):
         connection = Mock()
         error = AMQPError()
         connection.close.side_effect = [error]
+        settings.EQ_RABBITMQ_URL = 'amqp://localhost:5672/%2F'
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection), \
                 patch('app.submitter.submitter.logger') as logger:
 

@@ -1,0 +1,6 @@
+FROM onsdigital/eq-survey-runner
+
+# Install test requirements
+RUN pip install --no-cache-dir -r requirements_for_test.txt
+
+ENTRYPOINT /tmp/application/scripts/run_tests_unit.sh

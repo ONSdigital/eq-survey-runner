@@ -1,5 +1,6 @@
 import datetime
 import json
+import time
 from contextlib import contextmanager
 
 from sqlalchemy import Column
@@ -59,21 +60,35 @@ class EQSession(base):
         return "<EQSession('%s', '%s', '%s')>" % (self.eq_session_id, self.user_id, self.timestamp)
 
 
-def create_session_and_engine():
-    try:
-        logger.debug("creating db engine")
-        eng = create_engine(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL, convert_unicode=True)
-        logger.debug("creating database session")
-        session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=eng))
-        return session, eng
-    except Exception as e:
-        logger.error('error creating database connections', exc_info=e)
-        raise e
+def _create_session_and_engine():
+    logger.info("setting up database...")
+    logger.debug("creating database engine")
+    eng = create_engine(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL, convert_unicode=True)
+    logger.debug("creating database session")
+    session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=eng))
+    base.query = session.query_property()
+    logger.debug("creating database and tables")
+    base.metadata.create_all(eng)
+    logger.info('database setup complete.')
+    return session, eng
 
-db_session, engine = create_session_and_engine()
-base.query = db_session.query_property()
 
-base.metadata.create_all(engine)
+def _create_session_and_engine_with_retry():
+    last_exception = None
+
+    for i in range(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_COUNT):
+        try:
+            return _create_session_and_engine()
+        except Exception as e:
+            last_exception = e
+            logger.error('error setting up database', exc_info=e, attempt=i)
+            time.sleep(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_DELAY_SECONDS)
+    else:  # pylint: disable=useless-else-on-loop
+        logger.error('failed to setup database, aborting', exc_info=last_exception)
+        raise TimeoutError('failed to setup database') from last_exception
+
+
+db_session, engine = _create_session_and_engine_with_retry()
 
 
 @event.listens_for(engine, "engine_connect")
