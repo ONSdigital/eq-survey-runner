@@ -204,7 +204,20 @@
             "description": "The amount of time in seconds before showing the prompt informing a user of the time to session timeout.",
             "type": "integer"
         },
-        "title": {
+        "INVALID_DATE_RANGE_TO_FROM_SAME": {
+            "type": "string"
+        },
+        "INVALID_TIME_INPUT": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "routing_rules": {
+      "type": "array",
+      "navigation_label_answer_ids":{
+          "type": "array",
+          "items": {
             "type": "string"
         },
         "description": {
@@ -269,11 +282,24 @@
                                 },
                                 "type": {
                                     "enum": [
+
                                         "Questionnaire",
                                         "Interstitial",
                                         "Introduction",
                                         "Summary",
-                                        "Confirmation"
+                                        "Confirmation",
+                                        "Checkbox",
+                                        "Currency",
+                                        "Date",
+                                        "MonthYearDate",
+                                        "Integer",
+                                        "Percentage",
+                                        "PositiveInteger",
+                                        "Radio",
+                                        "TextArea",
+                                        "TextField",
+                                        "TimeInput",
+                                        "Relationship"
                                     ]
                                 },
                                 "description": {

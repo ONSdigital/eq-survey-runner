@@ -53,6 +53,7 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
                 mapped_answers[answer_id] = str(mapped_answer)
 
         mapped_answers = deserialise_dates(block_json, mapped_answers)
+        mapped_answers = deserialise_time_input(block_json, mapped_answers)
 
         return generate_form(block_json, mapped_answers, error_messages), None
 
@@ -115,6 +116,23 @@ def deserialise_dates(block_json, mapped_answers):
                     '{answer_id}-month'.format(answer_id=date_answer_id): substrings[0].lstrip("0"),
                     '{answer_id}-year'.format(answer_id=date_answer_id): substrings[1],
                 })
+    return mapped_answers
+
+
+def deserialise_time_input(block_json, mapped_answers):
+    answer_json_list = SchemaHelper.get_answers_for_block(block_json)
+
+    time_input_answer_ids = [a['id'] for a in answer_json_list if a['type'] == "TimeInput"]
+
+    for time_input_answer_id in time_input_answer_ids:
+        if time_input_answer_id in mapped_answers:
+            substrings = mapped_answers[time_input_answer_id].split(":")
+            del mapped_answers[time_input_answer_id]
+            mapped_answers.update({
+                '{answer_id}-hours'.format(answer_id=time_input_answer_id): substrings[0],
+                '{answer_id}-mins'.format(answer_id=time_input_answer_id): substrings[1],
+            })
+
     return mapped_answers
 
 

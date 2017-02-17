@@ -81,3 +81,10 @@ def format_number_to_alphabetic_letter(number):
     if int(number) >= 0 and int(number) < 26:
         return string.ascii_lowercase[int(number)]
     return ''
+
+@blueprint.app_template_filter()
+def format_time_input(value):
+    time_input = value.split(":")
+    hours = time_input[0] + " hours " if time_input[0] else ''
+    mins = time_input[1] + " mins " if time_input[1] else ''
+    return '{}{}'.format(hours, mins)

@@ -2,13 +2,13 @@ import unittest
 from unittest.mock import Mock
 
 from app.validation.error_messages import error_messages
-from app.validation.validators import DateRequired
+from app.validation.validators import FormResponseRequired
 from wtforms.validators import StopValidation
 
 
-class TestDateRequiredValidator(unittest.TestCase):
+class TestFormResponseRequiredValidator(unittest.TestCase):
     def test_date_required_empty(self):
-        validator = DateRequired()
+        validator = FormResponseRequired()
 
         mock_form = Mock()
         mock_form.day.data = ''
@@ -23,7 +23,7 @@ class TestDateRequiredValidator(unittest.TestCase):
         self.assertEqual(error_messages['MANDATORY'], str(ite.exception))
 
     def test_date_month_year_required_empty(self):
-        validator = DateRequired()
+        validator = FormResponseRequired()
 
         class TestMonthYearSpec(object):
             month = None
@@ -39,9 +39,26 @@ class TestDateRequiredValidator(unittest.TestCase):
 
         self.assertEqual(error_messages['MANDATORY'], str(ite.exception))
 
+    def test_time_input_required_empty(self):
+        validator = FormResponseRequired()
+
+        class TestTimeInputSpec(object):
+            hours = None
+            mins = None
+
+        mock_form = Mock(spec=TestTimeInputSpec)
+        mock_form.hours.data = ''
+        mock_form.mins.data = ''
+        mock_field = Mock()
+
+        with self.assertRaises(StopValidation) as ite:
+            validator(mock_form, mock_field)
+
+        self.assertEqual(error_messages['MANDATORY'], str(ite.exception))
+
     def test_valid_date(self):
 
-        validator = DateRequired()
+        validator = FormResponseRequired()
 
         mock_form = Mock()
         mock_form.day.data = '01'
@@ -57,7 +74,7 @@ class TestDateRequiredValidator(unittest.TestCase):
 
     def test_valid_month_year(self):
 
-        validator = DateRequired()
+        validator = FormResponseRequired()
 
         mock_form = Mock()
         mock_form.month.data = '01'

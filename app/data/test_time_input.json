@@ -1,0 +1,79 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Input time Example",
+    "description": "A test schema for time input",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "introduction": {
+        "description": "",
+        "information_to_provide": [
+            "time"
+        ]
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "id": "time-input-block",
+                    "sections": [
+                        {
+                            "description": "",
+                            "id": "time-input-section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "time-input-mandatory-answer",
+                                            "label": "Time Input Mandatory",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "TimeInput",
+                                            "validation": {
+                                                "messages": {
+                                                    "INVALID_TIME_INPUT": "The time entered is not valid. Please correct your answer.",
+                                                    "MANDATORY": "This field is mandatory."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "time-input-mandatory-question",
+                                    "title": "Time Input",
+                                    "type": "General"
+                                },
+                                {
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "time-input-non-mandatory-answer",
+                                            "label": "Time Input Non-Mandatory",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "2",
+                                            "type": "TimeInput"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "time-input-non-mandatory-question",
+                                    "title": "Time Input",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": "Time Taken"
+                        }
+                    ],
+                    "title": "Time Input Examples"
+                }
+            ],
+            "id": "time-input-group",
+            "title": ""
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{% set subfields %}
+  <div class="fieldgroup__fields">
+     {% if form[answer['id']]['hours'] %}
+    <div class="field field--input field--hours">
+      <label class="label mercury" for="input-{{answer['id']}}-hours" id="label-{{answer['id']}}-hours" data-qa="label-hours">Hours</label>
+      {% set input = form[answer['id']]['hours'] %}
+      {% include 'partials/forms/input.html' %}
+    </div>
+    {% endif %}
+    {% if form[answer['id']]['mins'] %}
+    <div class="field field--input field--mins">
+      <label class="label mercury" for="input-{{answer['id']}}-mins" id="label-{{answer['id']}}-mins" data-qa="label-mins">Mins</label>
+      {% set input = form[answer['id']]['mins'] %}
+      {% include 'partials/forms/input.html' %}
+    </div>
+    {% endif %}
+  </div>
+{% endset %}
+
+{% if answer.label %}
+  <fieldset class="fieldgroup fieldgroup--date" data-qa="widget-date">
+    <legend class="fieldgroup__title venus">{{answer.label}}</legend>
+    {{subfields|safe}}
+  </fieldset>
+{% else %}
+  <div class="fieldgroup fieldgroup--date">
+    {{subfields|safe}}
+  </div>
+{% endif %}
+

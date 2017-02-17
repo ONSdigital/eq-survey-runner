@@ -328,21 +328,8 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
         if answer_id in survey_answer_ids or location.block_id == 'household-composition':
             answer = None
 
-            # Dates are comprised of 3 string values
             if isinstance(answer_value, dict):
-                is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
-                is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
-
-                if is_day_month_year and answer_value['day'] and answer_value['month']:
-                    date_str = "{:02d}/{:02d}/{}".format(
-                        int(answer_value['day']),
-                        int(answer_value['month']),
-                        answer_value['year'],
-                    )
-                    answer = Answer(answer_id=answer_id, value=date_str, location=location)
-                elif is_month_year and answer_value['month']:
-                    date_str = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
-                    answer = Answer(answer_id=answer_id, value=date_str, location=location)
+                answer = Answer(answer_id=answer_id, value=_format_answer_values(answer_value), location=location)
             elif answer_value != 'None' and answer_value is not None:
                 # Necessary because default select casts to string value 'None'
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
@@ -359,6 +346,21 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
+
+
+def _format_answer_values(answer_value):
+
+    is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
+    is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
+    is_time_input = 'hours' in answer_value or 'mins' in answer_value
+
+    if is_day_month_year and answer_value['day'] and answer_value['month']:
+        return "{:02d}/{:02d}/{}".format(int(answer_value['day']), int(answer_value['month']), answer_value['year'])
+    elif is_month_year and answer_value['month']:
+        return "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
+    elif is_time_input:
+        return '{}:{}'.format(answer_value['hours'] or '', answer_value['mins'] or '')
+    return None
 
 
 def update_questionnaire_store_with_answer_data(questionnaire_store, location, answers):

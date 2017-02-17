@@ -66,7 +66,7 @@ class NumberRange(object):
         self.messages = messages
 
     def __call__(self, form, field):
-        data = field.data
+        data = int(field.data)
         if data is not None:
             if self.min is not None and data < self.min:
                 raise validators.ValidationError(self.messages['NEGATIVE_INTEGER'])
@@ -98,23 +98,6 @@ class OptionalForm(object):
 
         if empty_form:
             raise validators.StopValidation()
-
-
-class DateRequired(object):
-    field_flags = ('required', )
-
-    def __init__(self, message=None):
-        if not message:
-            message = error_messages['MANDATORY']
-        self.message = message
-
-    def __call__(self, form, field):
-        if hasattr(form, 'day'):
-            if not form.day.data and not form.month.data and not form.year.data:
-                raise validators.StopValidation(self.message)
-        else:
-            if not form.month.data and not form.year.data:
-                raise validators.StopValidation(self.message)
 
 
 class DateCheck(object):
@@ -167,3 +150,47 @@ class DateRangeCheck(object):
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_FROM_SAME'])
         elif from_date > to_date:
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_BEFORE_FROM'])
+
+
+class FormResponseRequired(object):
+    field_flags = ('required', )
+
+    def __init__(self, message=None):
+        if not message:
+            message = error_messages['MANDATORY']
+        self.message = message
+
+    def __call__(self, form, field):
+
+        if hasattr(form, 'day'):
+            if not form.day.data and not form.month.data and not form.year.data:
+                raise validators.StopValidation(self.message)
+        elif hasattr(form, 'month'):
+            if not form.month.data and not form.year.data:
+                raise validators.StopValidation(self.message)
+        elif hasattr(form, 'hours') and hasattr(form, 'mins'):
+            if not form.hours.data and not form.mins.data:
+                raise validators.StopValidation(self.message)
+
+
+class TimeInputCheck(object):
+
+    def __init__(self, message=None):
+        if not message:
+            message = error_messages
+        self.message = message
+        self.message['NEGATIVE_INTEGER'] = self.message['INTEGER_TOO_LARGE'] = self.message['INVALID_TIME_INPUT']
+
+    def __call__(self, form, field):
+
+        integer_check = IntegerCheck(self.message['INVALID_TIME_INPUT'])
+
+        if form.hours.data:
+            integer_check(form, form.hours)
+            hours_number_range = NumberRange(0, 999, messages=self.message)
+            hours_number_range(form, form.hours)
+
+        if form.mins.data:
+            integer_check(form, form.mins)
+            mins_number_range = NumberRange(0, 59, messages=self.message)
+            mins_number_range(form, form.mins)
