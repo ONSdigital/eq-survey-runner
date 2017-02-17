@@ -19,6 +19,7 @@
     "test_unit_no_watch": "gulp test:scripts:unit",
     "test_functional": "gulp test:scripts:functional",
     "test_functional_sauce": "gulp test:scripts:functional --sauce",
+    "test_functional_browserstack": "gulp test:scripts:functional --browserstack",
     "a11y": "gulp test:a11ym"
   },
   "devDependencies": {
@@ -125,6 +126,7 @@
     "yargs": "^5.0.0"
   },
   "dependencies": {
+    "browserstack-local": "^1.3.0",
     "events": "^1.1.1",
     "lodash": "^4.17.4",
     "rollup-plugin-node-resolve": "^2.0.0"
