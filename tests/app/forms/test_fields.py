@@ -291,3 +291,47 @@ class TestFields(unittest.TestCase):
         self.assertTrue(unbound_field.field_class == CustomIntegerField)
         self.assertEquals(unbound_field.kwargs['label'], percentage_json['label'])
         self.assertEquals(unbound_field.kwargs['description'], percentage_json['description'])
+
+    def test_hour_field(self):
+        hour_json = {
+            "guidance": "",
+            "id": "hour",
+            "label": "",
+            "mandatory": True,
+            "q_code": "1",
+            "type": "Hour",
+            "validation": {
+                "messages": {
+                    "INTEGER_TOO_LARGE": "Hours cannot be greater than 999",
+                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                }
+            }
+        }
+
+        unbound_field = get_field(hour_json, hour_json['label'], error_messages)
+
+        self.assertTrue(unbound_field.field_class == CustomIntegerField)
+        self.assertEquals(unbound_field.kwargs['label'], hour_json['label'])
+        self.assertEquals(unbound_field.kwargs['description'], hour_json['guidance'])
+
+    def test_minute_field(self):
+        minute_json = {
+            "guidance": "",
+            "id": "minute",
+            "label": "",
+            "mandatory": True,
+            "q_code": "1",
+            "type": "Minute",
+            "validation": {
+                "messages": {
+                    "INTEGER_TOO_LARGE": "Minutes cannot be greater than 59",
+                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                }
+            }
+        }
+
+        unbound_field = get_field(minute_json, minute_json['label'], error_messages)
+
+        self.assertTrue(unbound_field.field_class == CustomIntegerField)
+        self.assertEquals(unbound_field.kwargs['label'], minute_json['label'])
+        self.assertEquals(unbound_field.kwargs['description'], minute_json['guidance'])

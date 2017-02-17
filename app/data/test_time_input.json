@@ -1,0 +1,77 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "23",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Input time Example",
+    "description": "A test schema for time input",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "introduction": {
+        "description": "",
+        "information_to_provide": [
+            "time"
+        ]
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "type": "questionnaire",
+                    "id": "time-input-block",
+                    "sections": [
+                        {
+                            "description": "",
+                            "id": "time-input-section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "time-input-hour",
+                                            "label": "Hours",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "Hour",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "Hours cannot be greater than 999 hours",
+                                                    "MANDATORY": "Please provide an answer to continue."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "guidance": "",
+                                            "id": "time-input-minute",
+                                            "label": "Minutes",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "2",
+                                            "type": "Minute",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "Minutes cannot be greater than 59",
+                                                    "MANDATORY": "Please provide an answer to continue."
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "time-input-question",
+                                    "title": "Time Input",
+                                    "type": "Timeinput"
+                                }
+                            ],
+                            "title": "Time Taken"
+                        }
+                    ],
+                    "title": "Time Input Examples"
+                }
+            ],
+            "id": "time-input-group",
+            "title": ""
+        }
+    ]
+}
