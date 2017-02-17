@@ -111,9 +111,7 @@ const browserStackConfig = {
 
 if (process.env.TRAVIS === 'true') {
   config = {
-    ...config,
-    logLevel: 'silent',
-    capabilities: [chrome]
+    ...browserStackConfig
   }
 } else {
   if (argv.sauce) {
