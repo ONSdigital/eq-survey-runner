@@ -1,7 +1,9 @@
-from wtforms import FormField, IntegerField, SelectField, SelectMultipleField, StringField, TextAreaField
+from wtforms import FormField, SelectField, SelectMultipleField, StringField, TextAreaField
 from wtforms import validators
 
+from app.forms.custom_integer_field import CustomIntegerField
 from app.forms.date_form import get_date_form, get_month_year_form
+from app.forms.time_input_form import get_time_input_form
 from app.validation.validators import IntegerCheck, NumberRange, ResponseRequired
 from structlog import get_logger
 
@@ -23,6 +25,7 @@ def get_field(answer, label, error_messages):
         "Percentage": get_integer_field,
         "TextArea": get_text_area_field,
         "TextField": get_string_field,
+        "TimeInput": get_time_input_field,
     }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
@@ -93,6 +96,14 @@ def get_month_year_field(answer, label, guidance, error_messages):
     )
 
 
+def get_time_input_field(answer, label, guidance, error_messages):
+    return FormField(
+        get_time_input_form(answer, error_messages),
+        label=label,
+        description=guidance,
+    )
+
+
 def get_select_multiple_field(answer, label, guidance, error_messages):
     validate_with = get_mandatory_validator(answer, error_messages)
 
@@ -113,26 +124,6 @@ def get_select_field(answer, label, guidance, error_messages):
         choices=build_choices(answer['options']),
         validators=validate_with,
     )
-
-
-class CustomIntegerField(IntegerField):
-    """
-    The default wtforms field coerces data to an int and raises
-    cast errors outside of it's validation chain. In order to stop
-    the validation chain, we create a custom field that doesn't
-    raise the error and we can instead fail and stop other calls to
-    further validation steps by using a separate IntegerCheck validator
-    """
-    def __init__(self, **kwargs):
-
-        super(CustomIntegerField, self).__init__(**kwargs)
-
-    def process_formdata(self, valuelist):
-        if valuelist:
-            try:
-                self.data = int(valuelist[0])
-            except ValueError:
-                self.data = None
 
 
 def get_integer_field(answer, label, guidance, error_messages):
@@ -159,7 +150,6 @@ def get_integer_field(answer, label, guidance, error_messages):
             IntegerCheck(answer_errors['NOT_INTEGER']),
             NumberRange(min=0, max=9999999999, messages=answer_errors),
         ]
-
     return CustomIntegerField(
         label=label,
         description=guidance,

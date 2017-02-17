@@ -167,3 +167,31 @@ class DateRangeCheck(object):
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_FROM_SAME'])
         elif from_date > to_date:
             raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_BEFORE_FROM'])
+
+
+class TimeInputCheck(object):
+    def __init__(self, messages=None):
+        if not messages:
+            messages = error_messages
+        self.messages = messages
+
+    def __call__(self, form, field):
+        logger.error(self.messages)
+        if form.minute.data and int(form.minute.data) > 59:
+            raise validators.ValidationError(self.messages['INVALID_MINUTES'])
+        if form.hour.data and int(form.hour.data) > 999:
+            raise validators.ValidationError(self.messages['INVALID_HOURS'])
+
+
+class TimeInputRequired(object):
+    field_flags = ('required', )
+
+    def __init__(self, message=None):
+        if not message:
+            message = error_messages['MANDATORY']
+        self.message = message
+
+    def __call__(self, form, field):
+        if not form.minute.data and not form.hour.data:
+            raise validators.StopValidation(self.message)
+

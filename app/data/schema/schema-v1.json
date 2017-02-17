@@ -360,6 +360,7 @@
                                         "Radio",
                                         "TextArea",
                                         "TextField",
+                                        "TimeInput",
                                         "Relationship"
                                     ]
                                   },

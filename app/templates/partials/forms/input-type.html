@@ -1,0 +1,31 @@
+<div class="field">
+
+  {% set label = {
+    'for': answer.id,
+    'text': answer.label,
+    'description': answer.description
+  } %}
+
+  {% include 'partials/forms/label.html' %}
+
+  {% set raw_data = form[answer['id']].raw_data[0] if form[answer['id']].raw_data is not none else '' %}
+  {% set form_data = form[answer['id']].data if form[answer.id].data is not none else '' %}
+
+  <div class="input-type input-type--{{input_type}} {{'input-type--reversed' if reverse}}">
+
+    {% set input = {
+      'type': 'text',
+      'classes': 'input-type__input' ~ (' js-totaliser-input-calculated' if answer.calculated),
+      'hasType': true,
+      'data': form_data if form_data else raw_data|e,
+      'name': answer.id,
+      'id': answer.id,
+      'labelledBy': answer.id ~ '-type'
+    } %}
+
+    {% include 'partials/forms/input.html' %}
+
+    <span class="input-type__type" id="{{answer.id}}-type">{{input_type}}</span>
+
+  </div>
+</div>

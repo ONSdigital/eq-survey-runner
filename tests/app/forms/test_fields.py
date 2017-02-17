@@ -4,8 +4,7 @@ from wtforms import validators, StringField, TextAreaField, FormField, SelectFie
 
 from app.forms.fields import CustomIntegerField, get_field, get_mandatory_validator
 from app.validation.error_messages import error_messages
-from app.validation.validators import ResponseRequired
-
+from app.validation.validators import IntegerCheck, NumberRange, ResponseRequired
 
 class TestFields(unittest.TestCase):
 
@@ -291,3 +290,49 @@ class TestFields(unittest.TestCase):
         self.assertTrue(unbound_field.field_class == CustomIntegerField)
         self.assertEquals(unbound_field.kwargs['label'], percentage_json['label'])
         self.assertEquals(unbound_field.kwargs['description'], percentage_json['description'])
+
+    def test_hour_field(self):
+        hour_json = {
+            "guidance": "",
+            "id": "hour",
+            "label": "Hours",
+            "mandatory": False,
+            "q_code": "1",
+            "type": "Hour",
+            "validation": {
+                "messages": {
+                    "INTEGER_TOO_LARGE": "Hours cannot be greater than 999",
+                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                }
+            }
+        }
+
+        unbound_field = get_field(hour_json, hour_json['label'], error_messages)
+        self.assertTrue(unbound_field.field_class == CustomIntegerField)
+        self.assertEquals(unbound_field.kwargs['validators'][2].min, 0)
+        self.assertEquals(unbound_field.kwargs['validators'][2].max, 999)
+        self.assertIn('INTEGER_TOO_LARGE', unbound_field.kwargs['validators'][2].messages)
+        self.assertIn('Hours cannot be greater than 999', unbound_field.kwargs['validators'][2].messages['INTEGER_TOO_LARGE'])
+
+    def test_minute_field(self):
+        minute_json = {
+            "guidance": "",
+            "id": "minute",
+            "label": "Minutes",
+            "mandatory": False,
+            "q_code": "1",
+            "type": "Minute",
+            "validation": {
+                "messages": {
+                    "INTEGER_TOO_LARGE": "Minutes cannot be greater than 59",
+                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                }
+            }
+        }
+
+        unbound_field = get_field(minute_json, minute_json['label'], error_messages)
+        self.assertTrue(unbound_field.field_class == CustomIntegerField)
+        self.assertEquals(unbound_field.kwargs['validators'][2].min, 0)
+        self.assertEquals(unbound_field.kwargs['validators'][2].max, 59)
+        self.assertIn('INTEGER_TOO_LARGE', unbound_field.kwargs['validators'][2].messages)
+        self.assertIn('Minutes cannot be greater than 59', unbound_field.kwargs['validators'][2].messages['INTEGER_TOO_LARGE'])

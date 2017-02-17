@@ -415,6 +415,7 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
             if isinstance(answer_value, dict):
                 is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
                 is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
+                is_time_input = 'hour' in answer_value and 'minute' in answer_value
 
                 if is_day_month_year and answer_value['day'] and answer_value['month']:
                     date_str = "{:02d}/{:02d}/{}".format(
@@ -426,6 +427,9 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
                 elif is_month_year and answer_value['month']:
                     date_str = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
                     answer = Answer(answer_id=answer_id, value=date_str, location=location)
+                elif is_time_input:
+                    time_input = '{}:{}'.format(answer_value['hour'] or '', answer_value['minute'] or '')
+                    answer = Answer(answer_id=answer_id, value=time_input, location=location)
             elif answer_value != 'None' and answer_value is not None:
                 # Necessary because default select casts to string value 'None'
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
