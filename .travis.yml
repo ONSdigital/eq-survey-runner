@@ -40,7 +40,6 @@ cache:
     - directories:
         - /home/travis/.pyenv/versions/
 script:
-    - env
     - yarn compile
     - ./scripts/run.sh
 after_success:
