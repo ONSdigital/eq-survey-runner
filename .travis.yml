@@ -4,6 +4,7 @@ language: node_js
 node_js: 6
 addons:
   browserstack:
+    forcelocal: true
     username:
       secure: "ebzvEK4S33fq0O+lgLDc1VyyoivXAUVb+tLrNu5RwT0K4hcxvh93xOcyKwEuXaruOjamuUMqSjQ4lU/lc/8WOZFozdeyUQ5/xssbFtx0GngWLOeahZ9X4ma4gUeZ+7kc/NXLH81jSVhWAr3xJRrhk8pk2hcFJ0f/92rDibzf2I6e2zw4sl1gowQPdzp59a47QADpRMfOMLeo4bFSWOMN8sFuGXO7ZlwIKTNilo4MpZsXlRQojVijQd1qH6aeRjksZUVTSlnSx0NrnbnVCwY1Uc4qSVj60q0tiX/zoI7liYy1BEKlHUC4MSNWZKoO8QfjkNMR183fOCBROMkH83h2EHRHCMLRw8fgi1yULdFus1JWd045YdkKFSslQgNsiSalHdnECuMZrtvI7ONUyivnivYNa8KGsoG/pBeJRFrFQwdLV0qWmCOXb9XPqaPglej8a37H5rnnOCPCXSR/XeJ45z6tKql54Q/rbSYOO4p1Ai7XwXKWbbu4dDMRJaB85i8hhSD4lRd3BQPQHWVVZpcZNemHm9QnK0pE9OyFHxf53DyldU1aXhI/wIj9aogXchpBH4UEhVOOpDSxhLMA/Do2qILy3xIqXWLWUeEO5FtHaqYcJJqsEGgzNAyBDo7u+u5igZIE9GEpUB4arZSk0tSoyrhE3Lo4Cihep0RcceEfTww="
     access_key:
@@ -40,7 +41,6 @@ cache:
     - directories:
         - /home/travis/.pyenv/versions/
 script:
-    - env
     - yarn compile
     - ./scripts/run.sh
 after_success:

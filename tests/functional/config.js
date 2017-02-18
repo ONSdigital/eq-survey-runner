@@ -75,7 +75,7 @@ const browserStackConfig = {
   capabilities: [{
     browser: 'chrome',
     name: 'chrome_local',
-    build: 'master 2',
+    build: 'eq-survey-runner #' + process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER,
     project: 'EQ Survey Runner',
     'browserstack.local': true,
     'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
