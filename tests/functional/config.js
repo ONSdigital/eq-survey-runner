@@ -71,6 +71,7 @@ const browserStackConfig = {
   },
   user: process.env.BROWSERSTACK_USERNAME,
   key: process.env.BROWSERSTACK_ACCESS_KEY,
+  browserstackLocal: true,
   updateJob: false,
   capabilities: [{
     browser: 'chrome',
