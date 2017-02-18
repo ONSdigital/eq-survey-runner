@@ -90,7 +90,7 @@ const browserStackConfig = {
   }
 }
 
-startStopBrowserStack = {
+const startStopBrowserStack = {
   // Code to start browserstack local before start of test
   onPrepare: function (config, capabilities) {
     console.log("Connecting local");
