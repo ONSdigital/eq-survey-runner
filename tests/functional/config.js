@@ -1,7 +1,6 @@
 import {paths} from '../../gulp/paths'
-import {chrome, chromeNoJS, firefox, ie11, ie10, ie9, ie8} from './capabilities'
-
-var argv = require('yargs').argv
+import {chrome, firefox, phantomjs} from './capabilities'
+import {argv} from 'yargs'
 
 let config = {
   services: ['selenium-standalone'],
@@ -46,17 +45,35 @@ const sauceLabsConfig = {
   capabilities: [firefox]
 }
 
+const phantomjsConfig = {
+  services: ['phantomjs'],
+  waitforTimeout: 3000,
+  capabilities: [phantomjs],
+  maxInstances: 4,
+  before: function() {
+    browser.setViewportSize({
+      width: 1280,
+      height: 1024
+    })
+  }
+}
+
 if (process.env.TRAVIS === 'true') {
   config = {
     ...config,
-    logLevel: 'silent',
-    capabilities: [chrome]
+    ...phantomjsConfig,
+    logLevel: 'silent'
   }
 } else {
   if (argv.sauce) {
     config = {
       ...config,
       ...sauceLabsConfig
+    }
+  } else if (argv.headless) {
+    config = {
+      ...config,
+      ...phantomjsConfig
     }
   }
 }

@@ -63,6 +63,11 @@ gulp.task('test:scripts:functional:sauce', (done) => {
   functionalTests(done)
 })
 
+gulp.task('test:scripts:functional:headless', (done) => {
+  process.env.BASEURL = getEnv()
+  functionalTests(done)
+})
+
 gulp.task('test:scripts:unit', (done) => {
   unitTests(done, false)
 })

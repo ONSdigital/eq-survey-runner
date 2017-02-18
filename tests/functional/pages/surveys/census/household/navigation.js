@@ -1,8 +1,7 @@
 class Navigation {
 
   navigateToHouseholdAndAccommodation() {
-    browser.element('//a[text()="Household and Accommodation"]').click()
-    return this
+    return browser.element('//a[text()="Household and Accommodation"]').click()
   }
 
 }

@@ -19,6 +19,7 @@
     "test_unit_no_watch": "gulp test:scripts:unit",
     "test_functional": "gulp test:scripts:functional",
     "test_functional_sauce": "gulp test:scripts:functional --sauce",
+    "test_functional_headless": "gulp test:scripts:functional --headless",
     "a11y": "gulp test:a11ym"
   },
   "devDependencies": {
@@ -102,6 +103,7 @@
     "promise": "^7.1.1",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
     "rollupify": "^0.3.9",
     "sauce-connect-launcher": "^0.16.0",
     "selenium-standalone": "^5.6.0",
@@ -118,6 +120,7 @@
     "watchify": "~3.7.0",
     "wdio-dot-reporter": "0.0.6",
     "wdio-mocha-framework": "^0.4.3",
+    "wdio-phantomjs-service": "^0.2.2",
     "wdio-sauce-service": "^0.2.5",
     "wdio-selenium-standalone-service": "0.0.6",
     "wdio-spec-reporter": "0.0.3",
@@ -128,7 +131,6 @@
     "a11y-dialog": "^3.0.0",
     "events": "^1.1.1",
     "lodash": "^4.17.4",
-    "rollup-plugin-node-resolve": "^2.0.0",
     "whatwg-fetch": "^2.0.2"
   }
 }

@@ -21,6 +21,11 @@ export const chromeNoJS = {
   }
 }
 
+export const phantomjs = {
+  name: 'PhantomJS',
+  browserName: 'phantomjs'
+}
+
 export const firefox = {
   name: 'Firefox 43 | OS X 10.11',
   browserName: 'firefox',
