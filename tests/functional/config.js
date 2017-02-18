@@ -74,8 +74,7 @@ const browserStackConfig = {
   browserstackLocal: true,
   updateJob: false,
   capabilities: [{
-    browser: 'chrome',
-    name: 'chrome_local',
+    browserName: 'chrome',
     build: 'eq-survey-runner #' + process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER,
     project: 'EQ Survey Runner',
     'browserstack.local': true,
@@ -88,8 +87,10 @@ const browserStackConfig = {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
     timeout: 240000
-  },
+  }
+}
 
+startStopBrowserStack = {
   // Code to start browserstack local before start of test
   onPrepare: function (config, capabilities) {
     console.log("Connecting local");
@@ -122,7 +123,8 @@ if (process.env.TRAVIS === 'true') {
     }
   } else if (argv.browserstack) {
       config = {
-      ...browserStackConfig
+      ...browserStackConfig,
+      ...startStopBrowserStack
     }
   }
 }
