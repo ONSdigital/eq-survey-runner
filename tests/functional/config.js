@@ -133,7 +133,9 @@ const browserStackConfigTravis = {
   capabilities: [{
     browserName: 'chrome',
     version: '56.0',
-    platform: 'Windows 10',
+    platform: 'WINDOWS',
+    os: 'WINDOWS',
+    os_version: '10',
     name: 'Travis CI',
     build: 'Travis Build #' + process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER,
     project: 'eq-survery-runner PR: #' + process.env.TRAVIS_PULL_REQUEST + ' ' + process.env.TRAVIS_PULL_REQUEST_BRANCH,
