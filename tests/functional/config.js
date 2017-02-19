@@ -49,6 +49,10 @@ const sauceLabsConfig = {
 }
 
 const browserStackConfig = {
+  services: ['browserstack'],
+  user: process.env.BROWSERSTACK_USERNAME,
+  key: process.env.BROWSERSTACK_ACCESS_KEY,
+  browserstackLocal: true,
   logLevel: 'error',
   coloredLogs: true,
   bail: 1,
@@ -69,15 +73,14 @@ const browserStackConfig = {
       `${paths.test.wdioSpec}/ukis/**/*.spec.js`
     ]
   },
-  user: process.env.BROWSERSTACK_USERNAME,
-  key: process.env.BROWSERSTACK_ACCESS_KEY,
-  browserstackLocal: true,
   updateJob: false,
   capabilities: [{
     browserName: 'chrome',
+    name: 'chrome_local',
     build: 'eq-survey-runner #' + process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER,
     project: 'EQ Survey Runner',
     'browserstack.local': true,
+    'browserstack.debug': true,
     'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
   }],
   maxInstances: 4,
@@ -87,10 +90,8 @@ const browserStackConfig = {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
     timeout: 240000
-  }
-}
+  },
 
-const startStopBrowserStack = {
   // Code to start browserstack local before start of test
   onPrepare: function (config, capabilities) {
     console.log("Connecting local");
@@ -123,8 +124,7 @@ if (process.env.TRAVIS === 'true') {
     }
   } else if (argv.browserstack) {
       config = {
-      ...browserStackConfig,
-      ...startStopBrowserStack
+      ...browserStackConfig
     }
   }
 }
