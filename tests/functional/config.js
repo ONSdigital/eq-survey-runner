@@ -129,4 +129,4 @@ if (process.env.TRAVIS === 'true') {
   }
 }
 
-export default config
+export default browserStackConfig
