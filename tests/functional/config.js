@@ -141,7 +141,7 @@ const browserStackConfigTravis = {
     project: 'eq-survery-runner PR: #' + process.env.TRAVIS_PULL_REQUEST + ' ' + process.env.TRAVIS_PULL_REQUEST_BRANCH,
     'browserstack.local': true
   }],
-  maxInstances: 1,
+  maxInstances: 4,
   framework: 'mocha',
   reporters: ['spec'],
   mochaOpts: {
