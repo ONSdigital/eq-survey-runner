@@ -117,7 +117,6 @@
     "vinyl-source-stream": "~1.1.0",
     "vinyl-transform": "^1.0.0",
     "watchify": "~3.7.0",
-    "wdio-browserstack-service": "^0.1.4",
     "wdio-dot-reporter": "0.0.6",
     "wdio-mocha-framework": "^0.4.3",
     "wdio-sauce-service": "^0.2.5",

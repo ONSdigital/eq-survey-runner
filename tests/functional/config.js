@@ -2,7 +2,7 @@ import {paths} from '../../gulp/paths'
 import {chrome, chromeNoJS, firefox, ie11, ie10, ie9, ie8} from './capabilities'
 
 var argv = require('yargs').argv
-//var browserstack = require('browserstack-local');
+var browserstack = require('browserstack-local');
 
 
 let config = {
@@ -49,12 +49,6 @@ const sauceLabsConfig = {
 }
 
 const browserStackConfig = {
-  services: ['browserstack'],
-  user: process.env.BROWSERSTACK_USERNAME,
-  key: process.env.BROWSERSTACK_ACCESS_KEY,
-  browserstackLocal: true,
-  host: 'hub.browserstack.com',
-  port: 80,
   logLevel: 'error',
   coloredLogs: true,
   bail: 1,
@@ -75,15 +69,15 @@ const browserStackConfig = {
       `${paths.test.wdioSpec}/ukis/**/*.spec.js`
     ]
   },
+  user: process.env.BROWSERSTACK_USERNAME,
+  key: process.env.BROWSERSTACK_ACCESS_KEY,
   updateJob: false,
-  desiredCapabilities: [{
-    browserName: 'chrome',
+  capabilities: [{
+    browser: 'chrome',
     name: 'chrome_local',
-    build: 'eq-survey-runner #' + process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER,
+    build: 'master 2',
     project: 'EQ Survey Runner',
-    'browserstack.local': true,
-    'browserstack.debug': true,
-    'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+    'browserstack.local': true
   }],
   maxInstances: 4,
   framework: 'mocha',
@@ -93,10 +87,7 @@ const browserStackConfig = {
     compilers: ['js:babel-core/register'],
     timeout: 240000
   },
-}
 
-// testing without this, was part of browserStackConfig
-const browserStackConfig_removed = {
   // Code to start browserstack local before start of test
   onPrepare: function (config, capabilities) {
     console.log("Connecting local");
@@ -119,7 +110,9 @@ const browserStackConfig_removed = {
 
 if (process.env.TRAVIS === 'true') {
   config = {
-    ...browserStackConfig
+    ...config,
+    logLevel: 'silent',
+    capabilities: [chrome]
   }
 } else {
   if (argv.sauce) {
