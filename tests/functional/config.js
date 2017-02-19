@@ -2,7 +2,7 @@ import {paths} from '../../gulp/paths'
 import {chrome, chromeNoJS, firefox, ie11, ie10, ie9, ie8} from './capabilities'
 
 var argv = require('yargs').argv
-var browserstack = require('browserstack-local');
+//var browserstack = require('browserstack-local');
 
 
 let config = {
@@ -53,6 +53,8 @@ const browserStackConfig = {
   user: process.env.BROWSERSTACK_USERNAME,
   key: process.env.BROWSERSTACK_ACCESS_KEY,
   browserstackLocal: true,
+  host: 'hub.browserstack.com',
+  port: 80,
   logLevel: 'error',
   coloredLogs: true,
   bail: 1,
@@ -74,7 +76,7 @@ const browserStackConfig = {
     ]
   },
   updateJob: false,
-  capabilities: [{
+  desiredCapabilities: [{
     browserName: 'chrome',
     name: 'chrome_local',
     build: 'eq-survey-runner #' + process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER,
@@ -91,7 +93,10 @@ const browserStackConfig = {
     compilers: ['js:babel-core/register'],
     timeout: 240000
   },
+}
 
+// testing without this, was part of browserStackConfig
+const browserStackConfig_removed = {
   // Code to start browserstack local before start of test
   onPrepare: function (config, capabilities) {
     console.log("Connecting local");
@@ -129,4 +134,4 @@ if (process.env.TRAVIS === 'true') {
   }
 }
 
-export default browserStackConfig
+export default config
