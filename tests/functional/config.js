@@ -49,7 +49,7 @@ const sauceLabsConfig = {
 }
 
 const browserStackConfig = {
-  logLevel: 'error',
+  logLevel: 'verbose',
   coloredLogs: true,
   bail: 1,
   screenshotPath: './errorShots/',
@@ -69,7 +69,7 @@ const browserStackConfig = {
       `${paths.test.wdioSpec}/ukis/**/*.spec.js`
     ]
   },
-  user: process.env.BROWSERSTACK_USERNAME,
+  user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_ACCESS_KEY,
   updateJob: false,
   capabilities: [{
@@ -110,9 +110,7 @@ const browserStackConfig = {
 
 if (process.env.TRAVIS === 'true') {
   config = {
-    ...config,
-    logLevel: 'silent',
-    capabilities: [chrome]
+    ...browserStackConfig
   }
 } else {
   if (argv.sauce) {
