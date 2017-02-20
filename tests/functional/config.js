@@ -109,7 +109,7 @@ const browserStackConfig = {
 }
 
 const browserStackConfigTravis = {
-  logLevel: 'silent',
+  logLevel: 'verbose',
   coloredLogs: true,
   bail: 1,
   waitforTimeout: 5000,
@@ -136,14 +136,12 @@ const browserStackConfigTravis = {
     platform: 'WINDOWS',
     os: 'WINDOWS',
     os_version: '10',
-    maxInstances: 4,
     name: 'Travis CI',
     build: 'Travis Build #' + process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER,
     project: 'eq-survery-runner PR: #' + process.env.TRAVIS_PULL_REQUEST + ' ' + process.env.TRAVIS_PULL_REQUEST_BRANCH,
     'browserstack.local': true
   }],
   maxInstances: 4,
-  maxSession: 4,
   framework: 'mocha',
   reporters: ['spec'],
   mochaOpts: {
