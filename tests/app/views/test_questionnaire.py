@@ -8,7 +8,7 @@ from app.data_model.answer_store import Answer
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.schema_loader.schema_loader import load_schema_file
 from app.questionnaire.location import Location
-from app.views.questionnaire import update_questionnaire_store_with_answer_data, update_questionnaire_store_with_form_data
+from app.views.questionnaire import update_questionnaire_store_with_answer_data, update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store
 
 from flask import g
 
@@ -146,3 +146,253 @@ class TestQuestionnaireView(unittest.TestCase):
 
         for answer in answers:
             self.assertIn(answer.__dict__, self.question_store.answer_store.answers)
+
+    def test_remove_empty_household_members_from_answer_store(self):
+        g.schema_json = load_schema_file("census_household.json")
+
+        answers = [
+            Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=0,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='middle-names',
+                answer_instance=0,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=0,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=1,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='middle-names',
+                answer_instance=1,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=1,
+                value=''
+            )
+        ]
+
+        for answer in answers:
+            self.question_store.answer_store.add_or_update(answer)
+
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
+
+        for answer in answers:
+            self.assertFalse(self.question_store.answer_store.exists(answer))
+
+    def test_remove_empty_household_members_values_entered_are_stored(self):
+        g.schema_json = load_schema_file("census_household.json")
+
+        answered = [
+            Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=0,
+                value='Joe'
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='middle-names',
+                answer_instance=0,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=0,
+                value='Bloggs'
+            )
+        ]
+
+        unanswered = [
+            Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=1,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='middle-names',
+                answer_instance=1,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=1,
+                value=''
+            )
+        ]
+
+        answers = []
+        answers.extend(answered)
+        answers.extend(unanswered)
+
+        for answer in answers:
+            self.question_store.answer_store.add_or_update(answer)
+
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
+
+        for answer in answered:
+            self.assertTrue(self.question_store.answer_store.exists(answer))
+
+        for answer in unanswered:
+            self.assertFalse(self.question_store.answer_store.exists(answer))
+
+    def test_remove_empty_household_members_partial_answers_are_stored(self):
+        g.schema_json = load_schema_file("census_household.json")
+
+        answered = [
+            Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=0,
+                value='Joe'
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='middle-names',
+                answer_instance=0,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=0,
+                value='Bloggs'
+            )
+        ]
+
+        partially_answered = [
+            Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=1,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='middle-names',
+                answer_instance=1,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=1,
+                value='Last name only'
+            ),  Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=2,
+                value='First name only'
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='middle-names',
+                answer_instance=2,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=2,
+                value=''
+            )
+        ]
+
+        answers = []
+        answers.extend(answered)
+        answers.extend(partially_answered)
+
+        for answer in answers:
+            self.question_store.answer_store.add_or_update(answer)
+
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
+
+        for answer in answered:
+            self.assertTrue(self.question_store.answer_store.exists(answer))
+
+        for answer in partially_answered:
+            self.assertTrue(self.question_store.answer_store.exists(answer))
+
+    def test_remove_empty_household_members_middle_name_only_not_stored(self):
+        g.schema_json = load_schema_file("census_household.json")
+
+        unanswered = [
+            Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='first-name',
+                answer_instance=0,
+                value=''
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='middle-names',
+                answer_instance=0,
+                value='should not be saved'
+            ), Answer(
+                group_id='who-lives-here',
+                group_instance=0,
+                block_id='household-composition',
+                answer_id='last-name',
+                answer_instance=0,
+                value=''
+            )
+        ]
+
+        for answer in unanswered:
+            self.question_store.answer_store.add_or_update(answer)
+
+        remove_empty_household_members_from_answer_store(self.question_store.answer_store, 'who-lives-here')
+
+        for answer in unanswered:
+            self.assertFalse(self.question_store.answer_store.exists(answer))
