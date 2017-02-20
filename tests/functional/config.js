@@ -112,8 +112,8 @@ const browserStackConfigTravis = {
   logLevel: 'verbose',
   coloredLogs: true,
   bail: 1,
-  waitforTimeout: 5000,
-  connectionRetryTimeout: 5000,
+  waitforTimeout: 10000,
+  connectionRetryTimeout: 90000,
   connectionRetryCount: 3,
   baseUrl: process.env.BASEURL,
   specs: [`${paths.test.wdioSpec}/**/*.spec.js`],
@@ -131,6 +131,11 @@ const browserStackConfigTravis = {
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_ACCESS_KEY,
   capabilities: [{
+    browserName: 'chrome',
+    version: '56.0',
+    platform: 'WINDOWS',
+    os: 'WINDOWS',
+    os_version: '10',
     name: 'Travis CI',
     build: 'Travis Build #' + process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER,
     project: 'eq-survery-runner PR: #' + process.env.TRAVIS_PULL_REQUEST + ' ' + process.env.TRAVIS_PULL_REQUEST_BRANCH,
@@ -142,7 +147,7 @@ const browserStackConfigTravis = {
   mochaOpts: {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
-    timeout: 5000
+    timeout: 240000
   },
 
   // Code to start browserstack local before start of test
