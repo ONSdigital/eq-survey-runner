@@ -31,7 +31,7 @@ def add_cache_control(response):
 @errors_blueprint.app_errorhandler(NoTokenException)
 def unauthorized(error=None):
     log_exception(error)
-    return _render_error_page(401)
+    return render_theme_template('default', 'session-expired.html'), 401
 
 
 @errors_blueprint.app_errorhandler(InvalidTokenException)

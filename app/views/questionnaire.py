@@ -8,10 +8,12 @@ from flask import request
 from flask import url_for
 from flask_login import current_user
 from flask_login import login_required
+from flask_login import logout_user
 from flask_themes2 import render_theme_template
 from structlog import get_logger
 from werkzeug.exceptions import NotFound
 
+from app import settings
 from app.authentication.session_storage import session_storage
 from app.data_model.answer_store import Answer
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
@@ -270,10 +272,7 @@ def get_confirmation(eq_id, form_type, collection_id):  # pylint: disable=unused
 def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     group_id = SchemaHelper.get_last_group_id(g.schema_json)
     current_location = Location(group_id, group_instance=0, block_id='thank-you')
-    thank_you_page = _build_template(current_location=current_location, display_navigation=False)
-    # Delete user data on request of thank you page.
-    _delete_user_data()
-    return thank_you_page
+    return _build_template(current_location=current_location, display_navigation=False, user_logout=True)
 
 
 @questionnaire_blueprint.route('signed-out', methods=["GET"])
@@ -282,6 +281,19 @@ def get_sign_out(eq_id, form_type, collection_id):  # pylint: disable=unused-arg
     signed_out_page = _render_template({}, block_id='signed-out')
     session_storage.clear()
     return signed_out_page
+
+
+@questionnaire_blueprint.route('timeout-continue', methods=["GET"])
+@login_required
+def get_timeout_continue(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
+    return 'true'
+
+
+@questionnaire_blueprint.route('session-expired', methods=["GET"])
+@login_required
+def get_session_expired(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
+    _delete_user_data()
+    return _render_template({}, block_id='session-expired')
 
 
 @questionnaire_blueprint.route('submit-answers', methods=["POST"])
@@ -446,6 +458,7 @@ def update_questionnaire_store_with_answer_data(questionnaire_store, location, a
 def _delete_user_data():
     get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
     session_storage.clear()
+    logout_user()
 
 
 def _check_same_survey(eq_id, form_type, collection_id):
@@ -492,7 +505,7 @@ def _render_schema(current_location):
     return renderer.render(block_json, **block_context)
 
 
-def _build_template(current_location, context=None, template=None, display_navigation=True):
+def _build_template(current_location, context=None, template=None, display_navigation=True, user_logout=False):
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
@@ -513,12 +526,26 @@ def _build_template(current_location, context=None, template=None, display_navig
     if previous_location is not None and not is_first_block_for_group and not current_location.block_id == 'thank-you':
         previous_url = previous_location.url(metadata)
 
+    if user_logout:
+        _delete_user_data()
+
     return _render_template(context, current_location.block_id, front_end_navigation, metadata_context, current_location, previous_url, template)
 
 
 def _render_template(context, block_id, front_end_navigation=None, metadata_context=None, current_location=None, previous_url=None, template=None):
     theme = g.schema_json.get('theme', None)
     logger.debug("theme selected", theme=theme)
+    session_timeout = settings.EQ_SESSION_TIMEOUT_SECONDS - settings.EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS
+    expired_url = url_for('questionnaire.get_session_expired',
+                          collection_id=metadata_context['survey']['collection_id'],
+                          eq_id=metadata_context['survey']['eq_id'],
+                          form_type=metadata_context['survey']['form_type']) \
+        if metadata_context is not None else None
+    timeout_continue_url = url_for('questionnaire.get_timeout_continue',
+                                   collection_id=metadata_context['survey']['collection_id'],
+                                   eq_id=metadata_context['survey']['eq_id'],
+                                   form_type=metadata_context['survey']['form_type']) \
+        if metadata_context is not None else None
     template = '{}.html'.format(template or block_id)
     return render_theme_template(theme, template,
                                  meta=metadata_context,
@@ -528,4 +555,7 @@ def _render_template(context, block_id, front_end_navigation=None, metadata_cont
                                  navigation=front_end_navigation,
                                  schema_title=g.schema_json['title'],
                                  legal_basis=g.schema_json['legal_basis'],
-                                 survey_id=g.schema_json['survey_id'],)
+                                 survey_id=g.schema_json['survey_id'],
+                                 session_timeout=session_timeout,
+                                 expired_url=expired_url,
+                                 timeout_continue_url=timeout_continue_url)

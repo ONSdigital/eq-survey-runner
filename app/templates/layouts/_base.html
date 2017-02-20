@@ -34,6 +34,11 @@
     {% endblock styles -%}
     {% endblock head -%}
     {{ analytics }}
+    <script>
+      window.__EQ_SESSION_TIMEOUT__ = {{ session_timeout|default('null') }};
+      window.__EQ_SESSION_CONTINUE_URL__ = '{{ timeout_continue_url|default('null') }}';
+      window.__EQ_SESSION_EXPIRED_URL__ = '{{ expired_url|default('null') }}';
+    </script>
   </head>
 
   <body>
@@ -84,8 +89,13 @@
         {% endblock %}
       </div>
 
-
     </div>
+
+    {% block post_content %}
+      {% if current_user.is_authenticated %}
+        {% include theme('partials/timeout.html') %}
+      {% endif %}
+    {% endblock post_content %}
 
     <!--[if gte IE 9]><!-->
     {% block scripts %}
