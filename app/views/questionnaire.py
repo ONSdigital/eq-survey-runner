@@ -521,9 +521,7 @@ def _build_template(current_location, context=None, template=None, display_navig
 
     previous_url = None
 
-    is_first_block_for_group = SchemaHelper.is_first_block_id_for_group(g.schema_json, current_location.group_id, current_location.block_id)
-
-    if previous_location is not None and not is_first_block_for_group and not current_location.block_id == 'thank-you':
+    if previous_location is not None:
         previous_url = previous_location.url(metadata)
 
     if user_logout:
