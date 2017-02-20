@@ -215,8 +215,8 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_convert_census_answers_multiple_answers(self):
         with self.application.test_request_context():
-            routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
-            answers = [create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite food', block_id='crisps')]
+            routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
+            answers = [create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
                 "survey_id": "021",
@@ -228,7 +228,7 @@ class TestConverter(SurveyRunnerTestCase):
 
             # Then
             self.assertEqual(len(answer_object['data']), 1)
-            self.assertEqual(answer_object['data'][0]['group_id'], 'favourite food')
+            self.assertEqual(answer_object['data'][0]['group_id'], 'favourite-food')
             self.assertEqual(answer_object['data'][0]['group_instance'], 0)
             self.assertEqual(answer_object['data'][0]['block_id'], 'crisps')
             self.assertEqual(answer_object['data'][0]['answer_instance'], 0)
@@ -249,15 +249,18 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_converter_checkboxes_with_q_codes(self):
         with self.application.test_request_context():
-            routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
-            answers = [create_answer('crisps-answer', ['Ready salted', 'Sweet chilli'], group_id='favourite food', block_id='crisps')]
+            routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
+            answers = [create_answer('crisps-answer', [
+                'Ready salted',
+                'Sweet chilli'
+            ], group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
                 "survey_id": "999",
                 "data_version": "0.0.1",
                 "groups": [
                     {
-                        "id": "favourite food",
+                        "id": "favourite-food",
                         "blocks": [
                             {
                                 "id": "crisps",
@@ -287,14 +290,19 @@ class TestConverter(SurveyRunnerTestCase):
                                                         },
                                                         {
                                                             "label": "Other",
-                                                            "value": "other",
                                                             "q_code": "4",
                                                             "description": "Choose any other flavour",
-                                                            "other": {
-                                                                "label": "Please specify other"
-                                                            }
+                                                            "value": "Other",
+                                                            "child_answer_id": "other-answer-mandatory"
                                                         }
                                                     ]
+                                                },
+                                                {
+                                                    "parent_answer_id": "crisps-answer",
+                                                    "mandatory": True,
+                                                    "id": "other-answer-mandatory",
+                                                    "label": "Please specify other",
+                                                    "type": "TextField"
                                                 }
                                             ]
                                         }]
@@ -316,15 +324,20 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_converter_checkboxes_with_q_codes_and_other_value(self):
         with self.application.test_request_context():
-            routing_path = [Location(group_id='favourite food', group_instance=0, block_id='crisps')]
-            answers = [create_answer('crisps-answer', ['Ready salted', 'other', 'Bacon'], group_id='favourite food', block_id='crisps')]
+            routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
+            answers = [create_answer('crisps-answer', [
+                'Ready salted',
+                'Other'
+            ], group_id='favourite-food', block_id='crisps')]
+
+            answers += [create_answer('other-answer-mandatory', 'Bacon', group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
                 "survey_id": "999",
                 "data_version": "0.0.1",
                 "groups": [
                     {
-                        "id": "favourite food",
+                        "id": "favourite-food",
                         "blocks": [
                             {
                                 "id": "crisps",
@@ -354,14 +367,19 @@ class TestConverter(SurveyRunnerTestCase):
                                                         },
                                                         {
                                                             "label": "Other",
-                                                            "value": "other",
                                                             "q_code": "4",
                                                             "description": "Choose any other flavour",
-                                                            "other": {
-                                                                "label": "Please specify other"
-                                                            }
+                                                            "value": "Other",
+                                                            "child_answer_id": "other-answer-mandatory"
                                                         }
                                                     ]
+                                                },
+                                                {
+                                                    "parent_answer_id": "crisps-answer",
+                                                    "mandatory": True,
+                                                    "id": "other-answer-mandatory",
+                                                    "label": "Please specify other",
+                                                    "type": "TextField"
                                                 }
                                             ]
                                         }]

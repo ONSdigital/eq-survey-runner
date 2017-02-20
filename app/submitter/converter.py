@@ -4,7 +4,6 @@ from datetime import datetime, timezone
 from structlog import get_logger
 
 from app import settings
-from app.helpers.multiple_choice_helper import MultipleChoiceHelper
 from app.helpers.schema_helper import SchemaHelper
 
 logger = get_logger()
@@ -91,11 +90,11 @@ def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
             answer_schema = answer_schema_list[answer['answer_id']]
             value = answer['value']
 
-            if answer_schema is not None and value is not None:
+            if answer_schema is not None and value is not None and 'parent_answer_id' not in answer_schema:
                 if answer_schema['type'] != 'Checkbox' or any('q_code' not in option for option in answer_schema['options']):
                     data[answer_schema['q_code']] = _get_answer_data(data, answer_schema['q_code'], value)
                 else:
-                    data.update(_get_checkbox_answer_data(answer_schema, value))
+                    data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
     return data
 
 
@@ -111,7 +110,7 @@ def _get_answer_data(original_data, item_code, value):
     return _encode_value(value)
 
 
-def _get_checkbox_answer_data(checkboxes_with_qcode, value):
+def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
 
     checkbox_answer_data = OrderedDict()
 
@@ -120,11 +119,12 @@ def _get_checkbox_answer_data(checkboxes_with_qcode, value):
         option = next((option for option in checkboxes_with_qcode['options'] if option['value'] == user_answer), None)
 
         if option:
-            if option['value'].lower() == 'other':
+            if 'child_answer_id' in option:
+                filtered = answer_store.filter(answer_id=option['child_answer_id'], limit=1)
+
                 # if the user has selected 'other' we need to find the value it refers to.
                 # when non-mandatory, the other box value can be empty, in this case we just use its value
-                checkbox_answer_data[option['q_code']] = MultipleChoiceHelper.find_other_value(value, checkboxes_with_qcode['options']) \
-                                         or option['value']
+                checkbox_answer_data[option['q_code']] = filtered[0]['value'] if len(filtered) == 1 else option['value']
             else:
                 checkbox_answer_data[option['q_code']] = user_answer
 
