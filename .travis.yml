@@ -12,7 +12,7 @@ addons:
 env:
   global:
     - EQ_ENABLE_CACHE=True
-    - EQ_RUN_LOCAL_TESTS=True
+    - EQ_RUN_LOCAL_TESTS=False
     - EQ_RUN_LOCAL=True
     - EQ_RUN_FUNCTIONAL_TESTS=True
     - EQ_FUNCTIONAL_TEST_SUITES="core,ukis,census"
