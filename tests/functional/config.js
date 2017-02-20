@@ -109,7 +109,7 @@ const browserStackConfig = {
 }
 
 const browserStackConfigTravis = {
-  logLevel: 'verbose',
+  logLevel: 'error',
   coloredLogs: true,
   bail: 1,
   waitforTimeout: 10000,
