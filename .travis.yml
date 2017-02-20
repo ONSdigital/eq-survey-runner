@@ -15,7 +15,7 @@ env:
     - EQ_RUN_LOCAL_TESTS=False
     - EQ_RUN_LOCAL=True
     - EQ_RUN_FUNCTIONAL_TESTS=True
-    - EQ_FUNCTIONAL_TEST_SUITES="core,ukis,census"
+    - EQ_FUNCTIONAL_TEST_SUITES="core"
     - SELENIUM_HOST=hub-cloud.browserstack.com
     - SELENIUM_PORT=80
     # Codacy
