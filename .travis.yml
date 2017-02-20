@@ -3,27 +3,24 @@ sudo: true
 language: node_js
 node_js: 6
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  browserstack:
+    forcelocal: true
+    username:
+      secure: "ebzvEK4S33fq0O+lgLDc1VyyoivXAUVb+tLrNu5RwT0K4hcxvh93xOcyKwEuXaruOjamuUMqSjQ4lU/lc/8WOZFozdeyUQ5/xssbFtx0GngWLOeahZ9X4ma4gUeZ+7kc/NXLH81jSVhWAr3xJRrhk8pk2hcFJ0f/92rDibzf2I6e2zw4sl1gowQPdzp59a47QADpRMfOMLeo4bFSWOMN8sFuGXO7ZlwIKTNilo4MpZsXlRQojVijQd1qH6aeRjksZUVTSlnSx0NrnbnVCwY1Uc4qSVj60q0tiX/zoI7liYy1BEKlHUC4MSNWZKoO8QfjkNMR183fOCBROMkH83h2EHRHCMLRw8fgi1yULdFus1JWd045YdkKFSslQgNsiSalHdnECuMZrtvI7ONUyivnivYNa8KGsoG/pBeJRFrFQwdLV0qWmCOXb9XPqaPglej8a37H5rnnOCPCXSR/XeJ45z6tKql54Q/rbSYOO4p1Ai7XwXKWbbu4dDMRJaB85i8hhSD4lRd3BQPQHWVVZpcZNemHm9QnK0pE9OyFHxf53DyldU1aXhI/wIj9aogXchpBH4UEhVOOpDSxhLMA/Do2qILy3xIqXWLWUeEO5FtHaqYcJJqsEGgzNAyBDo7u+u5igZIE9GEpUB4arZSk0tSoyrhE3Lo4Cihep0RcceEfTww="
+    access_key:
+      secure: "iisgzR4rpvZWQP9D7pWkWwPgBuqUZDoJTTm9BDjZJ3ro6WRF5XOmBoJQGSpGlMCsRZ9FD+M05hxW7VHW2hdXGR5GbbSsNJMJLcIzCWADUtT4O6w61tbDIBB9WFRfuvUx9Uzifyi44G4LjtiLnS9M2sFPqigjkRD+BZtGg9dNTK2bUBsWqrxK8wCmvf1lqD6Dzl3ceJXQpp6N8vkQCd0IJskcOfyXAHmCUfFjveK/EaJDYDhZ22yt7Bm9RodDcsK2aaft1sNmmdIz+JVXIs6aGzWh240TId0kPpBduXRkJ7uuTeC4eyfq16zNTnmMalZNqAP+Fu30kbJFp5Y8h94a0oiQKmGuzBF1LZvtVlIi732QcwK8jXSuEp90d2fsKtUvf8CjGABcumHHRqiPrde7qM82ATqVXl5TqQmsawOPJUt+sZdjbUjUQ7r43q57z+9E3psr4/3JqjOKP5vmT3PJuB2Sl9DMYQHdgIm4DdJ/gFib9a3GwQL9bVW8ucVGMXd4i9ZhlC1E99s4oVgPrTh9vPFjXGlxI6aRTM+JR1gPv3DMdwnMO6iTmXpdNCYzdExiLYsPHzsWvv/+TMoyCzaFE7tZhVpeu2H03PHO/33S4k5794KKTHOzFQ1UMwwlwHzHIehitCAbT+KbDZR87U2gXhRk42MWiScRZpxSZV2ClQA="
 env:
   global:
     - EQ_ENABLE_CACHE=True
-    - EQ_RUN_LOCAL_TESTS=True
+    - EQ_RUN_LOCAL_TESTS=False
     - EQ_RUN_LOCAL=True
     - EQ_RUN_FUNCTIONAL_TESTS=True
+    - EQ_FUNCTIONAL_TEST_SUITES="core,ukis,census"
+    - SELENIUM_HOST=hub-cloud.browserstack.com
+    - SELENIUM_PORT=80
     # Codacy
     - secure: q3hyZhRj24C5sT7T0ViTDCwhT8eVjpanTf6BkPPBI43/6NBJeF1vi4/LkfJMQa0qwYibu5zB8jtkk2VsqGRMGvj9fMufOKXGqebOsPYWUJl1MZM3t7OZS57xF9wBUenZwx1oyb/VPrFB56ctGny1XEbF4l47NmbKWD1iMWG1f3Y6PCJ7o8o62v0irmfbdYFTsWjipCQlCrKZm+KVWZD25egIDJMDpq9e0nYNoSW+5fMXDGOtV20/U/rcmW5Lfn06ppJ0C4CaKHuM+MzZtZJwtiCI2TqF0ihQl7ry7YgpqEZLPHQYQ5npIpecxP1f/6ebcAPdKKkJ2Ccutrv/7IFlJo7rWLTB7mzJ4ep11HCdo3mL+JREp1HUJLeEngXFC3lKRXPHKukUxe4Lkz1/g6kdwCUZxajGTwML84FHmqoZxKGMKhMN+0n6rO8wEUR32q4+JbO5z/oQGhtjQZkogq8vWY6+/aq328hsbmy72s23AiX+BQUHqk2QFs3T9FQiqwn4OqqX4JKzmHs838LT+dUTFgH+mWo0lalxa3Pr7cJAwhn97VSnIdU9JTC8RyPWbAHkah78PXlL9guHI1nzQTjTcMm/yTlmtE2NxTSY+ZGIV+O5pcJm3HkAjZvNi/0jjDWwBHs/rZgj1t7Eoueh8dPTSZ12LmqKuBpvkrzLKcs2zt4=
-  matrix:
-    - EQ_FUNCTIONAL_TEST_SUITES="core,ukis"
-    - EQ_FUNCTIONAL_TEST_SUITES=census
-matrix:
-  fast_finish: true
 before_install:
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
     - pyenv versions
     - pyenv install --skip-existing
     - pyenv rehash
