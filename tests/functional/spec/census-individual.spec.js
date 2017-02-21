@@ -89,6 +89,44 @@ describe('Census Individual', function () {
 
     })
 
+    it('Given Respondent Home has identified the respondent should have the Individual Questionnaire in welsh, When I enter valid data, Then I should complete the questionnaire', function () {
+        startCensusQuestionnaire('census_individual.json', false, 'GB-WLS', 'cy')
+
+        // household-member
+        CorrectName.setFirstName("Paul").setLastName("Smith").submit()
+        Sex.clickSexAnswerMale().submit()
+        DateOfBirth.setDateOfBirthAnswerDay(2).setDateOfBirthAnswerMonth(8).setDateOfBirthAnswerYear(1980).submit()
+        MaritalStatus.clickMaritalStatusAnswerMarried().submit()
+        AnotherAddress.clickAnotherAddressAnswerNo().submit()
+        InEducation.clickInEducationAnswerNo().submit()
+        CountryOfBirth.clickCountryOfBirthWalesAnswerWales().submit()
+        Carer.clickCarerAnswerNo().submit()
+        NationalIdentity.clickNationalIdentityWalesAnswerBritish().submit()
+        EthnicGroup.clickEthnicGroupWalesAnswerWhite().submit()
+        WhiteEthnicGroup.clickWhiteEthnicGroupWalesAnswerWelshEnglishScottishNorthernIrishBritish().submit()
+        UnderstandWelsh.clickUnderstandWelshAnswerReadWelsh().submit()
+        Language.clickLanguageWelshAnswerEnglishOrWelsh().submit()
+        Religion.clickReligionWelshAnswerNoReligion().submit()
+        PastUsualAddress.clickPastUsualAddressAnswerThisAddress().submit()
+        Passports.clickPassportsAnswerUnitedKingdom().submit()
+        Disability.clickDisabilityAnswerNo().submit()
+        Qualifications.clickQualificationsWelshAnswerApprenticeshipFoundationModernOrHigher().submit()
+        Volunteering.clickVolunteeringAnswerNo().submit()
+        EmploymentType.clickEmploymentTypeAnswerWorkingAsAnEmployee().submit()
+        MainJob.clickMainJobAnswerAnEmployee().submit()
+        JobTitle.setJobTitleAnswer('dev').submit()
+        JobDescription.setJobDescriptionAnswer('coding wizardry').submit()
+        EmployersBusiness.setEmployersBusinessAnswer('codezilla').submit()
+        MainJobType.clickMainJobTypeAnswerEmployedByAnOrganisationOrBusiness().submit()
+        BusinessName.setBusinessNameAnswer('coding warehouse').submit()
+
+        Confirmation.submit()
+
+        // Thank You
+        expect(ThankYou.isOpen()).to.be.true
+
+    })
+
     it('Given Respondent Home has identified the respondent should have the Individual Questionnaire with the sexual id question, When I complete the EQ, Then I should be asked the sexual id question', function () {
         startCensusQuestionnaire('census_individual.json', true)
 
