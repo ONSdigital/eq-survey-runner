@@ -61,7 +61,7 @@
                                     "description": "",
                                     "id": "time-input-question",
                                     "title": "Time Input",
-                                    "type": "Timeinput"
+                                    "type": "TimeInput"
                                 }
                             ],
                             "title": "Time Taken"
