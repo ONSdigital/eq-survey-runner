@@ -102,3 +102,5 @@ EUROPE_LONDON = pytz.timezone("Europe/London")
 
 # JWT configurations
 EQ_JWT_LEEWAY_IN_SECONDS = 120
+
+EQ_ROLE_PERMISSIONS = {'admin': ['flush']}

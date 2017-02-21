@@ -54,9 +54,34 @@ def dev_mode():
                                  region_code=region_code,
                                  language_code=language_code,
                                  variant_flags=variant_flags)
+
         return redirect("/session?token=" + generate_token(payload).decode())
 
     return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
+
+
+@dev_mode_blueprint.route('/dev_flush', methods=['GET', 'POST'])
+def dev_flush_mode():
+    if request.method == "POST":
+        form = request.form
+        schema = form.get("schema")
+        eq_id, form_type = extract_eq_id_and_form_type(schema)
+        collection_exercise_sid = form.get("collection_exercise_sid")
+        ru_ref = form.get("ru_ref")
+
+        payload = {
+            'iat': time.time(),
+            'exp': time.time() + 1000,
+            "eq_id": eq_id,
+            "form_type": form_type,
+            "collection_exercise_sid": collection_exercise_sid,
+            "ru_ref": ru_ref,
+            "roles": ["admin"],
+        }
+
+        return redirect("/flush?token=" + generate_token(payload).decode())
+
+    return render_template("dev-flush-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
 
 
 def extract_eq_id_and_form_type(schema_name):
