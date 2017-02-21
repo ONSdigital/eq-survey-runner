@@ -8,7 +8,3 @@ RUN cd /tmp && \
 
 # Compile frontend
 RUN yarn compile
-
-# Because eq-survey-runner creates 'eq.log' in the current directory
-# it needs write permission as the apache user
-RUN chown apache:apache .
