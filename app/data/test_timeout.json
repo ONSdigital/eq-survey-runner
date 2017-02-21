@@ -1,0 +1,50 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "0",
+    "session_timeout_in_seconds": 4,
+    "session_prompt_in_seconds": 2,
+    "title": "Timeout test",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "A questionnaire to test the time out functionality",
+    "groups": [
+        {
+            "id": "timeout-group",
+            "title": "Timeout",
+            "blocks": [
+                {
+                    "id": "timeout-block",
+                    "sections": [
+                        {
+                            "title": "Timeout",
+                            "id": "timeout-section",
+                            "questions": [
+                                {
+                                      "answers": [
+                                          {
+                                              "guidance": "",
+                                              "id": "timeout-answer",
+                                              "label": "Does the timeout appear?",
+                                              "mandatory": false,
+                                              "options": [],
+                                              "q_code": "0",
+                                              "type": "TextField"
+                                          }
+                                      ],
+                                      "description": "",
+                                      "id": "timeout-question",
+                                      "title": "Timeout title",
+                                      "type": "General"
+                                }
+                            ]
+                        }
+                    ],
+                    "title": ""
+                }
+            ]
+        }
+    ]
+}

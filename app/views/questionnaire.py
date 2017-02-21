@@ -533,7 +533,13 @@ def _build_template(current_location, context=None, template=None, display_navig
 def _render_template(context, block_id, front_end_navigation=None, metadata_context=None, current_location=None, previous_url=None, template=None):
     theme = g.schema_json.get('theme', None)
     logger.debug("theme selected", theme=theme)
-    session_timeout = settings.EQ_SESSION_TIMEOUT_SECONDS - settings.EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS
+
+    session_timeout = settings.EQ_SESSION_TIMEOUT_SECONDS
+    schema_session_timeout = g.schema_json.get('session_timeout_in_seconds')
+    if schema_session_timeout is not None and schema_session_timeout < settings.EQ_SESSION_TIMEOUT_SECONDS:
+        session_timeout = schema_session_timeout
+    session_timeout_prompt = g.schema_json.get('session_prompt_in_seconds') or settings.EQ_SESSION_TIMEOUT_PROMPT_SECONDS
+
     expired_url = url_for('questionnaire.get_session_expired',
                           collection_id=metadata_context['survey']['collection_id'],
                           eq_id=metadata_context['survey']['eq_id'],
@@ -555,5 +561,6 @@ def _render_template(context, block_id, front_end_navigation=None, metadata_cont
                                  legal_basis=g.schema_json['legal_basis'],
                                  survey_id=g.schema_json['survey_id'],
                                  session_timeout=session_timeout,
+                                 session_timeout_prompt=session_timeout_prompt,
                                  expired_url=expired_url,
                                  timeout_continue_url=timeout_continue_url)

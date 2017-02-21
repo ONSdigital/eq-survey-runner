@@ -61,8 +61,8 @@ class TimeoutUI {
 }
 
 domready(() => {
-  const sessionTimeout = sessionStorage.getItem('sessionTimeout') || window.__EQ_SESSION_TIMEOUT__
-  const promptTime = sessionStorage.getItem('sessionPromptTime') || window.__EQ_SESSION_TIMEOUT_PROMPT__ || 120 // seconds
+  const sessionTimeout = window.__EQ_SESSION_TIMEOUT__
+  const promptTime = window.__EQ_SESSION_TIMEOUT_PROMPT__
   const sessionExpiredUrl = window.__EQ_SESSION_EXPIRED_URL__
   const sessionContinueUrl = window.__EQ_SESSION_CONTINUE_URL__
 

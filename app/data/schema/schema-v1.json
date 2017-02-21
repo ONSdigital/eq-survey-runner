@@ -173,6 +173,14 @@
     "survey_id": {
       "type": "string"
     },
+    "session_timeout_in_seconds": {
+      "description": "The amount of time in seconds before timing out a users session.",
+      "type": "integer"
+    },
+    "session_prompt_in_seconds": {
+      "description": "The amount of time in seconds before showing the prompt informing a user of the time to session timeout.",
+      "type": "integer"
+    },
     "title": {
       "type": "string"
     },
