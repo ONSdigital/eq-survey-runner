@@ -2,7 +2,6 @@
 
 import logging
 import os
-from logging.handlers import RotatingFileHandler
 
 from flask_script import Manager
 from flask_script import Server
