@@ -31,7 +31,7 @@ export const paths = {
     output: distPath + '/img/'
   },
   images: {
-    input: appPath + '/img/**.{svg,png,jpg,jpeg,gif,ico}',
+    input: appPath + '/img/{,theme/**/}**.{svg,png,jpg,jpeg,gif,ico}',
     output: distPath + '/img/'
   },
   fonts: {
