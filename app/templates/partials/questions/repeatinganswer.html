@@ -51,7 +51,7 @@
     </button>
   </div>
 
-  <div class="question__guidance  question__guidance--bottom">
+  <aside class="question__guidance  question__guidance--bottom">
     {% set schema_item = question.answers[-1] %}
     {% if schema_item.guidance %}
       {% with answer_guidance = {
@@ -62,6 +62,6 @@
         {% include 'partials/answer-guidance.html' %}
       {% endwith %}
     {% endif %}
-  </div>
+  </aside>
 
 </div>

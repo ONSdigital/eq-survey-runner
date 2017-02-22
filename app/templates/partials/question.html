@@ -31,7 +31,7 @@
 
 {% set question_guidance %}
   {%- if question.guidance -%}
-    <div class="question__guidance">
+    <aside class="question__guidance">
       <div class="panel panel--simple panel--info" id="question-guidance-{{question.id}}">
         {%- for guidance in question.guidance -%}
           {%- if guidance.title -%}
@@ -49,7 +49,7 @@
           {% endif %}
         {% endfor %}
       </div>
-    </div>
+    </aside>
   {% endif %}
 {% endset %}
 
