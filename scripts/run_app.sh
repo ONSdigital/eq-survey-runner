@@ -1,11 +1,5 @@
 #!/bin/bash
 
-function open_url {
-  sleep 5
-  echo "$1"
-  open -a "/Applications/Google Chrome.app" "$1"
-}
-
 if [ -n "$VIRTUAL_ENV" ]; then
   echo "Already in virtual environment $VIRTUAL_ENV"
 else
@@ -42,10 +36,7 @@ env | grep EQ_
 
 "${DIR}"/build.sh
 
-url=$(python token_generator.py)
-
 if [ -z "${TRAVIS}" ]; then
-  open_url "${url}" &
   python application.py runserver
 else
   python application.py runserver &
