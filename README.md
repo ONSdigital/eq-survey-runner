@@ -249,6 +249,9 @@ EQ_ENABLE_CACHE - Enable caching of the schema
 EQ_MAX_HTTP_POST_CONTENT_LENGTH - The maximum http post content length that the system wil accept
 EQ_MAX_NUM_REPEATS - The maximum number of repeats the system will allow
 EQ_DEVELOPER_LOGGING - Enable developer style logging described here http://structlog.readthedocs.io/en/stable/development.html
+
+NEW_RELIC_LICENSE_KEY - Enable new relic monitoring by supplying a New Relic licence key
+NEW_RELIC_APP_NAME - The name to display for the application in New Relic
 ```
 
 ## JWT Integration

@@ -68,6 +68,10 @@ def create_app():
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
 
+    if os.getenv("NEW_RELIC_LICENSE_KEY"):
+        import newrelic.agent
+        newrelic.agent.initialize()
+
     restrict_content_length(application)
 
     setup_secure_cookies(application)
