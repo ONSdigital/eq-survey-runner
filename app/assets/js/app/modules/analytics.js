@@ -8,7 +8,7 @@ export default function initAnalytics() {
   }
 
   if (typeof window.ga !== 'undefined') {
-    trackEvent = window.ga
+    trackEvent = (evt, data) => window.ga(evt, data)
   } else {
     console.log('Analytics disabled')
   }
@@ -32,11 +32,11 @@ export default function initAnalytics() {
 
   forEach(guidances, guidance => {
     const trigger = guidance.querySelector('[data-guidance-trigger]')
-    const questionLabel = guidance.getAttribute('data-guidance-label')
+    const questionLabel = document.title
     const questionId = guidance.getAttribute('data-guidance')
 
-    const onClick = e => {
-      trigger.removeEventListener('click', onClick)
+    const onClickGuidance = e => {
+      trigger.removeEventListener('click', onClickGuidance)
       const triggerData = {
         hitType: 'event',
         eventCategory: 'Guidance',
@@ -47,12 +47,12 @@ export default function initAnalytics() {
     }
 
     if (trigger) {
-      trigger.addEventListener('click', onClick)
+      trigger.addEventListener('click', onClickGuidance)
     }
   })
 
   forEach(previousLinks, previousLink => {
-    const onClick = e => {
+    const onClickPrev = e => {
       const triggerData = {
         hitType: 'event',
         eventCategory: 'Navigation',
@@ -60,11 +60,11 @@ export default function initAnalytics() {
       }
       trackEvent('send', triggerData)
     }
-    previousLink.addEventListener('click', onClick)
+    previousLink.addEventListener('click', onClickPrev)
   })
 
-  const onClick = e => {
-    helpAndSupport.removeEventListener('click', onClick)
+  const onClickHelp = e => {
+    helpAndSupport.removeEventListener('click', onClickHelp)
     const triggerData = {
       hitType: 'event',
       eventCategory: 'Navigation',
@@ -73,7 +73,7 @@ export default function initAnalytics() {
     trackEvent('send', triggerData)
   }
   if (helpAndSupport) {
-    helpAndSupport.addEventListener('click', onClick)
+    helpAndSupport.addEventListener('click', onClickHelp)
   }
 }
 

@@ -555,6 +555,7 @@ def _render_template(context, block_id, front_end_navigation=None, metadata_cont
                                  meta=metadata_context,
                                  content=context,
                                  current_location=current_location,
+                                 analytics_ua_id=settings.EQ_UA_ID,
                                  previous_location=previous_url,
                                  navigation=front_end_navigation,
                                  schema_title=g.schema_json['title'],
