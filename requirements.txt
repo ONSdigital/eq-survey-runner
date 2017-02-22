@@ -256,3 +256,5 @@ WTForms==2.1 \
     --hash=sha256:ffdf10bd1fa565b8233380cb77a304cd36fd55c73023e91d4b803c96bc11d46f
 Flask_WTF==0.14.2 \
     --hash=sha256:d9a9e366b32dcbb98ef17228e76be15702cd2600675668bca23f63a7947fd5ac
+newrelic==2.78.0.57 \
+    --hash=sha256:2191b7699e14a07efa5d9221270eb29bdf6cce643aa56cff08546ecb3f729be6
