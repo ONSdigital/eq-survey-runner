@@ -114,9 +114,6 @@ def create_app():
     if settings.EQ_PROFILING:
         setup_profiling(application)
 
-    if settings.EQ_UA_ID:
-        setup_analytics(application)
-
     if settings.EQ_GIT_REF:
         logger.info('starting eq survey runner', version=settings.EQ_GIT_REF)
 
@@ -148,17 +145,6 @@ def setup_profiling(application):
     application.wsgi_app = ProfilerMiddleware(
         application.wsgi_app, stream, profile_dir=profiling_dir)
     application.debug = True
-
-
-def setup_analytics(application):
-    # Setup analytics
-    from flask_analytics import Analytics
-    from app.analytics.custom_google_analytics import CustomGoogleAnalytics
-
-    Analytics.provider_map['google_analytics'] = CustomGoogleAnalytics
-    Analytics(application)
-    application.config['ANALYTICS'][
-        'GOOGLE_ANALYTICS']['ACCOUNT'] = settings.EQ_UA_ID
 
 
 def configure_flask_logging(application):
