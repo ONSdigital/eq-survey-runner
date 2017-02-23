@@ -23,6 +23,8 @@ def get_field(answer, label, error_messages):
         "Percentage": get_integer_field,
         "TextArea": get_text_area_field,
         "TextField": get_string_field,
+        "Hour": get_integer_field,
+        "Minute": get_integer_field,
     }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
@@ -153,6 +155,16 @@ def get_integer_field(answer, label, guidance, error_messages):
         validate_with = mandatory_or_optional + [
             IntegerCheck(answer_errors['NOT_INTEGER']),
             NumberRange(min=0, max=100, messages=answer_errors),
+        ]
+    elif answer['type'] == 'Hour':
+        validate_with = mandatory_or_optional + [
+            IntegerCheck(answer_errors['NOT_INTEGER']),
+            NumberRange(min=0, max=999, messages=answer_errors),
+        ]
+    elif answer['type'] == 'Minute':
+        validate_with = mandatory_or_optional + [
+            IntegerCheck(answer_errors['NOT_INTEGER']),
+            NumberRange(min=0, max=59, messages=answer_errors),
         ]
     else:
         validate_with = mandatory_or_optional + [

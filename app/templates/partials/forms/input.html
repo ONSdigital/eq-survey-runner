@@ -9,6 +9,7 @@
   "data-qa": "input-" ~ input.type,
   "maxlength": input.maxlength,
   "pattern": ("[0-9]*" if input.type == "number"),
+  "labelled-by": input.labelledBy
 } %}
 
 <input {{attr|xmlattr}} />

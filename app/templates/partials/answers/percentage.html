@@ -1,5 +1,3 @@
-{% set input = form[answer['id']] %}
-
-<div class="field">
-  {% include 'partials/widgets/percentage_widget.html' %}
-</div>
+{% with input_type = '%', reverse = True,input = form[answer['id']] %}
+{% include 'partials/forms/input-type.html' %}
+{% endwith %}

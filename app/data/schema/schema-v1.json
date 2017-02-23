@@ -330,7 +330,7 @@
                                ]
                               },
                             "type": {
-                              "enum": ["General", "DateRange", "RepeatingAnswer", "Relationship"]
+                              "enum": ["General", "DateRange", "RepeatingAnswer", "Relationship","TimeInput"]
                             },
                             "answers": {
                               "type": "array",
@@ -361,6 +361,8 @@
                                         "Checkbox",
                                         "Currency",
                                         "Date",
+                                        "Hour",
+                                        "Minute",
                                         "MonthYearDate",
                                         "Integer",
                                         "Percentage",
