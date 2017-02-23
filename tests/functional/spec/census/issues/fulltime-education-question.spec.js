@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
@@ -32,7 +31,6 @@ import AddressType from '../../../pages/surveys/census/household/address-type.pa
 import InEducation from '../../../pages/surveys/census/household/in-education.page.js'
 import TermTimeLocation from '../../../pages/surveys/census/household/term-time-location.page.js'
 
-const expect = chai.expect
 
 describe('term-time-location', function () {
   it('Given a census schema, When I select option Yes for Question - Are you a schoolchild or student in full-time education?, Then I should be displayed with term-time-location screen ', function () {

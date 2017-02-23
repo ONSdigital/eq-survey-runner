@@ -1,11 +1,6 @@
-
-import chai from 'chai'
 import {startQuestionnaire} from '../helpers'
 import HouseholdCompositionPage from '../pages/surveys/household_composition/household-composition.page'
 import HouseholdCompositionSummary from '../pages/surveys/household_composition/summary.page'
-
-const expect = chai.expect
-const assert = chai.assert
 
 describe('Household composition question for census test.', function() {
 

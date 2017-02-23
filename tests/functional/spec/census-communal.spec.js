@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
 
 import EstablishmentType from '../pages/surveys/census/communal/establishment-type.page.js'
@@ -15,7 +14,6 @@ import ContactDetails from '../pages/surveys/census/communal/contact-details.pag
 import Confirmation from '../pages/confirmation.page.js'
 import ThankYou from '../pages/thank-you.page'
 
-const expect = chai.expect
 
 describe('Example Test', function() {
 

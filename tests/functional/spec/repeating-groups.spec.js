@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startQuestionnaire, getBlockId, getRepeatedGroup} from '../helpers'
 import AgePage from '../pages/surveys/repeating_groups/age.page.js'
 import ShoeSizePage from '../pages/surveys/repeating_groups/shoe-size.page.js'
@@ -6,7 +5,6 @@ import AgeOrShoeSizePage from '../pages/surveys/repeating_groups/age-or-shoe-siz
 import NumberOfRepeatsPage from '../pages/surveys/repeating_groups/number-of-repeats.page.js'
 import SummaryPage from '../pages/summary.page.js'
 
-const expect = chai.expect
 
 describe('Repeating groups.', function() {
 

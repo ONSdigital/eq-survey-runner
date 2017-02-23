@@ -1,9 +1,7 @@
 
-import chai from 'chai'
 import {openQuestionnaire, getBlockId} from '../helpers'
 import ConditionalRoutingPage from '../pages/surveys/conditional_routing/conditional-routing.page'
 
-const expect = chai.expect
 
 describe('Conditional routing.', function() {
 

@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startQuestionnaire, getBlockId, getRepeatedGroup} from '../helpers'
 import AgePage from '../pages/surveys/repeating_groups/age.page.js'
 import ShoeSizePage from '../pages/surveys/repeating_groups/shoe-size.page.js'
@@ -6,7 +5,6 @@ import HouseholdCompositionPage from '../pages/surveys/household_composition/hou
 import RepeatingHouseholdPage from '../pages/surveys/repeating_household/repeating-household.page.js'
 import SummaryPage from '../pages/summary.page.js'
 
-const expect = chai.expect
 
 describe('Populating household names on subsequent repeating groups.', function() {
 

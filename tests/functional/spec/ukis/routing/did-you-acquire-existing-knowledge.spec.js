@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startQuestionnaire} from '../../../helpers'
 
 import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
@@ -111,7 +110,6 @@ import ApproachedTelephone from '../../../pages/surveys/ukis/approached-telephon
 import ReadyToSubmitCompleted from '../../../pages/surveys/ukis/ready-to-submit-completed.page.js'
 import Navigation from '../../../pages/surveys/ukis/navigation.page.js'
 
-const expect = chai.expect
 
 describe('UKIS - Did you acquire existing knowledge?', function() {
 
@@ -130,7 +128,7 @@ describe('UKIS - Did you acquire existing knowledge?', function() {
     .submit()
     AmountAcquisitionAdvancedMachinery.setAmountAcquisitionAdvancedMachineryAnswer(99999).submit()
     InvestmentExistingKnowledgeInnovation.clickInvestmentExistingKnowledgeInnovationAnswerYes().submit()
-    
+
     expect(ExpenditureExisting2016.isOpen()).to.equal(true, 'Expected to Navigate to Q: 3.10')
   })
 

@@ -9,16 +9,11 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-SPEC_PAGE_HEADER = r"""import chai from 'chai'
-import {startQuestionnaire} from '../helpers'
+SPEC_PAGE_HEADER = r"""import {startQuestionnaire} from '../helpers'
 
 """
 
 SPEC_PAGE_IMPORT = r"""import {pageName} from '../pages/{pageDir}{pageFile}'
-"""
-
-SPEC_CHAI_HEADER = r"""
-const expect = chai.expect
 """
 
 SPEC_EXAMPLE_TEST = r"""
@@ -297,7 +292,6 @@ if __name__ == '__main__':
         process_schema(schema_in, dir_out, spec_out)
 
         with open(spec_out, 'a') as template_spec:
-            template_spec.write(SPEC_CHAI_HEADER)
             template_spec.write(SPEC_EXAMPLE_TEST.replace("{schema}", schema_in.split('/').pop()))
     else:
         process_schema(schema_in, dir_out)

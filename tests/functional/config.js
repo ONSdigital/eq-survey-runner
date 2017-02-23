@@ -34,6 +34,13 @@ let config = {
     ui: 'bdd',
     compilers: ['js:babel-core/register'],
     timeout: 12000000
+  },
+  afterTest: function(test) {
+    // Dump page source on failure to help with debugging tests
+    if (!test.passed) {
+      console.log('\'' + test.title + '\' failed. Dumping page source for url \'%s\'', browser.url().value)
+      console.log(browser.getSource())
+    }
   }
 }
 

@@ -1,8 +1,6 @@
-import chai from 'chai'
 import {startQuestionnaire, getElementId} from '../helpers'
 import monthlyBusinessSurveyPage from '../pages/surveys/mci/monthly-business-survey.page'
 
-const expect = chai.expect
 
 describe('Error messages', function() {
 

@@ -1,5 +1,4 @@
 import assert from 'assert'
-import chai from 'chai'
 import {getRandomString, startQuestionnaire, openQuestionnaire} from '../helpers'
 import devPage from '../pages/dev.page'
 import landingPage from '../pages/landing.page'
@@ -11,7 +10,6 @@ import internetSalesPage from '../pages/surveys/rsi/0102/internet-sales.page'
 import changeInRetailTurnover from '../pages/surveys/rsi/0102/changes-in-retail-turnover.page'
 import SummaryPage from '../pages/summary.page'
 
-const expect = chai.expect
 
 describe('RSI - Save and restore test', function() {
 

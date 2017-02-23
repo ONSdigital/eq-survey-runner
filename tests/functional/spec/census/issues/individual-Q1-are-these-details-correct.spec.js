@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
@@ -18,7 +17,6 @@ import HouseholdMemberBegin from '../../../pages/surveys/census/household/househ
 import DetailsCorrect from '../../../pages/surveys/census/household/details-correct.page.js'
 import Over16 from '../../../pages/surveys/census/household/over-16.page.js'
 
-const expect = chai.expect
 
 describe('Individual section Question 1', function () {
 

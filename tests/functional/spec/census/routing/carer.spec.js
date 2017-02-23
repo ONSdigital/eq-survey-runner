@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
@@ -30,7 +29,6 @@ import CountryOfBirth from '../../../pages/surveys/census/household/country-of-b
 import Carer from '../../../pages/surveys/census/household/carer.page.js'
 import NationalIdentity from '../../../pages/surveys/census/household/national-identity.page.js'
 
-const expect = chai.expect
 
 describe('Carer routing Scenarios', function () {
 

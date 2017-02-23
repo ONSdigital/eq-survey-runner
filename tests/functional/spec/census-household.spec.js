@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startCensusQuestionnaire} from '../helpers'
 import {completeHouseholdAndAccommodation, completeVisitorSection, completeHouseholdDetails} from './census/complete-section'
 
@@ -80,7 +79,6 @@ import VisitorsCompleted from '../pages/surveys/census/household/visitors-comple
 import Confirmation from '../pages/confirmation.page.js'
 import ThankYou from '../pages/thank-you.page'
 
-const expect = chai.expect
 
 describe('Census Household', function () {
 
