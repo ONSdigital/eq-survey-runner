@@ -30,46 +30,46 @@ def add_cache_control(response):
 @errors_blueprint.app_errorhandler(401)
 @errors_blueprint.app_errorhandler(NoTokenException)
 def unauthorized(error=None):
-    log_exception(error)
+    log_exception(error, 401)
     return render_theme_template('default', 'session-expired.html'), 401
 
 
 @errors_blueprint.app_errorhandler(InvalidTokenException)
 def forbidden(error=None):
-    log_exception(error)
+    log_exception(error, 403)
     return _render_error_page(403)
 
 
 @errors_blueprint.app_errorhandler(404)
 @errors_blueprint.app_errorhandler(QuestionnaireException)
 def page_not_found(error=None):
-    log_exception(error)
+    log_exception(error, 404)
     return _render_error_page(404)
 
 
 @errors_blueprint.app_errorhandler(SubmissionFailedException)
 def service_unavailable(error=None):
-    log_exception(error)
+    log_exception(error, 503)
     return _render_error_page(503)
 
 
 @errors_blueprint.app_errorhandler(MultipleSurveyError)
 def multiple_survey_error(error=None):
-    log_exception(error)
+    log_exception(error, 200)
     return render_theme_template('default', 'multiple_survey.html')
 
 
 @errors_blueprint.app_errorhandler(Exception)
 def internal_server_error(error=None):
-    log_exception(error)
+    log_exception(error, 500)
     return _render_error_page(500)
 
 
-def log_exception(error):
+def log_exception(error, status_code):
     if error:
-        logger.error('an error has occurred', exc_info=error)
+        logger.error('an error has occurred', exc_info=error, url=request.url, status_code=status_code)
     else:
-        logger.error('an error has occurred')
+        logger.error('an error has occurred', url=request.url, status_code=status_code)
 
 
 def _render_error_page(status_code):
