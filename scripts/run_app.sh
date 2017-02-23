@@ -1,11 +1,5 @@
 #!/bin/bash
 
-function open_url {
-  sleep 5
-  echo $1
-  open -a "/Applications/Google Chrome.app" $1
-}
-
 if [ -n "$VIRTUAL_ENV" ]; then
   echo "Already in virtual environment $VIRTUAL_ENV"
 else
@@ -13,7 +7,7 @@ else
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo $DIR
+echo "$DIR"
 
 
 if [ "${TRAVIS}" ]; then
@@ -24,7 +18,7 @@ fi
 
 # Output the current git revision
 if [ -z "$EQ_GIT_REF" ]; then
-  export EQ_GIT_REF=`git rev-parse HEAD`
+  export EQ_GIT_REF=$(git rev-parse HEAD)
 fi
 
 if [ -z "$EQ_DEV_MODE" ]; then
@@ -40,12 +34,9 @@ fi
 echo "Environment variables in use:"
 env | grep EQ_
 
-$DIR/build.sh
-
-url="`python token_generator.py`"
+"${DIR}"/build.sh
 
 if [ -z "${TRAVIS}" ]; then
-  open_url $url &
   python application.py runserver
 else
   python application.py runserver &
