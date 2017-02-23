@@ -57,6 +57,9 @@ const phantomjsConfig = {
   waitforTimeout: 3000,
   capabilities: [phantomjs],
   maxInstances: 4,
+  phantomjsOpts: {
+    ignoreSslErrors: true
+  },
   before: function() {
     browser.setViewportSize({
       width: 1280,

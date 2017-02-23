@@ -15,12 +15,16 @@ import a11ym from './gulp/a11ym'
 import {fonts} from './gulp/fonts'
 
 const getEnv = () => {
+  var env = yargs.argv.env
+  if (env.startsWith("http")) {
+    return env
+  }
   const envs = {
     local: 'http://localhost:5000',
     docker: 'http://localhost',
-    preprod: 'https://preprod-surveys.eq.ons.digital'
+    preprod: 'https://eq.onsdigital.uk',
   }
-  return envs[yargs.argv.env] || envs['local']
+  return envs[env] || envs['local']
 }
 
 gulp.task('test:a11ym', (done) => {
