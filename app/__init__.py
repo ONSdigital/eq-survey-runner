@@ -17,6 +17,7 @@ from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.data_model.database import db_session
 from app.libs.utils import get_locale
+from app.new_relic import setup_newrelic
 from app.submitter.submitter import SubmitterFactory
 
 SECURE_HEADERS = {
@@ -68,9 +69,7 @@ def create_app():
                'X-Xss-Protection': '1; mode=block',
                'X-Content-Type-Options': 'nosniff'}
 
-    if os.getenv("NEW_RELIC_LICENSE_KEY"):
-        import newrelic.agent
-        newrelic.agent.initialize()
+    setup_newrelic()
 
     restrict_content_length(application)
 
