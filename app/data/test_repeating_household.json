@@ -76,9 +76,9 @@
             "sections": [{
                 "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                 "description": "This question is for {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
+                "id": "repeating-section-1",
                 "questions": [{
-                    "id": "c1d9976e-d031-4fab-96fc-1d37d4a8b86b",
+                    "id": "repeating-question-1",
                     "title": "",
                     "description": "",
                     "type": "General",
@@ -104,9 +104,9 @@
             "sections": [{
                 "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
                 "description": "",
-                "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                "id": "repeating-section-2",
                 "questions": [{
-                    "id": "31ec5b0a-094b-44ca-9807-9090c1b849f5",
+                    "id": "repeating-question-2",
                     "title": "",
                     "description": "",
                     "type": "General",

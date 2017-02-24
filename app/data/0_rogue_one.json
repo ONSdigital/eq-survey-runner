@@ -21,14 +21,14 @@
                     "sections": [
                         {
                             "description": "",
-                            "id": "ed3e200a-0735-4e8d-9eea-627c1d908697",
+                            "id": "character-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "alias": "character",
                                             "guidance": "",
-                                            "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                            "id": "character-answer",
                                             "label": "Who do you want to know more about?",
                                             "mandatory": true,
                                             "options": [
@@ -58,7 +58,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
+                                    "id": "character-question",
                                     "title": "",
                                     "type": "General"
                                 }
@@ -69,10 +69,10 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "id" : "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
+                                "id" : "jyn-erso-like-this-page",
                                 "when": [
                                     {
-                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "id" : "character-answer",
                                         "condition": "equals",
                                         "value":"Jyn Erso"
                                     }
@@ -82,10 +82,10 @@
                         },
                         {
                             "goto": {
-                                "id": "cbb1f973-7fbc-4e96-bd7b-47a8d8056a46",
+                                "id": "cassian-andor-like-this-page",
                                 "when": [
                                     {
-                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "id" : "character-answer",
                                         "condition": "equals",
                                         "value":"Cassian Andor"
                                     }
@@ -95,10 +95,10 @@
                         },
                         {
                             "goto": {
-                                "id": "9b091307-e14c-4211-9104-91e3975d6910",
+                                "id": "bodhi-rook-like-this-page",
                                 "when": [
                                     {
-                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "id" : "character-answer",
                                         "condition": "equals",
                                         "value":"Bodhi Rook"
                                     }
@@ -108,10 +108,10 @@
                         },
                         {
                             "goto": {
-                                "id": "b4f8e11a-dac9-4554-ba44-55fc5c5aebcb",
+                                "id": "orson-krennic-like-this-page",
                                 "when": [
                                     {
-                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "id" : "character-answer",
                                         "condition": "equals",
                                         "value":"Orson Krennic"
                                     }
@@ -124,17 +124,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
+                    "id": "jyn-erso-like-this-page",
                     "sections": [
                         {
                             "description": "Putting behind a checkered past by lending her skills to a greater cause, Jyn is impetuous, defiant, and eager to bring the battle to the Empire. Used to operating alone, she finds higher purpose by taking on a desperate mission for the Rebel Alliance.",
-                            "id": "b2b1eb6d-400f-452a-854f-be028600f862",
+                            "id": "jyn-erso-like-this-page-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "a2c2649a-85ff-4a26-ba3c-e1880f7c807b",
+                                            "id": "jyn-erso-like-this-page-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -155,7 +155,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "574e5d5e-36b4-44ea-b8f6-09d744552241",
+                                    "id": "jyn-erso-like-this-page-question",
                                     "title": "Do you like this page?",
                                     "type": "General"
                                 }
@@ -167,7 +167,7 @@
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "rogue-one-group-last-block"
+                                "id" : "film-takings"
                             }
                         }
                     ],
@@ -175,17 +175,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "cbb1f973-7fbc-4e96-bd7b-47a8d8056a46",
+                    "id": "cassian-andor-like-this-page",
                     "sections": [
                         {
                             "description": "An accomplished Rebel Alliance Intelligence Officer with combat field experience, Captain Andor commands respect from his Rebel troops with his ability to keep a cool head under fire and complete his missions with minimal resources",
-                            "id": "bcd67e48-7eec-4766-ab0c-acbaa3a3af01",
+                            "id": "cassian-andor-like-this-page-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f",
+                                            "id": "cassian-andor-like-this-page-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -206,7 +206,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "b5c0c1fd-578c-436e-86a8-7d3b1786cb5f",
+                                    "id": "cassian-andor-like-this-page-question",
                                     "title": "Do you like this page?",
                                     "type": "General"
                                 }
@@ -218,7 +218,7 @@
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "rogue-one-group-last-block"
+                                "id" : "film-takings"
                             }
                         }
                     ],
@@ -226,17 +226,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "9b091307-e14c-4211-9104-91e3975d6910",
+                    "id": "bodhi-rook-like-this-page",
                     "sections": [
                         {
                             "description": "A former Imperial pilot, Bodhi has strong piloting and technical skills to use as the pilot of the Rebel squad. Ever practical, but highly anxious, Rook must gather his courage to bring the battle to the Empire.",
-                            "id": "95d5abef-d2c4-4a27-a89b-43f8bfe8f404",
+                            "id": "bodhi-rook-like-this-page-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "57ff0b3a-d66e-4f06-b6f8-00a4474e4ade",
+                                            "id": "bodhi-rook-like-this-page-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -257,7 +257,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "ff1d8559-d5f7-4ba8-95fa-bf76178f4433",
+                                    "id": "bodhi-rook-like-this-page-question",
                                     "title": "Do you like this page?",
                                     "type": "General"
                                 }
@@ -269,7 +269,7 @@
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "rogue-one-group-last-block"
+                                "id" : "film-takings"
                             }
                         }
                     ],
@@ -277,17 +277,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "b4f8e11a-dac9-4554-ba44-55fc5c5aebcb",
+                    "id": "orson-krennic-like-this-page",
                     "sections": [
                         {
                             "description": "An Imperial Military Director who is obsessed with the completion of the long-delayed Death Star project. A cruel but brilliant man, Krennic has staked his reputation on the delivery of the functional battle station to the Emperor.",
-                            "id": "c37363d8-5a2d-479c-8b88-31c23e3f4d44",
+                            "id": "orson-krennic-like-this-page-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "216d7f5b-e908-42d4-84b6-036a9f76512e",
+                                            "id": "orson-krennic-like-this-page-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -308,7 +308,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "15beab29-e3b3-42c5-a8ea-ce299504ce66",
+                                    "id": "orson-krennic-like-this-page-question",
                                     "title": "Do you like this page?",
                                     "type": "General"
                                 }
@@ -320,7 +320,7 @@
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "rogue-one-group-last-block"
+                                "id" : "film-takings"
                             }
                         }
                     ],
@@ -328,17 +328,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "rogue-one-group-last-block",
+                    "id": "film-takings",
                     "sections": [
                         {
                             "description": "",
-                            "id": "c50124ac-79f5-40c9-8dc4-af8bef649981",
+                            "id": "film-takings-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                         "guidance": "",
-                                        "id": "a04a516d-502d-4068-bbed-a43427c68cd9",
+                                        "id": "film-takings-answer",
                                         "label": "",
                                         "mandatory": true,
                                         "options": [],
@@ -354,7 +354,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "0ae9664b-601d-4428-8cd4-4738df48b685",
+                                    "id": "film-takings-question",
                                     "title": "In millions, how much do you think this film will take?",
                                     "type": "General"
                                 }
@@ -365,7 +365,7 @@
                     "title": ""
                 }
             ],
-            "id": "rogue-one-group",
+            "id": "rogue-one",
             "title": ""
         },
         {

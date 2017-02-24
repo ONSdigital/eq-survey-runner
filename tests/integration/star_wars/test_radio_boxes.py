@@ -14,7 +14,7 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
 
         # We fill in our answers missing one required field
         form_data = BLOCK_2_DEFAULT_ANSWERS.copy()
-        del form_data['a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d']
+        del form_data['tie-fighter-sound-answer']
 
         # We submit the form
         resp = self.submit_page(first_page, form_data)

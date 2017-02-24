@@ -21,7 +21,7 @@ class TestPageErrors(StarWarsTestCase):
         # Our answers
         form_data = {
             # Make this data missing
-            "215015b1-f87c-4740-9fd4-f01f707ef558": "",  # Required answer
+            "chewbacca-medal-answer": "",  # Required answer
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -30,15 +30,15 @@ class TestPageErrors(StarWarsTestCase):
 
         # We fill in our answers missing one required field
         form_data = BLOCK_2_DEFAULT_ANSWERS.copy()
-        del form_data['a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d']
+        del form_data['tie-fighter-sound-answer']
 
         # We submit the form
         resp = self.submit_page(first_page, form_data)
 
         content = resp.get_data(True)
-        self.assertRegex(content, 'href="#a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d"')
+        self.assertRegex(content, 'href="#tie-fighter-sound-answer"')
         # We DO NOT have the error from page two
-        self.assertNotRegex(content, 'href="215015b1-f87c-4740-9fd4-f01f707ef558"')
+        self.assertNotRegex(content, 'href="chewbacca-medal-answer"')
 
     def test_skip_question_errors(self):
         # Given on the page with skip question with skip condition

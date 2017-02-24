@@ -140,11 +140,11 @@ class TestQuestionnaireForm(unittest.TestCase):
     def test_answer_with_child_inherits_mandatory_from_parent(self):
         survey = load_schema_file("test_radio.json")
 
-        block_json = SchemaHelper.get_block(survey, "block-1")
+        block_json = SchemaHelper.get_block(survey, "radio-mandatory")
         error_messages = SchemaHelper.get_messages(survey)
 
         form = generate_form(block_json, {
-            'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c': 'Other'
+            'radio-mandatory-answer': 'Other'
         }, error_messages)
 
         child_field = getattr(form, 'other-answer-mandatory')
@@ -154,11 +154,11 @@ class TestQuestionnaireForm(unittest.TestCase):
     def test_answer_with_child_errors_are_correctly_mapped(self):
         survey = load_schema_file("test_radio.json")
 
-        block_json = SchemaHelper.get_block(survey, "block-1")
+        block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
         error_messages = SchemaHelper.get_messages(survey)
 
         form = generate_form(block_json, {
-            'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c': 'Other'
+            'radio-mandatory-answer': 'Other'
         }, error_messages)
 
         form.validate()
@@ -166,7 +166,7 @@ class TestQuestionnaireForm(unittest.TestCase):
 
         message = "This field is mandatory."
 
-        self.assertTrue(self._error_exists("ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c", message, mapped_errors))
+        self.assertTrue(self._error_exists("radio-mandatory-answer", message, mapped_errors))
         self.assertFalse(self._error_exists("other-answer-mandatory", message, mapped_errors))
 
     def test_answer_errors_are_mapped(self):

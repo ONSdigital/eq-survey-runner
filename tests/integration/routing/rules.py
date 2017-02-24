@@ -4,11 +4,11 @@ CHOOSE_A_SIDE_LIGHT_SIDE = [
         "answers": [
             {
                 "answer": "Choose your side",
-                "answer_id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                "answer_id": "choose-your-side-answer",
                 "user_answer": "Light Side"
             }
         ],
-        "destination_id": "96682325-47ab-41e4-a56e-8315a19ffe2a"
+        "destination_id": "light-side-pick-character-ship"
     }]
 
 CHOOSE_A_SIDE_DARK_SIDE = [
@@ -17,11 +17,11 @@ CHOOSE_A_SIDE_DARK_SIDE = [
         "answers": [
             {
                 "answer": "Choose your side",
-                "answer_id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                "answer_id": "choose-your-side-answer",
                 "user_answer": "Dark Side"
             }
         ],
-        "destination_id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"
+        "destination_id": "dark-side-pick-character-ship"
     }]
 
 CHOOSE_A_SIDE_STAR_TREK = [
@@ -30,7 +30,7 @@ CHOOSE_A_SIDE_STAR_TREK = [
         "answers": [
             {
                 "answer": "Choose your side",
-                "answer_id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                "answer_id": "choose-your-side-answer",
                 "user_answer": "I prefer Star Trek"
             }
         ],
@@ -39,220 +39,220 @@ CHOOSE_A_SIDE_STAR_TREK = [
 
 LIGHT_SHIP_YES = [
     {
-        "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
+        "block_id": "light-side-pick-character-ship",
         "answers": [
             {
                 "answer": "Do you want to pick a ship?",
-                "answer_id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                "answer_id": "light-side-pick-ship-answer",
                 "user_answer": "Yes"
             },
             {
                 "answer": "A wise choice young Jedi. Pick your hero",
-                "answer_id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
+                "answer_id": "light-side-pick-character-answer",
                 "user_answer": "Dan Skywalker"
             }
         ],
-        "destination_id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"
+        "destination_id": "light-side-ship-type"
     }]
 
 LIGHT_SHIP_NO = [
     {
-        "block_id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
+        "block_id": "light-side-pick-character-ship",
         "answers": [
             {
                 "answer": "Do you want to pick a ship?",
-                "answer_id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                "answer_id": "light-side-pick-ship-answer",
                 "user_answer": "No"
             },
             {
                 "answer": "A wise choice young Jedi. Pick your hero",
-                "answer_id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
+                "answer_id": "light-side-pick-character-answer",
                 "user_answer": "Leyoda"
             }
         ],
-        "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
+        "destination_id": "star-wars-trivia"
     }]
 
 LIGHT_SHIP_PICK = [
     {
-        "block_id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
+        "block_id": "light-side-ship-type",
         "answers": [
             {
                 "answer": "Which ship do you want?",
-                "answer_id": "a2c2649a-85ff-4a26-ba3c-e1880f7c807b",
+                "answer_id": "light-side-ship-type-answer",
                 "user_answer": "X-wing"
             }
         ],
-        "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
+        "destination_id": "star-wars-trivia"
     }]
 
 DARK_SHIP_YES = [
     {
-        "block_id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
+        "block_id": "dark-side-pick-character-ship",
         "answers": [
             {
                 "answer": "Do you want to pick a ship?",
-                "answer_id": "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                "answer_id": "dark-side-pick-ship-answer",
                 "user_answer": "Yes"
             },
             {
                 "answer": "Good! Your hate has made you powerful. Pick your baddie",
-                "answer_id": "653e6407-43d6-4dfc-8b11-a673a73d602d",
+                "answer_id": "dark-side-pick-character-answer",
                 "user_answer": "Darth Vadan"
             }
         ],
-        "destination_id": "fab02f02-6ce4-4f22-b61f-0c7880009f08"
+        "destination_id": "dark-side-ship-type"
     }]
 
 DARK_SHIP_NO = [
     {
-        "block_id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
+        "block_id": "dark-side-pick-character-ship",
         "answers": [
             {
                 "answer": "Do you want to pick a ship?",
-                "answer_id": "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                "answer_id": "dark-side-pick-ship-answer",
                 "user_answer": "No"
             },
             {
                 "answer": "Good! Your hate has made you powerful. Pick your baddie",
-                "answer_id": "653e6407-43d6-4dfc-8b11-a673a73d602d",
+                "answer_id": "dark-side-pick-character-answer",
                 "user_answer": "Boba Fetewis"
             }
         ],
-        "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
+        "destination_id": "star-wars-trivia"
     }]
 
 DARK_SHIP_PAIN = [
     {
-        "block_id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
+        "block_id": "dark-side-pick-character-ship",
         "answers": [
             {
                 "answer": "Do you want to pick a ship?",
-                "answer_id": "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                "answer_id": "dark-side-pick-ship-answer",
                 "user_answer": "Can I be a pain and have a goodies ship"
             },
             {
                 "answer": "Good! Your hate has made you powerful. Pick your baddie",
-                "answer_id": "653e6407-43d6-4dfc-8b11-a673a73d602d",
+                "answer_id": "dark-side-pick-character-answer",
                 "user_answer": "Jabba the Hutarren"
             }
         ],
-        "destination_id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"
+        "destination_id": "light-side-ship-type"
     }]
 
 DARK_SHIP_PICK = [
     {
-        "block_id": "fab02f02-6ce4-4f22-b61f-0c7880009f08",
+        "block_id": "dark-side-ship-type",
         "answers": [
             {
                 "answer": "Which ship do you want?",
-                "answer_id": "a5d5ca1a-cf58-4626-be35-dce81297688b",
+                "answer_id": "dark-side-ship-type-answer",
                 "user_answer": "Death Star"
             }
         ],
-        "destination_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
+        "destination_id": "star-wars-trivia"
     }]
 
 QUIZ_PAGE_1 = [
     {
-        "block_id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
+        "block_id": "star-wars-trivia",
         "answers": [
             {
                 "answer": "How old is Chewy?",
-                "answer_id": "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b",
+                "answer_id": "chewies-age-answer",
                 "user_answer": "234"
             },
             {
                 "answer": "How many Octillions do Nasa reckon it would cost to build a death star?",
-                "answer_id": "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
+                "answer_id": "death-star-cost-answer",
                 "user_answer": "40"
             },
             {
                 "answer": "How hot is a lightsaber in degrees C?",
-                "answer_id": "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
+                "answer_id": "lightsaber-cost-answer",
                 "user_answer": "1370"
             },
             {
                 "answer": "What animal was used to create the engine sound of the Empire",
-                "answer_id": "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d",
+                "answer_id": "tie-fighter-sound-answer",
                 "user_answer": "Elephant"
             },
             {
                 "answer": "Which of these Darth Vader quotes is wrong?",
-                "answer_id": "7587eb9b-f24e-4dc0-ac94-66118b896c10",
+                "answer_id": "darth-vader-quotes-answer",
                 "user_answer": "Luke, I am your father"
             },
             {
                 "answer": "Which 3 have wielded a green lightsaber?",
-                "answer_id": "9587eb9b-f24e-4dc0-ac94-66117b896c10",
+                "answer_id": "green-lightsaber-answer",
                 "user_answer": "Yoda"
             },
             {
                 "answer": "When was The Empire Strikes Back released?",
-                "answer_id": "6fd644b0-798e-4a58-a393-a438b32fe637-day",
+                "answer_id": "empire-strikes-back-from-answer-day",
                 "user_answer": "28"
             },
             {
                 "answer": "When was The Empire Strikes Back released?",
-                "answer_id": "6fd644b0-798e-4a58-a393-a438b32fe637-month",
+                "answer_id": "empire-strikes-back-from-answer-month",
                 "user_answer": "5"
             },
             {
                 "answer": "When was The Empire Strikes Back released?",
-                "answer_id": "6fd644b0-798e-4a58-a393-a438b32fe637-year",
+                "answer_id": "empire-strikes-back-from-answer-year",
                 "user_answer": "1983"
             },
             {
                 "answer": "When was The Empire Strikes Back released?",
-                "answer_id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day",
+                "answer_id": "empire-strikes-back-to-answer-day",
                 "user_answer": "29"
             },
             {
                 "answer": "When was The Empire Strikes Back released?",
-                "answer_id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month",
+                "answer_id": "empire-strikes-back-to-answer-month",
                 "user_answer": "5"
             },
             {
                 "answer": "When was The Empire Strikes Back released?",
-                "answer_id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year",
+                "answer_id": "empire-strikes-back-to-answer-year",
                 "user_answer": "1983"
             }
         ],
-        "destination_id": "an3b74d1-b687-4051-9634-a8f9ce10ard"
+        "destination_id": "star-wars-trivia-part-2"
     }
 ]
 
 QUIZ_PAGE_2 = [
     {
-        "block_id": "an3b74d1-b687-4051-9634-a8f9ce10ard",
+        "block_id": "star-wars-trivia-part-2",
         "answers": [
             {
                 "answer": "Chewbacca receive a medal at the end of A New Hope?",
-                "answer_id": "215015b1-f87c-4740-9fd4-f01f707ef558",
+                "answer_id": "chewbacca-medal-answer",
                 "user_answer": "Wookiees don’t place value in material rewards and refused the medal initially"
             },
             {
                 "answer": "Do you really think that Chewbacca is 234 years old?",
-                "answer_id": "7587qe9b-f24e-4dc0-ac94-66118b896c10",
+                "answer_id": "confirm-chewbacca-age-answer",
                 "user_answer": "Yes"
             },
             {
                 "answer": "What do you think of the prequel series?",
-                "answer_id": "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
+                "answer_id": "star-wars-prequel-answer",
                 "user_answer": "Awesome, I love them all"
             }
         ],
-        "destination_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"
+        "destination_id": "star-wars-trivia-part-3"
     }
 ]
 
 QUIZ_PAGE_3 = [
     {
-        "block_id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1",
+        "block_id": "star-wars-trivia-part-3",
         "answers": [
             {
                 "answer": "What is the name of Jar Jar Binks",
-                "answer_id": "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b",
+                "answer_id": "jar-jar-binks-planet-answer",
                 "user_answer": "Naboo"
             }
         ],

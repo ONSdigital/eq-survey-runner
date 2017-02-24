@@ -22,7 +22,7 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
         block_one_url = resp.location
 
         post_data = {
-            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": " Bacon",
+            "choose-your-side-answer": " Bacon",
             "action[save_continue]": "Save &amp; Continue"
         }
         resp = self.client.post(block_one_url, data=post_data, follow_redirects=False)

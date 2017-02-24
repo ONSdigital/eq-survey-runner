@@ -236,10 +236,8 @@ class TestNavigation(unittest.TestCase):
         completed_blocks = [
             Location('property-details', 0, 'introduction'),
             Location('property-details', 0, 'insurance-type'),
-            Location('property-details', 0, 'cd6a5727-8cab-4737-aa4e-d666d98b3f92'),
             Location('property-details', 0, 'personal-interstitial'),
             Location('extra-cover', 0, 'extra-cover-block'),
-            Location('extra-cover', 0, 'ea651fa7-6b9d-4b6f-ba72-79133f312039'),
         ]
 
         answer_store = AnswerStore()

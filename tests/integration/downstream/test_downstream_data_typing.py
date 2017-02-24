@@ -28,13 +28,13 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
 
         # Textarea question
         self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegex(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'chewbacca-medal-answer')
 
         # Our answers
         form_data = {
             # People in household
-            "215015b1-f87c-4740-9fd4-f01f707ef558": "Wookiees don’t place value in material rewards and refused the medal initially",  # NOQA
-            "7587qe9b-f24e-4dc0-ac94-66118b896c10": "Yes",
+            "chewbacca-medal-answer": "Wookiees don’t place value in material rewards and refused the medal initially",  # NOQA
+            "confirm-chewbacca-age-answer": "Yes",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -50,8 +50,8 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
 
         form_data = {
             # final answers
-            "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b": "Naboo",
-            "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1": "5",
+            "jar-jar-binks-planet-answer": "Naboo",
+            "favourite-film-answer": "5",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }

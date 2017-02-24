@@ -34,7 +34,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
         form_data = {
 
-            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": "Light Side",
+            "choose-your-side-answer": "Light Side",
             "action[save_continue]": "Save &amp; Continue"
         }
 
@@ -45,8 +45,8 @@ class StarWarsTestCase(IntegrationTestCase):
         self.routing_pick_your_character_light_side(current_page)
 
         form_data = {
-            "91631df0-4356-4e9f-a9d9-ce8b08d26eb3": "Leyoda",
-            "2e0989b8-5185-4ba6-b73f-c126e3a06ba7": "Yes",
+            "light-side-pick-character-answer": "Leyoda",
+            "light-side-pick-ship-answer": "Yes",
             "action[save_continue]": "Save &amp; Continue"
         }
 
@@ -57,7 +57,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.routing_select_your_ship_light_side(current_page)
 
         form_data = {
-            "a2c2649a-85ff-4a26-ba3c-e1880f7c807b": "Millennium Falcon",
+            "light-side-ship-type-answer": "Millennium Falcon",
             "action[save_continue]": "Save &amp; Continue"
         }
 
@@ -76,9 +76,9 @@ class StarWarsTestCase(IntegrationTestCase):
     def routing_pick_your_character_light_side(self, page):
         content = self.retrieve_content(page)
         self.assertIn('A wise choice young Jedi. Pick your hero', content)
-        self.assertIn('91631df0-4356-4e9f-a9d9-ce8b08d26eb3', content)
+        self.assertIn('light-side-pick-character-answer', content)
         self.assertIn('Do you want to pick a ship?', content)
-        self.assertIn('2e0989b8-5185-4ba6-b73f-c126e3a06ba7', content)
+        self.assertIn('light-side-pick-ship-answer', content)
         return page
 
     def routing_select_your_ship_light_side(self, page):
@@ -86,7 +86,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertIn('Which ship do you want?', content)
         self.assertIn('Millennium Falcon', content)
         self.assertIn('X-wing', content)
-        self.assertIn('a2c2649a-85ff-4a26-ba3c-e1880f7c807b', content)
+        self.assertIn('light-side-ship-type-answer', content)
         return page
 
     def check_second_quiz_page(self, page):
@@ -100,7 +100,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
         # Textarea question
         self.assertIn('Why doesn\'t Chewbacca receive a medal at the end of A New Hope?', content)
-        self.assertIn('215015b1-f87c-4740-9fd4-f01f707ef558', content)
+        self.assertIn('chewbacca-medal-answer', content)
 
     def submit_page(self, page, form_data):
         resp = self.client.post(page, data=form_data, follow_redirects=False)

@@ -30,13 +30,13 @@
                     "sections": [
                         {
                             "description": "",
-                            "id": "ed3e200a-0735-4e8d-9eea-627c1d908697",
+                            "id": "choose-your-side-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                            "id": "choose-your-side-answer",
                                             "label": "Choose a side",
                                             "mandatory": true,
                                             "options": [
@@ -70,7 +70,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
+                                    "id": "choose-your-side-question",
                                     "title": "Which side of the force are you on?",
                                     "type": "General"
                                 }
@@ -81,10 +81,10 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "id" : "96682325-47ab-41e4-a56e-8315a19ffe2a",
+                                "id" : "light-side-pick-character-ship",
                                 "when": [
                                     {
-                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "id" : "choose-your-side-answer",
                                         "condition": "equals",
                                         "value":"Light Side"
                                     }
@@ -94,10 +94,10 @@
                         },
                         {
                             "goto": {
-                                "id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
+                                "id": "dark-side-pick-character-ship",
                                 "when": [
                                     {
-                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "id" : "choose-your-side-answer",
                                         "condition": "equals",
                                         "value":"Dark Side"
                                     }
@@ -110,7 +110,7 @@
                                 "id": "summary",
                                 "when": [
                                     {
-                                        "id" : "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                        "id" : "choose-your-side-answer",
                                         "condition": "equals",
                                         "value":"I prefer Star Trek"
                                     }
@@ -120,7 +120,7 @@
                         },
                         {
                             "goto": {
-                                "id": "96682325-47ab-41e4-a56e-8315a19ffe2a"
+                                "id": "light-side-pick-character-ship"
                             }
                         }
                     ],
@@ -128,17 +128,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "96682325-47ab-41e4-a56e-8315a19ffe2a",
+                    "id": "light-side-pick-character-ship",
                     "sections": [
                         {
                             "description": "",
-                            "id": "a7dcbb30-1187-4276-a49c-9284730ba4ed",
+                            "id": "light-side-pick-character-ship-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
+                                            "id": "light-side-pick-character-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -167,7 +167,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "680f2ff9-d5a5-4057-b1cd-9fde2660b244",
+                                    "id": "light-side-pick-character-question",
                                     "title": "A wise choice young Jedi. Pick your hero",
                                     "type": "General"
                                 },
@@ -175,7 +175,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                            "id": "light-side-pick-ship-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -196,7 +196,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "5667e5eb-f9d3-4482-9257-edf752000708",
+                                    "id": "light-side-pick-ship-question",
                                     "title": "Do you want to pick a ship?",
                                     "type": "General"
                                 }
@@ -208,10 +208,10 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "id" : "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
+                                "id" : "light-side-ship-type",
                                 "when": [
                                     {
-                                        "id" : "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "id" : "light-side-pick-ship-answer",
                                         "condition": "equals",
                                         "value":"Yes"
                                     }
@@ -221,10 +221,10 @@
                         },
                         {
                             "goto": {
-                                "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
+                                "id": "star-wars-trivia",
                                 "when": [
                                     {
-                                        "id" : "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "id" : "light-side-pick-ship-answer",
                                         "condition": "equals",
                                         "value":"No"
                                     }
@@ -236,17 +236,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
+                    "id": "dark-side-pick-character-ship",
                     "sections": [
                         {
                             "description": "",
-                            "id": "dcb42b6a-88b8-4258-bfe4-3e8b46db28b5",
+                            "id": "dark-side-pick-character-ship-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "653e6407-43d6-4dfc-8b11-a673a73d602d",
+                                            "id": "dark-side-pick-character-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -276,7 +276,7 @@
 
                                     ],
                                     "description": "",
-                                    "id": "d9fd4a58-83a5-44df-a413-47ce41244124",
+                                    "id": "dark-side-pick-character-question",
                                     "title": "Good! Your hate has made you powerful. Pick your baddie",
                                     "type": "General"
                                 },
@@ -284,7 +284,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                            "id": "dark-side-pick-ship-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -309,7 +309,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "8777e5eb-f9d3-4482-9257-edf752000708",
+                                    "id": "dark-side-pick-ship-question",
                                     "title": "Do you want to pick a ship?",
                                     "type": "General"
                                 }
@@ -320,10 +320,10 @@
                                         "routing_rules":[
                         {
                             "goto": {
-                                "id" : "fab02f02-6ce4-4f22-b61f-0c7880009f08",
+                                "id" : "dark-side-ship-type",
                                 "when": [
                                     {
-                                        "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "id" : "dark-side-pick-ship-answer",
                                         "condition": "equals",
                                         "value":"Yes"
                                     }
@@ -333,10 +333,10 @@
                         },
                         {
                             "goto": {
-                                "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
+                                "id": "star-wars-trivia",
                                 "when": [
                                     {
-                                        "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "id" : "dark-side-pick-ship-answer",
                                         "condition": "equals",
                                         "value":"No"
                                     }
@@ -346,10 +346,10 @@
                         },
                         {
                             "goto": {
-                                "id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
+                                "id": "light-side-ship-type",
                                 "when": [
                                     {
-                                        "id" : "pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+                                        "id" : "dark-side-pick-ship-answer",
                                         "condition": "equals",
                                         "value":"Can I be a pain and have a goodies ship"
                                     }
@@ -362,17 +362,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
+                    "id": "light-side-ship-type",
                     "sections": [
                         {
                             "description": "",
-                            "id": "b2b1eb6d-400f-452a-854f-be028600f862",
+                            "id": "light-side-ship-type-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "a2c2649a-85ff-4a26-ba3c-e1880f7c807b",
+                                            "id": "light-side-ship-type-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -393,7 +393,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "574e5d5e-36b4-44ea-b8f6-09d744552241",
+                                    "id": "light-side-ship-type-question",
                                     "title": "Which ship do you want?",
                                     "type": "General"
                                 }
@@ -404,7 +404,7 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "id" : "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
+                                "id" : "star-wars-trivia"
                             }
                         }
                     ],
@@ -412,17 +412,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "fab02f02-6ce4-4f22-b61f-0c7880009f08",
+                    "id": "dark-side-ship-type",
                     "sections": [
                         {
                             "description": "",
-                            "id": "cc8ab489-4ad1-4d89-b60f-b13d550fa591",
+                            "id": "dark-side-ship-type-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "a5d5ca1a-cf58-4626-be35-dce81297688b",
+                                            "id": "dark-side-ship-type-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -443,7 +443,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "cb8f691d-7925-4131-a19b-9eeef592ceea",
+                                    "id": "dark-side-ship-type-question",
                                     "title": "Which ship do you want?",
                                     "type": "General"
                                 }
@@ -454,7 +454,7 @@
                     "routing_rules":[
                         {
                             "goto": {
-                                "id" : "cd3b74d1-b687-4051-9634-a8f9ce10a27d"
+                                "id" : "star-wars-trivia"
                             }
                         }
                     ],
@@ -462,17 +462,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "cd3b74d1-b687-4051-9634-a8f9ce10a27d",
+                    "id": "star-wars-trivia",
                     "sections": [
                         {
                             "description": "May the force be with you young EQ developer<br/><br/>",
-                            "id": "017880bc-752d-4a6b-83df-e130409ee660",
+                            "id": "star-wars-trivia-section",
                             "questions": [
                               {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "cccfe681-9969-4175-8ac3-98184ab58423",
+                                            "id": "death-star-plans-answer",
                                             "label": "Which species stole the plans to the second Death Star?",
                                             "mandatory": false,
                                             "options": [],
@@ -481,7 +481,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "1054a0de-4878-4d24-b997-7965ad8e3e66",
+                                    "id": "death-star-plans-question",
                                     "title": "",
                                     "type": "General"
                               },
@@ -490,7 +490,7 @@
                                         {
                                             "alias": "chewies_age",
                                             "guidance": "",
-                                            "id": "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b",
+                                            "id": "chewies-age-answer",
                                             "label": "How old is Chewy?",
                                             "mandatory": true,
                                             "options": [],
@@ -506,7 +506,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "88824eff-7bb6-443f-85cb-8c2db016d44c",
+                                    "id": "chewies-age-question",
                                     "title": "",
                                     "type": "General"
                                 },
@@ -514,7 +514,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
+                                            "id": "death-star-cost-answer",
                                             "label": "How many Octillions do Nasa reckon it would cost to build a death star?",
                                             "mandatory": true,
                                             "options": [],
@@ -530,7 +530,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "b8a803ba-2048-46dc-83cf-9ef9000d7a92",
+                                    "id": "death-star-cost-question",
                                     "title": "",
                                     "type": "General"
                                 },
@@ -538,7 +538,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
+                                            "id": "lightsaber-cost-answer",
                                             "label": "How hot is a lightsaber in degrees C?",
                                             "mandatory": false,
                                             "options": [],
@@ -554,7 +554,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "d8a803ga-2048-46dc-83cf-9ef9000d7a92",
+                                    "id": "lightsaber-cost-question",
                                     "title": "",
                                     "type": "General"
                                 },
@@ -562,7 +562,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d",
+                                            "id": "tie-fighter-sound-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -588,7 +588,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "235f0930-47fb-4998-afed-d73167886d63",
+                                    "id": "tie-fighter-sound-question",
                                     "title": "What animal was used to create the engine sound of the Empire's TIE fighters?",
                                     "type": "General"
                                 },
@@ -596,7 +596,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "7587eb9b-f24e-4dc0-ac94-66118b896c10",
+                                            "id": "darth-vader-quotes-answer",
                                             "label": "",
                                             "mandatory": false,
                                             "options": [
@@ -622,7 +622,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "def61645-c231-4522-ba2f-273b25507e53",
+                                    "id": "darth-vader-quotes-question",
                                     "title": "Which of these Darth Vader quotes is wrong?",
                                     "type": "General"
                                 },
@@ -630,7 +630,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "9587eb9b-f24e-4dc0-ac94-66117b896c10",
+                                            "id": "green-lightsaber-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -665,7 +665,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "def6r645-c231-4522-ba2f-273b25507e53",
+                                    "id": "green-lightsaber-question",
                                     "title": "Which 3 have wielded a green lightsaber?",
                                     "type": "General"
                                 },
@@ -673,7 +673,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "5587eb9b-f24e-4dc0-ac94-66117b896c10",
+                                            "id": "opening-crawler-answer",
                                             "label": "",
                                             "mandatory": false,
                                             "options": [
@@ -707,7 +707,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "pef6r645-c231-4522-ba2f-273b25507e53",
+                                    "id": "opening-crawler-question",
                                     "title": "Which 3 appear in any of the opening crawlers?",
                                     "type": "General"
                                 },
@@ -715,7 +715,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "6fd644b0-798e-4a58-a393-a438b32fe637",
+                                            "id": "empire-strikes-back-from-answer",
                                             "label": "Period from",
                                             "mandatory": true,
                                             "options": [],
@@ -730,7 +730,7 @@
                                         },
                                         {
                                             "guidance": "",
-                                            "id": "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0",
+                                            "id": "empire-strikes-back-to-answer",
                                             "label": "Period to",
                                             "mandatory": true,
                                             "options": [],
@@ -745,7 +745,7 @@
                                         }
                                     ],
                                     "description": "It could be between {{exercise.start_date|format_date}} and {{exercise.end_date|format_date}}. But that might just be a test",
-                                    "id": "6cc86b54-330c-4465-99b2-34cc7073dc2c",
+                                    "id": "empire-strikes-back-to-question",
                                     "title": "When was The Empire Strikes Back released?",
                                     "type": "DateRange"
                                 }
@@ -757,18 +757,18 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "an3b74d1-b687-4051-9634-a8f9ce10ard",
+                    "id": "star-wars-trivia-part-2",
                     "sections": [
                         {
                             "description": "If you didn't pick the right employment date for Return of the Jedi its your fault if this question makes no sense",
-                            "id": "12346782-08a6-4213-9dc9-0780c2996896",
+                            "id": "star-wars-trivia-part-2-section-1",
                             "questions": [
 
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "5rr015b1-f87c-4740-9fd4-f01f707ef558",
+                                            "id": "jar-jar-binks-answer",
                                             "label": "What was the total number of Ewoks?",
                                             "mandatory": false,
                                             "options": [],
@@ -784,7 +784,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "rt4eedc2-d98c-4d4d-9a7c-997ce10c361f",
+                                    "id": "jar-jar-binks-question",
                                     "title": "",
                                     "type": "General"
                                 }
@@ -793,13 +793,13 @@
                         },
                         {
                             "description": "",
-                            "id": "94546782-08a6-4213-9dc9-0780c2996896",
+                            "id": "star-wars-trivia-part-2-section-2",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "c8d9d66e-6c0a-439e-8ef9-e0d7038be009",
+                                            "id": "rebel-alliance-answer",
                                             "label": "What else did the Bothan spies steal for the Rebel Alliance?",
                                             "mandatory": false,
                                             "options": [],
@@ -808,13 +808,13 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "048e40da-bca4-48e5-9885-0bb6413bef62",
+                                    "id": "rebel-alliance-question",
                                     "title": "The force is strong with you, young Jedi!",
                                     "type": "General",
                                     "skip_condition": {
                                         "when": [
                                             {
-                                                "id" : "cccfe681-9969-4175-8ac3-98184ab58423",
+                                                "id" : "death-star-plans-answer",
                                                 "condition": "not equals",
                                                 "value":"Bothans"
                                             }
@@ -825,7 +825,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "215015b1-f87c-4740-9fd4-f01f707ef558",
+                                            "id": "chewbacca-medal-answer",
                                             "label": "Why doesn't Chewbacca receive a medal at the end of A New Hope?",
                                             "mandatory": true,
                                             "options": [],
@@ -834,7 +834,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "fef6edc2-d98c-4d4d-9a7c-997ce10c361f",
+                                    "id": "chewbacca-medal-question",
                                     "title": "",
                                     "type": "General"
                                 },
@@ -842,7 +842,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "7587qe9b-f24e-4dc0-ac94-66118b896c10",
+                                            "id": "confirm-chewbacca-age-answer",
                                             "label": "",
                                             "mandatory": true,
                                             "options": [
@@ -860,7 +860,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "fef6qwc2-d98c-4d4d-9a7c-997ce10c361f",
+                                    "id": "confirm-chewbacca-age-question",
                                     "title": "Do you really think that Chewbacca is {{answers.chewies_age}} years old?",
                                     "type": "General"
                                 },
@@ -868,7 +868,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
+                                            "id": "star-wars-prequel-answer",
                                             "label": "",
                                             "mandatory": false,
                                             "options": [
@@ -886,7 +886,7 @@
                                         }
                                     ],
                                     "description": "Episodes I-III",
-                                    "id": "a3967576-e1a0-4930-9bb4-475157ca5f7c",
+                                    "id": "star-wars-prequel-question",
                                     "title": "What do you think of the prequel series?",
                                     "type": "General"
                                 }
@@ -898,17 +898,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1",
+                    "id": "star-wars-trivia-part-3",
                     "sections": [
                         {
                             "description": "",
-                            "id": "d45aa634-fed7-42ab-a1d8-dca512b9d834",
+                            "id": "star-wars-trivia-part-3-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "fcf636ff-7b3d-47b6-aaff-9a4b00aa888b",
+                                            "id": "jar-jar-binks-planet-answer",
                                             "label": "What is the name of Jar Jar Binks' home planet?",
                                             "mandatory": true,
                                             "options": [],
@@ -917,13 +917,13 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "f2ee7dd4-b63c-45f1-a883-9f89c937ad17",
+                                    "id": "jar-jar-binks-planet-question",
                                     "title": "",
                                     "type": "General",
                                     "skip_condition": {
                                         "when": [
                                             {
-                                                "id" : "77e20f0e-cabb-4eac-8cb0-ac6e66f0e95f",
+                                                "id" : "star-wars-prequel-answer",
                                                 "condition": "equals",
                                                 "value": "I like to pretend they didn't happen"
                                             }
@@ -934,7 +934,7 @@
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "4a085fe5-6830-4ef6-96e6-2ea2b3caf0c1",
+                                            "id": "favourite-film-answer",
                                             "label": "",
                                             "mandatory": false,
                                             "options": [
@@ -972,7 +972,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "9e104317-6a19-48a5-b70f-7aec92deb90e",
+                                    "id": "favourite-film-question",
                                     "title": "Finally, which  is your favourite film?",
                                     "type": "General"
                                 }
@@ -987,7 +987,7 @@
                     "id": "summary"
                 }
             ],
-            "id": "14ba4707-321d-441d-8d21-b8367366e766",
+            "id": "star-wars",
             "title": ""
         }
     ]

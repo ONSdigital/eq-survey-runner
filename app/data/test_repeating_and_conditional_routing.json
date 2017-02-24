@@ -20,9 +20,9 @@
             "sections": [{
                 "title": "No of Repeats",
                 "description": "",
-                "id": "5355deab-0b1e-495d-b4ab-f3e1f7c0c6f1",
+                "id": "no-of-repeats-section",
                 "questions": [{
-                    "id": "269e6c4a-4e27-4469-b4db-91537fae4629",
+                    "id": "no-of-repeats-question",
                     "title": "",
                     "description": "",
                     "type": "General",
@@ -52,9 +52,9 @@
             "sections": [{
                 "title": "Conditional Section",
                 "description": "",
-                "id": "91631df0-4356-4e9f-a9d9-ce8b08d26eb3",
+                "id": "repeated-section",
                 "questions": [{
-                    "id": "c1d9976e-d031-4fab-96fc-1d37d4a8b86b",
+                    "id": "repeated-question",
                     "title": "Age and Shoe Size",
                     "description": "",
                     "type": "General",
@@ -120,9 +120,9 @@
             "sections": [{
                 "title": "",
                 "description": "",
-                "id": "2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+                "id": "age-section",
                 "questions": [{
-                    "id": "31ec5b0a-094b-44ca-9807-9090c1b849f5",
+                    "id": "age-question",
                     "title": "What is their Age?",
                     "description": "",
                     "type": "General",
@@ -148,9 +148,9 @@
             "sections": [{
                 "title": "",
                 "description": "",
-                "id": "9b9d5386-5e2f-46cb-9456-92f35254d7b1",
+                "id": "shoe-size-section",
                 "questions": [{
-                    "id": "e4407328-e5ab-4d5d-afe0-12c9b33d5e21",
+                    "id": "question-section",
                     "title": "What is their Shoe Size?",
                     "description": "",
                     "type": "General",

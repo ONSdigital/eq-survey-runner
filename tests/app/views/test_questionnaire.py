@@ -60,7 +60,7 @@ class TestQuestionnaireView(unittest.TestCase):
 
         g.schema_json = load_schema_file("test_dates.json")
 
-        location = Location("a23d36db-6b07-4ce0-94b2-a843369511e3", 0, "date-block")
+        location = Location("dates", 0, "date-block")
 
         form_data = {
             'single-date-answer': {'day': '12', 'month': '03', 'year': '2016'},
@@ -72,7 +72,7 @@ class TestQuestionnaireView(unittest.TestCase):
         self.assertEquals(self.question_store.completed_blocks, [location])
 
         self.assertIn({
-            'group_id': 'a23d36db-6b07-4ce0-94b2-a843369511e3',
+            'group_id': 'dates',
             'group_instance': 0,
             'block_id': 'date-block',
             'answer_id': 'single-date-answer',
@@ -81,7 +81,7 @@ class TestQuestionnaireView(unittest.TestCase):
         }, self.question_store.answer_store.answers)
 
         self.assertIn({
-            'group_id': 'a23d36db-6b07-4ce0-94b2-a843369511e3',
+            'group_id': 'dates',
             'group_instance': 0,
             'block_id': 'date-block',
             'answer_id': 'month-year-answer',

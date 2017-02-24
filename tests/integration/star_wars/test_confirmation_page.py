@@ -19,7 +19,7 @@ class TestConfirmationPage(StarWarsTestCase):
 
         # Our answers
         form_data = {
-            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": "Cassian Andor",
+            "character-answer": "Cassian Andor",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -35,7 +35,7 @@ class TestConfirmationPage(StarWarsTestCase):
 
         # Our answers
         form_data = {
-            "3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f": "Yes",
+            "cassian-andor-like-this-page-answer": "Yes",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -51,7 +51,7 @@ class TestConfirmationPage(StarWarsTestCase):
 
         # Our answers
         form_data = {
-            "a04a516d-502d-4068-bbed-a43427c68cd9": "900",
+            "film-takings-answer": "900",
             # User Action
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -88,18 +88,18 @@ class TestConfirmationPage(StarWarsTestCase):
         content = self.retrieve_content(page)
         self.assertIn('Who do you want to know more about?', content)
         self.assertIn('Jyn Erso', content)
-        self.assertIn('ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-3', content)
+        self.assertIn('character-answer-3', content)
 
     def rogue_one_check_description_page(self, page):
         content = self.retrieve_content(page)
         self.assertIn('An accomplished Rebel Alliance Intelligence Officer', content)
         self.assertIn('Do you like this page?', content)
-        self.assertIn('3f1f1bb7-2452-4f8d-ac7a-735ea5d4517f-1', content)
+        self.assertIn('cassian-andor-like-this-page-answer-1', content)
 
     def rogue_one_check_takings_page(self, page):
         content = self.retrieve_content(page)
         self.assertIn('In millions, how much do you think this film will take?', content)
-        self.assertIn('a04a516d-502d-4068-bbed-a43427c68cd9', content)
+        self.assertIn('film-takings-answer', content)
 
     def rogue_one_check_confirmation_page(self, page):
         content = self.retrieve_content(page)

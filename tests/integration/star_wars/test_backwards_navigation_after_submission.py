@@ -14,15 +14,15 @@ class TestBackwardsNavigationAfterSubmission(TestLightSidePath):
         self.assertEqual(resp.status_code, 401)
 
         # Block Three
-        resp = self.client.get(star_wars_test_urls.STAR_WARS_BLOCK3, follow_redirects=False)
+        resp = self.client.get(star_wars_test_urls.STAR_WARS_QUIZ_3, follow_redirects=False)
         self.assertEqual(resp.status_code, 401)
 
         # Block Two
-        resp = self.client.get(star_wars_test_urls.STAR_WARS_BLOCK2, follow_redirects=False)
+        resp = self.client.get(star_wars_test_urls.STAR_WARS_QUIZ_2, follow_redirects=False)
         self.assertEqual(resp.status_code, 401)
 
         # Block One
-        resp = self.client.get(star_wars_test_urls.STAR_WARS_BLOCK1, follow_redirects=False)
+        resp = self.client.get(star_wars_test_urls.STAR_WARS_QUIZ_1, follow_redirects=False)
         self.assertEqual(resp.status_code, 401)
 
         resp = self.client.get(star_wars_test_urls.STAR_WARS_INTRODUCTION, follow_redirects=False)

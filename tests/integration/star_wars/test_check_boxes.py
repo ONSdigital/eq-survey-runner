@@ -12,7 +12,7 @@ class TestEmptyCheckBoxes(StarWarsTestCase):
         # We fill in the survey without a mandatory check box
         form_data = BLOCK_2_DEFAULT_ANSWERS.copy()
         # Skip this question
-        del form_data['9587eb9b-f24e-4dc0-ac94-66117b896c10']
+        del form_data['green-lightsaber-answer']
 
         # We submit the form
         resp = self.submit_page(first_page, form_data)
