@@ -72,7 +72,7 @@ class TestTimeout(IntegrationTestCase):
         self.assertEqual(resp.status_code, 200)
 
         content = resp.get_data(True)
-        self.assertIn('window.__EQ_SESSION_TIMEOUT__ = 4', content)
+        self.assertIn('window.__EQ_SESSION_TIMEOUT__ = 6', content)
 
     def test_schema_defined_timeout_cant_be_higher_than_server(self):
         # Given
