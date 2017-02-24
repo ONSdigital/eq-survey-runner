@@ -3,6 +3,8 @@
 # NOTE: This script expects to be run from the project root with
 # ./scripts/run.sh
 
+set -e
+
 if [ "$EQ_RUN_DOCKER_UP" = True ]; then
     echo "Running Docker compose"
     docker-compose --version
