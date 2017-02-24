@@ -1,5 +1,9 @@
 {% set _theme="default" %}
-{% extends 'layouts/_base.html' %} {% block page_title %}EQ Development{% endblock %} {% block content %}
+{% extends 'layouts/_base.html' %}
+
+{% block page_title %}EQ Development{% endblock %}
+
+{% block content %}
 
 <!-- this page needs a total rethink, but this tidies things up a little for now -->
 
@@ -85,6 +89,8 @@ select {
       <form action="" method="POST" xmlns="http://www.w3.org/1999/html">
 
         <div class="field-wrap">
+
+          {% block devpage %}
 
             <div class="field-container">
               <label for="user_id">User ID</label>
@@ -180,6 +186,8 @@ select {
               <input id="sexual_identity" type="checkbox" name="sexual_identity" class="qa-sexual-identity" value="true">
             </div>
 
+            {% endblock devpage %}
+
             <div class="field-container">
               <input type="submit" value="Open Survey" class="qa-btn-submit-dev btn"/>
             </div>
@@ -213,4 +221,4 @@ select {
 
 </script>
 
-{% endblock %}
+{% endblock content %}
