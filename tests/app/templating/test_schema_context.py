@@ -15,7 +15,7 @@ class TestMetadataContext(SurveyRunnerTestCase):
         'ru_name': 'Mr Bloggs',
         'trad_as': 'Apple',
         'tx_id': '12345678-1234-5678-1234-567812345678',
-        'period_str': '201610',
+        'period_str': 'October 2016',
         'employment_date': '2016-10-09',
         'region_code': 'GB-GBN',
     }
@@ -56,6 +56,7 @@ class TestMetadataContext(SurveyRunnerTestCase):
         exercise = schema_context['exercise']
         self.assertEqual('2016-10-11', exercise['start_date'].date().isoformat())
         self.assertEqual('2016-10-12', exercise['end_date'].date().isoformat())
+        self.assertEqual('October 2016', exercise['period_str'])
         self.assertEqual('2016-10-09', exercise['employment_date'].date().isoformat())
         self.assertEqual('2016-10-10', exercise['return_by'].date().isoformat())
         self.assertEqual('GB-GBN', exercise['region_code'])
