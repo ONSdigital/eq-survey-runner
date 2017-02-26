@@ -16,7 +16,7 @@ class TestQuestionnaireStorage(unittest.TestCase):
     def test_store(self):
         data = {'test': 'test'}
         self.assertIsNone(self.storage.add_or_update(data))
-        self.assertTrue(self.storage.exists())
+        self.assertIsNotNone(self.storage._get())
 
     def test_get(self):
         data = {'test': 'test'}
@@ -28,7 +28,7 @@ class TestQuestionnaireStorage(unittest.TestCase):
         self.storage.add_or_update(data)
         self.assertEqual(data, self.storage.get_user_data())
         self.storage.delete()
-        self.assertFalse(self.storage.exists())
+        self.assertIsNone(self.storage._get())
 
     def test_store_rollback(self):
         # Given

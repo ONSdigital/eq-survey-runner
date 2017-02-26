@@ -35,7 +35,7 @@ class EncryptedQuestionnaireStorage(QuestionnaireStorage):
 
     def get_user_data(self):
         data = super(EncryptedQuestionnaireStorage, self).get_user_data()
-        if 'data' in data:
+        if data is not None and 'data' in data:
             decrypted_data = self.decrypt_data(self.user_id, self.user_ik, data)
             return decrypted_data
 
