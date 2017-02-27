@@ -150,7 +150,6 @@ def process_relationship_options(answer_id, options, template, page_spec):
         template_with_answer_id = template_with_index.replace("{answerId}", answer_id)
         template_with_option_value = template_with_answer_id.replace("{optionValue}", option['value'])
         template_with_option_name = template_with_option_value.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name)
-        print(template_with_option_name)
         page_spec.write(template_with_option_name)
 
 

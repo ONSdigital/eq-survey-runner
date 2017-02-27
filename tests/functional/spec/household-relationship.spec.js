@@ -1,7 +1,7 @@
 import chai from 'chai'
 import {startQuestionnaire} from '../helpers'
 import HouseholdCompositionPage from '../pages/surveys/household_composition/household-composition.page'
-import HouseholdRelationshipPage from '../pages/surveys/relationship/household-relationship.page'
+import HouseholdRelationshipPage from '../pages/surveys/relationship/relationships.page'
 import SummaryPage from '../pages/summary.page'
 
 const expect = chai.expect
@@ -32,12 +32,12 @@ describe('Household relationship', function() {
       .addPerson()
       .setPersonName(2, 'John Doe')
       .submit()
-    HouseholdRelationshipPage.setHusbandOrWifeRelationship(0)
-      .setSonOrDaughterRelationship(1)
+    HouseholdRelationshipPage.clickWhoIsRelatedHusbandOrWife(0)
+      .clickWhoIsRelatedSonOrDaughter(1)
       .submit()
 
     // When
-    HouseholdRelationshipPage.setHusbandOrWifeRelationship(0)
+    HouseholdRelationshipPage.clickWhoIsRelatedHusbandOrWife(0)
       .submit()
 
     // Then
