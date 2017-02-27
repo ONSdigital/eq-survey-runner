@@ -8,6 +8,7 @@ from app.jinja_filters import format_household_member_name
 from app.jinja_filters import format_str_as_date
 from app.jinja_filters import format_str_as_date_range
 from app.jinja_filters import format_str_as_month_year_date
+from app.jinja_filters import format_number_to_alphabetic_letter
 
 
 class TestJinjaFilters(TestCase):
@@ -197,3 +198,9 @@ class TestJinjaFilters(TestCase):
         self.assertEqual(format_percentage('100'), '100%')
         self.assertEqual(format_percentage(100), '100%')
         self.assertEqual(format_percentage(4.5), '4.5%')
+
+    def test_format_number_to_alphabetic_letter(self):
+        self.assertEqual(format_number_to_alphabetic_letter(0), 'a')
+        self.assertEqual(format_number_to_alphabetic_letter(4), 'e')
+        self.assertEqual(format_number_to_alphabetic_letter(25), 'z')
+        self.assertEqual(format_number_to_alphabetic_letter(-1), '')

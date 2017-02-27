@@ -1,7 +1,6 @@
 import 'babel-polyfill'
 import './modules/nav'
 import './modules/details-toggle'
-import './modules/relationships'
 import './modules/analytics'
 import './modules/inpagelink'
 import './modules/focus-styles'

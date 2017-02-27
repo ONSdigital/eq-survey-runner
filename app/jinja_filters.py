@@ -1,7 +1,9 @@
+import flask
 import re
+import string
+
 from datetime import datetime
 
-import flask
 from jinja2 import Markup, escape, evalcontextfilter
 
 blueprint = flask.Blueprint('filters', __name__)
@@ -70,4 +72,11 @@ def format_household_summary(names):
         person_list += '</ul>'
 
         return person_list
+    return ''
+
+
+@blueprint.app_template_filter()
+def format_number_to_alphabetic_letter(number):
+    if int(number) >= 0 and int(number) < 26:
+        return string.ascii_lowercase[int(number)]
     return ''

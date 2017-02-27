@@ -9,67 +9,67 @@ class HouseholdRelationshipsPage extends MultipleChoiceWithOtherPage {
   }
 
   clickHouseholdRelationshipsAnswerHusbandOrWife(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-0"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Husband or wife')
     return this
   }
 
   clickHouseholdRelationshipsAnswerSameSexCivilPartner(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-1"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Same-sex civil partner')
     return this
   }
 
   clickHouseholdRelationshipsAnswerPartner(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-2"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Partner')
     return this
   }
 
   clickHouseholdRelationshipsAnswerGrandparent(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-3"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Grandparent')
     return this
   }
 
   clickHouseholdRelationshipsAnswerMotherOrFather(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-4"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Mother or father')
     return this
   }
 
   clickHouseholdRelationshipsAnswerStepMotherOrStepFather(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-5"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Step-mother or step-father')
     return this
   }
 
   clickHouseholdRelationshipsAnswerSonOrDaughter(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-6"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Son or daughter')
     return this
   }
 
   clickHouseholdRelationshipsAnswerStepChild(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-7"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Step-child')
     return this
   }
 
   clickHouseholdRelationshipsAnswerBrotherOrSister(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-8"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Brother or sister')
     return this
   }
 
   clickHouseholdRelationshipsAnswerStepBrotherOrStepSister(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-9"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Step–brother or step–sister')
     return this
   }
 
   clickHouseholdRelationshipsAnswerGrandchild(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-10"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Grandchild')
     return this
   }
 
   clickHouseholdRelationshipsAnswerRelationOther(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-11"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Relation - other')
     return this
   }
 
   clickHouseholdRelationshipsAnswerUnrelatedIncludingFosterChild(instance = 0) {
-    browser.element('[id="household-relationships-answer-' + instance + '-12"]').click().pause(300)
+    browser.selectByValue('[id="household-relationships-answer-' + instance + '"]', 'Unrelated (including foster child)')
     return this
   }
 

@@ -1,26 +1,25 @@
-{% import 'macros/helpers.html' as helpers %}
+<div class="question question--repeatinganswer" id="{{question.id}}">
 
-<div class="relationship">
+  <h2 class="question__title neptune">
+    {%- if question_number -%}
+      <span class="question__number">{{question_number}}{{current_location.group_instance|format_number_to_alphabetic_letter}}. </span>
+    {% endif %}
+    {{question_title|safe}}
+  </h2>
 
-    <h2 class="question__title neptune">
-      {%- if question_number -%}
-        <span class="question__number">{{question_number}}. </span>
-      {% endif %}
+  {{question_description|safe}}
+  <fieldset>
+    <legend class="field__legend u-vh">
       {{question_title|safe}}
-    </h2>
-    {{question_description|safe}}
-
-    <div class="js-relationship">
+    </legend>
+    <div class="question__answers">
         {% for current_person, other_person in content.relation_instances %}
-            {% set answer = question.answers[0] %}
-            {% set relation_instance = loop.index0 %}
-
-            {% include 'partials/widgets/relationship_widget.html' %}
-
-        {% endfor %}
-
+          {% set answer = question.answers[0] %}
+          {% set relation_instance = loop.index0 %}
+          {% include 'partials/widgets/relationship_widget.html' %}
+        {%- endfor -%}
     </div>
-
+  </fieldset>
 </div>
 
 {% if (question.guidance) %}
