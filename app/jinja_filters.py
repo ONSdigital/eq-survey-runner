@@ -86,5 +86,5 @@ def format_number_to_alphabetic_letter(number):
 def format_time_input(value):
     time_input = value.split(":")
     hours = time_input[0] + " hours " if time_input[0] else ''
-    mins = time_input[1] + " mins " if time_input[1] else ''
+    mins = time_input[1] + " mins" if time_input[1] else ''
     return '{}{}'.format(hours, mins)
