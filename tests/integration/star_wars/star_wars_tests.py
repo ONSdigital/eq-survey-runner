@@ -1,5 +1,6 @@
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.navigation import navigate_to_page
 from tests.integration.star_wars import star_wars_test_urls
 
 
@@ -30,7 +31,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def _default_routing(self, current_page):
         # navigate back to first page
-        self.navigate_to_page(current_page)
+        navigate_to_page(self.client, current_page)
 
         form_data = {
 
@@ -104,11 +105,6 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def submit_page(self, page, form_data):
         resp = self.client.post(page, data=form_data, follow_redirects=False)
-        return resp
-
-    def navigate_to_page(self, page):
-        resp = self.client.get(page, follow_redirects=False)
-        self.assertEqual(resp.status_code, 200)
         return resp
 
     def complete_survey(self, form_type):

@@ -1,3 +1,4 @@
+from tests.integration.navigation import navigate_to_page
 from tests.integration.star_wars import star_wars_test_urls, BLOCK_2_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
@@ -32,7 +33,7 @@ class TestEmptyRadioBoxes(StarWarsTestCase):
         # There are no validation errors
         self.assertRegex(resp.location, star_wars_test_urls.STAR_WARS_QUIZ_2)
         summary_url = resp.location
-        resp = self.navigate_to_page(summary_url)
+        resp = navigate_to_page(self.client, summary_url)
 
         # Check we are on the next page
         content = resp.get_data(True)

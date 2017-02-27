@@ -1,3 +1,4 @@
+from tests.integration.navigation import navigate_to_page
 from tests.integration.star_wars import star_wars_test_urls, BLOCK_2_DEFAULT_ANSWERS, BLOCK_7_DEFAULT_ANSWERS, \
     BLOCK_8_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
@@ -17,7 +18,7 @@ class TestLightSidePath(StarWarsTestCase):
 
         # Second page
         second_page = resp.location
-        resp = self.navigate_to_page(second_page)
+        resp = navigate_to_page(self.client, second_page)
         content = resp.get_data(True)
 
         # Pipe Test for section title
@@ -31,7 +32,7 @@ class TestLightSidePath(StarWarsTestCase):
 
         # third page
         third_page = resp.location
-        resp = self.navigate_to_page(third_page)
+        resp = navigate_to_page(self.client, third_page)
         content = resp.get_data(True)
 
         self.assertRegex(content, "Finally, which  is your favourite film?")
@@ -43,7 +44,7 @@ class TestLightSidePath(StarWarsTestCase):
 
         summary_url = resp.location
 
-        resp = self.navigate_to_page(summary_url)
+        resp = navigate_to_page(self.client, summary_url)
 
         # We are on the review answers page
         content = resp.get_data(True)

@@ -1,3 +1,4 @@
+from tests.integration.navigation import navigate_to_page
 from .test_light_side_path import TestLightSidePath
 
 
@@ -15,7 +16,7 @@ class TestThemeSelection(TestLightSidePath):
         self.login()
 
         first_page = self.start_questionnaire_and_navigate_routing()
-        resp = self.navigate_to_page(first_page)
+        resp = navigate_to_page(self.client, first_page)
 
         # We are in the Questionnaire
         content = resp.get_data(True)

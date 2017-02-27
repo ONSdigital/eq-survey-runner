@@ -1,3 +1,4 @@
+from tests.integration.navigation import navigate_to_page
 from tests.integration.star_wars import star_wars_test_urls, BLOCK_7_DEFAULT_ANSWERS, BLOCK_8_DEFAULT_ANSWERS, \
     BLOCK_2_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
@@ -13,10 +14,10 @@ class TestNavigation(StarWarsTestCase):
 
         introduction = star_wars_test_urls.STAR_WARS_INTRODUCTION
 
-        resp = self.navigate_to_page(introduction)
+        resp = navigate_to_page(self.client, introduction)
 
         # navigate back to first page
-        self.navigate_to_page(first_page)
+        navigate_to_page(self.client, first_page)
 
         # Form submission with no errors
         resp = self.submit_page(first_page, BLOCK_2_DEFAULT_ANSWERS)
@@ -37,7 +38,7 @@ class TestNavigation(StarWarsTestCase):
 
         # third page
         third_page = resp.location
-        resp = self.navigate_to_page(third_page)
+        resp = navigate_to_page(self.client, third_page)
         content = resp.get_data(True)
 
         self.assertRegex(content, "Finally, which  is your favourite film?")
@@ -49,7 +50,7 @@ class TestNavigation(StarWarsTestCase):
 
         summary_url = resp.location
 
-        resp = self.navigate_to_page(summary_url)
+        resp = navigate_to_page(self.client, summary_url)
 
         # We are on the review answers page
         content = resp.get_data(True)

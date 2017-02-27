@@ -52,9 +52,9 @@ def evaluate_repeat(repeat_rule, answer_store):
     :return: The number of times to repeat
     """
     repeat_functions = {
-        'answer_value': _get_answer_value(),
+        'answer_value': _get_answer_value,
         'answer_count': len,
-        'answer_count_minus_one': _get_answer_count_minus_one(),
+        'answer_count_minus_one': _get_answer_count_or_repeat_limit_minus_one,
     }
     if 'answer_id' in repeat_rule and 'type' in repeat_rule:
         repeat_index = repeat_rule['answer_id']
@@ -69,13 +69,14 @@ def evaluate_repeat(repeat_rule, answer_store):
         return no_of_repeats
 
 
-def _get_answer_value():
-    return lambda filtered_answers: int(
-        filtered_answers[0]['value'] if len(filtered_answers) == 1 and filtered_answers[0]['value'] else 0)
+def _get_answer_value(filtered_answers):
+    return int(filtered_answers[0]['value'] if len(filtered_answers) == 1 and filtered_answers[0]['value'] else 0)
 
 
-def _get_answer_count_minus_one():
-    return lambda filtered_answers: len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0
+def _get_answer_count_or_repeat_limit_minus_one(filtered_answers):
+    max_repeat_minus_one = settings.EQ_MAX_NUM_REPEATS - 1
+    answers_minus_one = len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0
+    return min(answers_minus_one, max_repeat_minus_one)
 
 
 def evaluate_skip_condition(skip_condition, metadata, answer_store, group_instance=0):
