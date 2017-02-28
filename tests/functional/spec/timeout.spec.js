@@ -10,6 +10,7 @@ describe('Session timeout', function() {
   })
 
   it('Given the timeout pop-up has appeared, when I choose to "Continue survey", then the pop-up will close and I am returned to the question I was last on with all data retained, and the timeout session resets to X minutes', function() {
+    this.retries(3);
     openQuestionnaire('test_timeout.json')
     const pageUrl = browser.getUrl()
     browser.waitForVisible(dialog, 5000)
@@ -18,6 +19,7 @@ describe('Session timeout', function() {
     // expect page to be the same
     expect(browser.getUrl()).to.equal(pageUrl)
     // expect popup to not be visible
+    browser.waitForVisible(dialog, 1000, true)
     expect(browser.isVisible(dialog)).to.be.false
     // expect popup to then be visible again (ie. timer has reset)
     expect(browser.waitForVisible(dialog, 5000)).to.be.true
