@@ -51,7 +51,7 @@ metadata_fields = {
     "period_id": MetadataField(),
     "period_str": MetadataField(),
     "ref_p_start_date": MetadataField(validator=iso_8601_data_parser),
-    "ref_p_end_date": MetadataField(validator=iso_8601_data_parser),
+    "ref_p_end_date": MetadataField(mandatory=False, validator=iso_8601_data_parser),
     "form_type": MetadataField(),
     "return_by": MetadataField(validator=iso_8601_data_parser),
     "trad_as": MetadataField(mandatory=False),

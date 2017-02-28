@@ -108,7 +108,8 @@ def extract_eq_id_and_form_type(schema_name):
 def create_payload(**metadata):
     iat = time.time()
     exp = time.time() + float(metadata['exp_time'])
-    return {
+
+    payload = {
         "user_id": metadata['user'],
         'iat': str(int(iat)),
         'exp': str(int(exp)),
@@ -118,7 +119,6 @@ def create_payload(**metadata):
         "form_type": metadata['form_type'],
         "collection_exercise_sid": metadata['collection_exercise_sid'],
         "ref_p_start_date": metadata['ref_p_start_date'],
-        "ref_p_end_date": metadata['ref_p_end_date'],
         "ru_ref": metadata['ru_ref'],
         "ru_name": metadata['ru_name'],
         "return_by": metadata['return_by'],
@@ -128,6 +128,9 @@ def create_payload(**metadata):
         "language_code": metadata['language_code'],
         "variant_flags": metadata['variant_flags'],
     }
+    if metadata.get('ref_p_end_date'):
+        payload["ref_p_end_date"] = metadata['ref_p_end_date']
+    return payload
 
 
 def generate_token(payload):

@@ -42,6 +42,13 @@ def format_str_as_short_date(value):
     return datetime.strptime(value, "%d/%m/%Y").strftime('%d %B %Y')
 
 
+def format_start_end_date(start_date, end_date=None):
+    if end_date:
+        return '{from_date} to {to_date}'.format(from_date=start_date.strftime('%-d %B %Y'),
+                                                 to_date=end_date.strftime('%-d %B %Y'))
+    return format_date(start_date)
+
+
 @blueprint.app_template_filter()
 def format_str_as_date_range(value):
     from_date = format_str_as_short_date(value['from'])
@@ -81,3 +88,8 @@ def format_number_to_alphabetic_letter(number):
     if int(number) >= 0 and int(number) < 26:
         return string.ascii_lowercase[int(number)]
     return ''
+
+
+@blueprint.app_context_processor
+def utility_processor():
+    return dict(format_start_end_date=format_start_end_date)
