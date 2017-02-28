@@ -38,21 +38,6 @@ class SessionStorage:
             # session has a add function but it is wrapped in a session_scope which confuses pylint
             db_session.add(eq_session)
 
-    @staticmethod
-    def has_user_id():
-        """
-        Checks if a user has a stored id
-        :return: boolean value
-        """
-        if EQ_SESSION_ID in session:
-            eq_session_id = session[EQ_SESSION_ID]
-
-            # pylint: disable=maybe-no-member
-            # SQLAlchemy doing declarative magic which makes session scope query property available
-            count = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).count()
-            logger.debug("count number of sessions", session_id=eq_session_id, number_of_sessions=count)
-            return count > 0
-
     def clear(self):
         """
         Removes a user id from the session
@@ -79,7 +64,10 @@ class SessionStorage:
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
             eq_session = self._get_user_session(eq_session_id)
-            return eq_session.user_id
+            if eq_session:
+                return eq_session.user_id
+            else:
+                return None
         else:
             return None
 

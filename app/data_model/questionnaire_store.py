@@ -13,8 +13,8 @@ class QuestionnaireStore:
         self.answer_store = AnswerStore()
         self.completed_blocks = []
 
-        if self._storage.exists():
-            raw_data = self._storage.get_user_data()
+        raw_data = self._storage.get_user_data()
+        if raw_data:
             self._initial_data = self._deserialise(raw_data)
             data_copy = self._deserialise(raw_data)
             self._set_data(data_copy)

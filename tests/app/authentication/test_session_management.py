@@ -20,19 +20,19 @@ class BaseSessionManagerTest(unittest.TestCase):
 
     def test_has_token_empty(self):
         with self.application.test_request_context():
-            self.assertFalse(self.session_manager.has_user_id())
+            self.assertIsNone(self.session_manager.get_user_id())
 
     def test_has_token(self):
         with self.application.test_request_context():
             self.session_manager.store_user_id("test")
-            self.assertTrue(self.session_manager.has_user_id())
+            self.assertIsNotNone(self.session_manager.get_user_id())
 
     def test_remove_token(self):
         with self.application.test_request_context():
             self.session_manager.store_user_id("test")
-            self.assertTrue(self.session_manager.has_user_id())
+            self.assertIsNotNone(self.session_manager.get_user_id())
             self.session_manager.clear()
-            self.assertFalse(self.session_manager.has_user_id())
+            self.assertIsNone(self.session_manager.get_user_id())
 
 
 if __name__ == '__main__':

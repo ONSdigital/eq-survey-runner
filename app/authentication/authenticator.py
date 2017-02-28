@@ -33,8 +33,9 @@ def load_user():
     Checks for the present of the JWT in the users sessions
     :return: A user object if a JWT token is available in the session
     """
-    if session_storage.has_user_id():
-        user = User(session_storage.get_user_id(), session_storage.get_user_ik())
+    user_id = session_storage.get_user_id()
+    if user_id:
+        user = User(user_id, session_storage.get_user_ik())
         questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
         metadata = questionnaire_store.metadata
         logger.bind(tx_id=metadata["tx_id"])
