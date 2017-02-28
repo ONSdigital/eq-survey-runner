@@ -58,13 +58,13 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
             "choose-your-side-answer": " Bacon",
             "action[save_continue]": "Save and continue"
         }
-        self.postRedirectGet(block_one_url, post_data)
+        resp_url, resp = self.postRedirectGet(block_one_url, post_data)
 
         post_data = {
             "action[save_continue]": "Submit answers"
         }
 
-        final_url, resp = self.postRedirectGet('/questionnaire/test/final_confirmation/789/submit-answers', post_data)
+        final_url, resp = self.postRedirectGet(resp_url, post_data)
 
         content = resp.get_data(True)
         self.assertTrue(final_url.endswith('thank-you'))

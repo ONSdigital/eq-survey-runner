@@ -121,6 +121,10 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     else:
         _update_questionnaire_store(current_location, form)
         next_location = path_finder.get_next_location(current_location=current_location)
+
+        if next_location is None:
+            return submit_answers(eq_id, form_type, collection_id, metadata, answer_store)
+
         return redirect(next_location.url(metadata))
 
 
@@ -214,11 +218,7 @@ def get_session_expired(eq_id, form_type, collection_id):  # pylint: disable=unu
                                  survey_id=g.schema_json['survey_id'])
 
 
-@questionnaire_blueprint.route('submit-answers', methods=["POST"])
-@login_required
-def submit_answers(eq_id, form_type, collection_id):
-    metadata = get_metadata(current_user)
-    answer_store = get_answer_store(current_user)
+def submit_answers(eq_id, form_type, collection_id, metadata, answer_store):
     is_completed, invalid_location = is_survey_completed(answer_store, metadata)
 
     if is_completed:
