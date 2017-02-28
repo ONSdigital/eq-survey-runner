@@ -535,9 +535,9 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("census_household.json")
 
         expected_path = [
-             Location('who-lives-here', 0, 'overnight-visitors'),
-             Location('who-lives-here-relationship', 0, 'household-relationships'),
-         ]
+            Location('who-lives-here', 0, 'overnight-visitors'),
+            Location('who-lives-here-relationship', 0, 'household-relationships'),
+        ]
         path_finder = PathFinder(survey)
         self.assertEqual(path_finder.get_previous_location(current_location=expected_path[1]), expected_path[0])
 
@@ -545,9 +545,9 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("census_household.json")
 
         expected_path = [
-             Location('who-lives-here-relationship', 0, 'household-relationships'),
-             Location('who-lives-here-relationship', 1, 'household-relationships'),
-         ]
+            Location('who-lives-here-relationship', 0, 'household-relationships'),
+            Location('who-lives-here-relationship', 1, 'household-relationships'),
+        ]
         path_finder = PathFinder(survey)
         self.assertEqual(path_finder.get_previous_location(current_location=expected_path[1]), expected_path[0])
 
