@@ -13,15 +13,14 @@
         {% set select = {
           "class": "input input--select",
           "name": select_option.id,
-          "id": select_option.id
+          "id": "input-" ~ form[answer.id].id,
+          "choices": select_option.choices,
+          "data": form[answer['id']].data[relation_instance],
+          "flags": {
+            "required": answer.mandatory
+          }
         } %}
-        <select {{select|xmlattr}}>
-          <option value="Select relationship" selected="selected" disabled="disabled">Select relationship</option>
-
-          {% for option_label, option_value in select_option.choices %}
-            <option value="{{option_value}}">{{option_label}}</option>
-          {% endfor %}
-        </select>
+        {% include 'partials/forms/select.html' %}
       </div>
     </div>
   </div>

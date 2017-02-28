@@ -38,7 +38,7 @@ describe('Carer routing Scenarios', function () {
     HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
-    HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
+    HouseholdRelationships.setHouseholdRelationshipsAnswerHusbandOrWife().submit()
     WhoLivesHereCompleted.submit()
 
     // household-and-accommodation
@@ -73,7 +73,7 @@ describe('Carer routing Scenarios', function () {
     HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
-    HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
+    HouseholdRelationships.setHouseholdRelationshipsAnswerHusbandOrWife().submit()
     WhoLivesHereCompleted.submit()
 
     // household-and-accommodation
@@ -108,7 +108,7 @@ describe('Carer routing Scenarios', function () {
     HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
-    HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
+    HouseholdRelationships.setHouseholdRelationshipsAnswerHusbandOrWife().submit()
     WhoLivesHereCompleted.submit()
 
     // household-and-accommodation
@@ -143,7 +143,7 @@ describe('Carer routing Scenarios', function () {
     HouseholdComposition.setFirstName('John').addPerson().setFirstName('Jane', 1).submit()
     EveryoneAtAddressConfirmation.clickEveryoneAtAddressConfirmationAnswerYes().submit()
     OvernightVisitors.setOvernightVisitorsAnswer(0).submit()
-    HouseholdRelationships.clickHouseholdRelationshipsAnswerHusbandOrWife().submit()
+    HouseholdRelationships.setHouseholdRelationshipsAnswerHusbandOrWife().submit()
     WhoLivesHereCompleted.submit()
 
     // household-and-accommodation
