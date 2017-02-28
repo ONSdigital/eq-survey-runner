@@ -121,7 +121,7 @@ class TestFields(unittest.TestCase):
     def test_radio_field(self):
         radio_json = {
             "guidance": "",
-            "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            "id": "choose-your-side-answer",
             "label": "Choose a side",
             "mandatory": True,
             "options": [
@@ -160,7 +160,7 @@ class TestFields(unittest.TestCase):
     def test_checkbox_field(self):
         checkbox_json = {
             "guidance": "",
-            "id": "5587eb9b-f24e-4dc0-ac94-66117b896c10",
+            "id": "opening-crawler-answer",
             "label": "",
             "mandatory": False,
             "options": [
@@ -206,7 +206,7 @@ class TestFields(unittest.TestCase):
         integer_json = {
             "alias": "chewies_age",
             "guidance": "",
-            "id": "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b",
+            "id": "chewies-age-answer",
             "label": "How old is Chewy?",
             "mandatory": True,
             "q_code": "1",
@@ -229,7 +229,7 @@ class TestFields(unittest.TestCase):
     def test_positive_integer_field(self):
         integer_json = {
             "guidance": "",
-            "id": "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c",
+            "id": "lightsaber-cost-answer",
             "label": "How hot is a lightsaber in degrees C?",
             "mandatory": False,
             "type": "PositiveInteger",

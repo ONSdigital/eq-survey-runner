@@ -2,7 +2,7 @@ import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
 
 import MandatoryCheckboxPage from '../pages/surveys/checkbox/mandatory-checkbox.page'
-import OptionalCheckboxPage from '../pages/surveys/checkbox/optional-checkbox.page'
+import NonMandatoryCheckboxPage from '../pages/surveys/checkbox/non-mandatory-checkbox.page'
 import SummaryPage from '../pages/surveys/checkbox/summary.page'
 
 const expect = chai.expect
@@ -41,7 +41,7 @@ describe('Checkbox with "other" option', function() {
     MandatoryCheckboxPage.setOtherInputField('Other Text').submit()
 
     // Then
-    expect(OptionalCheckboxPage.errorExists()).to.be.false
+    expect(NonMandatoryCheckboxPage.errorExists()).to.be.false
   })
 
 
@@ -51,10 +51,10 @@ describe('Checkbox with "other" option', function() {
 
      // When
      MandatoryCheckboxPage.clickOther().setOtherInputField('Other value').submit();
-     OptionalCheckboxPage.submit();
+     NonMandatoryCheckboxPage.submit();
 
      // Then
-     expect(SummaryPage.getPage2Answer()).to.equal('No answer provided')
+     expect(SummaryPage.getNonMandatoryAnswer()).to.equal('No answer provided')
 
   })
 
@@ -64,10 +64,10 @@ describe('Checkbox with "other" option', function() {
 
      // When
      MandatoryCheckboxPage.clickOther().setOtherInputField('Other value').submit();
-     OptionalCheckboxPage.clickOther().submit();
+     NonMandatoryCheckboxPage.clickOther().submit();
 
      // Then
-     expect(SummaryPage.getPage2Answer()).to.have.string('Other');
+     expect(SummaryPage.getNonMandatoryAnswer()).to.have.string('Other');
   })
 
   it('Given a non-mandatory checkbox answer, when the user selects Other and supplies a value, then the supplied value should be displayed on the summary screen', function() {
@@ -76,10 +76,10 @@ describe('Checkbox with "other" option', function() {
 
      // When
      MandatoryCheckboxPage.clickOther().setOtherInputField('Other value').submit();
-     OptionalCheckboxPage.clickOther().setOtherInputField('The other value').submit();
+     NonMandatoryCheckboxPage.clickOther().setOtherInputField('The other value').submit();
 
      // Then
-     expect(SummaryPage.getPage2OtherAnswer()).to.have.string('The other value');
+     expect(SummaryPage.getNonMandatoryOtherAnswer()).to.have.string('The other value');
   })
 
   it('Given I have previously added text in other texfiled and saved, when I uncheck other options and select a different checkbox as answer, then the text entered in other field must be wiped.', function() {
@@ -88,11 +88,11 @@ describe('Checkbox with "other" option', function() {
 
      // When
      MandatoryCheckboxPage.clickOther().setOtherInputField('Other value').submit();
-     OptionalCheckboxPage.clickTopprevious()
+     NonMandatoryCheckboxPage.clickTopPrevious()
      MandatoryCheckboxPage.clickOther()
-     .clickCheese()
-     .submit()
-     OptionalCheckboxPage.clickTopprevious()
+       .clickMandatoryCheckboxAnswerCheese()
+       .submit()
+     NonMandatoryCheckboxPage.clickTopPrevious()
      // Then
      MandatoryCheckboxPage.clickOther()
      expect(MandatoryCheckboxPage.getOtherInputField()).to.equal('')

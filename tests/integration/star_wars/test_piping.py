@@ -41,7 +41,7 @@ class TestPiping(StarWarsTestCase):
 
         # Textarea question
         self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegex(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'chewbacca-medal-answer')
 
         # Check Cheewies Age has been correctly piped into the question text
         self.assertRegex(content, "Do you really think that Chewbacca is 234 years old?")

@@ -80,11 +80,11 @@ class TestNavigation(StarWarsTestCase):
 
         # Integer question
         self.assertIn('How old is Chewy?', content)
-        self.assertIn('6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b', content)
+        self.assertIn('chewies-age-answer', content)
 
         # Currency question
         self.assertIn('How many Octillions do Nasa reckon it would cost to build a death star?', content)
-        self.assertIn('92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c', content)
+        self.assertIn('death-star-cost-answer', content)
 
         # Radio box question
         self.assertIn('What animal was used to create the engine sound of the Empire\'s TIE fighters?', content)  # NOQA
@@ -92,7 +92,7 @@ class TestNavigation(StarWarsTestCase):
         self.assertIn('Cow', content)
         self.assertIn('Elephant', content)
         self.assertIn('Hippo', content)
-        self.assertIn('a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d', content)
+        self.assertIn('tie-fighter-sound-answer', content)
 
         # Checkbox question
         self.assertIn('Which 3 have wielded a green lightsaber?', content)
@@ -102,7 +102,7 @@ class TestNavigation(StarWarsTestCase):
         self.assertIn('Yoda', content)
         self.assertIn('Rey', content)
         self.assertIn('Qui-Gon Jinn', content)
-        self.assertIn('9587eb9b-f24e-4dc0-ac94-66117b896c10', content)
+        self.assertIn('green-lightsaber-answer', content)
 
         # Date Range question
         self.assertIn('When was The Empire Strikes Back released?', content)
@@ -111,8 +111,8 @@ class TestNavigation(StarWarsTestCase):
         self.assertIn('Day', content)
         self.assertIn('Month', content)
         self.assertIn('Year', content)
-        self.assertIn('6fd644b0-798e-4a58-a393-a438b32fe637', content)
-        self.assertIn('06a6a4b7-6ce4-4687-879d-3443cd8e2ff0', content)
+        self.assertIn('empire-strikes-back-from-answer', content)
+        self.assertIn('empire-strikes-back-to-answer', content)
 
         # Pipe Test for question description
         self.assertIn('It could be between 1 April 2016 and 30 April 2016. But that might just be a test', content)  # NOQA

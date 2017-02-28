@@ -24,17 +24,17 @@
                 },
                 {
                     "type": "Questionnaire",
-                    "id": "block-1",
+                    "id": "breakfast",
                     "sections": [
                         {
                             "description": "",
-                            "id": "ed3e200a-0735-4e8d-9eea-627c1d908697",
+                            "id": "breakfast-section",
                             "questions": [
                                 {
                                     "answers": [
                                         {
                                             "guidance": "",
-                                            "id": "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+                                            "id": "breakfast-answer",
                                             "label": "What is your favourite breakfast food",
                                             "mandatory": false,
                                             "options": [],
@@ -43,7 +43,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "4bfa0229-0ce8-4190-817b-535f55ad2817",
+                                    "id": "breakfast-question",
                                     "title": "",
                                     "type": "General"
                                 }
@@ -69,7 +69,7 @@
                     ]
                 }
             ],
-            "id": "14ba4707-321d-441d-8d21-b8367366e766",
+            "id": "final-confirmation",
             "title": ""
         }
     ]

@@ -7,7 +7,7 @@ class FinalConfirmationSurveyPage extends QuestionPage {
   }
 
   setBreakfastFood(food) {
-    browser.setValue('[name="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c"]', food)
+    browser.setValue('[name="breakfast-answer"]', food)
     return this
   }
 

@@ -25,7 +25,7 @@ class TestLightSidePath(StarWarsTestCase):
 
         # Textarea question
         self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegex(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'chewbacca-medal-answer')
 
         resp = self.submit_page(second_page, BLOCK_7_DEFAULT_ANSWERS)
 

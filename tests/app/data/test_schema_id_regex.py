@@ -48,7 +48,7 @@ class TestSchemaIdRegEx(unittest.TestCase):
 
     def test_guid_should_pass_validation(self):
         # Given
-        json_to_validate = create_schema_with_id('14ba4707-321d-441d-8d21-b8367366e766')
+        json_to_validate = create_schema_with_id('star-wars')
 
         # When
         errors = validate_json_against_schema(json_to_validate, self.schema)

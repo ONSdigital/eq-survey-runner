@@ -68,24 +68,24 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "96682325-47ab-41e4-a56e-8315a19ffe2a"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
+            Location("star-wars", 0, "choose-your-side-block"),
+            Location("star-wars", 0, "light-side-pick-character-ship"),
+            Location("star-wars", 0, "star-wars-trivia"),
+            Location("star-wars", 0, "star-wars-trivia-part-2"),
+            Location("star-wars", 0, "star-wars-trivia-part-3"),
         ]
 
         answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="star-wars",
             block_id="choose-your-side-block",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            answer_id="choose-your-side-answer",
             value="Light Side"
         )
 
         answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="96682325-47ab-41e4-a56e-8315a19ffe2a",
-            answer_id="2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+            group_id="star-wars",
+            block_id="light-side-pick-character-ship",
+            answer_id="light-side-pick-ship-answer",
             value="No"
         )
 
@@ -131,26 +131,26 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "introduction"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "summary"),
+            Location("star-wars", 0, "introduction"),
+            Location("star-wars", 0, "choose-your-side-block"),
+            Location("star-wars", 0, "dark-side-pick-character-ship"),
+            Location("star-wars", 0, "light-side-ship-type"),
+            Location("star-wars", 0, "star-wars-trivia"),
+            Location("star-wars", 0, "star-wars-trivia-part-2"),
+            Location("star-wars", 0, "star-wars-trivia-part-3"),
+            Location("star-wars", 0, "summary"),
         ]
 
         answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="star-wars",
             block_id="choose-your-side-block",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            answer_id="choose-your-side-answer",
             value="Dark Side"
         )
         answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
-            answer_id="pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+            group_id="star-wars",
+            block_id="dark-side-pick-character-ship",
+            answer_id="dark-side-pick-ship-answer",
             value="Can I be a pain and have a goodies ship",
         )
 
@@ -168,7 +168,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey)
 
-        introduction = Location('14ba4707-321d-441d-8d21-b8367366e766', 0, 'introduction')
+        introduction = Location('star-wars', 0, 'introduction')
 
         next_location = path_finder.get_next_location(current_location=introduction)
 
@@ -178,15 +178,15 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("0_star_wars.json")
 
         answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="star-wars",
             block_id="choose-your-side-block",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            answer_id="choose-your-side-answer",
             value="Light Side"
         )
         answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="96682325-47ab-41e4-a56e-8315a19ffe2a",
-            answer_id="2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+            group_id="star-wars",
+            block_id="light-side-pick-character-ship",
+            answer_id="light-side-pick-ship-answer",
             value="No",
         )
 
@@ -196,11 +196,11 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        current_location = Location('14ba4707-321d-441d-8d21-b8367366e766', 0, 'an3b74d1-b687-4051-9634-a8f9ce10ard')
+        current_location = Location('star-wars', 0, 'star-wars-trivia-part-2')
 
         next_location = path_finder.get_next_location(current_location=current_location)
 
-        expected_next_location = Location("14ba4707-321d-441d-8d21-b8367366e766", 0, '846f8514-fed2-4bd7-8fb2-4b5fcb1622b1')
+        expected_next_location = Location("star-wars", 0, 'star-wars-trivia-part-3')
 
         self.assertEqual(expected_next_location, next_location)
 
@@ -208,7 +208,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         next_location = path_finder.get_next_location(current_location=current_location)
 
-        expected_next_location = Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary')
+        expected_next_location = Location("star-wars", 0, 'summary')
 
         self.assertEqual(expected_next_location, next_location)
 
@@ -217,7 +217,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey)
 
-        first_location = Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'choose-your-side-block')
+        first_location = Location("star-wars", 0, 'choose-your-side-block')
 
         previous_location = path_finder.get_previous_location(current_location=first_location)
 
@@ -227,24 +227,24 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "923ccc84-9d47-4a02-8ebc-1e9d14fcf10b"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "26f2c4b3-28ac-4072-9f18-a6a6c6f660db"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
+            Location("star-wars", 0, "choose-your-side-block"),
+            Location("star-wars", 0, "dark-side-pick-character-ship"),
+            Location("star-wars", 0, "light-side-ship-type"),
+            Location("star-wars", 0, "star-wars-trivia"),
+            Location("star-wars", 0, "star-wars-trivia-part-2"),
+            Location("star-wars", 0, "star-wars-trivia-part-3"),
         ]
 
         answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="star-wars",
             block_id="choose-your-side-block",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            answer_id="choose-your-side-answer",
             value="Dark Side"
         )
         answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="923ccc84-9d47-4a02-8ebc-1e9d14fcf10b",
-            answer_id="pel989b8-5185-4ba6-b73f-c126e3a06ba7",
+            group_id="star-wars",
+            block_id="dark-side-pick-character-ship",
+            answer_id="dark-side-pick-ship-answer",
             value="Can I be a pain and have a goodies ship",
         )
 
@@ -271,26 +271,26 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "choose-your-side-block"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "96682325-47ab-41e4-a56e-8315a19ffe2a"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "cd3b74d1-b687-4051-9634-a8f9ce10a27d"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "an3b74d1-b687-4051-9634-a8f9ce10ard"),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, "846f8514-fed2-4bd7-8fb2-4b5fcb1622b1"),
+            Location("star-wars", 0, "choose-your-side-block"),
+            Location("star-wars", 0, "light-side-pick-character-ship"),
+            Location("star-wars", 0, "star-wars-trivia"),
+            Location("star-wars", 0, "star-wars-trivia-part-2"),
+            Location("star-wars", 0, "star-wars-trivia-part-3"),
         ]
 
         current_location = expected_path[2]
         expected_previous_location = expected_path[1]
 
         answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="star-wars",
             block_id="choose-your-side-block",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            answer_id="choose-your-side-answer",
             value="Light Side"
         )
         answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
-            block_id="96682325-47ab-41e4-a56e-8315a19ffe2a",
-            answer_id="2e0989b8-5185-4ba6-b73f-c126e3a06ba7",
+            group_id="star-wars",
+            block_id="light-side-pick-character-ship",
+            answer_id="light-side-pick-ship-answer",
             value="No",
         )
 
@@ -306,16 +306,16 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("0_star_wars.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'introduction'),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'choose-your-side-block'),
-            Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary'),
+            Location("star-wars", 0, 'introduction'),
+            Location("star-wars", 0, 'choose-your-side-block'),
+            Location("star-wars", 0, 'summary'),
         ]
 
         answer = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="star-wars",
             group_instance=0,
             block_id="choose-your-side-block",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            answer_id="choose-your-side-answer",
             value="I prefer Star Trek",
         )
         answers = AnswerStore()
@@ -333,22 +333,22 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("test_checkbox.json")
 
         expected_path = [
-            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'introduction'),
-            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'block-1'),
-            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1'),
-            Location("14ba4707-321d-441d-8d21-b8367366e761", 0, 'summary')
+            Location("checkboxes", 0, 'introduction'),
+            Location("checkboxes", 0, 'mandatory-checkbox'),
+            Location("checkboxes", 0, 'non-mandatory-checkbox'),
+            Location("checkboxes", 0, 'summary')
         ]
 
         answer_1 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e761",
-            block_id="block-1",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            group_id="checkboxes",
+            block_id="mandatory-checkbox",
+            answer_id="mandatory-checkbox-answer",
             value="Cheese",
         )
         answer_2 = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e761",
-            block_id="f22b1ba4-d15f-48b8-a1f3-db62b6f34cc1",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23",
+            group_id="checkboxes",
+            block_id="non-mandatory-checkbox",
+            answer_id="non-mandatory-checkbox-answer",
             value="deep pan",
         )
 
@@ -369,9 +369,9 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         survey = load_schema_file("0_star_wars.json")
 
         answer = Answer(
-            group_id="14ba4707-321d-441d-8d21-b8367366e766",
+            group_id="star-wars",
             block_id="choose-your-side-block",
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            answer_id="choose-your-side-answer",
             value="Light Side"
         )
 
@@ -380,7 +380,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
 
         path_finder = PathFinder(survey, answer_store=answers)
 
-        self.assertFalse(Location("14ba4707-321d-441d-8d21-b8367366e766", 0, 'summary') in path_finder.get_routing_path())
+        self.assertFalse(Location("star-wars", 0, 'summary') in path_finder.get_routing_path())
 
     def test_repeating_groups(self):
         survey = load_schema_file("test_repeating_household.json")

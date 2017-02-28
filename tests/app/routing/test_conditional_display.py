@@ -16,7 +16,7 @@ class TestConditionalDisplay(SurveyRunnerTestCase):
     def test_skip_condition_false(self):
         answer = "Bothans"
         # find the question with the 'not equals' skip condition
-        question = self.question_map["048e40da-bca4-48e5-9885-0bb6413bef62"]
+        question = self.question_map["rebel-alliance-question"]
 
         # check the skip condition exists
         self.assertIsNotNone(question['skip_condition'])
@@ -28,7 +28,7 @@ class TestConditionalDisplay(SurveyRunnerTestCase):
         answer = "Some other answer"
 
         # find the question with the 'not equals' skip condition
-        question = self.question_map["048e40da-bca4-48e5-9885-0bb6413bef62"]
+        question = self.question_map["rebel-alliance-question"]
 
         # check the skip condition exists
         self.assertIsNotNone(question['skip_condition'])
@@ -40,7 +40,7 @@ class TestConditionalDisplay(SurveyRunnerTestCase):
         answer = ""
 
         # find the question with the 'not equals' skip condition
-        question = self.question_map["048e40da-bca4-48e5-9885-0bb6413bef62"]
+        question = self.question_map["rebel-alliance-question"]
 
         # check the skip condition exists
         self.assertIsNotNone(question['skip_condition'])

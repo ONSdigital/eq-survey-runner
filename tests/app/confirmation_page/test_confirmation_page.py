@@ -10,7 +10,7 @@ class TestConfirmationPage(unittest.TestCase):
 
     def test_get_next_location_confirmation(self):
         answer = Answer(
-            answer_id="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c",
+            answer_id="character-answer",
             value="Orson Krennic",
         )
         answer_store = AnswerStore()
@@ -18,6 +18,6 @@ class TestConfirmationPage(unittest.TestCase):
 
         survey = load_schema_file("0_rogue_one.json")
         navigator = PathFinder(survey, answer_store)
-        next_location = navigator.get_next_location(Location('rogue-one-group', 0, 'rogue-one-group-last-block'))
+        next_location = navigator.get_next_location(Location('rogue-one', 0, 'film-takings'))
 
         self.assertEqual('summary', next_location.block_id)

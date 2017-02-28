@@ -109,7 +109,7 @@ class TestFormHelper(unittest.TestCase):
         form, _ = get_form_for_location(block_json, location, AnswerStore([
             {
                 'answer_id': 'month-year-answer',
-                'group_id': 'a23d36db-6b07-4ce0-94b2-a843369511e3',
+                'group_id': 'dates',
                 'group_instance': 0,
                 'block_id': 'date-block',
                 'value': '05/2015',
@@ -129,24 +129,24 @@ class TestFormHelper(unittest.TestCase):
     def test_get_form_deserialises_lists(self):
         survey = load_schema_file("test_checkbox.json")
 
-        block_json = SchemaHelper.get_block(survey, "block-1")
+        block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
         location = SchemaHelper.get_first_location(survey)
         error_messages = SchemaHelper.get_messages(survey)
 
         form, _ = get_form_for_location(block_json, location, AnswerStore([
             {
-                'answer_id': 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c',
-                'group_id': '14ba4707-321d-441d-8d21-b8367366e761',
+                'answer_id': 'mandatory-checkbox-answer',
+                'group_id': 'checkboxes',
                 'group_instance': 0,
-                'block_id': 'block-1',
+                'block_id': 'mandatory-checkbox',
                 'value': ['Cheese', 'Ham'],
                 'answer_instance': 0,
             }
         ]), error_messages)
 
-        self.assertTrue(hasattr(form, "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c"))
+        self.assertTrue(hasattr(form, "mandatory-checkbox-answer"))
 
-        checkbox_field = getattr(form, "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c")
+        checkbox_field = getattr(form, "mandatory-checkbox-answer")
 
         self.assertEquals(checkbox_field.data, ['Cheese', 'Ham'])
 
@@ -352,20 +352,20 @@ class TestFormHelper(unittest.TestCase):
     def test_post_form_for_radio_other_not_selected(self):
         survey = load_schema_file("test_radio.json")
 
-        block_json = SchemaHelper.get_block(survey, 'block-1')
-        location = Location('14ba4707-321d-441d-8d21-b8367366e766', 0, 'block-1')
+        block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
+        location = Location('radio', 0, 'radio-mandatory')
         error_messages = SchemaHelper.get_messages(survey)
 
         answer_store = AnswerStore([
             {
-                'answer_id': 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c',
-                'block_id': 'block-1',
+                'answer_id': 'radio-mandatory-answer',
+                'block_id': 'radio-mandatory',
                 'value': 'Other',
                 'answer_instance': 0,
             },
             {
                 'answer_id': 'other-answer-mandatory',
-                'block_id': 'block-1',
+                'block_id': 'radio-mandatory',
                 'value': 'Other text field value',
                 'answer_instance': 0,
             }
@@ -386,14 +386,14 @@ class TestFormHelper(unittest.TestCase):
     def test_post_form_for_radio_other_selected(self):
         survey = load_schema_file("test_radio.json")
 
-        block_json = SchemaHelper.get_block(survey, 'block-1')
-        location = Location('14ba4707-321d-441d-8d21-b8367366e766', 0, 'block-1')
+        block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
+        location = Location('radio', 0, 'radio-mandatory')
         error_messages = SchemaHelper.get_messages(survey)
 
         answer_store = AnswerStore([
             {
-                'answer_id': 'ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c',
-                'block_id': 'block-1',
+                'answer_id': 'radio-mandatory-answer',
+                'block_id': 'radio-mandatory',
                 'value': 'Other',
                 'answer_instance': 0,
             },

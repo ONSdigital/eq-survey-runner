@@ -20,27 +20,27 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Make sure we are on the next page
         self.assertRegex(content, 'What was the total number of Ewoks?')
-        self.assertRegex(content, '5rr015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'jar-jar-binks-answer')
 
     def test_mandatory_currency_should_raise_error(self):
         self.login()
         first_page = self.start_questionnaire_and_navigate_routing()
         # Testing Currency  - Mandatory
         form_data = {
-            "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "430",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "",
+            "chewies-age-answer": "430",
+            "death-star-cost-answer": "",
+            "lightsaber-cost-answer": "",
 
-            "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
+            "tie-fighter-sound-answer": "Elephant",
+            "green-lightsaber-answer": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "empire-strikes-back-from-answer-day": "1",
+            "empire-strikes-back-from-answer-month": "1",
+            "empire-strikes-back-from-answer-year": "2016",
 
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "1",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "1",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2017",
+            "empire-strikes-back-to-answer-day": "1",
+            "empire-strikes-back-to-answer-month": "1",
+            "empire-strikes-back-to-answer-year": "2017",
 
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -56,20 +56,20 @@ class TestDarkSidePath(StarWarsTestCase):
         self.login()
         first_page = self.start_questionnaire_and_navigate_routing()
         form_data = {
-            "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "430",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "10",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "",
+            "chewies-age-answer": "430",
+            "death-star-cost-answer": "10",
+            "lightsaber-cost-answer": "",
 
-            "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
+            "tie-fighter-sound-answer": "Elephant",
+            "green-lightsaber-answer": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "empire-strikes-back-from-answer-day": "1",
+            "empire-strikes-back-from-answer-month": "1",
+            "empire-strikes-back-from-answer-year": "2016",
 
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "1",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "1",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2015",
+            "empire-strikes-back-to-answer-day": "1",
+            "empire-strikes-back-to-answer-month": "1",
+            "empire-strikes-back-to-answer-year": "2015",
 
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -84,20 +84,20 @@ class TestDarkSidePath(StarWarsTestCase):
         self.login()
         first_page = self.start_questionnaire_and_navigate_routing()
         form_data = {
-            "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "430",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "-10",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "",
+            "chewies-age-answer": "430",
+            "death-star-cost-answer": "-10",
+            "lightsaber-cost-answer": "",
 
-            "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
+            "tie-fighter-sound-answer": "Elephant",
+            "green-lightsaber-answer": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2015",
+            "empire-strikes-back-from-answer-day": "1",
+            "empire-strikes-back-from-answer-month": "1",
+            "empire-strikes-back-from-answer-year": "2015",
 
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "1",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "1",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "empire-strikes-back-to-answer-day": "1",
+            "empire-strikes-back-to-answer-month": "1",
+            "empire-strikes-back-to-answer-year": "2016",
 
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -120,20 +120,20 @@ class TestDarkSidePath(StarWarsTestCase):
         self.login()
         first_page = self.start_questionnaire_and_navigate_routing()
         form_data = {
-            "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "9999999999999",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "-5",
+            "chewies-age-answer": "",
+            "death-star-cost-answer": "9999999999999",
+            "lightsaber-cost-answer": "-5",
 
-            "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "Elephant",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
+            "tie-fighter-sound-answer": "Elephant",
+            "green-lightsaber-answer": ['Luke Skywalker', 'Yoda', 'Qui-Gon Jinn'],
 
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "1",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "2016",
+            "empire-strikes-back-from-answer-day": "1",
+            "empire-strikes-back-from-answer-month": "1",
+            "empire-strikes-back-from-answer-year": "2016",
 
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "1",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "1",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "empire-strikes-back-to-answer-day": "1",
+            "empire-strikes-back-to-answer-month": "1",
+            "empire-strikes-back-to-answer-year": "2016",
 
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -161,21 +161,21 @@ class TestDarkSidePath(StarWarsTestCase):
         self.login()
         first_page = self.start_questionnaire_and_navigate_routing()
         form_data = {
-            "6cf5c72a-c1bf-4d0c-af6c-d0f07bc5b65b": "555555555555555555",
-            "92e49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "text",
-            "pre49d93-cbdc-4bcb-adb2-0e0af6c9a07c": "###",
+            "chewies-age-answer": "555555555555555555",
+            "death-star-cost-answer": "text",
+            "lightsaber-cost-answer": "###",
 
-            "a5dc09e8-36f2-4bf4-97be-c9e6ca8cbe0d": "",
-            "7587eb9b-f24e-4dc0-ac94-66118b896c10": "",
-            "9587eb9b-f24e-4dc0-ac94-66117b896c10": "",
+            "tie-fighter-sound-answer": "",
+            "darth-vader-quotes-answer": "",
+            "green-lightsaber-answer": "",
 
-            "6fd644b0-798e-4a58-a393-a438b32fe637-day": "",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-month": "",
-            "6fd644b0-798e-4a58-a393-a438b32fe637-year": "",
+            "empire-strikes-back-from-answer-day": "",
+            "empire-strikes-back-from-answer-month": "",
+            "empire-strikes-back-from-answer-year": "",
 
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-day": "30",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-month": "2",
-            "06a6a4b7-6ce4-4687-879d-3443cd8e2ff0-year": "2016",
+            "empire-strikes-back-to-answer-day": "30",
+            "empire-strikes-back-to-answer-month": "2",
+            "empire-strikes-back-to-answer-year": "2016",
 
             "action[save_continue]": "Save &amp; Continue"
         }

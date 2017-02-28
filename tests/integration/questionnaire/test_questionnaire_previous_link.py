@@ -16,8 +16,6 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.assertNotIn('Previous', content)
 
     def test_previous_link_appears_on_page_following_introduction(self):
-        base_url = '/questionnaire/test/final_confirmation/789/14ba4707-321d-441d-8d21-b8367366e766/0/'
-
         # Given
         token = create_token('final_confirmation', 'test')
         self.client.get('/session?token=' + token.decode(), follow_redirects=False)
@@ -28,13 +26,13 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
-        block_one_url, resp = self.postRedirectGet(base_url + 'introduction', post_data)
+        block_one_url, resp = self.postRedirectGet('/questionnaire/test/final_confirmation/789/final-confirmation/0/introduction', post_data)
 
         content = resp.get_data(True)
         self.assertIn('Previous', content)
 
         post_data = {
-            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": " Bacon",
+            "choose-your-side-answer": " Bacon",
             "action[save_continue]": "Save &amp; Continue"
         }
         resp_url, resp = self.postRedirectGet(block_one_url, post_data)
@@ -44,8 +42,6 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.assertIn('Previous', content)
 
     def test_previous_link_doesnt_appear_on_thank_you(self):
-        base_url = '/questionnaire/test/final_confirmation/789/14ba4707-321d-441d-8d21-b8367366e766/0/'
-
         # Given
         token = create_token('final_confirmation', 'test')
         self.client.get('/session?token=' + token.decode(), follow_redirects=False)
@@ -56,10 +52,10 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
-        block_one_url, resp = self.postRedirectGet(base_url + 'introduction', post_data)
+        block_one_url, resp = self.postRedirectGet('/questionnaire/test/final_confirmation/789/final-confirmation/0/introduction', post_data)
 
         post_data = {
-            "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": " Bacon",
+            "choose-your-side-answer": " Bacon",
             "action[save_continue]": "Save and continue"
         }
         self.postRedirectGet(block_one_url, post_data)

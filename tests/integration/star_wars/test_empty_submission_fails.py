@@ -17,7 +17,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # check that we're redirected to the first block as its an empty submission
-        self.assertRegex(resp.location, star_wars_test_urls.STAR_WARS_BLOCK2)
+        self.assertRegex(resp.location, star_wars_test_urls.STAR_WARS_QUIZ_1)
 
         # go to the first page
         first_page = resp.location
@@ -37,7 +37,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
 
         # Textarea question
         self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegex(content, '215015b1-f87c-4740-9fd4-f01f707ef558')
+        self.assertRegex(content, 'chewbacca-medal-answer')
 
         resp = self.submit_page(second_page, BLOCK_7_DEFAULT_ANSWERS)
 

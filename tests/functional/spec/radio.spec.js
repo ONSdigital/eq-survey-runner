@@ -1,7 +1,7 @@
 import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
-import MandatoryRadioPage from '../pages/surveys/radio/mandatory-radio.page'
-import OptionalRadioPage from '../pages/surveys/radio/optional-radio.page'
+import RadioMandatoryPage from '../pages/surveys/radio/radio-mandatory.page'
+import RadioNonMandatory from '../pages/surveys/radio/radio-non-mandatory.page'
 import SummaryPage from '../pages/surveys/radio/summary.page'
 
 const expect = chai.expect
@@ -15,10 +15,10 @@ describe('Radio button with "other" option', function() {
     openQuestionnaire(radio_schema)
 
     //When
-    MandatoryRadioPage.clickOther()
+    RadioMandatoryPage.clickOther()
 
     // Then
-    expect(MandatoryRadioPage.otherInputFieldExists()).to.be.true
+    expect(RadioMandatoryPage.otherInputFieldExists()).to.be.true
   })
 
   it('Given I enter a value into the other input field, when I submit the page, then value should be displayed on the summary.', function() {
@@ -26,12 +26,12 @@ describe('Radio button with "other" option', function() {
     openQuestionnaire(radio_schema)
 
     // When
-    MandatoryRadioPage.clickOther().setOtherInputField('Hello').submit()
-    OptionalRadioPage.submit(); // Skip second page.
+    RadioMandatoryPage.clickOther().setOtherInputField('Hello').submit()
+    RadioNonMandatory.submit(); // Skip second page.
 
 
     //Then
-    expect(SummaryPage.getPage1Answer()).to.contain('Hello')
+    expect(SummaryPage.getMandatoryAnswer()).to.contain('Hello')
   })
 
   it('Given a mandatory radio answer, when I select "Other" and submit without completing the other input field, then an error must be displayed.', function() {
@@ -39,10 +39,10 @@ describe('Radio button with "other" option', function() {
     openQuestionnaire(radio_schema)
 
     //When
-    MandatoryRadioPage.clickOther().submit();
+    RadioMandatoryPage.clickOther().submit();
 
     //Then
-    expect(MandatoryRadioPage.errorExists()).to.be.true
+    expect(RadioMandatoryPage.errorExists()).to.be.true
   })
 
   it('Given a mandatory radio answer and error is displayed for other input field, when I enter value and submit page, then the error should be cleared.', function() {
@@ -50,12 +50,12 @@ describe('Radio button with "other" option', function() {
     openQuestionnaire(radio_schema);
 
     //When
-    MandatoryRadioPage.clickOther().submit();
-    expect(MandatoryRadioPage.errorExists()).to.be.true
-    MandatoryRadioPage.clickOther().setOtherInputField('Other Text').submit()
+    RadioMandatoryPage.clickOther().submit();
+    expect(RadioMandatoryPage.errorExists()).to.be.true
+    RadioMandatoryPage.clickOther().setOtherInputField('Other Text').submit()
 
     //Then
-    expect(OptionalRadioPage.errorExists()).to.be.false
+    expect(RadioNonMandatory.errorExists()).to.be.false
   })
 
   it('Given I have previously added text in other texfiled and saved, when I change the awnser to a diffrent answer, then the text entered in other field must be wiped.', function() {
@@ -63,14 +63,14 @@ describe('Radio button with "other" option', function() {
     openQuestionnaire(radio_schema);
 
     //When
-    MandatoryRadioPage.clickOther().setOtherInputField('Other Text').submit()
-    OptionalRadioPage.clickTopprevious()
-    MandatoryRadioPage.clickBacon().submit()
-    OptionalRadioPage.clickTopprevious()
+    RadioMandatoryPage.clickOther().setOtherInputField('Other Text').submit()
+    RadioNonMandatory.clickTopPrevious()
+    RadioMandatoryPage.clickRadioMandatoryAnswerBacon().submit()
+    RadioNonMandatory.clickTopPrevious()
 
     //Then
-    MandatoryRadioPage.clickOther()
-    expect(MandatoryRadioPage.getOtherInputField()).to.equal('')
+    RadioMandatoryPage.clickOther()
+    expect(RadioMandatoryPage.getOtherInputField()).to.equal('')
   })
 
 })

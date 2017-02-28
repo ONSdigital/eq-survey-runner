@@ -17,7 +17,7 @@
                     "sections": [
                         {
                             "description": "",
-                            "id": "7352fd10-bb24-407a-9f13-23cc8b1cb51d",
+                            "id": "date-section",
                             "questions": [
                                 {
                                     "answers": [
@@ -99,7 +99,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "3b7d43d1-8e0e-499d-928e-7cd78be8525e",
+                                    "id": "single-date-question",
                                     "title": "Single date type",
                                     "type": "General"
                                 },
@@ -122,7 +122,7 @@
                                         }
                                     ],
                                     "description": "",
-                                    "id": "cb2c75b7-6a2c-4e47-9303-ff6246d8f752",
+                                    "id": "non-mandatory-date-question",
                                     "title": "Non Mandatory",
                                     "type": "General"
                                 }
@@ -137,7 +137,7 @@
                     "id": "summary"
                 }
             ],
-            "id": "a23d36db-6b07-4ce0-94b2-a843369511e3",
+            "id": "dates",
             "title": ""
         }
     ]

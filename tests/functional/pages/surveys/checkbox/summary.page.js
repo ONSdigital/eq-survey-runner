@@ -2,21 +2,22 @@ import SummaryPage from '../../summary.page'
 
 class CheckboxSummaryPage extends SummaryPage {
 
-  getPage1Answer() {
-    return browser.element('[data-qa="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c-answer"]').getText();
+  getMandatoryAnswer() {
+    return browser.element('[data-qa="mandatory-checkbox-answer-answer"]').getText();
   }
 
-  getPage2Answer() {
-    return browser.element('[data-qa="ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23-answer"]').getText();
+  getNonMandatoryAnswer() {
+    return browser.element('[data-qa="non-mandatory-checkbox-answer-answer"]').getText();
   }
 
-  getPage1OtherAnswer() {
+  getMandatoryOtherAnswer() {
     return browser.element('[data-qa="other-answer-mandatory-answer"]').getText();
   }
 
-  getPage2OtherAnswer() {
+  getNonMandatoryOtherAnswer() {
     return browser.element('[data-qa="other-answer-non-mandatory-answer"]').getText();
   }
+
 }
 
 export default new CheckboxSummaryPage()
