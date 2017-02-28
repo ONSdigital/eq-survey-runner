@@ -16,10 +16,10 @@
                     "id": "introduction",
                     "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
                     "information_to_provide": [
-                      "value of total retail turnover",
-                      "value of internet sales",
-                      "numbers of employees",
-                      "reasons for changes to figures"
+                        "value of total retail turnover",
+                        "value of internet sales",
+                        "numbers of employees",
+                        "reasons for changes to figures"
                     ]
                 },
                 {
@@ -164,7 +164,9 @@
                                     "guidance": [
                                         {
                                             "title": "Include",
-                                            "list": [ "VAT" ]
+                                            "list": [
+                                                "VAT"
+                                            ]
                                         }
                                     ],
                                     "id": "internet-sales-question",
@@ -229,87 +231,87 @@
                             "questions": [
                                 {
                                     "answers": [
-                                      {
-                                          "guidance": "",
-                                          "id": "male-employees-over-30-hours",
-                                          "label": "Male employees working more than 30 hours per week",
-                                          "mandatory": false,
-                                          "options": [],
-                                          "q_code": "51",
-                                          "type": "PositiveInteger",
-                                          "validation": {
-                                              "messages": {
-                                                  "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                                  "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                                  "NOT_INTEGER": "Please only enter whole numbers into the field."
-                                              }
-                                          }
-                                      },
-                                      {
-                                          "guidance": "",
-                                          "id": "male-employees-under-30-hours",
-                                          "label": "Male employees working 30 hours or less per week",
-                                          "mandatory": false,
-                                          "options": [],
-                                          "q_code": "52",
-                                          "type": "PositiveInteger",
-                                          "validation": {
-                                              "messages": {
-                                                  "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                                  "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                                  "NOT_INTEGER": "Please only enter whole numbers into the field."
-                                              }
-                                          }
-                                      },
-                                      {
-                                          "guidance": "",
-                                          "id": "female-employees-over-30-hours",
-                                          "label": "Female employees working more than 30 hours per week",
-                                          "mandatory": false,
-                                          "options": [],
-                                          "q_code": "53",
-                                          "type": "PositiveInteger",
-                                          "validation": {
-                                              "messages": {
-                                                  "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                                  "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                                  "NOT_INTEGER": "Please only enter whole numbers into the field."
-                                              }
-                                          }
-                                      },
-                                      {
-                                          "guidance": "",
-                                          "id": "female-employees-under-30-hours",
-                                          "label": "Female employees working 30 hours or less per week",
-                                          "mandatory": false,
-                                          "options": [],
-                                          "q_code": "54",
-                                          "type": "PositiveInteger",
-                                          "validation": {
-                                              "messages": {
-                                                  "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                                  "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                                  "NOT_INTEGER": "Please only enter whole numbers into the field."
-                                              }
-                                          }
-                                      },
-                                      {
-                                          "guidance": "",
-                                          "id": "total-number-employees",
-                                          "label": "Total number of employees",
-                                          "mandatory": true,
-                                          "options": [],
-                                          "q_code": "50",
-                                          "type": "PositiveInteger",
-                                          "validation": {
-                                              "messages": {
-                                                  "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                                  "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                                  "NOT_INTEGER": "Please only enter whole numbers into the field.",
-                                                  "MANDATORY": "Please provide a value, even if your value is 0."
-                                              }
-                                          }
-                                      }
+                                        {
+                                            "guidance": "",
+                                            "id": "male-employees-over-30-hours",
+                                            "label": "Male employees working more than 30 hours per week",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "51",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "guidance": "",
+                                            "id": "male-employees-under-30-hours",
+                                            "label": "Male employees working 30 hours or less per week",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "52",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "guidance": "",
+                                            "id": "female-employees-over-30-hours",
+                                            "label": "Female employees working more than 30 hours per week",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "53",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "guidance": "",
+                                            "id": "female-employees-under-30-hours",
+                                            "label": "Female employees working 30 hours or less per week",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "54",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "guidance": "",
+                                            "id": "total-number-employees",
+                                            "label": "Total number of employees",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "50",
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                                    "MANDATORY": "Please provide a value, even if your value is 0."
+                                                }
+                                            }
+                                        }
                                     ],
                                     "id": "number-of-employees-question",
                                     "title": "On {{exercise.employment_date|format_date}} what was the number of employees?",

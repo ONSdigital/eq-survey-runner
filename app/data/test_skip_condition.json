@@ -1,113 +1,112 @@
 {
-   "mime_type":"application/json/ons/eq",
-   "questionnaire_id":"0",
-   "schema_version":"0.0.1",
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0",
+    "schema_version": "0.0.1",
     "data_version": "0.0.1",
-   "survey_id":"0",
-   "title":"Test skip condition",
-   "theme":"default",
-   "legal_basis": "StatisticsOfTradeAct",
-   "description":"A questionnaire to test skip condition.",
-   "messages":{},
-   "groups":[
-      {
-         "blocks":[
-            {
-               "type": "Questionnaire",
-               "id":"food-block",
-               "sections":[
-                  {
-                     "description":"",
-                     "id":"food-section",
-                     "questions":[
+    "survey_id": "0",
+    "title": "Test skip condition",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "description": "A questionnaire to test skip condition.",
+    "messages": {},
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "type": "Questionnaire",
+                    "id": "food-block",
+                    "sections": [
                         {
-                           "answers":[
-                              {
-                                 "guidance":"",
-                                 "id":"food-answer",
-                                 "label":"What is your favourite breakfast food",
-                                 "mandatory":true,
-                                 "options":[
-                                    {
-                                       "label":"Bacon",
-                                       "value":"Bacon"
-                                    },
-                                    {
-                                       "label":"Eggs",
-                                       "value":"Eggs"
-                                    }
-                                 ],
-                                 "q_code":"20",
-                                 "type":"Radio"
-                              }
-                           ],
-                           "description":"",
-                           "id":"food-question",
-                           "title":"",
-                           "type":"General"
+                            "description": "",
+                            "id": "food-section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "food-answer",
+                                            "label": "What is your favourite breakfast food",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Bacon",
+                                                    "value": "Bacon"
+                                                },
+                                                {
+                                                    "label": "Eggs",
+                                                    "value": "Eggs"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "food-question",
+                                    "title": "",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": "What is your favourite breakfast food"
                         }
-                     ],
-                     "title":"What is your favourite breakfast food"
-                  }
-               ],
-               "routing_rules":[
-
-               ],
-               "title":""
-            },
-            {
-                "type": "Questionnaire",
-               "id":"drink-block",
-               "sections":[
-                  {
-                     "description":"",
-                     "id":"drink-question",
-                     "questions":[
+                    ],
+                    "routing_rules": [
+                    ],
+                    "title": ""
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "drink-block",
+                    "sections": [
                         {
-                           "answers":[
-                              {
-                                 "alias":"",
-                                 "guidance":"",
-                                 "id":"drink-answer",
-                                 "label":"What is your favourite breakfast beverage",
-                                 "mandatory":true,
-                                 "options":[
-                                    {
-                                       "label":"Tea",
-                                       "value":"Tea"
-                                    },
-                                    {
-                                       "label":"Coffee",
-                                       "value":"Coffee"
+                            "description": "",
+                            "id": "drink-question",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "alias": "",
+                                            "guidance": "",
+                                            "id": "drink-answer",
+                                            "label": "What is your favourite breakfast beverage",
+                                            "mandatory": true,
+                                            "options": [
+                                                {
+                                                    "label": "Tea",
+                                                    "value": "Tea"
+                                                },
+                                                {
+                                                    "label": "Coffee",
+                                                    "value": "Coffee"
+                                                }
+                                            ],
+                                            "q_code": "20",
+                                            "type": "Radio"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "drink-section",
+                                    "title": "What beverage would you like to accompany your choice of breakfast?",
+                                    "type": "General",
+                                    "skip_condition": {
+                                        "when": [
+                                            {
+                                                "id": "food-answer",
+                                                "condition": "equals",
+                                                "value": "Eggs"
+                                            }
+                                        ]
                                     }
-                                 ],
-                                 "q_code":"20",
-                                 "type":"Radio"
-                              }
-                           ],
-                           "description":"",
-                           "id":"drink-section",
-                           "title":"What beverage would you like to accompany your choice of breakfast?",
-                           "type":"General",
-                           "skip_condition": {
-                               "when": [
-                                   {
-                                       "id" : "food-answer",
-                                       "condition": "equals",
-                                       "value": "Eggs"
-                                   }
-                               ]
-                           }
+                                }
+                            ],
+                            "title": ""
                         }
-                     ],
-                     "title":""
-                  }
-               ],
-               "title":""
-            }
-         ],
-         "id":"breakfast",
-         "title":""
-      }
-   ]
+                    ],
+                    "title": ""
+                }
+            ],
+            "id": "breakfast",
+            "title": ""
+        }
+    ]
 }

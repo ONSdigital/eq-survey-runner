@@ -16,7 +16,7 @@
     "groups": [
         {
             "blocks": [
-                    {
+                {
                     "type": "Introduction",
                     "id": "introduction",
                     "title": "Introduction",

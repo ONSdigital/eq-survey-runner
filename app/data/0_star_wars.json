@@ -9,9 +9,9 @@
     "legal_basis": "Voluntary",
     "description": "Kitchen sink test for the Star Wars questionnaire",
     "messages": {
-      "INTEGER_TOO_LARGE": "Too big, that number is",
-      "NEGATIVE_INTEGER": "It must be a positive number",
-      "NOT_INTEGER": "Please enter an integer"
+        "INTEGER_TOO_LARGE": "Too big, that number is",
+        "NEGATIVE_INTEGER": "It must be a positive number",
+        "NOT_INTEGER": "Please enter an integer"
     },
     "groups": [
         {
@@ -58,7 +58,7 @@
                                                     "label": "Other",
                                                     "value": "other",
                                                     "other": {
-                                                      "label": "Please specify other"
+                                                        "label": "Please specify other"
                                                     }
                                                 }
                                             ],
@@ -78,45 +78,42 @@
                             "title": "Choose your side"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "light-side-pick-character-ship",
+                                "id": "light-side-pick-character-ship",
                                 "when": [
                                     {
-                                        "id" : "choose-your-side-answer",
+                                        "id": "choose-your-side-answer",
                                         "condition": "equals",
-                                        "value":"Light Side"
+                                        "value": "Light Side"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
                                 "id": "dark-side-pick-character-ship",
                                 "when": [
                                     {
-                                        "id" : "choose-your-side-answer",
+                                        "id": "choose-your-side-answer",
                                         "condition": "equals",
-                                        "value":"Dark Side"
+                                        "value": "Dark Side"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
                                 "id": "summary",
                                 "when": [
                                     {
-                                        "id" : "choose-your-side-answer",
+                                        "id": "choose-your-side-answer",
                                         "condition": "equals",
-                                        "value":"I prefer Star Trek"
+                                        "value": "I prefer Star Trek"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
@@ -205,32 +202,30 @@
                         }
                     ],
                     "title": "",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "light-side-ship-type",
+                                "id": "light-side-ship-type",
                                 "when": [
                                     {
-                                        "id" : "light-side-pick-ship-answer",
+                                        "id": "light-side-pick-ship-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
                                 "id": "star-wars-trivia",
                                 "when": [
                                     {
-                                        "id" : "light-side-pick-ship-answer",
+                                        "id": "light-side-pick-ship-answer",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
-
                         }
                     ]
                 },
@@ -273,14 +268,13 @@
                                                 "messages": {}
                                             }
                                         }
-
                                     ],
                                     "description": "",
                                     "id": "dark-side-pick-character-question",
                                     "title": "Good! Your hate has made you powerful. Pick your baddie",
                                     "type": "General"
                                 },
-                              {
+                                {
                                     "answers": [
                                         {
                                             "guidance": "",
@@ -296,7 +290,7 @@
                                                     "label": "No",
                                                     "value": "No"
                                                 },
-                                                 {
+                                                {
                                                     "label": "Can I be a pain and have a goodies ship",
                                                     "value": "Can I be a pain and have a goodies ship"
                                                 }
@@ -317,45 +311,42 @@
                             "title": ""
                         }
                     ],
-                                        "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "dark-side-ship-type",
+                                "id": "dark-side-ship-type",
                                 "when": [
                                     {
-                                        "id" : "dark-side-pick-ship-answer",
+                                        "id": "dark-side-pick-ship-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
                                 "id": "star-wars-trivia",
                                 "when": [
                                     {
-                                        "id" : "dark-side-pick-ship-answer",
+                                        "id": "dark-side-pick-ship-answer",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
                                 "id": "light-side-ship-type",
                                 "when": [
                                     {
-                                        "id" : "dark-side-pick-ship-answer",
+                                        "id": "dark-side-pick-ship-answer",
                                         "condition": "equals",
-                                        "value":"Can I be a pain and have a goodies ship"
+                                        "value": "Can I be a pain and have a goodies ship"
                                     }
                                 ]
                             }
-
                         }
                     ],
                     "title": ""
@@ -401,10 +392,10 @@
                             "title": ""
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "star-wars-trivia"
+                                "id": "star-wars-trivia"
                             }
                         }
                     ],
@@ -451,10 +442,10 @@
                             "title": ""
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "star-wars-trivia"
+                                "id": "star-wars-trivia"
                             }
                         }
                     ],
@@ -468,7 +459,7 @@
                             "description": "May the force be with you young EQ developer<br/><br/>",
                             "id": "star-wars-trivia-section",
                             "questions": [
-                              {
+                                {
                                     "answers": [
                                         {
                                             "guidance": "",
@@ -484,8 +475,8 @@
                                     "id": "death-star-plans-question",
                                     "title": "",
                                     "type": "General"
-                              },
-                              {
+                                },
+                                {
                                     "answers": [
                                         {
                                             "alias": "chewies_age",
@@ -711,7 +702,7 @@
                                     "title": "Which 3 appear in any of the opening crawlers?",
                                     "type": "General"
                                 },
-                              {
+                                {
                                     "answers": [
                                         {
                                             "guidance": "",
@@ -763,7 +754,6 @@
                             "description": "If you didn't pick the right employment date for Return of the Jedi its your fault if this question makes no sense",
                             "id": "star-wars-trivia-part-2-section-1",
                             "questions": [
-
                                 {
                                     "answers": [
                                         {
@@ -814,9 +804,9 @@
                                     "skip_condition": {
                                         "when": [
                                             {
-                                                "id" : "death-star-plans-answer",
+                                                "id": "death-star-plans-answer",
                                                 "condition": "not equals",
-                                                "value":"Bothans"
+                                                "value": "Bothans"
                                             }
                                         ]
                                     }
@@ -923,7 +913,7 @@
                                     "skip_condition": {
                                         "when": [
                                             {
-                                                "id" : "star-wars-prequel-answer",
+                                                "id": "star-wars-prequel-answer",
                                                 "condition": "equals",
                                                 "value": "I like to pretend they didn't happen"
                                             }

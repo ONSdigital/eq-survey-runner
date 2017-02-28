@@ -122,7 +122,6 @@
                         }
                     ]
                 },
-
                 {
                     "type": "Questionnaire",
                     "id": "usual-residents",
@@ -139,15 +138,15 @@
                                     "type": "General",
                                     "guidance": [
                                         {
-                                             "title": "Include",
-                                             "list": [
-                                                 "Yourself, your family and anyone else who lives at this address",
-                                                 "Students or  school children who live away from your establishment during term time",
-                                                 "People who usually live outside the UK, who are staying in the UK for 3 months or more",
-                                                 "People who work away from home within the UK, or are members of the armed forces, if this is their permanent or family home",
-                                                 "People who are currently outside the UK for less than 12 months, if this is their permanent or family home",
-                                                 "People staying temporarily who usually live in the UK but do not have another UK address"
-                                             ]
+                                            "title": "Include",
+                                            "list": [
+                                                "Yourself, your family and anyone else who lives at this address",
+                                                "Students or  school children who live away from your establishment during term time",
+                                                "People who usually live outside the UK, who are staying in the UK for 3 months or more",
+                                                "People who work away from home within the UK, or are members of the armed forces, if this is their permanent or family home",
+                                                "People who are currently outside the UK for less than 12 months, if this is their permanent or family home",
+                                                "People staying temporarily who usually live in the UK but do not have another UK address"
+                                            ]
                                         }
                                     ],
                                     "answers": [
@@ -282,7 +281,6 @@
                         }
                     ]
                 },
-
                 {
                     "type": "Questionnaire",
                     "id": "completion-preference-individual",
@@ -517,7 +515,6 @@
                         }
                     ]
                 },
-
                 {
                     "type": "Questionnaire",
                     "id": "further-contact",
@@ -612,7 +609,6 @@
                         }
                     ]
                 },
-
                 {
                     "type": "Confirmation",
                     "id": "confirmation",
@@ -630,12 +626,12 @@
                                     "type": "General",
                                     "guidance": [
                                         {
-                                             "title": "Please note:",
-                                             "list": [
-                                                 "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
-                                                 "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
-                                                 "After submission you will have an opportunity to provide feedback on your experience."
-                                             ]
+                                            "title": "Please note:",
+                                            "list": [
+                                                "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                                                "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
+                                                "After submission you will have an opportunity to provide feedback on your experience."
+                                            ]
                                         }
                                     ]
                                 }

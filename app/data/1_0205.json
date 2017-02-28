@@ -1,229 +1,269 @@
 {
-	"mime_type": "application/json/ons/eq",
-	"schema_version": "0.0.1",
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
     "data_version": "0.0.1",
-	"questionnaire_id": "23",
+    "questionnaire_id": "23",
     "survey_id": "023",
-	"title": "Monthly Business Survey - Retail Sales Index",
-	"description": "MCI Description",
-	"theme": "default",
+    "title": "Monthly Business Survey - Retail Sales Index",
+    "description": "MCI Description",
+    "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-	"messages": {
-		"MANDATORY": "Please provide an answer to continue.",
-		"INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-		"NOT_INTEGER": "Please only enter whole numbers into the field.",
-		"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-		"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
-	},
-	"groups": [{
-		"id": "mci",
-		"title": "",
-		"blocks": [{
-                "type": "Introduction",
-                "id": "introduction",
-                "title": "",
-                "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
-                "information_to_provide": [
-                    "value of total retail turnover",
-                    "value of internet sales",
-                    "reasons for changes to figures"
-                ]
-            },{
-            "type": "Questionnaire",
-			"id": "reporting-period",
-			"title": "Monthly Business Survey",
-			"sections": [{
-					"id": "reporting-period-section",
-					"title": "",
-					"description": "",
-					"questions": [{
-						"id": "reporting-period-question",
-						"title": "What are the dates of the sales period you are reporting for?",
-						"description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
-						"type": "DateRange",
-						"answers": [{
-							"id": "period-from",
-							"q_code": "11",
-							"label": "Period from",
-							"guidance": "",
-							"type": "Date",
-							"options": [],
-							"mandatory": true
-						}, {
-							"id": "period-to",
-							"q_code": "12",
-							"label": "Period to",
-							"guidance": "",
-							"type": "Date",
-							"options": [],
-							"mandatory": true
-						}]
-					}]
-				}, {
-					"id": "total-sales-section",
-					"title": "Commodities - Retail Turnover",
-					"description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (£) pound</p>",
-					"questions": [{
-                        "guidance": [
-                            {
-                                "title": "Include",
-                                "list": [
-                                    "VAT",
-                                    "Internet Sales"
-                                ]
-                            }
-                        ],
-						"id": "total-sales-food-question",
-						"title": "",
-						"description": "",
-						"type": "General",
-						"answers": [{
-							"id": "total-sales-food",
-							"q_code": "22",
-							"label": "What was the value of the business's total sales of food?",
-							"guidance": "<div> <h4>Include</h4> <ul> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionery)</li> <li>soft drinks</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
-							"type": "Currency",
-							"options": [],
-							"mandatory": false
-						}]
-					}, {
-						"id": "total-sales-alcohol-question",
-						"title": "",
-						"description": "",
-						"type": "General",
-						"answers": [{
-							"id": "total-sales-alcohol",
-							"q_code": "23",
-							"label": "What was the value of the business's total sales of alcohol, confectionery and tobacco?",
-							"guidance": "<div> <h4>Include</h4> <ul> <li>alcoholic drink</li> <li>chocolate and sugar confectionery</li> <li>tobacco and smokers’ requisites</li></ul> </div>",
-							"type": "Currency",
-							"options": [],
-							"mandatory": false,
-							"validation": {
-								"messages": {
-									"NOT_INTEGER": "Please only enter whole numbers into the field.",
-									"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-									"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
-								}
-							}
-						}]
-					}, {
-						"id": "total-sales-clothing-question",
-						"title": "",
-						"description": "",
-						"type": "General",
-						"answers": [{
-							"id": "total-sales-clothing",
-							"q_code": "24",
-							"label": "What was the value of the business's total sales of clothing and footwear?",
-							"guidance": "<div> <h4>Include</h4><ul> <li>clothing and footwear</li> <li>clothing fabrics</li> <li>haberdashery and furs</li> <li>leather and travel goods</li> <li>handbags</li> <li>umbrellas</li></ul></div>",
-							"type": "Currency",
-							"options": [],
-							"mandatory": false
-						}]
-					}, {
-						"id": "total-sales-household-goods-question",
-						"title": "",
-						"description": "",
-						"type": "General",
-						"answers": [{
-							"id": "total-sales-household-goods",
-							"q_code": "25",
-							"label": "What was the value of the business's total sales of household goods?",
-							"guidance": "<div> <h4>Include</h4><ul> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical and gas appliances, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators’ and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> <li>e-cigarettes</li> </ul></div>",
-							"type": "Currency",
-							"options": [],
-							"mandatory": false
-						}]
-					}, {
-						"id": "total-sales-other-goods-question",
-						"title": "",
-						"description": "",
-						"type": "General",
-						"answers": [{
-							"id": "total-sales-other-goods",
-							"q_code": "26",
-							"label": "What was the value of the business’s total sales of other goods?",
-							"guidance": "<div> <h4>Include</h4> <ul>  <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets’ requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> <li>Mobile phones</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
-							"type": "Currency",
-							"options": [],
-							"mandatory": false
-						}]
-					}, {
-						"id": "total-retail-turnover-question",
-						"title": "",
-						"description": "",
-						"type": "General",
-						"answers": [{
-							"id": "total-retail-turnover",
-							"q_code": "20",
-							"label": "What was the value of the business’s total retail turnover?",
-							"guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sale from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
-							"type": "Currency",
-							"options": [],
-							"mandatory": true,
-							"validation": {
-								"messages": {
-									"MANDATORY": "Please provide a value, even if your value is 0."
-								}
-							}
-						}]
-					}, {
-						"id": "internet-sales-question",
-						"title": "",
-						"description": "",
-						"type": "General",
-						"answers": [{
-							"id": "internet-sales",
-							"q_code": "21",
-							"label": "Of your total retail turnover, how much were from internet sales?",
-							"guidance": "<div> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
-							"type": "Currency",
-							"options": [],
-							"mandatory": false
-						}]
-					}, {
-						"id": "total-sales-automotive-fuel-question",
-						"title": "",
-						"description": "",
-						"type": "General",
-						"answers": [{
-							"id": "total-sales-automotive-fuel",
-							"q_code": "27",
-							"label": "What was the value of the business’s total sales of automotive fuel?",
-							"guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commissions</li> </ul></div>",
-							"type": "Currency",
-							"options": [],
-							"mandatory": false
-						}]
-					}]
-				},
-
-				{
-					"id": "reason-for-change-section",
-					"title": "Comments",
-					"description": "",
-					"questions": [{
-						"id": "reason-for-change-question",
-						"title": "",
-						"description": "Please explain any movements in your data, for example, sale held, branches opened or sold, extreme weather, or temporary closure of shop",
-						"type": "General",
-						"answers": [{
-							"id": "reason-for-change",
-							"q_code": "146",
-							"label": "Comments",
-							"guidance": "",
-							"type": "TextArea",
-							"options": [],
-							"mandatory": false
-						}]
-					}]
-				}
-			]
-		},
+    "messages": {
+        "MANDATORY": "Please provide an answer to continue.",
+        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+        "NOT_INTEGER": "Please only enter whole numbers into the field.",
+        "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+        "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+    },
+    "groups": [
         {
-            "type": "Summary",
-            "id": "summary"
-        }]
-	}]
+            "id": "mci",
+            "title": "",
+            "blocks": [
+                {
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "title": "",
+                    "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
+                    "information_to_provide": [
+                        "value of total retail turnover",
+                        "value of internet sales",
+                        "reasons for changes to figures"
+                    ]
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "reporting-period",
+                    "title": "Monthly Business Survey",
+                    "sections": [
+                        {
+                            "id": "reporting-period-section",
+                            "title": "",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "id": "reporting-period-question",
+                                    "title": "What are the dates of the sales period you are reporting for?",
+                                    "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
+                                    "type": "DateRange",
+                                    "answers": [
+                                        {
+                                            "id": "period-from",
+                                            "q_code": "11",
+                                            "label": "Period from",
+                                            "guidance": "",
+                                            "type": "Date",
+                                            "options": [],
+                                            "mandatory": true
+                                        },
+                                        {
+                                            "id": "period-to",
+                                            "q_code": "12",
+                                            "label": "Period to",
+                                            "guidance": "",
+                                            "type": "Date",
+                                            "options": [],
+                                            "mandatory": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "total-sales-section",
+                            "title": "Commodities - Retail Turnover",
+                            "description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (£) pound</p>",
+                            "questions": [
+                                {
+                                    "guidance": [
+                                        {
+                                            "title": "Include",
+                                            "list": [
+                                                "VAT",
+                                                "Internet Sales"
+                                            ]
+                                        }
+                                    ],
+                                    "id": "total-sales-food-question",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "total-sales-food",
+                                            "q_code": "22",
+                                            "label": "What was the value of the business's total sales of food?",
+                                            "guidance": "<div> <h4>Include</h4> <ul> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionery)</li> <li>soft drinks</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
+                                            "type": "Currency",
+                                            "options": [],
+                                            "mandatory": false
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "total-sales-alcohol-question",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "total-sales-alcohol",
+                                            "q_code": "23",
+                                            "label": "What was the value of the business's total sales of alcohol, confectionery and tobacco?",
+                                            "guidance": "<div> <h4>Include</h4> <ul> <li>alcoholic drink</li> <li>chocolate and sugar confectionery</li> <li>tobacco and smokers’ requisites</li></ul> </div>",
+                                            "type": "Currency",
+                                            "options": [],
+                                            "mandatory": false,
+                                            "validation": {
+                                                "messages": {
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field.",
+                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "total-sales-clothing-question",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "total-sales-clothing",
+                                            "q_code": "24",
+                                            "label": "What was the value of the business's total sales of clothing and footwear?",
+                                            "guidance": "<div> <h4>Include</h4><ul> <li>clothing and footwear</li> <li>clothing fabrics</li> <li>haberdashery and furs</li> <li>leather and travel goods</li> <li>handbags</li> <li>umbrellas</li></ul></div>",
+                                            "type": "Currency",
+                                            "options": [],
+                                            "mandatory": false
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "total-sales-household-goods-question",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "total-sales-household-goods",
+                                            "q_code": "25",
+                                            "label": "What was the value of the business's total sales of household goods?",
+                                            "guidance": "<div> <h4>Include</h4><ul> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical and gas appliances, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators’ and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> <li>e-cigarettes</li> </ul></div>",
+                                            "type": "Currency",
+                                            "options": [],
+                                            "mandatory": false
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "total-sales-other-goods-question",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "total-sales-other-goods",
+                                            "q_code": "26",
+                                            "label": "What was the value of the business’s total sales of other goods?",
+                                            "guidance": "<div> <h4>Include</h4> <ul>  <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets’ requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> <li>Mobile phones</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                            "type": "Currency",
+                                            "options": [],
+                                            "mandatory": false
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "total-retail-turnover-question",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "total-retail-turnover",
+                                            "q_code": "20",
+                                            "label": "What was the value of the business’s total retail turnover?",
+                                            "guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sale from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                            "type": "Currency",
+                                            "options": [],
+                                            "mandatory": true,
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please provide a value, even if your value is 0."
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "internet-sales-question",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "internet-sales",
+                                            "q_code": "21",
+                                            "label": "Of your total retail turnover, how much were from internet sales?",
+                                            "guidance": "<div> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
+                                            "type": "Currency",
+                                            "options": [],
+                                            "mandatory": false
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "total-sales-automotive-fuel-question",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "total-sales-automotive-fuel",
+                                            "q_code": "27",
+                                            "label": "What was the value of the business’s total sales of automotive fuel?",
+                                            "guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commissions</li> </ul></div>",
+                                            "type": "Currency",
+                                            "options": [],
+                                            "mandatory": false
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "reason-for-change-section",
+                            "title": "Comments",
+                            "description": "",
+                            "questions": [
+                                {
+                                    "id": "reason-for-change-question",
+                                    "title": "",
+                                    "description": "Please explain any movements in your data, for example, sale held, branches opened or sold, extreme weather, or temporary closure of shop",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "id": "reason-for-change",
+                                            "q_code": "146",
+                                            "label": "Comments",
+                                            "guidance": "",
+                                            "type": "TextArea",
+                                            "options": [],
+                                            "mandatory": false
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ]
+        }
+    ]
 }

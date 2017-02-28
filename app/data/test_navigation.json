@@ -8,7 +8,7 @@
     "description": "Home Insurance",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "navigation" : true,
+    "navigation": true,
     "groups": [
         {
             "blocks": [
@@ -171,7 +171,7 @@
                         }
                     ]
                 },
-                 {
+                {
                     "when": [
                         {
                             "id": "insurance-type-answer",
@@ -558,7 +558,6 @@
                     "type": "Summary",
                     "id": "summary"
                 }
-
             ],
             "id": "summary-group",
             "title": "",

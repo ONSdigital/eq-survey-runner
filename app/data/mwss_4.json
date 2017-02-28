@@ -7,10 +7,10 @@
                     "type": "Introduction",
                     "id": "introduction",
                     "information_to_provide": [
-                      "total gross pay",
-                      "advanced holiday pay, pay award arrears, bonuses, commissions, and annual profit related pay",
-                      "number of employees",
-                      "reasons for any changes to total gross pay or employee numbers"
+                        "total gross pay",
+                        "advanced holiday pay, pay award arrears, bonuses, commissions, and annual profit related pay",
+                        "number of employees",
+                        "reasons for any changes to total gross pay or employee numbers"
                     ]
                 },
                 {
@@ -303,27 +303,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "weekly-pay-block-8",
+                                "id": "weekly-pay-block-8",
                                 "when": [
                                     {
-                                        "id" : "weekly-pay-answer-7-0",
+                                        "id": "weekly-pay-answer-7-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "weekly-pay-block-10",
+                                "id": "weekly-pay-block-10",
                                 "when": [
                                     {
-                                        "id" : "weekly-pay-answer-7-0",
+                                        "id": "weekly-pay-answer-7-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -469,27 +469,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "weekly-pay-block-11",
+                                "id": "weekly-pay-block-11",
                                 "when": [
                                     {
-                                        "id" : "weekly-pay-answer-10-0",
+                                        "id": "weekly-pay-answer-10-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "weekly-pay-block-15",
+                                "id": "weekly-pay-block-15",
                                 "when": [
                                     {
-                                        "id" : "weekly-pay-answer-10-0",
+                                        "id": "weekly-pay-answer-10-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -583,27 +583,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "weekly-pay-block-13",
+                                "id": "weekly-pay-block-13",
                                 "when": [
                                     {
-                                        "id" : "weekly-pay-answer-12-0",
+                                        "id": "weekly-pay-answer-12-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "weekly-pay-block-14",
+                                "id": "weekly-pay-block-14",
                                 "when": [
                                     {
-                                        "id" : "weekly-pay-answer-12-0",
+                                        "id": "weekly-pay-answer-12-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -781,13 +781,13 @@
                     "type": "Questionnaire",
                     "skip_condition": [
                         {
-                           "when": [
-                               {
-                                   "id" : "weekly-pay-answer-15-0",
-                                   "condition": "equals",
-                                   "value": "No"
-                               }
-                           ]
+                            "when": [
+                                {
+                                    "id": "weekly-pay-answer-15-0",
+                                    "condition": "equals",
+                                    "value": "No"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -796,21 +796,21 @@
             "title": "Weekly Pay",
             "skip_condition": [
                 {
-                   "when": [
-                       {
-                           "id" : "pay-pattern-answer-2-0",
-                           "condition": "not contains",
-                           "value": "Weekly"
-                       }
-                   ]
+                    "when": [
+                        {
+                            "id": "pay-pattern-answer-2-0",
+                            "condition": "not contains",
+                            "value": "Weekly"
+                        }
+                    ]
                 },
                 {
-                   "when": [
-                       {
+                    "when": [
+                        {
                             "id": "pay-pattern-answer-2-0",
                             "condition": "not set"
-                       }
-                   ]
+                        }
+                    ]
                 }
             ],
             "completed_id": "weekly-pay-block-15"
@@ -1041,27 +1041,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "fortnightly-pay-block-22",
+                                "id": "fortnightly-pay-block-22",
                                 "when": [
                                     {
-                                        "id" : "fortnightly-pay-answer-21-0",
+                                        "id": "fortnightly-pay-answer-21-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "fortnightly-pay-block-24",
+                                "id": "fortnightly-pay-block-24",
                                 "when": [
                                     {
-                                        "id" : "fortnightly-pay-answer-21-0",
+                                        "id": "fortnightly-pay-answer-21-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -1205,27 +1205,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "fortnightly-pay-block-25",
+                                "id": "fortnightly-pay-block-25",
                                 "when": [
                                     {
-                                        "id" : "fortnightly-pay-answer-24-0",
+                                        "id": "fortnightly-pay-answer-24-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "fortnightly-pay-block-29",
+                                "id": "fortnightly-pay-block-29",
                                 "when": [
                                     {
-                                        "id" : "fortnightly-pay-answer-24-0",
+                                        "id": "fortnightly-pay-answer-24-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -1317,27 +1317,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "fortnightly-pay-block-27",
+                                "id": "fortnightly-pay-block-27",
                                 "when": [
                                     {
-                                        "id" : "fortnightly-pay-answer-26-0",
+                                        "id": "fortnightly-pay-answer-26-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "fortnightly-pay-block-28",
+                                "id": "fortnightly-pay-block-28",
                                 "when": [
                                     {
-                                        "id" : "fortnightly-pay-answer-26-0",
+                                        "id": "fortnightly-pay-answer-26-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -1510,13 +1510,13 @@
                     "type": "Questionnaire",
                     "skip_condition": [
                         {
-                           "when": [
-                               {
-                                   "id" : "fortnightly-pay-answer-29-0",
-                                   "condition": "equals",
-                                   "value": "No"
-                               }
-                           ]
+                            "when": [
+                                {
+                                    "id": "fortnightly-pay-answer-29-0",
+                                    "condition": "equals",
+                                    "value": "No"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -1525,21 +1525,21 @@
             "title": "Fortnightly Pay",
             "skip_condition": [
                 {
-                   "when": [
-                       {
-                           "id" : "pay-pattern-answer-2-0",
-                           "condition": "not contains",
-                           "value": "Fortnightly"
-                       }
-                   ]
+                    "when": [
+                        {
+                            "id": "pay-pattern-answer-2-0",
+                            "condition": "not contains",
+                            "value": "Fortnightly"
+                        }
+                    ]
                 },
                 {
-                   "when": [
-                       {
+                    "when": [
+                        {
                             "id": "pay-pattern-answer-2-0",
                             "condition": "not set"
-                       }
-                   ]
+                        }
+                    ]
                 }
             ],
             "completed_id": "fortnightly-pay-block-29"
@@ -1763,27 +1763,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "calendar-monthly-pay-block-36",
+                                "id": "calendar-monthly-pay-block-36",
                                 "when": [
                                     {
-                                        "id" : "calendar-monthly-pay-answer-35-0",
+                                        "id": "calendar-monthly-pay-answer-35-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "calendar-monthly-pay-block-38",
+                                "id": "calendar-monthly-pay-block-38",
                                 "when": [
                                     {
-                                        "id" : "calendar-monthly-pay-answer-35-0",
+                                        "id": "calendar-monthly-pay-answer-35-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -1929,27 +1929,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "calendar-monthly-pay-block-39",
+                                "id": "calendar-monthly-pay-block-39",
                                 "when": [
                                     {
-                                        "id" : "calendar-monthly-pay-answer-38-0",
+                                        "id": "calendar-monthly-pay-answer-38-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "calendar-monthly-pay-block-43",
+                                "id": "calendar-monthly-pay-block-43",
                                 "when": [
                                     {
-                                        "id" : "calendar-monthly-pay-answer-38-0",
+                                        "id": "calendar-monthly-pay-answer-38-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -2043,27 +2043,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "calendar-monthly-pay-block-41",
+                                "id": "calendar-monthly-pay-block-41",
                                 "when": [
                                     {
-                                        "id" : "calendar-monthly-pay-answer-40-0",
+                                        "id": "calendar-monthly-pay-answer-40-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "calendar-monthly-pay-block-42",
+                                "id": "calendar-monthly-pay-block-42",
                                 "when": [
                                     {
-                                        "id" : "calendar-monthly-pay-answer-40-0",
+                                        "id": "calendar-monthly-pay-answer-40-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -2239,13 +2239,13 @@
                     "type": "Questionnaire",
                     "skip_condition": [
                         {
-                           "when": [
-                               {
-                                   "id" : "calendar-monthly-pay-answer-43-0",
-                                   "condition": "equals",
-                                   "value": "No"
-                               }
-                           ]
+                            "when": [
+                                {
+                                    "id": "calendar-monthly-pay-answer-43-0",
+                                    "condition": "equals",
+                                    "value": "No"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -2254,21 +2254,21 @@
             "title": "Calendar Monthly Pay",
             "skip_condition": [
                 {
-                   "when": [
-                       {
-                           "id" : "pay-pattern-answer-2-0",
-                           "condition": "not contains",
-                           "value": "Calendar monthly"
-                       }
-                   ]
+                    "when": [
+                        {
+                            "id": "pay-pattern-answer-2-0",
+                            "condition": "not contains",
+                            "value": "Calendar monthly"
+                        }
+                    ]
                 },
                 {
-                   "when": [
-                       {
+                    "when": [
+                        {
                             "id": "pay-pattern-answer-2-0",
                             "condition": "not set"
-                       }
-                   ]
+                        }
+                    ]
                 }
             ],
             "completed_id": "calendar-monthly-pay-block-43"
@@ -2489,27 +2489,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "four-weekly-pay-block-50",
+                                "id": "four-weekly-pay-block-50",
                                 "when": [
                                     {
-                                        "id" : "four-weekly-pay-answer-49-0",
+                                        "id": "four-weekly-pay-answer-49-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "four-weekly-pay-block-52",
+                                "id": "four-weekly-pay-block-52",
                                 "when": [
                                     {
-                                        "id" : "four-weekly-pay-answer-49-0",
+                                        "id": "four-weekly-pay-answer-49-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -2653,27 +2653,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "four-weekly-pay-block-53",
+                                "id": "four-weekly-pay-block-53",
                                 "when": [
                                     {
-                                        "id" : "four-weekly-pay-answer-52-0",
+                                        "id": "four-weekly-pay-answer-52-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "four-weekly-pay-block-57",
+                                "id": "four-weekly-pay-block-57",
                                 "when": [
                                     {
-                                        "id" : "four-weekly-pay-answer-52-0",
+                                        "id": "four-weekly-pay-answer-52-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -2765,27 +2765,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "four-weekly-pay-block-55",
+                                "id": "four-weekly-pay-block-55",
                                 "when": [
                                     {
-                                        "id" : "four-weekly-pay-answer-54-0",
+                                        "id": "four-weekly-pay-answer-54-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "four-weekly-pay-block-56",
+                                "id": "four-weekly-pay-block-56",
                                 "when": [
                                     {
-                                        "id" : "four-weekly-pay-answer-54-0",
+                                        "id": "four-weekly-pay-answer-54-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -2958,13 +2958,13 @@
                     "type": "Questionnaire",
                     "skip_condition": [
                         {
-                           "when": [
-                               {
-                                   "id" : "four-weekly-pay-answer-57-0",
-                                   "condition": "equals",
-                                   "value": "No"
-                               }
-                           ]
+                            "when": [
+                                {
+                                    "id": "four-weekly-pay-answer-57-0",
+                                    "condition": "equals",
+                                    "value": "No"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -2973,21 +2973,21 @@
             "title": "Four Weekly Pay",
             "skip_condition": [
                 {
-                   "when": [
-                       {
-                           "id" : "pay-pattern-answer-2-0",
-                           "condition": "not contains",
-                           "value": "Four weekly"
-                       }
-                   ]
+                    "when": [
+                        {
+                            "id": "pay-pattern-answer-2-0",
+                            "condition": "not contains",
+                            "value": "Four weekly"
+                        }
+                    ]
                 },
                 {
-                   "when": [
-                       {
+                    "when": [
+                        {
                             "id": "pay-pattern-answer-2-0",
                             "condition": "not set"
-                       }
-                   ]
+                        }
+                    ]
                 }
             ],
             "completed_id": "four-weekly-pay-block-57"
@@ -3209,27 +3209,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "five-weekly-pay-block-64",
+                                "id": "five-weekly-pay-block-64",
                                 "when": [
                                     {
-                                        "id" : "five-weekly-pay-answer-63-0",
+                                        "id": "five-weekly-pay-answer-63-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "five-weekly-pay-block-66",
+                                "id": "five-weekly-pay-block-66",
                                 "when": [
                                     {
-                                        "id" : "five-weekly-pay-answer-63-0",
+                                        "id": "five-weekly-pay-answer-63-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -3373,27 +3373,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "five-weekly-pay-block-67",
+                                "id": "five-weekly-pay-block-67",
                                 "when": [
                                     {
-                                        "id" : "five-weekly-pay-answer-66-0",
+                                        "id": "five-weekly-pay-answer-66-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "five-weekly-pay-block-71",
+                                "id": "five-weekly-pay-block-71",
                                 "when": [
                                     {
-                                        "id" : "five-weekly-pay-answer-66-0",
+                                        "id": "five-weekly-pay-answer-66-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -3485,27 +3485,27 @@
                         }
                     ],
                     "type": "Questionnaire",
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "five-weekly-pay-block-69",
+                                "id": "five-weekly-pay-block-69",
                                 "when": [
                                     {
-                                        "id" : "five-weekly-pay-answer-68-0",
+                                        "id": "five-weekly-pay-answer-68-0",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "five-weekly-pay-block-70",
+                                "id": "five-weekly-pay-block-70",
                                 "when": [
                                     {
-                                        "id" : "five-weekly-pay-answer-68-0",
+                                        "id": "five-weekly-pay-answer-68-0",
                                         "condition": "equals",
-                                        "value":"No"
+                                        "value": "No"
                                     }
                                 ]
                             }
@@ -3678,13 +3678,13 @@
                     "type": "Questionnaire",
                     "skip_condition": [
                         {
-                           "when": [
-                               {
-                                   "id" : "five-weekly-pay-answer-71-0",
-                                   "condition": "equals",
-                                   "value": "No"
-                               }
-                           ]
+                            "when": [
+                                {
+                                    "id": "five-weekly-pay-answer-71-0",
+                                    "condition": "equals",
+                                    "value": "No"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -3693,21 +3693,21 @@
             "title": "Five Weekly Pay",
             "skip_condition": [
                 {
-                   "when": [
-                       {
-                           "id" : "pay-pattern-answer-2-0",
-                           "condition": "not contains",
-                           "value": "Five weekly"
-                       }
-                   ]
+                    "when": [
+                        {
+                            "id": "pay-pattern-answer-2-0",
+                            "condition": "not contains",
+                            "value": "Five weekly"
+                        }
+                    ]
                 },
                 {
-                   "when": [
-                       {
+                    "when": [
+                        {
                             "id": "pay-pattern-answer-2-0",
                             "condition": "not set"
-                       }
-                   ]
+                        }
+                    ]
                 }
             ],
             "completed_id": "five-weekly-pay-block-71"
@@ -3783,10 +3783,10 @@
                                     "type": "General",
                                     "guidance": [
                                         {
-                                             "list": [
-                                                 "You will not be able to access or change your answers on submitting the questionnaire",
-                                                 "If you wish to review your answers please select the relevant completed sections"
-                                             ]
+                                            "list": [
+                                                "You will not be able to access or change your answers on submitting the questionnaire",
+                                                "If you wish to review your answers please select the relevant completed sections"
+                                            ]
                                         }
                                     ]
                                 }

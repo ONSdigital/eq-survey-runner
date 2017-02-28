@@ -119,7 +119,6 @@
                                             "validation": {
                                                 "messages": {
                                                     "INVALID_DATE": "The date entered is not valid. Please correct your answer"
-
                                                 }
                                             }
                                         }
@@ -788,9 +787,9 @@
                                             "mandatory": false,
                                             "type": "MonthYearDate",
                                             "validation": {
-                                                 "messages": {
-                                                     "INVALID_DATE": "The date entered is not valid. Please correct your answer"
-                                                 }
+                                                "messages": {
+                                                    "INVALID_DATE": "The date entered is not valid. Please correct your answer"
+                                                }
                                             }
                                         }
                                     ]
@@ -1257,7 +1256,7 @@
                                 "id": "sexual-identity",
                                 "when": [
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -1399,7 +1398,7 @@
                                 "id": "sexual-identity",
                                 "when": [
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -1460,7 +1459,7 @@
                                                 {
                                                     "label": "Any other Mixed / multiple ethnic background (please specify)",
                                                     "value": "Other",
-                                                    "child_answer_id":  "mixed-ethnic-group-answer-other"
+                                                    "child_answer_id": "mixed-ethnic-group-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
@@ -1483,7 +1482,7 @@
                                 "id": "sexual-identity",
                                 "when": [
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -1571,7 +1570,7 @@
                                 "id": "sexual-identity",
                                 "when": [
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -1651,7 +1650,7 @@
                                 "id": "sexual-identity",
                                 "when": [
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -1727,7 +1726,7 @@
                                 "id": "sexual-identity",
                                 "when": [
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -1806,25 +1805,25 @@
                             ]
                         }
                     ],
-                     "routing_rules": [
-                         {
-                             "goto": {
-                                 "id": "understand-welsh",
-                                 "when": [
-                                     {
-                                         "meta": "region_code",
-                                         "condition": "equals",
-                                         "value": "GB-WLS"
-                                     }
-                                 ]
-                             }
-                         },
-                         {
-                             "goto": {
-                                 "id": "language"
-                             }
-                         }
-                     ]
+                    "routing_rules": [
+                        {
+                            "goto": {
+                                "id": "understand-welsh",
+                                "when": [
+                                    {
+                                        "meta": "region_code",
+                                        "condition": "equals",
+                                        "value": "GB-WLS"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "goto": {
+                                "id": "language"
+                            }
+                        }
+                    ]
                 },
                 {
                     "type": "Questionnaire",
@@ -3325,12 +3324,12 @@
                                     "type": "General",
                                     "guidance": [
                                         {
-                                             "title": "Please note:",
-                                             "list": [
-                                                 "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
-                                                 "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
-                                                 "After submission you will have an opportunity to provide feedback on your experience."
-                                             ]
+                                            "title": "Please note:",
+                                            "list": [
+                                                "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                                                "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
+                                                "After submission you will have an opportunity to provide feedback on your experience."
+                                            ]
                                         }
                                     ]
                                 }

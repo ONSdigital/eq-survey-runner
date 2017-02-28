@@ -8,8 +8,9 @@
     "description": "",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "navigation" : true,
-    "groups": [{
+    "navigation": true,
+    "groups": [
+        {
             "blocks": [
                 {
                     "type": "Introduction",
@@ -24,40 +25,39 @@
                             "id": "section",
                             "questions": [
                                 {
-                                  "id": "household-composition-question",
-                                  "title": "Who usually lives here?",
-                                  "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
-                                  "type": "RepeatingAnswer",
-                                  "answers": [
-                                    {
-                                        "alias": "first_name",
-                                        "id": "first-name",
-                                        "label": "First Name",
-                                        "mandatory": false,
-                                        "options": [],
-                                        "q_code": "1",
-                                        "type": "TextField"
-                                    },
-                                    {
-                                        "alias": "middle_names",
-                                        "id": "middle-names",
-                                        "label": "Middle Names",
-                                        "mandatory": false,
-                                        "options": [],
-                                        "q_code": "1",
-                                        "type": "TextField"
-                                    },
-                                    {
-                                        "alias": "last_name",
-                                        "id": "last-name",
-                                        "label": "Last Name",
-                                        "mandatory": false,
-                                        "options": [],
-                                        "q_code": "1",
-                                        "type": "TextField"
-                                    }
-                                  ]
-
+                                    "id": "household-composition-question",
+                                    "title": "Who usually lives here?",
+                                    "description": "<br> <div> <h3>Include:</h3> <ul> <li>Yourself, if this is your permanent or family home </li> <li>Family members including partners, children and babies born on or before 9 April 2017</li> <li>Students and/or school children who live away from home during term time</li> <li>Housemates, tenants or lodgers</li> </ul> </div>",
+                                    "type": "RepeatingAnswer",
+                                    "answers": [
+                                        {
+                                            "alias": "first_name",
+                                            "id": "first-name",
+                                            "label": "First Name",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "alias": "middle_names",
+                                            "id": "middle-names",
+                                            "label": "Middle Names",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "TextField"
+                                        },
+                                        {
+                                            "alias": "last_name",
+                                            "id": "last-name",
+                                            "label": "Last Name",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "1",
+                                            "type": "TextField"
+                                        }
+                                    ]
                                 }
                             ],
                             "title": "Household"
@@ -68,84 +68,105 @@
             ],
             "id": "multiple-questions-group",
             "title": ""
-    }, {
-        "blocks": [{
-            "type": "Questionnaire",
-            "id": "repeating-block-1",
-            "title": "Block 2",
-            "sections": [{
-                "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                "description": "This question is for {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                "id": "repeating-section-1",
-                "questions": [{
-                    "id": "repeating-question-1",
-                    "title": "",
-                    "description": "",
-                    "type": "General",
-                    "answers": [{
-                        "q_code": "3",
-                        "guidance": "",
-                        "id": "what-is-your-age",
-                        "label": "What is their age?",
-                        "mandatory": true,
-                        "type": "PositiveInteger",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please answer before continuing."
-                            }
+        },
+        {
+            "blocks": [
+                {
+                    "type": "Questionnaire",
+                    "id": "repeating-block-1",
+                    "title": "Block 2",
+                    "sections": [
+                        {
+                            "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                            "description": "This question is for {{ [answers.first_name[group_instance], answers.middle_names[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                            "id": "repeating-section-1",
+                            "questions": [
+                                {
+                                    "id": "repeating-question-1",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "q_code": "3",
+                                            "guidance": "",
+                                            "id": "what-is-your-age",
+                                            "label": "What is their age?",
+                                            "mandatory": true,
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
                         }
-                    }]
-                }]
-            }]
-        }, {
-            "type": "Questionnaire",
-            "id": "repeating-block-2",
-            "title": "Block 3",
-            "sections": [{
-                "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                "description": "",
-                "id": "repeating-section-2",
-                "questions": [{
-                    "id": "repeating-question-2",
-                    "title": "",
-                    "description": "",
-                    "type": "General",
-                    "answers": [{
-                        "q_code": "4",
-                        "guidance": "",
-                        "id": "what-is-your-shoe-size",
-                        "label": "What is their shoe size?",
-                        "mandatory": true,
-                        "type": "PositiveInteger",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please answer before continuing."
-                            }
+                    ]
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "repeating-block-2",
+                    "title": "Block 3",
+                    "sections": [
+                        {
+                            "title": "{{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                            "description": "",
+                            "id": "repeating-section-2",
+                            "questions": [
+                                {
+                                    "id": "repeating-question-2",
+                                    "title": "",
+                                    "description": "",
+                                    "type": "General",
+                                    "answers": [
+                                        {
+                                            "q_code": "4",
+                                            "guidance": "",
+                                            "id": "what-is-your-shoe-size",
+                                            "label": "What is their shoe size?",
+                                            "mandatory": true,
+                                            "type": "PositiveInteger",
+                                            "validation": {
+                                                "messages": {
+                                                    "MANDATORY": "Please answer before continuing."
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
                         }
-                    }]
-                }]
-            }]
-        }],
-        "id": "repeating-group",
-        "title": "Group 2",
-        "routing_rules": [{
-            "repeat": {
-                "type": "answer_count",
-                "answer_id": "first-name",
-                "navigation_label_answer_ids":["first-name", "last-name"]
-            }
-        }]
-    },
-    {
-        "blocks": [
-            {
-                "type": "Summary",
-                "id": "summary"
-            }
-
-        ],
-        "id": "summary-group",
-        "title": "",
-        "hide_in_navigation": true
-    }]
+                    ]
+                }
+            ],
+            "id": "repeating-group",
+            "title": "Group 2",
+            "routing_rules": [
+                {
+                    "repeat": {
+                        "type": "answer_count",
+                        "answer_id": "first-name",
+                        "navigation_label_answer_ids": [
+                            "first-name",
+                            "last-name"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "blocks": [
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "summary-group",
+            "title": "",
+            "hide_in_navigation": true
+        }
+    ]
 }
