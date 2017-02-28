@@ -61,7 +61,7 @@ class TestFormHelper(unittest.TestCase):
         survey = load_schema_file("1_0102.json")
 
         block_json = SchemaHelper.get_block(survey, "reporting-period")
-        location = SchemaHelper.get_first_location(survey)
+        location = Location('rsi', 0, 'reporting-period')
         error_messages = SchemaHelper.get_messages(survey)
 
         form, _ = get_form_for_location(block_json, location, AnswerStore([

@@ -16,7 +16,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.assertNotIn('Previous', content)
 
     def test_previous_link_appears_on_page_following_introduction(self):
-        base_url = '/questionnaire/test/final_confirmation/789/'
+        base_url = '/questionnaire/test/final_confirmation/789/14ba4707-321d-441d-8d21-b8367366e766/0/'
 
         # Given
         token = create_token('final_confirmation', 'test')
@@ -31,7 +31,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         block_one_url, resp = self.postRedirectGet(base_url + 'introduction', post_data)
 
         content = resp.get_data(True)
-        self.assertNotRegex(content, 'Previous')
+        self.assertIn('Previous', content)
 
         post_data = {
             "ca3ce3a3-ae44-4e30-8f85-5b6a7a2fb23c": " Bacon",
@@ -44,7 +44,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.assertIn('Previous', content)
 
     def test_previous_link_doesnt_appear_on_thank_you(self):
-        base_url = '/questionnaire/test/final_confirmation/789/'
+        base_url = '/questionnaire/test/final_confirmation/789/14ba4707-321d-441d-8d21-b8367366e766/0/'
 
         # Given
         token = create_token('final_confirmation', 'test')
@@ -68,7 +68,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
             "action[save_continue]": "Submit answers"
         }
 
-        final_url, resp = self.postRedirectGet(base_url + 'submit-answers', post_data)
+        final_url, resp = self.postRedirectGet('/questionnaire/test/final_confirmation/789/submit-answers', post_data)
 
         content = resp.get_data(True)
         self.assertTrue(final_url.endswith('thank-you'))

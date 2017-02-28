@@ -8,17 +8,11 @@
     "description": "A test schema for different date formats",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "introduction": {
-        "description": "",
-        "information_to_provide": [
-            "dates"
-        ]
-    },
     "groups": [
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "date-block",
                     "sections": [
                         {
@@ -137,6 +131,10 @@
                         }
                     ],
                     "title": "Date Examples"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
             ],
             "id": "a23d36db-6b07-4ce0-94b2-a843369511e3",

@@ -65,7 +65,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegex(resp.location, mci_test_urls.MCI_0205_SUMMARY_REGEX)
+        self.assertRegex(resp.location, mci_test_urls.MCI_0205_SUMMARY)
         resp = self.client.get(resp.location, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
 
@@ -79,11 +79,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         post_data = {
             "action[submit_answers]": 'Submit answers'
         }
-        resp = self.client.post(mci_test_urls.MCI_0205_SUMMARY, data=post_data, follow_redirects=False)
-        self.assertEqual(resp.status_code, 302)
-        self.assertRegex(resp.location, mci_test_urls.MCI_0205_THANKYOU_REGEX)
-        resp = self.client.get(resp.location, follow_redirects=True)
-        self.assertEqual(resp.status_code, 200)
+        _, resp = self.postRedirectGet('/questionnaire/1/0205/789/submit-answers', post_data)
 
         # We are on the thank you page
         content = resp.get_data(True)

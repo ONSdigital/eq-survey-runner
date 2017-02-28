@@ -9,9 +9,16 @@ class TestSchemaHelper(unittest.TestCase):
     def test_first_block_id(self):
         survey = load_schema_file("test_repeating_household.json")
 
-        first_block_id = "household-composition"
+        first_block_id = "introduction"
 
         self.assertEqual(SchemaHelper.get_first_block_id(survey), first_block_id)
+
+    def test_last_block_id(self):
+        survey = load_schema_file("test_repeating_household.json")
+
+        last_block_id = "summary"
+
+        self.assertEqual(SchemaHelper.get_last_block_id(survey), last_block_id)
 
     def test_first_group_id(self):
         survey = load_schema_file("test_repeating_household.json")
@@ -23,7 +30,7 @@ class TestSchemaHelper(unittest.TestCase):
     def test_last_group_id(self):
         survey = load_schema_file("test_repeating_household.json")
 
-        last_group_id = "repeating-group"
+        last_group_id = "summary-group"
 
         self.assertEqual(last_group_id, SchemaHelper.get_last_group_id(survey))
 
@@ -31,13 +38,13 @@ class TestSchemaHelper(unittest.TestCase):
         survey = load_schema_file("test_repeating_household.json")
         blocks = [b for b in SchemaHelper.get_blocks(survey)]
 
-        self.assertEqual(len(blocks), 3)
+        self.assertEqual(len(blocks), 5)
 
     def test_get_groups(self):
         survey = load_schema_file("test_repeating_household.json")
         groups = [group for group in SchemaHelper.get_groups(survey)]
 
-        self.assertEqual(len(groups), 2)
+        self.assertEqual(len(groups), 3)
 
     def test_get_group(self):
         survey = load_schema_file("test_repeating_household.json")

@@ -111,14 +111,10 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertEqual(resp.status_code, 200)
         return resp
 
-    def complete_survey(self, summary_page, form_type_id):
+    def complete_survey(self, form_type):
         # Submit answers
         post_data = {
             "action[submit_answers]": "Submit answers"
         }
-        resp = self.client.post(summary_page, data=post_data, follow_redirects=False)
-
-        self.assertEqual(resp.status_code, 302)
-        self.assertRegex(resp.location, r'/questionnaire\/0\/' + form_type_id + r'\/789\/thank-you$')
-        resp = self.client.get(resp.location, follow_redirects=True)
-        self.assertEqual(resp.status_code, 200)
+        _, resp = self.postRedirectGet('/questionnaire/0/{form_type}/789/submit-answers'.format(form_type=form_type), post_data)
+        return resp

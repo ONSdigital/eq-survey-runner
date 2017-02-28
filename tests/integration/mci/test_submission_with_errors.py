@@ -59,8 +59,4 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         post_data = {
             "action[submit_answers]": "Submit answers"
         }
-        resp = self.client.post(mci_test_urls.MCI_0205_SUBMIT, data=post_data, follow_redirects=False)
-        self.assertEqual(resp.status_code, 302)
-        self.assertRegex(resp.location, block_one_url)
-        resp = self.client.get(resp.location, follow_redirects=True)
-        self.assertEqual(resp.status_code, 200)
+        self.postRedirectGet('/questionnaire/1/0205/789/submit-answers', post_data)

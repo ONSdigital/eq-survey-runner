@@ -72,7 +72,7 @@ class TestConfirmationPage(StarWarsTestCase):
         resp = self.submit_page(confirmation_page, form_data)
         self.assertNotEqual(resp.location, confirmation_page)
 
-        self.complete_survey(confirmation_page, 'rogue_one')
+        self.complete_survey('rogue_one')
 
     def rogue_one_login_and_check_introduction_text(self):
         token = create_token('rogue_one', '0')

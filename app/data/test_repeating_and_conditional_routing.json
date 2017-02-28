@@ -8,12 +8,13 @@
     "description": "",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "introduction": {
-        "description": ""
-    },
     "groups": [{
         "blocks": [{
-            "type": "questionnaire",
+                "type": "Introduction",
+                "id": "introduction",
+                "title": "Introduction"
+            },{
+            "type": "Questionnaire",
             "id": "no-of-repeats",
             "title": "Block 1",
             "sections": [{
@@ -45,7 +46,7 @@
         "title": "Group 1"
     }, {
         "blocks": [{
-            "type": "questionnaire",
+            "type": "Questionnaire",
             "id": "repeated-block",
             "title": "Block 2",
             "sections": [{
@@ -113,7 +114,7 @@
                 }
             ]
         }, {
-            "type": "questionnaire",
+            "type": "Questionnaire",
             "id": "age-block",
             "title": "Block 3",
             "sections": [{
@@ -141,7 +142,7 @@
                 }]
             }]
         }, {
-            "type": "questionnaire",
+            "type": "Questionnaire",
             "id": "shoe-size-block",
             "title": "Block 4",
             "sections": [{
@@ -177,5 +178,17 @@
                 "type": "answer_value"
             }
         }]
+    },
+    {
+        "blocks": [
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+
+        ],
+        "id": "summary-group",
+        "title": "",
+        "hide_in_navigation": true
     }]
 }

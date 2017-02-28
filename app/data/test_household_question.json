@@ -8,15 +8,16 @@
     "description": "",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "introduction": {
-        "description": "",
-        "information_to_provide": []
-    },
     "groups": [
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "title": "Introduction"
+                },
+                {
+                    "type": "Questionnaire",
                     "id": "household-composition",
                     "sections": [
                         {
@@ -153,7 +154,12 @@
                             }
                         ],
                     "id": "household-summary",
+                    "type": "Questionnaire",
                     "title": ""
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
             ],
             "id": "multiple-questions-group",

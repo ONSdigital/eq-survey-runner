@@ -73,8 +73,6 @@ class SchemaParser(AbstractSchemaParser):
         if "sections" in schema.keys():
             for section_schema in schema['sections']:
                 self._parse_section(section_schema)
-        else:
-            raise SchemaParserException('Block must contain at least one section')
 
     def _parse_section(self, schema):
         """Parse a section element

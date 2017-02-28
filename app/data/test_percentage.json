@@ -8,10 +8,6 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test percentage input type",
-    "introduction": {
-        "description": "",
-        "information_to_provide": []
-    },
     "messages": {
       "INTEGER_TOO_LARGE": "Number cannot be greater than one hundred",
       "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -22,7 +18,7 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "block",
                     "sections": [
                         {
@@ -54,6 +50,10 @@
                     "routing_rules":[
                     ],
                     "title": ""
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }],
             "id": "group",
             "title": ""

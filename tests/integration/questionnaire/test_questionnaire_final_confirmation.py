@@ -16,7 +16,7 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post(base_url + '14ba4707-321d-441d-8d21-b8367366e766/0/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.location
@@ -48,11 +48,11 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
+        resp = self.client.post(base_url + '14ba4707-321d-441d-8d21-b8367366e766/0/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.location
 
-        resp = self.client.get(base_url + 'confirmation', follow_redirects=False)
+        resp = self.client.get(base_url + '14ba4707-321d-441d-8d21-b8367366e766/0/confirmation', follow_redirects=False)
         self.assertEqual(resp.location, block_one_url)
         self.assertEqual(resp.status_code, 302)

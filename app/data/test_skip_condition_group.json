@@ -13,7 +13,7 @@
             "title": "Do you want to skip the next group?",
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "do-you-want-to-skip",
                     "routing_rules":[],
                     "title": "",
@@ -73,7 +73,7 @@
             ],
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "should-skip",
                     "routing_rules":[],
                     "title": "",
@@ -110,7 +110,7 @@
             "title": "This group is required as a skipped group can't be the last group",
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "last-group-block",
                     "routing_rules":[],
                     "title": "",

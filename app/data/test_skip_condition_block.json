@@ -13,7 +13,7 @@
             "title": "Do you want to skip the next block?",
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "do-you-want-to-skip",
                     "routing_rules":[],
                     "title": "",
@@ -56,7 +56,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "should-skip",
                     "routing_rules":[],
                     "title": "",
@@ -98,6 +98,18 @@
                     ]
                 }
             ]
+        },
+        {
+            "blocks": [
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+
+            ],
+            "id": "summary-group",
+            "title": "",
+            "hide_in_navigation": true
         }
     ]
 }

@@ -8,10 +8,6 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo interstitial pages.",
-    "introduction": {
-        "description": "",
-        "information_to_provide": []
-    },
     "messages": {
         "INTEGER_TOO_LARGE": "Number is too large",
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
@@ -20,8 +16,14 @@
     "groups": [
         {
             "blocks": [
+                    {
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "title": "Introduction",
+                    "description": ""
+                },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "breakfast-block",
                     "sections": [
                         {
@@ -54,7 +56,7 @@
                     "title": ""
                 },
                 {
-                    "type": "interstitial",
+                    "type": "Interstitial",
                     "id": "breakfast-interstitial",
                     "title": "Breakfast Interstitial Page",
                     "sections": [
@@ -75,7 +77,7 @@
                     ]
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "lunch-block",
                     "sections": [
                         {

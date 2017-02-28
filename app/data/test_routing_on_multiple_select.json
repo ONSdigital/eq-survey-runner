@@ -8,14 +8,13 @@
     "description": "Test schema for routing on multiple selected answers",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "introduction": {
-    },
     "groups": [
         {
             "id": "group1",
             "title": "Group 1",
             "blocks": [
                 {
+                    "type": "Questionnaire",
                     "id": "block1",
                     "title": "Block 1",
                     "sections": [
@@ -74,6 +73,7 @@
                     ]
                 },
                 {
+                    "type": "Questionnaire",
                     "id": "block2",
                     "title": "Block 2",
                     "sections": [
@@ -99,6 +99,7 @@
                     ]
                 },
                 {
+                    "type": "Questionnaire",
                     "id": "block3",
                     "title": "Block 3",
                     "sections": [

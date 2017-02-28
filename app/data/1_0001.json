@@ -5,6 +5,19 @@
         {
             "blocks": [
                 {
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "information_to_provide": [
+                      "business strategy and practices",
+                      "innovation investment",
+                      "goods, services, and process innovation",
+                      "factors deemed important when deciding to initiate or terminate innovation",
+                      "public financial support for innovation",
+                      "turnover and exports",
+                      "skills and employment"
+                    ]
+                },
+                {
                     "id": "geographic-markets",
                     "sections": [
                         {
@@ -54,7 +67,7 @@
                             "title": "General Business Information"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "significant-events",
@@ -131,7 +144,7 @@
                             "title": "General Business Information"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "general-business-information-completed",
@@ -152,7 +165,7 @@
                             "title": "General Business Information"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "general-business-information",
@@ -270,7 +283,7 @@
                             "title": "Business Strategy and Practices"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "business-strategy-practices-completed",
@@ -291,7 +304,7 @@
                             "title": "Business Strategy & Practices"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "business-strategy-practices",
@@ -366,7 +379,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "years-internal-investment-r-d",
@@ -432,7 +445,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "expenditure-internal-investment-r-d",
@@ -473,7 +486,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "acquisition-internal-investment-r-d",
@@ -542,7 +555,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "amount-acquisition-internal-investment-r-d",
@@ -583,7 +596,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "investment-advanced-machinery",
@@ -643,7 +656,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "investment-purposes-innovation",
@@ -690,7 +703,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "amount-acquisition-advanced-machinery",
@@ -731,7 +744,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "investment-existing-knowledge-innovation",
@@ -800,7 +813,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "expenditure-existing-2016",
@@ -842,7 +855,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "investment-training-innovative",
@@ -911,7 +924,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "expenditure-training-innovative-2016",
@@ -952,7 +965,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "investment-design-future-innovation",
@@ -1021,7 +1034,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "expenditure-design-2016",
@@ -1062,7 +1075,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "investment-introduction-innovations",
@@ -1122,7 +1135,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "investment-purposes-innovation-2",
@@ -1174,7 +1187,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "expenditure-introduction-innovations-2016",
@@ -1215,7 +1228,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "innovation-investment-completed",
@@ -1236,7 +1249,7 @@
                             "title": "Innovation Investment"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "innovation-investment",
@@ -1320,7 +1333,7 @@
                             "title": "Goods and Services Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "entity-developed-these-goods",
@@ -1367,7 +1380,7 @@
                             "title": "Goods and Services Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "introduce-significantly-improvement",
@@ -1449,7 +1462,7 @@
                             "title": "Goods and Services Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "entity-mainly-developed-these",
@@ -1496,7 +1509,7 @@
                             "title": "Goods and Services Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "new-goods-services-innovations",
@@ -1546,7 +1559,7 @@
                             "title": "Goods and Services Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "goods-services-innovations-new",
@@ -1596,7 +1609,7 @@
                             "title": "Goods and Services Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "percentage-turnover-2016",
@@ -1699,7 +1712,7 @@
                             "title": "Goods and Services Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "goods-and-services-innovation-completed",
@@ -1720,7 +1733,7 @@
                             "title": "Goods and Services Innovation"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "goods-services-innovation",
@@ -1797,7 +1810,7 @@
                             "title": "Process Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "developed-processes",
@@ -1844,7 +1857,7 @@
                             "title": "Process Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "improved-processes",
@@ -1885,7 +1898,7 @@
                             "title": "Process Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "process-innovation-completed",
@@ -1906,7 +1919,7 @@
                             "title": "Process Innovation"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "process-innovation",
@@ -1989,7 +2002,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-economic",
@@ -2045,7 +2058,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-costs",
@@ -2094,7 +2107,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-finance",
@@ -2143,7 +2156,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-available-finance",
@@ -2192,7 +2205,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-lack-qualified",
@@ -2241,7 +2254,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-lack-technology",
@@ -2290,7 +2303,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-lack-information",
@@ -2339,7 +2352,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-dominated",
@@ -2388,7 +2401,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-uncertain",
@@ -2437,7 +2450,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-government",
@@ -2486,7 +2499,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-eu",
@@ -2535,7 +2548,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraining-innovation-referendum",
@@ -2683,7 +2696,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                  {
                     "id": "not-necessary-possible",
@@ -2735,7 +2748,7 @@
                             "title": "Constraints on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "constraints-on-innovation-completed",
@@ -2756,7 +2769,7 @@
                             "title": "Constraints on Innovation "
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "constraints-on-innovation",
@@ -2811,7 +2824,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-new-markets",
@@ -2860,7 +2873,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-market-share",
@@ -2909,7 +2922,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-quality",
@@ -2958,7 +2971,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-flexibility",
@@ -3007,7 +3020,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-capacity",
@@ -3056,7 +3069,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-value",
@@ -3105,7 +3118,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-reducing-cost",
@@ -3154,7 +3167,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-health-safety",
@@ -3203,7 +3216,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-environmental",
@@ -3252,7 +3265,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-replacing",
@@ -3301,7 +3314,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-regulatory",
@@ -3350,7 +3363,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "factors-affecting-completed",
@@ -3371,7 +3384,7 @@
                             "title": "Factors Affecting Innovation"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "factors-affecting-innovation",
@@ -3517,7 +3530,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-suppliers",
@@ -3566,7 +3579,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-client",
@@ -3615,7 +3628,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-public-sector",
@@ -3665,7 +3678,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-competitors",
@@ -3714,7 +3727,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-consultants",
@@ -3763,7 +3776,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-universities",
@@ -3812,7 +3825,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-government",
@@ -3861,7 +3874,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-conferences",
@@ -3910,7 +3923,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-associations",
@@ -3959,7 +3972,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-standards",
@@ -4008,7 +4021,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "importances-information-publications",
@@ -4057,7 +4070,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "information-needed-for-innovation-completed",
@@ -4078,7 +4091,7 @@
                             "title": "Information Needed for Innovation"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "information-needed-for-innovation",
@@ -4227,7 +4240,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "co-operation-suppliers",
@@ -4279,7 +4292,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "co-operation-private-sector",
@@ -4331,7 +4344,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "co-operation-public-sector",
@@ -4384,7 +4397,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "co-operation-competitors",
@@ -4436,7 +4449,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "co-operation-consultants",
@@ -4488,7 +4501,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "co-operation-institutions",
@@ -4540,7 +4553,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "co-operation-government",
@@ -4592,7 +4605,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "innovations-protected-patents",
@@ -4641,7 +4654,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "innovations-protected-design",
@@ -4690,7 +4703,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "innovations-protected-copyright",
@@ -4739,7 +4752,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "innovations-protected-trademark",
@@ -4788,7 +4801,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "innovations-protected-lead-time",
@@ -4837,7 +4850,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "innovations-protected-services",
@@ -4886,7 +4899,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "innovations-protected-secrecy",
@@ -4935,7 +4948,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "co-operation-on-innovation-completed",
@@ -4956,7 +4969,7 @@
                             "title": "Co-operation on Innovation"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "co-operation-on-innovation",
@@ -5166,7 +5179,7 @@
                             "title": "Public Financial Support for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "kind-financial-central-government-support",
@@ -5233,7 +5246,7 @@
                             "title": "Public Financial Support for Innovation"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "public-financial-support-for-innovation-completed",
@@ -5254,7 +5267,7 @@
                             "title": "Public Financial Support for Innovation"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "public-financial-support-for-innovation",
@@ -5292,7 +5305,7 @@
                             "title": "Turnover and Exports"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "turnover-2016",
@@ -5324,7 +5337,7 @@
                             "title": "Turnover and Exports"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "exports-2016",
@@ -5356,7 +5369,7 @@
                             "title": "Turnover and Exports"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "turnover-and-exports-completed",
@@ -5377,7 +5390,7 @@
                             "title": "Turnover and Exports"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "turnover-and-exports",
@@ -5415,7 +5428,7 @@
                             "title": "Employees and Skills"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "employees-2016",
@@ -5447,7 +5460,7 @@
                             "title": "Employees and Skills"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "employees-qualifications-2016",
@@ -5507,7 +5520,7 @@
                             "title": "Employees and Skills"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "employees-in-house-skills",
@@ -5569,7 +5582,7 @@
                             "title": "Employees and Skills"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "employees-and-skills-completed",
@@ -5590,7 +5603,7 @@
                             "title": "Employees and Skills"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Interstitial"
                 }
             ],
             "id": "employees-and-skills",
@@ -5628,7 +5641,7 @@
                             "title": "General Information"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "how-long",
@@ -5678,7 +5691,7 @@
                             "title": "General Information"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 },
                 {
                     "id": "approached-telephone",
@@ -5719,7 +5732,7 @@
                             "title": "General Information"
                         }
                     ],
-                    "type": "questionnaire"
+                    "type": "Questionnaire"
                 }
             ],
             "id": "general-information",
@@ -5753,7 +5766,11 @@
                             "title": "You are now ready to submit this survey"
                         }
                     ],
-                    "type": "interstitial"
+                    "type": "Confirmation"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
             ],
             "hide_in_navigation": true,
@@ -5773,17 +5790,5 @@
     "survey_id": "144",
     "theme": "ukis",
     "legal_basis": "Voluntary",
-    "introduction": {
-        "description": "",
-        "information_to_provide": [
-          "business strategy and practices",
-          "innovation investment",
-          "goods, services, and process innovation",
-          "factors deemed important when deciding to initiate or terminate innovation",
-          "public financial support for innovation",
-          "turnover and exports",
-          "skills and employment"
-        ]
-    },
     "title": "UK Innovation Survey"
 }

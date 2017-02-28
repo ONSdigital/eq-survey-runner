@@ -8,14 +8,15 @@
     "description": "Test with a confirmation page instead of a summary",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "introduction": {
-        "description": ""
-    },
     "groups": [
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Introduction",
+                    "id": "introduction"
+                },
+                {
+                    "type": "Questionnaire",
                     "id": "block-1",
                     "sections": [
                         {
@@ -122,7 +123,7 @@
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "26f2c4b3-28ac-4072-9f18-a6a6c6f660db",
                     "sections": [
                         {
@@ -166,14 +167,14 @@
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "5e633f04-073a-44c0-a9da-a7cc2116b937"
+                                "id" : "rogue-one-group-last-block"
                             }
                         }
                     ],
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "cbb1f973-7fbc-4e96-bd7b-47a8d8056a46",
                     "sections": [
                         {
@@ -217,14 +218,14 @@
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "5e633f04-073a-44c0-a9da-a7cc2116b937"
+                                "id" : "rogue-one-group-last-block"
                             }
                         }
                     ],
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "9b091307-e14c-4211-9104-91e3975d6910",
                     "sections": [
                         {
@@ -268,14 +269,14 @@
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "5e633f04-073a-44c0-a9da-a7cc2116b937"
+                                "id" : "rogue-one-group-last-block"
                             }
                         }
                     ],
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "b4f8e11a-dac9-4554-ba44-55fc5c5aebcb",
                     "sections": [
                         {
@@ -319,15 +320,15 @@
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "5e633f04-073a-44c0-a9da-a7cc2116b937"
+                                "id" : "rogue-one-group-last-block"
                             }
                         }
                     ],
                     "title": ""
                 },
                 {
-                    "type": "questionnaire",
-                    "id": "5e633f04-073a-44c0-a9da-a7cc2116b937",
+                    "type": "Questionnaire",
+                    "id": "rogue-one-group-last-block",
                     "sections": [
                         {
                             "description": "",
@@ -364,8 +365,20 @@
                     "title": ""
                 }
             ],
-            "id": "82504ab4-de5d-41fd-9a86-9ad5ea483296",
+            "id": "rogue-one-group",
             "title": ""
+        },
+        {
+            "blocks": [
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+
+            ],
+            "id": "summary-group",
+            "title": "",
+            "hide_in_navigation": true
         }
     ]
 }

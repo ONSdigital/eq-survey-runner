@@ -8,16 +8,13 @@
   "description": "",
   "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-  "introduction": {
-		"description": "<p>Test Survey - Checkbox and Radio option descriptions</p>"
-	},
   "groups": [
     {
       "id": "14ba4707-321d-441d-8d21-b8367366e766",
       "title": "Did this business make major changes in the following areas?",
       "blocks": [
         {
-          "type": "questionnaire",
+          "type": "Questionnaire",
           "id": "block-1",
           "title": "Did this business make major changes in the following areas?",
           "sections": [
@@ -71,7 +68,7 @@
           ]
         },
         {
-          "type": "questionnaire",
+          "type": "Questionnaire",
           "id": "a78fcaa4-dd82-4208-97dd-2d48dfeded80",
           "title": "Did this business make major changes in the following areas?",
           "sections": [

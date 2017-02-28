@@ -16,6 +16,7 @@
             "title": "Timeout",
             "blocks": [
                 {
+                    "type": "Questionnaire",
                     "id": "timeout-block",
                     "sections": [
                         {

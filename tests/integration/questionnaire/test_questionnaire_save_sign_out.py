@@ -6,7 +6,7 @@ class TestSaveSignOut(IntegrationTestCase):
 
     def test_save_sign_out_with_mandatory_question_not_answered(self):
         # We can save and go to the sign-out page without having to fill in mandatory answer
-        base_url = '/questionnaire/1/0205/789/'
+        base_url = '/questionnaire/1/0205/789/mci/0/'
 
         # Given
         token = create_token('0205', '1')
@@ -38,7 +38,7 @@ class TestSaveSignOut(IntegrationTestCase):
 
     def test_save_sign_out_with_non_mandatory_validation_error(self):
         # We can't save if a validation error is caused, this doesn't include missing a mandatory question
-        base_url = '/questionnaire/1/0205/789/'
+        base_url = '/questionnaire/1/0205/789/mci/0/'
 
         # Given
         token = create_token('0205', '1')
@@ -68,8 +68,7 @@ class TestSaveSignOut(IntegrationTestCase):
 
         # If a user completes a block, but then goes back and uses save and come back on that block, that block
         # should no longer be considered complete and on re-authenticate it should return to it
-
-        base_url = '/questionnaire/1/0102/789/'
+        base_url = '/questionnaire/1/0102/789/rsi/0/'
 
         token = create_token('0102', '1')
         self.client.get('/session?token=' + token.decode(), follow_redirects=False)

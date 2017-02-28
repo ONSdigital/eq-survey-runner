@@ -6,13 +6,13 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestRepeatingHousehold(IntegrationTestCase):
 
-    INTRODUCTION_PAGE = '/questionnaire/test/repeating_household/789/introduction'
+    INTRODUCTION_PAGE = '/questionnaire/test/repeating_household/789/multiple-questions-group/0/introduction'
 
     def setUp(self):
-        super(TestRepeatingHousehold, self).setUp()
+        super().setUp()
 
         self.token = create_token('repeating_household', 'test')
-        self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
+        self.client.get('/session?token=' + self.token.decode(), follow_redirects=False)
         resp = self.client.post(
             self.INTRODUCTION_PAGE,
             data={'action[start_questionnaire]': 'Start Questionnaire'},

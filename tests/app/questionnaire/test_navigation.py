@@ -496,7 +496,7 @@ class TestNavigation(unittest.TestCase):
                 'completed': True,
                 'highlight': False,
                 'link_name': '',
-                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
+                'link_url': Location('multiple-questions-group', 0, 'introduction').url(metadata)
             },
             {
                 'repeating': True,

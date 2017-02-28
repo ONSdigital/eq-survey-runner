@@ -69,4 +69,4 @@ class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
-        self.assertRegex(resp.location, mci_test_urls.MCI_0203_SUMMARY_REGEX)
+        self.assertRegex(resp.location, mci_test_urls.MCI_0203_SUMMARY)

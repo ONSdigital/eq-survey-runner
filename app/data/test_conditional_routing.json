@@ -8,12 +8,9 @@
     "description": "",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "introduction": {
-        "description": ""
-    },
     "groups": [{
         "blocks": [{
-            "type": "questionnaire",
+            "type": "Questionnaire",
             "id": "conditional-routing-block",
             "title": "Test Conditional Routing",
             "sections": [{
@@ -82,7 +79,7 @@
             ]
         },
         {
-            "type": "questionnaire",
+            "type": "Questionnaire",
             "id": "response-yes",
             "title": "You responded yes",
             "sections": [{
@@ -114,7 +111,7 @@
             ]
         },
         {
-            "type": "questionnaire",
+            "type": "Questionnaire",
             "id": "response-no",
             "title": "You responded no",
             "sections": [{
