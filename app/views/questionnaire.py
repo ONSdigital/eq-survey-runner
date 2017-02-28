@@ -192,6 +192,7 @@ def get_sign_out(eq_id, form_type, collection_id):  # pylint: disable=unused-arg
                                                 analytics_ua_id=settings.EQ_UA_ID,
                                                 survey_id=g.schema_json['survey_id'])
     session_storage.clear()
+    logout_user()
     return signed_out_template
 
 
@@ -204,7 +205,8 @@ def get_timeout_continue(eq_id, form_type, collection_id):  # pylint: disable=un
 @questionnaire_blueprint.route('session-expired', methods=["GET"])
 @login_required
 def get_session_expired(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    _delete_user_data()
+    session_storage.clear()
+    logout_user()
     theme = g.schema_json.get('theme', None)
     logger.debug("theme selected", theme=theme)
     return render_theme_template(theme, template_name='session-expired.html',
