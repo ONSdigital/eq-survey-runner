@@ -43,6 +43,7 @@ def _build_exercise(metadata):
     return {
         "start_date": to_date(metadata["ref_p_start_date"]),
         "end_date": to_date(metadata["ref_p_end_date"]),
+        "period_str": metadata["period_str"],
         "employment_date": to_date(metadata["employment_date"]),
         "return_by": to_date(metadata["return_by"]),
         "region_code": metadata["region_code"],

@@ -7,6 +7,11 @@
             "description": "A lowercase alphanumeric string separated by hyphens.",
             "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
         },
+        "q_code": {
+            "type": "string",
+            "description": "A question code used by downstream systems to identify answers",
+            "pattern": "^[0-9a-z]+$"
+        },
         "skip_condition": {
             "description": "Allows an element to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
             "type": "array",
@@ -368,8 +373,7 @@
                                                                         "type": "string"
                                                                     },
                                                                     "q_code": {
-                                                                        "type": "string",
-                                                                        "pattern": "[0-9]+"
+                                                                        "$ref": "#/definitions/q_code"
                                                                     },
                                                                     "label": {
                                                                         "type": "string"
@@ -407,8 +411,7 @@
                                                                                     "type": "string"
                                                                                 },
                                                                                 "q_code": {
-                                                                                    "type": "string",
-                                                                                    "pattern": "[0-9]+"
+                                                                                    "$ref": "#/definitions/q_code"
                                                                                 },
                                                                                 "child_answer_id": {
                                                                                     "type": "string"
