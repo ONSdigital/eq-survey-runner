@@ -38,4 +38,4 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
         # Then
         self.assertEqual(resp.status_code, 302)
-        self.assertIn(mci_test_urls.MCI_0205_BLOCK1, resp.location)
+        self.assertIn(mci_test_urls.MCI_0205_INTRODUCTION, resp.location)

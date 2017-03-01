@@ -219,9 +219,9 @@ def get_session_expired(eq_id, form_type, collection_id):  # pylint: disable=unu
 def submit_answers(eq_id, form_type, collection_id):
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
-    is_valid, invalid_location = validate_all_answers(answer_store, metadata)
+    is_completed, invalid_location = is_survey_completed(answer_store, metadata)
 
-    if is_valid:
+    if is_completed:
         path_finder = PathFinder(g.schema_json, answer_store, metadata)
         submitter = SubmitterFactory.get_submitter()
         message = convert_answers(metadata, g.schema_json, answer_store, path_finder.get_routing_path())
@@ -240,17 +240,16 @@ def post_everyone_at_address_confirmation(eq_id, form_type, collection_id, group
     return post_block(eq_id, form_type, collection_id, group_id, group_instance, 'permanent-or-family-home')
 
 
-def validate_all_answers(answer_store, metadata):
+def is_survey_completed(answer_store, metadata):
     path_finder = PathFinder(g.schema_json, answer_store, metadata)
-    error_messages = SchemaHelper.get_messages(g.schema_json)
+    completed_blocks = get_completed_blocks(current_user)
 
     for location in path_finder.get_routing_path():
-        block_json = _render_schema(location)
-        form, _ = get_form_for_location(block_json, location, answer_store, error_messages)
+        if location.block_id in ['thank-you', 'summary', 'confirmation']:
+            continue
 
-        if not form.validate():
-            logger.debug("Failed validation", location=str(location))
-            return False, location
+        if location not in completed_blocks:
+                return False, location
 
     return True, None
 
