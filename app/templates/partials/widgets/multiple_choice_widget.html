@@ -11,15 +11,14 @@
   </legend>
 
   {% for option in form[answer.id] %}
-
     {% set input = {
       "class": "input input--" ~ widget_type ~ " js-focusable",
       "type": widget_type,
       "value": option.data,
       "name": option.name,
       "id": option.id,
-      "checked": "checked" if form.data[answer.id] and form.data[answer.id] != 'None' and option.data in form.data[answer.id],
-      "data-qa": "has-other-option" if answer['options'][loop.index0].child_answer_id
+      "checked": "checked" if option['checked'],
+      "data-qa": "has-other-option" if form.option_has_other(answer.id, loop.index0)
     } %}
 
     {% set label = {
@@ -38,9 +37,8 @@
         {% endif %}
       </label>
 
-      {% if answer['options'][loop.index0].child_answer_id %}
-        {% set child_answer_id = answer['options'][loop.index0].child_answer_id %}
-        {% set other_answer = form[child_answer_id] %}
+      {% if form.option_has_other(answer.id, loop.index0) %}
+        {% set other_answer = form.get_other_answer(answer.id, loop.index0) %}
 
         {% set other_label = {
           "class": "label mercury",
