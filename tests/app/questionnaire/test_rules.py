@@ -411,3 +411,18 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         number_of_repeats = evaluate_repeat(repeat, answer_store)
 
         self.assertEqual(number_of_repeats, 1)
+
+    def test_should_minus_one_from_maximum_repeats(self):
+        # Given
+        repeat = {
+            'answer_id': 'my_answer',
+            'type': 'answer_count_minus_one'
+        }
+        answer_store = AnswerStore()
+        for i in range(27):
+            answer_store.add(Answer(answer_id='my_answer', value='3', answer_instance=i))
+
+        # When
+        number_of_repeats = evaluate_repeat(repeat, answer_store)
+
+        self.assertEqual(number_of_repeats, 24)

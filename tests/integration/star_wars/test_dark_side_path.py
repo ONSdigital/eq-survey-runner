@@ -1,3 +1,4 @@
+from tests.integration.navigation import navigate_to_page
 from tests.integration.star_wars import BLOCK_2_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
@@ -14,7 +15,7 @@ class TestDarkSidePath(StarWarsTestCase):
 
         # Second page
         second_page = resp.location
-        resp = self.navigate_to_page(second_page)
+        resp = navigate_to_page(self.client, second_page)
 
         content = resp.get_data(True)
 

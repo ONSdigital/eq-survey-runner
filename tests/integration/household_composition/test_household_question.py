@@ -2,6 +2,7 @@ from werkzeug.datastructures import MultiDict
 
 from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
+from tests.integration.navigation import navigate_to_page
 
 
 class TestHouseholdQuestion(IntegrationTestCase):
@@ -127,7 +128,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.navigate_to_page(page)
+        resp = navigate_to_page(self.client, page)
         content = resp.get_data(True)
         form_data.add("household-0-first-name", 'John')
         form_data.add("household-2-first-name", 'Joe')
@@ -179,11 +180,6 @@ class TestHouseholdQuestion(IntegrationTestCase):
         self.assertEqual(resp.status_code, 302)
 
         return resp.location
-
-    def navigate_to_page(self, page):
-        resp = self.client.get(page, follow_redirects=False)
-        self.assertEqual(resp.status_code, 200)
-        return resp
 
     def household_answer_correct(self, resp_url, answer):
         form_data = MultiDict()
