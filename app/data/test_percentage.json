@@ -9,11 +9,11 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test percentage input type",
     "messages": {
-      "INTEGER_TOO_LARGE": "Number cannot be greater than one hundred",
-      "NEGATIVE_INTEGER": "Number cannot be less than zero",
-      "NOT_INTEGER": "Please enter an integer"
+        "INTEGER_TOO_LARGE": "Number cannot be greater than one hundred",
+        "NEGATIVE_INTEGER": "Number cannot be less than zero",
+        "NOT_INTEGER": "Please enter an integer"
     },
-    "navigation" : true,
+    "navigation": true,
     "groups": [
         {
             "blocks": [
@@ -25,7 +25,7 @@
                             "description": "",
                             "id": "section",
                             "questions": [
-                              {
+                                {
                                     "answers": [
                                         {
                                             "description": "Enter percentage of growth",
@@ -42,19 +42,20 @@
                                     "id": "question",
                                     "title": "",
                                     "type": "General"
-                              }
+                                }
                             ],
                             "title": "Percentage Input Test"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                     ],
                     "title": ""
                 },
                 {
                     "type": "Summary",
                     "id": "summary"
-                }],
+                }
+            ],
             "id": "group",
             "title": ""
         }

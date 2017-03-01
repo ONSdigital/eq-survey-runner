@@ -44,11 +44,10 @@
                                                     "label": "Bodhi Rook",
                                                     "value": "Bodhi Rook"
                                                 },
-                                                  {
+                                                {
                                                     "label": "Orson Krennic",
                                                     "value": "Orson Krennic"
                                                 }
-
                                             ],
                                             "q_code": "1",
                                             "type": "Radio",
@@ -66,58 +65,54 @@
                             "title": "Who do you want to know more about?"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "jyn-erso-like-this-page",
+                                "id": "jyn-erso-like-this-page",
                                 "when": [
                                     {
-                                        "id" : "character-answer",
+                                        "id": "character-answer",
                                         "condition": "equals",
-                                        "value":"Jyn Erso"
+                                        "value": "Jyn Erso"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
                                 "id": "cassian-andor-like-this-page",
                                 "when": [
                                     {
-                                        "id" : "character-answer",
+                                        "id": "character-answer",
                                         "condition": "equals",
-                                        "value":"Cassian Andor"
+                                        "value": "Cassian Andor"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
                                 "id": "bodhi-rook-like-this-page",
                                 "when": [
                                     {
-                                        "id" : "character-answer",
+                                        "id": "character-answer",
                                         "condition": "equals",
-                                        "value":"Bodhi Rook"
+                                        "value": "Bodhi Rook"
                                     }
                                 ]
                             }
-
                         },
                         {
                             "goto": {
                                 "id": "orson-krennic-like-this-page",
                                 "when": [
                                     {
-                                        "id" : "character-answer",
+                                        "id": "character-answer",
                                         "condition": "equals",
-                                        "value":"Orson Krennic"
+                                        "value": "Orson Krennic"
                                     }
                                 ]
                             }
-
                         }
                     ],
                     "title": ""
@@ -163,11 +158,11 @@
                             "title": "{{answers.character}}"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "film-takings"
+                                "id": "film-takings"
                             }
                         }
                     ],
@@ -214,11 +209,11 @@
                             "title": "{{answers.character}}"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "film-takings"
+                                "id": "film-takings"
                             }
                         }
                     ],
@@ -265,11 +260,11 @@
                             "title": "{{answers.character}}"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "film-takings"
+                                "id": "film-takings"
                             }
                         }
                     ],
@@ -316,11 +311,11 @@
                             "title": "{{answers.character}}"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
                                 "location": "block",
-                                "id" : "film-takings"
+                                "id": "film-takings"
                             }
                         }
                     ],
@@ -337,18 +332,18 @@
                                 {
                                     "answers": [
                                         {
-                                        "guidance": "",
-                                        "id": "film-takings-answer",
-                                        "label": "",
-                                        "mandatory": true,
-                                        "options": [],
-                                        "q_code": "2",
-                                        "type": "Currency",
-                                        "validation": {
-                                            "messages": {
-                                                "INTEGER_TOO_LARGE": "How much, fool you must be",
-                                                "NEGATIVE_INTEGER": "How can it be negative?",
-                                                "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                            "guidance": "",
+                                            "id": "film-takings-answer",
+                                            "label": "",
+                                            "mandatory": true,
+                                            "options": [],
+                                            "q_code": "2",
+                                            "type": "Currency",
+                                            "validation": {
+                                                "messages": {
+                                                    "INTEGER_TOO_LARGE": "How much, fool you must be",
+                                                    "NEGATIVE_INTEGER": "How can it be negative?",
+                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
                                                 }
                                             }
                                         }
@@ -374,7 +369,6 @@
                     "type": "Summary",
                     "id": "summary"
                 }
-
             ],
             "id": "summary-group",
             "title": "",

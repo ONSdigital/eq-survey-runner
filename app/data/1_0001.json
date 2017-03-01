@@ -8,13 +8,13 @@
                     "type": "Introduction",
                     "id": "introduction",
                     "information_to_provide": [
-                      "business strategy and practices",
-                      "innovation investment",
-                      "goods, services, and process innovation",
-                      "factors deemed important when deciding to initiate or terminate innovation",
-                      "public financial support for innovation",
-                      "turnover and exports",
-                      "skills and employment"
+                        "business strategy and practices",
+                        "innovation investment",
+                        "goods, services, and process innovation",
+                        "factors deemed important when deciding to initiate or terminate innovation",
+                        "public financial support for innovation",
+                        "turnover and exports",
+                        "skills and employment"
                     ]
                 },
                 {
@@ -322,7 +322,7 @@
                                     {
                                         "id": "internal-investment-r-d-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -391,7 +391,7 @@
                                     {
                                         "id": "years-internal-investment-r-d-answer",
                                         "condition": "contains",
-                                        "value":"2016"
+                                        "value": "2016"
                                     }
                                 ]
                             }
@@ -498,7 +498,7 @@
                                     {
                                         "id": "acquisition-internal-investment-r-d-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -608,7 +608,7 @@
                                     {
                                         "id": "investment-advanced-machinery-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -756,7 +756,7 @@
                                     {
                                         "id": "investment-existing-knowledge-innovation-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -833,7 +833,6 @@
                                             "options": [],
                                             "q_code": "1440",
                                             "type": "Currency"
-
                                         }
                                     ],
                                     "description": "",
@@ -867,7 +866,7 @@
                                     {
                                         "id": "investment-training-innovative-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -977,7 +976,7 @@
                                     {
                                         "id": "investment-design-future-innovation-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -1087,7 +1086,7 @@
                                     {
                                         "id": "investment-introduction-innovations-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -1267,7 +1266,7 @@
                                     {
                                         "id": "introducing-significantly-improved-goods-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -1392,7 +1391,7 @@
                                     {
                                         "id": "introduce-significantly-improvement-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -1404,7 +1403,7 @@
                                     {
                                         "id": "introducing-significantly-improved-goods-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -1630,7 +1629,7 @@
                                             "q_code": "0810",
                                             "type": "Percentage",
                                             "validation": {
-                                                "messages" : {
+                                                "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                                 }
                                             }
@@ -1644,7 +1643,7 @@
                                             "q_code": "0820",
                                             "type": "Percentage",
                                             "validation": {
-                                                "messages" : {
+                                                "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                                 }
                                             }
@@ -1658,7 +1657,7 @@
                                             "q_code": "0830",
                                             "type": "Percentage",
                                             "validation": {
-                                                "messages" : {
+                                                "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                                 }
                                             }
@@ -1672,7 +1671,7 @@
                                             "q_code": "0840",
                                             "type": "Percentage",
                                             "validation": {
-                                                "messages" : {
+                                                "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                                 }
                                             }
@@ -1687,7 +1686,7 @@
                                             "q_code": "10002",
                                             "type": "Percentage",
                                             "validation": {
-                                                "messages" : {
+                                                "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                                 }
                                             }
@@ -1751,7 +1750,7 @@
                                     {
                                         "id": "process-improved-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -2560,87 +2559,87 @@
                                     {
                                         "id": "business-changes-business-practices-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "business-changes-organising-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "business-changes-external-relationships-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "business-changes-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "internal-investment-r-d-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "acquisition-internal-investment-r-d-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "investment-advanced-machinery-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "investment-existing-knowledge-innovation-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "investment-training-innovative-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
                                     {
                                         "id": "investment-design-future-innovation-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "investment-introduction-innovations-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "introducing-significantly-improved-goods-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "introduce-significantly-improvement-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
                                     {
                                         "id": "process-improved-answer",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "constraints-innovation-activities-abandoned-answser",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
                                     {
                                         "id": "constraints-innovation-activities-scaled-back-answser",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     },
-                                     {
+                                    {
                                         "id": "constraints-innovation-activities-ongoing-2016-answser",
                                         "condition": "not equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -2698,7 +2697,7 @@
                     ],
                     "type": "Questionnaire"
                 },
-                 {
+                {
                     "id": "not-necessary-possible",
                     "sections": [
                         {
@@ -5078,7 +5077,7 @@
                                     {
                                         "id": "public-financial-support-central-government-answer",
                                         "condition": "equals",
-                                        "value":"Yes"
+                                        "value": "Yes"
                                     }
                                 ]
                             }
@@ -5481,7 +5480,7 @@
                                             "q_code": "2610",
                                             "type": "Percentage",
                                             "validation": {
-                                                "messages" : {
+                                                "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                                 }
                                             }
@@ -5495,7 +5494,7 @@
                                             "q_code": "2620",
                                             "type": "Percentage",
                                             "validation": {
-                                                "messages" : {
+                                                "messages": {
                                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                                 }
                                             }

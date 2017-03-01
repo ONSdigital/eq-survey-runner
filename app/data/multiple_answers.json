@@ -11,7 +11,6 @@
     "groups": [
         {
             "blocks": [
-
                 {
                     "type": "Questionnaire",
                     "id": "personal-details-block",
@@ -43,7 +42,7 @@
                                     "description": "",
                                     "id": "personal-details-question",
                                     "title": "Tell me about yourself",
-                                    "description" : "Answer the question with multiple answers",
+                                    "description": "Answer the question with multiple answers",
                                     "type": "General"
                                 }
                             ],

@@ -8,13 +8,16 @@
     "description": "Census England Household Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "navigation" : true,
+    "navigation": true,
     "groups": [
         {
             "id": "who-lives-here",
             "title": "Who lives here?",
             "completed_id": "who-lives-here-completed",
-            "highlight_when": ["who-lives-here-relationship", "who-lives-here-interstitial"],
+            "highlight_when": [
+                "who-lives-here-relationship",
+                "who-lives-here-interstitial"
+            ],
             "blocks": [
                 {
                     "type": "Questionnaire",
@@ -31,13 +34,13 @@
                                     "number": "1",
                                     "guidance": [
                                         {
-                                             "title": "Include",
-                                             "list": [
-                                                 "Yourself, if this is your permanent or family home",
-                                                 "Family members including partners, children and babies born on or before 9 April 2017",
-                                                 "Students and, or school children who live away from home during term time",
-                                                 "Housemates tenants or lodgers"
-                                             ]
+                                            "title": "Include",
+                                            "list": [
+                                                "Yourself, if this is your permanent or family home",
+                                                "Family members including partners, children and babies born on or before 9 April 2017",
+                                                "Students and, or school children who live away from home during term time",
+                                                "Housemates tenants or lodgers"
+                                            ]
                                         }
                                     ],
                                     "type": "General",
@@ -111,15 +114,15 @@
                                     "number": "1a",
                                     "guidance": [
                                         {
-                                             "title": "This could be:",
-                                             "list": [
-                                                 "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
-                                                 "People who work away from home within the UK if this is their permanent or family home",
-                                                 "Members of the Armed Forces if this is their permanent or family home",
-                                                 "People who are temporarily outside the UK for <b>less than 12 months</b>",
-                                                 "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
-                                                 "Other people who usually live here, including anyone temporarily away from home "
-                                             ]
+                                            "title": "This could be:",
+                                            "list": [
+                                                "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
+                                                "People who work away from home within the UK if this is their permanent or family home",
+                                                "Members of the Armed Forces if this is their permanent or family home",
+                                                "People who are temporarily outside the UK for <b>less than 12 months</b>",
+                                                "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
+                                                "Other people who usually live here, including anyone temporarily away from home "
+                                            ]
                                         }
                                     ],
                                     "type": "General",
@@ -191,13 +194,13 @@
                                     "number": "2",
                                     "guidance": [
                                         {
-                                             "title": "Include",
-                                             "list": [
-                                                 "Yourself, if this is your permanent or family home",
-                                                 "Family members including partners, children and babies born on or before 9 April 2017",
-                                                 "Students and, or school children who live away from home during term time",
-                                                 "Housemates tenants or lodgers"
-                                             ]
+                                            "title": "Include",
+                                            "list": [
+                                                "Yourself, if this is your permanent or family home",
+                                                "Family members including partners, children and babies born on or before 9 April 2017",
+                                                "Students and, or school children who live away from home during term time",
+                                                "Housemates tenants or lodgers"
+                                            ]
                                         }
                                     ],
                                     "type": "RepeatingAnswer",
@@ -252,15 +255,15 @@
                                     "description": "Please note that you will need to ensure that everyone is included because you will be unable to make changes later",
                                     "guidance": [
                                         {
-                                             "title": "Include",
-                                             "list": [
-                                                 "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
-                                                 "People who work away from home within the UK  if this is their permanent or family home",
-                                                 "Members of the Armed Forces if this is their permanent or family home",
-                                                 "People who are temporarily outside the UK for <b>less than 12 months</b>",
-                                                 "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
-                                                 "Other people who usually live here, including anyone temporarily away from home"
-                                             ]
+                                            "title": "Include",
+                                            "list": [
+                                                "People who usually live outside the UK who are staying in the UK for <b>three months or more</b>",
+                                                "People who work away from home within the UK  if this is their permanent or family home",
+                                                "Members of the Armed Forces if this is their permanent or family home",
+                                                "People who are temporarily outside the UK for <b>less than 12 months</b>",
+                                                "People staying temporarily who usually live in the UK but do not have another UK address, for example relatives, friends",
+                                                "Other people who usually live here, including anyone temporarily away from home"
+                                            ]
                                         }
                                     ],
                                     "type": "General",
@@ -293,7 +296,7 @@
                                     {
                                         "id": "everyone-at-address-confirmation-answer",
                                         "condition": "equals",
-                                        "value":"No, I need to add another person"
+                                        "value": "No, I need to add another person"
                                     }
                                 ]
                             }
@@ -320,13 +323,13 @@
                                     "number": "4",
                                     "guidance": [
                                         {
-                                             "title": "Include",
-                                             "list": [
-                                                 "People who usually live somewhere else in the UK. For example, boy or girl friends, relatives",
-                                                 "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
-                                                 "People who usually live outside the UK who are visiting the UK for less than three months",
-                                                 "People here on holiday"
-                                             ]
+                                            "title": "Include",
+                                            "list": [
+                                                "People who usually live somewhere else in the UK. For example, boy or girl friends, relatives",
+                                                "People staying here because it is their second address, for example, for work. Their permanent or family home is elsewhere",
+                                                "People who usually live outside the UK who are visiting the UK for less than three months",
+                                                "People here on holiday"
+                                            ]
                                         }
                                     ],
                                     "type": "General",
@@ -380,14 +383,14 @@
                                     "description": "If members are not related, select the ‘unrelated’ option",
                                     "guidance": [
                                         {
-                                             "list": [
-                                                 "Select the relationships between members of your household",
-                                                 "If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.",
-                                                 "If you have foster children living with you, select the ‘Unrelated’ option.",
-                                                 "Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.",
-                                                 "Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.",
-                                                 "If none of the options fully reflects your relationship, please select the one which you feel best describes your situation."
-                                             ]
+                                            "list": [
+                                                "Select the relationships between members of your household",
+                                                "If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.",
+                                                "If you have foster children living with you, select the ‘Unrelated’ option.",
+                                                "Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.",
+                                                "Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.",
+                                                "If none of the options fully reflects your relationship, please select the one which you feel best describes your situation."
+                                            ]
                                         }
                                     ],
                                     "type": "Relationship",
@@ -887,7 +890,7 @@
                         },
                         {
                             "goto": {
-                                "id" : "landlord"
+                                "id": "landlord"
                             }
                         }
                     ]
@@ -982,18 +985,18 @@
                     ]
                 },
                 {
-                     "type": "Interstitial",
-                     "id": "household-and-accommodation-completed",
-                     "title": "You have completed Household and Accommodation",
-                     "sections": [
-                         {
-                             "title": "You have successfully completed the ‘Household and Accommodation’ section",
-                             "id": "household-and-accommodation-completed-section",
-                             "questions": [
-                             ]
-                         }
-                     ]
-                 }
+                    "type": "Interstitial",
+                    "id": "household-and-accommodation-completed",
+                    "title": "You have completed Household and Accommodation",
+                    "sections": [
+                        {
+                            "title": "You have successfully completed the ‘Household and Accommodation’ section",
+                            "id": "household-and-accommodation-completed-section",
+                            "questions": [
+                            ]
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -1004,7 +1007,10 @@
                     "repeat": {
                         "type": "answer_count",
                         "answer_id": "first-name",
-                        "navigation_label_answer_ids":["first-name", "last-name"]
+                        "navigation_label_answer_ids": [
+                            "first-name",
+                            "last-name"
+                        ]
                     }
                 }
             ],
@@ -1119,7 +1125,6 @@
                                     ]
                                 }
                             ]
-
                         }
                     ]
                 },
@@ -2062,7 +2067,7 @@
                                     "description": "<div><ul><li>Long-term physical or mental ill-health/disability?</li><li>Problems related to old age?</li></ul></div>",
                                     "guidance": [
                                         {
-                                           "description": "<strong>Exclude</strong> anything you do as part of your paid employment"
+                                            "description": "<strong>Exclude</strong> anything you do as part of your paid employment"
                                         }
                                     ],
                                     "type": "General",
@@ -2468,7 +2473,7 @@
                                         "value": "Yes"
                                     },
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -2615,7 +2620,7 @@
                                         "value": "Yes"
                                     },
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -2676,7 +2681,7 @@
                                                 {
                                                     "label": "Any other Mixed / multiple ethnic background (please specify)",
                                                     "value": "Other",
-                                                    "child_answer_id":  "mixed-ethnic-group-answer-other"
+                                                    "child_answer_id": "mixed-ethnic-group-answer-other"
                                                 }
                                             ],
                                             "type": "Radio"
@@ -2704,7 +2709,7 @@
                                         "value": "Yes"
                                     },
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -2797,7 +2802,7 @@
                                         "value": "Yes"
                                     },
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -2882,7 +2887,7 @@
                                         "value": "Yes"
                                     },
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -2963,7 +2968,7 @@
                                         "value": "Yes"
                                     },
                                     {
-                                        "meta" : "variant_flags.sexual_identity",
+                                        "meta": "variant_flags.sexual_identity",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -4557,24 +4562,26 @@
                     ]
                 },
                 {
-                     "type": "Interstitial",
-                     "id": "household-member-completed",
-                     "title": "You have completed:",
-                     "sections": [
-                         {
-                             "title": "There are no more questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                             "id": "household-member-completed-section",
-                             "questions": [
-                             ]
-                         }
-                     ]
-                 }
+                    "type": "Interstitial",
+                    "id": "household-member-completed",
+                    "title": "You have completed:",
+                    "sections": [
+                        {
+                            "title": "There are no more questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                            "id": "household-member-completed-section",
+                            "questions": [
+                            ]
+                        }
+                    ]
+                }
             ]
         },
         {
             "id": "visitors",
             "title": "Visitors",
-            "highlight_when": ["visitors-interstitial"],
+            "highlight_when": [
+                "visitors-interstitial"
+            ],
             "completed_id": "visitors-completed",
             "routing_rules": [
                 {
@@ -4820,18 +4827,18 @@
                     ]
                 },
                 {
-                     "type": "Interstitial",
-                     "id": "visitor-completed",
-                     "title": "Visitor completed",
-                     "sections": [
-                         {
-                             "title": "You have completed all questions for Visitor {{group_instance + 1}}",
-                             "id": "visitor-completed-section",
-                             "questions": [
-                             ]
-                         }
-                     ]
-                 }
+                    "type": "Interstitial",
+                    "id": "visitor-completed",
+                    "title": "Visitor completed",
+                    "sections": [
+                        {
+                            "title": "You have completed all questions for Visitor {{group_instance + 1}}",
+                            "id": "visitor-completed-section",
+                            "questions": [
+                            ]
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -4849,12 +4856,12 @@
                     ]
                 },
                 {
-                   "when": [
-                       {
-                           "id" : "overnight-visitors-answer",
-                           "condition": "not set"
-                       }
-                   ]
+                    "when": [
+                        {
+                            "id": "overnight-visitors-answer",
+                            "condition": "not set"
+                        }
+                    ]
                 }
             ],
             "blocks": [
@@ -4902,12 +4909,12 @@
                                     "type": "General",
                                     "guidance": [
                                         {
-                                             "title": "Please note:",
-                                             "list": [
-                                                 "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
-                                                 "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
-                                                 "After submission you will have an opportunity to provide feedback on your experience."
-                                             ]
+                                            "title": "Please note:",
+                                            "list": [
+                                                "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                                                "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
+                                                "After submission you will have an opportunity to provide feedback on your experience."
+                                            ]
                                         }
                                     ]
                                 }

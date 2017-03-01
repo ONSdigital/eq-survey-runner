@@ -15,7 +15,7 @@
                 {
                     "type": "Questionnaire",
                     "id": "do-you-want-to-skip",
-                    "routing_rules":[],
+                    "routing_rules": [],
                     "title": "",
                     "sections": [
                         {
@@ -23,7 +23,7 @@
                             "id": "do-you-want-to-skip-section",
                             "title": "Do you want to skip?",
                             "questions": [
-                              {
+                                {
                                     "description": "",
                                     "id": "do-you-want-to-skip-question",
                                     "title": "Do you want to skip?",
@@ -50,7 +50,7 @@
                                             }
                                         }
                                     ]
-                              }
+                                }
                             ]
                         }
                     ]
@@ -62,20 +62,20 @@
             "title": "This question may or may not be skipped",
             "skip_condition": [
                 {
-                   "when": [
-                       {
-                           "id" : "do-you-want-to-skip-answer",
-                           "condition": "equals",
-                           "value": "Yes"
-                       }
-                   ]
+                    "when": [
+                        {
+                            "id": "do-you-want-to-skip-answer",
+                            "condition": "equals",
+                            "value": "Yes"
+                        }
+                    ]
                 }
             ],
             "blocks": [
                 {
                     "type": "Questionnaire",
                     "id": "should-skip",
-                    "routing_rules":[],
+                    "routing_rules": [],
                     "title": "",
                     "sections": [
                         {
@@ -83,7 +83,7 @@
                             "id": "should-skip-section",
                             "title": "Why didn't you skip the group?",
                             "questions": [
-                              {
+                                {
                                     "description": "",
                                     "id": "should-skip-question",
                                     "title": "Do you want to skip?",
@@ -98,7 +98,7 @@
                                             "type": "TextArea"
                                         }
                                     ]
-                              }
+                                }
                             ]
                         }
                     ]
@@ -112,7 +112,7 @@
                 {
                     "type": "Questionnaire",
                     "id": "last-group-block",
-                    "routing_rules":[],
+                    "routing_rules": [],
                     "title": "",
                     "sections": [
                         {
@@ -120,7 +120,7 @@
                             "id": "last-group-section",
                             "title": "This group is required as a skipped group can't be the last group",
                             "questions": [
-                              {
+                                {
                                     "description": "",
                                     "id": "last-group-question",
                                     "title": "This group is required as a skipped group can't be the last group",
@@ -135,7 +135,7 @@
                                             "type": "TextField"
                                         }
                                     ]
-                              }
+                                }
                             ]
                         }
                     ]

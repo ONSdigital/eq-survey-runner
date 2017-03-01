@@ -15,7 +15,7 @@
                 {
                     "type": "Questionnaire",
                     "id": "do-you-want-to-skip",
-                    "routing_rules":[],
+                    "routing_rules": [],
                     "title": "",
                     "sections": [
                         {
@@ -23,7 +23,7 @@
                             "id": "do-you-want-to-skip-section",
                             "title": "Do you want to skip?",
                             "questions": [
-                              {
+                                {
                                     "description": "",
                                     "id": "do-you-want-to-skip-question",
                                     "title": "Do you want to skip?",
@@ -50,7 +50,7 @@
                                             }
                                         }
                                     ]
-                              }
+                                }
                             ]
                         }
                     ]
@@ -58,7 +58,7 @@
                 {
                     "type": "Questionnaire",
                     "id": "should-skip",
-                    "routing_rules":[],
+                    "routing_rules": [],
                     "title": "",
                     "sections": [
                         {
@@ -66,7 +66,7 @@
                             "id": "should-skip-section",
                             "title": "Why didn't you skip the block?",
                             "questions": [
-                              {
+                                {
                                     "description": "",
                                     "id": "should-skip-question",
                                     "title": "Do you want to skip?",
@@ -81,19 +81,19 @@
                                             "type": "TextArea"
                                         }
                                     ]
-                              }
+                                }
                             ]
                         }
                     ],
                     "skip_condition": [
                         {
-                           "when": [
-                               {
-                                   "id" : "do-you-want-to-skip-answer",
-                                   "condition": "equals",
-                                   "value": "Yes"
-                               }
-                           ]
+                            "when": [
+                                {
+                                    "id": "do-you-want-to-skip-answer",
+                                    "condition": "equals",
+                                    "value": "Yes"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -105,7 +105,6 @@
                     "type": "Summary",
                     "id": "summary"
                 }
-
             ],
             "id": "summary-group",
             "title": "",

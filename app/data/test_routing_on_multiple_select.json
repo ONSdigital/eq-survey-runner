@@ -52,22 +52,22 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "block3",
+                                "id": "block3",
                                 "when": [
                                     {
-                                        "id" : "passports-answer",
+                                        "id": "passports-answer",
                                         "condition": "equals",
-                                        "value":"United Kingdom"
+                                        "value": "United Kingdom"
                                     }
                                 ]
                             }
                         },
                         {
                             "goto": {
-                                "id" : "block2"
+                                "id": "block2"
                             }
                         }
                     ]

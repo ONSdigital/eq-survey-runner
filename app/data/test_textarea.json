@@ -9,9 +9,9 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test textareas.",
     "messages": {
-      "INTEGER_TOO_LARGE": "Number is too large",
-      "NEGATIVE_INTEGER": "Number cannot be less than zero",
-      "NOT_INTEGER": "Please enter an integer"
+        "INTEGER_TOO_LARGE": "Number is too large",
+        "NEGATIVE_INTEGER": "Number cannot be less than zero",
+        "NOT_INTEGER": "Please enter an integer"
     },
     "groups": [
         {
@@ -24,7 +24,7 @@
                             "description": "",
                             "id": "section",
                             "questions": [
-                              {
+                                {
                                     "answers": [
                                         {
                                             "guidance": "",
@@ -40,15 +40,16 @@
                                     "id": "question",
                                     "title": "",
                                     "type": "General"
-                              }
+                                }
                             ],
                             "title": "Textarea Test"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                     ],
                     "title": ""
-                }],
+                }
+            ],
             "id": "group",
             "title": ""
         }

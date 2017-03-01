@@ -38,13 +38,13 @@
                             ]
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                         {
                             "goto": {
-                                "id" : "block3",
+                                "id": "block3",
                                 "when": [
                                     {
-                                        "meta" : "variant_flags.flag_1",
+                                        "meta": "variant_flags.flag_1",
                                         "condition": "equals",
                                         "value": true
                                     }
@@ -53,7 +53,7 @@
                         },
                         {
                             "goto": {
-                                "id" : "block2"
+                                "id": "block2"
                             }
                         }
                     ]

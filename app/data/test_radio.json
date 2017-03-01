@@ -9,9 +9,9 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo radio field Other input.",
     "messages": {
-      "INTEGER_TOO_LARGE": "Number is too large",
-      "NEGATIVE_INTEGER": "Number cannot be less than zero",
-      "NOT_INTEGER": "Please enter an integer"
+        "INTEGER_TOO_LARGE": "Number is too large",
+        "NEGATIVE_INTEGER": "Number cannot be less than zero",
+        "NOT_INTEGER": "Please enter an integer"
     },
     "groups": [
         {
@@ -59,7 +59,7 @@
                                         },
                                         {
                                             "parent_answer_id": "radio-mandatory-answer",
-                                            "alias" : "othervalue",
+                                            "alias": "othervalue",
                                             "mandatory": false,
                                             "guidance": "",
                                             "id": "other-answer-mandatory",
@@ -80,11 +80,11 @@
                             "title": "What is your favourite breakfast food"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                     ],
                     "title": ""
                 },
-            {
+                {
                     "type": "Questionnaire",
                     "id": "radio-non-mandatory",
                     "sections": [
@@ -128,7 +128,7 @@
                                         {
                                             "parent_answer_id": "radio-non-mandatory-answer",
                                             "mandatory": false,
-                                            "alias" : "",
+                                            "alias": "",
                                             "guidance": "",
                                             "id": "other-answer-non-mandatory",
                                             "label": "Please specify other",
@@ -138,9 +138,10 @@
                                     ],
                                     "description": "",
                                     "id": "radio-non-mandatory-question",
-                                        "title": "Do you really want {{answers.othervalue}} for breakfast?",
+                                    "title": "Do you really want {{answers.othervalue}} for breakfast?",
                                     "type": "General"
-                                }],
+                                }
+                            ],
                             "title": ""
                         }
                     ],
@@ -149,7 +150,8 @@
                 {
                     "type": "Summary",
                     "id": "summary"
-                }],
+                }
+            ],
             "id": "radio",
             "title": ""
         }

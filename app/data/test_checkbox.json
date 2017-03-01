@@ -9,9 +9,9 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo checkbox field Other input.",
     "messages": {
-      "INTEGER_TOO_LARGE": "Number is too large",
-      "NEGATIVE_INTEGER": "Number cannot be less than zero",
-      "NOT_INTEGER": "Please enter an integer"
+        "INTEGER_TOO_LARGE": "Number is too large",
+        "NEGATIVE_INTEGER": "Number cannot be less than zero",
+        "NOT_INTEGER": "Please enter an integer"
     },
     "groups": [
         {
@@ -87,10 +87,11 @@
                             "title": "Mandatory other option"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                     ],
                     "title": ""
-                }, {
+                },
+                {
                     "type": "Questionnaire",
                     "id": "non-mandatory-checkbox",
                     "sections": [
@@ -156,14 +157,15 @@
                             "title": "Non mandatory other option"
                         }
                     ],
-                    "routing_rules":[
+                    "routing_rules": [
                     ],
                     "title": ""
                 },
                 {
                     "type": "Summary",
                     "id": "summary"
-                }],
+                }
+            ],
             "id": "checkboxes",
             "title": ""
         }

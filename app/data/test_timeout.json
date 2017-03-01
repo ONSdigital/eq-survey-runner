@@ -24,21 +24,21 @@
                             "id": "timeout-section",
                             "questions": [
                                 {
-                                      "answers": [
-                                          {
-                                              "guidance": "",
-                                              "id": "timeout-answer",
-                                              "label": "Does the timeout appear?",
-                                              "mandatory": false,
-                                              "options": [],
-                                              "q_code": "0",
-                                              "type": "TextField"
-                                          }
-                                      ],
-                                      "description": "",
-                                      "id": "timeout-question",
-                                      "title": "Timeout title",
-                                      "type": "General"
+                                    "answers": [
+                                        {
+                                            "guidance": "",
+                                            "id": "timeout-answer",
+                                            "label": "Does the timeout appear?",
+                                            "mandatory": false,
+                                            "options": [],
+                                            "q_code": "0",
+                                            "type": "TextField"
+                                        }
+                                    ],
+                                    "description": "",
+                                    "id": "timeout-question",
+                                    "title": "Timeout title",
+                                    "type": "General"
                                 }
                             ]
                         }
