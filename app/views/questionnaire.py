@@ -131,12 +131,10 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):
     if _household_answers_changed(answer_store):
         _remove_repeating_on_household_answers(answer_store, group_id)
 
-    if any(x in request.form for x in ['action[add_answer]', 'action[remove_answer]', 'action[save_sign_out]']):
-        disable_mandatory = True
-    else:
-        disable_mandatory = False
-
     error_messages = SchemaHelper.get_messages(g.schema_json)
+
+    disable_mandatory = any(x in request.form for x in ['action[add_answer]', 'action[remove_answer]', 'action[save_sign_out]'])
+
     current_location = Location(group_id, 0, 'household-composition')
     block = _render_schema(current_location)
     form, _ = post_form_for_location(block, current_location, answer_store, request.form, error_messages, disable_mandatory=disable_mandatory)

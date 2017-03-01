@@ -8,7 +8,8 @@ from app.data_model.answer_store import Answer
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.schema_loader.schema_loader import load_schema_file
 from app.questionnaire.location import Location
-from app.views.questionnaire import update_questionnaire_store_with_answer_data, update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store
+from app.views.questionnaire import update_questionnaire_store_with_answer_data, \
+    update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store
 
 from flask import g
 
@@ -45,7 +46,7 @@ class TestQuestionnaireView(unittest.TestCase):
 
         update_questionnaire_store_with_form_data(self.question_store, location, form_data)
 
-        self.assertEquals(self.question_store.completed_blocks, [location])
+        self.assertEqual(self.question_store.completed_blocks, [location])
 
         self.assertIn({
             'group_id': 'rsi',
@@ -69,7 +70,7 @@ class TestQuestionnaireView(unittest.TestCase):
 
         update_questionnaire_store_with_form_data(self.question_store, location, form_data)
 
-        self.assertEquals(self.question_store.completed_blocks, [location])
+        self.assertEqual(self.question_store.completed_blocks, [location])
 
         self.assertIn({
             'group_id': 'dates',
@@ -142,7 +143,7 @@ class TestQuestionnaireView(unittest.TestCase):
 
         update_questionnaire_store_with_answer_data(self.question_store, location, answers)
 
-        self.assertEquals(self.question_store.completed_blocks, [location])
+        self.assertEqual(self.question_store.completed_blocks, [location])
 
         for answer in answers:
             self.assertIn(answer.__dict__, self.question_store.answer_store.answers)
@@ -322,7 +323,7 @@ class TestQuestionnaireView(unittest.TestCase):
                 answer_id='last-name',
                 answer_instance=1,
                 value='Last name only'
-            ),  Answer(
+            ), Answer(
                 group_id='who-lives-here',
                 group_instance=0,
                 block_id='household-composition',

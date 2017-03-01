@@ -29,7 +29,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         errors = self.validate_schema(schema, file, json_to_validate)
 
-        self.assertNotEquals(len(errors), 0, "This schema should fail on invalid routing rules")
+        self.assertNotEqual(len(errors), 0, "This schema should fail on invalid routing rules")
 
     def test_schemas(self):
 

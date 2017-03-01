@@ -1,8 +1,9 @@
-import flask
 import re
 import string
 
 from datetime import datetime
+
+import flask
 
 from jinja2 import Markup, escape, evalcontextfilter
 
