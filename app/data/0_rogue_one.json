@@ -8,110 +8,92 @@
     "description": "Test with a confirmation page instead of a summary",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [
-        {
-            "blocks": [
-                {
+    "groups": [{
+            "blocks": [{
                     "type": "Introduction",
                     "id": "introduction"
                 },
                 {
                     "type": "Questionnaire",
                     "id": "block-1",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "character-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "alias": "character",
-                                            "guidance": "",
-                                            "id": "character-answer",
-                                            "label": "Who do you want to know more about?",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Jyn Erso",
-                                                    "value": "Jyn Erso"
-                                                },
-                                                {
-                                                    "label": "Cassian Andor",
-                                                    "value": "Cassian Andor"
-                                                },
-                                                {
-                                                    "label": "Bodhi Rook",
-                                                    "value": "Bodhi Rook"
-                                                },
-                                                {
-                                                    "label": "Orson Krennic",
-                                                    "value": "Orson Krennic"
-                                                }
-                                            ],
-                                            "q_code": "1",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "character-question",
-                                    "title": "",
-                                    "type": "General"
+                    "sections": [{
+                        "description": "",
+                        "id": "character-section",
+                        "questions": [{
+                            "answers": [{
+                                "alias": "character",
+                                "guidance": "",
+                                "id": "character-answer",
+                                "label": "Who do you want to know more about?",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Jyn Erso",
+                                        "value": "Jyn Erso"
+                                    },
+                                    {
+                                        "label": "Cassian Andor",
+                                        "value": "Cassian Andor"
+                                    },
+                                    {
+                                        "label": "Bodhi Rook",
+                                        "value": "Bodhi Rook"
+                                    },
+                                    {
+                                        "label": "Orson Krennic",
+                                        "value": "Orson Krennic"
+                                    }
+                                ],
+                                "q_code": "1",
+                                "type": "Radio",
+                                "validation": {
+                                    "messages": {}
                                 }
-                            ],
-                            "title": "Who do you want to know more about?"
-                        }
-                    ],
-                    "routing_rules": [
-                        {
+                            }],
+                            "description": "",
+                            "id": "character-question",
+                            "title": "",
+                            "type": "General"
+                        }],
+                        "title": "Who do you want to know more about?"
+                    }],
+                    "routing_rules": [{
                             "goto": {
                                 "id": "jyn-erso-like-this-page",
-                                "when": [
-                                    {
-                                        "id": "character-answer",
-                                        "condition": "equals",
-                                        "value": "Jyn Erso"
-                                    }
-                                ]
+                                "when": [{
+                                    "id": "character-answer",
+                                    "condition": "equals",
+                                    "value": "Jyn Erso"
+                                }]
                             }
                         },
                         {
                             "goto": {
                                 "id": "cassian-andor-like-this-page",
-                                "when": [
-                                    {
-                                        "id": "character-answer",
-                                        "condition": "equals",
-                                        "value": "Cassian Andor"
-                                    }
-                                ]
+                                "when": [{
+                                    "id": "character-answer",
+                                    "condition": "equals",
+                                    "value": "Cassian Andor"
+                                }]
                             }
                         },
                         {
                             "goto": {
                                 "id": "bodhi-rook-like-this-page",
-                                "when": [
-                                    {
-                                        "id": "character-answer",
-                                        "condition": "equals",
-                                        "value": "Bodhi Rook"
-                                    }
-                                ]
+                                "when": [{
+                                    "id": "character-answer",
+                                    "condition": "equals",
+                                    "value": "Bodhi Rook"
+                                }]
                             }
                         },
                         {
                             "goto": {
                                 "id": "orson-krennic-like-this-page",
-                                "when": [
-                                    {
-                                        "id": "character-answer",
-                                        "condition": "equals",
-                                        "value": "Orson Krennic"
-                                    }
-                                ]
+                                "when": [{
+                                    "id": "character-answer",
+                                    "condition": "equals",
+                                    "value": "Orson Krennic"
+                                }]
                             }
                         }
                     ],
@@ -120,243 +102,201 @@
                 {
                     "type": "Questionnaire",
                     "id": "jyn-erso-like-this-page",
-                    "sections": [
-                        {
-                            "description": "Putting behind a checkered past by lending her skills to a greater cause, Jyn is impetuous, defiant, and eager to bring the battle to the Empire. Used to operating alone, she finds higher purpose by taking on a desperate mission for the Rebel Alliance.",
-                            "id": "jyn-erso-like-this-page-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "jyn-erso-like-this-page-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "q_code": "2",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "jyn-erso-like-this-page-question",
-                                    "title": "Do you like this page?",
-                                    "type": "General"
+                    "sections": [{
+                        "description": "Putting behind a checkered past by lending her skills to a greater cause, Jyn is impetuous, defiant, and eager to bring the battle to the Empire. Used to operating alone, she finds higher purpose by taking on a desperate mission for the Rebel Alliance.",
+                        "id": "jyn-erso-like-this-page-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "jyn-erso-like-this-page-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "q_code": "2",
+                                "type": "Radio",
+                                "validation": {
+                                    "messages": {}
                                 }
-                            ],
-                            "title": "{{answers.character}}"
+                            }],
+                            "description": "",
+                            "id": "jyn-erso-like-this-page-question",
+                            "title": "Do you like this page?",
+                            "type": "General"
+                        }],
+                        "title": "{{answers.character}}"
+                    }],
+                    "routing_rules": [{
+                        "goto": {
+                            "location": "block",
+                            "id": "film-takings"
                         }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "location": "block",
-                                "id": "film-takings"
-                            }
-                        }
-                    ],
+                    }],
                     "title": ""
                 },
                 {
                     "type": "Questionnaire",
                     "id": "cassian-andor-like-this-page",
-                    "sections": [
-                        {
-                            "description": "An accomplished Rebel Alliance Intelligence Officer with combat field experience, Captain Andor commands respect from his Rebel troops with his ability to keep a cool head under fire and complete his missions with minimal resources",
-                            "id": "cassian-andor-like-this-page-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "cassian-andor-like-this-page-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "q_code": "3",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "cassian-andor-like-this-page-question",
-                                    "title": "Do you like this page?",
-                                    "type": "General"
+                    "sections": [{
+                        "description": "An accomplished Rebel Alliance Intelligence Officer with combat field experience, Captain Andor commands respect from his Rebel troops with his ability to keep a cool head under fire and complete his missions with minimal resources",
+                        "id": "cassian-andor-like-this-page-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "cassian-andor-like-this-page-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "q_code": "3",
+                                "type": "Radio",
+                                "validation": {
+                                    "messages": {}
                                 }
-                            ],
-                            "title": "{{answers.character}}"
+                            }],
+                            "description": "",
+                            "id": "cassian-andor-like-this-page-question",
+                            "title": "Do you like this page?",
+                            "type": "General"
+                        }],
+                        "title": "{{answers.character}}"
+                    }],
+                    "routing_rules": [{
+                        "goto": {
+                            "location": "block",
+                            "id": "film-takings"
                         }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "location": "block",
-                                "id": "film-takings"
-                            }
-                        }
-                    ],
+                    }],
                     "title": ""
                 },
                 {
                     "type": "Questionnaire",
                     "id": "bodhi-rook-like-this-page",
-                    "sections": [
-                        {
-                            "description": "A former Imperial pilot, Bodhi has strong piloting and technical skills to use as the pilot of the Rebel squad. Ever practical, but highly anxious, Rook must gather his courage to bring the battle to the Empire.",
-                            "id": "bodhi-rook-like-this-page-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "bodhi-rook-like-this-page-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "q_code": "4",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "bodhi-rook-like-this-page-question",
-                                    "title": "Do you like this page?",
-                                    "type": "General"
+                    "sections": [{
+                        "description": "A former Imperial pilot, Bodhi has strong piloting and technical skills to use as the pilot of the Rebel squad. Ever practical, but highly anxious, Rook must gather his courage to bring the battle to the Empire.",
+                        "id": "bodhi-rook-like-this-page-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "bodhi-rook-like-this-page-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "q_code": "4",
+                                "type": "Radio",
+                                "validation": {
+                                    "messages": {}
                                 }
-                            ],
-                            "title": "{{answers.character}}"
+                            }],
+                            "description": "",
+                            "id": "bodhi-rook-like-this-page-question",
+                            "title": "Do you like this page?",
+                            "type": "General"
+                        }],
+                        "title": "{{answers.character}}"
+                    }],
+                    "routing_rules": [{
+                        "goto": {
+                            "location": "block",
+                            "id": "film-takings"
                         }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "location": "block",
-                                "id": "film-takings"
-                            }
-                        }
-                    ],
+                    }],
                     "title": ""
                 },
                 {
                     "type": "Questionnaire",
                     "id": "orson-krennic-like-this-page",
-                    "sections": [
-                        {
-                            "description": "An Imperial Military Director who is obsessed with the completion of the long-delayed Death Star project. A cruel but brilliant man, Krennic has staked his reputation on the delivery of the functional battle station to the Emperor.",
-                            "id": "orson-krennic-like-this-page-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "orson-krennic-like-this-page-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "q_code": "5",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "orson-krennic-like-this-page-question",
-                                    "title": "Do you like this page?",
-                                    "type": "General"
+                    "sections": [{
+                        "description": "An Imperial Military Director who is obsessed with the completion of the long-delayed Death Star project. A cruel but brilliant man, Krennic has staked his reputation on the delivery of the functional battle station to the Emperor.",
+                        "id": "orson-krennic-like-this-page-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "orson-krennic-like-this-page-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "q_code": "5",
+                                "type": "Radio",
+                                "validation": {
+                                    "messages": {}
                                 }
-                            ],
-                            "title": "{{answers.character}}"
+                            }],
+                            "description": "",
+                            "id": "orson-krennic-like-this-page-question",
+                            "title": "Do you like this page?",
+                            "type": "General"
+                        }],
+                        "title": "{{answers.character}}"
+                    }],
+                    "routing_rules": [{
+                        "goto": {
+                            "location": "block",
+                            "id": "film-takings"
                         }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "location": "block",
-                                "id": "film-takings"
-                            }
-                        }
-                    ],
+                    }],
                     "title": ""
                 },
                 {
                     "type": "Questionnaire",
                     "id": "film-takings",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "film-takings-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "film-takings-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "2",
-                                            "type": "Currency",
-                                            "validation": {
-                                                "messages": {
-                                                    "INTEGER_TOO_LARGE": "How much, fool you must be",
-                                                    "NEGATIVE_INTEGER": "How can it be negative?",
-                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "film-takings-question",
-                                    "title": "In millions, how much do you think this film will take?",
-                                    "type": "General"
+                    "sections": [{
+                        "description": "",
+                        "id": "film-takings-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "film-takings-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "2",
+                                "type": "Currency",
+                                "validation": {
+                                    "messages": {
+                                        "INTEGER_TOO_LARGE": "How much, fool you must be",
+                                        "NEGATIVE_INTEGER": "How can it be negative?",
+                                        "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                    }
                                 }
-                            ],
-                            "title": ""
-                        }
-                    ],
+                            }],
+                            "description": "",
+                            "id": "film-takings-question",
+                            "title": "In millions, how much do you think this film will take?",
+                            "type": "General"
+                        }],
+                        "title": ""
+                    }],
                     "title": ""
                 }
             ],
@@ -364,12 +304,10 @@
             "title": ""
         },
         {
-            "blocks": [
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "summary-group",
             "title": "",
             "hide_in_navigation": true

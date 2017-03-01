@@ -8,10 +8,8 @@
     "description": "",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [
-        {
-            "blocks": [
-                {
+    "groups": [{
+            "blocks": [{
                     "type": "Introduction",
                     "id": "introduction",
                     "title": "Introduction"
@@ -20,112 +18,93 @@
                     "type": "Questionnaire",
                     "id": "no-of-repeats",
                     "title": "Block 1",
-                    "sections": [
-                        {
-                            "title": "No of Repeats",
+                    "sections": [{
+                        "title": "No of Repeats",
+                        "description": "",
+                        "id": "no-of-repeats-section",
+                        "questions": [{
+                            "id": "no-of-repeats-question",
+                            "title": "",
                             "description": "",
-                            "id": "no-of-repeats-section",
-                            "questions": [
-                                {
-                                    "id": "no-of-repeats-question",
-                                    "title": "",
-                                    "description": "",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "q_code": "2",
-                                            "guidance": "",
-                                            "id": "no-of-repeats-answer",
-                                            "label": "How many times are we going to repeat?",
-                                            "mandatory": true,
-                                            "type": "PositiveInteger",
-                                            "validation": {
-                                                "messages": {
-                                                    "MANDATORY": "Please answer before continuing."
-                                                }
-                                            }
-                                        }
-                                    ]
+                            "type": "General",
+                            "answers": [{
+                                "q_code": "2",
+                                "guidance": "",
+                                "id": "no-of-repeats-answer",
+                                "label": "How many times are we going to repeat?",
+                                "mandatory": true,
+                                "type": "PositiveInteger",
+                                "validation": {
+                                    "messages": {
+                                        "MANDATORY": "Please answer before continuing."
+                                    }
                                 }
-                            ]
-                        }
-                    ]
+                            }]
+                        }]
+                    }]
                 }
             ],
             "id": "repeat-value-group",
             "title": "Group 1"
         },
         {
-            "blocks": [
-                {
+            "blocks": [{
                     "type": "Questionnaire",
                     "id": "repeated-block",
                     "title": "Block 2",
-                    "sections": [
-                        {
-                            "title": "Conditional Section",
+                    "sections": [{
+                        "title": "Conditional Section",
+                        "description": "",
+                        "id": "repeated-section",
+                        "questions": [{
+                            "id": "repeated-question",
+                            "title": "Age and Shoe Size",
                             "description": "",
-                            "id": "repeated-section",
-                            "questions": [
-                                {
-                                    "id": "repeated-question",
-                                    "title": "Age and Shoe Size",
-                                    "description": "",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "options": [
-                                                {
-                                                    "label": "Age and Shoe Size",
-                                                    "value": "Age and Shoe Size",
-                                                    "description": ""
-                                                },
-                                                {
-                                                    "label": "Shoe Size Only",
-                                                    "value": "Shoe Size Only",
-                                                    "description": ""
-                                                }
-                                            ],
-                                            "q_code": "3",
-                                            "guidance": "",
-                                            "id": "conditional-answer",
-                                            "label": "Which conditional question should we jump to?",
-                                            "mandatory": true,
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {
-                                                    "MANDATORY": "Please answer before continuing."
-                                                }
-                                            }
-                                        }
-                                    ]
+                            "type": "General",
+                            "answers": [{
+                                "options": [{
+                                        "label": "Age and Shoe Size",
+                                        "value": "Age and Shoe Size",
+                                        "description": ""
+                                    },
+                                    {
+                                        "label": "Shoe Size Only",
+                                        "value": "Shoe Size Only",
+                                        "description": ""
+                                    }
+                                ],
+                                "q_code": "3",
+                                "guidance": "",
+                                "id": "conditional-answer",
+                                "label": "Which conditional question should we jump to?",
+                                "mandatory": true,
+                                "type": "Radio",
+                                "validation": {
+                                    "messages": {
+                                        "MANDATORY": "Please answer before continuing."
+                                    }
                                 }
-                            ]
-                        }
-                    ],
-                    "routing_rules": [
-                        {
+                            }]
+                        }]
+                    }],
+                    "routing_rules": [{
                             "goto": {
                                 "id": "age-block",
-                                "when": [
-                                    {
-                                        "id": "conditional-answer",
-                                        "condition": "equals",
-                                        "value": "Age and Shoe Size"
-                                    }
-                                ]
+                                "when": [{
+                                    "id": "conditional-answer",
+                                    "condition": "equals",
+                                    "value": "Age and Shoe Size"
+                                }]
                             }
                         },
                         {
                             "goto": {
                                 "id": "shoe-size-block",
-                                "when": [
-                                    {
-                                        "id": "conditional-answer",
-                                        "condition": "equals",
-                                        "value": "Shoe Size Only"
-                                    }
-                                ]
+                                "when": [{
+                                    "id": "conditional-answer",
+                                    "condition": "equals",
+                                    "value": "Shoe Size Only"
+                                }]
                             }
                         }
                     ]
@@ -134,91 +113,75 @@
                     "type": "Questionnaire",
                     "id": "age-block",
                     "title": "Block 3",
-                    "sections": [
-                        {
-                            "title": "",
+                    "sections": [{
+                        "title": "",
+                        "description": "",
+                        "id": "age-section",
+                        "questions": [{
+                            "id": "age-question",
+                            "title": "What is their Age?",
                             "description": "",
-                            "id": "age-section",
-                            "questions": [
-                                {
-                                    "id": "age-question",
-                                    "title": "What is their Age?",
-                                    "description": "",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "q_code": "4",
-                                            "guidance": "",
-                                            "id": "what-is-your-age",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "type": "PositiveInteger",
-                                            "validation": {
-                                                "messages": {
-                                                    "MANDATORY": "Please answer before continuing."
-                                                }
-                                            }
-                                        }
-                                    ]
+                            "type": "General",
+                            "answers": [{
+                                "q_code": "4",
+                                "guidance": "",
+                                "id": "what-is-your-age",
+                                "label": "",
+                                "mandatory": true,
+                                "type": "PositiveInteger",
+                                "validation": {
+                                    "messages": {
+                                        "MANDATORY": "Please answer before continuing."
+                                    }
                                 }
-                            ]
-                        }
-                    ]
+                            }]
+                        }]
+                    }]
                 },
                 {
                     "type": "Questionnaire",
                     "id": "shoe-size-block",
                     "title": "Block 4",
-                    "sections": [
-                        {
-                            "title": "",
+                    "sections": [{
+                        "title": "",
+                        "description": "",
+                        "id": "shoe-size-section",
+                        "questions": [{
+                            "id": "question-section",
+                            "title": "What is their Shoe Size?",
                             "description": "",
-                            "id": "shoe-size-section",
-                            "questions": [
-                                {
-                                    "id": "question-section",
-                                    "title": "What is their Shoe Size?",
-                                    "description": "",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "q_code": "5",
-                                            "guidance": "",
-                                            "id": "what-is-your-shoe-size",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "type": "PositiveInteger",
-                                            "validation": {
-                                                "messages": {
-                                                    "MANDATORY": "Please answer before continuing."
-                                                }
-                                            }
-                                        }
-                                    ]
+                            "type": "General",
+                            "answers": [{
+                                "q_code": "5",
+                                "guidance": "",
+                                "id": "what-is-your-shoe-size",
+                                "label": "",
+                                "mandatory": true,
+                                "type": "PositiveInteger",
+                                "validation": {
+                                    "messages": {
+                                        "MANDATORY": "Please answer before continuing."
+                                    }
                                 }
-                            ]
-                        }
-                    ]
+                            }]
+                        }]
+                    }]
                 }
             ],
             "id": "repeated-group",
             "title": "Group 2",
-            "routing_rules": [
-                {
-                    "repeat": {
-                        "answer_id": "no-of-repeats-answer",
-                        "type": "answer_value"
-                    }
+            "routing_rules": [{
+                "repeat": {
+                    "answer_id": "no-of-repeats-answer",
+                    "type": "answer_value"
                 }
-            ]
+            }]
         },
         {
-            "blocks": [
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "summary-group",
             "title": "",
             "hide_in_navigation": true

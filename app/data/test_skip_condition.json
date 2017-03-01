@@ -9,104 +9,84 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to test skip condition.",
     "messages": {},
-    "groups": [
-        {
-            "blocks": [
-                {
-                    "type": "Questionnaire",
-                    "id": "food-block",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "food-section",
-                            "questions": [
+    "groups": [{
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "food-block",
+                "sections": [{
+                    "description": "",
+                    "id": "food-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": "",
+                            "id": "food-answer",
+                            "label": "What is your favourite breakfast food",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Bacon",
+                                    "value": "Bacon"
+                                },
                                 {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "food-answer",
-                                            "label": "What is your favourite breakfast food",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Bacon",
-                                                    "value": "Bacon"
-                                                },
-                                                {
-                                                    "label": "Eggs",
-                                                    "value": "Eggs"
-                                                }
-                                            ],
-                                            "q_code": "20",
-                                            "type": "Radio"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "food-question",
-                                    "title": "",
-                                    "type": "General"
+                                    "label": "Eggs",
+                                    "value": "Eggs"
                                 }
                             ],
-                            "title": "What is your favourite breakfast food"
-                        }
-                    ],
-                    "routing_rules": [
-                    ],
-                    "title": ""
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "drink-block",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "drink-question",
-                            "questions": [
+                            "q_code": "20",
+                            "type": "Radio"
+                        }],
+                        "description": "",
+                        "id": "food-question",
+                        "title": "",
+                        "type": "General"
+                    }],
+                    "title": "What is your favourite breakfast food"
+                }],
+                "routing_rules": [],
+                "title": ""
+            },
+            {
+                "type": "Questionnaire",
+                "id": "drink-block",
+                "sections": [{
+                    "description": "",
+                    "id": "drink-question",
+                    "questions": [{
+                        "answers": [{
+                            "alias": "",
+                            "guidance": "",
+                            "id": "drink-answer",
+                            "label": "What is your favourite breakfast beverage",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Tea",
+                                    "value": "Tea"
+                                },
                                 {
-                                    "answers": [
-                                        {
-                                            "alias": "",
-                                            "guidance": "",
-                                            "id": "drink-answer",
-                                            "label": "What is your favourite breakfast beverage",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Tea",
-                                                    "value": "Tea"
-                                                },
-                                                {
-                                                    "label": "Coffee",
-                                                    "value": "Coffee"
-                                                }
-                                            ],
-                                            "q_code": "20",
-                                            "type": "Radio"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "drink-section",
-                                    "title": "What beverage would you like to accompany your choice of breakfast?",
-                                    "type": "General",
-                                    "skip_condition": {
-                                        "when": [
-                                            {
-                                                "id": "food-answer",
-                                                "condition": "equals",
-                                                "value": "Eggs"
-                                            }
-                                        ]
-                                    }
+                                    "label": "Coffee",
+                                    "value": "Coffee"
                                 }
                             ],
-                            "title": ""
+                            "q_code": "20",
+                            "type": "Radio"
+                        }],
+                        "description": "",
+                        "id": "drink-section",
+                        "title": "What beverage would you like to accompany your choice of breakfast?",
+                        "type": "General",
+                        "skip_condition": {
+                            "when": [{
+                                "id": "food-answer",
+                                "condition": "equals",
+                                "value": "Eggs"
+                            }]
                         }
-                    ],
+                    }],
                     "title": ""
-                }
-            ],
-            "id": "breakfast",
-            "title": ""
-        }
-    ]
+                }],
+                "title": ""
+            }
+        ],
+        "id": "breakfast",
+        "title": ""
+    }]
 }

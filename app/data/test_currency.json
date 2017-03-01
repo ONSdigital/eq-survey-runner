@@ -13,45 +13,34 @@
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
         "NOT_INTEGER": "Please enter an integer"
     },
-    "groups": [
-        {
-            "blocks": [
-                {
-                    "type": "Questionnaire",
-                    "id": "block",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "answer",
-                                            "label": "How much did you spend?",
-                                            "mandatory": false,
-                                            "options": [],
-                                            "q_code": "0",
-                                            "type": "Currency"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "question",
-                                    "title": "",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Currency Input Test"
-                        }
-                    ],
-                    "routing_rules": [
-                    ],
-                    "title": ""
-                }
-            ],
-            "id": "group",
+    "groups": [{
+        "blocks": [{
+            "type": "Questionnaire",
+            "id": "block",
+            "sections": [{
+                "description": "",
+                "id": "section",
+                "questions": [{
+                    "answers": [{
+                        "guidance": "",
+                        "id": "answer",
+                        "label": "How much did you spend?",
+                        "mandatory": false,
+                        "options": [],
+                        "q_code": "0",
+                        "type": "Currency"
+                    }],
+                    "description": "",
+                    "id": "question",
+                    "title": "",
+                    "type": "General"
+                }],
+                "title": "Currency Input Test"
+            }],
+            "routing_rules": [],
             "title": ""
-        }
-    ]
+        }],
+        "id": "group",
+        "title": ""
+    }]
 }

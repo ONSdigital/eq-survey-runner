@@ -20,7 +20,8 @@
     "test_functional": "gulp test:scripts:functional",
     "test_functional_sauce": "gulp test:scripts:functional --sauce",
     "test_functional_headless": "gulp test:scripts:functional --headless",
-    "a11y": "gulp test:a11ym"
+    "a11y": "gulp test:a11ym",
+    "format": "gulp format:json"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.3",
@@ -51,6 +52,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-cssnano": "^2.1.0",
     "gulp-debug": "^2.1.2",
+    "gulp-diff": "^1.0.0",
     "gulp-eslint": "^3.0.1",
     "gulp-exec": "^2.1.2",
     "gulp-file-include": "^0.14.0",
@@ -58,6 +60,7 @@
     "gulp-footer": "^1.0.5",
     "gulp-header": "1.8.8",
     "gulp-if": "^2.0.1",
+    "gulp-jsbeautifier": "^2.0.4",
     "gulp-livereload": "^3.8.0",
     "gulp-plumber": "^1.0.1",
     "gulp-postcss": "^6.0.1",
