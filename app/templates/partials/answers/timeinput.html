@@ -3,25 +3,16 @@
   <div class="fieldgroup__fields">
     {% for sub_field in ['hours', 'mins'] %}
       {% if form[answer['id']][sub_field] %}
-      <div class="field">
 
-        <div class="input-type input-type--{{sub_field}}">
-
-          <label class="input-type__type">{{sub_field}}</label>
-
-          {% set input = {
-            'type': 'text',
-            'classes': 'input-type__input',
-            'hasType': true,
-            'data': form[answer['id']][sub_field].data,
-            'name': answer.id + "-" + sub_field,
-            'id': answer.id,
-          } %}
-
-          {% include 'partials/forms/input.html' %}
-
-        </div>
-      </div>
+        {% with input_type = {
+          'type': sub_field,
+          'reverse': False,
+          'show_label': False,
+          'data': form[answer['id']][sub_field].data,
+          'name': answer.id ~ "-" ~ sub_field
+        } %}
+          {% include 'partials/forms/input-type.html' %}
+        {% endwith %}
 
       {% endif %}
     {% endfor %}

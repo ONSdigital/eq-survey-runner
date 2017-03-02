@@ -1,30 +1,30 @@
 <div class="field">
-  {% set label = {
-    'for': answer.id,
-    'text': answer.label,
-    'description': answer.description
-  } %}
 
-  {% include 'partials/forms/label.html' %}
+  {% if input_type.show_label %}
 
-  {% set raw_data = form[answer['id']].raw_data[0] if form[answer['id']].raw_data is not none else '' %}
-  {% set form_data = form[answer['id']].data if form[answer.id].data is not none else '' %}
+    {% set label = {
+      'for': input_type.name,
+      'text': answer.label,
+      'description': answer.description
+    } %}
 
-  <div class="input-type input-type--{{input_type}} {{'input-type--reversed' if reverse}}">
+    {% include 'partials/forms/label.html' %}
+
+  {% endif %}
+
+  <div class="input-type input-type--{{input_type.type}} {{'input-type--reversed' if input_type.reverse}}">
+
+    <label class="input-type__type" for="{{input_type.name}}">{{input_type.symbol or input_type.type}}</label>
 
     {% set input = {
       'type': 'text',
       'classes': 'input-type__input' ~ (' js-totaliser-input-calculated' if answer.calculated),
-      'hasType': true,
-      'data': form_data if form_data else raw_data|e,
-      'name': answer.id,
-      'id': answer.id,
-      'labelledBy': answer.id ~ '-type'
+      'data': input_type.data,
+      'name': input_type.name,
+      'id': input_type.name
     } %}
 
     {% include 'partials/forms/input.html' %}
-
-    <span class="input-type__type" id="{{answer.id}}-type">{{input_type}}</span>
 
   </div>
 </div>

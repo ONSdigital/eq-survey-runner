@@ -3,16 +3,21 @@
   position: relative;
   align-items: center;
   max-width: $input-width;
+  @include fixed {
+    font-size: 0;
+  }
 
   .input-type__input {
+    display: inline-block;
+    vertical-align: middle;
     border-radius: $input-radius 0 0 $input-radius;
     border-right: 0;
     line-height: normal;
     position: relative;
     width: 100%;
     @include fixed {
-      margin-left: 2.5rem;
-      border-left: 0;
+      font-size: 1rem;
+      z-index: 1;
     }
 
     &:focus ~ .input-type__type {
@@ -22,7 +27,6 @@
   }
 
   .input-type__type {
-    display: inline-block;
     background-color: $color-lighter-grey;
     border: 1px solid $color-borders;
     border-radius: 0 $input-radius $input-radius 0;
@@ -34,10 +38,9 @@
     line-height: normal;
     order: 1;
     @include fixed {
-      left: 0;
-      width: 2.5rem;
-      height: 100%;
-      border: 1px solid $color-borders;
+      position: absolute;
+      right: 0;
+      z-index: 2;
     }
     @include ie7 {
       width: 1.15rem;
@@ -47,22 +50,23 @@
 }
 
 .input-type--reversed {
+  overflow: hidden;
   .input-type__input {
     order: 2;
     border-radius: 0 $input-radius $input-radius 0;
     border: 1px solid $color-borders;
+    @include fixed {
+      padding-left: 3.5rem;
+    }
   }
   .input-type__type {
     border-radius: $input-radius 0 0 $input-radius;
     border-right: 0;
-  }
-}
-
-.input-type--hours,
-.input-type--mins {
-  max-width: 10rem;
-  .input-type__type {
-    width: 5rem;
-    padding: $input-padding 0;
+    @include fixed {
+      left: 0;
+      right: auto;
+      width: 3rem;
+      border: 1px solid $color-borders;
+    }
   }
 }

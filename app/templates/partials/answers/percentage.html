@@ -1,3 +1,10 @@
-{% with input_type = '%', reverse = True,input = form[answer['id']] %}
-{% include 'partials/forms/input-type.html' %}
+{% with input_type = {
+  'type': 'percentage',
+  'symbol': '%',
+  'reverse': False,
+  'show_label': True,
+  'data': form.get_data(answer['id'])|e,
+  'name': answer.id
+} %}
+  {% include 'partials/forms/input-type.html' %}
 {% endwith %}

@@ -175,10 +175,13 @@ input:checked ~ .field__other {
 
 .fieldgroup--time {
   .field {
-    max-width: 9rem;
+    max-width: 7.5rem;
     float: left;
     &:not(:last-of-type) {
       margin-right: 1rem;
+    }
+    @include mq(s) {
+      max-width: 9rem;
     }
   }
 }
