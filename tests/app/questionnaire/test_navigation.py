@@ -616,3 +616,49 @@ class TestNavigation(unittest.TestCase):
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
         self.assertNotIn('House Details', link_names)
+
+    def test_build_navigation_returns_none_when_schema_navigation_is_false(self):
+        # Given
+        survey = load_schema_file("test_navigation.json")
+        survey['navigation'] = False
+        completed_blocks = []
+        metadata = {}
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+
+        # When
+        nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
+
+        # Then
+        self.assertIsNone(nav_menu)
+
+    def test_build_navigation_returns_none_when_no_schema_navigation_property(self):
+        # Given
+        survey = load_schema_file("test_navigation.json")
+        del survey['navigation']
+        completed_blocks = []
+        metadata = {}
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+
+        # When
+        nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
+
+        # Then
+        self.assertIsNone(nav_menu)
+
+    def test_build_navigation_returns_navigation_when_schema_navigation_is_true(self):
+        # Given
+        survey = load_schema_file("test_navigation.json")
+        survey['navigation'] = True
+        completed_blocks = []
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+
+        # When
+        nav_menu = navigation.build_navigation('group-1', 'group-instance-1')
+
+        # Then
+        self.assertIsNotNone(nav_menu)

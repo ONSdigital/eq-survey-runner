@@ -8,6 +8,7 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo final confirmation to submit.",
+    "navigation": true,
     "messages": {
         "INTEGER_TOO_LARGE": "Number is too large",
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
