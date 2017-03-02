@@ -25,7 +25,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         }
 
         # Submit the Introduction page to get the first question page
-        resp = self.client.post(intro_page_url, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(intro_page_url, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         first_question_page = resp.location
@@ -38,7 +38,7 @@ class TestEmptyQuestionnaire(IntegrationTestCase):
         self.assertEqual(resp.location, first_question_page)
 
         # We try posting to the submission page without our answers
-        redirect, resp = self.postRedirectGet(mci_test_urls.MCI_0205_SUMMARY)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_SUMMARY)
 
         # Check we are redirected back to the questionnaire
-        self.assertEqual(redirect, first_question_page)
+        self.assertEqual(resp.location, first_question_page)

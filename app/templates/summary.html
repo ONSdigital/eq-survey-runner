@@ -2,6 +2,7 @@
 
 {% block page_title -%}Summary{% endblock -%}
 
+{% set form = content.form %}
 {% set not_answered = 'No answer provided' %}
 
 {% block main -%}
@@ -13,7 +14,7 @@
 <div>
   <div class="summary">
 
-  {% for section in content %}
+  {% for section in content.summary %}
 
     <h2 class="summary__title saturn" id="{{section.id}}">{{section.title|safe}}</h2>
     <div class="summary__block">
@@ -56,6 +57,7 @@
   </div>
 
   <form method="POST" autocomplete="off" novalidate>
+    {{ form.csrf_token }}
     <button class="btn btn--primary btn--lg u-mr-s qa-btn-submit-answers venus" type="submit">Submit answers</button>
   </form>
 </div>

@@ -21,7 +21,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         form_data = {
@@ -40,7 +40,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         }
 
         # We submit the form with the dates the same
-        resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegex(content, "The &#39;period to&#39; date must be different to the &#39;period from&#39; date.")
@@ -61,7 +61,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         }
 
         # We correct our answers and submit
-        resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
@@ -76,8 +76,9 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertRegex(content, '>Submit answers<')
 
         # We submit our answers
-        _, resp = self.postRedirectGet(mci_test_urls.MCI_0205_SUMMARY)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_SUMMARY)
 
+        resp = self.client.get(resp.location, follow_redirects=True)
         # We are on the thank you page
         content = resp.get_data(True)
         self.assertRegex(content, '<title>Submission Successful</title>')

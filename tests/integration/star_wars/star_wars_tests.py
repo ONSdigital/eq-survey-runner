@@ -19,7 +19,10 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def start_questionnaire_and_navigate_routing(self):
         # Go to questionnaire
+        resp = self.client.get(star_wars_test_urls.STAR_WARS_INTRODUCTION, follow_redirects=True)
+
         post_data = {
+            'csrf_token': self.extract_csrf_token(resp.get_data(True)),
             'action[start_questionnaire]': 'Start Questionnaire'
         }
         resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
@@ -31,10 +34,10 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def _default_routing(self, current_page):
         # navigate back to first page
-        navigate_to_page(self.client, current_page)
+        resp = navigate_to_page(self.client, current_page)
 
         form_data = {
-
+            'csrf_token': self.extract_csrf_token(resp.get_data(True)),
             "choose-your-side-answer": "Light Side",
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -43,9 +46,10 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertNotEqual(resp.location, current_page)
         current_page = resp.location
 
-        self.routing_pick_your_character_light_side(current_page)
+        page, content = self.routing_pick_your_character_light_side(current_page)
 
         form_data = {
+            'csrf_token': self.extract_csrf_token(content),
             "light-side-pick-character-answer": "Leyoda",
             "light-side-pick-ship-answer": "Yes",
             "action[save_continue]": "Save &amp; Continue"
@@ -55,9 +59,10 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertNotEqual(resp.location, current_page)
         current_page = resp.location
 
-        self.routing_select_your_ship_light_side(current_page)
+        page, content = self.routing_select_your_ship_light_side(current_page)
 
         form_data = {
+            'csrf_token': self.extract_csrf_token(content),
             "light-side-ship-type-answer": "Millennium Falcon",
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -80,7 +85,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertIn('light-side-pick-character-answer', content)
         self.assertIn('Do you want to pick a ship?', content)
         self.assertIn('light-side-pick-ship-answer', content)
-        return page
+        return page, content
 
     def routing_select_your_ship_light_side(self, page):
         content = self.retrieve_content(page)
@@ -88,7 +93,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertIn('Millennium Falcon', content)
         self.assertIn('X-wing', content)
         self.assertIn('light-side-ship-type-answer', content)
-        return page
+        return page, content
 
     def check_second_quiz_page(self, page):
         resp = self.client.get(page, follow_redirects=False)
@@ -104,10 +109,10 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertIn('chewbacca-medal-answer', content)
 
     def submit_page(self, page, form_data):
-        resp = self.client.post(page, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(page, data=form_data, follow_redirects=False)
         return resp
 
     def complete_survey(self, page):
         # Submit answers
-        _, resp = self.postRedirectGet(page)
+        resp = self.get_and_post_with_csrf_token(page)
         return resp

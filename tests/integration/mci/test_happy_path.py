@@ -27,7 +27,7 @@ class TestHappyPath(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post('/questionnaire/' + eq_id + '/' + form_type_id + '/789/mci/0/introduction', data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token('/questionnaire/' + eq_id + '/' + form_type_id + '/789/mci/0/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.location
@@ -62,7 +62,7 @@ class TestHappyPath(IntegrationTestCase):
 
         # We submit the form
 
-        resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(block_one_url, data=form_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
@@ -82,8 +82,9 @@ class TestHappyPath(IntegrationTestCase):
         self.assertRegex(content, '>Submit answers<')
 
         # We submit our answers
-        _, resp = self.postRedirectGet(summary_url)
+        resp = self.get_and_post_with_csrf_token(summary_url)
 
+        resp = self.client.get(resp.location, follow_redirects=True)
         # We are on the thank you page
         content = resp.get_data(True)
         self.assertRegex(content, '<title>Submission Successful</title>')

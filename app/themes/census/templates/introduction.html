@@ -1,6 +1,8 @@
 {% extends theme('layouts/_twocol.html') %}
 {% block page_title %}2017 Census{% endblock %}
 
+{% set form = content.form %}
+
 {% block header %}
   {% include theme('partials/header.html') %}
 {% endblock %}
@@ -19,6 +21,7 @@
     <p>If any member of this household aged 16 or over wishes to complete their own questionnaire a separate form can be requested here.</p>
   </div>
   <form action="" class="form" role="form" method="POST" autocomplete="off" novalidate>
+    {{ form.csrf_token }}
     <button class="btn btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
   </form>
   <div class="lock u-mb-s u-mb-m@s">

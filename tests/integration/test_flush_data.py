@@ -12,14 +12,13 @@ class TestFlushData(IntegrationTestCase):
         super().setUp()
 
         token = create_token('0205', '1')
-        self.client.get('/session?token=' + token.decode(), follow_redirects=True)
+        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
 
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data)
         block_one_url = resp.location
-        self.client.get(block_one_url, follow_redirects=False)
 
         form_data = {
             "period-from-day": "01",
@@ -32,7 +31,7 @@ class TestFlushData(IntegrationTestCase):
             "action[save_continue]": "Save &amp; Continue"
         }
 
-        self.client.post(block_one_url, data=form_data, follow_redirects=False)
+        self.get_and_post_with_csrf_token(block_one_url, data=form_data)
 
     def test_flush_data_successful(self):
 

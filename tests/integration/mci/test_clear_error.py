@@ -26,7 +26,7 @@ class TestClearError(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.location
@@ -60,7 +60,7 @@ class TestClearError(IntegrationTestCase):
         }
 
         # We submit the form
-        resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(block_one_url, data=form_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
 
         # Get the page content
@@ -84,7 +84,7 @@ class TestClearError(IntegrationTestCase):
         }
 
         # We submit the form
-        resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(block_one_url, data=form_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
 
         # Get the page content again

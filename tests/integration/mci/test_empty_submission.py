@@ -24,7 +24,7 @@ class TestEmptySubmission(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         # We proceed to the questionnaire
@@ -52,7 +52,7 @@ class TestEmptySubmission(IntegrationTestCase):
         }
 
         # We submit the form without data
-        resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
         content = resp.get_data(True)
         self.assertRegex(content, "Please provide an answer to continue.")
@@ -80,7 +80,7 @@ class TestEmptySubmission(IntegrationTestCase):
         }
 
         # We correct our answers and submit
-        resp = self.client.post(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_BLOCK1, data=form_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
@@ -95,8 +95,9 @@ class TestEmptySubmission(IntegrationTestCase):
         self.assertRegex(content, '>Submit answers<')
 
         # We submit our answers
-        _, resp = self.postRedirectGet(mci_test_urls.MCI_0205_SUMMARY)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_SUMMARY)
 
+        resp = self.client.get(resp.location, follow_redirects=True)
         # We are on the thank you page
         content = resp.get_data(True)
         self.assertRegex(content, '<title>Submission Successful</title>')

@@ -2,6 +2,8 @@
 
 {% import 'macros/helpers.html' as h %}
 
+{% set form = content.form %}
+
 {% block header %}
   {% include 'partials/header.html' %}
   {% with is_hero = true %}
@@ -82,6 +84,7 @@
   </div>
 
   <form class="form" method="POST" autocomplete="off" novalidate>
+    {{ form.csrf_token }}
     <button class="btn btn--primary btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
   </form>
 

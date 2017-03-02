@@ -77,8 +77,7 @@ class TestRenderPercentageWidget(IntegrationTestCase):
         form_data = self.create_form_data('50')
 
         # When
-        self.client.get(self.first_page)
-        resp = self.client.post(self.first_page, data=form_data, follow_redirects=True)
+        resp = self.get_and_post_with_csrf_token(self.first_page, data=form_data, follow_redirects=True)
 
         # Then
         answer_summary_regex = 'summary\_\_answer-text.+\>50\%\<\/div\>'

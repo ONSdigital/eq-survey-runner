@@ -14,7 +14,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
 
         self.token = create_token('repeating_household', 'test')
         self.client.get('/session?token=' + self.token.decode(), follow_redirects=False)
-        resp = self.client.post(
+        resp = self.get_and_post_with_csrf_token(
             self.INTRODUCTION_PAGE,
             data={'action[start_questionnaire]': 'Start Questionnaire'},
             follow_redirects=False)
@@ -36,7 +36,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data.add("household-1-last-name", 'Doe')
         form_data.add("action[save_continue]", '')
 
-        resp = self.client.post(household_composition_page, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(household_composition_page, data=form_data, follow_redirects=False)
         person1_age_page = resp.location
 
         # And provide details
@@ -44,28 +44,28 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data = MultiDict()
         form_data.add("what-is-your-age", '9990')
         form_data.add("action[save_continue]", '')
-        resp = self.client.post(person1_age_page, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(person1_age_page, data=form_data, follow_redirects=False)
         person1_shoe_size_page = resp.location
 
         navigate_to_page(self.client, person1_shoe_size_page)
         form_data = MultiDict()
         form_data.add("what-is-your-shoe-size", '9991')
         form_data.add("action[save_continue]", '')
-        resp = self.client.post(person1_shoe_size_page, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(person1_shoe_size_page, data=form_data, follow_redirects=False)
         person2_age_page = resp.location
 
         navigate_to_page(self.client, person2_age_page)
         form_data = MultiDict()
         form_data.add("what-is-your-age", '9992')
         form_data.add("action[save_continue]", '')
-        resp = self.client.post(person2_age_page, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(person2_age_page, data=form_data, follow_redirects=False)
         person2_shoe_size_page = resp.location
 
         navigate_to_page(self.client, person2_shoe_size_page)
         form_data = MultiDict()
         form_data.add("what-is-your-shoe-size", '9993')
         form_data.add("action[save_continue]", '')
-        self.client.post(person2_shoe_size_page, data=form_data, follow_redirects=False)
+        self.get_and_post_with_csrf_token(person2_shoe_size_page, data=form_data, follow_redirects=False)
 
         # When I go back to household composition page and make changes and submit
         navigate_to_page(self.client, household_composition_page)
@@ -79,7 +79,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data.add("household-1-last-name", 'Doe')
 
         form_data.add("action[save_continue]", '')
-        resp = self.client.post(household_composition_page, data=form_data, follow_redirects=True)
+        resp = self.get_and_post_with_csrf_token(household_composition_page, data=form_data, follow_redirects=True)
 
         # Then the details previously entered for the people should have been removed
         content = resp.get_data(True)
@@ -89,12 +89,12 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data = MultiDict()
         form_data.add("what-is-your-age", '34')
         form_data.add("action[save_continue]", '')
-        self.client.post(person1_age_page, data=form_data, follow_redirects=True)
+        self.get_and_post_with_csrf_token(person1_age_page, data=form_data, follow_redirects=True)
 
         form_data = MultiDict()
         form_data.add("what-is-your-shoe-size", '10')
         form_data.add("action[save_continue]", '')
-        resp = self.client.post(person1_shoe_size_page, data=form_data, follow_redirects=True)
+        resp = self.get_and_post_with_csrf_token(person1_shoe_size_page, data=form_data, follow_redirects=True)
 
         content = resp.get_data(True)
         self.assertRegex(content, 'Jane Doe')
@@ -117,7 +117,7 @@ class TestRepeatingHousehold(IntegrationTestCase):
 
         household_data.add("action[save_continue]", '')
 
-        resp = self.client.post(household_composition_page, data=household_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(household_composition_page, data=household_data, follow_redirects=False)
         person1_age_page = resp.location
 
         # And provide details
@@ -125,12 +125,14 @@ class TestRepeatingHousehold(IntegrationTestCase):
         form_data = MultiDict()
         form_data.add("what-is-your-age", '18')
         form_data.add("action[save_continue]", '')
-        self.client.post(person1_age_page, data=form_data, follow_redirects=False)
+        self.get_and_post_with_csrf_token(person1_age_page, data=form_data, follow_redirects=False)
 
         # When I go back to household composition page and submit without any changes
-        navigate_to_page(self.client, household_composition_page)
+        resp = navigate_to_page(self.client, household_composition_page)
 
-        resp = self.client.post(household_composition_page, data=household_data, follow_redirects=True)
+        post_data = household_data.copy()
+        post_data.update({"csrf_token": self.extract_csrf_token(resp.get_data(True))})
+        resp = self.client.post(household_composition_page, data=post_data, follow_redirects=True)
 
         # Then the details previously entered for the people should have been kept
         content = resp.get_data(True)

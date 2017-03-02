@@ -15,7 +15,12 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
 
         first_page = self.start_questionnaire_and_navigate_routing()
 
+        resp = navigate_to_page(self.client, first_page)
+
         # Form submission with no errors
+        BLOCK_2_DEFAULT_ANSWERS.update({
+            'csrf_token': self.extract_csrf_token(resp.get_data(True))
+        })
         resp = self.submit_page(first_page, BLOCK_2_DEFAULT_ANSWERS)
         self.assertNotEqual(resp.location, first_page)
 
@@ -33,6 +38,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
 
         # Our answers
         form_data = {
+            'csrf_token': self.extract_csrf_token(content),
             # People in household
             "chewbacca-medal-answer": "Wookiees don’t place value in material rewards and refused the medal initially",  # NOQA
             "confirm-chewbacca-age-answer": "Yes",
@@ -50,6 +56,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
         self.assertRegex(content, "Finally, which  is your favourite film?")
 
         form_data = {
+            'csrf_token': self.extract_csrf_token(content),
             # final answers
             "jar-jar-binks-planet-answer": "Naboo",
             "favourite-film-answer": "5",

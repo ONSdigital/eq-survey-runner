@@ -271,7 +271,12 @@ def _save_sign_out(collection_id, eq_id, form_type, this_location, form):
 
 def _household_answers_changed(answer_store):
     household_answers = answer_store.filter(block_id="household-composition")
-    if len(household_answers) != len(request.form)-1:
+    stripped_form = request.form.copy()
+    del stripped_form['csrf_token']
+    remove = [k for k in stripped_form if 'action[' in k]
+    for k in remove:
+        del stripped_form[k]
+    if len(household_answers) != len(stripped_form):
         return True
     for answer in request.form:
         answer_id, answer_index = extract_answer_id_and_instance(answer)
@@ -415,19 +420,21 @@ def _redirect_to_latest_location(collection_id, eq_id, form_type, latest_locatio
 
 
 def _get_context(block, current_location, answer_store):
+
+    error_messages = SchemaHelper.get_messages(g.schema_json)
+    form, template_params = get_form_for_location(block, current_location, answer_store, error_messages)
+    content = {'form': form, 'block': block}
+    if template_params:
+        content.update(template_params)
+
     if block['type'] == 'Summary':
         metadata = get_metadata(current_user)
         aliases = SchemaHelper.get_aliases(g.schema_json)
         schema_context = build_schema_context(metadata, aliases, answer_store)
         rendered_schema_json = renderer.render(g.schema_json, **schema_context)
-        return build_summary_rendering_context(rendered_schema_json, answer_store, metadata)
-    else:
-        error_messages = SchemaHelper.get_messages(g.schema_json)
-        form, template_params = get_form_for_location(block, current_location, answer_store, error_messages)
-        content = {'form': form, 'block': block}
-        if template_params:
-            content.update(template_params)
-        return content
+        content.update({'summary': build_summary_rendering_context(rendered_schema_json, answer_store, metadata)})
+
+    return content
 
 
 def _render_schema(current_location):

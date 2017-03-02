@@ -11,12 +11,14 @@ class TestQuestionnaireQuestionGuidance(IntegrationTestCase):
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
 
         # When we navigate to the block with all guidance features enabled
-        resp_url, resp = self.postRedirectGet(resp.location, {'action[start_questionnaire]': ''})
+        resp = self.get_and_post_with_csrf_token(resp.location, {'action[start_questionnaire]': ''})
 
         # Then we are presented with the question guidance with all features enabled
-        self.assertIn('block-test-guidance-all', resp_url)
+        self.assertIn('block-test-guidance-all', resp.location)
 
-        content = resp.get_data(True)
+        get_resp = self.client.get(resp.location)
+        content = get_resp.get_data(True)
+
         self.assertIn('Test guidance all', content)
         self.assertIn('>Include<', content)
         self.assertIn('>Item Include 1<', content)
@@ -43,12 +45,13 @@ class TestQuestionnaireQuestionGuidance(IntegrationTestCase):
         self.assertIn('<input', content)
 
         # When we continue to the next page with combinations of the guidance title
-        resp_url, resp = self.postRedirectGet(resp_url, {'action[save_continue]': ''})
+        resp = self.get_and_post_with_csrf_token(resp.location, {'action[save_continue]': ''})
 
         # Then I am presented with the title guidance correctly
-        self.assertIn('block-test-guidance-title', resp_url)
+        self.assertIn('block-test-guidance-title', resp.location)
 
-        content = resp.get_data(True)
+        get_resp = self.client.get(resp.location)
+        content = get_resp.get_data(True)
         self.assertIn('This one has a description but no list', content)
         self.assertIn('No list items below this text', content)
         self.assertIn('This one has no list or description', content)
@@ -56,12 +59,13 @@ class TestQuestionnaireQuestionGuidance(IntegrationTestCase):
         self.assertIn('<input', content)
 
         # When we continue to the next page with combinations of the guidance descriptions
-        resp_url, resp = self.postRedirectGet(resp_url, {'action[save_continue]': ''})
+        resp = self.get_and_post_with_csrf_token(resp.location, {'action[save_continue]': ''})
 
         # Then I am presented with the description guidance correctly
-        self.assertIn('block-test-guidance-description', resp_url)
+        self.assertIn('block-test-guidance-description', resp.location)
 
-        content = resp.get_data(True)
+        get_resp = self.client.get(resp.location)
+        content = get_resp.get_data(True)
         self.assertIn('No title above this text, list below', content)
         self.assertIn('>Item Include 1<', content)
         self.assertIn('>Item Include 2<', content)
@@ -72,12 +76,13 @@ class TestQuestionnaireQuestionGuidance(IntegrationTestCase):
         self.assertIn('<input', content)
 
         # When we continue to the next page with combinations of the guidance lists
-        resp_url, resp = self.postRedirectGet(resp_url, {'action[save_continue]': ''})
+        resp = self.get_and_post_with_csrf_token(resp.location, {'action[save_continue]': ''})
 
         # Then I am presented with the lists guidance correctly
-        self.assertIn('block-test-guidance-lists', resp_url)
+        self.assertIn('block-test-guidance-lists', resp.location)
 
-        content = resp.get_data(True)
+        get_resp = self.client.get(resp.location)
+        content = get_resp.get_data(True)
         self.assertIn('Title, no description, list follows', content)
         self.assertIn('>Item Include 1<', content)
         self.assertIn('>Item Include 2<', content)
@@ -91,9 +96,9 @@ class TestQuestionnaireQuestionGuidance(IntegrationTestCase):
         self.assertIn('<input', content)
 
         # And I can continue to the summary page
-        resp_url, resp = self.postRedirectGet(resp_url, {'action[save_continue]': ''})
-        self.assertIn('summary', resp_url)
+        resp = self.get_and_post_with_csrf_token(resp.location, {'action[save_continue]': ''})
+        self.assertIn('summary', resp.location)
 
         # And Submit my answers
-        resp_url, resp = self.postRedirectGet(resp_url)
-        self.assertIn('thank-you', resp_url)
+        resp = self.get_and_post_with_csrf_token(resp.location, {'action[submit_answers]': ''})
+        self.assertIn('thank-you', resp.location)

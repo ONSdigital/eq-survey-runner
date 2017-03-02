@@ -18,11 +18,12 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
     def test_previous_link_appears_on_page_following_introduction(self):
         # Given
         token = create_token('final_confirmation', 'test')
-        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
 
         # When
         # We proceed through the questionnaire
         post_data = {
+            'csrf_token': self.extract_csrf_token(resp.get_data(True)),
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
@@ -32,6 +33,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
         self.assertIn('Previous', content)
 
         post_data = {
+            'csrf_token': self.extract_csrf_token(resp.get_data(True)),
             "choose-your-side-answer": " Bacon",
             "action[save_continue]": "Save &amp; Continue"
         }
@@ -44,17 +46,19 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
     def test_previous_link_doesnt_appear_on_thank_you(self):
         # Given
         token = create_token('final_confirmation', 'test')
-        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
 
         # When
         # We proceed through the questionnaire
         post_data = {
+            'csrf_token': self.extract_csrf_token(resp.get_data(True)),
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
         block_one_url, resp = self.postRedirectGet('/questionnaire/test/final_confirmation/789/final-confirmation/0/introduction', post_data)
 
         post_data = {
+            'csrf_token': self.extract_csrf_token(resp.get_data(True)),
             "choose-your-side-answer": " Bacon",
             "action[save_continue]": "Save and continue"
         }
@@ -64,10 +68,12 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
             "action[save_continue]": "Submit answers"
         }
 
-        final_url, resp = self.postRedirectGet(resp_url, post_data)
+        resp = self.get_and_post_with_csrf_token(resp_url, post_data)
 
+        self.assertTrue(resp.location.endswith('thank-you'))
+
+        resp = self.client.get(resp.location, follow_redirects=True)
         content = resp.get_data(True)
-        self.assertTrue(final_url.endswith('thank-you'))
         self.assertNotIn('Previous', content)
 
     def test_previous_link_on_relationship(self):
@@ -81,7 +87,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
             'permanent-or-family-home-answer': 'Yes'
         }
 
-        self.client.post('/questionnaire/census/household/789/who-lives-here/0/permanent-or-family-home', data=post_data)
+        self.get_and_post_with_csrf_token('/questionnaire/census/household/789/who-lives-here/0/permanent-or-family-home', data=post_data)
 
         post_data = {
             'household-0-first-name': 'Joe',
@@ -95,12 +101,12 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
             'household-2-last-name': 'Bloggs',
         }
 
-        self.client.post('/questionnaire/census/household/789/who-lives-here/0/household-composition', data=post_data, follow_redirects=True)
+        self.get_and_post_with_csrf_token('/questionnaire/census/household/789/who-lives-here/0/household-composition', data=post_data, follow_redirects=True)
 
         post_data = {
             'overnight-visitors-answer': '0'
         }
-        resp = self.client.post('questionnaire/census/household/789/who-lives-here/0/overnight-visitors', data=post_data, follow_redirects=True)
+        resp = self.get_and_post_with_csrf_token('questionnaire/census/household/789/who-lives-here/0/overnight-visitors', data=post_data, follow_redirects=True)
 
         # Then there should be a previous link on all repeating household blocks.
         content = resp.get_data(True)
