@@ -18,7 +18,7 @@
         {
             "blocks": [
                 {
-                    "type": "questionnaire",
+                    "type": "Questionnaire",
                     "id": "time-input-block",
                     "sections": [
                         {
@@ -70,6 +70,10 @@
                         }
                     ],
                     "title": "Time Input Examples"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
                 }
             ],
             "id": "time-input-group",

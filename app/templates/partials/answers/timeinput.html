@@ -13,8 +13,8 @@
             'type': 'text',
             'classes': 'input-type__input',
             'hasType': true,
-            'data': 'hello',
-            'name': answer.id,
+            'data': form[answer['id']][sub_field].data,
+            'name': answer.id + "-" + sub_field,
             'id': answer.id,
           } %}
 
