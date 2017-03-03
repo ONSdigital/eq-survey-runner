@@ -16,7 +16,7 @@ class TestRenderPercentageWidget(IntegrationTestCase):
     def test_percentage_widget_has_icon(self):
         # Given
         resp = self.client.get(self.first_page)
-        percent_regex = 'span.+input\-type\_\_type.+\%\<\/span\>'
+        percent_regex = 'label.+input\-type\_\_type.+\%\<\/label\>'
 
         # When
         body = resp.get_data(True)

@@ -215,7 +215,7 @@
     },
     "routing_rules": {
       "type": "array",
-      "navigation_label_answer_ids":{
+      "navigation_label_answer_ids": {
           "type": "array",
           "items": {
             "type": "string"
