@@ -82,6 +82,7 @@ def format_number_to_alphabetic_letter(number):
         return string.ascii_lowercase[int(number)]
     return ''
 
+
 @blueprint.app_template_filter()
 def format_time_input(value):
     time_input = value.split(":")
