@@ -291,3 +291,23 @@ class TestFields(unittest.TestCase):
         self.assertTrue(unbound_field.field_class == CustomIntegerField)
         self.assertEquals(unbound_field.kwargs['label'], percentage_json['label'])
         self.assertEquals(unbound_field.kwargs['description'], percentage_json['description'])
+
+    def test_time_input_field(self):
+        time_input_json = {
+            "guidance": "",
+            "id": "mins",
+            "label": "Mins",
+            "mandatory": True,
+            "q_code": "1",
+            "type": "TimeInput",
+            "validation": {
+                "messages": {
+                     "INVALID_TIME_INPUT": "The time entered is not valid. Please correct your answer"
+                }
+            }
+        }
+
+        unbound_field = get_field(time_input_json, time_input_json['label'], error_messages)
+        self.assertTrue(unbound_field.field_class == FormField)
+        self.assertEquals(unbound_field.kwargs['label'], time_input_json['label'])
+

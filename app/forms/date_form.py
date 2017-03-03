@@ -3,7 +3,7 @@ import calendar
 
 from wtforms import Form, SelectField, StringField
 
-from app.validation.validators import DateCheck, OptionalForm, DateRequired, MonthYearCheck
+from app.validation.validators import DateCheck, OptionalForm, FormResponseRequired, MonthYearCheck
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ def get_date_form(answer=None, error_messages=None):
                 and 'MANDATORY' in answer['validation']['messages']:
             date_messages['MANDATORY'] = answer['validation']['messages']['MANDATORY']
 
-        validate_with = [DateRequired(message=date_messages['MANDATORY'])]
+        validate_with = [FormResponseRequired(message=date_messages['MANDATORY'])]
 
     if 'validation' in answer and 'messages' in answer['validation'] \
             and 'INVALID_DATE' in answer['validation']['messages']:
@@ -69,7 +69,7 @@ def get_month_year_form(answer, error_messages):
                 and 'MANDATORY' in answer['validation']['messages']:
             error_message = answer['validation']['messages']['MANDATORY']
 
-        validate_with = [DateRequired(message=error_message)]
+        validate_with = [FormResponseRequired(message=error_message)]
 
     if 'validation' in answer and 'messages' in answer['validation'] \
             and 'INVALID_DATE' in answer['validation']['messages']:

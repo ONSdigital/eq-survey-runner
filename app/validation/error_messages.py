@@ -10,4 +10,5 @@ error_messages = {
     'INTEGER_TOO_LARGE': _('This number is too big.'),
     'INVALID_DATE_RANGE_TO_BEFORE_FROM': _("The 'period to' date cannot be before the 'period from' date."),
     'INVALID_DATE_RANGE_TO_FROM_SAME': _("The 'period to' date must be different to the 'period from' date."),
+    'INVALID_TIME_INPUT': _("The time entered is not valid. Please correct your answer"),
 }

@@ -1,0 +1,30 @@
+<div class="field">
+
+  {% if input_type.show_label %}
+
+    {% set label = {
+      'for': input_type.name,
+      'text': answer.label,
+      'description': answer.description
+    } %}
+
+    {% include 'partials/forms/label.html' %}
+
+  {% endif %}
+
+  <div class="input-type input-type--{{input_type.type}} {{'input-type--reversed' if input_type.reverse}}">
+
+    <label class="input-type__type" for="{{input_type.name}}">{{input_type.symbol or input_type.type}}</label>
+
+    {% set input = {
+      'type': 'text',
+      'classes': 'input-type__input' ~ (' js-totaliser-input-calculated' if answer.calculated),
+      'data': input_type.data,
+      'name': input_type.name,
+      'id': input_type.name
+    } %}
+
+    {% include 'partials/forms/input.html' %}
+
+  </div>
+</div>

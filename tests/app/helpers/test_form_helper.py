@@ -6,7 +6,7 @@ from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.schema_loader.schema_loader import load_schema_file
 from app.data_model.answer_store import AnswerStore
-from app.validation.validators import DateRequired, OptionalForm
+from app.validation.validators import FormResponseRequired, OptionalForm
 
 from werkzeug.datastructures import MultiDict
 
@@ -34,8 +34,8 @@ class TestFormHelper(unittest.TestCase):
         period_from_field = getattr(form, "period-from")
         period_to_field = getattr(form, "period-to")
 
-        self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
-        self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
+        self.assertIsInstance(period_from_field.month.validators[0], FormResponseRequired)
+        self.assertIsInstance(period_to_field.month.validators[0], FormResponseRequired)
 
     def test_get_form_and_disable_mandatory_answers(self):
 
@@ -126,6 +126,33 @@ class TestFormHelper(unittest.TestCase):
             'year': '2015',
         })
 
+    def test_get_form_deserialises_time_input(self):
+        survey = load_schema_file("test_time_input.json")
+
+        block_json = SchemaHelper.get_block(survey, "time-input-block")
+        location = SchemaHelper.get_first_location(survey)
+        error_messages = SchemaHelper.get_messages(survey)
+
+        form, _ = get_form_for_location(block_json, location, AnswerStore([
+            {
+                'answer_id': 'time-input-mandatory-answer',
+                'group_id': 'time-input-group',
+                'group_instance': 0,
+                'block_id': 'time-input-block',
+                'value': '1:30',
+                'answer_instance': 0,
+            }
+        ]), error_messages)
+
+        self.assertTrue(hasattr(form, "time-input-mandatory-answer"))
+
+        time_input_mandatory_answer = getattr(form, "time-input-mandatory-answer")
+
+        self.assertEquals(time_input_mandatory_answer.data, {
+            'hours': '1',
+            'mins': '30',
+        })
+
     def test_get_form_deserialises_lists(self):
         survey = load_schema_file("test_checkbox.json")
 
@@ -173,8 +200,8 @@ class TestFormHelper(unittest.TestCase):
         period_to_field = getattr(form, "period-to")
         period_from_field = getattr(form, "period-from")
 
-        self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
-        self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
+        self.assertIsInstance(period_from_field.month.validators[0], FormResponseRequired)
+        self.assertIsInstance(period_to_field.month.validators[0], FormResponseRequired)
 
         self.assertEquals(period_from_field.data, {
             'day': '1',

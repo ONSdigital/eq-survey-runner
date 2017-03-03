@@ -9,6 +9,7 @@ from app.jinja_filters import format_str_as_date
 from app.jinja_filters import format_str_as_date_range
 from app.jinja_filters import format_str_as_month_year_date
 from app.jinja_filters import format_number_to_alphabetic_letter
+from app.jinja_filters import format_time_input
 
 
 class TestJinjaFilters(TestCase):
@@ -204,3 +205,8 @@ class TestJinjaFilters(TestCase):
         self.assertEqual(format_number_to_alphabetic_letter(4), 'e')
         self.assertEqual(format_number_to_alphabetic_letter(25), 'z')
         self.assertEqual(format_number_to_alphabetic_letter(-1), '')
+
+    def test_format_time_input(self):
+        self.assertEqual(format_time_input('2:30'), '2 hours 30 mins')
+        self.assertEqual(format_time_input('2:'), '2 hours ')
+        self.assertEqual(format_time_input(':30'), '30 mins')

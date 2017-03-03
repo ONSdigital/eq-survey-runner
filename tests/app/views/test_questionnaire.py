@@ -90,6 +90,29 @@ class TestQuestionnaireView(unittest.TestCase):
             'value': '11/2014',
         }, self.question_store.answer_store.answers)
 
+    def test_update_questionnaire_store_with_time_input_form_data(self):
+
+        g.schema_json = load_schema_file("test_time_input.json")
+
+        location = Location("time-input-group", 0, "time-input-block")
+
+        form_data = {
+            'time-input-mandatory-answer': {'hours': '1', 'mins': '30'},
+        }
+
+        update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+
+        self.assertEquals(self.question_store.completed_blocks, [location])
+
+        self.assertIn({
+            'group_id': 'time-input-group',
+            'group_instance': 0,
+            'block_id': 'time-input-block',
+            'answer_id': 'time-input-mandatory-answer',
+            'answer_instance': 0,
+            'value': '1:30',
+        }, self.question_store.answer_store.answers)
+
     def test_update_questionnaire_store_with_answer_data(self):
         g.schema_json = load_schema_file("census_household.json")
 

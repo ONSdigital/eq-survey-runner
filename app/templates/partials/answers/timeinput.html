@@ -1,0 +1,20 @@
+<fieldset class="fieldgroup fieldgroup--time" data-qa="widget-time">
+  <legend class="fieldgroup__title venus">{{answer.label}}</legend>
+  <div class="fieldgroup__fields">
+    {% for sub_field in ['hours', 'mins'] %}
+      {% if form[answer['id']][sub_field] %}
+
+        {% with input_type = {
+          'type': sub_field,
+          'reverse': False,
+          'show_label': False,
+          'data': form[answer['id']][sub_field].data,
+          'name': answer.id ~ "-" ~ sub_field
+        } %}
+          {% include 'partials/forms/input-type.html' %}
+        {% endwith %}
+
+      {% endif %}
+    {% endfor %}
+  </div>
+</fieldset>

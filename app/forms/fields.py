@@ -2,6 +2,7 @@ from wtforms import FormField, IntegerField, SelectField, SelectMultipleField, S
 from wtforms import validators
 
 from app.forms.date_form import get_date_form, get_month_year_form
+from app.forms.time_input_form import get_time_input_form
 from app.validation.validators import IntegerCheck, NumberRange, ResponseRequired
 from structlog import get_logger
 
@@ -23,6 +24,7 @@ def get_field(answer, label, error_messages):
         "Percentage": get_integer_field,
         "TextArea": get_text_area_field,
         "TextField": get_string_field,
+        "TimeInput": get_time_input_field,
     }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
@@ -93,21 +95,18 @@ def get_month_year_field(answer, label, guidance, error_messages):
     )
 
 
+def get_time_input_field(answer, label, guidance, error_messages):
+    return FormField(
+        get_time_input_form(answer, error_messages),
+        label=label,
+        description=guidance,
+    )
+
+
 def get_select_multiple_field(answer, label, guidance, error_messages):
     validate_with = get_mandatory_validator(answer, error_messages)
 
     return SelectMultipleField(
-        label=label,
-        description=guidance,
-        choices=build_choices(answer['options']),
-        validators=validate_with,
-    )
-
-
-def get_select_field(answer, label, guidance, error_messages):
-    validate_with = get_mandatory_validator(answer, error_messages)
-
-    return SelectField(
         label=label,
         description=guidance,
         choices=build_choices(answer['options']),
@@ -135,6 +134,17 @@ class CustomIntegerField(IntegerField):
                 pass
 
 
+def get_select_field(answer, label, guidance, error_messages):
+    validate_with = get_mandatory_validator(answer, error_messages)
+
+    return SelectField(
+        label=label,
+        description=guidance,
+        choices=build_choices(answer['options']),
+        validators=validate_with,
+    )
+
+
 def get_integer_field(answer, label, guidance, error_messages):
     answer_errors = error_messages.copy()
 
@@ -159,7 +169,6 @@ def get_integer_field(answer, label, guidance, error_messages):
             IntegerCheck(answer_errors['NOT_INTEGER']),
             NumberRange(min=0, max=9999999999, messages=answer_errors),
         ]
-
     return CustomIntegerField(
         label=label,
         description=guidance,
