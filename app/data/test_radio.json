@@ -13,147 +13,131 @@
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
         "NOT_INTEGER": "Please enter an integer"
     },
-    "groups": [
-        {
-            "blocks": [
-                {
-                    "type": "Questionnaire",
-                    "id": "radio-mandatory",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "radio-mandatory-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "radio-mandatory-answer",
-                                            "label": "What is your favourite breakfast food",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Bacon",
-                                                    "value": "Bacon"
-                                                },
-                                                {
-                                                    "label": "Eggs",
-                                                    "value": "Eggs"
-                                                },
-                                                {
-                                                    "label": "Sausage",
-                                                    "value": "Sausage"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "description": "An answer is required.",
-                                                    "value": "Other",
-                                                    "child_answer_id": "other-answer-mandatory"
-                                                }
-                                            ],
-                                            "q_code": "20",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        },
-                                        {
-                                            "parent_answer_id": "radio-mandatory-answer",
-                                            "alias": "othervalue",
-                                            "mandatory": false,
-                                            "guidance": "",
-                                            "id": "other-answer-mandatory",
-                                            "label": "Please specify other",
-                                            "q_code": "20",
-                                            "type": "TextField",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "radio-mandatory-question",
-                                    "title": "",
-                                    "type": "General"
+    "groups": [{
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "radio-mandatory",
+                "sections": [{
+                    "description": "",
+                    "id": "radio-mandatory-section",
+                    "questions": [{
+                        "answers": [{
+                                "guidance": "",
+                                "id": "radio-mandatory-answer",
+                                "label": "What is your favourite breakfast food",
+                                "mandatory": true,
+                                "options": [{
+                                        "label": "Bacon",
+                                        "value": "Bacon"
+                                    },
+                                    {
+                                        "label": "Eggs",
+                                        "value": "Eggs"
+                                    },
+                                    {
+                                        "label": "Sausage",
+                                        "value": "Sausage"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "description": "An answer is required.",
+                                        "value": "Other",
+                                        "child_answer_id": "other-answer-mandatory"
+                                    }
+                                ],
+                                "q_code": "20",
+                                "type": "Radio",
+                                "validation": {
+                                    "messages": {}
                                 }
-                            ],
-                            "title": "What is your favourite breakfast food"
-                        }
-                    ],
-                    "routing_rules": [
-                    ],
-                    "title": ""
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "radio-non-mandatory",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "radio-non-mandatory-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "radio-non-mandatory-answer",
-                                            "label": "What is your favourite breakfast food",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Toast",
-                                                    "value": "Toast"
-                                                },
-                                                {
-                                                    "label": "Coffee",
-                                                    "value": "Coffee"
-                                                },
-                                                {
-                                                    "label": "Tea",
-                                                    "value": "Tea"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "description": "This is not mandatory.",
-                                                    "value": "Other",
-                                                    "child_answer_id": "other-answer-non-mandatory"
-                                                }
-                                            ],
-                                            "q_code": "20",
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        },
-                                        {
-                                            "parent_answer_id": "radio-non-mandatory-answer",
-                                            "mandatory": false,
-                                            "alias": "",
-                                            "guidance": "",
-                                            "id": "other-answer-non-mandatory",
-                                            "label": "Please specify other",
-                                            "q_code": "20",
-                                            "type": "TextField"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "radio-non-mandatory-question",
-                                    "title": "Do you really want {{answers.othervalue}} for breakfast?",
-                                    "type": "General"
+                            },
+                            {
+                                "parent_answer_id": "radio-mandatory-answer",
+                                "alias": "othervalue",
+                                "mandatory": false,
+                                "guidance": "",
+                                "id": "other-answer-mandatory",
+                                "label": "Please specify other",
+                                "q_code": "20",
+                                "type": "TextField",
+                                "validation": {
+                                    "messages": {}
                                 }
-                            ],
-                            "title": ""
-                        }
-                    ],
+                            }
+                        ],
+                        "description": "",
+                        "id": "radio-mandatory-question",
+                        "title": "",
+                        "type": "General"
+                    }],
+                    "title": "What is your favourite breakfast food"
+                }],
+                "routing_rules": [],
+                "title": ""
+            },
+            {
+                "type": "Questionnaire",
+                "id": "radio-non-mandatory",
+                "sections": [{
+                    "description": "",
+                    "id": "radio-non-mandatory-section",
+                    "questions": [{
+                        "answers": [{
+                                "guidance": "",
+                                "id": "radio-non-mandatory-answer",
+                                "label": "What is your favourite breakfast food",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "Toast",
+                                        "value": "Toast"
+                                    },
+                                    {
+                                        "label": "Coffee",
+                                        "value": "Coffee"
+                                    },
+                                    {
+                                        "label": "Tea",
+                                        "value": "Tea"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "description": "This is not mandatory.",
+                                        "value": "Other",
+                                        "child_answer_id": "other-answer-non-mandatory"
+                                    }
+                                ],
+                                "q_code": "20",
+                                "type": "Radio",
+                                "validation": {
+                                    "messages": {}
+                                }
+                            },
+                            {
+                                "parent_answer_id": "radio-non-mandatory-answer",
+                                "mandatory": false,
+                                "alias": "",
+                                "guidance": "",
+                                "id": "other-answer-non-mandatory",
+                                "label": "Please specify other",
+                                "q_code": "20",
+                                "type": "TextField"
+                            }
+                        ],
+                        "description": "",
+                        "id": "radio-non-mandatory-question",
+                        "title": "Do you really want {{answers.othervalue}} for breakfast?",
+                        "type": "General"
+                    }],
                     "title": ""
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
-            "id": "radio",
-            "title": ""
-        }
-    ]
+                }],
+                "title": ""
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ],
+        "id": "radio",
+        "title": ""
+    }]
 }

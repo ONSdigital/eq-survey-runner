@@ -9,104 +9,85 @@
     "theme": "census",
     "legal_basis": "Voluntary",
     "navigation": true,
-    "groups": [
-        {
-            "blocks": [
-                {
+    "groups": [{
+            "blocks": [{
                     "type": "Questionnaire",
                     "id": "insurance-type",
-                    "sections": [
-                        {
+                    "sections": [{
+                        "description": "",
+                        "id": "insurance-type-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "insurance-type-answer",
+                                "label": "",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "Buildings",
+                                        "value": "Buildings"
+                                    },
+                                    {
+                                        "label": "Contents",
+                                        "value": "Contents"
+                                    },
+                                    {
+                                        "label": "Both",
+                                        "value": "Both"
+                                    }
+                                ],
+                                "q_code": "1",
+                                "type": "Radio"
+                            }],
                             "description": "",
-                            "id": "insurance-type-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "insurance-type-answer",
-                                            "label": "",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Buildings",
-                                                    "value": "Buildings"
-                                                },
-                                                {
-                                                    "label": "Contents",
-                                                    "value": "Contents"
-                                                },
-                                                {
-                                                    "label": "Both",
-                                                    "value": "Both"
-                                                }
-                                            ],
-                                            "q_code": "1",
-                                            "type": "Radio"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "insurance-type-question",
-                                    "title": "What kind of insurance would you like?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Property Details"
-                        }
-                    ],
+                            "id": "insurance-type-question",
+                            "title": "What kind of insurance would you like?",
+                            "type": "General"
+                        }],
+                        "title": "Property Details"
+                    }],
                     "title": "Home Insurance"
                 },
                 {
                     "type": "Questionnaire",
                     "id": "insurance-address",
-                    "sections": [
-                        {
+                    "sections": [{
+                        "description": "",
+                        "id": "insurance-address-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "insurance-address-answer",
+                                "label": "",
+                                "mandatory": false,
+                                "options": [],
+                                "q_code": "1",
+                                "type": "TextArea"
+                            }],
                             "description": "",
-                            "id": "insurance-address-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "insurance-address-answer",
-                                            "label": "",
-                                            "mandatory": false,
-                                            "options": [],
-                                            "q_code": "1",
-                                            "type": "TextArea"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "insurance-address-question",
-                                    "title": "What is the address you would like to insure?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Property Details"
-                        }
-                    ],
+                            "id": "insurance-address-question",
+                            "title": "What is the address you would like to insure?",
+                            "type": "General"
+                        }],
+                        "title": "Property Details"
+                    }],
                     "title": "House Insurance"
                 },
                 {
                     "type": "Interstitial",
                     "id": "property-interstitial",
                     "title": "Property Details Interstitial Page",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "property-interstitial-section",
-                            "questions": [
-                                {
-                                    "description": "You have successfully completed the property details section. Next we want to know who lives in the house.",
-                                    "answers": [],
-                                    "id": "property-interstitial-question",
-                                    "title": "Property Details",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": ""
-                        }
-                    ]
+                    "sections": [{
+                        "description": "",
+                        "id": "property-interstitial-section",
+                        "questions": [{
+                            "description": "You have successfully completed the property details section. Next we want to know who lives in the house.",
+                            "answers": [],
+                            "id": "property-interstitial-question",
+                            "title": "Property Details",
+                            "type": "General"
+                        }],
+                        "title": ""
+                    }]
                 }
             ],
             "id": "property-details",
@@ -114,398 +95,325 @@
             "completed_id": "property-interstitial"
         },
         {
-            "blocks": [
-                {
-                    "type": "Questionnaire",
-                    "id": "house-type",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "house-type-section",
-                            "questions": [
+            "blocks": [{
+                "type": "Questionnaire",
+                "id": "house-type",
+                "sections": [{
+                    "description": "",
+                    "id": "house-type-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": "",
+                            "id": "house-type-answer",
+                            "label": "",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "Detached",
+                                    "value": "Detached"
+                                },
                                 {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "house-type-answer",
-                                            "label": "",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Detached",
-                                                    "value": "Detached"
-                                                },
-                                                {
-                                                    "label": "Semi-detached",
-                                                    "value": "Semi-detached"
-                                                },
-                                                {
-                                                    "label": "Terrace",
-                                                    "value": "Terrace"
-                                                }
-                                            ],
-                                            "q_code": "12",
-                                            "type": "Radio"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "house-type-question",
-                                    "title": "What kind of house is it?",
-                                    "type": "General"
+                                    "label": "Semi-detached",
+                                    "value": "Semi-detached"
+                                },
+                                {
+                                    "label": "Terrace",
+                                    "value": "Terrace"
                                 }
                             ],
-                            "title": "House Details"
-                        }
-                    ],
+                            "q_code": "12",
+                            "type": "Radio"
+                        }],
+                        "description": "",
+                        "id": "house-type-question",
+                        "title": "What kind of house is it?",
+                        "type": "General"
+                    }],
                     "title": "House Details"
-                }
-            ],
+                }],
+                "title": "House Details"
+            }],
             "id": "house-details",
-            "skip_condition": [
-                {
-                    "when": [
-                        {
-                            "id": "insurance-type-answer",
-                            "condition": "equals",
-                            "value": "Contents"
-                        }
-                    ]
+            "skip_condition": [{
+                    "when": [{
+                        "id": "insurance-type-answer",
+                        "condition": "equals",
+                        "value": "Contents"
+                    }]
                 },
                 {
-                    "when": [
-                        {
-                            "id": "insurance-type-answer",
-                            "condition": "not set"
-                        }
-                    ]
+                    "when": [{
+                        "id": "insurance-type-answer",
+                        "condition": "not set"
+                    }]
                 }
             ],
             "title": "House Details"
         },
         {
-            "blocks": [
-                {
-                    "type": "Questionnaire",
-                    "id": "household-composition",
-                    "sections": [
-                        {
-                            "id": "section",
-                            "questions": [
-                                {
-                                    "description": "",
-                                    "id": "household-composition-question",
-                                    "title": "Who usually lives at the property?",
-                                    "description": "",
-                                    "type": "RepeatingAnswer",
-                                    "answers": [
-                                        {
-                                            "alias": "person_full_name",
-                                            "id": "household-full-name",
-                                            "label": "Full Name",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "1",
-                                            "type": "TextField",
-                                            "repeats": true
-                                        }
-                                    ]
-                                }
-                            ],
-                            "title": "Household Details"
-                        }
-                    ],
+            "blocks": [{
+                "type": "Questionnaire",
+                "id": "household-composition",
+                "sections": [{
+                    "id": "section",
+                    "questions": [{
+                        "description": "",
+                        "id": "household-composition-question",
+                        "title": "Who usually lives at the property?",
+                        "description": "",
+                        "type": "RepeatingAnswer",
+                        "answers": [{
+                            "alias": "person_full_name",
+                            "id": "household-full-name",
+                            "label": "Full Name",
+                            "mandatory": true,
+                            "options": [],
+                            "q_code": "1",
+                            "type": "TextField",
+                            "repeats": true
+                        }]
+                    }],
                     "title": "Household Details"
-                }
-            ],
+                }],
+                "title": "Household Details"
+            }],
             "id": "multiple-questions-group",
             "title": "Household Details",
             "completed_id": "household-composition"
         },
         {
-            "blocks": [
-                {
+            "blocks": [{
                     "type": "Questionnaire",
                     "id": "repeating-block-1",
                     "title": "Block 2",
-                    "sections": [
-                        {
-                            "title": "{{answers.person_full_name[group_instance]}}",
+                    "sections": [{
+                        "title": "{{answers.person_full_name[group_instance]}}",
+                        "description": "",
+                        "id": "over-16-section",
+                        "questions": [{
+                            "id": "over-16-question",
+                            "title": "Is the person above over 16?",
                             "description": "",
-                            "id": "over-16-section",
-                            "questions": [
-                                {
-                                    "id": "over-16-question",
-                                    "title": "Is the person above over 16?",
-                                    "description": "",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "q_code": "3",
-                                            "guidance": "",
-                                            "id": "what-is-your-age",
-                                            "label": "",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "q_code": "1",
-                                            "type": "Radio"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+                            "type": "General",
+                            "answers": [{
+                                "q_code": "3",
+                                "guidance": "",
+                                "id": "what-is-your-age",
+                                "label": "",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "Yes",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "label": "No",
+                                        "value": "No"
+                                    }
+                                ],
+                                "q_code": "1",
+                                "type": "Radio"
+                            }]
+                        }]
+                    }]
                 },
                 {
                     "type": "Questionnaire",
                     "id": "repeating-block-2",
                     "title": "Block 3",
-                    "sections": [
-                        {
-                            "title": "{{answers.person_full_name[group_instance]}}",
-                            "description": "",
-                            "id": "working-status-section",
-                            "questions": [
-                                {
-                                    "id": "working-status-question",
-                                    "title": "",
-                                    "description": "What is the working status of this person?",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "q_code": "4",
-                                            "guidance": "",
-                                            "id": "what-is-your-shoe-size",
-                                            "label": "",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Full time student",
-                                                    "value": "Full time student"
-                                                },
-                                                {
-                                                    "label": "Employed",
-                                                    "value": "Employed"
-                                                },
-                                                {
-                                                    "label": "Self employed",
-                                                    "value": "Self employed"
-                                                },
-                                                {
-                                                    "label": "Unemployed",
-                                                    "value": "Unmployed"
-                                                }
-                                            ],
-                                            "q_code": "1",
-                                            "type": "Radio"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+                    "sections": [{
+                        "title": "{{answers.person_full_name[group_instance]}}",
+                        "description": "",
+                        "id": "working-status-section",
+                        "questions": [{
+                            "id": "working-status-question",
+                            "title": "",
+                            "description": "What is the working status of this person?",
+                            "type": "General",
+                            "answers": [{
+                                "q_code": "4",
+                                "guidance": "",
+                                "id": "what-is-your-shoe-size",
+                                "label": "",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "Full time student",
+                                        "value": "Full time student"
+                                    },
+                                    {
+                                        "label": "Employed",
+                                        "value": "Employed"
+                                    },
+                                    {
+                                        "label": "Self employed",
+                                        "value": "Self employed"
+                                    },
+                                    {
+                                        "label": "Unemployed",
+                                        "value": "Unmployed"
+                                    }
+                                ],
+                                "q_code": "1",
+                                "type": "Radio"
+                            }]
+                        }]
+                    }]
                 }
             ],
             "id": "repeating-group",
             "title": "Person ",
-            "routing_rules": [
-                {
-                    "repeat": {
-                        "type": "answer_count",
-                        "answer_id": "household-full-name"
-                    }
+            "routing_rules": [{
+                "repeat": {
+                    "type": "answer_count",
+                    "answer_id": "household-full-name"
                 }
-            ],
+            }],
             "completed_id": "repeating-block-2"
         },
         {
-            "blocks": [
-                {
+            "blocks": [{
                     "type": "Questionnaire",
                     "id": "extra-cover-block",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "extra-cover-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "extra-cover-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "1",
-                                            "type": "PositiveInteger",
-                                            "validation": {
-                                                "messages": {
-                                                    "INTEGER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
-                                                    "NEGATIVE_INTEGER": "How can it be negative?",
-                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "extra-cover-question",
-                                    "title": "Please list any special items you have",
-                                    "type": "General"
+                    "sections": [{
+                        "description": "",
+                        "id": "extra-cover-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "extra-cover-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "1",
+                                "type": "PositiveInteger",
+                                "validation": {
+                                    "messages": {
+                                        "INTEGER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
+                                        "NEGATIVE_INTEGER": "How can it be negative?",
+                                        "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                    }
                                 }
-                            ],
-                            "title": "Extra Cover"
-                        }
-                    ],
+                            }],
+                            "description": "",
+                            "id": "extra-cover-question",
+                            "title": "Please list any special items you have",
+                            "type": "General"
+                        }],
+                        "title": "Extra Cover"
+                    }],
                     "title": "House Insurance"
                 },
                 {
                     "type": "Interstitial",
                     "id": "extra-cover-interstitial",
                     "title": "Special items Interstitial Page",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "extra-cover-interstitial-section",
-                            "questions": [
-                                {
-                                    "description": "You have successfully completed the special items section. Next we want to know about your payment details.",
-                                    "answers": [],
-                                    "id": "extra-cover-interstitial-question",
-                                    "title": "Extra Cover",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": ""
-                        }
-                    ]
+                    "sections": [{
+                        "description": "",
+                        "id": "extra-cover-interstitial-section",
+                        "questions": [{
+                            "description": "You have successfully completed the special items section. Next we want to know about your payment details.",
+                            "answers": [],
+                            "id": "extra-cover-interstitial-question",
+                            "title": "Extra Cover",
+                            "type": "General"
+                        }],
+                        "title": ""
+                    }]
                 }
             ],
             "id": "extra-cover",
             "title": "Extra Cover"
         },
         {
-            "blocks": [
-                {
+            "blocks": [{
                     "type": "Questionnaire",
                     "id": "credit-card",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "credit-card-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "credit-card-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "1",
-                                            "type": "PositiveInteger"
-                                        }
-                                    ],
-                                    "description": "The long one in the middle of the card please",
-                                    "id": "credit-card-question",
-                                    "title": "What is your credit card number?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Payment Details"
-                        }
-                    ],
+                    "sections": [{
+                        "description": "",
+                        "id": "credit-card-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "credit-card-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "1",
+                                "type": "PositiveInteger"
+                            }],
+                            "description": "The long one in the middle of the card please",
+                            "id": "credit-card-question",
+                            "title": "What is your credit card number?",
+                            "type": "General"
+                        }],
+                        "title": "Payment Details"
+                    }],
                     "title": "House Insurance"
                 },
                 {
                     "type": "Questionnaire",
                     "id": "expiry-date",
-                    "sections": [
-                        {
+                    "sections": [{
+                        "description": "",
+                        "id": "expiry-date-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "expiry-date-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "1",
+                                "type": "TextField"
+                            }],
                             "description": "",
-                            "id": "expiry-date-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "expiry-date-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "1",
-                                            "type": "TextField"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "expiry-date-question",
-                                    "title": "What is the expiry date?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Payment Details"
-                        }
-                    ],
+                            "id": "expiry-date-question",
+                            "title": "What is the expiry date?",
+                            "type": "General"
+                        }],
+                        "title": "Payment Details"
+                    }],
                     "title": "Home Insurance"
                 },
                 {
                     "type": "Questionnaire",
                     "id": "security-code",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "security-code-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "security-code-answer",
-                                            "label": "",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "1",
-                                            "type": "TextField"
-                                        }
-                                    ],
-                                    "description": "Its the last 3 numbers",
-                                    "id": "security-code-question",
-                                    "title": "What is the security code on the back?",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Payment Details"
-                        }
-                    ],
+                    "sections": [{
+                        "description": "",
+                        "id": "security-code-section",
+                        "questions": [{
+                            "answers": [{
+                                "guidance": "",
+                                "id": "security-code-answer",
+                                "label": "",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "1",
+                                "type": "TextField"
+                            }],
+                            "description": "Its the last 3 numbers",
+                            "id": "security-code-question",
+                            "title": "What is the security code on the back?",
+                            "type": "General"
+                        }],
+                        "title": "Payment Details"
+                    }],
                     "title": "Home Insurance"
                 },
                 {
                     "type": "Interstitial",
                     "id": "security-code-interstitial",
                     "title": "Payment Details Interstitial Page",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "security-code-interstitial-section",
-                            "questions": [
-                                {
-                                    "description": "You have successfully completed the payment section, thank you.",
-                                    "answers": [],
-                                    "id": "security-code-interstitial-question",
-                                    "title": "Payment",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": ""
-                        }
-                    ]
+                    "sections": [{
+                        "description": "",
+                        "id": "security-code-interstitial-section",
+                        "questions": [{
+                            "description": "You have successfully completed the payment section, thank you.",
+                            "answers": [],
+                            "id": "security-code-interstitial-question",
+                            "title": "Payment",
+                            "type": "General"
+                        }],
+                        "title": ""
+                    }]
                 }
             ],
             "id": "payment-details",
@@ -514,51 +422,39 @@
         {
             "id": "extra-cover-items-group",
             "title": "Extra Cover Items",
-            "routing_rules": [
-                {
-                    "repeat": {
-                        "type": "answer_value",
-                        "answer_id": "extra-cover-answer"
-                    }
+            "routing_rules": [{
+                "repeat": {
+                    "type": "answer_value",
+                    "answer_id": "extra-cover-answer"
                 }
-            ],
-            "blocks": [
-                {
-                    "type": "Questionnaire",
-                    "id": "extra-cover-items",
-                    "title": "Extra Cover",
-                    "sections": [
-                        {
-                            "id": "extra-cover-items-section",
-                            "title": "Extra Cover {{group_instance + 1}}",
-                            "questions": [
-                                {
-                                    "id": "extra-cover-items-question",
-                                    "title": "What is the item you want to insure {{group_instance + 1}}?",
-                                    "number": "1",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "extra-cover-items-answer",
-                                            "label": "Item",
-                                            "mandatory": false,
-                                            "type": "TextField"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+            }],
+            "blocks": [{
+                "type": "Questionnaire",
+                "id": "extra-cover-items",
+                "title": "Extra Cover",
+                "sections": [{
+                    "id": "extra-cover-items-section",
+                    "title": "Extra Cover {{group_instance + 1}}",
+                    "questions": [{
+                        "id": "extra-cover-items-question",
+                        "title": "What is the item you want to insure {{group_instance + 1}}?",
+                        "number": "1",
+                        "type": "General",
+                        "answers": [{
+                            "id": "extra-cover-items-answer",
+                            "label": "Item",
+                            "mandatory": false,
+                            "type": "TextField"
+                        }]
+                    }]
+                }]
+            }]
         },
         {
-            "blocks": [
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
             "id": "summary-group",
             "title": "",
             "hide_in_navigation": true

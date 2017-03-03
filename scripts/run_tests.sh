@@ -7,6 +7,7 @@
 
 set -e
 
+./scripts/run_lint.sh
 ./scripts/run_tests_unit.sh
 ./scripts/run_tests_functional.sh
 

@@ -8,226 +8,195 @@
     "description": "RSI Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [
-        {
-            "blocks": [
-                {
-                    "type": "Introduction",
-                    "id": "introduction",
-                    "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
-                    "information_to_provide": [
-                        "value of total retail turnover",
-                        "value of internet sales",
-                        "reasons for changes to figures"
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "reporting-period",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "reporting-period-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "period-from",
-                                            "label": "Period from",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "11",
-                                            "type": "Date",
-                                            "validation": {
-                                                "messages": {
-                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                                    "MANDATORY": "Please provide an answer to continue."
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "guidance": "",
-                                            "id": "period-to",
-                                            "label": "Period to",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "12",
-                                            "type": "Date",
-                                            "validation": {
-                                                "messages": {
-                                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                                    "MANDATORY": "Please provide an answer to continue."
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
-                                    "id": "reporting-period-question",
-                                    "title": "What are the dates of the period that you will be reporting for?",
-                                    "type": "DateRange"
+    "groups": [{
+        "blocks": [{
+                "type": "Introduction",
+                "id": "introduction",
+                "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
+                "information_to_provide": [
+                    "value of total retail turnover",
+                    "value of internet sales",
+                    "reasons for changes to figures"
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "reporting-period",
+                "sections": [{
+                    "description": "",
+                    "id": "reporting-period-section",
+                    "questions": [{
+                        "answers": [{
+                                "guidance": "",
+                                "id": "period-from",
+                                "label": "Period from",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "11",
+                                "type": "Date",
+                                "validation": {
+                                    "messages": {
+                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                        "MANDATORY": "Please provide an answer to continue."
+                                    }
                                 }
-                            ],
-                            "title": "Reporting period"
-                        }
-                    ],
-                    "title": "Monthly Business Survey"
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "total-retail-turnover",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "total-retail-turnover-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "total-retail-turnover-answer",
-                                            "label": "Total retail turnover",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "20",
-                                            "type": "Currency",
-                                            "validation": {
-                                                "messages": {
-                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                                    "MANDATORY": "Please provide a value, even if your value is 0.",
-                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
-                                    "guidance": [
-                                        {
-                                            "title": "Include",
-                                            "list": [
-                                                "VAT",
-                                                "internet sales"
-                                            ]
-                                        },
-                                        {
-                                            "title": "Exclude",
-                                            "list": [
-                                                "revenue from mobile phone network commission and top up ",
-                                                "sales from catering facilities used by customers",
-                                                "lottery sales and commission from lottery sales",
-                                                "sales of car accessories and motor vehicles",
-                                                "NHS receipts"
-                                            ]
-                                        }
-                                    ],
-                                    "id": "total-retail-turnover-question",
-                                    "title": "For the reporting period, what was the value of the business’s total retail turnover?",
-                                    "type": "General"
+                            },
+                            {
+                                "guidance": "",
+                                "id": "period-to",
+                                "label": "Period to",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "12",
+                                "type": "Date",
+                                "validation": {
+                                    "messages": {
+                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                        "MANDATORY": "Please provide an answer to continue."
+                                    }
                                 }
-                            ],
-                            "title": "Retail turnover"
-                        }
-                    ],
-                    "title": "Monthly Business Survey"
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "internet-sales",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "internet-sales-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "internet-sales-answer",
-                                            "label": "Internet sales",
-                                            "mandatory": true,
-                                            "options": [],
-                                            "q_code": "21",
-                                            "type": "Currency",
-                                            "validation": {
-                                                "messages": {
-                                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                                    "MANDATORY": "Please provide a value, even if your value is 0.",
-                                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
-                                    "guidance": [
-                                        {
-                                            "title": "Include",
-                                            "list": [
-                                                "VAT"
-                                            ]
-                                        }
-                                    ],
-                                    "id": "internet-sales-question",
-                                    "title": "Of the business's total retail turnover, what was the value of internet sales?",
-                                    "type": "General"
+                            }
+                        ],
+                        "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
+                        "id": "reporting-period-question",
+                        "title": "What are the dates of the period that you will be reporting for?",
+                        "type": "DateRange"
+                    }],
+                    "title": "Reporting period"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "total-retail-turnover",
+                "sections": [{
+                    "description": "",
+                    "id": "total-retail-turnover-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": "",
+                            "id": "total-retail-turnover-answer",
+                            "label": "Total retail turnover",
+                            "mandatory": true,
+                            "options": [],
+                            "q_code": "20",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "MANDATORY": "Please provide a value, even if your value is 0.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
                                 }
-                            ],
-                            "title": "Internet sales"
-                        }
-                    ],
-                    "title": "Monthly Business Survey"
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "changes-in-retail-turnover",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "changes-in-retail-turnover-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "<div><p>Examples of commentary:</p><p><strong>'In-store promotion'</strong></p> <p>Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.</p><strong> 'Special events (for example, sporting events)'</strong></p><p>This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.</p><p><strong>‘Weather'</strong></p><p>The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.</div>",
-                                            "id": "changes-in-retail-turnover-answer",
-                                            "label": "Comments",
-                                            "mandatory": false,
-                                            "options": [],
-                                            "q_code": "146",
-                                            "type": "TextArea",
-                                            "validation": {
-                                                "messages": {}
-                                            }
-                                        }
-                                    ],
-                                    "description": "<p>We rely on your commentary to 'tell the story' behind changes to the business's figures.</p><p>By commenting here it will reduce the need for us to call you.</p>",
-                                    "guidance": [
-                                        {
-                                            "description": "<p>Comment on significant changes to the business's total retail turnover figures from:</p>",
-                                            "list": [
-                                                "the previous reporting period",
-                                                "the same reporting period last year"
-                                            ]
-                                        }
-                                    ],
-                                    "id": "changes-in-retail-turnover-question",
-                                    "title": "Indicate the reasons for any changes in the business's total retail turnover",
-                                    "type": "General"
+                            }
+                        }],
+                        "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
+                        "guidance": [{
+                                "title": "Include",
+                                "list": [
+                                    "VAT",
+                                    "internet sales"
+                                ]
+                            },
+                            {
+                                "title": "Exclude",
+                                "list": [
+                                    "revenue from mobile phone network commission and top up ",
+                                    "sales from catering facilities used by customers",
+                                    "lottery sales and commission from lottery sales",
+                                    "sales of car accessories and motor vehicles",
+                                    "NHS receipts"
+                                ]
+                            }
+                        ],
+                        "id": "total-retail-turnover-question",
+                        "title": "For the reporting period, what was the value of the business’s total retail turnover?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "internet-sales",
+                "sections": [{
+                    "description": "",
+                    "id": "internet-sales-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": "",
+                            "id": "internet-sales-answer",
+                            "label": "Internet sales",
+                            "mandatory": true,
+                            "options": [],
+                            "q_code": "21",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "MANDATORY": "Please provide a value, even if your value is 0.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
                                 }
-                            ],
-                            "title": "Changes in total retail turnover"
-                        }
-                    ],
-                    "title": "Monthly Business Survey"
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
-            "id": "rsi",
-            "title": ""
-        }
-    ]
+                            }
+                        }],
+                        "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
+                        "guidance": [{
+                            "title": "Include",
+                            "list": [
+                                "VAT"
+                            ]
+                        }],
+                        "id": "internet-sales-question",
+                        "title": "Of the business's total retail turnover, what was the value of internet sales?",
+                        "type": "General"
+                    }],
+                    "title": "Internet sales"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "changes-in-retail-turnover",
+                "sections": [{
+                    "description": "",
+                    "id": "changes-in-retail-turnover-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": "<div><p>Examples of commentary:</p><p><strong>'In-store promotion'</strong></p> <p>Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.</p><strong> 'Special events (for example, sporting events)'</strong></p><p>This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.</p><p><strong>‘Weather'</strong></p><p>The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.</div>",
+                            "id": "changes-in-retail-turnover-answer",
+                            "label": "Comments",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "146",
+                            "type": "TextArea",
+                            "validation": {
+                                "messages": {}
+                            }
+                        }],
+                        "description": "<p>We rely on your commentary to 'tell the story' behind changes to the business's figures.</p><p>By commenting here it will reduce the need for us to call you.</p>",
+                        "guidance": [{
+                            "description": "<p>Comment on significant changes to the business's total retail turnover figures from:</p>",
+                            "list": [
+                                "the previous reporting period",
+                                "the same reporting period last year"
+                            ]
+                        }],
+                        "id": "changes-in-retail-turnover-question",
+                        "title": "Indicate the reasons for any changes in the business's total retail turnover",
+                        "type": "General"
+                    }],
+                    "title": "Changes in total retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ],
+        "id": "rsi",
+        "title": ""
+    }]
 }

@@ -58,8 +58,7 @@
                 "required": [
                     "condition"
                 ],
-                "oneOf": [
-                    {
+                "oneOf": [{
                         "required": [
                             "id"
                         ]
@@ -151,8 +150,7 @@
                         ]
                     }
                 },
-                "oneOf": [
-                    {
+                "oneOf": [{
                         "required": [
                             "goto"
                         ]

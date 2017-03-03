@@ -2,6 +2,8 @@ import gulp from 'gulp'
 import gutil from 'gulp-util'
 import del from 'del'
 import yargs from 'yargs'
+import prettify from 'gulp-jsbeautifier'
+import diff from 'gulp-diff'
 
 import {paths} from './gulp/paths'
 import {copyScripts, bundle, lint as lintScripts} from './gulp/scripts'
@@ -167,5 +169,26 @@ gulp.task('test', [
 // Run unit tests
 gulp.task('lint', [
   'lint:styles',
-  'lint:scripts'
+  'lint:scripts',
+  'lint:json'
 ])
+
+gulp.task('lint:json', () => {
+  gulp.src(['./app/data/*.json'])
+    .pipe(prettify())
+    .pipe(diff())
+    .pipe(diff.reporter({
+      quiet: false,
+      fail: true
+    }))
+})
+
+gulp.task('format:json', () => {
+  gulp.src(['./app/data/*.json'])
+    .pipe(prettify())
+    .pipe(gulp.dest('./app/data/'))
+
+  gulp.src(['./app/data/schema/schema-v1.json'])
+    .pipe(prettify())
+    .pipe(gulp.dest('./app/data/schema'))
+})

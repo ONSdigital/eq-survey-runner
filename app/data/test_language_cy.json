@@ -8,25 +8,18 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demonstrate welsh langauge",
-    "groups": [
-        {
-            "id": "welsh-group",
-            "title": "",
-            "blocks": [
-                {
-                    "type": "Interstitial",
-                    "id": "welsh-block",
-                    "sections": [
-                        {
-                            "title": "Holiadur Cymraeg",
-                            "id": "welsh-section",
-                            "questions": [
-                            ]
-                        }
-                    ],
-                    "title": ""
-                }
-            ]
-        }
-    ]
+    "groups": [{
+        "id": "welsh-group",
+        "title": "",
+        "blocks": [{
+            "type": "Interstitial",
+            "id": "welsh-block",
+            "sections": [{
+                "title": "Holiadur Cymraeg",
+                "id": "welsh-section",
+                "questions": []
+            }],
+            "title": ""
+        }]
+    }]
 }

@@ -13,64 +13,51 @@
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
         "NOT_INTEGER": "Please enter an integer"
     },
-    "groups": [
-        {
-            "blocks": [
-                {
-                    "type": "Introduction",
-                    "id": "introduction",
-                    "title": "Introduction",
-                    "description": ""
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "breakfast",
-                    "sections": [
-                        {
-                            "description": "",
-                            "id": "breakfast-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "breakfast-answer",
-                                            "label": "What is your favourite breakfast food",
-                                            "mandatory": false,
-                                            "options": [],
-                                            "q_code": "0",
-                                            "type": "TextField"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "breakfast-question",
-                                    "title": "",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "What is your favourite breakfast food"
-                        }
-                    ],
-                    "routing_rules": [
-                    ],
-                    "title": ""
-                },
-                {
-                    "type": "Confirmation",
-                    "id": "confirmation",
+    "groups": [{
+        "blocks": [{
+                "type": "Introduction",
+                "id": "introduction",
+                "title": "Introduction",
+                "description": ""
+            },
+            {
+                "type": "Questionnaire",
+                "id": "breakfast",
+                "sections": [{
+                    "description": "",
+                    "id": "breakfast-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": "",
+                            "id": "breakfast-answer",
+                            "label": "What is your favourite breakfast food",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "0",
+                            "type": "TextField"
+                        }],
+                        "description": "",
+                        "id": "breakfast-question",
+                        "title": "",
+                        "type": "General"
+                    }],
+                    "title": "What is your favourite breakfast food"
+                }],
+                "routing_rules": [],
+                "title": ""
+            },
+            {
+                "type": "Confirmation",
+                "id": "confirmation",
+                "title": "Thank you for your answers, do you wish to submit",
+                "sections": [{
                     "title": "Thank you for your answers, do you wish to submit",
-                    "sections": [
-                        {
-                            "title": "Thank you for your answers, do you wish to submit",
-                            "id": "questionnaire-completed-section",
-                            "questions": [
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "id": "final-confirmation",
-            "title": ""
-        }
-    ]
+                    "id": "questionnaire-completed-section",
+                    "questions": []
+                }]
+            }
+        ],
+        "id": "final-confirmation",
+        "title": ""
+    }]
 }

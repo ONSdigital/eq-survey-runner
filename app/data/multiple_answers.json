@@ -8,56 +8,48 @@
     "description": "A survey containing questions which have more than one answer",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "groups": [
-        {
-            "blocks": [
-                {
-                    "type": "Questionnaire",
-                    "id": "personal-details-block",
-                    "sections": [
-                        {
-                            "id": "personal-details-section",
-                            "questions": [
-                                {
-                                    "answers": [
-                                        {
-                                            "guidance": "",
-                                            "id": "first-name-answer",
-                                            "label": "What is your first name",
-                                            "mandatory": false,
-                                            "options": [],
-                                            "q_code": "1",
-                                            "type": "TextField"
-                                        },
-                                        {
-                                            "guidance": "",
-                                            "id": "surname-answer",
-                                            "label": "What is your surname",
-                                            "mandatory": false,
-                                            "options": [],
-                                            "q_code": "2",
-                                            "type": "TextField"
-                                        }
-                                    ],
-                                    "description": "",
-                                    "id": "personal-details-question",
-                                    "title": "Tell me about yourself",
-                                    "description": "Answer the question with multiple answers",
-                                    "type": "General"
-                                }
-                            ],
-                            "title": "Multiple questions"
-                        }
-                    ],
+    "groups": [{
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "personal-details-block",
+                "sections": [{
+                    "id": "personal-details-section",
+                    "questions": [{
+                        "answers": [{
+                                "guidance": "",
+                                "id": "first-name-answer",
+                                "label": "What is your first name",
+                                "mandatory": false,
+                                "options": [],
+                                "q_code": "1",
+                                "type": "TextField"
+                            },
+                            {
+                                "guidance": "",
+                                "id": "surname-answer",
+                                "label": "What is your surname",
+                                "mandatory": false,
+                                "options": [],
+                                "q_code": "2",
+                                "type": "TextField"
+                            }
+                        ],
+                        "description": "",
+                        "id": "personal-details-question",
+                        "title": "Tell me about yourself",
+                        "description": "Answer the question with multiple answers",
+                        "type": "General"
+                    }],
                     "title": "Multiple questions"
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
-                }
-            ],
-            "id": "multiple-questions-group",
-            "title": ""
-        }
-    ]
+                }],
+                "title": "Multiple questions"
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ],
+        "id": "multiple-questions-group",
+        "title": ""
+    }]
 }

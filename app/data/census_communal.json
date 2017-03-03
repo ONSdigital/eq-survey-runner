@@ -8,638 +8,541 @@
     "description": "Census England Communal Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "groups": [
-        {
-            "id": "communal-establishment",
-            "title": "Communal Establishment",
-            "blocks": [
-                {
-                    "type": "Questionnaire",
-                    "id": "establishment-type",
+    "groups": [{
+        "id": "communal-establishment",
+        "title": "Communal Establishment",
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "establishment-type",
+                "title": "Establishment",
+                "sections": [{
                     "title": "Establishment",
-                    "sections": [
-                        {
-                            "title": "Establishment",
-                            "id": "establishment-type-section",
-                            "questions": [
-                                {
-                                    "id": "establishment-type-question",
-                                    "title": "How would you describe your establishment?",
-                                    "number": "1",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "establishment-type-answer",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Hotel",
-                                                    "value": "Hotel"
-                                                },
-                                                {
-                                                    "label": "Guest House",
-                                                    "value": "Guest House"
-                                                },
-                                                {
-                                                    "label": "B&B",
-                                                    "value": "B&B"
-                                                },
-                                                {
-                                                    "label": "Inn / Pub",
-                                                    "value": "Inn / Pub"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "value": "Other",
-                                                    "child_answer_id": "establishment-type-answer-other"
-                                                }
-                                            ],
-                                            "type": "Radio"
-                                        },
-                                        {
-                                            "id": "establishment-type-answer-other",
-                                            "parent_answer_id": "establishment-type-answer",
-                                            "type": "TextField",
-                                            "mandatory": false,
-                                            "label": "Please specify"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "bed-spaces",
+                    "id": "establishment-type-section",
+                    "questions": [{
+                        "id": "establishment-type-question",
+                        "title": "How would you describe your establishment?",
+                        "number": "1",
+                        "type": "General",
+                        "answers": [{
+                                "id": "establishment-type-answer",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "Hotel",
+                                        "value": "Hotel"
+                                    },
+                                    {
+                                        "label": "Guest House",
+                                        "value": "Guest House"
+                                    },
+                                    {
+                                        "label": "B&B",
+                                        "value": "B&B"
+                                    },
+                                    {
+                                        "label": "Inn / Pub",
+                                        "value": "Inn / Pub"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "child_answer_id": "establishment-type-answer-other"
+                                    }
+                                ],
+                                "type": "Radio"
+                            },
+                            {
+                                "id": "establishment-type-answer-other",
+                                "parent_answer_id": "establishment-type-answer",
+                                "type": "TextField",
+                                "mandatory": false,
+                                "label": "Please specify"
+                            }
+                        ]
+                    }]
+                }]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "bed-spaces",
+                "title": "Establishment",
+                "sections": [{
                     "title": "Establishment",
-                    "sections": [
-                        {
-                            "title": "Establishment",
-                            "id": "bed-spaces-section",
-                            "questions": [
-                                {
-                                    "id": "bed-spaces-question",
-                                    "title": "How many guest bed spaces does your establishment offer?",
-                                    "number": "2",
-                                    "description": "Count double rooms as 2 guest bed spaces",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "bed-spaces-answer",
-                                            "label": "Number of bed spaces",
-                                            "mandatory": true,
-                                            "type": "PositiveInteger",
-                                            "validation": {
-                                                "messages": {
-                                                    "MANDATORY": "Please provide an answer to continue",
-                                                    "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
-                                                }
-                                            }
-                                        }
-                                    ]
+                    "id": "bed-spaces-section",
+                    "questions": [{
+                        "id": "bed-spaces-question",
+                        "title": "How many guest bed spaces does your establishment offer?",
+                        "number": "2",
+                        "description": "Count double rooms as 2 guest bed spaces",
+                        "type": "General",
+                        "answers": [{
+                            "id": "bed-spaces-answer",
+                            "label": "Number of bed spaces",
+                            "mandatory": true,
+                            "type": "PositiveInteger",
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY": "Please provide an answer to continue",
+                                    "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
                                 }
-                            ]
-                        }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "id": "further-contact",
-                                "when": [
-                                    {
-                                        "id": "bed-spaces-answer",
-                                        "condition": "equals",
-                                        "value": "0"
-                                    }
-                                ]
                             }
-                        },
-                        {
-                            "goto": {
-                                "id": "usual-residents"
-                            }
+                        }]
+                    }]
+                }],
+                "routing_rules": [{
+                        "goto": {
+                            "id": "further-contact",
+                            "when": [{
+                                "id": "bed-spaces-answer",
+                                "condition": "equals",
+                                "value": "0"
+                            }]
                         }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "usual-residents",
+                    },
+                    {
+                        "goto": {
+                            "id": "usual-residents"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "usual-residents",
+                "title": "Usual Residents",
+                "sections": [{
                     "title": "Usual Residents",
-                    "sections": [
-                        {
-                            "title": "Usual Residents",
-                            "id": "usual-residents-section",
-                            "questions": [
-                                {
-                                    "id": "usual-residents-question",
-                                    "title": "Are there any usual residents living at this establishment?",
-                                    "number": "1",
-                                    "type": "General",
-                                    "guidance": [
-                                        {
-                                            "title": "Include",
-                                            "list": [
-                                                "Yourself, your family and anyone else who lives at this address",
-                                                "Students or  school children who live away from your establishment during term time",
-                                                "People who usually live outside the UK, who are staying in the UK for 3 months or more",
-                                                "People who work away from home within the UK, or are members of the armed forces, if this is their permanent or family home",
-                                                "People who are currently outside the UK for less than 12 months, if this is their permanent or family home",
-                                                "People staying temporarily who usually live in the UK but do not have another UK address"
-                                            ]
-                                        }
-                                    ],
-                                    "answers": [
-                                        {
-                                            "id": "usual-residents-answer",
-                                            "mandatory": true,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "type": "Radio",
-                                            "validation": {
-                                                "messages": {
-                                                    "MANDATORY": "Please select an answer to continue"
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
+                    "id": "usual-residents-section",
+                    "questions": [{
+                        "id": "usual-residents-question",
+                        "title": "Are there any usual residents living at this establishment?",
+                        "number": "1",
+                        "type": "General",
+                        "guidance": [{
+                            "title": "Include",
+                            "list": [
+                                "Yourself, your family and anyone else who lives at this address",
+                                "Students or  school children who live away from your establishment during term time",
+                                "People who usually live outside the UK, who are staying in the UK for 3 months or more",
+                                "People who work away from home within the UK, or are members of the armed forces, if this is their permanent or family home",
+                                "People who are currently outside the UK for less than 12 months, if this is their permanent or family home",
+                                "People staying temporarily who usually live in the UK but do not have another UK address"
                             ]
-                        }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "id": "completion-preference-establishment",
-                                "when": [
-                                    {
-                                        "id": "usual-residents-answer",
-                                        "condition": "equals",
-                                        "value": "No"
-                                    }
-                                ]
+                        }],
+                        "answers": [{
+                            "id": "usual-residents-answer",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ],
+                            "type": "Radio",
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY": "Please select an answer to continue"
+                                }
                             }
-                        },
-                        {
-                            "goto": {
-                                "id": "usual-residents-number"
-                            }
+                        }]
+                    }]
+                }],
+                "routing_rules": [{
+                        "goto": {
+                            "id": "completion-preference-establishment",
+                            "when": [{
+                                "id": "usual-residents-answer",
+                                "condition": "equals",
+                                "value": "No"
+                            }]
                         }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "usual-residents-number",
+                    },
+                    {
+                        "goto": {
+                            "id": "usual-residents-number"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "usual-residents-number",
+                "title": "Usual Residents",
+                "sections": [{
                     "title": "Usual Residents",
-                    "sections": [
-                        {
-                            "title": "Usual Residents",
-                            "id": "usual-residents-number-section",
-                            "questions": [
-                                {
-                                    "id": "usual-residents-number-question",
-                                    "title": "How many usual residents live at this establishment?",
-                                    "number": "2",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "usual-residents-number-answer",
-                                            "mandatory": true,
-                                            "label": "Number of usual residents",
-                                            "type": "PositiveInteger",
-                                            "validation": {
-                                                "messages": {
-                                                    "MANDATORY": "Please provide an answer to continue.",
-                                                    "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
-                                                }
-                                            }
-                                        }
-                                    ]
+                    "id": "usual-residents-number-section",
+                    "questions": [{
+                        "id": "usual-residents-number-question",
+                        "title": "How many usual residents live at this establishment?",
+                        "number": "2",
+                        "type": "General",
+                        "answers": [{
+                            "id": "usual-residents-number-answer",
+                            "mandatory": true,
+                            "label": "Number of usual residents",
+                            "type": "PositiveInteger",
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY": "Please provide an answer to continue.",
+                                    "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
                                 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "describe-residents",
+                            }
+                        }]
+                    }]
+                }]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "describe-residents",
+                "title": "Usual Residents",
+                "sections": [{
                     "title": "Usual Residents",
-                    "sections": [
-                        {
-                            "title": "Usual Residents",
-                            "id": "describe-residents-section",
-                            "questions": [
-                                {
-                                    "id": "describe-residents-question",
-                                    "title": "How would you describe your usual residents?",
-                                    "number": "3",
-                                    "description": "Select all that apply",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "describe-residents-answer",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Family Members",
-                                                    "value": "Family Members"
-                                                },
-                                                {
-                                                    "label": "Paying Guests",
-                                                    "value": "Paying Guests"
-                                                },
-                                                {
-                                                    "label": "Staff",
-                                                    "value": "Staff"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "value": "Other",
-                                                    "child_answer_id": "describe-residents-answer-other"
-                                                }
-                                            ],
-                                            "type": "Checkbox"
-                                        },
-                                        {
-                                            "id": "describe-residents-answer-other",
-                                            "parent_answer_id": "describe-residents-answer",
-                                            "type": "TextField",
-                                            "mandatory": false,
-                                            "label": "Please specify"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "completion-preference-individual",
-                    "title": "Completion Preferences",
-                    "sections": [
-                        {
-                            "title": "Completion Preferences",
-                            "id": "completion-preference-individual-section",
-                            "questions": [
-                                {
-                                    "id": "completion-preference-individual-question",
-                                    "title": "If tomorrow was Census Day, to the best of your knowledge, how do you think your usual residents would prefer to complete their individual questionnaires?",
-                                    "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment. All usual residents will be required to complete an individual questionnaire (with more personal details).",
-                                    "number": "1",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "completion-preference-individual-answer",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Online",
-                                                    "value": "Online"
-                                                },
-                                                {
-                                                    "label": "Paper",
-                                                    "value": "Paper"
-                                                },
-                                                {
-                                                    "label": "Not sure",
-                                                    "value": "Not sure"
-                                                }
-                                            ],
-                                            "type": "Radio"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "id": "completion-preference-establishment",
-                                "when": [
+                    "id": "describe-residents-section",
+                    "questions": [{
+                        "id": "describe-residents-question",
+                        "title": "How would you describe your usual residents?",
+                        "number": "3",
+                        "description": "Select all that apply",
+                        "type": "General",
+                        "answers": [{
+                                "id": "describe-residents-answer",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "Family Members",
+                                        "value": "Family Members"
+                                    },
                                     {
-                                        "id": "completion-preference-individual-answer",
-                                        "condition": "equals",
-                                        "value": "Online"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "id": "completion-preference-establishment",
-                                "when": [
+                                        "label": "Paying Guests",
+                                        "value": "Paying Guests"
+                                    },
                                     {
-                                        "id": "completion-preference-individual-answer",
-                                        "condition": "equals",
-                                        "value": "Not sure"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "id": "why-paper-individual"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "why-paper-individual",
-                    "title": "Completion Preferences",
-                    "sections": [
-                        {
-                            "title": "Completion Preferences",
-                            "id": "why-paper-individual-section",
-                            "questions": [
-                                {
-                                    "id": "why-paper-individual-question",
-                                    "title": "Why do you think they would choose to do it on paper?",
-                                    "number": "2",
-                                    "description": "Select all that apply",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "why-paper-individual-answer",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "More convenient",
-                                                    "value": "More convenient"
-                                                },
-                                                {
-                                                    "label": "Don’t trust internet or security concerns",
-                                                    "value": "Don’t trust internet or security concerns"
-                                                },
-                                                {
-                                                    "label": "No access to internet",
-                                                    "value": "No access to internet"
-                                                },
-                                                {
-                                                    "label": "Unsure how to use a computer",
-                                                    "value": "Unsure how to use a computer"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "value": "Other",
-                                                    "child_answer_id": "why-paper-individual-answer-other"
-                                                }
-                                            ],
-                                            "type": "Checkbox"
-                                        },
-                                        {
-                                            "id": "why-paper-individual-answer-other",
-                                            "parent_answer_id": "why-paper-individual-answer",
-                                            "type": "TextField",
-                                            "mandatory": false,
-                                            "label": "Please specify"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "completion-preference-establishment",
-                    "title": "Completion Preferences",
-                    "sections": [
-                        {
-                            "title": "Completion Preferences",
-                            "id": "completion-preference-establishment-section",
-                            "questions": [
-                                {
-                                    "id": "completion-preference-establishment-question",
-                                    "title": "If tomorrow was Census Day, how would you (or a member of staff) complete the Census establishment questionnaire?",
-                                    "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment.",
-                                    "number": "3",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "completion-preference-establishment-answer",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Online",
-                                                    "value": "Online"
-                                                },
-                                                {
-                                                    "label": "Paper",
-                                                    "value": "Paper"
-                                                }
-                                            ],
-                                            "type": "Radio"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "id": "further-contact",
-                                "when": [
+                                        "label": "Staff",
+                                        "value": "Staff"
+                                    },
                                     {
-                                        "id": "completion-preference-establishment-answer",
-                                        "condition": "equals",
-                                        "value": "Online"
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "child_answer_id": "describe-residents-answer-other"
                                     }
-                                ]
+                                ],
+                                "type": "Checkbox"
+                            },
+                            {
+                                "id": "describe-residents-answer-other",
+                                "parent_answer_id": "describe-residents-answer",
+                                "type": "TextField",
+                                "mandatory": false,
+                                "label": "Please specify"
                             }
-                        },
-                        {
-                            "goto": {
-                                "id": "why-paper-establishment"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "why-paper-establishment",
+                        ]
+                    }]
+                }]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "completion-preference-individual",
+                "title": "Completion Preferences",
+                "sections": [{
                     "title": "Completion Preferences",
-                    "sections": [
-                        {
-                            "title": "Completion Preferences",
-                            "id": "why-paper-establishment-section",
-                            "questions": [
+                    "id": "completion-preference-individual-section",
+                    "questions": [{
+                        "id": "completion-preference-individual-question",
+                        "title": "If tomorrow was Census Day, to the best of your knowledge, how do you think your usual residents would prefer to complete their individual questionnaires?",
+                        "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment. All usual residents will be required to complete an individual questionnaire (with more personal details).",
+                        "number": "1",
+                        "type": "General",
+                        "answers": [{
+                            "id": "completion-preference-individual-answer",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "Online",
+                                    "value": "Online"
+                                },
                                 {
-                                    "id": "why-paper-establishment-question",
-                                    "title": "Why would you choose to do it on paper?",
-                                    "number": "4",
-                                    "description": "Select all that apply",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "why-paper-establishment-answer",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "More convenient",
-                                                    "value": "More convenient"
-                                                },
-                                                {
-                                                    "label": "Don’t trust internet or security concerns",
-                                                    "value": "Don’t trust internet or security concerns"
-                                                },
-                                                {
-                                                    "label": "Other",
-                                                    "value": "Other",
-                                                    "child_answer_id": "why-paper-establishment-answer-other"
-                                                }
-                                            ],
-                                            "type": "Checkbox"
-                                        },
-                                        {
-                                            "id": "why-paper-establishment-answer-other",
-                                            "parent_answer_id": "why-paper-establishment-answer",
-                                            "type": "TextField",
-                                            "mandatory": false,
-                                            "label": "Please specify"
-                                        }
-                                    ]
+                                    "label": "Paper",
+                                    "value": "Paper"
+                                },
+                                {
+                                    "label": "Not sure",
+                                    "value": "Not sure"
                                 }
-                            ]
+                            ],
+                            "type": "Radio"
+                        }]
+                    }]
+                }],
+                "routing_rules": [{
+                        "goto": {
+                            "id": "completion-preference-establishment",
+                            "when": [{
+                                "id": "completion-preference-individual-answer",
+                                "condition": "equals",
+                                "value": "Online"
+                            }]
                         }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "further-contact",
+                    },
+                    {
+                        "goto": {
+                            "id": "completion-preference-establishment",
+                            "when": [{
+                                "id": "completion-preference-individual-answer",
+                                "condition": "equals",
+                                "value": "Not sure"
+                            }]
+                        }
+                    },
+                    {
+                        "goto": {
+                            "id": "why-paper-individual"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "why-paper-individual",
+                "title": "Completion Preferences",
+                "sections": [{
+                    "title": "Completion Preferences",
+                    "id": "why-paper-individual-section",
+                    "questions": [{
+                        "id": "why-paper-individual-question",
+                        "title": "Why do you think they would choose to do it on paper?",
+                        "number": "2",
+                        "description": "Select all that apply",
+                        "type": "General",
+                        "answers": [{
+                                "id": "why-paper-individual-answer",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "More convenient",
+                                        "value": "More convenient"
+                                    },
+                                    {
+                                        "label": "Don’t trust internet or security concerns",
+                                        "value": "Don’t trust internet or security concerns"
+                                    },
+                                    {
+                                        "label": "No access to internet",
+                                        "value": "No access to internet"
+                                    },
+                                    {
+                                        "label": "Unsure how to use a computer",
+                                        "value": "Unsure how to use a computer"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "child_answer_id": "why-paper-individual-answer-other"
+                                    }
+                                ],
+                                "type": "Checkbox"
+                            },
+                            {
+                                "id": "why-paper-individual-answer-other",
+                                "parent_answer_id": "why-paper-individual-answer",
+                                "type": "TextField",
+                                "mandatory": false,
+                                "label": "Please specify"
+                            }
+                        ]
+                    }]
+                }]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "completion-preference-establishment",
+                "title": "Completion Preferences",
+                "sections": [{
+                    "title": "Completion Preferences",
+                    "id": "completion-preference-establishment-section",
+                    "questions": [{
+                        "id": "completion-preference-establishment-question",
+                        "title": "If tomorrow was Census Day, how would you (or a member of staff) complete the Census establishment questionnaire?",
+                        "description": "For the 2021 Census all hotels, B&B, guest houses etc. will be expected to complete a questionnaire about their establishment.",
+                        "number": "3",
+                        "type": "General",
+                        "answers": [{
+                            "id": "completion-preference-establishment-answer",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "Online",
+                                    "value": "Online"
+                                },
+                                {
+                                    "label": "Paper",
+                                    "value": "Paper"
+                                }
+                            ],
+                            "type": "Radio"
+                        }]
+                    }]
+                }],
+                "routing_rules": [{
+                        "goto": {
+                            "id": "further-contact",
+                            "when": [{
+                                "id": "completion-preference-establishment-answer",
+                                "condition": "equals",
+                                "value": "Online"
+                            }]
+                        }
+                    },
+                    {
+                        "goto": {
+                            "id": "why-paper-establishment"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "why-paper-establishment",
+                "title": "Completion Preferences",
+                "sections": [{
+                    "title": "Completion Preferences",
+                    "id": "why-paper-establishment-section",
+                    "questions": [{
+                        "id": "why-paper-establishment-question",
+                        "title": "Why would you choose to do it on paper?",
+                        "number": "4",
+                        "description": "Select all that apply",
+                        "type": "General",
+                        "answers": [{
+                                "id": "why-paper-establishment-answer",
+                                "mandatory": false,
+                                "options": [{
+                                        "label": "More convenient",
+                                        "value": "More convenient"
+                                    },
+                                    {
+                                        "label": "Don’t trust internet or security concerns",
+                                        "value": "Don’t trust internet or security concerns"
+                                    },
+                                    {
+                                        "label": "Other",
+                                        "value": "Other",
+                                        "child_answer_id": "why-paper-establishment-answer-other"
+                                    }
+                                ],
+                                "type": "Checkbox"
+                            },
+                            {
+                                "id": "why-paper-establishment-answer-other",
+                                "parent_answer_id": "why-paper-establishment-answer",
+                                "type": "TextField",
+                                "mandatory": false,
+                                "label": "Please specify"
+                            }
+                        ]
+                    }]
+                }]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "further-contact",
+                "title": "Further Contact",
+                "sections": [{
                     "title": "Further Contact",
-                    "sections": [
-                        {
-                            "title": "Further Contact",
-                            "id": "further-contact-section",
-                            "questions": [
+                    "id": "further-contact-section",
+                    "questions": [{
+                        "id": "further-contact-question",
+                        "title": "Would you be happy to be contacted in the future, by the Office for National Statistics, to help us design the 2021 Census?",
+                        "number": "1",
+                        "type": "General",
+                        "answers": [{
+                            "id": "further-contact-answer",
+                            "mandatory": false,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
                                 {
-                                    "id": "further-contact-question",
-                                    "title": "Would you be happy to be contacted in the future, by the Office for National Statistics, to help us design the 2021 Census?",
-                                    "number": "1",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "further-contact-answer",
-                                            "mandatory": false,
-                                            "options": [
-                                                {
-                                                    "label": "Yes",
-                                                    "value": "Yes"
-                                                },
-                                                {
-                                                    "label": "No",
-                                                    "value": "No"
-                                                }
-                                            ],
-                                            "type": "Radio"
-                                        }
-                                    ]
+                                    "label": "No",
+                                    "value": "No"
                                 }
-                            ]
+                            ],
+                            "type": "Radio"
+                        }]
+                    }]
+                }],
+                "routing_rules": [{
+                        "goto": {
+                            "id": "confirmation",
+                            "when": [{
+                                "id": "further-contact-answer",
+                                "condition": "equals",
+                                "value": "No"
+                            }]
                         }
-                    ],
-                    "routing_rules": [
-                        {
-                            "goto": {
-                                "id": "confirmation",
-                                "when": [
-                                    {
-                                        "id": "further-contact-answer",
-                                        "condition": "equals",
-                                        "value": "No"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "goto": {
-                                "id": "contact-details"
-                            }
+                    },
+                    {
+                        "goto": {
+                            "id": "contact-details"
                         }
-                    ]
-                },
-                {
-                    "type": "Questionnaire",
-                    "id": "contact-details",
+                    }
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "contact-details",
+                "title": "Further Contact",
+                "sections": [{
                     "title": "Further Contact",
-                    "sections": [
-                        {
-                            "title": "Further Contact",
-                            "id": "contact-details-section",
-                            "questions": [
-                                {
-                                    "id": "contact-details-question",
-                                    "title": "Please complete your contact details:",
-                                    "number": "2",
-                                    "type": "General",
-                                    "answers": [
-                                        {
-                                            "id": "contact-details-answer-name",
-                                            "label": "Name",
-                                            "mandatory": false,
-                                            "type": "TextField"
-                                        },
-                                        {
-                                            "id": "contact-details-answer-email",
-                                            "label": "Email",
-                                            "mandatory": false,
-                                            "type": "TextField"
-                                        },
-                                        {
-                                            "id": "contact-details-answer-phone",
-                                            "label": "and / or telephone number",
-                                            "mandatory": false,
-                                            "type": "TextField"
-                                        }
-                                    ]
-                                }
+                    "id": "contact-details-section",
+                    "questions": [{
+                        "id": "contact-details-question",
+                        "title": "Please complete your contact details:",
+                        "number": "2",
+                        "type": "General",
+                        "answers": [{
+                                "id": "contact-details-answer-name",
+                                "label": "Name",
+                                "mandatory": false,
+                                "type": "TextField"
+                            },
+                            {
+                                "id": "contact-details-answer-email",
+                                "label": "Email",
+                                "mandatory": false,
+                                "type": "TextField"
+                            },
+                            {
+                                "id": "contact-details-answer-phone",
+                                "label": "and / or telephone number",
+                                "mandatory": false,
+                                "type": "TextField"
+                            }
+                        ]
+                    }]
+                }]
+            },
+            {
+                "type": "Confirmation",
+                "id": "confirmation",
+                "title": "You are ready to submit your answers",
+                "sections": [{
+                    "title": "You’re ready to submit your 2017 Census Test",
+                    "id": "questionnaire-completed-section",
+                    "description": "<p>Thank you for taking part in the 2017 Census Test.</p>",
+                    "questions": [{
+                        "answers": [],
+                        "id": "questionnaire-completed-question",
+                        "title": "",
+                        "type": "General",
+                        "guidance": [{
+                            "title": "Please note:",
+                            "list": [
+                                "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
+                                "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
+                                "After submission you will have an opportunity to provide feedback on your experience."
                             ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Confirmation",
-                    "id": "confirmation",
-                    "title": "You are ready to submit your answers",
-                    "sections": [
-                        {
-                            "title": "You’re ready to submit your 2017 Census Test",
-                            "id": "questionnaire-completed-section",
-                            "description": "<p>Thank you for taking part in the 2017 Census Test.</p>",
-                            "questions": [
-                                {
-                                    "answers": [],
-                                    "id": "questionnaire-completed-question",
-                                    "title": "",
-                                    "type": "General",
-                                    "guidance": [
-                                        {
-                                            "title": "Please note:",
-                                            "list": [
-                                                "By submitting your responses, you are declaring that you have completed to the best of your knowledge and belief.",
-                                                "If you do not submit, your responses will be automatically submitted when the Census 2017 Test closes.",
-                                                "After submission you will have an opportunity to provide feedback on your experience."
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+                        }]
+                    }]
+                }]
+            }
+        ]
+    }]
 }
