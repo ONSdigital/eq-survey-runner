@@ -54,4 +54,5 @@ def _build_respondent(metadata):
     return {
         "ru_name": metadata["ru_name"],
         "trad_as": metadata["trad_as"],
+        "trad_as_or_ru_name": metadata["trad_as"] or metadata["ru_name"],
     }
