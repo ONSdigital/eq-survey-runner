@@ -29,7 +29,7 @@ class Navigation(object):
         :param current_group_instance:
         :return:
         """
-        if 'navigation' not in self.survey_json:
+        if self.survey_json.get('navigation', False) is False:
             return None
 
         navigation = []

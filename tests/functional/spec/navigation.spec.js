@@ -1,8 +1,11 @@
 import landingPage from '../pages/landing.page'
 import PercentagePage from '../pages/surveys/percentage/percentage.page'
+import FinalConfirmationSurveyPage from '../pages/surveys/confirmation/final-confirmation-survey.page'
 import SummaryPage from '../pages/summary.page'
 import {
   openQuestionnaire,
+  startQuestionnaire,
+  getBlockId,
   setMobileViewport,
   openMobileNavigation,
   closeMobileNavigation,
@@ -54,4 +57,19 @@ describe('Navigation', function() {
     // Then
     expect(isViewSectionsVisible()).to.be.false
   })
+
+  it('Given survey with navigation enabled, when on Confirmation page, Then navigation should be visible.', function() {
+    // Given
+    setMobileViewport()
+    startQuestionnaire('test_final_confirmation.json')
+
+    // When
+    expect(isViewSectionsVisible()).to.be.true
+    FinalConfirmationSurveyPage.setBreakfastFood('Bacon').submit()
+
+    // Then
+    expect(getBlockId()).to.equal('confirmation')
+    expect(isViewSectionsVisible()).to.be.true
+  })
+
 })
