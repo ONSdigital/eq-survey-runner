@@ -58,8 +58,7 @@
                 "required": [
                     "condition"
                 ],
-                "oneOf": [
-                    {
+                "oneOf": [{
                         "required": [
                             "id"
                         ]
@@ -97,6 +96,9 @@
                     "type": "string"
                 },
                 "INVALID_DATE_RANGE_TO_FROM_SAME": {
+                    "type": "string"
+                },
+                "INVALID_TIME_INPUT": {
                     "type": "string"
                 }
             },
@@ -151,8 +153,7 @@
                         ]
                     }
                 },
-                "oneOf": [
-                    {
+                "oneOf": [{
                         "required": [
                             "goto"
                         ]
@@ -204,20 +205,7 @@
             "description": "The amount of time in seconds before showing the prompt informing a user of the time to session timeout.",
             "type": "integer"
         },
-        "INVALID_DATE_RANGE_TO_FROM_SAME": {
-            "type": "string"
-        },
-        "INVALID_TIME_INPUT": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
-    },
-    "routing_rules": {
-      "type": "array",
-      "navigation_label_answer_ids": {
-          "type": "array",
-          "items": {
+        "title": {
             "type": "string"
         },
         "description": {
@@ -282,24 +270,11 @@
                                 },
                                 "type": {
                                     "enum": [
-
                                         "Questionnaire",
                                         "Interstitial",
                                         "Introduction",
                                         "Summary",
-                                        "Confirmation",
-                                        "Checkbox",
-                                        "Currency",
-                                        "Date",
-                                        "MonthYearDate",
-                                        "Integer",
-                                        "Percentage",
-                                        "PositiveInteger",
-                                        "Radio",
-                                        "TextArea",
-                                        "TextField",
-                                        "TimeInput",
-                                        "Relationship"
+                                        "Confirmation"
                                     ]
                                 },
                                 "description": {
@@ -422,7 +397,8 @@
                                                                             "Radio",
                                                                             "TextArea",
                                                                             "TextField",
-                                                                            "Relationship"
+                                                                            "Relationship",
+                                                                            "TimeInput"
                                                                         ]
                                                                     },
                                                                     "options": {

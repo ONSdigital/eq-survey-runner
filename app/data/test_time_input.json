@@ -8,12 +8,6 @@
     "description": "A test schema for time input",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "introduction": {
-        "description": "",
-        "information_to_provide": [
-            "time"
-        ]
-    },
     "groups": [
         {
             "blocks": [
