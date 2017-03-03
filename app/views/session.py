@@ -4,10 +4,12 @@ from flask import request
 from flask import session
 from flask_login import current_user
 from structlog import get_logger
-from werkzeug.exceptions import NotFound
+from werkzeug.exceptions import NotFound, Unauthorized
 
-from app.authentication import authenticator
-from app.globals import get_answer_store, get_completed_blocks, get_metadata
+from app.authentication.authenticator import store_session, decrypt_token
+from app.authentication.jti_claim_storage import use_jti_claim, JtiTokenUsed
+from app.globals import get_answer_store, get_completed_blocks
+from app.parser.metadata_parser import parse_metadata
 from app.questionnaire.path_finder import PathFinder
 from app.utilities.schema import get_schema
 
@@ -31,24 +33,31 @@ def login():
     :return: a 302 redirect to the next location for the user
     """
     logger.new()
-    # logging in again clears any session state
-    if session:
-        session.clear()
-
-    logger.debug("attempting token authentication")
-    authenticator.jwt_login(request)
-    logger.debug("token authenticated - linking to session")
-
-    metadata = get_metadata(current_user)
-
+    decrypted_token = decrypt_token(request.args.get('token'))
+    metadata = parse_metadata(decrypted_token)
     eq_id = metadata["eq_id"]
     form_type = metadata["form_type"]
-
-    logger.bind(eq_id=eq_id, form_type=form_type)
+    tx_id = metadata["tx_id"]
+    logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id)
 
     if not eq_id or not form_type:
         logger.error("missing eq id or form type in jwt")
         raise NotFound
+
+    # logging in again clears any session state
+    if session:
+        session.clear()
+
+    jti_claim = metadata.get('jti')
+    if jti_claim is None:
+        logger.debug('jti claim not provided')
+    else:
+        try:
+            use_jti_claim(jti_claim)
+        except JtiTokenUsed as e:
+            raise Unauthorized from e
+
+    store_session(metadata)
 
     json = get_schema(metadata)
 

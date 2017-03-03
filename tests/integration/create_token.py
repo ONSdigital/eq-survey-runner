@@ -1,7 +1,10 @@
-from app.views.dev_mode import generate_token, create_payload
+import time
+from uuid import uuid4
+
+from app.views.dev_mode import generate_token
 
 PAYLOAD = {
-    'user': "mci-integration-test",
+    'user_id': "mci-integration-test",
     "period_str": "April 2016",
     "period_id": "201604",
     "collection_exercise_sid": "789",
@@ -13,21 +16,19 @@ PAYLOAD = {
     "trad_as": "Integration Tests",
     "employment_date": "1983-06-02",
     "variant_flags": None,
-    "exp_time": 3600  # one hour from now
+    "region_code": None,
+    "language_code": None
 }
 
 
-def create_token(form_type_id, eq_id, start_date=None, end_date=None, employment_date=None, region_code=None, language_code=None):
-
+def create_token(form_type_id, eq_id, **extra_payload):
     payload_vars = PAYLOAD
-    payload_vars['ref_p_start_date'] = start_date or payload_vars['ref_p_start_date']
-    payload_vars['ref_p_end_date'] = end_date or payload_vars['ref_p_end_date']
-    payload_vars['employment_date'] = employment_date or payload_vars['employment_date']
     payload_vars['eq_id'] = eq_id
     payload_vars['form_type'] = form_type_id
-    payload_vars['region_code'] = region_code
-    payload_vars['language_code'] = language_code
+    payload_vars['jti'] = str(uuid4())
+    payload_vars['iat'] = time.time()
+    payload_vars['exp'] = payload_vars['iat'] + float(3600)  # one hour from now
+    for key, value in extra_payload.items():
+        payload_vars[key] = value
 
-    payload = create_payload(**payload_vars)
-
-    return generate_token(payload)
+    return generate_token(payload_vars)

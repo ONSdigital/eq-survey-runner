@@ -1,15 +1,13 @@
-from app.globals import get_answer_store, get_metadata, get_questionnaire_store
-from app.submitter.submitter import SubmitterFactory
-from app.submitter.converter import convert_answers
-from app.utilities.schema import get_schema
+from flask import Blueprint, Response, request, session
 
+from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
-from app.authentication.authenticator import jwt_decrypt
-
+from app.globals import get_answer_store, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
-
-from flask import Blueprint, Response, request, session
+from app.submitter.converter import convert_answers
+from app.submitter.submitter import SubmitterFactory
+from app.utilities.schema import get_schema
 
 flush_blueprint = Blueprint('flush', __name__)
 
@@ -25,7 +23,8 @@ def flush_data():
     if encrypted_token is None:
         return Response(status=403)
 
-    decrypted_token = jwt_decrypt(encrypted_token)
+    decoder = JWTDecryptor()
+    decrypted_token = decoder.decrypt_jwt_token(encrypted_token)
 
     roles = decrypted_token.get('roles')
 

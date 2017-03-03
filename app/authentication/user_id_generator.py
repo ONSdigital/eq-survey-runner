@@ -16,8 +16,8 @@ logger = get_logger()
 class UserIDGenerator(object):
 
     @staticmethod
-    def generate_id(token):
-        collection_exercise_sid, eq_id, form_type, ru_ref = UserIDGenerator._get_token_data(token)
+    def generate_id(metadata):
+        collection_exercise_sid, eq_id, form_type, ru_ref = UserIDGenerator._get_token_data(metadata)
 
         logger.debug("generating user id", ru_ref=ru_ref, ce_id=collection_exercise_sid, eq_id=eq_id, form_type=form_type)
         salt = to_bytes(settings.EQ_SERVER_SIDE_STORAGE_USER_ID_SALT)
@@ -41,14 +41,14 @@ class UserIDGenerator(object):
         return binascii.hexlify(generated_key)
 
     @staticmethod
-    def _get_token_data(token):
-        ru_ref = token.get("ru_ref")
-        collection_exercise_sid = token.get("collection_exercise_sid")
-        eq_id = token.get("eq_id")
-        form_type = token.get("form_type")
+    def _get_token_data(metadata):
+        ru_ref = metadata.get("ru_ref")
+        collection_exercise_sid = metadata.get("collection_exercise_sid")
+        eq_id = metadata.get("eq_id")
+        form_type = metadata.get("form_type")
 
         if ru_ref and collection_exercise_sid and eq_id and form_type:
             return collection_exercise_sid, eq_id, form_type, ru_ref
         else:
-            logger.error("missing values for ru_ref, collection_exercise_sid, form_type or eq_id", jwt_token=token)
+            logger.error("missing values for ru_ref, collection_exercise_sid, form_type or eq_id", metadata=metadata)
             raise InvalidTokenException("Missing values in JWT token")
