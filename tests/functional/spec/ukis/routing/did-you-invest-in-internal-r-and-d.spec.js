@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startQuestionnaire} from '../../../helpers'
 
 
@@ -112,7 +111,6 @@ import ApproachedTelephone from '../../../pages/surveys/ukis/approached-telephon
 import ReadyToSubmitCompleted from '../../../pages/surveys/ukis/ready-to-submit-completed.page.js'
 import Navigation from '../../../pages/surveys/ukis/navigation.page.js'
 
-const expect = chai.expect
 
 describe('UKIS - Did you invest in internal R&D?', function() {
 

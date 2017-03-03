@@ -1,4 +1,3 @@
-import chai from 'chai'
 import landingPage from '../pages/landing.page'
 import PercentagePage from '../pages/surveys/percentage/percentage.page'
 import SummaryPage from '../pages/summary.page'
@@ -10,7 +9,6 @@ import {
   isViewSectionsVisible
 } from '../helpers'
 
-const expect = chai.expect
 
 describe('Navigation', function() {
   it('Given a page with navigation, a user on mobile should be able to access it via the associated button', function() {

@@ -1,10 +1,8 @@
-import chai from 'chai'
 import {startQuestionnaire} from '../helpers'
 import FinalConfirmationSurveyPage from '../pages/surveys/confirmation/final-confirmation-survey.page'
 import Confirmation from '../pages/confirmation.page'
 import ThankYou from '../pages/thank-you.page'
 
-const expect = chai.expect
 
 describe('Final confirmation before submit', function () {
 

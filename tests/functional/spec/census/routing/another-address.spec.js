@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 import {completeHouseholdAndAccommodation} from '../complete-section'
 
@@ -20,7 +19,6 @@ import OtherAddress from '../../../pages/surveys/census/household/other-address.
 import AddressType from '../../../pages/surveys/census/household/address-type.page.js'
 import InEducation from '../../../pages/surveys/census/household/in-education.page.js'
 
-const expect = chai.expect
 
 describe('Another address routing Scenarios', function () {
 

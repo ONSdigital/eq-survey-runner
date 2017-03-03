@@ -1,4 +1,3 @@
-  import chai from 'chai'
   import {startQuestionnaire} from '../../../helpers'
 
   import GeographicMarkets from '../../../pages/surveys/ukis/geographic-markets.page.js'
@@ -112,7 +111,6 @@
   import ReadyToSubmitCompleted from '../../../pages/surveys/ukis/ready-to-submit-completed.page.js'
   import Navigation from '../../../pages/surveys/ukis/navigation.page.js'
 
-  const expect = chai.expect
 
   describe('UKIS - Should the description be UKIS - Yes to 2.1, 3.1, 3.4, 3.6, 3.9, 3.11, 3.13, 3.15, 4.1, 4.3, 5.1 6.1 skips to interstitial section 6', function() {
 

@@ -1,10 +1,8 @@
-import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
 import HouseholdCompositionPage from '../pages/surveys/household_composition/household-composition.page'
 import HouseholdRelationshipPage from '../pages/surveys/relationship/relationships.page'
 import SummaryPage from '../pages/summary.page'
 
-const expect = chai.expect
 
 describe('Household relationship', function() {
 

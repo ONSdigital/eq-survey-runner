@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
@@ -40,7 +39,6 @@ import EmploymentType from '../../../pages/surveys/census/household/employment-t
 import Jobseeker from '../../../pages/surveys/census/household/jobseeker.page.js'
 import MainJob from '../../../pages/surveys/census/household/main-job.page'
 
-const expect = chai.expect
 
 describe('Routing on Multiple Checkbox', function () {
 

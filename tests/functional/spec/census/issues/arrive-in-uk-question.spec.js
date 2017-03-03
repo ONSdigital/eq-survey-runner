@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
@@ -34,7 +33,6 @@ import TermTimeLocation from '../../../pages/surveys/census/household/term-time-
 import CountryOfBirth from '../../../pages/surveys/census/household/country-of-birth.page.js'
 import ArriveInUk from '../../../pages/surveys/census/household/arrive-in-uk.page.js'
 
-const expect = chai.expect
 
 describe('ArriveInUk', function () {
   it('Given a census schema, When I select bottom 2 options for Question - 9. What is your country of birth?, Then I should be displayed with ArriveInUk screen ', function () {

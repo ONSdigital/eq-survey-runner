@@ -1,9 +1,7 @@
-import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
 
 import TextFieldPage from '../pages/surveys/answers/textfield.page.js'
 
-const expect = chai.expect
 
 describe('Currency', function() {
 

@@ -1,5 +1,4 @@
 import assert from 'assert'
-import chai from 'chai'
 import {getRandomString, startQuestionnaire} from '../helpers'
 import reportingPeriod from '../pages/surveys/rsi/0102/reporting-period.page'
 import retailTurnoverPage from '../pages/surveys/rsi/0102/retail-turnover.page'
@@ -10,7 +9,6 @@ import devPage from '../pages/dev.page'
 import landingPage from '../pages/landing.page'
 import multipleSurveys from '../pages/multiple-survey.page'
 
-const expect = chai.expect
 
 describe('RSI - Multiple months of one form type being worked on at the same time ', function() {
 

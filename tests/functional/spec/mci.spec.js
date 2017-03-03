@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {getRandomString, startQuestionnaire} from '../helpers'
 
 import devPage from '../pages/dev.page'
@@ -7,7 +6,6 @@ import SummaryPage from '../pages/summary.page'
 import thankYou from '../pages/thank-you.page'
 import monthlyBusinessSurveyPage from '../pages/surveys/mci/monthly-business-survey.page'
 
-const expect = chai.expect
 
 describe('MCI test', function() {
 

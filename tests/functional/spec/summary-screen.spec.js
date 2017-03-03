@@ -1,5 +1,4 @@
 import assert from 'assert'
-import chai from 'chai'
 import {getRandomString, startQuestionnaire} from '../helpers'
 import reportingPeriod from '../pages/surveys/rsi/0102/reporting-period.page'
 import retailTurnoverPage from '../pages/surveys/rsi/0102/retail-turnover.page'
@@ -10,7 +9,6 @@ import employeesPage from '../pages/surveys/rsi/0112/employees.page'
 import changesInEmployeesPage from '../pages/surveys/rsi/0112/changes-in-employees.page'
 import rsiWithEmployeesSummaryPage from '../pages/surveys/rsi/0112/rsi-summary.page'
 
-const expect = chai.expect
 
 describe('RSI - summary screen edit test', function() {
 

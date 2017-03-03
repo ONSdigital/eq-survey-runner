@@ -1,10 +1,8 @@
-import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
 import RadioMandatoryPage from '../pages/surveys/radio/radio-mandatory.page'
 import RadioNonMandatory from '../pages/surveys/radio/radio-non-mandatory.page'
 import SummaryPage from '../pages/surveys/radio/summary.page'
 
-const expect = chai.expect
 
 describe('Radio button with "other" option', function() {
 

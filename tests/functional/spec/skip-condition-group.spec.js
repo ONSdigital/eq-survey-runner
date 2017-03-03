@@ -1,10 +1,8 @@
-import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
 
 import DoYouWantToSkipPage from '../pages/surveys/skip_condition_group/do-you-want-to-skip.page'
 import LastGroupBlockPage from '../pages/surveys/skip_condition_group/last-group-block.page'
 
-const expect = chai.expect
 
 describe('Skip condition group', function() {
 

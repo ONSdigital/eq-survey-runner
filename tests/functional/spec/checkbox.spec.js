@@ -1,11 +1,9 @@
-import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
 
 import MandatoryCheckboxPage from '../pages/surveys/checkbox/mandatory-checkbox.page'
 import NonMandatoryCheckboxPage from '../pages/surveys/checkbox/non-mandatory-checkbox.page'
 import SummaryPage from '../pages/surveys/checkbox/summary.page'
 
-const expect = chai.expect
 
 describe('Checkbox with "other" option', function() {
 

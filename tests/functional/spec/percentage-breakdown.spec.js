@@ -1,8 +1,6 @@
-import chai from 'chai'
 import {getRandomString, openQuestionnaire} from '../helpers'
 import totalBreakdownPage from '../pages/surveys/total-breakdown/total-breakdown.page'
 
-const expect = chai.expect
 
 describe('Percentage breakdown question', function() {
 

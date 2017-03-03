@@ -1,10 +1,8 @@
-import chai from 'chai'
 import {openQuestionnaire} from '../helpers'
 
 import DatesPage from '../pages/surveys/dates/dates-answers.page'
 import SummaryPage from '../pages/surveys/dates/dates-summary.page'
 
-const expect = chai.expect
 
 describe('Date checks', function() {
 

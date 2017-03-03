@@ -1,9 +1,7 @@
-import chai from 'chai'
 import {getRandomString, openQuestionnaire} from '../helpers'
 import personalDetailsPage from '../pages/surveys/answers/personal-details.page'
 import multipleAnswerSummaryPage from '../pages/surveys/answers/multiple-answer-summary.page'
 
-const expect = chai.expect
 
 describe('Error messages', function() {
 

@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {startCensusQuestionnaire} from '../../../helpers'
 
 import PermanentOrFamilyHome from '../../../pages/surveys/census/household/permanent-or-family-home.page.js'
@@ -46,7 +45,6 @@ import EmploymentType from '../../../pages/surveys/census/household/employment-t
 import HouseholdMemberCompleted from '../../../pages/surveys/census/household/household-member-completed.page.js'
 import Confirmation from '../../../pages/confirmation.page.js'
 
-const expect = chai.expect
 
 describe('Individual details routing Scenarios', function () {
 
