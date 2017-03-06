@@ -71,8 +71,8 @@ MULTIPLE_CHOICE_OTHER = r"""  set{answerName}(value) {
 
 """
 
-RELATIONSHIP_DROPDOWN_CLICKER = r"""  click{optionName}(instance = 0) {
-    browser.selectByValue('[id="{answerId}-' + instance + '"]', '{optionValue}')
+RELATIONSHIP_DROPDOWN_SETTER = r"""  set{optionName}(instance = 0) {
+    browser.selectByValue('[name="{answerId}-' + instance + '"]', '{optionValue}')
     return this
   }
 
@@ -155,7 +155,7 @@ def process_answer(question_type, answer, page_spec):
     elif answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
         process_options(answer['id'], answer['options'], CHECKBOX_RADIO_CLICKER, page_spec)
     elif answer['type'] == 'Relationship':
-        process_relationship_options(answer['id'], answer['options'], RELATIONSHIP_DROPDOWN_CLICKER, page_spec)
+        process_relationship_options(answer['id'], answer['options'], RELATIONSHIP_DROPDOWN_SETTER, page_spec)
     elif answer['type'] == 'Date':
         answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(_write_date_answer(answer_name, answer['id']))

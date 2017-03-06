@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import FieldList, RadioField
+from wtforms import FieldList, SelectField
 
 from app import settings
 from app.forms.fields import build_choices, get_mandatory_validator
@@ -113,10 +113,13 @@ def generate_relationship_form(block_json, number_of_entries, data, error_messag
 
             return serialise_relationship_answers(location, answer['id'], list_field.data)
 
-    field = FieldList(RadioField(
+    choices = [('', 'Select relationship')] + build_choices(answer['options'])
+
+    field = FieldList(SelectField(
         label=answer.get('guidance'),
         description=answer.get('label'),
-        choices=build_choices(answer['options']),
+        choices=choices,
+        default='',
         validators=get_mandatory_validator(answer, error_messages),
     ), min_entries=number_of_entries)
 
