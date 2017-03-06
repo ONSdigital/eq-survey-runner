@@ -122,7 +122,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
         _update_questionnaire_store(current_location, form)
         next_location = path_finder.get_next_location(current_location=current_location)
 
-        if next_location is None:
+        if next_location is None and block['type'] in ["Summary", "Confirmation"]:
             return submit_answers(eq_id, form_type, collection_id, metadata, answer_store)
 
         return redirect(next_location.url(metadata))
