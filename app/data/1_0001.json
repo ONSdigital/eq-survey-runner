@@ -13,6 +13,11 @@
                         "public financial support for innovation",
                         "turnover and exports",
                         "skills and employment"
+                    ],
+                    "basis_for_completion": [
+                        "Please complete this voluntary questionnaire for <strong>{{respondent.ru_name}}</strong>.",
+                        "If this business is part of an enterprise group, please answer all questions for this business in the UK only.",
+                        "Do not include results for subsidiaries or parent enterprises."
                     ]
                 },
                 {
@@ -4934,28 +4939,27 @@
         },
         {
             "blocks": [{
-                    "id": "confirmation",
-                    "sections": [{
-                        "description": "",
-                        "id": "ready-to-submit-completed-section",
-                        "questions": [{
-                            "answers": [],
-                            "id": "ready-to-submit-completed-question",
-                            "title": "Submission",
-                            "type": "General",
-                            "guidance": [{
-                                "title": "",
-                                "list": [
-                                    "You will not be able to access or change your answers on submitting the questionnaire",
-                                    "If you wish to review your answers please select the relevant completed sections"
-                                ]
-                            }]
-                        }],
-                        "title": "You are now ready to submit this survey"
+                "id": "confirmation",
+                "sections": [{
+                    "description": "",
+                    "id": "ready-to-submit-completed-section",
+                    "questions": [{
+                        "answers": [],
+                        "id": "ready-to-submit-completed-question",
+                        "title": "Submission",
+                        "type": "General",
+                        "guidance": [{
+                            "title": "",
+                            "list": [
+                                "You will not be able to access or change your answers on submitting the questionnaire",
+                                "If you wish to review your answers please select the relevant completed sections"
+                            ]
+                        }]
                     }],
-                    "type": "Confirmation"
-                }
-            ],
+                    "title": "You are now ready to submit this survey"
+                }],
+                "type": "Confirmation"
+            }],
             "hide_in_navigation": true,
             "id": "ready-to-submit",
             "title": "You are now ready to submit this survey"

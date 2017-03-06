@@ -9,7 +9,10 @@
                     "advanced holiday pay, pay award arrears, bonuses, commissions, and annual profit related pay",
                     "number of employees",
                     "reasons for any changes to total gross pay or employee numbers"
-                ]
+                ],
+                "basis_for_completion": [
+                    "Please complete this statutory  questionnaire for {{respondent.trad_as_or_ru_name}}, for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}."
+                    ]
             }],
             "id": "introduction-group",
             "title": "Introduction"

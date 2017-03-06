@@ -63,6 +63,19 @@
     {% endif %}
   {% endblock description %}
 
+  {% block basis_for_completion %}
+    {% if content.block.basis_for_completion %}
+      <div data-qa="basis-for-completion">
+        <h2 class="saturn">Basis for completion</h2>
+        <ul>
+         {% for basis_item in content.block.basis_for_completion %}
+           <li>{{ basis_item|safe }}</li>
+         {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endblock basis_for_completion %}
+
   {% block information_to_provide %}
   <div class="u-mb-l">
     {% if content.block.information_to_provide %}
