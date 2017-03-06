@@ -66,7 +66,7 @@ class TestDownstreamDataTyping(DownstreamTestCase, StarWarsTestCase):
 
         navigate_to_page(self.client, summary_url)
 
-        self.complete_survey('star_wars')
+        self.complete_survey(summary_url)
 
         # Get the message that would be sent downstream
         message = DownstreamTestCase.get_submitter().get_message()

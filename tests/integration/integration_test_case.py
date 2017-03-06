@@ -28,7 +28,7 @@ class IntegrationTestCase(unittest.TestCase):
         # SQLAlchemy doing declarative magic which makes session scope query property available
         QuestionnaireState.query.delete()
 
-    def postRedirectGet(self, url, post_data):
+    def postRedirectGet(self, url, post_data=None):
         """
         POSTs to the specified URL with post_data and performs a GET
         with the URL from the re-direct, returning the re-direct URL and

@@ -4954,10 +4954,6 @@
                         "title": "You are now ready to submit this survey"
                     }],
                     "type": "Confirmation"
-                },
-                {
-                    "type": "Summary",
-                    "id": "summary"
                 }
             ],
             "hide_in_navigation": true,

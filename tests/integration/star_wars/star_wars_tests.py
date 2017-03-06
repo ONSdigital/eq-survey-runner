@@ -107,10 +107,7 @@ class StarWarsTestCase(IntegrationTestCase):
         resp = self.client.post(page, data=form_data, follow_redirects=False)
         return resp
 
-    def complete_survey(self, form_type):
+    def complete_survey(self, page):
         # Submit answers
-        post_data = {
-            "action[submit_answers]": "Submit answers"
-        }
-        _, resp = self.postRedirectGet('/questionnaire/0/{form_type}/789/submit-answers'.format(form_type=form_type), post_data)
+        _, resp = self.postRedirectGet(page)
         return resp
