@@ -1,0 +1,110 @@
+{
+    "data_version": "0.0.1",
+    "description": "Quarterly Business Survey",
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "type": "Introduction",
+                    "id": "introduction",
+                    "information_to_provide": [
+                      "Employee numbers"
+                    ]
+                },
+                {
+                    "id": "number-of-employees",
+                    "sections": [
+                        {
+                            "id": "number-of-employees-section",
+                            "questions": [
+                                {
+                                    "answers": [
+                                        {
+                                            "id": "number-of-employees-male-more-30-hours",
+                                            "label": "Number of male employees working more than 30 hours per week",
+                                            "mandatory": false,
+                                            "q_code": "51",
+                                            "type": "PositiveInteger"
+                                        },
+                                        {
+                                            "id": "number-of-employees-male-less-30-hours",
+                                            "label": "Number of male employees working 30 hours or less per week",
+                                            "mandatory": false,
+                                            "q_code": "52",
+                                            "type": "PositiveInteger"
+                                        },
+                                        {
+                                            "id": "number-of-employees-female-more-30-hours",
+                                            "label": "Number of female employees working more than 30 hours per week",
+                                            "mandatory": false,
+                                            "q_code": "53",
+                                            "type": "PositiveInteger"
+                                        },
+                                        {
+                                            "id": "number-of-employees-female-less-30-hours",
+                                            "label": "Number of female employees working 30 hours or less per week",
+                                            "mandatory": false,
+                                            "q_code": "54",
+                                            "type": "PositiveInteger"
+                                        },
+                                        {
+                                            "id": "number-of-employees-total",
+                                            "label": "Total number of employees",
+                                            "mandatory": true,
+                                            "q_code": "50",
+                                            "type": "PositiveInteger"
+                                        }
+                                    ],
+                                    "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
+                                    "guidance": [
+                                        {
+                                            "list": [
+                                                "all workers paid directly from this business’s payroll(s)",
+                                                "those temporarily absent but still being paid, for example on maternity leave"
+                                            ],
+                                            "title": "Include:"
+                                        },
+                                        {
+                                            "list": [
+                                                "agency workers paid directly from the agency payroll",
+                                                "voluntary workers",
+                                                "former employees only receiving a pension",
+                                                "self-employed workers",
+                                                "working owners who are not paid via PAYE"
+                                            ],
+                                            "title": "Exclude:"
+                                        }
+                                    ],
+                                    "id": "number-of-employees-question",
+                                    "title": "On {{exercise.start_date|format_date}} what was the number of employees for {{respondent.ru_name}}?",
+                                    "type": "General"
+                                }
+                            ],
+                            "title": "Quarterly Business Survey"
+                        }
+                    ],
+                    "type": "Questionnaire"
+                },
+                {
+                    "type": "Summary",
+                    "id": "summary"
+                }
+            ],
+            "id": "qbs",
+            "title": "Quarterly Business Survey"
+        }
+    ],
+    "legal_basis": "StatisticsOfTradeAct",
+    "messages": {
+		"MANDATORY": "Please provide a value, even if your value is 0.",
+		"NOT_INTEGER": "Please only enter whole numbers into the field.",
+		"NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+		"INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+	},
+    "mime_type": "application/json/ons/eq",
+    "questionnaire_id": "0001",
+    "schema_version": "0.0.1",
+    "survey_id": "139",
+    "theme": "default",
+    "title": "Quarterly Business Survey"
+}

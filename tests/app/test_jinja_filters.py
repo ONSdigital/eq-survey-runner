@@ -3,12 +3,13 @@ from unittest import TestCase
 
 from mock import Mock
 
-from app.jinja_filters import format_date, format_currency, format_multilined_string, format_percentage
+from app.jinja_filters import format_date, format_currency, format_multilined_string, format_percentage, format_start_end_date
 from app.jinja_filters import format_household_member_name
 from app.jinja_filters import format_str_as_date
 from app.jinja_filters import format_str_as_date_range
 from app.jinja_filters import format_str_as_month_year_date
 from app.jinja_filters import format_number_to_alphabetic_letter
+
 
 
 class TestJinjaFilters(TestCase):
@@ -84,6 +85,27 @@ class TestJinjaFilters(TestCase):
         # When
         format_value = format_date(date)
 
+        self.assertEqual(format_value, '1 January 2017')
+
+    def test_format_start_end_date(self):
+        # Given
+        start_date = datetime.strptime('01/01/17', '%d/%m/%y')
+        end_date = datetime.strptime('31/01/17', '%d/%m/%y')
+
+        # When
+        format_value = format_start_end_date(start_date, end_date)
+
+        # Then
+        self.assertEqual(format_value, '1 January 2017 to 31 January 2017')
+
+    def test_format_start_end_date_missing_end_date(self):
+        # Given
+        start_date = datetime.strptime('01/01/17', '%d/%m/%y')
+
+        # When
+        format_value = format_start_end_date(start_date)
+
+        # Then
         self.assertEqual(format_value, '1 January 2017')
 
     def test_format_str_as_date_range(self):
