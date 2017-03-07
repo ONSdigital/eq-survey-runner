@@ -39,3 +39,24 @@ class TestIntroduction(IntegrationTestCase):
 
         # Then description should not be displayed
         self.assertNotIn('qa-intro-description', content)
+
+    def test_intro_basis_for_completion_displayed(self):
+        # Given survey with basis for completion
+        response = self.start_new_survey('0001', '2')
+
+        # When on the introduction page
+        content = response.get_data(True)
+
+        # Then basis for completion should be displayed
+        self.assertIn('basis-for-completion', content)
+
+    def test_intro_basis_for_completion_not_displayed(self):
+
+        # Given survey without basis for completion
+        response = self.start_new_survey('0112')
+
+        # When on the introduction page
+        content = response.get_data(True)
+
+        # Then basis for completion should not be displayed
+        self.assertNotIn('basis-for-completion', content)
