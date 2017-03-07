@@ -399,6 +399,55 @@ class TestConverter(SurveyRunnerTestCase):
             self.assertEqual(answer_object['data']['1'], 'Ready salted')
             self.assertEqual(answer_object['data']['4'], 'Bacon')
 
+    def test_converter_q_codes_for_empty_strings(self):
+        with self.application.test_request_context():
+            routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
+            answers = [create_answer('crisps-answer', '', group_id='favourite-food', block_id='crisps')]
+            answers += [create_answer('other-crisps-answer', 'Ready salted', group_id='favourite-food', block_id='crisps')]
+
+            questionnaire = {
+                "survey_id": "999",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "favourite-food",
+                        "blocks": [
+                            {
+                                "id": "crisps",
+                                "sections": [
+                                    {
+                                        "questions": [{
+                                            "id": 'crisps-question',
+                                            "answers": [
+                                                {
+                                                    "id": "crisps-answer",
+                                                    "type": "TextArea",
+                                                    "options": [],
+                                                    "q_code": "1"
+                                                },
+                                                {
+                                                    "id": "other-crisps-answer",
+                                                    "type": "TextArea",
+                                                    "options": [],
+                                                    "q_code": "2"
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            # When
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)
+
+            # Then
+            self.assertEqual(len(answer_object['data']), 1)
+            self.assertEqual(answer_object['data']['2'], 'Ready salted')
+
 
 def create_answer(answer_id, value, group_id=None, block_id=None, answer_instance=0, group_instance=0):
     return {
