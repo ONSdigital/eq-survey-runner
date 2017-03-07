@@ -5,7 +5,7 @@ from app.templating.schema_context import build_schema_context
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
-class TestMetadataContext(SurveyRunnerTestCase):
+class TestSchemaContext(SurveyRunnerTestCase):
 
     metadata = {
         'return_by': '2016-10-10',
@@ -212,3 +212,24 @@ class TestMetadataContext(SurveyRunnerTestCase):
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers['repeating_answer_alias']), 25)
+
+    def test_respondent_display_name_is_trading_as_when_trading_as_supplied(self):
+        schema_context = build_schema_context(self.metadata, {}, self.answer_store)
+
+        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], self.metadata['trad_as'])
+
+    def test_respondent_display_name_is_ru_name_as_when_trading_as_not_supplied(self):
+        metadata = self.metadata.copy()
+        metadata['trad_as'] = None
+
+        schema_context = build_schema_context(metadata, {}, self.answer_store)
+
+        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
+
+    def test_respondent_display_name_is_ru_name_as_when_trading_as_empty(self):
+        metadata = self.metadata.copy()
+        metadata['trad_as'] = ""
+
+        schema_context = build_schema_context(metadata, {}, self.answer_store)
+
+        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])

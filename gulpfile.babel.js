@@ -181,6 +181,10 @@ gulp.task('lint:json', () => {
       quiet: false,
       fail: true
     }))
+    .on('error', (err) => {
+      gutil.log('Linting failed try running `yarn format`')
+      throw err
+    })
 })
 
 gulp.task('format:json', () => {
