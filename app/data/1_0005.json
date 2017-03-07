@@ -3114,9 +3114,8 @@
                     }]
                 }]
             }],
-            "hide_in_navigation": true,
             "id": "confirmation-group",
-            "title": "Confirmation"
+            "title": "Submit answers"
         }
     ],
     "legal_basis": "StatisticsOfTradeAct",

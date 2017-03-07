@@ -79,8 +79,9 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
     path_finder = PathFinder(g.schema_json, answer_store, metadata)
 
     valid_group = group_id in SchemaHelper.get_group_ids(g.schema_json)
+    full_routing_path = path_finder.get_routing_path()
     is_valid_location = valid_group and current_location in path_finder.get_routing_path(group_id, group_instance)
-    latest_location = path_finder.get_latest_location(get_completed_blocks(current_user))
+    latest_location = path_finder.get_latest_location(get_completed_blocks(current_user), routing_path=full_routing_path)
     if not is_valid_location:
         return _redirect_to_latest_location(collection_id, eq_id, form_type, latest_location)
 
@@ -91,7 +92,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
         return _redirect_to_latest_location(collection_id, eq_id, form_type, latest_location)
 
     context = _get_context(block, current_location, answer_store)
-    return _build_template(current_location, context, template=block_type)
+    return _build_template(current_location, context, template=block_type, routing_path=full_routing_path)
 
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
@@ -103,9 +104,10 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     path_finder = PathFinder(g.schema_json, answer_store, metadata)
 
     valid_group = group_id in SchemaHelper.get_group_ids(g.schema_json)
+    full_routing_path = path_finder.get_routing_path()
     is_valid_location = valid_group and current_location in path_finder.get_routing_path(group_id, group_instance)
     if not is_valid_location:
-        latest_location = path_finder.get_latest_location(get_completed_blocks(current_user))
+        latest_location = path_finder.get_latest_location(get_completed_blocks(current_user), routing_path=full_routing_path)
         return _redirect_to_latest_location(collection_id, eq_id, form_type, latest_location)
 
     error_messages = SchemaHelper.get_messages(g.schema_json)
@@ -117,7 +119,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
         return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
     elif not form.validate():
         context = {'form': form, 'block': block}
-        return _build_template(current_location, context, template=block['type'])
+        return _build_template(current_location, context, template=block['type'], routing_path=full_routing_path)
     else:
         _update_questionnaire_store(current_location, form)
         next_location = path_finder.get_next_location(current_location=current_location)
@@ -447,9 +449,9 @@ def _render_schema(current_location):
     return renderer.render(block_json, **block_context)
 
 
-def _get_front_end_navigation(answer_store, current_location, metadata):
+def _get_front_end_navigation(answer_store, current_location, metadata, routing_path=None):
     completed_blocks = get_completed_blocks(current_user)
-    navigation = Navigation(g.schema_json, answer_store, metadata, completed_blocks)
+    navigation = Navigation(g.schema_json, answer_store, metadata, completed_blocks, routing_path)
     block_json = SchemaHelper.get_block_for_location(g.schema_json, current_location)
     if block_json is not None and block_json['type'] in ('Questionnaire', 'Interstitial', 'Confirmation'):
         return navigation.build_navigation(current_location.group_id, current_location.group_instance)
@@ -471,12 +473,12 @@ def get_page_title_for_location(schema_json, current_location):
     return TemplateRenderer.safe_content(page_title)
 
 
-def _build_template(current_location, context, template):
+def _build_template(current_location, context, template, routing_path=None):
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
 
     answer_store = get_answer_store(current_user)
-    front_end_navigation = _get_front_end_navigation(answer_store, current_location, metadata)
+    front_end_navigation = _get_front_end_navigation(answer_store, current_location, metadata, routing_path)
 
     path_finder = PathFinder(g.schema_json, answer_store, metadata)
     previous_location = path_finder.get_previous_location(current_location)

@@ -15,11 +15,12 @@ class Navigation(object):
     Reads navigation config from the schema and returns collections of dicts that describe
     completion status of each group
     """
-    def __init__(self, survey_json, answer_store, metadata=None, completed_blocks=None):
+    def __init__(self, survey_json, answer_store, metadata=None, completed_blocks=None, routing_path=None):
         self.survey_json = survey_json
         self.metadata = metadata or {}
         self.answer_store = answer_store
         self.completed_blocks = completed_blocks or []
+        self.routing_path = routing_path
 
     def build_navigation(self, current_group_id, current_group_instance):
         """
@@ -34,12 +35,17 @@ class Navigation(object):
 
         navigation = []
 
+        last_group_id = SchemaHelper.get_last_group_id(self.survey_json)
+
         for group in filter(lambda x: 'hide_in_navigation' not in x, self.survey_json['groups']):
             first_location = Location(group['id'], 0, group['blocks'][0]['id'])
 
             logger.debug("building frontend navigation", group_id=group['id'])
 
             skip_group = self._should_skip_group(current_group_instance, group)
+            last_block_in_current_group = group['blocks'][-1]
+            is_summary_or_confirmation = last_block_in_current_group and \
+                last_block_in_current_group['type'] in ('Summary', 'Confirmation')
 
             if not skip_group:
                 repeating_rule = SchemaHelper.get_repeat_rule(group)
@@ -47,9 +53,14 @@ class Navigation(object):
                     logger.debug("building repeating navigation", group_id=group['id'])
                     navigation.extend(self._build_repeating_navigation(repeating_rule, group, current_group_id,
                                                                        current_group_instance))
-                else:
+                elif last_group_id == group['id'] and is_summary_or_confirmation and self.routing_path:
+                    logger.debug("building navigation", group_id=group['id'])
+                    if len(self.completed_blocks) > 0 and set(self.routing_path[:-1]).issubset(self.completed_blocks):
+                        navigation.append(self._build_single_navigation(group, current_group_id, first_location))
+                elif last_group_id != group['id'] and not is_summary_or_confirmation:
                     logger.debug("building navigation", group_id=group['id'])
                     navigation.append(self._build_single_navigation(group, current_group_id, first_location))
+
         return navigation
 
     def _should_skip_group(self, current_group_instance, group):

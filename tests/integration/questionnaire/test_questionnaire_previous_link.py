@@ -41,7 +41,7 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
 
         content = resp.get_data(True)
         self.assertFalse(resp_url.endswith('thank-you'))
-        self.assertIn('Previous', content)
+        self.assertNotIn('Previous', content)
 
     def test_previous_link_doesnt_appear_on_thank_you(self):
         # Given

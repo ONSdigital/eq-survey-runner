@@ -452,12 +452,12 @@
         },
         {
             "blocks": [{
-                "type": "Summary",
-                "id": "summary",
+                "type": "Confirmation",
+                "id": "confirmation",
                 "title": "Summary"
             }],
-            "id": "summary-group",
-            "title": "Summary"
+            "id": "confirmation-group",
+            "title": "Submit answers"
         }
     ]
 }
