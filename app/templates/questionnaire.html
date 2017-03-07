@@ -37,6 +37,7 @@
     {% endif %}
 
     <form class="form qa-questionnaire-form" role="form" method="POST" autocomplete="off" novalidate>
+      {{ form.csrf_token }}
 
       <div class="group" id="{{current_location.group_id}}">
 

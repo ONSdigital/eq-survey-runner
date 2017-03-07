@@ -1,13 +1,5 @@
 import uuid
 
-from flask import request
-
-from config import LANGUAGES
-
-
-def get_locale():
-    return request.accept_languages.best_match(LANGUAGES.keys()) or 'cy'
-
 
 def convert_tx_id(tx_id):
     # converts the guid tx_id to string of 16 characters with a space between every 4 characters

@@ -10,7 +10,7 @@ class TestConfirmationPage(StarWarsTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        response = self.client.post(star_wars_test_urls.ROGUE_ONE_INTRODUCTION, data=post_data, follow_redirects=False)
+        response = self.get_and_post_with_csrf_token(star_wars_test_urls.ROGUE_ONE_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEqual(response.status_code, 302)
 
         character_page = response.headers['Location']

@@ -67,4 +67,7 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertRegex(content, 'Please check carefully before submission')
         self.assertRegex(content, '>Submit answers<')
 
-        self.complete_survey(summary_url)
+        resp = self.complete_survey(summary_url)
+
+        # go to thank you
+        navigate_to_page(self.client, resp.location)

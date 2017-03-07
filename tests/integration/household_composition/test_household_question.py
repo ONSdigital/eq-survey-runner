@@ -19,23 +19,22 @@ class TestHouseholdQuestion(IntegrationTestCase):
         self.add_answers()
 
     def test_remove_answer(self):
-        first_page = self.add_answers()
+        resp, first_page = self.add_answers()
         self.remove_answer(first_page)
 
     def test_save_continue_should_save_answers(self):
-        self.login_and_check_introduction_text()
-        first_page = self.start_questionnaire()
+        resp = self.login_and_check_introduction_text()
+        resp = self.start_questionnaire(self.extract_csrf_token(resp.get_data(True)))
 
         # Add first person
         form_data = MultiDict()
-
         form_data.add("household-0-first-name", 'John')
         form_data.add("household-1-first-name", 'Jane')
         form_data.add("household-2-first-name", 'Joe')
         form_data.add("household-3-first-name", 'Bran')
         form_data.add("action[save_continue]", "")
 
-        resp = self.client.post(first_page, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(resp.location, data=form_data, follow_redirects=False)
         composition_summary_page = resp.location
 
         _, resp_url = self.household_answer_correct(composition_summary_page, 'Yes')
@@ -49,9 +48,10 @@ class TestHouseholdQuestion(IntegrationTestCase):
         self.assertRegex(content, 'Bran')
 
     def test_can_return_to_composition_and_add_entries(self):
-        first_page = self.add_answers()
+        resp, first_page = self.add_answers()
 
         form_data = MultiDict()
+        form_data.add("csrf_token", self.extract_csrf_token(resp.get_data(True)))
         form_data.add("household-0-first-name", 'John')
         form_data.add("household-1-first-name", 'Jane')
         form_data.add("action[save_continue]", "")
@@ -72,19 +72,20 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("household-2-last-name", '')
         form_data.add("action[save_continue]", "")
 
-        resp_url, resp = self.postRedirectGet(resp_url, form_data)
+        resp = self.get_and_post_with_csrf_token(resp_url, form_data, True)
         content = resp.get_data(True)
 
         self.assertRegex(content, 'John')
         self.assertRegex(content, 'Jane')
         self.assertRegex(content, 'Joe')
 
-        self.assertRegex(resp_url, 'household-summary')
+        self.assertRegex(resp.get_data(True), 'household-summary')
 
     def test_composition_complete_progresses_to_summary(self):
-        first_page = self.add_answers()
+        resp, first_page = self.add_answers()
 
         form_data = MultiDict()
+        form_data.add("csrf_token", self.extract_csrf_token(resp.get_data(True)))
         form_data.add("household-0-first-name", 'John')
         form_data.add("household-1-first-name", 'Jane')
         form_data.add("action[save_continue]", "")
@@ -94,6 +95,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         self.assertRegex(resp_url, 'household-summary')
 
         form_data = MultiDict()
+        form_data.add("csrf_token", self.extract_csrf_token(resp.get_data(True)))
         form_data.add("household-composition-add-another", 'Yes')
         form_data.add("action[save_continue]", "")
 
@@ -106,9 +108,10 @@ class TestHouseholdQuestion(IntegrationTestCase):
 
     def test_save_sign_out_with_household_question(self):
 
-        first_page = self.add_answers()
+        resp, first_page = self.add_answers()
 
         form_data = MultiDict()
+        form_data.add("csrf_token", self.extract_csrf_token(resp.get_data(True)))
         form_data.add("action[save_sign_out]", "")
 
         resp_url, resp = self.postRedirectGet(first_page, form_data)
@@ -124,7 +127,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("household-2-first-name", 'Joe')
         form_data.add("household-3-first-name", '')
         form_data.add("action[remove_answer]", "1") # Remove Jane.
-        resp = self.client.post(page, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(page, data=form_data, follow_redirects=False)
 
         self.assertEqual(resp.status_code, 200)
 
@@ -137,8 +140,9 @@ class TestHouseholdQuestion(IntegrationTestCase):
         self.assertNotRegex(content, 'first-name_1')
 
     def add_answers(self):
-        self.login_and_check_introduction_text()
-        first_page = self.start_questionnaire()
+        resp = self.login_and_check_introduction_text()
+        resp = self.start_questionnaire(self.extract_csrf_token(resp.get_data(True)))
+        first_page = resp.location
 
         # Add people
         form_data = MultiDict()
@@ -146,7 +150,7 @@ class TestHouseholdQuestion(IntegrationTestCase):
         form_data.add("household-1-first-name", 'Jane')
         form_data.add("household-2-first-name", 'Joe')
         form_data.add("action[add_answer]", "")
-        resp = self.client.post(first_page, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(resp.location, data=form_data, follow_redirects=False)
 
         self.assertEqual(resp.status_code, 200)
 
@@ -155,12 +159,13 @@ class TestHouseholdQuestion(IntegrationTestCase):
         self.assertRegex(content, 'household-1-first-name')
         self.assertRegex(content, 'household-2-first-name')
 
-        return first_page
+        return resp, first_page
 
     def login_and_check_introduction_text(self):
         self.token = create_token('household_question', 'test')
         resp = self.get_first_page()
         self.check_introduction_text(resp)
+        return resp
 
     def get_first_page(self):
         resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=True)
@@ -171,21 +176,22 @@ class TestHouseholdQuestion(IntegrationTestCase):
         content = response.get_data(True)
         self.assertRegex(content, '<li>Household questions.</li>')
 
-    def start_questionnaire(self):
+    def start_questionnaire(self, csrf_token):
         # Go to questionnaire
         post_data = {
+            'csrf_token': csrf_token,
             'action[start_questionnaire]': 'Start survey'
         }
         resp = self.client.post(self.INTRODUCTION_PAGE, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
-        return resp.location
+        return resp
 
     def household_answer_correct(self, resp_url, answer):
         form_data = MultiDict()
         form_data.add("household-composition-add-another", answer)
         form_data.add("action[save_continue]", "")
-        resp = self.client.post(resp_url, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(resp_url, data=form_data, follow_redirects=False)
         resp_url = resp.location
         return resp, resp_url
 

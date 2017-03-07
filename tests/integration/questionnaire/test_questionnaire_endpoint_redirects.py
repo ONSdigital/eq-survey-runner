@@ -34,7 +34,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.client.get('/session?token=' + token.decode(), follow_redirects=False)
 
         # When
-        resp = self.client.post(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=False)
 
         # Then
         self.assertEqual(resp.status_code, 302)

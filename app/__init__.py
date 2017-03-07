@@ -16,7 +16,6 @@ from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.data_model.database import db_session
-from app.libs.utils import get_locale
 from app.new_relic import setup_newrelic
 from app.submitter.submitter import SubmitterFactory
 
@@ -202,7 +201,6 @@ def setup_secure_cookies(application):
 
 def setup_babel(application):
     application.babel = Babel(application)
-    application.babel.localeselector(get_locale)
     application.jinja_env.add_extension('jinja2.ext.i18n')
 
 

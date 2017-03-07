@@ -16,7 +16,7 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(base_url + '14ba4707-321d-441d-8d21-b8367366e766/0/introduction', data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(base_url + '14ba4707-321d-441d-8d21-b8367366e766/0/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.location
@@ -25,7 +25,7 @@ class TestQuestionnaireFinalConfirmation(IntegrationTestCase):
             "choose-your-side-answer": " Bacon",
             "action[save_continue]": "Save &amp; Continue"
         }
-        resp = self.client.post(block_one_url, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(block_one_url, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         # Then

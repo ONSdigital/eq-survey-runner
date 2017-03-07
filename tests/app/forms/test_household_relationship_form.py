@@ -74,53 +74,59 @@ class TestHouseholdRelationshipForm(unittest.TestCase):
         self.assertEqual(expected_choices, choices)
 
     def test_generate_relationship_form_creates_empty_form(self):
-        survey = load_schema_file("test_relationship_household.json")
-        block_json = SchemaHelper.get_block(survey, 'relationships')
-        error_messages = SchemaHelper.get_messages(survey)
+        with create_app().test_request_context():
+            survey = load_schema_file("test_relationship_household.json")
+            block_json = SchemaHelper.get_block(survey, 'relationships')
+            error_messages = SchemaHelper.get_messages(survey)
 
-        answer = SchemaHelper.get_first_answer_for_block(block_json)
+            answer = SchemaHelper.get_first_answer_for_block(block_json)
 
-        form = generate_relationship_form(block_json, 3, {}, error_messages=error_messages)
+            form = generate_relationship_form(block_json, 3, {}, error_messages=error_messages)
 
-        self.assertTrue(hasattr(form, answer['id']))
-        self.assertEqual(len(form.data[answer['id']]), 3)
+            self.assertTrue(hasattr(form, answer['id']))
+            self.assertEqual(len(form.data[answer['id']]), 3)
 
     def test_generate_relationship_form_creates_form_from_data(self):
-        survey = load_schema_file("test_relationship_household.json")
-        block_json = SchemaHelper.get_block(survey, 'relationships')
-        error_messages = SchemaHelper.get_messages(survey)
+        with create_app().test_request_context():
+            survey = load_schema_file("test_relationship_household.json")
+            block_json = SchemaHelper.get_block(survey, 'relationships')
+            error_messages = SchemaHelper.get_messages(survey)
 
-        answer = SchemaHelper.get_first_answer_for_block(block_json)
+            answer = SchemaHelper.get_first_answer_for_block(block_json)
 
-        form = generate_relationship_form(block_json, 3, {
-            '{answer_id}-0'.format(answer_id=answer['id']): 'Husband or Wife',
-            '{answer_id}-1'.format(answer_id=answer['id']): 'Brother or Sister',
-            '{answer_id}-2'.format(answer_id=answer['id']): 'Relation - other',
-        }, error_messages=error_messages)
+            form = generate_relationship_form(block_json, 3, {
+                '{answer_id}-0'.format(answer_id=answer['id']): 'Husband or Wife',
+                '{answer_id}-1'.format(answer_id=answer['id']): 'Brother or Sister',
+                '{answer_id}-2'.format(answer_id=answer['id']): 'Relation - other',
+            }, error_messages=error_messages)
 
-        self.assertTrue(hasattr(form, answer['id']))
+            self.assertTrue(hasattr(form, answer['id']))
 
-        expected_form_data = ['Husband or Wife', 'Brother or Sister', 'Relation - other']
-        self.assertEqual(form.data[answer['id']], expected_form_data)
+            expected_form_data = ['Husband or Wife', 'Brother or Sister', 'Relation - other']
+            self.assertEqual(form.data[answer['id']], expected_form_data)
 
     def test_generate_relationship_form_errors_are_correctly_mapped(self):
-        survey = load_schema_file("test_relationship_household.json")
-        block_json = SchemaHelper.get_block(survey, 'relationships')
-        error_messages = SchemaHelper.get_messages(survey)
+        with create_app().test_request_context():
+            survey = load_schema_file("test_relationship_household.json")
+            block_json = SchemaHelper.get_block(survey, 'relationships')
+            error_messages = SchemaHelper.get_messages(survey)
 
-        answer = SchemaHelper.get_first_answer_for_block(block_json)
+            answer = SchemaHelper.get_first_answer_for_block(block_json)
 
-        form = generate_relationship_form(block_json, 3, {
-            '{answer_id}-0'.format(answer_id=answer['id']): '1',
-            '{answer_id}-1'.format(answer_id=answer['id']): '3',
-        }, error_messages=error_messages)
+            generated_form = generate_relationship_form(block_json, 3, None, error_messages=error_messages)
 
-        form.validate()
-        mapped_errors = form.map_errors()
+            form = generate_relationship_form(block_json, 3, {
+                'csrf_token': generated_form.csrf_token.current_token,
+                '{answer_id}-0'.format(answer_id=answer['id']): '1',
+                '{answer_id}-1'.format(answer_id=answer['id']): '3',
+            }, error_messages=error_messages)
 
-        message = "Not a valid choice"
+            form.validate()
+            mapped_errors = form.map_errors()
 
-        self.assertTrue(self._error_exists(answer['id'], message, mapped_errors))
+            message = "Not a valid choice"
+
+            self.assertTrue(self._error_exists(answer['id'], message, mapped_errors))
 
     def test_serialise_relationship_answers(self):
         location = Location("household-relationships", 0, "relationships")

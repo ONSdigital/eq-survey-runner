@@ -97,4 +97,4 @@ def generate_household_composition_form(block_json, data, error_messages):
             """
             return serialise_composition_answers(location, self.household.data)
 
-    return HouseHoldCompositionForm(MultiDict(data), meta={'csrf': False})
+    return HouseHoldCompositionForm(MultiDict(data))

@@ -22,7 +22,7 @@ class TestEmptyComments(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(mci_test_urls.MCI_0203_INTRODUCTION, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(mci_test_urls.MCI_0203_INTRODUCTION, data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.location
@@ -56,7 +56,7 @@ class TestEmptyComments(IntegrationTestCase):
         }
 
         # We submit the form
-        resp = self.client.post(block_one_url, data=form_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(block_one_url, data=form_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         # There are no validation errors
@@ -76,7 +76,9 @@ class TestEmptyComments(IntegrationTestCase):
         self.assertRegex(content, '>Submit answers<')
 
         # We submit our answers
-        _, resp = self.postRedirectGet(summary_url)
+        resp = self.get_and_post_with_csrf_token(summary_url)
+
+        resp = self.client.get(resp.location, follow_redirects=True)
 
         # We are on the thank you page
         content = resp.get_data(True)

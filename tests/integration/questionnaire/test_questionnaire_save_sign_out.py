@@ -16,7 +16,7 @@ class TestSaveSignOut(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(base_url + 'introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -25,7 +25,7 @@ class TestSaveSignOut(IntegrationTestCase):
             "total-retail-turnover": "1000",
             "action[save_sign_out]": "Save and sign out"
         }
-        resp = self.client.post(block_one_url, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(block_one_url, data=post_data, follow_redirects=False)
 
         self.assertEquals(resp.status_code, 302)
 
@@ -48,7 +48,7 @@ class TestSaveSignOut(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(base_url + 'introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -57,7 +57,7 @@ class TestSaveSignOut(IntegrationTestCase):
             "total-retail-turnover": "error",
             "action[save_sign_out]": "Save and sign out"
         }
-        resp = self.client.post(block_one_url, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(block_one_url, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 200)
         # Then
         # we are presented with an error message
@@ -76,7 +76,7 @@ class TestSaveSignOut(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(base_url + 'introduction', data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(base_url + 'introduction', data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         block_one_url = resp.headers['Location']
@@ -91,7 +91,7 @@ class TestSaveSignOut(IntegrationTestCase):
             "action[save_continue]": "Save &amp; Continue"
         }
 
-        resp = self.client.post(block_one_url, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(block_one_url, data=post_data, follow_redirects=False)
         self.assertEquals(resp.status_code, 302)
 
         # We go back to the first page and save and complete later
@@ -100,7 +100,7 @@ class TestSaveSignOut(IntegrationTestCase):
         post_data = {
             "action[save_sign_out]": "Save and sign out"
         }
-        self.client.post(block_one_url, data=post_data, follow_redirects=False)
+        self.get_and_post_with_csrf_token(block_one_url, data=post_data, follow_redirects=False)
 
         # We re-authenticate and check we are on the first page
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)

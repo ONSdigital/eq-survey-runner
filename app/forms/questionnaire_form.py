@@ -146,8 +146,8 @@ def generate_form(block_json, data, error_messages):
         setattr(DynamicForm, answer_id, field)
 
     if data:
-        form = DynamicForm(block_json, MultiDict(data), meta={'csrf': False})
+        form = DynamicForm(block_json, MultiDict(data))
     else:
-        form = DynamicForm(block_json, meta={'csrf': False})
+        form = DynamicForm(block_json)
 
     return form

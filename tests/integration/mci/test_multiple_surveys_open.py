@@ -14,7 +14,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
-        first_survey_resp = self.client.post('/questionnaire/1/0205/789/mci/0/introduction', data=post_data, follow_redirects=False)
+        first_survey_resp = self.get_and_post_with_csrf_token('/questionnaire/1/0205/789/mci/0/introduction', data=post_data, follow_redirects=False)
         self.assertIn('/questionnaire/1/0205/789/mci/0/reporting-period', first_survey_resp.location)
 
         # We start the second survey
@@ -25,7 +25,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
             'action[start_questionnaire]': 'Start Questionnaire'
         }
 
-        second_survey_resp = self.client.post('/questionnaire/1/0203/789/mci/0/introduction', data=post_data, follow_redirects=False)
+        second_survey_resp = self.get_and_post_with_csrf_token('/questionnaire/1/0203/789/mci/0/introduction', data=post_data, follow_redirects=False)
         self.assertRegex(second_survey_resp.location, r'\/questionnaire\/1\/0203\/789\/mci\/0\/reporting-period')
 
         # We now try to post to the first survey, which is out of date
@@ -40,7 +40,7 @@ class MultipleSurveysOpen(IntegrationTestCase):
             "action[save_continue]": "Save &amp; Continue"
         }
 
-        multiple_survey_resp = self.client.post(first_survey_resp.location, data=form_data, follow_redirects=False)
+        multiple_survey_resp = self.get_and_post_with_csrf_token(first_survey_resp.location, data=form_data, follow_redirects=False)
         content = multiple_survey_resp.get_data(True)
         self.assertRegex(content, 'Information')
         self.assertRegex(content, 'Unfortunately you can only complete one survey at a time.')

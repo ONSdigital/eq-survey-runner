@@ -126,8 +126,8 @@ def generate_relationship_form(block_json, number_of_entries, data, error_messag
     setattr(HouseHoldRelationshipForm, answer['id'], field)
 
     if data:
-        form = HouseHoldRelationshipForm(MultiDict(data), meta={'csrf': False})
+        form = HouseHoldRelationshipForm(MultiDict(data))
     else:
-        form = HouseHoldRelationshipForm(meta={'csrf': False})
+        form = HouseHoldRelationshipForm()
 
     return form

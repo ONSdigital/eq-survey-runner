@@ -1,4 +1,5 @@
 import os
+import re
 import unittest
 
 from app import create_app
@@ -44,3 +45,26 @@ class IntegrationTestCase(unittest.TestCase):
         resp = self.client.get(resp_url, follow_redirects=False)
         self.assertEqual(resp.status_code, 200)
         return resp_url, resp
+
+    def extract_csrf_token(self, html):
+        match = re.search('<input id="csrf_token" name="csrf_token" type="hidden" value="(.+?)">', html)
+
+        if match:
+            return match.group(1)
+
+    def get_and_post_with_csrf_token(self, url, data=None, follow_redirects=False):
+
+        resp = self.client.get(url, follow_redirects=False)
+
+        if resp.status_code != 200:
+            return resp
+
+        if data is None:
+            data = {}
+
+        post_data = data.copy()
+        post_data.update({"csrf_token": self.extract_csrf_token(resp.get_data(True))})
+
+        resp = self.client.post(url, data=post_data, follow_redirects=follow_redirects)
+
+        return resp

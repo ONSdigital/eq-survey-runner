@@ -6,17 +6,12 @@ from babel.dates import get_timezone
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-LANGUAGES = {
-    'en': 'English',
-}
-
 BABEL_DEFAULT_LOCALE = 'en'
 BABEL_DEFAULT_TIMEZONE = get_timezone('Europe/London')
 
 
 class Config(object):
     DEBUG = True
-    WTF_CSRF_ENABLED = True
     NOTIFY_HTTP_PROTO = 'http'
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = True
@@ -28,8 +23,9 @@ class Config(object):
 
 class Test(Config):
     DEBUG = True
-    WTF_CSRF_ENABLED = False
     SECRET_KEY = settings.EQ_SECRET_KEY
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = get_timezone('Europe/London')
 
 
 class Development(Config):

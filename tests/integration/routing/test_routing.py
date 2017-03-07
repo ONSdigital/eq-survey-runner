@@ -34,7 +34,7 @@ class TestRouting(IntegrationTestCase):
                 summary_assertions.append(rule_assertions)
 
                 # Post the data
-                resp = self.client.post(current_page, data=form_data, follow_redirects=False)
+                resp = self.get_and_post_with_csrf_token(current_page, data=form_data, follow_redirects=False)
                 current_page = resp.location
 
                 # We must check we are on the next page
@@ -72,5 +72,5 @@ class TestRouting(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.client.post(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token(star_wars_test_urls.STAR_WARS_INTRODUCTION, data=post_data, follow_redirects=False)
         return resp
