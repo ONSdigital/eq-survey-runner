@@ -11,8 +11,7 @@ from app.jinja_filters import format_str_as_month_year_date
 from app.jinja_filters import format_number_to_alphabetic_letter
 
 
-
-class TestJinjaFilters(TestCase):
+class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
     def test_format_currency(self):
         # Given

@@ -46,7 +46,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertNotEqual(resp.location, current_page)
         current_page = resp.location
 
-        page, content = self.routing_pick_your_character_light_side(current_page)
+        _, content = self.routing_pick_your_character_light_side(current_page)
 
         form_data = {
             'csrf_token': self.extract_csrf_token(content),
@@ -59,7 +59,7 @@ class StarWarsTestCase(IntegrationTestCase):
         self.assertNotEqual(resp.location, current_page)
         current_page = resp.location
 
-        page, content = self.routing_select_your_ship_light_side(current_page)
+        _, content = self.routing_select_your_ship_light_side(current_page)
 
         form_data = {
             'csrf_token': self.extract_csrf_token(content),

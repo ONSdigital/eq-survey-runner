@@ -79,7 +79,8 @@ def _create_session_and_engine_with_retry():
     for i in range(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_COUNT):
         try:
             return _create_session_and_engine()
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-except
+            # Accept catching of Exception here as we re-throw it below if the retry fails.
             last_exception = e
             logger.error('error setting up database', exc_info=e, attempt=i)
             time.sleep(settings.EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_DELAY_SECONDS)

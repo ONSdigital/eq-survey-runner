@@ -72,7 +72,7 @@ def save_questionnaire_store(response):
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["GET"])
 @login_required
-def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument
+def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=unused-argument,too-many-locals
     current_location = Location(group_id, group_instance, block_id)
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
@@ -96,7 +96,7 @@ def get_block(eq_id, form_type, collection_id, group_id, group_instance, block_i
 
 @questionnaire_blueprint.route('<group_id>/<int:group_instance>/<block_id>', methods=["POST"])
 @login_required
-def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):
+def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_id):  # pylint: disable=too-many-locals
     current_location = Location(group_id, group_instance, block_id)
     metadata = get_metadata(current_user)
     answer_store = get_answer_store(current_user)
@@ -130,7 +130,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
 @questionnaire_blueprint.route('<group_id>/0/household-composition', methods=["POST"])
 @login_required
-def post_household_composition(eq_id, form_type, collection_id, group_id):
+def post_household_composition(eq_id, form_type, collection_id, group_id):  # pylint: disable=too-many-locals
     answer_store = get_answer_store(current_user)
     if _household_answers_changed(answer_store):
         _remove_repeating_on_household_answers(answer_store, group_id)
@@ -249,7 +249,7 @@ def is_survey_completed(answer_store, metadata):
             continue
 
         if location not in completed_blocks:
-                return False, location
+            return False, location
 
     return True, None
 

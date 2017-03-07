@@ -27,7 +27,8 @@ class TestHappyPath(IntegrationTestCase):
         post_data = {
             'action[start_questionnaire]': 'Start Questionnaire'
         }
-        resp = self.get_and_post_with_csrf_token('/questionnaire/' + eq_id + '/' + form_type_id + '/789/mci/0/introduction', data=post_data, follow_redirects=False)
+        resp = self.get_and_post_with_csrf_token('/questionnaire/' + eq_id + '/' + form_type_id +
+                                                 '/789/mci/0/introduction', data=post_data, follow_redirects=False)
         self.assertEqual(resp.status_code, 302)
 
         block_one_url = resp.location

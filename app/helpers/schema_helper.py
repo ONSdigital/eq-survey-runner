@@ -3,7 +3,7 @@ from app.schema.exceptions import QuestionnaireException
 from app.validation.error_messages import error_messages
 
 
-class SchemaHelper(object):
+class SchemaHelper(object):  # pylint: disable=too-many-public-methods
 
     @staticmethod
     def get_messages(survey_json):
