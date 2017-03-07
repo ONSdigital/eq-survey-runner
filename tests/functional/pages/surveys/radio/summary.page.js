@@ -2,8 +2,12 @@ import SummaryPage from '../../summary.page'
 
 class RadioSummaryPage extends SummaryPage {
 
-  getMandatoryAnswer() {
+  getMandatoryOtherAnswer() {
     return browser.element('[data-qa="other-answer-mandatory-answer"]').getText()
+  }
+
+  getMandatoryAnswer() {
+    return browser.element('[data-qa="radio-mandatory-answer-answer"]').getText()
   }
 
 }

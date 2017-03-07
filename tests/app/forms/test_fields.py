@@ -2,7 +2,7 @@ import unittest
 
 from wtforms import validators, StringField, TextAreaField, FormField, SelectField, SelectMultipleField
 
-from app.forms.fields import CustomIntegerField, get_field, get_mandatory_validator
+from app.forms.fields import CustomIntegerField, get_field, get_mandatory_validator, _coerce_str_unless_none
 from app.validation.error_messages import error_messages
 from app.validation.validators import ResponseRequired
 
@@ -153,9 +153,19 @@ class TestFields(unittest.TestCase):
         expected_choices = [(option['label'], option['value']) for option in radio_json['options']]
 
         self.assertTrue(unbound_field.field_class == SelectField)
+        self.assertTrue(unbound_field.kwargs['coerce'], _coerce_str_unless_none)
         self.assertEquals(unbound_field.kwargs['label'], radio_json['label'])
         self.assertEquals(unbound_field.kwargs['description'], radio_json['guidance'])
         self.assertEquals(unbound_field.kwargs['choices'], expected_choices)
+
+    def test__coerce_str_unless_none(self):
+        # pylint: disable=protected-access
+        self.assertEquals(_coerce_str_unless_none(1), '1')
+        self.assertEquals(_coerce_str_unless_none('bob'), 'bob')
+        self.assertEquals(_coerce_str_unless_none(12323245), '12323245')
+        self.assertEquals(_coerce_str_unless_none('9887766'), '9887766')
+        self.assertEquals(_coerce_str_unless_none('None'), 'None')
+        self.assertEquals(_coerce_str_unless_none(None), None)
 
     def test_checkbox_field(self):
         checkbox_json = {

@@ -29,7 +29,7 @@ describe('Example Test', function() {
 
 HEADER = r"""// >>> WARNING THIS PAGE WAS AUTO-GENERATED - DO NOT EDIT!!! <<<
 
-import {basePage} from '../../{basePageFile}'
+import {basePage} from '../{basePageFile}'
 
 """
 
@@ -60,6 +60,12 @@ DROP_DOWN_SETTER = r"""  set{answerName}(value) {
 CHECKBOX_RADIO_CLICKER = r"""  click{optionName}() {
     browser.element('[id="{optionId}"]').click()
     return this
+  }
+
+"""
+
+CHECKBOX_RADIO_IS_SELECTED = r"""  {optionName}IsSelected() {
+    return browser.element('[id="{optionId}"]').isSelected()
   }
 
 """
@@ -127,14 +133,15 @@ def generate_camel_case_from_id(id_str):
     return name
 
 
-def process_options(answer_id, options, template, page_spec):
+def process_options(answer_id, options, template_setter, template_getter, page_spec):
     for index, option in enumerate(options):
-        option_name = generate_camel_case_from_id(option['value'])
+        option_name = generate_camel_case_from_id(answer_id) + generate_camel_case_from_id(option['value'])
         option_id = "{name}-{index}".format(name=answer_id, index=index)
-        page_spec.write(template.replace("{optionName}", generate_camel_case_from_id(answer_id) + option_name).replace("{optionId}", option_id))
+        page_spec.write(template_setter.replace("{optionName}", option_name).replace("{optionId}", option_id))
+        page_spec.write(template_getter.replace("{optionName}", option_name).replace("{optionId}", option_id))
         if 'child_answer_id' in option:
             option_other_id = option['child_answer_id']
-            page_spec.write(MULTIPLE_CHOICE_OTHER.replace("{answerName}", generate_camel_case_from_id(answer_id) + option_name + "Text").replace("{answerId}", option_other_id))
+            page_spec.write(MULTIPLE_CHOICE_OTHER.replace("{answerName}", option_name + "Text").replace("{answerId}", option_other_id))
 
 
 def process_relationship_options(answer_id, options, template, page_spec):
@@ -149,23 +156,22 @@ def process_relationship_options(answer_id, options, template, page_spec):
 
 
 def process_answer(question_type, answer, page_spec):
+    answer_name = generate_camel_case_from_id(answer['id'])
+
     if 'parent_answer_id' in answer:
         logger.debug("\t\tSkipping Child Answer: %s", answer['id'])
         return
     elif answer['type'] == 'Radio' or answer['type'] == 'Checkbox':
-        process_options(answer['id'], answer['options'], CHECKBOX_RADIO_CLICKER, page_spec)
+        process_options(answer['id'], answer['options'], CHECKBOX_RADIO_CLICKER, CHECKBOX_RADIO_IS_SELECTED, page_spec)
     elif answer['type'] == 'Relationship':
         process_relationship_options(answer['id'], answer['options'], RELATIONSHIP_DROPDOWN_SETTER, page_spec)
     elif answer['type'] == 'Date':
-        answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(_write_date_answer(answer_name, answer['id']))
 
     elif answer['type'] == 'MonthYearDate':
-        answer_name = generate_camel_case_from_id(answer['id'])
         page_spec.write(_write_month_year_date_answer(answer_name, answer['id']))
 
     elif answer['type'] in ['TextField', 'Integer', 'PositiveInteger', 'TextArea', 'Currency', 'Percentage']:
-        answer_name = generate_camel_case_from_id(answer['id'])
         if question_type == 'RepeatingAnswer':
             page_spec.write(REPEATING_ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
             page_spec.write(REPEATING_ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
@@ -213,9 +219,9 @@ def _write_month_year_date_answer(answer_name, answerId):
 
 
 def find_kv(block, key, values):
-    for section in block['sections']:
-        for question in section['questions']:
-            for answer in question['answers']:
+    for section in block.get('sections', []):
+        for question in section.get('questions', []):
+            for answer in question.get('answers', []):
                 if key in answer and answer[key] in values:
                     return True
 
@@ -250,7 +256,7 @@ def process_block(block, dir_out, spec_out=None):
 
         page_spec.write(CONSTRUCTOR.replace("{block_id}", block['id']))
 
-        for section in block['sections']:
+        for section in block.get('sections', []):
             process_section(section, page_spec)
 
         page_spec.write(FOOTER.replace("{pageName}", page_name))

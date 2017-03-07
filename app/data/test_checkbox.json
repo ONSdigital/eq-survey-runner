@@ -27,6 +27,11 @@
                                 "label": "",
                                 "mandatory": true,
                                 "options": [{
+                                        "label": "None",
+                                        "value": "None",
+                                        "q_code": "0"
+                                    },
+                                    {
                                         "label": "Cheese",
                                         "value": "Cheese",
                                         "q_code": "1"
@@ -95,6 +100,10 @@
                                 "label": "",
                                 "mandatory": false,
                                 "options": [{
+                                        "label": "None",
+                                        "value": "None"
+                                    },
+                                    {
                                         "label": "Cheese",
                                         "value": "Cheese"
                                     },

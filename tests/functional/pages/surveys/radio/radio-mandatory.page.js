@@ -8,24 +8,49 @@ class RadioMandatoryPage extends MultipleChoiceWithOtherPage {
     super('radio-mandatory')
   }
 
-  clickRadioMandatoryAnswerBacon() {
+  clickRadioMandatoryAnswerNone() {
     browser.element('[id="radio-mandatory-answer-0"]').click()
     return this
   }
 
-  clickRadioMandatoryAnswerEggs() {
+  RadioMandatoryAnswerNoneIsSelected() {
+    return browser.element('[id="radio-mandatory-answer-0"]').isSelected()
+  }
+
+  clickRadioMandatoryAnswerBacon() {
     browser.element('[id="radio-mandatory-answer-1"]').click()
     return this
   }
 
-  clickRadioMandatoryAnswerSausage() {
+  RadioMandatoryAnswerBaconIsSelected() {
+    return browser.element('[id="radio-mandatory-answer-1"]').isSelected()
+  }
+
+  clickRadioMandatoryAnswerEggs() {
     browser.element('[id="radio-mandatory-answer-2"]').click()
     return this
   }
 
-  clickRadioMandatoryAnswerOther() {
+  RadioMandatoryAnswerEggsIsSelected() {
+    return browser.element('[id="radio-mandatory-answer-2"]').isSelected()
+  }
+
+  clickRadioMandatoryAnswerSausage() {
     browser.element('[id="radio-mandatory-answer-3"]').click()
     return this
+  }
+
+  RadioMandatoryAnswerSausageIsSelected() {
+    return browser.element('[id="radio-mandatory-answer-3"]').isSelected()
+  }
+
+  clickRadioMandatoryAnswerOther() {
+    browser.element('[id="radio-mandatory-answer-4"]').click()
+    return this
+  }
+
+  RadioMandatoryAnswerOtherIsSelected() {
+    return browser.element('[id="radio-mandatory-answer-4"]').isSelected()
   }
 
   setRadioMandatoryAnswerOtherText(value) {

@@ -90,7 +90,7 @@ class TestSchemaHelper(unittest.TestCase):
 
         expected = {
             'mandatory-checkbox-answer': {
-                'index': 5,
+                'index': 6,
                 'child_answer_id': 'other-answer-mandatory'
             }
         }

@@ -104,14 +104,31 @@ def get_select_multiple_field(answer, label, guidance, error_messages):
     )
 
 
+def _coerce_str_unless_none(value):
+    """
+    Coerces a value using str() unless that value is None
+    :param value: Any value that can be coerced using str() or None
+    :return: str(value) or None if value is None
+    """
+    return str(value) if value is not None else None
+
+
 def get_select_field(answer, label, guidance, error_messages):
     validate_with = get_mandatory_validator(answer, error_messages)
+
+    # We use a custom coerce function to avoid a defect where Python NoneType
+    # is coerced to the string 'None' which clashes with legitimate Radio field
+    # values of 'None'; i.e. there is no way to differentiate between the user
+    # not providing an answer and them selecting the 'None' option otherwise.
+    # https://github.com/ONSdigital/eq-survey-runner/issues/1013
+    # See related WTForms PR: https://github.com/wtforms/wtforms/pull/288
 
     return SelectField(
         label=label,
         description=guidance,
         choices=build_choices(answer['options']),
         validators=validate_with,
+        coerce=_coerce_str_unless_none,
     )
 
 

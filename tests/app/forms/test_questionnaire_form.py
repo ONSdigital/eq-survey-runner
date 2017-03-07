@@ -106,6 +106,69 @@ class TestQuestionnaireForm(unittest.TestCase):
         self.assertEqual(form.data, expected_form_data)
         self.assertEqual(form.question_errors['reporting-period-question'], expected_message)
 
+    def test_form_radio_options_no_selection(self):
+        # Given I have not selected a radio option, When I load a form,
+        # Then no radio options should be selected by default
+        survey = load_schema_file("test_radio.json")
+        block_json = SchemaHelper.get_block(survey, "radio-mandatory")
+        error_messages = SchemaHelper.get_messages(survey)
+
+        # Given
+        data = {}
+
+        # When
+        form = generate_form(block_json, data, error_messages)
+
+        # Then
+        for option in form['radio-mandatory-answer']:
+            self.assertFalse(option.checked)
+
+    def test_form_radio_options_select_none(self):
+        # Given I have selected the None radio option, When I load a form,
+        # Then the None radio option should be selected And no other options should be selected.
+        survey = load_schema_file("test_radio.json")
+        block_json = SchemaHelper.get_block(survey, "radio-mandatory")
+        error_messages = SchemaHelper.get_messages(survey)
+
+        # Given
+        data = {
+            'radio-mandatory-answer': 'None'
+        }
+
+        # When
+        form = generate_form(block_json, data, error_messages)
+
+        # Then
+        options = [option for option in form['radio-mandatory-answer']]
+
+        self.assertTrue(options[0].checked)  # None
+
+        for option in options[1:]:
+            self.assertFalse(option.checked)  # All others
+
+    def test_form_radio_options_select_none(self):
+        # Given I have selected the Bacon radio option, When I load a form,
+        # Then the Bacon radio option should be selected And no other options should be selected.
+        survey = load_schema_file("test_radio.json")
+        block_json = SchemaHelper.get_block(survey, "radio-mandatory")
+        error_messages = SchemaHelper.get_messages(survey)
+
+        # Given
+        data = {
+            'radio-mandatory-answer': 'Bacon'
+        }
+
+        # When
+        form = generate_form(block_json, data, error_messages)
+
+        # Then
+        options = [option for option in form['radio-mandatory-answer']]
+
+        self.assertFalse(options[0].checked)  # None
+        self.assertTrue(options[1].checked)  # Bacon
+        for option in options[2:]:
+            self.assertFalse(option.checked)  # All others
+
     def test_form_errors_are_correctly_mapped(self):
         survey = load_schema_file("1_0112.json")
 
@@ -191,7 +254,7 @@ class TestQuestionnaireForm(unittest.TestCase):
         form = generate_form(block_json, {}, error_messages)
 
         self.assertFalse(form.option_has_other("mandatory-checkbox-answer", 1))
-        self.assertTrue(form.option_has_other("mandatory-checkbox-answer", 5))
+        self.assertTrue(form.option_has_other("mandatory-checkbox-answer", 6))
 
     def test_get_other_answer(self):
         survey = load_schema_file("test_checkbox.json")
@@ -202,7 +265,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             "other-answer-mandatory": "Some data"
         }, error_messages)
 
-        field = form.get_other_answer("mandatory-checkbox-answer", 5)
+        field = form.get_other_answer("mandatory-checkbox-answer", 6)
 
         self.assertEqual("Some data", field.data)
 

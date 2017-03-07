@@ -343,10 +343,9 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
                 elif is_month_year and answer_value['month']:
                     date_str = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
                     answer = Answer(answer_id=answer_id, value=date_str, location=location)
-            elif answer_value != 'None' and answer_value is not None:
-                # Necessary because default select casts to string value 'None'
+            elif answer_value is not None:
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
-            elif answer_value is None:
+            else:
                 # Remove previously populated answers that are now empty
                 questionnaire_store.answer_store.remove(
                     location=location,
