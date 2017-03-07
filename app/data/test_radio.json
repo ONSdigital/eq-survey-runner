@@ -27,6 +27,10 @@
                                 "label": "What is your favourite breakfast food",
                                 "mandatory": true,
                                 "options": [{
+                                        "label": "None",
+                                        "value": "None"
+                                    },
+                                    {
                                         "label": "Bacon",
                                         "value": "Bacon"
                                     },
@@ -88,6 +92,10 @@
                                 "label": "What is your favourite breakfast food",
                                 "mandatory": false,
                                 "options": [{
+                                        "label": "None",
+                                        "value": "None"
+                                    },
+                                    {
                                         "label": "Toast",
                                         "value": "Toast"
                                     },

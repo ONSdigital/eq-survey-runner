@@ -8,24 +8,49 @@ class RadioNonMandatoryPage extends MultipleChoiceWithOtherPage {
     super('radio-non-mandatory')
   }
 
-  clickRadioNonMandatoryAnswerToast() {
+  clickRadioNonMandatoryAnswerNone() {
     browser.element('[id="radio-non-mandatory-answer-0"]').click()
     return this
   }
 
-  clickRadioNonMandatoryAnswerCoffee() {
+  RadioNonMandatoryAnswerNoneIsSelected() {
+    return browser.element('[id="radio-non-mandatory-answer-0"]').isSelected()
+  }
+
+  clickRadioNonMandatoryAnswerToast() {
     browser.element('[id="radio-non-mandatory-answer-1"]').click()
     return this
   }
 
-  clickRadioNonMandatoryAnswerTea() {
+  RadioNonMandatoryAnswerToastIsSelected() {
+    return browser.element('[id="radio-non-mandatory-answer-1"]').isSelected()
+  }
+
+  clickRadioNonMandatoryAnswerCoffee() {
     browser.element('[id="radio-non-mandatory-answer-2"]').click()
     return this
   }
 
-  clickRadioNonMandatoryAnswerOther() {
+  RadioNonMandatoryAnswerCoffeeIsSelected() {
+    return browser.element('[id="radio-non-mandatory-answer-2"]').isSelected()
+  }
+
+  clickRadioNonMandatoryAnswerTea() {
     browser.element('[id="radio-non-mandatory-answer-3"]').click()
     return this
+  }
+
+  RadioNonMandatoryAnswerTeaIsSelected() {
+    return browser.element('[id="radio-non-mandatory-answer-3"]').isSelected()
+  }
+
+  clickRadioNonMandatoryAnswerOther() {
+    browser.element('[id="radio-non-mandatory-answer-4"]').click()
+    return this
+  }
+
+  RadioNonMandatoryAnswerOtherIsSelected() {
+    return browser.element('[id="radio-non-mandatory-answer-4"]').isSelected()
   }
 
   setRadioNonMandatoryAnswerOtherText(value) {
