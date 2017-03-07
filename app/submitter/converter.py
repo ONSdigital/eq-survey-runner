@@ -92,7 +92,9 @@ def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
 
             if answer_schema is not None and value is not None and 'parent_answer_id' not in answer_schema:
                 if answer_schema['type'] != 'Checkbox' or any('q_code' not in option for option in answer_schema['options']):
-                    data[answer_schema['q_code']] = _get_answer_data(data, answer_schema['q_code'], value)
+                    answer_data = _get_answer_data(data, answer_schema['q_code'], value)
+                    if answer_data is not None:
+                        data[answer_schema['q_code']] = answer_data
                 else:
                     data.update(_get_checkbox_answer_data(answer_store, answer_schema, value))
     return data
@@ -191,5 +193,7 @@ def _encode_value(value):
         return str(value)
     elif isinstance(value, datetime):
         return value.strftime(settings.SDX_DATE_FORMAT)
+    elif isinstance(value, str) and value == '':
+        return None
     else:
         return value
