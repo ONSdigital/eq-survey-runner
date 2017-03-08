@@ -7,7 +7,5 @@
 
 set -e
 
-./scripts/run_lint.sh
-./scripts/run_tests_unit.sh
-./scripts/run_tests_functional.sh
+EQ_RUN_LOCAL_TESTS=True EQ_RUN_FUNCTIONAL_TESTS=True EQ_RUN_LOCAL_LINT=True ./scripts/run.sh
 

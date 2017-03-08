@@ -46,7 +46,8 @@ class IntegrationTestCase(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         return resp_url, resp
 
-    def extract_csrf_token(self, html):
+    @staticmethod
+    def extract_csrf_token(html):
         match = re.search('<input id="csrf_token" name="csrf_token" type="hidden" value="(.+?)">', html)
 
         if match:

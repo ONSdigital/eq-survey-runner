@@ -21,14 +21,12 @@ function display_result {
 flake8 --max-complexity 10 --count
 display_result $? 1 "Flake 8 code style check"
 
-pylint --rcfile=.pylintrc -j 0 ./app ./tests
+pylint --reports=n --output-format=colorized --rcfile=.pylintrc -j 0 ./app ./tests
 # pylint bit encodes the exit code to allow you to figure out which category has failed.
 # https://docs.pylint.org/en/1.6.0/run.html#exit-codes
+# We want to fail on all errors so don't check for specific bits in the output; but if we did in future, see:
 # http://stackoverflow.com/questions/6626351/how-to-extract-bits-from-return-code-number-in-bash
-# We want to fail if there are any errors or fatal errors so we use 3
-errorcode=$?
-(( res = $errorcode & 3 ))
-display_result $res 2 "Pylint code style check"
+display_result $? 2 "Pylint linting check"
 
 yarn lint
-display_result $? 1 "Javascript code style check"
+display_result $? 1 "Javascript linting check"

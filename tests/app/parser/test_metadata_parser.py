@@ -247,20 +247,20 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_succeeds_missing_ref_p_end_date(self):
         jwt = {
-             "user_id": "1",
-             "form_type": "a",
-             "collection_exercise_sid": "test-sid",
-             "eq_id": "2",
-             "period_id": "3",
-             "period_str": "2016-01-01",
-             "ref_p_start_date": "2016-02-02",
-             "ru_ref": "2016-04-04",
-             "ru_name": "Apple",
-             "return_by": "2016-07-07"
+            "user_id": "1",
+            "form_type": "a",
+            "collection_exercise_sid": "test-sid",
+            "eq_id": "2",
+            "period_id": "3",
+            "period_str": "2016-01-01",
+            "ref_p_start_date": "2016-02-02",
+            "ru_ref": "2016-04-04",
+            "ru_name": "Apple",
+            "return_by": "2016-07-07"
         }
-        valid, field = is_valid_metadata(jwt)
+        valid, _ = is_valid_metadata(jwt)
         self.assertTrue(valid)
-        
+
     def test_is_valid_fails_missing_ru_ref(self):
         jwt = {
             "user_id": "1",

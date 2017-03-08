@@ -142,6 +142,7 @@ class CustomIntegerField(IntegerField):
     """
     def __init__(self, **kwargs):
         super(CustomIntegerField, self).__init__(**kwargs)
+        self.data = None
 
     def process_formdata(self, valuelist):
 
@@ -164,17 +165,17 @@ def get_integer_field(answer, label, guidance, error_messages):
     if answer['type'] == 'Integer':
         validate_with = mandatory_or_optional + [
             IntegerCheck(answer_errors['NOT_INTEGER']),
-            NumberRange(max=9999999999, messages=answer_errors),
+            NumberRange(maximum=9999999999, messages=answer_errors),
         ]
     elif answer['type'] == 'Percentage':
         validate_with = mandatory_or_optional + [
             IntegerCheck(answer_errors['NOT_INTEGER']),
-            NumberRange(min=0, max=100, messages=answer_errors),
+            NumberRange(minimum=0, maximum=100, messages=answer_errors),
         ]
     else:
         validate_with = mandatory_or_optional + [
             IntegerCheck(answer_errors['NOT_INTEGER']),
-            NumberRange(min=0, max=9999999999, messages=answer_errors),
+            NumberRange(minimum=0, maximum=9999999999, messages=answer_errors),
         ]
 
     return CustomIntegerField(

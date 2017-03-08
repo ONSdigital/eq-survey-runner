@@ -11,7 +11,7 @@ class TestNumberRangeValidator(unittest.TestCase):
     Number range validator uses the data, which is already known as integer
     """
     def test_too_small_when_min_set_is_invalid(self):
-        validator = NumberRange(min=0)
+        validator = NumberRange(minimum=0)
 
         mock_form = Mock()
         mock_field = Mock()
@@ -23,7 +23,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         self.assertEqual(error_messages['NEGATIVE_INTEGER'], str(ite.exception))
 
     def test_too_big_when_max_set_is_invalid(self):
-        validator = NumberRange(max=9999999999)
+        validator = NumberRange(maximum=9999999999)
 
         mock_form = Mock()
         mock_field = Mock()
@@ -35,7 +35,7 @@ class TestNumberRangeValidator(unittest.TestCase):
         self.assertEqual(error_messages['INTEGER_TOO_LARGE'], str(ite.exception))
 
     def test_within_range(self):
-        validator = NumberRange(min=0, max=10)
+        validator = NumberRange(minimum=0, maximum=10)
 
         mock_form = Mock()
         mock_field = Mock()
@@ -47,7 +47,7 @@ class TestNumberRangeValidator(unittest.TestCase):
             self.fail("Valid integer raised ValidationError")
 
     def test_within_range_at_min(self):
-        validator = NumberRange(min=0, max=9999999999)
+        validator = NumberRange(minimum=0, maximum=9999999999)
 
         mock_form = Mock()
         mock_field = Mock()
@@ -59,7 +59,7 @@ class TestNumberRangeValidator(unittest.TestCase):
             self.fail("Valid integer raised ValidationError")
 
     def test_within_range_at_max(self):
-        validator = NumberRange(min=0, max=9999999999)
+        validator = NumberRange(minimum=0, maximum=9999999999)
 
         mock_form = Mock()
         mock_field = Mock()

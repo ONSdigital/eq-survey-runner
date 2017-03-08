@@ -19,6 +19,11 @@ if [ "$EQ_RUN_DOCKER_TESTS" = True ]; then
     docker run onsdigital/eq-survey-runner-unit-tests
 fi
 
+if [ "$EQ_RUN_LOCAL_LINT" = True ]; then
+    echo "Running Local Lint Tests"
+    ./scripts/run_lint.sh
+fi
+
 if [ "$EQ_RUN_LOCAL_TESTS" = True ]; then
     echo "Running Local Unit Tests"
     ./scripts/run_tests_unit.sh

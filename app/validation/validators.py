@@ -51,16 +51,16 @@ class NumberRange(object):
     This will work with any comparable number type, such as floats and
     decimals, not just integers.
 
-    :param min:
+    :param minimum:
         The minimum required value of the number. If not provided, minimum
         value will not be checked.
-    :param max:
+    :param maximum:
         The maximum value of the number. If not provided, maximum value
         will not be checked.
     """
-    def __init__(self, min=None, max=None, messages=None):
-        self.min = min
-        self.max = max
+    def __init__(self, minimum=None, maximum=None, messages=None):
+        self.minimum = minimum
+        self.maximum = maximum
         if not messages:
             messages = error_messages
         self.messages = messages
@@ -68,9 +68,9 @@ class NumberRange(object):
     def __call__(self, form, field):
         data = field.data
         if data is not None:
-            if self.min is not None and data < self.min:
+            if self.minimum is not None and data < self.minimum:
                 raise validators.ValidationError(self.messages['NEGATIVE_INTEGER'])
-            elif self.max is not None and data > self.max:
+            elif self.maximum is not None and data > self.maximum:
                 raise validators.ValidationError(self.messages['INTEGER_TOO_LARGE'])
 
 
