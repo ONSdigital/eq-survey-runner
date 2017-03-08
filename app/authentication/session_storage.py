@@ -15,24 +15,16 @@ logger = get_logger()
 
 class SessionStorage:
 
-    def store_user_id(self, user_id):
+    @staticmethod
+    def store_user_id(user_id):
         """
-        Store a user's id for retrieval later
-        :param user_id: the user id
+        Create a new eq_session_id and associate it with the user_id specified
         """
-        if EQ_SESSION_ID not in session:
-            eq_session_id = str(uuid4())
-            logger.debug("creating new eq session id", session_id=eq_session_id)
-            session[EQ_SESSION_ID] = eq_session_id
-            eq_session = EQSession(eq_session_id, user_id)
-        else:
-            eq_session_id = session[EQ_SESSION_ID]
-            logger.debug("got session id from session", session_id=eq_session_id)
-            eq_session = self._get_user_session(eq_session_id)
-            if eq_session is not None:
-                logger.debug("got session from database", eq_session_id=eq_session.eq_session_id, user_id=eq_session.user_id,
-                             timestamp=eq_session.timestamp.isoformat())
+        eq_session_id = str(uuid4())
+        session[EQ_SESSION_ID] = eq_session_id
+        eq_session = EQSession(eq_session_id, user_id)
 
+        logger.debug("Adding eq_session to database", eq_session_id=eq_session_id, user_id=user_id)
         with commit_or_rollback(db_session):
             # pylint: disable=maybe-no-member
             # session has a add function but it is wrapped in a session_scope which confuses pylint
@@ -46,37 +38,46 @@ class SessionStorage:
             eq_session_id = session[EQ_SESSION_ID]
             eq_session = self._get_user_session(eq_session_id)
             if eq_session is not None:
-                logger.debug("deleting session from eq_session table", eq_session_id=eq_session.eq_session_id,
-                             user_id=eq_session.user_id, timestamp=eq_session.timestamp.isoformat())
-
-            with commit_or_rollback(db_session):
-                # pylint: disable=maybe-no-member
-                # session has a delete function but it is wrapped in a session_scope which confuses pylint
-                db_session.delete(eq_session)
+                with commit_or_rollback(db_session):
+                    # pylint: disable=maybe-no-member
+                    # session has a delete function but it is wrapped in a session_scope which confuses pylint
+                    db_session.delete(eq_session)
+            else:
+                logger.debug("eq_session_id from user's cookie not found in database")
         else:
-            logger.debug("no eq session id exists")
+            logger.debug("eq_session_id does not exist in user's cookie")
 
     def get_user_id(self):
         """
         Retrieves a user's id
         :return: the user's JWT
         """
+        user_id = None
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
             eq_session = self._get_user_session(eq_session_id)
-            if eq_session:
-                return eq_session.user_id
-            else:
-                return None
-        else:
-            return None
+            if eq_session is not None:
+                user_id = eq_session.user_id
+
+        return user_id
 
     @staticmethod
     def _get_user_session(eq_session_id):
-        logger.debug("getting session", session_id=eq_session_id)
+        logger.debug("finding eq_session_id in database", eq_session_id=eq_session_id)
+
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
-        return EQSession.query.filter(EQSession.eq_session_id == eq_session_id).first()
+        eq_session = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).first()
+
+        if eq_session is not None:
+            logger.debug("found matching eq_session for eq_session_id in database",
+                         session_id=eq_session.eq_session_id,
+                         user_id=eq_session.user_id,
+                         timestamp=eq_session.timestamp.isoformat())
+        else:
+            logger.debug("eq_session_id not found in database", eq_session_id=eq_session_id)
+
+        return eq_session
 
     @staticmethod
     def store_user_ik(user_ik):
@@ -84,8 +85,7 @@ class SessionStorage:
         Store a user's ik in the cookie for retrieval later
         :param user_ik: the user ik
         """
-        if USER_IK not in session:
-            session[USER_IK] = user_ik
+        session[USER_IK] = user_ik
 
     @staticmethod
     def has_user_ik():
