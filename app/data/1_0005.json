@@ -548,7 +548,7 @@
                                     "label": "What was the percentage or number of weekly paid employees who received this new pay rate?",
                                     "mandatory": false,
                                     "q_code": "120",
-                                    "type": "PositiveInteger"
+                                    "type": "TextField"
                                 }
                             ],
                             "id": "weekly-pay-significant-changes-pay-rates-increase-question",
@@ -1149,7 +1149,7 @@
                                     "label": "What was the percentage or number of fortnightly paid employees who received this new pay rate?",
                                     "mandatory": false,
                                     "q_code": "120f",
-                                    "type": "PositiveInteger"
+                                    "type": "TextField"
                                 }
                             ],
                             "id": "fortnightly-pay-significant-changes-pay-rates-increase-question",
@@ -1739,7 +1739,7 @@
                                     "label": "What was the percentage or number of calendar monthly paid employees who received this new pay rate?",
                                     "mandatory": false,
                                     "q_code": "220",
-                                    "type": "PositiveInteger"
+                                    "type": "TextField"
                                 }
                             ],
                             "id": "calendar-monthly-pay-significant-changes-pay-rates-increase-question",
@@ -2329,7 +2329,7 @@
                                     "label": "What was the percentage or number of four weekly paid employees who received this new pay rate?",
                                     "mandatory": false,
                                     "q_code": "220w4",
-                                    "type": "PositiveInteger"
+                                    "type": "TextField"
                                 }
                             ],
                             "id": "four-weekly-pay-significant-changes-pay-rates-increase-question",
@@ -2920,7 +2920,7 @@
                                     "label": "What was the percentage or number of five weekly paid employees who received this new pay rate?",
                                     "mandatory": false,
                                     "q_code": "220w5",
-                                    "type": "PositiveInteger"
+                                    "type": "TextField"
                                 }
                             ],
                             "id": "five-weekly-pay-significant-changes-pay-rates-increase-question",
