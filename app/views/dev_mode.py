@@ -38,6 +38,7 @@ def dev_mode():
         language_code = form.get("language_code")
         sexual_identity = form.get("sexual_identity") == "true"
         variant_flags = {"sexual_identity": sexual_identity}
+        roles = ['dumper']
         payload = create_payload(user=user,
                                  exp_time=exp_time,
                                  eq_id=eq_id,
@@ -54,7 +55,8 @@ def dev_mode():
                                  employment_date=employment_date,
                                  region_code=region_code,
                                  language_code=language_code,
-                                 variant_flags=variant_flags)
+                                 variant_flags=variant_flags,
+                                 roles=roles)
 
         return redirect("/session?token=" + generate_token(payload).decode())
 
@@ -111,24 +113,25 @@ def create_payload(**metadata):
     exp = time.time() + float(metadata['exp_time'])
 
     payload = {
-        "user_id": metadata['user'],
+        'user_id': metadata['user'],
         'iat': str(int(iat)),
         'exp': str(int(exp)),
         'jti': str(uuid4()),
-        "eq_id": metadata['eq_id'],
-        "period_str": metadata['period_str'],
-        "period_id": metadata['period_id'],
-        "form_type": metadata['form_type'],
-        "collection_exercise_sid": metadata['collection_exercise_sid'],
-        "ref_p_start_date": metadata['ref_p_start_date'],
-        "ru_ref": metadata['ru_ref'],
-        "ru_name": metadata['ru_name'],
-        "return_by": metadata['return_by'],
-        "trad_as": metadata['trad_as'],
-        "employment_date": metadata['employment_date'],
-        "region_code": metadata['region_code'],
-        "language_code": metadata['language_code'],
-        "variant_flags": metadata['variant_flags'],
+        'eq_id': metadata['eq_id'],
+        'period_str': metadata['period_str'],
+        'period_id': metadata['period_id'],
+        'form_type': metadata['form_type'],
+        'collection_exercise_sid': metadata['collection_exercise_sid'],
+        'ref_p_start_date': metadata['ref_p_start_date'],
+        'ru_ref': metadata['ru_ref'],
+        'ru_name': metadata['ru_name'],
+        'return_by': metadata['return_by'],
+        'trad_as': metadata['trad_as'],
+        'employment_date': metadata['employment_date'],
+        'region_code': metadata['region_code'],
+        'language_code': metadata['language_code'],
+        'variant_flags': metadata['variant_flags'],
+        'roles': metadata.get('roles', []),
     }
     if metadata.get('ref_p_end_date'):
         payload["ref_p_end_date"] = metadata['ref_p_end_date']
