@@ -91,3 +91,46 @@ class TestTemplateRenderer(unittest.TestCase):
         }
 
         self.assertEqual(rendered, expected)
+
+    def test_given_none_safe_content_should_return_none(self):
+        content = None
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, None)
+
+    def test_given_empty_string_safe_content_should_return_empty_string(self):
+        content = ''
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, '')
+
+    def test_should_replace_jinja_template_variable(self):
+        content = 'Your answer is {{ answers.your_answer}}'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'Your answer is …')
+
+    def test_should_replace_multiple_jinja_template_variable(self):
+        content = 'Your answer is {{ answers.your_answer}} to {{answers.your_other_answer }}'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'Your answer is … to …')
+
+    def test_should_replace_jinja_template_variable_containing_special_characters(self):
+        content = 'How is {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }} ' \
+                  'related to the people below?'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'How is … related to the people below?')
+
+    def test_should_replace_jinja_template_variable_containing_function(self):
+        content = 'Is {{ format_start_end_date(meta.survey.start_date, meta.survey.end_date)}} correct?'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'Is … correct?')

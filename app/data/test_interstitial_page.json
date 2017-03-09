@@ -38,7 +38,7 @@
                         }],
                         "description": "",
                         "id": "favourite-breakfast-question",
-                        "title": "",
+                        "title": "What is your favourite breakfast food",
                         "type": "General"
                     }],
                     "title": "What is your favourite breakfast food"
@@ -91,6 +91,6 @@
             }
         ],
         "id": "favourite-foods",
-        "title": ""
+        "title": "Favourite food"
     }]
 }

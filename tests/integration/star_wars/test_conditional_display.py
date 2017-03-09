@@ -76,7 +76,6 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertIn('<title>Summary</title>', content)
         self.assertIn('>Star Wars</', content)
         self.assertIn('>Your responses<', content)
         self.assertIn('What is the name of Jar Jar Binks', content)
@@ -137,7 +136,6 @@ class TestConditionalDisplay(StarWarsTestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertIn('<title>Summary</title>', content)
         self.assertIn('>Star Wars</', content)
         self.assertIn('>Your responses<', content)
         self.assertNotIn('What is the name of Jar Jar Binks', content)

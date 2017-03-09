@@ -1,6 +1,6 @@
 {% extends 'layouts/_twocol.html' %}
 
-{% block page_title %}Error{% endblock %}
+{% block page_title %}{{_("Error")}} {{status_code}}{% endblock %}
 
 {% block main %}
   <h1 class="saturn">Error {{status_code}}</h1>

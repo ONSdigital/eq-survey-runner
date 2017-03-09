@@ -1,12 +1,12 @@
 {% extends theme('layouts/_twocol.html') %}
 
-{% block page_title %}Submission Successful{% endblock %}
+{% block page_title %}{{_("We\'ve received your answers")}} - {{survey_title}}{% endblock %}
 
 {% block main %}
 
   <div class="u-mb-s">
     <h1 class="saturn">Submission Successful</h1>
-    <p>Thank you for submitting the {{ schema_title }}, your responses have been successfully received.</p>
+    <p>Thank you for submitting the {{ survey_title }}, your responses have been successfully received.</p>
   </div>
 
   <div class="panel panel--simple panel--success panel--spacious">

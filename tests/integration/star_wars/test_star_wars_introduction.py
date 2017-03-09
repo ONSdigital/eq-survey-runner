@@ -8,7 +8,6 @@ class TestStarWarsIntroduction(StarWarsTestCase):
 
         # Landing page tests
         content = response.get_data(True)
-        self.assertIn('<title>Introduction</title>', content)
         self.assertIn('Star Wars', content)
         self.assertIn('If actual figures are not available, please provide informed estimates.', content)
         self.assertIn('Legal Information', content)

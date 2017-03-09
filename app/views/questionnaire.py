@@ -27,7 +27,7 @@ from app.submitter.submitter import SubmitterFactory
 from app.templating.metadata_context import build_metadata_context
 from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
-from app.templating.template_renderer import renderer
+from app.templating.template_renderer import renderer, TemplateRenderer
 from app.utilities.schema import get_schema
 from app.views.errors import MultipleSurveyError
 
@@ -175,10 +175,10 @@ def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-ar
     metadata_context = build_metadata_context(metadata)
     thank_you_template = render_theme_template(theme, template_name='thank-you.html',
                                                meta=metadata_context,
-                                               schema_title=g.schema_json['title'],
                                                legal_basis=g.schema_json['legal_basis'],
                                                analytics_ua_id=settings.EQ_UA_ID,
-                                               survey_id=g.schema_json['survey_id'])
+                                               survey_id=g.schema_json['survey_id'],
+                                               survey_title=TemplateRenderer.safe_content(g.schema_json['title']))
     _delete_user_data()
     return thank_you_template
 
@@ -189,10 +189,10 @@ def get_sign_out(eq_id, form_type, collection_id):  # pylint: disable=unused-arg
     theme = g.schema_json.get('theme', None)
     logger.debug("theme selected", theme=theme)
     signed_out_template = render_theme_template(theme, template_name='signed-out.html',
-                                                schema_title=g.schema_json['title'],
                                                 legal_basis=g.schema_json['legal_basis'],
                                                 analytics_ua_id=settings.EQ_UA_ID,
-                                                survey_id=g.schema_json['survey_id'])
+                                                survey_id=g.schema_json['survey_id'],
+                                                survey_title=TemplateRenderer.safe_content(g.schema_json['title']))
     session_storage.clear()
     logout_user()
     return signed_out_template
@@ -212,10 +212,10 @@ def get_session_expired(eq_id, form_type, collection_id):  # pylint: disable=unu
     theme = g.schema_json.get('theme', None)
     logger.debug("theme selected", theme=theme)
     return render_theme_template(theme, template_name='session-expired.html',
-                                 schema_title=g.schema_json['title'],
                                  legal_basis=g.schema_json['legal_basis'],
                                  analytics_ua_id=settings.EQ_UA_ID,
-                                 survey_id=g.schema_json['survey_id'])
+                                 survey_id=g.schema_json['survey_id'],
+                                 survey_title=TemplateRenderer.safe_content(g.schema_json['title']))
 
 
 def submit_answers(eq_id, form_type, collection_id, metadata, answer_store):
@@ -457,6 +457,20 @@ def _get_front_end_navigation(answer_store, current_location, metadata):
         return None
 
 
+def get_page_title_for_location(schema_json, current_location):
+    block = SchemaHelper.get_block_for_location(schema_json, current_location)
+    if block['type'] == 'Interstitial':
+        group = SchemaHelper.get_group(schema_json, current_location.group_id)
+        page_title = '{group_title} - {survey_title}'.format(group_title=group['title'], survey_title=schema_json['title'])
+    elif block['type'] == 'Questionnaire':
+        first_question = next(SchemaHelper.get_questions_for_block(block))
+        page_title = '{question_title} - {survey_title}'.format(question_title=first_question['title'], survey_title=schema_json['title'])
+    else:
+        page_title = schema_json['title']
+
+    return TemplateRenderer.safe_content(page_title)
+
+
 def _build_template(current_location, context, template):
     metadata = get_metadata(current_user)
     metadata_context = build_metadata_context(metadata)
@@ -468,10 +482,10 @@ def _build_template(current_location, context, template):
     previous_location = path_finder.get_previous_location(current_location)
 
     previous_url = previous_location.url(metadata) if previous_location is not None else None
-    return _render_template(context, front_end_navigation, metadata_context, current_location, previous_url, template)
+    return _render_template(context, current_location, template, front_end_navigation, metadata_context, previous_url)
 
 
-def _render_template(context, front_end_navigation=None, metadata_context=None, current_location=None, previous_url=None, template=None):
+def _render_template(context, current_location, template, front_end_navigation, metadata_context, previous_url):
     theme = g.schema_json.get('theme', None)
     logger.debug("theme selected", theme=theme)
     session_timeout = settings.EQ_SESSION_TIMEOUT_SECONDS
@@ -486,6 +500,7 @@ def _render_template(context, front_end_navigation=None, metadata_context=None, 
     else:
         url_prefix = None
 
+    page_title = get_page_title_for_location(g.schema_json, current_location)
     template = '{}.html'.format(template).lower()
     return render_theme_template(theme, template,
                                  meta=metadata_context,
@@ -494,9 +509,10 @@ def _render_template(context, front_end_navigation=None, metadata_context=None, 
                                  analytics_ua_id=settings.EQ_UA_ID,
                                  previous_location=previous_url,
                                  navigation=front_end_navigation,
-                                 schema_title=g.schema_json['title'],
+                                 survey_title=TemplateRenderer.safe_content(g.schema_json['title']),
                                  legal_basis=g.schema_json['legal_basis'],
                                  survey_id=g.schema_json['survey_id'],
                                  session_timeout=session_timeout,
                                  session_timeout_prompt=session_timeout_prompt,
-                                 url_prefix=url_prefix)
+                                 url_prefix=url_prefix,
+                                 page_title=page_title)

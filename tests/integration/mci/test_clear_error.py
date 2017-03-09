@@ -18,7 +18,6 @@ class TestClearError(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertIn('<title>Introduction</title>', content)
         self.assertIn('>Start survey<', content)
         self.assertIn('Monthly Business Survey - Retail Sales Index', content)
 
@@ -36,7 +35,6 @@ class TestClearError(IntegrationTestCase):
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertIn('<title>Survey</title>', content)
         self.assertIn('>Monthly Business Survey - Retail Sales Index</', content)
         self.assertIn("What are the dates of the sales period you are reporting for?", content)
         self.assertIn(">Save and continue<", content)
