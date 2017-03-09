@@ -1,3 +1,4 @@
+{% import 'macros/helpers.html' as helpers %}
 <header class="header header--census">
   <div class="header__help is-closed js-help-body">
     <div class="header__container container">
@@ -13,7 +14,11 @@
     </div>
   </div>
   <div class="header__container container">
-    <div class="header__logo"><img src="{{ url_for('static', filename='img/theme/census/census-logo.svg') }}" alt="2017 Census" /></div><button class="header__btn btn btn--light btn--border js-help-btn js-help-and-support u-hidden">
+    <div class="header__logo">
+      <img src="{{ url_for('static', filename='img/theme/census/census-logo.svg') }}" alt="2017 Census" />
+    </div>
+    <button class="header__btn btn btn--light btn--border js-help-btn u-hidden"
+      {{helpers.track('click', 'Help', 'Help and support')}}>
       {{_('Help and support')}}
     </button>
   </div>

@@ -2,11 +2,12 @@
   {% with dataHandle = data %}{% include path %}{% endwith %}
 {% endmacro %}
 
-{%- macro errorTracking(id, errorMsg) -%}
+{%- macro track(event, category, action, label) -%}
   {% set attr = {
-    "data-error": "true",
-    "data-error-id": id,
-    "data-error-msg": errorMsg
+    "data-ga": event,
+    "data-ga-category": category,
+    "data-ga-action": action,
+    "data-ga-label": label,
   } %}
   {{attr|xmlattr}}
 {%- endmacro -%}

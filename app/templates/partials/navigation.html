@@ -1,3 +1,4 @@
+{% import 'macros/helpers.html' as helpers %}
 <nav class="nav nav--sections nav--vertical js-nav page__nav" id="section-nav">
   <p class="nav__title venus">{{_('Sections')}}</p>
   <ul class="nav__list js-nav-list">
@@ -6,7 +7,8 @@
       {% if nav_item.current_location %}
         <div>{{nav_item.link_name}}</div>
       {% else %}
-        <a class="nav__link" href="{{nav_item.link_url}}">{{nav_item.link_name}}</a>
+        <a class="nav__link" href="{{nav_item.link_url}}"
+          {{helpers.track('click', 'Navigation', 'Section link click', nav_item.link_url)}}>{{nav_item.link_name}}</a>
       {% endif %}
       </li>
     {% endfor %}

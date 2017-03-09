@@ -1,4 +1,5 @@
 {% extends theme('layouts/_twocol.html') %}
+{% import 'macros/helpers.html' as helpers %}
 
 {% block page_title %}{{page_title}}{% endblock %}
 
@@ -55,7 +56,7 @@
 
       <button class="btn btn--primary btn--lg qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
       <div class="u-mb-m">
-        <button class="btn btn--link mars js-btn-save" type="submit" name="action[save_sign_out]">{% block save_sign_out_button_text %}Save and complete later{% endblock %}</button>
+        <button class="btn btn--link mars js-btn-save" type="submit" name="action[save_sign_out]" {{helpers.track('click', 'Navigation', 'Save and complete later click')}}>{% block save_sign_out_button_text %}Save and complete later{% endblock %}</button>
       </div>
     </form>
 

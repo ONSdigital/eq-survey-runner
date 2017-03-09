@@ -74,9 +74,8 @@
         <div class="page__subheader">
           <div class="container">
           {%- block subheader -%}
-            {% if previous_location %}
-                <a class="page__previous js-previous-link" id="top-previous" href="{{previous_location}}">Previous</a>
-            {% endif %}
+
+            {% with position = 'top' %}{% include 'partials/previous-link.html' %}{% endwith %}
 
             {% if navigation %}
               <div class="page__menubtn">
@@ -88,9 +87,7 @@
         </div>
         <div class="page__container container">
           {% block content %}
-            {% if previous_location %}
-              <a class="page__previous page__previous--bottom js-previous-link" href="{{previous_location}}" id="bottom-previous">Previous</a>
-            {% endif %}
+          {% with position = 'bottom' %}{% include 'partials/previous-link.html' %}{% endwith %}
           {% endblock %}
         </div>
       </div>

@@ -31,6 +31,7 @@ const b = browserify({
 .on('update', () => {
   cache = bundle()
 })
+.on('error', gutil.log)
 .on('log', gutil.log)
 .transform('rollupify', {
   config: {
@@ -64,7 +65,6 @@ export function bundle(watch) {
     .on('error', function(err) {
       gutil.log(err.message)
       browserSync.notify('Browserify Error!')
-      this.emit('end')
     })
     .pipe(source('bundle.js'))
     .pipe(buffer())
