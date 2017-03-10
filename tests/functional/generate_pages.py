@@ -50,6 +50,18 @@ ANSWER_GETTER = r"""  get{answerName}(value) {
 
 """
 
+ANSWER_LABEL_GETTER = r"""  get{answerName}Label() {
+    return browser.element('#label-{answerId}')
+  }
+
+"""
+
+ANSWER_ELEMENT_GETTER = r"""  get{answerName}Element() {
+    return browser.element('[name="{answerId}"]')
+  }
+
+"""
+
 DROP_DOWN_SETTER = r"""  set{answerName}(value) {
     browser.selectByValue('[name="{answerId}"]', value)
     return this
@@ -178,6 +190,8 @@ def process_answer(question_type, answer, page_spec):
         else:
             page_spec.write(ANSWER_SETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
             page_spec.write(ANSWER_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+            page_spec.write(ANSWER_LABEL_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
+            page_spec.write(ANSWER_ELEMENT_GETTER.replace("{answerName}", answer_name).replace("{answerId}", answer['id']))
 
     else:
         raise Exception('Answer type [%s] not configured' % answer['type'])

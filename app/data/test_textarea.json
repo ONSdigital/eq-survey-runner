@@ -16,7 +16,7 @@
     "groups": [{
         "blocks": [{
             "type": "Questionnaire",
-            "id": "block",
+            "id": "textarea-block",
             "sections": [{
                 "description": "",
                 "id": "section",
@@ -39,8 +39,12 @@
             }],
             "routing_rules": [],
             "title": ""
+        },
+        {
+            "type": "Summary",
+            "id": "textarea-summary"
         }],
-        "id": "group",
+        "id": "textarea-group",
         "title": ""
     }]
 }

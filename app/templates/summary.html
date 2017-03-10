@@ -36,7 +36,7 @@
 
           <div class="summary__answer">
             <div class="summary__answer-text" id="{{answer.id}}-answer" data-qa="{{answer.id}}-answer">
-              {%- if answer.value is none -%}
+              {%- if answer.value is none or answer.value == '' -%}
                 {{not_answered}}
               {%- else -%}
                 {% include theme(['partials/summary/' ~ answer.type ~ '.html', 'partials/summary/default.html']) %}
