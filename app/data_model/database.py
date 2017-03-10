@@ -60,6 +60,19 @@ class EQSession(base):
         return "<EQSession('%s', '%s', '%s')>" % (self.eq_session_id, self.user_id, self.timestamp)
 
 
+class UsedJtiClaim(base):
+    __tablename__ = "used_jti_claim"
+    jti_claim = Column("jti_claim", String, primary_key=True)
+    used_at = Column("used_at", DateTime)
+
+    def __init__(self, jti_claim):
+        self.jti_claim = jti_claim
+        self.used_at = datetime.datetime.now()
+
+    def __repr__(self):
+        return "<UsedJtiClaim('%s', '%s')>" % (self.jti_claim, self.used_at)
+
+
 def _create_session_and_engine():
     logger.info("setting up database...")
     logger.debug("creating database engine")

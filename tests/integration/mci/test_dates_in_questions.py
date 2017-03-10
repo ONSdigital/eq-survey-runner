@@ -21,7 +21,7 @@ class TestHappyPath(IntegrationTestCase):
         start_date = "2016-04-01"
         end_date = "2016-04-30"
 
-        token = create_token(form_type_id, eq_id, start_date, end_date)
+        token = create_token(form_type_id, eq_id, ref_p_start_date=start_date, ref_p_end_date=end_date)
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
 
@@ -54,7 +54,7 @@ class TestHappyPath(IntegrationTestCase):
     def try_another_date(self, form_type_id, eq_id):
         # Try another date
         # Get a token
-        token = create_token(form_type_id, eq_id, '2017-08-01', '2017-08-31')
+        token = create_token(form_type_id, eq_id, ref_p_start_date='2017-08-01', ref_p_end_date='2017-08-31')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
 

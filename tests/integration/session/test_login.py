@@ -34,3 +34,25 @@ class TestLogin(IntegrationTestCase):
         # Then
         self.assertEqual(resp.status_code, 302)
         self.assertRegex(resp.location, '/questionnaire/1/0205')
+
+    def test_login_with_token_twice_is_unauthorised_when_same_jti_provided(self):
+        # Given
+        token = create_token('0205', '1')
+        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+
+        # When
+        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+
+        # Then
+        self.assertEqual(resp.status_code, 401)
+
+    def test_login_with_token_twice_is_authorised_when_no_jti(self):
+        # Given
+        token = create_token('0205', '1', jti=None)
+        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+
+        # When
+        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+
+        # Then
+        self.assertEqual(resp.status_code, 302)

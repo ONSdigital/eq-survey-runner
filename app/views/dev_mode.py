@@ -1,5 +1,6 @@
 import os
 import time
+from uuid import uuid4
 
 from flask import Blueprint
 from flask import redirect
@@ -113,6 +114,7 @@ def create_payload(**metadata):
         "user_id": metadata['user'],
         'iat': str(int(iat)),
         'exp': str(int(exp)),
+        'jti': str(uuid4()),
         "eq_id": metadata['eq_id'],
         "period_str": metadata['period_str'],
         "period_id": metadata['period_id'],

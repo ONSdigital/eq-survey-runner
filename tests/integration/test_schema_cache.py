@@ -18,6 +18,7 @@ class TestApplicationVariables(IntegrationTestCase):
 
             self.assertNotEqual(cache.get('app.utilities.schema.load_and_parse_schema_memver'), None)
 
+            token = create_token('star_wars', '0')
             resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
 
             self.assertEqual(resp.status_code, 200)

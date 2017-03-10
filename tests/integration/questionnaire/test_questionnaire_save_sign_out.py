@@ -103,6 +103,7 @@ class TestSaveSignOut(IntegrationTestCase):
         self.get_and_post_with_csrf_token(block_one_url, data=post_data, follow_redirects=False)
 
         # We re-authenticate and check we are on the first page
+        token = create_token('0102', '1')
         resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
         block_one_url = resp.headers['Location']
         self.assertRegexpMatches(block_one_url, 'reporting-period')
