@@ -87,11 +87,9 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
 
     @classmethod
     def get_questions_for_block(cls, block_json):
-        questions = []
         for section_json in cls._get_sections_in_block(block_json):
             for question_json in section_json['questions']:
-                questions.append(question_json)
-        return questions
+                yield question_json
 
     @classmethod
     def get_answers_for_block(cls, block_json):

@@ -13,7 +13,6 @@ class TestMultipleSurveyError(IntegrationTestCase):
 
         content1 = response1.get_data(True)
 
-        self.assertRegex(content1, '<title>Introduction</title>')
         self.assertRegex(content1, '>Start survey<')
         self.assertRegex(content1, 'Monthly Business Survey - Retail Sales Index')
 
@@ -24,7 +23,6 @@ class TestMultipleSurveyError(IntegrationTestCase):
 
         content2 = response2.get_data(True)
 
-        self.assertRegex(content2, '<title>Introduction</title>')
         self.assertRegex(content2, '>Start survey<')
         self.assertRegex(content2, 'Star Wars')
 

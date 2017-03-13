@@ -80,7 +80,6 @@ class TestConfirmationPage(StarWarsTestCase):
 
     def rogue_one_check_introduction_text(self, response):
         content = response.get_data(True)
-        self.assertIn('<title>Introduction</title>', content)
         self.assertRegex(content, '(?s)Rogue One')
 
     def rogue_one_check_character_page(self, page):

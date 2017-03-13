@@ -1,5 +1,6 @@
 import json
 
+import re
 from jinja2 import Environment
 
 from app.jinja_filters import format_date, format_currency, format_household_member_name, format_household_summary
@@ -26,5 +27,11 @@ class TemplateRenderer:
         result = rendered if isinstance(renderable, dict) else json.dumps(rendered)
         return json.loads(result)
 
+    @staticmethod
+    def safe_content(content):
+        if content is not None:
+            return re.sub(r'\{\{[^}]+\}\}', '…', content)
+        else:
+            return None
 
 renderer = TemplateRenderer()

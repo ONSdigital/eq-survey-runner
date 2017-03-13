@@ -54,7 +54,6 @@ class TestNavigation(StarWarsTestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Summary</title>')
         self.assertRegex(content, '>Star Wars</')
         self.assertRegex(content, '>Your responses<')
         self.assertRegex(content, '(?s)How old is Chewy?.*?234')

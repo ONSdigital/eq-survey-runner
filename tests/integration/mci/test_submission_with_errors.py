@@ -14,7 +14,6 @@ class TestSubmissionWithErrors(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertRegex(content, '<title>Introduction</title>')
         self.assertRegex(content, '>Start survey<')
         self.assertRegex(content, 'Monthly Business Survey - Retail Sales Index')
 
@@ -32,7 +31,6 @@ class TestSubmissionWithErrors(IntegrationTestCase):
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Survey</title>')
         self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
         self.assertRegex(content, "What are the dates of the sales period you are reporting for?")
         self.assertRegex(content, ">Save and continue<")

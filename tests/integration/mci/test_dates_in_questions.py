@@ -28,7 +28,6 @@ class TestHappyPath(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertIn('<title>Introduction</title>', content)
 
         # We proceed to the questionnaire
         post_data = {
@@ -45,7 +44,6 @@ class TestHappyPath(IntegrationTestCase):
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertIn('<title>Survey</title>', content)
         self.assertIn('>Monthly Business Survey - Retail Sales Index</', content)
         self.assertIn("What are the dates of the sales period you are reporting for?", content)
         self.assertIn("1 April 2016", content)
@@ -61,7 +59,6 @@ class TestHappyPath(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertIn('<title>Introduction</title>', content)
 
         # We proceed to the questionnaire
         post_data = {
@@ -78,7 +75,6 @@ class TestHappyPath(IntegrationTestCase):
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertIn('<title>Survey</title>', content)
         self.assertIn('>Monthly Business Survey - Retail Sales Index</', content)
         self.assertIn("What are the dates of the sales period you are reporting for?", content)
         self.assertIn("1 August 2017", content)

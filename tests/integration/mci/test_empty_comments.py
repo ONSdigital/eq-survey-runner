@@ -14,7 +14,6 @@ class TestEmptyComments(IntegrationTestCase):
         # We are on the landing page
         content = resp.get_data(True)
 
-        self.assertRegex(content, '<title>Introduction</title>')
         self.assertRegex(content, '>Start survey<')
         self.assertRegex(content, 'Monthly Business Survey - Retail Sales Index')
 
@@ -32,7 +31,6 @@ class TestEmptyComments(IntegrationTestCase):
 
         # We are in the Questionnaire
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Survey</title>')
         self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
         self.assertRegex(content, "What are the dates of the sales period you are reporting for?")
         self.assertRegex(content, ">Save and continue<")
@@ -69,7 +67,6 @@ class TestEmptyComments(IntegrationTestCase):
 
         # We are on the review answers page
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Summary</title>')
         self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
         self.assertRegex(content, '>Your responses<')
         self.assertRegex(content, 'Please check carefully before submission')
@@ -82,5 +79,4 @@ class TestEmptyComments(IntegrationTestCase):
 
         # We are on the thank you page
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Submission Successful</title>')
         self.assertRegex(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')

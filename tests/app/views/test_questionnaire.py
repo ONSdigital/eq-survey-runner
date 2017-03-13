@@ -1,20 +1,20 @@
 import json
 import unittest
 
+from flask import g
 from mock import Mock
 
 from app import create_app
 from app.data_model.answer_store import Answer
 from app.data_model.questionnaire_store import QuestionnaireStore
-from app.schema_loader.schema_loader import load_schema_file
 from app.questionnaire.location import Location
+from app.schema_loader.schema_loader import load_schema_file
 from app.views.questionnaire import update_questionnaire_store_with_answer_data, \
-    update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store
+    update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store, \
+    get_page_title_for_location
 
-from flask import g
 
-
-class TestQuestionnaireView(unittest.TestCase):
+class TestQuestionnaire(unittest.TestCase):
     def setUp(self):
         self.app = create_app()
         self.app.config['SERVER_NAME'] = "test"
@@ -397,3 +397,43 @@ class TestQuestionnaireView(unittest.TestCase):
 
         for answer in unanswered:
             self.assertFalse(self.question_store.answer_store.exists(answer))
+
+    def test_given_introduction_page_when_get_page_title_then_defaults_to_survey_title(self):
+        # Given
+        g.schema_json = load_schema_file("test_final_confirmation.json")
+
+        # When
+        page_title = get_page_title_for_location(g.schema_json, Location('final-confirmation', 0, 'introduction'))
+
+        # Then
+        self.assertEqual(page_title, 'Final confirmation to submit')
+
+    def test_given_interstitial_page_when_get_page_title_then_group_title_and_survey_title(self):
+        # Given
+        g.schema_json = load_schema_file("test_interstitial_page.json")
+
+        # When
+        page_title = get_page_title_for_location(g.schema_json, Location('favourite-foods', 0, 'breakfast-interstitial'))
+
+        # Then
+        self.assertEqual(page_title, 'Favourite food - Interstitial Pages')
+
+    def test_given_questionnaire_page_when_get_page_title_then_question_title_and_survey_title(self):
+        # Given
+        g.schema_json = load_schema_file("test_final_confirmation.json")
+
+        # When
+        page_title = get_page_title_for_location(g.schema_json, Location('final-confirmation', 0, 'breakfast'))
+
+        # Then
+        self.assertEqual(page_title, 'What is your favourite breakfast food - Final confirmation to submit')
+
+    def test_given_jinja_variable_question_title_when_get_page_title_then_replace_with_ellipsis(self):
+        # Given
+        g.schema_json = load_schema_file("census_household.json")
+
+        # When
+        page_title = get_page_title_for_location(g.schema_json, Location('who-lives-here-relationship', 0, 'household-relationships'))
+
+        # Then
+        self.assertEqual(page_title, 'How is … related to the people below? - 2017 Census Test')

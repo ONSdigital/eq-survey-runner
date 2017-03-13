@@ -1,6 +1,6 @@
 {% extends theme('layouts/_onecol.html') -%}
 
-{% block page_title -%}Summary{% endblock -%}
+{% block page_title -%}{{_("Summary")}} - {{survey_title}}{% endblock -%}
 
 {% set form = content.form %}
 {% set not_answered = 'No answer provided' %}

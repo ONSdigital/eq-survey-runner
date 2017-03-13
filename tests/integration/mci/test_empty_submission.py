@@ -16,7 +16,6 @@ class TestEmptySubmission(IntegrationTestCase):
 
         # We are on the landing page
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Introduction</title>')
         self.assertRegex(content, '>Start survey<')
         self.assertRegex(content, 'Monthly Business Survey - Retail Sales Index')
 
@@ -100,4 +99,3 @@ class TestEmptySubmission(IntegrationTestCase):
         resp = self.client.get(resp.location, follow_redirects=True)
         # We are on the thank you page
         content = resp.get_data(True)
-        self.assertRegex(content, '<title>Submission Successful</title>')
