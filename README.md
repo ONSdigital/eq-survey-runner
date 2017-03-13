@@ -72,15 +72,6 @@ Upgrade pip and install dependencies:
 ```
 pip install --upgrade pip setuptools
 pip install -r requirements.txt
-pip install -e git+https://github.com/ONSdigital/cryptography.git@4a90c254278231d7defeac304a3cfd752e96e786#egg=cryptography
-```
-
-You may need to point the build on a mac if you have problems building OpenSSL. See [here](https://github.com/pyca/cryptography/issues/2692) for more details.
-
-```
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 ```
 
 If you need to run the tests:
