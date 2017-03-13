@@ -24,6 +24,11 @@ before_install:
     - pip install -U pip wheel
     - pip install --require-hashes -r requirements.txt
     - pip install -r requirements_for_test.txt
+cache:
+    - yarn
+    - pip
+    - directories:
+        - /home/travis/.pyenv/versions/
 script:
     - yarn compile
     - ./scripts/run.sh
