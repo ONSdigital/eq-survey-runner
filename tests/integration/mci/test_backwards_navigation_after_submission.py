@@ -9,12 +9,11 @@ class TestBackwardsNavigationAfterSubmission(TestHappyPath):
         self.backwards_navigation()
 
     def backwards_navigation(self):
+        self.get(mci_test_urls.MCI_0205_SUMMARY)
+        self.assertStatusUnauthorised()
 
-        resp = self.client.get(mci_test_urls.MCI_0205_SUMMARY, follow_redirects=False)
-        self.assertEqual(resp.status_code, 401)
+        self.get(mci_test_urls.MCI_0205_BLOCK1)
+        self.assertStatusUnauthorised()
 
-        resp = self.client.get(mci_test_urls.MCI_0205_BLOCK1, follow_redirects=False)
-        self.assertEqual(resp.status_code, 401)
-
-        resp = self.client.get(mci_test_urls.MCI_0205_INTRODUCTION, follow_redirects=False)
-        self.assertEqual(resp.status_code, 401)
+        self.get(mci_test_urls.MCI_0205_INTRODUCTION)
+        self.assertStatusUnauthorised()
