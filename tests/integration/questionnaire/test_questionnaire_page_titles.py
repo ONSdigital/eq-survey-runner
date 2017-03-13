@@ -1,116 +1,93 @@
-from extraction import Extractor
-
-from tests.integration.create_token import create_token
+import unittest
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestQuestionnairePageTitles(IntegrationTestCase):
 
     def test_should_have_question_in_page_title_when_loading_introduction(self):
-        # Given
-        token = create_token('final_confirmation', 'test')
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
-
-        # When
-        extraction = Extractor().extract(resp.get_data(True))
-
+        # Given, When
+        self.launchSurvey('test', 'final_confirmation')
         # Then
-        self.assertEqual(extraction.title, 'Final confirmation to submit')
+        self.assertEqualPageTitle('Final confirmation to submit')
 
     def test_should_have_question_in_page_title_when_loading_questionnaire(self):
         # Given
-        token = create_token('final_confirmation', 'test')
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
-
+        self.launchSurvey('test', 'final_confirmation')
         # When
-        resp = self.get_and_post_with_csrf_token(resp.location, follow_redirects=True)
-        extraction = Extractor().extract(resp.get_data(True))
-
+        self.post(action='start_questionnaire')
         # Then
-        self.assertEqual(extraction.title, 'What is your favourite breakfast food - Final confirmation to submit')
+        self.assertEqualPageTitle('What is your favourite breakfast food - Final confirmation to submit')
 
     def test_should_have_question_in_page_title_when_loading_confirmation(self):
         # Given
-        token = create_token('final_confirmation', 'test')
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
-        resp = self.get_and_post_with_csrf_token(resp.location, follow_redirects=False)
-
+        self.launchSurvey('test', 'final_confirmation')
         # When
-        resp = self.get_and_post_with_csrf_token(resp.location, data={'breakfast-answer': ''}, follow_redirects=True)
-        extraction = Extractor().extract(resp.get_data(True))
-
+        self.post(action='start_questionnaire')
+        self.post({'breakfast-answer': ''})
         # Then
-        self.assertEqual(extraction.title, 'Submit answers - Final confirmation to submit')
+        self.assertEqualPageTitle('Submit answers - Final confirmation to submit')
 
     def test_should_have_question_in_page_title_when_loading_summary(self):
         # Given
-        token = create_token('percentage', 'test')
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
-
+        self.launchSurvey('test', 'percentage')
         # When
-        resp = self.get_and_post_with_csrf_token(resp.location, data={'answer': ''}, follow_redirects=True)
-        extraction = Extractor().extract(resp.get_data(True))
-
+        self.post({'answer': ''})
         # Then
-        self.assertEqual(extraction.title, 'Summary - Percentage Field Demo')
+        self.assertEqualPageTitle('Summary - Percentage Field Demo')
 
     def test_should_have_survey_in_page_title_when_thank_you(self):
         # Given
-        token = create_token('final_confirmation', 'test')
-        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
-
-        # When
-        resp = self.client.get('/questionnaire/test/final_confirmation/789/thank-you', follow_redirects=True)
-        extraction = Extractor().extract(resp.get_data(True))
-
+        self.launchSurvey('test', 'final_confirmation')
+        self.post(action='start_questionnaire')
+        self.post({'breakfast-answer': ''})
+        # When submit
+        self.post(action=None)
         # Then
-        self.assertEqual(extraction.title, 'We\'ve received your answers - Final confirmation to submit')
+        self.assertEqualPageTitle('We\'ve received your answers - Final confirmation to submit')
 
     def test_should_have_survey_in_page_title_when_sign_out(self):
         # Given
-        token = create_token('final_confirmation', 'test')
-        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
-
+        self.launchSurvey('test', 'final_confirmation')
         # When
-        resp = self.client.get('/questionnaire/test/final_confirmation/789/signed-out', follow_redirects=True)
-        extraction = Extractor().extract(resp.get_data(True))
-
+        self.get('/questionnaire/test/final_confirmation/789/signed-out')
         # Then
-        self.assertEqual(extraction.title, 'Signed out - Final confirmation to submit')
+        self.assertEqualPageTitle('Signed out - Final confirmation to submit')
 
     def test_should_have_survey_in_page_title_when_session_expired(self):
         # Given
-        token = create_token('final_confirmation', 'test')
-        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
-
+        self.launchSurvey('test', 'final_confirmation')
         # When
-        resp = self.client.get('/questionnaire/test/final_confirmation/789/session-expired', follow_redirects=True)
-        extraction = Extractor().extract(resp.get_data(True))
-
+        self.get('/questionnaire/test/final_confirmation/789/session-expired')
         # Then
-        self.assertEqual(extraction.title, 'Session expired - Final confirmation to submit')
+        self.assertEqualPageTitle('Session expired - Final confirmation to submit')
+
+    @unittest.expectedFailure
+    def test_should_have_clean_page_title_when_not_authenticated_session_expired(self):
+        """
+        This is a failing test due to https://github.com/ONSdigital/eq-survey-runner/issues/1032
+        """
+        # Given
+        self.launchSurvey('test', 'final_confirmation')
+        # When
+        self.get('/questionnaire/test/final_confirmation/789/session-expired')
+        # Get again now that we're expired
+        self.get('/questionnaire/test/final_confirmation/789/session-expired')
+        # Then
+        self.assertEqualPageTitle('Session expired')
 
     def test_should_have_survey_in_page_title_when_error(self):
         # Given
-        token = create_token('final_confirmation', 'test')
-        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
-
+        self.launchSurvey('test', 'final_confirmation')
         # When
-        resp = self.client.get('/questionnaire/test/final_confirmation/789/non-existent-block', follow_redirects=True)
-        extraction = Extractor().extract(resp.get_data(True))
-
+        self.get('/questionnaire/test/final_confirmation/789/non-existent-block')
         # Then
-        self.assertEqual(extraction.title, 'Error 404')
+        self.assertEqualPageTitle('Error 404')
 
     def test_should_have_group_title_in_page_title_when_interstitial(self):
         # Given
-        token = create_token('interstitial_page', 'test')
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
-        resp = self.get_and_post_with_csrf_token(resp.location, follow_redirects=False)
-
+        self.launchSurvey('test', 'interstitial_page')
+        self.post(action='start_questionnaire')
         # When
-        resp = self.get_and_post_with_csrf_token(resp.location, data={'favourite-breakfast': ''}, follow_redirects=True)
-        extraction = Extractor().extract(resp.get_data(True))
-
+        self.post({'favourite-breakfast': ''})
         # Then
-        self.assertEqual(extraction.title, 'Favourite food - Interstitial Pages')
+        self.assertEqualPageTitle('Favourite food - Interstitial Pages')

@@ -9,50 +9,51 @@ class TestLogin(IntegrationTestCase):
         token = ""
 
         # When
-        resp = self.client.get('/session?token=' + token, follow_redirects=False)
+        self.get('/session?token=' + token)
 
         # Then
-        self.assertEqual(resp.status_code, 401)
+        self.assertStatusUnauthorised()
 
     def test_login_with_invalid_token_should_be_forbidden(self):
         # Given
         token = "123"
 
         # When
-        resp = self.client.get('/session?token=' + token, follow_redirects=False)
+        self.get('/session?token=' + token)
 
         # Then
-        self.assertEqual(resp.status_code, 403)
+        self.assertStatusForbidden()
 
     def test_login_with_valid_token_should_redirect_to_survey(self):
         # Given
         token = create_token('0205', '1')
 
         # When
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+        self.get('/session?token=' + token.decode())
 
         # Then
-        self.assertEqual(resp.status_code, 302)
-        self.assertRegex(resp.location, '/questionnaire/1/0205')
+        self.assertStatusOK()
+        self.assertInUrl('/questionnaire/1/0205')
 
     def test_login_with_token_twice_is_unauthorised_when_same_jti_provided(self):
         # Given
         token = create_token('0205', '1')
-        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+        self.get('/session?token=' + token.decode())
 
         # When
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+        self.get('/session?token=' + token.decode())
 
         # Then
-        self.assertEqual(resp.status_code, 401)
+        self.assertStatusUnauthorised()
 
     def test_login_with_token_twice_is_authorised_when_no_jti(self):
         # Given
         token = create_token('0205', '1', jti=None)
-        self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+        self.get('/session?token=' + token.decode())
 
         # When
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=False)
+        self.get('/session?token=' + token.decode())
 
         # Then
-        self.assertEqual(resp.status_code, 302)
+        self.assertStatusOK()
+        self.assertInUrl('/questionnaire/1/0205')
