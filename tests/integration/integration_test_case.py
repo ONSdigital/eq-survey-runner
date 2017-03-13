@@ -6,6 +6,8 @@ from app import create_app
 from app import settings
 from app.data_model.database import QuestionnaireState
 
+from tests.integration.create_token import create_token
+
 
 class IntegrationTestCase(unittest.TestCase):
 
@@ -28,6 +30,32 @@ class IntegrationTestCase(unittest.TestCase):
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
         QuestionnaireState.query.delete()
+
+    def launchSurvey(self, eq_id='test', form_type_id='radio', **payload_kwargs):
+        """
+        Launch a survey as an authenticated user and follow re-directs
+        :param eq_id: The id of the survey to launch e.g. 'census', 'test' etc.
+        :param form_type_id: The form type of the survey e.g. 'household', 'radio' etc.
+        :return: tuple of the URL and response object from the GET
+        """
+        token = create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
+        url, response = self.getRedirectGet('/session?token=' + token.decode())
+        return url, response
+
+    def getRedirectGet(self, url):
+        """
+        GETs the specified URL and performs a GET with the URL from the
+        re-direct, returning the re-direct URL and response object.
+
+        :param url: the URL to GET
+        :return: tuple of the re-direct URL and response object from the GET
+        """
+        resp = self.client.get(url, follow_redirects=False)
+        self.assertEqual(resp.status_code, 302)
+        resp_url = resp.location
+        resp = self.client.get(resp_url, follow_redirects=False)
+        self.assertEqual(resp.status_code, 200)
+        return resp_url, resp
 
     def postRedirectGet(self, url, post_data=None):
         """

@@ -13,7 +13,7 @@ class TestStarWarsIntroduction(StarWarsTestCase):
         self.assertIn('Legal Information', content)
         self.assertIn('>Start survey<', content)
         self.assertRegex(content, '(?s)Trading as.*?Integration Tests')
-        self.assertRegex(content, '(?s)Business name.*?MCI Integration Testing')
+        self.assertRegex(content, '(?s)Business name.*?Integration Testing')
         self.assertRegex(content, '(?s)PLEASE SUBMIT BY.*?6 May 2016')
         self.assertRegex(content, '(?s)PERIOD.*?1 April 2016.*?30 April 2016')
         self.assertIn('questionnaire by 6 May 2016, penalties may be incurred', content)
