@@ -134,3 +134,31 @@ class TestTemplateRenderer(unittest.TestCase):
         safe_content = TemplateRenderer.safe_content(content)
 
         self.assertEqual(safe_content, 'Is … correct?')
+
+    def test_should_replace_simple_html_tags(self):
+        content = 'This <em>string contains</em> <p><strong>some</strong></p><i>HTML</i>tags?'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'This string contains someHTMLtags?')
+
+    def test_should_replace_complex_broken_html_tags(self):
+        content = 'This <div style="bleh" a=2>string contains <a href="http://www.ons.gov.uk/not_found">a link</a>'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'This string contains a link')
+
+    def test_should_replace_broken_html_tags(self):
+        content = '</lzz> This <em>string contains<p><strong><i><div> some</strong></p><i> HTML </i>tags?'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, ' This string contains some HTML tags?')
+
+    def test_should_replace_html_tags_and_jinja_templates_together(self):
+        content = 'Is {{ format_something(meta.survey.start_date|length)}} really <strong>correct</strong>?'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'Is … really correct?')
