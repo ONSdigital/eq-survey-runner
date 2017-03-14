@@ -30,8 +30,11 @@ class TemplateRenderer:
     @staticmethod
     def safe_content(content):
         if content is not None:
-            return re.sub(r'\{\{[^}]+\}\}', '…', content)
-        else:
-            return None
+            # Replace piping with ellipsis
+            content = re.sub(r'\{\{[^}]+\}\}', '…', content)
+            # Strip HTML Tags
+            content = re.sub(r'</?[^>]+>', '', content)
+
+        return content
 
 renderer = TemplateRenderer()

@@ -78,7 +78,10 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         # Then
         self.assertEqual(extraction.title, 'Signed out - Final confirmation to submit')
 
-    def test_should_have_survey_in_page_title_when_session_expired(self):
+    def test_session_expired_page_title(self):
+        """
+        Checks https://github.com/ONSdigital/eq-survey-runner/issues/1032
+        """
         # Given
         token = create_token('final_confirmation', 'test')
         self.client.get('/session?token=' + token.decode(), follow_redirects=False)
@@ -88,7 +91,7 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
         extraction = Extractor().extract(resp.get_data(True))
 
         # Then
-        self.assertEqual(extraction.title, 'Session expired - Final confirmation to submit')
+        self.assertEqual(extraction.title, 'Session expired')
 
     def test_should_have_survey_in_page_title_when_error(self):
         # Given
@@ -114,3 +117,15 @@ class TestQuestionnairePageTitles(IntegrationTestCase):
 
         # Then
         self.assertEqual(extraction.title, 'Favourite food - Interstitial Pages')
+
+    def test_html_stripped_from_page_titles(self):
+        """
+        Checks for https://github.com/ONSdigital/eq-survey-runner/issues/1036
+        """
+        # Given
+        token = create_token('markup', 'test')
+        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
+        # When
+        # Then
+        extraction = Extractor().extract(resp.get_data(True))
+        self.assertEqual(extraction.title, 'This is a title with emphasis - Markup test')
