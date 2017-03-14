@@ -1,6 +1,3 @@
-from werkzeug.datastructures import MultiDict
-
-from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -8,89 +5,36 @@ class TestRenderPercentageWidget(IntegrationTestCase):
 
     def setUp(self):
         super().setUp()
-
-        self.token = create_token('percentage', 'test')
-        resp = self.client.get('/session?token=' + self.token.decode(), follow_redirects=False)
-        self.first_page = resp.location
+        self.launchSurvey('test', 'percentage')
 
     def test_percentage_widget_has_icon(self):
-        # Given
-        resp = self.client.get(self.first_page)
-        percent_regex = 'span.+input\-type\_\_type.+\%\<\/span\>'
-
-        # When
-        body = resp.get_data(True)
-
-        # Then
-        self.assertRegex(body, percent_regex)
+        self.assertRegexPage('span.+input\-type\_\_type.+\%\<\/span\>')
 
     def test_entering_invalid_number_displays_error(self):
-        # Given
-        form_data = self.create_form_data('not a percentage')
-
-        # When
-        self.client.get(self.first_page)
-        resp = self.client.post(self.first_page, data=form_data, follow_redirects=True)
-
-        # Then
-        self.assertEqual(resp.status_code, 200)
-        self.assertRegex(resp.get_data(True), 'Please enter an integer')
+        self.post({'answer': 'not a percentage'})
+        self.assertStatusOK()
+        self.assertInPage('Please enter an integer')
 
     def test_entering_value_less_than_zero_displays_error(self):
-        # Given
-        form_data = self.create_form_data('-50')
-
-        # When
-        self.client.get(self.first_page)
-        resp = self.client.post(self.first_page, data=form_data, follow_redirects=True)
-
-        # Then
-        self.assertEqual(resp.status_code, 200)
-        self.assertRegex(resp.get_data(True), 'Number cannot be less than zero')
+        self.post({'answer': '-50'})
+        self.assertStatusOK()
+        self.assertInPage('Number cannot be less than zero')
 
     def test_entering_value_greater_than_one_hundred_displays_error(self):
-        # Given
-        form_data = self.create_form_data('150')
-
-        # When
-        self.client.get(self.first_page)
-        resp = self.client.post(self.first_page, data=form_data, follow_redirects=True)
-
-        # Then
-        self.assertEqual(resp.status_code, 200)
-        self.assertRegex(resp.get_data(True), 'Number cannot be greater than one hundred')
+        self.post({'answer': '150'})
+        self.assertStatusOK()
+        self.assertInPage('Number cannot be greater than one hundred')
 
     def test_entering_float_displays_error(self):
-        # Given
-        form_data = self.create_form_data('0.5')
+        self.post({'answer': '0.5'})
+        self.assertStatusOK()
+        self.assertInPage('Please enter an integer')
 
-        # When
-        self.client.get(self.first_page)
-        resp = self.client.post(self.first_page, data=form_data, follow_redirects=True)
-
-        # Then
-        self.assertEqual(resp.status_code, 200)
-        self.assertRegex(resp.get_data(True), 'Please enter an integer')
-
-    def test_entering_valid_percentage_redirects_to_next_page(self):
-        # Given
-        form_data = self.create_form_data('50')
-
-        # When
-        resp = self.get_and_post_with_csrf_token(self.first_page, data=form_data, follow_redirects=True)
-
-        # Then
-        answer_summary_regex = 'summary\_\_answer-text.+\>50\%\<\/div\>'
-        self.assertEqual(resp.status_code, 200)
-        self.assertRegex(resp.get_data(True), answer_summary_regex)
+    def test_entering_valid_percentage_redirects_to_summary(self):
+        self.post({'answer': '50'})
+        self.assertStatusOK()
+        self.assertInUrl('summary')
+        self.assertRegexPage('summary\_\_answer-text.+\>50\%\<\/div\>')
 
     def test_description_label_is_rendered(self):
-        resp = self.client.get(self.first_page)
-        self.assertIn('Enter percentage of growth', resp.get_data(True))
-
-    @staticmethod
-    def create_form_data(percentage):
-        form_data = MultiDict()
-        form_data.add("answer", percentage)
-        form_data.add("action[save_continue]", '')
-        return form_data
+        self.assertInPage('Enter percentage of growth')
