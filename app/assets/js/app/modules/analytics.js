@@ -1,80 +1,51 @@
-import {forEach} from 'lodash'
 import domready from './domready'
 
+export let trackEvent = (event, data) => {
+  console.log(`[Analytics disabled] Event: ${event}`)
+  console.log(data)
+}
+
+if (typeof window.ga !== 'undefined') {
+  trackEvent = (evt, data) => {
+    window.ga(evt, data)
+  }
+} else {
+  console.log('Analytics disabled')
+}
+
+export const trackElement = el => {
+  return trackEvent('send', {
+    hitType: 'event',
+    eventCategory: el.getAttribute('data-ga-category') || '',
+    eventAction: el.getAttribute('data-ga-action') || '',
+    eventLabel: el.getAttribute('data-ga-label') || ''
+  })
+}
+
+const isVisible = (el) => {
+  return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length)
+}
+
 export default function initAnalytics() {
-  let trackEvent = (event, data) => {
-    console.log(`[Analytics disabled] Event: ${event}`)
-    console.log(data)
-  }
+  let trackVisibleElements = Array.from(document.querySelectorAll('[data-ga=visible]'))
 
-  if (typeof window.ga !== 'undefined') {
-    trackEvent = (evt, data) => window.ga(evt, data)
-  } else {
-    console.log('Analytics disabled')
-  }
-
-  const errors = document.querySelectorAll('[data-error=true]')
-  const guidances = document.querySelectorAll('[data-guidance]')
-  const previousLinks = document.querySelectorAll('.js-previous-link')
-  const helpAndSupport = document.querySelector('.js-help-and-support')
-
-  forEach(errors, error => {
-    const errorMsg = error.getAttribute('data-error-msg')
-    const elementId = error.getAttribute('data-error-id')
-    const errorData = {
-      hitType: 'event',
-      eventCategory: 'Errors',
-      eventAction: errorMsg,
-      eventLabel: elementId
+  const interval = window.setInterval(() => {
+    trackVisibleElements = trackVisibleElements.filter(element => {
+      return (isVisible(element) ? trackElement(element) && false : true)
+    })
+    if (trackVisibleElements.length === 0) {
+      window.clearInterval(interval)
     }
-    trackEvent('send', errorData)
-  })
+  }, 200)
 
-  forEach(guidances, guidance => {
-    const trigger = guidance.querySelector('[data-guidance-trigger]')
-    const questionLabel = document.title
-    const questionId = guidance.getAttribute('data-guidance')
+  Array.from(document.querySelectorAll('[data-ga=error]'))
+    .map(trackElement)
 
-    const onClickGuidance = e => {
-      trigger.removeEventListener('click', onClickGuidance)
-      const triggerData = {
-        hitType: 'event',
-        eventCategory: 'Guidance',
-        eventAction: questionLabel,
-        eventLabel: questionId
-      }
-      trackEvent('send', triggerData)
-    }
-
-    if (trigger) {
-      trigger.addEventListener('click', onClickGuidance)
+  document.body.addEventListener('click', ({target}) => {
+    if (target.getAttribute('data-ga') === 'click') {
+      trackElement(target)
     }
   })
-
-  forEach(previousLinks, previousLink => {
-    const onClickPrev = e => {
-      const triggerData = {
-        hitType: 'event',
-        eventCategory: 'Navigation',
-        eventAction: 'previous-link'
-      }
-      trackEvent('send', triggerData)
-    }
-    previousLink.addEventListener('click', onClickPrev)
-  })
-
-  const onClickHelp = e => {
-    helpAndSupport.removeEventListener('click', onClickHelp)
-    const triggerData = {
-      hitType: 'event',
-      eventCategory: 'Navigation',
-      eventAction: 'help-and-support'
-    }
-    trackEvent('send', triggerData)
-  }
-  if (helpAndSupport) {
-    helpAndSupport.addEventListener('click', onClickHelp)
-  }
 }
 
 domready(initAnalytics)

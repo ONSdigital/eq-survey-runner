@@ -1,0 +1,6 @@
+{% import 'macros/helpers.html' as helpers %}
+{% if previous_location %}
+  <a class="page__previous page__previous--{{position}}"
+  {{helpers.track('click', 'Navigation', 'Previous link click', position)}}
+  href="{{previous_location}}" id="{{position}}-previous">Previous</a>
+{% endif %}
