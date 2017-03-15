@@ -31,17 +31,4 @@ describe('Final confirmation before submit', function () {
         expect(ThankYou.getMainHeading()).to.contain('Submission Successful')
     })
 
-
-    it('Given I successfully complete a questionnaire and am on the confirmation page, when I click change answers, then I should be returned to the questionnaire', function () {
-        //Given
-        startQuestionnaire(confirmation_schema)
-        FinalConfirmationSurveyPage.setBreakfastFood('Bacon').submit()
-
-        // When
-        Confirmation.changeAnswers()
-
-        //Then
-        expect(FinalConfirmationSurveyPage.isOpen()).to.be.true
-    })
-
 })

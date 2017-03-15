@@ -4171,8 +4171,7 @@
         },
         {
             "id": "questionnaire-completed",
-            "title": "Questionnaire Completed",
-            "hide_in_navigation": true,
+            "title": "Submit answers",
             "blocks": [{
                 "type": "Confirmation",
                 "id": "confirmation",

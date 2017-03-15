@@ -7,6 +7,7 @@ from app.questionnaire.navigation import Navigation
 from app.schema_loader.schema_loader import load_schema_file
 
 
+# pylint: disable=R0904,C0302
 class TestNavigation(unittest.TestCase):
 
     @staticmethod
@@ -662,3 +663,379 @@ class TestNavigation(unittest.TestCase):
 
         # Then
         self.assertIsNotNone(nav_menu)
+
+    def test_build_navigation_summary_link_hidden_when_no_sections_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        navigation = Navigation(survey, AnswerStore(), metadata)
+
+        confirmation_link = {
+            'link_name': 'Summary',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('summary-group', 0, 'summary').url(metadata)
+        }
+
+        self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
+
+    def test_build_navigation_summary_link_hidden_when_not_all_sections_completed(self):
+        survey = load_schema_file("test_navigation.json")
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+        ]
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+
+        confirmation_link = {
+            'link_name': 'Summary',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('summary-group', 0, 'summary').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('property-details', 0)
+        self.assertNotIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 4)
+
+    def test_build_navigation_summary_link_visible_when_all_sections_complete(self):
+        survey = load_schema_file("test_navigation.json")
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('payment-details', 0, 'credit-card'),
+            Location('payment-details', 0, 'expiry-date'),
+            Location('payment-details', 0, 'security-code'),
+            Location('payment-details', 0, 'security-code-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+        ]
+
+        routing_path = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('payment-details', 0, 'credit-card'),
+            Location('payment-details', 0, 'expiry-date'),
+            Location('payment-details', 0, 'security-code'),
+            Location('payment-details', 0, 'security-code-interstitial'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+            Location('summary-group', 0, 'summary'),
+        ]
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+
+        confirmation_link = {
+            'link_name': 'Summary',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('summary-group', 0, 'summary').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('property-details', 0)
+        self.assertIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 5)
+
+    def test_build_navigation_submit_answers_link_not_visible_for_survey_with_summary(self):
+        survey = load_schema_file("test_navigation.json")
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('payment-details', 0, 'credit-card'),
+            Location('payment-details', 0, 'expiry-date'),
+            Location('payment-details', 0, 'security-code'),
+            Location('payment-details', 0, 'security-code-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+        ]
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+
+        confirmation_link = {
+            'link_name': 'Submit answers',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('property-details', 0)
+        self.assertNotIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 4)
+
+    def test_build_navigation_submit_answers_link_hidden_when_no_sections_completed(self):
+        survey = load_schema_file("test_navigation_confirmation.json")
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        navigation = Navigation(survey, AnswerStore(), metadata)
+
+        confirmation_link = {
+            'link_name': 'Submit answers',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('property-details', 0)
+        self.assertNotIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 4)
+
+    def test_build_navigation_submit_answers_link_hidden_when_not_all_sections_completed(self):
+        survey = load_schema_file("test_navigation_confirmation.json")
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+        ]
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+
+        confirmation_link = {
+            'link_name': 'Submit answers',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('property-details', 0)
+        self.assertNotIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 4)
+
+    def test_build_navigation_submit_answers_link_visible_when_all_sections_complete(self):
+        survey = load_schema_file("test_navigation_confirmation.json")
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('payment-details', 0, 'credit-card'),
+            Location('payment-details', 0, 'expiry-date'),
+            Location('payment-details', 0, 'security-code'),
+            Location('payment-details', 0, 'security-code-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+        ]
+
+        routing_path = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('payment-details', 0, 'credit-card'),
+            Location('payment-details', 0, 'expiry-date'),
+            Location('payment-details', 0, 'security-code'),
+            Location('payment-details', 0, 'security-code-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+            Location('confirmation-group', 0, 'confirmation'),
+        ]
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+
+        confirmation_link = {
+            'link_name': 'Submit answers',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('confirmation-group', 0, 'confirmation').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('property-details', 0)
+        self.assertIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 5)
+
+    def test_build_navigation_summary_link_not_visible_for_survey_with_confirmation(self):
+        survey = load_schema_file("test_navigation_confirmation.json")
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('payment-details', 0, 'credit-card'),
+            Location('payment-details', 0, 'expiry-date'),
+            Location('payment-details', 0, 'security-code'),
+            Location('payment-details', 0, 'security-code-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+        ]
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
+
+        confirmation_link = {
+            'link_name': 'Summary',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('summary-group', 0, 'summary').url(metadata)
+        }
+
+        self.assertNotIn(confirmation_link, navigation.build_navigation('property-details', 0))
+
+    def test_build_navigation_summary_link_not_visible_when_hidden_group_not_completed(self):
+        survey = load_schema_file("test_navigation.json")
+
+        # Payment details group not displayed in navigation
+        survey['groups'][5]['hide_in_navigation'] = True
+
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        # Payment details thus not completed
+        completed_blocks = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+        ]
+
+        routing_path = [
+            Location('property-details', 0, 'insurance-type'),
+            Location('property-details', 0, 'insurance-address'),
+            Location('property-details', 0, 'property-interstitial'),
+            Location('house-details', 0, 'house-type'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('repeating-group', 0, 'repeating-block-1'),
+            Location('repeating-group', 0, 'repeating-block-2'),
+            Location('payment-details', 0, 'credit-card'),
+            Location('payment-details', 0, 'expiry-date'),
+            Location('payment-details', 0, 'security-code'),
+            Location('payment-details', 0, 'security-code-interstitial'),
+            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('extra-cover', 0, 'extra-cover-interstitial'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items'),
+            Location('confirmation-group', 0, 'confirmation'),
+        ]
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+
+        confirmation_link = {
+            'link_name': 'Summary',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('summary-group', 0, 'summary').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('property-details', 0)
+        self.assertNotIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 3)
+
+    def test_build_navigation_submit_answers_link_not_visible_when_no_completed_blocks(self):
+        survey = load_schema_file("census_household.json")
+
+        metadata = {
+            "eq_id": '1',
+            "collection_exercise_sid": '999',
+            "form_type": "some_form"
+        }
+
+        completed_blocks = []
+        routing_path = []
+
+        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
+
+        confirmation_link = {
+            'link_name': 'Submit answers',
+            'highlight': False,
+            'repeating': False,
+            'completed': False,
+            'link_url': Location('questionnaire-completed', 0, 'confirmation').url(metadata)
+        }
+
+        navigation_links = navigation.build_navigation('permanent-or-family-home', 0)
+        self.assertNotIn(confirmation_link, navigation_links)
+        self.assertEqual(len(navigation_links), 2)

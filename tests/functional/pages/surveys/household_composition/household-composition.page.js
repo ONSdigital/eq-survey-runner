@@ -21,6 +21,11 @@ class HouseholdCompositionPage extends QuestionPage {
     return this
   }
 
+  setFullName(index, value) {
+    browser.setValue(this.getInputSelector(index, 'household-full-name'), value)
+    return this
+  }
+
   getInputSelector(index, name) {
     return 'input[name="' + this.getInputFieldName(index, name) + '"]'
   }

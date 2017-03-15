@@ -177,14 +177,15 @@ class PathFinder:
             return routing_path[current_location_index - 1]
         return None
 
-    def get_latest_location(self, completed_blocks=None):
+    def get_latest_location(self, completed_blocks=None, routing_path=None):
         """
         Returns the latest 'location' based on the location path and previously completed blocks
 
         :param completed_blocks:
+        :param routing_path:
         :return:
         """
-        routing_path = self.get_routing_path()
+        routing_path = self.get_routing_path() if routing_path is None else routing_path
         if completed_blocks:
             incomplete_blocks = [item for item in routing_path if item not in completed_blocks]
 

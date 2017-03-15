@@ -1,7 +1,6 @@
 import landingPage from '../pages/landing.page'
 import PercentagePage from '../pages/surveys/percentage/percentage.page'
 import FinalConfirmationSurveyPage from '../pages/surveys/confirmation/final-confirmation-survey.page'
-import SummaryPage from '../pages/summary.page'
 import {
   openQuestionnaire,
   startQuestionnaire,
@@ -11,6 +10,7 @@ import {
   closeMobileNavigation,
   isViewSectionsVisible
 } from '../helpers'
+import SummaryPage from '../pages/summary.page'
 
 
 describe('Navigation', function() {

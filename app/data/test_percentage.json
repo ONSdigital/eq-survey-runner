@@ -15,7 +15,7 @@
     },
     "navigation": true,
     "groups": [{
-        "blocks": [{
+            "blocks": [{
                 "type": "Questionnaire",
                 "id": "block",
                 "sections": [{
@@ -41,13 +41,17 @@
                 }],
                 "routing_rules": [],
                 "title": ""
-            },
-            {
+            }],
+            "id": "group",
+            "title": ""
+        },
+        {
+            "blocks": [{
                 "type": "Summary",
                 "id": "summary"
-            }
-        ],
-        "id": "group",
-        "title": ""
-    }]
+            }],
+            "id": "summary-group",
+            "title": "Summary"
+        }
+    ]
 }

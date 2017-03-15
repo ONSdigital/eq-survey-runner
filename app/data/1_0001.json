@@ -4960,9 +4960,8 @@
                 }],
                 "type": "Confirmation"
             }],
-            "hide_in_navigation": true,
             "id": "ready-to-submit",
-            "title": "You are now ready to submit this survey"
+            "title": "Submit answers"
         }
     ],
     "mime_type": "application/json/ons/eq",
