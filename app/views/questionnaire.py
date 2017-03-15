@@ -41,13 +41,13 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 
 @questionnaire_blueprint.before_request
 @login_required
-def check_survey_state():
+def before_request():
     metadata = get_metadata(current_user)
-    logger.new(tx_id=metadata['tx_id'])
+    logger.bind(tx_id=metadata['tx_id'])
     g.schema_json = get_schema(metadata)
     values = request.view_args
-    logger.debug('questionnaire request', eq_id=values['eq_id'], form_type=values['form_type'],
-                 ce_id=values['collection_id'], method=request.method, url_path=request.full_path)
+    logger.info('questionnaire request', eq_id=values['eq_id'], form_type=values['form_type'],
+                ce_id=values['collection_id'], method=request.method, url_path=request.full_path)
 
     _check_same_survey(values['eq_id'], values['form_type'], values['collection_id'])
 

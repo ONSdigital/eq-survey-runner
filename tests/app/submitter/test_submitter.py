@@ -64,7 +64,7 @@ class TestSubmitter(TestCase):
 
             # Then
             self.assertTrue(published)
-            logger.error.assert_called_once_with('unable to close rabbit mq connection', rabbit_url='amqp://localhost:5672/%2F', exc_info=error)
+            logger.error.assert_called_once_with('unable to close connection', category='rabbitmq', exc_info=error)
 
     def test_when_fail_to_publish_message_then_returns_false(self):
         # Given

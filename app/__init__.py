@@ -3,6 +3,7 @@ import logging
 import os
 import sys
 from datetime import timedelta
+from uuid import uuid4
 
 from flask import Flask
 from flask import url_for
@@ -75,6 +76,11 @@ def create_app():
     setup_secure_cookies(application)
 
     setup_babel(application)
+
+    @application.before_request
+    def before_request():  # pylint: disable=unused-variable
+        request_id = str(uuid4())
+        logger.new(request_id=request_id)
 
     @application.after_request
     def apply_caching(response):  # pylint: disable=unused-variable
