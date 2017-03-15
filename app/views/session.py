@@ -32,13 +32,14 @@ def login():
     it will be placed in the users session
     :return: a 302 redirect to the next location for the user
     """
-    logger.new()
     decrypted_token = decrypt_token(request.args.get('token'))
     metadata = parse_metadata(decrypted_token)
     eq_id = metadata["eq_id"]
     form_type = metadata["form_type"]
     tx_id = metadata["tx_id"]
-    logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id)
+    ru_ref = metadata["ru_ref"]
+    logger.bind(eq_id=eq_id, form_type=form_type, tx_id=tx_id, ru_ref=ru_ref)
+    logger.info("decrypted token and parsed metadata")
 
     if not eq_id or not form_type:
         logger.error("missing eq id or form type in jwt")
