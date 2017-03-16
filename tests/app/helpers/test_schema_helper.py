@@ -96,3 +96,69 @@ class TestSchemaHelper(unittest.TestCase):
         }
 
         self.assertEqual(parent_options, expected)
+
+    def test_get_last_block_returns_none_when_no_blocks(self):
+        empty_group = {}
+
+        last_block = SchemaHelper.get_last_block_in_group(empty_group)
+
+        self.assertIsNone(last_block)
+
+    def test_get_last_block_returns_last_block(self):
+        group = {
+            'blocks': [{
+                'id': 'block1',
+            },
+            {
+                'id': 'block2'
+            }]
+        }
+
+        last_block = SchemaHelper.get_last_block_in_group(group)
+
+        self.assertIsNotNone(last_block)
+        self.assertEqual(last_block['id'], 'block2')
+
+    def test_is_summary_or_confirmation_returns_false_when_block_is_none(self):
+        block = None
+
+        is_summary_or_confirmation = SchemaHelper.is_summary_or_confirmation(block)
+
+        self.assertFalse(is_summary_or_confirmation)
+
+    def test_is_summary_or_confirmation_returns_false_when_block_has_no_type(self):
+        block = {
+            'id': 'block-with-no-type',
+        }
+
+        is_summary_or_confirmation = SchemaHelper.is_summary_or_confirmation(block)
+
+        self.assertFalse(is_summary_or_confirmation)
+
+    def test_is_summary_or_confirmation_returns_false_when_type_is_questionnaire(self):
+        block = {
+            'type': 'Questionnaire',
+        }
+
+        is_summary_or_confirmation = SchemaHelper.is_summary_or_confirmation(block)
+
+        self.assertFalse(is_summary_or_confirmation)
+
+    def test_is_summary_or_confirmation_returns_true_when_type_is_summary(self):
+        block = {
+            'type': 'Summary',
+        }
+
+        is_summary_or_confirmation = SchemaHelper.is_summary_or_confirmation(block)
+
+        self.assertTrue(is_summary_or_confirmation)
+
+    def test_is_summary_or_confirmation_returns_true_when_type_is_confirmation(self):
+        block = {
+            'type': 'Confirmation',
+        }
+
+        is_summary_or_confirmation = SchemaHelper.is_summary_or_confirmation(block)
+
+        self.assertTrue(is_summary_or_confirmation)
+
