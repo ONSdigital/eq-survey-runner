@@ -35,9 +35,17 @@ def configure_logging():
     werkzeug_logger = logging.getLogger('werkzeug')
     werkzeug_logger.setLevel(level=levels[EQ_WERKZEUG_LOG_LEVEL])
 
+    def parse_exception(_, __, event_dict):
+        if EQ_DEVELOPER_LOGGING:
+            return event_dict
+        exception = event_dict.get('exception')
+        if exception:
+            event_dict['exception'] = exception.replace("\"", "'").split("\n")
+        return event_dict
+
     # setup file logging
     renderer_processor = ConsoleRenderer() if EQ_DEVELOPER_LOGGING else JSONRenderer()
-    processors = [add_log_level, TimeStamper(key='created', fmt='iso'), add_service, format_exc_info, renderer_processor]
+    processors = [add_log_level, TimeStamper(key='created', fmt='iso'), add_service, format_exc_info, parse_exception, renderer_processor]
     configure(context_class=wrap_dict(dict), logger_factory=LoggerFactory(), processors=processors, cache_logger_on_first_use=True)
 
 
