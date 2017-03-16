@@ -1047,7 +1047,7 @@
                         "title": "Request for personal and confidential form",
                         "id": "request-private-response-section",
                         "questions": [{
-                            "description": "<p>You can <a rel='noopener noreferrer' target='_blank' href='https://census.gov.uk/individualquestionnaire'>request a personal and confidential form online</a>.</p> <p>Alternatively, call <a href='tel:03000683001'>0300 068 3001</a>.</p>",
+                            "description": "<p>You can <a rel='noopener noreferrer' target='_blank' href='https://www.census.gov.uk/individualquestionnaire'>request a personal and confidential form online</a>.</p> <p>Alternatively, call <a href='tel:03000683001'>0300 068 3001</a>.</p>",
                             "answers": [],
                             "id": "request-private-response-question",
                             "title": "",
