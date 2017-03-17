@@ -247,6 +247,11 @@ NEW_RELIC_LICENSE_KEY - Enable new relic monitoring by supplying a New Relic lic
 NEW_RELIC_APP_NAME - The name to display for the application in New Relic
 ```
 
+The following env variables can be used when running tests
+```
+EQ_FUNCTIONAL_TEST_ENV - the pre-configured environment [local, docker, preprod] or the url of the environment that should be targeted
+```
+
 ## JWT Integration
 Integration with the survey runner requires the use of a signed JWT using public and private key pair (see https://jwt.io,
 https://tools.ietf.org/html/rfc7519, https://tools.ietf.org/html/rfc7515).
