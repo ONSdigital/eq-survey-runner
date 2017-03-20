@@ -11,6 +11,7 @@ from flask_login import login_required
 from flask_login import logout_user
 from flask_themes2 import render_theme_template
 from structlog import get_logger
+from werkzeug.exceptions import Forbidden
 
 from app import settings
 from app.authentication.session_storage import session_storage
@@ -117,7 +118,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
 
     if 'action[save_sign_out]' in request.form:
         return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
-    elif not form.validate():
+    elif _is_invalid_form(form):
         context = {'form': form, 'block': block}
         return _build_template(current_location, context, template=block['type'], routing_path=full_routing_path)
     else:
@@ -155,7 +156,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):  # py
         remove_empty_household_members_from_answer_store(answer_store, group_id)
         return response
 
-    if not form.validate() or 'action[add_answer]' in request.form or 'action[remove_answer]' in request.form:
+    if _is_invalid_form(form) or 'action[add_answer]' in request.form or 'action[remove_answer]' in request.form:
         context = {'form': form, 'block': block}
         return _build_template(current_location, context, template='questionnaire')
     else:
@@ -260,7 +261,7 @@ def _save_sign_out(collection_id, eq_id, form_type, this_location, form):
     questionnaire_store = get_questionnaire_store(current_user.user_id, current_user.user_ik)
     block_json = _render_schema(this_location)
 
-    if not form.validate():
+    if _is_invalid_form(form):
         content = {'block': block_json, 'form': form}
         return _build_template(this_location, content, template=block_json['type'])
     else:
@@ -376,6 +377,15 @@ def update_questionnaire_store_with_answer_data(questionnaire_store, location, a
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
+
+
+def _is_invalid_form(form):
+    is_valid = form.validate()
+    if form.csrf_token.errors:
+        logger.warn('Invalid csrf token')
+        raise Forbidden
+
+    return not is_valid
 
 
 def _delete_user_data():
