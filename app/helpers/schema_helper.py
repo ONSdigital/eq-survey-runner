@@ -30,12 +30,23 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
         return group is not None and group['blocks'][0]['id'] == block_id
 
     @staticmethod
+    def is_summary_or_confirmation(block):
+        return block and 'type' in block and block['type'] in ('Summary', 'Confirmation')
+
+    @staticmethod
     def get_last_block_id(survey_json):
         return survey_json['groups'][-1]['blocks'][-1]['id']
 
     @staticmethod
     def get_last_group_id(survey_json):
         return survey_json['groups'][-1]['id']
+
+    @staticmethod
+    def get_last_block_in_group(group):
+        if group and 'blocks' in group:
+            return group['blocks'][-1]
+
+        return None
 
     @staticmethod
     def get_first_block_id(survey_json):
