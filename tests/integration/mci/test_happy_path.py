@@ -1,88 +1,60 @@
-from tests.integration.create_token import create_token
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestHappyPath(IntegrationTestCase):
 
     def test_happy_path_203(self):
-        self.happy_path('0203', '1')
+        self._happy_path('0203', '1')
 
     def test_happy_path_205(self):
-        self.happy_path('0205', '1')
+        self._happy_path('0205', '1')
 
-    def happy_path(self, form_type_id, eq_id):
-        # Get a token
-        token = create_token(form_type_id, eq_id)
-        resp = self.client.get('/session?token=' + token.decode(), follow_redirects=True)
-        self.assertEqual(resp.status_code, 200)
+    def _happy_path(self, form_type_id, eq_id):
+        self.launchSurvey(eq_id, form_type_id)
 
         # We are on the landing page
-        content = resp.get_data(True)
-
-        self.assertRegex(content, '>Start survey<')
-        self.assertRegex(content, 'Monthly Business Survey - Retail Sales Index')
+        self.assertInPage('>Start survey<')
+        self.assertInPage('Monthly Business Survey - Retail Sales Index')
 
         # We proceed to the questionnaire
-        post_data = {
-            'action[start_questionnaire]': 'Start Questionnaire'
-        }
-        resp = self.get_and_post_with_csrf_token('/questionnaire/' + eq_id + '/' + form_type_id +
-                                                 '/789/mci/0/introduction', data=post_data, follow_redirects=False)
-        self.assertEqual(resp.status_code, 302)
-
-        block_one_url = resp.location
-
-        resp = self.client.get(block_one_url, follow_redirects=False)
-        self.assertEqual(resp.status_code, 200)
+        self.post(action='start_questionnaire')
 
         # We are in the Questionnaire
-        content = resp.get_data(True)
-        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegex(content, "What are the dates of the sales period you are reporting for?")
-        self.assertRegex(content, ">Save and continue<")
+        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInPage('What are the dates of the sales period you are reporting for?')
+        self.assertInPage('>Save and continue<')
+
         # check with have some guidance
-        self.assertRegex(content, "alcoholic drink")
+        self.assertInPage('alcoholic drink')
 
         # We fill in our answers
         form_data = {
             # Start Date
-            "period-from-day": "01",
-            "period-from-month": "4",
-            "period-from-year": "2016",
+            'period-from-day': '01',
+            'period-from-month': '4',
+            'period-from-year': '2016',
             # End Date
-            "period-to-day": "30",
-            "period-to-month": "4",
-            "period-to-year": "2016",
+            'period-to-day': '30',
+            'period-to-month': '4',
+            'period-to-year': '2016',
             # Total Turnover
-            "total-retail-turnover": "100000",
-            # User Action
-            "action[save_continue]": "Save &amp; Continue"
+            'total-retail-turnover': '100000',
         }
 
         # We submit the form
-
-        resp = self.get_and_post_with_csrf_token(block_one_url, data=form_data, follow_redirects=False)
-        self.assertEqual(resp.status_code, 302)
+        self.post(form_data)
 
         # There are no validation errors
-        self.assertIn('/questionnaire/1/' + form_type_id + '/789/mci/0/summary', resp.location)
-
-        summary_url = resp.location
-
-        resp = self.client.get(summary_url, follow_redirects=False)
-        self.assertEqual(resp.status_code, 200)
+        self.assertInUrl('summary')
 
         # We are on the review answers page
-        content = resp.get_data(True)
-        self.assertRegex(content, '>Monthly Business Survey - Retail Sales Index</')
-        self.assertRegex(content, '>Your responses<')
-        self.assertRegex(content, 'Please check carefully before submission.')
-        self.assertRegex(content, '>Submit answers<')
+        self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
+        self.assertInPage('>Your responses<')
+        self.assertInPage('Please check carefully before submission.')
+        self.assertInPage('>Submit answers<')
 
-        # We submit our answers
-        resp = self.get_and_post_with_csrf_token(summary_url)
+        # Submit answers
+        self.post(action=None)
 
-        resp = self.client.get(resp.location, follow_redirects=True)
         # We are on the thank you page
-        content = resp.get_data(True)
-        self.assertRegex(content, '(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')
+        self.assertRegexPage('(?s)Monthly Business Survey - Retail Sales Index.*?Monthly Business Survey - Retail Sales Index')

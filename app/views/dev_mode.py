@@ -20,7 +20,7 @@ dev_mode_blueprint = Blueprint('dev_mode', __name__, template_folder='templates'
 def dev_mode():
     if request.method == "POST":
         form = request.form
-        user = form.get("user_id")
+        user_id = form.get("user_id")
         exp_time = form.get("exp")
         schema = form.get("schema")
         eq_id, form_type = extract_eq_id_and_form_type(schema)
@@ -39,7 +39,7 @@ def dev_mode():
         sexual_identity = form.get("sexual_identity") == "true"
         variant_flags = {"sexual_identity": sexual_identity}
         roles = ['dumper']
-        payload = create_payload(user=user,
+        payload = create_payload(user_id=user_id,
                                  exp_time=exp_time,
                                  eq_id=eq_id,
                                  period_str=period_str,
@@ -113,7 +113,7 @@ def create_payload(**metadata):
     exp = time.time() + float(metadata['exp_time'])
 
     payload = {
-        'user_id': metadata['user'],
+        'user_id': metadata['user_id'],
         'iat': str(int(iat)),
         'exp': str(int(exp)),
         'jti': str(uuid4()),

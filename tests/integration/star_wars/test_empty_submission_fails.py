@@ -1,81 +1,64 @@
-from tests.integration.navigation import navigate_to_page
-from tests.integration.star_wars import star_wars_test_urls, BLOCK_2_DEFAULT_ANSWERS, BLOCK_7_DEFAULT_ANSWERS, \
-    BLOCK_8_DEFAULT_ANSWERS
+from tests.integration.star_wars import star_wars_test_urls, \
+    STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS, \
+    STAR_WARS_TRIVIA_PART_2_DEFAULT_ANSWERS, \
+    STAR_WARS_TRIVIA_PART_3_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
 
 class TestEmptySubmissionFails(StarWarsTestCase):
 
     def test_empty_submission_fails(self):
-
-        self.login()
+        self.launchSurvey()
 
         # go to the first page
         self.start_questionnaire_and_navigate_routing()
 
         # now issue a request to the summary page
-        resp = self.client.get(star_wars_test_urls.STAR_WARS_SUMMARY, follow_redirects=False)
-        self.assertEqual(resp.status_code, 302)
+        self.get(star_wars_test_urls.STAR_WARS_SUMMARY)
 
         # check that we're redirected to the first block as its an empty submission
-        self.assertRegex(resp.location, star_wars_test_urls.STAR_WARS_QUIZ_1)
-
-        # go to the first page
-        first_page = resp.location
-        navigate_to_page(self.client, first_page)
+        self.assertInUrl(star_wars_test_urls.STAR_WARS_TRIVIA_PART_1)
 
         # Form submission with no errors
-        resp = self.submit_page(first_page, BLOCK_2_DEFAULT_ANSWERS)
-        self.assertNotEqual(resp.location, first_page)
+        self.post(STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS)
+        self.assertInUrl('star-wars-trivia-part-2')
 
         # Second page
-        second_page = resp.location
-        resp = navigate_to_page(self.client, second_page)
-        content = resp.get_data(True)
-
         # Pipe Test for section title
-        self.assertRegex(content, 'On 2 June 1983 how many were employed?')
+        self.assertInPage('On 2 June 1983 how many were employed?')
 
         # Textarea question
-        self.assertRegex(content, 'Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
-        self.assertRegex(content, 'chewbacca-medal-answer')
+        self.assertInPage('Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
+        self.assertInPage('chewbacca-medal-answer')
 
-        resp = self.submit_page(second_page, BLOCK_7_DEFAULT_ANSWERS)
+        self.post(STAR_WARS_TRIVIA_PART_2_DEFAULT_ANSWERS)
 
         # third page
-        third_page = resp.location
-        resp = navigate_to_page(self.client, third_page)
-        content = resp.get_data(True)
-
-        self.assertRegex(content, "Finally, which  is your favourite film?")
-
-        resp = self.submit_page(third_page, BLOCK_8_DEFAULT_ANSWERS)
+        self.assertInPage("Finally, which  is your favourite film?")
+        self.post(STAR_WARS_TRIVIA_PART_3_DEFAULT_ANSWERS)
 
         # There are no validation errors
-        self.assertRegex(resp.location, star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
-
-        summary_url = resp.location
-
-        resp = navigate_to_page(self.client, summary_url)
+        self.assertRegexUrl(star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
         # We are on the review answers page
-        content = resp.get_data(True)
-        self.assertRegex(content, '>Star Wars</')
-        self.assertRegex(content, '>Your responses<')
-        self.assertRegex(content, '(?s)How old is Chewy?.*?234')
-        self.assertRegex(content, '(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
-        self.assertRegex(content, '(?s)How hot is a lightsaber in degrees C?.*?1370')
-        self.assertRegex(content, '(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant')  # NOQA
-        self.assertRegex(content, '(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
-        self.assertRegex(content, '(?s)Which 3 have wielded a green lightsaber?.*?Yoda')  # NOQA
-        self.assertRegex(content, '(?s)Which 3 have wielded a green lightsaber?.*?Luke Skywalker')  # NOQA
-        self.assertRegex(content, '(?s)Which 3 have wielded a green lightsaber?.*?Qui-Gon Jinn')  # NOQA
-        self.assertRegex(content, '(?s)Which 3 appear in any of the opening crawlers?')
-        self.assertRegex(content, '(?s)When was The Empire Strikes Back released?.*?28 May 1983 to 29 May 1983')  # NOQA
-        self.assertRegex(content, '(?s)What was the total number of Ewoks?.*?')
-        self.assertRegex(content, '(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?'
-                                  'Wookiees don’t place value in material rewards and refused the medal initially')  # NOQA
-        self.assertRegex(content, '>Please check carefully before submission.<')
-        self.assertRegex(content, '>Submit answers<')
+        self.assertInPage('>Star Wars</')
+        self.assertInPage('>Your responses<')
+        self.assertRegexPage('(?s)How old is Chewy?.*?234')
+        self.assertRegexPage('(?s)How many Octillions do Nasa reckon it would cost to build a death star?.*?£40')
+        self.assertRegexPage('(?s)How hot is a lightsaber in degrees C?.*?1370')
+        self.assertRegexPage('(?s)What animal was used to create the engine sound of the Empire\'s TIE fighters?.*?Elephant')
+        self.assertRegexPage('(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
+        self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Yoda')
+        self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Luke Skywalker')
+        self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Qui-Gon Jinn')
+        self.assertRegexPage('(?s)Which 3 appear in any of the opening crawlers?')
+        self.assertRegexPage('(?s)When was The Empire Strikes Back released?.*?28 May 1983 to 29 May 1983')
+        self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
+        self.assertRegexPage('(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?'
+                             'Wookiees don’t place value in material rewards and refused the medal initially')
+        self.assertInPage('>Please check carefully before submission.<')
+        self.assertInPage('>Submit answers<')
 
-        self.complete_survey(summary_url)
+        # Submit answers
+        self.post(action=None)
+        self.assertInUrl('thank-you')

@@ -33,6 +33,7 @@ fi
 
 # Use default environment vars for localhost if not already set
 export EQ_RABBITMQ_ENABLED=False
+export EQ_SERVER_SIDE_STORAGE_DATABASE_URL="sqlite://"
 
 py.test --cov=app --cov-report xml
 display_result $? 3 "Unit tests"

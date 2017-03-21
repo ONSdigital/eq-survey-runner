@@ -7,10 +7,10 @@ class TestDumpAnswers(IntegrationTestCase):
     def test_dump_answers_not_authenticated(self):
         # Given I am not an authenticated user
         # When I attempt to dump the answer store
-        response = self.client.get('/dump/answers')
+        self.get('/dump/answers')
 
         # Then I receive a 401 Unauthorised response code
-        self.assertEqual(401, response.status_code)
+        self.assertStatusUnauthorised()
 
     def test_dump_answers_authenticated_missing_role(self):
         # Given I am an authenticated user who has launched a survey
@@ -18,29 +18,28 @@ class TestDumpAnswers(IntegrationTestCase):
         self.launchSurvey('test', 'radio')
 
         # When I attempt to dump the answer store
-        response = self.client.get('/dump/answers')
+        self.get('/dump/answers')
 
         # Then I receive a 403 Forbidden response code
-        self.assertEqual(403, response.status_code)
+        self.assertStatusForbidden()
 
         # And the response data contains Forbidden
-        actual = response.get_data(True)
-        self.assertIn('Forbidden', actual)
+        self.assertInPage('Forbidden')
 
     def test_dump_answers_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        _, response = self.launchSurvey('test', 'radio', roles=['dumper'])
+        self.launchSurvey('test', 'radio', roles=['dumper'])
 
         # When I haven't submitted any answers
         # And I attempt to dump the answer store
-        response = self.client.get('/dump/answers')
+        self.get('/dump/answers')
 
         # Then I get a 200 OK response
-        self.assertEqual(200, response.status_code)
+        self.assertStatusOK()
 
         # And the JSON response contains an empty array
-        actual = json.loads(response.get_data(True))
+        actual = json.loads(self.getResponseData())
         expected = {'answers': []}
 
         self.assertDictEqual(actual, expected)
@@ -48,24 +47,19 @@ class TestDumpAnswers(IntegrationTestCase):
     def test_dump_answers_authenticated_with_role_with_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        url, response = self.launchSurvey('test', 'radio', roles=['dumper'])
+        self.launchSurvey('test', 'radio', roles=['dumper'])
 
         # When I submit an answer
-        post_data = {
-            'csrf_token': self.extract_csrf_token(response.get_data(True)),
-            'radio-mandatory-answer': 'Bacon',
-            'action[save_continue]': ''
-        }
-        self.postRedirectGet(url, post_data)
+        self.post(post_data={'radio-mandatory-answer': 'Bacon'})
 
         # And I attempt to dump the answer store
-        response = self.client.get('/dump/answers')
+        self.get('/dump/answers')
 
         # Then I get a 200 OK response
-        self.assertEqual(200, response.status_code)
+        self.assertStatusOK()
 
         # And the JSON response contains the data I submitted
-        actual = json.loads(response.get_data(True))
+        actual = json.loads(self.getResponseData())
         expected = {
             'answers': [
                 {
@@ -99,10 +93,10 @@ class TestDumpSubmission(IntegrationTestCase):
     def test_dump_submission_not_authenticated(self):
         # Given I am not an authenticated user
         # When I attempt to dump the submission payload
-        response = self.client.get('/dump/submission')
+        self.get('/dump/submission')
 
         # Then I receive a 401 Unauthorised response code
-        self.assertEqual(401, response.status_code)
+        self.assertStatusUnauthorised()
 
     def test_dump_submission_authenticated_missing_role(self):
         # Given I am an authenticated user who has launched a survey
@@ -110,29 +104,28 @@ class TestDumpSubmission(IntegrationTestCase):
         self.launchSurvey('test', 'radio')
 
         # When I attempt to dump the submission payload
-        response = self.client.get('/dump/submission')
+        self.get('/dump/submission')
 
         # Then I receive a 403 Forbidden response code
-        self.assertEqual(403, response.status_code)
+        self.assertStatusForbidden()
 
         # And the response data contains Forbidden
-        actual = response.get_data(True)
-        self.assertIn('Forbidden', actual)
+        self.assertInPage('Forbidden')
 
     def test_dump_submission_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        _, response = self.launchSurvey('test', 'radio', roles=['dumper'])
+        self.launchSurvey('test', 'radio', roles=['dumper'])
 
         # When I haven't submitted any answers
         # And I attempt to dump the submission payload
-        response = self.client.get('/dump/submission')
+        self.get('/dump/submission')
 
         # Then I get a 200 OK response
-        self.assertEqual(200, response.status_code)
+        self.assertStatusOK()
 
         # And the JSON response contains the data I submitted
-        actual = json.loads(response.get_data(True))
+        actual = json.loads(self.getResponseData())
 
         # tx_id and submitted_at are dynamic; so copy them over
         expected = {
@@ -163,24 +156,19 @@ class TestDumpSubmission(IntegrationTestCase):
     def test_dump_submission_authenticated_with_role_with_answers(self):
         # Given I am an authenticated user who has launched a survey
         # and does have the 'dumper' role in my metadata
-        url, response = self.launchSurvey('test', 'radio', roles=['dumper'])
+        self.launchSurvey('test', 'radio', roles=['dumper'])
 
         # When I submit an answer
-        post_data = {
-            'csrf_token': self.extract_csrf_token(response.get_data(True)),
-            'radio-mandatory-answer': 'Bacon',
-            'action[save_continue]': ''
-        }
-        self.postRedirectGet(url, post_data)
+        self.post(post_data={'radio-mandatory-answer': 'Bacon'})
 
         # And I attempt to dump the submission payload
-        response = self.client.get('/dump/submission')
+        self.get('/dump/submission')
 
         # Then I get a 200 OK response
-        self.assertEqual(200, response.status_code)
+        self.assertStatusOK()
 
         # And the JSON response contains the data I submitted
-        actual = json.loads(response.get_data(True))
+        actual = json.loads(self.getResponseData())
 
         # tx_id and submitted_at are dynamic; so copy them over
         expected = {
