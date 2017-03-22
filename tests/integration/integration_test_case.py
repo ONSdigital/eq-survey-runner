@@ -48,7 +48,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         # Load keys and passwords for encryption and signing
         for key_name, dev_location in settings._KEYS.items():  # pylint: disable=protected-access
             path = os.getenv(key_name, dev_location)
-            vars(settings)[key_name] = settings.get_key(path)  # assigns attribute to this module
+            vars(settings)[key_name] = settings.read_file(path)  # assigns attribute to this module
 
         for password_name, dev_default in settings._PASSWORDS.items():  # pylint: disable=protected-access
             password = os.getenv(password_name, dev_default)

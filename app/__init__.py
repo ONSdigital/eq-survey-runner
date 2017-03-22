@@ -18,7 +18,6 @@ from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.data_model.database import db_session
 from app.new_relic import setup_newrelic
-from app.submitter.submitter import SubmitterFactory
 
 SECURE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -31,20 +30,6 @@ SECURE_HEADERS = {
 
 cache = Cache()
 logger = get_logger()
-
-
-def rabbitmq_available():
-    submitter = SubmitterFactory.get_submitter()
-    if submitter.send_test():
-        logger.info('rabbitmq healthtest ok')
-        return True, "rabbit mq ok"
-    else:
-        logger.error('cannot connect to message server')
-        return False, "rabbit mq unavailable"
-
-
-def git_revision():
-    return True, settings.EQ_GIT_REF
 
 
 class AWSReverseProxied(object):
@@ -61,13 +46,6 @@ class AWSReverseProxied(object):
 
 def create_app():
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
-    headers = {'Content-Type': 'application/json',
-               'Cache-Control': 'no-cache, no-store, must-revalidate',
-               'Pragma': 'no-cache',
-               'Strict-Transport-Security': 'max-age=31536000; includeSubdomains',
-               'X-Frame-Options': 'DENY',
-               'X-Xss-Protection': '1; mode=block',
-               'X-Content-Type-Options': 'nosniff'}
 
     setup_newrelic()
 
@@ -109,7 +87,6 @@ def create_app():
         cache.init_app(application)  # Doesnt cache
 
     if settings.EQ_DEV_MODE:
-        add_health_check(application, headers)
         start_dev_mode(application)
 
     # always add safe health check
@@ -118,8 +95,8 @@ def create_app():
     if settings.EQ_PROFILING:
         setup_profiling(application)
 
-    if settings.EQ_GIT_REF:
-        logger.info('starting eq survey runner', version=settings.EQ_GIT_REF)
+    if settings.EQ_APPLICATION_VERSION:
+        logger.info('starting eq survey runner', version=settings.EQ_APPLICATION_VERSION)
 
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
@@ -214,28 +191,24 @@ def setup_babel(application):
     application.jinja_env.add_extension('jinja2.ext.i18n')
 
 
-def add_health_check(application, headers):
-    from healthcheck import HealthCheck
-    application.healthcheck = HealthCheck(
-        application, '/healthcheck', success_headers=headers, failed_headers=headers)
-    application.healthcheck.add_check(rabbitmq_available)
-    application.healthcheck.add_check(git_revision)
-
-
 def add_safe_health_check(application):
     @application.route('/status')
     def safe_health_check():  # pylint: disable=unused-variable
-        data = {'status': 'OK'}
+        data = {
+            'status': 'OK',
+            'version': settings.EQ_APPLICATION_VERSION,
+        }
         return json.dumps(data)
 
 
 def versioned_url_for(endpoint, **values):
+
     if endpoint == 'static':
         filename = values.get('filename', None)
         if filename:
             filename = get_minimized_asset(filename)
             # use the git revision
-            version = settings.EQ_GIT_REF
+            version = settings.EQ_APPLICATION_VERSION
             values['filename'] = filename
             values['q'] = version
     return url_for(endpoint, **values)
