@@ -1,4 +1,5 @@
 import json
+
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -24,7 +25,7 @@ class TestDumpAnswers(IntegrationTestCase):
         self.assertStatusForbidden()
 
         # And the response data contains Forbidden
-        self.assertInPage('Forbidden')
+        self.assertInPage('Error 403')
 
     def test_dump_answers_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
@@ -110,7 +111,7 @@ class TestDumpSubmission(IntegrationTestCase):
         self.assertStatusForbidden()
 
         # And the response data contains Forbidden
-        self.assertInPage('Forbidden')
+        self.assertInPage('Error 403')
 
     def test_dump_submission_authenticated_with_role_no_answers(self):
         # Given I am an authenticated user who has launched a survey
