@@ -8,6 +8,7 @@ from app.data_model.database import db_session
 
 USER_ID = "user_id"
 USER_IK = "user_ik"
+SURVEY_COMPLETED_METADATA = "survey_completed_metadata"
 EQ_SESSION_ID = "eq-session-id"
 
 logger = get_logger()
@@ -30,9 +31,9 @@ class SessionStorage:
             # session has a add function but it is wrapped in a session_scope which confuses pylint
             db_session.add(eq_session)
 
-    def clear(self):
+    def delete_session_from_db(self):
         """
-        Removes a user id from the session
+        deletes user session from database
         """
         if EQ_SESSION_ID in session:
             eq_session_id = session[EQ_SESSION_ID]
@@ -88,6 +89,29 @@ class SessionStorage:
         session[USER_IK] = user_ik
 
     @staticmethod
+    def store_survey_completed_metadata(tx_id, period_str, ru_ref):
+        """
+        Store survey_completed_metadata in the cookie for retrieval later
+        """
+        session[SURVEY_COMPLETED_METADATA] = {
+            'tx_id': tx_id,
+            'period_str': period_str,
+            'ru_ref': ru_ref,
+        }
+
+    @staticmethod
+    def has_survey_completed_metadata():
+        """
+        Checks if a user has survey completed metadata
+        :return: boolean value
+        """
+
+        if SURVEY_COMPLETED_METADATA in session:
+            return session[SURVEY_COMPLETED_METADATA] is not None
+        else:
+            return False
+
+    @staticmethod
     def has_user_ik():
         """
         Checks if a user has a stored ik
@@ -97,6 +121,24 @@ class SessionStorage:
             return session[USER_IK] is not None
         else:
             return False
+
+    def remove_user_ik(self):
+        """
+        Removes a user's ik from the session
+        """
+
+        if self.has_user_ik():
+            session.pop(USER_IK)
+
+    def get_survey_completed_metadata(self):
+        """
+        Retrieves survey completed metadata
+        :return: the survey completed metadata
+        """
+        if self.has_survey_completed_metadata():
+            return session[SURVEY_COMPLETED_METADATA]
+        else:
+            return None
 
     def get_user_ik(self):
         """

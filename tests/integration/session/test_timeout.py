@@ -16,13 +16,6 @@ class TestTimeout(IntegrationTestCase):
         self.get('/questionnaire/test/timeout/789/timeout-continue')
         self.assertStatusOK()
 
-    def test_session_expired_clears_session(self):
-        self.launchSurvey('test', 'timeout')
-        self.get('/questionnaire/test/timeout/789/session-expired')
-        self.assertStatusOK()
-        self.get('/questionnaire/test/timeout/789/session-expired')
-        self.assertStatusUnauthorised()
-
     def test_when_session_times_out_server_side_401_is_returned(self):
         self.launchSurvey('test', 'timeout')
         time.sleep(2)

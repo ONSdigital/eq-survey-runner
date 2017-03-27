@@ -72,3 +72,39 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.get('/dump/answers')
         answers = json.loads(self.getResponseData())
         self.assertEqual(0, len(answers['answers']))
+
+    def test_when_on_thank_you_get_summary_returns_unauthorised(self):
+        # Given we complete the test_percentage survey and are on the thank you page
+        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.post({'answer': '99'})
+        self.post(action=None)
+
+        # When we try to get the summary
+        self.get('questionnaire/test/percentage/789/summary-group/0/summary')
+
+        # Then we get the unauthorised page
+        self.assertStatusUnauthorised()
+
+    def test_when_on_thank_you_get_thank_you_returns_thank_you(self):
+        # Given we complete the test_percentage survey and are on the thank you page
+        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.post({'answer': '99'})
+        self.post(action=None)
+
+        # When we try to get the thank-you page
+        self.get('questionnaire/test/percentage/789/thank-you')
+
+        # Then we get the thank-you page
+        self.assertInUrl('questionnaire/test/percentage/789/thank-you')
+
+    def test_when_survey_submitted_re_submitting_returns_unauthorised(self):
+        # Given we have submitted the test_percentage survey
+        self.launchSurvey('test', 'percentage', roles=['dumper'])
+        self.post({'answer': '99'})
+        self.post(action=None)
+
+        # When we try to submit the survey again
+        self.post(url='/questionnaire/test/percentage/789/summary-group/0/summary')
+
+        # Then we get the unauthorised page
+        self.assertStatusUnauthorised()

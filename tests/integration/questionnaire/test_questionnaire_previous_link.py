@@ -61,4 +61,3 @@ class TestQuestionnairePreviousLink(IntegrationTestCase):
 
         self.get('questionnaire/census/household/789/who-lives-here-relationship/1/household-relationships')
         self.assertInPage('Previous')
-

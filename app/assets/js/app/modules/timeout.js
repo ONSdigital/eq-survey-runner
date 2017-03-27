@@ -64,6 +64,7 @@ domready(() => {
   const sessionTimeout = window.__EQ_SESSION_TIMEOUT__
   const promptTime = window.__EQ_SESSION_TIMEOUT_PROMPT__
   const sessionExpiredUrl = window.__EQ_SESSION_EXPIRED_URL__
+  const expireSessionUrl = window.__EQ_EXPIRE_SESSION_URL__
   const sessionContinueUrl = window.__EQ_SESSION_CONTINUE_URL__
 
   const continueBtn = document.querySelector('.js-timeout-continue')
@@ -124,7 +125,10 @@ domready(() => {
     let countDown = timeoutUI.onTick()
     if (countDown < 1) {
       window.clearInterval(this)
-      window.location = sessionExpiredUrl
+      fetch(expireSessionUrl, { method: 'POST' })
+        .then(() => {
+          window.location = sessionExpiredUrl
+        })
     }
 
     if (countDown < promptTime) {
