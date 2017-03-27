@@ -28,7 +28,6 @@ $header-bp: 36em;
   margin-bottom: 1rem;
   @include mq($header-bp) {
     margin-bottom: 0;
-    flex: 1 1 50%;
   }
 }
 
@@ -39,7 +38,7 @@ $header-bp: 36em;
 
   @include mq($header-bp) {
     float: right;
-    flex: 1 1 10rem;
+    flex: 1 1 auto;
     margin-left: 2rem;
     position: relative;
     text-align: right;
