@@ -90,6 +90,32 @@ class TestQuestionnaire(unittest.TestCase):
             'value': '11/2014',
         }, self.question_store.answer_store.answers)
 
+    def test_update_questionnaire_store_with_empty_day_month_year_date(self):
+
+        g.schema_json = load_schema_file("test_dates.json")
+
+        location = Location("dates", 0, "date-block")
+
+        form_data = {
+            'non-mandatory-date-answer': {'day': '', 'month': '', 'year': ''},
+        }
+
+        update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+        self.assertEqual([], self.question_store.answer_store.answers)
+
+    def test_update_questionnaire_store_with_empty_month_year_date(self):
+
+        g.schema_json = load_schema_file("test_dates.json")
+
+        location = Location("dates", 0, "date-block")
+
+        form_data = {
+            'month-year-answer': {'month': '', 'year': ''},
+        }
+
+        update_questionnaire_store_with_form_data(self.question_store, location, form_data)
+        self.assertEqual([], self.question_store.answer_store.answers)
+
     def test_update_questionnaire_store_with_answer_data(self):
         g.schema_json = load_schema_file("census_household.json")
 

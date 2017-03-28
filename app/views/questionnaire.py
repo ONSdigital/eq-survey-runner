@@ -338,34 +338,46 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
 
             # Dates are comprised of 3 string values
             if isinstance(answer_value, dict):
-                is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
-                is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
-
-                if is_day_month_year and answer_value['day'] and answer_value['month']:
-                    date_str = "{:02d}/{:02d}/{}".format(
-                        int(answer_value['day']),
-                        int(answer_value['month']),
-                        answer_value['year'],
-                    )
-                    answer = Answer(answer_id=answer_id, value=date_str, location=location)
-                elif is_month_year and answer_value['month']:
-                    date_str = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
-                    answer = Answer(answer_id=answer_id, value=date_str, location=location)
+                if answer_value_empty(answer_value):
+                    _remove_answer_from_questionnaire_store(answer_id, location, questionnaire_store)
+                else:
+                    formatted_answer_value = _format_answer_value(answer_value)
+                    if formatted_answer_value:
+                        answer = Answer(answer_id=answer_id, value=formatted_answer_value, location=location)
             elif answer_value is not None:
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
             else:
-                # Remove previously populated answers that are now empty
-                questionnaire_store.answer_store.remove(
-                    location=location,
-                    answer_id=answer_id,
-                    answer_instance=0,
-                )
+                _remove_answer_from_questionnaire_store(answer_id, location, questionnaire_store)
 
             if answer:
                 questionnaire_store.answer_store.add_or_update(answer)
 
     if location not in questionnaire_store.completed_blocks:
         questionnaire_store.completed_blocks.append(location)
+
+
+def _remove_answer_from_questionnaire_store(answer_id, location, questionnaire_store):
+    questionnaire_store.answer_store.remove(location=location, answer_id=answer_id, answer_instance=0)
+
+
+def answer_value_empty(answer_value_dict):
+    return all(not value for value in answer_value_dict.values())
+
+
+def _format_answer_value(answer_value):
+    formatted_answer_value = None
+    is_day_month_year = 'day' in answer_value and 'month' in answer_value and 'year' in answer_value
+    is_month_year = 'day' not in answer_value and 'year' in answer_value and 'month' in answer_value
+
+    if is_day_month_year and answer_value['day'] and answer_value['month']:
+        formatted_answer_value = "{:02d}/{:02d}/{}".format(
+            int(answer_value['day']),
+            int(answer_value['month']),
+            answer_value['year'],
+        )
+    elif is_month_year and answer_value['month']:
+        formatted_answer_value = "{:02d}/{}".format(int(answer_value['month']), answer_value['year'])
+    return formatted_answer_value
 
 
 def update_questionnaire_store_with_answer_data(questionnaire_store, location, answers):
