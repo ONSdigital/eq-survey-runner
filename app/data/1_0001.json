@@ -4971,7 +4971,6 @@
         "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
     },
     "navigation": true,
-    "questionnaire_id": "0001",
     "schema_version": "0.0.1",
     "survey_id": "144",
     "theme": "ukis",
