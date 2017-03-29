@@ -1,6 +1,6 @@
 from app import settings
 from tests.integration.integration_test_case import IntegrationTestCase
-from app.views.dev_mode import *
+from app.views.dev_mode import extract_eq_id_and_form_type
 
 
 class TestDevMode(IntegrationTestCase):
