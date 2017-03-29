@@ -45,9 +45,48 @@ class TestDevMode(IntegrationTestCase):
                       'ru_ref': '12346789012A'})
         self.assertStatusNotFound()
 
-    def test_extract_eq_id_and_form_type_no_form_type(self):
-        #Given
-        data_to_extract = extract_eq_id_and_form_type('rogueone.json')
+    #Valid inputs
+    def test_extract_eq_id_and_form_type(self):
+        data_to_extract = extract_eq_id_and_form_type('census_household.json')
+        self.assertEqual(data_to_extract, ('census', 'household'))
 
-        self.assertEqual(data_to_extract, ('rogueone', '-1'))
+    def test_extract_eq_id_and_form_type_more_than_one_underscore(self):
+        data_to_extract = extract_eq_id_and_form_type('0_rogue_one.json')
+        self.assertEqual(data_to_extract, ('0', 'rogue_one'))
+
+    def test_extract_eq_id_and_form_type_multiple_characters(self):
+        data_to_extract = extract_eq_id_and_form_type('abc123_456xyz.json')
+        self.assertEqual(data_to_extract, ('abc123', '456xyz'))
+
+    #Not valid inputs
+    def test_extract_eq_id_and_form_type_no_underscore(self):
+        with self.assertRaises(ValueError) as ite:
+            extract_eq_id_and_form_type('rogueone.json')
+        self.assertEqual('Invalid schema format', str(ite.exception))
+
+    def test_extract_eq_id_and_form_type_no_underscore_no_extension(self):
+        with self.assertRaises(ValueError) as ite:
+            extract_eq_id_and_form_type('rogueone')
+        self.assertEqual('Invalid schema format', str(ite.exception))
+
+    def test_extract_eq_id_and_form_type_blank(self):
+        with self.assertRaises(ValueError) as ite:
+            extract_eq_id_and_form_type('')
+        self.assertEqual('Invalid schema format', str(ite.exception))
+
+    def test_extract_eq_id_and_form_type_none(self):
+        with self.assertRaises(TypeError) as ite:
+            extract_eq_id_and_form_type(None)
+        self.assertEqual('argument of type \'NoneType\' is not iterable', str(ite.exception))
+
+    def test_extract_eq_id_and_form_type_wrong_extension(self):
+        with self.assertRaises(ValueError) as ite:
+            extract_eq_id_and_form_type('census_household.txt')
+        self.assertEqual('Invalid schema format', str(ite.exception))
+
+    # def test_extract_eq_id_and_form_type_format_backwards(self):
+    #     with self.assertRaises(ValueError) as ite:
+    #         extract_eq_id_and_form_type('.json_123')
+    #     self.assertEqual('Invalid schema format', str(ite.exception))
+
 

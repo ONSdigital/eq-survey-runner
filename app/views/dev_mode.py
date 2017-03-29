@@ -91,19 +91,16 @@ def dev_flush_mode_get():
 
 def extract_eq_id_and_form_type(schema_name):
     logger.debug("extracting eq_id and form type from schema name", schema_name=schema_name)
-    if "_" in schema_name:
-        split_schema_name = schema_name.split("_", 1)
-        if len(split_schema_name) != 2:
-            raise ValueError("Schema file name incorrect %", schema_name)
+    if "_" in schema_name and ".json" in schema_name:
+        split_schema_name = schema_name.split("_", maxsplit=1)
+        assert len(split_schema_name) == 2
         eq_id = split_schema_name[0]
-        split_rest_of_name = split_schema_name[1].split(".", 1)
-        if len(split_rest_of_name) != 2:
-            raise ValueError("Schema file name incorrect %", schema_name)
+
+        split_rest_of_name = split_schema_name[1].split(".", maxsplit=1)
+        assert len(split_rest_of_name) == 2
         form_type = split_rest_of_name[0]
     else:
-        # No form type associated with
-        eq_id = schema_name.split(".", 1)[0]
-        form_type = "-1"
+        raise ValueError('Invalid schema format')
     logger.debug("parsed eq_id and form_type", eq_id=eq_id, form_type=form_type)
     return eq_id, form_type
 
