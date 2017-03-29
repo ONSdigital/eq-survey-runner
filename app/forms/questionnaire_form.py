@@ -21,9 +21,9 @@ class QuestionnaireForm(FlaskForm):
         self.options_with_children = {}
 
         if formdata:
-            super(QuestionnaireForm, self).__init__(formdata=formdata, **kwargs)
+            super().__init__(formdata=formdata, **kwargs)
         else:
-            super(QuestionnaireForm, self).__init__(**kwargs)
+            super().__init__(**kwargs)
 
     def validate(self):
         """

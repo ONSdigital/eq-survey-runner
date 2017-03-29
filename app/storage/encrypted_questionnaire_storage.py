@@ -31,10 +31,10 @@ class EncryptedQuestionnaireStorage(QuestionnaireStorage):
 
     def add_or_update(self, data):
         encrypted_data = self.encrypt_data(data)
-        super(EncryptedQuestionnaireStorage, self).add_or_update(encrypted_data)
+        super().add_or_update(encrypted_data)
 
     def get_user_data(self):
-        data = super(EncryptedQuestionnaireStorage, self).get_user_data()
+        data = super().get_user_data()
         if data is not None and 'data' in data:
             decrypted_data = self.decrypt_data(self.user_id, self.user_ik, data)
             return decrypted_data

@@ -141,7 +141,7 @@ class CustomIntegerField(IntegerField):
     further validation steps by using a separate IntegerCheck validator
     """
     def __init__(self, **kwargs):
-        super(CustomIntegerField, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.data = None
 
     def process_formdata(self, valuelist):
