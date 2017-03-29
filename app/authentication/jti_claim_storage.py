@@ -11,7 +11,7 @@ logger = get_logger()
 class JtiTokenUsed(Exception):
 
     def __init__(self, jti_claim):
-        super(JtiTokenUsed, self).__init__()
+        super().__init__()
         self.jti_claim = jti_claim
 
     def __str__(self, *args, **kwargs):
