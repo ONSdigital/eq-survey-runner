@@ -29,6 +29,10 @@ if [ -z "$EQ_RABBITMQ_ENABLED" ]; then
   export EQ_RABBITMQ_ENABLED=False
 fi
 
+if [ -z "$EQ_SECRET_KEY" ]; then
+  export EQ_SECRET_KEY="SuperSecretDeveloperKey"
+fi
+
 # Use default environment vars for localhost if not already set
 
 echo "Environment variables in use:"
