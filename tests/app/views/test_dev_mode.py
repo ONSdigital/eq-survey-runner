@@ -1,5 +1,6 @@
 from app import settings
 from tests.integration.integration_test_case import IntegrationTestCase
+from app.views.dev_mode import *
 
 
 class TestDevMode(IntegrationTestCase):
@@ -43,3 +44,10 @@ class TestDevMode(IntegrationTestCase):
                       'collection_exercise_sid': '789',
                       'ru_ref': '12346789012A'})
         self.assertStatusNotFound()
+
+    def test_extract_eq_id_and_form_type_no_form_type(self):
+        #Given
+        data_to_extract = extract_eq_id_and_form_type('rogueone.json')
+
+        self.assertEqual(data_to_extract, ('rogueone', '-1'))
+
