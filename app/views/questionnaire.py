@@ -172,18 +172,27 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):  # py
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
 @login_required
 def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    theme = g.schema_json.get('theme', None)
-    logger.debug("theme selected", theme=theme)
     metadata = get_metadata(current_user)
-    metadata_context = build_metadata_context(metadata)
-    thank_you_template = render_theme_template(theme, template_name='thank-you.html',
-                                               meta=metadata_context,
-                                               legal_basis=g.schema_json['legal_basis'],
-                                               analytics_ua_id=settings.EQ_UA_ID,
-                                               survey_id=g.schema_json['survey_id'],
-                                               survey_title=TemplateRenderer.safe_content(g.schema_json['title']))
-    _delete_user_data()
-    return thank_you_template
+    if metadata.get('submitted', False):
+        theme = g.schema_json.get('theme', None)
+        logger.debug("theme selected", theme=theme)
+        metadata = get_metadata(current_user)
+        metadata_context = build_metadata_context(metadata)
+        thank_you_template = render_theme_template(theme, template_name='thank-you.html',
+                                                   meta=metadata_context,
+                                                   legal_basis=g.schema_json['legal_basis'],
+                                                   analytics_ua_id=settings.EQ_UA_ID,
+                                                   survey_id=g.schema_json['survey_id'],
+                                                   survey_title=TemplateRenderer.safe_content(g.schema_json['title']))
+        _delete_user_data()
+        return thank_you_template
+    else:
+        answer_store = get_answer_store(current_user)
+        path_finder = PathFinder(g.schema_json, answer_store, metadata)
+        full_routing_path = path_finder.get_routing_path()
+        latest_location = path_finder.get_latest_location(get_completed_blocks(current_user),
+                                                          routing_path=full_routing_path)
+        return _redirect_to_latest_location(collection_id, eq_id, form_type, latest_location)
 
 
 @questionnaire_blueprint.route('signed-out', methods=["GET"])
