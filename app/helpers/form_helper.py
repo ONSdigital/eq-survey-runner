@@ -84,7 +84,7 @@ def post_form_for_location(block_json, location, answer_store, request_form, err
 
 
 def disable_mandatory_answers(block_json):
-    for section_json in block_json['sections']:
+    for section_json in block_json.get('sections', []):
         for question_json in section_json['questions']:
             for answer_json in question_json['answers']:
                 if 'mandatory' in answer_json and answer_json['mandatory'] is True:

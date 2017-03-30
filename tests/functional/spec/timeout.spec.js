@@ -61,4 +61,20 @@ describe('Session timeout', function() {
     expect(TimeoutSummaryPage.getTimeoutAnswer()).to.equal('foo')
   })
 
+  it('Given I am on the summary page, when I click save and sign out, then I will be signed out and redirected to a page confirming I have been signed out', function(done) {
+    // Given
+    let userId = getRandomString(10)
+    let collectionId = getRandomString(10)
+    openQuestionnaire('test_timeout.json', userId, collectionId)
+    TimeoutBlockPage.setTimeoutAnswer('foo')
+      .submit()
+
+    // When
+    browser.waitForVisible(dialog, 5000)
+    browser.click('.js-timeout-save')
+
+    // Then
+    expect(browser.getUrl()).to.contain('signed-out')
+  })
+
 })
