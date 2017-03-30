@@ -16,11 +16,6 @@ if [ "${TRAVIS}" ]; then
   export EQ_WERKZEUG_LOG_LEVEL=WARNING
 fi
 
-# Output the current git revision
-if [ -z "$EQ_GIT_REF" ]; then
-  export EQ_GIT_REF=$(git rev-parse HEAD)
-fi
-
 if [ -z "$EQ_DEV_MODE" ]; then
   export EQ_DEV_MODE=True
 fi

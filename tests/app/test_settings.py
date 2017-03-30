@@ -15,5 +15,11 @@ class TestSettings(unittest.TestCase):
         value = 10000
         self.assertEqual(value, settings.ensure_min(value, minimum))
 
+    def test_get_application_version_from_file(self):
+        self.assertIsNotNone(settings.read_file('.application-version'))
+
+    def test_missing_get_application_version_from_file(self):
+        self.assertEqual(None, settings.read_file('.missing-application-version'))
+
 if __name__ == '__main__':
     unittest.main()

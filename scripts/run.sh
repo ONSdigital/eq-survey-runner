@@ -26,6 +26,7 @@ fi
 
 if [ "$EQ_RUN_LOCAL_TESTS" = True ]; then
     echo "Running Local Unit Tests"
+    printf $(git rev-parse HEAD) > .application-version
     ./scripts/run_tests_unit.sh
 fi
 
@@ -39,3 +40,5 @@ if [ "$EQ_RUN_FUNCTIONAL_TESTS" = True ]; then
     echo "Running Functional tests"
     ./scripts/run_tests_functional.sh
 fi
+
+
