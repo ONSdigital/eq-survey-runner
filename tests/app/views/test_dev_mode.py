@@ -77,16 +77,16 @@ class TestDevMode(IntegrationTestCase):
     def test_extract_eq_id_and_form_type_none(self):
         with self.assertRaises(TypeError) as ite:
             extract_eq_id_and_form_type(None)
-        self.assertEqual('argument of type \'NoneType\' is not iterable', str(ite.exception))
+        self.assertEqual('expected string or bytes-like object', str(ite.exception))
 
     def test_extract_eq_id_and_form_type_wrong_extension(self):
         with self.assertRaises(ValueError) as ite:
             extract_eq_id_and_form_type('census_household.txt')
         self.assertEqual('Invalid schema format', str(ite.exception))
 
-    # def test_extract_eq_id_and_form_type_format_backwards(self):
-    #     with self.assertRaises(ValueError) as ite:
-    #         extract_eq_id_and_form_type('.json_123')
-    #     self.assertEqual('Invalid schema format', str(ite.exception))
+    def test_extract_eq_id_and_form_type_format_backwards(self):
+        with self.assertRaises(ValueError) as ite:
+            extract_eq_id_and_form_type('abc.json_123')
+        self.assertEqual('Invalid schema format', str(ite.exception))
 
 

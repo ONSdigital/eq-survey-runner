@@ -1,5 +1,6 @@
 import os
 import time
+import re
 from uuid import uuid4
 
 from flask import Blueprint
@@ -91,13 +92,11 @@ def dev_flush_mode_get():
 
 def extract_eq_id_and_form_type(schema_name):
     logger.debug("extracting eq_id and form type from schema name", schema_name=schema_name)
-    if "_" in schema_name and ".json" in schema_name:
+    if re.search(r"^([a-z0-9]+)_(\w+)\.json$", schema_name):
         split_schema_name = schema_name.split("_", maxsplit=1)
-        assert len(split_schema_name) == 2
         eq_id = split_schema_name[0]
 
         split_rest_of_name = split_schema_name[1].split(".", maxsplit=1)
-        assert len(split_rest_of_name) == 2
         form_type = split_rest_of_name[0]
     else:
         raise ValueError('Invalid schema format')
