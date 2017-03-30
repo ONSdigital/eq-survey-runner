@@ -9,7 +9,7 @@ from app.authentication.session_storage import session_storage
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_questionnaire_store
-from app.parser.metadata_parser import is_valid_metadata
+from app.storage.metadata_parser import is_valid_metadata
 
 logger = get_logger()
 

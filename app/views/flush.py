@@ -7,7 +7,7 @@ from app.globals import get_answer_store, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
 from app.submitter.converter import convert_answers
 from app.submitter.submitter import SubmitterFactory
-from app.utilities.schema import get_schema
+from app.utilities.schema import load_schema_from_metadata
 
 flush_blueprint = Blueprint('flush', __name__)
 
@@ -44,7 +44,7 @@ def _submit_data(user):
 
     if answer_store.answers:
         metadata = get_metadata(user)
-        schema = get_schema(metadata)
+        schema = load_schema_from_metadata(metadata)
         routing_path = PathFinder(schema, answer_store, metadata).get_routing_path()
         submitter = SubmitterFactory.get_submitter()
         message = convert_answers(metadata, schema, answer_store, routing_path)

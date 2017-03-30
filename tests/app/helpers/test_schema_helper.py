@@ -1,7 +1,7 @@
 import unittest
 
 from app.helpers.schema_helper import SchemaHelper
-from app.schema_loader.schema_loader import load_schema_file
+from app.utilities.schema import load_schema_file
 
 
 class TestSchemaHelper(unittest.TestCase):

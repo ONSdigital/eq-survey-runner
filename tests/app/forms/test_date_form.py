@@ -1,17 +1,11 @@
 import unittest
 
-from app import create_app
 from app.forms.date_form import get_date_form, get_month_year_form
-from app.schema_loader.schema_loader import load_schema_file
+from app.utilities.schema import load_schema_file
 from app.helpers.schema_helper import SchemaHelper
 
 
 class TestDateForm(unittest.TestCase):
-    def setUp(self):
-        self.app = create_app()
-        self.app.config['SERVER_NAME'] = "test"
-        self.app_context = self.app.app_context()
-        self.app_context.push()
 
     def test_generate_date_form_creates_empty_form(self):
         survey = load_schema_file("test_dates.json")

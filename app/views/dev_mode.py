@@ -10,7 +10,7 @@ from flask import request
 from structlog import get_logger
 
 from app.cryptography.jwt_encoder import Encoder
-from app.schema_loader.schema_loader import available_schemas
+from app.utilities.schema import available_json_schemas
 
 # pylint: disable=too-many-locals
 logger = get_logger()
@@ -61,7 +61,7 @@ def dev_mode():
 
         return redirect("/session?token=" + generate_token(payload).decode())
 
-    return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_schemas())
+    return render_template("dev-page.html", user=os.getenv('USER', 'UNKNOWN'), available_schemas=available_json_schemas())
 
 
 @dev_mode_blueprint.route('/dev/flush', methods=['POST'])
@@ -87,7 +87,7 @@ def dev_flush_mode_post():
 
 @dev_mode_blueprint.route('/dev/flush', methods=['GET'])
 def dev_flush_mode_get():
-    return render_template("dev-flush-page.html", available_schemas=available_schemas())
+    return render_template("dev-flush-page.html", available_schemas=available_json_schemas())
 
 
 def extract_eq_id_and_form_type(schema_name):

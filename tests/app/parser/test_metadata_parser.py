@@ -1,7 +1,7 @@
 import unittest
 
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.parser.metadata_parser import parse_metadata, is_valid_metadata
+from app.storage.metadata_parser import parse_metadata, is_valid_metadata
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 

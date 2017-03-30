@@ -1,14 +1,13 @@
-import unittest
-
 from mock import MagicMock, Mock, patch
 
-from app import create_app
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
-from app.utilities.schema import load_and_parse_schema
+from app.utilities.schema import load_schema_from_params
+
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestSummaryContext(unittest.TestCase):
+class TestSummaryContext(AppContextTestCase):
 
     metadata = {
         'return_by': '2016-10-10',
@@ -26,12 +25,8 @@ class TestSummaryContext(unittest.TestCase):
     }
 
     def setUp(self):
-        self.app = create_app()
-        self.app.config['SERVER_NAME'] = "test"
-        self.app_context = self.app.app_context()
-        self.app_context.push()
-
-        self.schema_json = load_and_parse_schema('0', 'star_wars', None)
+        super().setUp()
+        self.schema_json = load_schema_from_params('0', 'star_wars', None)
 
     def test_build_summary_rendering_context(self):
         answer_store = MagicMock()

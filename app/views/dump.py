@@ -6,7 +6,7 @@ from flask import Blueprint, jsonify
 from app.authentication.roles import role_required
 from app.globals import get_answer_store, get_metadata
 from app.submitter.converter import convert_answers
-from app.utilities.schema import get_schema
+from app.utilities.schema import load_schema_from_metadata
 from app.questionnaire.path_finder import PathFinder
 
 
@@ -27,7 +27,7 @@ def dump_answers():
 def dump_submission():
     answer_store = get_answer_store(current_user)
     metadata = get_metadata(current_user)
-    schema = get_schema(metadata)
+    schema = load_schema_from_metadata(metadata)
     routing_path = PathFinder(schema, answer_store, metadata).get_routing_path()
     response = {'submission': convert_answers(metadata, schema, answer_store, routing_path)}
     return jsonify(response), 200

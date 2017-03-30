@@ -1,6 +1,9 @@
 from app.questionnaire.location import Location
-from app.schema.exceptions import QuestionnaireException
 from app.validation.error_messages import error_messages
+
+
+class QuestionnaireException(Exception):
+    pass
 
 
 class SchemaHelper(object):  # pylint: disable=too-many-public-methods

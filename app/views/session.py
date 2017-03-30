@@ -9,9 +9,9 @@ from werkzeug.exceptions import NotFound, Unauthorized
 from app.authentication.authenticator import store_session, decrypt_token
 from app.authentication.jti_claim_storage import use_jti_claim, JtiTokenUsed
 from app.globals import get_answer_store, get_completed_blocks
-from app.parser.metadata_parser import parse_metadata
 from app.questionnaire.path_finder import PathFinder
-from app.utilities.schema import get_schema
+from app.storage.metadata_parser import parse_metadata
+from app.utilities.schema import load_schema_from_metadata
 
 logger = get_logger()
 
@@ -60,7 +60,7 @@ def login():
 
     store_session(metadata)
 
-    json = get_schema(metadata)
+    json = load_schema_from_metadata(metadata)
 
     navigator = PathFinder(json, get_answer_store(current_user), metadata)
     current_location = navigator.get_latest_location(get_completed_blocks(current_user))

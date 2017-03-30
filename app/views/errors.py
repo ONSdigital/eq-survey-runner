@@ -10,7 +10,7 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
 from app.libs.utils import convert_tx_id
-from app.schema.exceptions import QuestionnaireException
+from app.helpers.schema_helper import QuestionnaireException
 from app.submitter.submission_failed import SubmissionFailedException
 
 logger = get_logger()

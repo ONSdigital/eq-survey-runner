@@ -1,20 +1,14 @@
-import unittest
-
-from app import create_app
 from app import settings
 from app.forms.household_relationship_form import build_relationship_choices, deserialise_relationship_answers, serialise_relationship_answers, generate_relationship_form
 from app.data_model.answer_store import AnswerStore, Answer
-from app.schema_loader.schema_loader import load_schema_file
+from app.utilities.schema import load_schema_file
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 
+from tests.app.app_context_test_case import AppContextTestCase
 
-class TestHouseholdRelationshipForm(unittest.TestCase):
-    def setUp(self):
-        self.app = create_app()
-        self.app.config['SERVER_NAME'] = "test"
-        self.app_context = self.app.app_context()
-        self.app_context.push()
+
+class TestHouseholdRelationshipForm(AppContextTestCase):
 
     @staticmethod
     def _error_exists(answer_id, msg, mapped_errors):
@@ -74,7 +68,7 @@ class TestHouseholdRelationshipForm(unittest.TestCase):
         self.assertEqual(expected_choices, choices)
 
     def test_generate_relationship_form_creates_empty_form(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_relationship_household.json")
             block_json = SchemaHelper.get_block(survey, 'relationships')
             error_messages = SchemaHelper.get_messages(survey)
@@ -87,7 +81,7 @@ class TestHouseholdRelationshipForm(unittest.TestCase):
             self.assertEqual(len(form.data[answer['id']]), 3)
 
     def test_generate_relationship_form_creates_form_from_data(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_relationship_household.json")
             block_json = SchemaHelper.get_block(survey, 'relationships')
             error_messages = SchemaHelper.get_messages(survey)
@@ -106,7 +100,7 @@ class TestHouseholdRelationshipForm(unittest.TestCase):
             self.assertEqual(form.data[answer['id']], expected_form_data)
 
     def test_generate_relationship_form_errors_are_correctly_mapped(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_relationship_household.json")
             block_json = SchemaHelper.get_block(survey, 'relationships')
             error_messages = SchemaHelper.get_messages(survey)

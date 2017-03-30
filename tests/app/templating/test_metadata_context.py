@@ -1,4 +1,4 @@
-from app.parser.metadata_parser import parse_metadata
+from app.storage.metadata_parser import parse_metadata
 from app.templating.metadata_context import build_metadata_context
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
