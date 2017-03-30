@@ -16,7 +16,7 @@ import {fonts} from './gulp/fonts'
 
 const getEnv = () => {
   var env = yargs.argv.env
-  if (env.startsWith("http")) {
+  if (env && env.startsWith("http")) {
     return env
   }
   const envs = {
