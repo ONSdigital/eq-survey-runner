@@ -177,7 +177,7 @@ class PathFinder:
             return routing_path[current_location_index - 1]
         return None
 
-    def get_latest_location(self, completed_blocks=None, routing_path=None):
+    def get_latest_location(self, completed_blocks, routing_path=None):
         """
         Returns the latest 'location' based on the location path and previously completed blocks
 
@@ -186,13 +186,16 @@ class PathFinder:
         :return:
         """
         routing_path = self.get_routing_path() if routing_path is None else routing_path
+        latest_location = routing_path[0]
         if completed_blocks:
             incomplete_blocks = [item for item in routing_path if item not in completed_blocks]
 
             if incomplete_blocks:
-                return incomplete_blocks[0]
+                latest_location = incomplete_blocks[0]
+            else:
+                latest_location = routing_path[-1]
 
-        return routing_path[0]
+        return latest_location
 
     @staticmethod
     def _relationship_previous_location(current_group_instance):

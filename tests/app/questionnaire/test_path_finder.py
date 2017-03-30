@@ -8,7 +8,7 @@ from app.questionnaire.path_finder import PathFinder
 from app.utilities.schema import load_schema_file
 
 
-class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-methods
+class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-methods, too-many-lines
 
     def test_next_block(self):
         survey = load_schema_file("1_0102.json")
@@ -965,3 +965,40 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         )
 
         self.assertEqual([], path_finder.build_path(blocks, invalid_block_location))
+
+    def test_given_no_completed_blocks_when_get_latest_location_then_go_to_first_block(self):
+        # Given no completed blocks
+        survey = load_schema_file("test_repeating_household.json")
+        path_finder = PathFinder(survey)
+        completed_block = []
+
+        # When go latest location
+        latest_location = path_finder.get_latest_location(completed_block)
+
+        # Then go to the first block
+        self.assertEqual(Location('multiple-questions-group', 0, 'introduction'), latest_location)
+
+    def test_given_some_completed_blocks_when_get_latest_location_then_go_to_next_uncompleted_block(self):
+        # Given no completed blocks
+        survey = load_schema_file("test_repeating_household.json")
+        path_finder = PathFinder(survey)
+        completed_block = [Location('multiple-questions-group', 0, 'introduction')]
+
+        # When go latest location
+        latest_location = path_finder.get_latest_location(completed_block)
+
+        # Then go to the first block
+        self.assertEqual(Location('multiple-questions-group', 0, 'household-composition'), latest_location)
+
+    def test_given_completed_all_the_blocks_when_get_latest_location_then_go_to_last_block(self):
+        # Given no completed blocks
+        survey = load_schema_file("test_textarea.json")
+        path_finder = PathFinder(survey)
+        completed_block = [Location('textarea-group', 0, 'textarea-block'),
+                           Location('textarea-group', 0, 'textarea-summary')]
+
+        # When go latest location
+        latest_location = path_finder.get_latest_location(completed_block)
+
+        # Then go to the first block
+        self.assertEqual(Location('textarea-group', 0, 'textarea-summary'), latest_location)
