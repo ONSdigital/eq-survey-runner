@@ -121,6 +121,10 @@
                         }]
                     }]
                 }]
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
             }
         ],
         "id": "conditional-routing-within-group",

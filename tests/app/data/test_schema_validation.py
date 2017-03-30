@@ -83,6 +83,23 @@ class TestSchemaValidation(unittest.TestCase):
                     else:
                         unique_id.append(id_value)
 
+    def test_all_schemas_contain_confirmation_page(self):
+        schema_files = self.all_schema_files()
+
+        for schema_file in schema_files:
+            self.assertTrue(self.contains_confirmation_or_summary(schema_file),
+                            msg='{file} does not have a confirmation or summary page'.format(file=schema_file))
+
+    @staticmethod
+    def contains_confirmation_or_summary(schema_file):
+        with open(schema_file, encoding="utf8") as file:
+            schema_json = load(file)
+            blocks = SchemaHelper.get_blocks(schema_json)
+            for block in blocks:
+                if block['type'] in ["Summary", "Confirmation"]:
+                    return True
+        return False
+
     def test_child_answers_define_parent(self):
         for schema_file in self.all_schema_files():
             with open(schema_file, encoding="utf8") as file:

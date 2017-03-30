@@ -38,6 +38,10 @@
             }],
             "routing_rules": [],
             "title": ""
+        },
+        {
+            "type": "Summary",
+            "id": "summary"
         }],
         "id": "group",
         "title": ""

@@ -83,6 +83,10 @@
                     "title": ""
                 }],
                 "title": ""
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
             }
         ],
         "id": "breakfast",

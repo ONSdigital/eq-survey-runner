@@ -103,6 +103,10 @@
                     }],
                     "title": "Business Strategy and Practices Part Two"
                 }]
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
             }
         ]
     }]
