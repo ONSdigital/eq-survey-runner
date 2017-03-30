@@ -32,7 +32,7 @@ def validate_json_against_schema(json_to_validate, schema):
 class TestSchemaIdRegEx(unittest.TestCase):
 
     def setUp(self):
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema-v1.json"), encoding="utf8")
+        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema_v1.json"), encoding="utf8")
         self.errors = []
         self.schema = load(schema_file)
 
