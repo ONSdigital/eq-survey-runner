@@ -23,7 +23,7 @@ class Config(object):
 
 class Test(Config):
     DEBUG = True
-    SECRET_KEY = settings.EQ_SECRET_KEY
+    SECRET_KEY = os.urandom(24)
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = get_timezone('Europe/London')
 

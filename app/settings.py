@@ -1,5 +1,7 @@
+import json
 import os
 
+import credstash
 from structlog import get_logger
 
 logger = get_logger()
@@ -26,6 +28,9 @@ def read_file(file_name):
     else:
         return None
 
+EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
+EQ_DEV_KEYS = parse_mode(os.getenv("EQ_DEV_KEYS", "False"))
+
 EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'False'))
 # max request payload size in bytes
 EQ_MAX_HTTP_POST_CONTENT_LENGTH = os.getenv('EQ_MAX_HTTP_POST_CONTENT_LENGTH', 65536)
@@ -45,7 +50,7 @@ EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'app/data')
 EQ_SESSION_TIMEOUT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_SECONDS', 45 * 60))
 EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS', '30'))
 EQ_SESSION_TIMEOUT_PROMPT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_PROMPT_SECONDS', 120))
-EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
+EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24) if EQ_DEV_KEYS else credstash.getSecret("EQ_SECRET_KEY"))
 EQ_UA_ID = os.getenv('EQ_UA_ID', '')
 EQ_NEW_RELIC_ENABLED = os.getenv("EQ_NEW_RELIC_ENABLED", "False") == "True"
 EQ_APPLICATION_VERSION_PATH = '.application-version'
@@ -60,38 +65,35 @@ EQ_SERVER_SIDE_STORAGE_USER_IK_SALT = os.getenv('EQ_SERVER_SIDE_STORAGE_USER_IK_
 EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER = os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER', 'boba.fett.ig88.xizor')
 EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS = ensure_min(os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS', 10000), 1000)
 
-EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
 EQ_ENABLE_CACHE = parse_mode(os.getenv("EQ_ENABLE_CACHE", "True"))
 EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(os.getenv("EQ_ENABLE_FLASK_DEBUG_TOOLBAR", "False"))
 
-EQ_JWT_LEEWAY_IN_SECONDS = 120
-
-_KEYS = {
-    'EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY':    "./jwt-test-keys/sdc-user-authentication-signing-rrm-public-key.pem",
-    'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY':    "./jwt-test-keys/sdc-user-authentication-encryption-sr-private-key.pem",
-    'EQ_SUBMISSION_SDX_PUBLIC_KEY':             "./jwt-test-keys/sdc-submission-encryption-sdx-public-key.pem",
-    'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY':     "./jwt-test-keys/sdc-submission-signing-sr-private-key.pem",
+_KEYS = [
+    'EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY',
+    'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY',
+    'EQ_SUBMISSION_SDX_PUBLIC_KEY',
+    'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY',
 
     # Only used in DEV MODE:
-    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY':   "./jwt-test-keys/sdc-user-authentication-signing-rrm-private-key.pem",
-    'EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY':     "./jwt-test-keys/sdc-user-authentication-encryption-sr-public-key.pem",
-}
+    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY',
+    'EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY',
+]
 
-_PASSWORDS = {
-    'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD':   "digitaleq",
-    'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD':    "digitaleq",
-    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD':  "digitaleq",
-}
+_PASSWORDS = [
+    'EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD',
+    'EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD',
+    'EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD',
+]
 
-# Load keys and passwords, but only allow developer mode defaults if EQ_DEV_MODE
-# has been enabled explicitly...
-for key_name, dev_location in _KEYS.items():
-    path = os.getenv(key_name, dev_location if EQ_DEV_MODE else None)
-    vars()[key_name] = read_file(path)  # assigns attribute to this module
+if EQ_DEV_KEYS:
+    dev_keys = json.loads(read_file('.dev_keys.json'))
 
-for password_name, dev_default in _PASSWORDS.items():
-    password = os.getenv(password_name, dev_default if EQ_DEV_MODE else None)
-    vars()[password_name] = password  # assigns attribute to this module
+# Load keys and passwords
+for key_name in _KEYS:
+    vars()[key_name] = dev_keys[key_name] if EQ_DEV_KEYS else credstash.getSecret(key_name)
+
+for password_name in _PASSWORDS:
+    vars()[password_name] = dev_keys[password_name] if EQ_DEV_KEYS else credstash.getSecret(password_name)  # assigns attribute to this module
 
 # Date Format expected by SDX
 SDX_DATE_FORMAT = "%d/%m/%Y"

@@ -1,4 +1,4 @@
-import os
+import json
 import re
 import unittest
 
@@ -45,14 +45,14 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
     @staticmethod
     def _setUpSettings():
-        # Load keys and passwords for encryption and signing
-        for key_name, dev_location in settings._KEYS.items():  # pylint: disable=protected-access
-            path = os.getenv(key_name, dev_location)
-            vars(settings)[key_name] = settings.read_file(path)  # assigns attribute to this module
+        dev_keys = json.loads(settings.read_file('.dev_keys.json'))
 
-        for password_name, dev_default in settings._PASSWORDS.items():  # pylint: disable=protected-access
-            password = os.getenv(password_name, dev_default)
-            vars(settings)[password_name] = password  # assigns attribute to this module
+        # Load keys and passwords for encryption and signing
+        for key_name in settings._KEYS: # pylint: disable=protected-access
+            vars()[key_name] = dev_keys[key_name]
+
+        for password_name in settings._PASSWORDS: # pylint: disable=protected-access
+            vars()[password_name] = dev_keys[password_name]  # assigns attribute to this module
 
     def _setUpApp(self):
         self._application = create_app()
