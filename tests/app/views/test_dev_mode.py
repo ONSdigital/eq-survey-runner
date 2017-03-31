@@ -1,6 +1,7 @@
 from app import settings
-from tests.integration.integration_test_case import IntegrationTestCase
 from app.views.dev_mode import extract_eq_id_and_form_type
+
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestDevMode(IntegrationTestCase):
@@ -88,5 +89,3 @@ class TestDevMode(IntegrationTestCase):
         with self.assertRaises(ValueError) as ite:
             extract_eq_id_and_form_type('abc.json_123')
         self.assertEqual('Invalid schema format', str(ite.exception))
-
-

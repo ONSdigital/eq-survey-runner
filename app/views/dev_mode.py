@@ -97,7 +97,7 @@ def extract_eq_id_and_form_type(schema_name):
         eq_id = match.group(1)
         form_type = match.group(2)
     else:
-        raise ValueError('Invalid schema format')
+        raise ValueError("Schema filename incorrect format: %", schema_name)
     logger.debug("parsed eq_id and form_type", eq_id=eq_id, form_type=form_type)
     return eq_id, form_type
 
