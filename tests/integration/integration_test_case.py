@@ -1,15 +1,12 @@
-import os
+import json
 import re
 import unittest
-import json
 
 from bs4 import BeautifulSoup
 
 from app import create_app
-from app import settings
-from app.data_model.database import QuestionnaireState, EQSession, UsedJtiClaim
 
-from tests.integration.create_token import create_token
+from tests.integration.create_token import TokenGenerator
 
 
 class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public-methods
@@ -20,44 +17,17 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self.last_response = None
         self.last_csrf_token = None
 
-        settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
-
         # Perform setup steps
-        self._setUpSettings()
         self._setUpApp()
 
-
-    @staticmethod
-    def _setUpSettings():
-        # Load keys and passwords for encryption and signing
-        for key_name, dev_location in settings._KEYS.items():  # pylint: disable=protected-access
-            path = os.getenv(key_name, dev_location)
-            vars(settings)[key_name] = settings.read_file(path)  # assigns attribute to this module
-
-        for password_name, dev_default in settings._PASSWORDS.items():  # pylint: disable=protected-access
-            password = os.getenv(password_name, dev_default)
-            vars(settings)[password_name] = password  # assigns attribute to this module
-
-
     def _setUpApp(self):
-        self._application = create_app()
+        setting_overrides = {
+            "EQ_SERVER_SIDE_STORAGE_DATABASE_URL": "sqlite://"
+        }
+        self._application = create_app(setting_overrides)
+        self.token_generator = TokenGenerator(self._application)
 
         self._client = self._application.test_client()
-        # Clear any existing state before the test starts
-        self.clearDatabase()
-
-    def tearDown(self):
-        self.clearDatabase()
-
-
-    @staticmethod
-    def clearDatabase():
-        """
-        Clears all data from the database
-        """
-        QuestionnaireState.query.delete()   # pylint: disable=maybe-no-member
-        EQSession.query.delete()            # pylint: disable=maybe-no-member
-        UsedJtiClaim.query.delete()         # pylint: disable=maybe-no-member
 
     def launchSurvey(self, eq_id='test', form_type_id='radio', **payload_kwargs):
         """
@@ -65,7 +35,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         :param eq_id: The id of the survey to launch e.g. 'census', 'test' etc.
         :param form_type_id: The form type of the survey e.g. 'household', 'radio' etc.
         """
-        token = create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
+        token = self.token_generator.create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
         self.get('/session?token=' + token.decode())
 
     def dumpAnswers(self):

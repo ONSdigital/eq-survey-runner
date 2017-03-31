@@ -5,6 +5,7 @@ import sys
 from datetime import timedelta
 from uuid import uuid4
 
+import yaml
 from flask import Flask
 from flask import url_for
 from flask.ext.cache import Cache
@@ -16,6 +17,7 @@ from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.authentication.session_storage import SessionStorage
+from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.database import Database
 from app.new_relic import setup_newrelic
 
@@ -47,9 +49,14 @@ class AWSReverseProxied(object):
         return self.app(environ, start_response)
 
 
-def create_app():  # noqa: C901  pylint: disable=too-complex
+def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
+
+    secrets = yaml.load(open('.secrets.yml'))
+    application.config.from_object(secrets)
+
     application.config.from_object(settings)
+    application.config.update(setting_overrides)
 
     if application.config['EQ_APPLICATION_VERSION']:
         logger.info('starting eq survey runner', version=application.config['EQ_APPLICATION_VERSION'])
@@ -81,6 +88,12 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
 
     application.eq['session_storage'] = SessionStorage(
         application.eq['database'],
+    )
+
+    application.eq['user_id_generator'] = UserIDGenerator(
+        application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_SALT'],
+        application.config['EQ_SERVER_SIDE_STORAGE_USER_IK_SALT'],
+        application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS'],
     )
 
     setup_secure_cookies(application)

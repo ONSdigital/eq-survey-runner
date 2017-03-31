@@ -79,6 +79,8 @@ If you need to run the tests:
 pip install -r requirements_for_test.txt
 ```
 
+Create a local `.secrets.yml` by duplicating `.dev_secrets.yml`
+
 Run the server with
 
 ```
