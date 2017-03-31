@@ -76,9 +76,8 @@ class TestDevMode(IntegrationTestCase):
         self.assertEqual(('Schema filename incorrect format: %s', ''), ite.exception.args)
 
     def test_extract_eq_id_and_form_type_none(self):
-        with self.assertRaises(TypeError) as ite:
+        with self.assertRaises(TypeError):
             extract_eq_id_and_form_type(None)
-        self.assertEqual('expected string or bytes-like object', str(ite.exception))
 
     def test_extract_eq_id_and_form_type_wrong_extension(self):
         with self.assertRaises(ValueError) as ite:
