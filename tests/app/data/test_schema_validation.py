@@ -37,7 +37,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         files = self.all_schema_files()
 
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "census_household.json"), encoding="utf8")
+        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema_v1.json"), encoding="utf8")
         schema = load(schema_file)
 
         for file in files:
