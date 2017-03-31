@@ -33,6 +33,10 @@
                 }]
             }],
             "title": ""
+        },
+        {
+            "type": "Summary",
+            "id": "summary"
         }]
     }]
 }

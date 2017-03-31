@@ -85,6 +85,10 @@
                         }]
                     }]
                 }]
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
             }
         ]
     }]

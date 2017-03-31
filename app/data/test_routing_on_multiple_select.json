@@ -98,6 +98,10 @@
                         }]
                     }]
                 }]
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
             }
         ]
     }]
