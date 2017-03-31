@@ -19,7 +19,7 @@ configure(logger_factory=LoggerFactory(), processors=[ConsoleRenderer()])
 class TestSchemaValidation(unittest.TestCase):
 
     def test_invalid_schema(self):
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema-v1.json"), encoding="utf8")
+        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema_v1.json"), encoding="utf8")
         schema = load(schema_file)
 
         file = "test_invalid_routing.json"
@@ -37,7 +37,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         files = self.all_schema_files()
 
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema-v1.json"), encoding="utf8")
+        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema_v1.json"), encoding="utf8")
         schema = load(schema_file)
 
         for file in files:
@@ -114,7 +114,7 @@ class TestSchemaValidation(unittest.TestCase):
         schema_files = []
         for folder, _, files in os.walk(settings.EQ_SCHEMA_DIRECTORY):
             for filename in files:
-                if filename.endswith(".json") and filename != 'schema-v1.json':
+                if filename.endswith(".json") and filename != 'schema_v1.json':
                     schema_files.append(os.path.join(folder, filename))
         return schema_files
 
