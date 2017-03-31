@@ -25,7 +25,10 @@ def _map_alias_to_answers(aliases, answer_store):
         matching_answers = []
 
         answers = answer_store.filter(answer_id=answer_info['answer_id'], limit=settings.EQ_MAX_NUM_REPEATS)
-        matching_answers.extend([answer['value'] for answer in answers])
+
+        for answer in answers:
+            safe_answer = json_safe(answer['value'])
+            matching_answers.append(safe_answer)
 
         number_of_matches = len(matching_answers)
 
@@ -52,7 +55,14 @@ def _build_exercise(metadata):
 
 def _build_respondent(metadata):
     return {
-        "ru_name": metadata["ru_name"],
-        "trad_as": metadata["trad_as"],
-        "trad_as_or_ru_name": metadata["trad_as"] or metadata["ru_name"],
+        "ru_name": json_safe(metadata["ru_name"]),
+        "trad_as": json_safe(metadata["trad_as"]),
+        "trad_as_or_ru_name": json_safe(metadata["trad_as"] or metadata["ru_name"]),
     }
+
+
+def json_safe(data):
+    if isinstance(data, str):
+        return data.replace('\\', r'\\').replace('"', r'\"')
+    else:
+        return data

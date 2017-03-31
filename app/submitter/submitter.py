@@ -36,10 +36,6 @@ class Submitter(object):
         if not sent:
             raise SubmissionFailedException()
 
-    def send_test(self):
-        test = "Test connection"
-        return self.send_message(test, settings.EQ_RABBITMQ_TEST_QUEUE_NAME)
-
     @abstractmethod
     def send_message(self, message, queue):
         return False

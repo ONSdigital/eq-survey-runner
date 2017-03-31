@@ -18,11 +18,11 @@ def parse_mode(string):
     return string.upper() != 'FALSE'
 
 
-def get_key(_key_name):
-    if _key_name:
-        logger.debug("reading key from file", filename=_key_name)
-        key = open(_key_name, 'r')
-        contents = key.read()
+def read_file(file_name):
+    if os.path.isfile(file_name):
+        logger.debug("reading from file", filename=file_name)
+        f = open(file_name, "r")
+        contents = f.read()
         return contents
     else:
         return None
@@ -41,7 +41,6 @@ EQ_RABBITMQ_URL_SECONDARY = os.getenv('EQ_RABBITMQ_URL_SECONDARY', 'amqp://local
 EQ_RABBITMQ_QUEUE_NAME = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'eq-submissions')
 EQ_RABBITMQ_TEST_QUEUE_NAME = os.getenv('EQ_RABBITMQ_TEST_QUEUE_NAME', 'eq-test')
 EQ_RABBITMQ_ENABLED = parse_mode(os.getenv('EQ_RABBITMQ_ENABLED', 'True'))
-EQ_GIT_REF = os.getenv('EQ_GIT_REF', 'unknown')
 EQ_NEW_RELIC_CONFIG_FILE = os.getenv('EQ_NEW_RELIC_CONFIG_FILE', './newrelic.ini')
 EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'app/data')
 EQ_SESSION_TIMEOUT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_SECONDS', 45 * 60))
@@ -50,9 +49,9 @@ EQ_SESSION_TIMEOUT_PROMPT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_PROMPT_SEC
 EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
 EQ_UA_ID = os.getenv('EQ_UA_ID', '')
 EQ_MAX_REPLAY_COUNT = os.getenv('EQ_REPLAY_COUNT', 50)
-
 EQ_NEW_RELIC_ENABLED = os.getenv("EQ_NEW_RELIC_ENABLED", "False") == "True"
-
+EQ_APPLICATION_VERSION_PATH = '.application-version'
+EQ_APPLICATION_VERSION = read_file(EQ_APPLICATION_VERSION_PATH)
 
 EQ_SERVER_SIDE_STORAGE_ENCRYPTION = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION', 'True'))
 EQ_SERVER_SIDE_STORAGE_DATABASE_URL = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_URL', 'sqlite:////tmp/questionnaire.db')
@@ -88,7 +87,7 @@ _PASSWORDS = {
 # has been enabled explicitly...
 for key_name, dev_location in _KEYS.items():
     path = os.getenv(key_name, dev_location if EQ_DEV_MODE else None)
-    vars()[key_name] = get_key(path)  # assigns attribute to this module
+    vars()[key_name] = read_file(path)  # assigns attribute to this module
 
 for password_name, dev_default in _PASSWORDS.items():
     password = os.getenv(password_name, dev_default if EQ_DEV_MODE else None)

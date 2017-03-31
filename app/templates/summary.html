@@ -1,3 +1,4 @@
+{% import 'macros/helpers.html' as helpers %}
 {% extends theme('layouts/_onecol.html') -%}
 
 {% block page_title -%}{{_("Summary")}} - {{survey_title}}{% endblock -%}
@@ -59,6 +60,9 @@
   <form method="POST" autocomplete="off" novalidate>
     {{ form.csrf_token }}
     <button class="btn btn--primary btn--lg u-mr-s qa-btn-submit-answers venus" type="submit">Submit answers</button>
+      <div class="u-mb-m">
+        <button class="btn btn--link mars js-btn-save" type="submit" name="action[save_sign_out]" {{helpers.track('click', 'Navigation', 'Save and complete later click')}}>{% block save_sign_out_button_text %}Save and complete later{% endblock %}</button>
+      </div>
   </form>
 </div>
 

@@ -5,7 +5,7 @@ from app.templating.schema_context import build_schema_context
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
 
-class TestSchemaContext(SurveyRunnerTestCase):
+class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-public-methods
 
     metadata = {
         'return_by': '2016-10-10',
@@ -233,3 +233,112 @@ class TestSchemaContext(SurveyRunnerTestCase):
         schema_context = build_schema_context(metadata, {}, self.answer_store)
 
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
+
+    def test_given_quotes_in_trading_name_when_create_context_then_quotes_are_escaped(self):
+        # Given
+        metadata = self.metadata.copy()
+        metadata['trad_as'] = "\"trading name\""
+
+        # When
+        schema_context = build_schema_context(metadata, {}, self.answer_store)
+
+        # Then
+        self.assertEqual(schema_context['respondent']['trad_as'], r'\"trading name\"')
+
+    def test_given_backslash_in_trading_name_when_create_context_then_backslash_are_escaped(self):
+        # Given
+        metadata = self.metadata.copy()
+        metadata['trad_as'] = "\\trading name\\"
+
+        # When
+        schema_context = build_schema_context(metadata, {}, self.answer_store)
+
+        # Then
+        self.assertEqual(schema_context['respondent']['trad_as'], r'\\trading name\\')
+
+    def test_given_quotes_in_ru_name_when_create_context_then_quotes_are_escaped(self):
+        # Given
+        metadata = self.metadata.copy()
+        metadata['ru_name'] = "\"ru name\""
+
+        # When
+        schema_context = build_schema_context(metadata, {}, self.answer_store)
+
+        # Then
+        self.assertEqual(schema_context['respondent']['ru_name'], r'\"ru name\"')
+
+    def test_given_backslash_in_ru_name_when_create_context_then_backslash_are_escaped(self):
+        # Given
+        metadata = self.metadata.copy()
+        metadata['ru_name'] = "\\ru name\\"
+
+        # When
+        schema_context = build_schema_context(metadata, {}, self.answer_store)
+
+        # Then
+        self.assertEqual(schema_context['respondent']['ru_name'], r'\\ru name\\')
+
+    def test_given_quotes_in_ru_name_or_trading_name_when_create_context_then_quotes_are_escaped(self):
+        # Given
+        metadata = self.metadata.copy()
+        metadata['ru_name'] = '"ru_name"'
+        metadata['trad_as'] = None
+
+        # When
+        schema_context = build_schema_context(metadata, {}, self.answer_store)
+
+        # Then
+        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'\"ru_name\"')
+
+    def test_given_backslash_in_ru_name_or_trading_name_when_create_context_then_backslash_are_escaped(self):
+        # Given
+        metadata = self.metadata.copy()
+        metadata['trad_as'] = "\\trading name\\"
+
+        # When
+        schema_context = build_schema_context(metadata, {}, self.answer_store)
+
+        # Then
+        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'\\trading name\\')
+
+    def test_given_quotes_in_answers_when_create_context_quotes_then_are_escaped(self):
+        aliases = {
+            'first_name': {
+                'answer_id': 'answer_id',
+                'repeats': False,
+            },
+        }
+        answers = [{
+            'answer_id': 'answer_id',
+            'answer_instance': 0,
+            'value': '"',
+        }]
+
+        self.answer_store.filter = MagicMock(return_value=answers)
+
+        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+
+        context_answers = schema_context['answers']
+        self.assertEqual(len(context_answers), 1)
+        self.assertEqual(context_answers['first_name'], r'\"')
+
+    def test_given_backslash_in_answers_when_create_context_then_backslash_are_escaped(self):
+        aliases = {
+            'first_name': {
+                'answer_id': 'answer_id',
+                'repeats': False,
+            },
+        }
+        answers = [{
+            'answer_id': 'answer_id',
+            'answer_instance': 0,
+            'value': '\\',
+        }]
+
+        self.answer_store.filter = MagicMock(return_value=answers)
+
+        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+
+        context_answers = schema_context['answers']
+        self.assertEqual(len(context_answers), 1)
+        self.assertEqual(context_answers['first_name'], r'\\')
