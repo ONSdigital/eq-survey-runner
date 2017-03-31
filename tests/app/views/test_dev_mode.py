@@ -63,17 +63,17 @@ class TestDevMode(IntegrationTestCase):
     def test_extract_eq_id_and_form_type_no_underscore(self):
         with self.assertRaises(ValueError) as ite:
             extract_eq_id_and_form_type('rogueone.json')
-        self.assertEqual('Invalid schema format', str(ite.exception))
+        self.assertEqual(('Schema filename incorrect format: %s', 'rogueone.json'), ite.exception.args)
 
     def test_extract_eq_id_and_form_type_no_underscore_no_extension(self):
         with self.assertRaises(ValueError) as ite:
             extract_eq_id_and_form_type('rogueone')
-        self.assertEqual('Invalid schema format', str(ite.exception))
+        self.assertEqual(('Schema filename incorrect format: %s', 'rogueone'), ite.exception.args)
 
     def test_extract_eq_id_and_form_type_blank(self):
         with self.assertRaises(ValueError) as ite:
             extract_eq_id_and_form_type('')
-        self.assertEqual('Invalid schema format', str(ite.exception))
+        self.assertEqual(('Schema filename incorrect format: %s', ''), ite.exception.args)
 
     def test_extract_eq_id_and_form_type_none(self):
         with self.assertRaises(TypeError) as ite:
@@ -83,9 +83,9 @@ class TestDevMode(IntegrationTestCase):
     def test_extract_eq_id_and_form_type_wrong_extension(self):
         with self.assertRaises(ValueError) as ite:
             extract_eq_id_and_form_type('census_household.txt')
-        self.assertEqual('Invalid schema format', str(ite.exception))
+        self.assertEqual(('Schema filename incorrect format: %s', 'census_household.txt'), ite.exception.args)
 
     def test_extract_eq_id_and_form_type_format_backwards(self):
         with self.assertRaises(ValueError) as ite:
             extract_eq_id_and_form_type('abc.json_123')
-        self.assertEqual('Invalid schema format', str(ite.exception))
+        self.assertEqual(('Schema filename incorrect format: %s', 'abc.json_123'), ite.exception.args)
