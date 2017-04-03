@@ -1,6 +1,5 @@
 import os
 
-import pytz
 from structlog import get_logger
 
 logger = get_logger()
@@ -48,7 +47,6 @@ EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_GRAC
 EQ_SESSION_TIMEOUT_PROMPT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_PROMPT_SECONDS', 120))
 EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
 EQ_UA_ID = os.getenv('EQ_UA_ID', '')
-EQ_MAX_REPLAY_COUNT = os.getenv('EQ_REPLAY_COUNT', 50)
 EQ_NEW_RELIC_ENABLED = os.getenv("EQ_NEW_RELIC_ENABLED", "False") == "True"
 EQ_APPLICATION_VERSION_PATH = '.application-version'
 EQ_APPLICATION_VERSION = read_file(EQ_APPLICATION_VERSION_PATH)
@@ -65,6 +63,8 @@ EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS = ensure_min(os.getenv('EQ_SERVER_SIDE
 EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))
 EQ_ENABLE_CACHE = parse_mode(os.getenv("EQ_ENABLE_CACHE", "True"))
 EQ_ENABLE_FLASK_DEBUG_TOOLBAR = parse_mode(os.getenv("EQ_ENABLE_FLASK_DEBUG_TOOLBAR", "False"))
+
+EQ_JWT_LEEWAY_IN_SECONDS = 120
 
 _KEYS = {
     'EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY':    "./jwt-test-keys/sdc-user-authentication-signing-rrm-public-key.pem",
@@ -93,14 +93,5 @@ for password_name, dev_default in _PASSWORDS.items():
     password = os.getenv(password_name, dev_default if EQ_DEV_MODE else None)
     vars()[password_name] = password  # assigns attribute to this module
 
-
-# non configurable settings
-# date format when displayed to the user
-DISPLAY_DATETIME_FORMAT = '%A %d %B %Y at %H:%M'
-
 # Date Format expected by SDX
 SDX_DATE_FORMAT = "%d/%m/%Y"
-EUROPE_LONDON = pytz.timezone("Europe/London")
-
-# JWT configurations
-EQ_JWT_LEEWAY_IN_SECONDS = 120
