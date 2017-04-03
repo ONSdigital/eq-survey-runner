@@ -1,25 +1,20 @@
-import unittest
-
 from app import create_app
 from app.forms.questionnaire_form import generate_form
 from app.helpers.schema_helper import SchemaHelper
-from app.schema_loader.schema_loader import load_schema_file
+from app.utilities.schema import load_schema_file
 from app.validation.validators import ResponseRequired
 
+from tests.app.app_context_test_case import AppContextTestCase
 
-class TestQuestionnaireForm(unittest.TestCase):
-    def setUp(self):
-        self.app = create_app()
-        self.app.config['SERVER_NAME'] = "test"
-        self.app_context = self.app.app_context()
-        self.app_context.push()
+
+class TestQuestionnaireForm(AppContextTestCase):
 
     @staticmethod
     def _error_exists(answer_id, msg, mapped_errors):
         return any(a_id == answer_id and msg in ordered_errors for a_id, ordered_errors in mapped_errors)
 
     def test_form_ids_match_block_answer_ids(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -31,7 +26,7 @@ class TestQuestionnaireForm(unittest.TestCase):
                 self.assertTrue(hasattr(form, answer['id']))
 
     def test_form_date_range_populates_data(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -56,7 +51,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertEqual(form.data, expected_form_data)
 
     def test_date_range_matching_dates_raises_question_error(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -85,7 +80,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertEqual(form.question_errors['reporting-period-question'], expected_message)
 
     def test_date_range_to_precedes_from_raises_question_error(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -114,7 +109,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertEqual(form.question_errors['reporting-period-question'], expected_message)
 
     def test_form_errors_are_correctly_mapped(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0112.json")
 
             block_json = SchemaHelper.get_block(survey, "total-retail-turnover")
@@ -130,7 +125,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertTrue(self._error_exists('total-retail-turnover-answer', message, mapped_errors))
 
     def test_form_subfield_errors_are_correctly_mapped(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -147,7 +142,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertTrue(self._error_exists('period-from', message, mapped_errors))
 
     def test_answer_with_child_inherits_mandatory_from_parent(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_radio.json")
 
             block_json = SchemaHelper.get_block(survey, "radio-mandatory")
@@ -162,7 +157,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertIsInstance(child_field.validators[0], ResponseRequired)
 
     def test_answer_with_child_errors_are_correctly_mapped(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_radio.json")
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
@@ -181,7 +176,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertFalse(self._error_exists("other-answer-mandatory", message, mapped_errors))
 
     def test_answer_errors_are_mapped(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0112.json")
 
             block_json = SchemaHelper.get_block(survey, "total-retail-turnover")
@@ -196,7 +191,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertIn("The value cannot be negative. Please correct your answer.", answer_errors)
 
     def test_option_has_other(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_checkbox.json")
             block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
             error_messages = SchemaHelper.get_messages(survey)
@@ -207,7 +202,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertTrue(form.option_has_other("mandatory-checkbox-answer", 6))
 
     def test_get_other_answer(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_checkbox.json")
             block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
             error_messages = SchemaHelper.get_messages(survey)
@@ -221,7 +216,7 @@ class TestQuestionnaireForm(unittest.TestCase):
             self.assertEqual("Some data", field.data)
 
     def test_get_other_answer_invalid(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_checkbox.json")
             block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
             error_messages = SchemaHelper.get_messages(survey)

@@ -1,27 +1,29 @@
-import unittest
+from app.utilities.schema import load_schema_from_params
 
-from app.schema_loader.schema_loader import load_schema
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class SchemaLoaderTest(unittest.TestCase):
+class SchemaLoaderTest(AppContextTestCase):
 
-    def test_load_schema(self):
-        self.assertIsNotNone(load_schema("1", "0203"))
+    def test_load_schema_from_params(self):
+        self.assertIsNotNone(load_schema_from_params("1", "0203"))
 
     def test_load_schema_with_different_form_type(self):
-        self.assertIsNotNone(load_schema("1", "0205"))
+        self.assertIsNotNone(load_schema_from_params("1", "0205"))
 
     def test_load_schema_with_invalid_form_type(self):
-        self.assertIsNone(load_schema("1", "0309"))
+        with self.assertRaises(FileNotFoundError):
+            load_schema_from_params("1", "0309")
 
     def test_load_schema_with_invalid_eq_id(self):
-        self.assertIsNone(load_schema("99", "0205"))
+        with self.assertRaises(FileNotFoundError):
+            load_schema_from_params("99", "0205")
 
     def test_load_schema_with_default_language_code(self):
-        self.assertIsNotNone(load_schema("test", "language"))
+        self.assertIsNotNone(load_schema_from_params("test", "language"))
 
     def test_load_schema_with_passing_default_language_code(self):
-        self.assertIsNotNone(load_schema("test", "language", "en"))
+        self.assertIsNotNone(load_schema_from_params("test", "language", "en"))
 
     def test_load_schema_with_language_code(self):
-        self.assertIsNotNone(load_schema("test", "language", "cy"))
+        self.assertIsNotNone(load_schema_from_params("test", "language", "cy"))

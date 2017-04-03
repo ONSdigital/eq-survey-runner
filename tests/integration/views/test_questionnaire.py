@@ -1,25 +1,24 @@
 import json
-import unittest
 
 from flask import g
 from mock import Mock
 
-from app import create_app
 from app.data_model.answer_store import Answer
 from app.data_model.questionnaire_store import QuestionnaireStore
 from app.questionnaire.location import Location
-from app.schema_loader.schema_loader import load_schema_file
+from app.utilities.schema import load_schema_file
 from app.views.questionnaire import update_questionnaire_store_with_answer_data, \
     update_questionnaire_store_with_form_data, remove_empty_household_members_from_answer_store, \
     get_page_title_for_location
 
+from tests.integration.integration_test_case import IntegrationTestCase
 
-class TestQuestionnaire(unittest.TestCase):
+
+class TestQuestionnaire(IntegrationTestCase):
     def setUp(self):
-        self.app = create_app()
-        self.app.config['SERVER_NAME'] = "test"
-        self.app_context = self.app.app_context()
-        self.app_context.push()
+        super().setUp()
+        self._application_context = self._application.app_context()
+        self._application_context.push()
 
         storage = Mock()
         data = {
@@ -32,7 +31,7 @@ class TestQuestionnaire(unittest.TestCase):
         self.question_store = QuestionnaireStore(storage)
 
     def tearDown(self):
-        self.app_context.pop()
+        self._application_context.pop()
 
     def test_update_questionnaire_store_with_form_data(self):
 

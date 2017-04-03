@@ -29,7 +29,7 @@ from app.templating.metadata_context import build_metadata_context
 from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
 from app.templating.template_renderer import renderer, TemplateRenderer
-from app.utilities.schema import get_schema
+from app.utilities.schema import load_schema_from_metadata
 from app.views.errors import MultipleSurveyError
 
 logger = get_logger()
@@ -45,7 +45,7 @@ questionnaire_blueprint = Blueprint(name='questionnaire',
 def before_request():
     metadata = get_metadata(current_user)
     logger.bind(tx_id=metadata['tx_id'])
-    g.schema_json = get_schema(metadata)
+    g.schema_json = load_schema_from_metadata(metadata)
     values = request.view_args
     logger.info('questionnaire request', eq_id=values['eq_id'], form_type=values['form_type'],
                 ce_id=values['collection_id'], method=request.method, url_path=request.full_path)

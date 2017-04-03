@@ -7,7 +7,6 @@ from flask import Flask
 from flask_login import LoginManager
 
 from app import settings
-from app.parser.v0_0_1.schema_parser import SchemaParser
 
 login_manager = LoginManager()
 
@@ -28,7 +27,4 @@ class SurveyRunnerTestCase(unittest.TestCase):
 
         schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "0_star_wars.json"))
         schema = schema_file.read()
-        # create a parser
         self.schema_json = json.loads(schema)
-        parser = SchemaParser(self.schema_json)
-        parser.parse()

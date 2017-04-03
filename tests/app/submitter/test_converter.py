@@ -3,8 +3,8 @@ from datetime import datetime, timedelta, timezone
 import dateutil.parser
 
 from app.data_model.answer_store import AnswerStore
-from app.parser.metadata_parser import parse_metadata
 from app.questionnaire.location import Location
+from app.storage.metadata_parser import parse_metadata
 from app.submitter.converter import convert_answers, DataVersionError
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 

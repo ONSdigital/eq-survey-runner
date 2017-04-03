@@ -1,25 +1,19 @@
-import unittest
-
-from app import create_app
 from app.helpers.form_helper import get_form_for_location, post_form_for_location
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
-from app.schema_loader.schema_loader import load_schema_file
+from app.utilities.schema import load_schema_file
 from app.data_model.answer_store import AnswerStore
 from app.validation.validators import DateRequired, OptionalForm
 
 from werkzeug.datastructures import MultiDict
 
+from tests.app.app_context_test_case import AppContextTestCase
 
-class TestFormHelper(unittest.TestCase):
-    def setUp(self):
-        self.app = create_app()
-        self.app.config['SERVER_NAME'] = "test"
-        self.app_context = self.app.app_context()
-        self.app_context.push()
+
+class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_block_location(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -38,7 +32,7 @@ class TestFormHelper(unittest.TestCase):
             self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
 
     def test_get_form_and_disable_mandatory_answers(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -58,7 +52,7 @@ class TestFormHelper(unittest.TestCase):
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_get_form_deserialises_dates(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -101,7 +95,7 @@ class TestFormHelper(unittest.TestCase):
             })
 
     def test_get_form_deserialises_month_year_dates(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_dates.json")
 
             block_json = SchemaHelper.get_block(survey, "date-block")
@@ -129,7 +123,7 @@ class TestFormHelper(unittest.TestCase):
             })
 
     def test_get_form_deserialises_lists(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_checkbox.json")
 
             block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
@@ -154,7 +148,7 @@ class TestFormHelper(unittest.TestCase):
             self.assertEquals(checkbox_field.data, ['Cheese', 'Ham'])
 
     def test_post_form_for_block_location(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -191,7 +185,7 @@ class TestFormHelper(unittest.TestCase):
             })
 
     def test_post_form_and_disable_mandatory(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("1_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
@@ -211,7 +205,7 @@ class TestFormHelper(unittest.TestCase):
             self.assertIsInstance(period_to_field.month.validators[0], OptionalForm)
 
     def test_get_form_for_household_composition(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("census_household.json")
 
             block_json = SchemaHelper.get_block(survey, 'household-composition')
@@ -230,7 +224,7 @@ class TestFormHelper(unittest.TestCase):
             self.assertTrue(hasattr(first_field_entry, "last-name"))
 
     def test_post_form_for_household_composition(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("census_household.json")
 
             block_json = SchemaHelper.get_block(survey, 'household-composition')
@@ -257,7 +251,7 @@ class TestFormHelper(unittest.TestCase):
             })
 
     def test_get_form_for_household_relationship(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("census_household.json")
 
             block_json = SchemaHelper.get_block(survey, 'household-relationships')
@@ -307,7 +301,7 @@ class TestFormHelper(unittest.TestCase):
             self.assertEqual(len(field_list.entries), 1)
 
     def test_post_form_for_household_relationship(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("census_household.json")
 
             block_json = SchemaHelper.get_block(survey, 'household-relationships')
@@ -355,7 +349,7 @@ class TestFormHelper(unittest.TestCase):
             self.assertEqual(field_list.entries[0].data, "3")
 
     def test_post_form_for_radio_other_not_selected(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_radio.json")
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')
@@ -390,7 +384,7 @@ class TestFormHelper(unittest.TestCase):
             self.assertEqual(other_text_field.data, '')
 
     def test_post_form_for_radio_other_selected(self):
-        with create_app().test_request_context():
+        with self.test_request_context():
             survey = load_schema_file("test_radio.json")
 
             block_json = SchemaHelper.get_block(survey, 'radio-mandatory')

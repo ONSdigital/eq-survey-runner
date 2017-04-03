@@ -1,21 +1,13 @@
-import unittest
-
-from app import create_app
 from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
-from app.schema_loader.schema_loader import load_schema_file
+from app.utilities.schema import load_schema_file
+
+from tests.app.app_context_test_case import AppContextTestCase
 
 
 # pylint: disable=R0904,C0302
-class TestNavigation(unittest.TestCase):
-
-    @staticmethod
-    def setUp():
-        app = create_app()
-        app.config['SERVER_NAME'] = "test"
-        app_context = app.app_context()
-        app_context.push()
+class TestNavigation(AppContextTestCase):
 
     def test_navigation_no_blocks_completed(self):
         survey = load_schema_file("test_navigation.json")

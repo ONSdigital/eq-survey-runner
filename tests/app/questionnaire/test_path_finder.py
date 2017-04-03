@@ -5,7 +5,7 @@ import pytest
 from app.data_model.answer_store import Answer, AnswerStore
 from app.questionnaire.location import Location
 from app.questionnaire.path_finder import PathFinder
-from app.schema_loader.schema_loader import load_schema_file
+from app.utilities.schema import load_schema_file
 
 
 class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-methods

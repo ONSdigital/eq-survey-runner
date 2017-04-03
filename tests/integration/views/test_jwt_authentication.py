@@ -2,13 +2,14 @@ import logging
 import time
 import unittest
 
-from app import create_app
 from app import settings
 from app.cryptography.jwt_encoder import Encoder
+
+from tests.app.app_context_test_case import AppContextTestCase
 from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
 
-class FlaskClientAuthenticationTestCase(unittest.TestCase):
+class FlaskClientAuthenticationTestCase(AppContextTestCase):
 
     def setUp(self):
         logging.basicConfig(level=logging.DEBUG)
@@ -16,13 +17,8 @@ class FlaskClientAuthenticationTestCase(unittest.TestCase):
         settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
-        self.app = create_app()
-        self.app_context = self.app.app_context()
-        self.app_context.push()
-        self.client = self.app.test_client(use_cookies=False)
-
-    def tearDown(self):
-        self.app_context.pop()
+        super().setUp()
+        self.client = self._app.test_client(use_cookies=False)
 
     def test_no_token(self):
         response = self.client.get('/session')

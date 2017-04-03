@@ -1,6 +1,3 @@
-import unittest
-
-import app
 from app.data_model.database import EQSession
 from app.authentication.session_storage import SessionStorage, EQ_SESSION_ID
 
@@ -8,13 +5,17 @@ import flask
 from mock import patch, Mock
 from sqlalchemy.exc import IntegrityError
 
+from tests.app.app_context_test_case import AppContextTestCase
+
+
 # SQLAlchemy confuses pylint and we want to override a protected method here
 # pylint: disable=no-member,protected-access
 
-class TestSessionManager(unittest.TestCase):
+
+class TestSessionManager(AppContextTestCase):
 
     def setUp(self):
-        self.flask_app = app.create_app()
+        super().setUp()
         self.session_storage = SessionStorage()
 
         # Create a patched db_session so we don't need a real database to test against
@@ -26,7 +27,7 @@ class TestSessionManager(unittest.TestCase):
         # in order to access the Flask session object
 
     def test_store_new_user_id_then_replace(self):
-        with self.flask_app.test_request_context('/status'):
+        with self.test_request_context('/status'):
             # Store a user id for the first time
             self.session_storage.store_user_id('1')
 
@@ -47,7 +48,7 @@ class TestSessionManager(unittest.TestCase):
             self.assertNotEqual(eq_session_id, flask.session[EQ_SESSION_ID])
 
     def test_should_not_clear_with_no_session_data(self):
-        with self.flask_app.test_request_context('/status'):
+        with self.test_request_context('/status'):
             # Calling clear with no session should be safe to do
             self.session_storage.clear()
 
@@ -55,7 +56,7 @@ class TestSessionManager(unittest.TestCase):
             self.assertFalse(self.db_session.delete.called)
 
     def test_should_not_clear_with_no_session_in_database(self):
-        with self.flask_app.test_request_context('/status'):
+        with self.test_request_context('/status'):
             user_id = 'test_clear_user_id'
 
             # Store a user_id
@@ -71,7 +72,7 @@ class TestSessionManager(unittest.TestCase):
             self.assertFalse(self.db_session.delete.called)
 
     def test_should_clear_with_session_and_data(self):
-        with self.flask_app.test_request_context('/status'):
+        with self.test_request_context('/status'):
             user_id = 'test_clear_user_id'
 
             # Store a user id
@@ -89,7 +90,7 @@ class TestSessionManager(unittest.TestCase):
             self.db_session.delete.assert_called_once_with(eq_session)
 
     def test_store_user_id_rollback(self):
-        with self.flask_app.test_request_context('/status'):
+        with self.test_request_context('/status'):
             # Given
             self.db_session.commit.side_effect = IntegrityError(Mock(), Mock(), Mock())
 
@@ -101,7 +102,7 @@ class TestSessionManager(unittest.TestCase):
             self.db_session.rollback.assert_called_once_with()
 
     def test_clear_rollback(self):
-        with self.flask_app.test_request_context('/status'):
+        with self.test_request_context('/status'):
             # Given
             user_id = '1'
 
