@@ -57,3 +57,13 @@ class TestLogin(IntegrationTestCase):
         # Then
         self.assertStatusOK()
         self.assertInUrl('/questionnaire/1/0205')
+
+    def test_login_with_valid_token_no_eq_id_and_form_type(self):
+        # Given
+        token = create_token('', '')
+
+        # When
+        self.get('/session?token=' + token.decode())
+
+        # Then
+        self.assertStatusNotFound()
