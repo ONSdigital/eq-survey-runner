@@ -47,3 +47,15 @@ def _build_survey_meta(metadata):
         "collection_id": metadata["collection_exercise_sid"],
         "form_type": metadata["form_type"],
     }
+
+
+def build_metadata_context_for_survey_completed(survey_completed_metadata):
+    return {
+        'survey': {
+            'period_str': survey_completed_metadata['period_str'],
+        },
+        'respondent': {
+            'tx_id': convert_tx_id(survey_completed_metadata['tx_id']),
+            'respondent_id': survey_completed_metadata['ru_ref'],
+        },
+    }

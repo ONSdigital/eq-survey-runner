@@ -50,7 +50,7 @@ class TestSessionManager(AppContextTestCase):
     def test_should_not_clear_with_no_session_data(self):
         with self.test_request_context('/status'):
             # Calling clear with no session should be safe to do
-            self.session_storage.clear()
+            self.session_storage.delete_session_from_db()
 
             # No database calls should have been made
             self.assertFalse(self.db_session.delete.called)
@@ -66,7 +66,7 @@ class TestSessionManager(AppContextTestCase):
             self.session_storage._get_user_session = lambda eq_session_id: None
 
             # Call clear with a valid user_id but no session in database
-            self.session_storage.clear()
+            self.session_storage.delete_session_from_db()
 
             # No database calls should have been made
             self.assertFalse(self.db_session.delete.called)
@@ -83,7 +83,7 @@ class TestSessionManager(AppContextTestCase):
             self.session_storage._get_user_session = lambda eq_session_id: eq_session
 
             # Call clear with a valid user_id and valid session in database
-            self.session_storage.clear()
+            self.session_storage.delete_session_from_db()
 
             # Should have attempted to remove it from the database
             self.assertEqual(self.db_session.delete.call_count, 1)
@@ -117,7 +117,7 @@ class TestSessionManager(AppContextTestCase):
 
             # When
             with self.assertRaises(IntegrityError):
-                self.session_storage.clear()
+                self.session_storage.delete_session_from_db()
 
             # Then
             self.db_session.rollback.assert_called_once_with()

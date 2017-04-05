@@ -38,7 +38,8 @@ def load_user():
         user = User(user_id, session_storage.get_user_ik())
         questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
         metadata = questionnaire_store.metadata
-        logger.bind(tx_id=metadata["tx_id"])
+        if metadata:
+            logger.bind(tx_id=metadata["tx_id"])
         logger.debug("session token exists")
 
         return user
@@ -53,7 +54,8 @@ def store_session(metadata):
     :param metadata: metadata parsed from jwt token
     """
     # clear the session entry in the database
-    session_storage.clear()
+    session_storage.delete_session_from_db()
+
     # also clear the secure cookie data
     session.clear()
 

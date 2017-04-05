@@ -21,9 +21,6 @@ class TestBackwardsNavigationAfterSubmission(StarWarsTestCase):
         self.backwards_navigation()
 
     def backwards_navigation(self):
-        # Introduction
-        self.get(star_wars_test_urls.STAR_WARS_INTRODUCTION)
-        self.assertStatusUnauthorised()
 
         # Block Three
         self.get(star_wars_test_urls.STAR_WARS_TRIVIA_PART_3)
