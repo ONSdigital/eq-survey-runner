@@ -35,12 +35,8 @@ export const paths = {
     output: distPath + '/img/'
   },
   fonts: {
-    input: appPath + '/fonts/**/*.{ttf,woff,woff2}',
+    input: appPath + '/fonts/**/*.{ttf,woff,woff2,eot}',
     output: distPath + '/fonts/'
-  },
-  webfonts: {
-    input: appPath + '/webfonts/**.{svg,woff,woff2,eot,ttf}',
-    output: distPath + '/webfonts/'
   },
   favicons: {
     input: appPath + '/favicons/**/*.{png,xml,ico,json,svg}',
