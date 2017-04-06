@@ -1,6 +1,7 @@
 import domready from './domready'
 import dialog from './dialog'
 import fetch from './fetch'
+import LoaderBtn from './loader-btn'
 import { padStart } from 'lodash'
 
 class TimeoutUI {
@@ -67,7 +68,7 @@ domready(() => {
   const expireSessionUrl = window.__EQ_EXPIRE_SESSION_URL__
   const sessionContinueUrl = window.__EQ_SESSION_CONTINUE_URL__
 
-  const continueBtn = document.querySelector('.js-timeout-continue')
+  const continueBtn = new LoaderBtn('.js-timeout-continue')
   const saveBtn = document.querySelector('.js-timeout-save')
 
   const continueRetryLimit = 5
@@ -80,11 +81,10 @@ domready(() => {
 
   const handleContinue = (e) => {
     e.preventDefault()
-    continueBtn.classList.add('is-loading')
     fetch(sessionContinueUrl)
       .then(() => {
         dialog.hide()
-        continueBtn.classList.remove('is-loading')
+        continueBtn.reset()
         continueRetryCount = continueRetryLimit
         timeoutUI.reset()
       }).catch(() => {
@@ -94,7 +94,7 @@ domready(() => {
             handleContinue(e)
           }, 1000)
         } else {
-          continueBtn.classList.remove('is-loading')
+          continueBtn.reset()
           continueRetryCount = continueRetryLimit
         }
       })

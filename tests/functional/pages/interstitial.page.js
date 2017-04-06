@@ -5,7 +5,7 @@ class InterstitialPage {
   }
 
   submit() {
-    browser.click('.qa-btn-submit')
+    browser.click('[data-qa="btn-submit"]')
   }
 
 }

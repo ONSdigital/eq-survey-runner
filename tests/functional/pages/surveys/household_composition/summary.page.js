@@ -8,7 +8,7 @@ class HouseholdCompositionSummary extends SummaryPage {
   }
 
   submit() {
-    browser.click('.qa-btn-submit')
+    browser.click('[data-qa="btn-submit"]')
     return this
   }
 

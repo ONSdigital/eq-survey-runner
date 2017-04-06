@@ -1,5 +1,4 @@
 class QuestionPage {
-
   constructor(pageName) {
     this.pageName = pageName
   }
@@ -15,9 +14,13 @@ class QuestionPage {
 
   submit() {
     if (this.pageName !== undefined) {
-        browser.waitUntil(() => this.isOpen(), 500, `Expected to be on ${this.pageName} page but was on ${browser.getUrl()}`)
+      browser.waitUntil(
+        () => this.isOpen(),
+        500,
+        `Expected to be on ${this.pageName} page but was on ${browser.getUrl()}`
+      )
     }
-    browser.click('.qa-btn-submit')
+    browser.click('[data-qa="btn-submit"]')
     return this
   }
 
@@ -36,7 +39,6 @@ class QuestionPage {
   getDisplayedName() {
     return browser.getText('h1[class="section__title saturn"]')
   }
-
 }
 
 export default QuestionPage
