@@ -1,3 +1,4 @@
+
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -10,7 +11,7 @@ class TestHappyPath(IntegrationTestCase):
         self.happy_path('1', '0205')
 
     def happy_path(self, eq_id, form_type_id):
-        self.launchSurvey(eq_id, form_type_id)
+        self.launchSurvey(eq_id, form_type_id, roles=['dumper'])
 
         # We are on the landing page
         self.assertInPage('>Start survey<')
@@ -47,3 +48,34 @@ class TestHappyPath(IntegrationTestCase):
         self.assertInPage('>Your responses<')
         self.assertInPage('Please check carefully before submission')
         self.assertInPage('>Submit answers<')
+
+        actual = self.dumpSubmission()
+
+        expected = {
+            "submission": {
+                "type": "uk.gov.ons.edc.eq:surveyresponse",
+                "data": {
+                    "11": "01/04/2016",
+                    "12": "30/04/2016",
+                    "20": "100000"
+                },
+                "metadata": {
+                    "ru_ref": "123456789012A",
+                    "user_id": "integration-test"
+                },
+                "version": "0.0.1",
+                "survey_id": "023",
+                "tx_id": actual['submission']['tx_id'],
+                "submitted_at": actual['submission']['submitted_at'],
+                "collection": {
+                    "period": "201604",
+                    "exercise_sid": "789",
+                    "instrument_id": form_type_id
+                },
+                "origin": "uk.gov.ons.edc.eq"
+            }
+        }
+
+        # Enable full dictionary diffs on test failure
+        self.maxDiff = None
+        self.assertDictEqual(actual, expected)
