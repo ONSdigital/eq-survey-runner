@@ -31,7 +31,7 @@ export const paths = {
     output: distPath + '/img/'
   },
   images: {
-    input: appPath + '/img/{,theme/**/}**.{svg,png,jpg,jpeg,gif,ico}',
+    input: appPath + '/img/{,theme/**/}**.{svg,png,jpg,jpeg,gif}',
     output: distPath + '/img/'
   },
   fonts: {
@@ -41,6 +41,10 @@ export const paths = {
   webfonts: {
     input: appPath + '/webfonts/**.{svg,woff,woff2,eot,ttf}',
     output: distPath + '/webfonts/'
+  },
+  favicons: {
+    input: appPath + '/favicons/**/*.{png,xml,ico,json,svg}',
+    output: distPath + '/favicons/'
   },
   test: {
     input: appPath + '/js/**/*.js',

@@ -13,6 +13,7 @@ import {styles, lint as lintStyles} from './gulp/styles'
 import browserSync from './gulp/bs'
 import a11ym from './gulp/a11ym'
 import {fonts} from './gulp/fonts'
+import {favicons} from './gulp/favicons'
 
 const getEnv = () => {
   var env = yargs.argv.env
@@ -129,7 +130,10 @@ gulp.task('build:images', () => {
 gulp.task('build:fonts', () => {
   fonts()
 })
-
+// Copy favicons files into output folder
+gulp.task('build:favicons', () => {
+  favicons()
+})
 /**
  * Task Runners
  */
@@ -144,7 +148,8 @@ gulp.task('compile', [
   'copy:scripts',
   'build:styles',
   'build:images',
-  'build:fonts'
+  'build:fonts',
+  'build:favicons'
 ])
 
 /**
@@ -162,6 +167,7 @@ gulp.task('watch', [
   'build:images',
   'watch:scripts',
   'build:fonts',
+  'build:favicons',
   'listen'
 ])
 
