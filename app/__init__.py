@@ -10,7 +10,6 @@ from flask import url_for
 from flask.ext.cache import Cache
 from flask_babel import Babel
 from flask_themes2 import Themes
-from flaskext.markdown import Markdown
 from structlog import get_logger
 
 from app import settings
@@ -73,8 +72,6 @@ def create_app():
 
     application.wsgi_app = AWSReverseProxied(application.wsgi_app)
 
-    Markdown(application, extensions=['gfm'])
-
     add_blueprints(application)
 
     configure_flask_logging(application)
@@ -104,6 +101,7 @@ def create_app():
 
     @application.teardown_appcontext
     def shutdown_session(exception=None):  # pylint: disable=unused-variable,unused-argument
+
         db_session.remove()
 
     return application
