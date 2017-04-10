@@ -121,10 +121,10 @@ domready(() => {
   // must be initialised after the keydown listener
   dialog.init()
 
-  window.setInterval((a) => {
+  let timeoutInterval = window.setInterval((a) => {
     let countDown = timeoutUI.onTick()
     if (countDown < 1) {
-      window.clearInterval(this)
+      window.clearInterval(timeoutInterval)
       fetch(expireSessionUrl, { method: 'POST' })
         .then(() => {
           window.location = sessionExpiredUrl
