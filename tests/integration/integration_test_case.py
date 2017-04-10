@@ -1,6 +1,7 @@
 import os
 import re
 import unittest
+import json
 
 from bs4 import BeautifulSoup
 
@@ -91,6 +92,28 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         """
         token = create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
         self.get('/session?token=' + token.decode())
+
+    def dumpAnswers(self):
+
+        self.get('/dump/answers')
+
+        # Then I get a 200 OK response
+        self.assertStatusOK()
+
+        # And the JSON response contains the data I submitted
+        dump_answers = json.loads(self.getResponseData())
+        return dump_answers
+
+    def dumpSubmission(self):
+
+        self.get('/dump/submission')
+
+        # Then I get a 200 OK response
+        self.assertStatusOK()
+
+        # And the JSON response contains the data I submitted
+        dump_submission = json.loads(self.getResponseData())
+        return dump_submission
 
     def get(self, url):
         """
