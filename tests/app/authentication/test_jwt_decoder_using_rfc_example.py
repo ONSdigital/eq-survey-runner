@@ -1,6 +1,6 @@
 import unittest
 
-from app import settings
+from tests.app.authentication import TEST_DO_NOT_USE_SR_PRIVATE_PEM_PASSWORD
 from app.authentication.jwt_decoder import JWTDecryptor
 
 # Not used in this test, but needed for the Decoder constructor
@@ -74,15 +74,19 @@ encrypted_jwt = "eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00ifQ.OKOawDo13gRp2oja
 # Unit test based of Example A.1 in RFC 7516 (https://tools.ietf.org/html/rfc7516#appendix-A.1)
 class JWTDecoderRFCTest(unittest.TestCase):
     def setUp(self):
-        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = private_pem
-        settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = public_pem
-        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
+        self.decryptor_args = (
+            private_pem,
+            TEST_DO_NOT_USE_SR_PRIVATE_PEM_PASSWORD,
+            public_pem
+        )
+
+        self.leeway = 120
 
     def test_plaintext_conversion(self):
         self.assertEqual(plaintext, ''.join(chr(i) for i in plaintext_in_ascii))
 
     def test_decrypt(self):
-        decoder = JWTDecryptor()
+        decoder = JWTDecryptor(*self.decryptor_args)
 
         tokens = encrypted_jwt.split('.')
 

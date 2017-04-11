@@ -43,12 +43,12 @@ class AWSReverseProxied(object):
         return self.app(environ, start_response)
 
 
-def create_app():
+def create_app():  # pylint: disable=too-complex
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
+    application.config.from_object(settings)
 
-    setup_newrelic()
-
-    restrict_content_length(application)
+    if application.config['EQ_NEW_RELIC_ENABLED']:
+        setup_newrelic()
 
     setup_secure_cookies(application)
 
@@ -78,22 +78,19 @@ def create_app():
 
     login_manager.init_app(application)
 
-    if settings.EQ_ENABLE_CACHE:
+    if application.config['EQ_ENABLE_CACHE']:
         cache.init_app(application, config={'CACHE_TYPE': 'simple'})
     else:
         cache.init_app(application)  # Doesnt cache
 
-    if settings.EQ_DEV_MODE:
-        start_dev_mode(application)
-
     # always add safe health check
     add_safe_health_check(application)
 
-    if settings.EQ_PROFILING:
+    if application.config['EQ_PROFILING']:
         setup_profiling(application)
 
-    if settings.EQ_APPLICATION_VERSION:
-        logger.info('starting eq survey runner', version=settings.EQ_APPLICATION_VERSION)
+    if application.config['EQ_APPLICATION_VERSION']:
+        logger.info('starting eq survey runner', version=application.config['EQ_APPLICATION_VERSION'])
 
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
@@ -152,6 +149,9 @@ def start_dev_mode(application):
 
 def add_blueprints(application):
     # import and regsiter the main application blueprint
+    if application.config['EQ_DEV_MODE']:
+        start_dev_mode(application)
+
     from app.views.questionnaire import questionnaire_blueprint
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()
@@ -177,9 +177,10 @@ def add_blueprints(application):
 
 
 def setup_secure_cookies(application):
-    application.secret_key = settings.EQ_SECRET_KEY
-    application.permanent_session_lifetime = timedelta(
-        seconds=settings.EQ_SESSION_TIMEOUT_SECONDS + settings.EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS)
+    session_timeout = application.config['EQ_SESSION_TIMEOUT_SECONDS']
+    grace_period = application.config['EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS']
+    application.secret_key = application.config['EQ_SECRET_KEY']
+    application.permanent_session_lifetime = timedelta(seconds=session_timeout + grace_period)
     application.session_interface = SHA256SecureCookieSessionInterface()
     application.config['SESSION_COOKIE_SECURE'] = True
 
@@ -194,7 +195,7 @@ def add_safe_health_check(application):
     def safe_health_check():  # pylint: disable=unused-variable
         data = {
             'status': 'OK',
-            'version': settings.EQ_APPLICATION_VERSION,
+            'version': application.config['EQ_APPLICATION_VERSION'],
         }
         return json.dumps(data)
 
@@ -224,7 +225,3 @@ def get_minimized_asset(filename):
         elif 'js' in filename:
             filename = filename.replace(".js", ".min.js")
     return filename
-
-
-def restrict_content_length(application):
-    application.config['MAX_CONTENT_LENGTH'] = settings.EQ_MAX_HTTP_POST_CONTENT_LENGTH

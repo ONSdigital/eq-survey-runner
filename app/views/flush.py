@@ -1,4 +1,4 @@
-from flask import Blueprint, Response, request, session
+from flask import Blueprint, Response, request, session, current_app
 
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.user import User
@@ -23,8 +23,16 @@ def flush_data():
     if encrypted_token is None:
         return Response(status=403)
 
-    decoder = JWTDecryptor()
-    decrypted_token = decoder.decrypt_jwt_token(encrypted_token)
+    decoder = JWTDecryptor(
+        current_app.config['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY'],
+        current_app.config['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD'],
+        current_app.config['EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY'],
+    )
+
+    decrypted_token = decoder.decrypt_jwt_token(
+        encrypted_token,
+        current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
+    )
 
     roles = decrypted_token.get('roles')
 
