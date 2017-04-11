@@ -2,12 +2,12 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
-class QbsHappyPath(IntegrationTestCase):
+class TestQbsSubmissionData(IntegrationTestCase):
 
-    def test_happy_path_2_0001(self):
-        self.happy_path('2', '0001')
+    def test_submission_data_2_0001(self):
+        self.submission_data('2', '0001')
 
-    def happy_path(self, eq_id, form_type_id):
+    def submission_data(self, eq_id, form_type_id):
         self.launchSurvey(eq_id, form_type_id, roles=['dumper'])
 
         # We are on the landing page
