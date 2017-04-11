@@ -2,10 +2,6 @@ from app.questionnaire.location import Location
 from app.validation.error_messages import error_messages
 
 
-class QuestionnaireException(Exception):
-    pass
-
-
 class SchemaHelper(object):  # pylint: disable=too-many-public-methods
 
     @staticmethod
@@ -86,13 +82,6 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
         return next(b for b in cls.get_blocks(survey_json) if b['id'] == block_id)
 
     @classmethod
-    def get_block_ids(cls, survey_json):
-        block_ids = []
-        for block_json in cls.get_blocks(survey_json):
-            block_ids.append(block_json['id'])
-        return block_ids
-
-    @classmethod
     def get_group_ids(cls, survey_json):
         group_ids = []
         for group_json in cls.get_groups(survey_json):
@@ -145,13 +134,12 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
         for block in cls.get_blocks(survey_json):
             for question in cls.get_questions_for_block(block):
                 for answer in question['answers']:
-                    if 'alias' in answer and answer['alias'] not in aliases:
+                    if 'alias' in answer:
+                        assert answer['alias'] not in aliases, 'Duplicate alias found: ' + answer['alias']
                         aliases[answer['alias']] = {
                             'answer_id': answer['id'],
                             'repeats': answer['type'] == 'Checkbox' or question['type'] == 'RepeatingAnswer',
                         }
-                    elif 'alias' in answer:
-                        raise QuestionnaireException('{} is not a unique alias'.format(answer['alias']))
         return aliases
 
     @classmethod
@@ -207,14 +195,6 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
             group_id=cls.get_first_group_id(survey_json),
             group_instance=0,
             block_id=cls.get_first_block_id(survey_json),
-        )
-
-    @classmethod
-    def get_last_location(cls, survey_json):
-        return Location(
-            group_id=cls.get_last_group_id(survey_json),
-            group_instance=0,
-            block_id=cls.get_last_block_id(survey_json),
         )
 
     @classmethod

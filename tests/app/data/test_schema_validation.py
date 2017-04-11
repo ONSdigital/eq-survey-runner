@@ -67,21 +67,27 @@ class TestSchemaValidation(unittest.TestCase):
 
         return errors
 
-    def test_no_duplicate_ids_in_schema(self):
-        schema_files = self.all_schema_files()
-
+    def test_no_duplicate_id_in_schema(self):
         # Certain keys need to be ignored to avoid false positives.
         ignored_keys = ['routing_rules', 'skip_condition']
+        self.find_duplicates(ignored_keys, 'id')
 
+    def test_no_duplicate_alias_in_schema(self):
+        # Certain keys need to be ignored to avoid false positives.
+        ignored_keys = ['routing_rules', 'skip_condition']
+        self.find_duplicates(ignored_keys, 'alias')
+
+    def find_duplicates(self, ignored_keys, special_key):
+        schema_files = self.all_schema_files()
         for schema_file in schema_files:
-            unique_id = []
             with open(schema_file, encoding="utf8") as file:
                 schema_json = load(file)
-                for id_value in self._parse_id_values(schema_json, ignored_keys):
-                    if id_value in unique_id:
-                        self.fail('Duplicate Id found. schema: %s, id: %s' % (schema_file, id_value))
+                unique_items = []
+                for value in self._parse_values(schema_json, ignored_keys, special_key):
+                    if value in unique_items:
+                        self.fail('Duplicate {} found. Schema: {}, value {}'.format(special_key, schema_file, value))
                     else:
-                        unique_id.append(id_value)
+                        unique_items.append(value)
 
     def test_all_schemas_contain_confirmation_page(self):
         schema_files = self.all_schema_files()
@@ -135,19 +141,18 @@ class TestSchemaValidation(unittest.TestCase):
                     schema_files.append(os.path.join(folder, filename))
         return schema_files
 
-    def _parse_id_values(self, schema_json, ignored_keys):
-        for k, v in schema_json.items():
-            if k == 'id':
-                yield v
-            elif k in ignored_keys:
+    def _parse_values(self, schema_json, ignored_keys, parsed_key):
+        for key, value in schema_json.items():
+            if key == parsed_key:
+                yield value
+            elif key in ignored_keys:
                 continue
-            elif isinstance(v, dict):
-                yield from self._parse_id_values(v, ignored_keys)
-            elif isinstance(v, list):
-                for schema_item in v:
+            elif isinstance(value, dict):
+                yield from self._parse_values(value, ignored_keys, parsed_key)
+            elif isinstance(value, list):
+                for schema_item in value:
                     if isinstance(schema_item, dict):
-                        yield from self._parse_id_values(schema_item, ignored_keys)
-
+                        yield from self._parse_values(schema_item, ignored_keys, parsed_key)
 
     @staticmethod
     def validate_json_against_schema(file, json_to_validate, schema):
