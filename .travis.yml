@@ -5,6 +5,7 @@ node_js: 6
 env:
   global:
     - EQ_ENABLE_CACHE=True
+    - EQ_DEV_KEYS=True
     - EQ_RUN_LOCAL_LINT=True
     - EQ_RUN_LOCAL_TESTS=True
     - EQ_RUN_LOCAL=True

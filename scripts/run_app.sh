@@ -20,6 +20,10 @@ if [ -z "$EQ_DEV_MODE" ]; then
   export EQ_DEV_MODE=True
 fi
 
+if [ -z "$EQ_DEV_KEYS" ]; then
+  export EQ_DEV_KEYS=True
+fi
+
 if [ -z "$EQ_RABBITMQ_ENABLED" ]; then
   export EQ_RABBITMQ_ENABLED=False
 fi

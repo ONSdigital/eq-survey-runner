@@ -74,9 +74,18 @@ encrypted_jwt = "eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00ifQ.OKOawDo13gRp2oja
 # Unit test based of Example A.1 in RFC 7516 (https://tools.ietf.org/html/rfc7516#appendix-A.1)
 class JWTDecoderRFCTest(unittest.TestCase):
     def setUp(self):
+        self.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_BEFORE = settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY
+        self.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY_BEFORE = settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY
+        self.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD_BEFORE = settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD
+
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = private_pem
         settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = public_pem
         settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = "digitaleq"
+
+    def tearDown(self):
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = self.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_BEFORE
+        settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = self.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY_BEFORE
+        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD = self.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD_BEFORE
 
     def test_plaintext_conversion(self):
         self.assertEqual(plaintext, ''.join(chr(i) for i in plaintext_in_ascii))
