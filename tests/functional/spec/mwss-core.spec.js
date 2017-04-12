@@ -74,7 +74,7 @@ import FiveWeeklyPaySignificantChangesOther from '../pages/surveys/mwss/five-wee
 import FiveWeeklyPaySignificantChangesOtherSpecify from '../pages/surveys/mwss/five-weekly-pay-significant-changes-other-specify.page.js'
 import GeneralCommentsIntroduction from '../pages/surveys/mwss/general-comments-introduction.page.js'
 import GeneralComments from '../pages/surveys/mwss/general-comments.page.js'
-import Confirmation from '../pages/surveys/mwss/confirmation.page.js'
+import SummaryPage from '../pages/summary.page'
 import ThankYou from '../pages/thank-you.page'
 
 
@@ -235,7 +235,9 @@ describe('MWSS Core', function() {
 
         GeneralCommentsIntroduction.submit()
         GeneralComments.setGeneralCommentsAnswer('flux clean').submit()
-        Confirmation.submit()
+
+        expect(SummaryPage.isOpen()).to.be.true
+        SummaryPage.submit()
 
         expect(ThankYou.isOpen()).to.be.true
     })

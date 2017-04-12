@@ -11,6 +11,7 @@ class Question:
         self.skip_condition = question_schema.get('skip_condition')
         answer_schema = question_schema['answers']
         self.title = question_schema['title'] or answer_schema[0]['label']
+        self.number = question_schema.get('number', None)
         self.answers = self._build_answers(question_schema, answer_schema, answers)
 
     def is_skipped(self, all_answers):

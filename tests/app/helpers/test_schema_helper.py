@@ -162,3 +162,34 @@ class TestSchemaHelper(unittest.TestCase):
 
         self.assertTrue(is_summary_or_confirmation)
 
+    def test_group_has_questions_returns_true_when_group_has_questionnaire_blocks(self):
+        group = {
+            'blocks': [
+                {
+                    'id': 'introduction',
+                    'type': 'Introduction'
+                },
+                {
+                    'id': 'question',
+                    'type': 'Questionnaire'
+                }
+            ]
+        }
+
+        has_questions = SchemaHelper.group_has_questions(group)
+
+        self.assertTrue(has_questions)
+
+    def test_group_has_questions_returns_false_when_group_doesnt_have_questionnaire_blocks(self):
+        group = {
+            'blocks': [
+                {
+                    'id': 'summary-block',
+                    'type': 'Summary'
+                },
+            ]
+        }
+
+        has_questions = SchemaHelper.group_has_questions(group)
+
+        self.assertFalse(has_questions)

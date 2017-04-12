@@ -6,6 +6,7 @@ class Section:
     def __init__(self, section_schema, answers, link):
         self.id = section_schema['id']
         self.title = section_schema['title']
+        self.number = section_schema.get('number', None)
         self.questions = self._build_questions(section_schema, answers)
         self.link = link
 

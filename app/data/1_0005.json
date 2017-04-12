@@ -3094,28 +3094,11 @@
         },
         {
             "blocks": [{
-                "type": "Confirmation",
-                "id": "confirmation",
-                "title": "You are now ready to submit this questionnaire",
-                "sections": [{
-                    "title": "You are now ready to submit this questionnaire",
-                    "id": "questionnaire-completed-section",
-                    "questions": [{
-                        "answers": [],
-                        "id": "questionnaire-completed-question",
-                        "title": "",
-                        "type": "General",
-                        "guidance": [{
-                            "list": [
-                                "You will not be able to access or change your answers on submitting the questionnaire",
-                                "If you wish to review your answers please select the relevant completed sections"
-                            ]
-                        }]
-                    }]
-                }]
+                "type": "Summary",
+                "id": "summary"
             }],
-            "id": "confirmation-group",
-            "title": "Submit answers"
+            "id": "summary-group",
+            "title": "Summary"
         }
     ],
     "legal_basis": "StatisticsOfTradeAct",

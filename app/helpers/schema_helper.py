@@ -202,3 +202,11 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
         group = cls.get_group(survey_json, location.group_id)
 
         return next((b for b in group['blocks'] if b['id'] == location.block_id), None)
+
+    @staticmethod
+    def group_has_questions(group_json):
+        for block_json in group_json['blocks']:
+            if block_json['type'] == 'Questionnaire':
+                return True
+
+        return False

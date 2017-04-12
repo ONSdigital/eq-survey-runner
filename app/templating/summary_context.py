@@ -1,7 +1,8 @@
 from flask import url_for
 
+from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.path_finder import PathFinder
-from app.templating.summary.section import Section
+from app.templating.summary.group import Group
 
 
 def build_summary_rendering_context(schema_json, answer_store, metadata):
@@ -14,16 +15,11 @@ def build_summary_rendering_context(schema_json, answer_store, metadata):
     """
     navigator = PathFinder(schema_json, answer_store, metadata)
     path = navigator.get_routing_path()
-    sections = []
+    groups = []
+
     for group in schema_json['groups']:
-        for block in group['blocks']:
-            if block['id'] in [location.block_id for location in path] and block['type'] == 'Questionnaire':
-                link = url_for('questionnaire.get_block',
-                               eq_id=metadata['eq_id'],
-                               form_type=metadata['form_type'],
-                               collection_id=metadata['collection_exercise_sid'],
-                               group_id=group['id'],
-                               group_instance=0,
-                               block_id=block['id'])
-                sections.extend([Section(section, answer_store.map(), link) for section in block['sections']])
-    return sections
+        if SchemaHelper.group_has_questions(group) \
+                and group['id'] in [location.group_id for location in path]:
+            groups.extend([Group(group, answer_store.map(), path, metadata, url_for)])
+
+    return groups

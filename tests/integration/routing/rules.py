@@ -3,7 +3,7 @@ CHOOSE_A_SIDE_LIGHT_SIDE = [
         'block_id': 'choose-your-side-block',
         'answers': [
             {
-                'answer': 'Choose your side',
+                'answer': 'Which side of the force are you on',
                 'answer_id': 'choose-your-side-answer',
                 'user_answer': 'Light Side'
             }
@@ -16,7 +16,7 @@ CHOOSE_A_SIDE_DARK_SIDE = [
         'block_id': 'choose-your-side-block',
         'answers': [
             {
-                'answer': 'Choose your side',
+                'answer': 'Which side of the force are you on',
                 'answer_id': 'choose-your-side-answer',
                 'user_answer': 'Dark Side'
             }
@@ -29,7 +29,7 @@ CHOOSE_A_SIDE_STAR_TREK = [
         'block_id': 'choose-your-side-block',
         'answers': [
             {
-                'answer': 'Choose your side',
+                'answer': 'Which side of the force are you on',
                 'answer_id': 'choose-your-side-answer',
                 'user_answer': 'I prefer Star Trek'
             }

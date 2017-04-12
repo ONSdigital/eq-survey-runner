@@ -1,12 +1,19 @@
 {% import 'macros/helpers.html' as helpers %}
-{% extends theme('layouts/_onecol.html') -%}
+{% extends theme('layouts/_twocol.html') -%}
 
 {% block page_title -%}{{_("Summary")}} - {{survey_title}}{% endblock -%}
 
 {% set form = content.form %}
 {% set not_answered = 'No answer provided' %}
 
+{% block sidebar %}
+  {% if navigation %}
+    {% include theme('partials/navigation.html') %}
+  {% endif %}
+{% endblock %}
+
 {% block main -%}
+
 <div>
   <h1 class="saturn">Your responses</h1>
   <h2 class="mars">Please check carefully before submission.</h2>
@@ -15,45 +22,60 @@
 <div>
   <div class="summary">
 
-  {% for section in content.summary %}
+  {% for group in content.summary %}
 
-    <h2 class="summary__title saturn" id="{{section.id}}">{{section.title|safe}}</h2>
-    <div class="summary__block">
-      <div class="summary__items">
+      <h2 class="summary__title saturn" id="{{group.id}}">{{group.title|safe}}</h2>
 
-      {% for question in section.questions %}
+      <div class="summary__block">
 
-        <div class="summary__question" id="{{question.id}}">
-          {{question.title|striptags|safe}}
+     {% for block in group.blocks %}
+
+        {% for section in block.sections %}
+
+        <div class="summary__items">
+
+            {% for question in section.questions %}
+                {% if question.number %}
+                  {% set question_number = "["~question.number~"]"  %}
+                {% endif %}
+                <div class="summary__question" id="{{question.id}}">
+                  {{question_number}} {{question.title|striptags|safe}}
+                </div>
+
+                {% for answer in question.answers %}
+
+                  {% if question.answers|length > 1 %}
+                    <div class="summary__question summary__question--sub">
+                      {{answer.label|striptags|safe}}
+                    </div>
+                  {% endif %}
+
+                  <div class="summary__answer">
+                    <div class="summary__answer-text" id="{{answer.id}}-answer" data-qa="{{answer.id}}-answer">
+                      {%- if answer.value is none or answer.value == '' -%}
+                        {{not_answered}}
+                      {%- else -%}
+                        {% include theme(['partials/summary/' ~ answer.type ~ '.html', 'partials/summary/default.html']) %}
+                      {%- endif -%}
+                    </div>
+                    <div class="summary__edit">
+                      <a href="{{ section.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>Edit <span class="u-vh">your answer</span></a>
+                    </div>
+                  </div>
+
+                {% endfor %}
+
+            {% endfor %}
+
         </div>
 
-        {% for answer in question.answers %}
-
-          {% if question.answers|length > 1 %}
-            <div class="summary__question summary__question--sub">
-              {{answer.label|striptags|safe}}
-            </div>
-          {% endif %}
-
-          <div class="summary__answer">
-            <div class="summary__answer-text" id="{{answer.id}}-answer" data-qa="{{answer.id}}-answer">
-              {%- if answer.value is none or answer.value == '' -%}
-                {{not_answered}}
-              {%- else -%}
-                {% include theme(['partials/summary/' ~ answer.type ~ '.html', 'partials/summary/default.html']) %}
-              {%- endif -%}
-            </div>
-            <div class="summary__edit">
-              <a href="{{ section.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit">Edit <span class="u-vh">your answer</span></a>
-            </div>
-          </div>
 
         {% endfor %}
 
-      {% endfor %}
 
-      </div>
-    </div>
+     {% endfor %}
+
+     </div>
   {% endfor %}
   </div>
 

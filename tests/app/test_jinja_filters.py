@@ -22,6 +22,15 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
         self.assertEqual(format_value, '£1.12')
 
+    def test_format_currency_no_value_returns_empty_string(self):
+        # Given
+        currency = ''
+
+        # When
+        format_value = format_currency(currency)
+
+        self.assertEqual(format_value, '')
+
     def test_format_multilined_string_matches_carriage_return(self):
         # Given
         new_line = 'this is on a new\rline'
