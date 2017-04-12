@@ -7,7 +7,6 @@ from cryptography.hazmat.backends.openssl.backend import backend
 from cryptography.hazmat.primitives import serialization
 from structlog import get_logger
 
-from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
@@ -23,29 +22,28 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
     """
     JWT signed with JWS RS256 And encrypted with JWE RSA-OAEP
     """
-    def __init__(self):
+    def __init__(self, private_key, private_key_password, public_key):
         # pylint: disable=maybe-no-member
         # password and key variables are dynamically assigned
-        if settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY is None or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY is None \
-                or settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD is None:
-            logger.error('keymat not configured correctly')
-            raise OSError('keymat not configured correctly')
-        else:
-            super().__init__(settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY, settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD)
+        if private_key and private_key_password and public_key:
+
+            super().__init__(private_key, private_key_password)
             # oddly the python cryptography library needs these as bytes string
-            rrm_public_key_as_bytes = strings.to_bytes(settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY)
+            rrm_public_key_as_bytes = strings.to_bytes(public_key)
             self.rrm_public_key = serialization.load_pem_public_key(
                 rrm_public_key_as_bytes,
                 backend=backend,
             )
+        else:
+            raise OSError('keymat not configured correctly')
 
-    def decode_signed_jwt_token(self, signed_token):
+    def decode_signed_jwt_token(self, signed_token, leeway):
         try:
             if signed_token:
                 logger.debug("decoding signed jwt", jwt_token=strings.to_str(signed_token))
                 self._check_token(signed_token)
                 token = jwt.decode(signed_token, self.rrm_public_key, algorithms=['RS256'],
-                                   leeway=settings.EQ_JWT_LEEWAY_IN_SECONDS)
+                                   leeway=leeway)
                 if not token:
                     raise InvalidTokenException("Missing Payload")
                 return token
@@ -108,7 +106,7 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         store = {}
         for key, value in ordered_pairs:
             if key in store:
-                raise InvalidTokenException("Multiple " + key + " Headers")
+                raise InvalidTokenException("Multiple '{}' Headers".format(key))
             else:
                 store[key] = value
         return store
@@ -134,7 +132,7 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
         except ValueError as e:
             raise InvalidTokenException(repr(e))
 
-    def decrypt_jwt_token(self, token):
+    def decrypt_jwt_token(self, token, leeway):
         try:
             if token:
                 logger.debug("decrypting signed jwt", jwt_token=strings.to_str(token))
@@ -154,7 +152,7 @@ class JWTDecryptor(JWERSAOAEPDecryptor):
                     raise InvalidTokenException("CEK incorrect length")
 
                 signed_token = super().decrypt(token)
-                return self.decode_signed_jwt_token(signed_token)
+                return self.decode_signed_jwt_token(signed_token, leeway)
             else:
                 raise NoTokenException("JWT Missing")
         except (jwt.DecodeError, InvalidTag, InternalError, ValueError, AssertionError) as e:

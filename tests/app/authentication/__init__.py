@@ -100,3 +100,5 @@ VALID_JWE = "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.YfYd
             "BslOcCLtAlGdRsptS6-L4YHxaGEAvwXD1heQADoAabjGCA-BZGPdc6h8A6y1QR7m2P33KEz83h141X4Ftyd9kTGxgjQ8-UrIGvu9b1wbm" \
             "cjTWK3hiiyC3o0guBbzBq0SflX-RG9_zyK4sAIksiXj9mNRah1IUjUT5zr9cs1c5i4WwJdpJ28IzKvczgQ63B_t1xEpGsb6A35EhxzRkG" \
             "7BQ.I9WExvUvZVXdwjxz8EPtCg"
+
+TEST_DO_NOT_USE_SR_PRIVATE_PEM_PASSWORD = 'digitaleq'

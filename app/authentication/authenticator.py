@@ -1,4 +1,5 @@
 from flask import session
+from flask import current_app
 from flask_login import LoginManager
 from structlog import get_logger
 
@@ -78,8 +79,17 @@ def decrypt_token(encrypted_token):
     logger.debug("decrypting token")
     if encrypted_token is None:
         raise NoTokenException("Please provide a token")
-    decoder = JWTDecryptor()
-    decrypted_token = decoder.decrypt_jwt_token(encrypted_token)
+
+    decoder = JWTDecryptor(
+        current_app.config['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY'],
+        current_app.config['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD'],
+        current_app.config['EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY'],
+    )
+
+    decrypted_token = decoder.decrypt_jwt_token(
+        encrypted_token,
+        current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
+    )
 
     valid, field = is_valid_metadata(decrypted_token)
     if not valid:
