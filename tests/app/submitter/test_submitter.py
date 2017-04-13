@@ -4,7 +4,7 @@ from mock import patch, Mock, call
 from pika.exceptions import AMQPError
 
 from app import settings
-from app.submitter.submitter import RabbitMQSubmitter
+from app.submitter.submitter import RabbitMQSubmitter, LogSubmitter, SubmitterFactory, Submitter
 
 
 class TestSubmitter(TestCase):
@@ -78,3 +78,30 @@ class TestSubmitter(TestCase):
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')
+
+    def test_log_submitter_send_message(self):
+        # Given
+        with patch('app.submitter.submitter.BlockingConnection'):
+            # When
+            sent_message = LogSubmitter().send_message(message={}, queue='test_queue')
+
+            # Then
+            self.assertEqual(sent_message, True)
+
+    def test_get_submitter_settings_enabled(self):
+        settings.EQ_RABBITMQ_ENABLED = True
+        test = SubmitterFactory.get_submitter()
+        self.assertIsInstance(type(test), cls=object)
+
+    def test_get_submitter_settings_not_enabled(self):
+        settings.EQ_RABBITMQ_ENABLED = False
+        test = SubmitterFactory.get_submitter()
+        self.assertIsInstance(type(test), cls=object)
+
+    def test_submitter_send_message(self):
+        test = Submitter.send_message(self, message={}, queue='test_queue')
+        self.assertEqual(test, False)
+
+    def test_submitter_encrypt_message(self):
+        test = Submitter.encrypt_message(message={})
+        self.assertIsInstance(test, cls=str)
