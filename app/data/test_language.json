@@ -11,18 +11,19 @@
         "id": "english-group",
         "title": "",
         "blocks": [{
-            "type": "Interstitial",
-            "id": "english-block",
-            "sections": [{
-                "title": "English language schema",
-                "id": "english-section",
-                "questions": []
-            }],
-            "title": ""
-        },
-        {
-            "type": "Summary",
-            "id": "summary"
-        }]
+                "type": "Interstitial",
+                "id": "english-block",
+                "sections": [{
+                    "title": "English language schema",
+                    "id": "english-section",
+                    "questions": []
+                }],
+                "title": ""
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ]
     }]
 }
