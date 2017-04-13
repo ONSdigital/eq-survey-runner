@@ -90,18 +90,19 @@ class TestSubmitter(TestCase):
 
     def test_get_submitter_settings_enabled(self):
         settings.EQ_RABBITMQ_ENABLED = True
-        test = SubmitterFactory.get_submitter()
-        self.assertIsInstance(type(test), cls=object)
+        rabbit_submitter = SubmitterFactory.get_submitter()
+        self.assertEqual(type(rabbit_submitter), RabbitMQSubmitter)
 
     def test_get_submitter_settings_not_enabled(self):
         settings.EQ_RABBITMQ_ENABLED = False
-        test = SubmitterFactory.get_submitter()
-        self.assertIsInstance(type(test), cls=object)
+        log_submitter = SubmitterFactory.get_submitter()
+        self.assertEqual(type(log_submitter), LogSubmitter)
 
     def test_submitter_send_message(self):
-        test = Submitter.send_message(self, message={}, queue='test_queue')
-        self.assertEqual(test, False)
+        sent_message_test = Submitter.send_message(self, message={}, queue='test_queue')
+        self.assertEqual(sent_message_test, False)
 
     def test_submitter_encrypt_message(self):
-        test = Submitter.encrypt_message(message={})
-        self.assertIsInstance(test, cls=str)
+        encrypt_message_test = Submitter.encrypt_message(message={'test': 'test'})
+        self.assertIsInstance(encrypt_message_test, cls=str)
+        self.assertNotEqual(encrypt_message_test, 'test')
