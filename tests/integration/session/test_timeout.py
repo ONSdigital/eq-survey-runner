@@ -27,6 +27,6 @@ class TestTimeout(IntegrationTestCase):
         self.assertInPage('window.__EQ_SESSION_TIMEOUT__ = 1')
 
     def test_schema_defined_timeout_cant_be_higher_than_server(self):
-        settings.EQ_SESSION_TIMEOUT_SECONDS = 10
+        self._application.config['EQ_SESSION_TIMEOUT_SECONDS'] = 10
         self.launchSurvey('test', 'timeout')
         self.assertInPage('window.__EQ_SESSION_TIMEOUT__ = 6')

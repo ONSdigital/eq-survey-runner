@@ -6,6 +6,8 @@ from flask import Flask
 from flask_babel import Babel
 import app
 from app import settings
+from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
+
 
 class TestCreateApp(unittest.TestCase):
     def setUp(self):
@@ -143,6 +145,26 @@ class TestCreateApp(unittest.TestCase):
                 'http://test/s/some.js?q=False',
                 app.versioned_url_for('static', filename='some.js')
             )
+
+    def test_adds_rabbit_submitter_to_the_application(self):
+        settings.EQ_RABBITMQ_ENABLED = True
+        application = app.create_app()
+
+        self.assertIsInstance(application.eq['submitter'], RabbitMQSubmitter)
+
+        settings.EQ_RABBITMQ_ENABLED = False
+
+    def test_defaults_to_adding_the_log_submitter_to_the_application(self):
+        settings.EQ_RABBITMQ_ENABLED = False
+        application = app.create_app()
+
+        self.assertIsInstance(application.eq['submitter'], LogSubmitter)
+
+    def test_adds_encrypter_to_the_application(self):
+        application = app.create_app()
+
+        self.assertIn('encrypter', application.eq)
+
 
 if __name__ == '__main__':
     unittest.main()

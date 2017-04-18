@@ -3,21 +3,24 @@ from unittest import TestCase
 from mock import patch, Mock, call
 from pika.exceptions import AMQPError
 
-from app import settings
 from app.submitter.submitter import RabbitMQSubmitter
 
 
 class TestSubmitter(TestCase):
+    def setUp(self):
+        self.queue_name = 'test_queue'
+        self.url1 = 'amqp://localhost:5672/%2F'
+        self.url2 = 'amqp://localhost:5672/%2F'
+
+        self.submitter = RabbitMQSubmitter(self.url1, self.url2)
 
     def test_when_fail_to_connect_to_queue_then_published_false(self):
         # Given
         with patch('app.submitter.submitter.BlockingConnection') as connection:
             connection.side_effect = AMQPError()
 
-            submitter = RabbitMQSubmitter()
-
             # When
-            published = submitter.send_message(message={}, queue='test_queue')
+            published = self.submitter.send_message(message={}, queue=self.queue_name)
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')
@@ -25,7 +28,7 @@ class TestSubmitter(TestCase):
     def test_when_message_sent_then_published_true(self):
         # Given
         with patch('app.submitter.submitter.BlockingConnection'):
-            published = RabbitMQSubmitter().send_message(message={}, queue='test_queue')
+            published = self.submitter.send_message(message={}, queue=self.queue_name)
 
             # When
 
@@ -40,14 +43,14 @@ class TestSubmitter(TestCase):
             connection.side_effect = [AMQPError(), secondary_connection]
 
             # When
-            published = RabbitMQSubmitter().send_message(message={}, queue='test_queue')
+            published = self.submitter.send_message(message={}, queue=self.queue_name)
 
             # Then
             self.assertTrue(published, 'send_message should publish message')
             # Check we create url for primary then secondary
-            url_parameters_calls = [call(settings.EQ_RABBITMQ_URL), call(settings.EQ_RABBITMQ_URL_SECONDARY)]
+            url_parameters_calls = [call(self.url1), call(self.url2)]
             url_parameters.assert_has_calls(url_parameters_calls)
-            # Check we create connection twice, failing first then with settings.EQ_RABBITMQ_URL_SECONDARY
+            # Check we create connection twice, failing first then with self.url2
             self.assertEqual(connection.call_count, 2)
 
     def test_when_fail_to_disconnect_then_log_warning_message(self):
@@ -55,12 +58,12 @@ class TestSubmitter(TestCase):
         connection = Mock()
         error = AMQPError()
         connection.close.side_effect = [error]
-        settings.EQ_RABBITMQ_URL = 'amqp://localhost:5672/%2F'
+
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection), \
                 patch('app.submitter.submitter.logger') as logger:
 
             # When
-            published = RabbitMQSubmitter().send_message(message={}, queue='test_queue')
+            published = self.submitter.send_message(message={}, queue=self.queue_name)
 
             # Then
             self.assertTrue(published)
@@ -74,7 +77,7 @@ class TestSubmitter(TestCase):
         connection.channel.side_effect = Mock(return_value=channel)
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
             # When
-            published = RabbitMQSubmitter().send_message(message={}, queue='test_queue')
+            published = self.submitter.send_message(message={}, queue=self.queue_name)
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')

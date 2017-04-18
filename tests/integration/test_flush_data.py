@@ -1,5 +1,5 @@
 import time
-
+from mock import patch
 from tests.integration.integration_test_case import IntegrationTestCase
 from app.views.dev_mode import generate_token
 
@@ -7,6 +7,12 @@ from app.views.dev_mode import generate_token
 class TestFlushData(IntegrationTestCase):
 
     def setUp(self):
+        self.patcher = patch('app.LogSubmitter')
+        mock_class = self.patcher.start()
+
+        self.instance = mock_class.return_value
+        self.instance.send_message.return_value = True
+
         super().setUp()
         self.launchSurvey('1', '0205')
         self.post(action='start_questionnaire')
@@ -21,6 +27,9 @@ class TestFlushData(IntegrationTestCase):
             'total-retail-turnover': '100000'
         }
         self.post(form_data)
+
+    def tearDown(self):
+        self.patcher.stop()
 
     def test_flush_data_successful(self):
         self.get('/flush?token=' + generate_token(self.get_payload()).decode())
@@ -65,6 +74,12 @@ class TestFlushData(IntegrationTestCase):
     def test_invalid_token_passed_to_flush(self):
         self.get('/flush?token=test')
         self.assertStatusForbidden()
+
+    def test_flush_errors_when_submission_fails(self):
+        self.instance.send_message.return_value = False  # pylint: disable=no-member
+
+        self.get('/flush?token=' + generate_token(self.get_payload()).decode())
+        self.assertStatusCode(503)
 
     @staticmethod
     def get_payload():

@@ -6,7 +6,7 @@ from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_answer_store, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
 from app.submitter.converter import convert_answers
-from app.submitter.submitter import SubmitterFactory
+from app.submitter.submission_failed import SubmissionFailedException
 from app.utilities.schema import load_schema_from_metadata
 
 flush_blueprint = Blueprint('flush', __name__)
@@ -54,9 +54,15 @@ def _submit_data(user):
         metadata = get_metadata(user)
         schema = load_schema_from_metadata(metadata)
         routing_path = PathFinder(schema, answer_store, metadata).get_routing_path()
-        submitter = SubmitterFactory.get_submitter()
+
         message = convert_answers(metadata, schema, answer_store, routing_path)
-        submitter.send_answers(message)
+        message = current_app.eq['encrypter'].encrypt(message)
+
+        sent = current_app.eq['submitter'].send_message(message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'])
+
+        if not sent:
+            raise SubmissionFailedException()
+
         get_questionnaire_store(user.user_id, user.user_ik).delete()
         return True
     else:

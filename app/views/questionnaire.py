@@ -1,19 +1,12 @@
 import re
 from collections import defaultdict
 
-from flask import Blueprint
-from flask import g
-from flask import redirect
-from flask import request
-from flask import url_for
-from flask_login import current_user
-from flask_login import login_required
-from flask_login import logout_user
+from flask import Blueprint, g, redirect, request, url_for, current_app
+from flask_login import current_user, login_required, logout_user
 from flask_themes2 import render_theme_template
 from structlog import get_logger
 from werkzeug.exceptions import Forbidden
 
-from app import settings
 from app.authentication.session_storage import session_storage
 from app.data_model.answer_store import Answer
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
@@ -24,7 +17,7 @@ from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.rules import evaluate_skip_condition
 from app.submitter.converter import convert_answers
-from app.submitter.submitter import SubmitterFactory
+from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.metadata_context import build_metadata_context, build_metadata_context_for_survey_completed
 from app.templating.schema_context import build_schema_context
 from app.templating.summary_context import build_summary_rendering_context
@@ -33,7 +26,6 @@ from app.utilities.schema import load_schema_from_metadata, load_schema_from_par
 from app.views.errors import MultipleSurveyError
 
 logger = get_logger()
-
 
 questionnaire_blueprint = Blueprint(name='questionnaire',
                                     import_name=__name__,
@@ -177,7 +169,7 @@ def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-ar
         metadata_context = build_metadata_context_for_survey_completed(survey_completed_metadata)
         thank_you_template = render_theme_template(schema['theme'], template_name='thank-you.html',
                                                    meta=metadata_context,
-                                                   analytics_ua_id=settings.EQ_UA_ID,
+                                                   analytics_ua_id=current_app.config['EQ_UA_ID'],
                                                    survey_id=schema['survey_id'],
                                                    survey_title=TemplateRenderer.safe_content(schema['title']))
         return thank_you_template
@@ -200,7 +192,7 @@ def _redirect_to_latest_location(collection_id, eq_id, form_type, schema):
 def get_sign_out(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     schema = load_schema_from_params(eq_id, form_type)
     signed_out_template = render_theme_template(schema['theme'], template_name='signed-out.html',
-                                                analytics_ua_id=settings.EQ_UA_ID,
+                                                analytics_ua_id=current_app.config['EQ_UA_ID'],
                                                 survey_title=TemplateRenderer.safe_content(schema['title']))
     return signed_out_template
 
@@ -222,7 +214,7 @@ def post_expire_session(eq_id, form_type, collection_id):  # pylint: disable=unu
 def get_session_expired(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
     schema = load_schema_from_params(eq_id, form_type)
     return render_theme_template(schema['theme'], template_name='session-expired.html',
-                                 analytics_ua_id=settings.EQ_UA_ID,
+                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
                                  survey_title=TemplateRenderer.safe_content(schema['title']))
 
 
@@ -231,12 +223,18 @@ def submit_answers(eq_id, form_type, collection_id, metadata, answer_store):
 
     if is_completed:
         path_finder = PathFinder(g.schema_json, answer_store, metadata)
-        submitter = SubmitterFactory.get_submitter()
+
         message = convert_answers(metadata, g.schema_json, answer_store, path_finder.get_routing_path())
-        submitter.send_answers(message)
+        message = current_app.eq['encrypter'].encrypt(message)
+        sent = current_app.eq['submitter'].send_message(message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'])
+
+        if not sent:
+            raise SubmissionFailedException()
+
         session_storage.store_survey_completed_metadata(metadata['tx_id'], metadata['period_str'], metadata['ru_ref'])
         get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
         _remove_survey_session_data()
+
         return redirect(url_for('.get_thank_you', eq_id=eq_id, form_type=form_type, collection_id=collection_id))
     else:
         return redirect(invalid_location.url(metadata))
@@ -520,11 +518,11 @@ def _build_template(current_location, context, template, routing_path=None):
 def _render_template(context, current_location, template, front_end_navigation, metadata_context, previous_url):
     theme = g.schema_json.get('theme', None)
     logger.debug("theme selected", theme=theme)
-    session_timeout = settings.EQ_SESSION_TIMEOUT_SECONDS
+    session_timeout = current_app.config['EQ_SESSION_TIMEOUT_SECONDS']
     schema_session_timeout = g.schema_json.get('session_timeout_in_seconds')
-    if schema_session_timeout is not None and schema_session_timeout < settings.EQ_SESSION_TIMEOUT_SECONDS:
+    if schema_session_timeout is not None and schema_session_timeout < current_app.config['EQ_SESSION_TIMEOUT_SECONDS']:
         session_timeout = schema_session_timeout
-    session_timeout_prompt = g.schema_json.get('session_prompt_in_seconds') or settings.EQ_SESSION_TIMEOUT_PROMPT_SECONDS
+    session_timeout_prompt = g.schema_json.get('session_prompt_in_seconds') or current_app.config['EQ_SESSION_TIMEOUT_PROMPT_SECONDS']
 
     if metadata_context is not None:
         survey_data = metadata_context['survey']
@@ -538,7 +536,7 @@ def _render_template(context, current_location, template, front_end_navigation, 
                                  meta=metadata_context,
                                  content=context,
                                  current_location=current_location,
-                                 analytics_ua_id=settings.EQ_UA_ID,
+                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
                                  previous_location=previous_url,
                                  navigation=front_end_navigation,
                                  survey_title=TemplateRenderer.safe_content(g.schema_json['title']),

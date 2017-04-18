@@ -4,6 +4,7 @@ from app.helpers.schema_helper import SchemaHelper
 from app.utilities.schema import load_schema_file
 
 
+# pylint: disable=too-many-public-methods
 class TestSchemaHelper(unittest.TestCase):
 
     def test_first_block_id(self):
@@ -108,8 +109,7 @@ class TestSchemaHelper(unittest.TestCase):
         group = {
             'blocks': [{
                 'id': 'block1',
-            },
-            {
+            }, {
                 'id': 'block2'
             }]
         }

@@ -7,7 +7,13 @@ from cryptography.hazmat.primitives import serialization
 
 from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
 from app.submitter.encrypter import Encrypter
-from tests.app.submitter import TEST_DO_NOT_USE_SDX_PRIVATE_KEY, TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY
+from tests.app.submitter import (
+    TEST_DO_NOT_USE_SDX_PRIVATE_KEY,
+    TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY,
+    TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD,
+    TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY,
+    TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY
+)
 
 SUBMISSION_DATA = json.loads("""
       {
@@ -36,7 +42,7 @@ SUBMISSION_DATA = json.loads("""
 class Decrypter(JWERSAOAEPDecryptor):
 
     def __init__(self):
-        super().__init__(TEST_DO_NOT_USE_SDX_PRIVATE_KEY, 'digitaleq')
+        super().__init__(TEST_DO_NOT_USE_SDX_PRIVATE_KEY, TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD)
         self.rrm_public_key = serialization.load_pem_public_key(
             TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY.encode(),
             backend=backend
@@ -49,7 +55,12 @@ class Decrypter(JWERSAOAEPDecryptor):
 
 class TestEncrypter(unittest.TestCase):
     def test_encrypt(self):
-        encrypter = Encrypter()
+        encrypter = Encrypter(
+            TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY,
+            TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD,
+            TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY
+        )
+
         encrypted_data = encrypter.encrypt(SUBMISSION_DATA)
 
         decrypter = Decrypter()
@@ -63,3 +74,32 @@ class TestEncrypter(unittest.TestCase):
         self.assertEqual(SUBMISSION_DATA["metadata"], unencrypted_data["metadata"])
         self.assertEqual(SUBMISSION_DATA["paradata"], unencrypted_data["paradata"])
         self.assertEqual(SUBMISSION_DATA["data"], unencrypted_data["data"])
+
+    def test_encrypter_raises_error_for_invalid_private_key(self):
+        with self.assertRaisesRegex(ValueError, 'Invalid private key'):
+
+            Encrypter(
+                '',
+                TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD,
+                TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY
+            )
+
+
+    def test_encrypter_raises_error_for_invalid_private_key_password(self):
+        with self.assertRaisesRegex(ValueError, 'Invalid private key password'):
+
+            Encrypter(
+                TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY,
+                '',
+                TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY
+            )
+
+
+    def test_encrypter_raises_error_for_invalid_public_key(self):
+        with self.assertRaisesRegex(ValueError, 'Invalid public key'):
+
+            Encrypter(
+                TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY,
+                TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD,
+                ''
+            )

@@ -1,71 +1,35 @@
-from abc import abstractmethod
-
 from pika import BasicProperties
 from pika import BlockingConnection
 from pika import URLParameters
 from pika.exceptions import AMQPError
 from structlog import get_logger
 
-from app import settings
-from app.submitter.encrypter import Encrypter
-from app.submitter.submission_failed import SubmissionFailedException
-
 logger = get_logger()
 
 
-class SubmitterFactory(object):
-
-    @staticmethod
-    def get_submitter():
-        if settings.EQ_RABBITMQ_ENABLED:
-            return RabbitMQSubmitter()
-        else:
-            return LogSubmitter()
-
-
-class Submitter(object):
-
-    def send_answers(self, message):
-        """
-        Sends the answers to rabbit mq and returns a timestamp for submission
-        :param message: The payload to submit
-        :raise: a submission failed exception
-        """
-        encrypted_message = self.encrypt_message(message)
-        sent = self.send_message(encrypted_message, settings.EQ_RABBITMQ_QUEUE_NAME)
-        if not sent:
-            raise SubmissionFailedException()
-
-    @abstractmethod
-    def send_message(self, message, queue):
-        return False
-
-    @staticmethod
-    def encrypt_message(message):
-        return Encrypter().encrypt(message)
-
-
-class LogSubmitter(Submitter):
+class LogSubmitter():  # pylint: disable=no-self-use
 
     def send_message(self, message, queue):
         logger.info("sending message")
-        logger.info("message payload", message=message)
+        logger.info("message payload", message=message, queue=queue)
         return True
 
 
-class RabbitMQSubmitter(Submitter):
-    def __init__(self):
+class RabbitMQSubmitter():
+    def __init__(self, rabbitmq_url, rabbitmq_secondary_url):
+        self.rabbitmq_url = rabbitmq_url
+        self.rabbitmq_secondary_url = rabbitmq_secondary_url
         self.connection = None
 
     def _connect(self):
         try:
             logger.info("attempt to open connection", server="primary", category="rabbitmq")
-            self.connection = BlockingConnection(URLParameters(settings.EQ_RABBITMQ_URL))
+            self.connection = BlockingConnection(URLParameters(self.rabbitmq_url))
         except AMQPError as e:
             logger.error("unable to open connection", exc_info=e, server="primary", category="rabbitmq")
             try:
                 logger.info("attempt to open connection", server="secondary", category="rabbitmq")
-                self.connection = BlockingConnection(URLParameters(settings.EQ_RABBITMQ_URL_SECONDARY))
+                self.connection = BlockingConnection(URLParameters(self.rabbitmq_secondary_url))
             except AMQPError as err:
                 logger.error("unable to open connection", exc_info=e, server="secondary", category="rabbitmq")
                 raise err

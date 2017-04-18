@@ -8,27 +8,8 @@ from bs4 import BeautifulSoup
 from app import create_app
 from app import settings
 from app.data_model.database import QuestionnaireState, EQSession, UsedJtiClaim
-from app.submitter.submitter import Submitter, SubmitterFactory
 
 from tests.integration.create_token import create_token
-
-
-class MyMockSubmitter(Submitter):
-
-    def __init__(self):
-        self._message = None
-        self._submitted_at = None
-
-    @staticmethod
-    def encrypt_message(message):
-        return message
-
-    def get_message(self):
-        return self._message
-
-    def send_message(self, message, queue):
-        self._message = message
-        return True
 
 
 class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public-methods
@@ -41,8 +22,8 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
         # Perform setup steps
         self._setUpSettings()
-        self._setUpMockSubmitter()
         self._setUpApp()
+
 
     @staticmethod
     def _setUpSettings():
@@ -55,25 +36,17 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
             password = os.getenv(password_name, dev_default)
             vars(settings)[password_name] = password  # assigns attribute to this module
 
+
     def _setUpApp(self):
         self._application = create_app()
+
         self._client = self._application.test_client()
         # Clear any existing state before the test starts
         self.clearDatabase()
 
-    def _setUpMockSubmitter(self):
-        """
-        Overrides the application SubmitterFactory to provide our own which
-        allows the message to be captured and interrogated.
-
-        Note: Normal patching isn't reliable due to the order that it
-        is imported by other modules.
-        """
-        self.submitter = MyMockSubmitter()
-        SubmitterFactory.get_submitter = lambda: self.submitter
-
     def tearDown(self):
         self.clearDatabase()
+
 
     @staticmethod
     def clearDatabase():
