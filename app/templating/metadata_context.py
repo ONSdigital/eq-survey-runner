@@ -15,14 +15,14 @@ def build_metadata_context(metadata):
 
 
 def _build_respondent_meta(metadata):
+    respondent_id = None
+    name = None
+    trading_as = None
+
     if metadata:
         respondent_id = metadata["ru_ref"]
         name = metadata["ru_name"]
         trading_as = metadata["trad_as"]
-    else:
-        respondent_id = None
-        name = None
-        trading_as = None
 
     respondent_meta = {
         "tx_id": convert_tx_id(metadata["tx_id"]),
