@@ -1,108 +1,111 @@
-from unittest import TestCase
+from abc import abstractmethod
 
-from mock import patch, Mock, call
+from pika import BasicProperties
+from pika import BlockingConnection
+from pika import URLParameters
 from pika.exceptions import AMQPError
+from structlog import get_logger
 
 from app import settings
-from app.submitter.submitter import RabbitMQSubmitter, LogSubmitter, SubmitterFactory, Submitter
+from app.submitter.encrypter import Encrypter
+from app.submitter.submission_failed import SubmissionFailedException
+
+logger = get_logger()
 
 
-class TestSubmitter(TestCase):
+class SubmitterFactory(object):
 
-    def test_when_fail_to_connect_to_queue_then_published_false(self):
-        # Given
-        with patch('app.submitter.submitter.BlockingConnection') as connection:
-            connection.side_effect = AMQPError()
+    @staticmethod
+    def get_submitter():
+        if settings.EQ_RABBITMQ_ENABLED:
+            return RabbitMQSubmitter()
+        else:
+            return LogSubmitter()
 
-            submitter = RabbitMQSubmitter()
 
-            # When
-            published = submitter.send_message(message={}, queue='test_queue')
+class Submitter(object):
 
-            # Then
-            self.assertFalse(published, 'send_message should fail to publish message')
+    def send_answers(self, message):
+        """
+        Sends the answers to rabbit mq and returns a timestamp for submission
+        :param message: The payload to submit
+        :raise: a submission failed exception
+        """
+        encrypted_message = self.encrypt_message(message)
+        sent = self.send_message(encrypted_message, settings.EQ_RABBITMQ_QUEUE_NAME)
+        if not sent:
+            raise SubmissionFailedException()
 
-    def test_when_message_sent_then_published_true(self):
-        # Given
-        with patch('app.submitter.submitter.BlockingConnection'):
-            published = RabbitMQSubmitter().send_message(message={}, queue='test_queue')
+    @abstractmethod
+    def send_message(self, message, queue):
+        return False
 
-            # When
+    @staticmethod
+    def encrypt_message(message):
+        return Encrypter().encrypt(message)
 
-            # Then
-            self.assertTrue(published, 'send_message should publish message')
 
-    def test_when_first_connection_fails_then_secondary_succeeds(self):
-        # Given
-        with patch('app.submitter.submitter.BlockingConnection') as connection, \
-                patch('app.submitter.submitter.URLParameters') as url_parameters:
-            secondary_connection = Mock()
-            connection.side_effect = [AMQPError(), secondary_connection]
+class LogSubmitter(Submitter):
 
-            # When
-            published = RabbitMQSubmitter().send_message(message={}, queue='test_queue')
+    def send_message(self, message, queue):
+        logger.info("sending message")
+        logger.info("message payload", message=message)
+        return True
 
-            # Then
-            self.assertTrue(published, 'send_message should publish message')
-            # Check we create url for primary then secondary
-            url_parameters_calls = [call(settings.EQ_RABBITMQ_URL), call(settings.EQ_RABBITMQ_URL_SECONDARY)]
-            url_parameters.assert_has_calls(url_parameters_calls)
-            # Check we create connection twice, failing first then with settings.EQ_RABBITMQ_URL_SECONDARY
-            self.assertEqual(connection.call_count, 2)
 
-    def test_when_fail_to_disconnect_then_log_warning_message(self):
-        # Given
-        connection = Mock()
-        error = AMQPError()
-        connection.close.side_effect = [error]
-        settings.EQ_RABBITMQ_URL = 'amqp://localhost:5672/%2F'
-        with patch('app.submitter.submitter.BlockingConnection', return_value=connection), \
-                patch('app.submitter.submitter.logger') as logger:
+class RabbitMQSubmitter(Submitter):
+    def __init__(self):
+        self.connection = None
 
-            # When
-            published = RabbitMQSubmitter().send_message(message={}, queue='test_queue')
+    def _connect(self):
+        try:
+            logger.info("attempt to open connection", server="primary", category="rabbitmq")
+            self.connection = BlockingConnection(URLParameters(settings.EQ_RABBITMQ_URL))
+        except AMQPError as e:
+            logger.error("unable to open connection", exc_info=e, server="primary", category="rabbitmq")
+            try:
+                logger.info("attempt to open connection", server="secondary", category="rabbitmq")
+                self.connection = BlockingConnection(URLParameters(settings.EQ_RABBITMQ_URL_SECONDARY))
+            except AMQPError as err:
+                logger.error("unable to open connection", exc_info=e, server="secondary", category="rabbitmq")
+                raise err
 
-            # Then
-            self.assertTrue(published)
-            logger.error.assert_called_once_with('unable to close connection', category='rabbitmq', exc_info=error)
+    def _disconnect(self):
+        try:
+            if self.connection:
+                logger.info("attempt to close connection", category="rabbitmq")
+                self.connection.close()
+        except AMQPError as e:
+            logger.error("unable to close connection", exc_info=e, category="rabbitmq")
 
-    def test_when_fail_to_publish_message_then_returns_false(self):
-        # Given
-        channel = Mock()
-        channel.basic_publish = Mock(return_value=False)
-        connection = Mock()
-        connection.channel.side_effect = Mock(return_value=channel)
-        with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
-            # When
-            published = RabbitMQSubmitter().send_message(message={}, queue='test_queue')
-
-            # Then
-            self.assertFalse(published, 'send_message should fail to publish message')
-
-    def test_log_submitter_send_message(self):
-        # Given
-        with patch('app.submitter.submitter.BlockingConnection'):
-            # When
-            sent_message = LogSubmitter().send_message(message={}, queue='test_queue')
-
-            # Then
-            self.assertEqual(sent_message, True)
-
-    def test_get_submitter_settings_enabled(self):
-        settings.EQ_RABBITMQ_ENABLED = True
-        rabbit_submitter = SubmitterFactory.get_submitter()
-        self.assertEqual(type(rabbit_submitter), RabbitMQSubmitter)
-
-    def test_get_submitter_settings_not_enabled(self):
-        settings.EQ_RABBITMQ_ENABLED = False
-        log_submitter = SubmitterFactory.get_submitter()
-        self.assertEqual(type(log_submitter), LogSubmitter)
-
-    def test_submitter_send_message(self):
-        sent_message_test = Submitter.send_message(self, message={}, queue='test_queue')
-        self.assertEqual(sent_message_test, False)
-
-    def test_submitter_encrypt_message(self):
-        encrypt_message_test = Submitter.encrypt_message(message={'test': 'test'})
-        self.assertIsInstance(encrypt_message_test, cls=str)
-        self.assertNotEqual(encrypt_message_test, 'test')
+    def send_message(self, message, queue):
+        """
+        Sends a message to rabbit mq and returns a true or false depending on if it was successful
+        :param message: The message to send to the rabbit mq queue
+        :param queue: the name of the queue
+        :return: a boolean value indicating if it was successful
+        """
+        message_as_string = str(message)
+        logger.info("sending message", category="rabbitmq")
+        logger.info("message payload", message=message_as_string, category="rabbitmq")
+        try:
+            self._connect()
+            channel = self.connection.channel()
+            channel.queue_declare(queue=queue, durable=True)
+            published = channel.basic_publish(exchange='',
+                                              routing_key=queue,
+                                              body=message_as_string,
+                                              mandatory=True,
+                                              properties=BasicProperties(
+                                                  delivery_mode=2,
+                                              ))
+            if published:
+                logger.info("sent message", category="rabbitmq")
+            else:
+                logger.error("unable to send message", category="rabbitmq")
+            return published
+        except AMQPError as e:
+            logger.error("unable to send message", exc_info=e, category="rabbitmq")
+            return False
+        finally:
+            self._disconnect()
