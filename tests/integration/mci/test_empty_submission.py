@@ -64,7 +64,7 @@ class TestEmptySubmission(IntegrationTestCase):
 
         # We are on the review answers page
         self.assertInPage('>Your responses<')
-        self.assertInPage('Please check carefully before submission')
+        self.assertInPage('Please check your responses carefully before submitting')
         self.assertInPage('>Submit answers<')
 
         # We submit our answers

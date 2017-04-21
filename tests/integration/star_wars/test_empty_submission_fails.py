@@ -56,7 +56,7 @@ class TestEmptySubmissionFails(StarWarsTestCase):
         self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
         self.assertRegexPage('(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?'
                              'Wookiees don’t place value in material rewards and refused the medal initially')
-        self.assertInPage('>Please check carefully before submission.<')
+        self.assertInPage('>Please check your responses carefully before submitting.<')
         self.assertInPage('>Submit answers<')
 
         # Submit answers
