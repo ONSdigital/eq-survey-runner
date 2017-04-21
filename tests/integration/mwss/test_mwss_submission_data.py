@@ -9,15 +9,17 @@ class TestMwssSubmissionData(IntegrationTestCase):
 
         # And the JSON response contains the data I submitted
         actual_downstream_data = self.dumpSubmission()
+        tx_id = actual_downstream_data['submission']['tx_id']
+        submitted_at = actual_downstream_data['submission']['submitted_at']
 
-        self.assertDictEqual(actual_downstream_data, self.get_expected_submission_data(actual_downstream_data))
+        self.assertDictEqual(actual_downstream_data, self.get_expected_submission_data(tx_id, submitted_at))
 
     @staticmethod
-    def get_expected_submission_data(actual_downstream_data):
+    def get_expected_submission_data(tx_id, submitted_at):
         expected_downstream_data = {
             "submission": {
-                "tx_id": actual_downstream_data['submission']['tx_id'],
-                "submitted_at": actual_downstream_data['submission']['submitted_at'],
+                "tx_id": tx_id,
+                "submitted_at": submitted_at,
                 "metadata": {
                     "user_id": "integration-test",
                     "ru_ref": "123456789012A"
