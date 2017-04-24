@@ -184,7 +184,7 @@ gulp.task('lint', [
 ])
 
 gulp.task('lint:json', () => {
-  gulp.src(['./app/data/*.json'])
+  gulp.src(['./data/en/*.json'])
     .pipe(prettify())
     .pipe(diff())
     .pipe(diff.reporter({
@@ -198,11 +198,11 @@ gulp.task('lint:json', () => {
 })
 
 gulp.task('format:json', () => {
-  gulp.src(['./app/data/*.json'])
+  gulp.src(['./data/en/*.json'])
     .pipe(prettify())
-    .pipe(gulp.dest('./app/data/'))
+    .pipe(gulp.dest('./data/en/'))
 
-  gulp.src(['./app/data/schema/schema-v1.json'])
+  gulp.src(['./data/schema/schema-v1.json'])
     .pipe(prettify())
-    .pipe(gulp.dest('./app/data/schema'))
+    .pipe(gulp.dest('./data/schema'))
 })

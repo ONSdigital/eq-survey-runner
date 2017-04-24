@@ -297,7 +297,7 @@ def process_schema(in_schema, out_dir, spec_out=None):
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         print("Usage: {} <schema.json> </outdir/> <spec_out>".format(sys.argv[0]))
-        print("Example: {} ./app/data/census_household.json ./tests/functional/pages/surveys/census/household/ ./tests/functional/spec/census-test.spec.js".format(sys.argv[0]))
+        print("Example: {} ./data/census_household.json ./tests/functional/pages/surveys/census/household/ ./tests/functional/spec/census-test.spec.js".format(sys.argv[0]))
         exit(1)
 
     schema_in = sys.argv[1]

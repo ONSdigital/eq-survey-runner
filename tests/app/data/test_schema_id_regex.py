@@ -6,6 +6,7 @@ from json import load
 from jsonschema import ValidationError, validate
 
 from app import settings
+from app.utilities.schema import get_schema_file_path
 
 
 def create_schema_with_id(schema_id='answer'):
@@ -14,7 +15,7 @@ def create_schema_with_id(schema_id='answer'):
     :param schema_id: The Id to use for the answer.
     :return: The JSON file with the Id swapped for schema_id
     """
-    json_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "test_percentage.json"))
+    json_file = open(get_schema_file_path("test_percentage.json"))
     json_content = load(json_file)
     json_content['groups'][0]['blocks'][0]['sections'][0]['questions'][0]['answers'][0]['id'] = schema_id
     return json_content
