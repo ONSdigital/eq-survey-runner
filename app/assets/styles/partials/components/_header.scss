@@ -4,10 +4,6 @@ $header-bp: 36em;
   display: block;
   overflow: hidden;
   padding: 1.284rem 0;
-  @include mq(m) {
-    padding: 1.284rem 0;
-  }
-
   &::before {
     content: "";
     display: block;

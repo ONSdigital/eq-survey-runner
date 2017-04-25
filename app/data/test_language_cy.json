@@ -11,18 +11,19 @@
         "id": "welsh-group",
         "title": "",
         "blocks": [{
-            "type": "Interstitial",
-            "id": "welsh-block",
-            "sections": [{
-                "title": "Holiadur Cymraeg",
-                "id": "welsh-section",
-                "questions": []
-            }],
-            "title": ""
-        },
-        {
-            "type": "Summary",
-            "id": "summary"
-        }]
+                "type": "Interstitial",
+                "id": "welsh-block",
+                "sections": [{
+                    "title": "Holiadur Cymraeg",
+                    "id": "welsh-section",
+                    "questions": []
+                }],
+                "title": ""
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ]
     }]
 }

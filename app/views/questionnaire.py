@@ -483,7 +483,7 @@ def _get_front_end_navigation(answer_store, current_location, metadata, routing_
     completed_blocks = get_completed_blocks(current_user)
     navigation = Navigation(g.schema_json, answer_store, metadata, completed_blocks, routing_path)
     block_json = SchemaHelper.get_block_for_location(g.schema_json, current_location)
-    if block_json is not None and block_json['type'] in ('Questionnaire', 'Interstitial', 'Confirmation'):
+    if block_json is not None and block_json['type'] in ('Questionnaire', 'Interstitial', 'Confirmation', 'Summary'):
         return navigation.build_navigation(current_location.group_id, current_location.group_instance)
     else:
         return None

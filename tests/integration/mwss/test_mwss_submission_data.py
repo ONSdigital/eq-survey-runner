@@ -327,4 +327,4 @@ class TestMwssSubmissionData(IntegrationTestCase):
 
         self.post(post_data={'general-comments-answer': 'General Comments'})
 
-        self.assertInPage('You are now ready to submit this questionnaire')
+        self.assertInUrl('summary')
