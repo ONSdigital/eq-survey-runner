@@ -35,11 +35,9 @@
         <div class="summary__items">
 
             {% for question in section.questions %}
-                {% if question.number %}
-                  {% set question_number = "["~question.number~"]"  %}
-                {% endif %}
+
                 <div class="summary__question" id="{{question.id}}">
-                  {{question_number}} {{question.title|striptags|safe}}
+                  {{question.number or ''}} {{question.title|striptags|safe}}
                 </div>
 
                 {% for answer in question.answers %}
