@@ -6,5 +6,4 @@ ENV AWS_DEFAULT_REGION eu-west-1
 
 EXPOSE 5000
 
-# Compile frontend
-CMD [ "python", "./application.py", "runserver" ]
+CMD [ "gunicorn", "-b 0.0.0.0:5000", "application:application" ]
