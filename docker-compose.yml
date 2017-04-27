@@ -29,7 +29,6 @@ services:
     environment:
       EQ_DEV_MODE: "True"
       EQ_DEV_KEYS: "True"
-      EQ_ENABLE_CACHE: "True"
       EQ_DEVELOPER_LOGGING: "True"
       EQ_RABBITMQ_ENABLED: "True"
       EQ_SERVER_SIDE_STORAGE_DATABASE_URL: postgres://digitaleq:digitaleq@db:5432/runner
