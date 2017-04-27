@@ -6,7 +6,7 @@ class SummaryPage {
   }
 
   static submit() {
-    browser.click('.qa-btn-submit-answers')
+    browser.click('[data-qa="btn-submit"]')
   }
 
 }

@@ -68,30 +68,27 @@
 }
 
 .btn--loader {
-  transition: color 300ms ease-out;
+  transition: all 300ms ease-out;
   position: relative;
-  &::after {
-    display: block;
+  &::before {
+    transition: all 300ms ease-out;
+    display: inline-block;
+    vertical-align: middle;
     content: "";
-    width: 2rem;
-    height: 2rem;
+    width: 1.2em;
+    height: 1.2em;
     opacity: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
+    margin-right: 0.5em;
     background-image: url('/s/img/loader.svg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 1.5rem;
-    transition: opacity 300ms ease-out 200ms;
     pointer-events: none;
+    margin-left: -1.8em;
+    margin-top: -0.2em;
   }
   &.is-loading {
-    color: transparent;
-    &::after {
+    &::before {
       opacity: 1;
     }
   }

@@ -2,4 +2,6 @@
 
 {% block page_title %}{{_("Submit answers")}} - {{survey_title}}{% endblock %}
 
-{% block submit_button_text %}Submit answers{% endblock %}
+{% block submit_button %}
+  <button class="btn btn--primary btn--lg btn--loader js-btn-submit" data-qa="btn-submit" data-loading-msg="Submitting&hellip;" type="submit">Submit answers</button>
+{% endblock %}

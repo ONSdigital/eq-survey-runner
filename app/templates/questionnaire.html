@@ -54,7 +54,10 @@
 
       </div>
 
-      <button class="btn btn--primary btn--lg qa-btn-submit venus" type="submit" name="action[save_continue]">{% block submit_button_text %}Save and continue{% endblock %}</button>
+      {% block submit_button %}
+      <button class="btn btn--primary btn--lg" data-qa="btn-submit" type="submit" name="action[save_continue]">{{submit_btn_text or "Save and continue"}}</button>
+      {% endblock %}
+
       <div class="u-mb-m">
         <button class="btn btn--link mars js-btn-save" type="submit" name="action[save_sign_out]" {{helpers.track('click', 'Navigation', 'Save and complete later click')}}>{% block save_sign_out_button_text %}Save and complete later{% endblock %}</button>
       </div>
