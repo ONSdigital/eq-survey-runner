@@ -27,7 +27,9 @@
 .header__logo {
   margin-bottom: 0;
   margin-right: auto;
-
+  @include mq($header-bp) {
+    flex: none;
+  }
   @include fixed() {
     background: url("/s/img/theme/census/census-logo.png") no-repeat left center;
     width: 221px;

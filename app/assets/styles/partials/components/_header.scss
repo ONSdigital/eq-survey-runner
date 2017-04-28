@@ -24,10 +24,14 @@ $header-bp: 36em;
   margin-bottom: 1rem;
   @include mq($header-bp) {
     margin-bottom: 0;
+    flex: 1 1 100%;
   }
 }
 
 .header__info {
+  white-space: nowrap;
+  min-height: 3rem;
+
   @include mq($from: xs, $to: m) {
     max-width: 100%;
   }
