@@ -50,6 +50,12 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
     application.config.from_object(settings)
 
+    if application.config['EQ_APPLICATION_VERSION']:
+        logger.info('starting eq survey runner', version=application.config['EQ_APPLICATION_VERSION'])
+
+    if application.config['EQ_NEW_RELIC_ENABLED']:
+        setup_newrelic()
+
     application.eq = {}
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
@@ -66,12 +72,31 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
         application.config['EQ_SUBMISSION_SDX_PUBLIC_KEY'],
     )
 
-    if application.config['EQ_NEW_RELIC_ENABLED']:
-        setup_newrelic()
-
     setup_secure_cookies(application)
 
     setup_babel(application)
+
+    application.wsgi_app = AWSReverseProxied(application.wsgi_app)
+
+    add_blueprints(application)
+
+    configure_flask_logging(application)
+
+    login_manager.init_app(application)
+
+    add_safe_health_check(application)
+
+    if application.config['EQ_DEV_MODE']:
+        start_dev_mode(application)
+
+    if application.config['EQ_ENABLE_CACHE']:
+        cache.init_app(application, config={'CACHE_TYPE': 'simple'})
+    else:
+        cache.init_app(application)  # Doesnt cache
+
+    # Add theme manager
+    application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
+    Themes(application, app_identifier="surveyrunner")
 
     @application.before_request
     def before_request():  # pylint: disable=unused-variable
@@ -89,35 +114,8 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
     def override_url_for():  # pylint: disable=unused-variable
         return dict(url_for=versioned_url_for)
 
-    application.wsgi_app = AWSReverseProxied(application.wsgi_app)
-
-    add_blueprints(application)
-
-    configure_flask_logging(application)
-
-    login_manager.init_app(application)
-
-    if application.config['EQ_ENABLE_CACHE']:
-        cache.init_app(application, config={'CACHE_TYPE': 'simple'})
-    else:
-        cache.init_app(application)  # Doesnt cache
-
-    # always add safe health check
-    add_safe_health_check(application)
-
-    if application.config['EQ_PROFILING']:
-        setup_profiling(application)
-
-    if application.config['EQ_APPLICATION_VERSION']:
-        logger.info('starting eq survey runner', version=application.config['EQ_APPLICATION_VERSION'])
-
-    # Add theme manager
-    application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
-    Themes(application, app_identifier="surveyrunner")
-
     @application.teardown_appcontext
     def shutdown_session(exception=None):  # pylint: disable=unused-variable,unused-argument
-
         db_session.remove()
 
     return application
@@ -152,25 +150,27 @@ def configure_flask_logging(application):
 
 
 def start_dev_mode(application):
-    # import and register the dev mode blueprint
-    from app.views.dev_mode import dev_mode_blueprint
-    application.register_blueprint(dev_mode_blueprint)
-    application.debug = True
     # Not in dev mode, so use secure_session_cookies
     application.config['SESSION_COOKIE_SECURE'] = False
 
-    if settings.EQ_ENABLE_FLASK_DEBUG_TOOLBAR:
-        from flask_debugtoolbar import DebugToolbarExtension
-        DebugToolbarExtension(application)
+    if application.config['EQ_ENABLE_FLASK_DEBUG_TOOLBAR']:
         application.config['DEBUG_TB_PROFILER_ENABLED'] = True
         application.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+        from flask_debugtoolbar import DebugToolbarExtension
+        DebugToolbarExtension(application)
+
+    if application.config['EQ_PROFILING']:
+        setup_profiling(application)
 
 
 def add_blueprints(application):
-    # import and regsiter the main application blueprint
     if application.config['EQ_DEV_MODE']:
-        start_dev_mode(application)
+        # import and register the dev mode blueprint
+        from app.views.dev_mode import dev_mode_blueprint
+        application.register_blueprint(dev_mode_blueprint)
+        application.debug = True
 
+    # import and register the main application blueprint
     from app.views.questionnaire import questionnaire_blueprint
     application.register_blueprint(questionnaire_blueprint)
     questionnaire_blueprint.config = application.config.copy()

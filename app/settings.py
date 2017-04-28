@@ -2,6 +2,8 @@ import os
 
 from structlog import get_logger
 
+from app.missing_setting_exception import MissingSettingException
+
 logger = get_logger()
 
 
@@ -28,7 +30,15 @@ def read_file(file_name):
         return None
 
 
-EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'False'))
+def get_env_or_fail(key):
+    value = os.getenv(key)
+    if value is None:
+        raise MissingSettingException("Setting '{}' Missing".format(key))
+
+    return value
+
+
+EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'True'))
 # max request payload size in bytes
 MAX_CONTENT_LENGTH = os.getenv('EQ_MAX_HTTP_POST_CONTENT_LENGTH', 65536)
 
@@ -37,29 +47,28 @@ EQ_MAX_NUM_REPEATS = os.getenv('EQ_MAX_NUM_REPEATS', 25)
 
 EQ_PROFILING = parse_mode(os.getenv('EQ_PROFILING', 'False'))
 
-EQ_RABBITMQ_URL = os.getenv('EQ_RABBITMQ_URL', 'amqp://localhost:5672/%2F')
-EQ_RABBITMQ_URL_SECONDARY = os.getenv('EQ_RABBITMQ_URL_SECONDARY', 'amqp://localhost:5672/%2F')
-EQ_RABBITMQ_QUEUE_NAME = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'eq-submissions')
-EQ_RABBITMQ_TEST_QUEUE_NAME = os.getenv('EQ_RABBITMQ_TEST_QUEUE_NAME', 'eq-test')
+EQ_RABBITMQ_URL = get_env_or_fail('EQ_RABBITMQ_URL')
+EQ_RABBITMQ_URL_SECONDARY = get_env_or_fail('EQ_RABBITMQ_URL_SECONDARY')
+EQ_RABBITMQ_QUEUE_NAME = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'submit_q')
 EQ_RABBITMQ_ENABLED = parse_mode(os.getenv('EQ_RABBITMQ_ENABLED', 'True'))
 EQ_NEW_RELIC_CONFIG_FILE = os.getenv('EQ_NEW_RELIC_CONFIG_FILE', './newrelic.ini')
 EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'data')
 EQ_SESSION_TIMEOUT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_SECONDS', 45 * 60))
 EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS', '30'))
 EQ_SESSION_TIMEOUT_PROMPT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_PROMPT_SECONDS', 120))
-EQ_SECRET_KEY = os.getenv('EQ_SECRET_KEY', os.urandom(24))
+EQ_SECRET_KEY = get_env_or_fail('EQ_SECRET_KEY')
 EQ_UA_ID = os.getenv('EQ_UA_ID', '')
-EQ_NEW_RELIC_ENABLED = os.getenv("EQ_NEW_RELIC_ENABLED", "False") == "True"
+EQ_NEW_RELIC_ENABLED = parse_mode(os.getenv("EQ_NEW_RELIC_ENABLED", "False"))
 EQ_APPLICATION_VERSION_PATH = '.application-version'
 EQ_APPLICATION_VERSION = read_file(EQ_APPLICATION_VERSION_PATH)
 
 EQ_SERVER_SIDE_STORAGE_ENCRYPTION = parse_mode(os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION', 'True'))
-EQ_SERVER_SIDE_STORAGE_DATABASE_URL = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_URL', 'sqlite:////tmp/questionnaire.db')
+EQ_SERVER_SIDE_STORAGE_DATABASE_URL = get_env_or_fail('EQ_SERVER_SIDE_STORAGE_DATABASE_URL')
 EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_COUNT = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_CONNECT_RETRY_COUNT', 10)
 EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_DELAY_SECONDS = os.getenv('EQ_SERVER_SIDE_STORAGE_DATABASE_CONNECT_RETRY_DELAY_SECONDS', 6)
-EQ_SERVER_SIDE_STORAGE_USER_ID_SALT = os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_SALT', 'luke.skywalker.r2d2.c3p0')
-EQ_SERVER_SIDE_STORAGE_USER_IK_SALT = os.getenv('EQ_SERVER_SIDE_STORAGE_USER_IK_SALT', 'jabba.leia.organa.solo')
-EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER = os.getenv('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER', 'boba.fett.ig88.xizor')
+EQ_SERVER_SIDE_STORAGE_USER_ID_SALT = get_env_or_fail('EQ_SERVER_SIDE_STORAGE_USER_ID_SALT')
+EQ_SERVER_SIDE_STORAGE_USER_IK_SALT = get_env_or_fail('EQ_SERVER_SIDE_STORAGE_USER_IK_SALT')
+EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER = get_env_or_fail('EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER')
 EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS = ensure_min(os.getenv('EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS', 10000), 1000)
 
 EQ_DEV_MODE = parse_mode(os.getenv("EQ_DEV_MODE", "False"))

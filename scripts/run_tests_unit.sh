@@ -23,17 +23,9 @@ function display_result {
 echo "Environment variables in use:"
 env | grep EQ_
 
-if [ -z "$EQ_DEV_MODE" ]; then
-  export EQ_DEV_MODE=True
-fi
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [ -z "$EQ_ENABLE_CACHE" ]; then
-  export EQ_ENABLE_CACHE=True
-fi
-
-# Use default environment vars for localhost if not already set
-export EQ_RABBITMQ_ENABLED=False
-export EQ_SERVER_SIDE_STORAGE_DATABASE_URL="sqlite://"
+source ${DIR}/dev_settings.sh
 
 py.test --cov=app --cov-report xml
 display_result $? 3 "Unit tests"

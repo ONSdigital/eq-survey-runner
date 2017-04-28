@@ -218,7 +218,6 @@ EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY - the SR private key for signing of submiss
 EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD - the password to the SR private key
 EQ_RABBITMQ_URL - the RabbitMQ connection string
 EQ_RABBITMQ_QUEUE_NAME - the name of the submission queue
-EQ_RABBITMQ_TEST_QUEUE_NAME - the name of the test queue
 EQ_SERVER_SIDE_STORAGE_DATABASE_URL - url of the database to connect to, e.g. 'sqlite:////tmp/questionnaire.db')
 EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_COUNT - Number of times to retry setting up the database (connection/creation) if it fails
 EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_DELAY_SECONDS - Number of seconds to wait between retry attempts to setup the database

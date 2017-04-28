@@ -7,7 +7,6 @@ else
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo "$DIR"
 
 
 if [ "${TRAVIS}" ]; then
@@ -16,24 +15,14 @@ if [ "${TRAVIS}" ]; then
   export EQ_WERKZEUG_LOG_LEVEL=WARNING
 fi
 
-if [ -z "$EQ_DEV_MODE" ]; then
-  export EQ_DEV_MODE=True
-fi
-
-if [ -z "$EQ_RABBITMQ_ENABLED" ]; then
-  export EQ_RABBITMQ_ENABLED=False
-fi
-
-if [ -z "$EQ_SECRET_KEY" ]; then
-  export EQ_SECRET_KEY="SuperSecretDeveloperKey"
-fi
+source ${DIR}/dev_settings.sh
 
 # Use default environment vars for localhost if not already set
 
 echo "Environment variables in use:"
 env | grep EQ_
 
-"${DIR}"/build.sh
+${DIR}/build.sh
 
 if [ -z "${TRAVIS}" ]; then
   python application.py runserver
