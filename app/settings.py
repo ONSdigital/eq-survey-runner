@@ -18,12 +18,13 @@ def parse_mode(string):
 
 
 def read_file(file_name):
-    if os.path.isfile(file_name):
+    if file_name and os.path.isfile(file_name):
         logger.debug("reading from file", filename=file_name)
         f = open(file_name, "r")
         contents = f.read()
         return contents
     else:
+        logger.info("Did not load file because filename supplied was None or not a file", file_name=file_name)
         return None
 
 EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'False'))

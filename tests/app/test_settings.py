@@ -21,5 +21,8 @@ class TestSettings(unittest.TestCase):
     def test_missing_get_application_version_from_file(self):
         self.assertEqual(None, settings.read_file('.missing-application-version'))
 
+    def test_none_filename_does_not_attempt_to_load_file(self):
+        self.assertEqual(None, settings.read_file(None))
+
 if __name__ == '__main__':
     unittest.main()
