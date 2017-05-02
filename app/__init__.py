@@ -18,6 +18,9 @@ from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
 from app.data_model.database import db_session
 from app.new_relic import setup_newrelic
 
+from app.submitter.encrypter import Encrypter
+from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
+
 SECURE_HEADERS = {
     'Cache-Control': 'no-cache, no-store, must-revalidate',
     'Pragma': 'no-cache',
@@ -43,9 +46,25 @@ class AWSReverseProxied(object):
         return self.app(environ, start_response)
 
 
-def create_app():  # pylint: disable=too-complex
+def create_app():  # noqa: C901  pylint: disable=too-complex
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
     application.config.from_object(settings)
+
+    application.eq = {}
+    if application.config['EQ_RABBITMQ_ENABLED']:
+        application.eq['submitter'] = RabbitMQSubmitter(
+            application.config['EQ_RABBITMQ_URL'],
+            application.config['EQ_RABBITMQ_URL_SECONDARY'],
+        )
+
+    else:
+        application.eq['submitter'] = LogSubmitter()
+
+    application.eq['encrypter'] = Encrypter(
+        application.config['EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY'],
+        application.config['EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD'],
+        application.config['EQ_SUBMISSION_SDX_PUBLIC_KEY'],
+    )
 
     if application.config['EQ_NEW_RELIC_ENABLED']:
         setup_newrelic()

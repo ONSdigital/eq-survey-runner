@@ -5,21 +5,29 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.cryptography.jwt_encoder import Encoder
 from tests.app.authentication import (
-    TEST_DO_NOT_USE_RRM_PUBLIC_PEM,
     TEST_DO_NOT_USE_SR_PRIVATE_PEM,
-    TEST_DO_NOT_USE_SR_PRIVATE_PEM_PASSWORD,
-    VALID_SIGNED_JWT,
-    VALID_JWE)
+    TEST_DO_NOT_USE_SR_PUBLIC_KEY,
+    TEST_DO_NOT_USE_RRM_PRIVATE_KEY,
+    TEST_DO_NOT_USE_RRM_PUBLIC_PEM,
+    TEST_DO_NOT_USE_PASSWORD,
+    VALID_JWE,
+    VALID_SIGNED_JWT
+)
 
 
 class JWETest(unittest.TestCase):
     def setUp(self):
         self.decryptor_args = (
             TEST_DO_NOT_USE_SR_PRIVATE_PEM,
-            TEST_DO_NOT_USE_SR_PRIVATE_PEM_PASSWORD,
+            TEST_DO_NOT_USE_PASSWORD,
             TEST_DO_NOT_USE_RRM_PUBLIC_PEM
         )
 
+        self.encoder_args = (
+            TEST_DO_NOT_USE_RRM_PRIVATE_KEY,
+            TEST_DO_NOT_USE_PASSWORD,
+            TEST_DO_NOT_USE_SR_PUBLIC_KEY
+        )
         self.leeway = 120
 
     def test_valid_jwe(self):
@@ -34,14 +42,14 @@ class JWETest(unittest.TestCase):
 
     def test_missing_algorithm(self):
         jwe_protected_header = b'{"enc":"A256GCM"}'
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
         self.assertInDecryptException(jwe.decode(), "Missing Algorithm")
 
     def test_invalid_algorithm(self):
         jwe_protected_header = b'{"alg":"PBES2_HS256_A128KW","enc":"A256GCM"}'
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
         self.assertInDecryptException(jwe.decode(), "Invalid Algorithm")
@@ -49,7 +57,7 @@ class JWETest(unittest.TestCase):
     def test_enc_missing(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP"}'
 
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
                                     jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
@@ -57,7 +65,7 @@ class JWETest(unittest.TestCase):
 
     def test_invalid_enc(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","enc":"A128GCM"}'
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
                                     jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
@@ -65,7 +73,7 @@ class JWETest(unittest.TestCase):
 
     def test_jwe_header_contains_alg_twice(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","alg":"RSA-OAEP","enc":"A256GCM"}'
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
                                     jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
@@ -73,7 +81,7 @@ class JWETest(unittest.TestCase):
 
     def test_jwe_header_only_contains_alg_and_enc(self):
         jwe_protected_header = b'{"alg":"RSA-OAEP","enc":"A256GCM", "test":"test"}'
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(),
                                     jwe_protected_header=encoder._base_64_encode(jwe_protected_header))  # pylint: disable=protected-access
 
@@ -82,7 +90,7 @@ class JWETest(unittest.TestCase):
     def test_jwe_key_not_2048_bits(self):
         cek = os.urandom(32)
 
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         encoder.cek = cek
         encrypted_key = encoder._encrypted_key(cek)  # pylint: disable=protected-access
         encrypted_key = encrypted_key[0:len(encrypted_key) - 2]
@@ -93,7 +101,7 @@ class JWETest(unittest.TestCase):
     def test_cek_not_256_bits(self):
         cek = os.urandom(24)
 
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         encoder.cek = cek
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode())
 
@@ -102,20 +110,20 @@ class JWETest(unittest.TestCase):
     def test_iv_not_96_bits(self):
         iv = os.urandom(45)
 
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         encoder.iv = iv
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode())
 
         self.assertInDecryptException(jwe.decode(), "IV incorrect length")
 
     def test_authentication_tag_not_128_bits(self):
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), tag=os.urandom(10))
 
         self.assertInDecryptException(jwe.decode(), "'Authentication tag must be 16 bytes or longer")
 
     def test_authentication_tag_corrupted(self):
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), tag=b'adssadsadsadsadasdasdasads')
 
         decoder = JWTDecryptor(*self.decryptor_args)
@@ -123,7 +131,7 @@ class JWETest(unittest.TestCase):
             decoder.decrypt_jwt_token(jwe.decode(), self.leeway)
 
     def test_cipher_text_corrupted(self):
-        encoder = Encoder()
+        encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode())
 
         tokens = jwe.decode().split('.')

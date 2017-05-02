@@ -27,6 +27,7 @@ def read_file(file_name):
         logger.info("Did not load file because filename supplied was None or not a file", file_name=file_name)
         return None
 
+
 EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'False'))
 # max request payload size in bytes
 MAX_CONTENT_LENGTH = os.getenv('EQ_MAX_HTTP_POST_CONTENT_LENGTH', 65536)

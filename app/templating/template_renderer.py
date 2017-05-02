@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import json
 
 import re
@@ -36,5 +38,6 @@ class TemplateRenderer:
             content = re.sub(r'</?[^>]+>', '', content)
 
         return content
+
 
 renderer = TemplateRenderer()

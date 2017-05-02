@@ -83,12 +83,12 @@ class TestFormHelper(AppContextTestCase):
             period_to_field = getattr(form, "period-to")
             period_from_field = getattr(form, "period-from")
 
-            self.assertEquals(period_from_field.data, {
+            self.assertEqual(period_from_field.data, {
                 'day': '01',
                 'month': '5',
                 'year': '2015',
             })
-            self.assertEquals(period_to_field.data, {
+            self.assertEqual(period_to_field.data, {
                 'day': '01',
                 'month': '9',
                 'year': '2017',
@@ -117,7 +117,7 @@ class TestFormHelper(AppContextTestCase):
 
             month_year_field = getattr(form, "month-year-answer")
 
-            self.assertEquals(month_year_field.data, {
+            self.assertEqual(month_year_field.data, {
                 'month': '5',
                 'year': '2015',
             })
@@ -145,7 +145,7 @@ class TestFormHelper(AppContextTestCase):
 
             checkbox_field = getattr(form, "mandatory-checkbox-answer")
 
-            self.assertEquals(checkbox_field.data, ['Cheese', 'Ham'])
+            self.assertEqual(checkbox_field.data, ['Cheese', 'Ham'])
 
     def test_post_form_for_block_location(self):
         with self.test_request_context():
@@ -173,12 +173,12 @@ class TestFormHelper(AppContextTestCase):
             self.assertIsInstance(period_from_field.month.validators[0], DateRequired)
             self.assertIsInstance(period_to_field.month.validators[0], DateRequired)
 
-            self.assertEquals(period_from_field.data, {
+            self.assertEqual(period_from_field.data, {
                 'day': '1',
                 'month': '05',
                 'year': '2015',
             })
-            self.assertEquals(period_to_field.data, {
+            self.assertEqual(period_to_field.data, {
                 'day': '1',
                 'month': '09',
                 'year': '2017',
@@ -215,7 +215,7 @@ class TestFormHelper(AppContextTestCase):
             form, _ = get_form_for_location(block_json, location, AnswerStore(), error_messages)
 
             self.assertTrue(hasattr(form, "household"))
-            self.assertEquals(len(form.household.entries), 1)
+            self.assertEqual(len(form.household.entries), 1)
 
             first_field_entry = form.household[0]
 
@@ -416,4 +416,3 @@ class TestFormHelper(AppContextTestCase):
 
             other_text_field = getattr(form, 'other-answer-mandatory')
             self.assertEqual(other_text_field.data, 'Other text field value')
-

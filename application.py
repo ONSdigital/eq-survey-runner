@@ -55,6 +55,7 @@ def add_service(logger, method_name, event_dict):  # pylint: disable=unused-argu
     event_dict['service'] = 'eq-survey-runner'
     return event_dict
 
+
 # Initialise logging before the rest of the application
 configure_logging()
 from app import create_app  # NOQA

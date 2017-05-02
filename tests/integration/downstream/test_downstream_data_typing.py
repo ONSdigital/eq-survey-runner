@@ -1,11 +1,23 @@
+# coding: utf-8
+from mock import patch
 from tests.integration.star_wars import star_wars_test_urls, STAR_WARS_TRIVIA_PART_1_DEFAULT_ANSWERS
 from tests.integration.star_wars.star_wars_tests import StarWarsTestCase
 
+from tests.app.submitter.test_encrypter import Decrypter
 
 class TestDownstreamDataTyping(StarWarsTestCase):
     def setUp(self):
+        self.patcher = patch('app.LogSubmitter')
+        mock_class = self.patcher.start()
+
+        self.instance = mock_class.return_value
+        self.instance.send_message.return_value = False
+
         super().setUp()
         self.launchSurvey('0', 'star_wars')
+
+    def tearDown(self):
+        self.patcher.stop()
 
     def test_star_wars_kitchen_sink(self):
         self.start_questionnaire_and_navigate_routing()
@@ -30,11 +42,11 @@ class TestDownstreamDataTyping(StarWarsTestCase):
 
         self.assertRegexUrl(star_wars_test_urls.STAR_WARS_SUMMARY_REGEX)
 
-        # Submit answers
         self.post(action=None)
 
         # Get the message that would be sent downstream
-        message = self.submitter.get_message()
+        message = Decrypter().decrypt(self.instance.send_message.call_args[0][0])  # pylint: disable=no-member
+
         self.assertIn('data', message.keys())
 
         data = message['data']

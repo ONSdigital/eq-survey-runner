@@ -9,7 +9,6 @@ from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers import algorithms
 from cryptography.hazmat.primitives.ciphers import modes
 
-from app import settings
 from app.cryptography.jwe_encryption import JWEEncrypter
 from app.utilities import strings
 
@@ -18,12 +17,17 @@ KID = 'EDCSR'
 
 class Encrypter(JWEEncrypter):
 
-    # pylint: disable=maybe-no-member
     # password and key variables are dynamically assigned
-    def __init__(self,
-                 private_key=settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY,
-                 private_key_password=settings.EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD,
-                 public_key=settings.EQ_SUBMISSION_SDX_PUBLIC_KEY):
+    def __init__(self, private_key, private_key_password, public_key):
+
+        if not len(private_key):
+            raise ValueError('Invalid private key')
+
+        if not len(private_key_password):
+            raise ValueError('Invalid private key password')
+
+        if not len(public_key):
+            raise ValueError('Invalid public key')
 
         self._load_keys(private_key, private_key_password, public_key)
 

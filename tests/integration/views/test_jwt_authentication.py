@@ -6,7 +6,13 @@ from app import settings
 from app.cryptography.jwt_encoder import Encoder
 
 from tests.app.app_context_test_case import AppContextTestCase
-from tests.app.authentication import TEST_DO_NOT_USE_RRM_PUBLIC_PEM, TEST_DO_NOT_USE_SR_PRIVATE_PEM
+from tests.app.authentication import (
+    TEST_DO_NOT_USE_RRM_PUBLIC_PEM,
+    TEST_DO_NOT_USE_SR_PRIVATE_PEM,
+    TEST_DO_NOT_USE_RRM_PRIVATE_KEY,
+    TEST_DO_NOT_USE_PASSWORD,
+    TEST_DO_NOT_USE_SR_PUBLIC_KEY
+)
 
 
 class FlaskClientAuthenticationTestCase(AppContextTestCase):
@@ -30,7 +36,12 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         self.assertEqual(403, response.status_code)
 
     def test_fully_encrypted(self):
-        encoder = Encoder()
+        encoder = Encoder(
+            TEST_DO_NOT_USE_RRM_PRIVATE_KEY,
+            TEST_DO_NOT_USE_PASSWORD,
+            TEST_DO_NOT_USE_SR_PUBLIC_KEY
+
+        )
         payload = self.create_payload()
         token = encoder.encode(payload)
         encrypted_token = encoder.encrypt_token(token)

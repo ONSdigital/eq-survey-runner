@@ -42,6 +42,7 @@ class MetadataField(object):
 
         return None
 
+
 metadata_fields = {
     "jti": MetadataField(mandatory=False),
     "user_id": MetadataField(),

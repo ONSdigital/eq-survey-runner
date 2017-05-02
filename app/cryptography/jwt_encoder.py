@@ -4,27 +4,12 @@ from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers import algorithms
 from cryptography.hazmat.primitives.ciphers import modes
 
-from app import settings
 from app.submitter.encrypter import Encrypter
 
 KID = 'EDCRRM'
 
 
 class Encoder(Encrypter):
-    def __init__(self):
-        # pylint: disable=maybe-no-member
-        # key variables are dynamically assigned
-        if settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY is None:
-            raise Exception("EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY is None (check EQ_DEV_MODE?)")
-        if settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD is None:
-            raise Exception("EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD is None (check EQ_DEV_MODE?)")
-        if settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY is None:
-            raise Exception("EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY is None (check EQ_DEV_MODE?)")
-
-        super().__init__(private_key=settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY,
-                         private_key_password=settings.EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD,
-                         public_key=settings.EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY)
-
     def encode(self, payload):
         return jwt.encode(payload, self.private_key, algorithm="RS256", headers={'kid': KID, 'typ': 'jwt'})
 
