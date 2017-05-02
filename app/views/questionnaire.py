@@ -167,7 +167,8 @@ def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-ar
 
     if survey_completed_metadata:
         metadata_context = build_metadata_context_for_survey_completed(survey_completed_metadata)
-        thank_you_template = render_theme_template(schema['theme'], template_name='thank-you.html',
+        thank_you_template = render_theme_template(schema['theme'],
+                                                   template_name='thank-you.html',
                                                    meta=metadata_context,
                                                    analytics_ua_id=current_app.config['EQ_UA_ID'],
                                                    survey_id=schema['survey_id'],
@@ -226,7 +227,9 @@ def submit_answers(eq_id, form_type, collection_id, metadata, answer_store):
 
         message = convert_answers(metadata, g.schema_json, answer_store, path_finder.get_routing_path())
         message = current_app.eq['encrypter'].encrypt(message)
-        sent = current_app.eq['submitter'].send_message(message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'])
+        sent = current_app.eq['submitter'].send_message(message,
+                                                        current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
+                                                        metadata['tx_id'])
 
         if not sent:
             raise SubmissionFailedException()
@@ -428,6 +431,7 @@ def _evaluate_skip_conditions(block_json, location, answer_store, metadata):
             for answer in question['answers']:
                 if answer['mandatory'] and skip_question:
                     answer['mandatory'] = False
+
     return block_json
 
 

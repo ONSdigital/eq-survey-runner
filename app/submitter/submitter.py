@@ -9,7 +9,7 @@ logger = get_logger()
 
 class LogSubmitter():  # pylint: disable=no-self-use
 
-    def send_message(self, message, queue):
+    def send_message(self, message, queue, tx_id):  # pylint: disable=unused-argument
         logger.info("sending message")
         logger.info("message payload", message=message, queue=queue)
         return True
@@ -42,7 +42,7 @@ class RabbitMQSubmitter():
         except AMQPError as e:
             logger.error("unable to close connection", exc_info=e, category="rabbitmq")
 
-    def send_message(self, message, queue):
+    def send_message(self, message, queue, tx_id):
         """
         Sends a message to rabbit mq and returns a true or false depending on if it was successful
         :param message: The message to send to the rabbit mq queue
@@ -56,13 +56,17 @@ class RabbitMQSubmitter():
             self._connect()
             channel = self.connection.channel()
             channel.queue_declare(queue=queue, durable=True)
+            properties = BasicProperties(headers={},
+                                         delivery_mode=2)
+
+            if tx_id:
+                properties.headers['tx_id'] = tx_id
+
             published = channel.basic_publish(exchange='',
                                               routing_key=queue,
                                               body=message_as_string,
                                               mandatory=True,
-                                              properties=BasicProperties(
-                                                  delivery_mode=2,
-                                              ))
+                                              properties=properties)
             if published:
                 logger.info("sent message", category="rabbitmq")
             else:
