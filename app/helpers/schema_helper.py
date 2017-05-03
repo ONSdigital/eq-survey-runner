@@ -121,14 +121,6 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
         return options_with_children
 
     @classmethod
-    def get_questions_by_id(cls, survey_json):
-        question_map = {}
-        for block in cls.get_blocks(survey_json):
-            for question in cls.get_questions_for_block(block):
-                question_map[question['id']] = question
-        return question_map
-
-    @classmethod
     def get_aliases(cls, survey_json):
         aliases = {}
         for block in cls.get_blocks(survey_json):

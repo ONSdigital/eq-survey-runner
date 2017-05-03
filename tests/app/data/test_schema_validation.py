@@ -10,6 +10,7 @@ from structlog.stdlib import LoggerFactory
 
 from app import settings
 from app.helpers.schema_helper import SchemaHelper
+from app.utilities.schema import get_schema_path
 
 logger = getLogger()
 
@@ -131,13 +132,12 @@ class TestSchemaValidation(unittest.TestCase):
                                               % (child_answer_id, answers_by_id[child_answer_id]['parent_answer_id'],
                                                  schema_file, answer_id))
 
-
     @staticmethod
     def all_schema_files():
         schema_files = []
-        for folder, _, files in os.walk(settings.EQ_SCHEMA_DIRECTORY):
+        for folder, _, files in os.walk(get_schema_path()):
             for filename in files:
-                if filename.endswith(".json") and filename != 'schema_v1.json':
+                if filename.endswith(".json"):
                     schema_files.append(os.path.join(folder, filename))
         return schema_files
 
