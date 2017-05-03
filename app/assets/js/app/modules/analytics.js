@@ -46,6 +46,25 @@ export default function initAnalytics() {
       trackElement(target)
     }
   })
+
+  const afterPrint = () => {
+    return trackEvent('send', {
+      hitType: 'event',
+      eventCategory: 'Print Intent',
+      eventAction: 'Print Intent',
+      eventLabel: window.location.pathname.split('/').slice(-3).join('/')
+    })
+  }
+
+  if (window.matchMedia) {
+    const mediaQueryList = window.matchMedia('print')
+    mediaQueryList.addListener(function(mql) {
+      if (!mql.matches) {
+        afterPrint()
+      }
+    })
+  }
+  window.onafterprint = afterPrint
 }
 
 domready(initAnalytics)
