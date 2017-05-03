@@ -20,7 +20,7 @@ class TestSubmitter(TestCase):
             connection.side_effect = AMQPError()
 
             # When
-            published = self.submitter.send_message(message={}, queue=self.queue_name)
+            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')
@@ -28,7 +28,7 @@ class TestSubmitter(TestCase):
     def test_when_message_sent_then_published_true(self):
         # Given
         with patch('app.submitter.submitter.BlockingConnection'):
-            published = self.submitter.send_message(message={}, queue=self.queue_name)
+            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
 
             # When
 
@@ -43,7 +43,7 @@ class TestSubmitter(TestCase):
             connection.side_effect = [AMQPError(), secondary_connection]
 
             # When
-            published = self.submitter.send_message(message={}, queue=self.queue_name)
+            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
 
             # Then
             self.assertTrue(published, 'send_message should publish message')
@@ -63,7 +63,7 @@ class TestSubmitter(TestCase):
                 patch('app.submitter.submitter.logger') as logger:
 
             # When
-            published = self.submitter.send_message(message={}, queue=self.queue_name)
+            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
 
             # Then
             self.assertTrue(published)
@@ -77,7 +77,37 @@ class TestSubmitter(TestCase):
         connection.channel.side_effect = Mock(return_value=channel)
         with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
             # When
-            published = self.submitter.send_message(message={}, queue=self.queue_name)
+            published = self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
 
             # Then
             self.assertFalse(published, 'send_message should fail to publish message')
+
+    def test_when_message_sent_then_tx_id_is_sent_in_header(self):
+        # Given
+        channel = Mock()
+        connection = Mock()
+        connection.channel.side_effect = Mock(return_value=channel)
+        with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
+            # When
+            self.submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+
+            # Then
+            call_args = channel.basic_publish.call_args
+            properties = call_args[1]['properties']
+            headers = properties.headers
+            self.assertEqual(headers['tx_id'], '12345')
+
+    def test_when_message_sent_with_none_tx_id_then_tx_id_is_not_sent_in_header(self):
+        # Given
+        channel = Mock()
+        connection = Mock()
+        connection.channel.side_effect = Mock(return_value=channel)
+        with patch('app.submitter.submitter.BlockingConnection', return_value=connection):
+            # When
+            self.submitter.send_message(message={}, queue=self.queue_name, tx_id=None)
+
+            # Then
+            call_args = channel.basic_publish.call_args
+            properties = call_args[1]['properties']
+            headers = properties.headers
+            self.assertEqual(len(headers), 0)
