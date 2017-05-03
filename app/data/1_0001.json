@@ -3,24 +3,28 @@
     "description": "UK Innovation Survey",
     "groups": [{
             "blocks": [{
-                    "type": "Introduction",
-                    "id": "introduction",
-                    "information_to_provide": [
-                        "business strategy and practices",
-                        "innovation investment",
-                        "goods, services, and process innovation",
-                        "factors deemed important when deciding to initiate or terminate innovation",
-                        "public financial support for innovation",
-                        "turnover and exports",
-                        "skills and employment"
-                    ],
-                    "basis_for_completion": [
-                        "Please complete this voluntary questionnaire for <strong>{{respondent.ru_name}}</strong>.",
-                        "If this business is part of an enterprise group, please answer all questions for this business in the UK only.",
-                        "Do not include results for subsidiaries or parent enterprises."
-                    ]
-                },
-                {
+                "type": "Introduction",
+                "id": "introduction",
+                "information_to_provide": [
+                    "business strategy and practices",
+                    "innovation investment",
+                    "goods, services, and process innovation",
+                    "factors deemed important when deciding to initiate or terminate innovation",
+                    "public financial support for innovation",
+                    "turnover and exports",
+                    "skills and employment"
+                ],
+                "basis_for_completion": [
+                    "Please complete this voluntary questionnaire for <strong>{{respondent.ru_name}}</strong>.",
+                    "If this business is part of an enterprise group, please answer all questions for this business in the UK only.",
+                    "Do not include results for subsidiaries or parent enterprises."
+                ]
+            }],
+            "id": "introduction-group",
+            "title": "Introduction"
+        },
+        {
+            "blocks": [{
                     "id": "geographic-markets",
                     "sections": [{
                         "description": "<p>3 year period 1 January 2014 to 31 December 2016.</p>",
