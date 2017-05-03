@@ -1,7 +1,7 @@
 import time
 from mock import patch
 from tests.integration.integration_test_case import IntegrationTestCase
-from app.views.dev_mode import generate_token
+from tests.integration.create_token import generate_token
 
 
 class TestFlushData(IntegrationTestCase):

@@ -3,7 +3,7 @@ import re
 import time
 from uuid import uuid4
 
-from flask import Blueprint, redirect, render_template, request
+from flask import Blueprint, redirect, render_template, request, current_app
 from structlog import get_logger
 
 from app.cryptography.jwt_encoder import Encoder
@@ -12,10 +12,6 @@ from app.utilities.schema import available_json_schemas
 # pylint: disable=too-many-locals
 logger = get_logger()
 dev_mode_blueprint = Blueprint('dev_mode', __name__, template_folder='templates')
-
-RRM_PRIVATE_KEY = open("./jwt-test-keys/sdc-user-authentication-signing-rrm-private-key.pem").read()
-RRM_PRIVATE_KEY_PASSWORD = "digitaleq"
-SR_PUBLIC_KEY = open("./jwt-test-keys/sdc-user-authentication-encryption-sr-public-key.pem").read()
 
 
 @dev_mode_blueprint.route('/dev', methods=['GET', 'POST'])
@@ -134,7 +130,10 @@ def create_payload(**metadata):
 
 
 def generate_token(payload):
-    encoder = Encoder(RRM_PRIVATE_KEY, RRM_PRIVATE_KEY_PASSWORD, SR_PUBLIC_KEY)
+    rrm_private_key = current_app.config['EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY']
+    rrm_private_key_password = current_app.config['EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD']
+    sr_public_key = current_app.config['EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY']
+    encoder = Encoder(rrm_private_key, rrm_private_key_password, sr_public_key)
     token = encoder.encode(payload)
     encrypted_token = encoder.encrypt_token(token)
     return encrypted_token
