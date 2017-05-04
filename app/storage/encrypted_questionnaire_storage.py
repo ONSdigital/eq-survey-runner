@@ -8,7 +8,7 @@ from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
 
-def generate_key(user_id, user_ik, pepper=settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION_KEY_PEPPER):
+def generate_key(user_id, user_ik, pepper=settings.EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER):
     sha256 = hashlib.sha256()
     sha256.update(to_str(user_id).encode('utf-8'))
     sha256.update(to_str(user_ik).encode('utf-8'))
