@@ -30,8 +30,6 @@ class MetadataField(object):
         self.mandatory = mandatory
 
     def validate(self, original_value):
-        if self.mandatory and original_value is None:
-            raise ValueError("Missing mandatory field value")
         if self._validator:
             # The parser methods throw exceptions on incorrect data
             self._validator(original_value)

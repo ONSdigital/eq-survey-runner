@@ -65,6 +65,15 @@ class TestTemplateRenderer(unittest.TestCase):
                                    "<li>Dave Dixon Davies</li>"
                                    "</ul>")
 
+    def test_household_summary_with_no_names(self):
+        description = "<h2 class='neptune'>Your household includes:</h2> " \
+                      "{{ []|format_household_summary }}"
+        context = {}
+
+        rendered = TemplateRenderer().render(description, **context)
+        self.assertEqual(rendered, "<h2 class='neptune'>Your household includes:</h2> "
+                                   "")
+
     def test_render_nested_templatable_property(self):
         guidance = {
             'title': 'Include',
