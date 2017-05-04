@@ -46,7 +46,7 @@ class TestMciSubmissionData(IntegrationTestCase):
         self.assertInUrl('summary')
         self.assertInPage('>Monthly Business Survey - Retail Sales Index</')
         self.assertInPage('>Your responses<')
-        self.assertInPage('Please check carefully before submission')
+        self.assertInPage('Please check your responses carefully before submitting')
         self.assertInPage('>Submit answers<')
 
         actual = self.dumpSubmission()
