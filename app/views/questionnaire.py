@@ -528,11 +528,8 @@ def _render_template(context, current_location, template, front_end_navigation, 
         session_timeout = schema_session_timeout
     session_timeout_prompt = g.schema_json.get('session_prompt_in_seconds') or current_app.config['EQ_SESSION_TIMEOUT_PROMPT_SECONDS']
 
-    if metadata_context is not None:
-        survey_data = metadata_context['survey']
-        url_prefix = '/questionnaire/{}/{}/{}'.format(survey_data['eq_id'], survey_data['form_type'], survey_data['collection_id'])
-    else:
-        url_prefix = None
+    survey_data = metadata_context['survey']
+    url_prefix = '/questionnaire/{}/{}/{}'.format(survey_data['eq_id'], survey_data['form_type'], survey_data['collection_id'])
 
     page_title = get_page_title_for_location(g.schema_json, current_location)
     template = '{}.html'.format(template).lower()
