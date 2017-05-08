@@ -1,8 +1,8 @@
 {% import 'macros/helpers.html' as helpers %}
 
 {% set guidance = {
-  "data-show-label": _("Show further guidance"),
-  "data-hide-label": _("Hide further guidance")
+  "data-show-label": _(answer_guidance.schema_item.show_guidance),
+  "data-hide-label": _(answer_guidance.schema_item.hide_guidance)
 } %}
 
 {% set guidance_link = {
@@ -20,10 +20,10 @@
 
 <div class="guidance js-details" {{guidance|xmlattr}}>
   <a class="guidance__link js-details-trigger js-details-label mars"
-    {{guidance_link|xmlattr}} {{helpers.track('click', 'Help', 'Guidance click', answer_guidance.id)}}>{{_("Show further guidance")}}</a>
+    {{guidance_link|xmlattr}} {{helpers.track('click', 'Help', 'Guidance click', answer_guidance.id)}}>{{_(answer_guidance.schema_item.show_guidance)}}</a>
   <div class="guidance__main js-details-body" {{guidance_body|xmlattr}}>
     <div class="guidance__content mars">
-      {{answer_guidance.content|safe}}
+      {{answer_guidance.schema_item.content|safe}}
     </div>
   </div>
 </div>

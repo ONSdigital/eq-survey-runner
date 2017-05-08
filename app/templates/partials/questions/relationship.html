@@ -37,7 +37,7 @@
   {% with answer_guidance = {
     'id': question.id,
     'label': question.label,
-    'content': question_guidance
+    'schema_item': question.guidance
   } %}
     {% include 'partials/answer-guidance.html' %}
   {% endwith %}

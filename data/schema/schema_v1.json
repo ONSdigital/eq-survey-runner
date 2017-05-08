@@ -12,6 +12,18 @@
             "description": "A question code used by downstream systems to identify answers",
             "pattern": "^[0-9a-z]+$"
         },
+        "show_guidance": {
+            "description": "Allows customisation of guidance text",
+            "type": "string"
+        },
+        "hide_guidance": {
+            "description": "Allows customisation of guidance text",
+            "type": "string"
+        },
+        "content": {
+            "description": "Allows customisation of guidance text",
+            "type": "string"
+        },
         "skip_condition": {
             "description": "Allows an element to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
             "type": "array",
