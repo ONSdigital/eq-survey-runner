@@ -1,5 +1,4 @@
 import logging
-from app import settings
 
 logger = logging.getLogger(__name__)
 
@@ -44,17 +43,18 @@ def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
     return True
 
 
-def evaluate_repeat(repeat_rule, answer_store):
+def evaluate_repeat(repeat_rule, answer_store, max_repeats=25):
     """
     Returns the number of times repetition should occur based on answers
     :param repeat_rule:
     :param answer_store:
+    :param max_repeats:
     :return: The number of times to repeat
     """
     repeat_functions = {
         'answer_value': _get_answer_value,
         'answer_count': len,
-        'answer_count_minus_one': _get_answer_count_or_repeat_limit_minus_one,
+        'answer_count_minus_one': lambda f: min(_get_answer_count(f), max_repeats - 1),
     }
     if 'answer_id' in repeat_rule and 'type' in repeat_rule:
         repeat_index = repeat_rule['answer_id']
@@ -62,9 +62,9 @@ def evaluate_repeat(repeat_rule, answer_store):
         repeat_function = repeat_functions[repeat_rule['type']]
         no_of_repeats = repeat_function(filtered)
 
-        if no_of_repeats > settings.EQ_MAX_NUM_REPEATS:
-            logger.warning('Excessive number of repeats found [%s] capping at [%s]', no_of_repeats, settings.EQ_MAX_NUM_REPEATS)
-            no_of_repeats = settings.EQ_MAX_NUM_REPEATS
+        if no_of_repeats > max_repeats:
+            logger.warning('Excessive number of repeats found [%s] capping at [%s]', no_of_repeats, max_repeats)
+            no_of_repeats = max_repeats
 
         return no_of_repeats
 
@@ -73,10 +73,8 @@ def _get_answer_value(filtered_answers):
     return int(filtered_answers[0]['value'] if len(filtered_answers) == 1 and filtered_answers[0]['value'] else 0)
 
 
-def _get_answer_count_or_repeat_limit_minus_one(filtered_answers):
-    max_repeat_minus_one = settings.EQ_MAX_NUM_REPEATS - 1
-    answers_minus_one = len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0
-    return min(answers_minus_one, max_repeat_minus_one)
+def _get_answer_count(filtered_answers):
+    return len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0
 
 
 def evaluate_skip_condition(skip_condition, metadata, answer_store, group_instance=0):
