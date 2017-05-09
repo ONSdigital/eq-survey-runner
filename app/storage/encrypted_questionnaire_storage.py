@@ -25,14 +25,7 @@ class EncryptedQuestionnaireStorage:
         self.encryption = JWEDirEncrypter()
         self.decryption = JWEDirDecrypter()
         self.user_id = user_id
-
-        sha256 = hashlib.sha256()
-        sha256.update(to_str(user_id).encode('utf-8'))
-        sha256.update(to_str(user_ik).encode('utf-8'))
-        sha256.update(to_str(pepper).encode('utf-8'))
-
-        # we only need the first 32 characters for the CEK
-        self.cek = sha256.hexdigest()[:32]
+        self.cek = self.generate_key(user_id, user_ik, pepper)
 
     def add_or_update(self, data):
         encrypted_data = self.encrypt_data(data)
@@ -65,16 +58,23 @@ class EncryptedQuestionnaireStorage:
                 db_session.delete(questionnaire_state)
 
     def encrypt_data(self, data):
-        sha_key = self.generate_key()
-        encrypted = self.encryption.encrypt(data, sha_key)
+        encrypted = self.encryption.encrypt(data, self.cek)
         return {'data': encrypted}
 
     def decrypt_data(self, encrypted_data):
-        sha_key = self.generate_key()
-        return self.decryption.decrypt(encrypted_data['data'], sha_key)
+        return self.decryption.decrypt(encrypted_data['data'], self.cek)
 
-    def generate_key(self):
-        return to_bytes(self.cek)
+    @staticmethod
+    def generate_key(user_id, user_ik, pepper):
+        sha256 = hashlib.sha256()
+        sha256.update(to_str(user_id).encode('utf-8'))
+        sha256.update(to_str(user_ik).encode('utf-8'))
+        sha256.update(to_str(pepper).encode('utf-8'))
+
+        # we only need the first 32 characters for the CEK
+        cek = sha256.hexdigest()[:32]
+
+        return to_bytes(cek)
 
     def _get_questionnaire_state(self):
         questionnaire_state = self._get()
