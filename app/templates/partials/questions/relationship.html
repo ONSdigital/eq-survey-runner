@@ -37,7 +37,11 @@
   {% with answer_guidance = {
     'id': question.id,
     'label': question.label,
-    'schema_item': question.guidance
+    'schema_item': {
+        'content': question_guidance,
+        'show_guidance': "Show further guidance",
+        'hide_guidance': "Hide further guidance"
+    }
   } %}
     {% include 'partials/answer-guidance.html' %}
   {% endwith %}
