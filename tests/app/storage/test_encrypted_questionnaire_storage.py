@@ -13,6 +13,10 @@ class TestEncryptedQuestionnaireStorage(unittest.TestCase):
         with self.assertRaises(ValueError):
             EncryptedQuestionnaireStorage("1", None, "pepper")
 
+    def test_encrypted_storage_requires_pepper(self):
+        with self.assertRaises(ValueError):
+            EncryptedQuestionnaireStorage("1", "key", None)
+
     def test_generate_cek(self):
         cek1 = EncryptedQuestionnaireStorage("user1", "user_ik_1", "pepper").generate_key()
         cek2 = EncryptedQuestionnaireStorage("user1", "user_ik_1", "pepper").generate_key()

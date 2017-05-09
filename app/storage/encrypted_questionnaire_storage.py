@@ -20,11 +20,19 @@ class EncryptedQuestionnaireStorage:
             raise ValueError('User id must be set')
         if user_ik is None:
             raise ValueError('User ik must be set')
+        if pepper is None:
+            raise ValueError('Pepper must be set')
         self.encryption = JWEDirEncrypter()
         self.decryption = JWEDirDecrypter()
         self.user_id = user_id
-        self.user_ik = user_ik
-        self.pepper = pepper
+
+        sha256 = hashlib.sha256()
+        sha256.update(to_str(user_id).encode('utf-8'))
+        sha256.update(to_str(user_ik).encode('utf-8'))
+        sha256.update(to_str(pepper).encode('utf-8'))
+
+        # we only need the first 32 characters for the CEK
+        self.cek = sha256.hexdigest()[:32]
 
     def add_or_update(self, data):
         encrypted_data = self.encrypt_data(data)
@@ -66,14 +74,7 @@ class EncryptedQuestionnaireStorage:
         return self.decryption.decrypt(encrypted_data['data'], sha_key)
 
     def generate_key(self):
-        sha256 = hashlib.sha256()
-        sha256.update(to_str(self.user_id).encode('utf-8'))
-        sha256.update(to_str(self.user_ik).encode('utf-8'))
-        sha256.update(to_str(self.pepper).encode('utf-8'))
-
-        # we only need the first 32 characters for the CEK
-        cek = sha256.hexdigest()[:32]
-        return to_bytes(cek)
+        return to_bytes(self.cek)
 
     def _get_questionnaire_state(self):
         questionnaire_state = self._get()
