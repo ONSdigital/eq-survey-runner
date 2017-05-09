@@ -22,20 +22,27 @@ class EncryptedQuestionnaireStorage:
             raise ValueError('User ik must be set')
         if pepper is None:
             raise ValueError('Pepper must be set')
-        self.encryption = JWEDirEncrypter()
-        self.decryption = JWEDirDecrypter()
-        self.user_id = user_id
-        self.cek = self.generate_key(user_id, user_ik, pepper)
+        self._encryption = JWEDirEncrypter()
+        self._decryption = JWEDirDecrypter()
+        self._user_id = user_id
+
+        sha256 = hashlib.sha256()
+        sha256.update(to_str(user_id).encode('utf-8'))
+        sha256.update(to_str(user_ik).encode('utf-8'))
+        sha256.update(to_str(pepper).encode('utf-8'))
+
+        # we only need the first 32 characters for the CEK
+        self._cek = to_bytes(sha256.hexdigest()[:32])
 
     def add_or_update(self, data):
-        encrypted_data = self.encrypt_data(data)
+        encrypted_data = self._encrypt_data(data)
         questionnaire_state = self._get()
         if questionnaire_state:
-            logger.debug("updating questionnaire data", user_id=self.user_id)
+            logger.debug("updating questionnaire data", user_id=self._user_id)
             questionnaire_state.set_data(encrypted_data)
         else:
-            logger.debug("creating questionnaire data", user_id=self.user_id)
-            questionnaire_state = QuestionnaireState(self.user_id, encrypted_data)
+            logger.debug("creating questionnaire data", user_id=self._user_id)
+            questionnaire_state = QuestionnaireState(self._user_id, encrypted_data)
 
         with commit_or_rollback(db_session):
             # pylint: disable=maybe-no-member
@@ -45,11 +52,11 @@ class EncryptedQuestionnaireStorage:
     def get_user_data(self):
         data = self._get_questionnaire_state()
         if data is not None and 'data' in data:
-            decrypted_data = self.decrypt_data(data)
+            decrypted_data = self._decrypt_data(data)
             return decrypted_data
 
     def delete(self):
-        logger.debug("deleting users data", user_id=self.user_id)
+        logger.debug("deleting users data", user_id=self._user_id)
         questionnaire_state = self._get()
         if questionnaire_state:
             with commit_or_rollback(db_session):
@@ -57,24 +64,12 @@ class EncryptedQuestionnaireStorage:
                 # session has a delete function but it is wrapped in a session_scope which confuses pylint
                 db_session.delete(questionnaire_state)
 
-    def encrypt_data(self, data):
-        encrypted = self.encryption.encrypt(data, self.cek)
+    def _encrypt_data(self, data):
+        encrypted = self._encryption.encrypt(data, self._cek)
         return {'data': encrypted}
 
-    def decrypt_data(self, encrypted_data):
-        return self.decryption.decrypt(encrypted_data['data'], self.cek)
-
-    @staticmethod
-    def generate_key(user_id, user_ik, pepper):
-        sha256 = hashlib.sha256()
-        sha256.update(to_str(user_id).encode('utf-8'))
-        sha256.update(to_str(user_ik).encode('utf-8'))
-        sha256.update(to_str(pepper).encode('utf-8'))
-
-        # we only need the first 32 characters for the CEK
-        cek = sha256.hexdigest()[:32]
-
-        return to_bytes(cek)
+    def _decrypt_data(self, encrypted_data):
+        return self._decryption.decrypt(encrypted_data['data'], self._cek)
 
     def _get_questionnaire_state(self):
         questionnaire_state = self._get()
@@ -83,7 +78,7 @@ class EncryptedQuestionnaireStorage:
         return None
 
     def _get(self):
-        logger.debug("getting questionnaire data", user_id=self.user_id)
+        logger.debug("getting questionnaire data", user_id=self._user_id)
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
-        return QuestionnaireState.query.filter(QuestionnaireState.user_id == self.user_id).first()
+        return QuestionnaireState.query.filter(QuestionnaireState.user_id == self._user_id).first()
