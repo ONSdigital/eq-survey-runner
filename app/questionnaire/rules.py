@@ -45,7 +45,7 @@ def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
     return True
 
 
-def evaluate_repeat(repeat_rule, answer_store ):
+def evaluate_repeat(repeat_rule, answer_store):
     """
     Returns the number of times repetition should occur based on answers
     :param repeat_rule:
