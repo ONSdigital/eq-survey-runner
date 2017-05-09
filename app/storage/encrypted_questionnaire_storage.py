@@ -7,7 +7,7 @@ from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
 
-def generate_key(user_id, user_ik, pepper=''):
+def generate_key(user_id, user_ik, pepper):
     sha256 = hashlib.sha256()
     sha256.update(to_str(user_id).encode('utf-8'))
     sha256.update(to_str(user_ik).encode('utf-8'))
@@ -20,7 +20,7 @@ def generate_key(user_id, user_ik, pepper=''):
 
 class EncryptedQuestionnaireStorage(QuestionnaireStorage):
 
-    def __init__(self, user_id, user_ik, pepper=''):
+    def __init__(self, user_id, user_ik, pepper):
         super().__init__(user_id)
         if user_ik is None:
             raise ValueError('User ik must be set')

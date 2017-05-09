@@ -7,45 +7,45 @@ class TestEncryptedQuestionnaireStorage(unittest.TestCase):
 
     def test_encrypted_storage_requires_user_id(self):
         with self.assertRaises(ValueError):
-            EncryptedQuestionnaireStorage(None, "key")
+            EncryptedQuestionnaireStorage(None, "key", 'pepper')
 
     def test_encrypted_storage_requires_user_ik(self):
         with self.assertRaises(ValueError):
-            EncryptedQuestionnaireStorage("1", None)
+            EncryptedQuestionnaireStorage("1", None, 'pepper')
 
     def test_generate_cek(self):
-        cek1 = generate_key("user1", "user_ik_1")
-        cek2 = generate_key("user1", "user_ik_1")
-        cek3 = generate_key("user2", "user_ik_2")
+        cek1 = generate_key("user1", "user_ik_1", "pepper")
+        cek2 = generate_key("user1", "user_ik_1", "pepper")
+        cek3 = generate_key("user2", "user_ik_2", "pepper")
         self.assertEqual(cek1, cek2)
         self.assertNotEqual(cek1, cek3)
         self.assertNotEqual(cek2, cek3)
 
     def test_generate_cek_different_user_ids(self):
-        cek1 = generate_key("user1", "user_ik_1")
-        cek2 = generate_key("user1", "user_ik_1")
-        cek3 = generate_key("user2", "user_ik_1")
+        cek1 = generate_key("user1", "user_ik_1", "pepper")
+        cek2 = generate_key("user1", "user_ik_1", "pepper")
+        cek3 = generate_key("user2", "user_ik_1", "pepper")
         self.assertEqual(cek1, cek2)
         self.assertNotEqual(cek1, cek3)
         self.assertNotEqual(cek2, cek3)
 
     def test_generate_cek_different_user_iks(self):
-        cek1 = generate_key("user1", "user_ik_1")
-        cek2 = generate_key("user1", "user_ik_1")
-        cek3 = generate_key("user1", "user_ik_2")
+        cek1 = generate_key("user1", "user_ik_1", "pepper")
+        cek2 = generate_key("user1", "user_ik_1", "pepper")
+        cek3 = generate_key("user1", "user_ik_2", "pepper")
         self.assertEqual(cek1, cek2)
         self.assertNotEqual(cek1, cek3)
         self.assertNotEqual(cek2, cek3)
 
     def test_generate_cek_different_pepper(self):
-        cek1 = generate_key("user1", "user_ik_1")
+        cek1 = generate_key("user1", "user_ik_1", "pepper")
         cek2 = generate_key("user1", "user_ik_1", "test")
         self.assertNotEqual(cek1, cek2)
 
     def test_store_and_get(self):
         user_id = '1'
         user_ik = '2'
-        encrypted = EncryptedQuestionnaireStorage(user_id, user_ik)
+        encrypted = EncryptedQuestionnaireStorage(user_id, user_ik, "pepper")
         data = "test"
         encrypted.add_or_update(data)
         # check we can decrypt the data
