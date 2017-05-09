@@ -16,7 +16,7 @@ class TestQuestionnaireStorage(unittest.TestCase):
     def test_store(self):
         data = 'test'
         self.assertIsNone(self.storage.add_or_update(data))
-        self.assertIsNotNone(self.storage._get())  # pylint: disable=protected-access
+        self.assertIsNotNone(self.storage._find_questionnaire_state())  # pylint: disable=protected-access
 
     def test_get(self):
         data = 'test'
@@ -28,7 +28,7 @@ class TestQuestionnaireStorage(unittest.TestCase):
         self.storage.add_or_update(data)
         self.assertEqual(data, self.storage.get_user_data())
         self.storage.delete()
-        self.assertIsNone(self.storage._get())  # pylint: disable=protected-access
+        self.assertIsNone(self.storage._find_questionnaire_state())  # pylint: disable=protected-access
 
     def test_store_rollback(self):
         # Given

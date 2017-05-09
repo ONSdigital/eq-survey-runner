@@ -36,7 +36,7 @@ class EncryptedQuestionnaireStorage:
 
     def add_or_update(self, data):
         encrypted_data = self._encrypt_data(data)
-        questionnaire_state = self._get()
+        questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
             logger.debug("updating questionnaire data", user_id=self._user_id)
             questionnaire_state.set_data(encrypted_data)
@@ -50,14 +50,20 @@ class EncryptedQuestionnaireStorage:
             db_session.add(questionnaire_state)
 
     def get_user_data(self):
-        data = self._get_questionnaire_state()
+        data = None
+        questionnaire_state = self._find_questionnaire_state()
+        if questionnaire_state:
+            data = questionnaire_state.get_data()
+
         if data is not None and 'data' in data:
             decrypted_data = self._decrypt_data(data)
             return decrypted_data
+        else:
+            return None
 
     def delete(self):
         logger.debug("deleting users data", user_id=self._user_id)
-        questionnaire_state = self._get()
+        questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
             with commit_or_rollback(db_session):
                 # pylint: disable=maybe-no-member
@@ -71,13 +77,7 @@ class EncryptedQuestionnaireStorage:
     def _decrypt_data(self, encrypted_data):
         return self._decryption.decrypt(encrypted_data['data'], self._cek)
 
-    def _get_questionnaire_state(self):
-        questionnaire_state = self._get()
-        if questionnaire_state:
-            return questionnaire_state.get_data()
-        return None
-
-    def _get(self):
+    def _find_questionnaire_state(self):
         logger.debug("getting questionnaire data", user_id=self._user_id)
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
