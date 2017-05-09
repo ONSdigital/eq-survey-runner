@@ -9,4 +9,4 @@ shred -u -v $Keys
 rm -f $Keys
 
 shred -u -v key_mat/*
-rm -rf secure-data
+rm -rf key_mat
