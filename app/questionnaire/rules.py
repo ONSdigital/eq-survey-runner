@@ -1,5 +1,7 @@
 import logging
 
+MAX_REPEATS = 25
+
 logger = logging.getLogger(__name__)
 
 
@@ -43,7 +45,7 @@ def evaluate_goto(goto_rule, metadata, answer_store, group_instance):
     return True
 
 
-def evaluate_repeat(repeat_rule, answer_store, max_repeats=25):
+def evaluate_repeat(repeat_rule, answer_store ):
     """
     Returns the number of times repetition should occur based on answers
     :param repeat_rule:
@@ -54,7 +56,7 @@ def evaluate_repeat(repeat_rule, answer_store, max_repeats=25):
     repeat_functions = {
         'answer_value': _get_answer_value,
         'answer_count': len,
-        'answer_count_minus_one': lambda f: min(_get_answer_count(f), max_repeats - 1),
+        'answer_count_minus_one': lambda f: min(_get_answer_count(f), MAX_REPEATS - 1),
     }
     if 'answer_id' in repeat_rule and 'type' in repeat_rule:
         repeat_index = repeat_rule['answer_id']
@@ -62,9 +64,9 @@ def evaluate_repeat(repeat_rule, answer_store, max_repeats=25):
         repeat_function = repeat_functions[repeat_rule['type']]
         no_of_repeats = repeat_function(filtered)
 
-        if no_of_repeats > max_repeats:
-            logger.warning('Excessive number of repeats found [%s] capping at [%s]', no_of_repeats, max_repeats)
-            no_of_repeats = max_repeats
+        if no_of_repeats > MAX_REPEATS:
+            logger.warning('Excessive number of repeats found [%s] capping at [%s]', no_of_repeats, MAX_REPEATS)
+            no_of_repeats = MAX_REPEATS
 
         return no_of_repeats
 
