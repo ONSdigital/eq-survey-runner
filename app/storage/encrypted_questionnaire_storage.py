@@ -22,17 +22,8 @@ class EncryptedQuestionnaireStorage:
             raise ValueError('User ik must be set')
         if pepper is None:
             raise ValueError('Pepper must be set')
-        self._encryption = JWEDirEncrypter()
-        self._decryption = JWEDirDecrypter()
         self._user_id = user_id
-
-        sha256 = hashlib.sha256()
-        sha256.update(to_str(user_id).encode('utf-8'))
-        sha256.update(to_str(user_ik).encode('utf-8'))
-        sha256.update(to_str(pepper).encode('utf-8'))
-
-        # we only need the first 32 characters for the CEK
-        self._cek = to_bytes(sha256.hexdigest()[:32])
+        self._cek = self._generate_key(user_id, user_ik, pepper)
 
     def add_or_update(self, data):
         encrypted_data = self._encrypt_data(data)
@@ -70,12 +61,22 @@ class EncryptedQuestionnaireStorage:
                 # session has a delete function but it is wrapped in a session_scope which confuses pylint
                 db_session.delete(questionnaire_state)
 
+    @staticmethod
+    def _generate_key(user_id, user_ik, pepper):
+        sha256 = hashlib.sha256()
+        sha256.update(to_str(user_id).encode('utf-8'))
+        sha256.update(to_str(user_ik).encode('utf-8'))
+        sha256.update(to_str(pepper).encode('utf-8'))
+
+        # we only need the first 32 characters for the CEK
+        return to_bytes(sha256.hexdigest()[:32])
+
     def _encrypt_data(self, data):
-        encrypted = self._encryption.encrypt(data, self._cek)
+        encrypted = JWEDirEncrypter().encrypt(data, self._cek)
         return {'data': encrypted}
 
     def _decrypt_data(self, encrypted_data):
-        return self._decryption.decrypt(encrypted_data['data'], self._cek)
+        return JWEDirDecrypter().decrypt(encrypted_data['data'], self._cek)
 
     def _find_questionnaire_state(self):
         logger.debug("getting questionnaire data", user_id=self._user_id)
