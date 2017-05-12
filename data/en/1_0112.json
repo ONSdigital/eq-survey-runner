@@ -167,7 +167,28 @@
                             "guidance": {
                                 "show_guidance": "Show changes in total retail turnover guidance",
                                 "hide_guidance": "Hide changes in total retail turnover guidance",
-                                "content": "<div><p>Examples of commentary:</p><p><strong>'In-store promotion'</strong></p> <p>Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.</p><strong> 'Special events (for example, sporting events)'</strong></p><p>This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.</p><p><strong>‘Weather'</strong></p><p>The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.</div>"
+                                "content": [{
+                                        "description": "Examples of commentary:"
+                                    },
+                                    {
+                                        "title": "'In-store promotion'"
+                                    },
+                                    {
+                                        "description": "Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales."
+                                    },
+                                    {
+                                        "title": "'Special events (for example, sporting events)'"
+                                    },
+                                    {
+                                        "description": "This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online."
+                                    },
+                                    {
+                                        "title": "'Weather'"
+                                    },
+                                    {
+                                        "description": "The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month."
+                                    }
+                                ]
                             },
                             "id": "changes-in-retail-turnover-answer",
                             "label": "Comments",

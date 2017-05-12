@@ -43,7 +43,9 @@
                                 "guidance": {
                                     "show_guidance": "Show permanent home guidance",
                                     "hide_guidance": "Hide permanent home guidance",
-                                    "content": "<p>For most people, their permanent home will be the address where they spend the most time.</p>"
+                                    "content": [{
+                                        "description": "For most people, their permanent home will be the address where they spend the most time."
+                                    }]
                                 },
                                 "options": [{
                                         "label": "Yes",
@@ -200,11 +202,18 @@
                                     "guidance": {
                                         "show_guidance": "Show naming guidance",
                                         "hide_guidance": "Hide naming guidance",
-                                        "content": [
-                                            { "description": "Enter the current first, middle and last names of all the people who usually live here." },
-                                            { "description": "If you have not yet named your newborn, please enter ‘Baby’ for their first name and then enter their last name (surname)." },
-                                            { "description": "Please also include household members who have requested a personal form." },
-                                            { "description": "Please also include the names of people staying with you temporarily who don’t have a usual address in the UK. This is so that we make sure we count everyone." },
+                                        "content": [{
+                                                "description": "Enter the current first, middle and last names of all the people who usually live here."
+                                            },
+                                            {
+                                                "description": "If you have not yet named your newborn, please enter ‘Baby’ for their first name and then enter their last name (surname)."
+                                            },
+                                            {
+                                                "description": "Please also include household members who have requested a personal form."
+                                            },
+                                            {
+                                                "description": "Please also include the names of people staying with you temporarily who don’t have a usual address in the UK. This is so that we make sure we count everyone."
+                                            },
                                             {
                                                 "title": "Include",
                                                 "list": [
@@ -341,21 +350,24 @@
                         "title": "How is {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }} related to the people below?",
                         "number": "5",
                         "description": "If members are not related, select the ‘unrelated’ option",
-                        "guidance": [{
-                            "list": [
-                                "Select the relationships between members of your household",
-                                "If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.",
-                                "If you have foster children living with you, select the ‘Unrelated’ option.",
-                                "Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.",
-                                "Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.",
-                                "If none of the options fully reflects your relationship, please select the one which you feel best describes your situation."
-                            ]
-                        }],
+                        "guidance": "",
                         "type": "Relationship",
                         "answers": [{
                             "id": "household-relationships-answer",
                             "label": "%(current_person)s is %(other_person)s",
                             "mandatory": false,
+                            "guidance": {
+                                "content": [{
+                                    "list": [
+                                        "Select the relationships between members of your household",
+                                        "If you are the parents of adopted children, select the ‘Mother or father’ option to show your relationship to them.",
+                                        "If you have foster children living with you, select the ‘Unrelated’ option.",
+                                        "Include half-brothers and half-sisters in the ‘Step-brother or step-sister’ category.",
+                                        "Same-sex civil partner is used to describe the relationship between two people who have legally registered a civil partnership.",
+                                        "If none of the options fully reflects your relationship, please select the one which you feel best describes your situation."
+                                    ]
+                                }]
+                            },
                             "options": [{
                                     "label": "Husband or wife",
                                     "value": "Husband or wife"
@@ -1754,9 +1766,7 @@
                                 "guidance": {
                                     "show_guidance": "Show intent to stay guidance",
                                     "hide_guidance": "Hide intent to stay guidance",
-                                    "content": [
-                                        { "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’" }
-                                    ]
+                                    "content": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’"
                                 },
                                 "options": [{
                                         "label": "Less than 6 months",
@@ -3929,7 +3939,7 @@
                                 "guidance": {
                                     "show_guidance": "Show employers business guidance",
                                     "hide_guidance": "Hide employers business guidance",
-                                    "content":"<p>Enter the main activity of your employer or business.</p><p>Another way of describing main activity is the industry that your employer or business works in.</p><p>If you are not sure of the main activity of your employer or business please give the best information you can.</p><p>If you are employed through an agency please enter the main activity of the business you are working for, not the agency.</p>"
+                                    "content": "<p>Enter the main activity of your employer or business.</p><p>Another way of describing main activity is the industry that your employer or business works in.</p><p>If you are not sure of the main activity of your employer or business please give the best information you can.</p><p>If you are employed through an agency please enter the main activity of the business you are working for, not the agency.</p>"
                                 },
                                 "type": "TextArea"
                             }]

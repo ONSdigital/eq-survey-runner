@@ -393,7 +393,24 @@
                                                                         "type": "string"
                                                                     },
                                                                     "guidance": {
-                                                                        "type": "string"
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "title": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "description": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "list": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
                                                                     },
                                                                     "description": {
                                                                         "type": "string"
