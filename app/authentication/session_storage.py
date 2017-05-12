@@ -3,8 +3,9 @@ from uuid import uuid4
 from flask import session
 from structlog import get_logger
 
-from app.data_model.database import EQSession, commit_or_rollback
-from app.data_model.database import db_session
+from app.data_model.database import EQSession, dynamodb
+
+table = dynamodb.Table('eq_session')
 
 USER_ID = "user_id"
 USER_IK = "user_ik"
@@ -26,10 +27,10 @@ class SessionStorage:
         eq_session = EQSession(eq_session_id, user_id)
 
         logger.debug("Adding eq_session to database", eq_session_id=eq_session_id, user_id=user_id)
-        with commit_or_rollback(db_session):
-            # pylint: disable=maybe-no-member
-            # session has a add function but it is wrapped in a session_scope which confuses pylint
-            db_session.add(eq_session)
+        table.put_item(
+            Item=eq_session.__dict__
+        )
+        print("PutItem succeeded")
 
     def delete_session_from_db(self):
         """
@@ -39,10 +40,11 @@ class SessionStorage:
             eq_session_id = session[EQ_SESSION_ID]
             eq_session = self._get_user_session(eq_session_id)
             if eq_session is not None:
-                with commit_or_rollback(db_session):
-                    # pylint: disable=maybe-no-member
-                    # session has a delete function but it is wrapped in a session_scope which confuses pylint
-                    db_session.delete(eq_session)
+                table.delete_item(
+                    Key={
+                        'eq_session_id': eq_session_id
+                    }
+                )
             else:
                 logger.debug("eq_session_id from user's cookie not found in database")
         else:
@@ -68,8 +70,17 @@ class SessionStorage:
 
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
-        eq_session = EQSession.query.filter(EQSession.eq_session_id == eq_session_id).first()
 
+        response = table.get_item(
+                    Key={
+                        'eq_session_id': eq_session_id
+                    }
+                )
+
+        if 'Item' not in response:
+            return None
+
+        eq_session = EQSession(response['Item']['eq_session_id'], response['Item']['user_id'], response['Item']['timestamp'])
         if eq_session is not None:
             logger.debug("found matching eq_session for eq_session_id in database",
                          session_id=eq_session.eq_session_id,

@@ -3,10 +3,11 @@ from uuid import UUID
 from sqlalchemy.exc import IntegrityError
 from structlog import get_logger
 
-from app.data_model.database import UsedJtiClaim, commit_or_rollback, db_session
+from app.data_model.database import dynamodb, UsedJtiClaim
 
 logger = get_logger()
 
+table = dynamodb.Table('used_jti_claim')
 
 class JtiTokenUsed(Exception):
 
@@ -41,11 +42,13 @@ def use_jti_claim(jti_claim):
         raise TypeError
 
     try:
-        with commit_or_rollback(db_session):
-            jti = UsedJtiClaim(jti_claim)
-            # pylint: disable=maybe-no-member
-            # db_session has an add function but it is wrapped in a session_scope which confuses pylint
-            db_session.add(jti)
+        jti = UsedJtiClaim(jti_claim)
+
+        table.put_item(
+            Item=jti.__dict__
+        )
+        print("PutItem succeeded")
+
     except IntegrityError as e:
         logger.error("jti claim has already been used", jti_claim=jti_claim)
         raise JtiTokenUsed(jti_claim) from e
