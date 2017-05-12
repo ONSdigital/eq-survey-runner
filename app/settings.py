@@ -42,9 +42,6 @@ EQ_MINIMIZE_ASSETS = parse_mode(os.getenv('EQ_MINIMIZE_ASSETS', 'False'))
 # max request payload size in bytes
 MAX_CONTENT_LENGTH = os.getenv('EQ_MAX_HTTP_POST_CONTENT_LENGTH', 65536)
 
-# max number of repeats from a rule
-EQ_MAX_NUM_REPEATS = os.getenv('EQ_MAX_NUM_REPEATS', 25)
-
 EQ_PROFILING = parse_mode(os.getenv('EQ_PROFILING', 'False'))
 
 EQ_RABBITMQ_URL = get_env_or_fail('EQ_RABBITMQ_URL')
@@ -52,7 +49,6 @@ EQ_RABBITMQ_URL_SECONDARY = get_env_or_fail('EQ_RABBITMQ_URL_SECONDARY')
 EQ_RABBITMQ_QUEUE_NAME = os.getenv('EQ_RABBITMQ_QUEUE_NAME', 'submit_q')
 EQ_RABBITMQ_ENABLED = parse_mode(os.getenv('EQ_RABBITMQ_ENABLED', 'True'))
 EQ_NEW_RELIC_CONFIG_FILE = os.getenv('EQ_NEW_RELIC_CONFIG_FILE', './newrelic.ini')
-EQ_SCHEMA_DIRECTORY = os.getenv('EQ_SCHEMA_DIRECTORY', 'data')
 EQ_SESSION_TIMEOUT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_SECONDS', 45 * 60))
 EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS', '30'))
 EQ_SESSION_TIMEOUT_PROMPT_SECONDS = int(os.getenv('EQ_SESSION_TIMEOUT_PROMPT_SECONDS', 120))
@@ -102,6 +98,3 @@ for key_name, dev_location in _KEYS.items():
 for password_name, dev_default in _PASSWORDS.items():
     password = os.getenv(password_name, dev_default if EQ_DEV_MODE else None)
     vars()[password_name] = password  # assigns attribute to this module
-
-# Date Format expected by SDX
-SDX_DATE_FORMAT = "%d/%m/%Y"

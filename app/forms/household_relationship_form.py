@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import FieldList, SelectField
 
-from app import settings
 from app.forms.fields import build_choices, get_mandatory_validator
 from app.data_model.answer_store import Answer
 from app.helpers.schema_helper import SchemaHelper
@@ -10,7 +9,7 @@ from app.jinja_filters import format_household_member_name
 from werkzeug.datastructures import MultiDict
 
 
-def build_relationship_choices(answer_store, group_instance):
+def build_relationship_choices(answer_store, group_instance):  # pylint: disable=too-many-locals
     """
     A function to build a list of tuples of as yet undefined person relationships
 
@@ -18,8 +17,10 @@ def build_relationship_choices(answer_store, group_instance):
     :param group_instance: The instance of the group being iterated over
     :return:
     """
-    household_first_name_answers = answer_store.filter(block_id='household-composition', answer_id='first-name', limit=settings.EQ_MAX_NUM_REPEATS)
-    household_last_name_answers = answer_store.filter(block_id='household-composition', answer_id='last-name', limit=settings.EQ_MAX_NUM_REPEATS)
+    household_first_name_answers = answer_store.filter(block_id='household-composition', answer_id='first-name',
+                                                       limit=True)
+    household_last_name_answers = answer_store.filter(block_id='household-composition', answer_id='last-name',
+                                                      limit=True)
 
     first_names = []
     last_names = []

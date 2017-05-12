@@ -10,11 +10,11 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
     """
     Returns the form necessary for the location given a get request, plus any template arguments
 
-    :param disable_mandatory: Make mandatory answers optional
-    :param error_messages: The default error messages to use within the form
     :param block_json: The block json
     :param location: The location which this form is for
     :param answer_store: The current answer store
+    :param error_messages: The default error messages to use within the form
+    :param disable_mandatory: Make mandatory answers optional
     :return: form, template_args A tuple containing the form for this location and any additional template arguments
     """
     if disable_mandatory:
@@ -61,12 +61,12 @@ def post_form_for_location(block_json, location, answer_store, request_form, err
     """
     Returns the form necessary for the location given a post request, plus any template arguments
 
-    :param disable_mandatory: Make mandatory answers optional
-    :param error_messages: The default error messages to use within the form
     :param block_json: The block json
     :param location: The location which this form is for
     :param answer_store: The current answer store
     :param request_form: form, template_args A tuple containing the form for this location and any additional template arguments
+    :param error_messages: The default error messages to use within the form
+    :param disable_mandatory: Make mandatory answers optional
     """
     if disable_mandatory:
         block_json = disable_mandatory_answers(block_json)

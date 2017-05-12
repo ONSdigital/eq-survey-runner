@@ -215,5 +215,4 @@ class TestHouseholdRelationshipForm(AppContextTestCase):
 
         choices = build_relationship_choices(answer_store, 0)
 
-        self.assertEqual(settings.EQ_MAX_NUM_REPEATS - 1, len(choices))
-
+        self.assertEqual(len(choices), answer_store.EQ_MAX_NUM_REPEATS - 1)

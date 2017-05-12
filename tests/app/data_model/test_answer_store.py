@@ -300,7 +300,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
                 value=25,
             ))
 
-        filtered = self.store.filter(limit=25)
+        filtered = self.store.filter(limit=True)
 
         self.assertEqual(len(filtered), 25)
 
