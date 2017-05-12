@@ -15,7 +15,6 @@ from structlog import get_logger
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
-from app.data_model.database import db_session
 from app.new_relic import setup_newrelic
 
 from app.submitter.encrypter import Encrypter
@@ -113,10 +112,6 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
     @application.context_processor
     def override_url_for():  # pylint: disable=unused-variable
         return dict(url_for=versioned_url_for)
-
-    @application.teardown_appcontext
-    def shutdown_session(exception=None):  # pylint: disable=unused-variable,unused-argument
-        db_session.remove()
 
     return application
 

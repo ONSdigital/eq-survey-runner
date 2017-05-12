@@ -1,7 +1,9 @@
 from structlog import get_logger
+import json
 
-from app.data_model.database import QuestionnaireState, commit_or_rollback
-from app.data_model.database import db_session
+from app.data_model.database import QuestionnaireState, dynamodb
+
+table = dynamodb.Table('questionnaire_state')
 
 logger = get_logger()
 
@@ -25,10 +27,10 @@ class QuestionnaireStorage:
             logger.debug("creating questionnaire data", user_id=self.user_id)
             questionnaire_state = QuestionnaireState(self.user_id, data)
 
-        with commit_or_rollback(db_session):
-            # pylint: disable=maybe-no-member
-            # session has a add function but it is wrapped in a session_scope which confuses pylint
-            db_session.add(questionnaire_state)
+        table.put_item(
+            Item=questionnaire_state.__dict__
+        )
+        print("PutItem succeeded")
 
     def get_user_data(self):
         questionnaire_state = self._get()
@@ -40,13 +42,23 @@ class QuestionnaireStorage:
         logger.debug("getting questionnaire data", user_id=self.user_id)
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
-        return QuestionnaireState.query.filter(QuestionnaireState.user_id == self.user_id).first()
+
+        response = table.get_item(
+            Key={
+                'user_id': self.user_id
+            }
+        )
+        if 'Item' in response:
+            return QuestionnaireState(response['Item']['user_id'], json.loads(response['Item']['state']))
+
+        return None
 
     def delete(self):
         logger.debug("deleting users data", user_id=self.user_id)
         questionnaire_state = self._get()
         if questionnaire_state:
-            with commit_or_rollback(db_session):
-                # pylint: disable=maybe-no-member
-                # session has a delete function but it is wrapped in a session_scope which confuses pylint
-                db_session.delete(questionnaire_state)
+            table.delete_item(
+                Key={
+                    'user_id': questionnaire_state.user_id
+                }
+            )
