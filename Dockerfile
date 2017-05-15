@@ -1,4 +1,9 @@
-FROM onsdigital/docker-aws-apache-wsgi:python-3.4.2-onbuild
+FROM python:3.4-onbuild
 
-# Compile frontend
-RUN yarn compile
+COPY . /usr/src/app
+
+ENV AWS_DEFAULT_REGION eu-west-1
+
+EXPOSE 5000
+
+CMD [ "gunicorn", "-b 0.0.0.0:5000", "application:application" ]

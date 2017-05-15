@@ -47,7 +47,6 @@ def use_jti_claim(jti_claim):
         table.put_item(
             Item=jti.__dict__
         )
-        print("PutItem succeeded")
 
     except IntegrityError as e:
         logger.error("jti claim has already been used", jti_claim=jti_claim)

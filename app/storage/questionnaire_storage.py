@@ -30,7 +30,6 @@ class QuestionnaireStorage:
         table.put_item(
             Item=questionnaire_state.__dict__
         )
-        print("PutItem succeeded")
 
     def get_user_data(self):
         questionnaire_state = self._get()

@@ -30,7 +30,6 @@ class SessionStorage:
         table.put_item(
             Item=eq_session.__dict__
         )
-        print("PutItem succeeded")
 
     def delete_session_from_db(self):
         """
