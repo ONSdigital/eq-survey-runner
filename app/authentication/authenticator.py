@@ -7,7 +7,6 @@ from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.user import User
-from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_questionnaire_store
 from app.storage.metadata_parser import is_valid_metadata
 
@@ -60,8 +59,9 @@ def store_session(metadata):
     session.clear()
 
     # get the hashed user id for eq
-    user_id = UserIDGenerator.generate_id(metadata)
-    user_ik = UserIDGenerator.generate_ik(metadata)
+    id_generator = current_app.eq['id_generator']
+    user_id = id_generator.generate_id(metadata)
+    user_ik = id_generator.generate_ik(metadata)
 
     # store the user id in the session
     current_app.eq['session_storage'].store_user_id(user_id)

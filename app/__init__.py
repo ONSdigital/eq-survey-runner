@@ -15,8 +15,11 @@ from structlog import get_logger
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
+
 from app.authentication.session_storage import SessionStorage
+from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.database import Database
+
 from app.new_relic import setup_newrelic
 
 from app.submitter.encrypter import Encrypter
@@ -81,6 +84,12 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
 
     application.eq['session_storage'] = SessionStorage(
         application.eq['database'],
+    )
+
+    application.eq['id_generator'] = UserIDGenerator(
+        application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS'],
+        application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_SALT'],
+        application.config['EQ_SERVER_SIDE_STORAGE_USER_IK_SALT'],
     )
 
     setup_secure_cookies(application)
