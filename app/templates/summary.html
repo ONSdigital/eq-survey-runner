@@ -30,7 +30,7 @@
 
   {% for group in content.summary %}
 
-      <h2 class="summary__title saturn" id="{{group.id}}">{{group.title|safe}}</h2>
+      <h2 class="summary__title saturn" id="{{group.id}}">{{group.title}}</h2>
 
       <div class="summary__block">
 
@@ -43,14 +43,14 @@
             {% for question in section.questions %}
 
                 <div class="summary__question" id="{{question.id}}">
-                  {{question.number or ''}} {{question.title|striptags|safe}}
+                  {{question.number or ''}} {{question.title|striptags}}
                 </div>
 
                 {% for answer in question.answers %}
 
                   {% if question.answers|length > 1 %}
                     <div class="summary__question summary__question--sub">
-                      {{answer.label|striptags|safe}}
+                      {{answer.label|striptags}}
                     </div>
                   {% endif %}
 

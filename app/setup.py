@@ -114,6 +114,10 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
     else:
         cache.init_app(application)  # Doesnt cache
 
+    # Switch off flask default autoescaping as content is html encoded
+    # during schema/metadata/summary context (and navigition) generation
+    application.jinja_env.autoescape = False
+
     # Add theme manager
     application.config['THEME_PATHS'] = os.path.dirname(os.path.abspath(__file__))
     Themes(application, app_identifier="surveyrunner")

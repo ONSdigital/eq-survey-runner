@@ -1,5 +1,6 @@
 from mock import MagicMock, Mock, patch
 
+from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
 from app.utilities.schema import load_schema_from_params
@@ -42,3 +43,21 @@ class TestSummaryContext(AppContextTestCase):
             context = build_summary_rendering_context(self.schema_json, answer_store, self.metadata)
 
         self.assertEqual(len(context), 1)
+
+    def test_summary_context_html_encodes_answers(self):
+        answer_store = AnswerStore()
+        answer_store.map = MagicMock(return_value={'choose-your-side-answer': """<>"'&"""})
+
+        routing_path = [Location(
+            block_id='choose-your-side-block',
+            group_id='star-wars',
+            group_instance=0,
+        )]
+        navigator = Mock()
+        navigator.get_routing_path = Mock(return_value=routing_path)
+
+        with patch('app.templating.summary_context.PathFinder', return_value=navigator):
+            context = build_summary_rendering_context(self.schema_json, answer_store, self.metadata)
+
+        answer = context[0].blocks[0].sections[0].questions[0].answers[0]
+        self.assertEqual(answer.value, "&lt;&gt;&#34;&#39;&amp;")

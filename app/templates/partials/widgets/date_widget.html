@@ -30,10 +30,10 @@
 {% if legend %}
   <fieldset class="fieldgroup fieldgroup--date" data-qa="widget-date">
     <legend class="fieldgroup__title venus">{{legend}}</legend>
-    {{subfields|safe}}
+    {{subfields}}
   </fieldset>
 {% else %}
   <div class="fieldgroup fieldgroup--date">
-    {{subfields|safe}}
+    {{subfields}}
   </div>
 {% endif %}

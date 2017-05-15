@@ -234,7 +234,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
 
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
 
-    def test_given_quotes_in_trading_name_when_create_context_then_quotes_are_escaped(self):
+    def test_given_quotes_in_trading_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
         metadata = self.metadata.copy()
         metadata['trad_as'] = "\"trading name\""
@@ -243,7 +243,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         schema_context = build_schema_context(metadata, {}, self.answer_store)
 
         # Then
-        self.assertEqual(schema_context['respondent']['trad_as'], r'\"trading name\"')
+        self.assertEqual(schema_context['respondent']['trad_as'], r'&#34;trading name&#34;')
 
     def test_given_backslash_in_trading_name_when_create_context_then_backslash_are_escaped(self):
         # Given
@@ -256,7 +256,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         # Then
         self.assertEqual(schema_context['respondent']['trad_as'], r'\\trading name\\')
 
-    def test_given_quotes_in_ru_name_when_create_context_then_quotes_are_escaped(self):
+    def test_given_quotes_in_ru_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
         metadata = self.metadata.copy()
         metadata['ru_name'] = "\"ru name\""
@@ -265,7 +265,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         schema_context = build_schema_context(metadata, {}, self.answer_store)
 
         # Then
-        self.assertEqual(schema_context['respondent']['ru_name'], r'\"ru name\"')
+        self.assertEqual(schema_context['respondent']['ru_name'], r'&#34;ru name&#34;')
 
     def test_given_backslash_in_ru_name_when_create_context_then_backslash_are_escaped(self):
         # Given
@@ -278,7 +278,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         # Then
         self.assertEqual(schema_context['respondent']['ru_name'], r'\\ru name\\')
 
-    def test_given_quotes_in_ru_name_or_trading_name_when_create_context_then_quotes_are_escaped(self):
+    def test_given_quotes_in_ru_name_or_trading_name_when_create_context_then_quotes_are_html_encoded(self):
         # Given
         metadata = self.metadata.copy()
         metadata['ru_name'] = '"ru_name"'
@@ -288,7 +288,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         schema_context = build_schema_context(metadata, {}, self.answer_store)
 
         # Then
-        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'\"ru_name\"')
+        self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'&#34;ru_name&#34;')
 
     def test_given_backslash_in_ru_name_or_trading_name_when_create_context_then_backslash_are_escaped(self):
         # Given
@@ -301,7 +301,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         # Then
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'\\trading name\\')
 
-    def test_given_quotes_in_answers_when_create_context_quotes_then_are_escaped(self):
+    def test_given_quotes_in_answers_when_create_context_quotes_then_are_html_encoded(self):
         aliases = {
             'first_name': {
                 'answer_id': 'answer_id',
@@ -320,7 +320,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
-        self.assertEqual(context_answers['first_name'], r'\"')
+        self.assertEqual(context_answers['first_name'], r'&#34;')
 
     def test_given_backslash_in_answers_when_create_context_then_backslash_are_escaped(self):
         aliases = {

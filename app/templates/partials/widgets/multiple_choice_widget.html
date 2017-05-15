@@ -1,12 +1,12 @@
 <fieldset>
   {% set answer_label = answer.label or question.title %}
   <legend class="field__legend mars {{'u-vh' if answer.label|length == 0}}">
-    {{answer_label|safe}}
+    {{answer_label}}
     {%- if answer_label and answer.description -%}
       <br />
     {%- endif -%}
     {%- if answer.description -%}
-      <span class="label__description pluto">{{answer.description|safe}}</span>
+      <span class="label__description pluto">{{answer.description}}</span>
     {%- endif -%}
   </legend>
 
@@ -33,7 +33,7 @@
         {{option.label.text}}
         {% if option.description %}
           <br />
-          <span class="label__description label__inner pluto">{{option.description|safe}}</span>
+          <span class="label__description label__inner pluto">{{option.description}}</span>
         {% endif %}
       </label>
 

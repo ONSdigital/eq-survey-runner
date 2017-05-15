@@ -41,7 +41,7 @@ class TestClearError(IntegrationTestCase):
 
         # We submit the form
         self.post(form_data)
-        self.assertInPage("The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")
+        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
 
         # Fill the dates in correctly, but this time miss out the required value
         form_data = {
@@ -62,4 +62,4 @@ class TestClearError(IntegrationTestCase):
 
         # Check the page content again
         self.assertInPage('Please provide a value, even if your value is 0.')
-        self.assertNotInPage('The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.')
+        self.assertNotInPage("The 'period to' date cannot be before the 'period from' date.")

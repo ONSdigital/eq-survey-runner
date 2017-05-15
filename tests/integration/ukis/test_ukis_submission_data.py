@@ -498,7 +498,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
 
         # We have completed Business Strategy and Practices section
 
-        self.assertInPage('>Business Strategy &amp; Practices</')
+        self.assertInPage('>Business Strategy & Practices</')
         self.assertInPage('You have successfully completed this section')
         self.post(action='save_continue')
 

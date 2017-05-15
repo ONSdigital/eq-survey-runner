@@ -16,24 +16,24 @@
 
     {% if question.answers|length > 1 %}
 
-      {{question_titles|safe}}
+      {{question_titles}}
 
       <fieldset class="question__fieldset js-question-fieldset">
 
         <legend class="u-vh">{{question_title|striptags}}</legend>
 
-        {{question_description|safe}}
-        {{question_guidance|safe}}
-        {{question_answers|safe}}
+        {{question_description}}
+        {{question_guidance}}
+        {{question_answers}}
 
       </fieldset>
 
     {% else %}
 
-      {{question_titles|safe}}
-      {{question_description|safe}}
-      {{question_guidance|safe}}
-      {{question_answers|safe}}
+      {{question_titles}}
+      {{question_description}}
+      {{question_guidance}}
+      {{question_answers}}
 
     {% endif %}
 
@@ -45,8 +45,8 @@
 
   {% else %}
 
-    {{question_markup|safe}}
-    {{question_actions|safe}}
+    {{question_markup}}
+    {{question_actions}}
 
   {% endif %}
 
