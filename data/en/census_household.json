@@ -733,7 +733,18 @@
                                 "guidance": {
                                     "show_guidance": "Show owning or renting guidance",
                                     "hide_guidance": "Hide owning or renting guidance",
-                                    "content": "<p>‘Owns outright’ means you own without a mortgage or loan, even if you pay a small amount of money to the lender for them to look after the deeds.</p><p>‘Part owns and part rents’ means you own part of your accommodation and also pay rent for part of it. You can part own with or without a mortgage or loan.</p><p>If your rent is paid by housing benefit, select ‘Rents (with or without housing benefit)’.</p><p>If you do not pay rent, but contribute to household expenses, you live rent free.</p>"
+                                    "content": [{
+                                        "description": "‘Owns outright’ means you own without a mortgage or loan, even if you pay a small amount of money to the lender for them to look after the deeds."
+                                    },
+                                    {
+                                        "description": "‘Part owns and part rents’ means you own part of your accommodation and also pay rent for part of it. You can part own with or without a mortgage or loan."
+                                    },
+                                    {
+                                        "description": "If your rent is paid by housing benefit, select ‘Rents (with or without housing benefit)’."
+                                    },
+                                    {
+                                        "description": "If you do not pay rent, but contribute to household expenses, you live rent free."
+                                    }]
                                 },
                                 "options": [{
                                         "label": "Owns outright",
@@ -1049,7 +1060,9 @@
                                 "guidance": {
                                     "show_guidance": "Show personal form guidance",
                                     "hide_guidance": "Hide personal form guidance",
-                                    "content": "If you request a personal or confidential form we will send you a unique access code that will allow you to complete the individual questions for yourself. No-one else will be able to see the answers you provide."
+                                    "content": [{
+                                        "description": "If you request a personal or confidential form we will send you a unique access code that will allow you to complete the individual questions for yourself. No-one else will be able to see the answers you provide."
+                                    }]
                                 },
                                 "options": [{
                                         "label": "No, I do not want to request a personal form",
@@ -1175,7 +1188,15 @@
                                 "guidance": {
                                     "show_guidance": "Show marital status guidance",
                                     "hide_guidance": "Hide marital status guidance",
-                                    "content": "<p>Please answer according to your status on 9 April 2017.</p><p>Please answer this question for children, even though they may not be old enough to marry or form a same-sex civil partnership.</p><p>If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership.</p>"
+                                    "content": [{
+                                        "description": "Please answer according to your status on 9 April 2017."
+                                    },
+                                    {
+                                        "description": "Please answer this question for children, even though they may not be old enough to marry or form a same-sex civil partnership."
+                                    },
+                                    {
+                                        "description": "If you were married (or formed a registered same-sex partnership) abroad, and this enables you to be recognised as married or civil partnered in the UK, complete the question reflecting that legal partnership."
+                                    }]
                                 },
                                 "options": [{
                                         "label": "Never married and never registered a same-sex civil partnership",
@@ -1237,7 +1258,12 @@
                                     "guidance": {
                                         "show_guidance": "Show other address guidance",
                                         "hide_guidance": "Hide other address guidance",
-                                        "content": "<p>Examples might include another parent’s address, an armed forces base, a holiday home, or term-time address.</p><p>The days you stay at the address do not have to be in a row. They can be at any time during the year.</p>"
+                                        "content": [{
+                                            "description": "Examples might include another parent’s address, an armed forces base, a holiday home, or term-time address."
+                                        },
+                                        {
+                                            "description": "The days you stay at the address do not have to be in a row. They can be at any time during the year."
+                                        }]
                                     },
                                     "options": [{
                                             "label": "No",
@@ -1443,7 +1469,25 @@
                                 "guidance": {
                                     "show_guidance": "Show education guidance",
                                     "hide_guidance": "Hide education guidance",
-                                    "content": "<p>The following are considered to be in full-time education:</p><p>Under 16s</p><p>16-18s if they attend more than 12 hours a week of study on a course up to and including A level standard</p><p>Anyone on a course at a higher standard than A level if they are studying at a UK institution, on a course which:</p><ul><li>lasts for at least 1 academic year</li><li>involves at least 24 weeks per year, and</li><li>involves at least 21 hours of term-time study, classes or work experience per week (including unstructured study)</li></ul>"
+                                    "content": [{
+                                        "description": "The following are considered to be in full-time education:"
+                                    },
+                                    {
+                                        "description": "Under 16s"
+                                    },
+                                    {
+                                        "description": "16-18s if they attend more than 12 hours a week of study on a course up to and including A level standard"
+                                    },
+                                    {
+                                        "description": "Anyone on a course at a higher standard than A level if they are studying at a UK institution, on a course which:"
+                                    },
+                                    {
+                                        "list": [
+                                            "lasts for at least 1 academic year",
+                                            "involves at least 24 weeks per year, and",
+                                            "involves at least 21 hours of term-time study, classes or work experience per week (including unstructured study)"
+                                        ]
+                                    }]
                                 },
                                 "options": [{
                                         "label": "Yes",
@@ -1766,7 +1810,9 @@
                                 "guidance": {
                                     "show_guidance": "Show intent to stay guidance",
                                     "hide_guidance": "Hide intent to stay guidance",
-                                    "content": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’"
+                                    "content": [{
+                                        "description": "If you arrived in the United Kingdom before May 2016, please select ‘12 months or more’"
+                                    }]
                                 },
                                 "options": [{
                                         "label": "Less than 6 months",
@@ -1846,7 +1892,18 @@
                                         "guidance": {
                                             "show_guidance": "Show national identity guidance",
                                             "hide_guidance": "Hide national identity guidance",
-                                            "content": "<p>You can choose more than one national identity.</p><p>It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home.</p><p>It is not dependent on your ethnic group or legal nationality (citizenship).</p><p>Select all that apply. If your national identity isn’t listed, select ‘Other’ and enter the national identity.</p>"
+                                            "content": [{
+                                                "description": "You can choose more than one national identity."
+                                            },
+                                            {
+                                               "description": "It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home."
+                                            },
+                                            {
+                                                "description": "It is not dependent on your ethnic group or legal nationality (citizenship)."
+                                            },
+                                            {
+                                                "description": "Select all that apply. If your national identity isn’t listed, select ‘Other’ and enter the national identity."
+                                            }]
                                         },
                                         "options": [{
                                                 "label": "English",
@@ -1904,7 +1961,18 @@
                                         "guidance": {
                                             "show_guidance": "Show national identity guidance",
                                             "hide_guidance": "Hide national identity guidance",
-                                            "content": "<p>You can choose more than one national identity.</p><p>It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home.</p><p>It is not dependent on your ethnic group or legal nationality (citizenship).</p><p>Select all that apply. If your national identity isn’t listed, select ‘Other’ and enter the national identity.</p>"
+                                            "content": [{
+                                                "description": "You can choose more than one national identity."
+                                            },
+                                            {
+                                                "description": "It is for you to choose your national identity or identities. For example this could be about the country or countries where you feel you belong, or think of as home."
+                                            },
+                                            {
+                                                "description": "It is not dependent on your ethnic group or legal nationality (citizenship)."
+                                            },
+                                            {
+                                                "description": "Select all that apply. If your national identity isn’t listed, select ‘Other’ and enter the national identity."
+                                            }]
                                         },
                                         "options": [{
                                                 "label": "Welsh",
@@ -1971,7 +2039,15 @@
                                     "guidance": {
                                         "show_guidance": "Show ethnic group guidance",
                                         "hide_guidance": "Hide ethnic group guidance",
-                                        "content": "<p>It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.</p><p>Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question.</p>"
+                                        "content": [{
+                                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself."
+                                        },
+                                        {
+                                            "description": "Please select the answer you think is most appropriate."
+                                        },
+                                        {
+                                            "description": "If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question."
+                                        }]
                                     },
                                     "options": [{
                                             "label": "White",
@@ -2020,7 +2096,15 @@
                                     "guidance": {
                                         "show_guidance": "Show ethnic group guidance",
                                         "hide_guidance": "Hide ethnic group guidance",
-                                        "content": "<p>It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself.</p><p>Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Other ethnic group’.  You will then able to write in the ethnic group you prefer to identify as at the next question.</p>"
+                                        "content": [{
+                                            "description": "It is for you to choose your ethnic group. For example this could be your family or cultural background, or it could be how you would describe yourself."
+                                        },
+                                        {
+                                            "description": "Please select the answer you think is most appropriate."
+                                        },
+                                        {
+                                            "description": "If you don’t feel the options apply to you, select ‘Other ethnic group’. You will then be able to write in the ethnic group you prefer to identify as at the next question."
+                                        }]
                                     },
                                     "options": [{
                                             "label": "White",
@@ -2210,7 +2294,12 @@
                                         "guidance": {
                                             "show_guidance": "Show ethnic group guidance",
                                             "hide_guidance": "Hide ethnic group guidance",
-                                            "content": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>"
+                                            "content": [{
+                                                "description": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p>"
+                                            },
+                                            {
+                                                "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>"
+                                            }]
                                         },
                                         "mandatory": false,
                                         "options": [{
@@ -2259,7 +2348,12 @@
                                         "guidance": {
                                             "show_guidance": "Show ethnic group guidance",
                                             "hide_guidance": "Hide ethnic group guidance",
-                                            "content": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>"
+                                            "content": [{
+                                                "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
+                                            },
+                                            {
+                                                "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
+                                            }]
                                         },
                                         "mandatory": false,
                                         "options": [{
@@ -2350,7 +2444,12 @@
                                     "guidance": {
                                         "show_guidance": "Show ethnic group guidance",
                                         "hide_guidance": "Hide ethnic group guidance",
-                                        "content": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>"
+                                        "content": [{
+                                            "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
+                                        },
+                                        {
+                                            "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
+                                        }]
                                     },
                                     "mandatory": false,
                                     "options": [{
@@ -2434,7 +2533,12 @@
                                     "guidance": {
                                         "show_guidance": "Show ethnic group guidance",
                                         "hide_guidance": "Hide ethnic group guidance",
-                                        "content": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>"
+                                        "content": [{
+                                            "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
+                                        },
+                                        {
+                                            "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
+                                        }]
                                     },
                                     "options": [{
                                             "label": "Indian",
@@ -2521,7 +2625,12 @@
                                     "guidance": {
                                         "show_guidance": "Show ethnic group guidance",
                                         "hide_guidance": "Hide ethnic group guidance",
-                                        "content": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>"
+                                        "content": [{
+                                            "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
+                                        },
+                                        {
+                                            "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
+                                        }]
                                     },
                                     "options": [{
                                             "label": "African",
@@ -2600,7 +2709,12 @@
                                     "guidance": {
                                         "show_guidance": "Show ethnic group guidance",
                                         "hide_guidance": "Hide ethnic group guidance",
-                                        "content": "<p>The options are based on the answer to the previous question. Please select the answer you think is most appropriate.</p><p>If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group.</p>"
+                                        "content": [{
+                                            "description": "The options are based on the answer to the previous question. Please select the answer you think is most appropriate."
+                                        },
+                                        {
+                                            "description": "If you don’t feel the options apply to you, select ‘Any other ...’ and write in your ethnic group."
+                                        }]
                                     },
                                     "options": [{
                                             "label": "Arab",
@@ -2676,7 +2790,30 @@
                                     "guidance": {
                                         "show_guidance": "Show sexual identity guidance",
                                         "hide_guidance": "Hide sexual identity guidance",
-                                        "content": "<p>It is for you to decide how to choose your answer.</p><p>If you are unsure of the meaning of any words used, the following might help:</p><ul><li>‘Heterosexual or Straight’ means that a person is, for example, attracted to people of the opposite sex/gender</li><li>‘Gay or Lesbian’ means that a person is, for example, attracted to people of the same sex/gender</li><li>‘Bisexual’ means that a person is, for example, attracted to people of both sexes/any gender</li></ul><p><strong>Identity not listed</strong></p><p>If none of the first three answer options apply to you, please select ‘Other’ and enter your preferred answer.</p><p>This question is voluntary; you can leave it blank if you prefer.</p>"
+                                        "content": [{
+                                            "description": "It is for you to decide how to choose your answer."
+                                        },
+                                        {
+                                            "description": "If you are unsure of the meaning of any words used, the following might help:"
+                                        },
+                                        {
+                                            "list": "‘Heterosexual or Straight’ means that a person is, for example, attracted to people of the opposite sex/gender"
+                                        },
+                                        {
+                                            "list": "‘Gay or Lesbian’ means that a person is, for example, attracted to people of the same sex/gender"
+                                        },
+                                        {
+                                            "list": "‘Bisexual’ means that a person is, for example, attracted to people of both sexes/any gender"
+                                        },
+                                        {
+                                            "title": "Identity not listed"
+                                        },
+                                        {
+                                            "description": "If none of the first three answer options apply to you, please select ‘Other’ and enter your preferred answer."
+                                        },
+                                        {
+                                            "description": "This question is voluntary; you can leave it blank if you prefer."
+                                        }]
                                     },
                                     "options": [{
                                             "label": "Heterosexual or Straight",
@@ -3065,7 +3202,9 @@
                                     "guidance": {
                                         "show_guidance": "Show usual address guidance",
                                         "hide_guidance": "Hide usual address guidance",
-                                        "content": "In most cases your usual address will be the permanent or family home that you were living in."
+                                        "content": [{
+                                            "description": "In most cases your usual address will be the permanent or family home that you were living in."
+                                        }]
                                     },
                                     "options": [{
                                             "label": "This address",
@@ -3781,7 +3920,18 @@
                                 "guidance": {
                                     "show_guidance": "Show working guidance",
                                     "hide_guidance": "Hide working guidance",
-                                    "content": "<p>If you had a full-time or part-time job in the past select ‘Yes’</p><p>This includes work outside of the United Kingdom.</p><p>Please provide an answer even if you are retired.</p><p>If you have never worked, or only ever worked in voluntary/unpaid jobs, select ‘No’.</p>"
+                                    "content": [{
+                                        "description": "If you had a full-time or part-time job in the past select ‘Yes’"
+                                    },
+                                    {
+                                        "description": "This includes work outside of the United Kingdom."
+                                    },
+                                    {
+                                        "description": "Please provide an answer even if you are retired."
+                                    },
+                                    {
+                                        "description": "If you have never worked, or only ever worked in voluntary/unpaid jobs, select ‘No’."
+                                    }]
                                 },
                                 "options": [{
                                         "label": "Yes",
@@ -3880,7 +4030,15 @@
                                 "guidance": {
                                     "show_guidance": "Show job title guidance",
                                     "hide_guidance": "Hide job title guidance",
-                                    "content": "<p>Please enter your job title in the space provided.</p><p>Do not state your grade or pay band.</p><p>If you are not sure of your job title please give the best information you can.</p>"
+                                    "content": [{
+                                        "description": "Please enter your job title in the space provided."
+                                    },
+                                    {
+                                        "description": "Do not state your grade or pay band."
+                                    },
+                                    {
+                                        "description": "If you are not sure of your job title please give the best information you can."
+                                    }]
                                 },
                                 "type": "TextField"
                             }]
@@ -3906,7 +4064,12 @@
                                 "guidance": {
                                     "show_guidance": "Show job description guidance",
                                     "hide_guidance": "Hide job description guidance",
-                                    "content": "<p>Please enter a brief description of what you do or did in your main job. Your main job is the job in which you usually work (or worked) the most hours.</p><p>Please give the best information you can even if you’re not sure or can’t remember all the details.</p>"
+                                    "content": [{
+                                        "description": "Please enter a brief description of what you do or did in your main job. Your main job is the job in which you usually work (or worked) the most hours."
+                                    },
+                                    {
+                                        "description": "Please give the best information you can even if you’re not sure or can’t remember all the details."
+                                    }]
                                 },
                                 "type": "TextArea"
                             }]
@@ -3939,7 +4102,18 @@
                                 "guidance": {
                                     "show_guidance": "Show employers business guidance",
                                     "hide_guidance": "Hide employers business guidance",
-                                    "content": "<p>Enter the main activity of your employer or business.</p><p>Another way of describing main activity is the industry that your employer or business works in.</p><p>If you are not sure of the main activity of your employer or business please give the best information you can.</p><p>If you are employed through an agency please enter the main activity of the business you are working for, not the agency.</p>"
+                                    "content": [{
+                                        "description": "Enter the main activity of your employer or business."
+                                    },
+                                    {
+                                        "description": "Another way of describing main activity is the industry that your employer or business works in."
+                                    },
+                                    {
+                                        "description": "If you are not sure of the main activity of your employer or business please give the best information you can."
+                                    },
+                                    {
+                                        "description": "If you are employed through an agency please enter the main activity of the business you are working for, not the agency."
+                                    }]
                                 },
                                 "type": "TextArea"
                             }]
@@ -4018,7 +4192,15 @@
                                 "guidance": {
                                     "show_guidance": "Show main job guidance",
                                     "hide_guidance": "Hide main job guidance",
-                                    "content": "<p>This question is asking for the name of the organisation or business that you work (or worked) for in your main job.</p><p>If you can’t remember the name of the organisation, please give the best information you can.</p><p>If you are employed through an agency please enter the name of the business you are working for, not the agency.</p>"
+                                    "content": [{
+                                        "description": "This question is asking for the name of the organisation or business that you work (or worked) for in your main job."
+                                    },
+                                    {
+                                        "description": "If you can’t remember the name of the organisation, please give the best information you can."
+                                    },
+                                    {
+                                        "description": "If you are employed through an agency please enter the name of the business you are working for, not the agency."
+                                    }]
                                 },
                                 "type": "TextField"
                             }]
