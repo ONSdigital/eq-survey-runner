@@ -3,8 +3,7 @@ from uuid import uuid4
 from flask import session
 from structlog import get_logger
 
-from app.data_model.database import EQSession, commit_or_rollback
-from app.data_model.database import db_session
+from app.data_model.database import EQSession
 
 USER_ID = "user_id"
 USER_IK = "user_ik"
@@ -16,8 +15,10 @@ logger = get_logger()
 
 class SessionStorage:
 
-    @staticmethod
-    def store_user_id(user_id):
+    def __init__(self, database):
+        self._database = database
+
+    def store_user_id(self, user_id):
         """
         Create a new eq_session_id and associate it with the user_id specified
         """
@@ -26,10 +27,7 @@ class SessionStorage:
         eq_session = EQSession(eq_session_id, user_id)
 
         logger.debug("Adding eq_session to database", eq_session_id=eq_session_id, user_id=user_id)
-        with commit_or_rollback(db_session):
-            # pylint: disable=maybe-no-member
-            # session has a add function but it is wrapped in a session_scope which confuses pylint
-            db_session.add(eq_session)
+        self._database.add(eq_session)
 
     def delete_session_from_db(self):
         """
@@ -39,10 +37,7 @@ class SessionStorage:
             eq_session_id = session[EQ_SESSION_ID]
             eq_session = self._get_user_session(eq_session_id)
             if eq_session is not None:
-                with commit_or_rollback(db_session):
-                    # pylint: disable=maybe-no-member
-                    # session has a delete function but it is wrapped in a session_scope which confuses pylint
-                    db_session.delete(eq_session)
+                self._database.delete(eq_session)
             else:
                 logger.debug("eq_session_id from user's cookie not found in database")
         else:
@@ -149,6 +144,3 @@ class SessionStorage:
             return session[USER_IK]
         else:
             return None
-
-
-session_storage = SessionStorage()

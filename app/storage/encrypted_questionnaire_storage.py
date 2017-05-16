@@ -7,21 +7,21 @@ from app.cryptography.jwe_encryption import JWEDirEncrypter
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
-from app.data_model.database import QuestionnaireState, commit_or_rollback
-from app.data_model.database import db_session
+from app.data_model.database import QuestionnaireState
 
 logger = get_logger()
 
 
 class EncryptedQuestionnaireStorage:
 
-    def __init__(self, user_id, user_ik, pepper):
+    def __init__(self, database, user_id, user_ik, pepper):
         if user_id is None:
             raise ValueError('User id must be set')
         if user_ik is None:
             raise ValueError('User ik must be set')
         if pepper is None:
             raise ValueError('Pepper must be set')
+        self._database = database
         self._user_id = user_id
         self._cek = self._generate_key(user_id, user_ik, pepper)
 
@@ -35,10 +35,8 @@ class EncryptedQuestionnaireStorage:
             logger.debug("creating questionnaire data", user_id=self._user_id)
             questionnaire_state = QuestionnaireState(self._user_id, encrypted_data)
 
-        with commit_or_rollback(db_session):
-            # pylint: disable=maybe-no-member
-            # session has a add function but it is wrapped in a session_scope which confuses pylint
-            db_session.add(questionnaire_state)
+        # session has a add function but it is wrapped in a session_scope which confuses pylint
+        self._database.add(questionnaire_state)
 
     def get_user_data(self):
         data = None
@@ -56,10 +54,8 @@ class EncryptedQuestionnaireStorage:
         logger.debug("deleting users data", user_id=self._user_id)
         questionnaire_state = self._find_questionnaire_state()
         if questionnaire_state:
-            with commit_or_rollback(db_session):
-                # pylint: disable=maybe-no-member
-                # session has a delete function but it is wrapped in a session_scope which confuses pylint
-                db_session.delete(questionnaire_state)
+            # session has a delete function but it is wrapped in a session_scope which confuses pylint
+            self._database.delete(questionnaire_state)
 
     @staticmethod
     def _generate_key(user_id, user_ik, pepper):

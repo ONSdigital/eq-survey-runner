@@ -7,7 +7,6 @@ from flask_themes2 import render_theme_template
 from structlog import get_logger
 from werkzeug.exceptions import Forbidden
 
-from app.authentication.session_storage import session_storage
 from app.data_model.answer_store import Answer
 from app.globals import get_answer_store, get_completed_blocks, get_metadata, get_questionnaire_store
 from app.helpers.form_helper import get_form_for_location, post_form_for_location
@@ -162,7 +161,7 @@ def post_household_composition(eq_id, form_type, collection_id, group_id):  # py
 
 @questionnaire_blueprint.route('thank-you', methods=["GET"])
 def get_thank_you(eq_id, form_type, collection_id):  # pylint: disable=unused-argument
-    survey_completed_metadata = session_storage.get_survey_completed_metadata()
+    survey_completed_metadata = current_app.eq['session_storage'].get_survey_completed_metadata()
     schema = load_schema_from_params(eq_id, form_type)
 
     if survey_completed_metadata:
@@ -234,7 +233,7 @@ def submit_answers(eq_id, form_type, collection_id, metadata, answer_store):
         if not sent:
             raise SubmissionFailedException()
 
-        session_storage.store_survey_completed_metadata(metadata['tx_id'], metadata['period_str'], metadata['ru_ref'])
+        current_app.eq['session_storage'].store_survey_completed_metadata(metadata['tx_id'], metadata['period_str'], metadata['ru_ref'])
         get_questionnaire_store(current_user.user_id, current_user.user_ik).delete()
         _remove_survey_session_data()
 
@@ -282,8 +281,8 @@ def _save_sign_out(collection_id, eq_id, form_type, this_location, form):
 
 
 def _remove_survey_session_data():
-    session_storage.delete_session_from_db()
-    session_storage.remove_user_ik()
+    current_app.eq['session_storage'].delete_session_from_db()
+    current_app.eq['session_storage'].remove_user_ik()
     logout_user()
 
 
