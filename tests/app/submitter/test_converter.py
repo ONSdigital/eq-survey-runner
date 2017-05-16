@@ -24,6 +24,32 @@ metadata = parse_metadata({
 
 
 class TestConverter(SurveyRunnerTestCase):
+    def test_convert_answers_flushed_flag_default_is_false(self):
+        with self.application.test_request_context():
+            user_answer = [create_answer('GHI', 0)]
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.2"
+            }
+
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), {})
+
+            self.assertFalse(answer_object['flushed'])
+
+    def test_convert_answers_flushed_flag_overriden_to_true(self):
+        with self.application.test_request_context():
+            user_answer = [create_answer('GHI', 0)]
+
+            questionnaire = {
+                "survey_id": "021",
+                "data_version": "0.0.2"
+            }
+
+            answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), {}, flushed=True)
+
+            self.assertTrue(answer_object['flushed'])
+
     def test_convert_answers(self):
         with self.application.test_request_context():
             user_answer = [create_answer('ABC', '2016-01-01', group_id='group-1', block_id='block-1'),

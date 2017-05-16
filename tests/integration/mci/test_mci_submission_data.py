@@ -1,4 +1,3 @@
-
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -65,6 +64,7 @@ class TestMciSubmissionData(IntegrationTestCase):
                 },
                 "version": "0.0.1",
                 "survey_id": "023",
+                "flushed": False,
                 "tx_id": actual['submission']['tx_id'],
                 "submitted_at": actual['submission']['submitted_at'],
                 "collection": {

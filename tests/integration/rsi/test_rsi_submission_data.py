@@ -57,6 +57,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
                     "exercise_sid": "789"
                 },
                 "survey_id": "023",
+                "flushed": False,
                 "origin": "uk.gov.ons.edc.eq",
                 "metadata": {
                     "user_id": "integration-test",
@@ -136,6 +137,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
                 "submitted_at": actual['submission']['submitted_at'],
                 "version": "0.0.1",
                 "survey_id": "023",
+                "flushed": False,
                 "data": {
                     "11": "01/04/2016",
                     "12": "30/04/2016",

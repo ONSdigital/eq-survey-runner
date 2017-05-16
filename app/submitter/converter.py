@@ -18,7 +18,7 @@ class DataVersionError(Exception):
         return 'Data version {} not supported'.format(self.version)
 
 
-def convert_answers(metadata, questionnaire_json, answer_store, routing_path):
+def convert_answers(metadata, questionnaire_json, answer_store, routing_path, flushed=False):
     """
     Create the JSON answer format for down stream processing
     :param metadata: metadata for the questionnaire
@@ -32,6 +32,7 @@ def convert_answers(metadata, questionnaire_json, answer_store, routing_path):
         "version" : "0.0.1",
         "origin" : "uk.gov.ons.edc.eq",
         "survey_id": "021",
+        "flushed": true|false
         "collection":{
           "exercise_sid": "hfjdskf",
           "instrument_id": "yui789",
@@ -53,6 +54,7 @@ def convert_answers(metadata, questionnaire_json, answer_store, routing_path):
         'version': questionnaire_json['data_version'],
         'origin': 'uk.gov.ons.edc.eq',
         'survey_id': survey_id,
+        'flushed': flushed,
         'submitted_at': submitted_at.isoformat(),
         'collection': _build_collection(metadata),
         'metadata': _build_metadata(metadata),
