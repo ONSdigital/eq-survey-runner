@@ -133,6 +133,7 @@ class TestDumpSubmission(IntegrationTestCase):
             'submission': {
                 'version': '0.0.1',
                 'survey_id': '0',
+                'flushed': False,
                 'origin': 'uk.gov.ons.edc.eq',
                 'type': 'uk.gov.ons.edc.eq:surveyresponse',
                 'tx_id': actual['submission']['tx_id'],
@@ -176,6 +177,7 @@ class TestDumpSubmission(IntegrationTestCase):
             'submission': {
                 'version': '0.0.1',
                 'survey_id': '0',
+                'flushed': False,
                 'origin': 'uk.gov.ons.edc.eq',
                 'type': 'uk.gov.ons.edc.eq:surveyresponse',
                 'tx_id': actual['submission']['tx_id'],

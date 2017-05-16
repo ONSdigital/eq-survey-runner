@@ -1,4 +1,3 @@
-
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -155,6 +154,7 @@ class TestUkisSubmissionData(IntegrationTestCase):
                 "submitted_at": submitted_at,
                 "version": "0.0.1",
                 "survey_id": "144",
+                "flushed": False,
                 "collection": {
                     "instrument_id": "0001",
                     "period": "201604",

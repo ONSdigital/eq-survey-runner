@@ -1,4 +1,3 @@
-
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -49,6 +48,7 @@ class TestQbsSubmissionData(IntegrationTestCase):
                     'instrument_id': '0001'
                     },
                 'survey_id': '139',
+                'flushed': False,
                 'tx_id': actual['submission']['tx_id'],
                 'data': {
                     '50': '5',

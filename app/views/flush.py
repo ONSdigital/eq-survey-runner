@@ -55,7 +55,7 @@ def _submit_data(user):
         schema = load_schema_from_metadata(metadata)
         routing_path = PathFinder(schema, answer_store, metadata).get_routing_path()
 
-        message = convert_answers(metadata, schema, answer_store, routing_path)
+        message = convert_answers(metadata, schema, answer_store, routing_path, flushed=True)
         message = current_app.eq['encrypter'].encrypt(message)
 
         sent = current_app.eq['submitter'].send_message(message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'], metadata["tx_id"])

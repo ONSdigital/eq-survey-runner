@@ -7,11 +7,14 @@ from tests.integration.create_token import generate_token
 class TestFlushData(IntegrationTestCase):
 
     def setUp(self):
-        self.patcher = patch('app.LogSubmitter')
-        mock_class = self.patcher.start()
+        self.submitter_patcher = patch('app.LogSubmitter')
+        mock_submitter_class = self.submitter_patcher.start()
+        self.submitter_instance = mock_submitter_class.return_value
+        self.submitter_instance.send_message.return_value = True
 
-        self.instance = mock_class.return_value
-        self.instance.send_message.return_value = True
+        self.encrypter_patcher = patch('app.Encrypter')
+        mock_encrypter_class = self.encrypter_patcher.start()
+        self.encrypt_instance = mock_encrypter_class.return_value
 
         super().setUp()
         self.launchSurvey('1', '0205')
@@ -29,7 +32,8 @@ class TestFlushData(IntegrationTestCase):
         self.post(form_data)
 
     def tearDown(self):
-        self.patcher.stop()
+        self.submitter_patcher.stop()
+        self.encrypter_patcher.stop()
 
     def test_flush_data_successful(self):
         self.get('/flush?token=' + generate_token(self.get_payload()).decode())
@@ -76,10 +80,19 @@ class TestFlushData(IntegrationTestCase):
         self.assertStatusForbidden()
 
     def test_flush_errors_when_submission_fails(self):
-        self.instance.send_message.return_value = False  # pylint: disable=no-member
+        self.submitter_instance.send_message.return_value = False  # pylint: disable=no-member
 
         self.get('/flush?token=' + generate_token(self.get_payload()).decode())
         self.assertStatusCode(503)
+
+    def test_flush_sets_flushed_flag_to_true(self):
+
+        self.get('/flush?token=' + generate_token(self.get_payload()).decode())
+
+        self.encrypt_instance.encrypt.assert_called_once() # pylint: disable=no-member
+        args = self.encrypt_instance.encrypt.call_args[0] # pylint: disable=no-member
+
+        self.assertTrue(args[0]['flushed'])
 
     @staticmethod
     def get_payload():

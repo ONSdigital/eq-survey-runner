@@ -1,4 +1,3 @@
-
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -122,7 +121,8 @@ class TestMwssSubmissionData(IntegrationTestCase):
                     "60f": "1",
                     "91f": "Yes"
                 },
-                "survey_id": "134"
+                "survey_id": "134",
+                "flushed": False
             }
         }
         return expected_downstream_data
