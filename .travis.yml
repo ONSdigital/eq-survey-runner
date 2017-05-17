@@ -9,6 +9,8 @@ cache:
     - directories:
         - /home/travis/.pyenv/versions/
 
+install: skip
+
 jobs:
     include:
         - stage: test
