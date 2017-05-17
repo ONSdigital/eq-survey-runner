@@ -7,7 +7,7 @@ cache:
     - yarn
     - pip
     - directories:
-    - /home/travis/.pyenv/versions/
+        - /home/travis/.pyenv/versions/
 
 jobs:
     include:
