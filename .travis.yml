@@ -10,7 +10,7 @@ cache:
 
 jobs:
     include:
-      - stage: yarn
+      - stage: test
         before_install:
             - pyenv versions
             - pyenv install --skip-existing
@@ -20,12 +20,8 @@ jobs:
             - pip install --require-hashes -r requirements.txt
             - pip install -r requirements_for_test.txt
             - yarn compile
-
-      - stage: linter
-        script: ./scripts/run_lint.sh
-
-      - stage: unit-tests
-        script: ./scripts/run_tests_unit.sh
+            - ./scripts/run_lint.sh
+            - ./scripts/run_tests_unit.sh
 
       - stage: functional-tests
         script:
