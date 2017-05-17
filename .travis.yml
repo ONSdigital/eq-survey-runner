@@ -11,8 +11,9 @@ cache:
 
 jobs:
     include:
-        - script: ./scripts/run_lint.sh; ./scripts/run_tests_unit.sh
-        - install:
+        - stage: test
+          script: ./scripts/run_lint.sh; ./scripts/run_tests_unit.sh
+          install:
             - pyenv versions
             - pyenv install --skip-existing
             - pyenv rehash
