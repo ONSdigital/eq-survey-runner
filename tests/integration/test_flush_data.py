@@ -86,7 +86,7 @@ class TestFlushData(IntegrationTestCase):
 
     def test_flush_sets_flushed_flag_to_true(self):
 
-        self.get('/flush?token=' + generate_token(self.get_payload()).decode())
+        self.get('/flush?token=' + self.token_generator.generate_token(self.get_payload()).decode())
 
         self.encrypt_instance.encrypt.assert_called_once() # pylint: disable=no-member
         args = self.encrypt_instance.encrypt.call_args[0] # pylint: disable=no-member
