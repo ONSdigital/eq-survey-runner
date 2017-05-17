@@ -21,7 +21,7 @@ before_install:
 jobs:
     include:
         - script: ./scripts/run_lint.sh; ./scripts/run_tests_unit.sh
-        - install: skip
+          install: skip
 
         - stage: functional-tests
           env: EQ_FUNCTIONAL_TEST_SUITES="core,ukis"
