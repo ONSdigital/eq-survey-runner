@@ -16,7 +16,7 @@ cache:
 jobs:
     include:
       - stage: yarn
-        script:
+        before_install:
             - pyenv versions
             - pyenv install --skip-existing
             - pyenv rehash
