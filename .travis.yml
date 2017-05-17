@@ -9,19 +9,18 @@ cache:
     - directories:
         - /home/travis/.pyenv/versions/
 
+before_install:
+    - pyenv versions
+    - pyenv install --skip-existing
+    - pyenv rehash
+    - pyenv global $(cat .python-version)
+    - pip install -U pip wheel
+    - pip install --require-hashes -r requirements.txt
+    - pip install -r requirements_for_test.txt
+
 jobs:
     include:
-        - script:
-            - pyenv versions
-            - pyenv install --skip-existing
-            - pyenv rehash
-            - pyenv global $(cat .python-version)
-            - pip install -U pip wheel
-            - pip install --require-hashes -r requirements.txt
-            - pip install -r requirements_for_test.txt
-            - yarn compile
-            - ./scripts/run_lint.sh
-            - ./scripts/run_tests_unit.sh
+        - script: ./scripts/run_lint.sh; ./scripts/run_tests_unit.sh
 
         - stage: functional-tests
           script: ./scripts/run_app.sh; EQ_FUNCTIONAL_TEST_SUITES="core,ukis" ./scripts/run_tests_functional.sh
