@@ -2,15 +2,15 @@ dist: trusty
 sudo: true
 language: node_js
 node_js: 6
-cache:
-    - yarn
-    - pip
-    - directories:
-        - /home/travis/.pyenv/versions/
 
 jobs:
     include:
       - stage: test
+        cache:
+            - yarn
+            - pip
+            - directories:
+            - /home/travis/.pyenv/versions/
         before_install:
             - pyenv versions
             - pyenv install --skip-existing
