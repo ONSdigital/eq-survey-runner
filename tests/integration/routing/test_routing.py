@@ -12,7 +12,6 @@ class TestRouting(IntegrationTestCase):
             self._navigate_route(route)
 
     def _navigate_route(self, route):
-        self.clearDatabase()
         self.launchSurvey('0', 'star_wars')
         self.post(action='start_questionnaire')
 

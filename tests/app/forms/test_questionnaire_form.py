@@ -1,4 +1,3 @@
-from app import create_app
 from app.forms.questionnaire_form import generate_form
 from app.helpers.schema_helper import SchemaHelper
 from app.utilities.schema import load_schema_file

@@ -78,3 +78,5 @@ htmlcov/
 *errorShots*
 
 data/cy
+
+.secrets.yml
