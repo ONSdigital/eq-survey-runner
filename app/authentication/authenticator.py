@@ -6,7 +6,6 @@ from structlog import get_logger
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
-from app.authentication.session_storage import session_storage
 from app.authentication.user import User
 from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_questionnaire_store
@@ -34,9 +33,9 @@ def load_user():
     Checks for the present of the JWT in the users sessions
     :return: A user object if a JWT token is available in the session
     """
-    user_id = session_storage.get_user_id()
+    user_id = current_app.eq['session_storage'].get_user_id()
     if user_id:
-        user = User(user_id, session_storage.get_user_ik())
+        user = User(user_id, current_app.eq['session_storage'].get_user_ik())
         questionnaire_store = get_questionnaire_store(user.user_id, user.user_ik)
         metadata = questionnaire_store.metadata
         if metadata:
@@ -55,7 +54,7 @@ def store_session(metadata):
     :param metadata: metadata parsed from jwt token
     """
     # clear the session entry in the database
-    session_storage.delete_session_from_db()
+    current_app.eq['session_storage'].delete_session_from_db()
 
     # also clear the secure cookie data
     session.clear()
@@ -65,9 +64,9 @@ def store_session(metadata):
     user_ik = UserIDGenerator.generate_ik(metadata)
 
     # store the user id in the session
-    session_storage.store_user_id(user_id)
+    current_app.eq['session_storage'].store_user_id(user_id)
     # store the user ik in the cookie
-    session_storage.store_user_ik(user_ik)
+    current_app.eq['session_storage'].store_user_ik(user_ik)
 
     questionnaire_store = get_questionnaire_store(user_id, user_ik)
     questionnaire_store.metadata = metadata

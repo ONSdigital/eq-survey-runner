@@ -20,12 +20,12 @@ function display_result {
   fi
 }
 
-echo "Environment variables in use:"
-env | grep EQ_
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source ${DIR}/dev_settings.sh
+
+echo "Environment variables in use:"
+env | grep EQ_
 
 py.test --cov=app --cov-report xml
 display_result $? 3 "Unit tests"

@@ -26,7 +26,7 @@ def read_file(file_name):
         contents = f.read()
         return contents
     else:
-        logger.info("Did not load file because filename supplied was None or not a file", file_name=file_name)
+        logger.info("Did not load file because filename supplied was None or not a file", filename=file_name)
         return None
 
 

@@ -75,11 +75,11 @@ class TestCreateApp(unittest.TestCase):
         self.assertGreater(len(app.create_app().blueprints), 0)
 
     def test_removes_db_session_on_teardown(self):
-        with patch('app.db_session') as db_session:
+        with patch('app.Database.remove') as remove:
             application = app.create_app()
             application.test_client().get('/')
 
-            self.assertEqual(db_session.remove.call_count, 1)
+            self.assertEqual(remove.call_count, 1)
 
     def test_versioned_url_for_with_version(self):
         settings.EQ_APPLICATION_VERSION = 'abc123'

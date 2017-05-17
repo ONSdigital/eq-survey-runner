@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, current_app
 from flask import redirect
 from flask import request
 from flask import session
@@ -7,7 +7,7 @@ from structlog import get_logger
 from werkzeug.exceptions import NotFound, Unauthorized
 
 from app.authentication.authenticator import store_session, decrypt_token
-from app.authentication.jti_claim_storage import use_jti_claim, JtiTokenUsed
+from app.authentication.jti_claim_storage import JtiTokenUsed, JtiClaimStorage
 from app.globals import get_answer_store, get_completed_blocks
 from app.questionnaire.path_finder import PathFinder
 from app.storage.metadata_parser import parse_metadata
@@ -54,7 +54,8 @@ def login():
         logger.debug('jti claim not provided')
     else:
         try:
-            use_jti_claim(jti_claim)
+            jti_claim_storage = JtiClaimStorage(current_app.eq['database'])
+            jti_claim_storage.use_jti_claim(jti_claim)
         except JtiTokenUsed as e:
             raise Unauthorized from e
 

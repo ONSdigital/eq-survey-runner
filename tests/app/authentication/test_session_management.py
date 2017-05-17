@@ -3,7 +3,7 @@ from datetime import timedelta
 
 from flask import Flask
 
-from app import settings
+from app import Database
 from app.authentication.session_storage import SessionStorage
 
 
@@ -15,8 +15,8 @@ class BaseSessionManagerTest(unittest.TestCase):
         application.permanent_session_lifetime = timedelta(seconds=1)
         self.application = application
         # Use an in memory database
-        settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
-        self.session_manager = SessionStorage()
+        self.database = Database("sqlite://", 1, 0)
+        self.session_manager = SessionStorage(self.database)
 
     def test_has_token_empty(self):
         with self.application.test_request_context():

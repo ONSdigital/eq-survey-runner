@@ -15,7 +15,8 @@ from structlog import get_logger
 from app import settings
 from app.authentication.authenticator import login_manager
 from app.authentication.cookie_session import SHA256SecureCookieSessionInterface
-from app.data_model.database import db_session
+from app.authentication.session_storage import SessionStorage
+from app.data_model.database import Database
 from app.new_relic import setup_newrelic
 
 from app.submitter.encrypter import Encrypter
@@ -72,6 +73,16 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
         application.config['EQ_SUBMISSION_SDX_PUBLIC_KEY'],
     )
 
+    application.eq['database'] = Database(
+        application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_URL'],
+        application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_COUNT'],
+        application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_DELAY_SECONDS'],
+    )
+
+    application.eq['session_storage'] = SessionStorage(
+        application.eq['database'],
+    )
+
     setup_secure_cookies(application)
 
     setup_babel(application)
@@ -116,7 +127,7 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
 
     @application.teardown_appcontext
     def shutdown_session(exception=None):  # pylint: disable=unused-variable,unused-argument
-        db_session.remove()
+        application.eq['database'].remove()
 
     return application
 

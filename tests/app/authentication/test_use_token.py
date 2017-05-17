@@ -1,24 +1,31 @@
 from unittest import TestCase
 from uuid import uuid4
 
-from mock import patch
+from mock import MagicMock
 from sqlalchemy.exc import IntegrityError
 
-from app.authentication.jti_claim_storage import use_jti_claim, JtiTokenUsed
+from app import Database
+from app.authentication.jti_claim_storage import JtiTokenUsed, JtiClaimStorage
 
 
 class TestJtiClaimStorage(TestCase):
 
+    def setUp(self):
+        super().setUp()
+        self.database = MagicMock(Database("sqlite://", 1, 0))
+        self.jti_claim_storage = JtiClaimStorage(self.database)
+
     def test_should_use_token(self):
-        with patch('app.authentication.jti_claim_storage.db_session') as db_session:
-            # Given
-            jti_token = str(uuid4())
 
-            # When
-            use_jti_claim(jti_token)
 
-            # Then
-            self.assertEqual(db_session.add.call_count, 1)
+        # Given
+        jti_token = str(uuid4())
+
+        # When
+        self.jti_claim_storage.use_jti_claim(jti_token)
+
+        # Then
+        self.assertEqual(self.database.add.call_count, 1)
 
     def test_should_return_raise_value_error(self):
         # Given
@@ -26,23 +33,22 @@ class TestJtiClaimStorage(TestCase):
 
         # When
         with self.assertRaises(ValueError):
-            use_jti_claim(token)
+            self.jti_claim_storage.use_jti_claim(token)
 
     def test_should_raise_jti_token_used_when_token_already_exists(self):
-        with patch('app.authentication.jti_claim_storage.db_session') as db_session:
-            # Given
-            jti_token = str(uuid4())
-            db_session.add.side_effect = [IntegrityError('', '', '')]
+        # Given
+        jti_token = str(uuid4())
+        self.database.add.side_effect = [IntegrityError('', '', '')]
 
-            # When
-            with self.assertRaises(JtiTokenUsed) as err:
-                use_jti_claim(jti_token)
+        # When
+        with self.assertRaises(JtiTokenUsed) as err:
+            self.jti_claim_storage.use_jti_claim(jti_token)
 
-            # Then
-            self.assertEqual(err.exception.jti_claim, jti_token)
+        # Then
+        self.assertEqual(err.exception.jti_claim, jti_token)
 
     def test_should_raise_type_error_invalid_uuid(self):
         jti_token = 'jti_token'
 
         with self.assertRaises(TypeError):
-            use_jti_claim(jti_token)
+            self.jti_claim_storage.use_jti_claim(jti_token)

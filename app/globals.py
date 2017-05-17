@@ -12,7 +12,7 @@ def get_questionnaire_store(user_id, user_ik):
     store = g.get('_questionnaire_store')
     if store is None:
         pepper = current_app.config['EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER']
-        storage = EncryptedQuestionnaireStorage(user_id, user_ik, pepper)
+        storage = EncryptedQuestionnaireStorage(current_app.eq['database'], user_id, user_ik, pepper)
         store = g._questionnaire_store = QuestionnaireStore(storage)
 
     return store

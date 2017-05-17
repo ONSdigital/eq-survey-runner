@@ -20,6 +20,8 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         self.last_response = None
         self.last_csrf_token = None
 
+        settings.EQ_SERVER_SIDE_STORAGE_DATABASE_URL = "sqlite://"
+
         # Perform setup steps
         self._setUpSettings()
         self._setUpApp()
