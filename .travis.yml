@@ -11,7 +11,8 @@ cache:
 
 jobs:
     include:
-        - before_install:
+        - script: ./scripts/run_lint.sh; ./scripts/run_tests_unit.sh
+        - install:
             - pyenv versions
             - pyenv install --skip-existing
             - pyenv rehash
@@ -19,7 +20,6 @@ jobs:
             - pip install -U pip wheel
             - pip install --require-hashes -r requirements.txt
             - pip install -r requirements_for_test.txt
-        install: ./scripts/run_lint.sh; ./scripts/run_tests_unit.sh
 
         - stage: functional-tests
           env: EQ_FUNCTIONAL_TEST_SUITES="core,ukis"
