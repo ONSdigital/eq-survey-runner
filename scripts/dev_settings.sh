@@ -15,3 +15,7 @@ fi
 if [ -z "$EQ_MINIMIZE_ASSETS" ]; then
   export EQ_MINIMIZE_ASSETS=False
 fi
+
+if [ -z "$EQ_SECRETS" ]; then
+  export EQ_SECRETS=".dev_secrets.yml"
+fi

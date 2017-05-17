@@ -52,11 +52,13 @@ class AWSReverseProxied(object):
 def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
 
-    secrets = yaml.load(open('.secrets.yml'))
-    application.config.from_object(secrets)
-
     application.config.from_object(settings)
-    application.config.update(setting_overrides)
+
+    secrets = yaml.load(open(os.getenv('EQ_SECRETS')))
+    application.config.update(secrets)
+
+    if setting_overrides:
+        application.config.update(setting_overrides)
 
     if application.config['EQ_APPLICATION_VERSION']:
         logger.info('starting eq survey runner', version=application.config['EQ_APPLICATION_VERSION'])
