@@ -25,7 +25,7 @@ jobs:
 
         - stage: functional-tests
           script: ./scripts/run_app.sh; EQ_FUNCTIONAL_TEST_SUITES="core,ukis" ./scripts/run_tests_functional.sh
-          script: ./scripts/run_app.sh; EQ_FUNCTIONAL_TEST_SUITES=census ./scripts/run_tests_functional.sh
+        - script: ./scripts/run_app.sh; EQ_FUNCTIONAL_TEST_SUITES=census ./scripts/run_tests_functional.sh
 
         - stage: code-coverage
           env:
