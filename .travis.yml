@@ -23,7 +23,7 @@ jobs:
         - script: ./scripts/run_lint.sh; ./scripts/run_tests_unit.sh
 
         - stage: functional-tests
-          env:
+          matrix:
             -   EQ_FUNCTIONAL_TEST_SUITES="core,ukis"
             -   EQ_FUNCTIONAL_TEST_SUITES=census
           script: ./scripts/run_app.sh; ./scripts/run_tests_functional.sh
