@@ -5,13 +5,14 @@ import json
 import re
 from jinja2 import Environment
 
-from app.jinja_filters import format_date, format_currency, format_household_member_name, format_household_summary
+from app.jinja_filters import format_date, format_currency, format_household_member_name, format_household_summary, format_str_as_date
 
 
 class TemplateRenderer:
     def __init__(self):
         self.environment = Environment()
         self.environment.filters['format_date'] = format_date
+        self.environment.filters['format_str_as_date'] = format_str_as_date
         self.environment.filters['format_currency'] = format_currency
         self.environment.filters['format_household_name'] = format_household_member_name
         self.environment.filters['format_household_summary'] = format_household_summary
