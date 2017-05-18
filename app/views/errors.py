@@ -1,11 +1,9 @@
-from flask import Blueprint
-from flask import request
-from flask.ext.themes2 import render_theme_template
+from flask import Blueprint, request, current_app
+from flask_themes2 import render_theme_template
 from flask_login import current_user
 from structlog import get_logger
 from ua_parser import user_agent_parser
 
-from app import settings
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.authentication.no_token_exception import NoTokenException
 from app.globals import get_metadata
@@ -77,7 +75,7 @@ def _render_error_page(status_code):
     user_agent = user_agent_parser.Parse(request.headers.get('User-Agent', ''))
     return render_theme_template('default', 'errors/error.html',
                                  status_code=status_code,
-                                 analytics_ua_id=settings.EQ_UA_ID,
+                                 analytics_ua_id=current_app.config['EQ_UA_ID'],
                                  ua=user_agent, tx_id=tx_id), status_code
 
 

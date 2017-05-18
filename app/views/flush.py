@@ -2,7 +2,6 @@ from flask import Blueprint, Response, request, session, current_app
 
 from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.user import User
-from app.authentication.user_id_generator import UserIDGenerator
 from app.globals import get_answer_store, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
 from app.submitter.converter import convert_answers
@@ -70,6 +69,7 @@ def _submit_data(user):
 
 
 def _get_user(decrypted_token):
-    user_id = UserIDGenerator.generate_id(decrypted_token)
-    user_ik = UserIDGenerator.generate_ik(decrypted_token)
+    id_generator = current_app.eq['id_generator']
+    user_id = id_generator.generate_id(decrypted_token)
+    user_ik = id_generator.generate_ik(decrypted_token)
     return User(user_id, user_ik)
