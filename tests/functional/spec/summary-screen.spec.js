@@ -1,4 +1,3 @@
-import assert from 'assert'
 import {getRandomString, startQuestionnaire} from '../helpers'
 import reportingPeriod from '../pages/surveys/rsi/0102/reporting-period.page'
 import retailTurnoverPage from '../pages/surveys/rsi/0102/retail-turnover.page'
@@ -96,7 +95,7 @@ describe('RSI - summary screen edit test', function() {
 
   })
 
-  it('Given the RSI survey 0112 when a non mandatory field is edited to contain no answer, the summary page should display "No answer provided"', function(done) {
+  it('Given the RSI survey 0112 when a non mandatory field is edited to contain no answer, the summary page should display "No answer provided"', function() {
 
     startQuestionnaire('1_0112.json')
 

@@ -1,7 +1,4 @@
-import assert from 'assert'
 import {getRandomString, startQuestionnaire, openQuestionnaire} from '../helpers'
-import devPage from '../pages/dev.page'
-import landingPage from '../pages/landing.page'
 import thankYou from '../pages/thank-you.page'
 import signOut from '../pages/sign-out.page'
 import reportingPeriod from '../pages/surveys/rsi/0102/reporting-period.page'
