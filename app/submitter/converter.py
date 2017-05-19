@@ -3,7 +3,6 @@ from datetime import datetime, timezone
 
 from structlog import get_logger
 
-from app import settings
 from app.helpers.schema_helper import SchemaHelper
 
 logger = get_logger()
@@ -124,11 +123,13 @@ def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
 
         if option:
             if 'child_answer_id' in option:
-                filtered = answer_store.filter(answer_id=option['child_answer_id'], limit=1)
+                filtered = answer_store.filter(answer_id=option['child_answer_id'])
+
+                assert len(filtered) <= 1, 'Multiple answers found for "{0}"'.format(option['child_answer_id'])
 
                 # if the user has selected 'other' we need to find the value it refers to.
                 # when non-mandatory, the other box value can be empty, in this case we just use its value
-                checkbox_answer_data[option['q_code']] = filtered[0]['value'] if len(filtered) == 1 else option['value']
+                checkbox_answer_data[option['q_code']] = filtered[0]['value'] if len(filtered) >= 1 else option['value']
             else:
                 checkbox_answer_data[option['q_code']] = user_answer
 
@@ -193,8 +194,6 @@ def _build_metadata(metadata):
 def _encode_value(value):
     if isinstance(value, int):
         return str(value)
-    elif isinstance(value, datetime):
-        return value.strftime(settings.SDX_DATE_FORMAT)
     elif isinstance(value, str) and value == '':
         return None
     else:

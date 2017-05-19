@@ -8,9 +8,8 @@ from structlog import getLogger
 from structlog.dev import ConsoleRenderer
 from structlog.stdlib import LoggerFactory
 
-from app import settings
 from app.helpers.schema_helper import SchemaHelper
-from app.utilities.schema import get_schema_path
+from app.utilities.schema import get_schema_path, get_schema_definition_path
 
 logger = getLogger()
 
@@ -20,7 +19,7 @@ configure(logger_factory=LoggerFactory(), processors=[ConsoleRenderer()])
 class TestSchemaValidation(unittest.TestCase):
 
     def test_invalid_schema(self):
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema_v1.json"), encoding="utf8")
+        schema_file = open(get_schema_definition_path(), encoding="utf8")
         schema = load(schema_file)
 
         file = "test_invalid_routing.json"
@@ -38,7 +37,7 @@ class TestSchemaValidation(unittest.TestCase):
 
         files = self.all_schema_files()
 
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema_v1.json"), encoding="utf8")
+        schema_file = open(get_schema_definition_path(), encoding="utf8")
         schema = load(schema_file)
 
         for file in files:

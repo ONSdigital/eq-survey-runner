@@ -4,10 +4,10 @@ import os
 from structlog import get_logger
 
 from app import cache
-from app import settings
 
 logger = get_logger()
 
+DEFAULT_SCHEMA_DIR = 'data'
 DEFAULT_LANGUAGE_CODE = 'en'
 
 
@@ -46,12 +46,16 @@ def load_schema_file(schema_file, language_code=None):
         raise e
 
 
-def get_schema_path(language_code=DEFAULT_LANGUAGE_CODE):
-    return os.path.join(settings.EQ_SCHEMA_DIRECTORY, language_code)
+def get_schema_definition_path(schema_dir=DEFAULT_SCHEMA_DIR):
+    return os.path.join(schema_dir, "schema/schema_v1.json")
+
+
+def get_schema_path(schema_dir=DEFAULT_SCHEMA_DIR, language_code=DEFAULT_LANGUAGE_CODE):
+    return os.path.join(schema_dir, language_code)
 
 
 def get_schema_file_path(schema_file, language_code=DEFAULT_LANGUAGE_CODE):
-    schema_dir = get_schema_path(language_code)
+    schema_dir = get_schema_path(language_code=language_code)
     return os.path.join(schema_dir, schema_file)
 
 

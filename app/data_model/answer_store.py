@@ -63,6 +63,8 @@ class AnswerStore(object):
     via the Questionnaire Store.
     """
 
+    EQ_MAX_NUM_REPEATS = 25
+
     def __init__(self, existing_answers=None):
         self.answers = existing_answers or []
 
@@ -170,7 +172,7 @@ class AnswerStore(object):
         :param answer_instance: The answer instance to filter results by
         :param group_instance: The group instance to filter results by
         :param location: The location to filter results by (takes precedence over group_id, group_instance and block_id)
-        :param limit: Limit the number of answers returned
+        :param limit: True | False Limit the number of answers returned
         :return: Return a list of answers which satisfy the filter criteria
         """
         filtered = []
@@ -196,7 +198,7 @@ class AnswerStore(object):
                     matches = matches and answer[k] == v
             if matches:
                 filtered.append(answer)
-                if limit and len(filtered) == limit:
+                if limit and len(filtered) == self.EQ_MAX_NUM_REPEATS:
                     break
         return filtered
 

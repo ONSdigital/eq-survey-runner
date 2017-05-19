@@ -1,12 +1,10 @@
-import os
 import unittest
 
 from json import load
 
 from jsonschema import ValidationError, validate
 
-from app import settings
-from app.utilities.schema import get_schema_file_path
+from app.utilities.schema import get_schema_file_path, get_schema_definition_path
 
 
 def create_schema_with_id(schema_id='answer'):
@@ -33,7 +31,7 @@ def validate_json_against_schema(json_to_validate, schema):
 class TestSchemaIdRegEx(unittest.TestCase):
 
     def setUp(self):
-        schema_file = open(os.path.join(settings.EQ_SCHEMA_DIRECTORY, "schema/schema_v1.json"), encoding="utf8")
+        schema_file = open(get_schema_definition_path(), encoding="utf8")
         self.errors = []
         self.schema = load(schema_file)
 

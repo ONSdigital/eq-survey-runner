@@ -104,7 +104,7 @@ def post_block(eq_id, form_type, collection_id, group_id, group_instance, block_
     error_messages = SchemaHelper.get_messages(g.schema_json)
     block = _render_schema(current_location)
     disable_mandatory = 'action[save_sign_out]' in request.form
-    form, _ = post_form_for_location(block, current_location, answer_store, request.form, error_messages, disable_mandatory=disable_mandatory)
+    form, _ = post_form_for_location(block, current_location, answer_store, request.form, error_messages, disable_mandatory)
 
     if 'action[save_sign_out]' in request.form:
         return _save_sign_out(collection_id, eq_id, form_type, current_location, form)
