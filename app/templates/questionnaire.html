@@ -14,7 +14,7 @@
         <ul class="list list--bare">
           {% for answer_id, error in mapped_errors %}
             <li class="list__item mars">
-              {{loop.index}}) <a class="js-inpagelink" href="#{{answer_id}}">{{ error }}</a>
+              {{loop.index}}) <a class="js-inpagelink" href="#container-{{answer_id}}">{{ error }}</a>
             </li>
           {% endfor %}
           </ul>

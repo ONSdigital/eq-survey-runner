@@ -10,6 +10,7 @@ def get_file_contents(folder, filename, trim=False):
             data = data.rstrip('\r\n')
     return data
 
+
 if len(sys.argv) < 2:
     raise Exception("Please specify the directory containing the secrets")
 

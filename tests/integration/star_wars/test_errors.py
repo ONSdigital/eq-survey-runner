@@ -25,7 +25,7 @@ class TestPageErrors(StarWarsTestCase):
         # We submit the form
         self.post(url=first_page, post_data=form_data)
 
-        self.assertInPage('href="#tie-fighter-sound-answer"')
+        self.assertInPage('href="#container-tie-fighter-sound-answer"')
 
         # We DO NOT have the error from page two
         self.assertNotInPage('href="chewbacca-medal-answer"')

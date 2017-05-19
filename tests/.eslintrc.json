@@ -1,0 +1,17 @@
+{
+    "extends" : "eslint:recommended",
+    "env"     : {
+        "node": true,
+        "es6": true,
+        "mocha" : true
+    },
+    "globals" : {
+        "expect" : false,
+        "should" : true,
+        "sinon"  : false,
+        "browser": true
+    },
+    "rules"   : {
+        "semi": ["error", "always"]
+    }
+}

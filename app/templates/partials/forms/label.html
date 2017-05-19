@@ -1,6 +1,6 @@
 {% set attr = {
   "class": "label venus " ~ (" label--inline" if label.inline) ~ (" label--small" if label.small),
-  "for": "input-" ~ label.for,
+  "for": label.for,
   "id": "label-" ~ label.for
 } %}
 

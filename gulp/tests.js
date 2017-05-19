@@ -1,3 +1,4 @@
+import fs from 'fs'
 import gulp from 'gulp'
 import karma from 'karma'
 import path from 'path'
@@ -35,20 +36,57 @@ export function unitTests(done, watch) {
 }
 
 export function functionalTests(done) {
-  const webdriverOpts = {}
+  let webdriverOpts = {}
+
+  // Execute a single spec
   if (yargs.argv.spec) {
-    webdriverOpts.spec = `${paths.test.wdioSpec}/${yargs.argv.spec}.spec.js`
-  }
-  if (yargs.argv.suite) {
+    try {
+      let path = `${paths.test.newWdioSpec}/${yargs.argv.spec}.spec.js`
+      fs.accessSync(path)
+      gutil.log(`Found spec in ${paths.test.newWdioSpec}`)
+      webdriverOpts.spec = path
+
+      return _runFunctionalTests(paths.test.newWdioConf, webdriverOpts, done)
+    } catch (e) {
+      gutil.log(`Will try to load spec from ${paths.test.wdioSpec}`)
+      webdriverOpts.spec = `${paths.test.wdioSpec}/${yargs.argv.spec}.spec.js`
+      return _runFunctionalTests(paths.test.wdioConf, webdriverOpts, done)
+    }
+  } else if (yargs.argv.suite) {
+    // Run a suite
+
+    // As suites are moved across to use the new page generator this logic will
+    // need to be updated
     webdriverOpts.suite = yargs.argv.suite
+
+    // core suit is currently split between old and new
+    if (webdriverOpts.suite.includes('core')) {
+      gutil.log('Running split core suite')
+      return _runFunctionalTests(
+        paths.test.wdioConf,
+        webdriverOpts,
+        () => { _runFunctionalTests(paths.test.newWdioConf, webdriverOpts, done) }
+      )
+    }
+    return _runFunctionalTests(paths.test.wdioConf, webdriverOpts)
+  } else {
+    // Run *all* the tests in one go
+    return _runFunctionalTests(
+      paths.test.newWdioConf,
+      {},
+      () => { _runFunctionalTests(paths.test.wdioConf, {}, done) }
+    )
   }
-  gulp.src(paths.test.wdioConf)
-    .pipe(webdriver(webdriverOpts))
+}
+
+function _runFunctionalTests(conf, options, finish) {
+  gulp.src(conf)
+    .pipe(webdriver(options))
     .on('error', (err) => {
       gutil.log(err)
       throw err
     })
     .once('finish', () => {
-      done()
+      finish()
     })
 }

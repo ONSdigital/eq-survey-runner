@@ -3,7 +3,7 @@ import QuestionPage from '../question.page'
 class DatesPage extends QuestionPage {
 
   get dayInput() {
-    return browser.element('#input-single-date-answer-day')
+    return browser.element('#single-date-answer-day')
   }
 
   get dayLabel() {

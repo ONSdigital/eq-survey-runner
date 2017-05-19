@@ -1,6 +1,5 @@
 import gulp from 'gulp'
 import exec from 'gulp-exec'
-import gutil from 'gulp-util'
 
 // var exec = require('child_process').exec
 
