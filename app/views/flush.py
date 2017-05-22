@@ -11,7 +11,7 @@ from app.utilities.schema import load_schema_from_metadata
 flush_blueprint = Blueprint('flush', __name__)
 
 
-@flush_blueprint.route('/flush', methods=['GET'])
+@flush_blueprint.route('/flush', methods=['POST'])
 def flush_data():
 
     if session:

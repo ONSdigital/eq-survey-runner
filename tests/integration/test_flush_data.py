@@ -36,7 +36,7 @@ class TestFlushData(IntegrationTestCase):
         self.encrypter_patcher.stop()
 
     def test_flush_data_successful(self):
-        self.get('/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
         self.assertStatusOK()
 
     def test_no_data_to_flush(self):
@@ -44,7 +44,7 @@ class TestFlushData(IntegrationTestCase):
         # Made up ru_ref
         payload['ru_ref'] = 'no data'
 
-        self.get('/flush?token=' + generate_token(payload).decode())
+        self.post(url='/flush?token=' + generate_token(payload).decode())
         self.assertStatusNotFound()
 
     def test_no_permission_to_flush(self):
@@ -52,7 +52,7 @@ class TestFlushData(IntegrationTestCase):
         # A role with no flush permissions
         payload['roles'] = ['test']
 
-        self.get('/flush?token=' + generate_token(payload).decode())
+        self.post(url='/flush?token=' + generate_token(payload).decode())
         self.assertStatusForbidden()
 
     def test_no_role_on_token(self):
@@ -60,34 +60,34 @@ class TestFlushData(IntegrationTestCase):
         # Payload with no roles
         del payload['roles']
 
-        self.get('/flush?token=' + generate_token(payload).decode())
+        self.post(url='/flush?token=' + generate_token(payload).decode())
         self.assertStatusForbidden()
 
     def test_double_flush(self):
-        self.get('/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
 
         # Once the data has been flushed it is wiped.
         # It can't be flushed again and should return 404 no data on second flush
-        self.get('/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
         self.assertStatusNotFound()
 
     def test_no_token_passed_to_flush(self):
-        self.get('/flush')
+        self.post(url='/flush')
         self.assertStatusForbidden()
 
     def test_invalid_token_passed_to_flush(self):
-        self.get('/flush?token=test')
+        self.post(url='/flush?token=test')
         self.assertStatusForbidden()
 
     def test_flush_errors_when_submission_fails(self):
         self.submitter_instance.send_message.return_value = False  # pylint: disable=no-member
 
-        self.get('/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
         self.assertStatusCode(503)
 
     def test_flush_sets_flushed_flag_to_true(self):
 
-        self.get('/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
 
         self.encrypt_instance.encrypt.assert_called_once() # pylint: disable=no-member
         args = self.encrypt_instance.encrypt.call_args[0] # pylint: disable=no-member

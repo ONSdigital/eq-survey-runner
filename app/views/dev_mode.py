@@ -79,7 +79,7 @@ def dev_flush_mode_post():
         "roles": ["flusher"],
     }
 
-    return redirect("/flush?token=" + generate_token(payload).decode())
+    return redirect("/flush?token=" + generate_token(payload).decode(), code=307)
 
 
 @dev_mode_blueprint.route('/dev/flush', methods=['GET'])
