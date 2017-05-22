@@ -1,6 +1,7 @@
 from werkzeug.contrib.cache import NullCache
 
-from app import cache, settings
+from app import settings
+from app.setup import cache
 from tests.integration.integration_test_case import IntegrationTestCase
 
 

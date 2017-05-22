@@ -1,5 +1,5 @@
 import unittest
-from app import get_minimized_asset
+from app.setup import get_minimized_asset
 from app import settings
 
 class TestAppInit(unittest.TestCase):

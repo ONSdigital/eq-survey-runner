@@ -3,7 +3,7 @@ from datetime import timedelta
 
 from flask import Flask
 
-from app import Database
+from app.setup import Database
 from app.authentication.session_storage import SessionStorage
 
 

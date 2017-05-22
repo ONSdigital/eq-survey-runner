@@ -5,7 +5,7 @@ import json
 
 from bs4 import BeautifulSoup
 
-from app import create_app
+from app.setup import create_app
 from app import settings
 from app.data_model.database import QuestionnaireState, EQSession, UsedJtiClaim
 

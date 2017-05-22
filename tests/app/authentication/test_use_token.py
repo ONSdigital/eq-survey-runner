@@ -4,7 +4,7 @@ from uuid import uuid4
 from mock import MagicMock
 from sqlalchemy.exc import IntegrityError
 
-from app import Database
+from app.setup import Database
 from app.authentication.jti_claim_storage import JtiTokenUsed, JtiClaimStorage
 
 

@@ -1,6 +1,6 @@
 import unittest
 
-from app import Database
+from app.setup import Database
 from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireStorage
 
 

@@ -3,7 +3,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 
 class TestBrokenSubmission(IntegrationTestCase):
     def setUp(self):
-        self.patcher = patch('app.LogSubmitter')
+        self.patcher = patch('app.setup.LogSubmitter')
         mock_class = self.patcher.start()
 
         self.instance = mock_class.return_value
