@@ -7,12 +7,12 @@ from tests.integration.create_token import generate_token
 class TestFlushData(IntegrationTestCase):
 
     def setUp(self):
-        self.submitter_patcher = patch('app.LogSubmitter')
+        self.submitter_patcher = patch('app.setup.LogSubmitter')
         mock_submitter_class = self.submitter_patcher.start()
         self.submitter_instance = mock_submitter_class.return_value
         self.submitter_instance.send_message.return_value = True
 
-        self.encrypter_patcher = patch('app.Encrypter')
+        self.encrypter_patcher = patch('app.setup.Encrypter')
         mock_encrypter_class = self.encrypter_patcher.start()
         self.encrypt_instance = mock_encrypter_class.return_value
 

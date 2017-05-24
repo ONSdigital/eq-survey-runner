@@ -7,7 +7,7 @@ from tests.app.submitter.test_encrypter import Decrypter
 
 class TestDownstreamDataTyping(StarWarsTestCase):
     def setUp(self):
-        self.patcher = patch('app.LogSubmitter')
+        self.patcher = patch('app.setup.LogSubmitter')
         mock_class = self.patcher.start()
 
         self.instance = mock_class.return_value

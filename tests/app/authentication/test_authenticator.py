@@ -4,7 +4,7 @@ from datetime import timedelta
 from flask import Flask
 from mock import patch, Mock, MagicMock
 
-from app import Database, SessionStorage
+from app.setup import Database, SessionStorage
 from app.authentication.authenticator import load_user, request_load_user, user_loader
 
 

@@ -1,4 +1,4 @@
-from app import cache
+from app.setup import cache
 from tests.integration.integration_test_case import IntegrationTestCase
 
 

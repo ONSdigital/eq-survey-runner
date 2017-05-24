@@ -3,7 +3,7 @@ import os
 
 from structlog import get_logger
 
-from app import cache
+from app.setup import cache
 
 logger = get_logger()
 

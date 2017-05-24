@@ -58,7 +58,7 @@ def add_service(logger, method_name, event_dict):  # pylint: disable=unused-argu
 
 # Initialise logging before the rest of the application
 configure_logging()
-from app import create_app  # NOQA
+from app.setup import create_app  # NOQA
 application = create_app()
 
 

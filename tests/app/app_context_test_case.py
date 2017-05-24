@@ -1,6 +1,6 @@
 import unittest
 
-from app import create_app
+from app.setup import create_app
 
 
 class AppContextTestCase(unittest.TestCase):
