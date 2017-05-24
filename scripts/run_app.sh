@@ -25,7 +25,7 @@ env | grep EQ_
 ${DIR}/build.sh
 
 if [ -z "${TRAVIS}" ]; then
-  python application.py runserver
+  gunicorn -b 0.0.0.0:5000 application:application
 else
-  python application.py runserver &
+  gunicorn -b 0.0.0.0:5000 application:application &
 fi

@@ -28,10 +28,9 @@ services:
     build: ./
     environment:
       EQ_DEV_MODE: "True"
-      EQ_ENABLE_CACHE: "True"
+      EQ_DEV_KEYS: "True"
       EQ_DEVELOPER_LOGGING: "True"
       EQ_RABBITMQ_ENABLED: "True"
-      EQ_SECRET_KEY: "NOT_SECRET_DOCKER_KEY"
       EQ_SERVER_SIDE_STORAGE_DATABASE_URL: postgres://digitaleq:digitaleq@db:5432/runner
       EQ_RABBITMQ_URL: amqp://digitaleq:digitaleq@rabbit:5672/%2F
       EQ_RABBITMQ_URL_SECONDARY: amqp://digitaleq:digitaleq@rabbit:5672/%2F
@@ -45,7 +44,7 @@ services:
     networks:
       - eq-env
     ports:
-      - "80:80"
+      - "80:5000"
 
 
 networks:
