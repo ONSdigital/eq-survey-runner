@@ -31,13 +31,12 @@ services:
       EQ_ENABLE_CACHE: "True"
       EQ_DEVELOPER_LOGGING: "True"
       EQ_RABBITMQ_ENABLED: "True"
-      EQ_SECRET_KEY: "NOT_SECRET_DOCKER_KEY"
-      EQ_SERVER_SIDE_STORAGE_DATABASE_URL: postgres://digitaleq:digitaleq@db:5432/runner
-      EQ_RABBITMQ_URL: amqp://digitaleq:digitaleq@rabbit:5672/%2F
-      EQ_RABBITMQ_URL_SECONDARY: amqp://digitaleq:digitaleq@rabbit:5672/%2F
-      EQ_SERVER_SIDE_STORAGE_USER_ID_SALT: "developer.user.id.salt"
-      EQ_SERVER_SIDE_STORAGE_USER_IK_SALT: "developer.user.ik.salt"
-      EQ_SERVER_SIDE_STORAGE_ENCRYPTION_USER_PEPPER: "developer.storage.encryption.pepper"
+      EQ_SERVER_SIDE_STORAGE_DATABASE_HOST: db
+      EQ_SERVER_SIDE_STORAGE_DATABASE_NAME: runner
+      EQ_RABBITMQ_HOST: rabbit
+      EQ_RABBITMQ_HOST_SECONDARY: rabbit
+    volumes:
+      - ./docker-secrets.yml:/tmp/application/secrets.yml
     restart: always
     depends_on:
       - db

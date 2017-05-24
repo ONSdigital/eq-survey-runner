@@ -17,7 +17,10 @@ class TestAuthenticator(unittest.TestCase):
         application.permanent_session_lifetime = timedelta(seconds=1)
         self.application = application
         # Use an in memory database
-        self.database = Database("sqlite://", 1, 0)
+        self.database = Database(driver="sqlite",
+                                 database_name="",
+                                 setup_attempts=1,
+                                 setup_retry_delay=0)
         self.session_storage = Mock(SessionStorage(self.database))
 
         application.eq = {'session_storage': self.session_storage}

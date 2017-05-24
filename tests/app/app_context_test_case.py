@@ -9,7 +9,11 @@ class AppContextTestCase(unittest.TestCase):
     and destroys it on tearDown
     """
     def setUp(self):
-        self._app = create_app()
+        setting_overrides = {
+            "EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER": "sqlite",
+            "EQ_SERVER_SIDE_STORAGE_DATABASE_NAME": ""
+        }
+        self._app = create_app(setting_overrides)
         self._app.config['SERVER_NAME'] = 'test'
         self._app_context = self._app.app_context()
         self._app_context.push()

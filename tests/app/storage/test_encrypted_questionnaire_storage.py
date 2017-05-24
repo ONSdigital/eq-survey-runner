@@ -8,7 +8,10 @@ from app.storage.encrypted_questionnaire_storage import EncryptedQuestionnaireSt
 class TestEncryptedQuestionnaireStorage(unittest.TestCase):
 
     def setUp(self):
-        self.database = Database("sqlite://", 1, 0)
+        self.database = Database(driver="sqlite",
+                                 database_name="",
+                                 setup_attempts=1,
+                                 setup_retry_delay=0)
         self.storage = EncryptedQuestionnaireStorage(self.database, "user_id", "user_ik", "pepper")
 
     def test_encrypted_storage_requires_user_id(self):

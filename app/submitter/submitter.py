@@ -16,9 +16,20 @@ class LogSubmitter():  # pylint: disable=no-self-use
 
 
 class RabbitMQSubmitter():
-    def __init__(self, rabbitmq_url, rabbitmq_secondary_url):
-        self.rabbitmq_url = rabbitmq_url
-        self.rabbitmq_secondary_url = rabbitmq_secondary_url
+    def __init__(self, host, secondary_host, port, username=None, password=None):
+        if username and password:
+            self.rabbitmq_url = "amqp://{username}:{password}@{host}:{port}/%2F".format(username=username,
+                                                                                        password=password,
+                                                                                        host=host,
+                                                                                        port=port)
+            self.rabbitmq_secondary_url = "amqp://{username}:{password}@{host}:{port}/%2F".format(username=username,
+                                                                                                  password=password,
+                                                                                                  host=secondary_host,
+                                                                                                  port=port)
+        else:
+            self.rabbitmq_url = "amqp://{host}:{port}/%2F".format(host=host, port=port)
+            self.rabbitmq_secondary_url = "amqp://{host}:{port}/%2F".format(host=secondary_host, port=port)
+
         self.connection = None
 
     def _connect(self):
