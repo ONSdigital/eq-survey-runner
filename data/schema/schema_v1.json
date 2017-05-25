@@ -286,6 +286,9 @@
                                 "id": {
                                     "$ref": "#/definitions/id"
                                 },
+                                "section_number": {
+                                    "type": "string"
+                                },
                                 "title": {
                                     "type": "string"
                                 },

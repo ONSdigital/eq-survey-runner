@@ -136,19 +136,9 @@
                 },
                 {
                     "id": "general-business-information-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>",
-                        "id": "general-business-information-completed-section",
-                        "number": "1",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "general-business-information-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "General Business Information"
-                    }],
+                    "section_number": "1",
+                    "title": "General Business Information",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers changes in <em>business strategy and practices</em>, for example, implementing changes to marketing concepts or strategies.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -260,19 +250,9 @@
                 },
                 {
                     "id": "business-strategy-practices-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section </p><p>The next section covers  <em>investments in innovation</em>.</p><p> </p><p>You will be asked to provide figures for expenditure on innovation activities in the calendar year 2016.</p>",
-                        "id": "business-strategy-practices-completed-section",
-                        "number": "2",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "business-strategy-practices-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Business Strategy & Practices"
-                    }],
+                    "section_number": "2",
+                    "title": "Business Strategy & Practices",
+                    "description": "<p>You have successfully completed this section </p><p>The next section covers  <em>investments in innovation</em>.</p><p> </p><p>You will be asked to provide figures for expenditure on innovation activities in the calendar year 2016.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -1051,19 +1031,9 @@
                 },
                 {
                     "id": "innovation-investment-completed",
-                    "sections": [{
-                        "description": "<p> </p><p>You have successfully completed this section</p><p>The next section covers innovation relating to <em>goods and services</em>.</p><p> </p><p>You will first be asked to provide information about any new or significantly improved goods introduced by your business; and second to provide information relating to any new or significantly improved services.</p><p> </p><p>You will also be asked to provide estimates for turnover in the calendar year 2016 relating to new or improved goods or services introduced during the period 1 January 2014 to 31 December 2016.</p>",
-                        "id": "innovation-investment-completed-section",
-                        "number": "3",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "innovation-investment-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Innovation Investment"
-                    }],
+                    "section_number": "3",
+                    "title": "Innovation Investment",
+                    "description": "<p> </p><p>You have successfully completed this section</p><p>The next section covers innovation relating to <em>goods and services</em>.</p><p> </p><p>You will first be asked to provide information about any new or significantly improved goods introduced by your business; and second to provide information relating to any new or significantly improved services.</p><p> </p><p>You will also be asked to provide estimates for turnover in the calendar year 2016 relating to new or improved goods or services introduced during the period 1 January 2014 to 31 December 2016.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -1470,19 +1440,9 @@
                 },
                 {
                     "id": "goods-and-services-innovation-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers innovation relating to <em>processes</em> for the production or supply of goods or services including all <em>new</em> or <em>significantly improved</em> methods of production.</p><p> </p><p>You will be asked to provide general information about process innovation for your business. </p>",
-                        "id": "goods-and-services-innovation-completed-section",
-                        "number": "4",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "goods-and-services-innovation-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Goods and Services Innovation"
-                    }],
+                    "section_number": "4",
+                    "title": "Goods and Services Innovation",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers innovation relating to <em>processes</em> for the production or supply of goods or services including all <em>new</em> or <em>significantly improved</em> methods of production.</p><p> </p><p>You will be asked to provide general information about process innovation for your business. </p>",
                     "type": "Interstitial"
                 }
             ],
@@ -1626,19 +1586,9 @@
                 },
                 {
                     "id": "process-innovation-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers <em>constraining factors on innovation</em>. You will be asked to provide information on the importance of factors constraining innovation.</p>",
-                        "id": "process-innovation-completed-section",
-                        "number": "5",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "process-innovation-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Process Innovation"
-                    }],
+                    "section_number": "5",
+                    "title": "Process Innovation",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers <em>constraining factors on innovation</em>. You will be asked to provide information on the importance of factors constraining innovation.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -2372,19 +2322,9 @@
                 },
                 {
                     "id": "constraints-on-innovation-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers <em>factors affecting innovation</em>.  You will be asked to provide information on factors deemed important when deciding to initiate or terminate innovation.</p><p>Alternatively, if you have previously indicated that your business had no innovation activities, the next section will cover <em>Public Financial Support for Innovation</em> received from government.</p><p>In the Public Financial Support for Innovation section you will be asked to provide information specifying the type, if any, of public financial support your business received and the source; for example, Research & Development tax credits received from UK central government.</p>",
-                        "id": "constraints-on-innovation-completed-section",
-                        "number": "6",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "constraints-on-innovation-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Constraints on Innovation "
-                    }],
+                    "section_number": "6",
+                    "title": "Constraints on Innovation ",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers <em>factors affecting innovation</em>.  You will be asked to provide information on factors deemed important when deciding to initiate or terminate innovation.</p><p>Alternatively, if you have previously indicated that your business had no innovation activities, the next section will cover <em>Public Financial Support for Innovation</em> received from government.</p><p>In the Public Financial Support for Innovation section you will be asked to provide information specifying the type, if any, of public financial support your business received and the source; for example, Research & Development tax credits received from UK central government.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -2898,19 +2838,9 @@
                 },
                 {
                     "id": "factors-affecting-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers <em>information needed for innovation</em>. You will be asked to provide information about the importance of various information sources to your business’s innovation activities.</p>",
-                        "id": "factors-affecting-completed-section",
-                        "number": "7",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "factors-affecting-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Factors Affecting Innovation"
-                    }],
+                    "section_number": "7",
+                    "title": "Factors Affecting Innovation",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers <em>information needed for innovation</em>. You will be asked to provide information about the importance of various information sources to your business’s innovation activities.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -3523,19 +3453,9 @@
                 },
                 {
                     "id": "information-needed-for-innovation-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers <em>co-operation on innovation activities</em>. You will be asked to provide information about co-operation on innovation activities and protection of your innovations, for example, trademarks or patents.</p>",
-                        "id": "information-needed-for-innovation-completed-section",
-                        "number": "8",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "information-needed-for-innovation-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Information Needed for Innovation"
-                    }],
+                    "section_number": "8",
+                    "title": "Information Needed for Innovation",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers <em>co-operation on innovation activities</em>. You will be asked to provide information about co-operation on innovation activities and protection of your innovations, for example, trademarks or patents.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -4298,19 +4218,9 @@
                 },
                 {
                     "id": "co-operation-on-innovation-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers <em>Public Financial Support for Innovation</em> received from government. </p><p>You will be asked to provide information specifying the type, if any, of public financial support your business received and the source; for example, Research & Development tax credits received from UK central government.</p>",
-                        "id": "co-operation-on-innovation-completed-section",
-                        "number": "9",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "co-operation-on-innovation-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Co-operation on Innovation"
-                    }],
+                    "section_number": "9",
+                    "title": "Co-operation on Innovation",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers <em>Public Financial Support for Innovation</em> received from government. </p><p>You will be asked to provide information specifying the type, if any, of public financial support your business received and the source; for example, Research & Development tax credits received from UK central government.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -4571,19 +4481,9 @@
                 },
                 {
                     "id": "public-financial-support-for-innovation-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section section covers <em>Turnover and Exports</em> for your business. You will be asked to provide total turnover excluding VAT for calendar years 2014 and 2016 as well as an estimate of your business’s total value of exports for the calendar year 2016.</p>",
-                        "id": "public-financial-support-for-innovation-completed-section",
-                        "number": "10",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "public-financial-support-for-innovation-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Public Financial Support for Innovation"
-                    }],
+                    "section_number": "10",
+                    "title": "Public Financial Support for Innovation",
+                    "description": "<p>You have successfully completed this section</p><p>The next section section covers <em>Turnover and Exports</em> for your business. You will be asked to provide total turnover excluding VAT for calendar years 2014 and 2016 as well as an estimate of your business’s total value of exports for the calendar year 2016.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -4671,19 +4571,9 @@
                 },
                 {
                     "id": "turnover-and-exports-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers information relating to persons employed by your business. You will be asked to provide estimates for the total number of employees for the calendar years 2014 and 2016, an estimate of the proportion of your workforce who hold a degree or higher qualification and information regarding the skills possessed by employees, for example, mathematics or statistics.</p>",
-                        "id": "turnover-and-exports-completed-section",
-                        "number": "11",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "turnover-and-exports-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Turnover and Exports"
-                    }],
+                    "section_number": "11",
+                    "title": "Turnover and Exports",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers information relating to persons employed by your business. You will be asked to provide estimates for the total number of employees for the calendar years 2014 and 2016, an estimate of the proportion of your workforce who hold a degree or higher qualification and information regarding the skills possessed by employees, for example, mathematics or statistics.</p>",
                     "type": "Interstitial"
                 }
             ],
@@ -4854,19 +4744,9 @@
                 },
                 {
                     "id": "employees-and-skills-completed",
-                    "sections": [{
-                        "description": "<p>You have successfully completed this section</p><p>The next section covers <em>General Information</em> about this survey.</p>",
-                        "id": "employees-and-skills-completed-section",
-                        "number": "12",
-                        "questions": [{
-                            "answers": [],
-                            "description": "",
-                            "id": "employees-and-skills-completed-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Employees and Skills"
-                    }],
+                    "section_number": "12",
+                    "title": "Employees and Skills",
+                    "description": "<p>You have successfully completed this section</p><p>The next section covers <em>General Information</em> about this survey.</p>",
                     "type": "Interstitial"
                 }
             ],

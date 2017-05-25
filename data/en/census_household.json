@@ -443,20 +443,10 @@
             "title": "Who lives here?",
             "hide_in_navigation": true,
             "blocks": [{
-                "type": "Interstitial",
                 "id": "who-lives-here-completed",
-                "title": "",
-                "sections": [{
-                    "id": "who-lives-here-completed-section",
-                    "questions": [{
-                        "description": "In the next section we are going to ask you about the household and accommodation you live in.",
-                        "answers": [],
-                        "id": "who-lives-here-completed-question",
-                        "title": "",
-                        "type": "General"
-                    }],
-                    "title": "You have successfully completed the ‘Who lives here?’ section"
-                }]
+                "title": "You have successfully completed the ‘Who lives here?’ section",
+                "description": "In the next section we are going to ask you about the household and accommodation you live in.",
+                "type": "Interstitial"
             }]
         },
         {
@@ -891,14 +881,10 @@
                     }]
                 },
                 {
-                    "type": "Interstitial",
                     "id": "household-and-accommodation-completed",
-                    "title": "You have completed Household and Accommodation",
-                    "sections": [{
-                        "title": "You have successfully completed the ‘Household and Accommodation’ section",
-                        "id": "household-and-accommodation-completed-section",
-                        "questions": []
-                    }]
+                    "title": "You have successfully completed the ‘Household and Accommodation’ section",
+                    "description": "",
+                    "type": "Interstitial"
                 }
             ]
         },
@@ -916,19 +902,10 @@
                 }
             }],
             "blocks": [{
-                    "type": "Interstitial",
                     "id": "household-member-begin",
-                    "title": "Household member begin",
-                    "sections": [{
-                        "id": "household-member-begin-section",
-                        "title": "The next section covers individual questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                        "questions": [{
-                            "answers": [],
-                            "id": "household-member-begin-question",
-                            "title": "",
-                            "type": "General"
-                        }]
-                    }]
+                    "title": "The next section covers individual questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                    "description": "",
+                    "type": "Interstitial"
                 },
                 {
                     "type": "Questionnaire",
@@ -1113,20 +1090,10 @@
                     ]
                 },
                 {
-                    "type": "Interstitial",
                     "id": "request-private-response",
-                    "title": "Request private response",
-                    "sections": [{
-                        "title": "Request for personal and confidential form",
-                        "id": "request-private-response-section",
-                        "questions": [{
-                            "description": "<p>You can <a rel='noopener noreferrer' target='_blank' href='https://census.gov.uk/individualquestionnaire'>request a personal and confidential form online</a>.</p> <p>Alternatively, call <a href='tel:03000683001'>0300 068 3001</a>.</p>",
-                            "answers": [],
-                            "id": "request-private-response-question",
-                            "title": "",
-                            "type": "General"
-                        }]
-                    }],
+                    "title": "Request for personal and confidential form",
+                    "description": "<p>You can <a rel='noopener noreferrer' target='_blank' href='https://census.gov.uk/individualquestionnaire'>request a personal and confidential form online</a>.</p> <p>Alternatively, call <a href='tel:03000683001'>0300 068 3001</a>.</p>",
+                    "type": "Interstitial",
                     "routing_rules": [{
                         "goto": {
                             "id": "household-member-completed"
@@ -4261,14 +4228,10 @@
                     }]
                 },
                 {
-                    "type": "Interstitial",
                     "id": "household-member-completed",
-                    "title": "You have completed:",
-                    "sections": [{
-                        "title": "There are no more questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
-                        "id": "household-member-completed-section",
-                        "questions": []
-                    }]
+                    "title": "There are no more questions for {{ [answers.first_name[group_instance], answers.last_name[group_instance]] | format_household_name }}",
+                    "description": "",
+                    "type": "Interstitial"
                 }
             ]
         },
@@ -4286,19 +4249,10 @@
                 }
             }],
             "blocks": [{
-                    "type": "Interstitial",
                     "id": "visitor-begin",
-                    "title": "Visitor begin",
-                    "sections": [{
-                        "id": "visitor-begin-section",
-                        "title": "The next section covers questions for Visitor {{group_instance + 1}}",
-                        "questions": [{
-                            "answers": [],
-                            "id": "visitor-begin-question",
-                            "title": "",
-                            "type": "General"
-                        }]
-                    }]
+                    "title": "The next section covers questions for Visitor {{group_instance + 1}}",
+                    "description": "",
+                    "type": "Interstitial"
                 },
                 {
                     "type": "Questionnaire",
@@ -4484,14 +4438,10 @@
                     }]
                 },
                 {
-                    "type": "Interstitial",
                     "id": "visitor-completed",
-                    "title": "Visitor completed",
-                    "sections": [{
-                        "title": "You have completed all questions for Visitor {{group_instance + 1}}",
-                        "id": "visitor-completed-section",
-                        "questions": []
-                    }]
+                    "title": "You have completed all questions for Visitor {{group_instance + 1}}",
+                    "description": "",
+                    "type": "Interstitial"
                 }
             ]
         },
@@ -4514,20 +4464,10 @@
                 }
             ],
             "blocks": [{
-                "type": "Interstitial",
                 "id": "visitors-completed",
-                "title": "",
-                "sections": [{
-                    "id": "visitors-completed-section",
-                    "questions": [{
-                        "description": "",
-                        "answers": [],
-                        "id": "visitors-completed-question",
-                        "title": "",
-                        "type": "General"
-                    }],
-                    "title": "You have successfully completed the ‘Visitors’ section"
-                }]
+                "type": "Interstitial",
+                "title": "You have successfully completed the ‘Visitors’ section",
+                "description": ""
             }]
         },
         {

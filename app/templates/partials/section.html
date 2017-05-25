@@ -1,13 +1,17 @@
 <section class="section" id="{{section.id}}">
-  {% if section['title'] %}
-    <h1 class="section__title saturn">
-      {%- if section['number'] -%}
-          <span class="section__number venus">{{section['number']}}</span>
-      {% endif %}
-      {{section['title']}}</h1>
+
+  {% if section['number'] %}
+    {% if section['title'] %}
+      <p class="section__title neptune" data-qa="section-title">Section {{section['number']}}: {{section['title']}}</p>
+    {% endif %}
+  {% else %}
+    {% if section['title'] %}
+      <p class="section__title neptune" data-qa="section-title">{{section['title']}}</p>
+    {% endif %}
   {% endif %}
+
   {% if section['description'] %}
-    <div class="section__description mars">{{section['description']}}</div>
+    <div class="section__description mars" data-qa="section-description">{{section['description']}}</div>
   {% endif %}
 
   {% for question in section['questions'] %}

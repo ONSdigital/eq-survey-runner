@@ -78,18 +78,9 @@
         {
             "blocks": [{
                     "id": "weekly-pay-introduction",
-                    "sections": [{
-                        "description": "<p>The next section covers Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                        "id": "weekly-pay-introduction-section",
-                        "number": "2",
-                        "questions": [{
-                            "answers": [],
-                            "id": "weekly-pay-introduction-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Weekly Pay"
-                    }],
+                    "title": "Weekly Pay",
+                    "description": "<p>The next section covers Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                    "section_number": "2",
                     "type": "Interstitial"
                 },
                 {
@@ -734,18 +725,9 @@
         {
             "blocks": [{
                     "id": "fortnightly-pay-introduction",
-                    "sections": [{
-                        "description": "<p>The next section covers Fortnightly Pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                        "id": "fortnightly-pay-introduction-section",
-                        "number": "3",
-                        "questions": [{
-                            "answers": [],
-                            "id": "fortnightly-pay-introduction-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Fortnightly Pay"
-                    }],
+                    "title": "Fortnightly Pay",
+                    "description": "<p>The next section covers Fortnightly Pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                    "section_number": "3",
                     "type": "Interstitial"
                 },
                 {
@@ -1373,18 +1355,9 @@
         {
             "blocks": [{
                     "id": "calendar-monthly-pay-introduction",
-                    "sections": [{
-                        "description": "<p>The next section covers Calendar Monthly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                        "id": "calendar-monthly-pay-introduction-section",
-                        "number": "4",
-                        "questions": [{
-                            "answers": [],
-                            "id": "calendar-monthly-pay-introduction-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Calendar Monthly Pay"
-                    }],
+                    "title": "Calendar Monthly Pay",
+                    "description": "<p>The next section covers Calendar Monthly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                    "section_number": "4",
                     "type": "Interstitial"
                 },
                 {
@@ -2001,18 +1974,9 @@
         {
             "blocks": [{
                     "id": "four-weekly-pay-introduction",
-                    "sections": [{
-                        "description": "<p>The next section covers Four Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                        "id": "four-weekly-pay-introduction-section",
-                        "number": "5",
-                        "questions": [{
-                            "answers": [],
-                            "id": "four-weekly-pay-introduction-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Four Weekly Pay"
-                    }],
+                    "title": "Four Weekly Pay",
+                    "description": "<p>The next section covers Four Weekly pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                    "section_number": "5",
                     "type": "Interstitial"
                 },
                 {
@@ -2628,18 +2592,9 @@
         {
             "blocks": [{
                     "id": "five-weekly-pay-introduction",
-                    "sections": [{
-                        "description": "<p>The next section covers Five Weekly Pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
-                        "id": "five-weekly-pay-introduction-section",
-                        "number": "6",
-                        "questions": [{
-                            "answers": [],
-                            "id": "five-weekly-pay-introduction-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "Five Weekly Pay"
-                    }],
+                    "title": "Five Weekly Pay",
+                    "description": "<p>The next section covers Five Weekly Pay.</p><p>Please exclude the following from your figures for this section:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                    "section_number": "6",
                     "type": "Interstitial"
                 },
                 {
@@ -3257,18 +3212,9 @@
         {
             "blocks": [{
                     "id": "general-comments-introduction",
-                    "sections": [{
-                        "description": "<p>The next section covers general comments about this survey.</p>",
-                        "id": "general-comments-introduction-section",
-                        "number": "7",
-                        "questions": [{
-                            "answers": [],
-                            "id": "general-comments-introduction-question",
-                            "title": "",
-                            "type": "General"
-                        }],
-                        "title": "General Comments"
-                    }],
+                    "title": "General Comments",
+                    "description": "<p>The next section covers general comments about this survey.</p>",
+                    "section_number": "7",
                     "type": "Interstitial"
                 },
                 {

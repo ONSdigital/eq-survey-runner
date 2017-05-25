@@ -1,11 +1,12 @@
 <div class="question question--repeatinganswer" id="{{question.id}}">
 
-  <h2 class="question__title neptune">
+  <h1 class="question__title saturn">
     {%- if question_number -%}
       <span class="question__number">{{question_number}}{{current_location.group_instance|format_number_to_alphabetic_letter}}. </span>
     {% endif %}
     {{question_title}}
-  </h2>
+  </h1>
+
 
   {{question_description}}
   <fieldset>
