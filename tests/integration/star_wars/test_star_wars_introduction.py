@@ -23,4 +23,4 @@ class TestStarWarsIntroduction(StarWarsTestCase):
 
         # Information to provide
         self.assertInPage('Total Yearly cost of Rebel Alliance')
-        self.assertInPage('Yoda&#39;s siblings')
+        self.assertInPage("Yoda's siblings")

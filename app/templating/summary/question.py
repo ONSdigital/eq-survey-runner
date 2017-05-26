@@ -1,6 +1,7 @@
 from app.questionnaire.rules import evaluate_rule
 from app.data_model.answer_store import iterate_over_instance_ids
 from app.templating.summary.answer import Answer
+from jinja2 import Markup
 
 
 class Question:
@@ -18,6 +19,9 @@ class Question:
         if self.skip_condition is not None:
             for when_rule in self.skip_condition['when']:
                 answer = all_answers.get(when_rule['id'])
+                if isinstance(answer, Markup):
+                    answer = answer.unescape()
+
                 if not evaluate_rule(when_rule, answer):
                     return False
             return True

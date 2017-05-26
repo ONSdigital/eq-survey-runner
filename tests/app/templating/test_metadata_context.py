@@ -2,6 +2,11 @@ from app.storage.metadata_parser import parse_metadata
 from app.templating.metadata_context import build_metadata_context
 from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
 
+STRING_PROPERTIES = "user_id", "form_type", "collection_exercise_sid",\
+                    "eq_id", "period_id", "ru_ref", "ru_name", "trad_as",\
+                    "transaction_id", "region_code", "period_str"
+
+DATE_PROPERTIES = "ref_p_start_date", "ref_p_end_date", "return_by"
 
 class TestMetadataContext(SurveyRunnerTestCase):
     def setUp(self):
@@ -21,11 +26,12 @@ class TestMetadataContext(SurveyRunnerTestCase):
             "return_by": "2016-07-07",
             "transaction_id": "4ec3aa9e-e8ac-4c8d-9793-6ed88b957c2f"
         }
-        with self.application.test_request_context():
-            self.metadata = parse_metadata(self.jwt)
 
     def test_build_metadata_context(self):
-        render_data = build_metadata_context(self.metadata)
+        with self.application.test_request_context():
+            metadata = parse_metadata(self.jwt)
+
+        render_data = build_metadata_context(metadata)
 
         self.assertIsNotNone(render_data)
 
@@ -45,3 +51,27 @@ class TestMetadataContext(SurveyRunnerTestCase):
         self.assertEqual(self.jwt["ru_ref"], respondent['respondent_id'])
         self.assertEqual(self.jwt["ru_name"], respondent['address']['name'])
         self.assertEqual(self.jwt["trad_as"], respondent['address']['trading_as'])
+
+    def test_defend_against_XSS_attack(self):
+        jwt = self.jwt.copy()
+        escaped_bad_characters = r'&lt;&#34;&gt;\\'
+
+        for key in STRING_PROPERTIES:
+            jwt[key] = '<">\\'
+
+        with self.application.test_request_context():
+            metadata = parse_metadata(jwt)
+
+        render_data = build_metadata_context(metadata)
+
+        respondent = render_data['respondent']
+        self.assertEqual(escaped_bad_characters, respondent['respondent_id'])
+        self.assertEqual(escaped_bad_characters, respondent['address']['name'])
+        self.assertEqual(escaped_bad_characters, respondent['address']['trading_as'])
+
+        survey = render_data['survey']
+        self.assertEqual(escaped_bad_characters, survey['region_code'])
+        self.assertEqual(escaped_bad_characters, survey['period_str'])
+        self.assertEqual(escaped_bad_characters, survey['eq_id'])
+        self.assertEqual(escaped_bad_characters, survey['collection_id'])
+        self.assertEqual(escaped_bad_characters, survey['form_type'])

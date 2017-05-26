@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import unittest
 from datetime import datetime
 
@@ -33,7 +35,7 @@ class TestTemplateRenderer(unittest.TestCase):
 
         self.assertEqual(rendered, '\\')
 
-    def test_strings_containing_quotes_are_escaped(self):
+    def test_strings_containing_quotes_not_changed(self):
         title = '{{ [answers.person_name] | format_household_name }}'
         context = {
             'answers': {
@@ -45,7 +47,7 @@ class TestTemplateRenderer(unittest.TestCase):
 
         self.assertEqual(rendered, '"')
 
-    def test_household_summary_values_are_escaped(self):
+    def test_household_summary_values_are_escaped_and_not_encoded(self):
         description = "<h2 class='neptune'>Your household includes:</h2> " \
                       "{{ [answers.first_name, answers.middle_names, answers.last_name]|format_household_summary }}"
         context = {

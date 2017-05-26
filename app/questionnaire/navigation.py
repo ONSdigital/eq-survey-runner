@@ -2,6 +2,7 @@ import copy
 from collections import defaultdict
 
 from structlog import get_logger
+from jinja2 import escape
 
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
@@ -188,7 +189,7 @@ class Navigation(object):
             answers = self.answer_store.filter(answer_id=answer_id)
             for answer in answers:
                 if answer['value']:
-                    link_names[answer['answer_instance']].append(answer['value'])
+                    link_names[answer['answer_instance']].append(escape(answer['value']))
 
         for link_name in link_names:
             link_names[link_name] = " ".join(link_names[link_name])

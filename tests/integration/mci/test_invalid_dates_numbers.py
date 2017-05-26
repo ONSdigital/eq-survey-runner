@@ -29,7 +29,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form with the dates the same
         self.post(form_data)
-        self.assertInPage("The &#39;period to&#39; date must be different to the &#39;period from&#39; date.")
+        self.assertInPage("The 'period to' date must be different to the 'period from' date.")
 
         form_data = {
             # Start Date
@@ -80,7 +80,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form with the dates the same
         self.post(form_data)
-        self.assertInPage("The &#39;period to&#39; date must be different to the &#39;period from&#39; date.")
+        self.assertInPage("The 'period to' date must be different to the 'period from' date.")
 
     def test_invalid_date_range(self):
         self.launchSurvey('1', '0205')
@@ -101,7 +101,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
 
         # We submit the form with the front date later then the to date
         self.post(form_data)
-        self.assertInPage("The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.")
+        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
 
     def test_invalid_year(self):
         self.launchSurvey('1', '0205')

@@ -13,18 +13,18 @@
       {%- if question_number -%}
         <span class="question__number">{{question_number}}. </span>
       {% endif %}
-      {{question_title|safe}}
+      {{question_title}}
     </h2>
   {%- endif %}
   {%- if question_subtitle -%}
-    <h3 class="question__subtitle mars">{{question_subtitle|safe}}</h3>
+    <h3 class="question__subtitle mars">{{question_subtitle}}</h3>
   {%- endif -%}
 {% endset %}
 
 {% set question_description %}
   {%- if question.description -%}
     <div class="question__description mars" id="description-{{question.id}}">
-      {{question.description|safe}}
+      {{question.description}}
     </div>
   {% endif %}
 {% endset %}
@@ -38,12 +38,12 @@
             <h3 class="venus">{{guidance.title}}</h3>
           {% endif %}
           {%- if guidance.description -%}
-            <div class="mars">{{guidance.description|safe}}</div>
+            <div class="mars">{{guidance.description}}</div>
           {% endif %}
           {%- if guidance.list -%}
             <ul class="mars">
               {%- for item in guidance.list -%}
-                <li>{{item|safe}}</li>
+                <li>{{item}}</li>
               {% endfor %}
             </ul>
           {% endif %}

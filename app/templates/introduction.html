@@ -58,7 +58,7 @@
   {% block description %}
     {% if content.block.description %}
       <div class="u-mb-l qa-intro-description">
-        {{ content.block.description | safe}}
+        {{ content.block.description}}
       </div>
     {% endif %}
   {% endblock description %}
@@ -69,7 +69,7 @@
         <h2 class="saturn">Basis for completion</h2>
         <ul>
          {% for basis_item in content.block.basis_for_completion %}
-           <li>{{ basis_item|safe }}</li>
+           <li>{{ basis_item }}</li>
          {% endfor %}
         </ul>
       </div>

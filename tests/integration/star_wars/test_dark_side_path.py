@@ -48,7 +48,7 @@ class TestDarkSidePath(StarWarsTestCase):
         # Submit the form
         self.post(form_data)
         # Test error messages
-        self.assertInPage('The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.')
+        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
 
     def test_negative_currency(self):
         self.launchSurvey()
@@ -90,7 +90,7 @@ class TestDarkSidePath(StarWarsTestCase):
         self.assertInPage('This field is mandatory')
         self.assertInPage('How much, idiot you must be')
         self.assertInPage('How can it be negative?')
-        self.assertInPage('The &#39;period to&#39; date must be different to the &#39;period from&#39; date.')
+        self.assertInPage("The 'period to' date must be different to the 'period from' date.")
 
     def test_more_validation_combinations(self):
         """

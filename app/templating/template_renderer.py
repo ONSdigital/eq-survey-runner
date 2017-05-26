@@ -27,6 +27,7 @@ class TemplateRenderer:
         template = self.environment.from_string(json_string)
         rendered = template.render(**context)
         result = rendered if isinstance(renderable, dict) else json.dumps(rendered)
+
         return json.loads(result)
 
     @staticmethod

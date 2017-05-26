@@ -4,11 +4,11 @@
     {%- if question_number -%}
       <span class="question__number">{{question_number}}. </span>
     {% endif %}
-    {{question_title|safe}}
+    {{question_title}}
   </h2>
 
-  {{question_description|safe}}
-  {{question_guidance|safe}}
+  {{question_description}}
+  {{question_guidance}}
 
   <div class="question__answers">
     {% for name_form in form.household %}

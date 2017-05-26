@@ -43,7 +43,7 @@ class TestClearValue(IntegrationTestCase):
 
         # We submit the form
         self.post(form_data)
-        self.assertInPage('The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.')
+        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
 
         # Fill the dates incorrectly again, but this time supply an invalid value for retail total
         form_data = {
@@ -63,7 +63,7 @@ class TestClearValue(IntegrationTestCase):
         self.post(form_data)
 
         # Get the page content again
-        self.assertInPage('The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.')
+        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
         self.assertInPage('Please only enter whole numbers into the field.')
         self.assertNotInPage('100000')  # We have cleared the valid value
         self.assertInPage('Invalid Retail Total')  # Our invalid value is redisplayed
@@ -85,7 +85,7 @@ class TestClearValue(IntegrationTestCase):
         # We submit the form
         self.post(form_data)
 
-        self.assertInPage('The &#39;period to&#39; date cannot be before the &#39;period from&#39; date.')
+        self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
         self.assertNotInPage('Please only enter whole numbers into the field.')  # Our message has gone
         self.assertNotInPage('Invalid Retail Total')  # Our invalid value has gone
         self.assertInPage('1000')  # Our new valid value is redisplayed

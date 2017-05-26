@@ -4,13 +4,13 @@
     {%- if question_number -%}
       <span class="question__number">{{question_number}}{{current_location.group_instance|format_number_to_alphabetic_letter}}. </span>
     {% endif %}
-    {{question_title|safe}}
+    {{question_title}}
   </h2>
 
-  {{question_description|safe}}
+  {{question_description}}
   <fieldset>
     <legend class="field__legend u-vh">
-      {{question_title|safe}}
+      {{question_title}}
     </legend>
     <div class="question__answers">
         {% for current_person, other_person in content.relation_instances %}
@@ -28,7 +28,7 @@
     {%- for guidance in question.guidance -%}
       <ul class="u-m-no">
         {%- for item in guidance.list -%}
-          <li>{{item|safe}}</li>
+          <li>{{item}}</li>
         {% endfor %}
       </ul>
     {% endfor %}
