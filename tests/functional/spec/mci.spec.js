@@ -1,6 +1,5 @@
-import {getRandomString, startQuestionnaire} from '../helpers'
+import {getRandomString, openQuestionnaire, startQuestionnaire} from '../helpers'
 
-import devPage from '../pages/dev.page'
 import landingPage from '../pages/landing.page'
 import SummaryPage from '../pages/summary.page'
 import thankYou from '../pages/thank-you.page'
@@ -11,13 +10,7 @@ describe('MCI test', function() {
 
   it('Given the mci business survey 0205 is selected when I start the survey then the landing page is displayed', function() {
     // Given
-    devPage.open()
-        .setUserId(getRandomString(10))
-        .setCollectionId(getRandomString(3))
-        .setSchema('1_0205.json')
-
-    // When
-    devPage.submit()
+      openQuestionnaire('1_0205.json', getRandomString(10), getRandomString(3))
 
     // Then
     expect(landingPage.isOpen(), 'Landing page should be open').to.be.true

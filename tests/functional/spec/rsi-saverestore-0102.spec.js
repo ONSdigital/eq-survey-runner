@@ -1,6 +1,4 @@
-import assert from 'assert'
-import {getRandomString, startQuestionnaire, openQuestionnaire} from '../helpers'
-import devPage from '../pages/dev.page'
+import {getRandomString, openQuestionnaire, startQuestionnaire} from '../helpers'
 import landingPage from '../pages/landing.page'
 import thankYou from '../pages/thank-you.page'
 import reportingPeriod from '../pages/surveys/rsi/0102/reporting-period.page'
@@ -13,17 +11,10 @@ import SummaryPage from '../pages/summary.page'
 describe('RSI - Save and restore test', function() {
 
   it('Given the rsi business survey 0102 is selected when I start the survey then the landing page is displayed', function() {
-    // Given
-    devPage.open()
-      .setUserId(getRandomString(10))
-      .setCollectionId(getRandomString(5))
-      .setSchema('1_0102.json')
 
-    // When
-    devPage.submit()
-
-    // Then
-    expect(landingPage.isOpen()).to.be.true
+      // Given
+      openQuestionnaire('1_0102.json', getRandomString(10), getRandomString(5))
+      expect(landingPage.isOpen()).to.be.true
   })
 
   it('Given a rsi business survey 0102 previously had errors when I correct the errors then I can submit them', function() {

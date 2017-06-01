@@ -1,6 +1,6 @@
 import {sampleSize} from 'lodash'
-import devPage from './pages/dev.page'
 import landingPage from './pages/landing.page'
+import {generateToken} from './jwt_helper'
 
 export {landingPage}
 
@@ -9,31 +9,28 @@ export const getUri = uri => browser.options.baseUrl + uri
 export const getRandomString = length => sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length).join('')
 
 export const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
-  devPage.open()
-    .setUserId(getRandomString(10))
-    .setCollectionId(getRandomString(10))
-    .setSchema(schema)
-    .setRegionCode(region)
+  generateToken(schema, getRandomString(10), getRandomString(10), null, null, region, language, sexualIdentity)
+    .then(function(token) {
+      return browser.url('http://localhost:5000/session?token=' + token)
+    })
 
-  devPage.setLanguageCode(language)
-
-  if (sexualIdentity) {
-    devPage.checkSexualIdentity()
-  }
-
-  devPage.submit()
+  browser.pause(1000) // Shudder!!!
 }
 
-export const openQuestionnaire = (schema, userId = getRandomString(10), collectionId = getRandomString(10)) => {
-  devPage.open()
-    .setUserId(userId)
-    .setCollectionId(collectionId)
-    .setSchema(schema)
-    .submit()
+export function openQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10), periodId = '201605', periodStr = 'May 2016') {
+  generateToken(schema, userId, collectionId, periodId, periodStr)
+    .then(function(token) {
+      return browser.url('http://localhost:5000/session?token=' + token)
+    })
+
+  browser.pause(1000) // Shudder!!!
 }
 
-export const startQuestionnaire = (schema, userId = getRandomString(10), collectionId = getRandomString(10)) => {
+export function startQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10)) {
   openQuestionnaire(schema, userId, collectionId)
+
+  browser.pause(1000) // Shudder!!!
+
   landingPage.getStarted()
 }
 
@@ -50,7 +47,7 @@ export const getRepeatedGroup = () => {
 }
 
 export const getLocation = () => {
-   // Matches: /(groupId)/(blockId)
+  // Matches: /(groupId)/(blockId)
   var regexp = /questionnaire.+\/(\d+)\/(.+)$/g
   var matches = regexp.exec(browser.getUrl())
 
