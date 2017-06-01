@@ -1,5 +1,18 @@
+{% set not_answered = 'No answer provided' %}
 <ul class="u-m-no">
-  {% for selected_answer in answer.value %}
-    <li>{{selected_answer}}</li>
-  {% endfor %}
+      {% for selected_answer in answer.value %}
+        <li>{{selected_answer.label}}
+            {%- if answer.child_answer_value is not none and selected_answer.should_display_other %}
+            <ul>
+                <li>
+                    {%- if answer.child_answer_value == ''  -%}
+                        {{not_answered}}
+                    {%- else -%}
+                        {{ answer.child_answer_value }}
+                    {%- endif -%}
+                </li>
+            </ul>
+            {%- endif -%}
+        </li>
+      {% endfor %}
 </ul>

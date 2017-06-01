@@ -1,3 +1,5 @@
+import collections
+
 from app.questionnaire.rules import evaluate_rule
 from app.data_model.answer_store import iterate_over_instance_ids
 from app.templating.summary.answer import Answer
@@ -33,18 +35,31 @@ class Question:
         summary_answers = []
         answers_iterator = iter(answer_schema)
         for answer_schema in answers_iterator:
+            if 'parent_answer_id' in answer_schema:
+                continue
             if question_schema['type'] == 'RepeatingAnswer':
                 for answer_id, answer_index in iterate_over_instance_ids(answers.keys()):
                     if answer_schema['id'] == answer_id:
                         key = answer_id if answer_index == 0 else '_'.join([answer_id, str(answer_index)])
                         answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator, key)
                         summary_answers.append(Answer(answer_schema, answer))
-
             else:
                 answer = cls._build_answer(question_schema, answer_schema, answers, answers_iterator)
-                summary_answers.append(Answer(answer_schema, answer))
+                child_answer_value = cls._find_other_value_in_answers(answer_schema, answer, answers)
+                summary_answers.append(Answer(answer_schema, answer, child_answer_value))
 
         return summary_answers
+
+    @classmethod
+    def _find_other_value_in_answers(cls, answer_schema, answer, answers):
+        if answer is not None and 'options' in answer_schema:
+            options = answer_schema['options']
+            for option in options:
+                if option['label'] in [a[0] for a in answer] or option['label'] == answer:
+                    for child_answer in answers:
+                        if 'child_answer_id' in option and child_answer == option['child_answer_id']:
+                            return answers[child_answer]
+        return None
 
     @classmethod
     def _build_answer(cls, question_schema, answer_schema, answers, answers_iterator, answer_id=None):
@@ -65,20 +80,16 @@ class Question:
     @classmethod
     def _build_checkbox_answers(cls, answer, answer_schema):
         multiple_answers = []
+        CheckboxSummaryAnswer = collections.namedtuple('CheckboxSummaryAnswer', 'label should_display_other')
         for option in answer_schema['options']:
-            if option['value'] in answer:
-                if option['value'] == 'other':
-                    summary_option_display_value = cls._get_checkbox_other_display_value(answer, answer_schema, option)
-                    multiple_answers.append(summary_option_display_value)
+            if option['label'] in answer:
+                if option['value'].lower() == 'other':
+                    summary_option_display_value = option['label']
+                    multiple_answers.append(CheckboxSummaryAnswer(label=summary_option_display_value,
+                                                                  should_display_other=True))
                 else:
-                    multiple_answers.append(option['label'])
+                    multiple_answers.append(CheckboxSummaryAnswer(label=option['label'], should_display_other=False))
         return multiple_answers
-
-    @staticmethod
-    def _get_checkbox_other_display_value(answer, answer_schema, option):
-        options = {option['value'] for option in answer_schema['options']}
-        other_option_input = [option for option in set(answer) - set(options) if option.strip()]
-        return option['label'] if not other_option_input else other_option_input.pop()
 
     @staticmethod
     def _build_data_range_answer(answer, answers, answers_iterator):
@@ -92,7 +103,7 @@ class Question:
     @staticmethod
     def _build_radio_answer(answer, answer_schema):
         for option in answer_schema['options']:
-            if option['value'] == 'other' and answer != option['value']:
+            if option['value'].lower() == 'other' and answer != option['value']:
                 return answer if answer else option['label']
             elif answer == option['value']:
                 return option['label']

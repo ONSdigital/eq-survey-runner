@@ -77,7 +77,7 @@ describe('Checkbox with "other" option', function() {
      NonMandatoryCheckboxPage.clickOther().setOtherInputField('The other value').submit();
 
      // Then
-     expect(SummaryPage.getNonMandatoryOtherAnswer()).to.have.string('The other value');
+     expect(SummaryPage.getNonMandatoryAnswer()).to.have.string('The other value');
   })
 
   it('Given I have previously added text in other texfiled and saved, when I uncheck other options and select a different checkbox as answer, then the text entered in other field must be wiped.', function() {

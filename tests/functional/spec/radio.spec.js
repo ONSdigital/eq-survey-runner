@@ -29,7 +29,7 @@ describe('Radio button with "other" option', function() {
 
 
     //Then
-    expect(SummaryPage.getMandatoryOtherAnswer()).to.contain('Hello')
+    expect(SummaryPage.getMandatoryAnswer()).to.contain('Hello')
   })
 
   it('Given a mandatory radio answer, when I select "Other" and submit without completing the other input field, then an error must be displayed.', function() {
