@@ -34,7 +34,6 @@
                                 }
                             ],
                             "q_code": "1",
-                            "guidance": "",
                             "id": "conditional-routing-answer",
                             "label": "Which conditional question should we jump to?",
                             "mandatory": true,

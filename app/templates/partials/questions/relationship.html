@@ -22,23 +22,20 @@
   </fieldset>
 </div>
 
-{% if (question.guidance) %}
+<aside class="question__guidance  question__guidance--bottom">
+    {% set schema_item = question.answers[-1] %}
+    {% if schema_item.guidance %}
+      {% with answer_guidance = {
+        'id': schema_item.id,
+        'label': schema_item.label,
+        'schema_item': {
+            'content': schema_item.guidance.content,
+            'show_guidance': schema_item.guidance.show_guidance,
+            'hide_guidance': schema_item.guidance.hide_guidance
+        }
+      } %}
+        {% include 'partials/answer-guidance.html' %}
+      {% endwith %}
+    {% endif %}
+</aside>
 
-  {% set question_guidance %}
-    {%- for guidance in question.guidance -%}
-      <ul class="u-m-no">
-        {%- for item in guidance.list -%}
-          <li>{{item}}</li>
-        {% endfor %}
-      </ul>
-    {% endfor %}
-  {% endset %}
-
-  {% with answer_guidance = {
-    'id': question.id,
-    'label': question.label,
-    'content': question_guidance
-  } %}
-    {% include 'partials/answer-guidance.html' %}
-  {% endwith %}
-{% endif %}

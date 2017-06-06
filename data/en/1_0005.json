@@ -111,21 +111,23 @@
                                 }
                             }],
                             "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
-                            "guidance": [{
-                                    "list": [
-                                        "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "trainees on government schemes",
-                                        "employees working abroad unless paid directly from this business\u2019s GB payroll",
-                                        "employees in Northern Ireland"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Include:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "employees in Northern Ireland"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "weekly-pay-paid-employees-question",
                             "number": "2.1",
                             "title": "What was the number of <em>weekly paid</em> employees paid in the last week of {{exercise.period_str}}?",
@@ -143,7 +145,26 @@
                         "questions": [{
                             "answers": [{
                                 "description": "Please round to the nearest pound. Do not include pence.",
-                                "guidance": "<p>Exclude:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                                "guidance": {
+                                    "show_guidance": "Show further guidance",
+                                    "hide_guidance": "Hide further guidance",
+                                    "content": [{
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "director\u2019s fees",
+                                            "employer\u2019s NI and contribution to pension schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "signing on fees (sporting professionals)",
+                                            "payment in lieu of notice",
+                                            "redundancy pay (taxable and non-taxable)",
+                                            "accrued holiday pay",
+                                            "employees in Northern Ireland",
+                                            "benefits employees receive through pay, for example, family working tax credit",
+                                            "expenses payments for attending meetings, for example, councillors"
+                                        ]
+                                    }]
+                                },
                                 "id": "weekly-pay-gross-pay-answer",
                                 "label": "Total gross weekly pay",
                                 "mandatory": true,
@@ -156,23 +177,25 @@
                                     }
                                 }
                             }],
-                            "guidance": [{
-                                    "list": [
-                                        "overtime and shift allowance payments",
-                                        "advanced holiday pay",
-                                        "pay award arrears",
-                                        "bonuses or commissions",
-                                        "voluntary employee contributions to, and annual profit from, profit related pay schemes"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "any redundancy pay and pay in lieu of notice payments"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "overtime and shift allowance payments",
+                                            "advanced holiday pay",
+                                            "pay award arrears",
+                                            "bonuses or commissions",
+                                            "voluntary employee contributions to, and annual profit from, profit related pay schemes"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "any redundancy pay and pay in lieu of notice payments"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "weekly-pay-gross-pay-question",
                             "number": "2.2",
                             "title": "What was the <em>total gross weekly pay</em> paid to employees in the last week of {{exercise.period_str}}?",
@@ -216,7 +239,35 @@
                                 },
                                 {
                                     "description": "Please round to the nearest pound. Do not include pence.",
-                                    "guidance": "<p>Include:</p><p><ul><li>performance pay (for example productivity bonuses)</li><li>long service awards</li><li>appearance money (sporting professionals)</li></ul>Exclude:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                                "title": "Include:",
+                                                "list": [
+                                                    "performance pay (for example productivity bonuses)",
+                                                    "long service awards",
+                                                    "appearance money (sporting professionals)"
+                                                ]
+                                            },
+                                            {
+                                                "title": "Exclude:",
+                                                "list": [
+                                                    "trainees on government schemes",
+                                                    "director\u2019s fees",
+                                                    "employer\u2019s NI and contribution to pension schemes",
+                                                    "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                                    "signing on fees (sporting professionals)",
+                                                    "payment in lieu of notice",
+                                                    "redundancy pay (taxable and non-taxable)",
+                                                    "accrued holiday pay",
+                                                    "employees in Northern Ireland",
+                                                    "benefits employees receive through pay, for example, family working tax credit",
+                                                    "expenses payments for attending meetings, for example, councillors"
+                                                ]
+                                            }
+                                        ]
+                                    },
                                     "id": "weekly-pay-breakdown-prp-answer",
                                     "label": "Bonuses, commissions or annual profit from profit related pay schemes",
                                     "mandatory": true,
@@ -261,13 +312,15 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "redundancies",
-                                    "changes in the number of temporary staff"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "redundancies",
+                                        "changes in the number of temporary staff"
+                                    ]
+                                }]
+                            },
                             "id": "weekly-pay-significant-changes-paid-employees-question",
                             "number": "2.4",
                             "title": "Did any significant changes occur to the <em>number of weekly paid employees</em>?",
@@ -387,14 +440,16 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "more or less overtime",
-                                    "new pay rates",
-                                    "industrial action"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "more or less overtime",
+                                        "new pay rates",
+                                        "industrial action"
+                                    ]
+                                }]
+                            },
                             "id": "weekly-pay-significant-changes-gross-pay-question",
                             "number": "2.7",
                             "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>weekly paid employees</em>?",
@@ -712,21 +767,23 @@
                                 }
                             }],
                             "description": "<p>If the last week of the month is affected by holidays please use a more representative week.</p>",
-                            "guidance": [{
-                                    "list": [
-                                        "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "trainees on government schemes",
-                                        "employees working abroad unless paid directly from this business\u2019s GB payroll",
-                                        "employees in Northern Ireland"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received pay in the relevant period"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "employees in Northern Ireland"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "fortnightly-pay-paid-employees-question",
                             "number": "3.1",
                             "title": "What was the number of <em>fortnightly paid employees</em> paid in the last week of {{exercise.period_str}}?",
@@ -744,7 +801,26 @@
                         "questions": [{
                             "answers": [{
                                 "description": "Please round to the nearest pound. Do not include pence.",
-                                "guidance": "<p>Exclude:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings (councillors)</li></ul></p>",
+                                "guidance": {
+                                    "show_guidance": "Show further guidance",
+                                    "hide_guidance": "Hide further guidance",
+                                    "content": [{
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "director\u2019s fees",
+                                            "employer\u2019s NI and contribution to pension schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "signing on fees (sporting professionals)",
+                                            "payment in lieu of notice",
+                                            "redundancy pay (taxable and non-taxable)",
+                                            "accrued holiday pay",
+                                            "employees in Northern Ireland",
+                                            "benefits employees receive through pay, for example, family working tax credit",
+                                            "expenses payments for attending meetings (councillors)"
+                                        ]
+                                    }]
+                                },
                                 "id": "fortnightly-pay-gross-pay-answer",
                                 "label": "Total gross fortnightly pay including advanced holiday pay, pay award arrears, and bonuses or commissions",
                                 "mandatory": true,
@@ -757,23 +833,25 @@
                                     }
                                 }
                             }],
-                            "guidance": [{
-                                    "list": [
-                                        "overtime and shift allowance payments",
-                                        "advanced holiday pay",
-                                        "pay award arrears",
-                                        "bonuses or commissions",
-                                        "voluntary employee contributions to, and annual profit from, profit related pay schemes"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "any redundancy pay and pay in lieu of notice payments"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "overtime and shift allowance payments",
+                                            "advanced holiday pay",
+                                            "pay award arrears",
+                                            "bonuses or commissions",
+                                            "voluntary employee contributions to, and annual profit from, profit related pay schemes"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "any redundancy pay and pay in lieu of notice payments"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "fortnightly-pay-gross-pay-question",
                             "number": "3.2",
                             "title": "What was the <em>total gross fortnightly pay</em> paid to employees in the last week of {{exercise.period_str}}?",
@@ -817,7 +895,18 @@
                                 },
                                 {
                                     "description": "Please round to the nearest pound. Do not include pence.",
-                                    "guidance": "<p>Include:</p><p><ul><li>performance pay (for example, productivity bonuses)</li><li>long service awards</li><li>appearance money (sporting professionals)</li></ul></p>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                            "title": "Include:",
+                                            "list": [
+                                                "performance pay (for example, productivity bonuses)",
+                                                "long service awards",
+                                                "appearance money (sporting professionals)"
+                                            ]
+                                        }]
+                                    },
                                     "id": "fortnightly-pay-breakdown-prp-answer",
                                     "label": "Bonuses, commissions or annual profit from profit related pay schemes",
                                     "mandatory": true,
@@ -862,13 +951,15 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "redundancies",
-                                    "changes in the number of temporary staff"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "redundancies",
+                                        "changes in the number of temporary staff"
+                                    ]
+                                }]
+                            },
                             "id": "fortnightly-pay-significant-changes-paid-employees-question",
                             "number": "3.4",
                             "title": "Did any significant changes occur to the <em>number of fortnightly paid employees</em>?",
@@ -988,14 +1079,16 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "more or less overtime",
-                                    "new pay rates",
-                                    "industrial action"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "more or less overtime",
+                                        "new pay rates",
+                                        "industrial action"
+                                    ]
+                                }]
+                            },
                             "id": "fortnightly-pay-significant-changes-gross-pay-question",
                             "number": "3.7",
                             "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>fortnightly paid employees</em>?",
@@ -1314,21 +1407,23 @@
                                 }
                             }],
                             "description": "<p>If there are two pay days in the same month only give details for one.</p>",
-                            "guidance": [{
-                                    "list": [
-                                        "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received monthly pay in the relevant period"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "trainees on government schemes",
-                                        "employees working abroad unless paid directly from this business\u2019s GB payroll",
-                                        "employees in Northern Ireland"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received monthly pay in the relevant period"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "employees in Northern Ireland"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "calendar-monthly-pay-paid-employees-question",
                             "number": "4.1",
                             "title": "What was the number of <em>calendar monthly paid employees</em> paid in {{exercise.period_str}}?",
@@ -1347,7 +1442,26 @@
                         "questions": [{
                             "answers": [{
                                 "description": "Please round to the nearest pound. Do not include pence.",
-                                "guidance": "<p>Exclude:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                                "guidance": {
+                                    "show_guidance": "Show further guidance",
+                                    "hide_guidance": "Hide further guidance",
+                                    "content": [{
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "director\u2019s fees",
+                                            "employer\u2019s NI and contribution to pension schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "signing on fees (sporting professionals)",
+                                            "payment in lieu of notice",
+                                            "redundancy pay (taxable and non-taxable)",
+                                            "accrued holiday pay",
+                                            "employees in Northern Ireland",
+                                            "benefits employees receive through pay, for example, family working tax credit",
+                                            "expenses payments for attending meetings, for example, councillors"
+                                        ]
+                                    }]
+                                },
                                 "id": "calendar-monthly-pay-gross-pay-answer",
                                 "label": "Total gross calendar monthly pay including advanced holiday pay, pay award arrears, and bonuses or commissions",
                                 "mandatory": true,
@@ -1360,22 +1474,24 @@
                                     }
                                 }
                             }],
-                            "guidance": [{
-                                    "list": [
-                                        "overtime and shift allowance payments",
-                                        "pay awards",
-                                        "bonuses or commissions",
-                                        "voluntary employee contributions to, and annual profit from, profit related pay schemes"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "any redundancy pay and pay in lieu of notice payments"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "overtime and shift allowance payments",
+                                            "pay awards",
+                                            "bonuses or commissions",
+                                            "voluntary employee contributions to, and annual profit from, profit related pay schemes"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "any redundancy pay and pay in lieu of notice payments"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "calendar-monthly-pay-gross-pay-question",
                             "number": "4.2",
                             "title": "What was the <em>total gross calendar monthly pay</em> paid to employees in {{exercise.period_str}}?",
@@ -1407,7 +1523,18 @@
                                 },
                                 {
                                     "description": "Please round to the nearest pound. Do not include pence.",
-                                    "guidance": "<p>Include:</p><p><ul><li>performance pay (for example productivity bonuses)</li><li>long service awards</li><li>appearance money (sporting professionals)</li></ul></p>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                            "title": "Include:",
+                                            "list": [
+                                                "performance pay (for example productivity bonuses)",
+                                                "long service awards",
+                                                "appearance money (sporting professionals)"
+                                            ]
+                                        }]
+                                    },
                                     "id": "calendar-monthly-pay-breakdown-prp-answer",
                                     "label": "Bonuses, commissions or annual profit from profit related pay schemes",
                                     "mandatory": true,
@@ -1452,13 +1579,15 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "redundancies",
-                                    "changes in the number of temporary staff"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "redundancies",
+                                        "changes in the number of temporary staff"
+                                    ]
+                                }]
+                            },
                             "id": "calendar-monthly-pay-significant-changes-paid-employees-question",
                             "number": "4.4",
                             "title": "Did any significant changes occur to the <em>number of calendar monthly paid employees</em>?",
@@ -1578,14 +1707,16 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "more or less overtime",
-                                    "new pay rates",
-                                    "industrial action"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "more or less overtime",
+                                        "new pay rates",
+                                        "industrial action"
+                                    ]
+                                }]
+                            },
                             "id": "calendar-monthly-pay-significant-changes-gross-pay-question",
                             "number": "4.7",
                             "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>calendar monthly paid employees</em>?",
@@ -1904,21 +2035,23 @@
                                 }
                             }],
                             "description": "<p>If there are two pay days in the same month only give details for one.</p>",
-                            "guidance": [{
-                                    "list": [
-                                        "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received monthly pay in the relevant period"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "trainees on government schemes",
-                                        "employees working abroad unless paid directly from this business\u2019s GB payroll",
-                                        "employees in Northern Ireland"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received monthly pay in the relevant period"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "employees in Northern Ireland"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "four-weekly-pay-paid-employees-question",
                             "number": "5.1",
                             "title": "What was the number of <em>four weekly paid employees</em> paid in {{exercise.period_str}}?",
@@ -1937,7 +2070,25 @@
                         "questions": [{
                             "answers": [{
                                 "description": "Please round to the nearest pound. Do not include pence.",
-                                "guidance": "<p>Exclude:</p><p><ul><li>trainees on government schemes director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable)</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                                "guidance": {
+                                    "show_guidance": "Show further guidance",
+                                    "hide_guidance": "Hide further guidance",
+                                    "content": [{
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes director\u2019s fees",
+                                            "employer\u2019s NI and contribution to pension schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "signing on fees (sporting professionals)",
+                                            "payment in lieu of notice",
+                                            "redundancy pay (taxable and non-taxable)",
+                                            "accrued holiday pay",
+                                            "employees in Northern Ireland",
+                                            "benefits employees receive through pay, for example, family working tax credit",
+                                            "expenses payments for attending meetings, for example, councillors"
+                                        ]
+                                    }]
+                                },
                                 "id": "four-weekly-pay-gross-pay-answer",
                                 "label": "Total gross four weekly pay including advanced holiday pay, pay award arrears, and bonuses or commissions",
                                 "mandatory": true,
@@ -1950,22 +2101,24 @@
                                     }
                                 }
                             }],
-                            "guidance": [{
-                                    "list": [
-                                        "overtime and shift allowance payments",
-                                        "pay awards",
-                                        "bonuses or commissions",
-                                        "voluntary employee contributions to, and annual profit from, profit related pay schemes"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "any redundancy pay and pay in lieu of notice payments"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "overtime and shift allowance payments",
+                                            "pay awards",
+                                            "bonuses or commissions",
+                                            "voluntary employee contributions to, and annual profit from, profit related pay schemes"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "any redundancy pay and pay in lieu of notice payments"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "four-weekly-pay-gross-pay-question",
                             "number": "5.2",
                             "title": "What was the <em>total gross four weekly pay</em> paid to employees in {{exercise.period_str}}?",
@@ -1997,7 +2150,18 @@
                                 },
                                 {
                                     "description": "Please round to the nearest pound. Do not include pence.",
-                                    "guidance": "<p>Include:</p><p><ul><li>performance pay (for example productivity bonuses)</li><li>long service awards</li><li>appearance money (sporting professionals)</li></ul></p>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                            "title": "Include:",
+                                            "list": [
+                                                "performance pay (for example productivity bonuses)",
+                                                "long service awards",
+                                                "appearance money (sporting professionals)"
+                                            ]
+                                        }]
+                                    },
                                     "id": "four-weekly-pay-breakdown-prp-answer",
                                     "label": "Bonuses, commissions or annual profit from profit related pay schemes",
                                     "mandatory": true,
@@ -2042,13 +2206,15 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "redundancies",
-                                    "changes in the number of temporary staff"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "redundancies",
+                                        "changes in the number of temporary staff"
+                                    ]
+                                }]
+                            },
                             "id": "four-weekly-pay-significant-changes-paid-employees-question",
                             "number": "5.4",
                             "title": "Did any significant changes occur to the <em>number of four weekly paid employees</em>?",
@@ -2168,14 +2334,16 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "more or less overtime",
-                                    "new pay rates",
-                                    "industrial action"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "more or less overtime",
+                                        "new pay rates",
+                                        "industrial action"
+                                    ]
+                                }]
+                            },
                             "id": "four-weekly-pay-significant-changes-gross-pay-question",
                             "number": "5.7",
                             "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>four weekly paid employees</em>?",
@@ -2494,21 +2662,23 @@
                                 }
                             }],
                             "description": "<p>If there are two pay dates in the same month only give details for one.</p>",
-                            "guidance": [{
-                                    "list": [
-                                        "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received monthly pay in the relevant period"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "trainees on government schemes",
-                                        "employees working abroad unless paid directly from this business\u2019s GB payroll",
-                                        "employees in Northern Ireland"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "all employees in Great Britain (England, Scotland and Wales), both full and part-time, who received monthly pay in the relevant period"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "employees in Northern Ireland"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "five-weekly-pay-paid-employees-question",
                             "number": "6.1",
                             "title": "What was the number of <em>five weekly paid employees</em> paid in {{exercise.period_str}}?",
@@ -2527,7 +2697,26 @@
                         "questions": [{
                             "answers": [{
                                 "description": "Please round to the nearest pound. Do not include pence.",
-                                "guidance": "<p>Exclude:</p><p><ul><li>trainees on government schemes</li><li>director\u2019s fees</li><li>employer\u2019s NI and contribution to pension schemes</li><li>employees working abroad unless paid directly from this business\u2019s GB payroll</li><li>signing on fees (sporting professionals)</li><li>payment in lieu of notice</li><li>redundancy pay (taxable and non-taxable</li><li>accrued holiday pay</li><li>employees in Northern Ireland</li><li>benefits employees receive through pay, for example, family working tax credit</li><li>expenses payments for attending meetings, for example, councillors</li></ul></p>",
+                                "guidance": {
+                                    "show_guidance": "Show further guidance",
+                                    "hide_guidance": "Hide further guidance",
+                                    "content": [{
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "trainees on government schemes",
+                                            "director\u2019s fees",
+                                            "employer\u2019s NI and contribution to pension schemes",
+                                            "employees working abroad unless paid directly from this business\u2019s GB payroll",
+                                            "signing on fees (sporting professionals)",
+                                            "payment in lieu of notice",
+                                            "redundancy pay (taxable and non-taxable)",
+                                            "accrued holiday pay",
+                                            "employees in Northern Ireland",
+                                            "benefits employees receive through pay, for example, family working tax credit",
+                                            "expenses payments for attending meetings, for example, councillors"
+                                        ]
+                                    }]
+                                },
                                 "id": "five-weekly-pay-gross-pay-answer",
                                 "label": "Total gross five weekly pay",
                                 "mandatory": true,
@@ -2540,23 +2729,25 @@
                                     }
                                 }
                             }],
-                            "guidance": [{
-                                    "list": [
-                                        "overtime and shift allowance payments",
-                                        "advanced holiday pay",
-                                        "pay award arrears",
-                                        "bonuses or commissions",
-                                        "voluntary employee contributions to, and annual profit from, profit related pay schemes"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "any redundancy pay and pay in lieu of notice payments"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "overtime and shift allowance payments",
+                                            "advanced holiday pay",
+                                            "pay award arrears",
+                                            "bonuses or commissions",
+                                            "voluntary employee contributions to, and annual profit from, profit related pay schemes"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "any redundancy pay and pay in lieu of notice payments"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "five-weekly-pay-gross-pay-question",
                             "number": "6.2",
                             "title": "What was the total gross <em>five weekly pay</em> paid to employees in {{exercise.period_str}}?",
@@ -2588,7 +2779,18 @@
                                 },
                                 {
                                     "description": "Please round to the nearest pound. Do not include pence.",
-                                    "guidance": "<p>Include:</p><p><ul><li>performance pay (for example productivity bonuses)</li><li>long service awards</li><li>appearance money (sporting professionals)</li></ul></p>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                            "title": "Include:",
+                                            "list": [
+                                                "performance pay (for example productivity bonuses)",
+                                                "long service awards",
+                                                "appearance money (sporting professionals)"
+                                            ]
+                                        }]
+                                    },
                                     "id": "five-weekly-pay-breakdown-prp-answer",
                                     "label": "Bonuses, commissions or annual profit from profit related pay schemes",
                                     "mandatory": true,
@@ -2633,13 +2835,15 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "redundancies",
-                                    "changes in the number of temporary staff"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "redundancies",
+                                        "changes in the number of temporary staff"
+                                    ]
+                                }]
+                            },
                             "id": "five-weekly-pay-significant-changes-paid-employees-question",
                             "number": "6.4",
                             "title": "Did any significant changes occur to the <em>number of five weekly paid employees</em>?",
@@ -2759,14 +2963,16 @@
                                 "type": "Radio"
                             }],
                             "description": "<p>Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year. </p><p>This information will help us to validate your data and should reduce the need to query any figures with you. </p>",
-                            "guidance": [{
-                                "list": [
-                                    "more or less overtime",
-                                    "new pay rates",
-                                    "industrial action"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "more or less overtime",
+                                        "new pay rates",
+                                        "industrial action"
+                                    ]
+                                }]
+                            },
                             "id": "five-weekly-pay-significant-changes-gross-pay-question",
                             "number": "6.7",
                             "title": "Did any significant changes occur to the <em>total gross pay</em> paid to <em>five weekly paid employees</em>?",

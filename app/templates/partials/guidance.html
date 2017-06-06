@@ -1,0 +1,17 @@
+{% import 'macros/helpers.html' as helpers %}
+
+{% for item in guidance_content.content %}
+  {%- if item.title -%}
+    <strong class="u-mb-s u-d-b">{{item.title}}</strong>
+  {% endif %}
+  {%- if item.description -%}
+    <p>{{item.description}}</p>
+  {% endif %}
+  {%- if item.list -%}
+    <ul class="mars">
+      {%- for list_item in item.list -%}
+        <li>{{list_item}}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}

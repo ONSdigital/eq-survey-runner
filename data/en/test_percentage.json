@@ -23,7 +23,6 @@
                     "questions": [{
                         "answers": [{
                             "description": "Enter percentage of growth",
-                            "guidance": "",
                             "id": "answer",
                             "label": "New to the market 2012-2014",
                             "mandatory": false,

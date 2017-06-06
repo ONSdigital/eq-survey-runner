@@ -77,7 +77,6 @@
                             "type": "General",
                             "answers": [{
                                 "q_code": "3",
-                                "guidance": "",
                                 "id": "what-is-your-age",
                                 "label": "What is their age?",
                                 "mandatory": true,
@@ -106,7 +105,6 @@
                             "type": "General",
                             "answers": [{
                                 "q_code": "4",
-                                "guidance": "",
                                 "id": "what-is-your-shoe-size",
                                 "label": "What is their shoe size?",
                                 "mandatory": true,

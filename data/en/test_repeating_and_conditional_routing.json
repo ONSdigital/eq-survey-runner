@@ -28,7 +28,6 @@
                             "type": "General",
                             "answers": [{
                                 "q_code": "2",
-                                "guidance": "",
                                 "id": "no-of-repeats-answer",
                                 "label": "How many times are we going to repeat?",
                                 "mandatory": true,
@@ -73,7 +72,6 @@
                                     }
                                 ],
                                 "q_code": "3",
-                                "guidance": "",
                                 "id": "conditional-answer",
                                 "label": "Which conditional question should we jump to?",
                                 "mandatory": true,
@@ -123,7 +121,6 @@
                             "type": "General",
                             "answers": [{
                                 "q_code": "4",
-                                "guidance": "",
                                 "id": "what-is-your-age",
                                 "label": "",
                                 "mandatory": true,
@@ -152,7 +149,6 @@
                             "type": "General",
                             "answers": [{
                                 "q_code": "5",
-                                "guidance": "",
                                 "id": "what-is-your-shoe-size",
                                 "label": "",
                                 "mandatory": true,

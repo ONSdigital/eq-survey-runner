@@ -29,7 +29,6 @@
                     "id": "choose-your-side-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "choose-your-side-answer",
                             "label": "Choose a side",
                             "mandatory": true,
@@ -114,7 +113,6 @@
                     "id": "light-side-pick-character-ship-section",
                     "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "light-side-pick-character-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -148,7 +146,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "light-side-pick-ship-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -206,7 +203,6 @@
                     "id": "dark-side-pick-character-ship-section",
                     "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "dark-side-pick-character-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -240,7 +236,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "dark-side-pick-ship-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -312,7 +307,6 @@
                     "id": "light-side-ship-type-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "light-side-ship-type-answer",
                             "label": "",
                             "mandatory": true,
@@ -353,7 +347,6 @@
                     "id": "dark-side-ship-type-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "dark-side-ship-type-answer",
                             "label": "",
                             "mandatory": true,
@@ -394,7 +387,6 @@
                     "id": "star-wars-trivia-section",
                     "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "death-star-plans-answer",
                                 "label": "Which species stole the plans to the second Death Star?",
                                 "mandatory": false,
@@ -410,7 +402,6 @@
                         {
                             "answers": [{
                                 "alias": "chewies_age",
-                                "guidance": "",
                                 "id": "chewies-age-answer",
                                 "label": "How old is Chewy?",
                                 "mandatory": true,
@@ -432,7 +423,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "death-star-cost-answer",
                                 "label": "How many Octillions do Nasa reckon it would cost to build a death star?",
                                 "mandatory": true,
@@ -454,7 +444,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "lightsaber-cost-answer",
                                 "label": "How hot is a lightsaber in degrees C?",
                                 "mandatory": false,
@@ -476,7 +465,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "tie-fighter-sound-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -507,7 +495,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "darth-vader-quotes-answer",
                                 "label": "",
                                 "mandatory": false,
@@ -538,7 +525,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "green-lightsaber-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -578,7 +564,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "opening-crawler-answer",
                                 "label": "",
                                 "mandatory": false,
@@ -617,7 +602,6 @@
                         },
                         {
                             "answers": [{
-                                    "guidance": "",
                                     "id": "empire-strikes-back-from-answer",
                                     "label": "Period from",
                                     "mandatory": true,
@@ -632,7 +616,6 @@
                                     }
                                 },
                                 {
-                                    "guidance": "",
                                     "id": "empire-strikes-back-to-answer",
                                     "label": "Period to",
                                     "mandatory": true,
@@ -665,7 +648,6 @@
                         "id": "star-wars-trivia-part-2-section-1",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "jar-jar-binks-answer",
                                 "label": "What was the total number of Ewoks?",
                                 "mandatory": false,
@@ -692,7 +674,6 @@
                         "id": "star-wars-trivia-part-2-section-2",
                         "questions": [{
                                 "answers": [{
-                                    "guidance": "",
                                     "id": "rebel-alliance-answer",
                                     "label": "What else did the Bothan spies steal for the Rebel Alliance?",
                                     "mandatory": false,
@@ -714,7 +695,6 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "",
                                     "id": "chewbacca-medal-answer",
                                     "label": "Why doesn't Chewbacca receive a medal at the end of A New Hope?",
                                     "mandatory": true,
@@ -729,7 +709,6 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "",
                                     "id": "confirm-chewbacca-age-answer",
                                     "label": "",
                                     "mandatory": true,
@@ -752,7 +731,6 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "",
                                     "id": "star-wars-prequel-answer",
                                     "label": "",
                                     "mandatory": false,
@@ -787,7 +765,6 @@
                     "id": "star-wars-trivia-part-3-section",
                     "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "jar-jar-binks-planet-answer",
                                 "label": "What is the name of Jar Jar Binks' home planet?",
                                 "mandatory": true,
@@ -809,7 +786,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "favourite-film-answer",
                                 "label": "",
                                 "mandatory": false,

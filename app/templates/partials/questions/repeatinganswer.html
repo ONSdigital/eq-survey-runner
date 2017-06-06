@@ -57,11 +57,14 @@
       {% with answer_guidance = {
         'id': schema_item.id,
         'label': schema_item.label,
-        'content': schema_item.guidance
-        } %}
+        'schema_item': {
+            'content': schema_item.guidance.content,
+            'show_guidance': schema_item.guidance.show_guidance,
+            'hide_guidance': schema_item.guidance.hide_guidance
+        }
+      } %}
         {% include 'partials/answer-guidance.html' %}
       {% endwith %}
     {% endif %}
   </aside>
-
 </div>

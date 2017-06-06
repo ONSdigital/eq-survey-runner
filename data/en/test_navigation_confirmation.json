@@ -17,7 +17,6 @@
                         "id": "insurance-type-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "insurance-type-answer",
                                 "label": "",
                                 "mandatory": false,
@@ -54,7 +53,6 @@
                         "id": "insurance-address-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "insurance-address-answer",
                                 "label": "",
                                 "mandatory": false,
@@ -102,7 +100,6 @@
                     "id": "house-type-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "house-type-answer",
                             "label": "",
                             "mandatory": false,
@@ -195,7 +192,6 @@
                             "type": "General",
                             "answers": [{
                                 "q_code": "3",
-                                "guidance": "",
                                 "id": "what-is-your-age",
                                 "label": "",
                                 "mandatory": false,
@@ -229,7 +225,6 @@
                             "type": "General",
                             "answers": [{
                                 "q_code": "4",
-                                "guidance": "",
                                 "id": "what-is-your-shoe-size",
                                 "label": "",
                                 "mandatory": false,
@@ -276,7 +271,6 @@
                         "id": "extra-cover-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "extra-cover-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -330,7 +324,6 @@
                         "id": "credit-card-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "credit-card-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -355,7 +348,6 @@
                         "id": "expiry-date-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "expiry-date-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -380,7 +372,6 @@
                         "id": "security-code-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "security-code-answer",
                                 "label": "",
                                 "mandatory": true,

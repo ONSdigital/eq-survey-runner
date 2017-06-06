@@ -16,7 +16,6 @@
                     "id": "date-section",
                     "questions": [{
                             "answers": [{
-                                    "guidance": "",
                                     "id": "date-range-from",
                                     "label": "Period from",
                                     "mandatory": true,
@@ -31,7 +30,6 @@
                                     }
                                 },
                                 {
-                                    "guidance": "",
                                     "id": "date-range-to",
                                     "label": "Period to",
                                     "mandatory": true,
@@ -53,7 +51,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "month-year-answer",
                                 "label": "Date",
                                 "mandatory": true,
@@ -74,7 +71,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "single-date-answer",
                                 "label": "Date",
                                 "mandatory": true,
@@ -95,7 +91,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "non-mandatory-date-answer",
                                 "label": "Date",
                                 "mandatory": false,

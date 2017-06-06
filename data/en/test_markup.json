@@ -18,7 +18,13 @@
                     "id": "emphasis-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+                            "guidance": {
+                                "show_guidance": "Show lorem ipsum guidance",
+                                "hide_guidance": "hide lorem ipsum guidance",
+                                "content": [{
+                                    "description": "Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+                                }]
+                            },
                             "id": "answer",
                             "label": "What is the thing?",
                             "mandatory": false,
