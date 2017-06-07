@@ -1,7 +1,7 @@
 from unittest import TestCase
 from uuid import uuid4
 
-from mock import MagicMock
+from mock import Mock
 from sqlalchemy.exc import IntegrityError
 
 from app.setup import Database
@@ -12,7 +12,10 @@ class TestJtiClaimStorage(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.database = MagicMock(Database("sqlite://", 1, 0))
+        self.database = Mock(Database(driver="sqlite",
+                                      database_name="",
+                                      setup_attempts=1,
+                                      setup_retry_delay=0))
         self.jti_claim_storage = JtiClaimStorage(self.database)
 
     def test_should_use_token(self):

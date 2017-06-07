@@ -1,8 +1,9 @@
+from mock import Mock
+
 from app.data_model.database import EQSession, Database
 from app.authentication.session_storage import SessionStorage, EQ_SESSION_ID
 
 import flask
-from mock import Mock
 
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -15,7 +16,10 @@ class TestSessionManager(AppContextTestCase):
 
     def setUp(self):
         super().setUp()
-        self.database = Mock(Database("sqlite://", 1, 0))
+        self.database = Mock(Database(driver="sqlite",
+                                      database_name="",
+                                      setup_attempts=1,
+                                      setup_retry_delay=0))
         self.session_storage = SessionStorage(self.database)
 
         # Note each test will need to create a test_request_context

@@ -1,7 +1,6 @@
 import unittest
 
 from app import settings
-from app.missing_setting_exception import MissingSettingException
 
 
 class TestSettings(unittest.TestCase):
@@ -26,10 +25,11 @@ class TestSettings(unittest.TestCase):
         self.assertEqual(None, settings.read_file(None))
 
     def test_invalid_key_raises_exception(self):
-        with self.assertRaises(MissingSettingException) as exception:
+        with self.assertRaises(Exception) as exception:
             settings.get_env_or_fail("MISSING_ENVIRONMENT_VARIABLE")
 
-        self.assertEqual("Setting 'MISSING_ENVIRONMENT_VARIABLE' Missing", exception.exception.value)
+        self.assertEqual("Setting 'MISSING_ENVIRONMENT_VARIABLE' Missing", str(exception.exception))
+
 
 if __name__ == '__main__':
     unittest.main()

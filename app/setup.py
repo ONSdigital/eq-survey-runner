@@ -5,6 +5,7 @@ import sys
 from datetime import timedelta
 from uuid import uuid4
 
+import yaml
 from flask import Flask
 from flask import url_for
 from flask.ext.cache import Cache
@@ -21,6 +22,7 @@ from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.database import Database
 
 from app.new_relic import setup_newrelic
+from app.secrets import validate_required_secrets
 
 from app.submitter.encrypter import Encrypter
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
@@ -50,9 +52,16 @@ class AWSReverseProxied(object):
         return self.app(environ, start_response)
 
 
-def create_app():  # noqa: C901  pylint: disable=too-complex
+def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-complex
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
     application.config.from_object(settings)
+
+    secrets = yaml.safe_load(open(application.config['EQ_SECRETS_FILE']))
+    validate_required_secrets(secrets)
+    application.config.update(secrets)
+
+    if setting_overrides:
+        application.config.update(setting_overrides)
 
     if application.config['EQ_APPLICATION_VERSION']:
         logger.info('starting eq survey runner', version=application.config['EQ_APPLICATION_VERSION'])
@@ -63,8 +72,11 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
     application.eq = {}
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
-            application.config['EQ_RABBITMQ_URL'],
-            application.config['EQ_RABBITMQ_URL_SECONDARY'],
+            host=application.config['EQ_RABBITMQ_HOST'],
+            secondary_host=application.config['EQ_RABBITMQ_HOST_SECONDARY'],
+            port=application.config['EQ_RABBITMQ_PORT'],
+            username=application.config['EQ_RABBITMQ_USERNAME'],
+            password=application.config['EQ_RABBITMQ_PASSWORD'],
         )
 
     else:
@@ -77,9 +89,12 @@ def create_app():  # noqa: C901  pylint: disable=too-complex
     )
 
     application.eq['database'] = Database(
-        application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_URL'],
-        application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_COUNT'],
-        application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_SETUP_RETRY_DELAY_SECONDS'],
+        driver=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER'],
+        host=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_HOST'],
+        port=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_PORT'],
+        database_name=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_NAME'],
+        username=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_USERNAME'],
+        password=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'],
     )
 
     application.eq['session_storage'] = SessionStorage(

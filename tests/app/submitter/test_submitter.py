@@ -1,3 +1,4 @@
+import uuid
 from unittest import TestCase
 
 from mock import patch, Mock, call
@@ -9,10 +10,11 @@ from app.submitter.submitter import RabbitMQSubmitter
 class TestSubmitter(TestCase):
     def setUp(self):
         self.queue_name = 'test_queue'
-        self.url1 = 'amqp://localhost:5672/%2F'
-        self.url2 = 'amqp://localhost:5672/%2F'
+        self.host1 = 'host1'
+        self.host2 = 'host2'
+        self.port = 5672
 
-        self.submitter = RabbitMQSubmitter(self.url1, self.url2)
+        self.submitter = RabbitMQSubmitter(host=self.host1, secondary_host=self.host2, port=self.port)
 
     def test_when_fail_to_connect_to_queue_then_published_false(self):
         # Given
@@ -48,7 +50,36 @@ class TestSubmitter(TestCase):
             # Then
             self.assertTrue(published, 'send_message should publish message')
             # Check we create url for primary then secondary
-            url_parameters_calls = [call(self.url1), call(self.url2)]
+            url_parameters_calls = [call("amqp://{}:{}/%2F".format(self.host1, self.port)),
+                                    call("amqp://{}:{}/%2F".format(self.host2, self.port))]
+            url_parameters.assert_has_calls(url_parameters_calls)
+            # Check we create connection twice, failing first then with self.url2
+            self.assertEqual(connection.call_count, 2)
+
+    def test_url_generation_with_credentials(self):
+        # Given
+        with patch('app.submitter.submitter.BlockingConnection') as connection, \
+                patch('app.submitter.submitter.URLParameters') as url_parameters:
+            secondary_connection = Mock()
+            connection.side_effect = [AMQPError(), secondary_connection]
+
+            username = "testUsername"
+            password = str(uuid.uuid4())
+
+            submitter = RabbitMQSubmitter(host=self.host1,
+                                          secondary_host=self.host2,
+                                          port=self.port,
+                                          username=username,
+                                          password=password)
+
+            # When
+            published = submitter.send_message(message={}, queue=self.queue_name, tx_id='12345')
+
+            # Then
+            self.assertTrue(published, 'send_message should publish message')
+            # Check we create url for primary then secondary
+            url_parameters_calls = [call("amqp://{}:{}@{}:{}/%2F".format(username, password, self.host1, self.port)),
+                                    call("amqp://{}:{}@{}:{}/%2F".format(username, password, self.host2, self.port))]
             url_parameters.assert_has_calls(url_parameters_calls)
             # Check we create connection twice, failing first then with self.url2
             self.assertEqual(connection.call_count, 2)

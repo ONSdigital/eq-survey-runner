@@ -1,7 +1,9 @@
 import time
 from mock import patch
+
+from app.setup import create_app
+from tests.integration.create_token import TokenGenerator
 from tests.integration.integration_test_case import IntegrationTestCase
-from tests.integration.create_token import generate_token
 
 
 class TestFlushData(IntegrationTestCase):
@@ -15,6 +17,17 @@ class TestFlushData(IntegrationTestCase):
         self.encrypter_patcher = patch('app.setup.Encrypter')
         mock_encrypter_class = self.encrypter_patcher.start()
         self.encrypt_instance = mock_encrypter_class.return_value
+
+        setting_overrides = {
+            "EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER": "sqlite",
+            "EQ_SERVER_SIDE_STORAGE_DATABASE_NAME": ""
+        }
+        self._application = create_app(setting_overrides)
+        self.token_generator = TokenGenerator(
+            self._application.config['EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY'],
+            self._application.config['EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD'],
+            self._application.config['EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY'],
+        )
 
         super().setUp()
         self.launchSurvey('1', '0205')
@@ -36,7 +49,7 @@ class TestFlushData(IntegrationTestCase):
         self.encrypter_patcher.stop()
 
     def test_flush_data_successful(self):
-        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()).decode())
         self.assertStatusOK()
 
     def test_no_data_to_flush(self):
@@ -44,7 +57,7 @@ class TestFlushData(IntegrationTestCase):
         # Made up ru_ref
         payload['ru_ref'] = 'no data'
 
-        self.post(url='/flush?token=' + generate_token(payload).decode())
+        self.post(url='/flush?token=' + self.token_generator.generate_token(payload).decode())
         self.assertStatusNotFound()
 
     def test_no_permission_to_flush(self):
@@ -52,7 +65,7 @@ class TestFlushData(IntegrationTestCase):
         # A role with no flush permissions
         payload['roles'] = ['test']
 
-        self.post(url='/flush?token=' + generate_token(payload).decode())
+        self.post(url='/flush?token=' + self.token_generator.generate_token(payload).decode())
         self.assertStatusForbidden()
 
     def test_no_role_on_token(self):
@@ -60,15 +73,15 @@ class TestFlushData(IntegrationTestCase):
         # Payload with no roles
         del payload['roles']
 
-        self.post(url='/flush?token=' + generate_token(payload).decode())
+        self.post(url='/flush?token=' + self.token_generator.generate_token(payload).decode())
         self.assertStatusForbidden()
 
     def test_double_flush(self):
-        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()).decode())
 
         # Once the data has been flushed it is wiped.
         # It can't be flushed again and should return 404 no data on second flush
-        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()).decode())
         self.assertStatusNotFound()
 
     def test_no_token_passed_to_flush(self):
@@ -82,12 +95,12 @@ class TestFlushData(IntegrationTestCase):
     def test_flush_errors_when_submission_fails(self):
         self.submitter_instance.send_message.return_value = False  # pylint: disable=no-member
 
-        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()).decode())
         self.assertStatusCode(503)
 
     def test_flush_sets_flushed_flag_to_true(self):
 
-        self.post(url='/flush?token=' + generate_token(self.get_payload()).decode())
+        self.post(url='/flush?token=' + self.token_generator.generate_token(self.get_payload()).decode())
 
         self.encrypt_instance.encrypt.assert_called_once() # pylint: disable=no-member
         args = self.encrypt_instance.encrypt.call_args[0] # pylint: disable=no-member

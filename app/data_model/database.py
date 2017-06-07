@@ -65,21 +65,36 @@ class UsedJtiClaim(base):
     def __repr__(self):
         return "<UsedJtiClaim('%s', '%s')>" % (self.jti_claim, self.used_at)
 
+SETUP_ATTEMPTS = 10
+SETUP_RETRY_DELAY_SECONDS = 6
+
 
 class Database:
 
-    def __init__(self, database_url, database_setup_retry_count, database_setup_retry_delay):
+    def __init__(self, driver, database_name, host=None, port=None,
+                 username=None, password=None, setup_attempts=SETUP_ATTEMPTS,
+                 setup_retry_delay=SETUP_RETRY_DELAY_SECONDS):
 
-        self.database_url = database_url
-        self.database_setup_retry_count = database_setup_retry_count
-        self.database_setup_retry_delay = database_setup_retry_delay
+        if driver == "sqlite":
+            self._database_url = "{driver}://{name}".format(driver=driver,
+                                                            name=database_name)
+        else:
+            self._database_url = "{driver}://{username}:{password}@{host}:{port}/{name}".format(driver=driver,
+                                                                                                username=username,
+                                                                                                password=password,
+                                                                                                host=host,
+                                                                                                port=port,
+                                                                                                name=database_name)
+
+        self._setup_attempts = setup_attempts
+        self._setup_retry_delay = setup_retry_delay
 
         self._db_session = self._create_session_and_engine_with_retry()
 
     def _create_session_and_engine(self):
         logger.info("setting up database...")
         logger.debug("creating database engine")
-        eng = create_engine(self.database_url, convert_unicode=True)
+        eng = create_engine(self._database_url, convert_unicode=True)
         logger.debug("creating database session")
         session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=eng))
         base.query = session.query_property()
@@ -91,14 +106,14 @@ class Database:
     def _create_session_and_engine_with_retry(self):
         last_exception = None
 
-        for i in range(self.database_setup_retry_count):
+        for i in range(self._setup_attempts):
             try:
                 return self._create_session_and_engine()
             except Exception as e:  # pylint: disable=broad-except
                 # Accept catching of Exception here as we re-throw it below if the retry fails.
                 last_exception = e
                 logger.error('error setting up database', exc_info=e, attempt=i)
-                time.sleep(self.database_setup_retry_delay)
+                time.sleep(self._setup_retry_delay)
         else:  # pylint: disable=useless-else-on-loop
             logger.error('failed to setup database, aborting', exc_info=last_exception)
             raise TimeoutError('failed to setup database') from last_exception

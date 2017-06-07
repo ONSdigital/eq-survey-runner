@@ -4,6 +4,8 @@ from tests.integration.routing import routes
 
 class TestRouting(IntegrationTestCase):
 
+    count = 100
+
     def test_routing_paths(self):
 
         # Find all the routes through the questionnaire and step through each one
@@ -12,8 +14,8 @@ class TestRouting(IntegrationTestCase):
             self._navigate_route(route)
 
     def _navigate_route(self, route):
-        self.clearDatabase()
-        self.launchSurvey('0', 'star_wars')
+        self.launchSurvey('0', 'star_wars', collection_exercise_sid=str(self.count))
+        self.count += 1
         self.post(action='start_questionnaire')
 
         summary_assertions = []

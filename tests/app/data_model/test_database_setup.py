@@ -1,4 +1,6 @@
+import uuid
 from unittest import TestCase
+
 
 from mock import patch
 
@@ -16,7 +18,9 @@ class TestDatabaseSetupRetry(TestCase):
             # When I attempt to setup the database
             # Then a TimeoutError is raised
             with self.assertRaises(TimeoutError) as exception:
-                Database("sqlite://", retry_count, 6)
+                Database(driver="sqlite",
+                         database_name="",
+                         setup_attempts=retry_count)
 
             # And the TimeoutError explains the failure
             self.assertIn('failed to setup database', exception.exception.args)
@@ -34,7 +38,10 @@ class TestDatabaseSetupRetry(TestCase):
     def test_database_retry_success(self):
         # Given the database setup returns successfully first time
         # When I call the create
-        database = Database("sqlite://", 1, 6)
+        database = Database(driver="sqlite",
+                            database_name="",
+                            setup_attempts=1,
+                            setup_retry_delay=0)
 
         # pylint: disable=maybe-no-member
         # pylint: disable=protected-access
@@ -47,7 +54,10 @@ class TestDatabaseSetupRetry(TestCase):
             setup.side_effect = iter([ConnectionRefusedError, ConnectionRefusedError, 'success'])
 
             # When I call the create with retry function
-            database = Database("sqlite://", 3, 6)
+            database = Database(driver="sqlite",
+                                database_name="",
+                                setup_attempts=3,
+                                setup_retry_delay=0)
 
             # pylint: disable=protected-access
             # Then a value is successfully returned
@@ -55,3 +65,23 @@ class TestDatabaseSetupRetry(TestCase):
 
             # And the setup was called three times before succeeding
             self.assertEqual(setup.call_count, 3)
+
+    def test_database_url_creation_for_non_sqlite(self):
+        # Given the database setup fails twice then succeeds
+        with patch('app.data_model.database.Database._create_session_and_engine'):
+
+            password = str(uuid.uuid4())
+
+            # When I call the create with retry function
+            database = Database(driver="postgresql",
+                                host="localhost",
+                                port=5432,
+                                username="testUsername",
+                                password=password,
+                                database_name="digitaleqrds",
+                                setup_attempts=1,
+                                setup_retry_delay=0)
+
+            # pylint: disable=protected-access
+            # Then a value is successfully returned
+            self.assertEqual(database._database_url, 'postgresql://testUsername:' + password + '@localhost:5432/digitaleqrds')

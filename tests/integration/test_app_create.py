@@ -12,30 +12,33 @@ from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 
 class TestCreateApp(unittest.TestCase):
     def setUp(self):
-        pass
+        self._setting_overrides = {
+            "EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER": "sqlite",
+            "EQ_SERVER_SIDE_STORAGE_DATABASE_NAME": ""
+        }
 
     def test_returns_application(self):
-        self.assertIsInstance(create_app(), Flask)
+        self.assertIsInstance(create_app(self._setting_overrides), Flask)
 
     # Should new relic have direct access to settings?
     # Probably better for create app to have the control
     def test_setups_newrelic(self):
         with patch('newrelic.agent.initialize') as new_relic:
             settings.EQ_NEW_RELIC_ENABLED = "True"
-            create_app()
+            create_app(self._setting_overrides)
             self.assertEqual(new_relic.call_count, 1)
 
     def test_sets_static_url(self):
-        self.assertEqual('/s', create_app().static_url_path)
+        self.assertEqual('/s', create_app(self._setting_overrides).static_url_path)
 
     def test_sets_static_folder_that_exists(self):
-        self.assertRegex(create_app().static_folder, '../static$')
+        self.assertRegex(create_app(self._setting_overrides).static_folder, '../static$')
 
     def test_sets_content_length(self):
-        self.assertGreater(create_app().config['MAX_CONTENT_LENGTH'], 0)
+        self.assertGreater(create_app(self._setting_overrides).config['MAX_CONTENT_LENGTH'], 0)
 
     def test_enforces_secure_session(self):
-        application = create_app()
+        application = create_app(self._setting_overrides)
         self.assertTrue(application.secret_key)
         self.assertTrue(application.permanent_session_lifetime)
         self.assertTrue(application.session_interface)
@@ -44,13 +47,13 @@ class TestCreateApp(unittest.TestCase):
 
     # localisation may not be used but is currently attached...
     def test_adds_i18n_to_application(self):
-        self.assertIsInstance(create_app().babel, Babel) # pylint: disable=no-member
+        self.assertIsInstance(create_app(self._setting_overrides).babel, Babel) # pylint: disable=no-member
 
     def test_adds_logging_of_request_ids(self):
         with patch('app.setup.logger') as logger:
             settings.EQ_DEV_MODE = True
             settings.EQ_APPLICATION_VERSION = False
-            application = create_app()
+            application = create_app(self._setting_overrides)
 
             application.test_client().get('/')
             self.assertEqual(1, logger.new.call_count)
@@ -59,7 +62,7 @@ class TestCreateApp(unittest.TestCase):
 
 
     def test_enforces_secure_headers(self):
-        client = create_app().test_client()
+        client = create_app(self._setting_overrides).test_client()
         headers = client.get('/').headers
         self.assertEqual('no-cache, no-store, must-revalidate', headers['Cache-Control'])
         self.assertEqual('no-cache', headers['Pragma'])
@@ -73,18 +76,18 @@ class TestCreateApp(unittest.TestCase):
     # tests, keeping to highlight that create_app is where
     # it happens.
     def test_adds_blueprints(self):
-        self.assertGreater(len(create_app().blueprints), 0)
+        self.assertGreater(len(create_app(self._setting_overrides).blueprints), 0)
 
     def test_removes_db_session_on_teardown(self):
         with patch('app.setup.Database.remove') as remove:
-            application = create_app()
+            application = create_app(self._setting_overrides)
             application.test_client().get('/')
 
             self.assertEqual(remove.call_count, 1)
 
     def test_versioned_url_for_with_version(self):
         settings.EQ_APPLICATION_VERSION = 'abc123'
-        application = create_app()
+        application = create_app(self._setting_overrides)
         application.config['SERVER_NAME'] = "test"
 
         with application.app_context():
@@ -100,7 +103,7 @@ class TestCreateApp(unittest.TestCase):
 
     def test_versioned_url_for_without_version(self):
         settings.EQ_MINIMIZE_VERSION = False
-        application = create_app()
+        application = create_app(self._setting_overrides)
         application.config['SERVER_NAME'] = "test"
 
         with application.app_context():
@@ -111,7 +114,7 @@ class TestCreateApp(unittest.TestCase):
 
     def test_versioned_url_for_minimized_assets(self):
         settings.EQ_MINIMIZE_ASSETS = True
-        application = create_app()
+        application = create_app(self._setting_overrides)
         application.config['SERVER_NAME'] = "test"
 
         with application.app_context():
@@ -133,7 +136,7 @@ class TestCreateApp(unittest.TestCase):
 
     def test_versioned_url_for_regular_assets(self):
         settings.EQ_MINIMIZE_ASSETS = False
-        application = create_app()
+        application = create_app(self._setting_overrides)
         application.config['SERVER_NAME'] = "test"
 
         with application.app_context():
@@ -149,7 +152,7 @@ class TestCreateApp(unittest.TestCase):
 
     def test_adds_rabbit_submitter_to_the_application(self):
         settings.EQ_RABBITMQ_ENABLED = True
-        application = create_app()
+        application = create_app(self._setting_overrides)
 
         self.assertIsInstance(application.eq['submitter'], RabbitMQSubmitter)
 
@@ -157,12 +160,12 @@ class TestCreateApp(unittest.TestCase):
 
     def test_defaults_to_adding_the_log_submitter_to_the_application(self):
         settings.EQ_RABBITMQ_ENABLED = False
-        application = create_app()
+        application = create_app(self._setting_overrides)
 
         self.assertIsInstance(application.eq['submitter'], LogSubmitter)
 
     def test_adds_encrypter_to_the_application(self):
-        application = create_app()
+        application = create_app(self._setting_overrides)
 
         self.assertIn('encrypter', application.eq)
 
