@@ -2,40 +2,34 @@ dist: trusty
 sudo: true
 language: node_js
 node_js: 6
-env:
-  global:
-    - EQ_ENABLE_CACHE=True
-    - EQ_RUN_LOCAL_LINT=True
-    - EQ_RUN_LOCAL_TESTS=True
-    - EQ_RUN_LOCAL=True
-    - EQ_RUN_FUNCTIONAL_TESTS=True
-    # Codacy
-    - secure: q3hyZhRj24C5sT7T0ViTDCwhT8eVjpanTf6BkPPBI43/6NBJeF1vi4/LkfJMQa0qwYibu5zB8jtkk2VsqGRMGvj9fMufOKXGqebOsPYWUJl1MZM3t7OZS57xF9wBUenZwx1oyb/VPrFB56ctGny1XEbF4l47NmbKWD1iMWG1f3Y6PCJ7o8o62v0irmfbdYFTsWjipCQlCrKZm+KVWZD25egIDJMDpq9e0nYNoSW+5fMXDGOtV20/U/rcmW5Lfn06ppJ0C4CaKHuM+MzZtZJwtiCI2TqF0ihQl7ry7YgpqEZLPHQYQ5npIpecxP1f/6ebcAPdKKkJ2Ccutrv/7IFlJo7rWLTB7mzJ4ep11HCdo3mL+JREp1HUJLeEngXFC3lKRXPHKukUxe4Lkz1/g6kdwCUZxajGTwML84FHmqoZxKGMKhMN+0n6rO8wEUR32q4+JbO5z/oQGhtjQZkogq8vWY6+/aq328hsbmy72s23AiX+BQUHqk2QFs3T9FQiqwn4OqqX4JKzmHs838LT+dUTFgH+mWo0lalxa3Pr7cJAwhn97VSnIdU9JTC8RyPWbAHkah78PXlL9guHI1nzQTjTcMm/yTlmtE2NxTSY+ZGIV+O5pcJm3HkAjZvNi/0jjDWwBHs/rZgj1t7Eoueh8dPTSZ12LmqKuBpvkrzLKcs2zt4=
-  matrix:
-    - EQ_FUNCTIONAL_TEST_SUITES="core,ukis"
-    - EQ_FUNCTIONAL_TEST_SUITES=census
-matrix:
-  fast_finish: true
-before_install:
-    - pyenv versions
-    - pyenv install --skip-existing
-    - pyenv rehash
-    - pyenv global $(cat .python-version)
-    - pip install -U pip wheel
-    - pip install --require-hashes -r requirements.txt
-    - pip install -r requirements_for_test.txt
+
 cache:
     - yarn
     - pip
     - directories:
         - /home/travis/.pyenv/versions/
-script:
-    - yarn compile
-    - ./scripts/run.sh
-after_success:
-    - bash <(curl -s https://codecov.io/bash)
-    - pip install codacy-coverage
-    - python-codacy-coverage -r coverage.xml
+
+install: skip
+
+jobs:
+    include:
+        - stage: test
+          script: ./scripts/run_lint.sh; ./scripts/run_tests_unit.sh
+
+        - stage: functional-tests
+          env: EQ_FUNCTIONAL_TEST_SUITES="core,ukis"
+          script: ./scripts/run_app.sh; ./scripts/run_tests_functional.sh
+        - env: EQ_FUNCTIONAL_TEST_SUITES=census
+        - script: ./scripts/run_app.sh; ./scripts/run_tests_functional.sh
+
+        - stage: code-coverage
+          env:
+            # Codacy
+            - secure: q3hyZhRj24C5sT7T0ViTDCwhT8eVjpanTf6BkPPBI43/6NBJeF1vi4/LkfJMQa0qwYibu5zB8jtkk2VsqGRMGvj9fMufOKXGqebOsPYWUJl1MZM3t7OZS57xF9wBUenZwx1oyb/VPrFB56ctGny1XEbF4l47NmbKWD1iMWG1f3Y6PCJ7o8o62v0irmfbdYFTsWjipCQlCrKZm+KVWZD25egIDJMDpq9e0nYNoSW+5fMXDGOtV20/U/rcmW5Lfn06ppJ0C4CaKHuM+MzZtZJwtiCI2TqF0ihQl7ry7YgpqEZLPHQYQ5npIpecxP1f/6ebcAPdKKkJ2Ccutrv/7IFlJo7rWLTB7mzJ4ep11HCdo3mL+JREp1HUJLeEngXFC3lKRXPHKukUxe4Lkz1/g6kdwCUZxajGTwML84FHmqoZxKGMKhMN+0n6rO8wEUR32q4+JbO5z/oQGhtjQZkogq8vWY6+/aq328hsbmy72s23AiX+BQUHqk2QFs3T9FQiqwn4OqqX4JKzmHs838LT+dUTFgH+mWo0lalxa3Pr7cJAwhn97VSnIdU9JTC8RyPWbAHkah78PXlL9guHI1nzQTjTcMm/yTlmtE2NxTSY+ZGIV+O5pcJm3HkAjZvNi/0jjDWwBHs/rZgj1t7Eoueh8dPTSZ12LmqKuBpvkrzLKcs2zt4=
+          script:
+            - bash <(curl -s https://codecov.io/bash)
+            - pip install codacy-coverage
+            - python-codacy-coverage -r coverage.xml
 branches:
     only:
         - master
