@@ -66,3 +66,16 @@ class TestLogin(IntegrationTestCase):
 
         # Then
         self.assertStatusNotFound()
+
+
+    def test_http_head_request_to_login_returns_successfully_and_get_still_works(self):
+        # Given
+        token = self.token_generator.create_token('0205', '1')
+
+        # When
+        self._client.head('/session?token=' + token.decode(), as_tuple=True, follow_redirects=True)
+        self.get('/session?token=' + token.decode())
+
+        # Then
+        self.assertStatusOK()
+        self.assertInUrl('/questionnaire/1/0205')

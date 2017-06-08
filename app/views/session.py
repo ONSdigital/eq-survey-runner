@@ -25,6 +25,11 @@ def add_cache_control(response):
     return response
 
 
+@session_blueprint.route('/session', methods=['HEAD'])
+def login_head():
+    return '', 204
+
+
 @session_blueprint.route('/session', methods=['GET'])
 def login():
     """

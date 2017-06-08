@@ -115,6 +115,7 @@ Command                                    | Task
 `yarn test_unit`                        | Watches the unit tests via Karma
 `yarn test_functional`                  | Runs the functional tests through a local Selenium instance (requires app running on localhost:5000)
 `yarn test_functional_sauce`            | Runs the functional tests through Sauce Labs (requires app running on localhost:5000)
+`yarn test_functional_browserstack`     | Runs the functional tests through BrowserStack (requires app running on localhost:5000)
 `yarn lint`                             | Lints the JS, reporting errors/warnings.
 `yarn format`                           | Format the json schemas.
 
