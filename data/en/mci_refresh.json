@@ -27,7 +27,6 @@
                     "id": "reporting-period-section",
                     "questions": [{
                         "answers": [{
-                                "guidance": "",
                                 "id": "period-from",
                                 "alias": "period_from",
                                 "label": "Period from",
@@ -43,7 +42,6 @@
                                 }
                             },
                             {
-                                "guidance": "",
                                 "id": "period-to",
                                 "alias": "period_to",
                                 "label": "Period to",
@@ -75,27 +73,28 @@
                     "description": "",
                     "id": "total-turnover-section",
                     "questions": [{
-                        "guidance": [{
-                                "title": "Include",
-                                "list": [
-                                    "VAT",
-                                    "internet sales",
-                                    "retail sales from outlets in Great Britain to customers abroad"
-                                ]
-                            },
-                            {
-                                "title": "Exclude",
-                                "list": [
-                                    "revenue from mobile phone network commission and top-up",
-                                    "sales from catering facilities used by customers",
-                                    "lottery sales and commission from lottery sales",
-                                    "sales of car accessories and motor vehicles",
-                                    "NHS receipts"
-                                ]
-                            }
-                        ],
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "VAT",
+                                        "internet sales",
+                                        "retail sales from outlets in Great Britain to customers abroad"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "revenue from mobile phone network commission and top-up",
+                                        "sales from catering facilities used by customers",
+                                        "lottery sales and commission from lottery sales",
+                                        "sales of car accessories and motor vehicles",
+                                        "NHS receipts"
+                                    ]
+                                }
+                            ]
+                        },
                         "answers": [{
-                            "guidance": "",
                             "id": "total-retail-turnover",
                             "alias": "total_turnover",
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
@@ -129,23 +128,24 @@
                     "description": "",
                     "id": "total-food-sales-section",
                     "questions": [{
-                        "guidance": [{
-                                "title": "Include",
-                                "list": [
-                                    "all fresh food",
-                                    "other food for human consumption (except chocolate and sugar confectionery)",
-                                    "soft drinks"
-                                ]
-                            },
-                            {
-                                "title": "Exclude",
-                                "list": [
-                                    "sales from catering facilities used by customers"
-                                ]
-                            }
-                        ],
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "all fresh food",
+                                        "other food for human consumption (except chocolate and sugar confectionery)",
+                                        "soft drinks"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "sales from catering facilities used by customers"
+                                    ]
+                                }
+                            ]
+                        },
                         "answers": [{
-                            "guidance": "",
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "total-sales-food",
                             "label": "Food",
@@ -177,16 +177,17 @@
                     "description": "",
                     "id": "total-alcohol-sales-section",
                     "questions": [{
-                        "guidance": [{
-                            "title": "Include",
-                            "list": [
-                                "alcoholic drink",
-                                "chocolate and sugar confectionery",
-                                "tobacco and smokers\u2019 requisites"
-                            ]
-                        }],
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "alcoholic drink",
+                                    "chocolate and sugar confectionery",
+                                    "tobacco and smokers\u2019 requisites"
+                                ]
+                            }]
+                        },
                         "answers": [{
-                            "guidance": "",
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "total-sales-alcohol",
                             "label": "Alcohol, confectionery and tobacco",
@@ -218,18 +219,19 @@
                     "description": "",
                     "id": "total-clothing-sales-section",
                     "questions": [{
-                        "guidance": [{
-                            "title": "Include",
-                            "list": [
-                                "clothing and footwear",
-                                "clothing fabrics",
-                                "haberdashery and furs",
-                                "leather and travel goods",
-                                "handbags and umbrellas"
-                            ]
-                        }],
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "clothing and footwear",
+                                    "clothing fabrics",
+                                    "haberdashery and furs",
+                                    "leather and travel goods",
+                                    "handbags and umbrellas"
+                                ]
+                            }]
+                        },
                         "answers": [{
-                            "guidance": "",
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "total-sales-clothing",
                             "label": "Clothing and footwear",
@@ -262,7 +264,33 @@
                     "id": "total-household-goods-sales-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "<div> <h4>Include</h4><ul> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical and gas appliances, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators\u2019 and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> <li>e-cigarettes</li> </ul></div>",
+                            "guidance": {
+                                "show_guidance": "Show household goods items to include/exclude",
+                                "hide_guidance": "Hide household goods items to include/exclude",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "carpets, rugs and other floor coverings",
+                                            "furniture",
+                                            "household textiles and soft furnishings",
+                                            "prints and picture frames",
+                                            "antiques and works of art",
+                                            "domestic electrical and gas appliances, audio/visual equipment and home computers",
+                                            "lighting and minor electrical supplies",
+                                            "records, compact discs, audio and video tapes",
+                                            "musical instruments and goods",
+                                            "decorators\u2019 and DIY supplies",
+                                            "lawn-mowers",
+                                            "hardware",
+                                            "china, glassware and cutlery",
+                                            "novelties, souvenirs and gifts",
+                                            "e-cigarettes"
+                                        ]
+                                    }
+                                ]
+                            },
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "total-sales-household-goods",
                             "label": "Household goods",
@@ -295,7 +323,44 @@
                     "id": "total-other-goods-sales-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "<h4>Include</h4> <ul>  <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets\u2019 requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> <li>mobile phones</li> </ul><h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul>",
+                            "guidance": {
+                                "show_guidance": "Show sales items to include/exclude",
+                                "hide_guidance": "Hide sales items to include/exclude",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "toiletries and medications (except NHS receipts)",
+                                            "newspapers and periodicals",
+                                            "books, stationery and office supplies",
+                                            "photographic and optical goods",
+                                            "spectacles, contact lenses and sunglasses",
+                                            "toys and games",
+                                            "cycles and cycle accessories",
+                                            "sport and camping equipment",
+                                            "jewellery",
+                                            "silverware and plate, clocks and watches",
+                                            "household cleaning products and kitchen paper products",
+                                            "pets, pets\u2019 requisites and pet foods",
+                                            "cut flowers, plants, seeds and other garden sundries",
+                                            "other new and second hand goods",
+                                            "Mobile phones"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude"
+                                    },
+                                    {
+                                        "list": [
+                                            "revenue from mobile phone network commission and top up ",
+                                            "lottery sales and commission from lottery sales",
+                                            "sales of car accessories and motor vehicles",
+                                            "NHS receipts"
+                                        ]
+                                    }
+                                ]
+                            },
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "total-sales-other-goods",
                             "label": "Other goods",
@@ -327,14 +392,15 @@
                     "description": "",
                     "id": "total-internet-sales-section",
                     "questions": [{
-                        "guidance": [{
-                            "title": "Include",
-                            "list": [
-                                "VAT"
-                            ]
-                        }],
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "VAT"
+                                ]
+                            }]
+                        },
                         "answers": [{
-                            "guidance": "",
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "internet-sales",
                             "label": "Internet sales",
@@ -366,24 +432,25 @@
                     "description": "",
                     "id": "total-automotive-fuel-sales-section",
                     "questions": [{
-                        "guidance": [{
-                                "title": "Include",
-                                "list": [
-                                    "VAT",
-                                    "sales of fuel owned by you",
-                                    "sales of other items not paid a commission for"
-                                ]
-                            },
-                            {
-                                "title": "Exclude",
-                                "list": [
-                                    "sales of fuel not owned by you",
-                                    "any commissions"
-                                ]
-                            }
-                        ],
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "VAT",
+                                        "sales of fuel owned by you",
+                                        "sales of other items not paid a commission for"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "sales of fuel not owned by you",
+                                        "any commissions"
+                                    ]
+                                }
+                            ]
+                        },
                         "answers": [{
-                            "guidance": "",
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "total-sales-automotive-fuel",
                             "label": "Automotive fuel",
@@ -430,16 +497,18 @@
                     "description": "",
                     "id": "significant-change-section",
                     "questions": [{
-                        "guidance": [{
-                            "title": "Include",
-                            "list": [
-                                "in-store / online promotions",
-                                "special events (e.g. sporting events)",
-                                "calendar events (e.g. Christmas, Easter, Bank Holiday)",
-                                "weather",
-                                "store closures/openings"
-                            ]
-                        }],
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "in-store / online promotions",
+                                    "special events (e.g. sporting events)",
+                                    "calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                    "weather",
+                                    "store closures/openings"
+                                ]
+                            }]
+                        },
                         "answers": [{
                             "description": "",
                             "id": "significant-change-established-answer",
@@ -544,7 +613,32 @@
                     "id": "change-comment-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "<h4>\u2018In-store promotion\u2019</h4><ul>\u201COffer on wine for the whole month. The promotion was available in-store and online, contributing to an increase in both total turnover and internet sales.\u201D</ul><h4>\u2018Special events (e.g. sporting events)\u2019</h4> <ul>\u201CThis was the month before the start of  Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (e.g., televisions and audio equipment). This led to an increase in sales both in-store and online.\u201D</ul><h4>\u2018Weather\u2019</h4> <ul>\u201CThe bad weather has decreased our sales of summer clothing. This has led to a reduction in total turnover and internet sales this month.\u201D</ul>",
+                            "guidance": {
+                                "show_guidance": "Show examples of commentary on changes to total retail turnover",
+                                "hide_guidance": "Hide examples of commentary on changes to total retail turnover",
+                                "content": [{
+                                        "description": "Examples of commentary:"
+                                    },
+                                    {
+                                        "title": "\u2018In-store promotion\u2019"
+                                    },
+                                    {
+                                        "description": "\u201COffer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.\u201D"
+                                    },
+                                    {
+                                        "title": "\u2018Special events (for example, sporting events)\u2019"
+                                    },
+                                    {
+                                        "description": "\u201CThis was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.\u201D"
+                                    },
+                                    {
+                                        "title": "\u2018Weather\u2019"
+                                    },
+                                    {
+                                        "description": "\u201CThe bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.\u201D"
+                                    }
+                                ]
+                            },
                             "id": "change-comment",
                             "label": "Comments",
                             "mandatory": true,
@@ -573,26 +667,27 @@
                     "description": "",
                     "id": "total-employees-section",
                     "questions": [{
-                        "guidance": [{
-                                "title": "Include",
-                                "list": [
-                                    "all workers paid directly from this business\u2019s payroll(s)",
-                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                ]
-                            },
-                            {
-                                "title": "Exclude",
-                                "list": [
-                                    "agency workers paid directly from the agency payroll",
-                                    "voluntary workers",
-                                    "former employees only receiving pension",
-                                    "self-employed workers",
-                                    "working owners who are not paid via PAYE"
-                                ]
-                            }
-                        ],
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "all workers paid directly from this business\u2019s payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }
+                            ]
+                        },
                         "answers": [{
-                            "guidance": "",
                             "id": "total-number-employees",
                             "alias": "employee_count",
                             "label": "Total number of employees",
@@ -625,26 +720,27 @@
                     "description": "",
                     "id": "employee-breakdown-section",
                     "questions": [{
-                        "guidance": [{
-                                "title": "Include",
-                                "list": [
-                                    "all workers paid directly from this business\u2019s payroll(s)",
-                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                ]
-                            },
-                            {
-                                "title": "Exclude",
-                                "list": [
-                                    "agency workers paid directly from the agency payroll",
-                                    "voluntary workers",
-                                    "former employees only receiving pension",
-                                    "self-employed workers",
-                                    "working owners who are not paid via PAYE"
-                                ]
-                            }
-                        ],
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "all workers paid directly from this business\u2019s payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }
+                            ]
+                        },
                         "answers": [{
-                                "guidance": "",
                                 "id": "number-male-employees-over-30-hours",
                                 "label": "Number of male employees working more than 30 hours per week",
                                 "mandatory": false,
@@ -660,7 +756,6 @@
                                 }
                             },
                             {
-                                "guidance": "",
                                 "id": "number-male-employees-under-30-hours",
                                 "label": "Number of male employees working 30 hours or less per week",
                                 "mandatory": false,
@@ -676,7 +771,7 @@
                                 }
                             },
                             {
-                                "guidance": "",
+
                                 "id": "number-female-employees-over-30-hours",
                                 "label": "Number of female employees working more than 30 hours per week",
                                 "mandatory": false,
@@ -692,7 +787,6 @@
                                 }
                             },
                             {
-                                "guidance": "",
                                 "id": "number-female-employees-under-30-hours",
                                 "label": "Number of female employees working 30 hours or less per week",
                                 "mandatory": false,
