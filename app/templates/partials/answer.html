@@ -11,7 +11,7 @@
       {% with answer_guidance = {
         'id': answer.id,
         'label': answer.label,
-        'content': answer.guidance
+        'schema_item': answer.guidance
       } %}
         {% include 'partials/answer-guidance.html' %}
       {% endwith %}

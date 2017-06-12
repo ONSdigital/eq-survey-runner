@@ -21,7 +21,6 @@
                         "questions": [{
                             "answers": [{
                                 "alias": "character",
-                                "guidance": "",
                                 "id": "character-answer",
                                 "label": "Who do you want to know more about?",
                                 "mandatory": true,
@@ -106,7 +105,6 @@
                         "id": "jyn-erso-like-this-page-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "jyn-erso-like-this-page-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -148,7 +146,6 @@
                         "id": "cassian-andor-like-this-page-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "cassian-andor-like-this-page-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -190,7 +187,6 @@
                         "id": "bodhi-rook-like-this-page-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "bodhi-rook-like-this-page-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -232,7 +228,6 @@
                         "id": "orson-krennic-like-this-page-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "orson-krennic-like-this-page-answer",
                                 "label": "",
                                 "mandatory": true,
@@ -274,7 +269,6 @@
                         "id": "film-takings-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "film-takings-answer",
                                 "label": "",
                                 "mandatory": true,

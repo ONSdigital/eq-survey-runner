@@ -233,22 +233,22 @@
                                 }
                             ],
                             "description": "",
-                            "guidance": [{
-                                    "description": "",
-                                    "list": [
-                                        "all <em>new</em> and <em>significantly improved</em> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.",
-                                        "changes that have been implemented during the 3 year period"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "description": "",
-                                    "list": [
-                                        "ongoing changes"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "all <em>new</em> and <em>significantly improved</em> forms of organisation, business structures or practices aimed at raising internal efficiency or the effectiveness of approaching markets and customers.",
+                                            "changes that have been implemented during the 3 year period"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "ongoing changes"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "business-changes-question",
                             "number": "2.1",
                             "title": "Did {{respondent.ru_name}} make changes in the following areas?",
@@ -321,13 +321,14 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Creative work undertaken within your business that increases knowledge for developing new and improved goods or services and processes."
-                                ],
-                                "title": "Definition of ‘internal Research and Development’:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Definition of ‘internal Research and Development’:",
+                                    "list": [
+                                        "Creative work undertaken within your business that increases knowledge for developing new and improved goods or services and processes."
+                                    ]
+                                }]
+                            },
                             "id": "internal-investment-r-d-question",
                             "number": "3.1",
                             "title": "Did {{respondent.ru_name}} invest in <em>internal Research and Development</em> for the purposes of current or future innovation?",
@@ -410,13 +411,14 @@
                                 "type": "Currency"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Internal costs and purchases from outside the business"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Internal costs and purchases from outside the business"
+                                    ]
+                                }]
+                            },
                             "id": "expenditure-internal-investment-r-d-question",
                             "number": "3.3",
                             "title": "Please estimate the amount of expenditure on internal Research & Development  the <em>calendar  year 2016 only</em>?",
@@ -467,13 +469,14 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Creative work undertaken  by companies, including other businesses within your group, or by public or private research organisations and purchased by your business"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Creative work undertaken  by companies, including other businesses within your group, or by public or private research organisations and purchased by your business"
+                                    ]
+                                }]
+                            },
                             "id": "acquisition-internal-investment-r-d-question",
                             "number": "3.4",
                             "title": "Did {{respondent.ru_name}} invest in the <em>acquisition of</em><em> Research and Development</em> for the purposes of current or future innovation?",
@@ -500,13 +503,14 @@
                                 "type": "Currency"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Internal costs and purchases from outside the business"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Internal costs and purchases from outside the business"
+                                    ]
+                                }]
+                            },
                             "id": "amount-acquisition-internal-investment-r-d-question",
                             "number": "3.5",
                             "title": "Please estimate the amount of expenditure on acquisition of Research & Development in  the <em>calendar  year 2016 only</em>?",
@@ -623,13 +627,14 @@
                                 "type": "Currency"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Internal costs and purchase from outside the business"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Internal costs and purchase from outside the business"
+                                    ]
+                                }]
+                            },
                             "id": "amount-acquisition-advanced-machinery-question",
                             "number": "3.8",
                             "title": "Please estimate the amount of expenditure for the total acquisition of advanced machinery, equipment and software for  the <em>calendar year 2016 only</em>?",
@@ -680,13 +685,14 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Purchase or licensing of patents and non-patented inventions, know-how and other types of knowledge from other businesses or organisations"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Purchase or licensing of patents and non-patented inventions, know-how and other types of knowledge from other businesses or organisations"
+                                    ]
+                                }]
+                            },
                             "id": "investment-existing-knowledge-innovation-question",
                             "number": "3.9",
                             "title": "Did {{respondent.ru_name}} invest in the <em>acquisition of existing knowledge</em> for the purposes of current or future innovation?",
@@ -713,13 +719,14 @@
                                 "type": "Currency"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Internal costs and purchase from outside {{respondent.ru_name}}"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Internal costs and purchase from outside {{respondent.ru_name}}"
+                                    ]
+                                }]
+                            },
                             "id": "expenditure-existing-2016-question",
                             "number": "3.10",
                             "title": "Please estimate the amount of expenditure for acquisition of existing knowledge for the <em>calendar year 2016 only</em>?",
@@ -770,13 +777,14 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Internal or external training for your personnel, specifically for the development or implementation of new or improved goods, services and processes."
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Internal or external training for your personnel, specifically for the development or implementation of new or improved goods, services and processes."
+                                    ]
+                                }]
+                            },
                             "id": "investment-training-innovative-question",
                             "number": "3.11",
                             "title": "Did {{respondent.ru_name}} invest in <em>training for innovative activities</em> for the purposes of current or future innovation?",
@@ -803,13 +811,14 @@
                                 "type": "Currency"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Internal costs and purchase from outside the business"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Internal costs and purchase from outside the business"
+                                    ]
+                                }]
+                            },
                             "id": "expenditure-training-innovative-2016-question",
                             "number": "3.12",
                             "title": "Please estimate the amount of expenditure for training for innovative activities for the <em>calendar year 2016 only</em>?",
@@ -860,13 +869,14 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Engagement in all design activities, including strategic, for the development or implementation of new or improved goods, services and processes."
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Engagement in all design activities, including strategic, for the development or implementation of new or improved goods, services and processes."
+                                    ]
+                                }]
+                            },
                             "id": "investment-design-future-innovation-question",
                             "number": "3.13",
                             "title": "Did {{respondent.ru_name}} invest in <em>all forms of design</em> for the purposes of current or future innovation?",
@@ -893,13 +903,14 @@
                                 "type": "Currency"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Internal costs and purchase from outside the business"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Internal costs and purchase from outside the business"
+                                    ]
+                                }]
+                            },
                             "id": "expenditure-design-2016-question",
                             "number": "3.14",
                             "title": "Please estimate the amount of expenditure for all forms of design for the <em>calendar year 2016 only</em>?",
@@ -1021,13 +1032,14 @@
                                 "type": "Currency"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Internal costs and purchase from outside the business"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Internal costs and purchase from outside the business"
+                                    ]
+                                }]
+                            },
                             "id": "expenditure-introduction-innovations-2016-question",
                             "number": "3.17",
                             "title": "Please estimate the amount of expenditure for market introduction of innovations for the <em>calendar year 2016 only</em>?",
@@ -1100,23 +1112,23 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                    "description": "",
-                                    "list": [
-                                        "all <em>new</em> or <em>significantly improved</em> goods (for example, improvement in quality or distinct user benefits)",
-                                        "goods innovations that are new to the business, even if they are not new to the market",
-                                        "all product innovations, regardless of their origin"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "description": "",
-                                    "list": [
-                                        "the simple resale of goods purchased from other businesses and changes of a solely aesthetic nature"
-                                    ],
-                                    "title": "Exclude:"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "all <em>new</em> or <em>significantly improved</em> goods (for example, improvement in quality or distinct user benefits)",
+                                            "goods innovations that are new to the business, even if they are not new to the market",
+                                            "all product innovations, regardless of their origin"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "the simple resale of goods purchased from other businesses and changes of a solely aesthetic nature"
+                                        ]
+                                    }
+                                ]
+                            },
                             "id": "introducing-significantly-improved-goods-question",
                             "number": "4.1",
                             "title": "Did {{respondent.ru_name}} introduce new or significantly improved <em>goods</em>?",
@@ -1217,14 +1229,15 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "all <em>new</em> or <em>significantly improved</em> services (for example, improvement in quality or distinct user benefits)",
-                                    "services innovations that are new to the business, even if they are not new to the market"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "all <em>new</em> or <em>significantly improved</em> services (for example, improvement in quality or distinct user benefits)",
+                                        "services innovations that are new to the business, even if they are not new to the market"
+                                    ]
+                                }]
+                            },
                             "id": "introduce-significantly-improvement-question",
                             "number": "4.3",
                             "title": "Did {{respondent.ru_name}} introduce new or significantly improved <em>services</em>?",
@@ -1299,13 +1312,14 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Goods or services this business introduced to the market before competitors"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Goods or services this business introduced to the market before competitors"
+                                    ]
+                                }]
+                            },
                             "id": "new-goods-services-innovations-question",
                             "number": "4.5",
                             "title": "Were any of your <em>goods and services innovations</em> new to the <em>market</em>?",
@@ -1340,13 +1354,14 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "New goods or services that were essentially the same as a good or service already available from competitors"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "New goods or services that were essentially the same as a good or service already available from competitors"
+                                    ]
+                                }]
+                            },
                             "id": "goods-services-innovations-new-question",
                             "number": "4.6",
                             "title": "Were any of your <em>goods and services innovations</em> only new to  <em>{{respondent.ru_name}}</em>?",
@@ -1436,13 +1451,14 @@
                                 }
                             ],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "The market sales of goods and services (including all taxes except VAT)"
-                                ],
-                                "title": "Definition of ‘turnover’:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Definition of ‘turnover’:",
+                                    "list": [
+                                        "The market sales of goods and services (including all taxes except VAT)"
+                                    ]
+                                }]
+                            },
                             "id": "percentage-turnover-2016-question",
                             "number": "4.7",
                             "title": "Please <em>estimate</em> the percentage of {{respondent.ru_name}}’s <em>total</em> turnover in <em>calendar year 2016 only</em> from goods and services that were:",
@@ -1515,15 +1531,16 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "all new or significantly improved methods for the production or supply of goods or services",
-                                    "process innovations that are new to {{respondent.ru_name}}, even if they are not new to your industry",
-                                    "all process innovations, regardless of their origin"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "all new or significantly improved methods for the production or supply of goods or services",
+                                        "process innovations that are new to {{respondent.ru_name}}, even if they are not new to your industry",
+                                        "all process innovations, regardless of their origin"
+                                    ]
+                                }]
+                            },
                             "id": "process-improved-question",
                             "number": "5.1",
                             "title": "Did {{respondent.ru_name}} introduce any new or significantly improved <em>processes</em> for producing or supplying goods or services?",
@@ -1731,11 +1748,15 @@
                                 "type": "Radio"
                             }],
                             "description": "",
-                            "guidance": [{
-                                "description": "what constitutes an answer of 'high', 'medium', 'low', or ‘not important’ is dependent on your own interpretation in relation to {{respondent.ru_name}}",
-                                "list": [],
-                                "title": "Please note:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Please note:"
+                                    },
+                                    {
+                                        "description": "what constitutes an answer of 'high', 'medium', 'low', or ‘not important’ is dependent on your own interpretation in relation to {{respondent.ru_name}}"
+                                    }
+                                ]
+                            },
                             "id": "constraining-innovation-economic-question",
                             "number": "6.2",
                             "title": "How important were the following factors in constraining innovation activities?",
@@ -3142,7 +3163,17 @@
                                 ],
                                 "q_code": "1632",
                                 "type": "Radio",
-                                "guidance": "<p><strong>Definition of ‘public sector’</strong></p><p>The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy etc.</p>"
+                                "guidance": {
+                                    "show_guidance": "Show further guidance",
+                                    "hide_guidance": "Hide further guidance",
+                                    "content": [{
+                                            "title": "Definition of ‘public sector’"
+                                        },
+                                        {
+                                            "description": "The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy etc."
+                                        }
+                                    ]
+                                }
                             }],
                             "description": "",
                             "id": "importances-information-public-sector-question",
@@ -3769,7 +3800,17 @@
                                     }
                                 ],
                                 "type": "Checkbox",
-                                "guidance": "<p><strong>Definition of ‘public sector’</strong></p><p>The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy etc.</p>"
+                                "guidance": {
+                                    "show_guidance": "Show further guidance",
+                                    "hide_guidance": "Hide further guidance",
+                                    "content": [{
+                                            "title": "Definition of ‘public sector’"
+                                        },
+                                        {
+                                            "description": "The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy etc."
+                                        }
+                                    ]
+                                }
                             }],
                             "description": "",
                             "id": "co-operation-public-sector-question",
@@ -4441,22 +4482,24 @@
                                 }
                             ],
                             "description": "",
-                            "guidance": [{
-                                    "list": [
-                                        "financial support via tax credits or deductions, grants, subsidised loans and loan guarantees"
-                                    ],
-                                    "title": "Include:"
-                                },
-                                {
-                                    "list": [
-                                        "Research and Development and other innovations activities conducted entirely for the <em>public sector</em> under contract."
-                                    ],
-                                    "title": "Exclude:"
-                                },
-                                {
-                                    "description": "The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy"
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include:",
+                                        "list": [
+                                            "financial support via tax credits or deductions, grants, subsidised loans and loan guarantees"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude:",
+                                        "list": [
+                                            "Research and Development and other innovations activities conducted entirely for the <em>public sector</em> under contract."
+                                        ]
+                                    },
+                                    {
+                                        "description": "The public sector includes government owned organisations such as local, regional and national administrations and agencies, schools, hospitals and government providers of services such as security, transport, housing and energy"
+                                    }
+                                ]
+                            },
                             "id": "public-financial-support-question",
                             "number": "10.1",
                             "title": "Did {{respondent.ru_name}} receive public financial support for innovation activities from the following levels of government?",
@@ -4737,13 +4780,14 @@
                                 }
                             ],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "BA, BSc, MA, PhD, PGCE"
-                                ],
-                                "title": "For example:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "For example:",
+                                    "list": [
+                                        "BA, BSc, MA, PhD, PGCE"
+                                    ]
+                                }]
+                            },
                             "id": "employees-qualifications-2016-question",
                             "number": "12.3",
                             "title": "Please <em>estimate</em> the proportion of employees that hold a degree or higher qualification in the following areas for the <em>calendar year 2016 only</em>:",
@@ -4883,13 +4927,14 @@
                                 }
                             ],
                             "description": "",
-                            "guidance": [{
-                                "description": "",
-                                "list": [
-                                    "Any time spent extracting information from your accounting systems and collating data over and above normal accounting operations"
-                                ],
-                                "title": "Include:"
-                            }],
+                            "guidance": {
+                                "content": [{
+                                    "title": "Include:",
+                                    "list": [
+                                        "Any time spent extracting information from your accounting systems and collating data over and above normal accounting operations"
+                                    ]
+                                }]
+                            },
                             "id": "how-long-question",
                             "number": "13.2",
                             "title": "How long has it taken you to complete this questionnaire?",
@@ -4948,13 +4993,14 @@
                         "id": "ready-to-submit-completed-question",
                         "title": "Submission",
                         "type": "General",
-                        "guidance": [{
-                            "title": "",
-                            "list": [
-                                "You will not be able to access or change your answers on submitting the questionnaire",
-                                "If you wish to review your answers please select the relevant completed sections"
-                            ]
-                        }]
+                        "guidance": {
+                            "content": [{
+                                "list": [
+                                    "You will not be able to access or change your answers on submitting the questionnaire",
+                                    "If you wish to review your answers please select the relevant completed sections"
+                                ]
+                            }]
+                        }
                     }],
                     "title": "You are now ready to submit this survey"
                 }],

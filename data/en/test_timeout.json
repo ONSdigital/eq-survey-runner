@@ -20,7 +20,6 @@
                     "id": "timeout-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "timeout-answer",
                             "label": "Does the timeout appear?",
                             "mandatory": false,

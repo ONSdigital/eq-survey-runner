@@ -27,7 +27,6 @@
                         "id": "reporting-period-section",
                         "questions": [{
                             "answers": [{
-                                    "guidance": "",
                                     "id": "period-from",
                                     "label": "Period from",
                                     "mandatory": true,
@@ -42,7 +41,6 @@
                                     }
                                 },
                                 {
-                                    "guidance": "",
                                     "id": "period-to",
                                     "label": "Period to",
                                     "mandatory": true,
@@ -68,15 +66,35 @@
                         "description": "<p>- You should enter figures for the reporting period stated above<br>- You should round your figures to the nearest (\u00a3) pound</p>",
                         "id": "total-sales-section",
                         "questions": [{
-                                "guidance": [{
-                                    "title": "Include",
-                                    "list": [
-                                        "VAT",
-                                        "Internet Sales"
-                                    ]
-                                }],
+                                "guidance": {
+                                    "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "VAT",
+                                            "Internet Sales"
+                                        ]
+                                    }]
+                                },
                                 "answers": [{
-                                    "guidance": "<div> <h4>Include</h4> <ul> <li>all fresh food</li> <li>other food for human consumption (except chocolate and sugar confectionery)</li> <li>soft drinks</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>sales from catering facilities used by customers</li> </ul> </div>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                                "title": "Include",
+                                                "list": [
+                                                    "all fresh food",
+                                                    "other food for human consumption (except chocolate and sugar confectionery)",
+                                                    "soft drinks"
+                                                ]
+                                            },
+                                            {
+                                                "title": "Exclude",
+                                                "list": [
+                                                    "sales from catering facilities used by customers"
+                                                ]
+                                            }
+                                        ]
+                                    },
                                     "id": "total-sales-food",
                                     "label": "What was the value of the business's total sales of food?",
                                     "mandatory": false,
@@ -98,7 +116,18 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "<div> <h4>Include</h4> <ul> <li>alcoholic drink</li> <li>chocolate and sugar confectionery</li> <li>tobacco and smokers\u2019 requisites</li></ul> </div>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                            "title": "Include",
+                                            "list": [
+                                                "alcoholic drink",
+                                                "chocolate and sugar confectionery",
+                                                "tobacco and smokers\u2019 requisites"
+                                            ]
+                                        }]
+                                    },
                                     "id": "total-sales-alcohol",
                                     "label": "What was the value of the business's total sales of alcohol, confectionery and tobacco?",
                                     "mandatory": false,
@@ -120,7 +149,21 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "<div> <h4>Include</h4><ul> <li>clothing and footwear</li> <li>clothing fabrics</li> <li>haberdashery and furs</li> <li>leather and travel goods</li> <li>handbags</li> <li>umbrellas</li></ul></div>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                            "title": "Include",
+                                            "list": [
+                                                "clothing and footwear",
+                                                "clothing fabrics",
+                                                "haberdashery and furs",
+                                                "leather and travel goods",
+                                                "handbags",
+                                                "umbrellas"
+                                            ]
+                                        }]
+                                    },
                                     "id": "total-sales-clothing",
                                     "label": "What was the value of the business's total sales of clothing and footwear?",
                                     "mandatory": false,
@@ -142,7 +185,21 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "<div> <h4>Include</h4><ul> <li>carpets, rugs and other floor coverings</li> <li>furniture</li> <li>household textiles and soft furnishings</li> <li>prints and picture frames</li> <li>antiques and works of art</li> <li>domestic electrical and gas appliances, audio/visual equipment and home computers</li> <li>lighting and minor electrical supplies</li> <li>records, compact discs, audio and video tapes</li> <li>musical instruments and goods</li> <li>decorators\u2019 and DIY supplies</li> <li>lawn-mowers</li> <li>hardware</li> <li>china, glassware and cutlery</li> <li>novelties, souvenirs and gifts</li> <li>e-cigarettes</li> </ul></div>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                            "title": "Include",
+                                            "list": [
+                                                "clothing and footwear",
+                                                "clothing fabrics",
+                                                "haberdashery and furs",
+                                                "leather and travel goods",
+                                                "handbags",
+                                                "umbrellas"
+                                            ]
+                                        }]
+                                    },
                                     "id": "total-sales-household-goods",
                                     "label": "What was the value of the business's total sales of household goods?",
                                     "mandatory": false,
@@ -164,7 +221,40 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "<div> <h4>Include</h4> <ul>  <li>toiletries and medications (except NHS receipts)</li> <li>newspapers and periodicals</li> <li>books, stationery and office supplies</li> <li>photographic and optical goods</li> <li>spectacles, contact lenses and sunglasses</li> <li>toys and games</li> <li>cycles and cycle accessories</li> <li>sport and camping equipment</li> <li>jewellery</li> <li>silverware and plate, clocks and watches</li> <li>household cleaning products and kitchen paper products</li> <li>pets, pets\u2019 requisites and pet foods</li> <li>cut flowers, plants, seeds and other garden sundries</li> <li>other new and second hand goods</li> <li>Mobile phones</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                                "title": "Include",
+                                                "list": [
+                                                    "toiletries and medications (except NHS receipts)",
+                                                    "newspapers and periodicals",
+                                                    "books, stationery and office supplies",
+                                                    "photographic and optical goods",
+                                                    "spectacles, contact lenses and sunglasses",
+                                                    "toys and games",
+                                                    "cycles and cycle accessories",
+                                                    "sport and camping equipment",
+                                                    "jewellery",
+                                                    "silverware and plate, clocks and watches",
+                                                    "household cleaning products and kitchen paper products",
+                                                    "pets, pets\u2019 requisites and pet foods",
+                                                    "cut flowers, plants, seeds and other garden sundries",
+                                                    "other new and second hand goods",
+                                                    "Mobile phones"
+                                                ]
+                                            },
+                                            {
+                                                "title": "Exclude",
+                                                "list": [
+                                                    "revenue from mobile phone network commission and top up ",
+                                                    "lottery sales and commission from lottery sales",
+                                                    "sales of car accessories and motor vehicles",
+                                                    "NHS receipts"
+                                                ]
+                                            }
+                                        ]
+                                    },
                                     "id": "total-sales-other-goods",
                                     "label": "What was the value of the business\u2019s total sales of other goods?",
                                     "mandatory": false,
@@ -186,7 +276,29 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "<div> <h4>Include</h4> <ul> <li>VAT</li> <li>internet sales</li> <li>retail sale from outlets in Great Britain to customers abroad</li> </ul> </div> <div> <h4>Exclude</h4> <ul> <li>revenue from mobile phone network commission and top up </li> <li>sales from catering facilities used by customers</li>  <li>lottery sales and commission from lottery sales</li> <li>sales of car accessories and motor vehicles</li> <li>NHS receipts</li> </ul> </div>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                                "title": "Include",
+                                                "list": [
+                                                    "VAT",
+                                                    "internet sales",
+                                                    "retail sale from outlets in Great Britain to customers abroad"
+                                                ]
+                                            },
+                                            {
+                                                "title": "Exclude",
+                                                "list": [
+                                                    "revenue from mobile phone network commission and top up",
+                                                    "sales from catering facilities used by customers",
+                                                    "lottery sales and commission from lottery sales",
+                                                    "sales of car accessories and motor vehicles",
+                                                    "NHS receipts"
+                                                ]
+                                            }
+                                        ]
+                                    },
                                     "id": "total-retail-turnover",
                                     "label": "What was the value of the business\u2019s total retail turnover?",
                                     "mandatory": true,
@@ -209,7 +321,17 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "<div> <h4>Include</h4><ul> <li>VAT</li> <li>sales from orders received over the internet, irrespective of the payment or delivery method</li> </ul></div>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                            "title": "Include",
+                                            "list": [
+                                                "VAT",
+                                                "sales from orders received over the internet, irrespective of the payment or delivery method"
+                                            ]
+                                        }]
+                                    },
                                     "id": "internet-sales",
                                     "label": "Of your total retail turnover, how much were from internet sales?",
                                     "mandatory": false,
@@ -231,7 +353,26 @@
                             },
                             {
                                 "answers": [{
-                                    "guidance": "<div><h4>Include</h4><ul> <li>VAT</li> <li>sales of fuel owned by you</li> <li>sales of other items not paid a commission for</li>  </ul></div><div> <h4>Exclude</h4> <ul> <li>sales of fuel not owned by you</li> <li>any commissions</li> </ul></div>",
+                                    "guidance": {
+                                        "show_guidance": "Show further guidance",
+                                        "hide_guidance": "Hide further guidance",
+                                        "content": [{
+                                                "title": "Include",
+                                                "list": [
+                                                    "VAT",
+                                                    "sales of fuel owned by you",
+                                                    "sales of other items not paid a commission for"
+                                                ]
+                                            },
+                                            {
+                                                "title": "Exclude",
+                                                "list": [
+                                                    "sales of fuel not owned by you",
+                                                    "any commissions"
+                                                ]
+                                            }
+                                        ]
+                                    },
                                     "id": "total-sales-automotive-fuel",
                                     "label": "What was the value of the business\u2019s total sales of automotive fuel?",
                                     "mandatory": false,
@@ -259,7 +400,6 @@
                         "id": "reason-for-change-section",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "reason-for-change",
                                 "label": "Comments",
                                 "mandatory": false,
@@ -287,26 +427,27 @@
                     "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
                     "id": "number-employees-section",
                     "questions": [{
-                            "guidance": [{
-                                    "title": "Include",
-                                    "list": [
-                                        "all workers paid directly from this business\u2019s payroll(s)",
-                                        "those temporarily absent but still being paid, for example on maternity leave"
-                                    ]
-                                },
-                                {
-                                    "title": "Exclude",
-                                    "list": [
-                                        "agency workers paid directly from the agency payroll",
-                                        "voluntary workers",
-                                        "former employees only receiving pension",
-                                        "self-employed workers",
-                                        "<b>working</b> owners who are not paid via PAYE"
-                                    ]
-                                }
-                            ],
+                            "guidance": {
+                                "content": [{
+                                        "title": "Include",
+                                        "list": [
+                                            "all workers paid directly from this business\u2019s payroll(s)",
+                                            "those temporarily absent but still being paid, for example on maternity leave"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude",
+                                        "list": [
+                                            "agency workers paid directly from the agency payroll",
+                                            "voluntary workers",
+                                            "former employees only receiving pension",
+                                            "self-employed workers",
+                                            "<b>working</b> owners who are not paid via PAYE"
+                                        ]
+                                    }
+                                ]
+                            },
                             "answers": [{
-                                "guidance": "",
                                 "id": "number-male-employees-over-30-hours",
                                 "label": "What was the number of male employees working more than 30 hours per week?",
                                 "mandatory": false,
@@ -328,7 +469,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "number-male-employees-under-30-hours",
                                 "label": "What was the number of male employees working 30 hours or less per week?",
                                 "mandatory": false,
@@ -350,7 +490,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "number-female-employees-over-30-hours",
                                 "label": "What was the number of female employees working more than 30 hours per week?",
                                 "mandatory": false,
@@ -372,7 +511,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "number-female-employees-under-30-hours",
                                 "label": "What was the number of female employees working 30 hours or less per week?",
                                 "mandatory": false,
@@ -394,7 +532,6 @@
                         },
                         {
                             "answers": [{
-                                "guidance": "",
                                 "id": "total-number-employees",
                                 "label": "What was the total number of employees?",
                                 "mandatory": true,

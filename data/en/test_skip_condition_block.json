@@ -24,7 +24,6 @@
                             "title": "Do you want to skip?",
                             "type": "General",
                             "answers": [{
-                                "guidance": "",
                                 "id": "do-you-want-to-skip-answer",
                                 "label": "Do you want to skip?",
                                 "mandatory": true,
@@ -60,7 +59,6 @@
                             "title": "Do you want to skip?",
                             "type": "General",
                             "answers": [{
-                                "guidance": "",
                                 "id": "should-skip-answer",
                                 "label": "Why didn't you skip the block?",
                                 "mandatory": true,

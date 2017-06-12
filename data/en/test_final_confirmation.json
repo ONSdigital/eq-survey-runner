@@ -29,7 +29,6 @@
                         "title": "What is your favourite breakfast food",
                         "questions": [{
                             "answers": [{
-                                "guidance": "",
                                 "id": "breakfast-answer",
                                 "label": "What is your favourite breakfast food",
                                 "mandatory": false,

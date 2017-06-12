@@ -79,7 +79,6 @@
                         "answers": [{
                             "id": "who-is-related",
                             "label": "%(current_person)s is the &hellip; of %(other_person)s",
-                            "guidance": "",
                             "mandatory": false,
                             "q_code": "2",
                             "type": "Relationship",

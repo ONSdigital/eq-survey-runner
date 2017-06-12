@@ -27,7 +27,6 @@
                     "id": "breakfast-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "favourite-breakfast",
                             "label": "What is your favourite breakfast food",
                             "mandatory": false,
@@ -70,7 +69,6 @@
                     "id": "lunch-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "favourite-lunch",
                             "label": "What is your favourite lunchtime food",
                             "mandatory": false,

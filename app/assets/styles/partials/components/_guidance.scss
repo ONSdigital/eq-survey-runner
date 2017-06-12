@@ -74,25 +74,5 @@
   border-left: 2px solid $color-borders;
   padding-left: 1rem;
   margin-left: 1px;
-  div {
-    @include mq(s) {
-      display: table-cell;
-      &:first-of-type {
-        padding-left: 0.25rem;
-        padding-right: 0.5rem;
-      }
-      &:last-of-type {
-        padding-left: 1rem;
-      }
-    }
-    ul {
-      padding-left: 1rem;
-      @include mq(s) {
-        margin-bottom: 0;
-      }
-      @include lt-ie8 {
-        margin-bottom: 1rem;
-      }
-    }
-  }
+
 }

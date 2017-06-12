@@ -27,7 +27,6 @@
                     "id": "reporting-period-section",
                     "questions": [{
                         "answers": [{
-                                "guidance": "",
                                 "id": "period-from",
                                 "label": "Period from",
                                 "mandatory": true,
@@ -42,7 +41,6 @@
                                 }
                             },
                             {
-                                "guidance": "",
                                 "id": "period-to",
                                 "label": "Period to",
                                 "mandatory": true,
@@ -74,7 +72,6 @@
                     "id": "total-retail-turnover-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "total-retail-turnover-answer",
                             "label": "Total retail turnover",
                             "mandatory": true,
@@ -91,24 +88,26 @@
                             }
                         }],
                         "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
-                        "guidance": [{
-                                "title": "Include",
-                                "list": [
-                                    "VAT",
-                                    "internet sales"
-                                ]
-                            },
-                            {
-                                "title": "Exclude",
-                                "list": [
-                                    "revenue from mobile phone network commission and top up",
-                                    "sales from catering facilities used by customers",
-                                    "lottery sales and commission from lottery sales",
-                                    "sales of car accessories and motor vehicles",
-                                    "NHS receipts"
-                                ]
-                            }
-                        ],
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "VAT",
+                                        "internet sales"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "revenue from mobile phone network commission and top up",
+                                        "sales from catering facilities used by customers",
+                                        "lottery sales and commission from lottery sales",
+                                        "sales of car accessories and motor vehicles",
+                                        "NHS receipts"
+                                    ]
+                                }
+                            ]
+                        },
                         "id": "total-retail-turnover-question",
                         "title": "For the reporting period, what was the value of the business’s total retail turnover?",
                         "type": "General"
@@ -125,7 +124,6 @@
                     "id": "internet-sales-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "internet-sales-answer",
                             "label": "Internet sales",
                             "mandatory": true,
@@ -142,12 +140,14 @@
                             }
                         }],
                         "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
-                        "guidance": [{
-                            "title": "Include",
-                            "list": [
-                                "VAT"
-                            ]
-                        }],
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "VAT"
+                                ]
+                            }]
+                        },
                         "id": "internet-sales-question",
                         "title": "Of the business's total retail turnover, what was the value of internet sales?",
                         "type": "General"
@@ -164,7 +164,32 @@
                     "id": "changes-in-retail-turnover-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "<div><p>Examples of commentary:</p><p><strong>'In-store promotion'</strong></p> <p>Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.</p><strong> 'Special events (for example, sporting events)'</strong></p><p>This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.</p><p><strong>‘Weather'</strong></p><p>The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.</div>",
+                            "guidance": {
+                                "show_guidance": "Show further guidance",
+                                "hide_guidance": "Hide further guidance",
+                                "content": [{
+                                        "description": "Examples of commentary:"
+                                    },
+                                    {
+                                        "title": "'In-store promotion'"
+                                    },
+                                    {
+                                        "description": "Offer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales."
+                                    },
+                                    {
+                                        "title": "'Special events (for example, sporting events)'"
+                                    },
+                                    {
+                                        "description": "This was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online."
+                                    },
+                                    {
+                                        "title": "'Weather'"
+                                    },
+                                    {
+                                        "description": "The bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month."
+                                    }
+                                ]
+                            },
                             "id": "changes-in-retail-turnover-answer",
                             "label": "Comments",
                             "mandatory": false,
@@ -176,13 +201,18 @@
                             }
                         }],
                         "description": "<p>We rely on your commentary to 'tell the story' behind changes to the business's figures.</p><p>By commenting here it will reduce the need for us to call you.</p>",
-                        "guidance": [{
-                            "description": "<p>Comment on significant changes to the business's total retail turnover figures from:</p>",
-                            "list": [
-                                "the previous reporting period",
-                                "the same reporting period last year"
+                        "guidance": {
+                            "content": [{
+                                    "description": "<p>Comment on significant changes to the business's total retail turnover figures from:</p>"
+                                },
+                                {
+                                    "list": [
+                                        "the previous reporting period",
+                                        "the same reporting period last year"
+                                    ]
+                                }
                             ]
-                        }],
+                        },
                         "id": "changes-in-retail-turnover-question",
                         "title": "Indicate the reasons for any changes in the business's total retail turnover",
                         "type": "General"
@@ -198,7 +228,6 @@
                     "id": "number-of-employees-section",
                     "questions": [{
                         "answers": [{
-                                "guidance": "",
                                 "id": "male-employees-over-30-hours",
                                 "label": "Male employees working more than 30 hours per week",
                                 "mandatory": false,
@@ -214,7 +243,6 @@
                                 }
                             },
                             {
-                                "guidance": "",
                                 "id": "male-employees-under-30-hours",
                                 "label": "Male employees working 30 hours or less per week",
                                 "mandatory": false,
@@ -230,7 +258,6 @@
                                 }
                             },
                             {
-                                "guidance": "",
                                 "id": "female-employees-over-30-hours",
                                 "label": "Female employees working more than 30 hours per week",
                                 "mandatory": false,
@@ -246,7 +273,6 @@
                                 }
                             },
                             {
-                                "guidance": "",
                                 "id": "female-employees-under-30-hours",
                                 "label": "Female employees working 30 hours or less per week",
                                 "mandatory": false,
@@ -262,7 +288,6 @@
                                 }
                             },
                             {
-                                "guidance": "",
                                 "id": "total-number-employees",
                                 "label": "Total number of employees",
                                 "mandatory": true,
@@ -282,24 +307,26 @@
                         "id": "number-of-employees-question",
                         "title": "On {{exercise.employment_date|format_date}} what was the number of employees?",
                         "description": "<p>An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.</p>",
-                        "guidance": [{
-                                "title": "Include",
-                                "list": [
-                                    "all workers paid directly from this business's payroll(s)",
-                                    "those temporarily absent but still being paid, for example on maternity leave"
-                                ]
-                            },
-                            {
-                                "title": "Exclude",
-                                "list": [
-                                    "agency workers paid directly from the agency payroll",
-                                    "voluntary workers",
-                                    "former employees only receiving pension",
-                                    "self-employed workers",
-                                    "working owners who are not paid via PAYE"
-                                ]
-                            }
-                        ],
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "all workers paid directly from this business's payroll(s)",
+                                        "those temporarily absent but still being paid, for example on maternity leave"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "agency workers paid directly from the agency payroll",
+                                        "voluntary workers",
+                                        "former employees only receiving pension",
+                                        "self-employed workers",
+                                        "working owners who are not paid via PAYE"
+                                    ]
+                                }
+                            ]
+                        },
                         "type": "General"
                     }],
                     "title": "Employees"
@@ -325,13 +352,18 @@
                             }
                         }],
                         "description": "",
-                        "guidance": [{
-                            "description": "<p>Comment on significant changes in the number of employees from:</p>",
-                            "list": [
-                                "the previous reporting period",
-                                "the same reporting period last year"
+                        "guidance": {
+                            "content": [{
+                                    "description": "<p>Comment on significant changes in the number of employees from:</p>"
+                                },
+                                {
+                                    "list": [
+                                        "the previous reporting period",
+                                        "the same reporting period last year"
+                                    ]
+                                }
                             ]
-                        }],
+                        },
                         "id": "changes-in-employees-question",
                         "title": "Explain any significant changes in the number of employees",
                         "type": "General"

@@ -15,7 +15,6 @@
                     "id": "personal-details-section",
                     "questions": [{
                         "answers": [{
-                                "guidance": "",
                                 "id": "first-name-answer",
                                 "label": "What is your first name",
                                 "mandatory": false,
@@ -24,7 +23,6 @@
                                 "type": "TextField"
                             },
                             {
-                                "guidance": "",
                                 "id": "surname-answer",
                                 "label": "What is your surname",
                                 "mandatory": false,

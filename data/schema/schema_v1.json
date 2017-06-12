@@ -12,6 +12,34 @@
             "description": "A question code used by downstream systems to identify answers",
             "pattern": "^[0-9a-z]+$"
         },
+        "guidance_content": {
+            "description": "Allows customisation of guidance text",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "anyOf": [
+                    {"required": ["title"]},
+                    {"required": ["description"]},
+                    {"required": ["list"]}
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "list": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
         "skip_condition": {
             "description": "Allows an element to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
             "type": "array",
@@ -323,23 +351,12 @@
                                                             "type": "string"
                                                         },
                                                         "guidance": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "title": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "description": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "list": {
-                                                                        "type": "array",
-                                                                        "items": {
-                                                                            "type": "string"
-                                                                        }
-                                                                    }
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "content": {
+                                                                    "$ref": "#/definitions/guidance_content"
                                                                 }
+
                                                             }
                                                         },
                                                         "skip_condition": {
@@ -381,7 +398,20 @@
                                                                         "type": "string"
                                                                     },
                                                                     "guidance": {
-                                                                        "type": "string"
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "show_guidance":
+                                                                            {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "hide_guidance": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "content": {
+                                                                                "$ref": "#/definitions/guidance_content"
+                                                                            }
+
+                                                                        }
                                                                     },
                                                                     "description": {
                                                                         "type": "string"

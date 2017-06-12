@@ -3,10 +3,10 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "0",
-    "title": "Welsh Langauage Survey",
+    "title": "Welsh Language Survey",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to demonstrate welsh langauge",
+    "description": "A questionnaire to demonstrate welsh language",
     "groups": [{
         "id": "welsh-group",
         "title": "",

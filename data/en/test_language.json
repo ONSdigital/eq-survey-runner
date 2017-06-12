@@ -3,10 +3,10 @@
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
     "survey_id": "0",
-    "title": "English Langauage Survey",
+    "title": "English Language Survey",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "description": "A questionnaire to demonstrate english langauge",
+    "description": "A questionnaire to demonstrate english language",
     "groups": [{
         "id": "english-group",
         "title": "",

@@ -17,7 +17,6 @@
                     "id": "food-section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "food-answer",
                             "label": "What is your favourite breakfast food",
                             "mandatory": true,
@@ -52,7 +51,6 @@
                     "questions": [{
                         "answers": [{
                             "alias": "",
-                            "guidance": "",
                             "id": "drink-answer",
                             "label": "What is your favourite breakfast beverage",
                             "mandatory": true,

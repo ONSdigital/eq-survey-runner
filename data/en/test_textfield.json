@@ -21,7 +21,6 @@
                     "id": "section",
                     "questions": [{
                         "answers": [{
-                            "guidance": "",
                             "id": "answer",
                             "label": "What is your name?",
                             "mandatory": false,
