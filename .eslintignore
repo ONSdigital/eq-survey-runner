@@ -2,4 +2,5 @@ coverage/**
 node_modules/**
 dist/**
 *.spec.js
+**/*.page.js
 src/index.html
