@@ -18,21 +18,20 @@ import EmployeesBreakdown from '../pages/surveys/mci/employees-breakdown.page.js
 import Summary from '../pages/surveys/mci/summary.page.js'
 import thankYou from '../pages/thank-you.page'
 
+describe('MCI 0213 Test', function() {
 
-describe('MCI 0215 Test', function() {
-
-  it('Given the mci business survey 0215 is selected when I start the survey then the landing page is displayed', function() {
+  it('Given the mci business survey 0213 is selected when I start the survey then the landing page is displayed', function() {
     // Given
     // When
-    openQuestionnaire('1_0215.json', getRandomString(10), getRandomString(5))
+    openQuestionnaire('1_0213refresh.json', getRandomString(10), getRandomString(5))
 
     // Then
     expect(landingPage.isOpen(), 'Landing page should be open').to.be.true
   })
 
-  it('Given the mci business survey 0215 has been started when I complete the survey then I reach the thank you page', function() {
+  it('Given the mci business survey 0213 has been started when I complete the survey then I reach the thank you page', function() {
     // Given
-    startQuestionnaire('1_0215.json', getRandomString(10), getRandomString(5))
+    startQuestionnaire('1_0213refresh.json', getRandomString(10), getRandomString(5))
 
     // When
     ReportingPeriod.setPeriodFromDay('01')
@@ -64,9 +63,6 @@ describe('MCI 0215 Test', function() {
     TotalInternetSales.setInternetSales('200000')
         .submit()
 
-    AutomotiveFuel.setTotalSalesAutomotiveFuel('1000000')
-        .submit()
-
     SignificantChange.clickSignificantChangeEstablishedAnswerYes()
         .submit()
 
@@ -91,9 +87,9 @@ describe('MCI 0215 Test', function() {
     expect(thankYou.isOpen(), 'Thank you page should be open').to.be.true
   })
 
-  it('Given the mci business survey 0215 has been started and sales questions completed when I select No for significant changes I skip to total employees question', function() {
+  it('Given the mci business survey 0213 has been started and sales questions completed when I select No for significant changes I skip to total employees question', function() {
     // Given
-    startQuestionnaire('1_0215.json', getRandomString(10), getRandomString(5))
+    startQuestionnaire('1_0213refresh.json', getRandomString(10), getRandomString(5))
 
     ReportingPeriod.setPeriodFromDay('01')
         .setPeriodFromMonth(5)
@@ -111,7 +107,6 @@ describe('MCI 0215 Test', function() {
     HouseholdGoodsSales.submit()
     OtherGoodsSales.submit()
     TotalInternetSales.submit()
-    AutomotiveFuel.submit()
 
     // When
     SignificantChange.clickSignificantChangeEstablishedAnswerNo()

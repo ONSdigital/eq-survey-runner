@@ -1,0 +1,672 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Monthly Business Survey - Retail Sales Index",
+    "description": "MCI Description",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "groups": [{
+        "blocks": [{
+                "type": "Introduction",
+                "id": "introduction",
+                "title": "",
+                "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
+                "information_to_provide": [
+                    "value of total retail turnover",
+                    "value of internet sales",
+                    "reasons for changes to figures"
+                ]
+            },
+            {
+                "type": "Questionnaire",
+                "id": "reporting-period",
+                "sections": [{
+                    "description": "",
+                    "id": "reporting-period-section",
+                    "questions": [{
+                        "answers": [{
+                                "id": "period-from",
+                                "alias": "period_from",
+                                "label": "Period from",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "11",
+                                "type": "Date",
+                                "validation": {
+                                    "messages": {
+                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                        "MANDATORY": "Please provide an answer to continue."
+                                    }
+                                }
+                            },
+                            {
+                                "id": "period-to",
+                                "alias": "period_to",
+                                "label": "Period to",
+                                "mandatory": true,
+                                "options": [],
+                                "q_code": "12",
+                                "type": "Date",
+                                "validation": {
+                                    "messages": {
+                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                        "MANDATORY": "Please provide an answer to continue."
+                                    }
+                                }
+                            }
+                        ],
+                        "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
+                        "id": "reporting-period-question",
+                        "title": "What are the dates of the sales period you are reporting for?",
+                        "type": "DateRange"
+                    }],
+                    "title": "Reporting Period"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "total-retail-turnover-block",
+                "sections": [{
+                    "description": "",
+                    "id": "total-turnover-section",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "VAT",
+                                        "internet sales",
+                                        "retail sales from outlets in Great Britain to customers abroad"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "revenue from mobile phone network commission and top-up",
+                                        "sales from catering facilities used by customers",
+                                        "lottery sales and commission from lottery sales",
+                                        "sales of car accessories and motor vehicles",
+                                        "NHS receipts"
+                                    ]
+                                }
+                            ]
+                        },
+                        "answers": [{
+                            "id": "total-retail-turnover",
+                            "alias": "total_turnover",
+                            "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
+                            "label": "Total retail turnover",
+                            "mandatory": true,
+                            "options": [],
+                            "q_code": "20",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "MANDATORY": "Please provide a value, even if your value is 0.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "description": "",
+                        "id": "total-turnover-question",
+                        "title": "For the period {{answers.period_from|format_str_as_date}} to {{answers.period_to|format_str_as_date}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
+                        "type": "General"
+                    }],
+                    "title": "Retail Turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "food-sales",
+                "sections": [{
+                    "description": "",
+                    "id": "total-food-sales-section",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "all fresh food",
+                                        "other food for human consumption (except chocolate and sugar confectionery)",
+                                        "soft drinks"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "sales from catering facilities used by customers"
+                                    ]
+                                }
+                            ]
+                        },
+                        "answers": [{
+                            "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
+                            "id": "total-sales-food",
+                            "label": "Food",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "22",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "description": "",
+                        "id": "total-sales-food-question",
+                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>food</em> sales?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "alcohol-sales",
+                "sections": [{
+                    "description": "",
+                    "id": "total-alcohol-sales-section",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "alcoholic drink",
+                                    "chocolate and sugar confectionery",
+                                    "tobacco and smokers\u2019 requisites"
+                                ]
+                            }]
+                        },
+                        "answers": [{
+                            "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
+                            "id": "total-sales-alcohol",
+                            "label": "Alcohol, confectionery and tobacco",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "23",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "description": "",
+                        "id": "total-sales-alcohol-question",
+                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>alcohol, confectionery and tobacco</em> sales?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "clothing-sales",
+                "sections": [{
+                    "description": "",
+                    "id": "total-clothing-sales-section",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "clothing and footwear",
+                                    "clothing fabrics",
+                                    "haberdashery and furs",
+                                    "leather and travel goods",
+                                    "handbags and umbrellas"
+                                ]
+                            }]
+                        },
+                        "answers": [{
+                            "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
+                            "id": "total-sales-clothing",
+                            "label": "Clothing and footwear",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "24",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "description": "",
+                        "id": "total-sales-clothing-question",
+                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>clothing and footwear</em> sales?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "household-goods-sales",
+                "sections": [{
+                    "description": "",
+                    "id": "total-household-goods-sales-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": {
+                                "show_guidance": "Show household goods items to include",
+                                "hide_guidance": "Hide household goods items to include",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "carpets, rugs and other floor coverings",
+                                            "furniture",
+                                            "household textiles and soft furnishings",
+                                            "prints and picture frames",
+                                            "antiques and works of art",
+                                            "domestic electrical and gas appliances, audio/visual equipment and home computers",
+                                            "lighting and minor electrical supplies",
+                                            "records, compact discs, audio and video tapes",
+                                            "musical instruments and goods",
+                                            "decorators\u2019 and DIY supplies",
+                                            "lawn-mowers",
+                                            "hardware",
+                                            "china, glassware and cutlery",
+                                            "novelties, souvenirs and gifts",
+                                            "e-cigarettes"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
+                            "id": "total-sales-household-goods",
+                            "label": "Household goods",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "25",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "description": "",
+                        "id": "total-sales-household-goods-question",
+                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of sales for <em>household goods</em>?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "other-goods-sales",
+                "sections": [{
+                    "description": "",
+                    "id": "total-other-goods-sales-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": {
+                                "show_guidance": "Show sales items to include/exclude",
+                                "hide_guidance": "Hide sales items to include/exclude",
+                                "content": [{
+                                        "title": "Include"
+                                    },
+                                    {
+                                        "list": [
+                                            "toiletries and medications (except NHS receipts)",
+                                            "newspapers and periodicals",
+                                            "books, stationery and office supplies",
+                                            "photographic and optical goods",
+                                            "spectacles, contact lenses and sunglasses",
+                                            "toys and games",
+                                            "cycles and cycle accessories",
+                                            "sport and camping equipment",
+                                            "jewellery",
+                                            "silverware and plate, clocks and watches",
+                                            "household cleaning products and kitchen paper products",
+                                            "pets, pets\u2019 requisites and pet foods",
+                                            "cut flowers, plants, seeds and other garden sundries",
+                                            "other new and second hand goods",
+                                            "Mobile phones"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Exclude"
+                                    },
+                                    {
+                                        "list": [
+                                            "revenue from mobile phone network commission and top up ",
+                                            "lottery sales and commission from lottery sales",
+                                            "sales of car accessories and motor vehicles",
+                                            "NHS receipts"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
+                            "id": "total-sales-other-goods",
+                            "label": "Other goods",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "26",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "description": "",
+                        "id": "total-sales-other-goods-question",
+                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>other</em> sales?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "total-internet-sales",
+                "sections": [{
+                    "description": "",
+                    "id": "total-internet-sales-section",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "VAT",
+                                    "sales from orders received over the internet, irrespective of the payment or delivery method"
+                                ]
+                            }]
+                        },
+                        "answers": [{
+                            "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
+                            "id": "internet-sales",
+                            "label": "Internet sales",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "21",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "description": "",
+                        "id": "internet-sales-question",
+                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>internet</em> sales?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "automotive-fuel",
+                "sections": [{
+                    "description": "",
+                    "id": "total-automotive-fuel-sales-section",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                    "title": "Include",
+                                    "list": [
+                                        "VAT",
+                                        "sales of fuel owned by you",
+                                        "sales of other items not paid a commission for"
+                                    ]
+                                },
+                                {
+                                    "title": "Exclude",
+                                    "list": [
+                                        "sales of fuel not owned by you",
+                                        "any commissions"
+                                    ]
+                                }
+                            ]
+                        },
+                        "answers": [{
+                            "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
+                            "id": "total-sales-automotive-fuel",
+                            "label": "Automotive fuel",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "27",
+                            "type": "Currency",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "description": "",
+                        "id": "total-sales-automotive-fuel-question",
+                        "title": "Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover, what was the value of <em>automotive fuel</em> sales?",
+                        "type": "General"
+                    }],
+                    "title": "Retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "id": "significant-change",
+                "routing_rules": [{
+                        "goto": {
+                            "id": "reason-for-change",
+                            "when": [{
+                                "id": "significant-change-established-answer",
+                                "condition": "equals",
+                                "value": "Yes"
+                            }]
+                        }
+                    },
+                    {
+                        "goto": {
+                            "id": "summary"
+                        }
+                    }
+                ],
+                "sections": [{
+                    "description": "",
+                    "id": "significant-change-section",
+                    "questions": [{
+                        "guidance": {
+                            "content": [{
+                                "title": "Include",
+                                "list": [
+                                    "in-store / online promotions",
+                                    "special events (e.g. sporting events)",
+                                    "calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                    "weather",
+                                    "store closures/openings"
+                                ]
+                            }]
+                        },
+                        "answers": [{
+                            "description": "",
+                            "id": "significant-change-established-answer",
+                            "label": "",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ],
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY": "Please select an answer to continue."
+                                }
+                            },
+                            "q_code": "146a",
+                            "type": "Radio"
+                        }],
+                        "description": "Please note: what constitutes a \u2018significant change\u2019 is dependent on your own interpretation in relation to {{respondent.trad_as_or_ru_name}}\u2019s figures from the previous reporting period and the same reporting period last year.<br><br>This information will help us to validate your data and should reduce the need to query any figures with you.",
+                        "id": "significant-change-question",
+                        "title": "Did any significant changes occur to the total retail turnover for {{respondent.trad_as_or_ru_name}}?",
+                        "type": "General"
+                    }],
+                    "title": "Changes in total retail turnover"
+                }],
+                "type": "Questionnaire"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "reason-for-change",
+                "sections": [{
+                    "description": "",
+                    "id": "reason-for-change-section",
+                    "questions": [{
+                        "answers": [{
+                            "description": "",
+                            "id": "reason-for-change-answer",
+                            "label": "",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "In-store / online promotions",
+                                    "q_code": "146b",
+                                    "value": "In-store / online promotions"
+                                },
+                                {
+                                    "label": "Special events (e.g. sporting events)",
+                                    "q_code": "146c",
+                                    "value": "Special events (e.g. sporting events)"
+                                },
+                                {
+                                    "label": "Calendar events (e.g. Christmas, Easter, Bank Holiday)",
+                                    "q_code": "146d",
+                                    "value": "Calendar events (e.g. Christmas, Easter, Bank Holiday)"
+                                },
+                                {
+                                    "label": "Weather",
+                                    "q_code": "146e",
+                                    "value": "Weather"
+                                },
+                                {
+                                    "label": "Store closures",
+                                    "q_code": "146f",
+                                    "value": "Store closures"
+                                },
+                                {
+                                    "label": "Store openings",
+                                    "q_code": "146g",
+                                    "value": "Store openings"
+                                },
+                                {
+                                    "label": "Other",
+                                    "q_code": "146h",
+                                    "value": "Other"
+                                }
+                            ],
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY": "Please select all that apply to continue."
+                                }
+                            },
+                            "type": "Checkbox"
+                        }],
+
+                        "description": "Select all that apply",
+                        "id": "reason-for-change-question",
+                        "title": "Please indicate the reasons for any changes in the total retail turnover for {{respondent.trad_as_or_ru_name}}",
+                        "type": "General"
+                    }],
+                    "title": "Changes in total retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "change-comment-block",
+                "sections": [{
+                    "description": "",
+                    "id": "change-comment-section",
+                    "questions": [{
+                        "answers": [{
+                            "guidance": {
+                                "show_guidance": "Show examples of commentary on changes to total retail turnover",
+                                "hide_guidance": "Hide examples of commentary on changes to total retail turnover",
+                                "content": [{
+                                        "description": "Examples of commentary:"
+                                    },
+                                    {
+                                        "title": "\u2018In-store promotion\u2019"
+                                    },
+                                    {
+                                        "description": "\u201COffer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.\u201D"
+                                    },
+                                    {
+                                        "title": "\u2018Special events (for example, sporting events)\u2019"
+                                    },
+                                    {
+                                        "description": "\u201CThis was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.\u201D"
+                                    },
+                                    {
+                                        "title": "\u2018Weather\u2019"
+                                    },
+                                    {
+                                        "description": "\u201CThe bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.\u201D"
+                                    }
+                                ]
+                            },
+                            "id": "change-comment",
+                            "label": "Comments",
+                            "mandatory": true,
+                            "options": [],
+                            "q_code": "146",
+                            "type": "TextArea",
+                            "validation": {
+                                "messages": {
+                                    "MANDATORY": "Please enter a comment to continue."
+                                }
+                            }
+                        }],
+                        "description": "We rely on your commentary to \u2018tell the story\u2019 behind changes in figures. By commenting here it will reduce the need for us to call you.",
+                        "id": "change-comment-question",
+                        "title": "Please describe the changes in total retail turnover for {{respondent.trad_as_or_ru_name}} in more detail",
+                        "type": "General"
+                    }],
+                    "title": "Changes in total retail turnover"
+                }],
+                "title": "Monthly Business Survey"
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ],
+        "id": "mci",
+        "title": ""
+    }]
+}
