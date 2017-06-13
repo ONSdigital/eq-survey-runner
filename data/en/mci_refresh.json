@@ -265,8 +265,8 @@
                     "questions": [{
                         "answers": [{
                             "guidance": {
-                                "show_guidance": "Show household goods items to include/exclude",
-                                "hide_guidance": "Hide household goods items to include/exclude",
+                                "show_guidance": "Show household goods items to include",
+                                "hide_guidance": "Hide household goods items to include",
                                 "content": [{
                                         "title": "Include"
                                     },
