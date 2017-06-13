@@ -1,5 +1,6 @@
 {% import 'macros/helpers.html' as helpers %}
 
+{% set form = content.form %}
 {% set invalid = form.question_errors[question.id] | length > 0 if form else False %}
 
 {% set question_number = question.number %}
@@ -9,12 +10,13 @@
 
 {% set question_titles %}
   {%- if question_title -%}
-    <h2 class="question__title neptune">
+    <h1 class="question__title saturn">
       {%- if question_number -%}
         <span class="question__number">{{question_number}}. </span>
       {% endif %}
       {{question_title}}
-    </h2>
+    </h1>
+
   {%- endif %}
   {%- if question_subtitle -%}
     <h3 class="question__subtitle mars">{{question_subtitle}}</h3>

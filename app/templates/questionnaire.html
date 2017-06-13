@@ -1,21 +1,8 @@
-{% extends theme('layouts/_twocol.html') %}
+{% extends theme('layouts/_questionnaire.html') %}
 {% import 'macros/helpers.html' as helpers %}
 
-{% block page_title %}{{page_title}}{% endblock %}
-
-{% set block = content.block %}
-{% set form = content.form %}
-
-{% block sidebar %}
-  {% if navigation %}
-    {% include theme('partials/navigation.html') %}
-  {% endif %}
-{% endblock %}
-
-{% block main %}
-
-    {% if form and (form.errors or form.question_errors) %}
-
+{% block form_errors %}
+  {% if form and (form.errors or form.question_errors) %}
     {% set mapped_errors = form.map_errors() %}
 
     <div class="panel panel--error u-mb-s" data-qa="error">
@@ -33,34 +20,5 @@
           </ul>
         </div>
       </div>
-
-
-    {% endif %}
-
-    <form class="form qa-questionnaire-form" role="form" method="POST" autocomplete="off" novalidate>
-      {{ form.csrf_token }}
-
-      <div class="group" id="{{current_location.group_id}}">
-
-        <div class="block" id="{{current_location.block_id}}">
-
-        {% for section in block['sections'] %}
-
-          {% include 'partials/section.html' %}
-
-        {% endfor %}
-
-        </div>
-
-      </div>
-
-      {% block submit_button %}
-      <button class="btn btn--primary btn--lg" data-qa="btn-submit" type="submit" name="action[save_continue]">{{submit_btn_text or "Save and continue"}}</button>
-      {% endblock %}
-
-      <div class="u-mb-m">
-        <button class="btn btn--link mars js-btn-save" type="submit" name="action[save_sign_out]" {{helpers.track('click', 'Navigation', 'Save and complete later click')}}>{% block save_sign_out_button_text %}Save and complete later{% endblock %}</button>
-      </div>
-    </form>
-
-{% endblock main %}
+  {% endif %}
+{% endblock form_errors %}

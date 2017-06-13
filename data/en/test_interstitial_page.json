@@ -45,21 +45,10 @@
                 "title": ""
             },
             {
-                "type": "Interstitial",
                 "id": "breakfast-interstitial",
                 "title": "Breakfast Interstitial Page",
-                "sections": [{
-                    "description": "",
-                    "id": "interstitial-section",
-                    "questions": [{
-                        "description": "You have successfully completed the breakfast section. Next we want to know about your lunch.",
-                        "answers": [],
-                        "id": "interstitial-question",
-                        "title": "Breakfast Interstitial Page",
-                        "type": "General"
-                    }],
-                    "title": "Breakfast Interstitial Page"
-                }]
+                "description": "You have successfully completed the breakfast section. Next we want to know about your lunch.",
+                "type": "Interstitial"
             },
             {
                 "type": "Questionnaire",
