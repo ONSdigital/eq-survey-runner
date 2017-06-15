@@ -5,6 +5,10 @@ from app.validation.error_messages import error_messages
 from wtforms import validators
 from wtforms.compat import string_types
 
+from structlog import get_logger
+
+logger = get_logger()
+
 
 class IntegerCheck(object):
     def __init__(self, message=None):

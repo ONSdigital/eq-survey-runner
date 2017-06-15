@@ -6,7 +6,7 @@ const SummaryPage = require('../pages/surveys/checkbox/checkbox-summary.page');
 
 describe('Checkbox with "other" option', function() {
 
-  var checkbox_schema = 'test_checkbox.json';
+  const checkbox_schema = 'test_checkbox.json';
 
   it('Given an "other" option is available, when the user clicks the "other" option the other input should be visible.', function() {
     return helpers.openQuestionnaire(checkbox_schema).then(() => {

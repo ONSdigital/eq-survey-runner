@@ -29,5 +29,5 @@ trim_trailing_whitespace = true
 # Possible values - true, false
 insert_final_newline = true
 
-[*.{js,json}]
+[*.{js,json,scss}]
 indent_size = 2

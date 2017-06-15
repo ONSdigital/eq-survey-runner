@@ -16,9 +16,16 @@
       "placeholder": answer.placeholder,
       "rows": "8",
       "cols": "60",
+      "maxlength": answer.max_length|default(input.maxlength, true)
     } %}
 
     {% set answer_helper = answer.name ~ "-helper" %}
 
     <textarea {{attr|xmlattr}}>{{ form.get_data(answer['id']) }}</textarea>
+
+    {% set remainingAttr = {
+      "id": answer.id ~ "-remaining",
+      "class": "input__limit u-mt-xs mercury"
+    } %}
+    <div {{remainingAttr|xmlattr}}>Characters remaining: <span>-</span></div>
 </div>
