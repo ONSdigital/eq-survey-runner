@@ -1,0 +1,18 @@
+{% set not_answered = 'No answer provided' %}
+<ul class="u-m-no">
+    <li>{{answer.value}}
+    {%- if answer.child_answer_value is not none -%}
+        <ul>
+            <li>
+                {%- if answer.child_answer_value == ''  -%}
+                    {{not_answered}}
+                {%- else -%}
+                    {{ answer.child_answer_value }}
+                {%- endif -%}
+            </li>
+        </ul>
+        {%- endif -%}
+    </li>
+</ul>
+
+

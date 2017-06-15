@@ -109,12 +109,12 @@ class TestQuestion(TestCase):
 
         # Then
         self.assertEqual(len(question.answers[0].value), 2)
-        self.assertEqual(question.answers[0].value[0], 'Light Side')
-        self.assertEqual(question.answers[0].value[1], 'Dark Side')
+        self.assertEqual(question.answers[0].value[0].label, 'Light Side')
+        self.assertEqual(question.answers[0].value[1].label, 'Dark Side')
 
     def test_checkbox_button_other_option_empty(self):
         # Given
-        answers = {'answer_1': ['other', '']}
+        answers = {'answer_1': ['Other option label', '']}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -134,21 +134,53 @@ class TestQuestion(TestCase):
 
         # Then
         self.assertEqual(len(question.answers[0].value), 1)
-        self.assertEqual(question.answers[0].value[0], 'Other option label')
+        self.assertEqual(question.answers[0].value[0].label, 'Other option label')
+        self.assertEqual(question.answers[0].value[0].should_display_other, True)
+
+    def test_checkbox_answer_with_other_value_returns_the_value(self):
+        # Given
+        answers = {'answer_1': ['Light Side', 'Other'], 'child_answer': 'Test'}
+        options = [{
+            'label': 'Light Side',
+            'value': 'Light Side',
+        },
+            {
+            "label": "Other",
+            "value": "Other",
+            "child_answer_id": "child_answer"
+        }]
+        answer_schema = [{
+            'id': 'answer_1',
+            'label': 'Which side?',
+            'type': 'Checkbox',
+            'options': options
+        },
+            {
+            "parent_answer_id": "answer_1",
+            "id": "child_answer",
+            "type": "TextField"
+        }]
+        question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL',
+                           'answers': answer_schema}
+
+        # When
+        question = Question(question_schema, answers)
+
+        # Then
+        self.assertEqual(len(question.answers[0].value), 2)
+        self.assertEqual(question.answers[0].child_answer_value, 'Test')
 
     def test_checkbox_button_other_option_text(self):
         # Given
-        answers = {'answer_1': ['Light Side', 'other', 'Neither']}
+        answers = {'answer_1': ['Light Side', 'other'], 'child_answer': 'Neither'}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
           },
           {
-            'label': 'Other',
+            'label': 'other',
             'value': 'other',
-            "other": {
-              "label": "Please specify other"
-            }
+            'child_answer_id': 'child_answer'
           }]
         answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Checkbox', 'options': options}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
@@ -158,8 +190,8 @@ class TestQuestion(TestCase):
 
         # Then
         self.assertEqual(len(question.answers[0].value), 2)
-        self.assertEqual(question.answers[0].value[0], 'Light Side')
-        self.assertEqual(question.answers[0].value[1], 'Neither')
+        self.assertEqual(question.answers[0].value[0].label, 'Light Side')
+        self.assertEqual(question.answers[0].child_answer_value, 'Neither')
 
     def test_checkbox_button_none_selected_should_be_none(self):
         # Given
@@ -238,6 +270,34 @@ class TestQuestion(TestCase):
 
         # Then
         self.assertEqual(question.answers[0].value, None)
+
+    def test_radio_answer_with_other_value_returns_the_value(self):
+        # Given
+        answers = {'answer_1': 'Other', 'child_answer': 'Test'}
+        options = [{
+            'label': 'Other',
+            'value': 'Other',
+            "child_answer_id": "child_answer"
+        }]
+        answer_schema = [{
+            'id': 'answer_1',
+            'label': 'Which side?',
+            'type': 'Radio',
+            'options': options
+        },
+            {
+                "parent_answer_id": "answer_1",
+                "id": "child_answer",
+                "type": "TextField"
+            }]
+        question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL',
+                           'answers': answer_schema}
+
+        # When
+        question = Question(question_schema, answers)
+
+        # Then
+        self.assertEqual(question.answers[0].child_answer_value, 'Test')
 
     def test_question_should_be_skipped(self):
         # Given
