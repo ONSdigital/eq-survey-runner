@@ -86,7 +86,7 @@ describe('Checkbox with "other" option', function() {
         .setValue(NonMandatoryCheckboxPage.otherText(), 'The other value')
         .click(NonMandatoryCheckboxPage.submit())
       // Then
-        .getText(SummaryPage.nonMandatoryOtherAnswer()).should.eventually.have.string('The other value');
+        .getText(SummaryPage.nonMandatoryAnswer()).should.eventually.have.string('The other value');
 
     });
 

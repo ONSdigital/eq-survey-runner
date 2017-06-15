@@ -47,26 +47,24 @@
                 </div>
 
                 {% for answer in question.answers %}
+                      {% if question.answers|length > 1 and answer.label %}
+                        <div class="summary__question summary__question--sub">
+                          {{answer.label|striptags}}
+                        </div>
+                      {% endif %}
 
-                  {% if question.answers|length > 1 %}
-                    <div class="summary__question summary__question--sub">
-                      {{answer.label|striptags}}
-                    </div>
-                  {% endif %}
-
-                  <div class="summary__answer">
-                    <div class="summary__answer-text" id="{{answer.id}}-answer" data-qa="{{answer.id}}-answer">
-                      {%- if answer.value is none or answer.value == '' -%}
-                        {{not_answered}}
-                      {%- else -%}
-                        {% include theme(['partials/summary/' ~ answer.type ~ '.html', 'partials/summary/default.html']) %}
-                      {%- endif -%}
-                    </div>
-                    <div class="summary__edit">
-                      <a href="{{ section.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>Edit <span class="u-vh">your answer</span></a>
-                    </div>
-                  </div>
-
+                      <div class="summary__answer">
+                        <div class="summary__answer-text" id="{{answer.id}}-answer" data-qa="{{answer.id}}-answer">
+                          {%- if answer.value is none or answer.value == '' -%}
+                            {{not_answered}}
+                          {%- else -%}
+                            {% include theme(['partials/summary/' ~ answer.type ~ '.html', 'partials/summary/default.html']) %}
+                          {%- endif -%}
+                        </div>
+                        <div class="summary__edit">
+                          <a href="{{ section.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>Edit <span class="u-vh">your answer</span></a>
+                        </div>
+                      </div>
                 {% endfor %}
 
             {% endfor %}

@@ -22,7 +22,7 @@ describe('Radio button with "other" option', function() {
         .setValue(RadioMandatoryPage.otherText(), 'Hello')
         .click(RadioMandatoryPage.submit())
         .click(RadioNonMandatoryPage.submit())
-        .getText(SummaryPage.otherAnswer()).should.eventually.contain('Hello');
+        .getText(SummaryPage.answer()).should.eventually.contain('Hello');
     });
 
   });
