@@ -28,3 +28,6 @@ trim_trailing_whitespace = true
 # Denotes whether file should end with a newline
 # Possible values - true, false
 insert_final_newline = true
+
+[*.{js,json}]
+indent_size = 2

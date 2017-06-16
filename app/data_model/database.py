@@ -65,6 +65,7 @@ class UsedJtiClaim(base):
     def __repr__(self):
         return "<UsedJtiClaim('%s', '%s')>" % (self.jti_claim, self.used_at)
 
+
 SETUP_ATTEMPTS = 10
 SETUP_RETRY_DELAY_SECONDS = 6
 

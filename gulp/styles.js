@@ -2,7 +2,6 @@
 import gulp from 'gulp'
 import gulpif from 'gulp-if'
 import gutil from 'gulp-util'
-import debug from 'gulp-debug'
 import plumber from 'gulp-plumber'
 import sass from 'gulp-sass'
 import sassGlob from 'gulp-sass-glob'

@@ -4,7 +4,7 @@ class TextFieldPage {
   }
 
   get textfield() {
-    return browser.element('#input-answer')
+    return browser.element('#answer')
   }
 }
 
