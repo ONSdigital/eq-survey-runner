@@ -80,7 +80,6 @@
           {% include theme('partials/header.html') %}
           {% include theme('partials/topbar.html') %}
           {% endblock %}</header>
-        {% if previous_location or navigation or self.subheader()|trim %}
         <div class="page__subheader">
           <div class="container">
           {%- block subheader -%}
@@ -95,7 +94,6 @@
           {%- endblock subheader -%}
           </div>
         </div>
-        {%- endif -%}
         <div class="page__container container">
           {% block content %}
           {% with position = 'bottom' %}{% include 'partials/previous-link.html' %}{% endwith %}
