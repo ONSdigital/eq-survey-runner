@@ -13,26 +13,23 @@ import AutomotiveFuel from '../pages/surveys/mci/automotive-fuel.page.js'
 import SignificantChange from '../pages/surveys/mci/significant-change.page.js'
 import ReasonForChange from '../pages/surveys/mci/reason-for-change.page.js'
 import ChangeCommentBlock from '../pages/surveys/mci/change-comment-block.page.js'
-import TotalEmployees from '../pages/surveys/mci/total-employees.page.js'
-import EmployeesBreakdown from '../pages/surveys/mci/employees-breakdown.page.js'
 import Summary from '../pages/surveys/mci/summary.page.js'
 import thankYou from '../pages/thank-you.page'
 
+describe('MCI 0205 Test', function() {
 
-describe('MCI 0215 Test', function() {
-
-  it('Given the mci business survey 0215 is selected when I start the survey then the landing page is displayed', function() {
+  it('Given the mci business survey 0205 is selected when I start the survey then the landing page is displayed', function() {
     // Given
     // When
-    openQuestionnaire('1_0215.json', getRandomString(10), getRandomString(5))
+    openQuestionnaire('1_0205refresh.json', getRandomString(10), getRandomString(5))
 
     // Then
     expect(landingPage.isOpen(), 'Landing page should be open').to.be.true
   })
 
-  it('Given the mci business survey 0215 has been started when I complete the survey then I reach the thank you page', function() {
+  it('Given the mci business survey 0205 has been started when I complete the survey then I reach the thank you page', function() {
     // Given
-    startQuestionnaire('1_0215.json', getRandomString(10), getRandomString(5))
+    startQuestionnaire('1_0205refresh.json', getRandomString(10), getRandomString(5))
 
     // When
     ReportingPeriod.setPeriodFromDay('01')
@@ -76,24 +73,15 @@ describe('MCI 0215 Test', function() {
     ChangeCommentBlock.setChangeComment('Bad weather reduced shop footfall')
         .submit()
 
-    TotalEmployees.setTotalNumberEmployees('100')
-        .submit()
-
-    EmployeesBreakdown.setNumberMaleEmployeesOver30Hours('10')
-        .setNumberMaleEmployeesUnder30Hours('20')
-        .setNumberFemaleEmployeesOver30Hours('30')
-        .setNumberFemaleEmployeesUnder30Hours('40')
-        .submit()
-
     Summary.submit()
 
     // Then
     expect(thankYou.isOpen(), 'Thank you page should be open').to.be.true
   })
 
-  it('Given the mci business survey 0215 has been started and sales questions completed when I select No for significant changes I skip to total employees question', function() {
+  it('Given the mci business survey 0205 has been started and sales questions completed when I select No for significant changes I skip to total employees question', function() {
     // Given
-    startQuestionnaire('1_0215.json', getRandomString(10), getRandomString(5))
+    startQuestionnaire('1_0205refresh.json', getRandomString(10), getRandomString(5))
 
     ReportingPeriod.setPeriodFromDay('01')
         .setPeriodFromMonth(5)
@@ -117,9 +105,10 @@ describe('MCI 0215 Test', function() {
     SignificantChange.clickSignificantChangeEstablishedAnswerNo()
         .submit()
 
+    Summary.submit()
+
     // Then
-    expect(TotalEmployees.isOpen(), 'Total Employees page should be open').to.be.true
+    expect(thankYou.isOpen(), 'Thank you page should be open').to.be.true
   })
 
 })
-
