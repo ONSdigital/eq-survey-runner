@@ -140,13 +140,14 @@
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "internet-sales-answer",
                             "label": "Internet sales",
-                            "mandatory": false,
+                            "mandatory": true,
                             "options": [],
                             "q_code": "21",
                             "type": "Currency",
                             "validation": {
                                 "messages": {
                                     "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "MANDATORY": "Please provide a value, even if your value is 0.",
                                     "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
                                     "NOT_INTEGER": "Please only enter whole numbers into the field."
                                 }
