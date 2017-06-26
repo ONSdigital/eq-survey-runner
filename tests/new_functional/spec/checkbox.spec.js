@@ -11,6 +11,7 @@ describe('Checkbox with "other" option', function() {
   it('Given an "other" option is available, when the user clicks the "other" option the other input should be visible.', function() {
     return helpers.openQuestionnaire(checkbox_schema).then(() => {
       return browser
+        .getText(MandatoryCheckboxPage.otherLabel()).should.eventually.have.string('Choose any other topping')
         .click(MandatoryCheckboxPage.other())
         .isVisible(MandatoryCheckboxPage.otherText()).should.eventually.be.true;
     });
