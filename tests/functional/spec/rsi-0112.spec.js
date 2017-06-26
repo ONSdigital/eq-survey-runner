@@ -84,7 +84,8 @@ describe('RSI 0112 Test', function() {
 
     TotalRetailTurnoverBlock.setTotalRetailTurnover('0')
         .submit()
-    TotalInternetSales.submit()
+    TotalInternetSales.setInternetSales('567')
+        .submit()
 
     // When
     SignificantChange.clickSignificantChangeEstablishedAnswerNo()
@@ -121,7 +122,8 @@ describe('RSI 0112 Test', function() {
     TotalRetailTurnoverBlock.setTotalRetailTurnover('12345')
         .submit()
 
-    TotalInternetSales.submit()
+    TotalInternetSales.setInternetSales('567')
+        .submit()
 
     SignificantChange.clickSignificantChangeEstablishedAnswerNo()
         .submit()
