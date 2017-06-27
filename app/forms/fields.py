@@ -1,11 +1,12 @@
-from wtforms import FormField, IntegerField, SelectField, SelectMultipleField, StringField, TextAreaField
+from wtforms import FormField, SelectField, SelectMultipleField, StringField
 from wtforms import validators
 
+from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField
 from app.forms.date_form import get_date_form, get_month_year_form
 from app.validation.validators import IntegerCheck, NumberRange, ResponseRequired
 from structlog import get_logger
 
-
+MAX_LENGTH = 2000
 logger = get_logger()
 
 
@@ -38,6 +39,25 @@ def build_choices(options):
     return choices
 
 
+def get_length_validator(answer, error_messages):
+    validate_with = []
+    max_length = MAX_LENGTH
+    length_message = error_messages['MAX_LENGTH_EXCEEDED']
+
+    if 'max_length' in answer and answer['max_length'] > 0:
+        max_length = answer['max_length']
+
+    if 'validation' in answer and 'messages' in answer['validation'] \
+       and 'MAX_LENGTH_EXCEEDED' in answer['validation']['messages']:
+        length_message = answer['validation']['messages']['MAX_LENGTH_EXCEEDED']
+
+    validate_with.append(
+        validators.length(-1, max_length, message=length_message),
+    )
+
+    return validate_with
+
+
 def get_mandatory_validator(answer, error_messages):
     validate_with = [validators.Optional()]
 
@@ -68,11 +88,13 @@ def get_string_field(answer, label, guidance, error_messages):
 
 def get_text_area_field(answer, label, guidance, error_messages):
     validate_with = get_mandatory_validator(answer, error_messages)
+    validate_with.extend(get_length_validator(answer, error_messages))
 
-    return TextAreaField(
+    return MaxTextAreaField(
         label=label,
         description=guidance,
         validators=validate_with,
+        maxlength=MAX_LENGTH,
     )
 
 
@@ -130,27 +152,6 @@ def get_select_field(answer, label, guidance, error_messages):
         validators=validate_with,
         coerce=_coerce_str_unless_none,
     )
-
-
-class CustomIntegerField(IntegerField):
-    """
-    The default wtforms field coerces data to an int and raises
-    cast errors outside of it's validation chain. In order to stop
-    the validation chain, we create a custom field that doesn't
-    raise the error and we can instead fail and stop other calls to
-    further validation steps by using a separate IntegerCheck validator
-    """
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.data = None
-
-    def process_formdata(self, valuelist):
-
-        if valuelist:
-            try:
-                self.data = int(valuelist[0])
-            except ValueError:
-                pass
 
 
 def get_integer_field(answer, label, guidance, error_messages):

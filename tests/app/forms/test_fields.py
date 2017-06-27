@@ -1,8 +1,9 @@
 import unittest
 
-from wtforms import validators, StringField, TextAreaField, FormField, SelectField, SelectMultipleField
+from wtforms import validators, StringField, FormField, SelectField, SelectMultipleField
 
-from app.forms.fields import CustomIntegerField, get_field, get_mandatory_validator, _coerce_str_unless_none
+from app.forms.custom_fields import MaxTextAreaField
+from app.forms.fields import CustomIntegerField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
 from app.validation.error_messages import error_messages
 from app.validation.validators import ResponseRequired
 
@@ -44,6 +45,39 @@ class TestFields(unittest.TestCase):
         self.assertIsInstance(validate_with[0], ResponseRequired)
         self.assertEqual(validate_with[0].message, 'This is the mandatory message for an answer')
 
+    def test_get_length_validator(self):
+        validate_with = get_length_validator({}, {
+            'MAX_LENGTH_EXCEEDED': "This is the default max length of %(max)d message"
+        })
+
+        self.assertEqual(validate_with[0].message, 'This is the default max length of %(max)d message')
+
+    def test_get_length_validator_with_message_override(self):
+        answer = {
+            'validation': {
+                'messages': {
+                    'MAX_LENGTH_EXCEEDED': 'A message with characters %(max)d placeholder'
+                }
+            }
+        }
+
+        validate_with = get_length_validator(answer, {
+            'MAX_LENGTH_EXCEEDED': "This is the default max length message"
+        })
+
+        self.assertEqual(validate_with[0].message, 'A message with characters %(max)d placeholder')
+
+    def test_get_length_validator_with_max_length_override(self):
+        answer = {
+            'max_length': 30
+        }
+
+        validate_with = get_length_validator(answer, {
+            'MAX_LENGTH_EXCEEDED': "%(max)d characters"
+        })
+
+        self.assertEqual(validate_with[0].max, 30)
+
     def test_string_field(self):
         textfield_json = {
             "id": "job-title-answer",
@@ -70,7 +104,7 @@ class TestFields(unittest.TestCase):
 
         unbound_field = get_field(textarea_json, textarea_json['label'], error_messages)
 
-        self.assertTrue(unbound_field.field_class == TextAreaField)
+        self.assertTrue(unbound_field.field_class == MaxTextAreaField)
         self.assertEquals(unbound_field.kwargs['label'], textarea_json['label'])
         self.assertEquals(unbound_field.kwargs['description'], textarea_json['guidance'])
 

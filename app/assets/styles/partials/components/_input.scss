@@ -120,6 +120,27 @@
 }
 
 .input--has-error {
-    background-color: $color-light-red;
-    transition: background-color 1s ease-in-out;
+  background-color: $color-light-red;
+  transition: background-color 1s ease-in-out;
+}
+
+.input--limit-reached {
+  border: 1px solid $color-red;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $color-red;
+    box-shadow: 0 0 0 1px $color-red;
+    @include fixed() {
+      outline: 2px solid $color-red;
+    }
+  }
+}
+
+.no-js .input__limit {
+  display: none;
+}
+
+.input__limit--reached {
+  color: $color-red;
 }
