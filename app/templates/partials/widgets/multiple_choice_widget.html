@@ -23,17 +23,17 @@
 
     {% set label = {
       "class": "label label--inline venus",
-      "for": option.id
+      "for": option.id,
+      "id": "label-" ~ option.id
     } %}
 
     <div class="field__item js-focusable-box">
-
       <input {{input|xmlattr}}>
       <label {{label|xmlattr}}>
         {{option.label.text}}
-        {% if option.description %}
+        {% if answer.options[loop.index0].description %}
           <br />
-          <span class="label__description label__inner pluto">{{option.description}}</span>
+          <span class="label__description label__inner pluto">{{answer.options[loop.index0].description}}</span>
         {% endif %}
       </label>
 

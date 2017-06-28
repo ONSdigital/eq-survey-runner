@@ -10,6 +10,7 @@ describe('Radio button with "other" option', function() {
   it('Given an "other" option is available, when the user clicks the "other" option then other input should be visible', function() {
     return helpers.openQuestionnaire(radio_schema).then(() => {
       return browser
+        .getText(RadioMandatoryPage.otherLabel()).should.eventually.contain('An answer is required.')
         .click(RadioMandatoryPage.other())
         .isVisible(RadioMandatoryPage.otherText()).should.eventually.be.true;
     });

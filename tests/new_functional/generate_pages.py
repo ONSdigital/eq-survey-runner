@@ -101,7 +101,7 @@ def camel_case(s):
     return s[0].lower() + s[1:]
 
 
-def process_options(answer_id, options, template_getter, page_spec, base_prefix):
+def process_options(answer_id, options, page_spec, base_prefix):
     for index, option in enumerate(options):
         if option['value'][0].isalpha():
             prefix = base_prefix
@@ -116,7 +116,8 @@ def process_options(answer_id, options, template_getter, page_spec, base_prefix)
             'answerId': option_id
         }
 
-        page_spec.write(template_getter.substitute(option_context))
+        page_spec.write(ANSWER_GETTER.substitute(option_context))
+        page_spec.write(ANSWER_LABEL_GETTER.substitute(option_context))
 
         # Add a selector for an option which exposes another input, e.g.
         # an 'Other' option which exposes a text input for the user to fill in
@@ -126,7 +127,7 @@ def process_options(answer_id, options, template_getter, page_spec, base_prefix)
                 'answerName': prefix + option_name + 'Text'
             }
 
-            page_spec.write(template_getter.substitute(option_context))
+            page_spec.write(ANSWER_GETTER.substitute(option_context))
 
 
 def process_answer(question_type, answer, page_spec, long_names, page_name):
@@ -143,7 +144,7 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
         return
 
     elif answer['type'] in ('Radio', 'Checkbox'):
-        process_options(answer['id'], answer['options'], ANSWER_GETTER, page_spec, prefix)
+        process_options(answer['id'], answer['options'], page_spec, prefix)
 
     elif answer['type'] in ('Date'):
         page_spec.write(_write_date_answer(answer_name, answer['id'], prefix))
