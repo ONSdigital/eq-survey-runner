@@ -4,14 +4,12 @@ import {generateToken} from './jwt_helper'
 
 export {landingPage}
 
-export const getUri = uri => browser.options.baseUrl + uri
-
 export const getRandomString = length => sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length).join('')
 
 export const startCensusQuestionnaire = (schema, sexualIdentity = false, region = 'GB-ENG', language = 'en') => {
   generateToken(schema, getRandomString(10), getRandomString(10), null, null, region, language, sexualIdentity)
     .then(function(token) {
-      return browser.url('http://localhost:5000/session?token=' + token)
+      return browser.url('/session?token=' + token)
     })
 
   browser.pause(1000) // Shudder!!!
@@ -20,7 +18,7 @@ export const startCensusQuestionnaire = (schema, sexualIdentity = false, region 
 export function openQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10), periodId = '201605', periodStr = 'May 2016') {
   generateToken(schema, userId, collectionId, periodId, periodStr)
     .then(function(token) {
-      return browser.url('http://localhost:5000/session?token=' + token)
+      return browser.url('/session?token=' + token)
     })
 
   browser.pause(1000) // Shudder!!!

@@ -19,6 +19,7 @@
     "test_unit_no_watch": "gulp test:scripts:unit",
     "test_functional": "gulp test:scripts:functional",
     "test_functional_sauce": "gulp test:scripts:functional --sauce",
+    "test_functional_browserstack": "gulp test:scripts:functional --browserstack",
     "test_functional_headless": "gulp test:scripts:functional --headless",
     "a11y": "gulp test:a11ym",
     "format": "gulp format:json"
@@ -38,6 +39,7 @@
     "browser-sync": "^2.11.0",
     "browserify": "~13.1.0",
     "browserify-shim": "^3.8.12",
+    "browserstack-local": "^1.3.0",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
     "del": "^2.2.2",
@@ -125,6 +127,7 @@
     "vinyl-source-stream": "~1.1.0",
     "vinyl-transform": "^1.0.0",
     "watchify": "~3.7.0",
+    "wdio-browserstack-service": "^0.1.4",
     "wdio-dot-reporter": "^0.0.8",
     "wdio-mocha-framework": "^0.5.10",
     "wdio-phantomjs-service": "^0.2.2",

@@ -52,6 +52,13 @@ const sauceLabsConfig = {
   capabilities: [firefox]
 }
 
+const browserStackConfig = {
+  services: ['browserstack'],
+  user: process.env.BROWSERSTACK_USER,
+  key: process.env.BROWSERSTACK_ACCESS_KEY,
+  browserstackLocal: true
+}
+
 const phantomjsConfig = {
   services: ['phantomjs'],
   waitforTimeout: 3000,
@@ -76,15 +83,11 @@ if (process.env.TRAVIS === 'true') {
   }
 } else {
   if (argv.sauce) {
-    config = {
-      ...config,
-      ...sauceLabsConfig
-    }
+    config = Object.assign(config, sauceLabsConfig)
+  } else if (argv.browserstack) {
+    config = Object.assign(config, browserStackConfig)
   } else if (argv.headless) {
-    config = {
-      ...config,
-      ...phantomjsConfig
-    }
+    config = Object.assign(config, phantomjsConfig)
   }
 }
 
