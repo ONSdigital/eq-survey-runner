@@ -2845,7 +2845,7 @@
                 }
             ],
             "id": "factors-affecting-innovation",
-            "skip_condition": [{
+            "skip_conditions": [{
                 "when": [{
                         "id": "business-changes-business-practices-answer",
                         "condition": "not equals",
@@ -3460,7 +3460,7 @@
                 }
             ],
             "id": "information-needed-for-innovation",
-            "skip_condition": [{
+            "skip_conditions": [{
                 "when": [{
                         "id": "business-changes-business-practices-answer",
                         "condition": "not equals",
@@ -4225,7 +4225,7 @@
                 }
             ],
             "id": "co-operation-on-innovation",
-            "skip_condition": [{
+            "skip_conditions": [{
                 "when": [{
                         "id": "business-changes-business-practices-answer",
                         "condition": "not equals",

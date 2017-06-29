@@ -67,7 +67,7 @@
                             }]
                         }]
                     }],
-                    "skip_condition": [{
+                    "skip_conditions": [{
                         "when": [{
                             "id": "do-you-want-to-skip-answer",
                             "condition": "equals",

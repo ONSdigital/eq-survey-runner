@@ -26,7 +26,7 @@ class TestSection(TestCase):
         section_schema = {'id': 'section_id', 'title': 'A section title', 'questions': [question_schema]}
 
         # When
-        section = Section(section_schema, answers, "some_link")
+        section = Section(section_schema, answers, "some_link", None, None)
 
         # Then
         self.assertEqual(section.id, 'section_id')
@@ -44,7 +44,7 @@ class TestSection(TestCase):
         section_schema = {'id': 'section_id', 'title': 'A section title', 'questions': [first_question_schema, second_question_schema]}
 
         # When
-        section = Section(section_schema, answers, "some_link")
+        section = Section(section_schema, answers, "some_link", None, None)
 
         # Then
         self.assertEqual(len(section.questions), 2)

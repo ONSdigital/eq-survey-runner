@@ -214,7 +214,7 @@
             {
                 "type": "Questionnaire",
                 "id": "reason-for-change",
-                "skip_condition": [{
+                "skip_conditions": [{
                     "when": [{
                         "id": "significant-change-established-answer",
                         "condition": "equals",
@@ -286,7 +286,7 @@
             {
                 "type": "Questionnaire",
                 "id": "change-comment-block",
-                "skip_condition": [{
+                "skip_conditions": [{
                     "when": [{
                         "id": "significant-change-established-answer",
                         "condition": "equals",

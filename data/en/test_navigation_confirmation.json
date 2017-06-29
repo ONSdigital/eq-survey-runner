@@ -129,7 +129,7 @@
                 "title": "House Details"
             }],
             "id": "house-details",
-            "skip_condition": [{
+            "skip_conditions": [{
                     "when": [{
                         "id": "insurance-type-answer",
                         "condition": "equals",

@@ -48,7 +48,7 @@
         {
             "id": "should-skip-group",
             "title": "This question may or may not be skipped",
-            "skip_condition": [{
+            "skip_conditions": [{
                 "when": [{
                     "id": "do-you-want-to-skip-answer",
                     "condition": "equals",

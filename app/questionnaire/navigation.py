@@ -6,7 +6,7 @@ from jinja2 import escape
 
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
-from app.questionnaire.rules import evaluate_repeat, evaluate_skip_condition
+from app.questionnaire.rules import evaluate_repeat, evaluate_skip_conditions
 
 logger = get_logger()
 
@@ -71,11 +71,11 @@ class Navigation(object):
     def _should_skip_group(self, current_group_instance, group):
 
         skip_group = False
-        skip_condition = SchemaHelper.get_skip_condition(group)
+        skip_conditions = SchemaHelper.get_skip_condition(group)
 
-        if skip_condition:
-            skip_group = evaluate_skip_condition(skip_condition, self.metadata, self.answer_store,
-                                                 current_group_instance)
+        if skip_conditions:
+            skip_group = evaluate_skip_conditions(skip_conditions, self.metadata, self.answer_store,
+                                                  current_group_instance)
         return skip_group
 
     def _build_repeating_navigation(self, repeating_rule, group, current_group_id, current_group_instance):

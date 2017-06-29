@@ -79,21 +79,21 @@ def _get_answer_count(filtered_answers):
     return len(filtered_answers) - 1 if len(filtered_answers) > 0 else 0
 
 
-def evaluate_skip_condition(skip_condition, metadata, answer_store, group_instance=0):
+def evaluate_skip_conditions(skip_conditions, metadata, answer_store, group_instance=0):
     """
     Determine whether a skip condition will be satisfied based on a given answer
-    :param skip_condition: skip_condition rule to evaluate
+    :param skip_conditions: skip_conditions rule to evaluate
     :param metadata: metadata for evaluating rules with metadata conditions
     :param answer_store: store of answers to evaluate
     :param group_instance: when evaluating a when rule for a repeating group, defaults to 0 for non-repeating groups
     :return: True if the when condition has been met otherwise False
     """
 
-    no_skip_condition = skip_condition is None or len(skip_condition) == 0
+    no_skip_condition = skip_conditions is None or len(skip_conditions) == 0
     if no_skip_condition:
         return False
 
-    for when in skip_condition:
+    for when in skip_conditions:
         condition = evaluate_when_rules(when['when'], metadata, answer_store, group_instance)
         if condition is True:
             return True

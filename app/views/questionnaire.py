@@ -14,7 +14,7 @@ from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
 from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
-from app.questionnaire.rules import evaluate_skip_condition
+from app.questionnaire.rules import evaluate_skip_conditions
 from app.submitter.converter import convert_answers
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.metadata_context import build_metadata_context, build_metadata_context_for_survey_completed
@@ -424,8 +424,8 @@ def _check_same_survey(eq_id, form_type, collection_id):
 
 def _evaluate_skip_conditions(block_json, location, answer_store, metadata):
     for question in SchemaHelper.get_questions_for_block(block_json):
-        if 'skip_condition' in question:
-            skip_question = evaluate_skip_condition([question['skip_condition']], metadata, answer_store, location.group_instance)
+        if 'skip_conditions' in question:
+            skip_question = evaluate_skip_conditions(question['skip_conditions'], metadata, answer_store, location.group_instance)
             question['skipped'] = skip_question
             for answer in question['answers']:
                 if answer['mandatory'] and skip_question:

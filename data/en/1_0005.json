@@ -695,7 +695,7 @@
                         "title": "Weekly Pay"
                     }],
                     "type": "Questionnaire",
-                    "skip_condition": [{
+                    "skip_conditions": [{
                         "when": [{
                             "id": "weekly-pay-significant-changes-other-answer",
                             "condition": "equals",
@@ -706,7 +706,7 @@
             ],
             "id": "weekly-pay",
             "title": "Weekly Pay",
-            "skip_condition": [{
+            "skip_conditions": [{
                     "when": [{
                         "id": "pay-pattern-frequency-answer",
                         "condition": "not contains",
@@ -1325,7 +1325,7 @@
                         "title": "Fortnightly Pay"
                     }],
                     "type": "Questionnaire",
-                    "skip_condition": [{
+                    "skip_conditions": [{
                         "when": [{
                             "id": "fortnightly-pay-significant-changes-other-answer",
                             "condition": "equals",
@@ -1336,7 +1336,7 @@
             ],
             "id": "fortnightly-pay",
             "title": "Fortnightly Pay",
-            "skip_condition": [{
+            "skip_conditions": [{
                     "when": [{
                         "id": "pay-pattern-frequency-answer",
                         "condition": "not contains",
@@ -1944,7 +1944,7 @@
                         "title": "Calendar Monthly Pay"
                     }],
                     "type": "Questionnaire",
-                    "skip_condition": [{
+                    "skip_conditions": [{
                         "when": [{
                             "id": "calendar-monthly-pay-significant-changes-other-answer",
                             "condition": "equals",
@@ -1955,7 +1955,7 @@
             ],
             "id": "calendar-monthly",
             "title": "Calendar Monthly Pay",
-            "skip_condition": [{
+            "skip_conditions": [{
                     "when": [{
                         "id": "pay-pattern-frequency-answer",
                         "condition": "not contains",
@@ -2562,7 +2562,7 @@
                         "title": "Four Weekly Pay"
                     }],
                     "type": "Questionnaire",
-                    "skip_condition": [{
+                    "skip_conditions": [{
                         "when": [{
                             "id": "four-weekly-pay-significant-changes-other-answer",
                             "condition": "equals",
@@ -2573,7 +2573,7 @@
             ],
             "id": "four-weekly-pay",
             "title": "Four Weekly Pay",
-            "skip_condition": [{
+            "skip_conditions": [{
                     "when": [{
                         "id": "pay-pattern-frequency-answer",
                         "condition": "not contains",
@@ -3182,7 +3182,7 @@
                         "title": "Five Weekly Pay"
                     }],
                     "type": "Questionnaire",
-                    "skip_condition": [{
+                    "skip_conditions": [{
                         "when": [{
                             "id": "five-weekly-pay-significant-changes-other-answer",
                             "condition": "equals",
@@ -3193,7 +3193,7 @@
             ],
             "id": "five-weekly-pay",
             "title": "Five Weekly Pay",
-            "skip_condition": [{
+            "skip_conditions": [{
                     "when": [{
                         "id": "pay-pattern-frequency-answer",
                         "condition": "not contains",

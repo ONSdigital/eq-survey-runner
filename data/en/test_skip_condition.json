@@ -70,13 +70,13 @@
                         "id": "drink-section",
                         "title": "What beverage would you like to accompany your choice of breakfast?",
                         "type": "General",
-                        "skip_condition": {
+                        "skip_conditions": [{
                             "when": [{
                                 "id": "food-answer",
                                 "condition": "equals",
                                 "value": "Eggs"
                             }]
-                        }
+                        }]
                     }],
                     "title": ""
                 }],

@@ -1,34 +1,21 @@
 import collections
 
-from app.questionnaire.rules import evaluate_rule
 from app.data_model.answer_store import iterate_over_instance_ids
 from app.templating.summary.answer import Answer
-from jinja2 import Markup
+from app.questionnaire.rules import evaluate_skip_conditions
 
 
 class Question:
 
-    def __init__(self, question_schema, answers):
+    def __init__(self, question_schema, answers_map, answer_store, metadata):
         self.id = question_schema['id']
         self.type = question_schema['type']
-        self.skip_condition = question_schema.get('skip_condition')
+        self.skip_conditions = question_schema.get('skip_conditions')
         answer_schema = question_schema['answers']
         self.title = question_schema['title'] or answer_schema[0]['label']
         self.number = question_schema.get('number', None)
-        self.answers = self._build_answers(question_schema, answer_schema, answers)
-
-    def is_skipped(self, all_answers):
-        if self.skip_condition is not None:
-            for when_rule in self.skip_condition['when']:
-                answer = all_answers.get(when_rule['id'])
-                if isinstance(answer, Markup):
-                    answer = answer.unescape()
-
-                if not evaluate_rule(when_rule, answer):
-                    return False
-            return True
-
-        return False
+        self.answers = self._build_answers(question_schema, answer_schema, answers_map)
+        self.is_skipped = evaluate_skip_conditions(self.skip_conditions, metadata, answer_store)
 
     @classmethod
     def _build_answers(cls, question_schema, answer_schema, answers):

@@ -1603,13 +1603,13 @@
                                         "label": "Enter current name of country"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             },
                             {
                                 "id": "country-of-birth-wales-question",
@@ -1655,13 +1655,13 @@
                                         "label": "Enter current name of country"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "not equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             }
                         ]
                     }],
@@ -1934,13 +1934,13 @@
                                         "label": "Please describe your national identity"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             },
                             {
                                 "id": "national-identity-wales-question",
@@ -2004,13 +2004,13 @@
                                         "label": "Please describe your national identity"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "not equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             }
                         ]
                     }]
@@ -2072,13 +2072,13 @@
                                     ],
                                     "type": "Radio"
                                 }],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             },
                             {
                                 "id": "ethnic-group-wales-question",
@@ -2130,13 +2130,13 @@
                                     ],
                                     "type": "Radio"
                                 }],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "not equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             }
                         ]
                     }],
@@ -2327,13 +2327,13 @@
                                         "label": "Please specify other White background"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             },
                             {
                                 "id": "white-ethnic-group-wales-question",
@@ -2382,13 +2382,13 @@
                                         "label": "Please specify other White background"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "not equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             }
                         ]
                     }],
@@ -2941,13 +2941,13 @@
                                         "label": "Please specify main language"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             },
                             {
                                 "id": "language-welsh-question",
@@ -2978,13 +2978,13 @@
                                         "label": "Please specify main language"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "not equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             }
                         ]
                     }],
@@ -3112,13 +3112,13 @@
                                         "label": "Please specify"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             },
                             {
                                 "id": "religion-welsh-question",
@@ -3173,13 +3173,13 @@
                                         "label": "Please specify"
                                     }
                                 ],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "not equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             }
                         ]
                     }]
@@ -3522,13 +3522,13 @@
                                     ],
                                     "type": "Checkbox"
                                 }],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             },
                             {
                                 "id": "qualifications-welsh-question",
@@ -3606,13 +3606,13 @@
                                     ],
                                     "type": "Checkbox"
                                 }],
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "meta": "region_code",
                                         "condition": "not equals",
                                         "value": "GB-WLS"
                                     }]
-                                }
+                                }]
                             }
                         ]
                     }]
@@ -4449,7 +4449,7 @@
             "id": "visitors-interstitial",
             "title": "Visitors",
             "hide_in_navigation": true,
-            "skip_condition": [{
+            "skip_conditions": [{
                     "when": [{
                         "id": "overnight-visitors-answer",
                         "condition": "equals",
