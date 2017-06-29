@@ -685,13 +685,13 @@
                                 "id": "rebel-alliance-question",
                                 "title": "The force is strong with you, young Jedi!",
                                 "type": "General",
-                                "skip_condition": {
+                                "skip_conditions": [{
                                     "when": [{
                                         "id": "death-star-plans-answer",
                                         "condition": "not equals",
                                         "value": "Bothans"
                                     }]
-                                }
+                                }]
                             },
                             {
                                 "answers": [{
@@ -776,13 +776,13 @@
                             "id": "jar-jar-binks-planet-question",
                             "title": "",
                             "type": "General",
-                            "skip_condition": {
+                            "skip_conditions": [{
                                 "when": [{
                                     "id": "star-wars-prequel-answer",
                                     "condition": "equals",
                                     "value": "I like to pretend they didn't happen"
                                 }]
-                            }
+                            }]
                         },
                         {
                             "answers": [{

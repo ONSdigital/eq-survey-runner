@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from app.data_model.answer_store import AnswerStore, Answer
-from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat, evaluate_skip_condition, \
+from app.questionnaire.rules import evaluate_rule, evaluate_goto, evaluate_repeat, evaluate_skip_conditions, \
     evaluate_when_rules
 
 
@@ -126,7 +126,7 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
 
     def test_evaluate_skip_condition_returns_true_when_this_rule_true(self):
         # Given
-        skip_condition = [
+        skip_conditions = [
             {
                 'when': [
                     {
@@ -150,14 +150,14 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='this', value='value'))
 
         # When
-        condition = evaluate_skip_condition(skip_condition, {}, answer_store)
+        condition = evaluate_skip_conditions(skip_conditions, {}, answer_store)
 
         # Given
         self.assertTrue(condition)
 
     def test_evaluate_skip_condition_returns_true_when_that_rule_true(self):
 
-        skip_condition = [
+        skip_conditions = [
             {
                 'when': [
                     {
@@ -180,11 +180,11 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store = AnswerStore()
         answer_store.add(Answer(answer_id='that', value='other value'))
 
-        self.assertTrue(evaluate_skip_condition(skip_condition, {}, answer_store))
+        self.assertTrue(evaluate_skip_conditions(skip_conditions, {}, answer_store))
 
     def test_evaluate_skip_condition_returns_true_when_more_than_one_rule_is_true(self):
         # Given
-        skip_condition = [
+        skip_conditions = [
             {
                 'when': [
                     {
@@ -209,14 +209,14 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='that', value='other value'))
 
         # When
-        condition = evaluate_skip_condition(skip_condition, {}, answer_store)
+        condition = evaluate_skip_conditions(skip_conditions, {}, answer_store)
 
         # Then
         self.assertTrue(condition)
 
     def test_evaluate_skip_condition_returns_false_when_both_or_rules_false(self):
         # Given
-        skip_condition = [
+        skip_conditions = [
             {
                 'when': [
                     {
@@ -241,17 +241,17 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         answer_store.add(Answer(answer_id='that', value='not correct'))
 
         # When
-        condition = evaluate_skip_condition(skip_condition, {}, answer_store)
+        condition = evaluate_skip_conditions(skip_conditions, {}, answer_store)
 
         # Then
         self.assertFalse(condition)
 
     def test_evaluate_skip_condition_returns_false_when_no_skip_condition(self):
         # Given
-        skip_condition = None
+        skip_conditions = None
 
         # When
-        condition = evaluate_skip_condition(skip_condition, {}, AnswerStore())
+        condition = evaluate_skip_conditions(skip_conditions, {}, AnswerStore())
 
         # Then
         self.assertFalse(condition)

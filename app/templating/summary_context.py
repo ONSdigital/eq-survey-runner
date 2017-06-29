@@ -17,16 +17,14 @@ def build_summary_rendering_context(schema_json, answer_store, metadata):
     path = navigator.get_routing_path()
     groups = []
 
+    answers_map = answer_store.map()
+    for answer_id, value in answers_map.items():
+        if isinstance(value, str):
+            answers_map[answer_id] = escape(value)
+
     for group in schema_json['groups']:
         if SchemaHelper.group_has_questions(group) \
                 and group['id'] in [location.group_id for location in path]:
-
-            answers = answer_store.map()
-
-            for answer_id, value in answers.items():
-                if isinstance(value, str):
-                    answers[answer_id] = escape(value)
-
-            groups.extend([Group(group, answers, path, metadata, url_for)])
+            groups.extend([Group(group, answers_map, path, answer_store, metadata, url_for)])
 
     return groups

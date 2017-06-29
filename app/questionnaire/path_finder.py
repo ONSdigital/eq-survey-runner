@@ -5,7 +5,7 @@ from structlog import get_logger
 from app.data_model.answer_store import AnswerStore
 from app.helpers.schema_helper import SchemaHelper
 from app.questionnaire.location import Location
-from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_skip_condition, is_goto_rule
+from app.questionnaire.rules import evaluate_goto, evaluate_repeat, evaluate_skip_conditions, is_goto_rule
 
 logger = get_logger()
 
@@ -109,8 +109,8 @@ class PathFinder:
         blocks = []
 
         for group in SchemaHelper.get_groups(self.survey_json):
-            if 'skip_condition' in group:
-                skip = evaluate_skip_condition(group['skip_condition'], self.metadata, self.answer_store)
+            if 'skip_conditions' in group:
+                skip = evaluate_skip_conditions(group['skip_conditions'], self.metadata, self.answer_store)
                 if skip:
                     continue
 
@@ -122,8 +122,8 @@ class PathFinder:
 
             for i in range(0, no_of_repeats):
                 for block in group['blocks']:
-                    if 'skip_condition' in block:
-                        skip = evaluate_skip_condition(block['skip_condition'], self.metadata, self.answer_store)
+                    if 'skip_conditions' in block:
+                        skip = evaluate_skip_conditions(block['skip_conditions'], self.metadata, self.answer_store)
                         if skip:
                             continue
 

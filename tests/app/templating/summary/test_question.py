@@ -3,18 +3,20 @@ from unittest import TestCase
 import mock
 
 from app.templating.summary.question import Question
-
+from app.data_model.answer_store import Answer, AnswerStore
 
 class TestQuestion(TestCase):
 
     def test_create_question(self):
         # Given
-        answers = mock.MagicMock()
+        answers_map = mock.MagicMock()
         answer_schema = mock.MagicMock()
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(question.id, 'question_id')
@@ -23,12 +25,14 @@ class TestQuestion(TestCase):
 
     def test_create_question_with_no_answers(self):
         # Given
-        answers = {}
+        answers_map = {}
         answer_schema = mock.MagicMock()
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(question.id, 'question_id')
@@ -37,14 +41,16 @@ class TestQuestion(TestCase):
 
     def test_create_question_with_multiple_answers(self):
         # Given
-        answers = {'answer_1': 'Han',
+        answers_map = {'answer_1': 'Han',
                    'answer_2': 'Solo'}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
         first_answer_schema = {'id': 'answer_1', 'label': 'First name', 'type': 'text'}
         second_answer_schema = {'id': 'answer_2', 'label': 'Surname', 'type': 'text'}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [first_answer_schema, second_answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(len(question.answers), 2)
@@ -53,14 +59,16 @@ class TestQuestion(TestCase):
 
     def test_merge_date_range_answers(self):
         # Given
-        answers = {'answer_1': '13/02/2016',
-                   'answer_2': '13/09/2016'}
+        answers_map = {'answer_1': '13/02/2016',
+                       'answer_2': '13/09/2016'}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
         first_date_answer_schema = {'id': 'answer_1', 'label': 'From', 'type': 'date'}
         second_date_answer_schema = {'id': 'answer_2', 'label': 'To', 'type': 'date'}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'DateRange', 'answers': [first_date_answer_schema, second_date_answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(len(question.answers), 1)
@@ -69,10 +77,12 @@ class TestQuestion(TestCase):
 
     def test_merge_multiple_date_range_answers(self):
         # Given
-        answers = {'answer_1': '13/02/2016',
-                   'answer_2': '13/09/2016',
-                   'answer_3': '13/03/2016',
-                   'answer_4': '13/10/2016'}
+        answers_map = {'answer_1': '13/02/2016',
+                       'answer_2': '13/09/2016',
+                       'answer_3': '13/03/2016',
+                       'answer_4': '13/10/2016'}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
         first_date_answer_schema = {'id': 'answer_1', 'label': 'From', 'type': 'date'}
         second_date_answer_schema = {'id': 'answer_2', 'label': 'To', 'type': 'date'}
         third_date_answer_schema = {'id': 'answer_3', 'label': 'First period', 'type': 'date'}
@@ -81,7 +91,7 @@ class TestQuestion(TestCase):
                            [first_date_answer_schema, second_date_answer_schema, third_date_answer_schema, fourth_date_answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(len(question.answers), 2)
@@ -92,7 +102,7 @@ class TestQuestion(TestCase):
 
     def test_checkbox_button_options(self):
         # Given
-        answers = {'answer_1': ['Light Side', 'Dark Side']}
+        answers_map = {'answer_1': ['Light Side', 'Dark Side']}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -101,11 +111,13 @@ class TestQuestion(TestCase):
             'label': 'Dark Side',
             'value': 'Dark Side',
           }]
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
         answer_schema = {'id': 'answer_1', 'label': 'Which side?', 'type': 'Checkbox', 'options': options}
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(len(question.answers[0].value), 2)
@@ -114,7 +126,9 @@ class TestQuestion(TestCase):
 
     def test_checkbox_button_other_option_empty(self):
         # Given
-        answers = {'answer_1': ['Other option label', '']}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': ['Other option label', '']}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -130,7 +144,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(len(question.answers[0].value), 1)
@@ -139,7 +153,9 @@ class TestQuestion(TestCase):
 
     def test_checkbox_answer_with_other_value_returns_the_value(self):
         # Given
-        answers = {'answer_1': ['Light Side', 'Other'], 'child_answer': 'Test'}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': ['Light Side', 'Other'], 'child_answer': 'Test'}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -164,7 +180,7 @@ class TestQuestion(TestCase):
                            'answers': answer_schema}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(len(question.answers[0].value), 2)
@@ -172,7 +188,9 @@ class TestQuestion(TestCase):
 
     def test_checkbox_button_other_option_text(self):
         # Given
-        answers = {'answer_1': ['Light Side', 'other'], 'child_answer': 'Neither'}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': ['Light Side', 'other'], 'child_answer': 'Neither'}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -186,7 +204,7 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(len(question.answers[0].value), 2)
@@ -195,7 +213,9 @@ class TestQuestion(TestCase):
 
     def test_checkbox_button_none_selected_should_be_none(self):
         # Given
-        answers = {'answer_1': []}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': []}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -204,14 +224,16 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(question.answers[0].value, None)
 
     def test_radio_button_other_option_empty(self):
         # Given
-        answers = {'answer_1': ''}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': ''}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -227,14 +249,16 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(question.answers[0].value, 'Other option label')
 
     def test_radio_button_other_option_text(self):
         # Given
-        answers = {'answer_1': 'I want to be on the dark side'}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': 'I want to be on the dark side'}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -250,14 +274,16 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(question.answers[0].value, 'I want to be on the dark side')
 
     def test_radio_button_none_selected_should_be_none(self):
         # Given
-        answers = {'answer_1': None}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': None}
         options = [{
             'label': 'Light Side',
             'value': 'Light Side',
@@ -266,14 +292,16 @@ class TestQuestion(TestCase):
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(question.answers[0].value, None)
 
     def test_radio_answer_with_other_value_returns_the_value(self):
         # Given
-        answers = {'answer_1': 'Other', 'child_answer': 'Test'}
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': 'Other', 'child_answer': 'Test'}
         options = [{
             'label': 'Other',
             'value': 'Other',
@@ -294,42 +322,53 @@ class TestQuestion(TestCase):
                            'answers': answer_schema}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(question.answers[0].child_answer_value, 'Test')
 
     def test_question_should_be_skipped(self):
         # Given
-        answers = {'answer_1': 'skip me'}
+        metadata = mock.MagicMock()
+        answers_map = {'answer_1': 'skip me'}
+        answer = Answer(
+            answer_id="answer_1",
+            value="skip me",
+        )
+        answer_store = AnswerStore()
+        answer_store.add(answer)
         answer_schema = {'id': 'answer_1', 'title': '', 'type': '', 'label': ''}
-        skip_condition = {'when': [{'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}]}
+        skip_conditions = [{'when': [{'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}]}]
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema],
-                           'skip_condition': skip_condition}
+                           'skip_conditions': skip_conditions}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
-        self.assertTrue(question.is_skipped(answers))
+        self.assertTrue(question.is_skipped)
 
     def test_question_with_no_answers_should_not_be_skipped(self):
         # Given
-        answers = {}
+        metadata = mock.MagicMock()
+        answers_map = {}
+        answer_store = AnswerStore()
         answer_schema = {'id': 'answer_1', 'title': '', 'type': '', 'label': ''}
-        skip_condition = {'when': [{'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}]}
+        skip_conditions = [{'when': [{'id': 'answer_1', 'condition': 'equals', 'value': 'skip me'}]}]
         question_schema = {'id': 'question_id', 'title': 'question_title', 'type': 'GENERAL', 'answers': [answer_schema],
-                           'skip_condition': skip_condition}
+                           'skip_conditions': skip_conditions}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
-        self.assertFalse(question.is_skipped(answers))
+        self.assertFalse(question.is_skipped)
 
     def test_build_answers_repeating_answers(self):
         # Given
-        answers = {
+        answer_store = mock.MagicMock()
+        metadata = mock.MagicMock()
+        answers_map = {
             'answer': 'value',
             'answer_1': 'value1',
             'answer_2': 'value2',
@@ -339,7 +378,7 @@ class TestQuestion(TestCase):
                            'answers': [answer_schema]}
 
         # When
-        question = Question(question_schema, answers)
+        question = Question(question_schema, answers_map, answer_store, metadata)
 
         # Then
         self.assertEqual(len(question.answers), 3)

@@ -3,13 +3,13 @@ from app.templating.summary.section import Section
 
 class Block:
 
-    def __init__(self, block_schema, answers, group_id, metadata, url_for):
+    def __init__(self, block_schema, answers_map, group_id, answer_store, metadata, url_for):
         self.id = block_schema['id']
         self.title = block_schema['title'] if 'title' in block_schema else None
-        self.sections = self._build_sections(block_schema, answers, group_id, metadata, url_for)
+        self.sections = self._build_sections(block_schema, answers_map, group_id, answer_store, metadata, url_for)
 
     @staticmethod
-    def _build_sections(block_schema, answers, group_id, metadata, url_for):
+    def _build_sections(block_schema, answers_map, group_id, answer_store, metadata, url_for):
         sections = []
         link = url_for('questionnaire.get_block',
                        eq_id=metadata['eq_id'],
@@ -19,6 +19,6 @@ class Block:
                        group_instance=0,
                        block_id=block_schema['id'])
 
-        sections.extend([Section(section, answers, link) for section in block_schema['sections']])
+        sections.extend([Section(section, answers_map, link, answer_store, metadata) for section in block_schema['sections']])
 
         return sections

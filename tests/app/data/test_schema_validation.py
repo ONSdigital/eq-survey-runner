@@ -69,12 +69,12 @@ class TestSchemaValidation(unittest.TestCase):
 
     def test_no_duplicate_id_in_schema(self):
         # Certain keys need to be ignored to avoid false positives.
-        ignored_keys = ['routing_rules', 'skip_condition']
+        ignored_keys = ['routing_rules', 'skip_conditions']
         self.find_duplicates(ignored_keys, 'id')
 
     def test_no_duplicate_alias_in_schema(self):
         # Certain keys need to be ignored to avoid false positives.
-        ignored_keys = ['routing_rules', 'skip_condition']
+        ignored_keys = ['routing_rules', 'skip_conditions']
         self.find_duplicates(ignored_keys, 'alias')
 
     def find_duplicates(self, ignored_keys, special_key):
