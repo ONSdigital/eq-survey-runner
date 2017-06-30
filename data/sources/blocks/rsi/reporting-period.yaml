@@ -1,0 +1,32 @@
+id: reporting-period
+questions:
+- answers:
+  - alias: period_from
+    id: period-from
+    label: Period from
+    mandatory: true
+    options: []
+    q_code: '11'
+    type: Date
+    validation:
+      messages:
+        INVALID_DATE: The date entered is not valid.  Please correct your answer.
+        MANDATORY: Please provide an answer to continue.
+  - alias: period_to
+    id: period-to
+    label: Period to
+    mandatory: true
+    options: []
+    q_code: '12'
+    type: Date
+    validation:
+      messages:
+        INVALID_DATE: The date entered is not valid.  Please correct your answer.
+        MANDATORY: Please provide an answer to continue.
+  description: If possible, this should be for the period {{exercise.start_date|format_date}}
+    to {{exercise.end_date|format_date}}.
+  id: reporting-period-question
+  title: What are the dates of the sales period you are reporting for?
+  type: DateRange
+title: Monthly Business Survey
+type: Questionnaire

@@ -1,0 +1,43 @@
+id: change-comment-block
+questions:
+- answers:
+  - guidance:
+      content:
+      - description: 'Examples of commentary:'
+      - title: "\u2018In-store promotion\u2019"
+        description: "\u201COffer on wine for the whole month (save 25% when you buy\
+          \ 6 bottles). The promotion was available in-store and online, contributing\
+          \ to an increase in both total retail turnover and internet sales.\u201D"
+      - title: "\u2018Special events (for example, sporting events)\u2019"
+        description: "\u201CThis was the month before the start of Euro 2016 (football),\
+          \ we recorded an increase in sales of audio-visual equipment (for example,\
+          \ televisions and audio equipment). This led to an increase in sales both\
+          \ in-store and online.\u201D"
+      - title: "\u2018Weather\u2019"
+        description: "\u201CThe bad weather has decreased our sales of summer clothing.\
+          \ This has led to a reduction in total retail turnover and internet sales\
+          \ this month.\u201D"
+      hide_guidance: Hide examples of commentary on changes to total retail turnover
+      show_guidance: Show examples of commentary on changes to total retail turnover
+    id: change-comment
+    label: Comments
+    mandatory: true
+    options: []
+    q_code: '146'
+    type: TextArea
+    validation:
+      messages:
+        MANDATORY: Please enter a comment to continue.
+  description: "We rely on your commentary to \u2018tell the story\u2019 behind changes\
+    \ in figures. By commenting here it will reduce the need for us to call you."
+  id: change-comment-question
+  title: Please describe the changes in total retail turnover for {{respondent.trad_as_or_ru_name}}
+    in more detail
+  type: General
+skip_conditions:
+- when:
+  - condition: equals
+    id: significant-change-established-answer
+    value: 'No'
+title: Monthly Business Survey
+type: Questionnaire

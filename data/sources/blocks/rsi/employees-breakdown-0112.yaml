@@ -1,0 +1,71 @@
+id: employees-breakdown
+questions:
+- answers:
+  - id: male-employees-over-30-hours
+    label: Number of male employees working more than 30 hours per week
+    mandatory: false
+    options: []
+    q_code: '51'
+    type: PositiveInteger
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  - id: male-employees-under-30-hours
+    label: Number of male employees working 30 hours or less per week
+    mandatory: false
+    options: []
+    q_code: '52'
+    type: PositiveInteger
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  - id: female-employees-over-30-hours
+    label: Number of female employees working more than 30 hours per week
+    mandatory: false
+    options: []
+    q_code: '53'
+    type: PositiveInteger
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  - id: female-employees-under-30-hours
+    label: Number of female employees working 30 hours or less per week
+    mandatory: false
+    options: []
+    q_code: '54'
+    type: PositiveInteger
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  description: ''
+  guidance:
+    content:
+    - list:
+      - "all workers paid directly from this business\u2019s payroll(s)"
+      - those temporarily absent but still being paid, for example on maternity leave
+      title: Include
+    - list:
+      - agency workers paid directly from the agency payroll
+      - voluntary workers
+      - former employees only receiving pension
+      - self-employed workers
+      - working owners who are not paid via PAYE
+      title: Exclude
+  id: employee-breakdown-questions
+  title: 'Of the <em>{{answers.employee_count}}</em> total employees employed on {{exercise.employment_date|format_date}},
+    please specify the number of:'
+  type: General
+title: Monthly Business Survey
+type: Questionnaire

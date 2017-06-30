@@ -1,0 +1,28 @@
+data_version: 0.0.1
+description: MCI Description
+groups:
+  - blocks:
+    - introduction-0213
+    - reporting-period
+    - total-retail-turnover-block
+    - food-sales
+    - alcohol-sales
+    - clothing-sales
+    - household-goods-sales
+    - other-goods-sales
+    - total-internet-sales-0213
+    - significant-change-0213
+    - reason-for-change-0213
+    - change-comment-block-0213
+    - total-employees-0213
+    - employees-breakdown-0213
+    - summary
+    id: mci
+    title: ''
+legal_basis: StatisticsOfTradeAct
+mime_type: application/json/ons/eq
+schema_filename: 'mci_0213'
+schema_version: 0.0.1
+survey_id: '023'
+theme: default
+title: Monthly Business Survey - Retail Sales Index

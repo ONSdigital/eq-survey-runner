@@ -1,0 +1,34 @@
+id: automotive-fuel
+questions:
+- answers:
+  - description: "Round to the nearest (\xA3) pound. Do not  include pence"
+    id: total-sales-automotive-fuel
+    label: Automotive fuel
+    mandatory: false
+    options: []
+    q_code: '27'
+    type: Currency
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  description: ''
+  guidance:
+    content:
+    - list:
+      - VAT
+      - sales of fuel owned by you
+      - sales of other items not paid a commission for
+      title: Include
+    - list:
+      - sales of fuel not owned by you
+      - any commissions
+      title: Exclude
+  id: total-sales-automotive-fuel-question
+  title: Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover,
+    what was the value of <em>automotive fuel</em> sales?
+  type: General
+title: Monthly Business Survey
+type: Questionnaire

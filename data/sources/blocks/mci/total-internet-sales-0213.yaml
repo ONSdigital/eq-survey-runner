@@ -1,0 +1,28 @@
+id: total-internet-sales
+questions:
+- answers:
+  - description: "Round to the nearest (\xA3) pound. Do not  include pence"
+    id: internet-sales
+    label: Internet sales
+    mandatory: false
+    options: []
+    q_code: '21'
+    type: Currency
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  description: ''
+  guidance:
+    content:
+    - list:
+      - VAT
+      title: Include
+  id: internet-sales-question
+  title: Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover,
+    what was the value of <em>internet</em> sales?
+  type: General
+title: Monthly Business Survey
+type: Questionnaire
