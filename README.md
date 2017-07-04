@@ -9,6 +9,8 @@ To get eq-survey-runner running the following command will build and run the con
 docker-compose up -d
 ```
 
+To launch a survey, navigate to `http://localhost:8000/`
+
 When the containers are running you are able to access the application as normal, and code changes will be reflected in the running application.
 However, any new dependencies that are added would require a re-build.
 
@@ -86,7 +88,13 @@ Run the server with
 
 ```
 
-This will generate a JWT for you to log into the application. The script prints out the URL with the token included.
+Note, you will also need to run an upstream tool (eg, https://github.com/ONSDigital/go-launch-a-survey) to launch a survey.
+ 
+```
+docker run -it -p 8000:8000 onsdigital/go-launch-a-survey:latest
+```
+
+This will generate a JWT for you to log into the application.
 
 ---
 

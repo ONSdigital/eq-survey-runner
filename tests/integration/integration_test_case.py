@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 from app.setup import create_app
 
-from tests.integration.create_token import TokenGenerator
+from tests.integration.create_token import create_token
 
 
 class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public-methods
@@ -26,11 +26,6 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
             "EQ_SERVER_SIDE_STORAGE_DATABASE_NAME": ""
         }
         self._application = create_app(setting_overrides)
-        self.token_generator = TokenGenerator(
-            self._application.config['EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY'],
-            self._application.config['EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD'],
-            self._application.config['EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY'],
-        )
 
         self._client = self._application.test_client()
 
@@ -40,7 +35,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         :param eq_id: The id of the survey to launch e.g. 'census', 'test' etc.
         :param form_type_id: The form type of the survey e.g. 'household', 'radio' etc.
         """
-        token = self.token_generator.create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
+        token = create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
         self.get('/session?token=' + token.decode())
 
     def dumpAnswers(self):

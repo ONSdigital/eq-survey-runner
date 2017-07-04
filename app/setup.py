@@ -189,12 +189,13 @@ def configure_flask_logging(application):
 
 
 def start_dev_mode(application):
-    # Not in dev mode, so use secure_session_cookies
+    # In dev mode, so don't use secure_session_cookies
     application.config['SESSION_COOKIE_SECURE'] = False
 
     if application.config['EQ_ENABLE_FLASK_DEBUG_TOOLBAR']:
         application.config['DEBUG_TB_PROFILER_ENABLED'] = True
         application.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+        application.debug = True
         from flask_debugtoolbar import DebugToolbarExtension
         DebugToolbarExtension(application)
 
@@ -203,12 +204,6 @@ def start_dev_mode(application):
 
 
 def add_blueprints(application):
-    if application.config['EQ_DEV_MODE']:
-        # import and register the dev mode blueprint
-        from app.views.dev_mode import dev_mode_blueprint
-        application.register_blueprint(dev_mode_blueprint)
-        application.debug = True
-
     # import and register the main application blueprint
     from app.views.questionnaire import questionnaire_blueprint
     application.register_blueprint(questionnaire_blueprint)

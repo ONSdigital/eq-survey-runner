@@ -3,7 +3,7 @@ import time
 import unittest
 
 from app import settings
-from app.cryptography.jwt_encoder import Encoder
+from tests.app.cryptography.jwt_encoder import Encoder
 
 from tests.app.app_context_test_case import AppContextTestCase
 from tests.app.authentication import (

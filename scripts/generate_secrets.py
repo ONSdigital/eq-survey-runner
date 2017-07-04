@@ -23,12 +23,6 @@ keys['EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY'] = get_file_contents(keys_folder, 's
 keys['EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY'] = get_file_contents(keys_folder, 'sdc-user-authentication-signing-rrm-public-key.pem')
 keys['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY'] = get_file_contents(keys_folder, 'sdc-user-authentication-encryption-sr-private-key.pem')
 
-if os.path.exists(os.path.join(keys_folder, 'sdc-user-authentication-encryption-sr-public-key.pem')):
-    keys['EQ_USER_AUTHENTICATION_SR_PUBLIC_KEY'] = get_file_contents(keys_folder, 'sdc-user-authentication-encryption-sr-public-key.pem')
-
-if os.path.exists(os.path.join(keys_folder, 'sdc-user-authentication-signing-rrm-private-key.pem')):
-    keys['EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY'] = get_file_contents(keys_folder, 'sdc-user-authentication-signing-rrm-private-key.pem')
-
 with open('secrets.yml', 'w') as f:
     yaml.dump(keys, f, default_flow_style=False, default_style='|')
 
@@ -47,10 +41,6 @@ secrets['EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'] = get_file_contents(keys_fol
 secrets['EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD'] = get_file_contents(keys_folder, 'sdc-submission-signing-sr-private-key-password.txt', True)
 secrets['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD'] = \
     get_file_contents(keys_folder, 'sdc-user-authentication-encryption-sr-private-key-password.txt', True)
-
-if os.path.exists(os.path.join(keys_folder, 'sdc-user-authentication-signing-rrm-private-key-password.txt')):
-    secrets['EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_PASSWORD'] = \
-        get_file_contents(keys_folder, 'sdc-user-authentication-signing-rrm-private-key-password.txt', True)
 
 with open('secrets.yml', 'a') as f:
     yaml.dump(secrets, f, default_flow_style=False)
