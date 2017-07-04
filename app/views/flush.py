@@ -1,10 +1,12 @@
 from flask import Blueprint, Response, request, session, current_app
 
-from app.authentication.jwt_decoder import JWTDecryptor
+from app.authentication.authenticator import decrypt_jwe, decode_jwt
 from app.authentication.user import User
 from app.globals import get_answer_store, get_metadata, get_questionnaire_store
 from app.questionnaire.path_finder import PathFinder
+from app.secrets import KEY_PURPOSE_AUTHENTICATION
 from app.submitter.converter import convert_answers
+from app.submitter.encrypter import encrypt
 from app.submitter.submission_failed import SubmissionFailedException
 from app.utilities.schema import load_schema_from_metadata
 
@@ -19,19 +21,12 @@ def flush_data():
 
     encrypted_token = request.args.get('token')
 
-    if encrypted_token is None:
+    if not encrypted_token or encrypted_token is None:
         return Response(status=403)
 
-    decoder = JWTDecryptor(
-        current_app.config['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY'],
-        current_app.config['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD'],
-        current_app.config['EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY'],
-    )
+    jwt_token = decrypt_jwe(encrypted_token, current_app.eq['secret_store'], purpose=KEY_PURPOSE_AUTHENTICATION)
 
-    decrypted_token = decoder.decrypt_jwt_token(
-        encrypted_token,
-        current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
-    )
+    decrypted_token = decode_jwt(jwt_token, current_app.eq['secret_store'], purpose=KEY_PURPOSE_AUTHENTICATION)
 
     roles = decrypted_token.get('roles')
 
@@ -55,9 +50,9 @@ def _submit_data(user):
         routing_path = PathFinder(schema, answer_store, metadata).get_routing_path()
 
         message = convert_answers(metadata, schema, answer_store, routing_path, flushed=True)
-        message = current_app.eq['encrypter'].encrypt(message)
+        encrypted_message = encrypt(message, current_app.eq['secret_store'])
 
-        sent = current_app.eq['submitter'].send_message(message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'], metadata["tx_id"])
+        sent = current_app.eq['submitter'].send_message(encrypted_message, current_app.config['EQ_RABBITMQ_QUEUE_NAME'], metadata["tx_id"])
 
         if not sent:
             raise SubmissionFailedException()

@@ -1,12 +1,30 @@
+import os
 import re
 import unittest
 import json
 
 from bs4 import BeautifulSoup
 
+from app.secrets import SecretStore, KEY_PURPOSE_AUTHENTICATION, KEY_PURPOSE_SUBMISSION
 from app.setup import create_app
 
-from tests.integration.create_token import create_token
+from tests.integration.create_token import TokenGenerator
+
+EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID = "709eb42cfee5570058ce0711f730bfbb7d4c8ade"
+SR_USER_AUTHENTICATION_PUBLIC_KEY_KID = "e19091072f920cbf3ca9f436ceba309e7d814a62"
+
+EQ_SUBMISSION_SDX_PRIVATE_KEY = "2225f01580a949801274a5f3e6861947018aff5b"
+EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY = "fe425f951a0917d7acdd49230b23a5c405c28510"
+
+KEYS_FOLDER = "./jwt-test-keys"
+
+
+def get_file_contents(filename, trim=False):
+    with open(os.path.join(KEYS_FOLDER, filename), 'r') as f:
+        data = f.read()
+        if trim:
+            data = data.rstrip('\r\n')
+    return data
 
 
 class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public-methods
@@ -27,6 +45,29 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         }
         self._application = create_app(setting_overrides)
 
+        self._secret_store = SecretStore({
+            "keys": {
+                EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
+                                                             'type': 'private',
+                                                             'value': get_file_contents('sdc-user-authentication-signing-rrm-private-key.pem')},
+                SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
+                                                        'type': 'public',
+                                                        'value': get_file_contents('sdc-user-authentication-encryption-sr-public-key.pem')},
+                EQ_SUBMISSION_SDX_PRIVATE_KEY: {'purpose': KEY_PURPOSE_SUBMISSION,
+                                                'type': 'private',
+                                                'value': get_file_contents('sdc-submission-encryption-sdx-private-key.pem')},
+                EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY: {'purpose': KEY_PURPOSE_SUBMISSION,
+                                                       'type': 'public',
+                                                       'value': get_file_contents('sdc-submission-signing-sr-public-key.pem')},
+            }
+        })
+
+        self.token_generator = TokenGenerator(
+            self._secret_store,
+            EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID,
+            SR_USER_AUTHENTICATION_PUBLIC_KEY_KID
+        )
+
         self._client = self._application.test_client()
 
     def launchSurvey(self, eq_id='test', form_type_id='radio', **payload_kwargs):
@@ -35,8 +76,8 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         :param eq_id: The id of the survey to launch e.g. 'census', 'test' etc.
         :param form_type_id: The form type of the survey e.g. 'household', 'radio' etc.
         """
-        token = create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
-        self.get('/session?token=' + token.decode())
+        token = self.token_generator.create_token(form_type_id=form_type_id, eq_id=eq_id, **payload_kwargs)
+        self.get('/session?token=' + token)
 
     def dumpAnswers(self):
 

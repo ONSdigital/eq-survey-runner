@@ -164,11 +164,6 @@ class TestCreateApp(unittest.TestCase):
 
         self.assertIsInstance(application.eq['submitter'], LogSubmitter)
 
-    def test_adds_encrypter_to_the_application(self):
-        application = create_app(self._setting_overrides)
-
-        self.assertIn('encrypter', application.eq)
-
 
 if __name__ == '__main__':
     unittest.main()

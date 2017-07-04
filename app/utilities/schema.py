@@ -57,11 +57,3 @@ def get_schema_path(schema_dir=DEFAULT_SCHEMA_DIR, language_code=DEFAULT_LANGUAG
 def get_schema_file_path(schema_file, language_code=DEFAULT_LANGUAGE_CODE):
     schema_dir = get_schema_path(language_code=language_code)
     return os.path.join(schema_dir, schema_file)
-
-
-def available_json_schemas():
-    files = []
-    for file in os.listdir(get_schema_path()):
-        if os.path.isfile(get_schema_file_path(file)) and file.endswith(".json"):
-            files.append(file)
-    return sorted(files)

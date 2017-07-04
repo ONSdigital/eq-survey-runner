@@ -6,6 +6,8 @@ const jose = require('node-jose');
 const JWK = jose.JWK;
 const JWE = jose.JWE;
 
+const crypto = require('crypto')
+
 const signingKey = './tests/functional/sdc-user-authentication-signing-rrm-private-key.pem';
 const encryptionKey = './tests/functional/sdc-user-authentication-encryption-sr-public-key.pem';
 
@@ -21,7 +23,7 @@ module.exports = function generateToken(schema, userId, collectionId, periodId =
   let oHeader = {
     alg: 'RS256',
     typ: 'JWT',
-    kid: 'EDCRRM'
+    kid: '709eb42cfee5570058ce0711f730bfbb7d4c8ade'
   };
 
   let variantFlags = {
@@ -62,6 +64,10 @@ module.exports = function generateToken(schema, userId, collectionId, periodId =
 
   let webKey = JSONWebKey.fromPEM(encryptionKeyString);
 
+  let shasum = crypto.createHash('sha1');
+  shasum.update(encryptionKeyString);
+  let encryptionKeyKid = shasum.digest('hex');
+
   return JWK.asKey(webKey.toJSON())
     .then(function(jwk) {
       let cfg = {
@@ -70,7 +76,8 @@ module.exports = function generateToken(schema, userId, collectionId, periodId =
       let recipient = {
         key: jwk,
         header: {
-          alg: 'RSA-OAEP'
+          alg: 'RSA-OAEP',
+          kid: encryptionKeyKid
         }
       };
       let jwe = JWE.createEncrypt(cfg, recipient);

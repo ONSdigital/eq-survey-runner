@@ -1,16 +1,14 @@
 import json
 import unittest
 
-import jwt
-from cryptography.hazmat.backends.openssl.backend import backend
-from cryptography.hazmat.primitives import serialization
+from jwcrypto import jwt
 
-from app.cryptography.jwe_decryption import JWERSAOAEPDecryptor
-from app.submitter.encrypter import Encrypter
+from app.cryptography.token_helper import decrypt_jwe, extract_kid_from_header
+from app.secrets import SecretStore, KEY_PURPOSE_SUBMISSION
+from app.submitter.encrypter import encrypt
 from tests.app.submitter import (
     TEST_DO_NOT_USE_SDX_PRIVATE_KEY,
     TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY,
-    TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD,
     TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY,
     TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY
 )
@@ -39,32 +37,35 @@ SUBMISSION_DATA = json.loads("""
       }""")
 
 
-class Decrypter(JWERSAOAEPDecryptor):
-
-    def __init__(self):
-        super().__init__(TEST_DO_NOT_USE_SDX_PRIVATE_KEY, TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD)
-        self.rrm_public_key = serialization.load_pem_public_key(
-            TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY.encode(),
-            backend=backend
-        )
-
-    def decrypt(self, token):
-        signed_token = super().decrypt(token)
-        return jwt.decode(signed_token, self.rrm_public_key, algorithms=['RS256'])
-
-
 class TestEncrypter(unittest.TestCase):
     def test_encrypt(self):
-        encrypter = Encrypter(
-            TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY,
-            TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD,
-            TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY
-        )
+        secret_store_encrypt = SecretStore({
+            "keys": {
+                "EQ_SUBMISSION_SDX_PUBLIC_KEY": {'purpose': KEY_PURPOSE_SUBMISSION,
+                                                 'type': 'public',
+                                                 'value': TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY},
+                "EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY": {'purpose': KEY_PURPOSE_SUBMISSION,
+                                                         'type': 'private',
+                                                         'value': TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY},
+            }
+        })
 
-        encrypted_data = encrypter.encrypt(SUBMISSION_DATA)
+        secret_store_decrypt = SecretStore({
+            "keys": {
+                "EQ_SUBMISSION_SDX_PUBLIC_KEY": {'purpose': KEY_PURPOSE_SUBMISSION,
+                                                 'type': 'private',
+                                                 'value': TEST_DO_NOT_USE_SDX_PRIVATE_KEY},
+                "EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY": {'purpose': KEY_PURPOSE_SUBMISSION,
+                                                         'type': 'public',
+                                                         'value': TEST_DO_NOT_USE_SR_PUBLIC_ENCRYPTION_KEY},
+            }
+        })
 
-        decrypter = Decrypter()
-        unencrypted_data = decrypter.decrypt(encrypted_data)
+        encrypted_data = encrypt(SUBMISSION_DATA, secret_store_encrypt)
+
+        signed_token = decrypt_jwe(encrypted_data, secret_store_decrypt, KEY_PURPOSE_SUBMISSION)
+
+        unencrypted_data = decode_jwt(signed_token, secret_store_decrypt)
 
         self.assertEqual(SUBMISSION_DATA["type"], unencrypted_data["type"])
         self.assertEqual(SUBMISSION_DATA["version"], unencrypted_data["version"])
@@ -75,31 +76,14 @@ class TestEncrypter(unittest.TestCase):
         self.assertEqual(SUBMISSION_DATA["paradata"], unencrypted_data["paradata"])
         self.assertEqual(SUBMISSION_DATA["data"], unencrypted_data["data"])
 
-    def test_encrypter_raises_error_for_invalid_private_key(self):
-        with self.assertRaisesRegex(ValueError, 'Invalid private key'):
 
-            Encrypter(
-                '',
-                TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD,
-                TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY
-            )
+def decode_jwt(jwt_token, secret_store):
+    jwt_kid = extract_kid_from_header(jwt_token)
 
+    public_key = secret_store.get_public_key_by_kid(KEY_PURPOSE_SUBMISSION, jwt_kid)
 
-    def test_encrypter_raises_error_for_invalid_private_key_password(self):
-        with self.assertRaisesRegex(ValueError, 'Invalid private key password'):
+    signed_token = jwt.JWT(algs=['RS256'], check_claims={})
 
-            Encrypter(
-                TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY,
-                '',
-                TEST_DO_NOT_USE_EQ_SUBMISSION_SDX_PUBLIC_KEY
-            )
+    signed_token.deserialize(jwt_token, key=public_key.as_jwk())
 
-
-    def test_encrypter_raises_error_for_invalid_public_key(self):
-        with self.assertRaisesRegex(ValueError, 'Invalid public key'):
-
-            Encrypter(
-                TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY,
-                TEST_DO_NOT_USE_SR_PRIVATE_SIGNING_KEY_PASSWORD,
-                ''
-            )
+    return json.loads(signed_token.claims)
