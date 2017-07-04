@@ -3,7 +3,8 @@ from unittest import TestCase
 
 from mock import Mock
 
-from app.jinja_filters import format_date, format_currency, format_multilined_string, format_percentage, format_start_end_date
+from app.jinja_filters import format_date, format_conditional_date, format_currency, format_multilined_string, \
+     format_percentage, format_start_end_date
 from app.jinja_filters import format_household_member_name
 from app.jinja_filters import format_str_as_date
 from app.jinja_filters import format_str_as_date_range
@@ -94,6 +95,53 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_date(date)
 
         self.assertEqual(format_value, '1 January 2017')
+
+    def test_format_conditional_date_not_date(self):
+        # Given       no test for integers this check was removed from jinja_filters
+
+        invalid_input = [('1', None),
+                         ('1/1/1', None)]
+
+        # When
+        for nonsense in invalid_input:
+            date1 = nonsense[0]
+            date2 = nonsense[1]
+            with self.assertRaises(Exception) as exception:
+                format_conditional_date(date1, date2)
+        # Then
+            self.assertIn("does not match format '%d/%m/%Y'", str(exception.exception))
+
+    def test_format_conditional_date_not_set(self):
+        # Given
+
+        # When
+        with self.assertRaises(Exception) as exception:
+            format_conditional_date(None, None)
+
+        # Then
+        self.assertIn("No valid dates passed to format_conditional_dates filter", str(exception.exception))
+
+    def test_format_conditional_date(self):
+        # Given
+
+        datelist = [('12/01/2016', '12/02/2016', '12 January 2016'),
+                    ('23/12/2017', None, '23 December 2017'),
+                    (datetime(2019, 5, 12), None, '12 May 2019'),
+                    (None, datetime(2017, 6, 22), '22 June 2017'),
+                    ('12/08/2017', datetime(2017, 9, 10), '12 August 2017'),
+                    (datetime(2018, 4, 7), "12/3/2018", '7 April 2018'),
+                    (None, datetime(2017, 10, 12), '12 October 2017'),
+                    (datetime(2019, 10, 12), datetime(2017, 9, 12), '12 October 2019')]
+
+        # When
+        for triple in datelist:
+            date1 = triple[0]
+            date2 = triple[1]
+            #dates = (date1, date2)
+            format_value = format_conditional_date(date1, date2)
+
+            # Then
+            self.assertEqual(format_value, triple[2])
 
     def test_format_start_end_date(self):
         # Given

@@ -146,6 +146,13 @@ class TestTemplateRenderer(unittest.TestCase):
 
         self.assertEqual(safe_content, 'Is … correct?')
 
+    def test_should_replace_jinja_template_condtional_dates(self):
+        content = 'Is {{ format_condtional_date(meta.survey.start_date, meta.survey.end_date)}} correct?'
+
+        safe_content = TemplateRenderer.safe_content(content)
+
+        self.assertEqual(safe_content, 'Is … correct?')
+
     def test_should_replace_simple_html_tags(self):
         content = 'This <em>string contains</em> <p><strong>some</strong></p><i>HTML</i>tags?'
 
