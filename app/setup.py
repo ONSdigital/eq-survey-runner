@@ -22,9 +22,8 @@ from app.authentication.user_id_generator import UserIDGenerator
 from app.data_model.database import Database
 
 from app.new_relic import setup_newrelic
-from app.secrets import validate_required_secrets
+from app.secrets import SecretStore, validate_required_secrets
 
-from app.submitter.encrypter import Encrypter
 from app.submitter.submitter import LogSubmitter, RabbitMQSubmitter
 
 SECURE_HEADERS = {
@@ -56,9 +55,11 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     application = Flask(__name__, static_url_path='/s', static_folder='../static')
     application.config.from_object(settings)
 
+    application.eq = {}
+
     secrets = yaml.safe_load(open(application.config['EQ_SECRETS_FILE']))
     validate_required_secrets(secrets)
-    application.config.update(secrets)
+    application.eq['secret_store'] = SecretStore(secrets)
 
     if setting_overrides:
         application.config.update(setting_overrides)
@@ -69,32 +70,25 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
     if application.config['EQ_NEW_RELIC_ENABLED']:
         setup_newrelic()
 
-    application.eq = {}
     if application.config['EQ_RABBITMQ_ENABLED']:
         application.eq['submitter'] = RabbitMQSubmitter(
             host=application.config['EQ_RABBITMQ_HOST'],
             secondary_host=application.config['EQ_RABBITMQ_HOST_SECONDARY'],
             port=application.config['EQ_RABBITMQ_PORT'],
-            username=application.config['EQ_RABBITMQ_USERNAME'],
-            password=application.config['EQ_RABBITMQ_PASSWORD'],
+            username=application.eq['secret_store'].get_secret_by_name('EQ_RABBITMQ_USERNAME'),
+            password=application.eq['secret_store'].get_secret_by_name('EQ_RABBITMQ_PASSWORD'),
         )
 
     else:
         application.eq['submitter'] = LogSubmitter()
-
-    application.eq['encrypter'] = Encrypter(
-        application.config['EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY'],
-        application.config['EQ_SUBMISSION_SR_PRIVATE_SIGNING_KEY_PASSWORD'],
-        application.config['EQ_SUBMISSION_SDX_PUBLIC_KEY'],
-    )
 
     application.eq['database'] = Database(
         driver=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_DRIVER'],
         host=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_HOST'],
         port=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_PORT'],
         database_name=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_NAME'],
-        username=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_USERNAME'],
-        password=application.config['EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'],
+        username=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_USERNAME'),
+        password=application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_DATABASE_PASSWORD'),
     )
 
     application.eq['session_storage'] = SessionStorage(
@@ -103,8 +97,8 @@ def create_app(setting_overrides=None):  # noqa: C901  pylint: disable=too-compl
 
     application.eq['id_generator'] = UserIDGenerator(
         application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_ITERATIONS'],
-        application.config['EQ_SERVER_SIDE_STORAGE_USER_ID_SALT'],
-        application.config['EQ_SERVER_SIDE_STORAGE_USER_IK_SALT'],
+        application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_USER_ID_SALT'),
+        application.eq['secret_store'].get_secret_by_name('EQ_SERVER_SIDE_STORAGE_USER_IK_SALT'),
     )
 
     setup_secure_cookies(application)
@@ -232,7 +226,7 @@ def add_blueprints(application):
 def setup_secure_cookies(application):
     session_timeout = application.config['EQ_SESSION_TIMEOUT_SECONDS']
     grace_period = application.config['EQ_SESSION_TIMEOUT_GRACE_PERIOD_SECONDS']
-    application.secret_key = application.config['EQ_SECRET_KEY']
+    application.secret_key = application.eq['secret_store'].get_secret_by_name('EQ_SECRET_KEY')
     application.permanent_session_lifetime = timedelta(seconds=session_timeout + grace_period)
     application.session_interface = SHA256SecureCookieSessionInterface()
     application.config['SESSION_COOKIE_SECURE'] = True

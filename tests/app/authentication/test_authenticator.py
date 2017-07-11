@@ -8,7 +8,7 @@ from app.setup import Database, SessionStorage
 from app.authentication.authenticator import load_user, request_load_user, user_loader
 
 
-class TestAuthenticator(unittest.TestCase):
+class TestAuthenticator(unittest.TestCase): # pylint: disable=too-many-public-methods
 
     def setUp(self):
         application = Flask(__name__)

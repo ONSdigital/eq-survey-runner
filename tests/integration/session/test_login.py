@@ -1,6 +1,7 @@
-from tests.integration.integration_test_case import IntegrationTestCase
+import time
 
-from tests.integration.create_token import create_token
+from tests.integration.create_token import PAYLOAD
+from tests.integration.integration_test_case import IntegrationTestCase
 
 
 class TestLogin(IntegrationTestCase):
@@ -27,10 +28,10 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_valid_token_should_redirect_to_survey(self):
         # Given
-        token = create_token('0205', '1')
+        token = self.token_generator.create_token('0205', '1')
 
         # When
-        self.get('/session?token=' + token.decode())
+        self.get('/session?token=' + token)
 
         # Then
         self.assertStatusOK()
@@ -38,22 +39,22 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_token_twice_is_unauthorised_when_same_jti_provided(self):
         # Given
-        token = create_token('0205', '1')
-        self.get('/session?token=' + token.decode())
+        token = self.token_generator.create_token('0205', '1')
+        self.get('/session?token=' + token)
 
         # When
-        self.get('/session?token=' + token.decode())
+        self.get('/session?token=' + token)
 
         # Then
         self.assertStatusUnauthorised()
 
     def test_login_with_token_twice_is_authorised_when_no_jti(self):
         # Given
-        token = create_token('0205', '1', jti=None)
-        self.get('/session?token=' + token.decode())
+        token = self.token_generator.create_token_without_jti('0205', '1')
+        self.get('/session?token=' + token)
 
         # When
-        self.get('/session?token=' + token.decode())
+        self.get('/session?token=' + token)
 
         # Then
         self.assertStatusOK()
@@ -61,10 +62,10 @@ class TestLogin(IntegrationTestCase):
 
     def test_login_with_valid_token_no_eq_id_and_form_type(self):
         # Given
-        token = create_token('', '')
+        token = self.token_generator.create_token('', '')
 
         # When
-        self.get('/session?token=' + token.decode())
+        self.get('/session?token=' + token)
 
         # Then
         self.assertStatusNotFound()
@@ -72,12 +73,26 @@ class TestLogin(IntegrationTestCase):
 
     def test_http_head_request_to_login_returns_successfully_and_get_still_works(self):
         # Given
-        token = create_token('0205', '1')
+        token = self.token_generator.create_token('0205', '1')
 
         # When
-        self._client.head('/session?token=' + token.decode(), as_tuple=True, follow_redirects=True)
-        self.get('/session?token=' + token.decode())
+        self._client.head('/session?token=' + token, as_tuple=True, follow_redirects=True)
+        self.get('/session?token=' + token)
 
         # Then
         self.assertStatusOK()
         self.assertInUrl('/questionnaire/1/0205')
+
+    def test_login_with_missing_mandatory_claims_should_be_forbidden(self):
+        # Given
+        payload_vars = PAYLOAD.copy()
+        payload_vars['iat'] = time.time()
+        payload_vars['exp'] = payload_vars['iat'] + float(3600)  # one hour from now
+
+        token = self.token_generator.generate_token(payload_vars)
+
+        # When
+        self.get('/session?token=' + token)
+
+        # Then
+        self.assertStatusForbidden()
