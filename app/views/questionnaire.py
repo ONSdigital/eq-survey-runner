@@ -16,6 +16,7 @@ from app.questionnaire.navigation import Navigation
 from app.questionnaire.path_finder import PathFinder
 from app.questionnaire.rules import evaluate_skip_conditions
 from app.submitter.converter import convert_answers
+from app.submitter.encrypter import encrypt
 from app.submitter.submission_failed import SubmissionFailedException
 from app.templating.metadata_context import build_metadata_context, build_metadata_context_for_survey_completed
 from app.templating.schema_context import build_schema_context
@@ -225,8 +226,8 @@ def submit_answers(eq_id, form_type, collection_id, metadata, answer_store):
         path_finder = PathFinder(g.schema_json, answer_store, metadata)
 
         message = convert_answers(metadata, g.schema_json, answer_store, path_finder.get_routing_path())
-        message = current_app.eq['encrypter'].encrypt(message)
-        sent = current_app.eq['submitter'].send_message(message,
+        encrypted_message = encrypt(message, current_app.eq['secret_store'])
+        sent = current_app.eq['submitter'].send_message(encrypted_message,
                                                         current_app.config['EQ_RABBITMQ_QUEUE_NAME'],
                                                         metadata['tx_id'])
 

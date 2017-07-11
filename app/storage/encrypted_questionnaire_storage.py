@@ -1,9 +1,9 @@
 import hashlib
 
+from jwcrypto import jwe, jwk
+from jwcrypto.common import base64url_encode, base64url_decode
 from structlog import get_logger
 
-from app.cryptography.jwe_decryption import JWEDirDecrypter
-from app.cryptography.jwe_encryption import JWEDirEncrypter
 from app.utilities.strings import to_bytes
 from app.utilities.strings import to_str
 
@@ -68,14 +68,41 @@ class EncryptedQuestionnaireStorage:
         return to_bytes(sha256.hexdigest()[:32])
 
     def _encrypt_data(self, data):
-        encrypted = JWEDirEncrypter().encrypt(data, self._cek)
-        return {'data': encrypted}
+        protected_header = {
+            "alg": "dir",
+            "enc": "A256GCM",
+            "kid": "1,1",
+        }
+        jwe_token = jwe.JWE(plaintext=base64url_encode(data), protected=protected_header)
+
+        key = self.generate_jwk_from_cek(self._cek)
+
+        jwe_token.add_recipient(key)
+
+        return {'data': jwe_token.serialize(compact=True)}
 
     def _decrypt_data(self, encrypted_data):
-        return JWEDirDecrypter().decrypt(encrypted_data['data'], self._cek)
+
+        encrypted_token = encrypted_data['data']
+
+        key = self.generate_jwk_from_cek(self._cek)
+
+        jwe_token = jwe.JWE(algs=['dir', 'A256GCM'])
+        jwe_token.deserialize(encrypted_token, key)
+
+        return base64url_decode(jwe_token.payload.decode()).decode()
 
     def _find_questionnaire_state(self):
         logger.debug("getting questionnaire data", user_id=self._user_id)
         # pylint: disable=maybe-no-member
         # SQLAlchemy doing declarative magic which makes session scope query property available
         return QuestionnaireState.query.filter(QuestionnaireState.user_id == self._user_id).first()
+
+    @staticmethod
+    def generate_jwk_from_cek(cek):
+        password = {
+            "kty": "oct",
+            "k": base64url_encode(cek),
+        }
+
+        return jwk.JWK(**password)

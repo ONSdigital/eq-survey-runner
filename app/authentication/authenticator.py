@@ -4,10 +4,11 @@ from flask_login import LoginManager
 from structlog import get_logger
 
 from app.authentication.invalid_token_exception import InvalidTokenException
-from app.authentication.jwt_decoder import JWTDecryptor
 from app.authentication.no_token_exception import NoTokenException
 from app.authentication.user import User
+from app.cryptography.token_helper import decrypt_jwe, decode_jwt
 from app.globals import get_questionnaire_store
+from app.secrets import KEY_PURPOSE_AUTHENTICATION
 from app.storage.metadata_parser import is_valid_metadata
 
 logger = get_logger()
@@ -64,6 +65,7 @@ def store_session(metadata):
     user_ik = id_generator.generate_ik(metadata)
 
     # store the user id in the session
+
     current_app.eq['session_storage'].store_user_id(user_id)
     # store the user ik in the cookie
     current_app.eq['session_storage'].store_user_ik(user_ik)
@@ -76,19 +78,18 @@ def store_session(metadata):
 
 def decrypt_token(encrypted_token):
     logger.debug("decrypting token")
-    if encrypted_token is None:
+    if not encrypted_token or encrypted_token is None:
         raise NoTokenException("Please provide a token")
 
-    decoder = JWTDecryptor(
-        current_app.config['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY'],
-        current_app.config['EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY_PASSWORD'],
-        current_app.config['EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY'],
-    )
+    jwt_token = decrypt_jwe(encrypted_token=encrypted_token,
+                            secret_store=current_app.eq['secret_store'],
+                            purpose=KEY_PURPOSE_AUTHENTICATION,
+                            default_kid='EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY')
 
-    decrypted_token = decoder.decrypt_jwt_token(
-        encrypted_token,
-        current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'],
-    )
+    decrypted_token = decode_jwt(jwt_token=jwt_token,
+                                 secret_store=current_app.eq['secret_store'],
+                                 purpose=KEY_PURPOSE_AUTHENTICATION,
+                                 leeway=current_app.config['EQ_JWT_LEEWAY_IN_SECONDS'])
 
     valid, field = is_valid_metadata(decrypted_token)
     if not valid:

@@ -2,26 +2,21 @@ import logging
 import time
 import unittest
 
-from app import settings
-from tests.app.cryptography.jwt_encoder import Encoder
-
+from app.cryptography.token_helper import encode_jwt, encrypt_jwe
+from app.secrets import SecretStore, KEY_PURPOSE_AUTHENTICATION
 from tests.app.app_context_test_case import AppContextTestCase
 from tests.app.authentication import (
-    TEST_DO_NOT_USE_RRM_PUBLIC_PEM,
-    TEST_DO_NOT_USE_SR_PRIVATE_PEM,
-    TEST_DO_NOT_USE_RRM_PRIVATE_KEY,
-    TEST_DO_NOT_USE_PASSWORD,
+    TEST_DO_NOT_USE_UPSTREAM_PRIVATE_KEY,
     TEST_DO_NOT_USE_SR_PUBLIC_KEY
 )
+from tests.integration.integration_test_case import EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID, \
+    SR_USER_AUTHENTICATION_PUBLIC_KEY_KID
 
 
 class FlaskClientAuthenticationTestCase(AppContextTestCase):
 
     def setUp(self):
         logging.basicConfig(level=logging.DEBUG)
-
-        settings.EQ_USER_AUTHENTICATION_RRM_PUBLIC_KEY = TEST_DO_NOT_USE_RRM_PUBLIC_PEM
-        settings.EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY = TEST_DO_NOT_USE_SR_PRIVATE_PEM
 
         super().setUp()
         self.client = self._app.test_client(use_cookies=False)
@@ -36,16 +31,24 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         self.assertEqual(403, response.status_code)
 
     def test_fully_encrypted(self):
-        encoder = Encoder(
-            TEST_DO_NOT_USE_RRM_PRIVATE_KEY,
-            TEST_DO_NOT_USE_PASSWORD,
-            TEST_DO_NOT_USE_SR_PUBLIC_KEY
 
-        )
+        secret_store = SecretStore({
+            "keys": {
+                SR_USER_AUTHENTICATION_PUBLIC_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
+                                                        'type': 'public',
+                                                        'value': TEST_DO_NOT_USE_SR_PUBLIC_KEY},
+                EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID: {'purpose': KEY_PURPOSE_AUTHENTICATION,
+                                                             'type': 'private',
+                                                             'value': TEST_DO_NOT_USE_UPSTREAM_PRIVATE_KEY},
+            }
+        })
+
         payload = self.create_payload()
-        token = encoder.encode(payload)
-        encrypted_token = encoder.encrypt_token(token)
-        response = self.client.get('/session?token=' + encrypted_token.decode())
+
+        token = encode_jwt(payload, EQ_USER_AUTHENTICATION_RRM_PRIVATE_KEY_KID, secret_store, KEY_PURPOSE_AUTHENTICATION)
+        encrypted_token = encrypt_jwe(token, SR_USER_AUTHENTICATION_PUBLIC_KEY_KID, secret_store, KEY_PURPOSE_AUTHENTICATION)
+
+        response = self.client.get('/session?token=' + encrypted_token)
         self.assertEqual(302, response.status_code)
 
     @staticmethod
@@ -54,8 +57,8 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         exp = time.time() + (5 * 60)
         return {
             "user_id": 'jimmy',
-            'iat': str(int(iat)),
-            'exp': str(int(exp)),
+            'iat': int(iat),
+            'exp': int(exp),
             "eq_id": '1',
             "period_str": '2016-01-01',
             "period_id": '12',
