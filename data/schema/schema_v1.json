@@ -320,6 +320,9 @@
                                 "title": {
                                     "type": "string"
                                 },
+                                "description": {
+                                    "type": "string"
+                                },
                                 "type": {
                                     "enum": [
                                         "Questionnaire",
@@ -329,25 +332,28 @@
                                         "Confirmation"
                                     ]
                                 },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "information_to_provide": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
+                              "body": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "$ref": "#/definitions/id"
                                     },
-                                    "uniqueItems": true
-                                },
-                                "basis_for_completion": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
+                                    "type": {
+                                      "enum": [
+                                        "Basic",
+                                        "Definition",
+                                        "Preview"
+                                      ]
                                     },
-                                    "uniqueItems": true,
-                                    "minItems": 1
-                                },
-                                "sections": {
+                                    "content": {
+                                      "$ref": "#/definitions/guidance_content"
+                                    }
+                                  }
+                                }
+                              },
+                              "sections": {
                                     "type": "array",
                                     "items": {
                                         "type": "object",

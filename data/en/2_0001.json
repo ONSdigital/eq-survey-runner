@@ -5,13 +5,28 @@
         "blocks": [{
                 "type": "Introduction",
                 "id": "introduction",
-                "information_to_provide": [
-                    "Employee numbers"
-                ],
-                "basis_for_completion": [
-                    "Please complete this statutory questionnaire for {{respondent.trad_as_or_ru_name}}, for the period {{exercise.start_date|format_date}}.",
-                    "Data should relate to all sites in England, Scotland and Wales, unless otherwise stated in the ‘trading as’ name, above."
-                ]
+                "body": [{
+                    "id": "basis-for-completion",
+                    "type": "Basic",
+                    "title": "Basis for completion",
+                    "content": [{
+                        "list": [
+                            "Please complete this statutory questionnaire for {{respondent.trad_as_or_ru_name}}, for the period {{exercise.start_date|format_date}}.",
+                            "Data should relate to all sites in England, Scotland and Wales, unless otherwise stated in the ‘trading as’ name, above."
+                        ]
+                    }]
+                }, {
+                    "id": "information-to-provide",
+                    "type": "Basic",
+                    "title": "You will be asked to provide information for the business, including:",
+                    "content": [{
+                        "list": [
+                            "Employee numbers"
+                        ]
+                    }, {
+                        "description": "<strong>If actual figures are not available, please provide informed estimates.</strong>"
+                    }]
+                }]
             },
             {
                 "id": "number-of-employees",

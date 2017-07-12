@@ -1,82 +1,97 @@
 .accordion {
   display: block;
-  border: 1px solid $color-borders;
-  border-radius: 3px;
   overflow: hidden;
 }
 
-.accordion__item {
-  overflow: hidden;
-  border-bottom: 1px solid $color-borders;
-  &:last-of-type {
-    margin-bottom: -1px;
-  }
-  &.is-closed {
-    border: none;
-  }
-}
-
-.accordion__head {
-  background: $color-lighter-grey;
-  padding: 0.5rem;
+.accordion__title {
+  background: none;
   cursor: pointer;
+  padding: 1em 0;
   border: none;
-  border-bottom: 1px solid $color-borders;
+  border-top: 1px solid $color-borders;
   display: block;
   appearance: none;
   width: 100%;
   text-align: left;
   line-height: 1;
-  @include mq(s) {
-    padding: 1rem;
-  }
-}
 
-.has-js {
-  .accordion__head {
-    &:focus {
-      transition: background 100ms ease-out;
-      background: $color-light-grey;
-      outline: none;
-    }
-  }
-  .is-closed {
-    .accordion__title {
-      &::before {
-        content: "+";
-      }
-    }
-  }
-}
-
-.accordion__title {
-  margin: 0;
-  display: inline-block;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
   &::before {
-    font-family: monospace;
-    content: "-";
-    font-weight: bold;
-    display: inline-block;
+    $size: 2rem;
+    transition: transform 300ms ease-in-out;
+    margin-right: 0.3rem;
+    speak: none;
+    content: "";
+    background: url("#{$s}/img/icons/icons--accordion.svg") no-repeat center center;
+    text-align: center;
+    width: $size;
+    height: $size;
+    position: relative;
+    left: -0.1rem;
+    top: -1px;
     vertical-align: middle;
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
+    display: inline-block;
   }
+
+  &:hover {
+    background: #F8F8F8;
+  }
+
+  &.is-expanded {
+    &::before {
+      transform: rotate(90deg);
+    }
+  }
+
+  &-right {
+    float: right;
+    line-height: 1.8;
+    display: none;
+    margin-right: 0.25rem;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.accordion__introduction {
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@include bp-suffix(accordion-unhide) {
+  display: inline-block;
+}
+
+.accordion__controls {
+  text-align: right;
+  margin: 1rem 0.25rem;
+}
+
+.accordion__control {
+  color: #222;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .accordion__body {
   overflow: hidden;
-  .is-closed & {
-    display: none;
-  }
-}
-
-.accordion__content {
-  padding: 0.75rem;
-  @include mq(s) {
-    padding: 1rem;
+  border-left: 2px solid $color-borders;
+  padding-left: 2.5rem;
+  margin-left: 15px;
+  opacity: 0;
+  max-height: 0;
+  transition: all 0;
+  .no-js &,
+  &.is-expanded {
+    margin-bottom: 1rem;
+    max-height: 1000em;
+    height: auto;
+    opacity: 1;
+    transition: opacity 300ms ease-out, max-height 300ms ease-out;
   }
 }

@@ -1,0 +1,24 @@
+<div class="panel panel--simple panel--info u-mb-s">
+    {% if intro.title %}
+    <h2 class="neptune">{{ intro.title }}</h2>
+    {% endif  %}
+    {% for content in intro.content %}
+    <div class="panel__body">
+        {% if content.title %}
+        <h3 class="venus">{{ content.title }}</h3>
+        {% endif  %}
+        {% if content.description %}
+        <div class="u-mb-1">
+            {{ content.description }}
+        </div>
+        {% endif %}
+        {% if content.list %}
+        <ul>
+            {% for li in content.list %}
+            <li>{{ li }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>

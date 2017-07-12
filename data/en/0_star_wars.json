@@ -16,10 +16,19 @@
         "blocks": [{
                 "type": "Introduction",
                 "id": "introduction",
-                "information_to_provide": [
-                    "Yoda's siblings",
-                    "Total Yearly cost of Rebel Alliance"
-                ]
+                "body": [{
+                    "id": "information-to-provide",
+                    "type": "Basic",
+                    "title": "You will be asked to provide information for the business, including:",
+                    "content": [{
+                        "list": [
+                            "Yoda's siblings",
+                            "Total Yearly cost of Rebel Alliance"
+                        ]
+                    }, {
+                        "description": "<strong>If actual figures are not available, please provide informed estimates.</strong>"
+                    }]
+                }]
             },
             {
                 "type": "Questionnaire",

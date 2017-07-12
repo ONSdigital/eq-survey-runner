@@ -2,8 +2,6 @@
 
 {% import 'macros/helpers.html' as h %}
 
-{% set form = content.form %}
-
 {% block header %}
   {% include 'partials/header.html' %}
   {% with is_hero = true %}
@@ -52,60 +50,26 @@
         </div>
       </div>
     </div>
-
   {% endblock business_details %}
+    <div class="grid">
+        <div class="grid__col col-7@l">
 
-  {% block description %}
-    {% if content.block.description %}
-      <div class="u-mb-l qa-intro-description">
-        {{ content.block.description}}
-      </div>
-    {% endif %}
-  {% endblock description %}
+  {% block intro_content %}
+    {% for intro in content.block.body %}
+      {% if intro.type == 'Basic' %}
+        {% include 'partials/introduction/basic.html' %}
+      {% elif intro.type == 'Definition' %}
+        {% include 'partials/introduction/definition.html' %}
+      {% elif intro.type == 'Preview' %}
+        {% include 'partials/introduction/preview.html' %}
+      {% endif %}
+    {% endfor %}
+  {% endblock intro_content %}
 
-  {% block basis_for_completion %}
-    {% if content.block.basis_for_completion %}
-      <div data-qa="basis-for-completion">
-        <h2 class="saturn">Basis for completion</h2>
-        <ul>
-         {% for basis_item in content.block.basis_for_completion %}
-           <li>{{ basis_item }}</li>
-         {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
-  {% endblock basis_for_completion %}
+  {% block start_survey %}
+    {% include 'partials/introduction/start-survey.html' %}
+  {% endblock start_survey %}
 
-  {% block information_to_provide %}
-  <div class="u-mb-l">
-    {% if content.block.information_to_provide %}
-    <h2 class="saturn">You will be asked to provide information for the business, including:</h2>
-    <ul>
-      {% for information_item in content.block.information_to_provide %}
-        <li>{{ information_item }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    <p class="venus">If actual figures are not available, please provide informed estimates.</p>
-
+        </div>
   </div>
-
-  {% endblock information_to_provide %}
-
-  <div class="lock u-mb-s u-mb-m@s">
-    <div class="venus lock__text">We will treat your data securely and confidentially</div>
-  </div>
-
-  <form class="form" method="POST" autocomplete="off" novalidate>
-    {{ form.csrf_token }}
-    <button class="btn btn--primary btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
-  </form>
-
-  {% block legal_info %}
-
-  <h2 class="saturn">Legal Information</h2>
-  <p class="mars">You are required to complete this questionnaire. If you do not complete and return this questionnaire by {{ meta.survey.return_by|format_date }}, penalties may be incurred (under section 4 of the Statistics of Trade Act 1947).</p>
-
-  {% endblock legal_info %}
-
 {% endblock %}
