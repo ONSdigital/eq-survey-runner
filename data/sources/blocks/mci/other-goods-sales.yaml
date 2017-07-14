@@ -1,0 +1,50 @@
+id: other-goods-sales
+questions:
+- answers:
+  - description: "Round to the nearest (\xA3) pound. Do not  include pence"
+    guidance:
+      content:
+      - title: Include
+        list:
+        - toiletries and medications (except NHS receipts)
+        - newspapers and periodicals
+        - books, stationery and office supplies
+        - photographic and optical goods
+        - spectacles, contact lenses and sunglasses
+        - toys and games
+        - cycles and cycle accessories
+        - sport and camping equipment
+        - jewellery
+        - silverware and plate, clocks and watches
+        - household cleaning products and kitchen paper products
+        - "pets, pets\u2019 requisites and pet foods"
+        - cut flowers, plants, seeds and other garden sundries
+        - other new and second hand goods
+        - Mobile phones
+      - title: Exclude
+        list:
+        - 'revenue from mobile phone network commission and top up '
+        - lottery sales and commission from lottery sales
+        - sales of car accessories and motor vehicles
+        - NHS receipts
+      hide_guidance: Hide sales items to include/exclude
+      show_guidance: Show sales items to include/exclude
+    id: total-sales-other-goods
+    label: Other goods
+    mandatory: false
+    options: []
+    q_code: '26'
+    type: Currency
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  description: ''
+  id: total-sales-other-goods-question
+  title: Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover,
+    what was the value of <em>other</em> sales?
+  type: General
+title: Monthly Business Survey
+type: Questionnaire

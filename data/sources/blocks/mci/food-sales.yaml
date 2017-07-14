@@ -1,0 +1,33 @@
+id: food-sales
+questions:
+- answers:
+  - description: "Round to the nearest (\xA3) pound. Do not  include pence"
+    id: total-sales-food
+    label: Food
+    mandatory: false
+    options: []
+    q_code: '22'
+    type: Currency
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  description: ''
+  guidance:
+    content:
+    - list:
+      - all fresh food
+      - other food for human consumption (except chocolate and sugar confectionery)
+      - soft drinks
+      title: Include
+    - list:
+      - sales from catering facilities used by customers
+      title: Exclude
+  id: total-sales-food-question
+  title: Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover,
+    what was the value of <em>food</em> sales?
+  type: General
+title: Monthly Business Survey
+type: Questionnaire

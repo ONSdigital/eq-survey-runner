@@ -267,28 +267,25 @@
                                 "show_guidance": "Show household goods items to include",
                                 "hide_guidance": "Hide household goods items to include",
                                 "content": [{
-                                        "title": "Include"
-                                    },
-                                    {
-                                        "list": [
-                                            "carpets, rugs and other floor coverings",
-                                            "furniture",
-                                            "household textiles and soft furnishings",
-                                            "prints and picture frames",
-                                            "antiques and works of art",
-                                            "domestic electrical and gas appliances, audio/visual equipment and home computers",
-                                            "lighting and minor electrical supplies",
-                                            "records, compact discs, audio and video tapes",
-                                            "musical instruments and goods",
-                                            "decorators\u2019 and DIY supplies",
-                                            "lawn-mowers",
-                                            "hardware",
-                                            "china, glassware and cutlery",
-                                            "novelties, souvenirs and gifts",
-                                            "e-cigarettes"
-                                        ]
-                                    }
-                                ]
+                                    "title": "Include",
+                                    "list": [
+                                        "carpets, rugs and other floor coverings",
+                                        "furniture",
+                                        "household textiles and soft furnishings",
+                                        "prints and picture frames",
+                                        "antiques and works of art",
+                                        "domestic electrical and gas appliances, audio/visual equipment and home computers",
+                                        "lighting and minor electrical supplies",
+                                        "records, compact discs, audio and video tapes",
+                                        "musical instruments and goods",
+                                        "decorators\u2019 and DIY supplies",
+                                        "lawn-mowers",
+                                        "hardware",
+                                        "china, glassware and cutlery",
+                                        "novelties, souvenirs and gifts",
+                                        "e-cigarettes"
+                                    ]
+                                }]
                             },
                             "description": "Round to the nearest (\u00a3) pound. Do not  include pence",
                             "id": "total-sales-household-goods",
@@ -326,9 +323,7 @@
                                 "show_guidance": "Show sales items to include/exclude",
                                 "hide_guidance": "Hide sales items to include/exclude",
                                 "content": [{
-                                        "title": "Include"
-                                    },
-                                    {
+                                        "title": "Include",
                                         "list": [
                                             "toiletries and medications (except NHS receipts)",
                                             "newspapers and periodicals",
@@ -348,9 +343,7 @@
                                         ]
                                     },
                                     {
-                                        "title": "Exclude"
-                                    },
-                                    {
+                                        "title": "Exclude",
                                         "list": [
                                             "revenue from mobile phone network commission and top up ",
                                             "lottery sales and commission from lottery sales",
@@ -570,21 +563,15 @@
                                         "description": "Examples of commentary:"
                                     },
                                     {
-                                        "title": "\u2018In-store promotion\u2019"
-                                    },
-                                    {
+                                        "title": "\u2018In-store promotion\u2019",
                                         "description": "\u201COffer on wine for the whole month (save 25% when you buy 6 bottles). The promotion was available in-store and online, contributing to an increase in both total retail turnover and internet sales.\u201D"
                                     },
                                     {
-                                        "title": "\u2018Special events (for example, sporting events)\u2019"
-                                    },
-                                    {
+                                        "title": "\u2018Special events (for example, sporting events)\u2019",
                                         "description": "\u201CThis was the month before the start of Euro 2016 (football), we recorded an increase in sales of audio-visual equipment (for example, televisions and audio equipment). This led to an increase in sales both in-store and online.\u201D"
                                     },
                                     {
-                                        "title": "\u2018Weather\u2019"
-                                    },
-                                    {
+                                        "title": "\u2018Weather\u2019",
                                         "description": "\u201CThe bad weather has decreased our sales of summer clothing. This has led to a reduction in total retail turnover and internet sales this month.\u201D"
                                     }
                                 ]

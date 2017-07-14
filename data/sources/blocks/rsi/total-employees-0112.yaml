@@ -1,0 +1,39 @@
+id: total-employees
+questions:
+- answers:
+  - alias: employee_count
+    id: total-number-employees
+    label: Total number of employees
+    mandatory: true
+    options: []
+    q_code: '50'
+    type: PositiveInteger
+    validation:
+      messages:
+        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+          your answer.
+        MANDATORY: Please provide a value, even if your value is 0.
+        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
+        NOT_INTEGER: Please only enter whole numbers into the field.
+  description: <p>An employee is anyone aged 16 years or over that your organisation
+    directly pays from its payroll(s), in return for carrying out a full-time or part-time
+    job or being on a training scheme.</p>
+  guidance:
+    content:
+    - list:
+      - "all workers paid directly from this business\u2019s payroll(s)"
+      - those temporarily absent but still being paid, for example on maternity leave
+      title: Include
+    - list:
+      - agency workers paid directly from the agency payroll
+      - voluntary workers
+      - former employees only receiving pension
+      - self-employed workers
+      - working owners who are not paid via PAYE
+      title: Exclude
+  id: total-number-employees-question
+  title: On {{exercise.employment_date|format_date}} what was the number of employees
+    for {{respondent.trad_as_or_ru_name}}?
+  type: General
+title: Monthly Business Survey
+type: Questionnaire
