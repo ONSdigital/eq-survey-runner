@@ -1,5 +1,45 @@
 {
     "data_version": "0.0.1",
+    "navigation": {
+        "visible": true,
+        "sections": [{
+                "title": "Introduction",
+                "group_order": ["introduction-group"]
+            },
+            {
+                "title": "Pay Pattern",
+                "group_order": ["pay-pattern"]
+            },
+            {
+                "title": "Weekly Pay",
+                "group_order": ["weekly-pay"]
+            },
+            {
+                "title": "Fortnightly Pay",
+                "group_order": ["fortnightly-pay"]
+            },
+            {
+                "title": "Calendar Monthly Pay",
+                "group_order": ["calendar-monthly"]
+            },
+            {
+                "title": "Four Weekly Pay",
+                "group_order": ["four-weekly-pay"]
+            },
+            {
+                "title": "Five Weekly Pay",
+                "group_order": ["five-weekly-pay"]
+            },
+            {
+                "title": "General Comments",
+                "group_order": ["general-comments-group"]
+            },
+            {
+                "title": "Summary",
+                "group_order": ["summary-group"]
+            }
+        ]
+    },
     "groups": [{
             "blocks": [{
                 "type": "Introduction",
@@ -719,8 +759,7 @@
                         "condition": "not set"
                     }]
                 }
-            ],
-            "completed_id": "weekly-pay-significant-changes-other"
+            ]
         },
         {
             "blocks": [{
@@ -1349,8 +1388,7 @@
                         "condition": "not set"
                     }]
                 }
-            ],
-            "completed_id": "fortnightly-pay-significant-changes-other"
+            ]
         },
         {
             "blocks": [{
@@ -1968,8 +2006,7 @@
                         "condition": "not set"
                     }]
                 }
-            ],
-            "completed_id": "calendar-monthly-pay-significant-changes-other"
+            ]
         },
         {
             "blocks": [{
@@ -2586,8 +2623,7 @@
                         "condition": "not set"
                     }]
                 }
-            ],
-            "completed_id": "four-weekly-pay-significant-changes-other"
+            ]
         },
         {
             "blocks": [{
@@ -3206,8 +3242,7 @@
                         "condition": "not set"
                     }]
                 }
-            ],
-            "completed_id": "five-weekly-pay-significant-changes-other"
+            ]
         },
         {
             "blocks": [{
@@ -3261,7 +3296,6 @@
         "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
         "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
     },
-    "navigation": true,
     "schema_version": "0.0.1",
     "survey_id": "134",
     "theme": "default",

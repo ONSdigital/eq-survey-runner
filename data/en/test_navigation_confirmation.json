@@ -1,13 +1,48 @@
 {
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
-    "data_version": "0.0.1",
+    "data_version": "0.0.2",
     "survey_id": "999",
     "title": "Home Insurance",
     "description": "Home Insurance",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "navigation": true,
+    "navigation": {
+        "visible": true,
+        "sections": [{
+                "title": "Property Details",
+                "group_order": ["property-details"]
+            },
+            {
+                "title": "House Details",
+                "group_order": ["house-details"]
+            },
+            {
+                "title": "Household Details",
+                "group_order": ["multiple-questions-group"]
+            },
+            {
+                "title_from_answers": ["household-full-name"],
+                "group_order": ["repeating-group"]
+            },
+            {
+                "title": "Extra Cover",
+                "group_order": ["extra-cover"]
+            },
+            {
+                "title": "Payment Details",
+                "group_order": ["payment-details"]
+            },
+            {
+                "title": "Extra Cover Items",
+                "group_order": ["extra-cover-items-group"]
+            },
+            {
+                "title": "Submit answers",
+                "group_order": ["confirmation-group"]
+            }
+        ]
+    },
     "groups": [{
             "blocks": [{
                     "type": "Questionnaire",
@@ -88,8 +123,7 @@
                 }
             ],
             "id": "property-details",
-            "title": "Property Details",
-            "completed_id": "property-interstitial"
+            "title": "Property Details"
         },
         {
             "blocks": [{
@@ -173,8 +207,7 @@
                 "title": "Household Details"
             }],
             "id": "multiple-questions-group",
-            "title": "Household Details",
-            "completed_id": "household-composition"
+            "title": "Household Details"
         },
         {
             "blocks": [{
@@ -259,8 +292,7 @@
                     "type": "answer_count",
                     "answer_id": "household-full-name"
                 }
-            }],
-            "completed_id": "repeating-block-2"
+            }]
         },
         {
             "blocks": [{

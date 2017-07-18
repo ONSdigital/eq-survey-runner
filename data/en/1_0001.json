@@ -1,6 +1,66 @@
 {
     "data_version": "0.0.1",
     "description": "UK Innovation Survey",
+    "navigation": {
+        "visible": true,
+        "sections": [{
+                "title": "General Business Information",
+                "group_order": ["general-business-information"]
+            },
+            {
+                "title": "Business Strategy & Practices",
+                "group_order": ["business-strategy-practices"]
+            },
+            {
+                "title": "Innovation Investment",
+                "group_order": ["innovation-investment"]
+            },
+            {
+                "title": "Goods and Services Innovation",
+                "group_order": ["goods-services-innovation"]
+            },
+            {
+                "title": "Process Innovation",
+                "group_order": ["process-innovation"]
+            },
+            {
+                "title": "Constraints on Innovation ",
+                "group_order": ["constraints-on-innovation"]
+            },
+            {
+                "title": "Factors Affecting Innovation",
+                "group_order": ["factors-affecting-innovation"]
+            },
+            {
+                "title": "Information Needed for Innovation",
+                "group_order": ["information-needed-for-innovation"]
+            },
+            {
+                "title": "Co-operation on Innovation",
+                "group_order": ["co-operation-on-innovation"]
+            },
+            {
+                "title": "Public Financial Support for Innovation",
+                "group_order": ["public-financial-support-for-innovation"]
+            },
+            {
+                "title": "Turnover and Exports",
+                "group_order": ["turnover-and-exports"]
+            },
+            {
+                "title": "Employees and Skills",
+                "group_order": ["employees-and-skills"]
+            },
+            {
+                "title": "General Information",
+                "group_order": ["general-information"]
+            },
+            {
+                "title": "Submit answers",
+                "group_order": ["ready-to-submit"]
+            }
+        ]
+    },
     "groups": [{
             "blocks": [{
                     "type": "Introduction",
@@ -4896,7 +4956,6 @@
         "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
         "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
     },
-    "navigation": true,
     "schema_version": "0.0.1",
     "survey_id": "144",
     "theme": "ukis",

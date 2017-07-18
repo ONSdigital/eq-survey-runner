@@ -67,8 +67,7 @@ class TestSchemaHelper(unittest.TestCase):
         self.assertEqual(
             {
                 'type': 'answer_count',
-                'answer_id': 'first-name',
-                'navigation_label_answer_ids': ['first-name', 'last-name'],
+                'answer_id': 'first-name'
             }, rule)
 
     def test_get_answers_that_repeat_in_block(self):

@@ -7,15 +7,33 @@
     "description": "Census England Household Schema",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "navigation": true,
+    "navigation": {
+        "visible": true,
+        "sections": [{
+                "title": "Who lives here?",
+                "group_order": ["who-lives-here", "who-lives-here-relationship", "who-lives-here-interstitial"]
+            },
+            {
+                "title": "Household and Accommodation",
+                "group_order": ["household-and-accommodation"]
+            },
+            {
+                "title_from_answers": ["first-name", "last-name"],
+                "group_order": ["household-member"]
+            },
+            {
+                "title": "Visitors",
+                "group_order": ["visitors", "visitors-interstitial"]
+            },
+            {
+                "title": "Submit answers",
+                "group_order": ["questionnaire-completed"]
+            }
+        ]
+    },
     "groups": [{
             "id": "who-lives-here",
             "title": "Who lives here?",
-            "completed_id": "who-lives-here-completed",
-            "highlight_when": [
-                "who-lives-here-relationship",
-                "who-lives-here-interstitial"
-            ],
             "blocks": [{
                     "type": "Questionnaire",
                     "id": "permanent-or-family-home",
@@ -452,7 +470,6 @@
         {
             "id": "household-and-accommodation",
             "title": "Household and Accommodation",
-            "completed_id": "household-and-accommodation-completed",
             "blocks": [{
                     "type": "Questionnaire",
                     "id": "type-of-accommodation",
@@ -894,11 +911,7 @@
             "routing_rules": [{
                 "repeat": {
                     "type": "answer_count",
-                    "answer_id": "first-name",
-                    "navigation_label_answer_ids": [
-                        "first-name",
-                        "last-name"
-                    ]
+                    "answer_id": "first-name"
                 }
             }],
             "blocks": [{
@@ -4238,10 +4251,6 @@
         {
             "id": "visitors",
             "title": "Visitors",
-            "highlight_when": [
-                "visitors-interstitial"
-            ],
-            "completed_id": "visitors-completed",
             "routing_rules": [{
                 "repeat": {
                     "type": "answer_value",
@@ -4448,7 +4457,6 @@
         {
             "id": "visitors-interstitial",
             "title": "Visitors",
-            "hide_in_navigation": true,
             "skip_conditions": [{
                     "when": [{
                         "id": "overnight-visitors-answer",

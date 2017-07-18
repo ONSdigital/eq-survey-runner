@@ -31,110 +31,144 @@ class Navigation(object):
         :param current_group_instance:
         :return:
         """
-        if self.survey_json.get('navigation', False) is False:
+
+        navigation_block = self.survey_json.get('navigation')
+        if navigation_block is None or navigation_block.get("visible", True) is False:
             return None
 
         navigation = []
 
-        last_group_id = SchemaHelper.get_last_group_id(self.survey_json)
+        for section in navigation_block['sections']:
+            non_skipped_groups = self._get_non_skipped_groups(section)
+            if len(non_skipped_groups) == 0:
+                continue
 
-        for group in filter(lambda x: 'hide_in_navigation' not in x, self.survey_json['groups']):
-            logger.debug("building frontend navigation", group_id=group['id'])
+            first_group_id = non_skipped_groups[0]
+            first_block_id = SchemaHelper.get_first_block_id_for_group(self.survey_json, first_group_id)
 
-            first_location = Location(group['id'], 0, group['blocks'][0]['id'])
-            last_block_in_group = SchemaHelper.get_last_block_in_group(group)
+            completion_group_block_id = self._get_completion_group_block_id(non_skipped_groups)
+            if completion_group_block_id is None:
+                continue
 
-            is_summary_or_confirm_group = last_block_in_group and \
-                SchemaHelper.is_summary_or_confirmation(last_block_in_group)
+            completion_group_id = completion_group_block_id['group_id']
+            completion_block_id = completion_group_block_id['block_id']
 
-            last_block_location = Location(group['id'], 0, last_block_in_group['id'])
-            can_get_to_summary = is_summary_or_confirm_group and self.routing_path and \
-                last_block_location in self.routing_path
+            if SchemaHelper.is_summary_or_confirmation(SchemaHelper.get_block(self.survey_json, first_block_id)) \
+                    and self._can_reach_summary_confirmation(completion_group_id, completion_block_id) is False:
+                continue
 
-            skip_group = self._should_skip_group(current_group_instance, group)
-            if not skip_group:
-                repeating_rule = SchemaHelper.get_repeat_rule(group)
-                if repeating_rule:
-                    logger.debug("building repeating navigation", group_id=group['id'])
-                    navigation.extend(self._build_repeating_navigation(repeating_rule, group, current_group_id,
-                                                                       current_group_instance))
-                elif last_group_id == group['id'] and can_get_to_summary:
-                    logger.debug("building navigation", group_id=group['id'])
-                    if len(self.completed_blocks) > 0 and set(self.routing_path[:-1]).issubset(self.completed_blocks):
-                        navigation.append(self._build_single_navigation(group, current_group_id, first_location))
-                elif last_group_id != group['id'] and not is_summary_or_confirm_group:
-                    logger.debug("building navigation", group_id=group['id'])
-                    navigation.append(self._build_single_navigation(group, current_group_id, first_location))
+            repeating_rule = SchemaHelper.get_repeat_rule(
+                SchemaHelper.get_group(self.survey_json, first_group_id))
+            if repeating_rule:
+                navigation.extend(self._build_repeating_navigation(repeating_rule, section, current_group_id,
+                                                                   current_group_instance, completion_block_id))
+            else:
+                navigation.append(self._build_single_navigation(section, current_group_id,
+                                                                Location(first_group_id, 0, first_block_id),
+                                                                completion_block_id))
 
         return navigation
 
-    def _should_skip_group(self, current_group_instance, group):
+    def _get_non_skipped_groups(self, section):
+        non_skipped_groups = []
+        for group_id in section['group_order']:
+            if not self._should_skip_group(group_id):
+                non_skipped_groups.append(group_id)
 
+        return non_skipped_groups
+
+    def _should_skip_group(self, group_id):
         skip_group = False
+        group = SchemaHelper.get_group(self.survey_json, group_id)
         skip_conditions = SchemaHelper.get_skip_condition(group)
 
         if skip_conditions:
-            skip_group = evaluate_skip_conditions(skip_conditions, self.metadata, self.answer_store,
-                                                  current_group_instance)
+            skip_group = evaluate_skip_conditions(skip_conditions, self.metadata, self.answer_store)
+
         return skip_group
 
-    def _build_repeating_navigation(self, repeating_rule, group, current_group_id, current_group_instance):
+    def _get_completion_group_block_id(self, group_ids):
+        """
+         Navigate backwards through each non skipped group in a section
+          checking each block in reverse until a non skipped
+          block is obtained.
+
+          Group instance is not used to evaluate skip conditions:
+          Assumption for repeating groups is that the
+          final block is constant across group instances
+
+        :param group_ids: List of groups to check
+        :return:
+        """
+        for group_id in reversed(group_ids):
+            group = SchemaHelper.get_group(self.survey_json, group_id)
+            for block in reversed(group['blocks']):
+                skip_conditions = block.get('skip_conditions')
+                if evaluate_skip_conditions(skip_conditions, self.metadata, self.answer_store) is False:
+                    return {'group_id': group_id, 'block_id': block['id']}
+
+        return None
+
+    def _can_reach_summary_confirmation(self, group_id, block_id):
+        if self.routing_path and Location(group_id, 0, block_id) in self.routing_path and \
+                len(self.completed_blocks) > 0 and set(self.routing_path[:-1]).issubset(self.completed_blocks):
+            return True
+
+        return False
+
+    def _build_single_navigation(self, section, current_group_id, first_location, completion_block):
+        is_highlighted = current_group_id in section['group_order']
+        is_completed = self._is_completed(completion_block)
+
+        return self._generate_item(section['title'], is_completed, first_location, is_highlighted)
+
+    def _build_repeating_navigation(self, repeating_rule, section, current_group_id,
+                                    current_group_instance, completed_id):
+        group = SchemaHelper.get_group(self.survey_json, section['group_order'][0])
         first_location = Location(group['id'], 0, group['blocks'][0]['id'])
         no_of_repeats = evaluate_repeat(repeating_rule, self.answer_store)
 
         repeating_nav = []
 
         if repeating_rule['type'] == 'answer_count':
-            completed_id = group['completed_id'] if 'completed_id' in group else group['blocks'][-1]['id']
             is_current_group = group['id'] == current_group_id
-            link_names = self._generate_link_names(repeating_rule)
+            link_names = self._generate_link_names(section['title_from_answers'])
 
             repeating_nav = self._generate_repeated_items(link_names, first_location, completed_id, no_of_repeats,
                                                           is_current_group, current_group_instance)
 
         elif no_of_repeats > 0:
-            item = self._build_single_navigation(group, current_group_id, first_location)
+            item = self._build_single_repeating_navigation(section, current_group_id, first_location,
+                                                           completed_id, no_of_repeats)
             repeating_nav.append(item)
 
         return repeating_nav
 
-    def _build_single_navigation(self, group, current_group_id, first_location):
-        completed_id = group['completed_id'] if 'completed_id' in group else group['blocks'][-1]['id']
-        default_highlight = self._should_highlight(group, current_group_id)
-        is_completed = self._is_complete_non_repeating(completed_id)
+    def _build_single_repeating_navigation(self, section, current_group_id, first_location,
+                                           completed_id, no_of_repeats):
+        is_highlighted = current_group_id in section['group_order']
+        is_completed = self._is_completed_single_repeating(no_of_repeats, completed_id)
+        return self._generate_item(section['title'], is_completed, first_location, is_highlighted)
 
-        return self._generate_item(group['title'], is_completed, first_location, default_highlight)
+    def _is_completed_single_repeating(self, no_of_repeats, completed_id):
+        for i in range(no_of_repeats):
+            if self._is_completed(completed_id, i) is False:
+                return False
 
-    @staticmethod
-    def _should_highlight(group, current_group_id):
-        is_current_group = group['id'] == current_group_id
-        current_group_in_highlight = 'highlight_when' in group and current_group_id in group['highlight_when']
+        return True
 
-        return (current_group_in_highlight and not is_current_group) or is_current_group
-
-    def _is_complete_non_repeating(self, completed_id):
+    def _is_completed(self, completed_id, group_instance=0):
         """
-        Determines whether the non-repeating item can be marked as complete in navigation
+        Determines whether an item can be marked as complete in navigation
 
         :param completed_id: The block_id which indicates whether this group has been completed
+        :param group_instance: Used for repeating groups
         :return:
         """
         for b in self.completed_blocks:
-            if b.block_id == completed_id:
+            if b.block_id == completed_id and b.group_instance == group_instance:
                 return True
-        return False
 
-    def _is_complete_repeating(self, group_instance, completed_id):
-        """
-        Determines whether the repeating item can be marked as complete in navigation
-
-        :param group_instance:
-        :param completed_id: The block_id which indicates whether this group has been completed
-        :return:
-        """
-        for b in self.completed_blocks:
-            if b.group_instance == group_instance and b.block_id == completed_id:
-                return True
         return False
 
     def _generate_repeated_items(self, link_names, first_location, completed_id, no_of_repeats, is_current_group,
@@ -160,7 +194,7 @@ class Navigation(object):
             if link_names:
                 nav_item = self._generate_item(
                     name=link_names.get(i),
-                    completed=self._is_complete_repeating(i, completed_id),
+                    completed=self._is_completed(completed_id, i),
                     location=location,
                     highlight=is_current_group_instance,
                     repeating=True,
@@ -178,12 +212,8 @@ class Navigation(object):
             "repeating": repeating,
         }
 
-    def _generate_link_names(self, repeating_rule):
+    def _generate_link_names(self, label_answer_ids):
         link_names = defaultdict(list)
-        if 'navigation_label_answer_ids' in repeating_rule:
-            label_answer_ids = repeating_rule['navigation_label_answer_ids']
-        else:
-            label_answer_ids = [repeating_rule['answer_id']]
 
         for answer_id in label_answer_ids:
             answers = self.answer_store.filter(answer_id=answer_id)

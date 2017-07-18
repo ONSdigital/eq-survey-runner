@@ -81,6 +81,26 @@ function isViewSectionsVisible() {
   return browser.isExisting(viewSectionsLink) && browser.isVisibleWithinViewport(viewSectionsLink);
 }
 
+function navigationLink(linkName) {
+    return 'a=' + linkName
+}
+
+function isSectionComplete(linkName) {
+    return isSectionCompleteBind.bind(null, linkName)
+}
+
+function isSectionCompleteBind(linkName) {
+  return browser
+    .element(navigationLink(linkName))
+    .getAttribute('data-qa')
+    .then(function (data_qa_string) {
+      if (data_qa_string === 'complete') {
+        return true
+      }
+      return false
+    });
+}
+
 module.exports = {
   landingPage,
   getUri,
@@ -95,5 +115,7 @@ module.exports = {
   setMobileViewport,
   openMobileNavigation,
   closeMobileNavigation,
-  isViewSectionsVisible
-};
+  isViewSectionsVisible,
+  navigationLink,
+  isSectionComplete
+}

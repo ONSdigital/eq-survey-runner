@@ -134,14 +134,6 @@
         },
         "routing_rules": {
             "type": "array",
-            "navigation_label_answer_ids": {
-                "type": "array",
-                "items": {
-                    "type": "string"
-                },
-                "minItems": 1,
-                "uniqueItems": true
-            },
             "items": {
                 "type": "object",
                 "properties": {
@@ -245,7 +237,34 @@
             ]
         },
         "navigation": {
-            "type": "boolean"
+            "type": "object",
+            "properties": {
+                "visible":
+                {
+                    "type": "boolean"
+                },
+                "sections": {
+                    "type": "array",
+                    "items": {
+                        "title": "string",
+                        "title_from_answers": "array",
+                        "group_order": "array",
+                        "required": [
+                           "group_order"
+                        ],
+                        "oneOf": [{
+                            "required": [
+                               "title"
+                           ]
+                        },
+                        {
+                           "required": [
+                                "title_from_answers"
+                            ]
+                        }]
+                    }
+                }
+            }
         },
         "messages": {
             "$ref": "#/definitions/messages"
