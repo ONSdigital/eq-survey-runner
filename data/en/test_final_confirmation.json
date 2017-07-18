@@ -7,7 +7,18 @@
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo final confirmation to submit.",
-    "navigation": true,
+    "navigation": {
+        "visible": true,
+        "sections": [{
+                "title": "First group",
+                "group_order": ["final-confirmation"]
+            },
+            {
+                "title": "Submit answers",
+                "group_order": ["confirmation-group"]
+            }
+        ]
+    },
     "messages": {
         "INTEGER_TOO_LARGE": "Number is too large",
         "NEGATIVE_INTEGER": "Number cannot be less than zero",

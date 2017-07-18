@@ -7,7 +7,28 @@
     "description": "",
     "theme": "census",
     "legal_basis": "Voluntary",
-    "navigation": true,
+    "navigation": {
+        "visible": true,
+        "sections": [{
+                "title": "Group 1",
+                "group_order": [
+                    "multiple-questions-group"
+                ]
+            },
+            {
+                "title_from_answers": ["first-name"],
+                "group_order": [
+                    "repeating-group"
+                ]
+            },
+            {
+                "title": "Summary",
+                "group_order": [
+                    "summary-group"
+                ]
+            }
+        ]
+    },
     "groups": [{
             "blocks": [{
                     "type": "Introduction",
@@ -59,7 +80,7 @@
                 }
             ],
             "id": "multiple-questions-group",
-            "title": ""
+            "title": "Group 1"
         },
         {
             "blocks": [{
@@ -124,11 +145,7 @@
             "routing_rules": [{
                 "repeat": {
                     "type": "answer_count",
-                    "answer_id": "first-name",
-                    "navigation_label_answer_ids": [
-                        "first-name",
-                        "last-name"
-                    ]
+                    "answer_id": "first-name"
                 }
             }]
         },

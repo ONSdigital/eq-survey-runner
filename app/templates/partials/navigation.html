@@ -7,7 +7,7 @@
       {% if nav_item.current_location %}
         <div>{{nav_item.link_name}}</div>
       {% else %}
-        <a class="nav__link" href="{{nav_item.link_url}}"
+        <a class="nav__link" href="{{nav_item.link_url}}" data-qa="{{ 'complete' if nav_item.completed else 'incomplete' }}"
           {{helpers.track('click', 'Navigation', 'Section link click', nav_item.link_url)}}>{{nav_item.link_name}}</a>
       {% endif %}
       </li>

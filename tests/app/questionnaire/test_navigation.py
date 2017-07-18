@@ -28,7 +28,7 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
-                'link_name': 'Household Details',
+                'link_name': 'Household Composition',
                 'highlight': False,
                 'repeating': False,
                 'completed': False,
@@ -46,7 +46,7 @@ class TestNavigation(AppContextTestCase):
                 'highlight': False,
                 'repeating': False,
                 'completed': False,
-                'link_url': Location('payment-details', 0, 'credit-card').url(metadata)
+                'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
             }
         ]
 
@@ -59,44 +59,64 @@ class TestNavigation(AppContextTestCase):
             "collection_exercise_sid": '999',
             "form_type": "some_form"
         }
+
+        answer_store = AnswerStore()
+
+        answer_1 = Answer(
+            value="Contents",
+            group_instance=0,
+            block_id='insurance-type',
+            group_id='property-details',
+            answer_instance=0,
+            answer_id='insurance-type-answer'
+        )
+
+        answer_store.add(answer_1)
+
         completed_blocks = [
-            Location('property-details', 0, 'introduction'),
             Location('property-details', 0, 'insurance-type'),
-            Location('property-details', 0, 'insurance-address'),
-            Location('property-details', 0, 'property-interstitial')
+            Location('property-details', 0, 'insurance-address')
         ]
 
-        navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks=completed_blocks)
+        navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
 
         user_navigation = [
             {
-                'completed': True,
                 'link_name': 'Property Details',
                 'highlight': True,
                 'repeating': False,
-                'link_url': Location('property-details', 0, 'insurance-type').url(metadata),
+                'completed': True,
+                'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
-                'completed': False,
-                'link_name': 'Household Details',
+                'link_name': 'Property Interstitial',
                 'highlight': False,
                 'repeating': False,
-                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata),
+                'completed': False,
+                'link_url': Location('property-interstitial-group', 0, 'property-interstitial').url(metadata)
             },
             {
+                'link_name': 'Household Composition',
+                'highlight': False,
+                'repeating': False,
                 'completed': False,
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
+            },
+            {
                 'link_name': 'Extra Cover',
                 'highlight': False,
                 'repeating': False,
+                'completed': False,
                 'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata)
             },
             {
-                'completed': False,
                 'link_name': 'Payment Details',
                 'highlight': False,
                 'repeating': False,
-                'link_url': Location('payment-details', 0, 'credit-card').url(metadata)
+                'completed': False,
+                'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
             }
+
         ]
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
@@ -110,7 +130,6 @@ class TestNavigation(AppContextTestCase):
         }
 
         completed_blocks = [
-            Location('property-details', 0, 'introduction'),
             Location('multiple-questions-group', 0, 'household-composition'),
             Location('repeating-group', 0, 'repeating-block-1'),
             Location('repeating-group', 0, 'repeating-block-2'),
@@ -124,7 +143,7 @@ class TestNavigation(AppContextTestCase):
             {
                 'group_instance': 0,
                 'answer_instance': 0,
-                'answer_id': 'household-full-name',
+                'answer_id': 'first-name',
                 'value': 'Jim',
                 'group_id': 'multiple-questions-group',
                 'block_id': 'household-composition'
@@ -132,7 +151,7 @@ class TestNavigation(AppContextTestCase):
             {
                 'group_instance': 0,
                 'answer_instance': 1,
-                'answer_id': 'household-full-name',
+                'answer_id': 'first-name',
                 'value': 'Ben',
                 'group_id': 'multiple-questions-group',
                 'block_id': 'household-composition'
@@ -180,10 +199,10 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
-                'link_name': 'Household Details',
+                'link_name': 'Household Composition',
+                'highlight': False,
                 'repeating': False,
                 'completed': True,
-                'highlight': False,
                 'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
             },
             {
@@ -212,7 +231,7 @@ class TestNavigation(AppContextTestCase):
                 'repeating': False,
                 'completed': False,
                 'highlight': False,
-                'link_url': Location('payment-details', 0, 'credit-card').url(metadata)
+                'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
             }
         ]
 
@@ -227,10 +246,8 @@ class TestNavigation(AppContextTestCase):
         }
 
         completed_blocks = [
-            Location('property-details', 0, 'introduction'),
-            Location('property-details', 0, 'insurance-type'),
-            Location('property-details', 0, 'personal-interstitial'),
-            Location('extra-cover', 0, 'extra-cover-block'),
+            Location('multiple-questions-group', 0, 'household-composition'),
+            Location('extra-cover', 0, 'extra-cover-block')
         ]
 
         answer_store = AnswerStore()
@@ -238,7 +255,7 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             answer_instance=0,
             group_id='multiple-questions-group',
-            answer_id='household-full-name',
+            answer_id='first-name',
             block_id='household-composition',
             group_instance=0,
             value='Person1'
@@ -246,7 +263,7 @@ class TestNavigation(AppContextTestCase):
         answer_2 = Answer(
             answer_instance=1,
             group_id='multiple-questions-group',
-            answer_id='household-full-name',
+            answer_id='first-name',
             block_id='household-composition',
             group_instance=0,
             value='Person2'
@@ -275,11 +292,11 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
-                'completed': False,
+                'link_name': 'Household Composition',
                 'highlight': False,
                 'repeating': False,
-                'link_name': 'Household Details',
-                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata),
+                'completed': True,
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
             },
             {
                 'completed': False,
@@ -296,7 +313,7 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('repeating-group', 1, 'repeating-block-1').url(metadata),
             },
             {
-                'completed': False,
+                'completed': True,
                 'highlight': False,
                 'repeating': False,
                 'link_name': 'Extra Cover',
@@ -306,15 +323,15 @@ class TestNavigation(AppContextTestCase):
                 'completed': False,
                 'highlight': False,
                 'repeating': False,
-                'link_name': 'Payment Details',
-                'link_url': Location('payment-details', 0, 'credit-card').url(metadata),
+                'link_name': 'Extra Cover Items',
+                'link_url': Location('extra-cover-items-group', 0, 'extra-cover-items').url(metadata)
             },
             {
                 'completed': False,
                 'highlight': False,
                 'repeating': False,
-                'link_name': 'Extra Cover Items',
-                'link_url': Location('extra-cover-items-group', 0, 'extra-cover-items').url(metadata)
+                'link_name': 'Payment Details',
+                'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata),
             }
         ]
 
@@ -329,11 +346,11 @@ class TestNavigation(AppContextTestCase):
         }
 
         completed_blocks = [
-            Location('property-details', 0, 'introduction'),
             Location('extra-cover', 0, 'extra-cover-block'),
-            Location('extra-cover', 0, 'extra-cover-interstitial'),
             Location('extra-cover-items-group', 0, 'extra-cover-items'),
+            Location('extra-cover-items-group', 0, 'extra-cover-items-radio'),
             Location('extra-cover-items-group', 1, 'extra-cover-items'),
+            Location('extra-cover-items-group', 1, 'extra-cover-items-radio'),
         ]
 
         answer_store = AnswerStore()
@@ -341,31 +358,51 @@ class TestNavigation(AppContextTestCase):
         answer_1 = Answer(
             value=2,
             group_instance=0,
-            block_id='extra-cover-block',
             group_id='extra-cover',
-            answer_instance=0,
-            answer_id='extra-cover-answer'
+            block_id='extra-cover-block',
+            answer_id='extra-cover-answer',
+            answer_instance=0
+
         )
         answer_2 = Answer(
-            value='2',
+            value='1',
             group_instance=0,
-            block_id='extra-cover-items',
             group_id='extra-cover-items-group',
-            answer_instance=0,
-            answer_id='extra-cover-items-answer'
-        )
-        answer_3 = Answer(
-            value='2',
-            group_instance=1,
             block_id='extra-cover-items',
-            group_id='extra-cover-items-group',
             answer_id='extra-cover-items-answer',
             answer_instance=0
         )
+        answer_3 = Answer(
+            value='Yes',
+            group_instance=0,
+            group_id='extra-cover-items-group',
+            block_id='extra-cover-items-radio',
+            answer_id='extra-cover-items-radio-answer',
+            answer_instance=0
+        )
+        answer_4 = Answer(
+            value='2',
+            group_instance=1,
+            group_id='extra-cover-items-group',
+            block_id='extra-cover-items',
+            answer_id='extra-cover-items-answer',
+            answer_instance=0
+        )
+        answer_5 = Answer(
+            value='Yes',
+            group_instance=1,
+            group_id='extra-cover-items-group',
+            block_id='extra-cover-items-radio',
+            answer_id='extra-cover-items-radio-answer',
+            answer_instance=0
+        )
+
 
         answer_store.add(answer_1)
         answer_store.add(answer_2)
         answer_store.add(answer_3)
+        answer_store.add(answer_4)
+        answer_store.add(answer_5)
 
         navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
 
@@ -378,10 +415,10 @@ class TestNavigation(AppContextTestCase):
                 'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
             },
             {
-                'repeating': False,
+                'link_name': 'Household Composition',
                 'highlight': False,
+                'repeating': False,
                 'completed': False,
-                'link_name': 'Household Details',
                 'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
             },
             {
@@ -394,22 +431,22 @@ class TestNavigation(AppContextTestCase):
             {
                 'repeating': False,
                 'highlight': False,
-                'completed': False,
-                'link_name': 'Payment Details',
-                'link_url': Location('payment-details', 0, 'credit-card').url(metadata)
+                'completed': True,
+                'link_name': 'Extra Cover Items',
+                'link_url': Location('extra-cover-items-group', 0, 'extra-cover-items').url(metadata)
             },
             {
                 'repeating': False,
                 'highlight': False,
-                'completed': True,
-                'link_name': 'Extra Cover Items',
-                'link_url': Location('extra-cover-items-group', 0, 'extra-cover-items').url(metadata)
+                'completed': False,
+                'link_name': 'Payment Details',
+                'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
             }
         ]
         self.assertEqual(navigation.build_navigation('property-details', 0), user_navigation)
 
     def test_navigation_repeating_group_link_name_format(self):
-        survey = load_schema_file("test_repeating_household.json")
+        survey = load_schema_file("test_navigation.json")
         metadata = {
             "eq_id": '1',
             "collection_exercise_sid": '999',
@@ -417,7 +454,6 @@ class TestNavigation(AppContextTestCase):
         }
 
         completed_blocks = [
-            Location('multiple-questions-group', 0, 'introduction'),
             Location('multiple-questions-group', 0, 'household-composition'),
         ]
 
@@ -434,60 +470,49 @@ class TestNavigation(AppContextTestCase):
         answer_2 = Answer(
             block_id='household-composition',
             answer_instance=0,
-            answer_id='middle-names',
-            group_id='multiple-questions-group',
-            group_instance=0,
-            value=None
-        )
-        answer_3 = Answer(
-            block_id='household-composition',
-            answer_instance=0,
             answer_id='last-name',
             group_id='multiple-questions-group',
             group_instance=0,
             value='Bloggs'
         )
-        answer_4 = Answer(
+        answer_3 = Answer(
             block_id='household-composition',
             answer_instance=1,
             answer_id='first-name',
             group_id='multiple-questions-group',
             group_instance=0,
-            value='Jim'
+            value='Jane'
         )
-        answer_5 = Answer(
+        answer_4 = Answer(
             block_id='household-composition',
             answer_instance=1,
             answer_id='last-name',
             group_id='multiple-questions-group',
             group_instance=0,
-            value=None
-        )
-        answer_6 = Answer(
-            block_id='household-composition',
-            answer_instance=1,
-            answer_id='middle-names',
-            group_id='multiple-questions-group',
-            group_instance=0,
-            value=None
+            value='Doe'
         )
 
         answer_store.add(answer_1)
         answer_store.add(answer_2)
         answer_store.add(answer_3)
         answer_store.add(answer_4)
-        answer_store.add(answer_5)
-        answer_store.add(answer_6)
 
         navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
 
         user_navigation = [
             {
+                'link_name': 'Property Details',
+                'highlight': True,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('property-details', 0, 'insurance-type').url(metadata)
+            },
+            {
                 'repeating': False,
                 'completed': True,
                 'highlight': False,
-                'link_name': '',
-                'link_url': Location('multiple-questions-group', 0, 'introduction').url(metadata)
+                'link_name': 'Household Composition',
+                'link_url': Location('multiple-questions-group', 0, 'household-composition').url(metadata)
             },
             {
                 'repeating': True,
@@ -498,10 +523,24 @@ class TestNavigation(AppContextTestCase):
             },
             {
                 'repeating': True,
-                'link_name': 'Jim',
+                'link_name': 'Jane Doe',
                 'completed': False,
                 'highlight': False,
                 'link_url': Location('repeating-group', 1, 'repeating-block-1').url(metadata)
+            },
+            {
+                'link_name': 'Extra Cover',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('extra-cover', 0, 'extra-cover-block').url(metadata)
+            },
+            {
+                'link_name': 'Payment Details',
+                'highlight': False,
+                'repeating': False,
+                'completed': False,
+                'link_url': Location('skip-payment-group', 0, 'skip-payment').url(metadata)
             }
         ]
 
@@ -521,7 +560,7 @@ class TestNavigation(AppContextTestCase):
         answer_store = AnswerStore()
 
         answer_1 = Answer(
-            value="Contents",
+            value="Buildings",
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -534,7 +573,7 @@ class TestNavigation(AppContextTestCase):
         navigation = Navigation(survey, answer_store, metadata, completed_blocks=completed_blocks)
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
-        self.assertNotIn('House Details', link_names)
+        self.assertNotIn('Property Interstitial', link_names)
 
     def test_navigation_skip_condition_show_group(self):
         survey = load_schema_file("test_navigation.json")
@@ -550,7 +589,7 @@ class TestNavigation(AppContextTestCase):
         answer_store = AnswerStore()
 
         answer_1 = Answer(
-            value="Buildings",
+            value="Contents",
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -564,7 +603,7 @@ class TestNavigation(AppContextTestCase):
 
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
-        self.assertIn('House Details', link_names)
+        self.assertIn('Property Interstitial', link_names)
 
     def test_navigation_skip_condition_change_answer(self):
         survey = load_schema_file("test_navigation.json")
@@ -580,7 +619,7 @@ class TestNavigation(AppContextTestCase):
         answer_store = AnswerStore()
 
         answer_1 = Answer(
-            value="Buildings",
+            value="Contents",
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -593,10 +632,10 @@ class TestNavigation(AppContextTestCase):
 
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
-        self.assertIn('House Details', link_names)
+        self.assertIn('Property Interstitial', link_names)
 
         change_answer = Answer(
-            value="Contents",
+            value="Buildings",
             group_instance=0,
             block_id='insurance-type',
             group_id='property-details',
@@ -608,12 +647,12 @@ class TestNavigation(AppContextTestCase):
 
         user_navigation = navigation.build_navigation('property-details', 0)
         link_names = [d['link_name'] for d in user_navigation]
-        self.assertNotIn('House Details', link_names)
+        self.assertNotIn('Property Interstitial', link_names)
 
     def test_build_navigation_returns_none_when_schema_navigation_is_false(self):
         # Given
         survey = load_schema_file("test_navigation.json")
-        survey['navigation'] = False
+        survey['navigation'] = {"visible": False}
         completed_blocks = []
         metadata = {}
         navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks)
@@ -641,7 +680,7 @@ class TestNavigation(AppContextTestCase):
     def test_build_navigation_returns_navigation_when_schema_navigation_is_true(self):
         # Given
         survey = load_schema_file("test_navigation.json")
-        survey['navigation'] = True
+        survey['navigation'] = {"visible": True, "sections": [{"title": "Nav", "group_order": ["property-details"]}]}
         completed_blocks = []
         metadata = {
             "eq_id": '1',
@@ -952,7 +991,15 @@ class TestNavigation(AppContextTestCase):
         survey = load_schema_file("test_navigation.json")
 
         # Payment details group not displayed in navigation
-        survey['groups'][5]['hide_in_navigation'] = True
+        survey['navigation'] = {"sections": [{"title": "Property Details", "group_order": ["property-details",
+                                                                                           "property-interstitial-group",
+                                                                                           "house-details",
+                                                                                           "multiple-questions-group",
+                                                                                           "repeating-group",
+                                                                                           "extra-cover",
+                                                                                           "extra-cover-items-group",
+                                                                                           "skip-payment-group",
+                                                                                           "payment-details"]}]}
 
         metadata = {
             "eq_id": '1',
@@ -1004,10 +1051,10 @@ class TestNavigation(AppContextTestCase):
 
         navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 3)
+        self.assertEqual(len(navigation_links), 1)
 
     def test_build_navigation_submit_answers_link_not_visible_when_no_completed_blocks(self):
-        survey = load_schema_file("census_household.json")
+        survey = load_schema_file("test_navigation.json")
 
         metadata = {
             "eq_id": '1',
@@ -1021,16 +1068,16 @@ class TestNavigation(AppContextTestCase):
         navigation = Navigation(survey, AnswerStore(), metadata, completed_blocks, routing_path)
 
         confirmation_link = {
-            'link_name': 'Submit answers',
+            'link_name': 'Summary',
             'highlight': False,
             'repeating': False,
             'completed': False,
-            'link_url': Location('questionnaire-completed', 0, 'confirmation').url(metadata)
+            'link_url': Location('summary-group', 0, 'summary').url(metadata)
         }
 
-        navigation_links = navigation.build_navigation('permanent-or-family-home', 0)
+        navigation_links = navigation.build_navigation('property-details', 0)
         self.assertNotIn(confirmation_link, navigation_links)
-        self.assertEqual(len(navigation_links), 2)
+        self.assertEqual(len(navigation_links), 4)
 
     def test_build_navigation_summary_link_hidden_when_not_on_routing_path(self):
         survey = load_schema_file("test_navigation.json")

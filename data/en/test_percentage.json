@@ -12,7 +12,18 @@
         "NEGATIVE_INTEGER": "Number cannot be less than zero",
         "NOT_INTEGER": "Please enter an integer"
     },
-    "navigation": true,
+    "navigation": {
+        "visible": true,
+        "sections": [{
+                "title": "Percent Input",
+                "group_order": ["group"]
+            },
+            {
+                "title": "Summary",
+                "group_order": ["summary-group"]
+            }
+        ]
+    },
     "groups": [{
             "blocks": [{
                 "type": "Questionnaire",
