@@ -25,18 +25,16 @@ services:
       - eq-env
 
   eq-survey-runner:
+    image: onsdigital/eq-survey-runner
     build: ./
     environment:
       EQ_DEV_MODE: "True"
-      EQ_ENABLE_CACHE: "True"
       EQ_DEVELOPER_LOGGING: "True"
-      EQ_RABBITMQ_ENABLED: "True"
       EQ_SERVER_SIDE_STORAGE_DATABASE_HOST: db
       EQ_SERVER_SIDE_STORAGE_DATABASE_NAME: runner
       EQ_RABBITMQ_HOST: rabbit
       EQ_RABBITMQ_HOST_SECONDARY: rabbit
-    volumes:
-      - ./docker-secrets.yml:/tmp/application/secrets.yml
+      EQ_SECRETS_FILE: "docker-secrets.yml"
     restart: always
     depends_on:
       - db
@@ -44,7 +42,7 @@ services:
     networks:
       - eq-env
     ports:
-      - "80:80"
+      - "80:5000"
 
   go-launch-a-survey:
     image: onsdigital/go-launch-a-survey
