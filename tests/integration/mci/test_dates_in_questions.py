@@ -4,16 +4,16 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestHappyPath(IntegrationTestCase):
 
     def test_try_date_203(self):
-        self.try_date('1', '0203')
+        self.try_date('test', '0203')
 
     def test_try_another_data_203(self):
-        self.try_another_date('1', '0203')
+        self.try_another_date('test', '0203')
 
     def test_try_date_205(self):
-        self.try_date('1', '0205')
+        self.try_date('test', '0205')
 
     def test_try_another_date_205(self):
-        self.try_another_date('1', '0205')
+        self.try_another_date('test', '0205')
 
     def try_date(self, eq_id, form_type_id):
         self.launchSurvey(eq_id, form_type_id,

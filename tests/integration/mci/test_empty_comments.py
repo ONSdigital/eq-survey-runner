@@ -5,7 +5,7 @@ from tests.integration.mci import mci_test_urls
 class TestEmptyComments(IntegrationTestCase):
 
     def test_empty_comments(self):
-        self.launchSurvey('1', '0203')
+        self.launchSurvey('test', '0203')
 
         # We are on the landing page
         self.assertInPage('>Start survey<')

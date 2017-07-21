@@ -5,7 +5,7 @@ from tests.integration.mci import mci_test_urls
 class TestNonMandatoryErrorToEmptyValue(IntegrationTestCase):
 
     def test_non_mandatory_error_to_empty_value(self):
-        self.launchSurvey('1', '0203')
+        self.launchSurvey('test', '0203')
 
         # We proceed to the questionnaire
         self.post(action='start_questionnaire')

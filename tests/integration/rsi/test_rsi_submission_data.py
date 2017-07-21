@@ -4,7 +4,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestRsiSubmissionData(IntegrationTestCase):
 
     def test_submission_data_1_0102(self):
-        self.launchSurvey('1', '0102', roles=['dumper'])
+        self.launchSurvey('test', '0102', roles=['dumper'])
 
         # We are on the landing page
         self.assertInPage('>Start survey<')
@@ -78,7 +78,7 @@ class TestRsiSubmissionData(IntegrationTestCase):
         self.assertDictEqual(actual, expected)
 
     def test_submission_data_1_0112(self):
-        self.launchSurvey('1', '0112', roles=['dumper'])
+        self.launchSurvey('test', '0112', roles=['dumper'])
 
         # We are on the landing page
         self.assertInPage('>Start survey<')

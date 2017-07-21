@@ -14,7 +14,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_for_block_location(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             location = SchemaHelper.get_first_location(survey)
@@ -33,7 +33,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_and_disable_mandatory_answers(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             location = SchemaHelper.get_first_location(survey)
@@ -53,7 +53,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_get_form_deserialises_dates(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             location = Location('rsi', 0, 'reporting-period')
@@ -149,7 +149,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_for_block_location(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             location = SchemaHelper.get_first_location(survey)
@@ -186,7 +186,7 @@ class TestFormHelper(AppContextTestCase):
 
     def test_post_form_and_disable_mandatory(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             location = SchemaHelper.get_first_location(survey)

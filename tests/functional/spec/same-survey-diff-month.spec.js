@@ -17,7 +17,7 @@ describe('RSI - Multiple months of one form type being worked on at the same tim
         var collection_id = getRandomString(10)
 
         // Given
-        openQuestionnaire('1_0102.json', getRandomString(10), getRandomString(5), '201611', 'November2016')
+        openQuestionnaire('test_0102.json', getRandomString(10), getRandomString(5), '201611', 'November2016')
 
         landingPage.getStarted()
 
@@ -30,7 +30,7 @@ describe('RSI - Multiple months of one form type being worked on at the same tim
 
         //When a second surveys is open for a different month
         browser.newWindow('/status', 'second_survey')
-        openQuestionnaire('1_0102.json', getRandomString(10), getRandomString(5), '201610', 'October2016')
+        openQuestionnaire('test_0102.json', getRandomString(10), getRandomString(5), '201610', 'October2016')
 
         landingPage.getStarted()
 

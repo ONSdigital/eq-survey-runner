@@ -14,7 +14,7 @@ describe('RSI - summary screen edit test', function() {
   it('Given the RSI business survey 0102 is started when data is entered for the survey then summary screen shows the data entered', function(done) {
 
     //Given the RSI business survey 0102 is started
-    startQuestionnaire('1_0102.json')
+    startQuestionnaire('test_0102.json')
 
     // when data is entered for the survey
     reportingPeriod.setFromReportingPeriodDay(2)
@@ -41,7 +41,7 @@ describe('RSI - summary screen edit test', function() {
   it('Given the RSI survey 0102 is saved with answers when edit link is clicked then it should allow to edit the answer ', function(done) {
 
     //Given the RSI survey 0102 is saved with answers
-    startQuestionnaire('1_0102.json')
+    startQuestionnaire('test_0102.json')
     reportingPeriod.setFromReportingPeriodDay(2)
       .setToReportingPeriodDay(2)
       .setFromReportingPeriodMonth(5)
@@ -70,7 +70,7 @@ describe('RSI - summary screen edit test', function() {
   it('Given the RSI survey 0102 when a 0 is entered in a currency field then the summary screen should show £0 and the original page should show 0', function(done) {
 
     //Given the RSI business survey 0102 is started
-    startQuestionnaire('1_0102.json')
+    startQuestionnaire('test_0102.json')
 
     // when data is entered for the survey
     reportingPeriod.setFromReportingPeriodDay(2)
@@ -97,7 +97,7 @@ describe('RSI - summary screen edit test', function() {
 
   it('Given the RSI survey 0112 when a non mandatory field is edited to contain no answer, the summary page should display "No answer provided"', function() {
 
-    startQuestionnaire('1_0112.json')
+    startQuestionnaire('test_0112.json')
 
     // when data is entered for the survey
     reportingPeriod.setFromReportingPeriodDay(2)

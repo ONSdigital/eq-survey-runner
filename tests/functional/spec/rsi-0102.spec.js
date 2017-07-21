@@ -16,7 +16,7 @@ describe('RSI 0102 Test', function() {
   it('Given the rsi business survey 0102 is selected when I start the survey then the landing page is displayed', function() {
     // Given
     // When
-    openQuestionnaire('1_0102refresh.json', getRandomString(10), getRandomString(5))
+    openQuestionnaire('1_0102.json', getRandomString(10), getRandomString(5))
 
     // Then
     expect(landingPage.isOpen(), 'Landing page should be open').to.be.true
@@ -24,7 +24,7 @@ describe('RSI 0102 Test', function() {
 
   it('Given the rsi business survey 0102 has been started when I complete the survey then I reach the thank you page', function() {
     // Given
-    startQuestionnaire('1_0102refresh.json', getRandomString(10), getRandomString(5))
+    startQuestionnaire('1_0102.json', getRandomString(10), getRandomString(5))
 
     // When
     ReportingPeriod.setPeriodFromDay('01')
@@ -58,7 +58,7 @@ describe('RSI 0102 Test', function() {
 
   it('Given the rsi business survey 0102 has been started and sales questions completed when I select No for significant changes I skip to total employees question', function() {
     // Given
-    startQuestionnaire('1_0102refresh.json', getRandomString(10), getRandomString(5))
+    startQuestionnaire('1_0102.json', getRandomString(10), getRandomString(5))
 
     ReportingPeriod.setPeriodFromDay('01')
         .setPeriodFromMonth(5)
@@ -89,7 +89,7 @@ describe('RSI 0102 Test', function() {
     // Given
     const userId = getRandomString(10)
     const collectionId = getRandomString(5)
-    startQuestionnaire('1_0102refresh.json', userId, collectionId)
+    startQuestionnaire('1_0102.json', userId, collectionId)
     ReportingPeriod.setPeriodFromDay('01')
         .setPeriodFromMonth(5)
         .setPeriodFromYear('2016')
@@ -99,7 +99,7 @@ describe('RSI 0102 Test', function() {
         .submit()
 
     // When
-    openQuestionnaire('1_0102refresh.json', userId, collectionId)
+    openQuestionnaire('1_0102.json', userId, collectionId)
 
     ReportingPeriod.setPeriodFromDay('01')
         .setPeriodFromMonth(5)
