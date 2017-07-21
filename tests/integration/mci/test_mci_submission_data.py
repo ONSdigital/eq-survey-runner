@@ -4,10 +4,10 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestMciSubmissionData(IntegrationTestCase):
 
     def test_submission_data_203(self):
-        self.submission_data('1', '0203')
+        self.submission_data('test', '0203')
 
     def test_submission_data_205(self):
-        self.submission_data('1', '0205')
+        self.submission_data('test', '0205')
 
     def submission_data(self, eq_id, form_type_id):
         self.launchSurvey(eq_id, form_type_id, roles=['dumper'])

@@ -5,7 +5,7 @@ from tests.integration.mci import mci_test_urls
 class TestInvalidDateNumber(IntegrationTestCase):
 
     def test_correct_invalid_date(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # We are on the landing page
         self.assertInPage('>Start survey<')
@@ -62,7 +62,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertInUrl('thank-you')
 
     def test_invalid_same_date(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
         self.post(action='start_questionnaire')
 
         form_data = {
@@ -83,7 +83,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertInPage("The 'period to' date must be different to the 'period from' date.")
 
     def test_invalid_date_range(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
         self.post(action='start_questionnaire')
 
         form_data = {
@@ -104,7 +104,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertInPage("The 'period to' date cannot be before the 'period from' date.")
 
     def test_invalid_year(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
         self.post(action='start_questionnaire')
 
         form_data = {
@@ -125,7 +125,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertInPage("The date entered is not valid")
 
     def test_invalid_integer(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
         self.post(action='start_questionnaire')
 
         form_data = {
@@ -146,7 +146,7 @@ class TestInvalidDateNumber(IntegrationTestCase):
         self.assertInPage("Please only enter whole numbers into the field.")
 
     def test_invalid_date_number(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
         self.post(action='start_questionnaire')
 
         form_data = {

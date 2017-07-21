@@ -14,7 +14,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_form_ids_match_block_answer_ids(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             error_messages = SchemaHelper.get_messages(survey)
@@ -26,7 +26,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_form_date_range_populates_data(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             error_messages = SchemaHelper.get_messages(survey)
@@ -51,7 +51,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_date_range_matching_dates_raises_question_error(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             error_messages = SchemaHelper.get_messages(survey)
@@ -80,7 +80,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_date_range_to_precedes_from_raises_question_error(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             error_messages = SchemaHelper.get_messages(survey)
@@ -109,7 +109,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_form_errors_are_correctly_mapped(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0112.json")
+            survey = load_schema_file("test_0112.json")
 
             block_json = SchemaHelper.get_block(survey, "total-retail-turnover")
             error_messages = SchemaHelper.get_messages(survey)
@@ -125,7 +125,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_form_subfield_errors_are_correctly_mapped(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0102.json")
+            survey = load_schema_file("test_0102.json")
 
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             error_messages = SchemaHelper.get_messages(survey)
@@ -176,7 +176,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
     def test_answer_errors_are_mapped(self):
         with self.test_request_context():
-            survey = load_schema_file("1_0112.json")
+            survey = load_schema_file("test_0112.json")
 
             block_json = SchemaHelper.get_block(survey, "total-retail-turnover")
             error_messages = SchemaHelper.get_messages(survey)

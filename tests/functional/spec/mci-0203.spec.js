@@ -24,7 +24,7 @@ describe('MCI 0203 Test', function() {
   it('Given the mci business survey 0203 is selected when I start the survey then the landing page is displayed', function() {
     // Given
     // When
-    openQuestionnaire('1_0203refresh.json', getRandomString(10), getRandomString(5))
+    openQuestionnaire('1_0203.json', getRandomString(10), getRandomString(5))
 
     // Then
     expect(landingPage.isOpen(), 'Landing page should be open').to.be.true
@@ -32,7 +32,7 @@ describe('MCI 0203 Test', function() {
 
   it('Given the mci business survey 0203 has been started when I complete the survey then I reach the thank you page', function() {
     // Given
-    startQuestionnaire('1_0203refresh.json', getRandomString(10), getRandomString(5))
+    startQuestionnaire('1_0203.json', getRandomString(10), getRandomString(5))
 
     // When
     ReportingPeriod.setPeriodFromDay('01')
@@ -81,7 +81,7 @@ describe('MCI 0203 Test', function() {
 
   it('Given the mci business survey 0203 has been started and sales questions completed when I select No for significant changes I skip to total employees question', function() {
     // Given
-    startQuestionnaire('1_0203refresh.json', getRandomString(10), getRandomString(5))
+    startQuestionnaire('1_0203.json', getRandomString(10), getRandomString(5))
 
     ReportingPeriod.setPeriodFromDay('01')
         .setPeriodFromMonth(5)

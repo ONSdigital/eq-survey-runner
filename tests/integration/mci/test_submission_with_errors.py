@@ -5,7 +5,7 @@ from tests.integration.integration_test_case import IntegrationTestCase
 class TestSubmissionWithErrors(IntegrationTestCase):
 
     def test_submission_with_errors(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # We are on the landing page
         self.assertInPage('>Start survey<')

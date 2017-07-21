@@ -8,7 +8,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_get_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # When
         self.get(mci_test_urls.MCI_0205_BASE + 'test')
@@ -18,7 +18,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_post_invalid_questionnaire_location_redirects_to_latest(self):
         # Given
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # When
         self.post(url=mci_test_urls.MCI_0205_BASE + 'test')
@@ -28,7 +28,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
 
     def test_submit_answers_for_invalid_questionnaire_location_redirects_to_first_incomplete_location(self):
         # Given
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # When
         self.post(url=mci_test_urls.MCI_0205_SUMMARY)

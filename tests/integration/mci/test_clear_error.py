@@ -8,7 +8,7 @@ class TestClearError(IntegrationTestCase):
     that functionality and proves that the issue has been resolved.
     """
     def test_clear_error(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # We are on the landing page
         self.assertInPage('>Start survey<')

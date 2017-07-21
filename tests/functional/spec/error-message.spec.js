@@ -6,7 +6,7 @@ describe('Error messages', function() {
 
   it('Given the monthly business survey contains errors when the error link is clicked then the day input field is focused', function() {
     // Given
-    startQuestionnaire('1_0215.json')
+    startQuestionnaire('test_0213.json')
 
 
     ReportingPeriod.setPeriodFromDay('01')

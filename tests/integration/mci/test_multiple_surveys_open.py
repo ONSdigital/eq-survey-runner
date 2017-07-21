@@ -5,17 +5,17 @@ class MultipleSurveysOpen(IntegrationTestCase):
 
     def test_multiple_surveys_open(self):
         # We start the first survey
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
         self.post(action='start_questionnaire')
-        self.assertInUrl('/questionnaire/1/0205/789/mci/0/reporting-period')
+        self.assertInUrl('/questionnaire/test/0205/789/mci/0/reporting-period')
 
         # Remember url for later
         first_url = self.last_url
 
         # We start the second survey
-        self.launchSurvey('1', '0203')
+        self.launchSurvey('test', '0203')
         self.post(action='start_questionnaire')
-        self.assertInUrl(r'/questionnaire/1/0203/789/mci/0/reporting-period')
+        self.assertInUrl(r'/questionnaire/test/0203/789/mci/0/reporting-period')
 
         # We now try to post to the first survey, which is out of date
         form_data = {

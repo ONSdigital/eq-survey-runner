@@ -7,7 +7,7 @@ class TestSaveSignOut(IntegrationTestCase):
         # We can save and go to the sign-out page without having to fill in mandatory answer
 
         # Given
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # When
         self.post(action='start_questionnaire')
@@ -21,7 +21,7 @@ class TestSaveSignOut(IntegrationTestCase):
         # We can't save if a validation error is caused, this doesn't include missing a mandatory question
 
         # Given
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # When
         self.post(action='start_questionnaire')
@@ -34,7 +34,7 @@ class TestSaveSignOut(IntegrationTestCase):
         # If a user completes a block, but then goes back and uses save and come back on that block, that block
         # should no longer be considered complete and on re-authenticate it should return to it
 
-        self.launchSurvey('1', '0102')
+        self.launchSurvey('test', '0102')
 
         self.post(action='start_questionnaire')
         block_one_url = self.last_url
@@ -55,5 +55,5 @@ class TestSaveSignOut(IntegrationTestCase):
         self.post(action='save_sign_out')
 
         # We re-authenticate and check we are on the first page
-        self.launchSurvey('1', '0102')
+        self.launchSurvey('test', '0102')
         self.assertEqual(block_one_url, self.last_url)

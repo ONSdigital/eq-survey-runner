@@ -8,7 +8,7 @@ class TestClearValue(IntegrationTestCase):
     This test runs that scenario and verifies that the application correctly re-displays the invalid value
     """
     def test_clear_value(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # We are on the landing page
         self.assertInPage('>Start survey<')

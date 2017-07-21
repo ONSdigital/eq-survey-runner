@@ -14,7 +14,7 @@ describe('RSI - Save and restore test', function() {
 
     // Given I am completing survey 0102
     const collectionId = getRandomString(5)
-    startQuestionnaire('1_0102.json', 'test_user', collectionId)
+    startQuestionnaire('test_0102.json', 'test_user', collectionId)
     const url = browser.getUrl();
     reportingPeriod.setFromReportingPeriodDay('01')
       .setFromReportingPeriodMonth(5)
@@ -38,7 +38,7 @@ describe('RSI - Save and restore test', function() {
 
     // Given whilst completing survey 0102 I have opted to save and complete later
     const collectionId = getRandomString(5)
-    startQuestionnaire('1_0102.json', 'test_user', collectionId)
+    startQuestionnaire('test_0102.json', 'test_user', collectionId)
     reportingPeriod.setFromReportingPeriodDay('01')
       .setFromReportingPeriodMonth(5)
       .setFromReportingPeriodYear('2016')
@@ -50,7 +50,7 @@ describe('RSI - Save and restore test', function() {
     expect(signOut.isOpen(), 'sign out page should be open').to.be.true
 
     // When I return to the questionnaire
-    openQuestionnaire('1_0102.json', 'test_user', collectionId)
+    openQuestionnaire('test_0102.json', 'test_user', collectionId)
 
     // Then I am returned to the page I was on and can then complete the survey
     expect(retailTurnoverPage.isOpen(), 'retail turnover page should be open').to.be.true

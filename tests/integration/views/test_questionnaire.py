@@ -35,7 +35,7 @@ class TestQuestionnaire(IntegrationTestCase):
 
     def test_update_questionnaire_store_with_form_data(self):
 
-        g.schema_json = load_schema_file("1_0112.json")
+        g.schema_json = load_schema_file("test_0112.json")
 
         location = Location("rsi", 0, "total-retail-turnover")
 

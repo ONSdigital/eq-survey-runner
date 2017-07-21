@@ -5,7 +5,7 @@ from tests.integration.mci import mci_test_urls
 class TestEmptyQuestionnaire(IntegrationTestCase):
 
     def test_empty_questionnaire(self):
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
 
         # We are on the landing page
         self.assertInPage('>Start survey<')

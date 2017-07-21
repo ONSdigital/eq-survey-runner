@@ -11,7 +11,7 @@ from app.utilities.schema import load_schema_file
 class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-methods, too-many-lines
 
     def test_next_block(self):
-        survey = load_schema_file("1_0102.json")
+        survey = load_schema_file("test_0102.json")
 
         current_location = Location(
             block_id="total-retail-turnover",
@@ -29,7 +29,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(path_finder.get_next_location(current_location=current_location), next_location)
 
     def test_previous_block(self):
-        survey = load_schema_file("1_0102.json")
+        survey = load_schema_file("test_0102.json")
 
         current_location = Location(
             block_id="internet-sales",
@@ -47,7 +47,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(path_finder.get_previous_location(current_location=current_location), previous_location)
 
     def test_introduction_in_path_when_in_schema(self):
-        survey = load_schema_file("1_0102.json")
+        survey = load_schema_file("test_0102.json")
 
         path_finder = PathFinder(survey)
 
@@ -109,7 +109,7 @@ class TestPathFinder(unittest.TestCase):  # pylint: disable=too-many-public-meth
         self.assertEqual(actual_next_block, expected_next_location)
 
     def test_routing_basic_path(self):
-        survey = load_schema_file("1_0112.json")
+        survey = load_schema_file("test_0112.json")
 
         expected_path = [
             Location("rsi", 0, "introduction"),

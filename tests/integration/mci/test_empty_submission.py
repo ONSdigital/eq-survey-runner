@@ -5,7 +5,7 @@ from tests.integration.mci import mci_test_urls
 class TestEmptySubmission(IntegrationTestCase):
 
     def test_empty_submission_205(self):
-        self.empty_submission('1', '0205')
+        self.empty_submission('test', '0205')
 
     def empty_submission(self, eq_id, form_type_id):
         self.launchSurvey(eq_id, form_type_id)

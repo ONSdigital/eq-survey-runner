@@ -5,7 +5,7 @@ class TestMultipleSurveyError(IntegrationTestCase):
 
     def test_different_metadata_store_to_url(self):
         # Launch a first questionnaire
-        self.launchSurvey('1', '0205')
+        self.launchSurvey('test', '0205')
         self.assertInPage('>Start survey<')
         self.assertInPage('Monthly Business Survey - Retail Sales Index')
 
