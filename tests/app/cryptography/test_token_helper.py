@@ -87,15 +87,13 @@ class TestTokenHelper(TestCase): # pylint: disable=too-many-public-methods
 
         self.assert_in_decrypt_exception(jwe.decode(), "Algorithm not allowed")
 
-    def test_missing_kid_uses_default(self):
+    def test_missing_kid(self):
         jwe_protected_header = bytes('{"alg":"RSA-OAEP","enc":"A256GCM"}', 'utf-8')
 
         encoder = Encoder(*self.encoder_args)
         jwe = encoder.encrypt_token(VALID_SIGNED_JWT.encode(), self.kid, jwe_protected_header=jwe_protected_header)
 
-        jwt = decrypt_jwe(jwe.decode(), self.secret_store, KEY_PURPOSE_AUTHENTICATION, "EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY")
-
-        self.assertIsNotNone(jwt)
+        self.assert_in_decrypt_exception(jwe.decode(), "Missing kid")
 
     def test_invalid_enc(self):
         jwe_protected_header = bytes('{"alg":"PBES2_HS256_A128KW","enc":"A128GCM","kid":"' + self.kid + '"}', 'utf-8')

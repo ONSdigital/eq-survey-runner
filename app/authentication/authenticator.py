@@ -83,8 +83,7 @@ def decrypt_token(encrypted_token):
 
     jwt_token = decrypt_jwe(encrypted_token=encrypted_token,
                             secret_store=current_app.eq['secret_store'],
-                            purpose=KEY_PURPOSE_AUTHENTICATION,
-                            default_kid='EQ_USER_AUTHENTICATION_SR_PRIVATE_KEY')
+                            purpose=KEY_PURPOSE_AUTHENTICATION)
 
     decrypted_token = decode_jwt(jwt_token=jwt_token,
                                  secret_store=current_app.eq['secret_store'],
