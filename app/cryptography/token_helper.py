@@ -1,4 +1,5 @@
 import json
+from structlog import get_logger
 
 from jwcrypto import jwe, jwt
 from jwcrypto.common import base64url_decode
@@ -8,19 +9,17 @@ from jwcrypto.jwt import JWTInvalidClaimFormat, JWTMissingClaim, JWTExpired
 
 from app.authentication.invalid_token_exception import InvalidTokenException
 
+logger = get_logger()
 
-def decrypt_jwe(encrypted_token, secret_store, purpose, default_kid=None):
+
+def decrypt_jwe(encrypted_token, secret_store, purpose):
     try:
         jwe_token = jwe.JWE(algs=['RSA-OAEP', 'A256GCM'])
         jwe_token.deserialize(encrypted_token)
 
-        try:
-            jwe_kid = extract_kid_from_header(encrypted_token)
-        except InvalidTokenException as e:
-            if default_kid:
-                jwe_kid = default_kid
-            else:
-                raise e
+        jwe_kid = extract_kid_from_header(encrypted_token)
+
+        logger.info("Decrypting JWE", kid=jwe_kid)
 
         private_jwk = secret_store.get_private_key_by_kid(purpose, jwe_kid).as_jwk()
 
@@ -51,6 +50,8 @@ def encrypt_jwe(payload, kid, secret_store, purpose, alg="RSA-OAEP", enc="A256GC
 def decode_jwt(jwt_token, secret_store, purpose, leeway=None):
     try:
         jwt_kid = extract_kid_from_header(jwt_token)
+
+        logger.info("Decoding JWT", kid=jwt_kid)
 
         public_jwk = secret_store.get_public_key_by_kid(purpose, jwt_kid).as_jwk()
 
