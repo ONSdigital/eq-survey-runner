@@ -5,7 +5,7 @@ import gutil from 'gulp-util'
 import plumber from 'gulp-plumber'
 import sass from 'gulp-sass'
 import sassGlob from 'gulp-sass-glob'
-import minify from 'gulp-cssnano'
+import cssnano from 'cssnano'
 import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
 import pixrem from 'pixrem'
@@ -34,21 +34,30 @@ export function lint() {
 }
 
 export function styles() {
-  const minifyAssets = process.env.EQ_MINIMIZE_ASSETS === 'True'
+  const minifyAssets = process.env.EQ_MINIMIZE_ASSETS === undefined || process.env.EQ_MINIMIZE_ASSETS === 'True'
 
-  const minifyStyles = lazypipe()
-    .pipe(rename, {
-      suffix: '.min'
-    })
-    .pipe(minify, {
+  let postCssPlugins = [
+    autoprefixer({
+      browsers: ['last 2 versions', 'Explorer >= 8', 'Android >= 4.1', 'Safari >= 7', 'iOS >= 7']
+    }),
+    pixrem({
+      replace: false
+    }),
+    inlineblock(),
+    pseudoelements(),
+    reporter({ clearMessages: true })
+  ]
+
+  if (minifyAssets) {
+    postCssPlugins.push(cssnano({
       calc: false,
       discardComments: {
         removeAll: true
       }
-    })
-    .pipe(gulp.dest, paths.styles.output)
+    }))
+  }
 
-  return gulp.src(paths.styles.input)
+  let assets = gulp.src(paths.styles.input)
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sassGlob())
@@ -68,23 +77,19 @@ export function styles() {
       browserSync.notify('Browserify Error!')
       this.emit('end')
     }))
-    .pipe(postcss([
-      autoprefixer({
-        browsers: ['last 2 versions', 'Explorer >= 8', 'Android >= 4.1', 'Safari >= 7', 'iOS >= 7']
-      }),
-      pixrem({
-        replace: false
-      }),
-      inlineblock(),
-      pseudoelements(),
-      reporter({ clearMessages: true })
-    ]))
+    .pipe(postcss(postCssPlugins))
     .pipe(rename(function(path) {
       path.dirname = path.dirname.replace('themes/', '')
       return path
     }))
-    .pipe(gulpif(!minifyAssets, sourcemaps.write('.')))
+
+  if (minifyAssets) {
+    assets = assets
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(sourcemaps.write('.'))
+  }
+
+  return assets
     .pipe(gulp.dest(paths.styles.output))
     .pipe(browserSync.reload({ stream: true }))
-    .pipe(gulpif(minifyAssets, minifyStyles()))
 }
