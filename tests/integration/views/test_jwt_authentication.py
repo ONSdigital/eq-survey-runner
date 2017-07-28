@@ -1,6 +1,7 @@
 import logging
 import time
 import unittest
+import uuid
 
 from app.cryptography.token_helper import encode_jwt, encrypt_jwe
 from app.secrets import SecretStore, KEY_PURPOSE_AUTHENTICATION
@@ -56,6 +57,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
         iat = time.time()
         exp = time.time() + (5 * 60)
         return {
+            "jti": str(uuid.uuid4()),
             "user_id": 'jimmy',
             'iat': int(iat),
             'exp': int(exp),

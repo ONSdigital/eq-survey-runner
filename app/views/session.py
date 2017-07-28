@@ -37,7 +37,19 @@ def login():
     it will be placed in the users session
     :return: a 302 redirect to the next location for the user
     """
+    # logging in again clears any session state
+    if session:
+        session.clear()
+
     decrypted_token = decrypt_token(request.args.get('token'))
+
+    jti_claim = decrypted_token.get('jti')
+    try:
+        jti_claim_storage = JtiClaimStorage(current_app.eq['database'])
+        jti_claim_storage.use_jti_claim(jti_claim)
+    except JtiTokenUsed as e:
+        raise Unauthorized from e
+
     metadata = parse_metadata(decrypted_token)
     eq_id = metadata["eq_id"]
     form_type = metadata["form_type"]
@@ -49,20 +61,6 @@ def login():
     if not eq_id or not form_type:
         logger.error("missing eq id or form type in jwt")
         raise NotFound
-
-    # logging in again clears any session state
-    if session:
-        session.clear()
-
-    jti_claim = metadata.get('jti')
-    if jti_claim is None:
-        logger.debug('jti claim not provided')
-    else:
-        try:
-            jti_claim_storage = JtiClaimStorage(current_app.eq['database'])
-            jti_claim_storage.use_jti_claim(jti_claim)
-        except JtiTokenUsed as e:
-            raise Unauthorized from e
 
     store_session(metadata)
 
