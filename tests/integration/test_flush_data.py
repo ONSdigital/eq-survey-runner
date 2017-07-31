@@ -1,4 +1,6 @@
 import time
+import uuid
+
 from mock import patch
 
 from tests.integration.integration_test_case import IntegrationTestCase
@@ -97,6 +99,7 @@ class TestFlushData(IntegrationTestCase):
     @staticmethod
     def get_payload():
         return {
+            'jti': str(uuid.uuid4()),
             'iat': time.time(),
             'exp': time.time() + 1000,
             'eq_id': '1',

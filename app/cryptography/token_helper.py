@@ -56,6 +56,7 @@ def decode_jwt(jwt_token, secret_store, purpose, leeway=None):
         public_jwk = secret_store.get_public_key_by_kid(purpose, jwt_kid).as_jwk()
 
         check_claims = {
+            "jti": None,
             "exp": None,
             "iat": None,
         }

@@ -26,8 +26,6 @@ jwtio_signature = "tXGcIZf" \
             "IuJ9UWsY8JlX1UB56wfqu68hbl88lenIf9Ym0r5hq0DlOZYNtjVizVDFciRx_52d4oeKMSzwJ1jB5aZ7YKRNHTo38Kltb5FkHRcIkV1Ae" \
             "68-5dZeE9Yu_JHPMi_hw"
 
-jwtio_signed = jwtio_header + "." + jwtio_payload + "." + jwtio_signature
-
 
 class TestTokenHelper(TestCase): # pylint: disable=too-many-public-methods
 
@@ -166,14 +164,6 @@ class TestTokenHelper(TestCase): # pylint: disable=too-many-public-methods
         with self.assertRaises(InvalidTokenException):
             decrypt_jwe(reassembled, self.secret_store, KEY_PURPOSE_AUTHENTICATION)
 
-    def test_jwt_io(self):
-        token = decode_jwt(jwtio_signed, self.secret_store, purpose=KEY_PURPOSE_AUTHENTICATION)
-        self.assertEqual("jimmy", token.get("user"))
-
-    def test_does_not_contain_two_instances_of_full_stop(self):
-        jwe = jwtio_signed.replace('.', '', 1)
-        self.assert_in_decode_signed_jwt_exception(jwe, "Invalid Header")
-
     def test_jwt_contains_empty_header(self):
         token_without_header = "e30." + jwtio_payload + "." + jwtio_signature
 
@@ -292,10 +282,13 @@ class TestTokenHelper(TestCase): # pylint: disable=too-many-public-methods
         self.assert_in_decode_signed_jwt_exception(jwt, "InvalidSignature")
 
     def test_payload_does_not_contain_exp(self):
-        valid_token_no_exp = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkVEQ1JSTSJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibm" \
-                             "FtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6IjE0NTQ5MzU3NjcifQ.VupTBEOEzeDjxd37PQ34xv" \
-                             "BlLzeGTA0xFdGnLZDcnxAS1AjNcJ66edRmr4tmPIXnD6Mgen3HSB36xuXSnfzPld2msFHUXmB18CoaJQK19BXEY" \
-                             "vosrBPzc1ohSvam_DgXCzdSMAcWSE63e6LTWNCT93-npD3p9tjdY_TWpEOOg14"
+        valid_token_no_exp = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjcwOWViNDJjZmVlNTU3MDA1OGNlMDcxMWY3MzBiZmJiN2Q0YzhhZGUiLCJ" \
+                             "0eXAiOiJqd3QifQ.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoiMTQ1NDkzNTc2NyIsImp0aSI6IjczZDNlNzMwLWE1Y2Q" \
+                             "tNDQ5NC1iY2Y5LWFlZDdmNGY2OTJlYyIsIm5hbWUiOiJKb2huIERvZSIsInN1YiI6IjEyMzQ1Njc4OTAifQ.iP9" \
+                             "_DPE0hCsUQxEhGzM2hsiYH97FZWO_Do8rRyGnTxIRkG2sV3NXSRz31RgBhAl1e1QumaKKLojZPNmbbBXChUYfMh" \
+                             "ZVRCQPGS2EjI386ntCVenXCSrpuP7VBhWMGRCBRWHYWYpH2ETUvffZ-TC4R9LFPvhEIIlOe1bgvM_oA5ADAIKoC" \
+                             "rjEtPIzMbDhQd5-TI7viMJJBD959MmDe5i9A4dz9NscyyUWvB0j13I6RvFwhdcyTZD0RwLFie-vX-cMq57Jtbis" \
+                             "oJS1-K76KBwV8KbSHLQf8dY1EFNLiuffPP3zOmzsrFCBc3lsRR74Xuir9NTNIbTUQ2xfpWgDHRyBiQ"
 
         self.assert_in_decode_signed_jwt_exception(valid_token_no_exp, "Claim exp is missing")
 

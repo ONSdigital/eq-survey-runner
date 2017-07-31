@@ -1,4 +1,5 @@
 import unittest
+import uuid
 
 from app.authentication.invalid_token_exception import InvalidTokenException
 from app.storage.metadata_parser import parse_metadata, is_valid_metadata
@@ -10,6 +11,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
     def setUp(self):
         super().setUp()
         self.jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -68,6 +70,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_user_id(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
             "eq_id": "2",
@@ -85,6 +88,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_form_type(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "collection_exercise_sid": "test-sid",
             "eq_id": "2",
@@ -102,6 +106,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_collection_exercise_sid(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "eq_id": "2",
@@ -119,6 +124,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_eq_id(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -136,6 +142,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_period_id(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -153,6 +160,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_period_str(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -170,6 +178,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_ref_p_start_date(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -187,6 +196,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_invalid_ref_p_start_date(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -207,6 +217,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_invalid_ref_p_end_date(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -227,6 +238,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_invalid_return_by(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -247,6 +259,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_succeeds_missing_ref_p_end_date(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -263,6 +276,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_ru_ref(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -280,6 +294,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_ru_name(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -297,6 +312,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_is_valid_fails_missing_return_by(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -315,6 +331,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
     def test_is_valid_does_not_fail_missing_optional_value_in_token(self):
         # tx_id, trad_as and employment_date are optional and might not be in the token
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -332,6 +349,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_invalid_tx_id(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",
@@ -354,6 +372,7 @@ class TestMetadataParser(SurveyRunnerTestCase):  # pylint: disable=too-many-publ
 
     def test_malformed_tx_id(self):
         jwt = {
+            "jti": str(uuid.uuid4()),
             "user_id": "1",
             "form_type": "a",
             "collection_exercise_sid": "test-sid",

@@ -42,7 +42,6 @@ class MetadataField(object):
 
 
 metadata_fields = {
-    "jti": MetadataField(mandatory=False),
     "user_id": MetadataField(),
     "ru_ref": MetadataField(),
     "ru_name": MetadataField(),

@@ -48,17 +48,13 @@ class TestLogin(IntegrationTestCase):
         # Then
         self.assertStatusUnauthorised()
 
-    def test_login_with_token_twice_is_authorised_when_no_jti(self):
+    def test_login_without_jti_in_token_is_unauthorised(self):
         # Given
         token = self.token_generator.create_token_without_jti('0205', '1')
         self.get('/session?token=' + token)
 
-        # When
-        self.get('/session?token=' + token)
-
         # Then
-        self.assertStatusOK()
-        self.assertInUrl('/questionnaire/1/0205')
+        self.assertStatusForbidden()
 
     def test_login_with_valid_token_no_eq_id_and_form_type(self):
         # Given
@@ -69,7 +65,6 @@ class TestLogin(IntegrationTestCase):
 
         # Then
         self.assertStatusNotFound()
-
 
     def test_http_head_request_to_login_returns_successfully_and_get_still_works(self):
         # Given
