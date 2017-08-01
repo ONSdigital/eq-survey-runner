@@ -12,7 +12,7 @@ export const startCensusQuestionnaire = (schema, sexualIdentity = false, region 
       return browser.url('/session?token=' + token)
     })
 
-  browser.pause(1000) // Shudder!!!
+  browser.pause(2000) // Double Shudder!!!
 }
 
 export function openQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10), periodId = '201605', periodStr = 'May 2016') {
@@ -21,13 +21,11 @@ export function openQuestionnaire(schema, userId = getRandomString(10), collecti
       return browser.url('/session?token=' + token)
     })
 
-  browser.pause(1000) // Shudder!!!
+  browser.pause(2000) // Double Shudder!!!
 }
 
 export function startQuestionnaire(schema, userId = getRandomString(10), collectionId = getRandomString(10)) {
   openQuestionnaire(schema, userId, collectionId)
-
-  browser.pause(1000) // Shudder!!!
 
   landingPage.getStarted()
 }
