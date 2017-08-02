@@ -8,10 +8,6 @@ if [ -z "$EQ_RABBITMQ_ENABLED" ]; then
   export EQ_RABBITMQ_ENABLED=False
 fi
 
-if [ -z "$EQ_MINIMIZE_ASSETS" ]; then
-  export EQ_MINIMIZE_ASSETS=False
-fi
-
 if [ -z "$EQ_RABBITMQ_HOST" ]; then
   export EQ_RABBITMQ_HOST="localhost"
 fi
