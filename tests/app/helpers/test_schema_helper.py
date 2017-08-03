@@ -97,6 +97,35 @@ class TestSchemaHelper(unittest.TestCase):
 
         self.assertEqual(parent_options, expected)
 
+    def test_get_duplicate_aliases(self):
+        survey_json = {
+            "groups": [{
+                "blocks": [{
+                    "sections": [{
+                        "questions": [{
+                            "answers": [{
+                                "id": "1",
+                                "alias": "alias_name",
+                                "type": "Checkbox"
+                                        },
+                                {
+                                    "id": "2",
+                                    "alias": "alias_name",
+                                    "type": "Checkbox"
+                                }
+                                        ]
+                        }]
+                    }]
+                }
+                ]
+            }
+                      ]
+        }
+
+        with self.assertRaises(AssertionError)as err:
+            SchemaHelper.get_aliases(survey_json)
+        self.assertEqual('Duplicate alias found: alias_name', str(err.exception))
+
     def test_get_last_block_returns_none_when_no_blocks(self):
         empty_group = {}
 

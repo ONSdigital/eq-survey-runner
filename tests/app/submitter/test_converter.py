@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 
 import dateutil.parser
 
-from app.data_model.answer_store import AnswerStore
+from app.data_model.answer_store import AnswerStore, Answer
 from app.questionnaire.location import Location
 from app.storage.metadata_parser import parse_metadata
 from app.submitter.converter import convert_answers, DataVersionError
@@ -114,7 +114,8 @@ class TestConverter(SurveyRunnerTestCase):
 
             answer_object = convert_answers(metadata, questionnaire, AnswerStore(user_answer), {})
 
-            self.assertLess(datetime.now(timezone.utc) - dateutil.parser.parse(answer_object['submitted_at']), timedelta(seconds=5))
+            self.assertLess(datetime.now(timezone.utc) - dateutil.parser.parse(answer_object['submitted_at']),
+                            timedelta(seconds=5))
 
     def test_answer_with_zero(self):
         with self.application.test_request_context():
@@ -198,15 +199,71 @@ class TestConverter(SurveyRunnerTestCase):
             # Check the converter correctly
             self.assertEqual(answer_object["data"]["003"], ['0', '1', '2'])
 
+    def test_get_checkbox_answer_with_duplicate_child_answer_ids(self):
+        with self.application.test_request_context():
+            routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
+            answers = [create_answer('crisps-answer', [
+                'Ready salted',
+                'Other'
+            ], group_id='favourite-food', block_id='crisps')]
+
+            answers += [create_answer('other-answer-mandatory', 'Other', group_id='favourite-food', block_id='crisps',
+                                      group_instance=1)]
+            answers += [create_answer('other-answer-mandatory', 'Other', group_id='favourite-food', block_id='crisps',
+                                      group_instance=1)]
+
+            questionnaire = {
+                "survey_id": "999",
+                "data_version": "0.0.1",
+                "groups": [
+                    {
+                        "id": "favourite-food",
+                        "blocks": [
+                            {
+                                "id": "crisps",
+                                "sections": [
+                                    {
+                                        "questions": [{
+                                            "id": 'crisps-question',
+                                            "answers": [
+                                                {
+                                                    "id": "crisps-answer",
+                                                    "type": "Checkbox",
+                                                    "options": [
+                                                        {
+                                                            "label": "Other",
+                                                            "q_code": "4",
+                                                            "description": "Choose any other flavour",
+                                                            "value": "Other",
+                                                            "child_answer_id": "other-answer-mandatory"
+                                                        }
+                                                    ]
+                                                },
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+
+        with self.assertRaises(AssertionError) as err:
+            convert_answers(metadata, questionnaire, AnswerStore(answers), routing_path)
+        self.assertEqual("Multiple answers found for {}".format('other-answer-mandatory'), str(err.exception))
+
     def test_convert_census_answers(self):
         with self.application.test_request_context():
             routing_path = [Location(group_id='personal details', group_instance=0, block_id='about you'),
                             Location(group_id='household', group_instance=0, block_id='where you live'),
                             Location(group_id='household', group_instance=1, block_id='where you live')]
             answers = [create_answer('name', 'Joe Bloggs', group_id='personal details', block_id='about you'),
-                       create_answer('name', 'Fred Bloggs', group_id='personal details', block_id='about you', answer_instance=1),
+                       create_answer('name', 'Fred Bloggs', group_id='personal details', block_id='about you',
+                                     answer_instance=1),
                        create_answer('address', '62 Somewhere', group_id='household', block_id='where you live'),
-                       create_answer('address', '63 Somewhere', group_id='household', block_id='where you live', group_instance=1)]
+                       create_answer('address', '63 Somewhere', group_id='household', block_id='where you live',
+                                     group_instance=1)]
 
             questionnaire = {
                 "survey_id": "021",
@@ -242,7 +299,8 @@ class TestConverter(SurveyRunnerTestCase):
     def test_convert_census_answers_multiple_answers(self):
         with self.application.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
-            answers = [create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite-food', block_id='crisps')]
+            answers = [
+                create_answer('name', ['Ready salted', 'Sweet chilli'], group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
                 "survey_id": "021",
@@ -262,7 +320,6 @@ class TestConverter(SurveyRunnerTestCase):
 
     def test_converter_raises_runtime_error_for_unsupported_version(self):
         with self.application.test_request_context():
-
             questionnaire = {
                 "survey_id": "021",
                 "data_version": "-0.0.1"
@@ -423,13 +480,14 @@ class TestConverter(SurveyRunnerTestCase):
             # Then
             self.assertEqual(len(answer_object['data']), 2)
             self.assertEqual(answer_object['data']['1'], 'Ready salted')
-            self.assertEqual(answer_object['data']['4'], 'Bacon')
+            self.assertEqual(answer_object['data']['4'], 'Other')
 
     def test_converter_q_codes_for_empty_strings(self):
         with self.application.test_request_context():
             routing_path = [Location(group_id='favourite-food', group_instance=0, block_id='crisps')]
             answers = [create_answer('crisps-answer', '', group_id='favourite-food', block_id='crisps')]
-            answers += [create_answer('other-crisps-answer', 'Ready salted', group_id='favourite-food', block_id='crisps')]
+            answers += [
+                create_answer('other-crisps-answer', 'Ready salted', group_id='favourite-food', block_id='crisps')]
 
             questionnaire = {
                 "survey_id": "999",

@@ -354,7 +354,7 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
             # Dates are comprised of 3 string values
             if isinstance(answer_value, dict):
                 if answer_value_empty(answer_value):
-                    _remove_answer_from_questionnaire_store(answer_id, location, questionnaire_store)
+                    _remove_answer_from_questionnaire_store(answer_id, questionnaire_store)
                 else:
                     formatted_answer_value = _format_answer_value(answer_value)
                     if formatted_answer_value:
@@ -362,7 +362,7 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
             elif answer_value is not None:
                 answer = Answer(answer_id=answer_id, value=answer_value, location=location)
             else:
-                _remove_answer_from_questionnaire_store(answer_id, location, questionnaire_store)
+                _remove_answer_from_questionnaire_store(answer_id, questionnaire_store)
 
             if answer:
                 questionnaire_store.answer_store.add_or_update(answer)
@@ -371,8 +371,8 @@ def update_questionnaire_store_with_form_data(questionnaire_store, location, ans
         questionnaire_store.completed_blocks.append(location)
 
 
-def _remove_answer_from_questionnaire_store(answer_id, location, questionnaire_store):
-    questionnaire_store.answer_store.remove(location=location, answer_id=answer_id, answer_instance=0)
+def _remove_answer_from_questionnaire_store(answer_id, questionnaire_store):
+    questionnaire_store.answer_store.remove(answer_id=answer_id, answer_instance=0)
 
 
 def answer_value_empty(answer_value_dict):

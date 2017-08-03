@@ -426,3 +426,37 @@ class TestRules(TestCase):  # pylint: disable=too-many-public-methods
         number_of_repeats = evaluate_repeat(repeat, answer_store)
 
         self.assertEqual(number_of_repeats, 24)
+
+    def test_evaluate_when_rules_condition_is_not_met(self):
+        # Given
+        answer_1 = Answer(
+            answer_id="my_answers",
+            answer_instance=0,
+            group_instance=0,
+            value=10,
+        )
+        answer_2 = Answer(
+            answer_id="my_answers",
+            answer_instance=1,
+            group_instance=0,
+            value=20,
+        )
+        answer_store = AnswerStore()
+        answer_store.add(answer_1)
+        answer_store.add(answer_2)
+
+        when = {
+            'id': 'next-question',
+            'when': [
+                {
+                    'id': 'my_answers',
+                    'condition': 'not set',
+                    'value': '2'
+                }
+            ]
+        }
+
+        # When
+        with self.assertRaises(AssertionError) as err:
+            evaluate_when_rules(when['when'], None, answer_store, 0)
+        self.assertEqual("Multiple answers (2) found evaluating when rule for answer (my_answers)", str(err.exception))
