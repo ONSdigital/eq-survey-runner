@@ -101,7 +101,7 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         dump_submission = json.loads(self.getResponseData())
         return dump_submission
 
-    def get(self, url):
+    def get(self, url, **kwargs):
         """
         GETs the specified URL, following any redirects.
 
@@ -112,11 +112,16 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
 
         :param url: the URL to GET
         """
-        environ, response = self._client.get(url, as_tuple=True, follow_redirects=True)
+        environ, response = self._client.get(
+            url,
+            as_tuple=True,
+            follow_redirects=True,
+            **kwargs
+        )
 
         self._cache_response(environ, response)
 
-    def post(self, post_data=None, url=None, action='save_continue', action_value=''):
+    def post(self, post_data=None, url=None, action='save_continue', action_value='', **kwargs):
         """
         POSTs to the specified URL with post_data and performs a GET
         with the URL from the re-direct.
@@ -139,7 +144,13 @@ class IntegrationTestCase(unittest.TestCase):  # pylint: disable=too-many-public
         if action:
             _post_data.update({'action[{action}]'.format(action=action): action_value})
 
-        environ, response = self._client.post(url, data=_post_data, as_tuple=True, follow_redirects=True)
+        environ, response = self._client.post(
+            url,
+            data=_post_data,
+            as_tuple=True,
+            follow_redirects=True,
+            **kwargs
+        )
 
         self._cache_response(environ, response)
 

@@ -4,27 +4,27 @@
 
 {% block main %}
 
-  <div class="u-mb-s">
+<div class="u-mb-s">
     <h1 class="saturn">Submission Successful</h1>
     <p>Thank you for submitting the {{ survey_title }}, your responses have been successfully received.</p>
-  </div>
+</div>
 
-  <div class="panel panel--simple panel--success panel--spacious">
+<div class="panel panel--simple panel--success panel--spacious">
     <p class="mars">Transaction ID (Please quote this reference for any support queries)</p>
     {% if meta.respondent %}
     <ul class="list list--boxes">
-    {%for id_part in meta.respondent.tx_id%}<li class="list__item">{{id_part}}</li>{% endfor %}
+        {%for id_part in meta.respondent.tx_id%}<li class="list__item">{{id_part}}</li>{% endfor %}
     </ul>
     {% endif %}
     <p class="u-mb-no mars">You may wish to save or print this page for your records.</p>
-  </div>
+</div>
 
-  {{answer_guidance}}
+{{answer_guidance}}
 
-  <div class="u-mt-s">
+<div class="u-mt-s">
     <div class="mars">For more information on how we use this data.</div>
     <p class="u-mb-m@s mars"><a href="https://www.ons.gov.uk/surveys">https://www.ons.gov.uk/surveys</a></p>
     <p class="mars">It is now safe to close this window.</p>
-  </div>
+</div>
 
 {% endblock %}

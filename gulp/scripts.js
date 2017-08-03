@@ -72,7 +72,7 @@ export function bundle(watch) {
     .pipe(gulp.dest(paths.scripts.output))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.scripts.output))
     .pipe(browserSync.reload({stream: true}))
 }

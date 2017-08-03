@@ -9,6 +9,15 @@
   {% endwith %}
 {% endblock %}
 
+{% block subheader %}
+<div class="feedback">
+    {% set feedback_form_hidden = true %}
+    {% include theme('partials/feedback_call_to_action.html') %}
+
+</div>
+{{super()}}
+{% endblock subheader %}
+
 {%- if legal_basis == 'StatisticsOfTradeAct' -%}
   {% set legal_text = "Your response is legally required" %}
 {%- endif -%}

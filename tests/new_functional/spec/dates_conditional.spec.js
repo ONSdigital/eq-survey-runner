@@ -27,6 +27,7 @@ describe('Piped Dates', function () {
       .getText(SummaryPage.answer()).should.eventually.contain('11 October 2017 to 3 December 2017');
 
     });
+
   });
 
   it('Given the test_conditional_dates survey is selected when no dates are entered then the summary screen shows the conditional piped dates entered formatted', function() {
@@ -46,7 +47,6 @@ describe('Piped Dates', function () {
       .click(DatesPage.submit())
       .setValue(DatesConfirmationPage.answer(), 2)
       .click(DatesConfirmationPage.submit())
-
 
       // Then the summary screen shows the dates entered formatted
 

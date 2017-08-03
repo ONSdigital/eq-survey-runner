@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema",
+  "$id": "https://edc.ons.gov.uk/schemas/feeback_v1.json",
+  "type": "object",
+  "properties": {
+    "tx_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$"
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^uk.gov.ons.edc.eq:feedback$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^0.0.1$"
+    },
+    "origin": {
+      "type": "string",
+      "pattern": "^uk.gov.ons.edc.eq$"
+    },
+    "survey_id": {
+      "type": "string",
+      "pattern": "^[0-9]{3}$"
+    },
+    "collection": {
+      "type": "object",
+      "properties": {
+        "exercise_sid": {
+          "type": "string"
+        },
+        "instrument_id":{
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        }
+      }
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "ru_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

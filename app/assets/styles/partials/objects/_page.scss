@@ -16,11 +16,19 @@ $nav-width: 14rem;
 }
 
 .page__subheader {
-  padding: 1rem 0;
+  padding: 0.5rem 0 1rem 0;
   overflow: hidden;
   min-height: 2.6rem;
   &:empty {
     height: 1rem;
+  }
+}
+
+.page__subheader .container > * {
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 

@@ -3,8 +3,18 @@
 
 {% block page_title %}{{page_title}}{% endblock %}
 
+{% block subheader %}
+<div class="feedback">
+    {% set feedback_form_hidden = true %}
+    {% include theme('partials/feedback_call_to_action.html') %}
+
+</div>
+{{super()}}
+{% endblock subheader %}
+
 {% set block = content.block %}
 {% set form = content.form %}
+
 
 {% block sidebar %}
   {% if navigation %}

@@ -104,7 +104,7 @@ class TestQuestionnaireEndpointRedirects(IntegrationTestCase):
         self.post(action=None)
 
         # When we try to submit the survey again
-        self.post(url='/questionnaire/test/percentage/789/summary-group/0/summary')
+        self.get(url='/questionnaire/test/percentage/789/summary-group/0/summary')
 
         # Then we get the unauthorised page
         self.assertStatusUnauthorised()

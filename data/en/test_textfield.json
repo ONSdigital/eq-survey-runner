@@ -2,7 +2,7 @@
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",
     "data_version": "0.0.1",
-    "survey_id": "0",
+    "survey_id": "001",
     "title": "Other input fields",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
