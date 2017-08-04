@@ -3,8 +3,10 @@
   "extends" : [
     "standard"
   ],
-  "ecmaFeatures": {
-    "modules": true,
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true
+    }
   },
   "env": {
     "browser" : true

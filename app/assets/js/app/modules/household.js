@@ -23,7 +23,7 @@ class HouseholdMember extends EventEmitter {
     this.inputs = this.node.querySelectorAll('input')
     this.actionNode = this.node.querySelector('.js-household-action')
     if (this.removeBtn) {
-      this.removeBtn.addEventListener('click', this.onRemoveClick)
+      this.removeBtn.addEventListener('click', this.onRemoveClick.bind(this))
     }
   }
 
@@ -77,14 +77,14 @@ class HouseholdMember extends EventEmitter {
 
   remove() {
     if (transitionendEvent) {
-      this.node.addEventListener(transitionendEvent, this.onTransitionHideEnd, true)
+      this.node.addEventListener(transitionendEvent, this.onTransitionHideEnd.bind(this), true)
     } else {
       window.setTimeout(this.onTransitionHideEnd, 500)
     }
     this.node.classList.add('is-removed')
   }
 
-  onTransitionHideEnd = (e) => {
+  onTransitionHideEnd(e) {
     if (e === undefined || e.target.classList.contains('is-removed')) {
       this.node.parentNode.removeChild(this.node)
       this.node.removeEventListener(transitionendEvent, this.onTransitionHideEnd)
@@ -92,7 +92,7 @@ class HouseholdMember extends EventEmitter {
     }
   }
 
-  onRemoveClick = (e) => {
+  onRemoveClick(e) {
     e.preventDefault()
     this.remove()
   }

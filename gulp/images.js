@@ -71,7 +71,7 @@ export function images() {
     .pipe(tap((file, t) => {
       if (file.relative.indexOf('svg') > -1) {
         gulp.src(file.path)
-        .pipe(gulp.dest(paths.images.output))
+          .pipe(gulp.dest(paths.images.output))
       }
     }))
     .pipe(gulp.dest(paths.images.output))

@@ -72,11 +72,12 @@ export function styles() {
         gutil.log('Done', gutil.colors.cyan(msg))
       }
     })
-    .on('error', function(err) {
-      gutil.log(err.message.toString())
-      browserSync.notify('Browserify Error!')
-      this.emit('end')
-    }))
+      .on('error', function(err) {
+        gutil.log(err.message.toString())
+        browserSync.notify('Browserify Error!')
+        this.emit('end')
+      })
+    )
     .pipe(postcss(postCssPlugins))
     .pipe(rename(function(path) {
       path.dirname = path.dirname.replace('themes/', '')

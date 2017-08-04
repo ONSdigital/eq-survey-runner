@@ -28,36 +28,36 @@ const b = browserify({
     debug: true
   }
 })
-.on('update', () => {
-  cache = bundle()
-})
-.on('error', gutil.log)
-.on('log', gutil.log)
-.transform('rollupify', {
-  config: {
-    cache: cache,
-    entry: `./${appPath}/js/app/main.js`,
-    plugins: [
-      commonjs({
-        include: 'node_modules/**',
-        namedExports: {
-          'node_modules/events/events.js': Object.keys(require('events'))
-        }
-      }),
-      nodeResolve({
-        jsnext: true,
-        main: true,
-        preferBuiltins: false
-      }),
-      rollupBabel({
-        plugins: ['lodash'],
-        presets: ['es2015-rollup', 'stage-2'],
-        babelrc: false,
-        exclude: 'node_modules/**'
-      })
-    ]
-  }
-})
+  .on('update', () => {
+    cache = bundle()
+  })
+  .on('error', gutil.log)
+  .on('log', gutil.log)
+  .transform('rollupify', {
+    config: {
+      cache: cache,
+      entry: `./${appPath}/js/app/main.js`,
+      plugins: [
+        commonjs({
+          include: 'node_modules/**',
+          namedExports: {
+            'node_modules/events/events.js': Object.keys(require('events'))
+          }
+        }),
+        nodeResolve({
+          jsnext: true,
+          main: true,
+          preferBuiltins: false
+        }),
+        rollupBabel({
+          plugins: ['lodash'],
+          presets: ['es2015-rollup', 'stage-2'],
+          babelrc: false,
+          exclude: 'node_modules/**'
+        })
+      ]
+    }
+  })
 
 export function bundle(watch) {
   const bundler = watch ? watchify(b) : b
@@ -70,9 +70,7 @@ export function bundle(watch) {
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(gulp.dest(paths.scripts.output))
-    .pipe(rename({
-      suffix: '.min'
-    }))
+    .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.scripts.output))

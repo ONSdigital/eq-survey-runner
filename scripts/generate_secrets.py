@@ -41,6 +41,7 @@ def change_style(style, representer):
         return scalar
     return new_representer
 
+
 represent_literal_unicode = change_style('|', SafeRepresenter.represent_str)
 yaml.add_representer(LiteralUnicode, represent_literal_unicode)
 
@@ -94,6 +95,7 @@ def add_private_key_to_dict(dict, purpose, private_key, kid_override=None):
     pub_bytes = pub_key.public_bytes(Encoding.PEM, PublicFormat.SubjectPublicKeyInfo)
 
     generate_kid_from_key(dict, "private", purpose, pub_bytes.decode(), private_key_data, kid_override=kid_override)
+
 
 keys = {}
 

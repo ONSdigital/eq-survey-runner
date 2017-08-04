@@ -16,5 +16,5 @@ export default function(url, options) {
     credentials: 'include',
     ...options
   })
-  .then(checkStatus)
+    .then(checkStatus)
 }
