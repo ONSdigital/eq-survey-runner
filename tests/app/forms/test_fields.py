@@ -3,12 +3,19 @@ import unittest
 from wtforms import validators, StringField, FormField, SelectField, SelectMultipleField
 
 from app.forms.custom_fields import MaxTextAreaField
-from app.forms.fields import CustomIntegerField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
+from app.forms.fields import CustomIntegerField, CustomDecimalField, get_field, get_mandatory_validator, get_length_validator, _coerce_str_unless_none
 from app.validation.error_messages import error_messages
 from app.validation.validators import ResponseRequired
+from app.data_model.answer_store import AnswerStore
 
 
 class TestFields(unittest.TestCase):
+
+    def setUp(self):
+        self.answer_store = AnswerStore()
+
+    def tearDown(self):
+        self.answer_store.clear()
 
     def test_get_mandatory_validator_optional(self):
         answer = {
@@ -86,7 +93,7 @@ class TestFields(unittest.TestCase):
             "guidance": "<p>Please enter your job title in the space provided.</p>",
             "type": "TextField"
         }
-        unbound_field = get_field(textfield_json, textfield_json['label'], error_messages)
+        unbound_field = get_field(textfield_json, textfield_json['label'], error_messages, self.answer_store)
 
         self.assertTrue(unbound_field.field_class == StringField)
         self.assertEquals(unbound_field.kwargs['label'], textfield_json['label'])
@@ -102,7 +109,7 @@ class TestFields(unittest.TestCase):
             "type": "TextArea"
         }
 
-        unbound_field = get_field(textarea_json, textarea_json['label'], error_messages)
+        unbound_field = get_field(textarea_json, textarea_json['label'], error_messages, self.answer_store)
 
         self.assertTrue(unbound_field.field_class == MaxTextAreaField)
         self.assertEquals(unbound_field.kwargs['label'], textarea_json['label'])
@@ -123,7 +130,7 @@ class TestFields(unittest.TestCase):
             }
         }
 
-        unbound_field = get_field(date_json, date_json['label'], error_messages)
+        unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store)
 
         self.assertTrue(unbound_field.field_class == FormField)
         self.assertEquals(unbound_field.kwargs['label'], date_json['label'])
@@ -146,7 +153,7 @@ class TestFields(unittest.TestCase):
             }
         }
 
-        unbound_field = get_field(date_json, date_json['label'], error_messages)
+        unbound_field = get_field(date_json, date_json['label'], error_messages, self.answer_store)
 
         self.assertTrue(unbound_field.field_class == FormField)
         self.assertEquals(unbound_field.kwargs['label'], date_json['label'])
@@ -182,7 +189,7 @@ class TestFields(unittest.TestCase):
             "type": "Radio"
         }
 
-        unbound_field = get_field(radio_json, radio_json['label'], error_messages)
+        unbound_field = get_field(radio_json, radio_json['label'], error_messages, self.answer_store)
 
         expected_choices = [(option['label'], option['value']) for option in radio_json['options']]
 
@@ -237,7 +244,7 @@ class TestFields(unittest.TestCase):
             "type": "Checkbox"
         }
 
-        unbound_field = get_field(checkbox_json, checkbox_json['label'], error_messages)
+        unbound_field = get_field(checkbox_json, checkbox_json['label'], error_messages, self.answer_store)
 
         expected_choices = [(option['label'], option['value']) for option in checkbox_json['options']]
 
@@ -254,43 +261,44 @@ class TestFields(unittest.TestCase):
             "label": "How old is Chewy?",
             "mandatory": True,
             "q_code": "1",
-            "type": "Integer",
+            "type": "Number",
             "validation": {
                 "messages": {
-                    "INTEGER_TOO_LARGE": "No one lives that long, not even Yoda",
-                    "NEGATIVE_INTEGER": "Negative age you can not be.",
-                    "NOT_INTEGER": "Please enter your age."
+                    "NUMBER_TOO_LARGE": "No one lives that long, not even Yoda",
+                    "NUMBER_TOO_SMALL": "Negative age you can not be.",
+                    "INVALID_NUMBER": "Please enter your age."
                 }
             }
         }
 
-        unbound_field = get_field(integer_json, integer_json['label'], error_messages)
+        unbound_field = get_field(integer_json, integer_json['label'], error_messages, self.answer_store)
 
         self.assertTrue(unbound_field.field_class == CustomIntegerField)
         self.assertEquals(unbound_field.kwargs['label'], integer_json['label'])
         self.assertEquals(unbound_field.kwargs['description'], integer_json['guidance'])
 
-    def test_positive_integer_field(self):
-        integer_json = {
+    def test_decimal_field(self):
+        decimal_json = {
             "guidance": "",
             "id": "lightsaber-cost-answer",
             "label": "How hot is a lightsaber in degrees C?",
             "mandatory": False,
-            "type": "PositiveInteger",
+            "type": "Number",
+            "decimal_places": 2,
             "validation": {
                 "messages": {
-                    "INTEGER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
-                    "NEGATIVE_INTEGER": "How can it be negative?",
-                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                    "NUMBER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
+                    "NUMBER_TOO_SMALL": "How can it be negative?",
+                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
                 }
             }
         }
 
-        unbound_field = get_field(integer_json, integer_json['label'], error_messages)
+        unbound_field = get_field(decimal_json, decimal_json['label'], error_messages, self.answer_store)
 
-        self.assertTrue(unbound_field.field_class == CustomIntegerField)
-        self.assertEquals(unbound_field.kwargs['label'], integer_json['label'])
-        self.assertEquals(unbound_field.kwargs['description'], integer_json['guidance'])
+        self.assertTrue(unbound_field.field_class == CustomDecimalField)
+        self.assertEquals(unbound_field.kwargs['label'], decimal_json['label'])
+        self.assertEquals(unbound_field.kwargs['description'], decimal_json['guidance'])
 
     def test_currency_field(self):
         currency_json = {
@@ -302,14 +310,14 @@ class TestFields(unittest.TestCase):
             "type": "Currency",
             "validation": {
                 "messages": {
-                    "INTEGER_TOO_LARGE": "How much, fool you must be",
-                    "NEGATIVE_INTEGER": "How can it be negative?",
-                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                    "NUMBER_TOO_LARGE": "How much, fool you must be",
+                    "NUMBER_TOO_SMALL": "How can it be negative?",
+                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
                 }
             }
         }
 
-        unbound_field = get_field(currency_json, currency_json['label'], error_messages)
+        unbound_field = get_field(currency_json, currency_json['label'], error_messages, self.answer_store)
 
         self.assertTrue(unbound_field.field_class == CustomIntegerField)
         self.assertEquals(unbound_field.kwargs['label'], currency_json['label'])
@@ -323,14 +331,19 @@ class TestFields(unittest.TestCase):
             "mandatory": False,
             "q_code": "0810",
             "type": "Percentage",
+            "max_value": {
+                "value": 100
+            },
             "validation": {
                 "messages" : {
-                    "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                    "NUMBER_TOO_LARGE": "How much, fool you must be",
+                    "NUMBER_TOO_SMALL": "How can it be negative?",
+                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
                 }
             }
         }
 
-        unbound_field = get_field(percentage_json, percentage_json['label'], error_messages)
+        unbound_field = get_field(percentage_json, percentage_json['label'], error_messages, self.answer_store)
 
         self.assertTrue(unbound_field.field_class == CustomIntegerField)
         self.assertEquals(unbound_field.kwargs['label'], percentage_json['label'])

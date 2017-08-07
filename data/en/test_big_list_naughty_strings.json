@@ -3576,11 +3576,6 @@
     }],
     "title": "Other input fields",
     "description": "A questionnaire to test textareas.",
-    "messages": {
-        "NOT_INTEGER": "Please enter an integer",
-        "NEGATIVE_INTEGER": "Number cannot be less than zero",
-        "INTEGER_TOO_LARGE": "Number is too large"
-    },
     "data_version": "0.0.1",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",

@@ -1,30 +1,35 @@
+from decimal import Decimal
+
 from wtforms import FormField, SelectField, SelectMultipleField, StringField
 from wtforms import validators
 
-from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField
+from app.forms.custom_fields import MaxTextAreaField, CustomIntegerField, CustomDecimalField
 from app.forms.date_form import get_date_form, get_month_year_form
-from app.validation.validators import IntegerCheck, NumberRange, ResponseRequired
+from app.validation.validators import NumberCheck, NumberRange, ResponseRequired, DecimalPlaces
 from structlog import get_logger
 
+
 MAX_LENGTH = 2000
+MAX_NUMBER = 9999999999
+MIN_NUMBER = -999999999
+MAX_DECIMAL_PLACES = 6
 logger = get_logger()
 
 
-def get_field(answer, label, error_messages):
+def get_field(answer, label, error_messages, answer_store):
     guidance = answer.get('guidance', '')
 
-    field = {
-        "Radio": get_select_field,
-        "Checkbox": get_select_multiple_field,
-        "Date": get_date_field,
-        "MonthYearDate": get_month_year_field,
-        "Currency": get_integer_field,
-        "Integer": get_integer_field,
-        "PositiveInteger": get_integer_field,
-        "Percentage": get_integer_field,
-        "TextArea": get_text_area_field,
-        "TextField": get_string_field,
-    }[answer['type']](answer, label, guidance, error_messages)
+    if answer['type'] in ["Number", "Currency", "Percentage"]:
+        field = get_number_field(answer, label, guidance, error_messages, answer_store)
+    else:
+        field = {
+            "Radio": get_select_field,
+            "Checkbox": get_select_multiple_field,
+            "Date": get_date_field,
+            "MonthYearDate": get_month_year_field,
+            "TextArea": get_text_area_field,
+            "TextField": get_string_field,
+        }[answer['type']](answer, label, guidance, error_messages)
 
     if field is None:
         logger.error("Unknown answer type used during form creation", type=answer['type'])
@@ -47,8 +52,8 @@ def get_length_validator(answer, error_messages):
     if 'max_length' in answer and answer['max_length'] > 0:
         max_length = answer['max_length']
 
-    if 'validation' in answer and 'messages' in answer['validation'] \
-       and 'MAX_LENGTH_EXCEEDED' in answer['validation']['messages']:
+    if 'validation' in answer and 'messages' in answer['validation'] and \
+            'MAX_LENGTH_EXCEEDED' in answer['validation']['messages']:
         length_message = answer['validation']['messages']['MAX_LENGTH_EXCEEDED']
 
     validate_with.append(
@@ -64,8 +69,8 @@ def get_mandatory_validator(answer, error_messages):
     if answer['mandatory'] is True:
         mandatory_message = error_messages['MANDATORY']
 
-        if 'validation' in answer and 'messages' in answer['validation'] \
-                and 'MANDATORY' in answer['validation']['messages']:
+        if 'validation' in answer and 'messages' in answer['validation'] and \
+                'MANDATORY' in answer['validation']['messages']:
             mandatory_message = answer['validation']['messages']['MANDATORY']
 
         validate_with = [
@@ -154,7 +159,7 @@ def get_select_field(answer, label, guidance, error_messages):
     )
 
 
-def get_integer_field(answer, label, guidance, error_messages):
+def get_number_field(answer, label, guidance, error_messages, answer_store):
     answer_errors = error_messages.copy()
 
     if 'validation' in answer and 'messages' in answer['validation']:
@@ -163,24 +168,55 @@ def get_integer_field(answer, label, guidance, error_messages):
 
     mandatory_or_optional = get_mandatory_validator(answer, answer_errors)
 
-    if answer['type'] == 'Integer':
-        validate_with = mandatory_or_optional + [
-            IntegerCheck(answer_errors['NOT_INTEGER']),
-            NumberRange(maximum=9999999999, messages=answer_errors),
-        ]
-    elif answer['type'] == 'Percentage':
-        validate_with = mandatory_or_optional + [
-            IntegerCheck(answer_errors['NOT_INTEGER']),
-            NumberRange(minimum=0, maximum=100, messages=answer_errors),
-        ]
-    else:
-        validate_with = mandatory_or_optional + [
-            IntegerCheck(answer_errors['NOT_INTEGER']),
-            NumberRange(minimum=0, maximum=9999999999, messages=answer_errors),
-        ]
+    max_decimals = answer.get('decimal_places', 0)
+    if max_decimals > MAX_DECIMAL_PLACES:
+        raise Exception('decimal_places: {} > system maximum: {} for answer id: {}'
+                        .format(max_decimals, MAX_DECIMAL_PLACES, answer['id']))
 
-    return CustomIntegerField(
-        label=label,
-        description=guidance,
-        validators=validate_with,
-    )
+    min_value = get_schema_defined_limit(answer['id'], answer.get('min_value'), answer_store) or 0
+    if min_value < MIN_NUMBER:
+        raise Exception('min_value: {} < system minimum: {} for answer id: {}'
+                        .format(min_value, MIN_NUMBER, answer['id']))
+
+    max_value = get_schema_defined_limit(answer['id'], answer.get('max_value'), answer_store) or MAX_NUMBER
+    if max_value > MAX_NUMBER:
+        raise Exception('max_value: {} > system maximum: {} for answer id: {}'
+                        .format(max_value, MAX_NUMBER, answer['id']))
+
+    if min_value > max_value:
+        raise Exception('min_value: {} > max_value: {} for answer id: {}'.format(min_value, max_value, answer['id']))
+
+    validate_with = mandatory_or_optional + [
+        NumberCheck(answer_errors['INVALID_NUMBER']),
+        NumberRange(minimum=min_value, maximum=max_value, messages=answer_errors),
+        DecimalPlaces(max_decimals=max_decimals, messages=answer_errors),
+    ]
+
+    if max_decimals > 0:
+        return CustomDecimalField(
+            label=label,
+            validators=validate_with,
+            description=guidance,
+        )
+    else:
+        return CustomIntegerField(
+            label=label,
+            validators=validate_with,
+            description=guidance,
+        )
+
+
+def get_schema_defined_limit(answer_id, definition, answer_store):
+    value = None
+    if definition:
+        if 'value' in definition:
+            value = definition['value']
+        else:
+            source_answer_id = definition.get('answer_id')
+            answer_list = answer_store.filter(answer_id=source_answer_id)
+            value = answer_list[0].get('value')
+            if not isinstance(value, int) and not isinstance(value, Decimal):
+                raise Exception('answer: {} value: {} for answer id: {} is not a valid number'
+                                .format(answer_list[0].get('answer_id'), value, answer_id))
+
+    return value

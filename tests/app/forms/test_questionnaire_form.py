@@ -2,6 +2,7 @@ from app.forms.questionnaire_form import generate_form
 from app.helpers.schema_helper import SchemaHelper
 from app.utilities.schema import load_schema_file
 from app.validation.validators import ResponseRequired
+from app.data_model.answer_store import AnswerStore
 
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -19,7 +20,7 @@ class TestQuestionnaireForm(AppContextTestCase):
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             error_messages = SchemaHelper.get_messages(survey)
 
-            form = generate_form(block_json, {}, error_messages)
+            form = generate_form(block_json, {}, error_messages, AnswerStore())
 
             for answer in SchemaHelper.get_answers_for_block(block_json):
                 self.assertTrue(hasattr(form, answer['id']))
@@ -45,7 +46,7 @@ class TestQuestionnaireForm(AppContextTestCase):
                 'period-from': {'day': '01', 'month': '3', 'year': '2016'},
                 'period-to': {'day': '31', 'month': '3', 'year': '2016'}
             }
-            form = generate_form(block_json, data, error_messages)
+            form = generate_form(block_json, data, error_messages, AnswerStore())
 
             self.assertEqual(form.data, expected_form_data)
 
@@ -70,7 +71,7 @@ class TestQuestionnaireForm(AppContextTestCase):
                 'period-from': {'day': '25', 'month': '12', 'year': '2016'},
                 'period-to': {'day': '25', 'month': '12', 'year': '2016'}
             }
-            form = generate_form(block_json, data, error_messages)
+            form = generate_form(block_json, data, error_messages, AnswerStore())
 
             expected_message = "The 'period to' date must be different to the 'period from' date."
 
@@ -99,13 +100,13 @@ class TestQuestionnaireForm(AppContextTestCase):
                 'period-from': {'day': '25', 'month': '12', 'year': '2016'},
                 'period-to': {'day': '24', 'month': '12', 'year': '2016'}
             }
-            form = generate_form(block_json, data, error_messages)
+            form = generate_form(block_json, data, error_messages, AnswerStore())
 
             expected_message = "The 'period to' date cannot be before the 'period from' date."
 
             form.validate()
             self.assertEqual(form.data, expected_form_data)
-            self.assertEqual(form.question_errors['reporting-period-question'], expected_message)
+            self.assertEqual(form.question_errors['reporting-period-question'], expected_message, AnswerStore())
 
     def test_form_errors_are_correctly_mapped(self):
         with self.test_request_context():
@@ -114,7 +115,7 @@ class TestQuestionnaireForm(AppContextTestCase):
             block_json = SchemaHelper.get_block(survey, "total-retail-turnover")
             error_messages = SchemaHelper.get_messages(survey)
 
-            form = generate_form(block_json, {}, error_messages)
+            form = generate_form(block_json, {}, error_messages, AnswerStore())
 
             form.validate()
             mapped_errors = form.map_errors()
@@ -130,7 +131,7 @@ class TestQuestionnaireForm(AppContextTestCase):
             block_json = SchemaHelper.get_block(survey, "reporting-period")
             error_messages = SchemaHelper.get_messages(survey)
 
-            form = generate_form(block_json, {}, error_messages)
+            form = generate_form(block_json, {}, error_messages, AnswerStore())
 
             message = "Please provide an answer to continue."
 
@@ -149,7 +150,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form = generate_form(block_json, {
                 'radio-mandatory-answer': 'Other'
-            }, error_messages)
+            }, error_messages, AnswerStore())
 
             child_field = getattr(form, 'other-answer-mandatory')
 
@@ -164,7 +165,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form = generate_form(block_json, {
                 'radio-mandatory-answer': 'Other'
-            }, error_messages)
+            }, error_messages, AnswerStore())
 
             form.validate()
             mapped_errors = form.map_errors()
@@ -183,7 +184,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form = generate_form(block_json, {
                 'total-retail-turnover-answer': "-1"
-            }, error_messages)
+            }, error_messages, AnswerStore())
 
             form.validate()
             answer_errors = form.answer_errors('total-retail-turnover-answer')
@@ -195,7 +196,7 @@ class TestQuestionnaireForm(AppContextTestCase):
             block_json = SchemaHelper.get_block(survey, "mandatory-checkbox")
             error_messages = SchemaHelper.get_messages(survey)
 
-            form = generate_form(block_json, {}, error_messages)
+            form = generate_form(block_json, {}, error_messages, AnswerStore())
 
             self.assertFalse(form.option_has_other("mandatory-checkbox-answer", 1))
             self.assertTrue(form.option_has_other("mandatory-checkbox-answer", 6))
@@ -208,7 +209,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form = generate_form(block_json, {
                 "other-answer-mandatory": "Some data"
-            }, error_messages)
+            }, error_messages, AnswerStore())
 
             field = form.get_other_answer("mandatory-checkbox-answer", 6)
 
@@ -222,7 +223,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form = generate_form(block_json, {
                 "other-answer-mandatory": "Some data"
-            }, error_messages)
+            }, error_messages, AnswerStore())
 
             field = form.get_other_answer("mandatory-checkbox-answer", 4)
 

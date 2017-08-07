@@ -10,6 +10,7 @@ from structlog.stdlib import LoggerFactory
 
 from app.helpers.schema_helper import SchemaHelper
 from app.utilities.schema import get_schema_path, get_schema_definition_path
+from app.forms.fields import MIN_NUMBER, MAX_NUMBER, MAX_DECIMAL_PLACES
 
 logger = getLogger()
 
@@ -62,6 +63,8 @@ class TestSchemaValidation(unittest.TestCase):
             errors.extend(self.validate_schema_contains_valid_routing_rules(file, json_to_validate))
 
             errors.extend(self.validate_routing_rules_has_default_if_not_all_answers_routed(file, json_to_validate))
+
+            errors.extend(self.validate_range_types_from_answers(file, json_to_validate))
         except SchemaError as e:
             errors.append("JSON Error! File [{}]. Error [{}]".format(file, e))
 
@@ -233,6 +236,85 @@ class TestSchemaValidation(unittest.TestCase):
         matching_blocks = [b for b in SchemaHelper.get_blocks(json) if b["id"] == block_id]
         return len(matching_blocks) == 1
 
+    @staticmethod
+    def validate_range_types_from_answers(file, json_to_validate):
+        errors = []
+
+        for block in SchemaHelper.get_blocks(json_to_validate):
+            for answer in SchemaHelper.get_answers_for_block(block):
+                used_answers = []
+                values = []
+                answer_id = answer['id']
+                answer_decimals = answer.get('decimal_places', 0)
+
+                if answer.get('max_value') and 'value' in answer.get('max_value'):
+                    values.append(answer['max_value']['value'])
+
+                if answer.get('max_value') and 'answer_id' in answer.get('max_value'):
+                    used_answers.append(answer['max_value']['answer_id'])
+
+                if answer.get('min_value') and 'value' in answer.get('min_value'):
+                    values.append(answer['min_value']['value'])
+
+                if answer.get('min_value') and 'answer_id' in answer.get('min_value'):
+                    used_answers.append(answer['min_value']['answer_id'])
+
+                for value in values:
+                    errors.extend(TestSchemaValidation.validate_range_value(value, file, answer_id, answer_decimals))
+
+                for used_answer_id in used_answers:
+                    errors.extend(TestSchemaValidation.validate_range_type(
+                        file, json_to_validate, used_answer_id, answer_id, answer_decimals))
+
+        return errors
+
+    @staticmethod
+    def validate_range_type(file, json_to_validate, used_answer_id, answer_id, answer_decimals):
+        range_errors = []
+
+        used_answer_exists = False
+        for block in SchemaHelper.get_blocks(json_to_validate):
+            for answer in SchemaHelper.get_answers_for_block(block):
+                if answer.get('id') == used_answer_id:
+                    used_answer_exists = True
+                    used_answer_type = answer['type']
+                    used_answer_decimals = int(answer.get('decimal_places', 0))
+
+        if not used_answer_exists:
+            error_message = "{} used for {} is not an answer id in schema".format(used_answer_id, answer_id)
+            range_errors.append(TestSchemaValidation._error_message(error_message, file))
+        elif used_answer_type not in ['Number', 'Currency', 'Percentage']:
+            error_message = "{} is of type {} and therefore can not be passed to max/min values for {}"\
+                .format(used_answer_id, used_answer_type, answer_id)
+            range_errors.append(TestSchemaValidation._error_message(error_message, file))
+        elif used_answer_decimals > answer_decimals:
+            if answer_decimals == 0:
+                error_message = "{} of type decimal is being passed to " \
+                                "max/min value for {} of type integer".format(used_answer_id, answer_id)
+            else:
+                error_message = "{} is of type decimal with {} places is being passed to" \
+                                " max/min value for {} of {} decimal_places"\
+                    .format(used_answer_id, used_answer_decimals, answer_id, answer_decimals)
+
+            range_errors.append(TestSchemaValidation._error_message(error_message, file))
+
+        return range_errors
+
+    @staticmethod
+    def validate_range_value(value, file, answer_id, answer_decimals):
+        error_message = "Decimal Places used in {} should be less than or equal to {}, currently {}" \
+            .format(answer_id, MAX_DECIMAL_PLACES, answer_decimals)
+
+        if answer_decimals > MAX_DECIMAL_PLACES:
+            return [TestSchemaValidation._error_message(error_message, file)]
+
+        error_message = "Value {} used in {} should be between system limits {} to {}"\
+            .format(value, answer_id, MIN_NUMBER, MAX_NUMBER)
+
+        if MIN_NUMBER <= value <= MAX_NUMBER:
+            return []
+        else:
+            return [TestSchemaValidation._error_message(error_message, file)]
 
 if __name__ == '__main__':
     unittest.main()

@@ -77,11 +77,11 @@
                             "id": "bed-spaces-answer",
                             "label": "Number of bed spaces",
                             "mandatory": true,
-                            "type": "PositiveInteger",
+                            "type": "Number",
                             "validation": {
                                 "messages": {
                                     "MANDATORY": "Please provide an answer to continue",
-                                    "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
+                                    "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
                                 }
                             }
                         }]
@@ -183,11 +183,11 @@
                             "id": "usual-residents-number-answer",
                             "mandatory": true,
                             "label": "Number of usual residents",
-                            "type": "PositiveInteger",
+                            "type": "Number",
                             "validation": {
                                 "messages": {
                                     "MANDATORY": "Please provide an answer to continue.",
-                                    "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
+                                    "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
                                 }
                             }
                         }]

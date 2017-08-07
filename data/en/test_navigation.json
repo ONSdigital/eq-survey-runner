@@ -153,7 +153,7 @@
                                     "value": "Terrace"
                                 }
                             ],
-                            "q_code": "3",
+                            "q_code": "12",
                             "type": "Radio"
                         }],
                         "description": "",
@@ -343,12 +343,12 @@
                             "mandatory": true,
                             "options": [],
                             "q_code": "7",
-                            "type": "PositiveInteger",
+                            "type": "Number",
                             "validation": {
                                 "messages": {
-                                    "INTEGER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
-                                    "NEGATIVE_INTEGER": "How can it be negative?",
-                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                    "NUMBER_TOO_LARGE": "Thats hotter then the sun, Jar Jar Binks you must be",
+                                    "NUMBER_TOO_SMALL": "How can it be negative?",
+                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
                                 }
                             }
                         }],
@@ -493,7 +493,7 @@
                                 "mandatory": true,
                                 "options": [],
                                 "q_code": "11",
-                                "type": "PositiveInteger"
+                                "type": "Number"
                             }],
                             "description": "The long one in the middle of the card please",
                             "id": "credit-card-question",

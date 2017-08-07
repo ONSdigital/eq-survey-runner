@@ -343,11 +343,11 @@
                                 "id": "overnight-visitors-answer",
                                 "label": "Number of visitors (enter 0 if no visitors)",
                                 "mandatory": true,
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please enter a value even if that value is 0",
-                                        "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
+                                        "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
                                     }
                                 }
                             }]
@@ -655,10 +655,10 @@
                                 "id": "number-of-bedrooms-answer",
                                 "label": "Number of bedrooms",
                                 "mandatory": false,
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
-                                        "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
+                                        "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
                                     }
                                 }
                             }]
@@ -887,10 +887,10 @@
                                 "id": "number-of-vehicles-answer",
                                 "label": "Number of vehicles",
                                 "mandatory": false,
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
-                                        "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
+                                        "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
                                     }
                                 }
                             }]

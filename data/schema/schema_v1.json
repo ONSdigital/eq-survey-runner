@@ -102,7 +102,7 @@
         "messages": {
             "type": "object",
             "properties": {
-                "NOT_INTEGER": {
+                "INVALID_NUMBER": {
                     "type": "string"
                 },
                 "NOT_STRING": {
@@ -114,10 +114,13 @@
                 "INVALID_DATE": {
                     "type": "string"
                 },
-                "NEGATIVE_INTEGER": {
+                "NUMBER_TOO_SMALL": {
                     "type": "string"
                 },
-                "INTEGER_TOO_LARGE": {
+                "NUMBER_TOO_LARGE": {
+                    "type": "string"
+                },
+                "OUT_OF_RANGE": {
                     "type": "string"
                 },
                 "INVALID_DATE_RANGE_TO_BEFORE_FROM": {
@@ -127,6 +130,9 @@
                     "type": "string"
                 },
                 "MAX_LENGTH_EXCEEDED": {
+                    "type": "string"
+                },
+                "INVALID_DECIMAL": {
                     "type": "string"
                 }
             },
@@ -437,9 +443,8 @@
                                                                             "Currency",
                                                                             "Date",
                                                                             "MonthYearDate",
-                                                                            "Integer",
                                                                             "Percentage",
-                                                                            "PositiveInteger",
+                                                                            "Number",
                                                                             "Radio",
                                                                             "TextArea",
                                                                             "TextField",
@@ -476,11 +481,52 @@
                                                                     "max_length": {
                                                                         "type": "integer"
                                                                     },
+                                                                    "decimal_places": {
+                                                                        "type": "integer"
+                                                                    },
                                                                     "alias": {
                                                                         "type": "string"
                                                                     },
                                                                     "repeats": {
                                                                         "type": "boolean"
+                                                                    },
+                                                                    "max_value": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "value": {
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "answer_id": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "oneOf": [
+                                                                          {
+                                                                            "required": ["value"]
+                                                                          },
+                                                                          {
+                                                                            "required": ["answer_id"]
+                                                                          }
+                                                                        ]
+                                                                    },
+                                                                    "min_value": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "value": {
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "answer_id": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "oneOf": [
+                                                                          {
+                                                                            "required": ["value"]
+                                                                          },
+                                                                          {
+                                                                            "required": ["answer_id"]
+                                                                          }
+                                                                        ]
                                                                     },
                                                                     "validation": {
                                                                         "type": "object",

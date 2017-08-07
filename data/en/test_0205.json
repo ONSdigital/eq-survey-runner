@@ -10,9 +10,9 @@
     "messages": {
         "MANDATORY": "Please provide an answer to continue.",
         "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-        "NOT_INTEGER": "Please only enter whole numbers into the field.",
-        "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-        "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+        "INVALID_NUMBER": "Please only enter whole numbers into the field.",
+        "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
+        "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
     },
     "groups": [{
         "id": "mci",
@@ -132,9 +132,9 @@
                                     "mandatory": false,
                                     "validation": {
                                         "messages": {
-                                            "NOT_INTEGER": "Please only enter whole numbers into the field.",
-                                            "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-                                            "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+                                            "INVALID_NUMBER": "Please only enter whole numbers into the field.",
+                                            "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
+                                            "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
                                         }
                                     }
                                 }]

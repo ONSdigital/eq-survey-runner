@@ -31,7 +31,7 @@
                                 "id": "no-of-repeats-answer",
                                 "label": "How many times are we going to repeat?",
                                 "mandatory": true,
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please answer before continuing."
@@ -124,7 +124,7 @@
                                 "id": "what-is-your-age",
                                 "label": "",
                                 "mandatory": true,
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please answer before continuing."
@@ -152,7 +152,7 @@
                                 "id": "what-is-your-shoe-size",
                                 "label": "",
                                 "mandatory": true,
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please answer before continuing."

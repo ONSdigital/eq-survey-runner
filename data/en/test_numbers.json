@@ -1,0 +1,172 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.2",
+    "survey_id": "023",
+    "title": "Test Numeric Range",
+    "description": "Test Description",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "messages": {
+        "NUMBER_TOO_LARGE": "The maximum value allowed is %(max)s. Please correct your answer.",
+        "NUMBER_TOO_SMALL": "The minimum value allowed is %(min)s. Please correct your answer.",
+        "INVALID_NUMBER": "Please only enter a valid number into the field.",
+        "MANDATORY": "Please provide a value, even if your value is 0."
+    },
+    "groups": [{
+            "blocks": [{
+                    "type": "Questionnaire",
+                    "id": "set-min-max-block",
+                    "sections": [{
+                        "description": "",
+                        "id": "set-min-max-section",
+                        "questions": [{
+                            "answers": [{
+                                    "id": "set-minimum",
+                                    "alias": "min_value",
+                                    "description": "",
+                                    "label": "Minimum Value",
+                                    "mandatory": true,
+                                    "options": [],
+                                    "type": "Number",
+                                    "validation": {
+                                        "messages": {}
+                                    }
+                                },
+                                {
+                                    "id": "set-maximum",
+                                    "alias": "max_value",
+                                    "description": "",
+                                    "label": "Maximum Value",
+                                    "mandatory": true,
+                                    "options": [],
+                                    "type": "Number",
+                                    "validation": {
+                                        "messages": {}
+                                    }
+                                }
+                            ],
+                            "description": "",
+                            "id": "set-min-question",
+                            "title": "Please set the minimum and maximum used for future questions",
+                            "type": "General"
+                        }],
+                        "title": ""
+                    }],
+                    "title": "Set Max Min"
+                },
+                {
+                    "type": "Questionnaire",
+                    "id": "test-min-max-block",
+                    "sections": [{
+                        "description": "",
+                        "id": "test-min-max-section",
+                        "questions": [{
+                            "answers": [{
+                                    "id": "test-range",
+                                    "description": "",
+                                    "label": "Range Test {{answers.min_value}} to {{answers.max_value}}",
+                                    "mandatory": false,
+                                    "options": [],
+                                    "type": "Currency",
+                                    "max_value": {
+                                        "answer_id": "set-maximum"
+                                    },
+                                    "min_value": {
+                                        "answer_id": "set-minimum"
+                                    },
+                                    "validation": {
+                                        "messages": {
+                                            "OUT_OF_RANGE": "The value must be between %(min)s and %(max)s. Please correct your answer.",
+                                            "INVALID_NUMBER": "Please only enter whole numbers into the field."
+                                        }
+                                    }
+                                },
+                                {
+                                    "id": "test-min",
+                                    "description": "",
+                                    "label": "Min Test (123 to 9999999999)",
+                                    "mandatory": false,
+                                    "options": [],
+                                    "type": "Number",
+                                    "min_value": {
+                                        "value": 123
+                                    },
+                                    "validation": {
+                                        "messages": {
+                                            "NUMBER_TOO_SMALL": "The minimum value allowed is %(min)s. Please correct your answer.",
+                                            "INVALID_NUMBER": "Please only enter whole numbers into the field."
+                                        }
+                                    }
+                                },
+                                {
+                                    "id": "test-max",
+                                    "description": "",
+                                    "label": "Max Test (0 to 456)",
+                                    "mandatory": false,
+                                    "options": [],
+                                    "type": "Number",
+                                    "max_value": {
+                                        "value": 456
+                                    },
+                                    "validation": {
+                                        "messages": {
+                                            "NUMBER_TOO_LARGE": "The maximum value allowed is %(max)s. Please correct your answer.",
+                                            "INVALID_NUMBER": "Please only enter whole numbers into the field."
+                                        }
+                                    }
+                                },
+                                {
+                                    "id": "test-percent",
+                                    "description": "",
+                                    "label": "Percent Test (0 to 100)",
+                                    "mandatory": false,
+                                    "options": [],
+                                    "type": "Percentage",
+                                    "max_value": {
+                                        "value": 100
+                                    },
+                                    "validation": {
+                                        "messages": {
+                                            "OUT_OF_RANGE": "Percentages must be between 0 and 100."
+                                        }
+                                    }
+                                },
+                                {
+                                    "id": "test-decimal",
+                                    "description": "",
+                                    "label": "Decimal test to 2 decimal places",
+                                    "mandatory": false,
+                                    "options": [],
+                                    "type": "Number",
+                                    "decimal_places": 2,
+                                    "validation": {
+                                        "messages": {
+                                            "INVALID_DECIMAL": "Please only enter numbers to %(max)d decimal places into the field."
+                                        }
+                                    }
+                                }
+                            ],
+                            "description": "",
+                            "id": "test-min-max-range-question",
+                            "title": "Please enter test values (none mandatory)",
+                            "type": "General"
+                        }],
+                        "title": ""
+                    }],
+                    "title": "Test Max Min"
+                }
+            ],
+            "id": "test",
+            "title": ""
+        },
+        {
+            "blocks": [{
+                "type": "Summary",
+                "id": "summary"
+            }],
+            "id": "summary-group",
+            "title": "Summary"
+        }
+    ]
+}

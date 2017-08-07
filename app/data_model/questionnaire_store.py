@@ -1,4 +1,4 @@
-import json
+import simplejson
 
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
@@ -21,14 +21,14 @@ class QuestionnaireStore:
 
     @staticmethod
     def _deserialise(raw_data):
-        data = json.loads(raw_data)
+        data = simplejson.loads(raw_data)
         data['COMPLETED_BLOCKS'] = [Location.from_dict(location_dict=completed_block) for completed_block in data['COMPLETED_BLOCKS']]
         return data
 
     @staticmethod
     def _serialise(data):
         # Override default function to return object as a dict
-        return json.dumps(data, default=lambda o: o.__dict__)
+        return simplejson.dumps(data, default=lambda o: o.__dict__)
 
     def _set_data(self, data):
         self.metadata = data.get('METADATA') or {}
