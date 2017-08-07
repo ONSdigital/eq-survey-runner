@@ -14,6 +14,15 @@ from app.jinja_filters import format_number_to_alphabetic_letter
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
 
+    def test_format_currency_without_decimals(self):
+        # Given
+        currency = 1
+
+        # When
+        format_value = format_currency(currency)
+
+        self.assertEqual(format_value, '£1.00')
+
     def test_format_currency(self):
         # Given
         currency = 1.12
