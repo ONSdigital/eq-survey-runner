@@ -43,6 +43,29 @@ def format_date(value):
     return value.strftime('%-d %B %Y')
 
 
+@blueprint.app_template_filter()
+def format_conditional_date(date1=None, date2=None):
+    """
+    This function format_conditional_date accepts two dates, a user submitted date and a metadata date
+
+    :param date1 user entered date
+    :param date2 is metadata date
+    :return: the value of the date to be piped
+    """
+    if date1:
+        date = date1
+    else:
+        date = date2
+
+    if date is None:
+        raise Exception("No valid dates passed to format_conditional_dates filter")
+
+    if isinstance(date, datetime):
+        return format_date(date)
+    else:
+        return format_date(datetime.strptime(date, "%d/%m/%Y"))
+
+
 def format_str_as_short_date(value):
     return datetime.strptime(value, "%d/%m/%Y").strftime('%d %B %Y')
 
@@ -96,5 +119,10 @@ def format_number_to_alphabetic_letter(number):
 
 
 @blueprint.app_context_processor
-def utility_processor():
+def start_end_date_check():
     return dict(format_start_end_date=format_start_end_date)
+
+
+@blueprint.app_context_processor
+def conditional_dates_check():
+    return dict(format_conditional_date=format_conditional_date)

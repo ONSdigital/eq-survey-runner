@@ -1,0 +1,97 @@
+{
+    "mime_type": "application/json/ons/eq",
+    "schema_version": "0.0.1",
+    "data_version": "0.0.1",
+    "survey_id": "023",
+    "title": "Date formats",
+    "description": "A test schema for different date formats",
+    "theme": "default",
+    "legal_basis": "StatisticsOfTradeAct",
+    "groups": [{
+        "blocks": [{
+                "type": "Questionnaire",
+                "id": "date-block",
+                "sections": [{
+                    "description": "",
+                    "id": "date-section",
+                    "questions": [{
+                        "answers": [{
+                                "alias": "date_start_from",
+                                "id": "date-start-from",
+                                "label": "Period from",
+                                "mandatory": false,
+                                "options": [],
+                                "q_code": "1111",
+                                "type": "Date",
+                                "validation": {
+                                    "messages": {
+                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                        "MANDATORY": "Please provide an answer to continue."
+                                    }
+                                }
+                            },
+                            {
+                                "alias": "date_end_to",
+                                "id": "date-end-to",
+                                "label": "Period to",
+                                "mandatory": false,
+                                "options": [],
+                                "q_code": "1112",
+                                "type": "Date",
+                                "validation": {
+                                    "messages": {
+                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
+                                        "MANDATORY": "Please provide an answer to continue."
+                                    }
+                                }
+                            }
+                        ],
+                        "description": "",
+                        "id": "date-pipe-question",
+                        "title": "Pipe range",
+                        "type": "DateRange"
+                    }],
+                    "title": "Date Examples"
+                }],
+                "title": "Date Examples"
+            },
+            {
+                "type": "Questionnaire",
+                "id": "date-value-test",
+                "sections": [{
+                    "description": "A test to see if dates are correctly passed",
+                    "id": "total-date-test",
+                    "questions": [{
+                        "answers": [{
+                            "id": "date-test-answer",
+                            "label": "Piped dates",
+                            "mandatory": false,
+                            "options": [],
+                            "q_code": "20",
+                            "type": "Integer",
+                            "validation": {
+                                "messages": {
+                                    "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+                                    "MANDATORY": "Please provide a value, even if your value is 0.",
+                                    "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
+                                    "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                }
+                            }
+                        }],
+                        "id": "total-retail-turnover-question",
+                        "title": "For the period {{ format_conditional_date (answers.date_start_from, exercise.start_date)}} to {{ format_conditional_date (answers.date_end_to, exercise.end_date)}}, what was the value of the business’s total retail turnover?",
+                        "type": "General"
+                    }],
+                    "title": "Conditional Date Validation"
+                }],
+                "title": "Conditional Date Validation"
+            },
+            {
+                "type": "Summary",
+                "id": "summary"
+            }
+        ],
+        "id": "dates",
+        "title": ""
+    }]
+}
