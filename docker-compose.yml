@@ -24,6 +24,14 @@ services:
     networks:
       - eq-env
 
+  eq-survey-register:
+    image: onsdigital/eq-survey-register:simple-rest-api
+    restart: always
+    networks:
+      - eq-env
+    ports:
+      - "8080:8080"
+
   eq-survey-runner:
     image: onsdigital/eq-survey-runner
     build: ./
@@ -34,7 +42,7 @@ services:
       EQ_SERVER_SIDE_STORAGE_DATABASE_NAME: runner
       EQ_RABBITMQ_HOST: rabbit
       EQ_RABBITMQ_HOST_SECONDARY: rabbit
-      EQ_SECRETS_FILE: "docker-secrets.yml"
+      EQ_SECRETS_FILE: docker-secrets.yml
     restart: always
     depends_on:
       - db
@@ -42,12 +50,13 @@ services:
     networks:
       - eq-env
     ports:
-      - "80:5000"
+      - "5000:5000"
 
   go-launch-a-survey:
-    image: onsdigital/go-launch-a-survey
+    image: onsdigital/go-launch-a-survey:load-schemas-from-register
     environment:
-      SURVEY_RUNNER_URL: "http://localhost"
+      SURVEY_RUNNER_URL: http://localhost:5000
+      SURVEY_REGISTER_URL: http://eq-survey-register:8080/
     restart: always
     depends_on:
       - eq-survey-runner

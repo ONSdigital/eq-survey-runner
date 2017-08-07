@@ -1,5 +1,11 @@
+import json
+import os
 import time
 
+from httmock import urlmatch, HTTMock, response
+from mock import patch
+
+from app.utilities.schema import DEFAULT_LANGUAGE_CODE, get_schema_file_path
 from tests.integration.create_token import PAYLOAD
 from tests.integration.integration_test_case import IntegrationTestCase
 
@@ -91,3 +97,44 @@ class TestLogin(IntegrationTestCase):
 
         # Then
         self.assertStatusForbidden()
+
+    def test_login_token_with_survey_url_should_redirect_to_survey(self):
+
+        survey_url = "http://eq-survey-register/my-test-schema"
+
+        # Given
+        token = self.token_generator.create_token_with_survey_url('textarea', 'test', survey_url)
+
+        # When
+        with HTTMock(self.survey_url_mock):
+            self.get('/session?token=' + token)
+
+        self.assertStatusOK()
+        self.assertInUrl('/questionnaire/test/textarea')
+
+    def test_login_token_with_incorrect_survey_url_results_in_404(self):
+
+        survey_url = "http://eq-survey-register/my-test-schema-not-found"
+
+        # Given
+        token = self.token_generator.create_token_with_survey_url('textarea', 'test', survey_url)
+
+        # When
+        with HTTMock(self.survey_url_mock_404):
+            self.get('/session?token=' + token)
+
+        # Then
+        self.assertStatusNotFound()
+
+    @staticmethod
+    @urlmatch(netloc=r'eq-survey-register', path=r'\/my-test-schema')
+    def survey_url_mock(_url, _request):
+        schema_path = get_schema_file_path("1_0205.json")
+
+        with open(schema_path, encoding="utf8") as json_data:
+            return json_data.read()
+
+    @staticmethod
+    @urlmatch(netloc=r'eq-survey-register', path=r'\/my-test-schema-not-found')
+    def survey_url_mock_404(_url, _request):
+        return response(404)

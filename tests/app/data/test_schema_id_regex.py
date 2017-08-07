@@ -1,10 +1,9 @@
+import json
 import unittest
-
-from json import load
 
 from jsonschema import ValidationError, validate
 
-from app.utilities.schema import get_schema_file_path, get_schema_definition_path
+from app.utilities.schema import get_schema_definition_path, get_schema_file_path
 
 
 def create_schema_with_id(schema_id='answer'):
@@ -13,10 +12,13 @@ def create_schema_with_id(schema_id='answer'):
     :param schema_id: The Id to use for the answer.
     :return: The JSON file with the Id swapped for schema_id
     """
-    json_file = open(get_schema_file_path("test_percentage.json"))
-    json_content = load(json_file)
-    json_content['groups'][0]['blocks'][0]['sections'][0]['questions'][0]['answers'][0]['id'] = schema_id
-    return json_content
+    schema_path = get_schema_file_path("test_percentage.json")
+
+    with open(schema_path, encoding="utf8") as json_data:
+        json_content = json.load(json_data)
+
+        json_content['groups'][0]['blocks'][0]['sections'][0]['questions'][0]['answers'][0]['id'] = schema_id
+        return json_content
 
 
 def validate_json_against_schema(json_to_validate, schema):
@@ -33,7 +35,7 @@ class TestSchemaIdRegEx(unittest.TestCase):
     def setUp(self):
         schema_file = open(get_schema_definition_path(), encoding="utf8")
         self.errors = []
-        self.schema = load(schema_file)
+        self.schema = json.load(schema_file)
 
     def test_default_id_should_pass_validation(self):
         # Given
