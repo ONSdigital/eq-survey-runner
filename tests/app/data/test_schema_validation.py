@@ -1,8 +1,9 @@
 import os
+import pathlib
 import unittest
 from json import load
 
-from jsonschema import SchemaError, ValidationError, validate
+from jsonschema import SchemaError, ValidationError, validate, RefResolver
 from structlog import configure
 from structlog import getLogger
 from structlog.dev import ConsoleRenderer
@@ -159,7 +160,9 @@ class TestSchemaValidation(unittest.TestCase):
     @staticmethod
     def validate_json_against_schema(file, json_to_validate, schema):
         try:
-            validate(json_to_validate, schema)
+            baseURI = pathlib.Path(os.path.abspath('data/schema/schema_v1.json')).as_uri()
+            resolver = RefResolver(base_uri=baseURI, referrer=schema)
+            validate(json_to_validate, schema, resolver=resolver)
             return []
         except ValidationError as e:
             return ["Schema Validation Error! File [{}] does not validate against schema. Error [{}]".format(file, e)]

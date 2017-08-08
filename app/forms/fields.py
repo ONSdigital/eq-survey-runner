@@ -19,7 +19,7 @@ logger = get_logger()
 def get_field(answer, label, error_messages, answer_store):
     guidance = answer.get('guidance', '')
 
-    if answer['type'] in ["Number", "Currency", "Percentage"]:
+    if answer['type'] in ["Number", "Currency", "Percentage", "Unit"]:
         field = get_number_field(answer, label, guidance, error_messages, answer_store)
     else:
         field = {

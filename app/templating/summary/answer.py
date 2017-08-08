@@ -5,5 +5,6 @@ class Answer:
         self.label = answer_schema.get('label')
         self.value = answer
         self.type = answer_schema['type'].lower()
+        self.unit = answer_schema.get('unit')
         self.parent_answer_id = answer_schema.get('parent_answer_id')
         self.child_answer_value = child_answer_value

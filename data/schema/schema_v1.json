@@ -454,7 +454,8 @@
                                                                             "Radio",
                                                                             "TextArea",
                                                                             "TextField",
-                                                                            "Relationship"
+                                                                            "Relationship",
+                                                                            "Unit"
                                                                         ]
                                                                     },
                                                                     "options": {
@@ -533,6 +534,9 @@
                                                                             "required": ["answer_id"]
                                                                           }
                                                                         ]
+                                                                    },
+                                                                    "unit": {
+                                                                        "$ref": "units.json#/unit"
                                                                     },
                                                                     "validation": {
                                                                         "type": "object",
