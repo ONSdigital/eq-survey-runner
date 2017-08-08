@@ -1,3 +1,4 @@
+from decimal import Decimal, InvalidOperation
 from datetime import datetime
 
 from app.validation.error_messages import error_messages
@@ -10,16 +11,16 @@ from structlog import get_logger
 logger = get_logger()
 
 
-class IntegerCheck(object):
+class NumberCheck(object):
     def __init__(self, message=None):
         if not message:
-            message = error_messages['NOT_INTEGER']
+            message = error_messages['INVALID_NUMBER']
         self.message = message
 
     def __call__(self, form, field):
         try:
-            int(field.raw_data[0])
-        except (ValueError, TypeError):
+            Decimal(field.raw_data[0])
+        except (ValueError, TypeError, InvalidOperation):
             raise validators.StopValidation(self.message)
 
 
@@ -71,11 +72,35 @@ class NumberRange(object):
 
     def __call__(self, form, field):
         data = field.data
+        error_message = None
         if data is not None:
             if self.minimum is not None and data < self.minimum:
-                raise validators.ValidationError(self.messages['NEGATIVE_INTEGER'])
+                error_message = self.messages.get('OUT_OF_RANGE', self.messages['NUMBER_TOO_SMALL'])
             elif self.maximum is not None and data > self.maximum:
-                raise validators.ValidationError(self.messages['INTEGER_TOO_LARGE'])
+                error_message = self.messages.get('OUT_OF_RANGE', self.messages['NUMBER_TOO_LARGE'])
+
+            if error_message:
+                raise validators.ValidationError(error_message % dict(min=self.minimum, max=self.maximum))
+
+
+class DecimalPlaces(object):
+    """
+    Validates that an input has less than or equal to a
+    set number of decimal places
+
+    :param max_decimals:
+        The maximum allowed number of decimal places.
+    """
+    def __init__(self, max_decimals=0, messages=None):
+        self.max_decimals = max_decimals
+        if not messages:
+            messages = error_messages
+        self.messages = messages
+
+    def __call__(self, form, field):
+        data = field.raw_data[0]
+        if data is not None and '.' in data and len(data.split('.')[1]) > self.max_decimals:
+            raise validators.ValidationError(self.messages['INVALID_DECIMAL'] % dict(max=self.max_decimals))
 
 
 class OptionalForm(object):

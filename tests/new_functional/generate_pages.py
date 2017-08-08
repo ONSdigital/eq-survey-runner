@@ -152,7 +152,7 @@ def process_answer(question_type, answer, page_spec, long_names, page_name):
     elif answer['type'] in ('MonthYearDate'):
         page_spec.write(_write_month_year_date_answer(answer_name, answer['id'], prefix))
 
-    elif answer['type'] in ('TextField', 'Integer', 'PositiveInteger', 'TextArea', 'Currency', 'Percentage', 'Relationship'):
+    elif answer['type'] in ('TextField', 'Number', 'TextArea', 'Currency', 'Percentage', 'Relationship'):
 
         answer_context = {
             'answerName': camel_case(answer_name),

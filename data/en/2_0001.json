@@ -23,35 +23,35 @@
                                 "label": "Number of male employees working more than 30 hours per week",
                                 "mandatory": false,
                                 "q_code": "51",
-                                "type": "PositiveInteger"
+                                "type": "Number"
                             },
                             {
                                 "id": "number-of-employees-male-less-30-hours",
                                 "label": "Number of male employees working 30 hours or less per week",
                                 "mandatory": false,
                                 "q_code": "52",
-                                "type": "PositiveInteger"
+                                "type": "Number"
                             },
                             {
                                 "id": "number-of-employees-female-more-30-hours",
                                 "label": "Number of female employees working more than 30 hours per week",
                                 "mandatory": false,
                                 "q_code": "53",
-                                "type": "PositiveInteger"
+                                "type": "Number"
                             },
                             {
                                 "id": "number-of-employees-female-less-30-hours",
                                 "label": "Number of female employees working 30 hours or less per week",
                                 "mandatory": false,
                                 "q_code": "54",
-                                "type": "PositiveInteger"
+                                "type": "Number"
                             },
                             {
                                 "id": "number-of-employees-total",
                                 "label": "Total number of employees",
                                 "mandatory": true,
                                 "q_code": "50",
-                                "type": "PositiveInteger"
+                                "type": "Number"
                             }
                         ],
                         "description": "An employee is anyone aged 16 years or over that your organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme.",
@@ -94,9 +94,9 @@
     "legal_basis": "StatisticsOfTradeAct",
     "messages": {
         "MANDATORY": "Please provide a value, even if your value is 0.",
-        "NOT_INTEGER": "Please only enter whole numbers into the field.",
-        "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-        "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
+        "INVALID_NUMBER": "Please only enter whole numbers into the field.",
+        "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
+        "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
     },
     "mime_type": "application/json/ons/eq",
     "schema_version": "0.0.1",

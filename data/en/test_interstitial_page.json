@@ -8,9 +8,9 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A questionnaire to demo interstitial pages.",
     "messages": {
-        "INTEGER_TOO_LARGE": "Number is too large",
-        "NEGATIVE_INTEGER": "Number cannot be less than zero",
-        "NOT_INTEGER": "Please enter an integer"
+        "NUMBER_TOO_LARGE": "Number is too large",
+        "NUMBER_TOO_SMALL": "Number cannot be less than zero",
+        "INVALID_NUMBER": "Please enter an integer"
     },
     "groups": [{
         "blocks": [{

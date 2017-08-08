@@ -8,9 +8,9 @@
     "legal_basis": "StatisticsOfTradeAct",
     "description": "A survey that tests the totalling of percentage input fields",
     "messages": {
-        "INTEGER_TOO_LARGE": "Number cannot be greater than one hundred",
-        "NEGATIVE_INTEGER": "Number cannot be less than zero",
-        "NOT_INTEGER": "Please enter an integer"
+        "NUMBER_TOO_LARGE": "Number cannot be greater than one hundred",
+        "NUMBER_TOO_SMALL": "Number cannot be less than zero",
+        "INVALID_NUMBER": "Please enter an integer"
     },
     "groups": [{
         "blocks": [{
@@ -28,9 +28,12 @@
                                 "options": [],
                                 "q_code": "0810",
                                 "type": "Percentage",
+                                "max_value": {
+                                    "value": 100
+                                },
                                 "validation": {
                                     "messages": {
-                                        "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                     }
                                 }
                             },
@@ -42,9 +45,12 @@
                                 "options": [],
                                 "q_code": "0820",
                                 "type": "Percentage",
+                                "max_value": {
+                                    "value": 100
+                                },
                                 "validation": {
                                     "messages": {
-                                        "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                     }
                                 }
                             },
@@ -56,9 +62,12 @@
                                 "options": [],
                                 "q_code": "0830",
                                 "type": "Percentage",
+                                "max_value": {
+                                    "value": 100
+                                },
                                 "validation": {
                                     "messages": {
-                                        "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                     }
                                 }
                             },
@@ -70,9 +79,12 @@
                                 "options": [],
                                 "q_code": "0840",
                                 "type": "Percentage",
+                                "max_value": {
+                                    "value": 100
+                                },
                                 "validation": {
                                     "messages": {
-                                        "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                        "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                     }
                                 }
                             },
@@ -85,9 +97,12 @@
                                 "options": [],
                                 "q_code": "10002",
                                 "type": "Percentage",
+                                "max_value": {
+                                    "value": 100
+                                },
                                 "validation": {
                                     "messages": {
-                                        "INTEGER_TOO_LARGE": "The total percentages should be 100%"
+                                        "NUMBER_TOO_LARGE": "The total percentages should be 100%"
                                     }
                                 }
                             }

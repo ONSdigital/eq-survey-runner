@@ -54,7 +54,7 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
 
         mapped_answers = deserialise_dates(block_json, mapped_answers)
 
-        return generate_form(block_json, mapped_answers, error_messages), None
+        return generate_form(block_json, mapped_answers, error_messages, answer_store), None
 
 
 def post_form_for_location(block_json, location, answer_store, request_form, error_messages, disable_mandatory=False):
@@ -80,7 +80,7 @@ def post_form_for_location(block_json, location, answer_store, request_form, err
         return form, {'relation_instances': choices}
     else:
         data = clear_other_text_field(request_form, SchemaHelper.get_questions_for_block(block_json))
-        return generate_form(block_json, data, error_messages), None
+        return generate_form(block_json, data, error_messages, answer_store), None
 
 
 def disable_mandatory_answers(block_json):

@@ -134,7 +134,7 @@
                                 "label": "Total number of weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "40",
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please enter a value, even if that value is 0."
@@ -611,9 +611,12 @@
                                     "mandatory": false,
                                     "q_code": "100",
                                     "type": "Percentage",
+                                    "max_value": {
+                                        "value": 100
+                                    },
                                     "validation": {
                                         "messages": {
-                                            "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                            "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                         }
                                     }
                                 },
@@ -780,7 +783,7 @@
                                 "label": "Total number of fortnightly paid employees",
                                 "mandatory": true,
                                 "q_code": "40f",
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please enter a value, even if that value is 0."
@@ -1240,9 +1243,12 @@
                                     "mandatory": false,
                                     "q_code": "100f",
                                     "type": "Percentage",
+                                    "max_value": {
+                                        "value": 100
+                                    },
                                     "validation": {
                                         "messages": {
-                                            "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                            "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                         }
                                     }
                                 },
@@ -1410,7 +1416,7 @@
                                 "label": "Total number of calendar monthly paid employees",
                                 "mandatory": true,
                                 "q_code": "140m",
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please enter a value, even if that value is 0."
@@ -1858,9 +1864,12 @@
                                     "mandatory": false,
                                     "q_code": "200",
                                     "type": "Percentage",
+                                    "max_value": {
+                                        "value": 100
+                                    },
                                     "validation": {
                                         "messages": {
-                                            "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                            "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                         }
                                     }
                                 },
@@ -2028,7 +2037,7 @@
                                 "label": "Total number of four weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "140w4",
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please enter a value, even if that value is 0."
@@ -2475,9 +2484,12 @@
                                     "mandatory": false,
                                     "q_code": "200w4",
                                     "type": "Percentage",
+                                    "max_value": {
+                                        "value": 100
+                                    },
                                     "validation": {
                                         "messages": {
-                                            "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                            "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                         }
                                     }
                                 },
@@ -2645,7 +2657,7 @@
                                 "label": "Total number of five weekly paid employees",
                                 "mandatory": true,
                                 "q_code": "140w5",
-                                "type": "PositiveInteger",
+                                "type": "Number",
                                 "validation": {
                                     "messages": {
                                         "MANDATORY": "Please enter a value, even if that value is 0."
@@ -3094,9 +3106,12 @@
                                     "mandatory": false,
                                     "q_code": "200w5",
                                     "type": "Percentage",
+                                    "max_value": {
+                                        "value": 100
+                                    },
                                     "validation": {
                                         "messages": {
-                                            "INTEGER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
+                                            "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
                                         }
                                     }
                                 },
@@ -3291,10 +3306,10 @@
     "legal_basis": "StatisticsOfTradeAct",
     "mime_type": "application/json/ons/eq",
     "messages": {
-        "INTEGER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
+        "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
         "MANDATORY": "Please select an answer to continue.",
-        "NEGATIVE_INTEGER": "The value cannot be negative. Please correct your answer.",
-        "NOT_INTEGER": "The value you have entered is invalid. Please enter a numeric value."
+        "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
+        "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
     },
     "schema_version": "0.0.1",
     "survey_id": "134",

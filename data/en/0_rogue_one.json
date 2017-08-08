@@ -277,9 +277,9 @@
                                 "type": "Currency",
                                 "validation": {
                                     "messages": {
-                                        "INTEGER_TOO_LARGE": "How much, fool you must be",
-                                        "NEGATIVE_INTEGER": "How can it be negative?",
-                                        "NOT_INTEGER": "Please only enter whole numbers into the field."
+                                        "NUMBER_TOO_LARGE": "How much, fool you must be",
+                                        "NUMBER_TOO_SMALL": "How can it be negative?",
+                                        "INVALID_NUMBER": "Please only enter whole numbers into the field."
                                     }
                                 }
                             }],

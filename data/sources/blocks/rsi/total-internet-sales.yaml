@@ -10,11 +10,11 @@ questions:
     type: Currency
     validation:
       messages:
-        INTEGER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
+        NUMBER_TOO_LARGE: The maximum value allowed is 9999999999. Please correct
           your answer.
         MANDATORY: Please provide a value, even if your value is 0.
-        NEGATIVE_INTEGER: The value cannot be negative. Please correct your answer.
-        NOT_INTEGER: Please only enter whole numbers into the field.
+        NUMBER_TOO_SMALL: The value cannot be negative. Please correct your answer.
+        INVALID_NUMBER: Please only enter whole numbers into the field.
   description: ''
   guidance:
     content:

@@ -87,7 +87,7 @@
                             "mandatory": true,
                             "options": [],
                             "q_code": "2",
-                            "type": "PositiveInteger"
+                            "type": "Number"
                         }]
                     }]
                 }],
@@ -116,7 +116,7 @@
                             "mandatory": true,
                             "options": [],
                             "q_code": "2",
-                            "type": "PositiveInteger"
+                            "type": "Number"
                         }]
                     }]
                 }]

@@ -92,7 +92,7 @@ class QuestionnaireForm(FlaskForm):
         return None
 
 
-def get_answer_fields(question, data, error_messages):
+def get_answer_fields(question, data, error_messages, answer_store):
     answer_fields = {}
     for answer in question['answers']:
         if 'parent_answer_id' in answer and answer['parent_answer_id'] in data and \
@@ -101,7 +101,7 @@ def get_answer_fields(question, data, error_messages):
                 next(a['mandatory'] for a in question['answers'] if a['id'] == answer['parent_answer_id'])
 
         name = answer.get('label') or question.get('title')
-        answer_fields[answer['id']] = get_field(answer, name, error_messages)
+        answer_fields[answer['id']] = get_field(answer, name, error_messages, answer_store)
     return answer_fields
 
 
@@ -131,7 +131,7 @@ def map_child_option_errors(errors, answer_json):
     return child_errors
 
 
-def generate_form(block_json, data, error_messages):
+def generate_form(block_json, data, error_messages, answer_store):
     answer_fields = {}
 
     class DynamicForm(QuestionnaireForm):
@@ -140,7 +140,7 @@ def generate_form(block_json, data, error_messages):
     for question in SchemaHelper.get_questions_for_block(block_json):
         if question['type'] == 'DateRange':
             DynamicForm.date_ranges += [(question['id'], question['answers'][0]['id'], question['answers'][1]['id'])]
-        answer_fields.update(get_answer_fields(question, data, error_messages))
+        answer_fields.update(get_answer_fields(question, data, error_messages, answer_store))
 
     for answer_id, field in answer_fields.items():
         setattr(DynamicForm, answer_id, field)
