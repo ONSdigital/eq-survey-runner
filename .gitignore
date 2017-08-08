@@ -80,3 +80,6 @@ htmlcov/
 data/cy
 
 secrets.yml
+
+data/en/mci_*
+data/en/rsi_*
