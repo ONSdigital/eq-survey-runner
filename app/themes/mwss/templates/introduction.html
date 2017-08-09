@@ -1,0 +1,13 @@
+{% extends 'introduction.html' %}
+
+{% block intro_content %}
+  <h2 class="saturn">Get started</h2>
+  <p class="mars">On average it takes ten minutes to complete this survey.</p>
+  <p class="mars">You can provide informed estimates if actual figures aren't available.</p>
+  {% include 'partials/introduction/start-survey.html' %}
+
+  {{super()}}
+{% endblock intro_content %}
+
+{% block start_survey %}
+{% endblock start_survey %}

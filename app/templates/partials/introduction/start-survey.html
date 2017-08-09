@@ -1,0 +1,10 @@
+{% set form = content.form %}
+
+<div class="lock u-mt-l u-mb-s u-mb-m@s">
+    <div class="venus lock__text">All information you provide is strictly confidential</div>
+  </div>
+
+  <form class="form" method="POST" autocomplete="off" novalidate>
+    {{ form.csrf_token }}
+    <button class="btn btn--primary btn--lg qa-btn-get-started" type="submit" name="action[start_questionnaire]">Start survey</button>
+  </form>

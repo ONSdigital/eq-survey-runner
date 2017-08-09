@@ -9,17 +9,14 @@ class TestStarWarsIntroduction(StarWarsTestCase):
         # Landing page tests
         self.assertInPage('Star Wars')
         self.assertInPage('If actual figures are not available, please provide informed estimates.')
-        self.assertInPage('Legal Information')
         self.assertInPage('>Start survey<')
         self.assertRegexPage('(?s)Trading as.*?Integration Tests')
         self.assertRegexPage('(?s)Business name.*?Integration Testing')
         self.assertRegexPage('(?s)PLEASE SUBMIT BY.*?6 May 2016')
         self.assertRegexPage('(?s)PERIOD.*?1 April 2016.*?30 April 2016')
-        self.assertInPage('questionnaire by 6 May 2016, penalties may be incurred')
 
         # Legal checks
-        self.assertInPage('We will treat your data securely and confidentially')
-        self.assertInPage('You are required to complete this questionnaire')
+        self.assertInPage('All information you provide is strictly confidential')
 
         # Information to provide
         self.assertInPage('Total Yearly cost of Rebel Alliance')

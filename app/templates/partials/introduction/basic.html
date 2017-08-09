@@ -1,0 +1,22 @@
+<div id="{{intro.id}}" class="u-mb-s">
+    {% if intro.title %}
+    <h2 class="saturn">{{ intro.title }}</h2>
+    {% endif %}
+    {% for content in intro.content  %}
+    {% if content.title %}
+    <h3 class="venus">{{ content.title }}</h3>
+    {% endif %}
+    {% if content.description %}
+    <p class="mars qa-intro-description">
+        {{ content.description }}
+    </p>
+    {% endif %}
+    {% if content.list %}
+    <ul>
+        {% for li in content.list %}
+        <li>{{ li }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endfor %}
+</div>

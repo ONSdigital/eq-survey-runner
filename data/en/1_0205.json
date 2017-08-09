@@ -11,13 +11,26 @@
         "blocks": [{
                 "type": "Introduction",
                 "id": "introduction",
-                "title": "",
-                "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>",
-                "information_to_provide": [
-                    "value of total retail turnover",
-                    "value of internet sales",
-                    "reasons for changes to figures"
-                ]
+                "body": [{
+                    "id": "use-of-information",
+                    "type": "Basic",
+                    "content": [{
+                        "description": "<p>The information supplied is used to produce monthly estimates of the total retail sales in Great Britain where retailing is defined as the sale of goods to the general public for household consumption. The Retail Sales Index is a key indicator of the progress of the economy. It is also used to help estimate consumer spending on retail goods and the output of the retail sector, both of which feed into the compilation of the National Accounts. The results are also used by the Bank of England and HM Treasury to inform decision making by government and in formulating financial policies. The results <a href=\"http://www.ons.gov.uk/businessindustryandtrade/retailindustry\">are published on our website</a>.</p>"
+                    }]
+                }, {
+                    "id": "information-to-provide",
+                    "type": "Basic",
+                    "title": "You will be asked to provide information for the business, including:",
+                    "content": [{
+                        "list": [
+                            "value of total retail turnover",
+                            "value of internet sales",
+                            "reasons for changes to figures"
+                        ]
+                    }, {
+                        "description": "<strong>If actual figures are not available, please provide informed estimates.</strong>"
+                    }]
+                }]
             },
             {
                 "type": "Questionnaire",
