@@ -15,7 +15,7 @@ blueprint = flask.Blueprint('filters', __name__)
 @blueprint.app_template_filter()
 def format_currency(value):
     if value is not None and len(str(value)) > 0:
-        return "£{:,}".format(value)
+        return "£{:,.2f}".format(value)
     else:
         return ""
 
