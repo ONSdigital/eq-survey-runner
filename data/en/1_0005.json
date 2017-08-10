@@ -128,7 +128,7 @@
                             "list": [
                                 "number of redundancies among paid employees",
                                 "number of temporary paid employees",
-                                "total gross pay paid to paid employees"
+                                "total gross pay paid to employees"
                             ]
                         }, {
                             "description": "Include:",
@@ -156,7 +156,7 @@
                         }, {
                             "description": "Whether there were any significant changes to the:",
                             "list": [
-                                "total gross pay paid to paid employees due to industrial action",
+                                "total gross pay paid to employees due to industrial action",
                                 "pay or number of paid employees"
                             ]
                         }]
@@ -167,9 +167,9 @@
                     "title": "How we use your data",
                     "content": [{
                         "list": [
-                            "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy",
-                            "The data from your business is essential is it helps us calculate the GDP of the UK",
-                            "Our surveys inform government decisions. For example, past statistics from our surveys led to the introduction of business grants"
+                            "You cannot appeal your selection. Your business was selected to give us a comprehensive view of the UK economy.",
+                            "The data from your business is essential as it helps us calculate the GDP of the UK.",
+                            "Our surveys inform government decisions. For example, past statistics from our surveys led to the introduction of business grants."
                         ]
                     }]
                 }]
