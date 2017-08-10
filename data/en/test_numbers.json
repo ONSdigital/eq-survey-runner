@@ -141,9 +141,7 @@
                                     "type": "Number",
                                     "decimal_places": 2,
                                     "validation": {
-                                        "messages": {
-                                            "INVALID_DECIMAL": "Please only enter numbers to %(max)d decimal places into the field."
-                                        }
+                                        "messages": {}
                                     }
                                 }
                             ],

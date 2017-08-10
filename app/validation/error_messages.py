@@ -8,6 +8,7 @@ error_messages = {
     'NUMBER_TOO_LARGE': 'This number is too big.',
     'INVALID_DATE_RANGE_TO_BEFORE_FROM': "The 'period to' date cannot be before the 'period from' date.",
     'INVALID_DATE_RANGE_TO_FROM_SAME': "The 'period to' date must be different to the 'period from' date.",
-    'MAX_LENGTH_EXCEEDED': "Your answer is too long, it has to be less than %(max)d characters",
-    'INVALID_DECIMAL': "Please only enter numbers to %(max)d decimal places into the field.",
+    'MAX_LENGTH_EXCEEDED': "Your answer is too long, it has to be less than %(max)d characters.",
+    'INVALID_DECIMAL': "Enter a number rounded to %(max)d decimal places.",
+    'INVALID_INTEGER': "Please only enter whole numbers into the field.",
 }
