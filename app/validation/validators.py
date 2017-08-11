@@ -99,8 +99,11 @@ class DecimalPlaces(object):
 
     def __call__(self, form, field):
         data = field.raw_data[0]
-        if data is not None and '.' in data and len(data.split('.')[1]) > self.max_decimals:
-            raise validators.ValidationError(self.messages['INVALID_DECIMAL'] % dict(max=self.max_decimals))
+        if data and '.' in data:
+            if self.max_decimals == 0:
+                raise validators.ValidationError(self.messages['INVALID_INTEGER'])
+            elif len(data.split('.')[1]) > self.max_decimals:
+                raise validators.ValidationError(self.messages['INVALID_DECIMAL'] % dict(max=self.max_decimals))
 
 
 class OptionalForm(object):

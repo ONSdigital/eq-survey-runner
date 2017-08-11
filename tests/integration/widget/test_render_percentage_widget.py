@@ -28,7 +28,7 @@ class TestRenderPercentageWidget(IntegrationTestCase):
     def test_entering_float_displays_error(self):
         self.post({'answer': '0.5'})
         self.assertStatusOK()
-        self.assertInPage('Please only enter numbers to 0 decimal places into the field.')
+        self.assertInPage('Please only enter whole numbers into the field.')
 
     def test_entering_valid_percentage_redirects_to_summary(self):
         self.post({'answer': '50'})

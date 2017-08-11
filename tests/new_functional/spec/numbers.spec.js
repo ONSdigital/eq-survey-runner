@@ -52,8 +52,8 @@ describe('NumericRange', function() {
           .setValue(TestMinMax.testRange(), '12.3')
           .setValue(TestMinMax.testDecimal(), '1.234')
           .click(TestMinMax.submit())
-          .getText('ul > li:nth-child(1) > a').should.eventually.contain('Please only enter numbers to 0 decimal places into the field.')
-          .getText('ul > li:nth-child(2) > a').should.eventually.contain('Please only enter numbers to 2 decimal places into the field.');
+          .getText('ul > li:nth-child(1) > a').should.eventually.contain('Please only enter whole numbers into the field.')
+          .getText('ul > li:nth-child(2) > a').should.eventually.contain('Enter a number rounded to 2 decimal places.');
       });
   });
 
