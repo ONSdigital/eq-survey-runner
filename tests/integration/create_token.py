@@ -30,26 +30,35 @@ class TokenGenerator:
         self._upstream_kid = upstream_kid
         self._sr_public_kid = sr_public_kid
 
-    def create_token(self, form_type_id, eq_id, **extra_payload):
+    @staticmethod
+    def _get_payload_with_params(form_type_id, eq_id, survey_url=None, **extra_payload):
         payload_vars = PAYLOAD.copy()
         payload_vars['eq_id'] = eq_id
         payload_vars['form_type'] = form_type_id
-        payload_vars['jti'] = str(uuid4())
-        payload_vars['iat'] = time.time()
-        payload_vars['exp'] = payload_vars['iat'] + float(3600)  # one hour from now
+        if survey_url:
+            payload_vars['survey_url'] = survey_url
         for key, value in extra_payload.items():
             payload_vars[key] = value
+
+        payload_vars['iat'] = time.time()
+        payload_vars['exp'] = payload_vars['iat'] + float(3600)  # one hour from now
+        payload_vars['jti'] = str(uuid4())
+
+        return payload_vars
+
+    def create_token(self, form_type_id, eq_id, **extra_payload):
+        payload_vars = self._get_payload_with_params(form_type_id, eq_id, None, **extra_payload)
 
         return self.generate_token(payload_vars)
 
     def create_token_without_jti(self, form_type_id, eq_id, **extra_payload):
-        payload_vars = PAYLOAD.copy()
-        payload_vars['eq_id'] = eq_id
-        payload_vars['form_type'] = form_type_id
-        payload_vars['iat'] = time.time()
-        payload_vars['exp'] = payload_vars['iat'] + float(3600)  # one hour from now
-        for key, value in extra_payload.items():
-            payload_vars[key] = value
+        payload_vars = self._get_payload_with_params(form_type_id, eq_id, None, **extra_payload)
+        del payload_vars['jti']
+
+        return self.generate_token(payload_vars)
+
+    def create_token_with_survey_url(self, form_type_id, eq_id, survey_url, **extra_payload):
+        payload_vars = self._get_payload_with_params(form_type_id, eq_id, survey_url, **extra_payload)
 
         return self.generate_token(payload_vars)
 

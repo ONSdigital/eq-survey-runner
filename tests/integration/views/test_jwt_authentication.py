@@ -61,7 +61,7 @@ class FlaskClientAuthenticationTestCase(AppContextTestCase):
             "user_id": 'jimmy',
             'iat': int(iat),
             'exp': int(exp),
-            "eq_id": '1',
+            "eq_id": 'test',
             "period_str": '2016-01-01',
             "period_id": '12',
             "form_type": '0203',

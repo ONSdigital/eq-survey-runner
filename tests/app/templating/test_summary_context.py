@@ -3,7 +3,7 @@ from mock import MagicMock, Mock, patch
 from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
 from app.templating.summary_context import build_summary_rendering_context
-from app.utilities.schema import load_schema_from_params
+from app.utilities.schema import load_schema_file
 
 from tests.app.app_context_test_case import AppContextTestCase
 
@@ -27,7 +27,7 @@ class TestSummaryContext(AppContextTestCase):
 
     def setUp(self):
         super().setUp()
-        self.schema_json = load_schema_from_params('0', 'star_wars', None)
+        self.schema_json = load_schema_file("{}_{}.json".format("0", "star_wars"))
 
     def test_build_summary_rendering_context(self):
         answer_store = MagicMock()

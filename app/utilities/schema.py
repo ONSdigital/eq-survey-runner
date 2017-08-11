@@ -1,7 +1,9 @@
 import json
 import os
+import requests
 
 from structlog import get_logger
+from werkzeug.exceptions import NotFound
 
 from app.setup import cache
 
@@ -11,9 +13,11 @@ DEFAULT_SCHEMA_DIR = 'data'
 DEFAULT_LANGUAGE_CODE = 'en'
 
 
-@cache.memoize()
 def load_schema_from_metadata(metadata):
-    return load_schema_from_params(metadata['eq_id'], metadata['form_type'], metadata.get('language_code'))
+    if metadata.get('survey_url'):
+        return load_schema_from_url(metadata['survey_url'], metadata.get('language_code'))
+    else:
+        return load_schema_from_params(metadata['eq_id'], metadata['form_type'], metadata.get('language_code'))
 
 
 @cache.memoize()
@@ -44,6 +48,22 @@ def load_schema_file(schema_file, language_code=None):
     except FileNotFoundError as e:
         logger.error("no schema file exists", filename=schema_path)
         raise e
+
+
+@cache.memoize()
+def load_schema_from_url(survey_url, language_code):
+    logger.info("loading schema from URL", survey_url=survey_url, language_code=language_code)
+
+    constructed_survey_url = "{}?language={}".format(survey_url, language_code)
+
+    req = requests.get(constructed_survey_url)
+    schema_response = req.content.decode()
+
+    if req.status_code == 404:
+        logger.error("no schema exists", survey_url=constructed_survey_url)
+        raise NotFound
+
+    return json.loads(schema_response)
 
 
 def get_schema_definition_path(schema_dir=DEFAULT_SCHEMA_DIR):

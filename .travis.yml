@@ -2,6 +2,7 @@ dist: trusty
 sudo: true
 language: node_js
 node_js: 6
+fail_fast: true
 env:
   global:
     - EQ_RUN_LOCAL_LINT=True
@@ -31,7 +32,6 @@ cache:
 script:
     - yarn compile
     - ./scripts/run.sh
-after_script:
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "latest"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
     - docker build -t onsdigital/eq-survey-runner:$TAG -f Dockerfile .
