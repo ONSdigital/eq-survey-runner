@@ -733,6 +733,7 @@
                                     "max_value": {
                                         "value": 100
                                     },
+                                    "decimal_places": 2,
                                     "validation": {
                                         "messages": {
                                             "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
@@ -1365,6 +1366,7 @@
                                     "max_value": {
                                         "value": 100
                                     },
+                                    "decimal_places": 2,
                                     "validation": {
                                         "messages": {
                                             "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
@@ -1986,6 +1988,7 @@
                                     "max_value": {
                                         "value": 100
                                     },
+                                    "decimal_places": 2,
                                     "validation": {
                                         "messages": {
                                             "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
@@ -2606,6 +2609,7 @@
                                     "max_value": {
                                         "value": 100
                                     },
+                                    "decimal_places": 2,
                                     "validation": {
                                         "messages": {
                                             "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."
@@ -3228,6 +3232,7 @@
                                     "max_value": {
                                         "value": 100
                                     },
+                                    "decimal_places": 2,
                                     "validation": {
                                         "messages": {
                                             "NUMBER_TOO_LARGE": "The maximum value allowed is 100. Please correct your answer."

@@ -37,7 +37,7 @@ class TestMwssSubmissionData(IntegrationTestCase):
                     "60": "10",
                     "70": "20",
                     "80": "30",
-                    "100": "50",
+                    "100": 50.58,
                     "110": "01/04/2016",
                     "120": "20%",
                     "130": "Calendar monthly",
@@ -169,7 +169,7 @@ class TestMwssSubmissionData(IntegrationTestCase):
 
         form_data = {
             # Percentage increase of pay rate
-            'weekly-pay-significant-changes-pay-rates-increase-percent-increase-answer': '50',
+            'weekly-pay-significant-changes-pay-rates-increase-percent-increase-answer': '50.58',
             # figures are back dated, from when
             'weekly-pay-significant-changes-pay-rates-increase-date-from-answer-day': '01',
             'weekly-pay-significant-changes-pay-rates-increase-date-from-answer-month': '4',
