@@ -89,8 +89,7 @@ class PathFinder:
             for condition in goto_rule['when']:
                 if 'meta' not in condition.keys():
                     self.answer_store.remove(answer_id=condition['id'],
-                                             answer_instance=0,
-                                             )
+                                             answer_instance=0,)
 
     def get_routing_path(self, group_id=None, group_instance=0):
         """

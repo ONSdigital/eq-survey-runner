@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 
 import dateutil.parser
 
-from app.data_model.answer_store import AnswerStore, Answer
+from app.data_model.answer_store import AnswerStore
 from app.questionnaire.location import Location
 from app.storage.metadata_parser import parse_metadata
 from app.submitter.converter import convert_answers, DataVersionError

@@ -107,18 +107,17 @@ class TestSchemaHelper(unittest.TestCase):
                                 "id": "1",
                                 "alias": "alias_name",
                                 "type": "Checkbox"
-                                        },
-                                {
-                                    "id": "2",
-                                    "alias": "alias_name",
-                                    "type": "Checkbox"
-                                }
-                                        ]
+                                },
+                                        {
+                                            "id": "2",
+                                            "alias": "alias_name",
+                                            "type": "Checkbox"
+                                        }
+                                       ]
                         }]
                     }]
                 }
-                ]
-            }
+                          ]}
                       ]
         }
 
