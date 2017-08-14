@@ -24,6 +24,7 @@ def convert_answers(metadata, questionnaire_json, answer_store, routing_path, fl
     :param questionnaire_json: the questionnaire json
     :param answer_store: the users answers
     :param routing_path: the path followed by the user when answering the questionnaire
+    :param flushed: writes file data to disk
     :return: a JSON object in the following format:
       {
         "tx_id": "0f534ffc-9442-414c-b39f-a756b4adc6cb",
@@ -83,7 +84,7 @@ def convert_answers_to_data(answer_store, questionnaire_json, routing_path):
     """
     data = OrderedDict()
     for location in routing_path:
-        answers_in_block = answer_store.filter(location=location)
+        answers_in_block = answer_store.filter_by_location(location)
         block_json = SchemaHelper.get_block(questionnaire_json, location.block_id)
         answer_schema_list = SchemaHelper.get_answers_by_id_for_block(block_json)
 
@@ -125,11 +126,12 @@ def _get_checkbox_answer_data(answer_store, checkboxes_with_qcode, value):
             if 'child_answer_id' in option:
                 filtered = answer_store.filter(answer_id=option['child_answer_id'])
 
-                assert len(filtered) <= 1, 'Multiple answers found for "{0}"'.format(option['child_answer_id'])
+                if len(filtered) > 1:
+                    raise AssertionError("Multiple answers found for {}".format(option['child_answer_id']))
 
                 # if the user has selected 'other' we need to find the value it refers to.
                 # when non-mandatory, the other box value can be empty, in this case we just use its value
-                checkbox_answer_data[option['q_code']] = filtered[0]['value'] if len(filtered) >= 1 else option['value']
+                checkbox_answer_data[option['q_code']] = filtered[0]['value'] if len(filtered) > 1 else option['value']
             else:
                 checkbox_answer_data[option['q_code']] = user_answer
 
@@ -171,7 +173,7 @@ def convert_answers_to_census_data(answer_store, routing_path):
     """
     data = []
     for location in routing_path:
-        answers_in_block = answer_store.filter(location=location)
+        answers_in_block = answer_store.filter_by_location(location)
         data.extend(answers_in_block)
     return data
 

@@ -107,6 +107,7 @@ class TestHouseholdCompositionForm(AppContextTestCase):
 
             self.assertEqual(len(form.household.entries), 3)
             self.assertEqual(form.household.entries[0].data, {
+
                 'first-name': 'Bob',
                 'middle-names': 'Michael',
                 'last-name': 'Seymour'
@@ -179,6 +180,20 @@ class TestHouseholdCompositionForm(AppContextTestCase):
                 'middle-names': '',
                 'last-name': 'Seymour'
             })
+
+    def test_remove_person(self):
+        with self.test_request_context():
+            form = generate_household_composition_form(self.block_json, {
+                'household-0-first-name': 'Joe',
+                'household-0-last-name': 'Bloggs',
+                'household-1-first-name': 'Bob',
+                'household-1-last-name': 'Seymour',
+            }, error_messages=self.error_messages)
+
+            self.assertEqual(len(form.household.entries), 2)
+
+            with self.assertRaises(IndexError):
+                form.remove_person(3)
 
     def test_serialise_answers(self):
         with self.test_request_context():

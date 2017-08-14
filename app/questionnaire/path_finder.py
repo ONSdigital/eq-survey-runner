@@ -61,7 +61,7 @@ class PathFinder:
                         next_precedes_current = next_block_index is not None and next_block_index < block_index
 
                         if next_precedes_current:
-                            self._remove_rule_answers(rule['goto'], this_location)
+                            self._remove_rule_answers(rule['goto'])
 
                         this_location = next_location
                         break
@@ -82,15 +82,14 @@ class PathFinder:
 
         return path
 
-    def _remove_rule_answers(self, goto_rule, location):
+    def _remove_rule_answers(self, goto_rule):
         # We're jumping backwards, so need to delete all answers from which
         # route is derived. Need to filter out conditions that don't use answers
         if 'when' in goto_rule.keys():
             for condition in goto_rule['when']:
                 if 'meta' not in condition.keys():
                     self.answer_store.remove(answer_id=condition['id'],
-                                             answer_instance=0,
-                                             location=location)
+                                             answer_instance=0,)
 
     def get_routing_path(self, group_id=None, group_instance=0):
         """

@@ -127,7 +127,8 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
             for question in cls.get_questions_for_block(block):
                 for answer in question['answers']:
                     if 'alias' in answer:
-                        assert answer['alias'] not in aliases, 'Duplicate alias found: ' + answer['alias']
+                        if answer['alias'] in aliases:
+                            raise AssertionError('Duplicate alias found: ' + answer['alias'])
                         aliases[answer['alias']] = {
                             'answer_id': answer['id'],
                             'repeats': answer['type'] == 'Checkbox' or question['type'] == 'RepeatingAnswer',

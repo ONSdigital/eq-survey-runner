@@ -114,7 +114,9 @@ def evaluate_when_rules(when_rules, metadata, answer_store, group_instance):
             answer_index = when_rule['id']
             filtered = answer_store.filter(answer_id=answer_index, group_instance=group_instance)
 
-            assert len(filtered) <= 1, "Condition will not met: Multiple ({:d}) answers found".format(len(filtered))
+            if len(filtered) > 1:
+                raise AssertionError("Multiple answers ({:d}) found evaluating when rule for answer ({})"
+                                     .format(len(filtered), answer_index))
 
             answer = filtered[0]['value'] if len(filtered) == 1 else None
             if not evaluate_rule(when_rule, answer):
