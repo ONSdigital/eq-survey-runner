@@ -4,12 +4,8 @@ from unittest import TestCase
 from mock import Mock
 
 from app.jinja_filters import format_date, format_conditional_date, format_currency, format_multilined_string, \
-     format_percentage, format_start_end_date
-from app.jinja_filters import format_household_member_name
-from app.jinja_filters import format_str_as_date
-from app.jinja_filters import format_str_as_date_range
-from app.jinja_filters import format_str_as_month_year_date
-from app.jinja_filters import format_number_to_alphabetic_letter
+     format_percentage, format_start_end_date, format_household_member_name, format_str_as_date, \
+     format_str_as_date_range, format_str_as_month_year_date, format_number_to_alphabetic_letter, format_unit
 
 
 class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
@@ -291,3 +287,20 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         self.assertEqual(format_number_to_alphabetic_letter(4), 'e')
         self.assertEqual(format_number_to_alphabetic_letter(25), 'z')
         self.assertEqual(format_number_to_alphabetic_letter(-1), '')
+
+    def test_format_unit(self):
+        self.assertEqual(format_unit("length-meter", 100), '100 m')
+        self.assertEqual(format_unit("length-centimeter", 100), '100 cm')
+        self.assertEqual(format_unit("length-mile", 100), '100 mi')
+        self.assertEqual(format_unit("length-kilometer", 100), '100 km')
+        self.assertEqual(format_unit("area-square-meter", 100), '100 m²')
+        self.assertEqual(format_unit("area-square-centimeter", 100), '100 cm²')
+        self.assertEqual(format_unit("area-square-kilometer", 100), '100 km²')
+        self.assertEqual(format_unit("area-square-mile", 100), '100 sq mi')
+        self.assertEqual(format_unit("area-hectare", 100), '100 ha')
+        self.assertEqual(format_unit("area-acre", 100), '100 ac')
+        self.assertEqual(format_unit("volume-cubic-meter", 100), '100 m³')
+        self.assertEqual(format_unit("volume-cubic-centimeter", 100), '100 cm³')
+        self.assertEqual(format_unit("volume-liter", 100), '100 l')
+        self.assertEqual(format_unit("volume-hectoliter", 100), '100 hl')
+        self.assertEqual(format_unit("volume-megaliter", 100), '100 Ml')

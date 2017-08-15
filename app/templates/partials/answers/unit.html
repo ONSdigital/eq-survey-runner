@@ -1,0 +1,26 @@
+{% set input = form[answer['id']] %}
+<div class="field">
+    {% set label = {
+    'for': answer.id,
+    'text': answer.label,
+    'description': answer.description
+    } %}
+    {% include 'partials/forms/label.html' %}
+    {% if answer.calculated %}
+    {% set input_classes = 'input-type__input js-totaliser-input-calculated' %}
+    {% else %}
+    {% set input_classes = 'input-type__input' %}
+    {% endif %}
+    <div class="input-type input-type--unit">
+        {% set input = {
+        'type': 'number',
+        'classes': input_classes,
+        'hasType': true,
+        'data': form.get_data(answer['id'])|e,
+        'name': input.name,
+        'id': answer.id
+        } %}
+        {% include 'partials/forms/input.html' %}
+        <span class="input-type__type" id="{{answer.id}}-type">{{ format_unit(answer.unit) }}</span>
+    </div>
+</div>

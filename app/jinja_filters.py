@@ -9,6 +9,8 @@ import flask
 
 from jinja2 import Markup, escape, evalcontextfilter
 
+from babel import units
+
 blueprint = flask.Blueprint('filters', __name__)
 
 
@@ -23,6 +25,10 @@ def format_currency(value):
 @blueprint.app_template_filter()
 def format_percentage(value):
     return "{}%".format(value)
+
+
+def format_unit(unit, value=''):
+    return units.format_unit(value=value, measurement_unit=unit, length="short", locale='en_GB')
 
 
 @evalcontextfilter
@@ -126,3 +132,8 @@ def start_end_date_check():
 @blueprint.app_context_processor
 def conditional_dates_check():
     return dict(format_conditional_date=format_conditional_date)
+
+
+@blueprint.app_context_processor
+def format_unit_processor():
+    return dict(format_unit=format_unit)
