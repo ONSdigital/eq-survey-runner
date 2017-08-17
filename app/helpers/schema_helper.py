@@ -90,17 +90,15 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
 
     @classmethod
     def get_questions_for_block(cls, block_json):
-        for section_json in cls._get_sections_in_block(block_json):
-            for question_json in section_json['questions']:
-                yield question_json
+        for question_json in block_json.get('questions', []):
+            yield question_json
 
     @classmethod
     def get_answers_for_block(cls, block_json):
         answers = []
-        for section_json in cls._get_sections_in_block(block_json):
-            for question_json in section_json['questions']:
-                for answer_json in question_json['answers']:
-                    answers.append(answer_json)
+        for question_json in block_json.get('questions', []):
+            for answer_json in question_json['answers']:
+                answers.append(answer_json)
         return answers
 
     @classmethod
@@ -138,15 +136,10 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
     @classmethod
     def get_answers_by_id_for_block(cls, block_json):
         answers = {}
-        for section_json in cls._get_sections_in_block(block_json):
-            for question_json in section_json['questions']:
-                for answer_json in question_json['answers']:
-                    answers[answer_json['id']] = answer_json
+        for question_json in block_json.get('questions', []):
+            for answer_json in question_json['answers']:
+                answers[answer_json['id']] = answer_json
         return answers
-
-    @staticmethod
-    def _get_sections_in_block(block):
-        return block.get('sections', [])
 
     @classmethod
     def get_answer_ids_for_location(cls, survey_json, location):
@@ -154,10 +147,9 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
 
         block = cls.get_block_for_location(survey_json, location)
 
-        for section in cls._get_sections_in_block(block):
-            for question in section['questions']:
-                for answer in question['answers']:
-                    answer_ids.append(answer['id'])
+        for question in block.get('questions', []):
+            for answer in question['answers']:
+                answer_ids.append(answer['id'])
 
         return answer_ids
 
@@ -165,15 +157,14 @@ class SchemaHelper(object):  # pylint: disable=too-many-public-methods
     def get_answers_that_repeat_in_block(cls, survey_json, block_id):
         block = cls.get_block(survey_json, block_id)
 
-        for section in cls._get_sections_in_block(block):
-            for question in section['questions']:
-                if question['type'] == 'RepeatingAnswer':
-                    for answer in question['answers']:
-                        yield answer
+        for question in block.get('questions', []):
+            if question['type'] == 'RepeatingAnswer':
+                for answer in question['answers']:
+                    yield answer
 
     @staticmethod
     def get_first_answer_for_block(block_json):
-        return block_json['sections'][0]['questions'][0]['answers'][0]
+        return block_json['questions'][0]['answers'][0]
 
     @classmethod
     def get_groups_that_repeat_with_answer_id(cls, survey_json, answer_id):

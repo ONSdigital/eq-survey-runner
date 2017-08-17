@@ -64,24 +64,21 @@ class TestConverter(SurveyRunnerTestCase):
                         "blocks": [
                             {
                                 "id": "block-1",
-                                "sections": [
-                                    {
-                                        "questions": [{
-                                            "id": 'question-1',
-                                            "answers": [
-                                                {
-                                                    "id": "ABC",
-                                                    "type": "TextField",
-                                                    "q_code": "001"
-                                                }, {
-                                                    "id": "DEF",
-                                                    "type": "TextField",
-                                                    "q_code": "002"
-                                                }
-                                            ]
-                                        }]
-                                    }
-                                ]
+                                "questions": [{
+                                    "id": 'question-1',
+                                    "answers": [
+                                        {
+                                            "id": "ABC",
+                                            "type": "TextField",
+                                            "q_code": "001"
+                                        },
+                                        {
+                                            "id": "DEF",
+                                            "type": "TextField",
+                                            "q_code": "002"
+                                        }
+                                    ]
+                                }]
                             }
                         ]
                     }
@@ -130,20 +127,16 @@ class TestConverter(SurveyRunnerTestCase):
                         "blocks": [
                             {
                                 "id": "block-1",
-                                "sections": [
-                                    {
-                                        "questions": [{
-                                            "id": 'question-2',
-                                            "answers": [
-                                                {
-                                                    "id": "GHI",
-                                                    "type": "TextField",
-                                                    "q_code": "003"
-                                                }
-                                            ]
-                                        }]
-                                    }
-                                ]
+                                "questions": [{
+                                    "id": 'question-2',
+                                    "answers": [
+                                        {
+                                            "id": "GHI",
+                                            "type": "TextField",
+                                            "q_code": "003"
+                                        }
+                                    ]
+                                }]
                             }
                         ]
                     }
@@ -172,20 +165,16 @@ class TestConverter(SurveyRunnerTestCase):
                         "blocks": [
                             {
                                 "id": "block-1",
-                                "sections": [
-                                    {
-                                        "questions": [{
-                                            "id": 'question-2',
-                                            "answers": [
-                                                {
-                                                    "id": "GHI",
-                                                    "type": "TextField",
-                                                    "q_code": "003"
-                                                }
-                                            ]
-                                        }]
-                                    }
-                                ]
+                                "questions": [{
+                                    "id": 'question-2',
+                                    "answers": [
+                                        {
+                                            "id": "GHI",
+                                            "type": "TextField",
+                                            "q_code": "003"
+                                        }
+                                    ]
+                                }]
                             }
                         ]
                     }
@@ -221,28 +210,24 @@ class TestConverter(SurveyRunnerTestCase):
                         "blocks": [
                             {
                                 "id": "crisps",
-                                "sections": [
-                                    {
-                                        "questions": [{
-                                            "id": 'crisps-question',
-                                            "answers": [
+                                "questions": [{
+                                    "id": 'crisps-question',
+                                    "answers": [
+                                        {
+                                            "id": "crisps-answer",
+                                            "type": "Checkbox",
+                                            "options": [
                                                 {
-                                                    "id": "crisps-answer",
-                                                    "type": "Checkbox",
-                                                    "options": [
-                                                        {
-                                                            "label": "Other",
-                                                            "q_code": "4",
-                                                            "description": "Choose any other flavour",
-                                                            "value": "Other",
-                                                            "child_answer_id": "other-answer-mandatory"
-                                                        }
-                                                    ]
-                                                },
+                                                    "label": "Other",
+                                                    "q_code": "4",
+                                                    "description": "Choose any other flavour",
+                                                    "value": "Other",
+                                                    "child_answer_id": "other-answer-mandatory"
+                                                }
                                             ]
-                                        }]
-                                    }
-                                ]
+                                        },
+                                    ]
+                                }]
                             }
                         ]
                     }
@@ -347,50 +332,46 @@ class TestConverter(SurveyRunnerTestCase):
                         "blocks": [
                             {
                                 "id": "crisps",
-                                "sections": [
-                                    {
-                                        "questions": [{
-                                            "id": 'crisps-question',
-                                            "answers": [
+                                "questions": [{
+                                    "id": 'crisps-question',
+                                    "answers": [
+                                        {
+                                            "id": "crisps-answer",
+                                            "type": "Checkbox",
+                                            "options": [
                                                 {
-                                                    "id": "crisps-answer",
-                                                    "type": "Checkbox",
-                                                    "options": [
-                                                        {
-                                                            "label": "Ready salted",
-                                                            "value": "Ready salted",
-                                                            "q_code": "1"
-                                                        },
-                                                        {
-                                                            "label": "Sweet chilli",
-                                                            "value": "Sweet chilli",
-                                                            "q_code": "2"
-                                                        },
-                                                        {
-                                                            "label": "Cheese and onion",
-                                                            "value": "Cheese and onion",
-                                                            "q_code": "3"
-                                                        },
-                                                        {
-                                                            "label": "Other",
-                                                            "q_code": "4",
-                                                            "description": "Choose any other flavour",
-                                                            "value": "Other",
-                                                            "child_answer_id": "other-answer-mandatory"
-                                                        }
-                                                    ]
+                                                    "label": "Ready salted",
+                                                    "value": "Ready salted",
+                                                    "q_code": "1"
                                                 },
                                                 {
-                                                    "parent_answer_id": "crisps-answer",
-                                                    "mandatory": True,
-                                                    "id": "other-answer-mandatory",
-                                                    "label": "Please specify other",
-                                                    "type": "TextField"
+                                                    "label": "Sweet chilli",
+                                                    "value": "Sweet chilli",
+                                                    "q_code": "2"
+                                                },
+                                                {
+                                                    "label": "Cheese and onion",
+                                                    "value": "Cheese and onion",
+                                                    "q_code": "3"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "q_code": "4",
+                                                    "description": "Choose any other flavour",
+                                                    "value": "Other",
+                                                    "child_answer_id": "other-answer-mandatory"
                                                 }
                                             ]
-                                        }]
-                                    }
-                                ]
+                                        },
+                                        {
+                                            "parent_answer_id": "crisps-answer",
+                                            "mandatory": True,
+                                            "id": "other-answer-mandatory",
+                                            "label": "Please specify other",
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }]
                             }
                         ]
                     }
@@ -424,50 +405,46 @@ class TestConverter(SurveyRunnerTestCase):
                         "blocks": [
                             {
                                 "id": "crisps",
-                                "sections": [
-                                    {
-                                        "questions": [{
-                                            "id": 'crisps-question',
-                                            "answers": [
+                                "questions": [{
+                                    "id": 'crisps-question',
+                                    "answers": [
+                                        {
+                                            "id": "crisps-answer",
+                                            "type": "Checkbox",
+                                            "options": [
                                                 {
-                                                    "id": "crisps-answer",
-                                                    "type": "Checkbox",
-                                                    "options": [
-                                                        {
-                                                            "label": "Ready salted",
-                                                            "value": "Ready salted",
-                                                            "q_code": "1"
-                                                        },
-                                                        {
-                                                            "label": "Sweet chilli",
-                                                            "value": "Sweet chilli",
-                                                            "q_code": "2"
-                                                        },
-                                                        {
-                                                            "label": "Cheese and onion",
-                                                            "value": "Cheese and onion",
-                                                            "q_code": "3"
-                                                        },
-                                                        {
-                                                            "label": "Other",
-                                                            "q_code": "4",
-                                                            "description": "Choose any other flavour",
-                                                            "value": "Other",
-                                                            "child_answer_id": "other-answer-mandatory"
-                                                        }
-                                                    ]
+                                                    "label": "Ready salted",
+                                                    "value": "Ready salted",
+                                                    "q_code": "1"
                                                 },
                                                 {
-                                                    "parent_answer_id": "crisps-answer",
-                                                    "mandatory": True,
-                                                    "id": "other-answer-mandatory",
-                                                    "label": "Please specify other",
-                                                    "type": "TextField"
+                                                    "label": "Sweet chilli",
+                                                    "value": "Sweet chilli",
+                                                    "q_code": "2"
+                                                },
+                                                {
+                                                    "label": "Cheese and onion",
+                                                    "value": "Cheese and onion",
+                                                    "q_code": "3"
+                                                },
+                                                {
+                                                    "label": "Other",
+                                                    "q_code": "4",
+                                                    "description": "Choose any other flavour",
+                                                    "value": "Other",
+                                                    "child_answer_id": "other-answer-mandatory"
                                                 }
                                             ]
-                                        }]
-                                    }
-                                ]
+                                        },
+                                        {
+                                            "parent_answer_id": "crisps-answer",
+                                            "mandatory": True,
+                                            "id": "other-answer-mandatory",
+                                            "label": "Please specify other",
+                                            "type": "TextField"
+                                        }
+                                    ]
+                                }]
                             }
                         ]
                     }
@@ -498,27 +475,23 @@ class TestConverter(SurveyRunnerTestCase):
                         "blocks": [
                             {
                                 "id": "crisps",
-                                "sections": [
-                                    {
-                                        "questions": [{
-                                            "id": 'crisps-question',
-                                            "answers": [
-                                                {
-                                                    "id": "crisps-answer",
-                                                    "type": "TextArea",
-                                                    "options": [],
-                                                    "q_code": "1"
-                                                },
-                                                {
-                                                    "id": "other-crisps-answer",
-                                                    "type": "TextArea",
-                                                    "options": [],
-                                                    "q_code": "2"
-                                                }
-                                            ]
-                                        }]
-                                    }
-                                ]
+                                "questions": [{
+                                    "id": 'crisps-question',
+                                    "answers": [
+                                        {
+                                            "id": "crisps-answer",
+                                            "type": "TextArea",
+                                            "options": [],
+                                            "q_code": "1"
+                                        },
+                                        {
+                                            "id": "other-crisps-answer",
+                                            "type": "TextArea",
+                                            "options": [],
+                                            "q_code": "2"
+                                        }
+                                    ]
+                                }]
                             }
                         ]
                     }

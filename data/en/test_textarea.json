@@ -16,33 +16,29 @@
         "blocks": [{
                 "type": "Questionnaire",
                 "id": "textarea-block",
-                "sections": [{
-                    "description": "",
-                    "id": "section",
-                    "questions": [{
-                        "answers": [{
-                            "id": "answer",
-                            "label": "Enter your comments",
-                            "mandatory": false,
-                            "options": [],
-                            "q_code": "0",
-                            "type": "TextArea",
-                            "max_length": 20,
-                            "validation": {
-                                "messages": {
-                                    "MAX_LENGTH_EXCEEDED": "Your answer has to be less than %(max)d characters long"
-                                }
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "answer",
+                        "label": "Enter your comments",
+                        "mandatory": false,
+                        "options": [],
+                        "q_code": "0",
+                        "type": "TextArea",
+                        "max_length": 20,
+                        "validation": {
+                            "messages": {
+                                "MAX_LENGTH_EXCEEDED": "Your answer has to be less than %(max)d characters long"
                             }
-                        }],
-                        "description": "",
-                        "id": "question",
-                        "title": "",
-                        "type": "General"
+                        }
                     }],
-                    "title": "Textarea Test"
+                    "description": "",
+                    "id": "question",
+                    "title": "",
+                    "type": "General"
                 }],
-                "routing_rules": [],
-                "title": ""
+                "title": "Textarea Test",
+                "routing_rules": []
             },
             {
                 "type": "Summary",

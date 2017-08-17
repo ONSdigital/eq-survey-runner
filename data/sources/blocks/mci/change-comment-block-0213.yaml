@@ -39,5 +39,4 @@ skip_conditions:
   - condition: equals
     id: significant-change-established-answer
     value: 'No'
-title: Monthly Business Survey
 type: Questionnaire

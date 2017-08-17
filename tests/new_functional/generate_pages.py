@@ -182,15 +182,6 @@ def process_question(question, page_spec, num_questions, page_name):
         process_answer(question_type, answer, page_spec, long_names, page_name)
 
 
-def process_section(section, page_spec, page_name):
-    logger.debug("\tprocessing section: %s", section['title'])
-
-    num_questions = len(section['questions'])
-
-    for question in section['questions']:
-        process_question(question, page_spec, num_questions, page_name)
-
-
 def long_names_required(question, num_questions):
     if num_questions > 1:
         return True
@@ -219,11 +210,10 @@ def _write_month_year_date_answer(answer_name, answerId, prefix):
 
 
 def find_kv(block, key, values):
-    for section in block.get('sections', []):
-        for question in section.get('questions', []):
-            for answer in question.get('answers', []):
-                if key in answer and answer[key] in values:
-                    return True
+    for question in block.get('questions', []):
+        for answer in question.get('answers', []):
+            if key in answer and answer[key] in values:
+                return True
 
     return False
 
@@ -256,8 +246,10 @@ def process_block(block, dir_out, relative_require = '..', spec_out=None):
         page_spec.write(CLASS_NAME.substitute(block_context))
         page_spec.write(CONSTRUCTOR.substitute(block_context))
 
-        for section in block.get('sections', []):
-            process_section(section, page_spec, page_name)
+        num_questions = len(block['questions'])
+
+        for question in block.get('questions', []):
+            process_question(question, page_spec, num_questions, page_name)
 
         page_spec.write(FOOTER.substitute(block_context))
 

@@ -18,10 +18,7 @@
                 {
                     "type": "Questionnaire",
                     "id": "block",
-                    "sections": [
-                        {
                             "description": "",
-                            "id": "section",
                             "questions": [
                               {
                                     "answers": [
@@ -106,9 +103,6 @@
                                     "type": "General"
                               }
                             ],
-                            "title": "Percentage Input Test"
-                        }
-                    ],
                     "routing_rules":[
                     ],
                     "title": ""

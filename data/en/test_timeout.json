@@ -15,25 +15,21 @@
         "blocks": [{
                 "type": "Questionnaire",
                 "id": "timeout-block",
-                "sections": [{
-                    "title": "Timeout",
-                    "id": "timeout-section",
-                    "questions": [{
-                        "answers": [{
-                            "id": "timeout-answer",
-                            "label": "Does the timeout appear?",
-                            "mandatory": false,
-                            "options": [],
-                            "q_code": "0",
-                            "type": "TextField"
-                        }],
-                        "description": "",
-                        "id": "timeout-question",
-                        "title": "Timeout title",
-                        "type": "General"
-                    }]
-                }],
-                "title": ""
+                "title": "Timeout",
+                "questions": [{
+                    "answers": [{
+                        "id": "timeout-answer",
+                        "label": "Does the timeout appear?",
+                        "mandatory": false,
+                        "options": [],
+                        "q_code": "0",
+                        "type": "TextField"
+                    }],
+                    "description": "",
+                    "id": "timeout-question",
+                    "title": "Timeout title",
+                    "type": "General"
+                }]
             },
             {
                 "type": "Summary",

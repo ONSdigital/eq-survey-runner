@@ -59,5 +59,5 @@ class TestSummaryContext(AppContextTestCase):
         with patch('app.templating.summary_context.PathFinder', return_value=navigator):
             context = build_summary_rendering_context(self.schema_json, answer_store, self.metadata)
 
-        answer = context[0].blocks[0].sections[0].questions[0].answers[0]
+        answer = context[0].blocks[0].questions[0].answers[0]
         self.assertEqual(answer.value, "&lt;&gt;&#34;&#39;&amp;")

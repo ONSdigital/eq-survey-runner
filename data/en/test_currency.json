@@ -16,27 +16,23 @@
         "blocks": [{
                 "type": "Questionnaire",
                 "id": "block",
-                "sections": [{
-                    "description": "",
-                    "id": "section",
-                    "questions": [{
-                        "answers": [{
-                            "id": "answer",
-                            "label": "How much did you spend?",
-                            "mandatory": false,
-                            "options": [],
-                            "q_code": "0",
-                            "type": "Currency"
-                        }],
-                        "description": "",
-                        "id": "question",
-                        "title": "",
-                        "type": "General"
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "answer",
+                        "label": "How much did you spend?",
+                        "mandatory": false,
+                        "options": [],
+                        "q_code": "0",
+                        "type": "Currency"
                     }],
-                    "title": "Currency Input Test"
+                    "description": "",
+                    "id": "question",
+                    "title": "",
+                    "type": "General"
                 }],
-                "routing_rules": [],
-                "title": ""
+                "title": "Currency Input Test",
+                "routing_rules": []
             },
             {
                 "type": "Summary",

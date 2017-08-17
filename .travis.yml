@@ -30,6 +30,7 @@ cache:
     - directories:
         - /home/travis/.pyenv/versions/
 script:
+    - set -e
     - yarn compile
     - ./scripts/run.sh
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD

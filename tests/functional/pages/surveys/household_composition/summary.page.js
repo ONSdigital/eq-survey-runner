@@ -13,13 +13,13 @@ class HouseholdCompositionSummary extends SummaryPage {
   }
 
   isNameDisplayed(index, name) {
-    let element = browser.elements('#further-section ul li').value[index]
+    let element = browser.elements('#household-summary ul li').value[index]
     return browser.elementIdText(element.ELEMENT).value === name
   }
 
   getElementTextForAnswer(answer) {
     var householdNames = []
-    var elements = browser.elements('#further-section ul li')
+    var elements = browser.elements('#household-summary ul li')
 
     elements.value.forEach((elem) => {
       householdNames.push(browser.elementIdText(elem.ELEMENT).value)

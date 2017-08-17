@@ -35,5 +35,4 @@ questions:
   title: On {{exercise.employment_date|format_date}} what was the number of employees
     for {{respondent.trad_as_or_ru_name}}?
   type: General
-title: Monthly Business Survey
 type: Questionnaire

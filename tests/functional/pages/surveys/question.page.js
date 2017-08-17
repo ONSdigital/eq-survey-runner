@@ -37,7 +37,7 @@ class QuestionPage {
   }
 
   getDisplayedName() {
-    return browser.getText('[data-qa="section-title"]')
+    return browser.getText('[data-qa="block-title"]')
   }
 }
 

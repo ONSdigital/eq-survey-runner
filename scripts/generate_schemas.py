@@ -21,26 +21,14 @@ def generate_schema(manifest, survey):
             block = deepcopy(survey['blocks'][block_id])
             new_group['blocks'].append(block)
 
-            # Begin TODO: Remove when sections are gone from schemas
-
             if 'questions' not in survey['blocks'][block_id]:
                 continue
 
             del block['questions']
-            block['sections'] = []
+            block['questions'] = []
 
             for question in survey['blocks'][block_id]['questions']:
-                section = {
-                    "id": survey['blocks'][block_id]['id'] + '-section',
-                    'description': '',
-                    'title': '',
-                    'questions': [],
-                }
-                section['questions'].append(question)
-
-                block['sections'].append(section)
-
-            # ---- End TODO ---- #
+                block['questions'].append(question)
 
     for key, value in manifest.items():
         if key not in ['groups', 'schema_filename']:

@@ -36,5 +36,4 @@ questions:
     \ what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail\
     \ turnover</em>?"
   type: General
-title: Monthly Business Survey
 type: Questionnaire

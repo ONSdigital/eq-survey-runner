@@ -1,16 +1,17 @@
-from app.templating.summary.section import Section
+from app.templating.summary.question import Question
 
 
 class Block:
 
     def __init__(self, block_schema, answers_map, group_id, answer_store, metadata, url_for):
         self.id = block_schema['id']
-        self.title = block_schema['title'] if 'title' in block_schema else None
-        self.sections = self._build_sections(block_schema, answers_map, group_id, answer_store, metadata, url_for)
+        self.title = block_schema.get('title')
+        self.number = block_schema.get('number')
+        self.link = self._build_link(block_schema, group_id, metadata, url_for)
+        self.questions = self._build_questions(block_schema, answers_map, answer_store, metadata)
 
     @staticmethod
-    def _build_sections(block_schema, answers_map, group_id, answer_store, metadata, url_for):
-        sections = []
+    def _build_link(block_schema, group_id, metadata, url_for):
         link = url_for('questionnaire.get_block',
                        eq_id=metadata['eq_id'],
                        form_type=metadata['form_type'],
@@ -19,6 +20,13 @@ class Block:
                        group_instance=0,
                        block_id=block_schema['id'])
 
-        sections.extend([Section(section, answers_map, link, answer_store, metadata) for section in block_schema['sections']])
+        return link
 
-        return sections
+    @staticmethod
+    def _build_questions(block_schema, answers_map, answer_store, metadata):
+        questions = []
+        for question_schema in block_schema.get('questions', []):
+            question = Question(question_schema, answers_map, answer_store, metadata)
+            if not question.is_skipped:
+                questions.append(question)
+        return questions

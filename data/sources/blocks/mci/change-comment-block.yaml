@@ -34,5 +34,4 @@ questions:
   title: Please describe the changes in total retail turnover for {{respondent.trad_as_or_ru_name}}
     in more detail
   type: General
-title: Monthly Business Survey
 type: Questionnaire

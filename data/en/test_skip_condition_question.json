@@ -13,127 +13,119 @@
                 "type": "Questionnaire",
                 "id": "do-you-want-to-skip",
                 "routing_rules": [],
-                "title": "",
-                "sections": [{
+                "description": "",
+                "title": "Do you want to skip?",
+                "questions": [{
                     "description": "",
-                    "id": "do-you-want-to-skip-section",
-                    "title": "Do you want to skip?",
-                    "questions": [{
-                        "description": "",
-                        "id": "do-you-want-to-skip-question",
-                        "title": "Select yes to either/both to skip or set User ID As to 'Skip'",
-                        "type": "General",
-                        "answers": [{
-                                "id": "do-you-want-to-skip-first-answer",
-                                "label": "Do you want to skip?",
-                                "mandatory": true,
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ],
-                                "type": "Radio",
-                                "validation": {
-                                    "messages": {}
+                    "id": "do-you-want-to-skip-question",
+                    "title": "Select yes to either/both to skip or set User ID As to 'Skip'",
+                    "type": "General",
+                    "answers": [{
+                            "id": "do-you-want-to-skip-first-answer",
+                            "label": "Do you want to skip?",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
                                 }
-                            },
-                            {
-                                "id": "do-you-want-to-skip-second-answer",
-                                "label": "Second chance to skip?",
-                                "mandatory": true,
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ],
-                                "type": "Radio",
-                                "validation": {
-                                    "messages": {}
-                                }
+                            ],
+                            "type": "Radio",
+                            "validation": {
+                                "messages": {}
                             }
-                        ]
-                    }]
+                        },
+                        {
+                            "id": "do-you-want-to-skip-second-answer",
+                            "label": "Second chance to skip?",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ],
+                            "type": "Radio",
+                            "validation": {
+                                "messages": {}
+                            }
+                        }
+                    ]
                 }]
             },
             {
                 "type": "Questionnaire",
                 "id": "should-skip",
                 "routing_rules": [],
-                "title": "",
-                "sections": [{
-                    "description": "",
-                    "id": "should-skip-section",
-                    "title": "Can you see both questions?",
-                    "questions": [{
-                            "id": "skip-question-one",
-                            "title": "Am I the only question?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "skipped-answer-one",
-                                "mandatory": true,
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ],
-                                "type": "Radio"
-                            }]
-                        },
-                        {
-                            "id": "skip-question-two",
-                            "title": "Was I skipped?",
-                            "type": "General",
-                            "answers": [{
-                                "id": "skip-answer-two",
-                                "mandatory": true,
-                                "options": [{
-                                        "label": "Yes",
-                                        "value": "Yes"
-                                    },
-                                    {
-                                        "label": "No",
-                                        "value": "No"
-                                    }
-                                ],
-                                "type": "Radio"
-                            }],
-                            "skip_conditions": [{
-                                    "when": [{
-                                        "id": "do-you-want-to-skip-first-answer",
-                                        "condition": "equals",
-                                        "value": "Yes"
-                                    }]
+                "description": "",
+                "title": "Can you see both questions?",
+                "questions": [{
+                        "id": "skip-question-one",
+                        "title": "Am I the only question?",
+                        "type": "General",
+                        "answers": [{
+                            "id": "skipped-answer-one",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
                                 },
                                 {
-                                    "when": [{
-                                        "id": "do-you-want-to-skip-second-answer",
-                                        "condition": "equals",
-                                        "value": "Yes"
-                                    }]
-                                },
-                                {
-                                    "when": [{
-                                        "meta": "user_id",
-                                        "condition": "equals",
-                                        "value": "Skip"
-                                    }]
+                                    "label": "No",
+                                    "value": "No"
                                 }
-                            ]
-                        }
-                    ]
-                }]
+                            ],
+                            "type": "Radio"
+                        }]
+                    },
+                    {
+                        "id": "skip-question-two",
+                        "title": "Was I skipped?",
+                        "type": "General",
+                        "answers": [{
+                            "id": "skip-answer-two",
+                            "mandatory": true,
+                            "options": [{
+                                    "label": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ],
+                            "type": "Radio"
+                        }],
+                        "skip_conditions": [{
+                                "when": [{
+                                    "id": "do-you-want-to-skip-first-answer",
+                                    "condition": "equals",
+                                    "value": "Yes"
+                                }]
+                            },
+                            {
+                                "when": [{
+                                    "id": "do-you-want-to-skip-second-answer",
+                                    "condition": "equals",
+                                    "value": "Yes"
+                                }]
+                            },
+                            {
+                                "when": [{
+                                    "meta": "user_id",
+                                    "condition": "equals",
+                                    "value": "Skip"
+                                }]
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "type": "Summary",

@@ -5,7 +5,7 @@ class ConfirmationPage {
   }
 
   getSubtitle() {
-    return browser.element('[data-qa="section-title"]').getText()
+    return browser.element('[data-qa="block-title"]').getText()
   }
 
   submit() {
