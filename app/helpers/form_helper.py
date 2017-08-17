@@ -21,14 +21,14 @@ def get_form_for_location(block_json, location, answer_store, error_messages, di
         block_json = disable_mandatory_answers(block_json)
 
     if location.block_id == 'household-composition':
-        answers = answer_store.filter(location=location)
+        answers = answer_store.filter_by_location(location)
 
         data = deserialise_composition_answers(answers)
 
         return generate_household_composition_form(block_json, data, error_messages), None
     elif location.block_id in ['relationships', 'household-relationships']:
 
-        answers = answer_store.filter(location=location)
+        answers = answer_store.filter_by_location(location)
 
         data = deserialise_relationship_answers(answers)
 

@@ -284,7 +284,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         location = Location("6", 1, "1")
 
-        filtered = self.store.filter(location=location)
+        filtered = self.store.filter_by_location(location)
 
         self.assertEqual(len(filtered), 1)
 
@@ -631,7 +631,7 @@ class TestAnswerStore(unittest.TestCase):  # pylint: disable=too-many-public-met
 
         location = Location("group1", 0, "block1")
 
-        self.store.remove(location=location)
+        self.store.remove_by_location(location=location)
 
         expected_answers = {
             "answer3": 30,
