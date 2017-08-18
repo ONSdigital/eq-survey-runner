@@ -207,13 +207,6 @@ def process_question(question, page_spec):
         process_answer(question_type, answer, page_spec)
 
 
-def process_section(section, page_spec):
-    logger.debug("\tprocessing section: %s", section['title'])
-
-    for question in section['questions']:
-        process_question(question, page_spec)
-
-
 def _write_date_answer(answer_name, answerId):
     return \
         ANSWER_SETTER.replace("{answerName}", answer_name + 'Day').replace("{answerId}", answerId + '-day') + \
@@ -233,11 +226,10 @@ def _write_month_year_date_answer(answer_name, answerId):
 
 
 def find_kv(block, key, values):
-    for section in block.get('sections', []):
-        for question in section.get('questions', []):
-            for answer in question.get('answers', []):
-                if key in answer and answer[key] in values:
-                    return True
+    for question in block.get('questions', []):
+        for answer in question.get('answers', []):
+            if key in answer and answer[key] in values:
+                return True
 
     return False
 
@@ -270,8 +262,8 @@ def process_block(block, dir_out, spec_out=None):
 
         page_spec.write(CONSTRUCTOR.replace("{block_id}", block['id']))
 
-        for section in block.get('sections', []):
-            process_section(section, page_spec)
+        for question in block.get('questions', []):
+            process_question(question, page_spec)
 
         page_spec.write(FOOTER.replace("{pageName}", page_name))
 

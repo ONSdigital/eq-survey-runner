@@ -8,7 +8,7 @@ class ChangesInRetailTurnoverPage extends QuestionPage {
   }
 
   getQuestionTextChangeInRetailTurnover() {
-    return browser.element('.section__title').getText()
+    return browser.element('.block__title').getText()
   }
 
 }

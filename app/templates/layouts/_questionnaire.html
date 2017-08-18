@@ -21,11 +21,7 @@
 
       {% block form_content %}
         <div class="group" id="{{current_location.group_id}}">
-          <div class="block" id="{{current_location.block_id}}">
-            {% for section in block['sections'] %}
-              {% include 'partials/section.html' %}
-            {% endfor %}
-          </div>
+            {% include 'partials/block.html' %}
         </div>
       {% endblock form_content %}
 

@@ -13,12 +13,8 @@
         "blocks": [{
                 "type": "Interstitial",
                 "id": "welsh-block",
-                "sections": [{
-                    "title": "Holiadur Cymraeg",
-                    "id": "welsh-section",
-                    "questions": []
-                }],
-                "title": ""
+                "title": "Holiadur Cymraeg",
+                "questions": []
             },
             {
                 "type": "Summary",

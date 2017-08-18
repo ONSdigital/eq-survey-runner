@@ -13,32 +13,28 @@
         "blocks": [{
                 "type": "Questionnaire",
                 "id": "emphasis-block",
-                "sections": [{
-                    "title": "Emphasis",
-                    "id": "emphasis-section",
-                    "questions": [{
-                        "answers": [{
-                            "guidance": {
-                                "show_guidance": "Show lorem ipsum guidance",
-                                "hide_guidance": "hide lorem ipsum guidance",
-                                "content": [{
-                                    "description": "Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
-                                }]
-                            },
-                            "id": "answer",
-                            "label": "What is the thing?",
-                            "mandatory": false,
-                            "options": [],
-                            "q_code": "0",
-                            "type": "TextField"
-                        }],
-                        "description": "Cum sociis natoque penatibus et <em>magnis dis parturient montes</em>, nascetur ridiculus mus. Curabitur blandit tempus porttitor.",
-                        "id": "question",
-                        "title": "This is a title <em>with emphasis</em>",
-                        "type": "General"
-                    }]
-                }],
-                "title": ""
+                "title": "Emphasis",
+                "questions": [{
+                    "answers": [{
+                        "guidance": {
+                            "show_guidance": "Show lorem ipsum guidance",
+                            "hide_guidance": "hide lorem ipsum guidance",
+                            "content": [{
+                                "description": "Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+                            }]
+                        },
+                        "id": "answer",
+                        "label": "What is the thing?",
+                        "mandatory": false,
+                        "options": [],
+                        "q_code": "0",
+                        "type": "TextField"
+                    }],
+                    "description": "Cum sociis natoque penatibus et <em>magnis dis parturient montes</em>, nascetur ridiculus mus. Curabitur blandit tempus porttitor.",
+                    "id": "question",
+                    "title": "This is a title <em>with emphasis</em>",
+                    "type": "General"
+                }]
             },
             {
                 "type": "Summary",

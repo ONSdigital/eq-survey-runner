@@ -195,10 +195,9 @@ class TestSchemaValidation(unittest.TestCase):
         errors = []
 
         for block in SchemaHelper.get_blocks(json_to_validate):
-            for section in block.get('sections', []):
-                for question in section.get('questions', []):
-                    for answer in question.get('answers', []):
-                        errors.extend(TestSchemaValidation.validate_answer(file, block, answer))
+            for question in block.get('questions', []):
+                for answer in question.get('answers', []):
+                    errors.extend(TestSchemaValidation.validate_answer(file, block, answer))
 
         return errors
 

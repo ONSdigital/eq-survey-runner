@@ -67,5 +67,4 @@ questions:
   title: 'Of the <em>{{answers.employee_count}}</em> total employees employed on {{exercise.employment_date|format_date}},
     please specify the number of:'
   type: General
-title: Monthly Business Survey
 type: Questionnaire

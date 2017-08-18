@@ -188,25 +188,22 @@
         {
             "blocks": [{
                 "id": "confirmation",
-                "sections": [{
-                    "description": "",
-                    "id": "ready-to-submit-completed-section",
-                    "questions": [{
-                        "answers": [],
-                        "id": "ready-to-submit-completed-question",
-                        "title": "Submission",
-                        "type": "General",
-                        "guidance": {
-                            "content": [{
-                                "list": [
-                                    "You will not be able to access or change your answers on submitting the questionnaire",
-                                    "If you wish to review your answers please select the relevant completed sections"
-                                ]
-                            }]
-                        }
-                    }],
-                    "title": "You are now ready to submit this survey"
+                "description": "",
+                "questions": [{
+                    "answers": [],
+                    "id": "ready-to-submit-completed-question",
+                    "title": "Submission",
+                    "type": "General",
+                    "guidance": {
+                        "content": [{
+                            "list": [
+                                "You will not be able to access or change your answers on submitting the questionnaire",
+                                "If you wish to review your answers please select the relevant completed sections"
+                            ]
+                        }]
+                    }
                 }],
+                "title": "You are now ready to submit this survey",
                 "type": "Confirmation"
             }],
             "id": "ready-to-submit",

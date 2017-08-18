@@ -36,11 +36,9 @@
 
      {% for block in group.blocks %}
 
-        {% for section in block.sections %}
-
         <div class="summary__items">
 
-            {% for question in section.questions %}
+            {% for question in block.questions %}
 
                 <div class="summary__question" id="{{question.id}}">
                   {{question.number or ''}} {{question.title|striptags}}
@@ -62,7 +60,7 @@
                           {%- endif -%}
                         </div>
                         <div class="summary__edit">
-                          <a href="{{ section.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>Edit <span class="u-vh">your answer</span></a>
+                          <a href="{{ block.link }}#{{answer.id}}" class="summary__edit-link" aria-describedby="{{answer.id}} {{answer.id}}-answer" data-qa="{{answer.id}}-edit" {{helpers.track('click', 'Summary', 'Edit click')}}>Edit <span class="u-vh">your answer</span></a>
                         </div>
                       </div>
                 {% endfor %}
@@ -70,10 +68,6 @@
             {% endfor %}
 
         </div>
-
-
-        {% endfor %}
-
 
      {% endfor %}
 

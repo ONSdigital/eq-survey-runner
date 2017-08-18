@@ -1,604 +1,602 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "definitions": {
-        "id": {
-            "type": "string",
-            "description": "A lowercase alphanumeric string separated by hyphens.",
-            "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
-        },
-        "q_code": {
-            "type": "string",
-            "description": "A question code used by downstream systems to identify answers",
-            "pattern": "^[0-9a-z]+$"
-        },
-        "guidance_content": {
-            "description": "Allows customisation of guidance text",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "id": {
+      "type": "string",
+      "description": "A lowercase alphanumeric string separated by hyphens.",
+      "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
+    },
+    "q_code": {
+      "type": "string",
+      "description": "A question code used by downstream systems to identify answers",
+      "pattern": "^[0-9a-z]+$"
+    },
+    "guidance_content": {
+      "description": "Allows customisation of guidance text",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "anyOf": [
+          {
+            "required": [
+              "title"
+            ]
+          },
+          {
+            "required": [
+              "description"
+            ]
+          },
+          {
+            "required": [
+              "list"
+            ]
+          }
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "list": {
             "type": "array",
-            "minItems": 1,
             "items": {
-                "type": "object",
-                "anyOf": [
-                    {"required": ["title"]},
-                    {"required": ["description"]},
-                    {"required": ["list"]}
-                ],
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "list": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "additionalProperties": false
+              "type": "string"
             }
+          }
         },
-        "skip_conditions": {
-           "description": "Allows an element to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
-            "type": "array",
-            "minItems": 1,
-            "uniqueItems": true,
+        "additionalProperties": false
+      }
+    },
+    "skip_conditions": {
+      "description": "Allows an element to be skipped when a condition has been met. By adding more than one `when` element it will evaluate as an or rule.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "properties": {
+        "when": {
+          "$ref": "#/definitions/when"
+        }
+      },
+      "required": [
+        "when"
+      ]
+    },
+    "when": {
+      "type": "array",
+      "description": "Configure conditional rules. By adding more than one `condition` element it will evaluate as an and rule.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "meta": {
+            "type": "string"
+          },
+          "condition": {
+            "enum": [
+              "equals",
+              "not equals",
+              "contains",
+              "not contains",
+              "not set"
+            ]
+          },
+          "value": {
+            "type": [
+              "string",
+              "boolean"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "condition"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "id"
+            ]
+          },
+          {
+            "required": [
+              "meta"
+            ]
+          }
+        ]
+      }
+    },
+    "messages": {
+      "type": "object",
+      "properties": {
+        "INVALID_NUMBER": {
+          "type": "string"
+        },
+        "NOT_STRING": {
+          "type": "string"
+        },
+        "MANDATORY": {
+          "type": "string"
+        },
+        "INVALID_DATE": {
+          "type": "string"
+        },
+        "NUMBER_TOO_SMALL": {
+          "type": "string"
+        },
+        "NUMBER_TOO_LARGE": {
+          "type": "string"
+        },
+        "OUT_OF_RANGE": {
+          "type": "string"
+        },
+        "INVALID_DATE_RANGE_TO_BEFORE_FROM": {
+          "type": "string"
+        },
+        "INVALID_DATE_RANGE_TO_FROM_SAME": {
+          "type": "string"
+        },
+        "MAX_LENGTH_EXCEEDED": {
+          "type": "string"
+        },
+        "INVALID_DECIMAL": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "routing_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "goto": {
+            "type": "object",
             "properties": {
-                "when": {
-                    "$ref": "#/definitions/when"
-                }
+              "id": {
+                "type": "string"
+              },
+              "when": {
+                "$ref": "#/definitions/when"
+              }
             },
             "required": [
-                "when"
+              "id"
             ]
-        },
-        "when": {
-            "type": "array",
-            "description": "Configure conditional rules. By adding more than one `condition` element it will evaluate as an and rule.",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    },
-                    "meta": {
-                        "type": "string"
-                    },
-                    "condition": {
-                        "enum": [
-                            "equals",
-                            "not equals",
-                            "contains",
-                            "not contains",
-                            "not set"
-                        ]
-                    },
-                    "value": {
-                        "type": [
-                            "string",
-                            "boolean"
-                        ]
-                    }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "condition"
-                ],
-                "oneOf": [{
-                        "required": [
-                            "id"
-                        ]
-                    },
-                    {
-                        "required": [
-                            "meta"
-                        ]
-                    }
-                ]
-            }
-        },
-        "messages": {
+          },
+          "repeat": {
             "type": "object",
             "properties": {
-                "INVALID_NUMBER": {
-                    "type": "string"
-                },
-                "NOT_STRING": {
-                    "type": "string"
-                },
-                "MANDATORY": {
-                    "type": "string"
-                },
-                "INVALID_DATE": {
-                    "type": "string"
-                },
-                "NUMBER_TOO_SMALL": {
-                    "type": "string"
-                },
-                "NUMBER_TOO_LARGE": {
-                    "type": "string"
-                },
-                "OUT_OF_RANGE": {
-                    "type": "string"
-                },
-                "INVALID_DATE_RANGE_TO_BEFORE_FROM": {
-                    "type": "string"
-                },
-                "INVALID_DATE_RANGE_TO_FROM_SAME": {
-                    "type": "string"
-                },
-                "MAX_LENGTH_EXCEEDED": {
-                    "type": "string"
-                },
-                "INVALID_DECIMAL": {
-                    "type": "string"
-                }
+              "answer_id": {
+                "type": "string"
+              },
+              "goto": {
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "answer_value",
+                  "answer_count",
+                  "answer_count_minus_one"
+                ]
+              }
             },
-            "additionalProperties": false
+            "required": [
+              "answer_id"
+            ]
+          }
         },
-        "routing_rules": {
+        "oneOf": [
+          {
+            "required": [
+              "goto"
+            ]
+          },
+          {
+            "required": [
+              "repeat"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "mime_type",
+    "schema_version",
+    "data_version",
+    "survey_id",
+    "title",
+    "groups",
+    "theme",
+    "legal_basis"
+  ],
+  "properties": {
+    "mime_type": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "data_version": {
+      "enum": [
+        "0.0.1",
+        "0.0.2"
+      ]
+    },
+    "survey_id": {
+      "type": "string"
+    },
+    "session_timeout_in_seconds": {
+      "description": "The amount of time in seconds before timing out a users session.",
+      "type": "integer"
+    },
+    "session_prompt_in_seconds": {
+      "description": "The amount of time in seconds before showing the prompt informing a user of the time to session timeout.",
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "legal_basis": {
+      "enum": [
+        "Voluntary",
+        "StatisticsOfTradeAct"
+      ]
+    },
+    "navigation": {
+      "type": "object",
+      "properties": {
+        "visible": {
+          "type": "boolean"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "title": "string",
+            "title_from_answers": "array",
+            "group_order": "array",
+            "required": [
+              "group_order"
+            ],
+            "oneOf": [
+              {
+                "required": [
+                  "title"
+                ]
+              },
+              {
+                "required": [
+                  "title_from_answers"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "messages": {
+      "$ref": "#/definitions/messages"
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/id"
+          },
+          "title": {
+            "type": "string"
+          },
+          "completed_id": {
+            "type": "string"
+          },
+          "highlight_when": {
             "type": "array",
             "items": {
-                "type": "object",
-                "properties": {
-                    "goto": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "when": {
-                                "$ref": "#/definitions/when"
-                            }
-                        },
-                        "required": [
-                            "id"
+              "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "hide_in_navigation": {
+            "type": "boolean"
+          },
+          "skip_conditions": {
+            "$ref": "#/definitions/skip_conditions"
+          },
+          "routing_rules": {
+            "ref": "#/definitions/routing_rules"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/definitions/id"
+                },
+                "section_number": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "string"
+                },
+                "type": {
+                  "enum": [
+                    "Questionnaire",
+                    "Interstitial",
+                    "Introduction",
+                    "Summary",
+                    "Confirmation"
+                  ]
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "$ref": "#/definitions/id"
+                      },
+                      "type": {
+                        "enum": [
+                          "Basic",
+                          "Definition",
+                          "Preview"
                         ]
-                    },
-                    "repeat": {
+                      },
+                      "content": {
+                        "$ref": "#/definitions/guidance_content"
+                      }
+                    }
+                  }
+                },
+                "questions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "$ref": "#/definitions/id"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "number": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "guidance": {
                         "type": "object",
                         "properties": {
-                            "answer_id": {
-                                "type": "string"
+                          "content": {
+                            "$ref": "#/definitions/guidance_content"
+                          }
+                        }
+                      },
+                      "skip_conditions": {
+                        "$ref": "#/definitions/skip_conditions"
+                      },
+                      "type": {
+                        "enum": [
+                          "General",
+                          "DateRange",
+                          "RepeatingAnswer",
+                          "Relationship"
+                        ]
+                      },
+                      "answers": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "$ref": "#/definitions/id"
                             },
-                            "goto": {
-                                "type": "string"
+                            "parent_answer_id": {
+                              "type": "string"
+                            },
+                            "q_code": {
+                              "$ref": "#/definitions/q_code"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "guidance": {
+                              "type": "object",
+                              "properties": {
+                                "show_guidance": {
+                                  "type": "string"
+                                },
+                                "hide_guidance": {
+                                  "type": "string"
+                                },
+                                "content": {
+                                  "$ref": "#/definitions/guidance_content"
+                                }
+                              }
+                            },
+                            "description": {
+                              "type": "string"
                             },
                             "type": {
-                                "enum": [
-                                    "answer_value",
-                                    "answer_count",
-                                    "answer_count_minus_one"
-                                ]
-                            }
-                        },
-                        "required": [
-                            "answer_id"
-                        ]
-                    }
-                },
-                "oneOf": [{
-                        "required": [
-                            "goto"
-                        ]
-                    },
-                    {
-                        "required": [
-                            "repeat"
-                        ]
-                    }
-                ]
-            }
-        }
-    },
-    "required": [
-        "mime_type",
-        "schema_version",
-        "data_version",
-        "survey_id",
-        "title",
-        "groups",
-        "theme",
-        "legal_basis"
-    ],
-    "properties": {
-        "mime_type": {
-            "type": "string"
-        },
-        "schema_version": {
-            "type": "string"
-        },
-        "data_version": {
-            "enum": [
-                "0.0.1",
-                "0.0.2"
-            ]
-        },
-        "survey_id": {
-            "type": "string"
-        },
-        "session_timeout_in_seconds": {
-            "description": "The amount of time in seconds before timing out a users session.",
-            "type": "integer"
-        },
-        "session_prompt_in_seconds": {
-            "description": "The amount of time in seconds before showing the prompt informing a user of the time to session timeout.",
-            "type": "integer"
-        },
-        "title": {
-            "type": "string"
-        },
-        "description": {
-            "type": "string"
-        },
-        "theme": {
-            "type": "string"
-        },
-        "legal_basis": {
-            "enum": [
-                "Voluntary",
-                "StatisticsOfTradeAct"
-            ]
-        },
-        "navigation": {
-            "type": "object",
-            "properties": {
-                "visible":
-                {
-                    "type": "boolean"
-                },
-                "sections": {
-                    "type": "array",
-                    "items": {
-                        "title": "string",
-                        "title_from_answers": "array",
-                        "group_order": "array",
-                        "required": [
-                           "group_order"
-                        ],
-                        "oneOf": [{
-                            "required": [
-                               "title"
-                           ]
-                        },
-                        {
-                           "required": [
-                                "title_from_answers"
-                            ]
-                        }]
-                    }
-                }
-            }
-        },
-        "messages": {
-            "$ref": "#/definitions/messages"
-        },
-        "groups": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "$ref": "#/definitions/id"
-                    },
-                    "title": {
-                        "type": "string"
-                    },
-                    "completed_id": {
-                        "type": "string"
-                    },
-                    "highlight_when": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "minItems": 1,
-                        "uniqueItems": true
-                    },
-                    "hide_in_navigation": {
-                        "type": "boolean"
-                    },
-                    "skip_conditions": {
-                        "$ref": "#/definitions/skip_conditions"
-                    },
-                    "routing_rules": {
-                        "ref": "#/definitions/routing_rules"
-                    },
-                    "blocks": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "$ref": "#/definitions/id"
-                                },
-                                "section_number": {
+                              "enum": [
+                                "Checkbox",
+                                "Currency",
+                                "Date",
+                                "MonthYearDate",
+                                "Percentage",
+                                "Number",
+                                "Radio",
+                                "TextArea",
+                                "TextField",
+                                "Relationship",
+                                "Unit"
+                              ]
+                            },
+                            "options": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "label": {
                                     "type": "string"
-                                },
-                                "title": {
+                                  },
+                                  "value": {
                                     "type": "string"
-                                },
-                                "description": {
+                                  },
+                                  "q_code": {
+                                    "$ref": "#/definitions/q_code"
+                                  },
+                                  "child_answer_id": {
                                     "type": "string"
-                                },
-                                "type": {
-                                    "enum": [
-                                        "Questionnaire",
-                                        "Interstitial",
-                                        "Introduction",
-                                        "Summary",
-                                        "Confirmation"
-                                    ]
-                                },
-                              "body": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "$ref": "#/definitions/id"
-                                    },
-                                    "type": {
-                                      "enum": [
-                                        "Basic",
-                                        "Definition",
-                                        "Preview"
-                                      ]
-                                    },
-                                    "content": {
-                                      "$ref": "#/definitions/guidance_content"
-                                    }
                                   }
+                                },
+                                "required": [
+                                  "label",
+                                  "value"
+                                ]
+                              }
+                            },
+                            "mandatory": {
+                              "type": "boolean"
+                            },
+                            "max_length": {
+                              "type": "integer"
+                            },
+                            "decimal_places": {
+                              "type": "integer"
+                            },
+                            "alias": {
+                              "type": "string"
+                            },
+                            "repeats": {
+                              "type": "boolean"
+                            },
+                            "max_value": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "integer"
+                                },
+                                "answer_id": {
+                                  "type": "string"
                                 }
                               },
-                              "sections": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "$ref": "#/definitions/id"
-                                            },
-                                            "title": {
-                                                "type": "string"
-                                            },
-                                            "number": {
-                                                "type": "string"
-                                            },
-                                            "description": {
-                                                "type": "string"
-                                            },
-                                            "questions": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "id": {
-                                                            "$ref": "#/definitions/id"
-                                                        },
-                                                        "title": {
-                                                            "type": "string"
-                                                        },
-                                                        "number": {
-                                                            "type": "string"
-                                                        },
-                                                        "description": {
-                                                            "type": "string"
-                                                        },
-                                                        "guidance": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "content": {
-                                                                    "$ref": "#/definitions/guidance_content"
-                                                                }
-
-                                                            }
-                                                        },
-                                                        "skip_conditions": {
-                                                            "$ref": "#/definitions/skip_conditions"
-                                                        },
-                                                        "type": {
-                                                            "enum": [
-                                                                "General",
-                                                                "DateRange",
-                                                                "RepeatingAnswer",
-                                                                "Relationship"
-                                                            ]
-                                                        },
-                                                        "answers": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "id": {
-                                                                        "$ref": "#/definitions/id"
-                                                                    },
-                                                                    "parent_answer_id": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "q_code": {
-                                                                        "$ref": "#/definitions/q_code"
-                                                                    },
-                                                                    "label": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "guidance": {
-                                                                        "type": "object",
-                                                                        "properties": {
-                                                                            "show_guidance":
-                                                                            {
-                                                                                "type": "string"
-                                                                            },
-                                                                            "hide_guidance": {
-                                                                                "type": "string"
-                                                                            },
-                                                                            "content": {
-                                                                                "$ref": "#/definitions/guidance_content"
-                                                                            }
-
-                                                                        }
-                                                                    },
-                                                                    "description": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "type": {
-                                                                        "enum": [
-                                                                            "Checkbox",
-                                                                            "Currency",
-                                                                            "Date",
-                                                                            "MonthYearDate",
-                                                                            "Percentage",
-                                                                            "Number",
-                                                                            "Radio",
-                                                                            "TextArea",
-                                                                            "TextField",
-                                                                            "Relationship",
-                                                                            "Unit"
-                                                                        ]
-                                                                    },
-                                                                    "options": {
-                                                                        "type": "array",
-                                                                        "items": {
-                                                                            "type": "object",
-                                                                            "properties": {
-                                                                                "label": {
-                                                                                    "type": "string"
-                                                                                },
-                                                                                "value": {
-                                                                                    "type": "string"
-                                                                                },
-                                                                                "q_code": {
-                                                                                    "$ref": "#/definitions/q_code"
-                                                                                },
-                                                                                "child_answer_id": {
-                                                                                    "type": "string"
-                                                                                }
-                                                                            },
-                                                                            "required": [
-                                                                                "label",
-                                                                                "value"
-                                                                            ]
-                                                                        }
-                                                                    },
-                                                                    "mandatory": {
-                                                                        "type": "boolean"
-                                                                    },
-                                                                    "max_length": {
-                                                                        "type": "integer"
-                                                                    },
-                                                                    "decimal_places": {
-                                                                        "type": "integer"
-                                                                    },
-                                                                    "alias": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "repeats": {
-                                                                        "type": "boolean"
-                                                                    },
-                                                                    "max_value": {
-                                                                        "type": "object",
-                                                                        "properties": {
-                                                                            "value": {
-                                                                                "type": "integer"
-                                                                            },
-                                                                            "answer_id": {
-                                                                                "type": "string"
-                                                                            }
-                                                                        },
-                                                                        "oneOf": [
-                                                                          {
-                                                                            "required": ["value"]
-                                                                          },
-                                                                          {
-                                                                            "required": ["answer_id"]
-                                                                          }
-                                                                        ]
-                                                                    },
-                                                                    "min_value": {
-                                                                        "type": "object",
-                                                                        "properties": {
-                                                                            "value": {
-                                                                                "type": "integer"
-                                                                            },
-                                                                            "answer_id": {
-                                                                                "type": "string"
-                                                                            }
-                                                                        },
-                                                                        "oneOf": [
-                                                                          {
-                                                                            "required": ["value"]
-                                                                          },
-                                                                          {
-                                                                            "required": ["answer_id"]
-                                                                          }
-                                                                        ]
-                                                                    },
-                                                                    "unit": {
-                                                                        "$ref": "units.json#/unit"
-                                                                    },
-                                                                    "validation": {
-                                                                        "type": "object",
-                                                                        "properties": {
-                                                                            "messages": {
-                                                                                "$ref": "#/definitions/messages"
-                                                                            }
-                                                                        }
-                                                                    },
-                                                                    "calculated": {
-                                                                        "type": "boolean"
-                                                                    }
-                                                                },
-                                                                "additionalProperties": false,
-                                                                "required": [
-                                                                    "id",
-                                                                    "type",
-                                                                    "mandatory"
-                                                                ]
-                                                            }
-                                                        }
-                                                    },
-                                                    "additionalProperties": false,
-                                                    "required": [
-                                                        "id",
-                                                        "title",
-                                                        "type",
-                                                        "answers"
-                                                    ]
-                                                }
-                                            }
-                                        },
-                                        "additionalProperties": false,
-                                        "required": [
-                                            "id",
-                                            "questions"
-                                        ]
-                                    }
+                              "oneOf": [
+                                {
+                                  "required": [
+                                    "value"
+                                  ]
                                 },
-                                "routing_rules": {
-                                    "ref": "#/definitions/routing_rules"
-                                },
-                                "skip_conditions": {
-                                    "$ref": "#/definitions/skip_conditions"
+                                {
+                                  "required": [
+                                    "answer_id"
+                                  ]
                                 }
+                              ]
                             },
-                            "additionalProperties": false,
-                            "required": [
-                                "id",
-                                "type"
-                            ]
+                            "min_value": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "integer"
+                                },
+                                "answer_id": {
+                                  "type": "string"
+                                }
+                              },
+                              "oneOf": [
+                                {
+                                  "required": [
+                                    "value"
+                                  ]
+                                },
+                                {
+                                  "required": [
+                                    "answer_id"
+                                  ]
+                                }
+                              ]
+                            },
+                            "unit": {
+                              "$ref": "units.json#/unit"
+                            },
+                            "validation": {
+                              "type": "object",
+                              "properties": {
+                                "messages": {
+                                  "$ref": "#/definitions/messages"
+                                }
+                              }
+                            },
+                            "calculated": {
+                              "type": "boolean"
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "type",
+                            "mandatory"
+                          ]
                         }
-                    }
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "title",
+                      "type",
+                      "answers"
+                    ]
+                  }
                 },
-                "additionalProperties": false,
-                "required": [
-                    "id",
-                    "title",
-                    "blocks"
-                ]
+                "routing_rules": {
+                  "ref": "#/definitions/routing_rules"
+                },
+                "skip_conditions": {
+                  "$ref": "#/definitions/skip_conditions"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "type"
+              ]
             }
-        }
-    },
-    "additionalProperties": false
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "blocks"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
 }

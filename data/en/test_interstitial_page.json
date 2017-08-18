@@ -22,27 +22,23 @@
             {
                 "type": "Questionnaire",
                 "id": "breakfast-block",
-                "sections": [{
-                    "description": "",
-                    "id": "breakfast-section",
-                    "questions": [{
-                        "answers": [{
-                            "id": "favourite-breakfast",
-                            "label": "What is your favourite breakfast food",
-                            "mandatory": false,
-                            "options": [],
-                            "q_code": "0",
-                            "type": "TextField"
-                        }],
-                        "description": "",
-                        "id": "favourite-breakfast-question",
-                        "title": "What is your favourite breakfast food",
-                        "type": "General"
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "favourite-breakfast",
+                        "label": "What is your favourite breakfast food",
+                        "mandatory": false,
+                        "options": [],
+                        "q_code": "0",
+                        "type": "TextField"
                     }],
-                    "title": "What is your favourite breakfast food"
+                    "description": "",
+                    "id": "favourite-breakfast-question",
+                    "title": "What is your favourite breakfast food",
+                    "type": "General"
                 }],
-                "routing_rules": [],
-                "title": ""
+                "title": "What is your favourite breakfast food",
+                "routing_rules": []
             },
             {
                 "id": "breakfast-interstitial",
@@ -53,37 +49,30 @@
             {
                 "type": "Questionnaire",
                 "id": "lunch-block",
-                "sections": [{
-                    "description": "",
-                    "id": "lunch-section",
-                    "questions": [{
-                        "answers": [{
-                            "id": "favourite-lunch",
-                            "label": "What is your favourite lunchtime food",
-                            "mandatory": false,
-                            "options": [],
-                            "q_code": "0",
-                            "type": "TextField"
-                        }],
-                        "description": "",
-                        "id": "favourite-lunch-question",
-                        "title": "",
-                        "type": "General"
+                "description": "",
+                "questions": [{
+                    "answers": [{
+                        "id": "favourite-lunch",
+                        "label": "What is your favourite lunchtime food",
+                        "mandatory": false,
+                        "options": [],
+                        "q_code": "0",
+                        "type": "TextField"
                     }],
-                    "title": "What is your favourite lunchtime food"
+                    "description": "",
+                    "id": "favourite-lunch-question",
+                    "title": "",
+                    "type": "General"
                 }],
-                "routing_rules": [],
-                "title": ""
+                "title": "What is your favourite lunchtime food",
+                "routing_rules": []
             },
             {
                 "type": "Confirmation",
                 "id": "confirmation",
                 "title": "Thank you for your answers, do you wish to submit",
-                "sections": [{
-                    "title": "Thank you for your answers, do you wish to submit",
-                    "id": "questionnaire-completed-section",
-                    "questions": []
-                }]
+                "questions": []
+
             }
         ],
         "id": "favourite-foods",

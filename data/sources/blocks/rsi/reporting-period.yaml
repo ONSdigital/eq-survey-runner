@@ -28,5 +28,4 @@ questions:
   id: reporting-period-question
   title: What are the dates of the sales period you are reporting for?
   type: DateRange
-title: Monthly Business Survey
 type: Questionnaire

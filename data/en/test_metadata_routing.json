@@ -13,20 +13,16 @@
         "blocks": [{
                 "type": "Questionnaire",
                 "id": "block1",
-                "title": "Block 1",
-                "sections": [{
-                    "id": "block1-section",
+                "title": "Question 1",
+                "questions": [{
+                    "id": "block1-question",
                     "title": "Question 1",
-                    "questions": [{
-                        "id": "block1-question",
-                        "title": "Question 1",
-                        "type": "General",
-                        "answers": [{
-                            "id": "block1-answer",
-                            "mandatory": false,
-                            "q_code": "20",
-                            "type": "TextField"
-                        }]
+                    "type": "General",
+                    "answers": [{
+                        "id": "block1-answer",
+                        "mandatory": false,
+                        "q_code": "20",
+                        "type": "TextField"
                     }]
                 }],
                 "routing_rules": [{
@@ -49,40 +45,32 @@
             {
                 "type": "Questionnaire",
                 "id": "block2",
-                "title": "Block 2",
-                "sections": [{
-                    "id": "block2-section",
+                "title": "Question 2",
+                "questions": [{
+                    "id": "block2-question",
                     "title": "Question 2",
-                    "questions": [{
-                        "id": "block2-question",
-                        "title": "Question 2",
-                        "type": "General",
-                        "answers": [{
-                            "id": "block2-answer",
-                            "mandatory": false,
-                            "q_code": "20",
-                            "type": "TextField"
-                        }]
+                    "type": "General",
+                    "answers": [{
+                        "id": "block2-answer",
+                        "mandatory": false,
+                        "q_code": "20",
+                        "type": "TextField"
                     }]
                 }]
             },
             {
                 "type": "Questionnaire",
                 "id": "block3",
-                "title": "Block 3",
-                "sections": [{
-                    "id": "block3-section",
+                "title": "Question 3",
+                "questions": [{
+                    "id": "block3-question",
                     "title": "Question 3",
-                    "questions": [{
-                        "id": "block3-question",
-                        "title": "Question 3",
-                        "type": "General",
-                        "answers": [{
-                            "id": "block3-answer",
-                            "mandatory": false,
-                            "q_code": "20",
-                            "type": "TextField"
-                        }]
+                    "type": "General",
+                    "answers": [{
+                        "id": "block3-answer",
+                        "mandatory": false,
+                        "q_code": "20",
+                        "type": "TextField"
                     }]
                 }]
             },

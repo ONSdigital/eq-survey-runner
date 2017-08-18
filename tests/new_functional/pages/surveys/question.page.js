@@ -13,7 +13,7 @@ class QuestionPage extends BasePage {
 
   previous() { return 'a[id="top-previous"]'; }
 
-  displayedName() { return '[data-qa="section-title"]'; }
+  displayedName() { return '[data-qa="block-title"]'; }
 
   submit() { return '[data-qa="btn-submit"]'; }
 

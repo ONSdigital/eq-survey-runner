@@ -11,11 +11,8 @@
         "blocks": [{
             "type": "Questionnaire",
             "id": "conditional-routing-block",
-            "title": "Test Iinvalid Routing",
-            "sections": [{
                 "title": "Conditional Routing Test",
                 "description": "",
-                "id": "conditional-routing-section",
                 "questions": [{
                     "id": "conditional-routing-question",
                     "title": "Do you drink coffee?",
@@ -46,8 +43,7 @@
                             }
                         }
                     }]
-                }]
-            }],
+                }],
             "routing_rules":[
                 {
                     "goto": {
@@ -80,11 +76,8 @@
         {
             "type": "Questionnaire",
             "id": "response-yes",
-            "title": "You responded yes",
-            "sections": [{
                 "title": "Yes, I do drink coffee",
                 "description": "",
-                "id": "response-yes-section",
                 "questions": [{
                     "id": "response-yes-question",
                     "title": "How many cups of coffee do you drink a day?",
@@ -98,8 +91,7 @@
                         "q_code": "2",
                         "type": "Number"
                     }]
-                }]
-            }],
+                }],
             "routing_rules":[
                 {
                     "goto": {

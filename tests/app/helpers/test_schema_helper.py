@@ -55,9 +55,9 @@ class TestSchemaHelper(unittest.TestCase):
 
     def test_get_block(self):
         survey = load_schema_file("test_repeating_household.json")
-        block = SchemaHelper.get_block(survey, "repeating-block-1")
+        block = SchemaHelper.get_block(survey, "household-composition")
 
-        self.assertEqual(block['title'], "Block 2")
+        self.assertEqual(block['title'], "Household")
 
     def test_get_repeating_rule(self):
         survey = load_schema_file("test_repeating_household.json")
@@ -101,21 +101,19 @@ class TestSchemaHelper(unittest.TestCase):
         survey_json = {
             "groups": [{
                 "blocks": [{
-                    "sections": [{
-                        "questions": [{
-                            "answers": [
-                                {
-                                    "id": "1",
-                                    "alias": "alias_name",
-                                    "type": "Checkbox"
-                                },
-                                {
-                                    "id": "2",
-                                    "alias": "alias_name",
-                                    "type": "Checkbox"
-                                }
-                            ]
-                        }]
+                    "questions": [{
+                        "answers": [
+                            {
+                                "id": "1",
+                                "alias": "alias_name",
+                                "type": "Checkbox"
+                            },
+                            {
+                                "id": "2",
+                                "alias": "alias_name",
+                                "type": "Checkbox"
+                            }
+                        ]
                     }]
                 }]
             }]

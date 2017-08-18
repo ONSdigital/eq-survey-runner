@@ -46,5 +46,4 @@ questions:
   title: Of the <em>{{answers.total_turnover|format_currency}}</em> total retail turnover,
     what was the value of <em>other</em> sales?
   type: General
-title: Monthly Business Survey
 type: Questionnaire
