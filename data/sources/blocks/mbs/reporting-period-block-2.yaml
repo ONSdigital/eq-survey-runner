@@ -1,0 +1,29 @@
+id: reporting-period-block-2
+questions:
+- answers:
+  - description: ''
+    id: reporting-period-answer-2
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    q_code: d12
+    type: Radio
+  description: ''
+  id: reporting-period-question-2
+  title: Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?
+  type: General
+title: Reporting period
+type: Questionnaire
+routing_rules:
+- goto:
+    id: turnover-block-4
+    when:
+    - condition: equals
+      id: reporting-period-answer-2
+      value: 'Yes'
+- goto:
+    id: reporting-period-block-3

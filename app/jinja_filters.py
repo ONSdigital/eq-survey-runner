@@ -46,7 +46,7 @@ def format_multilined_string(context, value):
 
 @blueprint.app_template_filter()
 def format_date(value):
-    return value.strftime('%-d %B %Y')
+    return "<span class='date'>{date}</span>".format(date=value.strftime('%-d %B %Y'))
 
 
 @blueprint.app_template_filter()
@@ -72,21 +72,17 @@ def format_conditional_date(date1=None, date2=None):
         return format_date(datetime.strptime(date, "%d/%m/%Y"))
 
 
-def format_str_as_short_date(value):
-    return datetime.strptime(value, "%d/%m/%Y").strftime('%d %B %Y')
-
-
 def format_start_end_date(start_date, end_date=None):
     if end_date:
-        return '{from_date} to {to_date}'.format(from_date=start_date.strftime('%-d %B %Y'),
-                                                 to_date=end_date.strftime('%-d %B %Y'))
+        return '{from_date} to {to_date}'.format(from_date=format_date(start_date),
+                                                 to_date=format_date(end_date))
     return format_date(start_date)
 
 
 @blueprint.app_template_filter()
 def format_str_as_date_range(value):
-    from_date = format_str_as_short_date(value['from'])
-    to_date = format_str_as_short_date(value['to'])
+    from_date = format_str_as_date(value['from'])
+    to_date = format_str_as_date(value['to'])
     return '{from_date} to {to_date}'.format(from_date=from_date, to_date=to_date)
 
 
@@ -97,7 +93,7 @@ def format_str_as_month_year_date(value):
 
 @blueprint.app_template_filter()
 def format_str_as_date(value):
-    return format_str_as_short_date(value)
+    return format_date(datetime.strptime(value, "%d/%m/%Y"))
 
 
 @blueprint.app_template_filter()

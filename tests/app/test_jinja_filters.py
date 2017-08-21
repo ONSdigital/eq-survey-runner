@@ -99,7 +99,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_date(date)
 
-        self.assertEqual(format_value, '1 January 2017')
+        self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
 
     def test_format_conditional_date_not_date(self):
         # Given       no test for integers this check was removed from jinja_filters
@@ -146,7 +146,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
             format_value = format_conditional_date(date1, date2)
 
             # Then
-            self.assertEqual(format_value, triple[2])
+            self.assertEqual(format_value, "<span class='date'>{date}</span>".format(date=triple[2]))
 
     def test_format_start_end_date(self):
         # Given
@@ -157,7 +157,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_start_end_date(start_date, end_date)
 
         # Then
-        self.assertEqual(format_value, '1 January 2017 to 31 January 2017')
+        self.assertEqual(format_value, "<span class='date'>1 January 2017</span> to <span class='date'>31 January 2017</span>")
 
     def test_format_start_end_date_missing_end_date(self):
         # Given
@@ -167,7 +167,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         format_value = format_start_end_date(start_date)
 
         # Then
-        self.assertEqual(format_value, '1 January 2017')
+        self.assertEqual(format_value, "<span class='date'>1 January 2017</span>")
 
     def test_format_str_as_date_range(self):
         # Given
@@ -176,7 +176,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_str_as_date_range(date_range)
 
-        self.assertEqual(format_value, '01 January 2017 to 01 January 2018')
+        self.assertEqual(format_value, "<span class='date'>1 January 2017</span> to <span class='date'>1 January 2018</span>")
 
     def test_format_str_as_month_year_date(self):
         # Given
@@ -194,7 +194,7 @@ class TestJinjaFilters(TestCase):  # pylint: disable=too-many-public-methods
         # When
         format_value = format_str_as_date(date)
 
-        self.assertEqual(format_value, '02 March 2017')
+        self.assertEqual(format_value, "<span class='date'>2 March 2017</span>")
 
     def test_format_household_member_name(self):
         # Given

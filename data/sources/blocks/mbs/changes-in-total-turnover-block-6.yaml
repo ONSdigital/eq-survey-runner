@@ -1,0 +1,34 @@
+id: changes-in-total-turnover-block-6
+questions:
+- answers:
+  - description: ''
+    id: changes-in-total-turnover-answer-6-0
+    label: Select all that apply
+    mandatory: true
+    options:
+    - label: Special events (e.g.  sporting events)
+      q_code: 146b
+      value: Special events (e.g.  sporting events)
+    - label: Calendar events (e.g.  Christmas, Easter, Bank Holiday
+      q_code: 146c
+      value: Calendar events (e.g.  Christmas, Easter, Bank Holiday
+    - label: Weather
+      q_code: 146d
+      value: Weather
+    - label: Prices
+      q_code: 146e
+      value: Prices
+    - label: Currency effects (appreciation or depreciation)
+      q_code: 146f
+      value: Currency effects (appreciation or depreciation)
+    - label: Other
+      q_code: 146g
+      value: Other
+    type: Checkbox
+  description: ''
+  id: changes-in-total-turnover-question-6
+  title: Please indicate the reasons for any changes in the total retail turnover
+    for {{respondent.trad_as_or_ru_name}}
+  type: General
+title: Changes in total turnover
+type: Questionnaire

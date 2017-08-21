@@ -37,7 +37,7 @@ class StarWarsTestCase(IntegrationTestCase):
 
     def check_second_quiz_page(self):
         # Pipe Test for section title
-        self.assertInPage('On 2 June 1983 how many were employed?')
+        self.assertInPage("On <span class='date'>2 June 1983</span> how many were employed?")
 
         # Textarea question
         self.assertInPage('Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')

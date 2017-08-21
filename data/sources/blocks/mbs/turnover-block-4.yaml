@@ -1,0 +1,38 @@
+id: turnover-block-4
+questions:
+- answers:
+  - description: Round to the nearest pound. Do not include pence.
+    id: turnover-answer-4-0
+    label: Total turnover excluding VAT
+    mandatory: true
+    options: []
+    q_code: '40'
+    type: Currency
+  description: <p>If you do not have a figure to report for this survey period, please
+    enter zero.</p><p>If you are unable to calculate a figure, please provide a careful
+    estimate.</p>
+  guidance:
+    content:
+    - description: ''
+      list:
+      - Commission
+      - Costs incurred and passed on to customers
+      - Sales of goods purchased for resale
+      - Payment for work in progress
+      - Income from sub-contracted activities
+      - Revenue earned from other parts of the business not named  (please supply
+        at fair value)
+      title: 'Include:'
+    - description: ''
+      list:
+      - VAT
+      - Gains on sales of fixed capital assets
+      - Grants and subsidies
+      - Insurance claims
+      - Interest received
+      title: 'Exclude:'
+  id: turnover-question-4
+  title: "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total turnover</em>, excluding VAT?"
+  type: General
+title: Turnover
+type: Questionnaire
