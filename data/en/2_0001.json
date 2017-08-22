@@ -5,7 +5,7 @@
         "blocks": [{
                 "type": "Introduction",
                 "id": "introduction",
-                "body": [{
+                "primary_content": [{
                     "id": "basis-for-completion",
                     "type": "Basic",
                     "title": "Basis for completion",

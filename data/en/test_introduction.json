@@ -5,7 +5,7 @@
             "blocks": [{
                     "id": "introduction",
                     "type": "Introduction",
-                    "body": [{
+                    "primary_content": [{
                         "type": "Preview",
                         "id": "preview",
                         "title": "What you need to do next",

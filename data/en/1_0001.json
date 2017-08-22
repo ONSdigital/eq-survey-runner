@@ -64,47 +64,7 @@
     "groups": [{
             "blocks": [{
                     "type": "Introduction",
-                    "id": "introduction",
-                    "body": [{
-                        "id": "basis-for-completion",
-                        "type": "Basic",
-                        "title": "Basis for completion",
-                        "content": [{
-                            "list": [
-                                "Please complete this voluntary questionnaire for <strong>{{respondent.ru_name}}</strong>.",
-                                "If this business is part of an enterprise group, please answer all questions for this business in the UK only.",
-                                "Do not include results for subsidiaries or parent enterprises."
-                            ]
-                        }]
-                    }, {
-                        "id": "definition-of-innovation",
-                        "type": "Definition",
-                        "title": "Definition of innovation",
-                        "content": [{
-                            "list": [
-                                "Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {{ respondent.ru_name }} has introduced, regardless of their origin.",
-                                "These innovations may be new to {{ respondent.ru_name }} or new to the market",
-                                "Investments for future innovation and changes that {{ respondent.ru_name }} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered"
-                            ]
-                        }]
-                    }, {
-                        "id": "information-to-provide",
-                        "type": "Basic",
-                        "title": "You will be asked to provide information for the business, including:",
-                        "content": [{
-                            "list": [
-                                "business strategy and practices",
-                                "innovation investment",
-                                "goods, services, and process innovation",
-                                "factors deemed important when deciding to initiate or terminate innovation",
-                                "public financial support for innovation",
-                                "turnover and exports",
-                                "skills and employment"
-                            ]
-                        }, {
-                            "description": "<strong>If actual figures are not available, please provide informed estimates.</strong>"
-                        }]
-                    }]
+                    "id": "introduction"
                 },
                 {
                     "id": "geographic-markets",

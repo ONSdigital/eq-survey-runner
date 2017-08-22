@@ -1,6 +1,6 @@
 id: introduction
 type: Introduction
-body:
+primary_content:
 - id: use-of-information
   type: Basic
   content:

@@ -350,7 +350,7 @@
                     "Confirmation"
                   ]
                 },
-                "body": {
+                "primary_content": {
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -358,12 +358,30 @@
                       "id": {
                         "$ref": "#/definitions/id"
                       },
-                      "type": {
-                        "enum": [
-                          "Basic",
-                          "Definition",
-                          "Preview"
-                        ]
+                      "content": {
+                        "$ref": "#/definitions/guidance_content"
+                      }
+                    }
+                  }
+                },
+                "preview_content": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "$ref": "#/definitions/id"
+                    },
+                    "content": {
+                      "$ref": "#/definitions/guidance_content"
+                    }
+                  }
+                },
+                "secondary_content": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "$ref": "#/definitions/id"
                       },
                       "content": {
                         "$ref": "#/definitions/guidance_content"

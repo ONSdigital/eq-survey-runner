@@ -53,22 +53,30 @@
   {% endblock business_details %}
     <div class="grid">
         <div class="grid__col col-7@l">
+            {% block intro_content %}
 
-  {% block intro_content %}
-    {% for intro in content.block.body %}
-      {% if intro.type == 'Basic' %}
-        {% include 'partials/introduction/basic.html' %}
-      {% elif intro.type == 'Definition' %}
-        {% include 'partials/introduction/definition.html' %}
-      {% elif intro.type == 'Preview' %}
-        {% include 'partials/introduction/preview.html' %}
-      {% endif %}
-    {% endfor %}
-  {% endblock intro_content %}
+                {% if content.block.primary_content %}
+                    {% for intro in content.block.primary_content %}
+                        {% include 'partials/introduction/basic.html' %}
+                    {% endfor %}
+                {% endif %}
 
-  {% block start_survey %}
-    {% include 'partials/introduction/start-survey.html' %}
-  {% endblock start_survey %}
+                {% block start_survey %}
+                    {% include 'partials/introduction/start-survey.html' %}
+                {% endblock start_survey %}
+
+                {% if content.block.preview_content %}
+                    {% set intro = content.block.preview_content %}
+                    {% include 'partials/introduction/preview.html' %}
+                {% endif %}
+
+                {% if content.block.secondary_content %}
+                    {% for intro in content.block.secondary_content %}
+                        {% include 'partials/introduction/basic.html' %}
+                    {% endfor %}
+                {% endif %}
+
+            {% endblock intro_content %}
 
         </div>
   </div>

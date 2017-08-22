@@ -11,7 +11,7 @@
         "blocks": [{
                 "type": "Introduction",
                 "id": "introduction",
-                "body": [{
+                "primary_content": [{
                     "id": "information-to-provide",
                     "type": "Basic",
                     "title": "You will be asked to provide information for the business, including:",
