@@ -1,8 +1,8 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": "stylelint-config-recommended-scss",
   "ignoreFiles": ["**/_sprite.scss", "styles/vendor/**/*.scss"],
   "rules": {
     "at-rule-empty-line-before": null,
-    "rule-nested-empty-line-before": null
+    "rule-empty-line-before": null
   }
 }

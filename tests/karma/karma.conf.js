@@ -11,7 +11,7 @@ module.exports = function(config) {
       }
     },
 
-    frameworks: ['browserify', 'mocha', 'chai-sinon', 'chai-as-promised', 'chai'],
+    frameworks: ['browserify', 'mocha', 'chai-sinon', 'chai'],
 
     files: [
       testDir + '/spec/**/*.js'
@@ -28,9 +28,7 @@ module.exports = function(config) {
       'karma-browserify',
       'karma-mocha',
       'karma-chai-sinon',
-      'karma-chai-as-promised',
       'karma-chai',
-      'karma-phantomjs-launcher',
       'karma-coverage'
     ],
 
@@ -42,7 +40,7 @@ module.exports = function(config) {
 
     reporters: ['mocha', 'progress', 'coverage'],
 
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
 
     coverageReporter: {
       dir : 'coverage/',

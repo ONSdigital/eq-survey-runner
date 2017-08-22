@@ -2,7 +2,8 @@ dist: trusty
 sudo: true
 language: node_js
 node_js: 6
-fail_fast: true
+addons:
+    chrome: stable
 env:
   global:
     - EQ_RUN_LOCAL_LINT=True

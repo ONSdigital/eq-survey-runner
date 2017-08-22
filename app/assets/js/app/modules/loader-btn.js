@@ -12,7 +12,7 @@ export default class LoaderBtn {
     this.element && this.enable()
   }
 
-  onClick = e => {
+  onClick(e) {
     const loadingMsg = this.element.getAttribute('data-loading-msg')
     this.element.classList.add(loadingClass)
     this.element.setAttribute('aria-busy', 'true')
@@ -29,13 +29,13 @@ export default class LoaderBtn {
 
   disable() {
     defer(() => {
-      this.removeEventListener('click', this.onClick)
+      this.removeEventListener('click', this.onClick.bind(this))
       this.element.setAttribute('disabled', 'true')
     })
   }
 
   enable() {
-    this.addEventListener('click', this.onClick, false)
+    this.addEventListener('click', this.onClick.bind(this), false)
     this.element.removeAttribute('disabled')
   }
 
