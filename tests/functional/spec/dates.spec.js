@@ -26,9 +26,9 @@ describe('Date checks', function() {
               .submit()
 
             // Then the summary screen shows the dates entered formatted
-            expect(SummaryPage.getDateRangeSummary()).to.contain('01 March 2016 to 03 May 2017')
+            expect(SummaryPage.getDateRangeSummary()).to.contain('1 March 2016 to 3 May 2017')
             expect(SummaryPage.getMonthYearDateSummary()).to.contain('April 2018')
-            expect(SummaryPage.getDateOfBirth()).to.contain('04 January 1999')
+            expect(SummaryPage.getDateOfBirth()).to.contain('4 January 1999')
             expect(SummaryPage.getNonMandatoryDate()).to.contain('No answer provided')
 
         })
@@ -163,7 +163,7 @@ describe('Date checks', function() {
               .setDateOfBirthYear(1999)
               .submit()
 
-            expect(SummaryPage.getDateRangeSummary()).to.contain('01 January 2016 to 03 January 2017')
+            expect(SummaryPage.getDateRangeSummary()).to.contain('1 January 2016 to 3 January 2017')
             expect(SummaryPage.getMonthYearDateSummary()).to.contain('June 2018')
 
       })
@@ -215,7 +215,7 @@ describe('Date checks', function() {
               .setNonMandatoryDateAnswerYear(2016)
               .submit()
 
-            expect(SummaryPage.getDateRangeSummary()).to.contain('01 January 2016 to 03 January 2017')
+            expect(SummaryPage.getDateRangeSummary()).to.contain('1 January 2016 to 3 January 2017')
             expect(SummaryPage.getMonthYearDateSummary()).to.contain('June 2018')
 
             // When

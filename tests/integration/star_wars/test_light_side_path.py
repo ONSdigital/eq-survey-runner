@@ -19,7 +19,7 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertInUrl('star-wars-trivia-part-2')
 
         # Pipe Test for section title
-        self.assertInPage('On 2 June 1983 how many were employed?')
+        self.assertInPage("On <span class='date'>2 June 1983</span> how many were employed?")
 
         # Textarea question
         self.assertInPage('Why doesn\'t Chewbacca receive a medal at the end of A New Hope?')
@@ -47,7 +47,7 @@ class TestLightSidePath(StarWarsTestCase):
         self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Luke Skywalker')
         self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Qui-Gon Jinn')
         self.assertRegexPage('(?s)Which 3 appear in any of the opening crawlers?')
-        self.assertRegexPage('(?s)When was The Empire Strikes Back released?.*?28 May 1983 to 29 May 1983')
+        self.assertRegexPage('(?s)When was The Empire Strikes Back released?.*?28 May 1983.*?to.*?29 May 1983')
         self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
         self.assertRegexPage('(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?'
                              'Wookiees don’t place value in material rewards and refused the medal initially')

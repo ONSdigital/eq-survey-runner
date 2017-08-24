@@ -87,11 +87,14 @@
 .summary__answer-text {
   align-items: center;
   flex: 1 1 auto;
-  word-break: break-all;
   font-weight: $font-weight-bold;
   p:last-of-type {
     margin-bottom: 0;
   }
+}
+
+.summary__answer-break {
+  word-break: break-all;
 }
 
 .summary__edit {

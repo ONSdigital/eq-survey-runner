@@ -12,7 +12,7 @@ class TestStarWarsIntroduction(StarWarsTestCase):
         self.assertInPage('>Start survey<')
         self.assertRegexPage('(?s)Trading as.*?Integration Tests')
         self.assertRegexPage('(?s)Business name.*?Integration Testing')
-        self.assertRegexPage('(?s)PLEASE SUBMIT BY.*?6 May 2016')
+        self.assertRegexPage('(?s)PLEASE SUBMIT BY.*?6.*?May.*?2016')
         self.assertRegexPage('(?s)PERIOD.*?1 April 2016.*?30 April 2016')
 
         # Legal checks

@@ -55,7 +55,8 @@ class TestNavigation(StarWarsTestCase):
         self.assertRegexPage('(?s)Which of these Darth Vader quotes is wrong?.*?Luke, I am your father')
         self.assertRegexPage('(?s)Which 3 have wielded a green lightsaber?.*?Yoda')  # NOQA
         self.assertRegexPage('(?s)Which 3 appear in any of the opening crawlers?')
-        self.assertRegexPage('(?s)When was The Empire Strikes Back released?.*?28 May 1983 to 29 May 1983')  # NOQA
+        self.assertRegexPage("(?s)When was The Empire Strikes Back released?.*?<span class='date'>28 May 1983</span> "
+                             "to <span class='date'>29 May 1983</span>")  # NOQA
         self.assertRegexPage('(?s)What was the total number of Ewoks?.*?')
         self.assertRegexPage('(?s)Why doesn\'t Chewbacca receive a medal at the end of A New Hope?.*?'
                              'Wookiees don’t place value in material rewards and refused the medal initially')  # NOQA
@@ -108,4 +109,5 @@ class TestNavigation(StarWarsTestCase):
         self.assertInPage('empire-strikes-back-to-answer')
 
         # Pipe Test for question description
-        self.assertInPage('It could be between 1 April 2016 and 30 April 2016. But that might just be a test')  # NOQA
+        self.assertInPage("It could be between <span class='date'>1 April 2016</span> and "
+                          "<span class='date'>30 April 2016</span>. But that might just be a test")  # NOQA

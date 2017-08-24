@@ -21,7 +21,7 @@ class TestTemplateRenderer(unittest.TestCase):
 
         rendered = TemplateRenderer().render(date, **context)
 
-        self.assertEqual(rendered, '1 January 2017')
+        self.assertEqual(rendered, "<span class='date'>1 January 2017</span>")
 
     def test_strings_containing_backslashes_are_escaped(self):
         title = '{{ [answers.person_name] | format_household_name }}'

@@ -1,0 +1,16 @@
+id: introduction
+type: Introduction
+body:
+- id: use-of-information
+  type: Basic
+  content:
+  - list:
+    - Please complete this statutory questionnaire for {{respondent.trad_as_or_ru_name}}, for period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.
+    - Data should relate to all sites in England, Scotland and Wales.
+- id: information-to-provide
+  type: Basic
+  title: 'You will be asked to provide information for the business, including:'
+  content:
+  - list:
+    - Value of total turnover
+    - Changes in turnover
