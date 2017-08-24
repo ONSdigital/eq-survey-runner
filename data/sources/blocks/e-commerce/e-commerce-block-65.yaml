@@ -1,0 +1,26 @@
+id: e-commerce-block-65
+questions:
+- answers:
+  - description: Please provide percentages to one decimal place where possible
+    id: e-commerce-answer-65
+    alias: answer-65
+    label: ''
+    mandatory: true
+    options: []
+    q_code: '235'
+    type: Percentage
+    max_value:
+      value: 100
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - orders received for utilities, goods, materials and services
+      title: 'Include:'
+  id: e-commerce-question-65
+  title: "During 2017, what percentage of total turnover resulted from orders received\
+    \ via a website or \u2018app\u2019?"
+  type: General
+title: e-Commerce
+type: Questionnaire

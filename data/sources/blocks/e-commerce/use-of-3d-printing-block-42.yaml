@@ -1,0 +1,10 @@
+id: use-of-3d-printing-block-42
+title: Use of 3D printing
+description: "<p>You have completed the previous section.</p>\
+    \ <p>This section covers the use of 3D printing also known as additive layer manufacturing.</p>"
+type: Interstitial
+skip_conditions:
+  - when:
+    - condition: equals
+      id: access-and-use-of-the-internet-answer-17
+      value: 'Yes'

@@ -1,0 +1,19 @@
+id: access-and-use-of-the-internet-block-28
+questions:
+- answers:
+  - description: ''
+    id: access-and-use-of-the-internet-answer-28
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    type: Radio
+  description: ''
+  id: access-and-use-of-the-internet-question-28
+  title: "Does {{respondent.trad_as}}\u2019s website have <em>description of goods or services, price lists</em>?"
+  type: General
+title: Access and Use of the Internet
+type: Questionnaire

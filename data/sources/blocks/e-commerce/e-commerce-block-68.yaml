@@ -1,0 +1,37 @@
+id: e-commerce-block-68
+questions:
+- answers:
+  - description: ''
+    id: e-commerce-answer-68
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    q_code: '459'
+    type: Radio
+  description: ''
+  guidance:
+    content:
+    - description: For example Booking, eBay, Amazon, Amazon Business, Alibaba, Rakuten,
+        Etsy etc.
+      list: []
+      title: ''
+  id: e-commerce-question-68
+  title: "During 2017, did {{respondent.trad_as}} receive orders for goods\
+    \ or services via an e-commerce market place website or \u2018app\u2019 used by\
+    \ several businesses for trading products?"
+  type: General
+title: e-Commerce
+type: Questionnaire
+routing_rules:
+- goto:
+    id: e-commerce-block-70
+    when:
+    - condition: equals
+      id: e-commerce-answer-68
+      value: 'No'
+- goto:
+    id: e-commerce-block-69

@@ -1,0 +1,29 @@
+id: e-commerce-block-69
+questions:
+- answers:
+  - description: ''
+    id: e-commerce-answer-69-0
+    label: "Percentage of turnover from own website or \u2018app\u2019."
+    mandatory: true
+    options: []
+    q_code: '460'
+    type: Percentage
+    max_value:
+      value: 100
+  - description: 'For example Booking, eBay, Amazon, Amazon Business, Alibaba, Rakuten, Etsy etc'
+    id: e-commerce-answer-69-1
+    label: "Percentage of turnover from market place website or \u2018app\u2019 used by several businesses for\
+      \ trading products."
+    mandatory: true
+    options: []
+    type: Percentage
+    max_value:
+      value: 100
+    q_code: '461'
+  description: ''
+  id: e-commerce-question-69
+  title: 'During 2017, what was the percentage breakdown of the turnover of orders
+    received from the following:'
+  type: General
+title: e-Commerce
+type: Questionnaire

@@ -1,0 +1,201 @@
+data_version: 0.0.2
+description: manifest
+navigation:
+  visible: true
+  sections:
+  - title: 'Use Of Computers'
+    group_order:
+    - group-1
+  - title: 'ICT Specialists and Skills'
+    group_order:
+    - group-2
+  - title: 'Access and Use of the Internet'
+    group_order:
+    - group-3
+  - title: 'Use of cloud computing services'
+    group_order:
+    - group-4
+  - title: 'Use of 3D printing'
+    group_order:
+    - group-5
+  - title: 'Invoicing'
+    group_order:
+    - group-6
+  - title: 'e-Commerce'
+    group_order:
+    - group-7
+  - title: 'Comments'
+    group_order:
+    - group-8
+  - title: 'Confirmation'
+    group_order:
+    - confirmation-group
+groups:
+- blocks:
+  - use-of-computers-block-2
+  - use-of-computers-block-3
+  - comments-block-4
+  - ict-specialists-and-skills-block-4
+  id: group-1
+  title: 'Use Of Computers'
+- blocks:
+  - ict-specialists-and-skills-block-5
+  - ict-specialists-and-skills-block-6
+  - ict-specialists-and-skills-block-7
+  - ict-specialists-and-skills-block-8
+  - ict-specialists-and-skills-block-9
+  - ict-specialists-and-skills-block-10
+  - ict-specialists-and-skills-block-11
+  - ict-specialists-and-skills-block-12
+  - ict-specialists-and-skills-block-13
+  - ict-specialists-and-skills-block-14
+  - ict-specialists-and-skills-block-15
+  - access-and-use-of-the-internet-block-16
+  id: group-2
+  title: 'ICT Specialists and Skills'
+  skip_conditions:
+  - when:
+    - condition: equals
+      id: use-of-computers-answer-2
+      value: 'No'
+  - when:
+    - condition: not set
+      id: use-of-computers-answer-2
+- blocks:
+  - access-and-use-of-the-internet-block-17
+  - access-and-use-of-the-internet-block-18
+  - access-and-use-of-the-internet-block-19
+  - access-and-use-of-the-internet-block-20
+  - access-and-use-of-the-internet-block-21
+  - access-and-use-of-the-internet-block-22
+  - access-and-use-of-the-internet-block-23
+  - access-and-use-of-the-internet-block-24
+  - access-and-use-of-the-internet-block-25
+  - access-and-use-of-the-internet-block-26
+  - access-and-use-of-the-internet-block-27
+  - access-and-use-of-the-internet-block-28
+  - access-and-use-of-the-internet-block-29
+  - access-and-use-of-the-internet-block-30
+  - access-and-use-of-the-internet-block-31
+  - access-and-use-of-the-internet-block-32
+  - access-and-use-of-the-internet-block-33
+  - access-and-use-of-the-internet-block-34
+  - access-and-use-of-the-internet-block-35
+  - access-and-use-of-the-internet-block-36
+  - access-and-use-of-the-internet-block-37
+  - access-and-use-of-the-internet-block-38
+  - access-and-use-of-the-internet-block-39
+  - access-and-use-of-the-internet-block-40
+  - access-and-use-of-the-internet-block-41
+  - use-of-3d-printing-block-42
+  - use-of-cloud-computing-services-block-42
+  id: group-3
+  title: 'Access and Use of the Internet'
+  skip_conditions:
+  - when:
+    - condition: equals
+      id: use-of-computers-answer-2
+      value: 'No'
+  - when:
+    - condition: not set
+      id: use-of-computers-answer-2
+  - when:
+    - condition: not set
+      id: use-of-computers-answer-3
+- blocks:
+  - use-of-cloud-computing-services-block-43
+  - use-of-cloud-computing-services-block-44
+  - use-of-cloud-computing-services-block-45
+  - use-of-cloud-computing-services-block-46
+  - use-of-cloud-computing-services-block-47
+  - use-of-cloud-computing-services-block-48
+  - use-of-cloud-computing-services-block-49
+  - use-of-cloud-computing-services-block-50
+  - use-of-cloud-computing-services-block-51
+  - use-of-cloud-computing-services-block-52
+  - use-of-3d-printing-block-53
+  id: group-4
+  title: 'Use of cloud computing services'
+  skip_conditions:
+  - when:
+    - condition: equals
+      id: use-of-computers-answer-2
+      value: 'No'
+  - when:
+    - condition: not set
+      id: use-of-computers-answer-2
+  - when:
+    - condition: equals
+      id: access-and-use-of-the-internet-answer-17
+      value: 'No'
+  - when:
+    - condition: not set
+      id: access-and-use-of-the-internet-answer-17
+- blocks:
+  - use-of-3d-printing-block-54
+  - use-of-3d-printing-block-55
+  - use-of-3d-printing-block-56
+  - use-of-3d-printing-block-57
+  - use-of-3d-printing-block-58
+  - invoicing-block-59
+  id: group-5
+  title: 'Use of 3D printing'
+  skip_conditions:
+  - when:
+    - condition: equals
+      id: use-of-computers-answer-2
+      value: 'No'
+  - when:
+    - condition: not set
+      id: use-of-computers-answer-2
+- blocks:
+  - invoicing-block-60
+  - invoicing-block-61
+  - invoicing-block-62
+  - e-commerce-block-63
+  id: group-6
+  title: 'Invoicing'
+  skip_conditions:
+  - when:
+    - condition: equals
+      id: use-of-computers-answer-2
+      value: 'No'
+  - when:
+    - condition: not set
+      id: use-of-computers-answer-2
+- blocks:
+  - e-commerce-block-64
+  - e-commerce-block-65
+  - e-commerce-block-66
+  - e-commerce-block-67
+  - e-commerce-block-68
+  - e-commerce-block-69
+  - e-commerce-block-70
+  - e-commerce-block-71
+  - e-commerce-block-72
+  - comments-block-73
+  id: group-7
+  title: 'e-Commerce'
+  skip_conditions:
+  - when:
+    - condition: equals
+      id: use-of-computers-answer-2
+      value: 'No'
+  - when:
+    - condition: not set
+      id: use-of-computers-answer-2
+- blocks:
+  - comments-block-74
+  id: group-8
+  title: 'Comments'
+- blocks:
+  - confirmation
+  id: confirmation-group
+  title: 'Confirmation'
+legal_basis: StatisticsOfTradeAct
+mime_type: application/json/ons/eq
+schema_filename: 'e_commerce'
+schema_version: 0.0.1
+survey_id: e_commerce
+theme: default
+title: e-commerce

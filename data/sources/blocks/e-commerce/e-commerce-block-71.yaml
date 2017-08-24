@@ -1,0 +1,35 @@
+id: e-commerce-block-71
+questions:
+- answers:
+  - description: Please provide percentages to 1 decimal place where possible
+    id: e-commerce-answer-71
+    label: ''
+    mandatory: true
+    options: []
+    q_code: '258'
+    type: Percentage
+    max_value:
+      value: 100
+    guidance:
+      show_guidance: Show EDI Definition
+      hide_guidance: Hide EDI Definition
+      content:
+      - title: EDI (Electronic Data Interchange)
+        description: "A set of standards for structuring information that is to be electronically exchanged between\
+         \ businesses or organisations. The standards describe formats that emulate documents, eg purchase orders\
+         \ or invoices; define messages and their contents, but not the method of exchanging the messages themselves.\
+         \ An example of EDI is EDIFACT (Electronic Data Interchange for Administration Commerce and\
+         \ Transport standards)."
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - orders received for utilities, goods, materials and services
+      title: 'Include:'
+  id: e-commerce-question-71
+  title: During 2017 what percentage of total turnover resulted from orders received
+    via EDI type messages?
+  type: General
+title: e-Commerce
+type: Questionnaire

@@ -1,0 +1,39 @@
+id: invoicing-block-61
+questions:
+- answers:
+  - description: ''
+    id: invoicing-answer-61
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    type: Radio
+    guidance:
+      show_guidance: Show Invoices Definition
+      hide_guidance: Hide Invoices Definition
+      content:
+      - title: Invoices
+        description: "There are invoices in paper form and electronic form.\
+         \ Invoices in electronic form are of two types:"
+      - description: "E-invoices in a standard structure suitable for\
+         \ automated processing (for example EDI, UBL, XML), excluding the transmission of PDF files.\
+         \ They are exchanged either directly or via service operators or via an electronic banking system."
+      - description: "Invoices in electronic form not suitable for automated processing, for example e-mails,\
+         \ pdf e-mail attachments, images in TIF, JPEG or other format."
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - Invoices sent by intermediaries, e.g. accountants, e-invoice service providers,
+        etc.
+      title: 'Include:'
+  id: invoicing-question-61
+  title: "In 2017, did {{respondent.trad_as}} issue/send <em>invoices in electronic form not suitable for\
+    \ automated processing, for example, emails, PDF email attachments, images in TIF, JPEG or other formats</em>?"
+  type: General
+title: Invoicing
+type: Questionnaire

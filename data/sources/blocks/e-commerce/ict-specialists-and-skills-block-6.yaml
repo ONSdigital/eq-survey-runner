@@ -1,0 +1,23 @@
+id: ict-specialists-and-skills-block-6
+questions:
+- answers:
+  - description: ''
+    id: ict-specialists-and-skills-answer-6
+    label: ''
+    mandatory: true
+    options:
+    - label: ICT or IT Specialists
+      value: ICT or IT Specialists
+    - label: Other Employees
+      q_code: '316'
+      value: Other Employees
+    - label: No Training provided
+      value: No Training provided
+    type: Checkbox
+  description: ''
+  id: ict-specialists-and-skills-question-6
+  title: During 2017, did {{respondent.trad_as}} provide any type of training
+    to develop the ICT or IT related skills of the following?
+  type: General
+title: ICT Specialists and Skills
+type: Questionnaire

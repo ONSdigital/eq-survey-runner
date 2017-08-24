@@ -1,0 +1,57 @@
+id: invoicing-block-60
+questions:
+- answers:
+  - description: ''
+    id: invoicing-answer-60
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    type: Radio
+    guidance:
+      show_guidance: Show Invoices, EDI, UBL and XML Definitions
+      hide_guidance: Hide Invoices, EDI, UBL and XML Definitions
+      content:
+      - title: Invoices
+        description: "There are invoices in paper form and electronic form.\
+         \ Invoices in electronic form are of two types:"
+      - description: "E-invoices in a standard structure suitable for\
+         \ automated processing (for example EDI, UBL, XML), excluding the transmission of PDF files.\
+         \ They are exchanged either directly or via service operators or via an electronic banking system."
+      - description: "Invoices in electronic form not suitable for automated processing, for example e-mails,\
+         \ pdf e-mail attachments, images in TIF, JPEG or other format."
+      - title: EDI (Electronic Data Interchange)
+        description: "A set of standards for structuring information that is to be electronically exchanged between\
+         \ businesses or organisations. The standards describe formats that emulate documents, eg purchase orders\
+         \ or invoices; define messages and their contents, but not the method of exchanging the messages themselves.\
+         \ An example of EDI is EDIFACT (Electronic Data Interchange for Administration Commerce and\
+         \ Transport standards)."
+      - title: UBL (Universal Business Language)
+        description: "A library of standard electronic XML business documents such as purchase orders and invoices.\
+         \ UBL is designed to plug directly into existing business, legal, auditing, and records management practices.\
+         \ It is designed to eliminate the re-keying of data in existing fax- and paper-based business correspondence\
+         \ and provide an entry point into electronic commerce for small and medium-sized businesses."
+      - title: XML (Extensible Markup Language)
+        description: "A markup language (mechanism to identify structures) for documents containing structured\
+         \ information. Structured information contains both content (words, pictures, etc.) \
+         \ and some indication of what role that content plays (for example, content in a section heading has\
+         \ a different meaning from content in a footnote, which means something different to content in\
+         \ a figure caption or content in a database table, etc.)."
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - Invoices sent by intermediaries, e.g. accountants, e-invoice service providers,
+        etc.
+      title: 'Include:'
+  id: invoicing-question-60
+  title: 'In 2017, did {{respondent.trad_as}} issue/send <em>invoices in electronic
+    form, in a standard structure suitable for automated processing, for example EDI,
+    UBL, XML</em>?'
+  type: General
+title: Invoicing
+type: Questionnaire

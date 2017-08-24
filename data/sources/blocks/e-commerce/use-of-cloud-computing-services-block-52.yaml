@@ -1,0 +1,36 @@
+id: use-of-cloud-computing-services-block-52
+questions:
+- answers:
+  - description: ''
+    id: use-of-cloud-computing-services-answer-52
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    q_code: '367'
+    type: Radio
+    guidance:
+      show_guidance: Show Cloud Computing Definition
+      hide_guidance: Hide Cloud Computing Definition
+      content:
+      - title: Cloud Computing
+        description: "<em>ICT services</em> that are used <em>over the internet</em>\
+          \ to access software, computing power, storage capacity, etc."
+      - description: "Cloud computing services must have all of the following characteristics:"
+        list:
+          - Are delivered from <em>servers</em> of service providers
+          - Can be easily <em>scaled</em> up or down (for example; the number of users or change of storage capacity)
+          - "Can be used <em>on-demand by the user</em>, at least after the initial set up\
+           \ (without human interaction with the service provider)"
+          - Are <em>paid</em> for, either by the user, by the capacity used or they are pre-paid
+      - description: "Cloud computing may include connections via Virtual Private Networks (VPN)"
+  description: ''
+  id: use-of-cloud-computing-services-question-52
+  title: Does {{respondent.trad_as}} buy any cloud computing services from <em>servers
+    of service providers exclusively reserved for this business</em>?
+  type: General
+title: Use of cloud computing services
+type: Questionnaire

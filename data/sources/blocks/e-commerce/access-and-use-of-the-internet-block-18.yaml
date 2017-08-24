@@ -1,0 +1,39 @@
+id: access-and-use-of-the-internet-block-18
+questions:
+- answers:
+  - description: Please provide percentages to one decimal place where possible
+    id: access-and-use-of-the-internet-answer-18
+    label: ''
+    mandatory: true
+    options: []
+    q_code: '022'
+    type: Percentage
+    max_value:
+      answer_id: use-of-computers-answer-3
+    guidance:
+      show_guidance: Show EPOS Definition
+      hide_guidance: Hide EPOS Definition
+      content:
+      - title: EPOS (Electronic Point of Sale)
+        description: "Computerised equipment that performs all tasks of a store checkout counter.\
+          \ It may allow payments by bank or credit cards, verify transactions, provide sales reports,\
+          \ coordinate inventory data and perform several other services."
+  guidance:
+    content:
+    - description: ''
+      list:
+      - employees, directors and proprietors
+      - all agency staff on your payroll
+      title: 'Include:'
+    - description: ''
+      list:
+      - access limited to external email only
+      - terminals and computers solely used for EPOS (Electronic Point of Sale) and
+        computer controlled machinery
+      title: 'Exclude:'
+  id: access-and-use-of-the-internet-question-18
+  title: What percentage of people in {{respondent.trad_as}} use computers with internet
+    access for their work?
+  type: General
+title: Access and Use of the Internet
+type: Questionnaire

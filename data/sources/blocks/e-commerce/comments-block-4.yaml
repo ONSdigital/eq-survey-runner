@@ -1,0 +1,9 @@
+id: comments-block-4
+title: Comments
+description: '<p>You have completed the previous section.</p><p>This section covers your comments.</p>'
+type: Interstitial
+skip_conditions:
+- when:
+  - condition: equals
+    id: use-of-computers-answer-2
+    value: 'Yes'

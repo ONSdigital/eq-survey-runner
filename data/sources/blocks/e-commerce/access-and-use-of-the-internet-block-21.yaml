@@ -1,0 +1,44 @@
+id: access-and-use-of-the-internet-block-21
+questions:
+- answers:
+  - description: ''
+    id: access-and-use-of-the-internet-answer-21
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    type: Radio
+    guidance:
+      show_guidance: Show Mobile Connection to the Internet Definition
+      hide_guidance: Hide Mobile Connection to the Internet Definition
+      content:
+      - title: Use of a Mobile Connection to the Internet for Business Purposes
+        description: "A mobile connection to the internet means the use of portable devices connecting to the\
+          \ internet through mobile telephone networks for business purposes. Businesses provide portable devices\
+          \ and pay for all, or at least up to a limit, the subscription and the usage costs."
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - portable computers or other portable devices such as smartphones
+      title: 'Include:'
+  id: access-and-use-of-the-internet-question-21
+  title: Does {{respondent.trad_as}} provide the people employed with portable devices
+    that allow a mobile telephone network connection to the internet for business
+    purposes?
+  type: General
+title: Access and Use of the Internet
+type: Questionnaire
+routing_rules:
+- goto:
+    id: access-and-use-of-the-internet-block-26
+    when:
+    - condition: equals
+      id: access-and-use-of-the-internet-answer-21
+      value: 'No'
+- goto:
+    id: access-and-use-of-the-internet-block-22

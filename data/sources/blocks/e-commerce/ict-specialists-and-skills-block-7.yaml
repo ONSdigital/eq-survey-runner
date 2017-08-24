@@ -1,0 +1,29 @@
+id: ict-specialists-and-skills-block-7
+questions:
+- answers:
+  - description: ''
+    id: ict-specialists-and-skills-answer-7
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    type: Radio
+  description: ''
+  id: ict-specialists-and-skills-question-7
+  title: During 2017, did {{respondent.trad_as}} recruit or try to recruit ICT or IT
+    specialists?
+  type: General
+title: ICT Specialists and Skills
+type: Questionnaire
+routing_rules:
+- goto:
+    id: ict-specialists-and-skills-block-9
+    when:
+    - condition: equals
+      id: ict-specialists-and-skills-answer-7
+      value: 'No'
+- goto:
+    id: ict-specialists-and-skills-block-8

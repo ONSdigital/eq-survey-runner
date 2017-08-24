@@ -1,0 +1,45 @@
+id: e-commerce-block-67
+questions:
+- answers:
+  - description: ''
+    id: e-commerce-answer-67
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    q_code: '458'
+    type: Radio
+    guidance:
+      show_guidance: Show Extranet Definition
+      hide_guidance: Hide Extranet Definition
+      content:
+      - title: Extranet
+        description: "A private network, with restricted access, which uses Internet Protocol for sharing information\
+         \ with customers, suppliers, and other business pertners. It can take the form of a secure extension to an\
+         \ intranet or secure access part of a website. It is usually used for placing orders or accessing information."
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - Parent or affiliate businesses
+      - Extranets
+      title: 'Include:'
+  id: e-commerce-question-67
+  title: "During 2017, did {{respondent.trad_as}} receive orders for goods\
+    \ or services via this business\u2019 own website or \u2018app\u2019?"
+  type: General
+title: e-Commerce
+type: Questionnaire
+routing_rules:
+- goto:
+    id: e-commerce-block-70
+    when:
+    - condition: equals
+      id: e-commerce-answer-67
+      value: 'No'
+- goto:
+    id: e-commerce-block-68

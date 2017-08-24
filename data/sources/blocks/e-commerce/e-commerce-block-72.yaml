@@ -1,0 +1,42 @@
+id: e-commerce-block-72
+questions:
+- answers:
+  - description: ''
+    id: e-commerce-answer-72
+    label: ''
+    mandatory: true
+    options:
+    - label: 'Yes'
+      value: 'Yes'
+    - label: 'No'
+      value: 'No'
+    type: Radio
+    guidance:
+      show_guidance: Show EDI Definition
+      hide_guidance: Hide EDI Definition
+      content:
+      - title: EDI (Electronic Data Interchange)
+        description: "A set of standards for structuring information that is to be electronically exchanged between\
+         \ businesses or organisations. The standards describe formats that emulate documents, eg purchase orders\
+         \ or invoices; define messages and their contents, but not the method of exchanging the messages themselves.\
+         \ An example of EDI is EDIFACT (Electronic Data Interchange for Administration Commerce and\
+         \ Transport standards)."
+  description: ''
+  guidance:
+    content:
+    - description: ''
+      list:
+      - orders placed for utilities, goods, materials and services over websites or
+        via web forms over the internet or an extranet, EDI, automated telephone entry
+      title: 'Include:'
+    - description: ''
+      list:
+      - manually typed email, phone (person to person) and conventional fax
+      - enquiries that did not result in placing an order
+      title: 'Exclude:'
+  id: e-commerce-question-72
+  title: "During 2017, did {{respondent.trad_as}} place any orders for goods or\
+    \ services, excluding capital goods, via websites, \u2018apps\u2019 or EDI type messages?"
+  type: General
+title: e-Commerce
+type: Questionnaire
