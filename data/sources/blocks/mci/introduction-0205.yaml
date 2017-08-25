@@ -1,7 +1,7 @@
 id: introduction
 type: Introduction
 title: ''
-body:
+primary_content:
 - id: use-of-information
   type: Basic
   content:

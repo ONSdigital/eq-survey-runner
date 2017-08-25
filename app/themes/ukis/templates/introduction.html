@@ -21,27 +21,54 @@
 
 {% endblock business_details %}
 
-{% block information_to_provide %}
 
-  <div class="panel panel--simple panel--info u-mb-s">
-    <div class="panel__body">
-      <h2 class="neptune">Definition of innovation</h2>
-      <ul>
-        <li>Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all goods or services that {{ meta.respondent.address.name}} has introduced, regardless of their origin.</li>
-        <li>These innovations may be new to {{ meta.respondent.address.name}} or new to the market.</li>
-        <li>Investments for future innovation and changes that {{ meta.respondent.address.name}} has introduced at a <strong>strategic</strong> level (in organisation and practices) are also covered.</li>
-      </ul>
+{% block intro_content %}
+    <div id="basis-for-completion" class="u-mb-s">
+        <h2 class="saturn">Basis for completion</h2>
+        <ul>
+            <li>Please complete this voluntary questionnaire for <strong>{{ meta.respondent.address.name }}</strong>.</li>
+            <li>If this business is part of an enterprise group, please answer all questions for this business in the UK
+                only.
+            </li>
+            <li>Do not include results for subsidiaries or parent enterprises.</li>
+        </ul>
     </div>
-  </div>
+    <div class="panel panel--simple panel--info u-mb-s">
+        <h2 class="neptune">Definition of innovation</h2>
+        <div class="panel__body">
+            <ul>
+                <li>Innovation, for the purpose of this survey, is defined as <strong>new</strong> or <strong>significantly
+                    improved goods or services</strong> as well as <strong>processes</strong> used to produce or supply all
+                    goods or services that {{ meta.respondent.address.name }} has introduced, regardless of their origin.
+                </li>
+                <li>These innovations may be new to {{ meta.respondent.address.name }} or new to the market</li>
+                <li>Investments for future innovation and changes that {{ meta.respondent.address.name }} has introduced at a <strong>strategic</strong>
+                    level (in organisation and practices) are also covered
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="information-to-provide" class="u-mb-s">
+        <h2 class="saturn">You will be asked to provide information for the business, including:</h2>
+        <ul>
+            <li>business strategy and practices</li>
+            <li>innovation investment</li>
+            <li>goods, services, and process innovation</li>
+            <li>factors deemed important when deciding to initiate or terminate innovation</li>
+            <li>public financial support for innovation</li>
+            <li>turnover and exports</li>
+            <li>skills and employment</li>
+        </ul>
+        <p class="mars qa-intro-description">
+            <strong>If actual figures are not available, please provide informed estimates.</strong>
+        </p>
+    </div>
 
-  {{super()}}
-
-{% endblock information_to_provide %}
-
-{% block legal_info %}
-
+{% block start_survey %}
+{% include 'partials/introduction/start-survey.html' %}
+{% endblock start_survey %}
 <h2 class="neptune">Aim of this survey</h2>
 <p>The aim of the UK Innovation Survey (UKIS) is to collect data from businesses about various aspects of their innovation related activities to enable measurement of the extent, types and trends in innovation.</p>
 <p>The UKIS data provides a major source of evidence to inform government policy for promoting innovation activities among businesses to boost economic growth. The data collected also serves as an important contributor to the Community Innovation Survey conducted across Europe, which is used for international benchmarking and comparison purposes. We are interested in responses from both businesses conducting innovation and businesses not currently engaged in innovation as this can help to inform our wider understanding of the constraining factors.</p>
+{% endblock intro_content %}
 
-{% endblock legal_info %}
