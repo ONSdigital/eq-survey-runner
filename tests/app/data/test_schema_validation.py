@@ -43,10 +43,10 @@ class TestSchemaValidation(unittest.TestCase):
         schema = load(schema_file)
 
         for file in files:
-            json_file = open(file, encoding="utf8")
-            json_to_validate = load(json_file)
+            with open(file, encoding="utf8") as json_file:
+                json_to_validate = load(json_file)
 
-            errors.extend(self.validate_schema(schema, file, json_to_validate))
+                errors.extend(self.validate_schema(schema, file, json_to_validate))
 
         if errors:
             for error in errors:

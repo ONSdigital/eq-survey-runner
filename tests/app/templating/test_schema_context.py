@@ -1,11 +1,10 @@
-from unittest.mock import MagicMock
-
 from app.data_model.answer_store import AnswerStore
+from app.questionnaire.location import Location
 from app.templating.schema_context import build_schema_context
-from tests.app.framework.survey_runner_test_case import SurveyRunnerTestCase
+from tests.app.app_context_test_case import AppContextTestCase
 
 
-class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-public-methods
+class TestSchemaContext(AppContextTestCase):  # pylint: disable=too-many-public-methods
 
     metadata = {
         'return_by': '2016-10-10',
@@ -22,7 +21,9 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
 
     def setUp(self):
         super().setUp()
-        self.answer_store = MagicMock()
+        self.answer_store = AnswerStore([])
+
+        self.routing_path = [Location("group1", 0, "block1")]
 
     def test_build_schema_context(self):
         aliases = {
@@ -33,9 +34,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         }
         answers = []
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         self.assertTrue('exercise' in schema_context)
         self.assertTrue('answers' in schema_context)
@@ -49,9 +48,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         }
         answers = []
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         exercise = schema_context['exercise']
         self.assertEqual('2016-10-11', exercise['start_date'].date().isoformat())
@@ -69,14 +66,15 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
             },
         }
         answers = [{
+            'group_id': 'group1',
+            'group_instance': 0,
+            'block_id': 'block1',
             'answer_id': 'answer_id',
             'answer_instance': 0,
             'value': 'Joe Bloggs',
         }]
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
@@ -91,25 +89,32 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         }
         answers = [
             {
+                'group_id': 'group1',
+                'group_instance': 0,
+                'block_id': 'block1',
                 'answer_id': 'full_name_answer',
                 'answer_instance': 0,
                 'value': 'Person One',
             },
             {
+                'group_id': 'group1',
+                'group_instance': 0,
+                'block_id': 'block1',
                 'answer_id': 'full_name_answer',
                 'answer_instance': 1,
                 'value': 'Person Two',
             },
             {
+                'group_id': 'group1',
+                'group_instance': 0,
+                'block_id': 'block1',
                 'answer_id': 'full_name_answer',
                 'answer_instance': 2,
                 'value': 'Person Three',
             }
         ]
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertIsInstance(context_answers['_full_name'], list)
@@ -124,14 +129,15 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
             },
         }
         answers = [{
+            'group_id': 'group1',
+            'group_instance': 0,
+            'block_id': 'block1',
             'answer_id': 'full_name_answer',
             'answer_instance': 0,
             'value': 'Person One',
         }]
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(answers), 1)
@@ -146,9 +152,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         }
         answers = []
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
@@ -162,14 +166,15 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
             },
         }
         answers = [{
+            'group_id': 'group1',
+            'group_instance': 0,
+            'block_id': 'block1',
             'answer_id': 'answer_id',
             'answer_instance': 0,
             'value': 'Some Value',
         }]
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertIsInstance(context_answers['repeating_answer_alias'], list)
@@ -182,14 +187,15 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
             },
         }
         answers = [{
+            'group_id': 'group1',
+            'group_instance': 0,
+            'block_id': 'block1',
             'answer_id': 'answer_id',
             'answer_instance': 0,
             'value': 'Some Value',
         }]
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertIsInstance(context_answers['non_repeating_answer_alias'], str)
@@ -203,18 +209,21 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
             },
         }
         answers = [{
+            'group_id': 'group1',
+            'group_instance': 0,
+            'block_id': 'block1',
             'answer_id': 'answer_id',
             'answer_instance': instance,
             'value': 'Some Value',
         } for instance in range(26)]
 
-        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers))
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers['repeating_answer_alias']), 25)
 
     def test_respondent_display_name_is_trading_as_when_trading_as_supplied(self):
-        schema_context = build_schema_context(self.metadata, {}, self.answer_store)
+        schema_context = build_schema_context(self.metadata, {}, self.answer_store, self.routing_path)
 
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], self.metadata['trad_as'])
 
@@ -222,7 +231,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         metadata = self.metadata.copy()
         metadata['trad_as'] = None
 
-        schema_context = build_schema_context(metadata, {}, self.answer_store)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
 
@@ -230,7 +239,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         metadata = self.metadata.copy()
         metadata['trad_as'] = ""
 
-        schema_context = build_schema_context(metadata, {}, self.answer_store)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], metadata['ru_name'])
 
@@ -240,7 +249,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         metadata['trad_as'] = "\"trading name\""
 
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['trad_as'], r'&#34;trading name&#34;')
@@ -251,7 +260,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         metadata['trad_as'] = "\\trading name\\"
 
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['trad_as'], r'\\trading name\\')
@@ -262,7 +271,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         metadata['ru_name'] = "\"ru name\""
 
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['ru_name'], r'&#34;ru name&#34;')
@@ -273,7 +282,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         metadata['ru_name'] = "\\ru name\\"
 
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['ru_name'], r'\\ru name\\')
@@ -285,7 +294,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         metadata['trad_as'] = None
 
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'&#34;ru_name&#34;')
@@ -296,7 +305,7 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
         metadata['trad_as'] = "\\trading name\\"
 
         # When
-        schema_context = build_schema_context(metadata, {}, self.answer_store)
+        schema_context = build_schema_context(metadata, {}, self.answer_store, self.routing_path)
 
         # Then
         self.assertEqual(schema_context['respondent']['trad_as_or_ru_name'], r'\\trading name\\')
@@ -309,14 +318,15 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
             },
         }
         answers = [{
+            'group_id': 'group1',
+            'group_instance': 0,
+            'block_id': 'block1',
             'answer_id': 'answer_id',
             'answer_instance': 0,
             'value': '"',
         }]
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
@@ -330,15 +340,53 @@ class TestSchemaContext(SurveyRunnerTestCase):  # pylint: disable=too-many-publi
             },
         }
         answers = [{
+            'group_id': 'group1',
+            'group_instance': 0,
+            'block_id': 'block1',
             'answer_id': 'answer_id',
             'answer_instance': 0,
             'value': '\\',
         }]
 
-        self.answer_store.filter = MagicMock(return_value=answers)
-
-        schema_context = build_schema_context(self.metadata, aliases, self.answer_store)
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
 
         context_answers = schema_context['answers']
         self.assertEqual(len(context_answers), 1)
         self.assertEqual(context_answers['first_name'], r'\\')
+
+    def test_build_answers_excludes_answers_not_in_routing_path(self):
+        aliases = {
+            'first_name': {
+                'answer_id': 'first_name',
+                'repeats': False,
+            },
+            'last_name': {
+                'answer_id': 'last_name',
+                'repeats': False,
+            },
+        }
+        answers = [
+            {
+                'group_id': 'group1',
+                'group_instance': 0,
+                'block_id': 'block1',
+                'answer_id': 'first_name',
+                'answer_instance': 0,
+                'value': 'Joe',
+            },
+            {
+                'group_id': 'group2',
+                'group_instance': 0,
+                'block_id': 'block2',
+                'answer_id': 'last_name',
+                'answer_instance': 0,
+                'value': 'Bloggs',
+            }
+        ]
+
+        schema_context = build_schema_context(self.metadata, aliases, AnswerStore(answers), self.routing_path)
+
+        context_answers = schema_context['answers']
+        self.assertEqual(len(context_answers), 2)
+        self.assertEqual(context_answers['first_name'], 'Joe')
+        self.assertEqual(context_answers['last_name'], '')

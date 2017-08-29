@@ -172,16 +172,58 @@
                 }]
             },
             {
-                "type": "Questionnaire",
-                "id": "reporting-period",
-                "description": "",
+                "title": "Reporting period",
+                "routing_rules": [{
+                        "goto": {
+                            "when": [{
+                                "value": "Yes",
+                                "condition": "equals",
+                                "id": "reporting-period-choice-answer"
+                            }],
+                            "id": "total-retail-turnover-block"
+                        }
+                    },
+                    {
+                        "goto": {
+                            "id": "reporting-period"
+                        }
+                    }
+                ],
                 "questions": [{
+                    "title": "Are you able to report for the period from {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}?",
+                    "type": "General",
+                    "id": "reporting-period-choice-question",
                     "answers": [{
-                            "id": "period-from",
-                            "alias": "period_from",
-                            "label": "Period from",
+                        "mandatory": true,
+                        "options": [{
+                                "label": "Yes",
+                                "value": "Yes"
+                            },
+                            {
+                                "label": "No",
+                                "value": "No"
+                            }
+                        ],
+                        "id": "reporting-period-choice-answer",
+                        "q_code": "d12",
+                        "type": "Radio"
+                    }]
+                }],
+                "id": "reporting-period-choice",
+                "type": "Questionnaire"
+            },
+            {
+                "title": "Reporting period",
+                "questions": [{
+                    "title": "What are the dates of the period that you will be reporting for?",
+                    "type": "DateRange",
+                    "id": "reporting-period-question",
+                    "answers": [{
                             "mandatory": true,
                             "options": [],
+                            "label": "From",
+                            "id": "period-from",
+                            "alias": "period_from",
                             "q_code": "11",
                             "type": "Date",
                             "validation": {
@@ -192,11 +234,11 @@
                             }
                         },
                         {
-                            "id": "period-to",
-                            "alias": "period_to",
-                            "label": "Period to",
                             "mandatory": true,
                             "options": [],
+                            "label": "To",
+                            "id": "period-to",
+                            "alias": "period_to",
                             "q_code": "12",
                             "type": "Date",
                             "validation": {
@@ -206,13 +248,10 @@
                                 }
                             }
                         }
-                    ],
-                    "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
-                    "id": "reporting-period-question",
-                    "title": "What are the dates of the sales period you are reporting for?",
-                    "type": "DateRange"
+                    ]
                 }],
-                "title": "Reporting Period"
+                "id": "reporting-period",
+                "type": "Questionnaire"
             },
             {
                 "type": "Questionnaire",
@@ -260,7 +299,7 @@
                     }],
                     "description": "",
                     "id": "total-turnover-question",
-                    "title": "For the period {{answers.period_from|format_str_as_date}} to {{answers.period_to|format_str_as_date}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
+                    "title": "For the period {{ format_conditional_date (answers.period_from, exercise.start_date)}} to {{ format_conditional_date (answers.period_to, exercise.end_date)}}, what was the value of {{respondent.trad_as_or_ru_name}}\u2019s <em>total retail turnover</em>?",
                     "type": "General"
                 }],
                 "title": "Retail Turnover"

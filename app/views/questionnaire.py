@@ -501,7 +501,10 @@ def _get_context(block, current_location, answer_store):
     if block['type'] == 'Summary':
         metadata = get_metadata(current_user)
         aliases = SchemaHelper.get_aliases(g.schema_json)
-        schema_context = build_schema_context(metadata, aliases, answer_store)
+        schema_context = build_schema_context(metadata=metadata,
+                                              aliases=aliases,
+                                              answer_store=answer_store,
+                                              routing_path=path_finder.get_routing_path())
         rendered_schema_json = renderer.render(g.schema_json, **schema_context)
         content.update({'summary': build_summary_rendering_context(rendered_schema_json, answer_store, metadata)})
 
@@ -514,7 +517,11 @@ def _render_schema(current_location):
     block_json = SchemaHelper.get_block_for_location(g.schema_json, current_location)
     block_json = _evaluate_skip_conditions(block_json, current_location, answer_store, metadata)
     aliases = SchemaHelper.get_aliases(g.schema_json)
-    block_context = build_schema_context(metadata, aliases, answer_store, current_location.group_instance)
+    block_context = build_schema_context(metadata=metadata,
+                                         aliases=aliases,
+                                         answer_store=answer_store,
+                                         group_instance=current_location.group_instance,
+                                         routing_path=path_finder.get_routing_path())
     return renderer.render(block_json, **block_context)
 
 
