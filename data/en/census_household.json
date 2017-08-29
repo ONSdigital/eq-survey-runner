@@ -74,12 +74,7 @@
                                     "description": "For example this is a second address or holiday home"
                                 }
                             ],
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please select an answer to continue"
-                                }
-                            }
+                            "type": "Radio"
                         }]
                     }],
                     "routing_rules": [{
@@ -138,12 +133,7 @@
                                     "value": "No one lives here as their permanent home"
                                 }
                             ],
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please select an answer to continue"
-                                }
-                            }
+                            "type": "Radio"
                         }]
                     }],
                     "routing_rules": [{
@@ -196,7 +186,7 @@
                                 "type": "TextField",
                                 "validation": {
                                     "messages": {
-                                        "MANDATORY": "Please enter a name or remove the person to continue"
+                                        "MANDATORY_TEXTFIELD": "Please enter a name or remove the person to continue"
                                     }
                                 }
                             },
@@ -324,13 +314,7 @@
                             "id": "overnight-visitors-answer",
                             "label": "Number of visitors (enter 0 if no visitors)",
                             "mandatory": true,
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please enter a value even if that value is 0",
-                                    "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
-                                }
-                            }
+                            "type": "Number"
                         }]
                     }]
                 }
@@ -612,12 +596,7 @@
                             "id": "number-of-bedrooms-answer",
                             "label": "Number of bedrooms",
                             "mandatory": false,
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
-                                }
-                            }
+                            "type": "Number"
                         }]
                     }]
                 },
@@ -828,12 +807,7 @@
                             "id": "number-of-vehicles-answer",
                             "label": "Number of vehicles",
                             "mandatory": false,
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
-                                }
-                            }
+                            "type": "Number"
                         }]
                     }]
                 },
@@ -952,12 +926,7 @@
                                     "value": "No"
                                 }
                             ],
-                            "type": "Radio",
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please select an answer to continue"
-                                }
-                            }
+                            "type": "Radio"
                         }]
                     }],
                     "routing_rules": [{
@@ -1075,12 +1044,7 @@
                         "answers": [{
                             "id": "date-of-birth-answer",
                             "mandatory": false,
-                            "type": "Date",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid. Please correct your answer"
-                                }
-                            }
+                            "type": "Date"
                         }]
                     }]
                 },
@@ -1670,12 +1634,7 @@
                         "answers": [{
                             "id": "arrive-in-uk-answer",
                             "mandatory": false,
-                            "type": "MonthYearDate",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid. Please correct your answer"
-                                }
-                            }
+                            "type": "MonthYearDate"
                         }]
                     }]
                 },
@@ -4077,12 +4036,7 @@
                         "answers": [{
                             "id": "visitor-date-of-birth-answer",
                             "mandatory": false,
-                            "type": "Date",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid. Please correct your answer"
-                                }
-                            }
+                            "type": "Date"
                         }]
                     }]
                 },

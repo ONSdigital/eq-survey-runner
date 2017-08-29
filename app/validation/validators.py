@@ -38,9 +38,7 @@ class ResponseRequired(object):
     """
     field_flags = ('required', )
 
-    def __init__(self, message=None, strip_whitespace=True):
-        if not message:
-            message = error_messages['MANDATORY']
+    def __init__(self, message, strip_whitespace=True):
         self.message = message
 
         if strip_whitespace:
@@ -79,12 +77,12 @@ class NumberRange(object):
         error_message = None
         if data is not None:
             if self.minimum is not None and data < self.minimum:
-                error_message = self.messages.get('OUT_OF_RANGE', self.messages['NUMBER_TOO_SMALL'])
+                error_message = self.messages['NUMBER_TOO_SMALL'] % dict(min=format_number(self.minimum))
             elif self.maximum is not None and data > self.maximum:
-                error_message = self.messages.get('OUT_OF_RANGE', self.messages['NUMBER_TOO_LARGE'])
+                error_message = self.messages['NUMBER_TOO_LARGE'] % dict(max=format_number(self.maximum))
 
             if error_message:
-                raise validators.ValidationError(error_message % dict(min=format_number(self.minimum), max=format_number(self.maximum)))
+                raise validators.ValidationError(error_message)
 
 
 class DecimalPlaces(object):
@@ -142,7 +140,7 @@ class DateRequired(object):
 
     def __init__(self, message=None):
         if not message:
-            message = error_messages['MANDATORY']
+            message = error_messages['MANDATORY_DATE']
         self.message = message
 
     def __call__(self, form, field):
@@ -201,7 +199,5 @@ class DateRangeCheck(object):
         from_date = datetime.strptime(from_date_str, "%d/%m/%Y")
         to_date = datetime.strptime(to_date_str, "%d/%m/%Y")
 
-        if from_date == to_date:
-            raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_FROM_SAME'])
-        elif from_date > to_date:
-            raise validators.ValidationError(self.messages['INVALID_DATE_RANGE_TO_BEFORE_FROM'])
+        if from_date == to_date or from_date > to_date:
+            raise validators.ValidationError(self.messages['INVALID_DATE_RANGE'])

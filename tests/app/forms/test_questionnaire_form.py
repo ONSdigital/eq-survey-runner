@@ -73,11 +73,9 @@ class TestQuestionnaireForm(AppContextTestCase):
             }
             form = generate_form(block_json, data, error_messages, AnswerStore())
 
-            expected_message = "The 'period to' date must be different to the 'period from' date."
-
             form.validate()
             self.assertEqual(form.data, expected_form_data)
-            self.assertEqual(form.question_errors['reporting-period-question'], expected_message)
+            self.assertEqual(form.question_errors['reporting-period-question'], error_messages["INVALID_DATE_RANGE"])
 
     def test_date_range_to_precedes_from_raises_question_error(self):
         with self.test_request_context():
@@ -102,11 +100,9 @@ class TestQuestionnaireForm(AppContextTestCase):
             }
             form = generate_form(block_json, data, error_messages, AnswerStore())
 
-            expected_message = "The 'period to' date cannot be before the 'period from' date."
-
             form.validate()
             self.assertEqual(form.data, expected_form_data)
-            self.assertEqual(form.question_errors['reporting-period-question'], expected_message, AnswerStore())
+            self.assertEqual(form.question_errors['reporting-period-question'], error_messages['INVALID_DATE_RANGE'], AnswerStore())
 
     def test_form_errors_are_correctly_mapped(self):
         with self.test_request_context():
@@ -120,9 +116,7 @@ class TestQuestionnaireForm(AppContextTestCase):
             form.validate()
             mapped_errors = form.map_errors()
 
-            message = "Please provide a value, even if your value is 0."
-
-            self.assertTrue(self._error_exists('total-retail-turnover-answer', message, mapped_errors))
+            self.assertTrue(self._error_exists('total-retail-turnover-answer', error_messages["MANDATORY_NUMBER"], mapped_errors))
 
     def test_form_subfield_errors_are_correctly_mapped(self):
         with self.test_request_context():
@@ -133,13 +127,11 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form = generate_form(block_json, {}, error_messages, AnswerStore())
 
-            message = "Please provide an answer to continue."
-
             form.validate()
             mapped_errors = form.map_errors()
 
-            self.assertTrue(self._error_exists('period-to', message, mapped_errors))
-            self.assertTrue(self._error_exists('period-from', message, mapped_errors))
+            self.assertTrue(self._error_exists('period-to', error_messages["MANDATORY_DATE"], mapped_errors))
+            self.assertTrue(self._error_exists('period-from', error_messages["MANDATORY_DATE"], mapped_errors))
 
     def test_answer_with_child_inherits_mandatory_from_parent(self):
         with self.test_request_context():
@@ -170,10 +162,8 @@ class TestQuestionnaireForm(AppContextTestCase):
             form.validate()
             mapped_errors = form.map_errors()
 
-            message = "This field is mandatory."
-
-            self.assertTrue(self._error_exists("radio-mandatory-answer", message, mapped_errors))
-            self.assertFalse(self._error_exists("other-answer-mandatory", message, mapped_errors))
+            self.assertTrue(self._error_exists("radio-mandatory-answer", error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
+            self.assertFalse(self._error_exists("other-answer-mandatory", error_messages['MANDATORY_TEXTFIELD'], mapped_errors))
 
     def test_answer_errors_are_mapped(self):
         with self.test_request_context():
@@ -188,7 +178,7 @@ class TestQuestionnaireForm(AppContextTestCase):
 
             form.validate()
             answer_errors = form.answer_errors('total-retail-turnover-answer')
-            self.assertIn("The value cannot be negative. Please correct your answer.", answer_errors)
+            self.assertIn(error_messages["NUMBER_TOO_SMALL"] % dict(min=0), answer_errors)
 
     def test_option_has_other(self):
         with self.test_request_context():

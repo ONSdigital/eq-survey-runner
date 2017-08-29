@@ -1,3 +1,4 @@
+from app.validation.error_messages import error_messages
 from tests.integration.integration_test_case import IntegrationTestCase
 
 
@@ -28,7 +29,7 @@ class TestSaveSignOut(IntegrationTestCase):
         self.post(post_data={'total-retail-turnover': 'error'}, action='save_sign_out')
 
         # Then we are presented with an error message
-        self.assertRegexPage('Please only enter whole numbers into the field.')
+        self.assertRegexPage(error_messages["INVALID_NUMBER"])
 
     def test_save_sign_out_complete_a_block_then_revisit_it(self):
         # If a user completes a block, but then goes back and uses save and come back on that block, that block

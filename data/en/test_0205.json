@@ -7,13 +7,6 @@
     "description": "MCI Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "messages": {
-        "MANDATORY": "Please provide an answer to continue.",
-        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-        "INVALID_NUMBER": "Please only enter whole numbers into the field.",
-        "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-        "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
-    },
     "groups": [{
         "id": "mci",
         "title": "",
@@ -138,14 +131,7 @@
                             "type": "Currency",
                             "currency": "GBP",
                             "options": [],
-                            "mandatory": false,
-                            "validation": {
-                                "messages": {
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer."
-                                }
-                            }
+                            "mandatory": false
                         }]
                     },
                     {
@@ -301,12 +287,7 @@
                             "type": "Currency",
                             "currency": "GBP",
                             "options": [],
-                            "mandatory": true,
-                            "validation": {
-                                "messages": {
-                                    "MANDATORY": "Please provide a value, even if your value is 0."
-                                }
-                            }
+                            "mandatory": true
                         }]
                     },
                     {

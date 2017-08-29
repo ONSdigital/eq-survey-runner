@@ -20,13 +20,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1111",
-                            "type": "Date",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                    "MANDATORY": "Please provide an answer to continue."
-                                }
-                            }
+                            "type": "Date"
                         },
                         {
                             "alias": "date_end_to",
@@ -35,13 +29,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "1112",
-                            "type": "Date",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                    "MANDATORY": "Please provide an answer to continue."
-                                }
-                            }
+                            "type": "Date"
                         }
                     ],
                     "description": "",
@@ -62,15 +50,7 @@
                         "mandatory": false,
                         "options": [],
                         "q_code": "20",
-                        "type": "Number",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "MANDATORY": "Please provide a value, even if your value is 0.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "type": "Number"
                     }],
                     "id": "total-retail-turnover-question",
                     "title": "For the period {{ format_conditional_date (answers.date_start_from, exercise.start_date)}} to {{ format_conditional_date (answers.date_end_to, exercise.end_date)}}, what was the value of the business’s total retail turnover?",

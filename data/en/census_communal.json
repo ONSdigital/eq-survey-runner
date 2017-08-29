@@ -70,13 +70,7 @@
                         "id": "bed-spaces-answer",
                         "label": "Number of bed spaces",
                         "mandatory": true,
-                        "type": "Number",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please provide an answer to continue",
-                                "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
-                            }
-                        }
+                        "type": "Number"
                     }]
                 }],
                 "routing_rules": [{
@@ -130,12 +124,7 @@
                                 "value": "No"
                             }
                         ],
-                        "type": "Radio",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please select an answer to continue"
-                            }
-                        }
+                        "type": "Radio"
                     }]
                 }],
                 "routing_rules": [{
@@ -168,13 +157,7 @@
                         "id": "usual-residents-number-answer",
                         "mandatory": true,
                         "label": "Number of usual residents",
-                        "type": "Number",
-                        "validation": {
-                            "messages": {
-                                "MANDATORY": "Please provide an answer to continue.",
-                                "INVALID_NUMBER": "The value you have entered is invalid. Please enter a numeric value."
-                            }
-                        }
+                        "type": "Number"
                     }]
                 }]
             },

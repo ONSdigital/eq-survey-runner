@@ -115,16 +115,22 @@
     "messages": {
       "type": "object",
       "properties": {
-        "INVALID_NUMBER": {
+        "MANDATORY_TEXTFIELD": {
           "type": "string"
         },
-        "NOT_STRING": {
+        "MANDATORY_NUMBER": {
           "type": "string"
         },
-        "MANDATORY": {
+        "MANDATORY_TEXTAREA": {
           "type": "string"
         },
-        "INVALID_DATE": {
+        "MANDATORY_RADIO": {
+          "type": "string"
+        },
+        "MANDATORY_CHECKBOX": {
+          "type": "string"
+        },
+        "MANDATORY_DATE": {
           "type": "string"
         },
         "NUMBER_TOO_SMALL": {
@@ -133,19 +139,22 @@
         "NUMBER_TOO_LARGE": {
           "type": "string"
         },
-        "OUT_OF_RANGE": {
+        "INVALID_NUMBER": {
           "type": "string"
         },
-        "INVALID_DATE_RANGE_TO_BEFORE_FROM": {
+        "INVALID_INTEGER": {
           "type": "string"
         },
-        "INVALID_DATE_RANGE_TO_FROM_SAME": {
+        "INVALID_DECIMAL": {
           "type": "string"
         },
         "MAX_LENGTH_EXCEEDED": {
           "type": "string"
         },
-        "INVALID_DECIMAL": {
+        "INVALID_DATE": {
+          "type": "string"
+        },
+        "INVALID_DATE_RANGE": {
           "type": "string"
         }
       },

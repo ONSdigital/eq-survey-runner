@@ -44,13 +44,7 @@
                                 "mandatory": true,
                                 "options": [],
                                 "q_code": "11",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                        "MANDATORY": "Please provide an answer to continue."
-                                    }
-                                }
+                                "type": "Date"
                             },
                             {
                                 "id": "period-to",
@@ -58,13 +52,7 @@
                                 "mandatory": true,
                                 "options": [],
                                 "q_code": "12",
-                                "type": "Date",
-                                "validation": {
-                                    "messages": {
-                                        "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                        "MANDATORY": "Please provide an answer to continue."
-                                    }
-                                }
+                                "type": "Date"
                             }
                         ],
                         "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
@@ -108,14 +96,7 @@
                             "options": [],
                             "q_code": "22",
                             "type": "Currency",
-                            "currency": "GBP",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "total-sales-food-question",
@@ -142,14 +123,7 @@
                             "options": [],
                             "q_code": "23",
                             "type": "Currency",
-                            "currency": "GBP",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "total-sales-alcohol-question",
@@ -179,14 +153,7 @@
                             "options": [],
                             "q_code": "24",
                             "type": "Currency",
-                            "currency": "GBP",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "total-sales-clothing-question",
@@ -225,14 +192,7 @@
                             "options": [],
                             "q_code": "25",
                             "type": "Currency",
-                            "currency": "GBP",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "total-sales-household-goods-question",
@@ -281,14 +241,7 @@
                             "options": [],
                             "q_code": "26",
                             "type": "Currency",
-                            "currency": "GBP",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "total-sales-other-goods-question",
@@ -326,15 +279,7 @@
                             "options": [],
                             "q_code": "20",
                             "type": "Currency",
-                            "currency": "GBP",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "MANDATORY": "Please provide a value, even if your value is 0.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "total-retail-turnover-question",
@@ -361,14 +306,7 @@
                             "options": [],
                             "q_code": "21",
                             "type": "Currency",
-                            "currency": "GBP",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "currency": "GBP"
                         }],
                         "description": "",
                         "id": "internet-sales-question",
@@ -382,10 +320,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "146",
-                            "type": "TextArea",
-                            "validation": {
-                                "messages": {}
-                            }
+                            "type": "TextArea"
                         }],
                         "description": "Please explain any movements in your data, for example, sale held, branches opened or sold, extreme weather, or temporary closure of shop",
                         "id": "reason-for-change-question",

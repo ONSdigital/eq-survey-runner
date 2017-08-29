@@ -7,12 +7,6 @@
     "description": "Test Description",
     "theme": "default",
     "legal_basis": "StatisticsOfTradeAct",
-    "messages": {
-        "NUMBER_TOO_LARGE": "The maximum value allowed is %(max)s. Please correct your answer.",
-        "NUMBER_TOO_SMALL": "The minimum value allowed is %(min)s. Please correct your answer.",
-        "INVALID_NUMBER": "Please only enter a valid number into the field.",
-        "MANDATORY": "Please provide a value, even if your value is 0."
-    },
     "groups": [{
             "blocks": [{
                     "type": "Questionnaire",
@@ -26,10 +20,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "length-centimeter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "length-centimeter"
                             },
                             {
                                 "id": "metres",
@@ -38,10 +29,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "length-meter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "length-meter"
                             },
                             {
                                 "id": "kilometres",
@@ -50,10 +38,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "length-kilometer",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "length-kilometer"
                             },
                             {
                                 "id": "miles",
@@ -62,10 +47,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "length-mile",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "length-mile"
                             }
                         ],
                         "description": "",
@@ -87,10 +69,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "area-square-centimeter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "area-square-centimeter"
                             },
                             {
                                 "id": "square-metres",
@@ -99,10 +78,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "area-square-meter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "area-square-meter"
                             },
                             {
                                 "id": "square-kilometres",
@@ -111,10 +87,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "area-square-kilometer",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "area-square-kilometer"
                             },
                             {
                                 "id": "square-miles",
@@ -123,10 +96,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "area-square-mile",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "area-square-mile"
                             },
                             {
                                 "id": "acres",
@@ -135,10 +105,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "area-acre",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "area-acre"
                             },
                             {
                                 "id": "hectares",
@@ -147,10 +114,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "area-hectare",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "area-hectare"
                             }
                         ],
                         "description": "",
@@ -172,10 +136,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "volume-cubic-centimeter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "volume-cubic-centimeter"
                             },
                             {
                                 "id": "cubic-metres",
@@ -184,10 +145,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "volume-cubic-meter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "volume-cubic-meter"
                             },
                             {
                                 "id": "litres",
@@ -196,10 +154,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "volume-liter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "volume-liter"
                             },
                             {
                                 "id": "hectolitres",
@@ -208,10 +163,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "volume-hectoliter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "volume-hectoliter"
                             },
                             {
                                 "id": "megalitres",
@@ -220,10 +172,7 @@
                                 "mandatory": false,
                                 "options": [],
                                 "type": "Unit",
-                                "unit": "volume-megaliter",
-                                "validation": {
-                                    "messages": {}
-                                }
+                                "unit": "volume-megaliter"
                             }
                         ],
                         "description": "",

@@ -41,13 +41,7 @@
                             "mandatory": true,
                             "options": [],
                             "q_code": "11",
-                            "type": "Date",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                    "MANDATORY": "Please provide an answer to continue."
-                                }
-                            }
+                            "type": "Date"
                         },
                         {
                             "id": "period-to",
@@ -55,13 +49,7 @@
                             "mandatory": true,
                             "options": [],
                             "q_code": "12",
-                            "type": "Date",
-                            "validation": {
-                                "messages": {
-                                    "INVALID_DATE": "The date entered is not valid.  Please correct your answer.",
-                                    "MANDATORY": "Please provide an answer to continue."
-                                }
-                            }
+                            "type": "Date"
                         }
                     ],
                     "description": "If possible, this should be for the period {{exercise.start_date|format_date}} to {{exercise.end_date|format_date}}.",
@@ -83,15 +71,7 @@
                         "options": [],
                         "q_code": "20",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "MANDATORY": "Please provide a value, even if your value is 0.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
                     "guidance": {
@@ -132,15 +112,7 @@
                         "options": [],
                         "q_code": "21",
                         "type": "Currency",
-                        "currency": "GBP",
-                        "validation": {
-                            "messages": {
-                                "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                "MANDATORY": "Please provide a value, even if your value is 0.",
-                                "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                            }
-                        }
+                        "currency": "GBP"
                     }],
                     "description": "<p>Round your figures to the nearest whole pound (£). Even if your figures are zero, please still complete.</p>",
                     "guidance": {
@@ -194,10 +166,7 @@
                         "mandatory": false,
                         "options": [],
                         "q_code": "146",
-                        "type": "TextArea",
-                        "validation": {
-                            "messages": {}
-                        }
+                        "type": "TextArea"
                     }],
                     "description": "<p>We rely on your commentary to 'tell the story' behind changes to the business's figures.</p><p>By commenting here it will reduce the need for us to call you.</p>",
                     "guidance": {
@@ -228,14 +197,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "51",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "type": "Number"
                         },
                         {
                             "id": "male-employees-under-30-hours",
@@ -243,14 +205,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "52",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "type": "Number"
                         },
                         {
                             "id": "female-employees-over-30-hours",
@@ -258,14 +213,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "53",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "type": "Number"
                         },
                         {
                             "id": "female-employees-under-30-hours",
@@ -273,14 +221,7 @@
                             "mandatory": false,
                             "options": [],
                             "q_code": "54",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field."
-                                }
-                            }
+                            "type": "Number"
                         },
                         {
                             "id": "total-number-employees",
@@ -288,15 +229,7 @@
                             "mandatory": true,
                             "options": [],
                             "q_code": "50",
-                            "type": "Number",
-                            "validation": {
-                                "messages": {
-                                    "NUMBER_TOO_LARGE": "The maximum value allowed is 9999999999. Please correct your answer.",
-                                    "NUMBER_TOO_SMALL": "The value cannot be negative. Please correct your answer.",
-                                    "INVALID_NUMBER": "Please only enter whole numbers into the field.",
-                                    "MANDATORY": "Please provide a value, even if your value is 0."
-                                }
-                            }
+                            "type": "Number"
                         }
                     ],
                     "id": "number-of-employees-question",
@@ -337,10 +270,7 @@
                         "mandatory": false,
                         "options": [],
                         "q_code": "147",
-                        "type": "TextArea",
-                        "validation": {
-                            "messages": {}
-                        }
+                        "type": "TextArea"
                     }],
                     "description": "",
                     "guidance": {
