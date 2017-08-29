@@ -8,7 +8,7 @@ from uuid import uuid4
 import yaml
 from flask import Flask
 from flask import url_for
-from flask.ext.cache import Cache
+from flask_caching import Cache
 from flask_babel import Babel
 from flask_themes2 import Themes
 from structlog import get_logger
